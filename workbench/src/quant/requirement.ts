@@ -94,6 +94,64 @@ const asCompilation = (notes: readonly string[]): { kind: "other"; explanation: 
 const disclose = (kind: Compilation["kind"], explanation: string): Compilation =>
   ({ kind, explanation });
 
+/**
+ * The two questions a selection-shaped absence answers, which read opposite polarities of the same
+ * emptiness: a ceiling is a universal and holds over nothing, a measurement is an existential and is
+ * refuted by nothing. V41's table has a vacuous row under each.
+ */
+export type SelectionAbsenceForm = "ceiling" | "measurement";
+
+/**
+ * What to say when no execution reached the selection — the shared discrimination (V44).
+ *
+ * Both quantity paths reach this, and they MUST reach the same one: a second copy keyed on an empty
+ * selection would re-introduce the over-firing in whichever path kept it. The discriminator is the
+ * predicate's satisfiability and never the coverage; `truncated` only chooses which prose describes
+ * an absence that is NOT vacuous.
+ */
+export function vacuityNotes(
+  satisfiability: Satisfiability, truncated: boolean, described: string,
+  form: SelectionAbsenceForm,
+): readonly Compilation[] {
+  if (satisfiability === "unsatisfiable") {
+    // Decided before the walk begins, so this travels at every budget. V41's letter.
+    const consequence = form === "ceiling"
+      ? `so the bound holds vacuously — it was decided by the predicate, and there is nothing to charge`
+      : `so there is nothing to measure and the refutation is vacuous — it was decided by the predicate`;
+    return [disclose("vacuous",
+      `No configuration the state vector admits satisfies '${described}', ${consequence}. The sound ` +
+      `reading is that this model cannot REPRESENT the selected executions, which is stronger than ` +
+      `"no execution reaches them". If the selection was meant to be reachable, that absence is the ` +
+      `finding: fix the predicate.`)];
+  }
+
+  const undecided = satisfiability === "unknown"
+    ? [disclose("other",
+      `Whether the selection is satisfiable at all was NOT decided: the projection onto the ` +
+      `coordinates it reads exceeded the enumeration budget. So this absence is not reported as ` +
+      `vacuous, and it is not claimed as earned either.`)]
+    : [];
+
+  if (truncated) {
+    return [disclose("other",
+      `No execution in the explored region reaches the selected configurations, and the walk was ` +
+      `truncated — nothing is established either way.`), ...undecided];
+  }
+  // A complete walk found nothing, and the selection is representable. The design prevents it, which
+  // is a statement about the system — the EARNED absence V41 forbids disclosing as vacuity. When
+  // satisfiability was not decided the same silence applies, but the claim is not made.
+  const earned = satisfiability === "satisfiable"
+    ? `The selection is SATISFIABLE in the state vector, so this is the design preventing it rather ` +
+      `than a contradiction in the predicate — an earned absence, and the finding if the selection ` +
+      `was meant to be reachable.`
+    : `Whether any state vector admits the selection was not established, so this absence is not ` +
+      `characterised either way.`;
+  const opening = form === "ceiling"
+    ? `No execution reaches the selected configurations, so the bound holds with nothing to charge.`
+    : `No execution reaches the selected configurations, so there is nothing to measure.`;
+  return [disclose("other", `${opening} ${earned}`), ...undecided];
+}
+
 export function evaluateRequirement(
   system: CanonicalSystem, req: QuantRequirement, options: RequirementOptions = defaultRequirementOptions(),
 ): QuantAnswer {
@@ -179,7 +237,7 @@ export function evaluatePath(
     //  - UNKNOWN: the projection exceeded its enumeration budget, so vacuity was not decided. Never
     //    read as satisfiable, so never claimed earned — and never claimed vacuous either.
     const selection = options.target;
-    const unsatisfiable = selection?.satisfiability === "unsatisfiable";
+    const described = selection?.described ?? "the selection";
     const truncated = max.value.coverage.kind === "bounded";
     return {
       result: result({
@@ -187,28 +245,7 @@ export function evaluatePath(
         coverage: max.value.coverage, systemHash: hash, interpretedAs,
         compilation: [
           ...asCompilation(max.value.notes),
-          ...(unsatisfiable
-            ? [disclose("vacuous",
-              `No configuration the state vector admits satisfies '${selection?.described ?? "the selection"}', ` +
-              `so the bound holds vacuously — it was decided by the predicate, and there is nothing ` +
-              `to charge. The sound reading is that this model cannot REPRESENT the selected ` +
-              `executions, which is stronger than "no execution reaches them". If the selection was ` +
-              `meant to be reachable, that absence is the finding: fix the predicate.`)]
-            : truncated
-              ? [disclose("other",
-                `No execution in the explored region reaches the selected configurations, and the ` +
-                `walk was truncated — nothing is established either way.`)]
-              : [disclose("other",
-                `No execution reaches the selected configurations, so the bound holds with nothing ` +
-                `to charge. The selection is SATISFIABLE in the state vector, so this is the design ` +
-                `preventing it rather than a contradiction in the predicate — an earned absence, and ` +
-                `the finding if the selection was meant to be reachable.`)]),
-          ...(selection?.satisfiability === "unknown"
-            ? [disclose("other",
-              `Whether the selection is satisfiable at all was NOT decided: the projection onto the ` +
-              `coordinates it reads exceeded the enumeration budget. So this absence is not known to ` +
-              `be earned, and it is not reported as vacuous either.`)]
-            : []),
+          ...vacuityNotes(selection?.satisfiability ?? "satisfiable", truncated, described, "ceiling"),
         ],
       }),
       refusal: null,

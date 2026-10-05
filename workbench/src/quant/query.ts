@@ -28,7 +28,7 @@ import {
   type Admission, type QuantityQuery, type Quantifier, type RefusalDetail, type Verdict,
 } from "../engine/types.ts";
 import {
-  evaluatePath, evaluatePeak, REQUIREMENT_METRICS,
+  evaluatePath, evaluatePeak, REQUIREMENT_METRICS, vacuityNotes,
   type ExecutionSelection, type RequirementMetric,
 } from "./requirement.ts";
 import { maxOverExecutions, type PathMetric } from "./latency.ts";
@@ -256,36 +256,17 @@ function measurePath(
     // behavioural evaluator emit. Keyed on satisfiability rather than on an empty selection, so it
     // cannot fire on the earned absence — the same discrimination V44 makes above.
     const bounded = max.value.coverage.kind === "bounded";
-    const unsatisfiable = target?.satisfiability === "unsatisfiable";
     return asVerdict({
       result: result({
         outcome: bounded ? "inconclusive" : "refuted",
         coverage: max.value.coverage, systemHash: hash, interpretedAs,
         compilation: [
           ...max.value.notes.map(note),
-          ...(unsatisfiable
-            ? [{
-              kind: "vacuous" as const,
-              explanation:
-                `No configuration the state vector admits satisfies ` +
-                `'${target?.described ?? "the selection"}', so there is nothing to measure and the ` +
-                `refutation is vacuous: it was decided by the predicate, and no transition structure ` +
-                `was consulted. The sound reading is that this model cannot REPRESENT the selected ` +
-                `executions. If the selection was meant to be reachable, that absence is the ` +
-                `finding: fix the predicate.`,
-            }]
-            : [note(bounded
-              ? `No execution in the explored region reaches the selected configurations, and the ` +
-                `walk was truncated — nothing is established either way.`
-              : `No execution reaches the selected configurations, so there is nothing to measure. ` +
-                `The selection is SATISFIABLE in the state vector, so this is the design preventing ` +
-                `it rather than a contradiction in the predicate — an earned absence.`)]),
-          ...(target?.satisfiability === "unknown"
-            ? [note(
-              `Whether the selection is satisfiable at all was NOT decided: the projection onto the ` +
-              `coordinates it reads exceeded the enumeration budget. So this absence is not known to ` +
-              `be earned, and it is not reported as vacuous either.`)]
-            : []),
+          // The SAME discrimination the ceiling path makes, through the same helper rather than a
+          // second copy — a copy keyed on the empty selection is exactly how this evaluator acquired
+          // the over-firing the ceiling path just shed.
+          ...vacuityNotes(target?.satisfiability ?? "satisfiable", bounded,
+            target?.described ?? "the selection", "measurement"),
         ],
       }),
       refusal: null,
