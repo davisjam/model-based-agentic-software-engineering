@@ -895,7 +895,7 @@ the right as the left turns a modelling error into a safety guarantee. So:
 
 - An implementation MUST emit a **`Compilation` of kind `vacuous`** when the predicate deciding the
   verdict is unsatisfiable in the state vector. The outcome stays as it is — a vacuous universal
-  genuinely does hold, and there is no fifth `Outcome` to reach for.
+  genuinely does hold, and there is no further `Outcome` to reach for.
 - It MUST NOT emit the disclosure when the predicate is satisfiable but unreachable. That is the
   **earned** verdict, and a disclosure that fires on it teaches readers to ignore the one that matters.
 - Deciding satisfiability by enumeration MAY be bounded. An implementation that declines MUST report
@@ -909,15 +909,48 @@ Vacuity is a property of the predicate, so **truncation cannot weaken it**: the 
 under `bounded` coverage too. This is the one place V22's asymmetry does not apply, because nothing
 here depends on absence of evidence.
 
-⚠️ **As-built divergence, and it is a real one.** The sentence above holds for vacuity decided by
-PREDICATE SATISFIABILITY, which is settled before the walk begins. It does not describe the second
-route to a vacuous verdict: a quantity query whose `target:` selects configurations no execution
-reaches. There the emptiness of the selection is established BY the walk, so under truncation nothing
-is established, and the shipped quantity evaluator reports bounded absence rather than vacuity. Both
-readings are defensible and they are not the same claim — one is "no state vector admits this", the
-other "no execution reached it". A future unification should decide whether an unsatisfiable `target:`
-discloses vacuity at every budget on satisfiability grounds, which is what V41's letter asks for.
-V43 below is deliberately indifferent to that choice.
+**V44 — vacuity is decided by SATISFIABILITY. An empty selection is not evidence of it, in either
+direction.**
+
+V41 says a verdict decided by the predicate must disclose it, and leaves open how an implementation
+knows. A quantity query over a `target:` makes that gap concrete: the walk reports that no execution
+reached the selection, and the tempting reading is that an empty selection ON A COMPLETE WALK means
+the predicate was unsatisfiable. It does not, and keying the disclosure to it is wrong in both
+directions at once.
+
+- **Too few.** Under truncation nothing is empty yet, so the proxy withholds the disclosure for a
+  target no state vector admits — though that was settled before the walk began, which is what V41's
+  letter already said.
+- **Too many, and this is the worse half.** A selection can be satisfiable in the state vector and
+  simply never reached by the design. The proxy cannot tell that from a contradiction, so it fires on
+  the **earned** absence — the case V41 forbids by name, and the case that teaches readers to ignore
+  the disclosure that matters. Once V43 reads the disclosure to decide an obligation, over-firing
+  stops being a mislabel and starts downgrading sound requirements.
+
+So the discriminator MUST be satisfiability in the state vector, and never the emptiness of a
+selection, the depth of a walk, or the syntactic shape of the predicate. Two structurally identical
+conjunctions of control-state atoms can differ in kind, so shape decides nothing.
+
+- **The disclosure reads satisfiability and nothing else**, so it travels at every budget. This is
+  V41's "truncation cannot weaken it", now a property of the implementation and not only of the prose.
+- **The outcome reads coverage and nothing else** (V22), unchanged. Unsatisfiability does not promote a
+  truncated walk to a settled answer: `holds` beside `bounded` coverage is certainty claimed from
+  truncation, which the outcome mapping exists to refuse.
+- **An implementation that declines to decide MUST NOT disclose vacuity**, and MUST say the question
+  was not decided. Silence alone would read as the earned absence, which is the same false negative
+  V41's third answer exists to prevent.
+
+Keeping the two axes apart is what makes the obligation's status budget-independent: the disclosure
+cannot acquire a coverage dependence, and V43 reads only the disclosure.
+
+**Deciding it is cheap, because the predicate is projected.** Satisfiability enumerates only the
+coordinates the predicate reads — a predicate naming one machine's control state searches that
+machine's states, not the product of every machine and variable — and a mentioned derived value
+expands to its own machine's coordinates rather than becoming an independent one, which fails toward
+finding vacuity rather than missing it. Measured against the shipped corpus, the decision costs a
+fraction of a percent of the walk it rides beside, and the widest projection sits orders of magnitude
+under the enumeration budget. The bound in V41's third answer is therefore a guard against a model
+nobody has written yet, not a routine outcome.
 
 **V43 — an obligation decided by a VACUOUS verdict is neither discharged nor breached.**
 
@@ -936,7 +969,7 @@ is what let a soundly authored ceiling requirement report **satisfied at 2,750 m
   read as satisfied, and one that fails to match must not read as a breach — a contradiction the
   author wrote is evidence for neither party. This is not an exception to V22's asymmetry: a witness
   is coverage-insensitive, and a vacuous verdict is not a witness.
-- The cause MUST carry the remedy, which is a fourth one: **make the selection reachable, or fix the
+- The cause MUST carry the remedy, and it is a remedy no existing cause states: **make the selection reachable, or fix the
   predicate.** Folding it into the bounded cause would send the author to raise a budget, and no
   budget makes an unreachable selection reachable — a model defect reported as an evidence shortfall.
 - The rule MUST NOT be conditioned on coverage. It reads the disclosure and nothing else, so the
