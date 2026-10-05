@@ -41,11 +41,29 @@
 # `REAUDIT-system-models-261004.md` re-measured — and three comments in this repo claimed enforcement
 # they did not have and were corrected in one day.
 #
-# **ONE implementation decides these verdicts, not two — and that differs from the components model.**
+# **PARITY decides none of these — but since 261004 eight of the nine are decided twice anyway.**
 # `validate.py` checks this file's shape and meaning and then DECLINES every query for scope: it has
 # no exploration engine, so a `kind: behavior` query reports `[skip] … evaluated by the workbench
-# engine, not here`. Measured by running it on this file. The components model's graph queries are
-# decided twice and held equal by parity; these are decided once. `docable`'s
+# engine, not here`. Re-measured by running it on this file, 261004: nine skips, then `clean`. That
+# much is unchanged, and it is still what separates this model from the components model, whose graph
+# queries `validate.py` does answer and parity holds equal.
+#
+# What changed is where the second opinion comes from. `test/ltl-bridge.test.ts` enumerates
+# `models/*.mage.yaml` and compares every bridgeable saved behavior query against an LTL formula
+# decided by `src/engine/ltl-product.ts` — an independently implemented automaton-product walk, not
+# the `behavior.ts` evaluator that `expect:` runs through. Its bridge equations are
+# `invariant p == G p` and `reach p holds <=> G not-p refuted`, so the SEVEN `reach` rows and the one
+# `invariant` row below are cross-checked. `lifecycle-has-no-dead-end` is the single exclusion, and
+# for a stated reason rather than an oversight: `deadend`'s positive row needs an atom true at
+# exactly one configuration, which a saved query cannot express, so it is pinned on a fixture in
+# `test/ltl-product.test.ts` instead. That file's subject set grows when a model does rather than
+# when the file is edited, so this model was swept in with no edit here.
+#
+# Read the strength exactly, because this is the row most available to over-reading. A disagreement
+# between the two implementations is a defect in one of them by fiat — the one-denotation rule makes
+# a bridged formula and a shipped form the SAME question — so these eight verdicts carry a stronger
+# guard than `expect:` alone gives them. It is still not correspondence: both implementations read
+# THIS FILE, and the three control-flow facts named above remain unchecked against `src/`. `docable`'s
 # `restricted-reaches-public` is the existing precedent for a query only the engine answers, and its
 # comment says so for the same reason this one does.
 #

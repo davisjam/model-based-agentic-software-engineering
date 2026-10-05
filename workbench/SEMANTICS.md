@@ -1451,10 +1451,21 @@ a promotion.
   recorded as further input to that question. Per OQ2's ruling, edits to the correspondence enum
   belong to the records' owners. The three method values live in `conformance/manifest.json`, which
   is the corpus's own vocabulary and not this document's.
-- **Two rows are still `owed`, and not as a backlog item.** `binding` and
-  `requirement, verification` have no construct to correspond — §14's bindings/compositions split
-  and §20 have not landed — so a fixture for either would describe a shape the Workbench does not
-  have. §35.4 keeps both cells `owed` and the manifest keeps both rows with the reason.
+- **Two rows are still `owed`, and since 261004 for two DIFFERENT reasons.** Both cells stay `owed`
+  in §35.4 and both rows stay in the manifest, but the reason has stopped being one reason and the
+  distinction is the whole of what a reader needs:
+  - **`binding` now has a construct, and owes a clause and a fixture.** §14's bindings/compositions
+    split landed 261004: `BINDINGS` and `COMPOSITIONS` are separately typed registries
+    (`src/engine/model-types.ts`), and the three binding rows — `appears-in`, `machine-of-entity`,
+    `state-of-entity` — share one `semanticBasis` declaring KerML's binding subset as borrowed, with
+    its non-borrowed parts enumerated row by row. So "a fixture would describe a shape the Workbench
+    does not have" is no longer true of this row; it is the fourth presently implementable fixture
+    target, and its own declaration says so. What keeps it `owed` is narrower and is §35.4's standing
+    reason rather than an absence of subject matter: `clause` is `CLAUSE_OWED` and `fixture` is
+    `null`, because a clause written from memory reads as checked.
+  - **`requirement, verification` has no construct to attribute yet.** Phase B's, per the same
+    registry's own note, so the original reason survives unchanged for this row alone and a fixture
+    would still describe a shape the Workbench does not have.
 
 **The axis's claim about `src/` has changed, and the earlier absence is now historical.** At
 `f3a9991c` the strings `SysML`, `KerML` and `semantic_basis` appeared nowhere under `src/`, `test/`,
