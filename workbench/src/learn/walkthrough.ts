@@ -252,7 +252,8 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
   {
     anchor: "walk-properties",
     title: "Properties",
-    definition: "A property is a saved question. The Workbench evaluates it against the current "
+    definition: "A property is a saved CLAIM — a statement the models must keep true. The "
+      + "Workbench asks the question that decides it against the current "
       + "model whenever the model changes. It does not store the previous verdict.",
     instruction: "Choose a property to see its current result.",
     grounding: [{ kind: "system", example: WALK_TW }],

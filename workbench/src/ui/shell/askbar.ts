@@ -263,10 +263,17 @@ export function filterState(matched: number, total: number, text: string): strin
     return `${total} question(s) this model system can answer. Type to filter them.`;
   }
   if (matched === 0) {
+    // The Advanced builder is GRAPH-ONLY -- `parseGraphQuery` is the single parser this module
+    // imports, and no path under `src/ui/` builds a behaviour or quantity query from user text. So
+    // "state it formally below" is true for a structural question and FALSE for the rest, which
+    // includes every question in the sensor lab. Naming the one surface that takes all three is
+    // honest; sending a student to a builder that cannot express their question is a dead end
+    // wearing the costume of an affordance.
     return `No question in this catalogue matches “${text.trim()}”. The text is a filter, not a `
       + "question: nothing here guesses which formal question an English sentence meant. Ask your "
-      + "coding agent, which drives this same workbench through window.mage.ask, or open Advanced "
-      + "query below and state it formally.";
+      + "coding agent, which drives this same workbench through window.mage.ask and can state "
+      + "structural, behavioural and quantitative questions alike. Advanced query below builds "
+      + "structural questions only.";
   }
   return `${matched} of ${total} question(s) match. Choose one and press Ask.`;
 }
