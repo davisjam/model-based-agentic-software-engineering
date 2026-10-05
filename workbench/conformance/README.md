@@ -10,18 +10,36 @@ from the count in the data.)
 `DESIGN-v02-semantics-261004.md` §35 rules that a Workbench construct derived from SysML v2 or KerML
 must identify the corresponding standard concept **and maintain a conformance fixture demonstrating
 the intended correspondence**. §35.4 marks five rows as owing one. This directory discharges three
-of the five. The other two are listed under `owed` in `manifest.json` with the reason, and they are
-not merely undone — the constructs do not exist, so a fixture for either would describe a shape the
-Workbench does not have.
+of the five. The other two are listed under `owed` in `manifest.json`, each declaring **why** it is
+owed from a closed two-word vocabulary — and as of 261004 both are owed a clause and a fixture
+rather than a construct. `binding` has the `BINDINGS` registry; `requirement, verification` has the
+`requirements:` key and `src/engine/verification.ts`. What keeps them owed is §35.4's standing
+reason: a clause written from memory reads as checked.
 
-**That absence is checked, not asserted, and it carries its own trigger.** "There is no binding
-construct" is a negative claim, and a negative claim is only as wide as the search behind it. The
-authored construct set has no such weakness: it is the top-level `properties` of
-`mage-model.schema.json`, closed and enumerable, so the absence of a construct is a lookup.
-`test/conformance.test.ts` reads that set and fails if any name in an `owed` row's
-`absentConstructs` turns up in it. So the day §14 lands `bindings:` or §20 lands `requirements:`,
-the suite goes red and the message says a fixture is now buildable — better than a reminder in a
-file nobody rereads.
+**Both reasons are a lookup, not prose, and the second arm exists because the first one's prose
+rotted.** "There is no binding construct" is a negative claim, and a negative claim is only as wide
+as the search behind it. The authored construct set has no such weakness: it is the top-level
+`properties` of `mage-model.schema.json`, closed and enumerable, so the absence of a construct is a
+lookup — and when a construct lands, the suite goes red and says a fixture is now buildable.
+
+What that arm could not see is a construct landing in `src/` rather than in the schema, which is
+exactly what happened. For one day both rows carried an absence reason the tree had already
+falsified — `binding`'s said §14 had not landed while `BINDINGS` and `COMPOSITIONS` were exported
+typed registries, and `requirement, verification`'s said `verif` appeared nowhere in `src/` while
+`src/engine/verification.ts` carried the whole verification vocabulary — and the suite was green,
+because it read `absentConstructs` and never read the sentence beside it. So a row claiming the
+construct EXISTS must now name it, and every name must resolve: `authoredConstructs` against the
+schema's top-level properties, `registeredBindings` against `BINDINGS`. A row can no longer be owed
+for a reason nothing checks, in either direction.
+
+**No authored `bindings:` key is owed, and that is a ruling.** Each registered binding is licensed
+by what the author already writes — `machine-of-entity` by a machine's `entity:`, `state-of-entity`
+by the `executes_in_state` property — or holds by construction, as `appears-in` does from entity ids
+inhabiting one namespace per system. The binding fixture is therefore built from those authored
+fields, and the registry's own `semanticBasis` says MAGE carries none of KerML's author-declarable
+connector vocabulary. The sibling ruling is that a `verification:` key will never land either: a
+status is derived per read and stored nowhere, so recording it would change the system the answer
+was about.
 
 ## What a fixture is
 

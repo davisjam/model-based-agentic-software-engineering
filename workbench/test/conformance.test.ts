@@ -29,7 +29,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { Workspace } from "../src/app/services.ts";
 import { realPorts } from "../scripts/gen-example-coverage.ts";
-import { MODEL_TYPES, type ModelTypeId } from "../src/engine/model-types.ts";
+import { BINDINGS, MODEL_TYPES, type ModelTypeId } from "../src/engine/model-types.ts";
 
 // ----------------------------------------------------------------------------------------------
 // The corpus, declared once
@@ -199,39 +199,106 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
   }
 });
 
-test("the owed rows are owed because the construct is absent, and the schema says so", () => {
-  // This is the one check here that will go red on PURPOSE, and the red is the point.
+/** Why an owed row is owed. Closed, so a third reason cannot arrive as unchecked prose. */
+const BLOCKERS = ["absent-construct", "clause-and-fixture"] as const;
+type Blocker = (typeof BLOCKERS)[number];
+
+interface OwedRow {
+  readonly row: string;
+  readonly blockedBy: Blocker;
+  /** Names that must be ABSENT from the authored construct set. Empty unless `absent-construct`. */
+  readonly absentConstructs: readonly string[];
+  /** Top-level schema keys that must be PRESENT. Empty unless `clause-and-fixture`. */
+  readonly authoredConstructs: readonly string[];
+  /** `BINDINGS` names that must RESOLVE in the registry. Empty unless `clause-and-fixture`. */
+  readonly registeredBindings: readonly string[];
+  readonly reason: string;
+}
+
+test("every owed row says why it is owed, and both arms are a lookup rather than prose", () => {
+  // This check goes red on PURPOSE when a construct lands, and the red is the point.
   //
   // "There is no binding construct, so a fixture would be fiction" is a NEGATIVE claim, and a
   // negative claim is only as wide as the search that produced it. A grep could have read the wrong
   // subtree, or searched a spelling the codebase does not use. The authored construct set does not
   // have that weakness: it is the top-level `properties` of the published model schema, closed and
-  // enumerable, so the absence of a construct is a LOOKUP.
+  // enumerable, so the absence of a construct is a LOOKUP. That gives the obligation a trigger
+  // instead of a reminder — the day a construct lands, the message says a fixture is now buildable.
   //
-  // And it gives the obligation a trigger instead of a reminder. The day §14 lands `bindings:` or
-  // §20 lands `requirements:`, this test fails and its message says a fixture is now buildable —
-  // which is strictly better than a prose note in a manifest nobody rereads.
+  // ## The arm that was missing, and what it cost
+  //
+  // The check read `absentConstructs` and never read the SENTENCE beside it, and on 261004 both
+  // rows' sentences were false while this test was green:
+  //
+  //   - `binding` said "§14's bindings/compositions split has not landed, so there is no MAGE
+  //     binding construct to correspond", and `BINDINGS`/`COMPOSITIONS` had been exported typed
+  //     registries in `src/engine/model-types.ts` since earlier the same day. SEMANTICS.md already
+  //     said so from the other side, calling the row the fourth implementable fixture target.
+  //   - `requirement, verification` said "`verif` occurs nowhere in src/ or either schema as a
+  //     construct", and `src/engine/verification.ts` carried §5.3's whole vocabulary.
+  //
+  // Neither drifted in a direction the absence lookup can see, because the lookup reads the SCHEMA
+  // and both constructs had landed in `src/`. So the arm is the one the trigger lacked, pointed the
+  // other way: a row whose `blockedBy` claims the construct EXISTS must NAME something, and every
+  // name must resolve — against the schema's properties for an authored key, against the binding
+  // registry for a kernel correspondence. A row can no longer be owed for a reason nothing checks.
   const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {
     readonly properties: Readonly<Record<string, unknown>>;
   };
   const authored = Object.keys(schema.properties).sort();
+  const registered = BINDINGS.map((b) => b.name);
 
   const manifest = JSON.parse(read("", "manifest.json")) as {
     readonly authoredConstructSet: readonly string[];
-    readonly owed: readonly { readonly row: string; readonly absentConstructs: readonly string[] }[];
+    readonly owed: readonly OwedRow[];
   };
   assert.deepEqual([...manifest.authoredConstructSet].sort(), authored,
     "the manifest's record of the authored construct set is stale — re-read mage-model.schema.json's "
     + "top-level `properties`, because every absence claim below is relative to it");
 
   for (const o of manifest.owed) {
-    assert.ok(o.absentConstructs.length > 0, `owed '${o.row}': names no construct to be absent`);
-    for (const name of o.absentConstructs) {
-      assert.ok(!authored.includes(name),
-        `mage-model.schema.json now declares a top-level '${name}' construct, so §35.4's '${o.row}' `
-        + `row is no longer owed for want of something to correspond. A fixture is buildable: build `
-        + `it under conformance/, move the row out of the manifest's \`owed\` array, and fill its `
-        + `Clause cell in DESIGN-v02-semantics-261004.md §35.4.`);
+    assert.ok((BLOCKERS as readonly string[]).includes(o.blockedBy),
+      `owed '${o.row}': blockedBy '${o.blockedBy}' is outside the closed set ${BLOCKERS.join(" | ")}. `
+      + `A third reason needs a third arm below, not a new string.`);
+
+    if (o.blockedBy === "absent-construct") {
+      assert.ok(o.absentConstructs.length > 0,
+        `owed '${o.row}': blocked by an absent construct and names none to be absent`);
+      assert.deepEqual([...o.authoredConstructs, ...o.registeredBindings], [],
+        `owed '${o.row}': claims the construct is absent AND names one that exists. Pick one — the `
+        + `two arms are the two reasons a row can be owed, and a row that claims both is claiming `
+        + `neither checkably.`);
+      for (const name of o.absentConstructs) {
+        assert.ok(!authored.includes(name),
+          `mage-model.schema.json now declares a top-level '${name}' construct, so §35.4's '${o.row}' `
+          + `row is no longer owed for want of something to correspond. A fixture is buildable: build `
+          + `it under conformance/, move the row out of the manifest's \`owed\` array, and fill its `
+          + `Clause cell in DESIGN-v02-semantics-261004.md §35.4. If the fixture is not buildable yet, `
+          + `switch the row to blockedBy 'clause-and-fixture' and name what landed — do not delete the `
+          + `name to quiet this, which defuses the trigger without discharging the obligation.`);
+      }
+      continue;
+    }
+
+    assert.deepEqual(o.absentConstructs, [],
+      `owed '${o.row}': blocked only by a clause and a fixture, so it must claim no absence. `
+      + `'${o.absentConstructs.join(", ")}' is left over from the other arm.`);
+    const named = [...o.authoredConstructs, ...o.registeredBindings];
+    assert.ok(named.length > 0,
+      `owed '${o.row}': claims the construct exists and names nothing, so the claim is unverifiable. `
+      + `Name the authored key or the registered binding the fixture would be built from.`);
+    for (const name of o.authoredConstructs) {
+      assert.ok(authored.includes(name),
+        `owed '${o.row}' names authored construct '${name}', which mage-model.schema.json does not `
+        + `declare as a top-level property. Either the key never landed — in which case this row is `
+        + `blocked by an absent construct and should say so — or it was renamed and this row is now `
+        + `asserting a construct that does not exist.`);
+    }
+    for (const name of o.registeredBindings) {
+      assert.ok(registered.includes(name),
+        `owed '${o.row}' names binding '${name}', which is not in BINDINGS `
+        + `(${registered.join(", ")}). A row cannot be owed a fixture FOR a correspondence the kernel `
+        + `does not register.`);
     }
   }
 });
