@@ -268,6 +268,11 @@ const OP_PARSERS: Readonly<Record<OpName, (o: Obj, s: Shape) => Operation | null
     };
   },
 
+  "add-model-entity": (o, s) => {
+    const model = s.id(o, "model"); const id = s.id(o, "id");
+    return model !== null && id !== null ? { op: "add-model-entity", model, id } : null;
+  },
+
   "delete-model": (o, s) => {
     const id = s.id(o, "id");
     return id === null ? null : { op: "delete-model", id };

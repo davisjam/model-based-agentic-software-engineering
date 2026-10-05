@@ -88,6 +88,30 @@ export type Operation =
       readonly op: "add-model"; readonly id: string; readonly label?: string | undefined;
       readonly entities?: readonly string[] | undefined;
     }
+  /**
+   * Extend a model's membership with an entity the system already declares.
+   *
+   * ## The gap this closes
+   *
+   * A graph model's membership IS its `entities:` list, and until this op nothing extended one.
+   * `add-entity` reaches the identity namespace; `add-model` writes a membership only at creation.
+   * So adding a component to an existing model was unperformable through this vocabulary — and the
+   * route students took instead, `add-entity` plus `add-relation`, half-landed: the engine builds
+   * its adjacency from relations, so it answered using an entity the model never declared, and a
+   * fresh load of the exported bytes was clean. V40 now refuses that state, which makes this op the
+   * other half of one change rather than a convenience beside it.
+   *
+   * ## Why there is no inverse here
+   *
+   * Nothing in this union removes a single membership entry, and the omission is survivable rather
+   * than overlooked: `delete-entity` with `cascade` drops the entry AND every relation naming the
+   * entity in one pass, so no path can leave a model asserting an edge to an id it stopped
+   * declaring. The missing op is narrowing a model's reduction while keeping the entity — a real
+   * act, and one whose refusal condition is the interesting part, since dropping a member an edge
+   * still names must be blocked rather than cascaded (the edge is a claim, as `delete-model`
+   * already argues). It wants its own design rather than a mirror of this one.
+   */
+  | { readonly op: "add-model-entity"; readonly model: string; readonly id: string }
   /** No `cascade`: a model's relations are claims, not pointers. See `modelReferences`. */
   | { readonly op: "delete-model"; readonly id: string }
   /**
