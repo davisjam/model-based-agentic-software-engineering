@@ -228,7 +228,11 @@ test("no production call site supplies its own registry", () => {
   const composer = readFileSync("src/app/cross-model.ts", "utf8");
   const specifiers = [...composer.matchAll(/from "([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual([...new Set(specifiers)].sort(), [
+    // `./render-strategy.ts` supplies the construct CLASSIFICATION — which model types draw as a
+    // node-link scene — and no edge. It is on the list rather than off it because the list is an
+    // equality, which is the property worth having: a reviewer sees every input the composer has.
     "../engine/model-types.ts", "../ir/hash.ts", "../ir/types.ts", "../render/index.ts",
+    "./render-strategy.ts",
   ], "an import outside this set is a second place a connection could come from");
 });
 
@@ -605,10 +609,18 @@ test("the twin states what is NOT drawn, and why", () => {
   const composed = view.accessible.undrawn.find((u) => u.label.startsWith("composed by:"));
   assert.ok(composed !== undefined,
     "the one registered COMPOSITION must be reported, labelled with its own verb");
-  assert.ok(composed.why.includes("not an addressable construct"),
+  // Read the construct table, never a snapshot of its wording. This assertion used to be
+  // `includes("not an addressable construct")`, and the substring outlived the fact: a
+  // quantitative model became addressable, the table's reason was still the old sentence, and a
+  // green test was the only thing saying it was still true. A test that pins prose pins whatever
+  // the prose happens to say.
+  const declared = SCENE_CONSTRUCTS["quantitative-model"];
+  assert.equal(declared.kind, "none", "the fixture needs a domain the canvas cannot draw");
+  assert.ok(declared.kind === "none" && composed.why.includes(declared.why),
     `the reason must be the construct table's own: ${composed.why}`);
   assert.deepEqual(view.accessible.refusals, view.refusals.map(refusalProse));
-  assert.ok((view.accessible.refusals[0] ?? "").includes("no picture of its own"));
+  assert.ok((view.accessible.refusals[0] ?? "").includes("draws no node-link scene"),
+    "the refusal must say what is missing — a SCENE, not a picture");
 });
 
 test("the canvas summary says the panels are separate reductions, not one diagram", () => {
@@ -633,7 +645,7 @@ test("a type with no scene construct refuses rather than borrowing another type'
   assert.equal(view.refusals[0]?.kind, "type-has-no-scene");
   // §22.3 and §22.4 forbid exactly the alternative: routing the type to the structural extractor
   // over a heuristically chosen host, which is `renderAnythingAsGraph()` with better manners.
-  assert.ok(refusalProse(view.refusals[0]).includes("has no picture of its own"));
+  assert.ok(refusalProse(view.refusals[0]).includes("draws no node-link scene"));
 });
 
 test("an undeclared subject states the absence rather than drawing an empty picture", () => {

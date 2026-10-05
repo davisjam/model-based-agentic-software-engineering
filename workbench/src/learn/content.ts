@@ -33,11 +33,12 @@
  * supports comes from the sources above.
  */
 import {
-  ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Dimension, type Purpose,
+  ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Purpose,
 } from "../ir/types.ts";
 import type { Query } from "../engine/types.ts";
 import { absentSubstrateProse, MODEL_TYPES, type ModelTypeId } from "../engine/model-types.ts";
 import type { SceneSubject } from "../render/types.ts";
+import { pictureRequestFor, type PictureRequest } from "../app/render-strategy.ts";
 import {
   anchorForType, anchorForUse, deriveLearnEntries, MODEL_TYPE_USES, presentTypes,
   type LearnEntry, type ModelTypeUse,
@@ -47,22 +48,16 @@ import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 /** Every shipped example's canonical system, keyed by id. The page loads these once. */
 export type LoadedSystems = ReadonlyMap<ShippedExampleId, CanonicalSystem>;
 
-/** The subject a card's visual renders: a real subject in a shipped example, never an illustration. */
 /**
- * What a type's exemplar visual is a picture OF.
+ * What a type's exemplar visual is a picture OF — the app layer's `PictureRequest`, under the name
+ * the Learn page's own vocabulary gives it.
  *
- * Two arms, because the kernel has two kinds of thing a projection can be of: a node-link SCENE
- * (`CanonModel` or `CanonMachine`) and a quantitative model. Before this was a union the
- * quantitative type had no third arm to take, so it reached for the structural extractor over a
- * subject a positional rule picked — the generic fallback §22.4 forbids, shipped with an honest
- * comment. A honest comment on a forbidden behaviour is still the forbidden behaviour.
- *
- * Addressability is what made the arm possible, not a renderer decision: `CanonQuantitativeModel`
- * gave a quantitative model a name, and a projection needs a subject before it can be a projection.
+ * Declared in `src/app/render-strategy.ts` rather than here, because the page is now a CONSUMER of
+ * the relation between a model type and its projection instead of one of the two places that
+ * stated it. It used to be the other way round: this file held the quantitative type's routing in a
+ * `switch` arm, and the cross-model canvas held a second table that disagreed with it.
  */
-export type ExemplarPicture =
-  | { readonly kind: "scene"; readonly subject: SceneSubject }
-  | { readonly kind: "budget"; readonly dimension: Dimension };
+export type ExemplarPicture = PictureRequest;
 
 export interface ExemplarVisual {
   readonly example: ShippedExampleId;
@@ -169,48 +164,35 @@ export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
 
 /**
  * The visual for a model type: the first shipped example whose system instantiates the type (the
- * registry's own `presentIn`, through `presentTypes`), then that system's own declared subject.
+ * registry's own `presentIn`, through `presentTypes`), then the picture that system's declaration
+ * asks for.
  *
- * ## The fallback that used to live here, and what replaced it
+ * ## What used to live here, and what reads the declaration now
  *
- * The quantitative arm used to return a SCENE subject — the model a `model:`-targeted quantity
- * declares its ceiling against, falling back to the system's first model and then its first machine.
- * The first step was declaration-driven; the last two were positional, and all three ended in the
- * structural extractor. §22.3 forbids forcing quantities into the structural renderer and §22.4
- * forbids a generic fallback for a registered model type, so the behaviour was prohibited even where
- * the comment describing it was accurate.
+ * This function used to own a `switch` over `ModelTypeId` — the one place the relation between a
+ * model type and its projection was written down on this surface. Its quantitative arm returned a
+ * SCENE subject: the model a `model:`-targeted quantity declares its ceiling against, falling back
+ * to the system's first model and then its first machine. The first step was declaration-driven;
+ * the last two were positional, and all three ended in the structural extractor. §22.3 forbids
+ * forcing quantities into the structural renderer and §22.4 forbids a generic fallback for a
+ * registered model type, so the behaviour was prohibited even where the comment describing it was
+ * accurate.
  *
- * It is a `budget` picture now, over the dimension the system's quantitative model is keyed by. No
- * position is consulted at any step. The sequencing that made this possible ran opposite to the way
- * the specification reads: the SUBJECT had to become addressable before a projection could be of it.
+ * That arm was already gone when the registry landed, replaced by a budget over an addressable
+ * quantitative model. What was NOT gone is the reason it could happen: the type-to-projection
+ * relation lived in a function body here, and a second copy lived in the cross-model canvas, and
+ * the two had already drifted — this page drew a budget for the quantitative type while the canvas
+ * reported it as having no picture, each carrying its own reason. Both read one declaration now
+ * (`ModelType.renderStrategy`), dispatched in one place.
  */
 export function exemplarFor(typeId: ModelTypeId, systems: LoadedSystems): ExemplarVisual | null {
   for (const example of SHIPPED_EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined || !presentTypes(system).includes(typeId)) continue;
-    const picture = pictureFor(typeId, system);
+    const picture = pictureRequestFor(typeId, system);
     if (picture !== null) return { example, picture };
   }
   return null;
-}
-
-function pictureFor(typeId: ModelTypeId, system: CanonicalSystem): ExemplarPicture | null {
-  const firstModel = [...system.models.keys()][0];
-  const firstMachine = [...system.machines.keys()][0];
-  switch (typeId) {
-    case "structural-graph":
-      return firstModel === undefined ? null : { kind: "scene", subject: { kind: "model", id: firstModel } };
-    case "state-machine":
-      return firstMachine === undefined ? null : { kind: "scene", subject: { kind: "machine", id: firstMachine } };
-    case "quantitative-model": {
-      // Preferring a model WITH a declared ceiling, because a budget teaches what a bare total
-      // cannot: the margin is the fact §11 exists to make obvious. A dimension with no ceiling is
-      // still a legal quantitative model and still renders, as a total.
-      const models = [...system.quantitativeModels.values()];
-      const chosen = models.find((m) => m.budget !== null) ?? models[0];
-      return chosen === undefined ? null : { kind: "budget", dimension: chosen.dimension };
-    }
-  }
 }
 
 /** The declared purpose of the subject a visual renders, from the system itself. */

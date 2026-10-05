@@ -61,55 +61,40 @@ import { el, serialize, textExtent } from "../render/index.ts";
 import type {
   AccessibleScene, Point, Rect, RenderedView, SceneRequest, SceneSubject, SvgNode,
 } from "../render/index.ts";
+import { sceneConstructFor, type SceneConstruct } from "./render-strategy.ts";
+
+export type { SceneConstruct };
 
 // --------------------------------------------------------------------------------------------
 // The one relation between a model TYPE and a scene subject
 // --------------------------------------------------------------------------------------------
 
 /**
- * Which IR construct a model type's own picture is a projection OF, or that it has none.
+ * Which model types draw as a node-link scene on this canvas — **derived, not restated.**
  *
- * **This is the relation `DESIGN-render-rules-261004.md` §A.2 found missing.** The registry declares
- * three model types and says nothing about rendering; `src/render/` knows two scene subjects and
- * nothing about model types; *"the two vocabularies have never been related."* A cross-model canvas
- * cannot ask "do these panels present this binding's two domains?" without the relation, so it is
- * declared here.
+ * **This table used to be the relation `DESIGN-render-rules-261004.md` §A.2 found missing**, and
+ * declaring it here was the right move while it was the only one. It is no longer: the relation
+ * lives on the registry as `ModelType.renderStrategy`, a required field the compiler enforces, and
+ * every value below is a function of it. The keys stay written out so the `Record` keeps its
+ * compile-time totality in both directions — a new `ModelTypeId` must be added here, and a key for
+ * a type that does not exist fails — but no row carries prose this file wrote.
  *
- * **Why it is a `Record` and why it is data.** A `Record<ModelTypeId, …>` is total in both
- * directions at compile time: a missing key fails, and a key for a type that does not exist fails
- * too. That is rung 1 of §B.1 held by `tsc` and by no test. And it is DATA rather than a function
- * table because §B.2's measurement forbids anything else here — a render declaration that named a
- * renderer, or even the renderer's types, would draw an import edge the gate refuses.
+ * **The drift this closes was live, not hypothetical.** The quantitative row used to say a
+ * quantitative model *"is not an addressable construct in v0.1"* and that there is *"no
+ * quantitative subject for a picture to be a picture of."* `CanonQuantitativeModel` had already
+ * made both false, and the Learn page was already drawing that picture — so two surfaces disagreed
+ * about whether a registered model type had a projection, each with its own confident reason, and
+ * nothing could fail. That is the cost of stating one fact in two places, and the reason this one
+ * is now read rather than written.
  *
- * **Why it names an IR construct and not `SceneSubjectKind`'s spelling.** The two unions are
- * isomorphic today and need not stay so; §B.2 asks for kernel vocabulary so the relation survives a
- * renderer that grows a third scene. `subject` holds the renderer's own tag because this module is
- * already licensed to see it.
- *
- * **The `none` arm is the design's load-bearing move, not a concession.** §F establishes that the
- * sequencing runs opposite to the way the spec reads: a quantitative model is not an addressable
- * construct — `system.quantities` is a flat map of annotations whose targets point at the other two
- * (`src/ir/types.ts`) — so a quantitative projection has nothing to be a projection of. Declaring
- * that makes the gap a value a reviewer reads. The day quantities are scoped to a model, this arm
- * becomes a `scene` arm and `executions-selected-by-behaviour` draws with no other edit to this
- * module. The compiler schedules the work.
+ * The canvas's own question is unchanged and still answered: a budget has no node for a line to end
+ * on, so a composition into the quantitative domain still reports `domain-has-no-scene`. What moved
+ * is where that sentence comes from.
  */
-export type SceneConstruct =
-  | { readonly kind: "scene"; readonly subject: SceneSubject["kind"] }
-  | { readonly kind: "none"; readonly why: string };
-
 export const SCENE_CONSTRUCTS: Readonly<Record<ModelTypeId, SceneConstruct>> = {
-  "structural-graph": { kind: "scene", subject: "model" },
-  "state-machine": { kind: "scene", subject: "machine" },
-  "quantitative-model": {
-    kind: "none",
-    why: "a quantitative model is not an addressable construct in v0.1 — `system.quantities` is a "
-      + "flat top-level map of annotations whose targets name entities, states, transitions and "
-      + "models, so there is no quantitative subject for a picture to be a picture of. The "
-      + "structural extractor over a heuristically chosen host is the fallback the spec forbids, "
-      + "so this type draws nothing rather than borrowing another type's reduction. Scoping "
-      + "quantities to a model is the prerequisite, and `src/ir/types.ts` already anticipates it",
-  },
+  "structural-graph": sceneConstructFor("structural-graph"),
+  "state-machine": sceneConstructFor("state-machine"),
+  "quantitative-model": sceneConstructFor("quantitative-model"),
 };
 
 /**
@@ -284,7 +269,10 @@ export interface UndrawnRelation {
 export function notDrawnProse(reason: NotDrawn): string {
   switch (reason.kind) {
     case "domain-has-no-scene":
-      return `a ${reason.domain.label} has no picture of its own: ${reason.why}`;
+      // "no scene", NOT "no picture" — the two were one sentence while one model type had neither,
+      // and the sentence kept claiming the stronger thing after that stopped being true. A type can
+      // have its own projection and still offer nothing for a line to anchor on.
+      return `a ${reason.domain.label} draws no node-link scene for a connection to reach: ${reason.why}`;
     case "domain-not-presented":
       return reason.needed === 1
         ? `no panel on this canvas presents a ${reason.domain.label}`
@@ -1107,7 +1095,7 @@ function twin(
 export function refusalProse(r: PanelRefusal): string {
   switch (r.kind) {
     case "type-has-no-scene":
-      return `a ${r.type.label} has no picture of its own, so "${r.id}" is not drawn: ${r.why}`;
+      return `a ${r.type.label} draws no node-link scene, so "${r.id}" is not a panel here: ${r.why}`;
     case "subject-not-declared":
       return `this system declares no ${r.subject.kind} "${r.subject.id}", so the `
         + `${r.type.label} panel states the absence rather than drawing an empty picture`;
