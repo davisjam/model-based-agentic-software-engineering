@@ -194,6 +194,68 @@ requirements:
       named as such on `mission-endurance`'s omissions and by the refused
       `charge-remaining-at-delivery`.
 
+# ---------------------------------------------------------------------------------------------------
+# THE ACTIVITY LADDER
+#
+# Six rungs, inspect through design, each naming the artifact that carries it. It is a COMMENT and not
+# a field, and the reason is this repo's own admission rule: `activities[]`, `learning_objectives:` and
+# `engineering_context:` are designed and unlanded, no reader exists for them, and a declaration
+# nothing reads is free to drift from the thing it describes. When the cards land, this block is what
+# they are built from; until then it binds a reader and an agent rather than a build.
+#
+#   1. INSPECT    Which subsystems can ultimately influence the drive system, and by what path?
+#                 -> planner-can-reach-drive-through-the-chain. Composes three edges and returns the
+#                    chain. Follow it with lower-authority-commands-higher and read the witness.
+#
+#   2. CALCULATE  How long does a delivery take, and how much RAM does the payload hold?
+#                 -> nominal-mission-duration (645 s, a measurement that decides nothing) and
+#                    compute-payload-fits-onboard-ram's magnitude (1088 MB). Predict both first: most
+#                    readers predict the RAM figure as 1984 and are wrong for an instructive reason.
+#
+#   3. CHECK      Can the planner bypass the safety monitor? Can motion stay enabled in a fault? Does
+#                 recovery terminate? Does the payload fit? Does every delivery fit the battery?
+#                 -> the five pinned requirements, of which two are VIOLATED. Read which two, and
+#                    notice that neither failure is a modeling mistake.
+#
+#   4. EXPLAIN    Why is the peak 1088 and not 1984, and what entitles the model to the smaller
+#                 number?
+#                 -> planning-and-driving-at-once. The answer is a VACUOUS refutation, disclosed as
+#                    such, and the vacuity is the entitlement. Then explain why
+#                    motion-inhibited-whenever-faulted is NOT vacuous although its predicate has the
+#                    identical shape. That pair is the hardest thing in this example and the most
+#                    worth getting right.
+#
+#   5. MODIFY     Break each form's guarantee once, and watch which other forms move.
+#                 -> unsynchronized-fault-path (safety falls: a guard is not synchronization),
+#                    unlimited-recovery (termination falls, and the budget's REASON changes while its
+#                    verdict does not), wider-perception-buffers (the budget falls on one number).
+#
+#   6. DESIGN     Make every delivery fit the 900 s battery WITHOUT giving up bounded recovery, the
+#                 fault interlock, or the RAM ceiling. Change the model; there is no canned query.
+#
+#                 The obvious lever does not reach, and that is measured rather than asserted. Cutting
+#                 the recovery allowance -- editing the declared range and both guards together, which
+#                 is what the edit actually involves -- gives:
+#
+#                     allowance 3   2,715 s   refuted      (as shipped)
+#                     allowance 2   2,025 s   refuted
+#                     allowance 1   1,335 s   refuted
+#                     allowance 0     645 s   HOLDS        -- and recovery no longer exists
+#
+#                 So NO non-zero allowance fits at these charges, because one extra attempt costs a
+#                 whole 600 s drive segment plus a 90 s scan-match and the budget has 255 s of slack.
+#                 The only allowance that passes is the one that deletes the behavior the example
+#                 added on purpose.
+#
+#                 That forces the student off the allowance and onto a PREMISE, which is the point.
+#                 Shortening the drive segment is a claim about the route. Raising the budget is a
+#                 claim about the battery. Splitting the drive so a resumed mission does not redo the
+#                 whole segment is a claim about the controller, and it is the strongest answer
+#                 available because it attacks the 4x600 rather than the 3. Each is legitimate if the
+#                 student says which part or which route they are now assuming -- and illegitimate as
+#                 a silent edit to a number. Naming the premise that bought the margin IS the
+#                 capstone's subject, and it is why this rung asks for a model change and not a figure.
+# ---------------------------------------------------------------------------------------------------
 queries:
 
   # --- Structure -----------------------------------------------------------------------------------
