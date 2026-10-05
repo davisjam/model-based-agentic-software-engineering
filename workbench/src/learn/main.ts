@@ -283,6 +283,17 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   // PART 3 — what the model lets you ask.
   section.append(sub(PART.ask));
   section.append(el("p", `Question forms the engine decides over a ${s.entry.label}: ${s.entry.forms.join(", ")}.`, "intro"));
+  // The OTHER arm of the registry's query semantics, and the one that carried `select` and `count`
+  // invisibly: a form is a question the engine decides, a subject is a thing a question names. Each
+  // row's third cell is the registry's own `declaredBy` role, so a noun that cannot be selected on
+  // its own says so here in the words the registry already uses.
+  if (s.entry.subjects.length > 0) {
+    section.append(el("p", "And what a question of this kind can name and select:", "intro"));
+    section.append(rowsTable(
+      ["What you can name", "How you name it", "What it is"],
+      s.entry.subjects.map((x) => [x.noun, x.selector, x.declaredBy.role]),
+    ));
+  }
   if (s.statements.length > 0) {
     section.append(el("p", "Asked of this exemplar, as its authors stated them:", "intro"));
     section.append(statementList(s.statements));

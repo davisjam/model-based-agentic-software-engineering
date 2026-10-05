@@ -5,7 +5,11 @@
 // section's content is COMPUTED, so every assertion here re-derives the same fact from the same
 // source and compares, rather than pinning the string the builder happened to produce.
 //
-// Five claims, one per declared section, plus the two structural ones:
+// One claim per declared section, plus the three structural ones — except `question-operations`,
+// whose claims live in `test/learn-operations.test.ts` because they join the SUBJECT arm of the
+// registry's query semantics to the gallery's own strictness, which is a claim about both files'
+// subjects at once. The structural tests below still cover it: it must have a builder, blocks, a
+// disjoint anchor and citations that resolve.
 //
 //   (0) The declaration is complete and disjoint: every section has a builder, every anchor is
 //       distinct from every registry and guide anchor, and every citation names a file that exists
