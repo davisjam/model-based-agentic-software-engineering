@@ -249,22 +249,6 @@ export interface PredicateSemantics {
 }
 
 /**
- * A cross-model trace or join this type makes meaningful.
- *
- * Not a form: a join is what lets one answer name an element another model declares, and the
- * kernel implements each one deliberately. `with` says whether the join crosses model TYPES or runs
- * between purposeful models of this same type, because a facade must know which.
- */
-export interface JoinSemantics {
-  readonly name: string;
-  readonly meaning: string;
-  /** The partner type, or null when the join runs between purposeful models of this same type. */
-  readonly with: ModelTypeId | null;
-  /** Where the identity or binding that makes the join meaningful is declared. */
-  readonly declaredBy: SchemaAuthority;
-}
-
-/**
  * What questions can meaningfully be asked of a model type — primitives and citations, never a
  * catalogue of permitted queries.
  *
@@ -291,8 +275,16 @@ export interface JoinSemantics {
  * are meaningful → `predicates`; which transitive or derived relations are semantically defined →
  * `derivedPrimitives(query)`; which constraints can be evaluated as queries → `forms`, because a
  * constraint-as-query is a saved property and the forms it may use are these; which cross-model
- * traces or joins are meaningful → `joins`; which standard query operations the type supports →
- * `forms`.
+ * relationships are meaningful → NOT a field here, but the two registries below (`BINDINGS` and
+ * `COMPOSITIONS`), reachable per type through `bindingsOf` / `compositionsOf`; which standard query
+ * operations the type supports → `forms`.
+ *
+ * **Why the cross-model item left this interface.** It was one `joins` array per type, and the
+ * 261004 ruling is that the word was covering two unrelated relationships: *"join was hiding two
+ * different things … there isn't a generic semantic join."* A relationship between two domains also
+ * has no natural owner among them — the old array forced a placement convention ("it sits on the
+ * side whose construct hosts the reference"), which is a judgement a reader had to reconstruct. The
+ * two registries declare both domains as fields instead, so the convention is gone.
  */
 export interface QuerySemantics {
   /**
@@ -324,7 +316,159 @@ export interface QuerySemantics {
   readonly primitives: readonly QueryPrimitive[];
   readonly subjects: readonly QuerySubject[];
   readonly predicates: PredicateSemantics;
-  readonly joins: readonly JoinSemantics[];
+}
+
+// --------------------------------------------------------------------------------------------
+// Bindings and compositions — the two cross-model semantic relationships (§4, §23)
+//
+// There is no generic semantic join. The 261004 ruling: *"join was hiding two different things.
+// The clean definition is that there isn't a generic semantic join. There are bindings and
+// compositions, and a multi-model visualization can show either."* The distinction that decides
+// every question below:
+//
+//   **Binding connects denotations. Composition operates on denotations.**
+//
+// Operationally (§4.1): a binding is a declared correspondence between elements represented in
+// different purposeful models, and it DOES NOT consume one query result to determine another; a
+// composition is a typed operation in which a result or predicate from one semantic domain
+// participates in evaluating a question in another. An operation wholly inside one domain is
+// neither — it is a primitive, and `QueryPrimitive` above is where those live.
+//
+// **Separately typed and separately totalized** (§4.4). Two interfaces rather than one tagged
+// union, because the two owe different things: a binding owes a CORRESPONDENCE type and a
+// composition owes a RESULT, and a union would have made each optional on the arm that does not
+// use it — which is the shape that lets a missing field look like a deliberate one. The totality
+// controls differ for the same reason, and `test/bindings-census.test.ts` holds both: a
+// cross-domain reference a model DOCUMENT authors must be named by a BINDING, because a
+// composition is declared against the query AST and no model document can witness one.
+//
+// **`combineWith` is not here, deliberately.** §4.1: *"combineWith, if retained, is Learn-page
+// pedagogy/navigation only. It is not a semantic relationship."* It stays on `ModelType` as the
+// navigation hint it is, and its doc comment says so.
+// --------------------------------------------------------------------------------------------
+
+/**
+ * What a binding puts in correspondence, in the metamodel's own nouns.
+ *
+ * This is §4.4's "correspondence type", and the noun pair IS the type: entity↔model, machine↔entity
+ * and entity↔state are three different correspondences, and a reader (or a facade switching
+ * exhaustively on `QueryNoun`) can tell them apart from these two fields alone. A closed
+ * `CorrespondenceKind` union was the alternative and would have carried one member per entry,
+ * classifying nothing.
+ */
+export interface Correspondence {
+  readonly source: QueryNoun;
+  readonly target: QueryNoun;
+}
+
+/**
+ * How a model document SPELLS a binding's reference — the field that closes hole 1 of the census
+ * control.
+ *
+ * `test/bindings-census.test.ts` derives cross-domain references from the authored models and
+ * requires each to be named. Its obligation used to be per (fromType, toType), and the file names
+ * the consequence as a hole: *"a SECOND, semantically different reference between an already-named
+ * pair therefore satisfies the test by riding on the first."* That was live, not hypothetical — one
+ * shipped example authored a second entity→state property that no entry named. Declaring the
+ * authored keys moves the granularity to (fromType, toType, key) and the census checks both
+ * directions, so a new reference field cannot hide behind an old one and a stale key cannot linger.
+ *
+ * `keys` declares the KERNEL's own spellings. A model-local spelling of the same correspondence is
+ * declared in that test file instead, because EX-I1 forbids an engine source from naming an example
+ * and the example's property name would be one.
+ *
+ * The second arm is not an escape. A SAME-domain binding corresponds two purposeful models of one
+ * type, and the derivation yields cross-TYPE pairs only, so no walk over model documents can
+ * witness it — the exemption is structural and its reason is a declared field rather than an
+ * absence a reader has to infer.
+ */
+export type BindingWitness =
+  | {
+    readonly kind: "authored-property";
+    /** Every authored key a reference of this binding is spelled with, across the tracked models. */
+    readonly keys: readonly string[];
+  }
+  | { readonly kind: "shared-membership"; readonly why: string };
+
+/**
+ * A declared correspondence between elements represented in different purposeful models (§4.2).
+ *
+ * Every field below is one of §4.4's six, plus the two the existing controls need. What a binding
+ * explicitly does NOT do, from §23: it does not merge the models, it does not imply equality
+ * between arbitrary objects, and it does not consume the result of a query. The third is the line
+ * between this interface and `CompositionSemantics`, and it is the reason `licensing` is a
+ * `PrimitiveGate` and not something that could name a query: there is nothing for a binding to
+ * read but a declaration.
+ *
+ * **`from` and `to` are both required, and `from === to` is meaningful.** It says the binding runs
+ * between purposeful models of ONE type — `appears-in`'s case. The field it replaces was
+ * `with: ModelTypeId | null`, where `null` was doing two jobs at once: "same type" and "no partner".
+ */
+export interface BindingSemantics {
+  readonly name: string;
+  /** §4.4's source domain. */
+  readonly from: ModelTypeId;
+  /** §4.4's target domain. `from === to` means the binding runs between models of one type. */
+  readonly to: ModelTypeId;
+  /** §4.4's interpretation — what the correspondence MEANS, in a sentence a student can read. */
+  readonly interpretation: string;
+  /**
+   * §4.4's licensing conditions, in the vocabulary the query primitives already use.
+   *
+   * Reused rather than reinvented, because the question is the same one: does a per-SYSTEM
+   * declaration decide, or does the type's own structure settle it? `declared` means the kernel goes
+   * and reads the IR, and the citation says where; `by-construction` means there is nothing per
+   * system to consult.
+   */
+  readonly licensing: PrimitiveGate;
+  readonly correspondence: Correspondence;
+  readonly witness: BindingWitness;
+  /** Where the correspondence is AUTHORED. Total, which is why it survives `licensing`. */
+  readonly declaredBy: SchemaAuthority;
+  /**
+   * §4.4's semantic basis. REQUIRED, so the compiler rejects a binding that declares none — the
+   * same rung-1 pattern `ModelType.semanticBasis` and `QueryPrimitive.semanticBasis` use, and the
+   * reason this is a field rather than a test: an optional field would recreate the gap it closes.
+   */
+  readonly semanticBasis: SemanticBasis;
+}
+
+/**
+ * A typed operation in which a result or predicate from one semantic domain participates in
+ * evaluating a question in another (§4.3).
+ *
+ * **This must not become a generic pipeline mechanism**, and the type is where that ruling is held
+ * rather than merely recorded. §4.3 forbids adding arbitrary cross-model `pipe`, `join`, `fold`,
+ * `flatMap` or higher-order composition *"merely to make examples convenient."* `from` and `to` are
+ * `ModelTypeId`, so a composition relates two DOMAINS and nothing else: there is no arm that
+ * accepts a composition, so a composition OF compositions cannot be written without changing this
+ * interface — which makes the pipeline a deliberate edit to a typed contract rather than one more
+ * registry row. `test/model-types.test.ts` holds the complement, forward-policing at one entry: no
+ * composition's target domain is another's source, which is what a chain would look like.
+ *
+ * **What §4.4's "result type" means here, honestly.** A composition restricts a DOMAIN; it does not
+ * introduce a result kind. `executions-selected-by-behaviour` still answers with the quantitative
+ * dialect's own verdict — a magnitude decided against a declared ceiling. So `restricts` carries
+ * the noun whose extension narrows, and `result` CITES the target dialect's result type rather than
+ * restating one. Minting a fresh result shape per composition is the first step toward the pipeline
+ * the ruling forbids.
+ */
+export interface CompositionSemantics {
+  readonly name: string;
+  /** §4.4's source domain — the domain whose result or predicate participates. */
+  readonly from: ModelTypeId;
+  /** §4.4's target domain — the domain whose question is being evaluated. */
+  readonly to: ModelTypeId;
+  readonly interpretation: string;
+  readonly licensing: PrimitiveGate;
+  /** The noun whose extension the source domain's result narrows in the target question. */
+  readonly restricts: QueryNoun;
+  /** §4.4's result type: the TARGET dialect's own, cited rather than restated. */
+  readonly result: SchemaAuthority;
+  /** Where the source domain's result ENTERS the target question. */
+  readonly declaredBy: SchemaAuthority;
+  /** REQUIRED, for the reason `BindingSemantics.semanticBasis` is. */
+  readonly semanticBasis: SemanticBasis;
 }
 
 /**
@@ -359,7 +503,17 @@ export interface ModelType {
   readonly query: QuerySemantics;
   /** What this type deliberately does not tell you — the purposeful-reduction half of a Learn page. */
   readonly omits: readonly string[];
-  /** The composition that licenses a richer property, by registered partner. */
+  /**
+   * A NAVIGATION hint for the Learn page: which other type to reach for, and the question the pair
+   * would answer. **Not a semantic relationship** — §4.1 is explicit: *"combineWith, if retained,
+   * is Learn-page pedagogy/navigation only. It is not a semantic relationship."*
+   *
+   * So it is neither a binding nor a composition, and nothing may read it as one: it names no
+   * source and target domain, declares no licensing, carries no semantic basis, and the kernel
+   * never consults it. The cross-model semantics live in `BINDINGS` and `COMPOSITIONS` below, and
+   * the field keeps its name only because renaming it reaches the Learn surfaces a sibling wave
+   * owns.
+   */
   readonly combineWith: {
     readonly partner: ModelTypeId;
     /** The question the PAIR can answer that neither type answers alone. */
@@ -533,37 +687,6 @@ export const MODEL_TYPES: readonly ModelType[] = [
         equality: ENTITY_PROPERTIES,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: ORDERED_DOMAIN },
       },
-      joins: [
-        {
-          name: "appears-in", with: null,
-          meaning: "one entity's identity across the purposeful models that mention it, so an " +
-            "answer in one model can name the element another model declares",
-          declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonModel",
-            role: "`entities` — a model's membership, which is what shared identity joins across",
-          },
-        },
-        {
-          // The census answered "three" to a question whose answer is four, and the omitted edge is
-          // the one entity accounting charges through — the under-reporting shape V35–V37 exist to
-          // refuse, reproduced in the registry that describes them. It sits HERE, on the graph side,
-          // for the reason `machine-of-entity` sits on the machine side: the reference is made by
-          // the construct that hosts the join, and this one is made by an ENTITY (V38's own
-          // distinction from V27). The graph dialect reaches it too — `executes_in_state` is an
-          // ordinary property, so an entity selector's property constraints narrow on it.
-          name: "state-of-entity", with: "state-machine",
-          meaning: "an entity property naming a state, so a structural answer can name the " +
-            "lifecycle state during whose occupancy that entity runs — and so the quantitative " +
-            "evaluator can charge a trace step entering that state to that entity",
-          declaredBy: {
-            file: "src/ir/types.ts", symbol: "EXECUTES_IN_STATE",
-            role: "`executes_in_state` — the kernel's spelling of the property, read by the " +
-              "validator (V38 resolves it through the resolver a quantity's `state:` target uses) " +
-              "and by the quantitative evaluator; a model may spell the same shape per-entity, and " +
-              "then only that model's own suite holds the reference",
-          },
-        },
-      ],
     },
     omits: [
       "what behaviour can occur over time, or in what order",
@@ -706,17 +829,6 @@ export const MODEL_TYPES: readonly ModelType[] = [
         equality: VARIABLE_DOMAIN,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: VARIABLE_DOMAIN },
       },
-      joins: [
-        {
-          name: "machine-of-entity", with: "structural-graph",
-          meaning: "the binding that lets a behavioural answer name the structural element whose " +
-            "behaviour it describes",
-          declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonMachine",
-            role: "`entity` — the structural element a machine's behaviour is about, or null when it is about none",
-          },
-        },
-      ],
     },
     omits: [
       "how long an execution takes, or what it costs",
@@ -779,7 +891,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
           declaredBy: {
             file: "src/engine/types.ts", symbol: "QuantityQuery",
             role: "`target` — the reach predicate selecting which executions are measured; the " +
-              "predicate grammar is the state machine's, which is what the registered join is for",
+              "predicate grammar is the state machine's, which is what the registered " +
+              "`executions-selected-by-behaviour` COMPOSITION is for",
           },
         },
         {
@@ -797,17 +910,6 @@ export const MODEL_TYPES: readonly ModelType[] = [
         equality: null,
         order: { by: "declared-ceiling", scopedBy: DIMENSION_TABLE },
       },
-      joins: [
-        {
-          name: "executions-selected-by-behaviour", with: "state-machine",
-          meaning: "a quantitative question selects the executions it measures with a behavioural " +
-            "predicate — the one cross-type composition the kernel implements today",
-          declaredBy: {
-            file: "src/engine/types.ts", symbol: "QuantityQuery",
-            role: "`target` — where the behavioural predicate enters a quantitative question",
-          },
-        },
-      ],
     },
     omits: [
       "which executions are possible at all — that is the state machine's claim",
@@ -824,6 +926,211 @@ export const MODEL_TYPES: readonly ModelType[] = [
       "those declarations and from nothing else.",
   },
 ];
+
+// --------------------------------------------------------------------------------------------
+// The two cross-model registries
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The binding subset borrowed from KerML — §35.4's `binding` row, and the FOURTH presently
+ * implementable borrowed-semantic fixture target (§4.5). The three ahead of it are the three
+ * `ModelType.semanticBasis` rows; the fifth borrowed row, requirement and verification, is Phase
+ * B's and has no construct to attribute yet.
+ *
+ * One object shared by all three bindings, because they are one §35.4 row — the identity discipline
+ * `QueryPrimitive.semanticBasis` already uses, so the registry carries one claim rather than three
+ * paraphrases of it.
+ *
+ * **What is borrowed, exactly.** KerML's binding connector asserts that two features denote the
+ * same thing. MAGE borrows that ASSERTION and nothing else: a closed set of three declared
+ * correspondences over the kernel's three model types, each read by the kernel at a named site. A
+ * MAGE binding says *these two model elements denote the same thing*, and that sentence is the
+ * whole of the borrowing.
+ *
+ * **What is NOT borrowed — named, because §4.5 says in terms "do not claim that MAGE binding
+ * implements all KerML binding semantics", and a row without this list would be the over-attribution
+ * §35.3 forbids:**
+ *
+ *   - **No value-identity propagation.** A KerML binding makes its two ends' values the same, in
+ *     both directions. A MAGE binding carries nothing across: §23 says it "does not imply equality
+ *     between arbitrary objects", and no evaluator reads a binding to transport a property value.
+ *   - **No binding of expression parameters, invocation arguments or feature chains.** KerML binds
+ *     features wherever a feature can be written, including inside expressions. MAGE binds the
+ *     three element pairs below and nothing else.
+ *   - **No type unification through a binding.** Nothing here infers a type from a binding's other
+ *     end. The three correspondences are READ, never solved.
+ *   - **No author-declarable connector vocabulary.** A KerML model may declare a binding connector.
+ *     MAGE's set is closed in this registry, so a model cannot introduce a fourth.
+ *   - **No multiplicity or cardinality semantics on a binding's ends.**
+ *
+ * So: a restricted realization of the binding-connector assertion over a closed element set. The
+ * clause stays owed and the fixture null for §35.4's stated reason — a clause written from memory
+ * reads as checked — and the fixture, when it lands, pins ONE of the three bindings and says
+ * nothing about the others or about completeness (§35.6).
+ */
+const KERML_BINDING_BASIS: SemanticBasis = {
+  kind: "borrowed", standard: "KerML",
+  concept: "the binding subset — KerML's assertion that two model elements denote the same thing, " +
+    "of which a MAGE binding is a restricted realization: a closed set of three declared " +
+    "correspondences, carrying none of KerML's value-identity propagation, expression-parameter " +
+    "or feature-chain binding, type unification, or author-declarable connector vocabulary",
+  clause: CLAUSE_OWED, fixture: null,
+};
+
+/** A model's membership, which is what shared identity corresponds across. */
+const MODEL_MEMBERSHIP: SchemaAuthority = {
+  file: "src/ir/types.ts", symbol: "CanonModel",
+  role: "`entities` — one purposeful model's membership; two models naming one id name one entity",
+};
+
+/**
+ * The existing mechanism §4.2 requires `machine-of-entity` to reuse rather than duplicate.
+ *
+ * It is `CanonMachine.entity` (`src/ir/types.ts`): `readonly entity: string | null` — the
+ * structural element a machine's behaviour is about, or null when it is about none. It is already
+ * load-bearing in four places, which is why duplicating it would be the second source of truth §4.2
+ * is warning about: the validator refuses an undeclared referent (V6, `src/validator/rules.ts`),
+ * the RDF projection emits it as `MAGE.describes` (`src/rdf/project.ts`), the inspector navigates
+ * on it (`src/ui/shell/inspector.ts`), and the transaction layer reports it as a reference site
+ * (`src/transaction/references.ts`). This registry CITES it; it adds no field of its own.
+ */
+const MACHINE_ENTITY_LINK: SchemaAuthority = {
+  file: "src/ir/types.ts", symbol: "CanonMachine",
+  role: "`entity` — the structural element a machine's behaviour is about, or null when it is " +
+    "about none; V6 refuses a referent the system does not declare",
+};
+
+const ENTITY_STATE_PROPERTY: SchemaAuthority = {
+  file: "src/ir/types.ts", symbol: "EXECUTES_IN_STATE",
+  role: "`executes_in_state` — the kernel's spelling of the property, read by the validator (V38 " +
+    "resolves it through the resolver a quantity's `state:` target uses) and by the quantitative " +
+    "evaluator; a model may spell the same shape under its own key, and then only that model's " +
+    "own suite holds the reference",
+};
+
+const QUANTITY_TARGET: SchemaAuthority = {
+  file: "src/engine/types.ts", symbol: "QuantityQuery",
+  role: "`target` — the reach predicate where a behavioural result enters a quantitative question",
+};
+
+/**
+ * Every declared correspondence between elements in different purposeful models (§4.2).
+ *
+ * The array is annotated, not inferred, which is rung 1: a row omitting `semanticBasis` — or any
+ * other required field — is a compile error here, held by the compiler and by no test.
+ *
+ * **Three entries, and they sort cleanly.** The four rows the old `joins` census held split 3/1
+ * along §4.1's line, which is the asymmetry the ruling named. `appears-in`, `machine-of-entity` and
+ * `state-of-entity` each declare a correspondence and consume no query result; only
+ * `executions-selected-by-behaviour` consumes one, and it is the single `COMPOSITIONS` row below.
+ * No entry needed forcing, and none was dropped.
+ */
+export const BINDINGS: readonly BindingSemantics[] = [
+  {
+    name: "appears-in",
+    from: "structural-graph", to: "structural-graph",
+    interpretation: "one entity's identity across the purposeful models that mention it, so an " +
+      "answer in one model can name the element another model declares",
+    // Nothing per system to consult, which is what distinguishes this from the two below: the
+    // correspondence is not declared anywhere, it FOLLOWS from the id namespace being one namespace.
+    licensing: {
+      kind: "by-construction",
+      why: "entity ids inhabit ONE namespace per system, so two purposeful models naming the same " +
+        "id name the same entity; there is no per-system declaration that could license the " +
+        "correspondence and none that could withhold it",
+    },
+    correspondence: { source: "entity", target: "model" },
+    witness: {
+      kind: "shared-membership",
+      why: "a model's `entities` MEMBERSHIP is the correspondence, so no authored key spells it — " +
+        "and this binding runs between models of one type, which the census derivation (cross-TYPE " +
+        "pairs only) cannot witness even in principle",
+    },
+    declaredBy: MODEL_MEMBERSHIP,
+    semanticBasis: KERML_BINDING_BASIS,
+  },
+  {
+    name: "machine-of-entity",
+    from: "state-machine", to: "structural-graph",
+    interpretation: "this behavioural model describes this structural entity, so a behavioural " +
+      "answer can name the element whose behaviour it describes — §23's own example, " +
+      "transaction-lifecycle being the behavioural model of transaction-engine",
+    licensing: { kind: "declared", by: MACHINE_ENTITY_LINK },
+    correspondence: { source: "machine", target: "entity" },
+    witness: { kind: "authored-property", keys: ["entity"] },
+    declaredBy: MACHINE_ENTITY_LINK,
+    semanticBasis: KERML_BINDING_BASIS,
+  },
+  {
+    // The census under-reported this edge until 261004, and the edge it dropped is the one entity
+    // accounting charges through. Under the old shape its PLACEMENT was also a judgement a reader
+    // had to reconstruct — it sat on the graph side because the reference is made by an ENTITY.
+    // `from`/`to` state that now, so the convention is gone.
+    name: "state-of-entity",
+    from: "structural-graph", to: "state-machine",
+    interpretation: "an entity property naming a state, so a structural answer can name the " +
+      "lifecycle state during whose occupancy that entity runs — and so the quantitative " +
+      "evaluator can charge a trace step entering that state to that entity",
+    licensing: { kind: "declared", by: ENTITY_STATE_PROPERTY },
+    correspondence: { source: "entity", target: "state" },
+    // The KERNEL's spelling, and only that. A model may spell the same correspondence under its own
+    // property name, which the kernel does not resolve — and those spellings are NOT declared here,
+    // because EX-I1 forbids an engine source naming an example and a model-local key would smuggle
+    // one in. `test/bindings-census.test.ts` declares them beside the walk, where facts about the
+    // tracked corpus already live, and holds the two sets disjoint so neither hides the other.
+    witness: { kind: "authored-property", keys: ["executes_in_state"] },
+    declaredBy: ENTITY_STATE_PROPERTY,
+    semanticBasis: KERML_BINDING_BASIS,
+  },
+];
+
+/**
+ * The cross-domain semantic compositions (§4.3). v0.2 admits exactly ONE, and that is a ruling.
+ *
+ * *"This must not become a generic pipeline mechanism."* A second row is a deliberate act with a
+ * ruling to cite, not a convenience: §4.3 forbids adding cross-model `pipe`, `join`, `fold`,
+ * `flatMap` or higher-order composition *"merely to make examples convenient"*, and the five
+ * built-in examples (§19 waves 5–7) are exactly the pressure that would ask for them.
+ */
+export const COMPOSITIONS: readonly CompositionSemantics[] = [
+  {
+    name: "executions-selected-by-behaviour",
+    from: "state-machine", to: "quantitative-model",
+    interpretation: "a behavioural predicate selects the executions over which a quantitative " +
+      "question is evaluated — the behavioural result constrains the DOMAIN of the quantitative " +
+      "operation, which is what makes \"the maximum latency among successful executions\" one " +
+      "question rather than two",
+    licensing: { kind: "declared", by: QUANTITY_TARGET },
+    restricts: "execution",
+    result: {
+      file: "src/engine/types.ts", symbol: "Verdict",
+      role: "the TARGET dialect's own result — a magnitude decided against a declared ceiling; a " +
+        "composition narrows a domain and introduces no result kind of its own",
+    },
+    declaredBy: QUANTITY_TARGET,
+    // Not borrowed, and the restraint is the point: SysML v2's analysis-case machinery is a
+    // different construct at a different granularity, and naming it here to make the row look
+    // grounded would be the flattering over-attribution §35.3 forbids.
+    semanticBasis: {
+      kind: "extension",
+      why: "restricting a quantitative evaluation domain with a behavioural predicate is the " +
+        "Workbench's own analysis composition — no SysML v2 or KerML construct defines it, and a " +
+        "reader who goes looking for it in either specification will not find it",
+    },
+  },
+];
+
+/**
+ * The bindings either of whose domains is this type — recomputed, never stored (the V18 discipline
+ * `derivedPrimitives` follows). Both directions, because a facade offering a type's cross-model
+ * affordances needs the ones that point AT it as much as the ones that point away.
+ */
+export const bindingsOf = (id: ModelTypeId): readonly BindingSemantics[] =>
+  BINDINGS.filter((b) => b.from === id || b.to === id);
+
+/** The compositions either of whose domains is this type. Recomputed, for the same reason. */
+export const compositionsOf = (id: ModelTypeId): readonly CompositionSemantics[] =>
+  COMPOSITIONS.filter((c) => c.from === id || c.to === id);
 
 const BY_KIND: ReadonlyMap<Query["kind"], ModelType> =
   new Map(MODEL_TYPES.map((t) => [t.queryKind, t]));

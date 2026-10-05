@@ -1428,7 +1428,9 @@ canonicalization reads five fields out of a provenance block and nothing else
 (`src/ir/types.ts:152-159`), so a YAML `semantic_basis` would never reach the engine. It would be
 annotation in A1's sense (§5.1 of `SEMANTICS.md`) — carried, not interpreted.
 
-**Two homes in `src/engine/model-types.ts`, because the rows have two granularities.**
+**Four homes in `src/engine/model-types.ts`, because the rows sit at several granularities.** Two
+when this section was written; the binding/composition split (`DESIGN-v02-examples-and-semantic-completion-261004.md`
+§4, landed 261004) built the construct the third bullet below had deferred, and added the fourth.
 
 - **`ModelType.semanticBasis`** (the interface at `src/engine/model-types.ts:258`, the registry at
   `:338`) carries the *substrate* rows: entity/relation/attribute for `structural-graph`,
@@ -1439,13 +1441,25 @@ annotation in A1's sense (§5.1 of `SEMANTICS.md`) — carried, not interpreted.
   substrate is borrowed while its query forms are ours; one field on the type could not say both. The
   form vocabularies are the engine's own arrays — ten graph forms (`src/engine/types.ts:148`), six
   behavioral (`:155`), three requirement metrics (`src/quant/requirement.ts:31`).
-- **Binding, pinned property and change checking get no field, and that is the honest placement.**
-  Binding's nearest registry object is `JoinSemantics` (`src/engine/model-types.ts:176`), but §14's
-  binding construct is not yet built, so a field there would describe a shape that does not exist.
-  Pinned properties and change checking are mechanisms with no registry object at all. All three are
-  `extension` rows, and for an extension the record in §35.4 *is* the artifact the rule asks for —
-  minting fields so that a table has somewhere to point would be the decoration this repo declined
-  once already (`PLAN.md` §0.2a, `:108-114`).
+- **`BindingSemantics.semanticBasis`** carries §35.4's `binding` row, which is BORROWED from KerML
+  and so always needed a home. It had none until 261004, and this section recorded the reason
+  honestly: binding's nearest object was `JoinSemantics`, §14's binding construct was not yet built,
+  and a field there would have described a shape that did not exist. §4 built it — the overloaded
+  `joins` census is now `BINDINGS` (three declared correspondences) and `COMPOSITIONS` (one), the
+  field is required on both, and the three bindings SHARE one basis object because they are one
+  §35.4 row. **Two corrections this supersedes:** the deferral is discharged, and the claim that
+  binding is an `extension` row was wrong — §35.4's table classes it `borrowed | KerML | binding
+  subset | owed`, which is why it needed a field and the two mechanisms below do not. The subset
+  borrowed, and the five things it deliberately does NOT claim, are stated at the basis object.
+- **`CompositionSemantics.semanticBasis`** is the fourth home, and the one row §35.4's table has no
+  line for: `executions-selected-by-behaviour` is an `extension`, because no SysML v2 or KerML
+  construct defines a behavioural predicate restricting a quantitative evaluation domain. Naming
+  SysML's analysis-case machinery to make the row look grounded would be §35.3's over-attribution.
+- **Pinned property and change checking get no field, and that is the honest placement.** They are
+  mechanisms with no registry object at all, and both are `extension` rows — for an extension the
+  record in §35.4 *is* the artifact the rule asks for, and minting fields so that a table has
+  somewhere to point would be the decoration this repo declined once already (`PLAN.md` §0.2a,
+  `:108-114`).
 
 **The shape, with the third arm.** A discriminated union, so the three classes are distinguishable by
 a reader and exhaustible by the compiler:

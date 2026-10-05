@@ -501,10 +501,16 @@ export const RESIDENCIES: readonly Residency[] = ["resident"];
 /**
  * The entity property naming the lifecycle state during whose occupancy that entity runs.
  *
- * A property rather than IR structure: the IR cannot hold the join itself in v0.1, and the shipped
- * example established this spelling. It is a kernel constant because TWO kernel components read it
- * — the validator resolves it (V38) and the quantitative evaluator joins a trace step through it —
- * and a second spelling in either would be a join that silently stops joining.
+ * A property rather than IR structure: the IR cannot hold the correspondence itself in v0.1, and
+ * the shipped example established this spelling. It is a kernel constant because TWO kernel
+ * components read it — the validator resolves it (V38) and the quantitative evaluator charges a
+ * trace step through it — and a second spelling in either would be a correspondence that silently
+ * stops corresponding.
+ *
+ * This is the authored site of the `state-of-entity` BINDING (`src/engine/model-types.ts`), which
+ * is where its interpretation, licensing and KerML basis are declared. Not a "join": the 261004
+ * ruling splits bindings from compositions and there is no generic semantic join — this one
+ * connects denotations, it does not consume a query result.
  */
 export const EXECUTES_IN_STATE = "executes_in_state";
 
