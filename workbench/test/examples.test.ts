@@ -304,9 +304,11 @@ const recorded = (exp: QueryExpectation): QueryEvaluation => evaluationOf({
 });
 
 test("a requirement's status agrees with whatever decides it", () => {
-  // MAGE v0.1 has no requirement construct, so a requirement lives in the fixture joined to the
-  // thing that decides it. Without this check the join is a comment: a requirement could claim to be
-  // satisfied by a query whose recorded outcome refutes it.
+  // Every shipped example carries its requirements in its FIXTURE, joined to the thing that decides
+  // them. That was forced while MAGE had no requirement construct; since `requirements:` landed on
+  // 261004 it is a migration nobody has done yet, and until it is this join is the only thing
+  // holding the recorded statuses honest. Without it the join is a comment: a requirement could
+  // claim to be satisfied by a query whose recorded outcome refutes it.
   //
   // Two routes, and the fixture reader already refuses a requirement declaring both or neither:
   //

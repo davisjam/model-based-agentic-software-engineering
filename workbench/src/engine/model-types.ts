@@ -934,8 +934,10 @@ export const MODEL_TYPES: readonly ModelType[] = [
 /**
  * The binding subset borrowed from KerML — §35.4's `binding` row, and the FOURTH presently
  * implementable borrowed-semantic fixture target (§4.5). The three ahead of it are the three
- * `ModelType.semanticBasis` rows; the fifth borrowed row, requirement and verification, is Phase
- * B's and has no construct to attribute yet.
+ * `ModelType.semanticBasis` rows; the fifth borrowed row, requirement and verification, gained its
+ * construct on 261004 — `requirements:` is a top-level key of the published schema and
+ * `src/engine/verification.ts` carries §5.3's vocabulary — so all five rows are now implementable
+ * and none is waiting on a construct.
  *
  * One object shared by all three bindings, because they are one §35.4 row — the identity discipline
  * `QueryPrimitive.semanticBasis` already uses, so the registry carries one claim rather than three

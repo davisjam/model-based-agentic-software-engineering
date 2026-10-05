@@ -208,8 +208,11 @@ each pinning a tracked model with `expect` so the coverage gate decides its verd
 `test/conformance.test.ts` checks each verdict is sensitive to the meaning under test. Measured:
 **three of §35.4's five borrowed rows have a fixture, and 0 are `oracle-executed`** (2
 `normative-artifact`, 1 `spec-inspected`) — no reference implementation has run. Of the two
-uncovered rows, `binding` gained its construct with the 261004 bindings/compositions split and is
-now an implementable fixture target; `requirement, verification` has no construct to attribute yet.
+uncovered rows, BOTH now have a construct and are implementable fixture targets: `binding` gained
+its with the 261004 bindings/compositions split, and `requirement, verification` gained its the same
+day, when `requirements:` landed as a top-level schema key over the verification vocabulary
+`src/engine/verification.ts` already carried. Neither is waiting on a construct; each owes a clause
+and a fixture, which is §35.4's standing reason and not an absence of subject matter.
 The correspondence axis stays `asserted`; `SEMANTICS.md` §13.7 carries why a fixture does not promote
 it.
 

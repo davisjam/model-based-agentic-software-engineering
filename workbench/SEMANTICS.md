@@ -1508,9 +1508,17 @@ a promotion.
     target, and its own declaration says so. What keeps it `owed` is narrower and is §35.4's standing
     reason rather than an absence of subject matter: `clause` is `CLAUSE_OWED` and `fixture` is
     `null`, because a clause written from memory reads as checked.
-  - **`requirement, verification` has no construct to attribute yet.** Phase B's, per the same
-    registry's own note, so the original reason survives unchanged for this row alone and a fixture
-    would still describe a shape the Workbench does not have.
+  - **`requirement, verification` now has a construct too, and owes the same two things.**
+    `requirements:` landed 261004 as a top-level key of `mage-model.schema.json` — a map keyed by id
+    whose values declare `statement` / `expressed_as` / `satisfied_when` — carried into the IR as
+    `CanonicalSystem.requirements` and joined to the saved queries by `verifySystemRequirements`.
+    The verification vocabulary it reads was already there (`src/engine/verification.ts`, §5.3's
+    four words). So the original reason does not survive for this row either, and no owed row is now
+    blocked on an absent construct. Two rulings bound what is NOT owed: there is no authored
+    `bindings:` key, because each registered binding is licensed by a field the author already
+    writes or holds by construction; and there will be no `verification:` key, because a status is
+    derived per read and stored nowhere (V18), so recording it would change the system the answer
+    was about.
 
 **The axis's claim about `src/` has changed, and the earlier absence is now historical.** At
 `f3a9991c` the strings `SysML`, `KerML` and `semantic_basis` appeared nowhere under `src/`, `test/`,
