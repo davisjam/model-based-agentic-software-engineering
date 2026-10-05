@@ -1,0 +1,156 @@
+# CONFORMANCE FIXTURE. The MAGE half of one correspondence claim; `claim.md` states the claim and
+# `oracle.json` records how it was checked. Read those two before reading this file.
+#
+# The claim this model exists to make falsifiable: a requirement DECLARES an obligation and carries
+# no verdict; the verdict is computed when someone asks, from the deciding query's answer and the
+# declared discharging value. So the same declaration verifies differently when the system under
+# design changes, with no edit to the requirement and none to the query -- *the model changed, the
+# query did not* -- and the polarity lives in `satisfied_when` and nowhere else.
+#
+# As it stands no subscription breaches its permit, so the breach query is `refuted` and the
+# requirement verifies `satisfied`. The conformance test moves it four ways; each is listed beside
+# the line it edits.
+#
+# The verification half is DERIVED and is authored nowhere. There is no `verification:` key in this
+# file because there is no such construct and, by the 261004 ruling, never will be: a status is
+# derived per read and stored nowhere (V18). `verifySystemRequirements` recomputes it per call.
+#
+# Nothing here is a shipped example and nothing imports it.
+
+mage: 1
+
+system:
+  id: sysml-requirement-verification-verdict
+  name: One obligation over a positive breach query
+  description: >
+    Two services and two event types, each carrying a declared sensitivity, with one prohibition
+    stated as the existential breach it forbids.
+
+domains:
+
+  sensitivity:
+    type: ordered-enum
+    values: [public, internal, restricted]
+    description: Ascending sensitivity. The order is what makes the breach comparison decidable.
+
+relation-types:
+
+  subscribes:
+    description: The design permits the service to receive this event type.
+    absence: >
+      No subscription is represented. The service may still reach the payload another way.
+    # `forbidden`, so only the `direct` form is licensed. The conformance test uses this: asking the
+    # same question in the `reachability` form makes the models DECLINE, and the verification must
+    # then read `inconclusive` rather than `violated`.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+
+entities:
+
+  # The entity the mutation moves. `internal` permits exactly what `telemetry` carries, so the
+  # design is sound as it stands; lowering it to `public` is what makes the breach appear.
+  analytics:
+    type: service
+    label: Analytics
+    properties:
+      permits: { value: internal, domain: sensitivity }
+
+  audit:
+    type: service
+    label: Audit
+    properties:
+      permits: { value: restricted, domain: sensitivity }
+
+  telemetry:
+    type: event-type
+    label: Telemetry
+    properties:
+      carries: { value: internal, domain: sensitivity }
+
+  ledger:
+    type: event-type
+    label: Ledger
+    properties:
+      carries: { value: restricted, domain: sensitivity }
+
+models:
+
+  data-policy:
+    type: graph
+    label: Data policy
+    purpose:
+      question: >
+        Which services may receive which event types, and at what sensitivity?
+      represents: [service, event type, subscription, sensitivity]
+      omits:
+        - when an event was actually delivered
+        - how a service enforces its own permit
+    entities: [analytics, audit, telemetry, ledger]
+    relations:
+      - id: analytics-subscribes-telemetry
+        from: analytics
+        to: telemetry
+        type: subscribes
+      - id: audit-subscribes-ledger
+        from: audit
+        to: ledger
+        type: subscribes
+
+queries:
+
+  # THE POSITIVE breach query. `holds` IS the violation: the question is existential, so a witness
+  # is a breach. The query is never negated internally to make the requirement read positively
+  # (section 5.2) -- the requirement below declares `satisfied_when: refuted` instead, and that is
+  # the single place the polarity lives.
+  impermitted-subscription-exists:
+    name: A service subscribes to an event type carrying more than it permits
+    kind: graph
+    quantifier: exists
+    expect: refuted
+    graph:
+      form: direct
+      relation: subscribes
+      where:
+        compare:
+          - left: source.permits
+            op: lt
+            right: target.carries
+
+  # The positive control, and it is not decoration: without it the `refuted` above is consistent
+  # with the comparison never being evaluated at all -- an empty edge set, or a property that did
+  # not resolve, would answer `refuted` and demonstrate nothing. This asks the same form over the
+  # same relation and the same two properties, in the direction that IS satisfied.
+  some-subscription-is-within-its-permit:
+    name: A service subscribes to an event type it is permitted to receive
+    kind: graph
+    quantifier: exists
+    expect: holds
+    graph:
+      form: direct
+      relation: subscribes
+      where:
+        compare:
+          - left: source.permits
+            op: ge
+            right: target.carries
+
+requirements:
+
+  # The obligation. Three keys and none of them is a predicate, so there is nowhere to put a
+  # negation even if an author wanted one. It carries no verdict and no status: what the models say
+  # is a query result, and what the pair MEANS is a verification that exists only while someone is
+  # asking.
+  no-impermitted-subscription:
+    statement: >
+      No service may subscribe to an event type carrying data above its permitted sensitivity.
+    expressed_as: impermitted-subscription-exists
+    satisfied_when: refuted
+
+views:
+
+  policy:
+    label: Data policy
+    models: [data-policy]
+    direction: left-to-right

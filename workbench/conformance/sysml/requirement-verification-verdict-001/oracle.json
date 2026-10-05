@@ -1,0 +1,56 @@
+{
+  "fixture": "sysml/requirement-verification-verdict-001",
+  "method": "normative-artifact",
+  "methodWhy": "Every decisive fact is declared, with no sentence between the artifact and the claim. That requirement satisfaction is a COMPUTED value: Requirements.sysml declares 'return result = allTrue(assumptions()) implies allTrue(constraints())'. That a verdict is a RETURN rather than stored state: VerificationCases.sysml declares 'return verdict : VerdictKind :>> result' inside VerificationCase, where :>> is redefinition of the case's own result. That the vocabulary is closed at four: 'enum def VerdictKind { pass; fail; inconclusive; error; }'. That inconclusive and error are NOT the image of a two-valued check: 'calc def PassIf' maps a Boolean onto pass or fail and onto nothing else. The SysML prose Descriptions of clauses 8.3.21.8 and 8.3.24.3 corroborate and are listed separately; they are not what the claim rests on.",
+  "standard": "SysML v2",
+  "normativeDocument": {
+    "title": "OMG Systems Modeling Language (SysML), Version 2.0, Part 1: Language Specification",
+    "omgDocumentNumber": "formal/26-03-02",
+    "date": "March 2026",
+    "url": "https://www.omg.org/spec/SysML/2.0/"
+  },
+  "clause": "SysML v2.0, 8.3.21.8 RequirementDefinition (p.357) and 8.3.24.3 VerificationCaseDefinition (p.375); vocabulary at 9.2.17.2.2 VerdictKind; grounded in the Systems Model Library elements Requirements::RequirementCheck and VerificationCases::VerificationCase",
+  "retrieval": {
+    "fetchedAt": "2026-10-05",
+    "what": "Every citation below was located in bytes fetched on that date, not recalled. SysML.xmi 1135635 bytes from https://www.omg.org/spec/SysML/20250201/SysML.xmi; Systems-Library.kpar 27577 bytes from https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar (a zip; Requirements.sysml and VerificationCases.sysml extracted from it); the normative PDF 3804140 bytes / 691 pages from https://www.omg.org/spec/SysML/2.0/Language/PDF. The OMG File ID formal/26-03-02 was read off the SysML 2.0 specification page, where it is listed against 'Specification - Language', rather than assumed; the shipped fixtures spell the same number formal/2026-03-02, and that four-digit-year spelling is a corpus convention rather than OMG's own.",
+    "clauseNumbersVerifiedBy": "Locating each heading in the extracted PDF text: '8.3.21.8 RequirementDefinition', '8.3.24.3 VerificationCaseDefinition', '9.2.17.2.2 VerdictKind'. No clause number here is quoted from memory. VerdictKind is NOT a packagedElement of SysML.xmi -- it is a library element -- so it is cited to the .kpar and to the clause, and not to the XMI."
+  },
+  "evidence": [
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar",
+      "locator": "Systems Library/Requirements.sysml lines 19-47 (RequirementConstraintCheck), line 49 (RequirementCheck), lines 173-185 (the two polarity subsets)",
+      "what": "DECISIVE, declared: 'return result = allTrue(assumptions()) implies allTrue(constraints())' -- satisfaction is the value of that implication, not a recorded field. And polarity is carried by WHICH SUBSET a usage joins: 'satisfiedRequirementChecks :> requirementChecks, assertedConstraintChecks' versus 'notSatisfiedRequirementChecks: RequirementCheck[0..*] :> requirementChecks, negatedConstraintChecks'. The constraint itself is not rewritten to change polarity, which is the declared counterpart of MAGE keeping the breach query positive and putting the polarity in satisfied_when."
+    },
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar",
+      "locator": "Systems Library/VerificationCases.sysml line 13 (VerificationCase), line 22 (the verdict), lines 58-68 (VerdictKind), lines 70-79 (PassIf)",
+      "what": "DECISIVE, declared: 'return verdict : VerdictKind :>> result;' inside 'abstract verification def VerificationCase :> Case' -- the verdict REDEFINES the case's return, so it is produced by performing the case and stored on nothing. 'enum def VerdictKind { pass; fail; inconclusive; error; }' closes the vocabulary at four. 'calc def PassIf' returns 'if isPassing? VerdictKind::pass else VerdictKind::fail', so a Boolean reaches only two of the four and inconclusive/error are declared to be something other than a failed check."
+    },
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/SysML/20250201/SysML.xmi",
+      "locator": "packagedElement xmi:id=\"Systems-Requirements-RequirementDefinition\", ownedRule checkRequirementDefinitionSpecialization and deriveRequirementDefinitionRequiredConstraint; packagedElement xmi:id=\"Systems-VerificationCases-VerificationCaseDefinition\", ownedRule checkVerificationCaseSpecialization",
+      "what": "Declared, and this is the chain by which the library elements above govern an author's requirement: body=\"specializesFromLibrary('Requirements::RequirementCheck')\" and body=\"specializesFromLibrary('VerificationCases::VerificationCase')\". The derivation 'requiredConstraint = ownedFeatureMembership->selectByKind(RequirementConstraintMembership)->select(kind = RequirementConstraintKind::requirement).ownedConstraint' declares that a requirement's required constraints are separated from its assumptions by a membership kind."
+    },
+    {
+      "rung": "spec-inspected",
+      "source": "SysML v2.0 formal/26-03-02, clauses 8.3.21.8 (p.357) and 8.3.24.3 (p.375) (identical text in the SysML.xmi ownedComments)",
+      "locator": "the Description of each",
+      "what": "CORROBORATING prose: 'A RequirementDefinition is a ConstraintDefinition that defines a requirement used in the context of a specification as a constraint that a valid solution must satisfy' and 'A VerificationCaseDefinition is a CaseDefinition for the purpose of verification of the subject of the case against its requirements.' Listed separately so the record does not present prose as declared structure."
+    }
+  ],
+  "oracle": null,
+  "oracleWhy": "No reference implementation was executed. The Workbench takes no runtime dependency on the SysML v2 Pilot Implementation (DESIGN-v02-semantics-261004.md section 35.1), and this wave added none. source.sysml Part B has not been parsed by any tool.",
+  "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+  "establishedAt": "2026-10-05",
+  "reviewedByPerson": null,
+  "reviewedByPersonWhy": "Section 35.6's template field is spelled read_by: <person>, and no person has read this fixture. Recorded as null rather than filled with the wave's name.",
+  "bound": "Does NOT establish the word-level mapping. VerdictKind is pass/fail/inconclusive/error and MAGE's VerificationStatus is satisfied/violated/inconclusive/error; two spellings are identical and two differ, and nothing normative says `satisfied` means `pass`. What the artifacts decide is the SHAPE -- four values, closed; a verdict as a case's return rather than stored state; inconclusive declared distinct from fail. The first two words' correspondence is this project's spelling choice. Does not establish the ASSUMPTION half: RequirementConstraintCheck declares assumptions beside constraints and satisfaction is an implication over both, while a MAGE requirement has three keys and none is an assumption -- so this pins the degenerate case where allTrue(assumptions()) is vacuously true. Does not exercise subrequirements, concerns, actors, stakeholders, reqId or the derived text, each a declared feature with no MAGE counterpart. Does not establish a verification CASE: SysML's verdict is the return of a performance with a subject, an objective and a method, and MAGE's is a function of a declaration and a query result. Exercises one of InconclusiveCause's three arms (`unlicensed`); `bounded` and `not-evaluated` are held by test/verification.test.ts and are not claimed here.",
+  "knownDefectCheck": {
+    "what": "The shipped sysml/transition-guard-occurrence-001 fixture records a defect in the normative artifact: deriveTransitionUsageGuardExpression selects kind = TransitionFeatureKind::trigger where the surrounding text requires ::guard, identically in the published PDF and the XMI.",
+    "doesThisFixtureTouchIt": "No. This fixture cites requirement and verification-case material only and does not reach that derivation, so no routing-around was needed and none was done.",
+    "whatWasCheckedAnyway": "Every ownedRule this fixture cites was checked for the same copy-paste class, by comparing its ownedComment description against its OCL specification body: deriveRequirementDefinitionRequiredConstraint, deriveRequirementDefinitionAssumedConstraint, deriveVerificationCaseDefinitionVerifiedRequirement, checkRequirementDefinitionSpecialization and checkVerificationCaseSpecialization all AGREE with their descriptions. No new defect found."
+  }
+}
