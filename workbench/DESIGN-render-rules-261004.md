@@ -686,3 +686,58 @@ wrong place.
 4. **Does V-RENDER-X ship marked as a commitment, or wait for the canvas?** A rule that has never
    been tested against a real drawing is prose. Marking it is honest and cheap; deferring it is also
    honest, and avoids a V-rule whose status line has to be maintained.
+
+---
+
+## J. Record correction, 261004: R3 is no longer vacuous
+
+Appended rather than edited into §C, because the verdicts above were right when they were measured
+and a reader should see what changed and when.
+
+**§C graded R3 `vacuous` and §A.4 called the absence of a cross-model surface "the most consequential
+fact in this measurement."** Both are now false. `src/app/cross-model.ts` composes N rendered panels
+and derives the connections between them from `BINDINGS` and `COMPOSITIONS`;
+`test/cross-model.test.ts` holds the clause.
+
+**It landed as §E's *drawn from*, not as *checked against*,** which is the distinction that decides
+whether the conversion is worth anything. The only producer of a connection walks the registry, the
+label is an exhaustive switch over which registry an entry came out of, and no type in the module
+carries a label field for anyone to write wrong. Three substitutions hold it: an EMPTY registry over
+the same system and the same panels draws nothing, removing one row removes exactly that row's lines,
+and a byte-level assertion over `src/` keeps the registry parameter — the seam those two need — out
+of every production call site.
+
+**Three verdicts in §C's tables change, and one does not.**
+
+| Clause | §C said | Now | Why |
+|---|---|---|---|
+| **R3.** Cross-model connections correspond only to registered bindings or compositions | **vacuous** | `checked` (K1) | The surface exists and the edge set is a function of the registry. The residue is §E's own — that an entry *means* what its prose says. |
+| **R2.** Model types own their render projections | `asserted` (K4) | `asserted` (K4), with the missing relation now declared | §A.2's "the two vocabularies have never been related" is closed for the cross-model canvas by `SCENE_CONSTRUCTS`, a `Record<ModelTypeId, …>` the compiler totalizes both ways. §B's `renderStrategy` field on `ModelType` is NOT landed, and `renderView` still dispatches on `SceneSubject` with no knowledge of model types. |
+| **R2a.** No generic `renderAnythingAsGraph()` fallback | **violated** | still **violated**, and now bounded on one surface | The Learn page's three-step positional fallback is untouched. The cross-model canvas REFUSES a quantitative panel instead, carrying the construct table's reason — which is the declared-gap shape §B.3 argues for, on one surface rather than in the registry. |
+| **X2.** Cross-model evaluation is represented as a composition | `asserted` (K4) | `asserted` (K4) | Unchanged, and the canvas makes the asymmetry visible rather than closing it: a composition is declared against the query AST, so no pair of model panels witnesses one. |
+
+**§F's sequencing survived contact and is confirmed.** The Behavior → Quantity composition does not
+draw, and the reason is the one §F predicted: a quantitative model is not an addressable construct,
+so there is no quantitative panel for a line to end on. It is reported as `domain-has-no-scene`
+carrying the construct table's own sentence, and a test substitutes a construct table where the
+quantitative type HAS a scene and asserts the row moves to the X2 residue — so the single edit that
+unblocks §24's sensor-node exercise is pinned, and nothing else about the canvas has to change.
+
+**Two corrections to §E, found by building it.**
+
+1. **§E's anchors are not all elements.** *"Draw a binding between `positions.get(a)` and
+   `positions.get(b)`"* assumes both ends are scene nodes. `machine-of-entity`'s source noun is
+   `machine`, and a machine panel's scene nodes are its STATES — there is no node for the machine
+   itself. So an anchor is a panel or an element, chosen by the correspondence's noun, which is the
+   dispatch `Correspondence`'s own doc comment sanctions and which §23.3's figure draws (a line from
+   the BEHAVIOR frame to the TransactionEngine box).
+2. **§E says composition costs nothing in `src/render/`, and that held.** No renderer file changed.
+   What §E does not mention is that marker ids are document-global, so the canvas lifts ONE panel's
+   `<defs>` rather than carrying N — sound only while `defs()` takes no argument, which is asserted
+   rather than assumed.
+
+**And one correction to §E's silence about geometry.** A straight segment between two anchors runs
+diagonally through whichever boxes lie between the element and the other panel, and lands the label
+on a panel's own contents. §23.3 draws the connection between the frames; the route leaves each
+panel horizontally and travels in the gutter. Found by rendering the canvas headless and looking at
+it — the step this document could not take, because no canvas existed.

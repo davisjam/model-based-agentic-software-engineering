@@ -462,6 +462,77 @@ test("panel frames do not overlap", () => {
   }
 });
 
+test("a cross-model line travels in the GUTTER, never across a panel it does not touch", () => {
+  // The defect this pins shipped in the first cut and was found by rendering the canvas and looking
+  // at it: a straight segment between anchors runs diagonally through whichever boxes lie between
+  // the element and the other panel. §23.3 draws the connection BETWEEN the two frames.
+  for (const [id, panels] of [
+    ["transaction-workspace", PAIRED],
+    ["document-processing", [
+      { type: "structural-graph" as ModelTypeId, id: "pipeline-performance" },
+      { type: "state-machine" as ModelTypeId, id: "document-lifecycle" },
+    ]],
+  ] as const) {
+    const view = compose(id, panels as readonly CrossModelPanelRequest[]);
+    const frames = new Map(view.panels.map((p) => [p.key, p.frame]));
+    for (const c of view.connections) {
+      const [g0, g1] = c.route.gutter;
+      // The gutter segment lies strictly between the two frames: it enters neither.
+      for (const other of view.panels) {
+        if (other.key === c.from.panel || other.key === c.to.panel) continue;
+        assert.ok(g1.x <= other.frame.x || other.frame.x + other.frame.w <= g0.x
+          || g0.x <= other.frame.x || other.frame.x + other.frame.w <= g1.x,
+          `${c.relation.entry.name}: the gutter segment crosses ${other.key}`);
+      }
+      // Every point of the route sits inside one of the two panels it connects, or between them.
+      const lo = Math.min(g0.x, g1.x);
+      const hi = Math.max(g0.x, g1.x);
+      const a = frames.get(c.from.panel);
+      const b = frames.get(c.to.panel);
+      if (a === undefined || b === undefined) throw new Error("a connection names a panel that is not on the canvas");
+      const left = Math.min(a.x, b.x) - 0.5;
+      const rightEdge = Math.max(a.x + a.w, b.x + b.w) + 0.5;
+      for (const p of c.route.points) {
+        assert.ok(p.x >= left && p.x <= rightEdge,
+          `${c.relation.entry.name}: a route point escapes both frames' span`);
+      }
+      assert.ok(hi - lo > 0, `${c.relation.entry.name}: the gutter segment has no extent`);
+    }
+  }
+});
+
+test("no two bundle labels overlap, and every plate is inside the viewBox", () => {
+  // The other defect the headless render found: offsetting by bundle INDEX left
+  // 'bound by: machine-of-entity' underneath 'bound by: state-of-entity'. Plates are measured and
+  // pushed clear, and the viewBox is the union of frames and placed plates rather than a guess.
+  const view = compose("document-processing", [
+    { type: "structural-graph", id: "pipeline-performance" },
+    { type: "state-machine", id: "document-lifecycle" },
+  ]);
+  const plates = descend(layer(view, "cross-model-labels"),
+    (n) => n.attrs["class"] === "mage-xmodel-label-plate")
+    .map((n) => ({
+      x: Number(n.attrs["x"]), y: Number(n.attrs["y"]),
+      w: Number(n.attrs["width"]), h: Number(n.attrs["height"]),
+    }));
+  assert.ok(plates.length >= 2, `two bundles must be labelled; got ${plates.length}`);
+  for (let i = 0; i < plates.length; i += 1) {
+    for (let j = i + 1; j < plates.length; j += 1) {
+      const a = plates[i] as (typeof plates)[number];
+      const b = plates[j] as (typeof plates)[number];
+      const clear = a.x + a.w <= b.x || b.x + b.w <= a.x || a.y + a.h <= b.y || b.y + b.h <= a.y;
+      assert.ok(clear, `label plates ${i} and ${j} overlap, so one label is unreadable`);
+    }
+  }
+
+  const [vx, vy, vw, vh] = String(view.tree.attrs["viewBox"]).split(" ").map(Number) as number[];
+  assert.ok(vx !== undefined && vy !== undefined && vw !== undefined && vh !== undefined);
+  for (const p of plates) {
+    assert.ok(p.x >= vx && p.y >= vy && p.x + p.w <= vx + vw && p.y + p.h <= vy + vh,
+      `a label plate at ${p.x},${p.y} is clipped by the viewBox`);
+  }
+});
+
 test("the renderer's defs are panel-independent, which is what makes lifting one of them sound", () => {
   // Marker ids are document-global, so the composed canvas lifts ONE panel's `<defs>` rather than
   // carrying N copies that would each define `mage-arrow`. That is sound only while `defs()` takes
