@@ -60,6 +60,9 @@ import type {
   Coverage, PropositionValue, QueryEvaluation, QueryResult,
 } from "../ir/types.ts";
 import { bearsAConclusion, evaluationOf } from "../ir/types.ts";
+// Type-only, and only for the deciding query's SHAPE. The parse stays with the caller that holds
+// the system, so this layer gains no dependency on the query parser at runtime.
+import type { Query } from "./types.ts";
 
 // --------------------------------------------------------------------------------------------
 // Layer 2 — the requirement
@@ -294,17 +297,92 @@ export function verify(req: Requirement, ev: QueryEvaluation | null): Verificati
 }
 
 /**
+ * Whether the named query can DECIDE this requirement — a sentence naming the remedy, or `null`
+ * when the pairing is sound. Scoped to `kind: quantity`, and the scope is the whole argument.
+ *
+ * A quantity question's soundness as a DECIDER is fixed by two declarations, and the forced
+ * quantifier does the work (`src/quant/query.ts`): `within:` present demands `forall` and states a
+ * ceiling claim, universal and positive, refuted by one counterexample; `within:` absent demands
+ * `exists` and MEASURES — it answers *how much* and prescribes nothing. So over the four pairings
+ * of (`within:` present or absent) × (`holds` or `refuted`), exactly one decides an obligation:
+ *
+ * | deciding query        | quantifier | `holds`                   | `refuted`                  |
+ * |-----------------------|------------|---------------------------|----------------------------|
+ * | `within:` present     | `forall`   | SOUND — the ceiling claim | the breach discharges it   |
+ * | `within:` absent      | `exists`   | cannot fail at any value  | cannot pass at any value   |
+ *
+ * The three unsound cells are the three measured distortions, and the measurement row is the worse
+ * half: `measurePeak` has no `refuted` arm at all, so a memory obligation decided by a measurement
+ * reads satisfied for every model at every magnitude — 1,152 MB against a declared 512 MB ceiling
+ * included. Neither measurement cell reads the figure it reports.
+ *
+ * Nothing here is scoped to `behavior` or `graph`, and that is deliberate rather than unfinished:
+ * both carry a `holds` and a `refuted` arm, so `satisfied_when: refuted` is the ordinary authoring
+ * of a breach query and four shipped requirements declare it. A blanket rule would refuse them.
+ *
+ * **Static, computed from the declaration pair alone — never from the result or its coverage.** The
+ * reason is the asymmetry this file is built on: coverage sensitivity defends against a TRUNCATED
+ * walk, and offers nothing against a well-covered walk answering the wrong question. Condition this
+ * on coverage and the same unrefutable declaration would be refused under an exhaustive walk and
+ * pass quietly as `inconclusive` under a bounded one, reporting a DECLARATION defect as an evidence
+ * shortfall — the collapse `verifySystemRequirements` already refuses next door by deriving `known`
+ * from the declared query ids rather than from the result map.
+ *
+ * What this does NOT catch, stated so a reader does not over-read it: the rule decides whether the
+ * named query can decide an obligation OF THIS SHAPE, never whether it decides THIS obligation. A
+ * ceiling query over a narrower selection than the statement claims, or against a more lenient
+ * declared ceiling than the statement names, satisfies every condition here. The degenerate member
+ * of that family is live and the evaluator already detects it: a `target:` no configuration can
+ * satisfy returns a VACUOUS `holds` carrying a typed `vacuous` disclosure, and this layer never
+ * sees it — `results` is a `Pick` that does not carry `compilation`. Catching it is a separate
+ * ruling with a different shape, because it is a fact about the RESULT and this arm must stay a
+ * fact about the DECLARATION.
+ */
+function cannotDecide(req: Requirement, deciding: Query): string | null {
+  if (deciding.kind !== "quantity") return null;
+  const { metric, within } = deciding.quantity;
+  if (within === null) {
+    return `'${req.id}' names quantity query '${req.expressedAs}', which declares no 'within:' — so `
+      + `it MEASURES ${metric} and reports a figure rather than deciding a ceiling. A measurement `
+      + `answers how much; it discharges no obligation, and no magnitude it reports is ever `
+      + `compared against anything. Name a query that declares 'within: <a model:-targeted ceiling `
+      + `quantity>', which forces 'forall' and makes the comparison the obligation's own.`;
+  }
+  if (req.satisfiedWhen !== "holds") {
+    return `'${req.id}' names ceiling query '${req.expressedAs}', which claims every selected `
+      + `${metric} stays at or under the declared ceiling '${within}' — a universal claim whose `
+      + `refutation IS the breach. Declaring 'satisfied_when: refuted' makes a found counterexample `
+      + `DISCHARGE the obligation, so the one reading that proves the ceiling is exceeded is the one `
+      + `reported as satisfied. Declare 'satisfied_when: holds'.`;
+  }
+  return null;
+}
+
+/**
  * The whole chain from a declaration and the results, for a caller holding both.
  *
  * `results` is keyed by saved-query id, which is the join `expressed_as` names. A query the system
  * does not supply is a DECLARATION error rather than an inconclusive verification: the requirement
  * references something that is not there, so there is no obligation anybody could discharge.
+ *
+ * `shapes` carries the system's PARSED queries, keyed by the id `expressed_as` names, supplied by
+ * the same join that supplies `known`. Two refusals of one class sit here in sequence: the first
+ * refuses a requirement whose named query the system does not DECLARE, the second one whose named
+ * query cannot DECIDE it (`cannotDecide`). The lookup goes through `req.expressedAs`, so the
+ * authored key is read once, by `parseRequirement`, and never again here.
+ *
+ * An id absent from `shapes` skips the shape check — the pure-layer reading, "interpret this pair"
+ * rather than "is this declaration sound", and also the reading for a query whose own parse failed
+ * (its refusal surfaces through the result, which is where it belongs). The production join always
+ * supplies the map, and the authored-document pins drive THAT path rather than this one, so the arm
+ * cannot be green by never being reached.
  */
 export function verifyDeclaration(
   raw: unknown,
   where: string,
   results: ReadonlyMap<string, Pick<QueryResult, "outcome" | "coverage" | "refusal">>,
   known: ReadonlySet<string> = new Set(results.keys()),
+  shapes: ReadonlyMap<string, Query> = new Map(),
 ): Verification {
   const parsed = parseRequirement(raw, where);
   if (!parsed.ok) return verificationError(parsed.problem);
@@ -313,6 +391,11 @@ export function verifyDeclaration(
     return verificationError({
       where, problem: `'${req.id}' names query '${req.expressedAs}', which this system does not declare`,
     });
+  }
+  const deciding = shapes.get(req.expressedAs);
+  if (deciding !== undefined) {
+    const undecidable = cannotDecide(req, deciding);
+    if (undecidable !== null) return verificationError({ where, problem: undecidable });
   }
   const res = results.get(req.expressedAs);
   return verify(req, res === undefined ? null : evaluationOf(res));

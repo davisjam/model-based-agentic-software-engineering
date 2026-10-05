@@ -144,6 +144,13 @@ export function runSavedQueries(system: CanonicalSystem): ReadonlyMap<string, An
  * result would be `inconclusive` with cause `not-evaluated`. Deriving `known` from the results would
  * collapse the first into the second and report a dangling reference as a search that has not run.
  *
+ * The same join supplies each requirement's DECIDING QUERY, parsed, which is what lets
+ * `verifyDeclaration` refuse a requirement whose named query cannot decide it — a measurement that
+ * discharges nothing, or a ceiling claim whose polarity is inverted. The shape comes from the
+ * authored raw the IR already carries, so nothing in the IR changes to make it available. Parsed
+ * here rather than in `verification.ts` for this function's own stated reason: the pure layer knows
+ * a declaration and a result, and pointing it at the query parser is what living here avoids.
+ *
  * Nothing is stored. Call it again after a transaction and the answers move with the model, which is
  * the whole of what the construct is for: *the model changed, the query did not.*
  */
@@ -154,9 +161,17 @@ export function verifySystemRequirements(
   for (const [id, answer] of runSavedQueries(system)) results.set(id, answer.result);
   const known = new Set(system.queries.keys());
 
+  // Parsed once per query, not per requirement, and keyed by the id `expressed_as` names — so the
+  // join resolves it through `Requirement.expressedAs` and nothing re-reads the authored key.
+  const shapes = new Map<string, Query>();
+  for (const [id, saved] of system.queries) {
+    const parsed = parseQuery(saved.raw);
+    if (parsed.ok) shapes.set(id, parsed.value);
+  }
+
   const out = new Map<string, Verification>();
   for (const [id, declared] of system.requirements) {
-    out.set(id, verifyDeclaration(declared.raw, `requirements.${id}`, results, known));
+    out.set(id, verifyDeclaration(declared.raw, `requirements.${id}`, results, known, shapes));
   }
   return out;
 }

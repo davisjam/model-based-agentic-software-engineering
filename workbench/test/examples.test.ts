@@ -485,12 +485,29 @@ test("the derived verification actually fires -- negative control on the authore
   assert.equal(mutate("message-bus", id, (r) => { r["satisfied_when"] = "inconclusive"; }).get(id)?.status,
     "error", "satisfied_when naming an evaluation status must derive error");
 
-  // And the other polarity, on an example whose requirement reads as a universal: `holds` discharges
-  // `sram-fits-budget`, so declaring `refuted` must accuse a system that is in fact within budget.
+  // And the other polarity, on an example whose requirement reads as a universal. Inverting
+  // `satisfied_when` on a CEILING query no longer accuses the system — it is refused one layer
+  // earlier, as the unrefutable pairing: a `within:` query's refutation IS the breach, so `refuted`
+  // would make a found counterexample discharge the obligation. That is a defect in the
+  // DECLARATION, and `error` is the status for one.
   const sram = "firmware-fits-physical-sram";
-  assert.equal(
-    mutate("embedded-sensor-node", sram, (r) => { r["satisfied_when"] = "refuted"; }).get(sram)?.status,
-    "violated", "the holds-polarity requirement must be falsifiable too");
+  const inverted = mutate("embedded-sensor-node", sram, (r) => { r["satisfied_when"] = "refuted"; }).get(sram);
+  assert.equal(inverted?.status, "error",
+    "a ceiling query paired with satisfied_when: refuted is an unrefutable declaration, not a breach");
+  assert.ok(inverted?.status === "error");
+  assert.match(inverted.problem, /satisfied_when: holds/,
+    "the refusal must name the remedy, or a reader learns only that something is wrong");
+
+  // So falsifiability of the holds-polarity requirement is pinned where it actually lives: in the
+  // MODEL. Shrink the declared ceiling below the resident allocations and the sound route accuses —
+  // which is the claim the inverted-polarity mutation used to stand in for, now made directly.
+  const squeezed = parse(exampleText("embedded-sensor-node")) as Record<string, unknown>;
+  const budget = (squeezed["quantities"] as Record<string, Record<string, unknown>>)["sram-budget"];
+  assert.ok(budget !== undefined, "the model must declare 'sram-budget' for this control to mean anything");
+  budget["value"] = "8 KB";
+  assert.equal(verifySystemRequirements(canonicalize(squeezed)).get(sram)?.status, "violated",
+    "the holds-polarity requirement must be falsifiable too, and a ceiling below the allocations is "
+    + "the mutation that falsifies it");
 });
 
 // ----------------------------------------------------------------------------------------------
