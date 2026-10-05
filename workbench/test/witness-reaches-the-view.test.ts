@@ -193,6 +193,109 @@ test("a witness does not leak its hops into a model that did not carry it", () =
     nodes.length - 1, "the same witness over its own model draws every hop");
 });
 
+test("Q5's direction: repair, then add an impermitted subscriber, and the witness MOVES", () => {
+  // §9.4 Q5 asks the student to add a subscriber with insufficient permission and watch the
+  // requirement go satisfied -> violated, and it asks the UI to identify "the changed verdict and
+  // witness". This example ships the breach on purpose, so Q5's direction needs the REPAIRED
+  // revision as its base — two transactions, which is one more than a fixture modification is. So
+  // it is driven here instead.
+  //
+  // The repair COMMITS through `transact` rather than opening a hypothesis, which is both the
+  // student's own route (a direct edit lands, undo one keystroke away) and a constraint: one
+  // hypothesis is open at a time, so a two-step activity cannot be two branches. Q5's edit is then
+  // the what-if, which is the right shape for it — the student is asking what the addition would do.
+  //
+  // What makes the second half worth a test of its own: the verdict does NOT move. The breach query
+  // answers `holds` before and after, because one impermitted subscriber was replaced by another.
+  // Only the witness moves, so a reader watching the verdict alone would conclude nothing happened.
+  const ws = new Workspace(realPorts);
+  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  const breach = (): QueryResult => ws.query(ws.state.system.queries.get(
+    "restricted-data-reaches-impermitted-subscriber")?.raw);
+
+  const shipped = breach();
+  assert.equal(shipped.outcome, "holds", "the example ships the breach");
+  const impermitted = shipped.evidence?.nodes?.[0];
+  assert.ok(impermitted !== undefined, "the witness names the service that may not process the data");
+
+  // Step 1 — repair. The requirement's condition is `refuted`, so this is satisfied.
+  const repaired = ws.transact({
+    transaction: {
+      base: ws.state.hash,
+      rationale: "widen the permission rather than delete the flow",
+      operations: [
+        { op: "set-property", id: impermitted, name: "permits", value: "restricted", domain: "sensitivity" },
+      ],
+    },
+  });
+  assert.ok(repaired.ok, `repair refused: ${repaired.findings.map((f) => f.message).join("; ")}`);
+  assert.equal(breach().outcome, "refuted", "satisfied: no restricted data reaches an impermitted service");
+
+  // Step 2 — Q5's own edit, against the repaired revision.
+  const broken = ws.openHypothesis("add a debug subscriber", {
+    transaction: {
+      base: ws.state.hash,
+      rationale: "a debugging subscriber with insufficient sensitivity permission",
+      operations: [
+        { op: "add-entity", id: "debug", type: "service", label: "Debug" },
+        { op: "set-property", id: "debug", name: "permits", value: "internal", domain: "sensitivity" },
+        {
+          op: "add-relation", model: "event-flow", id: "debug-subscribes-order-created",
+          from: "debug", to: "order-created", type: "subscribes",
+        },
+        {
+          op: "add-relation", model: "event-propagation", id: "propagate-order-created-debug",
+          from: "order-created", to: "debug", type: "may_propagate_to",
+        },
+      ],
+    },
+  });
+  assert.ok(broken.ok, `the Q5 edit was refused: ${broken.findings.map((f) => f.message).join("; ")}`);
+
+  const violated = breach();
+  assert.equal(violated.outcome, "holds", "violated again: the new subscriber may not process what it receives");
+  assert.deepEqual(violated.evidence?.nodes?.[0], "debug",
+    "the witness names the NEW subscriber — the breach moved rather than returning to where it was");
+  assert.notEqual(violated.evidence?.nodes?.[0], impermitted,
+    "a witness that still named the repaired service would mean the repair did not take");
+
+  // ---------------------------------------------------------------------------------------------
+  // AND HERE IS WHERE STEP 8 STOPS, recorded as a divergence rather than worked around.
+  //
+  // A graph model's membership is its declared `entities:` list, and NO operation extends one.
+  // `add-entity` puts the service in the identity namespace; `add-relation` accepts an endpoint
+  // outside the membership with no finding; a fresh load of the exported bytes validates CLEAN. So
+  // the two consumers of the same revision disagree: the ENGINE answers using the new edge — the
+  // assertions above are its answer — while `buildScene` takes the declared membership as the scene
+  // and draws neither the node nor the edge.
+  //
+  // For a student doing §9.4 Q5 that is the worst available shape of failure: the verdict changes
+  // and the picture does not, which reads as a broken diagram rather than as a missing operation.
+  //
+  // WHICH SIDE IS WRONG IS A REAL FORK, and it is not this file's to settle:
+  //   - membership is DERIVED from the relations, and `buildScene` should draw a declared edge; or
+  //   - a relation whose endpoint is outside the membership is a well-formedness violation, and the
+  //     operation set owes a way to extend a model — V3 today checks only that an endpoint is a
+  //     declared SYSTEM entity (`src/validator/rules.ts:176`), which this state satisfies.
+  // Either ruling makes the two assertions below fail, which is the point of writing them: closing
+  // the gap is what deletes this block, and nothing else will.
+  // ---------------------------------------------------------------------------------------------
+  const model = ws.state.system.models.get("event-flow");
+  assert.ok(model !== undefined);
+  assert.ok(!model.entities.includes("debug"),
+    "DIVERGENCE: no operation adds an entity to a graph model's membership, so the new service is "
+    + "outside it — if this now passes, the fork above was settled and this block should go");
+
+  const view = drawWith(ws.state.system, "event-flow", violated);
+  const marked = new Set(assignments(view).map((a) => a.target));
+  assert.ok(!marked.has("debug"),
+    "DIVERGENCE: the breach's witness names a service the picture does not draw — step 8 of the "
+    + "structural loop ('immediately see the property change') is unreachable for an edit that "
+    + "introduces a service, because the answer moved and the diagram cannot show it");
+  assert.ok(view.accessible.nodes.every((n) => n.id !== "debug"),
+    "DIVERGENCE: the scene is the declared membership, so the added service is not a node");
+});
+
 test("a predecessors answer draws no hops, because its node order means nothing", () => {
   const system = messageBus();
   const res = answer(system, "who-subscribes-to-order-created");
