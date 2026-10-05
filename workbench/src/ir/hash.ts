@@ -94,6 +94,13 @@ function semanticProjection(s: CanonicalSystem): unknown {
     // quantity is byte-identical. It hashes for the same reason a quantity does.
     sorted(s.accounting, (a) => [a.basis, a.basis === null ? a.basisRaw : null]),
     sorted(s.queries, (q) => [JSON.stringify(q.raw)]),
+    // The DECLARATION hashes; the verification does not exist to hash. A system that prescribes
+    // "restricted data must not reach an impermitted subscriber" is not the system that prescribes
+    // nothing, even when every entity, edge and query is byte-identical — the obligation is the
+    // author's content and a transaction based on the one must not apply to the other. The status
+    // stays out by not being stored anywhere at all (V18), which is a stronger exclusion than
+    // omitting a field from this list.
+    sorted(s.requirements, (r) => [JSON.stringify(r.raw)]),
   ];
 }
 

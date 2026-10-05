@@ -16,7 +16,8 @@ import type {
   CanonQuantitativeModel, CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor,
   ExprOperand, ExprTerm, Guard,
   GuardOp, HistoryEntry, MachineInstance, Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue,
-  Provenance, Purpose, QuantityTarget, QuantityValue, QuantityWhen, Residency, SavedQuery, Scalar,
+  Provenance, Purpose, QuantityTarget, QuantityValue, QuantityWhen, Residency, SavedQuery,
+  SavedRequirement, Scalar,
   TargetKind,
 } from "./types.ts";
 import {
@@ -600,6 +601,20 @@ export function canonicalize(doc: unknown): CanonicalSystem {
   const queries = new Map<string, SavedQuery>();
   for (const [id, raw] of sortedEntries(d["queries"])) queries.set(id, { id, raw });
 
+  // The map KEY is the identity, so it is hoisted into the mapping the engine reads. Written last
+  // in the spread, so the key WINS over an authored `id:` inside the value — which the schema
+  // refuses anyway (`additionalProperties: false`, and no `id` property), making the override the
+  // repair for a document that reached here some other way rather than a silent preference.
+  //
+  // A non-object value is passed through untouched. It is not a requirement, and the engine has the
+  // sentence for that ("a requirement is a mapping of id, statement, expressed_as and
+  // satisfied_when"); defaulting it into an object here would manufacture an obligation the author
+  // did not write.
+  const requirements = new Map<string, SavedRequirement>();
+  for (const [id, raw] of sortedEntries(d["requirements"])) {
+    requirements.set(id, { id, raw: isObj(raw) ? { ...raw, id } : raw });
+  }
+
   return {
     systemId: asStr(sys["id"], "unnamed"),
     name: asStr(sys["name"], asStr(sys["id"], "unnamed")),
@@ -622,6 +637,7 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     quantitativeModels: quantitativeModels(qs),
     accounting: accounting(d["accounting"]),
     queries,
+    requirements,
   };
 }
 

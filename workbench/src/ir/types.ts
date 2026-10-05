@@ -649,6 +649,27 @@ export interface SavedQuery {
   readonly raw: unknown;
 }
 
+/**
+ * One authored obligation, carried as the author wrote it.
+ *
+ * `raw` rather than a parsed record, and the reason is the `error` verification status. A
+ * declaration that cannot be read is still a declaration: `parseRequirement` turns it into a
+ * `RequirementProblem` and `verify` reads it as `error` — *the requirement could not be read, so
+ * there is no obligation to judge* — which is a statement about the DECLARATION and never an
+ * accusation against the system under design. Parsing strictly here would drop the malformed
+ * declaration at load, and a dropped requirement reads as no requirement at all: green, silent, and
+ * the worst direction available. The shape is `SavedQuery`'s for the same reason — the engine owns
+ * the vocabulary, the IR owns the identity.
+ *
+ * The `id` is the MAP KEY, hoisted into `raw` by `canonicalize` so one reader serves both surfaces:
+ * the authored map here, and the fixture corpus's array of mappings that each spell their own `id`.
+ */
+export interface SavedRequirement {
+  readonly id: string;
+  /** The authored mapping, with `id` hoisted from the map key. Read by `parseRequirement`. */
+  readonly raw: unknown;
+}
+
 export interface CanonicalSystem {
   readonly systemId: string;
   readonly name: string;
@@ -679,6 +700,16 @@ export interface CanonicalSystem {
    */
   readonly accounting: ReadonlyMap<string, CanonAccounting>;
   readonly queries: ReadonlyMap<string, SavedQuery>;
+  /**
+   * The authored obligations, keyed by id.
+   *
+   * The DECLARATION lives here and hashes (it is authored content, so canonicalization carries it
+   * and a system that prescribes something is not the system that prescribes nothing). The
+   * VERIFICATION does not live here at all: a status is derived per read and stored nowhere, for
+   * V18's reason — recording that an obligation is discharged would change the system the claim was
+   * about, and the climax the whole construct exists for is *the model changed, the query did not*.
+   */
+  readonly requirements: ReadonlyMap<string, SavedRequirement>;
 }
 
 // --------------------------------------------------------------------------------------------

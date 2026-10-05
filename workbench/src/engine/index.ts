@@ -29,6 +29,7 @@ import { runGraphQuery, type GraphAnswer } from "./graph.ts";
 import { absentSubstrateVerdict } from "./model-types.ts";
 import { narrate, type Narration } from "./narrate.ts";
 import { parseQuery, unlicensed, type Query, type Refusal, type Verdict } from "./types.ts";
+import { verifyDeclaration, type Verification } from "./verification.ts";
 
 export { admitBehaviorQuery, runBehaviorQuery, type BehaviorPlan, type BehaviorSubject } from "./behavior.ts";
 export {
@@ -126,6 +127,37 @@ export function runQuery(system: CanonicalSystem, raw: unknown): Answer {
 export function runSavedQueries(system: CanonicalSystem): ReadonlyMap<string, Answer> {
   const out = new Map<string, Answer>();
   for (const [id, saved] of system.queries) out.set(id, runQuery(system, (saved satisfies SavedQuery).raw));
+  return out;
+}
+
+/**
+ * Verify every obligation the system declares, keyed by the id the author wrote.
+ *
+ * This is the JOIN, and it lives here rather than in `verification.ts` for a reason worth stating:
+ * `verification.ts` knows a declaration and a result and nothing else, which is what makes `verify`
+ * callable without a system and testable without one. The system-level step needs the query runner,
+ * so putting it there would point the pure layer at the evaluator.
+ *
+ * `known` is the system's DECLARED query ids rather than the result map's keys, and the two are not
+ * the same claim. A requirement naming a query the system does not declare is a DECLARATION error —
+ * `error`, which never reads satisfied. A requirement naming a declared query that produced no
+ * result would be `inconclusive` with cause `not-evaluated`. Deriving `known` from the results would
+ * collapse the first into the second and report a dangling reference as a search that has not run.
+ *
+ * Nothing is stored. Call it again after a transaction and the answers move with the model, which is
+ * the whole of what the construct is for: *the model changed, the query did not.*
+ */
+export function verifySystemRequirements(
+  system: CanonicalSystem,
+): ReadonlyMap<string, Verification> {
+  const results = new Map<string, QueryResult>();
+  for (const [id, answer] of runSavedQueries(system)) results.set(id, answer.result);
+  const known = new Set(system.queries.keys());
+
+  const out = new Map<string, Verification>();
+  for (const [id, declared] of system.requirements) {
+    out.set(id, verifyDeclaration(declared.raw, `requirements.${id}`, results, known));
+  }
   return out;
 }
 

@@ -262,6 +262,33 @@
       "additionalProperties": { "type": "object" }
     },
 
+    "requirements": {
+      "description": "Obligations the system under design is judged against, keyed by id. A requirement references the POSITIVE breach query by id and declares the proposition value that discharges it (`satisfied_when: refuted` for a prohibition stated as its existential dual, `holds` for a universal stated directly). The query is NEVER negated internally to make the requirement read positively. A requirement carries no verdict and no status: what the models say is a query result, and what the pair MEANS is a verification (satisfied/violated/inconclusive/error), derived per read and stored nowhere. NEITHER `satisfied_when`'s vocabulary nor `expressed_as`'s join is enumerated or resolved here, for the reason `accounting`'s metric name is not: a wrong word reaches the MEANING layer, where `parseRequirement` says why `inconclusive` and `unlicensed` cannot discharge an obligation and a dangling `expressed_as` verifies as `error`, instead of JSON Schema answering SHAPE where the engine has a sentence.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statement", "expressed_as", "satisfied_when"],
+        "properties": {
+          "statement": {
+            "description": "The obligation in the modal voice -- \"Restricted data must not reach an impermitted subscriber.\" Prescriptive, where a query's `name` is descriptive and a model's `purpose.question` is interrogative; the three are distinct sentences and none is derived from another.",
+            "type": "string",
+            "minLength": 1
+          },
+          "expressed_as": {
+            "description": "The saved query that decides this obligation, by id. A join rather than an inlined query: one query can decide several obligations, and inlining would duplicate it.",
+            "$ref": "#/$defs/id"
+          },
+          "satisfied_when": {
+            "description": "Shape only -- a string. The two-word vocabulary (`holds`, `refuted`) lives in the engine, which is also where a YAML 1.1 loader's coercion of `no` to a boolean gets the sentence citing V25.",
+            "type": "string"
+          },
+          "notes": { "$ref": "#/$defs/notes" }
+        }
+      }
+    },
+
     "views": {
       "description": "Visual reductions. A view is itself a purposeful reduction; it carries NO semantic model data.",
       "type": "object",
