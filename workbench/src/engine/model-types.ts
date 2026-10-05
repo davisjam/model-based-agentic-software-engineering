@@ -58,13 +58,20 @@
  */
 import type { CanonicalSystem } from "../ir/types.ts";
 import {
-  BEHAVIOR_FORMS, GRAPH_COMPOSING, GRAPH_FORMS, ORDER_OPS, detail, unlicensed,
-  type Query, type Verdict,
+  BEHAVIOR_FORMS,
+  GRAPH_COMPOSING,
+  GRAPH_FORMS,
+  ORDER_OPS,
+  detail,
+  unlicensed,
+  type Query,
+  type Verdict,
 } from "./types.ts";
 import { REQUIREMENT_METRICS } from "../quant/requirement.ts";
 
 /** Every public model type. The list is closed; adding one is a deliberate act. */
-export type ModelTypeId = "structural-graph" | "state-machine" | "quantitative-model";
+export type ModelTypeId =
+  "structural-graph" | "state-machine" | "quantitative-model";
 
 /**
  * A pointer at the place a shape is actually DEFINED. The registry's job is to say where the
@@ -118,21 +125,21 @@ export const CLAUSE_OWED = "owed";
  */
 export type SemanticBasis =
   | {
-    readonly kind: "borrowed";
-    readonly standard: Standard;
-    /** The standard concept this construct realizes a subset of, as the 261004 ruling names it. */
-    readonly concept: string;
-    /** A clause citation, or `CLAUSE_OWED` while no fixture has supplied one. */
-    readonly clause: string;
-    /** The conformance fixture directory (§35.6), or null while the obligation is still owed. */
-    readonly fixture: string | null;
-  }
+      readonly kind: "borrowed";
+      readonly standard: Standard;
+      /** The standard concept this construct realizes a subset of, as the 261004 ruling names it. */
+      readonly concept: string;
+      /** A clause citation, or `CLAUSE_OWED` while no fixture has supplied one. */
+      readonly clause: string;
+      /** The conformance fixture directory (§35.6), or null while the obligation is still owed. */
+      readonly fixture: string | null;
+    }
   | { readonly kind: "extension"; readonly why: string }
   | {
-    readonly kind: "extension-grounded";
-    readonly foundation: SchemaAuthority;
-    readonly why: string;
-  };
+      readonly kind: "extension-grounded";
+      readonly foundation: SchemaAuthority;
+      readonly why: string;
+    };
 
 // --------------------------------------------------------------------------------------------
 // Query semantics — what questions can meaningfully be asked of a type
@@ -148,9 +155,16 @@ export type SemanticBasis =
  * facade can switch on it exhaustively.
  */
 export type QueryNoun =
-  | "entity" | "relation type" | "model"
-  | "machine" | "state" | "variable" | "transition"
-  | "execution" | "quantity" | "ceiling";
+  | "entity"
+  | "relation type"
+  | "model"
+  | "machine"
+  | "state"
+  | "variable"
+  | "transition"
+  | "execution"
+  | "quantity"
+  | "ceiling";
 
 /**
  * How a question picks instances of a noun out.
@@ -160,11 +174,26 @@ export type QueryNoun =
  * fields — so the selector tells a facade which grammar to offer, not merely that something is
  * selectable. `searchable: true` would have said the second and nothing of the first.
  */
-export type SubjectSelector = "by-id" | "property-constraints" | "predicate" | "selector";
+export type SubjectSelector =
+  "by-id" | "property-constraints" | "predicate" | "selector";
 
 export interface QuerySubject {
   readonly noun: QueryNoun;
   readonly selector: SubjectSelector;
+  /**
+   * What the noun IS, to a reader. One sentence, no schema vocabulary, no invariant ids.
+   *
+   * Distinct from `declaredBy.role` on purpose, and the distinction is the point. `role` says what
+   * a cited SYMBOL is authoritative for -- it is provenance, and it legitimately carries invariant
+   * ids and implementation detail. The Learn page rendered `role` in a column headed "What it is",
+   * so a provenance note had to serve as a definition and could do neither job: a reader met
+   * "the declared `basis` -- what licenses aggregating charges along a path at all (V35)" where a
+   * definition belonged. `means` is the definition; `role` stays provenance and belongs under the
+   * implementation disclosure.
+   *
+   * Required, so a subject added later cannot quietly fall back on its provenance string.
+   */
+  readonly means: string;
   /** Where the noun's shape is defined. The registry points; it is never the authority. */
   readonly declaredBy: SchemaAuthority;
 }
@@ -243,7 +272,11 @@ export interface PredicateSemantics {
   /** Where the value space equality and membership range over is declared; null when the type has none. */
   readonly equality: SchemaAuthority | null;
   readonly order:
-    | { readonly by: "operator"; readonly ops: ReadonlySet<string>; readonly scopedBy: SchemaAuthority }
+    | {
+        readonly by: "operator";
+        readonly ops: ReadonlySet<string>;
+        readonly scopedBy: SchemaAuthority;
+      }
     | { readonly by: "declared-ceiling"; readonly scopedBy: SchemaAuthority }
     | null;
 }
@@ -315,6 +348,16 @@ export interface QuerySemantics {
   /** Every form, classified. Total over `forms`, so a new form cannot ship unclassified. */
   readonly primitives: readonly QueryPrimitive[];
   readonly subjects: readonly QuerySubject[];
+  /**
+   * The one restriction a student must carry away about naming things of this kind, stated as a
+   * PROPOSITION rather than folded into a subject's definition.
+   *
+   * It belongs beside the subject table and not inside it: "an unknown relation type is an invalid
+   * question, not evidence the relationship is absent" is a claim about the whole naming surface,
+   * and a table cell that tried to carry it taught the distinction by implication. Null where the
+   * kind genuinely has no such restriction -- an absent sentence is a fact, not an omission.
+   */
+  readonly namingRestriction: string | null;
   readonly predicates: PredicateSemantics;
 }
 
@@ -384,10 +427,10 @@ export interface Correspondence {
  */
 export type BindingWitness =
   | {
-    readonly kind: "authored-property";
-    /** Every authored key a reference of this binding is spelled with, across the tracked models. */
-    readonly keys: readonly string[];
-  }
+      readonly kind: "authored-property";
+      /** Every authored key a reference of this binding is spelled with, across the tracked models. */
+      readonly keys: readonly string[];
+    }
   | { readonly kind: "shared-membership"; readonly why: string };
 
 /**
@@ -530,24 +573,24 @@ export type RenderConstruct = "model" | "machine" | "quantitative-model";
  */
 export type RenderStrategy =
   | {
-    readonly kind: "projected";
-    /** The IR construct this type's own picture is a projection of. */
-    readonly construct: RenderConstruct;
-    /**
-     * What the projection preserves of this type's semantics, and what it drops.
-     *
-     * The same job `omits` does for a model, at the granularity of the picture: a resource-oriented
-     * view of memory preserves allocation and margin and drops connectivity, and a structural view
-     * of the same entities does the reverse. Both are legitimate pictures of overlapping facts, and
-     * this is the field that says which reduction a reader is looking at.
-     */
-    readonly projection: string;
-  }
+      readonly kind: "projected";
+      /** The IR construct this type's own picture is a projection of. */
+      readonly construct: RenderConstruct;
+      /**
+       * What the projection preserves of this type's semantics, and what it drops.
+       *
+       * The same job `omits` does for a model, at the granularity of the picture: a resource-oriented
+       * view of memory preserves allocation and margin and drops connectivity, and a structural view
+       * of the same entities does the reverse. Both are legitimate pictures of overlapping facts, and
+       * this is the field that says which reduction a reader is looking at.
+       */
+      readonly projection: string;
+    }
   | {
-    readonly kind: "nonvisual";
-    /** Why this type has no picture — a reason, never a placeholder. A test holds that. */
-    readonly why: string;
-  };
+      readonly kind: "nonvisual";
+      /** Why this type has no picture — a reason, never a placeholder. A test holds that. */
+      readonly why: string;
+    };
 
 /**
  * The transitive or derived relations a type defines semantically — Extension 1's own item,
@@ -556,7 +599,9 @@ export type RenderStrategy =
  * Derived state is recomputed, never kept (the V18 discipline): a stored list would be the
  * classification's answer copied into a field that a later edit could leave behind.
  */
-export const derivedPrimitives = (q: QuerySemantics): readonly QueryPrimitive[] =>
+export const derivedPrimitives = (
+  q: QuerySemantics,
+): readonly QueryPrimitive[] =>
   q.primitives.filter((p) => p.basis !== "declared");
 
 export interface ModelType {
@@ -633,44 +678,58 @@ export interface ModelType {
 // --------------------------------------------------------------------------------------------
 
 const PATH_LICENSE: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonRelationType",
-  role: "per-relation path licensing: `pathComposition: forbidden` makes a composed answer " +
+  file: "src/ir/types.ts",
+  symbol: "CanonRelationType",
+  role:
+    "per-relation path licensing: `pathComposition: forbidden` makes a composed answer " +
     "unlicensed rather than false (V7)",
 };
 const DIRECTION_LICENSE: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonRelationType",
-  role: "per-relation traversal direction: `symmetric` decides whether a traversal may read an " +
+  file: "src/ir/types.ts",
+  symbol: "CanonRelationType",
+  role:
+    "per-relation traversal direction: `symmetric` decides whether a traversal may read an " +
     "edge backwards (V8)",
 };
 const ENTITY_PROPERTIES: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "PropertyValue",
+  file: "src/ir/types.ts",
+  symbol: "PropertyValue",
   role: "an entity property and its domain — the value space a structural predicate matches over",
 };
 const ORDERED_DOMAIN: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "DomainKind",
+  file: "src/ir/types.ts",
+  symbol: "DomainKind",
   role: "`ordered-enum` — the declared order two operands must share before they may be compared",
 };
 const CONFIGURATION_SPACE: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonTransition",
-  role: "guards, effects and synchronization — the per-system declarations that fix which " +
+  file: "src/ir/types.ts",
+  symbol: "CanonTransition",
+  role:
+    "guards, effects and synchronization — the per-system declarations that fix which " +
     "configurations are reachable at all",
 };
 const VARIABLE_DOMAIN: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonVariable",
+  file: "src/ir/types.ts",
+  symbol: "CanonVariable",
   role: "a machine variable's enumerated domain — every legal value, listed rather than hoped for",
 };
 const ACCOUNTING_BASIS: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonAccounting",
+  file: "src/ir/types.ts",
+  symbol: "CanonAccounting",
   role: "the declared `basis` — what licenses aggregating charges along a path at all (V35)",
 };
 const RESIDENCY_DECLARATION: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "Residency",
-  role: "a configuration-scoped quantity's declared residency; undeclared, it is charged under " +
+  file: "src/ir/types.ts",
+  symbol: "Residency",
+  role:
+    "a configuration-scoped quantity's declared residency; undeclared, it is charged under " +
     "neither summand of memory(c) (V37)",
 };
 const DIMENSION_TABLE: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "DIMENSIONS",
-  role: "the closed dimension table — a comparison normalizes within one dimension, and across " +
+  file: "src/ir/types.ts",
+  symbol: "DIMENSIONS",
+  role:
+    "the closed dimension table — a comparison normalizes within one dimension, and across " +
     "two it is a category error",
 };
 
@@ -691,21 +750,25 @@ const DIMENSION_TABLE: SchemaAuthority = {
  * the cited document works out rather than claims.
  */
 const LTL_FOUNDATION: SchemaAuthority = {
-  file: "DESIGN-v02-ltl-foundation-261004.md", symbol: "### 3.1 The relation",
-  role: "the satisfaction relation of linear temporal logic, from the textbook definition rather " +
+  file: "DESIGN-v02-ltl-foundation-261004.md",
+  symbol: "### 3.1 The relation",
+  role:
+    "the satisfaction relation of linear temporal logic, from the textbook definition rather " +
     "than from any OMG specification",
 };
 
 const RELATIONAL_QUERY_BASIS: SemanticBasis = {
   kind: "extension",
-  why: "the relational query vocabulary is the Workbench's own analysis semantics — it reads the " +
+  why:
+    "the relational query vocabulary is the Workbench's own analysis semantics — it reads the " +
     "borrowed structural substrate and asks questions of it that no standard defines, and a reader " +
     "who goes looking for these forms in SysML v2 or KerML will not find them (§35.4)",
 };
 
 const QUANTITY_METRIC_BASIS: SemanticBasis = {
   kind: "extension",
-  why: "the metric vocabulary is the Workbench's own analysis layer over a borrowed substrate: the " +
+  why:
+    "the metric vocabulary is the Workbench's own analysis layer over a borrowed substrate: the " +
     "standard settles what a magnitude carrying a dimension and a unit means, and aggregating " +
     "charges along an execution into latency, cost or peak memory is ours",
 };
@@ -717,66 +780,168 @@ export const MODEL_TYPES: readonly ModelType[] = [
     question: "What is connected to what?",
     queryKind: "graph",
     schema: [
-      { file: "src/ir/types.ts", symbol: "CanonModel", role: "the canonical shape of one purposeful model" },
-      { file: "src/ir/types.ts", symbol: "CanonRelation", role: "one typed edge, carrying the model that asserts it" },
-      { file: "src/ir/types.ts", symbol: "CanonRelationType", role: "the declared relation vocabulary, with absence and composition semantics" },
-      { file: "mage-model.schema.json", symbol: "\"models\"", role: "the authored form, in the published wire schema" },
-      { file: "SEMANTICS.md", symbol: "## 3. Graphs: entities and typed relations", role: "normative semantics" },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonModel",
+        role: "the canonical shape of one purposeful model",
+      },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonRelation",
+        role: "one typed edge, carrying the model that asserts it",
+      },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonRelationType",
+        role: "the declared relation vocabulary, with absence and composition semantics",
+      },
+      {
+        file: "mage-model.schema.json",
+        symbol: '"models"',
+        role: "the authored form, in the published wire schema",
+      },
+      {
+        file: "SEMANTICS.md",
+        symbol: "## 3. Graphs: entities and typed relations",
+        role: "normative semantics",
+      },
     ],
     // §35.4's first row names both standards. `standard` admits one, so it names the layer where
     // the three concepts are DEFINED — typed elements, relationships and features are KerML's
     // kernel vocabulary, and SysML v2 specializes them rather than introducing them. Naming SysML
     // v2 here would attribute a concept to the layer that inherits it.
     semanticBasis: {
-      kind: "borrowed", standard: "KerML",
-      concept: "the typed-element, relationship and feature subsets — the kernel vocabulary SysML " +
+      kind: "borrowed",
+      standard: "KerML",
+      concept:
+        "the typed-element, relationship and feature subsets — the kernel vocabulary SysML " +
         "v2 builds its own structural constructs on, of which a MAGE entity, typed relation and " +
         "property are a restricted realization",
-      clause: CLAUSE_OWED, fixture: null,
+      clause: CLAUSE_OWED,
+      fixture: null,
     },
     query: {
       forms: GRAPH_FORMS,
       composing: GRAPH_COMPOSING,
       interpretedBy: {
-        file: "src/engine/graph.ts", symbol: "export function interpretation",
+        file: "src/engine/graph.ts",
+        symbol: "export function interpretation",
         role: "each graph form's meaning in plain language, parameterized by the question asked (V21)",
       },
       licensedBy: [PATH_LICENSE, DIRECTION_LICENSE],
       primitives: [
-        { form: "direct", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "it reads one declared edge of the named relation type; no composition is claimed, so nothing licenses it beyond the declaration itself" } },
-        { form: "predecessors", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "the adjacency read one step inwards — a declaration, not an inference" } },
-        { form: "successors", basis: "declared", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "the adjacency read one step outwards — a declaration, not an inference" } },
-        { form: "reachability", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "path", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "shortest-path", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "all-paths", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "components", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "declared", by: PATH_LICENSE } },
-        { form: "cycles", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "a relation type's declared `acyclic` property is checkable even where path composition is forbidden, so cycle detection is licensed independently of it (V8, not V7)" } },
-        { form: "containment", basis: "composed", semanticBasis: RELATIONAL_QUERY_BASIS, gate: { kind: "by-construction", why: "it walks the entity `contains` tree, whose paths are hierarchical by construction rather than a relation type's composed edges" } },
+        {
+          form: "direct",
+          basis: "declared",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: {
+            kind: "by-construction",
+            why: "it reads one declared edge of the named relation type; no composition is claimed, so nothing licenses it beyond the declaration itself",
+          },
+        },
+        {
+          form: "predecessors",
+          basis: "declared",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: {
+            kind: "by-construction",
+            why: "the adjacency read one step inwards — a declaration, not an inference",
+          },
+        },
+        {
+          form: "successors",
+          basis: "declared",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: {
+            kind: "by-construction",
+            why: "the adjacency read one step outwards — a declaration, not an inference",
+          },
+        },
+        {
+          form: "reachability",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: { kind: "declared", by: PATH_LICENSE },
+        },
+        {
+          form: "path",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: { kind: "declared", by: PATH_LICENSE },
+        },
+        {
+          form: "shortest-path",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: { kind: "declared", by: PATH_LICENSE },
+        },
+        {
+          form: "all-paths",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: { kind: "declared", by: PATH_LICENSE },
+        },
+        {
+          form: "components",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: { kind: "declared", by: PATH_LICENSE },
+        },
+        {
+          form: "cycles",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: {
+            kind: "by-construction",
+            why: "a relation type's declared `acyclic` property is checkable even where path composition is forbidden, so cycle detection is licensed independently of it (V8, not V7)",
+          },
+        },
+        {
+          form: "containment",
+          basis: "composed",
+          semanticBasis: RELATIONAL_QUERY_BASIS,
+          gate: {
+            kind: "by-construction",
+            why: "it walks the entity `contains` tree, whose paths are hierarchical by construction rather than a relation type's composed edges",
+          },
+        },
       ],
       subjects: [
         {
-          noun: "entity", selector: "property-constraints",
+          noun: "entity",
+          selector: "property-constraints",
+          means:
+            "An entity in the model, optionally selected by its declared properties",
           declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonEntity",
+            file: "src/ir/types.ts",
+            symbol: "CanonEntity",
             role: "the entity and its property map — what a structural question selects",
           },
         },
         {
-          noun: "relation type", selector: "by-id",
+          noun: "relation type",
+          selector: "by-id",
+          means:
+            "A declared kind of relationship, such as subscribes or carries field",
           declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonRelationType",
+            file: "src/ir/types.ts",
+            symbol: "CanonRelationType",
             role: "the declared relation vocabulary a traversal names; an unnamed type is a typo, not a false answer",
           },
         },
         {
-          noun: "model", selector: "by-id",
+          noun: "model",
+          selector: "by-id",
+          means: "The structural model in which the question is evaluated",
           declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonModel",
+            file: "src/ir/types.ts",
+            symbol: "CanonModel",
             role: "one purposeful model — the scope every relational question states (V34)",
           },
         },
       ],
+      namingRestriction:
+        "A question can use only relation types the model declares. An unknown relation type is therefore an invalid question, not evidence that the relationship is absent.",
       predicates: {
         equality: ENTITY_PROPERTIES,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: ORDERED_DOMAIN },
@@ -799,7 +964,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
     },
     combineWith: {
       partner: "quantitative-model",
-      richerQuestion: "Can restricted data reach a service, and what does carrying it there cost?",
+      richerQuestion:
+        "Can restricted data reach a service, and what does carrying it there cost?",
     },
     presentIn: (s) => s.models.size > 0,
     wouldLicense:
@@ -812,17 +978,36 @@ export const MODEL_TYPES: readonly ModelType[] = [
     question: "What behaviour can occur over time?",
     queryKind: "behavior",
     schema: [
-      { file: "src/ir/types.ts", symbol: "CanonMachine", role: "the canonical shape of one machine" },
-      { file: "src/ir/types.ts", symbol: "CanonTransition", role: "one transition, with guards, effects and synchronization" },
-      { file: "mage-model.schema.json", symbol: "\"machines\"", role: "the authored form, in the published wire schema" },
-      { file: "SEMANTICS.md", symbol: "## 4. State machines", role: "normative semantics" },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonMachine",
+        role: "the canonical shape of one machine",
+      },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonTransition",
+        role: "one transition, with guards, effects and synchronization",
+      },
+      {
+        file: "mage-model.schema.json",
+        symbol: '"machines"',
+        role: "the authored form, in the published wire schema",
+      },
+      {
+        file: "SEMANTICS.md",
+        symbol: "## 4. State machines",
+        role: "normative semantics",
+      },
     ],
     semanticBasis: {
-      kind: "borrowed", standard: "SysML v2",
-      concept: "the behavioral, state and succession subsets — occupancy of a named state and the " +
+      kind: "borrowed",
+      standard: "SysML v2",
+      concept:
+        "the behavioral, state and succession subsets — occupancy of a named state and the " +
         "declared succession from one to the next, of which a MAGE machine is a restricted " +
         "realization over finite variable domains",
-      clause: CLAUSE_OWED, fixture: null,
+      clause: CLAUSE_OWED,
+      fixture: null,
     },
     query: {
       forms: BEHAVIOR_FORMS,
@@ -832,7 +1017,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
       // behavioural gate is therefore `by-construction` below, and a set here would be empty.
       composing: null,
       interpretedBy: {
-        file: "src/engine/behavior.ts", symbol: "export function interpretation",
+        file: "src/engine/behavior.ts",
+        symbol: "export function interpretation",
         role: "each behavioural form's meaning in plain language, parameterized by the question asked (V21)",
       },
       licensedBy: [CONFIGURATION_SPACE, VARIABLE_DOMAIN],
@@ -845,91 +1031,141 @@ export const MODEL_TYPES: readonly ModelType[] = [
       // to a foundation instead of to a standard.
       primitives: [
         {
-          form: "reach", basis: "composed",
+          form: "reach",
+          basis: "composed",
           semanticBasis: {
-            kind: "extension-grounded", foundation: LTL_FOUNDATION,
-            why: "an existential reachability question, and the bridge is an equivalence: `reach p` " +
+            kind: "extension-grounded",
+            foundation: LTL_FOUNDATION,
+            why:
+              "an existential reachability question, and the bridge is an equivalence: `reach p` " +
               "holds exactly when LTL `G not p` is refuted, with the refuting trace's prefix as the " +
               "witness (LTL foundation §9.1)",
           },
-          gate: { kind: "by-construction", why: "arrival at a configuration satisfying a predicate is what a state machine MEANS; no declaration withholds it" },
+          gate: {
+            kind: "by-construction",
+            why: "arrival at a configuration satisfying a predicate is what a state machine MEANS; no declaration withholds it",
+          },
         },
         {
-          form: "invariant", basis: "composed",
+          form: "invariant",
+          basis: "composed",
           semanticBasis: {
-            kind: "extension-grounded", foundation: LTL_FOUNDATION,
-            why: "LTL `G p`, and the bridge is an identity rather than an analogy: every reachable " +
+            kind: "extension-grounded",
+            foundation: LTL_FOUNDATION,
+            why:
+              "LTL `G p`, and the bridge is an identity rather than an analogy: every reachable " +
               "configuration lies on a trace and every trace configuration is reachable (LTL " +
               "foundation §9.1)",
           },
-          gate: { kind: "by-construction", why: "a claim over every reachable configuration, decided on the same closure `reach` walks" },
+          gate: {
+            kind: "by-construction",
+            why: "a claim over every reachable configuration, decided on the same closure `reach` walks",
+          },
         },
         {
-          form: "recurrence", basis: "composed",
+          form: "recurrence",
+          basis: "composed",
           semanticBasis: {
             kind: "extension",
-            why: "re-entry of a target configuration is a reachability class, not an ω-property, so " +
+            why:
+              "re-entry of a target configuration is a reachability class, not an ω-property, so " +
               "the LTL foundation asserts no bridge for it and asserting one would re-conflate what " +
               "§7.2a separates (LTL foundation §9.1) — the form is the Workbench's own",
           },
-          gate: { kind: "by-construction", why: "re-entry of a target configuration, which the closure exhibits or does not" },
+          gate: {
+            kind: "by-construction",
+            why: "re-entry of a target configuration, which the closure exhibits or does not",
+          },
         },
         {
-          form: "repeatable-cycle", basis: "composed",
+          form: "repeatable-cycle",
+          basis: "composed",
           semanticBasis: {
-            kind: "extension-grounded", foundation: LTL_FOUNDATION,
-            why: "non-emptiness of the model read as a Büchi automaton whose single acceptance set " +
+            kind: "extension-grounded",
+            foundation: LTL_FOUNDATION,
+            why:
+              "non-emptiness of the model read as a Büchi automaton whose single acceptance set " +
               "is the target predicate; the lasso it returns visits that predicate infinitely often, " +
               "which is LTL `F G not t` refuted (LTL foundation §1, §9.1)",
           },
-          gate: { kind: "by-construction", why: "a genuinely repeating configuration — a lasso — which the closure exhibits or does not" },
+          gate: {
+            kind: "by-construction",
+            why: "a genuinely repeating configuration — a lasso — which the closure exhibits or does not",
+          },
         },
         {
-          form: "deadend", basis: "composed",
+          form: "deadend",
+          basis: "composed",
           semanticBasis: {
             kind: "extension",
-            why: "a reachable configuration with no enabled step. The LTL foundation asserts only a " +
+            why:
+              "a reachable configuration with no enabled step. The LTL foundation asserts only a " +
               "one-directional bridge for it, at the stutter-closure boundary where the closed and " +
               "un-closed trace domains differ (§9.1), so no temporal-logic equivalence grounds the " +
               "form and it is claimed as the Workbench's own",
           },
-          gate: { kind: "by-construction", why: "a reachable configuration with no enabled step; the transition declarations decide, and nothing gates asking" },
+          gate: {
+            kind: "by-construction",
+            why: "a reachable configuration with no enabled step; the transition declarations decide, and nothing gates asking",
+          },
         },
         {
-          form: "transition-live", basis: "composed",
+          form: "transition-live",
+          basis: "composed",
           semanticBasis: {
             kind: "extension",
-            why: "the LTL foundation excludes it deliberately: its atomic propositions range over " +
+            why:
+              "the LTL foundation excludes it deliberately: its atomic propositions range over " +
               "configurations, and a step-labelled proposition is a later question rather than a gap " +
               "(§9.1). So there is no bridge, and the form is the Workbench's own",
           },
-          gate: { kind: "by-construction", why: "whether a declared transition is executable somewhere in the closure; an undeclared one is unlicensed as a typo, not refuted" },
+          gate: {
+            kind: "by-construction",
+            why: "whether a declared transition is executable somewhere in the closure; an undeclared one is unlicensed as a typo, not refuted",
+          },
         },
       ],
       subjects: [
         {
-          noun: "machine", selector: "by-id",
+          noun: "machine",
+          selector: "by-id",
+          means: "The state machine in which the question is evaluated",
           declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonMachine",
+            file: "src/ir/types.ts",
+            symbol: "CanonMachine",
             role: "one machine — its states, variables and initial configuration",
           },
         },
         {
-          noun: "state", selector: "predicate",
+          noun: "state",
+          selector: "predicate",
+          means: "A named state of that machine, referenced as machine.state",
           declaredBy: {
-            file: "src/engine/types.ts", symbol: "Predicate",
+            file: "src/engine/types.ts",
+            symbol: "Predicate",
             role: "a state is named inside a predicate (`machine.state`), never selected on its own",
           },
         },
-        { noun: "variable", selector: "predicate", declaredBy: VARIABLE_DOMAIN },
         {
-          noun: "transition", selector: "selector",
+          noun: "variable",
+          selector: "predicate",
+          means: "A machine variable and one of its declared values",
+          declaredBy: VARIABLE_DOMAIN,
+        },
+        {
+          noun: "transition",
+          selector: "selector",
+          means:
+            "A transition identified by any combination of machine, source state, target state and synchronization label",
           declaredBy: {
-            file: "src/engine/types.ts", symbol: "TransitionSelector",
+            file: "src/engine/types.ts",
+            symbol: "TransitionSelector",
             role: "the partial match — machine, from, to, sync — a behavioural question names a transition by",
           },
         },
       ],
+      namingRestriction:
+        "Machine variables have explicitly enumerated finite domains, and a state is named inside a predicate rather than selected on its own.",
       predicates: {
         equality: VARIABLE_DOMAIN,
         order: { by: "operator", ops: ORDER_OPS, scopedBy: VARIABLE_DOMAIN },
@@ -953,7 +1189,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
     },
     combineWith: {
       partner: "quantitative-model",
-      richerQuestion: "Can a document reach Published within the declared latency ceiling?",
+      richerQuestion:
+        "Can a document reach Published within the declared latency ceiling?",
     },
     presentIn: (s) => s.machines.size > 0,
     wouldLicense:
@@ -966,18 +1203,42 @@ export const MODEL_TYPES: readonly ModelType[] = [
     question: "What does an execution cost?",
     queryKind: "quantity",
     schema: [
-      { file: "src/ir/types.ts", symbol: "CanonQuantity", role: "the canonical shape of one quantitative annotation" },
-      { file: "src/ir/types.ts", symbol: "CanonAccounting", role: "the declared accounting model — how a quantity reaches an analysis" },
-      { file: "src/ir/types.ts", symbol: "DIMENSIONS", role: "the closed dimension table quantities normalize against" },
-      { file: "mage-model.schema.json", symbol: "\"quantities\"", role: "the authored form, in the published wire schema" },
-      { file: "SEMANTICS.md", symbol: "### 5.2 Quantities annotate the model; they are not part of it", role: "normative semantics" },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonQuantity",
+        role: "the canonical shape of one quantitative annotation",
+      },
+      {
+        file: "src/ir/types.ts",
+        symbol: "CanonAccounting",
+        role: "the declared accounting model — how a quantity reaches an analysis",
+      },
+      {
+        file: "src/ir/types.ts",
+        symbol: "DIMENSIONS",
+        role: "the closed dimension table quantities normalize against",
+      },
+      {
+        file: "mage-model.schema.json",
+        symbol: '"quantities"',
+        role: "the authored form, in the published wire schema",
+      },
+      {
+        file: "SEMANTICS.md",
+        symbol:
+          "### 5.2 Quantities annotate the model; they are not part of it",
+        role: "normative semantics",
+      },
     ],
     semanticBasis: {
-      kind: "borrowed", standard: "SysML v2",
-      concept: "a subset of the Quantities and Units library — a magnitude that carries its " +
+      kind: "borrowed",
+      standard: "SysML v2",
+      concept:
+        "a subset of the Quantities and Units library — a magnitude that carries its " +
         "dimension and unit rather than being a bare number, which is what makes a comparison " +
         "across two dimensions a category error instead of arithmetic",
-      clause: CLAUSE_OWED, fixture: null,
+      clause: CLAUSE_OWED,
+      fixture: null,
     },
     query: {
       forms: REQUIREMENT_METRICS,
@@ -986,40 +1247,69 @@ export const MODEL_TYPES: readonly ModelType[] = [
       // accounting basis. That gate lives on the primitive, where its citation can be read.
       composing: null,
       interpretedBy: {
-        file: "src/quant/query.ts", symbol: "runQuantityQuery",
+        file: "src/quant/query.ts",
+        symbol: "runQuantityQuery",
         role: "each metric's meaning in plain language, produced beside the evaluation it describes (V21)",
       },
       licensedBy: [ACCOUNTING_BASIS, RESIDENCY_DECLARATION, DIMENSION_TABLE],
       primitives: [
-        { form: "latency", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: ACCOUNTING_BASIS } },
-        { form: "cost", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: ACCOUNTING_BASIS } },
-        { form: "peak_memory", basis: "aggregated", semanticBasis: QUANTITY_METRIC_BASIS, gate: { kind: "declared", by: RESIDENCY_DECLARATION } },
+        {
+          form: "latency",
+          basis: "aggregated",
+          semanticBasis: QUANTITY_METRIC_BASIS,
+          gate: { kind: "declared", by: ACCOUNTING_BASIS },
+        },
+        {
+          form: "cost",
+          basis: "aggregated",
+          semanticBasis: QUANTITY_METRIC_BASIS,
+          gate: { kind: "declared", by: ACCOUNTING_BASIS },
+        },
+        {
+          form: "peak_memory",
+          basis: "aggregated",
+          semanticBasis: QUANTITY_METRIC_BASIS,
+          gate: { kind: "declared", by: RESIDENCY_DECLARATION },
+        },
       ],
       subjects: [
         {
-          noun: "quantity", selector: "by-id",
+          noun: "quantity",
+          selector: "by-id",
+          means: "A declared magnitude with its dimension and unit",
           declaredBy: {
-            file: "src/ir/types.ts", symbol: "CanonQuantity",
+            file: "src/ir/types.ts",
+            symbol: "CanonQuantity",
             role: "one quantitative annotation — its target, dimension and declared value",
           },
         },
         {
-          noun: "execution", selector: "predicate",
+          noun: "execution",
+          selector: "predicate",
+          means:
+            "An execution of the system, selected by a behavioural predicate",
           declaredBy: {
-            file: "src/engine/types.ts", symbol: "QuantityQuery",
-            role: "`target` — the reach predicate selecting which executions are measured; the " +
+            file: "src/engine/types.ts",
+            symbol: "QuantityQuery",
+            role:
+              "`target` — the reach predicate selecting which executions are measured; the " +
               "predicate grammar is the state machine's, which is what the registered " +
               "`executions-selected-by-behaviour` COMPOSITION is for",
           },
         },
         {
-          noun: "ceiling", selector: "by-id",
+          noun: "ceiling",
+          selector: "by-id",
+          means: "A declared limit a computed figure is compared against",
           declaredBy: {
-            file: "src/engine/types.ts", symbol: "QuantityQuery",
+            file: "src/engine/types.ts",
+            symbol: "QuantityQuery",
             role: "`within` — the `model:`-targeted quantity declaring the ceiling a figure is decided against",
           },
         },
       ],
+      namingRestriction:
+        "A comparison normalizes within one dimension. Quantities of different dimensions are not comparable, and the engine refuses rather than converting.",
       predicates: {
         // No equality arm: a magnitude is decided against a declared ceiling, never matched against
         // a value, and the evaluator implements no `eq` over quantities. Declaring one would
@@ -1047,7 +1337,8 @@ export const MODEL_TYPES: readonly ModelType[] = [
     },
     combineWith: {
       partner: "state-machine",
-      richerQuestion: "Which reachable execution attains the worst-case latency, and does it stay under the ceiling?",
+      richerQuestion:
+        "Which reachable execution attains the worst-case latency, and does it stay under the ceiling?",
     },
     presentIn: (s) => s.quantities.size > 0,
     wouldLicense:
@@ -1101,17 +1392,21 @@ export const MODEL_TYPES: readonly ModelType[] = [
  * nothing about the others or about completeness (§35.6).
  */
 const KERML_BINDING_BASIS: SemanticBasis = {
-  kind: "borrowed", standard: "KerML",
-  concept: "the binding subset — KerML's assertion that two model elements denote the same thing, " +
+  kind: "borrowed",
+  standard: "KerML",
+  concept:
+    "the binding subset — KerML's assertion that two model elements denote the same thing, " +
     "of which a MAGE binding is a restricted realization: a closed set of three declared " +
     "correspondences, carrying none of KerML's value-identity propagation, expression-parameter " +
     "or feature-chain binding, type unification, or author-declarable connector vocabulary",
-  clause: CLAUSE_OWED, fixture: null,
+  clause: CLAUSE_OWED,
+  fixture: null,
 };
 
 /** A model's membership, which is what shared identity corresponds across. */
 const MODEL_MEMBERSHIP: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonModel",
+  file: "src/ir/types.ts",
+  symbol: "CanonModel",
   role: "`entities` — one purposeful model's membership; two models naming one id name one entity",
 };
 
@@ -1127,21 +1422,26 @@ const MODEL_MEMBERSHIP: SchemaAuthority = {
  * (`src/transaction/references.ts`). This registry CITES it; it adds no field of its own.
  */
 const MACHINE_ENTITY_LINK: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "CanonMachine",
-  role: "`entity` — the structural element a machine's behaviour is about, or null when it is " +
+  file: "src/ir/types.ts",
+  symbol: "CanonMachine",
+  role:
+    "`entity` — the structural element a machine's behaviour is about, or null when it is " +
     "about none; V6 refuses a referent the system does not declare",
 };
 
 const ENTITY_STATE_PROPERTY: SchemaAuthority = {
-  file: "src/ir/types.ts", symbol: "EXECUTES_IN_STATE",
-  role: "`executes_in_state` — the kernel's spelling of the property, read by the validator (V38 " +
+  file: "src/ir/types.ts",
+  symbol: "EXECUTES_IN_STATE",
+  role:
+    "`executes_in_state` — the kernel's spelling of the property, read by the validator (V38 " +
     "resolves it through the resolver a quantity's `state:` target uses) and by the quantitative " +
     "evaluator; a model may spell the same shape under its own key, and then only that model's " +
     "own suite holds the reference",
 };
 
 const QUANTITY_TARGET: SchemaAuthority = {
-  file: "src/engine/types.ts", symbol: "QuantityQuery",
+  file: "src/engine/types.ts",
+  symbol: "QuantityQuery",
   role: "`target` — the reach predicate where a behavioural result enters a quantitative question",
 };
 
@@ -1160,21 +1460,25 @@ const QUANTITY_TARGET: SchemaAuthority = {
 export const BINDINGS: readonly BindingSemantics[] = [
   {
     name: "appears-in",
-    from: "structural-graph", to: "structural-graph",
-    interpretation: "one entity's identity across the purposeful models that mention it, so an " +
+    from: "structural-graph",
+    to: "structural-graph",
+    interpretation:
+      "one entity's identity across the purposeful models that mention it, so an " +
       "answer in one model can name the element another model declares",
     // Nothing per system to consult, which is what distinguishes this from the two below: the
     // correspondence is not declared anywhere, it FOLLOWS from the id namespace being one namespace.
     licensing: {
       kind: "by-construction",
-      why: "entity ids inhabit ONE namespace per system, so two purposeful models naming the same " +
+      why:
+        "entity ids inhabit ONE namespace per system, so two purposeful models naming the same " +
         "id name the same entity; there is no per-system declaration that could license the " +
         "correspondence and none that could withhold it",
     },
     correspondence: { source: "entity", target: "model" },
     witness: {
       kind: "shared-membership",
-      why: "a model's `entities` MEMBERSHIP is the correspondence, so no authored key spells it — " +
+      why:
+        "a model's `entities` MEMBERSHIP is the correspondence, so no authored key spells it — " +
         "and this binding runs between models of one type, which the census derivation (cross-TYPE " +
         "pairs only) cannot witness even in principle",
     },
@@ -1183,8 +1487,10 @@ export const BINDINGS: readonly BindingSemantics[] = [
   },
   {
     name: "machine-of-entity",
-    from: "state-machine", to: "structural-graph",
-    interpretation: "this behavioural model describes this structural entity, so a behavioural " +
+    from: "state-machine",
+    to: "structural-graph",
+    interpretation:
+      "this behavioural model describes this structural entity, so a behavioural " +
       "answer can name the element whose behaviour it describes — §23's own example, " +
       "transaction-lifecycle being the behavioural model of transaction-engine",
     licensing: { kind: "declared", by: MACHINE_ENTITY_LINK },
@@ -1199,8 +1505,10 @@ export const BINDINGS: readonly BindingSemantics[] = [
     // had to reconstruct — it sat on the graph side because the reference is made by an ENTITY.
     // `from`/`to` state that now, so the convention is gone.
     name: "state-of-entity",
-    from: "structural-graph", to: "state-machine",
-    interpretation: "an entity property naming a state, so a structural answer can name the " +
+    from: "structural-graph",
+    to: "state-machine",
+    interpretation:
+      "an entity property naming a state, so a structural answer can name the " +
       "lifecycle state during whose occupancy that entity runs — and so the quantitative " +
       "evaluator can charge a trace step entering that state to that entity",
     licensing: { kind: "declared", by: ENTITY_STATE_PROPERTY },
@@ -1227,16 +1535,20 @@ export const BINDINGS: readonly BindingSemantics[] = [
 export const COMPOSITIONS: readonly CompositionSemantics[] = [
   {
     name: "executions-selected-by-behaviour",
-    from: "state-machine", to: "quantitative-model",
-    interpretation: "a behavioural predicate selects the executions over which a quantitative " +
+    from: "state-machine",
+    to: "quantitative-model",
+    interpretation:
+      "a behavioural predicate selects the executions over which a quantitative " +
       "question is evaluated — the behavioural result constrains the DOMAIN of the quantitative " +
-      "operation, which is what makes \"the maximum latency among successful executions\" one " +
+      'operation, which is what makes "the maximum latency among successful executions" one ' +
       "question rather than two",
     licensing: { kind: "declared", by: QUANTITY_TARGET },
     restricts: "execution",
     result: {
-      file: "src/engine/types.ts", symbol: "Verdict",
-      role: "the TARGET dialect's own result — a magnitude decided against a declared ceiling; a " +
+      file: "src/engine/types.ts",
+      symbol: "Verdict",
+      role:
+        "the TARGET dialect's own result — a magnitude decided against a declared ceiling; a " +
         "composition narrows a domain and introduces no result kind of its own",
     },
     declaredBy: QUANTITY_TARGET,
@@ -1245,7 +1557,8 @@ export const COMPOSITIONS: readonly CompositionSemantics[] = [
     // grounded would be the flattering over-attribution §35.3 forbids.
     semanticBasis: {
       kind: "extension",
-      why: "restricting a quantitative evaluation domain with a behavioural predicate is the " +
+      why:
+        "restricting a quantitative evaluation domain with a behavioural predicate is the " +
         "Workbench's own analysis composition — no SysML v2 or KerML construct defines it, and a " +
         "reader who goes looking for it in either specification will not find it",
     },
@@ -1261,11 +1574,14 @@ export const bindingsOf = (id: ModelTypeId): readonly BindingSemantics[] =>
   BINDINGS.filter((b) => b.from === id || b.to === id);
 
 /** The compositions either of whose domains is this type. Recomputed, for the same reason. */
-export const compositionsOf = (id: ModelTypeId): readonly CompositionSemantics[] =>
+export const compositionsOf = (
+  id: ModelTypeId,
+): readonly CompositionSemantics[] =>
   COMPOSITIONS.filter((c) => c.from === id || c.to === id);
 
-const BY_KIND: ReadonlyMap<Query["kind"], ModelType> =
-  new Map(MODEL_TYPES.map((t) => [t.queryKind, t]));
+const BY_KIND: ReadonlyMap<Query["kind"], ModelType> = new Map(
+  MODEL_TYPES.map((t) => [t.queryKind, t]),
+);
 
 /**
  * The type a query kind interrogates.
@@ -1314,10 +1630,17 @@ export function absentSubstrateProse(t: ModelType): string {
  * reason: refusal-or-null, one per interface, each wording nothing itself.
  */
 export function absentSubstrateVerdict(
-  system: CanonicalSystem, kind: Query["kind"], hash: string,
+  system: CanonicalSystem,
+  kind: Query["kind"],
+  hash: string,
 ): Verdict | null {
   const t = modelTypeForQueryKind(kind);
   return t.presentIn(system)
     ? null
-    : unlicensed(hash, absentSubstrateProse(t), null, detail("missing-model-type", [t.label], []));
+    : unlicensed(
+        hash,
+        absentSubstrateProse(t),
+        null,
+        detail("missing-model-type", [t.label], []),
+      );
 }

@@ -89,13 +89,14 @@ export interface LearnEntry {
   /**
    * What a question of this type may NAME and select, BY REFERENCE to `ModelType.query.subjects`.
    *
-   * The other arm of the same declaration, and each entry carries its own `declaredBy` role — the
-   * sentence saying how that noun is named and what it is. So a card can show the arm without this
-   * module wording anything: the state machine's `state` subject says in the registry's own words
-   * that a state is named inside a predicate and "never selected on its own", which is the honesty
-   * a hand-written list of nouns would have had to remember.
+   * Each subject carries `means` — one sentence saying what the noun IS, for a reader. Its sibling
+   * `declaredBy.role` is PROVENANCE and says what a cited symbol is authoritative for; the two were
+   * conflated until the Reference table rendered the provenance string under a "What it is" column
+   * and taught invariant ids where a definition belonged.
    */
   readonly subjects: readonly QuerySubject[];
+  /** The one naming restriction for this kind, stated as a proposition beside the table. */
+  readonly namingRestriction: string | null;
   readonly schema: readonly SchemaAuthority[];
   readonly omits: readonly string[];
   readonly combineWith: {
@@ -152,6 +153,7 @@ const entryOf = (t: ModelType): LearnEntry => {
     question: t.question,
     forms: t.query.forms,
     subjects: t.query.subjects,
+    namingRestriction: t.query.namingRestriction,
     schema: t.schema,
     omits: t.omits,
     combineWith: {

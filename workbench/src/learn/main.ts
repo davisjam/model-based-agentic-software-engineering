@@ -149,7 +149,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
           `the ${picture.dimension} budget of the shipped example “${system.name}”, drawn by the workbench's own quantitative projection.`));
       }
       if (s.purpose !== null && s.purpose.represents.length > 0) {
-        section.append(el("p", "What this exemplar preserves, in its own words:", "intro"));
+        section.append(el("p", "What this model preserves", "intro"));
         section.append(bulletList(s.purpose.represents));
       }
     }
@@ -170,14 +170,22 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   // subject is a thing a question names. Each row's third cell is the registry's own `declaredBy`
   // role, so a noun that cannot be selected on its own says so here in the registry's words.
   if (s.entry.subjects.length > 0) {
-    section.append(el("p", "And what a question of this kind can name and select:", "intro"));
+    section.append(el("p", "What a question of this kind can name", "intro"));
     section.append(rowsTable(
-      ["What you can name", "How you name it", "What it is"],
-      s.entry.subjects.map((x) => [x.noun, x.selector, x.declaredBy.role]),
+      ["What you can name", "How", "What it means"],
+      // `means`, never `declaredBy.role`. The role is provenance -- what a cited SYMBOL is
+      // authoritative for -- and rendering it here put invariant ids and implementation detail
+      // where a reader expects a definition. The role still ships, under the provenance disclosure.
+      s.entry.subjects.map((x) => [x.noun, x.selector.replace(/-/g, " "), x.means]),
     ));
+    // The restriction goes BESIDE the table, as a proposition. Folded into a cell it would teach
+    // the distinction by implication, which is what the schema-gloss column used to do.
+    if (s.entry.namingRestriction !== null) {
+      section.append(el("p", s.entry.namingRestriction, "walk-define"));
+    }
   }
   if (s.statements.length > 0) {
-    section.append(el("p", "Asked of this exemplar, as its authors stated them:", "intro"));
+    section.append(el("p", "Questions asked of this model", "intro"));
     section.append(statementList(s.statements));
   }
 
@@ -186,7 +194,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   section.append(sub(PART.omits));
   section.append(bulletList(s.entry.omits));
   if (s.purpose !== null && s.purpose.omits.length > 0) {
-    section.append(el("p", "And this exemplar's own declared omissions:", "intro"));
+    section.append(el("p", "What this model deliberately omits", "intro"));
     section.append(bulletList(s.purpose.omits));
   }
 
@@ -254,7 +262,7 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   }
   if (s.purpose !== null && s.purpose.represents.length > 0) {
     section.append(sub(PART.model));
-    section.append(el("p", "What this exemplar preserves, in its own words:", "intro"));
+    section.append(el("p", "What this model preserves", "intro"));
     section.append(bulletList(s.purpose.represents));
   }
 
