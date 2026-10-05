@@ -274,7 +274,9 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     title: "Model boundaries",
     definition: "A model answers only the questions its content supports. Past that boundary the "
       + "Workbench answers NOT ANSWERABLE and names what is missing. That is a different thing "
-      + "from a question answered “refuted”, which is a decided answer.",
+      + "from a question answered “refuted”, which is a decided answer. A third case is neither: a "
+      + "search that stopped at its budget reports INCONCLUSIVE, not “no” — it has not shown the "
+      + "thing it looked for is absent.",
     instruction: "Ask it.",
     grounding: [
       { kind: "query", example: WALK_TW, query: "verdict-is-eventually-forced" },
