@@ -33,6 +33,7 @@ import {
 import {
   startServer, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
   advanceVirtualTime, measureForReceipt, writeReceipt, PORT, ORIGIN, WORKBENCH_DIR,
+  FLAGSHIP_COUNTS,
 } from "./harness.mjs";
 
 /** One browser and one page for the whole suite: the convergence test needs both interfaces in ONE process. */
@@ -119,9 +120,8 @@ describe("examples section 4.5: the flagship journey through window.mage.load", 
   it("loads the message-bus system with no findings", () => {
     assert.equal(loaded.context.systemId, "message-bus");
     assert.deepEqual(loaded.context.findings, [], "the shipped example does not validate clean");
-    assert.deepEqual(loaded.context.counts, {
-      entities: 11, models: 3, machines: 0, instances: 0, relations: 18, events: 0, savedQueries: 6,
-    });
+    assert.deepEqual(loaded.context.counts, { ...FLAGSHIP_COUNTS },
+      "the flagship's element counts moved, or the context's shape did");
   });
 
   it("the cross-model safety query returns a witness, exhaustively", async () => {

@@ -10,6 +10,7 @@
  * whose whole purpose is loading files other people wrote.
  */
 import type { AccessibleScene, SvgNode } from "../render/types.ts";
+import type { BudgetView } from "../render/budget.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
 import type { ProvenanceRecord } from "../app/provenance.ts";
@@ -324,6 +325,97 @@ const SVG_NS = "http://www.w3.org/2000/svg";
  * page would reintroduce exactly the injection surface this file avoids everywhere else, for a
  * document whose whole job is opening files other people wrote.
  */
+/**
+ * The resource budget, as DOM. Text first, picture second.
+ *
+ * The order is the decision. For a graph the picture carries the structure and the twin restates
+ * it; for a budget the FIGURES are the content, so a reader handed only the drawing has the shape of
+ * the problem and none of its numbers. The verdict sentence leads, the table carries every figure,
+ * and the bar illustrates what the table already said.
+ *
+ * Nothing here computes. Every number is a field of `AccessibleBudget`, already in its display unit,
+ * so this surface cannot disagree with the one the quantity layer derived.
+ *
+ * Several budgets render as several blocks: a system declaring memory and duration quantities has
+ * two accounting models, and merging them would put two units on one axis.
+ */
+export function paintBudget(views: readonly BudgetView[], root: HTMLElement): void {
+  root.replaceChildren();
+  for (const view of views) {
+    const twin = view.accessible;
+    const block = el("section");
+    const heading = el("h3", twin.title, "sublabel");
+    const headingId = ariaId("budget");
+    heading.id = headingId;
+    block.setAttribute("aria-labelledby", headingId);
+    block.append(heading);
+
+    // The verdict, and the `over` class is presentation on top of a sentence that already says it.
+    block.append(el("p", twin.verdict, twin.overBudget ? "intro over" : "intro"));
+
+    const table = el("table");
+    const head = el("tr");
+    head.append(el("th", "Allocation"), el("th", "Holds"), el("th", `Amount (${twin.unit})`), el("th", "Declared"));
+    const thead = el("thead");
+    thead.append(head);
+    table.append(thead);
+    const body = el("tbody");
+    for (const a of twin.allocations) {
+      const row = el("tr");
+      const amount = el("td", a.inertReason === null ? String(a.amount) : "—", "amount");
+      row.append(
+        el("td", a.label),
+        el("td", a.inertReason === null ? a.charge : `charged nowhere — ${a.inertReason}`),
+        amount,
+        el("td", a.declared),
+      );
+      body.append(row);
+    }
+    table.append(body);
+
+    const foot = el("tr");
+    foot.append(
+      el("td", "Total"), el("td", ""), el("td", String(twin.total), "amount"), el("td", ""),
+    );
+    const tfoot = el("tfoot");
+    tfoot.append(foot);
+    if (twin.budget !== null) {
+      const ceiling = el("tr");
+      ceiling.append(
+        el("td", "Declared ceiling"), el("td", ""),
+        el("td", String(twin.budget), "amount"), el("td", twin.budgetDeclared ?? ""),
+      );
+      const margin = el("tr");
+      margin.append(
+        el("td", twin.overBudget ? "Over by" : "Margin"), el("td", ""),
+        el("td", String(Math.abs(twin.margin ?? 0)), "amount"),
+        el("td", twin.marginPercent === null ? "" : `${Math.abs(twin.marginPercent)}%`),
+      );
+      tfoot.append(ceiling, margin);
+    }
+    table.append(tfoot);
+    block.append(table);
+
+    if (twin.largest !== null) {
+      block.append(el("p", `Largest single allocation: ${twin.largest.label}, ${twin.largest.amount} ${twin.unit}.`, "sublabel"));
+    }
+
+    // The key, for the same reason the diagram carries one: the picture makes distinctions a reader
+    // who does not get it would otherwise never be told about.
+    if (twin.key.length > 0) {
+      const dl = el("dl", undefined, "prov");
+      for (const entry of twin.key) dl.append(el("dt", entry.channel), el("dd", entry.meaning));
+      block.append(dl);
+    }
+
+    const figure = el("figure");
+    figure.setAttribute("aria-hidden", "true");
+    figure.append(svgElement(view.svg));
+    block.append(figure);
+    root.append(block);
+  }
+}
+
 export function svgElement(node: SvgNode): SVGElement {
   const e = document.createElementNS(SVG_NS, node.tag);
   for (const [k, v] of Object.entries(node.attrs)) e.setAttribute(k, String(v));

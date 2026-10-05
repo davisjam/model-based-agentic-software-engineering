@@ -350,15 +350,27 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   combine.append(el("p", `Then you can ask: “${s.entry.combineWith.richerQuestion}”`));
   combine.append(relationshipKinds(s.entry.combineWith));
   if (s.combinedIn.length > 0) {
-    const where = el("p", undefined, "intro");
-    where.append(document.createTextNode("Both are declared in "));
-    s.combinedIn.forEach((id, i) => {
-      if (i > 0) where.append(document.createTextNode(", "));
+    // ONE LINK PER VISUAL ROW, and that is an accessibility decision rather than a layout taste.
+    //
+    // These links were a comma-separated inline run inside one paragraph. At four examples it fit on
+    // a line; the fifth made it wrap, and a wrapped run of links puts several tab stops on one
+    // visual row — which is where reading order and focus order can disagree, and did: the WCAG
+    // 2.4.3 gate caught `Embedded Sensor Node` reading before `Document Remediation Pipeline` and
+    // tabbing after it, at 576px only.
+    //
+    // A one-column list cannot invert: every visual row holds exactly one stop, so the two orders
+    // are identical by construction. That closes the CLASS, where re-flowing the run would have
+    // closed this instance and left the next example to reopen it. The gate's own first assertion
+    // relies on the same property, which is why this is the shape to reach for.
+    combine.append(el("p", "Both are declared in these shipped examples — load one in the Workspace and ask.", "intro"));
+    const where = el("ul", undefined, "learn-example-links");
+    for (const id of s.combinedIn) {
+      const item = el("li");
       const a = el("a", systems.get(id)?.name ?? id);
       a.href = "index.html";
-      where.append(a);
-    });
-    where.append(document.createTextNode(" — load it in the Workspace and ask."));
+      item.append(a);
+      where.append(item);
+    }
     combine.append(where);
   }
   section.append(combine);

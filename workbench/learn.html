@@ -118,6 +118,15 @@
     font: inherit; padding: .3rem .4rem; border: 1px solid var(--rule);
     border-radius: var(--mage-radius-chip); background: var(--bg); color: var(--ink);
   }
+  /*
+    One link per row, never a wrapped inline run. A row holding several tab stops is where reading
+    order and focus order can disagree (WCAG 2.4.3), and this list grows by one every time an
+    example ships — so the layout is chosen to make the divergence unrepresentable rather than
+    merely absent at today's width. `display: block` on the items, no flex, no wrap.
+  */
+  ul.learn-example-links { list-style: none; margin: .2rem 0 .5rem; padding: 0; }
+  ul.learn-example-links li { display: block; margin-block: .15rem; }
+
   details { margin-block: .5rem; }
   summary { cursor: pointer; color: var(--muted); }
 

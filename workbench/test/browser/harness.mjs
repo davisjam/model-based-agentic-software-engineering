@@ -402,6 +402,32 @@ export async function openWorkbench(browser, origin = ORIGIN) {
  * string, because an expected string would duplicate — and so could mask — the very assertion the
  * convergence test makes.
  */
+/**
+ * The flagship example's element counts, as `window.mage.context().counts` reports them.
+ *
+ * ONE declaration, because two had drifted into two files and a change to the context's shape broke
+ * both in the same run — the browser tier and the keyboard tier each carried their own copy of the
+ * same nine numbers. A snapshot is the right shape here (an imported system must be THE flagship,
+ * not merely a system), but a snapshot in two places is a pair with no join.
+ *
+ * Deliberately a snapshot and not derived from the system: a test that computed these from the file
+ * it just uploaded would assert that the upload round-tripped, which it already knows from the hash.
+ * What this pins is identity — these numbers are message-bus and nothing else is.
+ */
+export const FLAGSHIP_COUNTS = Object.freeze({
+  entities: 11,
+  models: 3,
+  machines: 0,
+  instances: 0,
+  relations: 18,
+  events: 0,
+  // Zero, and the zeros carry a fact: message-bus declares no quantities, so a reader of this
+  // context can tell "no resource budget here" from "the context does not report budgets".
+  quantities: 0,
+  quantitativeModels: 0,
+  savedQueries: 6,
+});
+
 export async function loadFlagshipExample(page) {
   const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
   const before = await page.evaluate(() => document.getElementById("summary")?.textContent ?? "");

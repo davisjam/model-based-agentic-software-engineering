@@ -284,7 +284,7 @@
   */
   #workspace:not([hidden]) {
     display: grid;
-    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wreading";
+    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wbudget" "wreading";
   }
   #workspace-h { grid-area: wtitle; }
   #workspace > label.field { grid-area: wtools; }
@@ -292,7 +292,46 @@
   #principal-purpose { grid-area: wpurpose; }
   #canvas { grid-area: wcanvas; }
   #model-detail { grid-area: wdetail; }
+  #model-budget { grid-area: wbudget; }
   #model-reading { grid-area: wreading; }
+
+  /*
+    The resource budget. Text FIRST, picture second, and that order is the decision rather than a
+    layout preference: for a graph the picture carries the structure and the twin restates it, but
+    for a budget the FIGURES are the content. A reader who gets only the drawing has the shape of
+    the problem and none of its numbers, so the numbers lead and the bar illustrates them.
+
+    SCALED, not scrolled, for the same reason the canvas is: a scrollable container with no
+    focusable descendant is an axe violation, and the drawing emits a fixed viewBox precisely so it
+    can be fitted instead of clipped. Nothing here is sized from a measured width.
+  */
+  #model-budget:not(:empty) {
+    margin-block-start: .75rem;
+    padding: .6rem .7rem;
+    border: 1px solid var(--rule, currentColor);
+    border-radius: 6px;
+  }
+  #model-budget figure { margin: .5rem 0 0; }
+  #model-budget svg { display: block; width: 100%; height: auto; }
+  #model-budget table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  #model-budget th, #model-budget td { text-align: left; padding: .1rem .5rem .1rem 0; }
+  #model-budget td.amount { text-align: right; }
+  #model-budget .over { font-weight: 600; }
+
+  /*
+    The budget drawing's marks. Every distinction the picture makes is also a field of the twin, so
+    these are presentation only -- and none of them is the SOLE carrier of anything. The overrun is
+    a hatch (a shape), the ceiling a dash pattern (a shape), and both are named in the verdict
+    sentence above the figure.
+  */
+  .mage-budget-bar { fill: var(--accent, currentColor); fill-opacity: .55; stroke: currentColor; stroke-width: 1; }
+  .mage-budget-ceiling { stroke: currentColor; fill: none; }
+  .mage-overrun-hatch { stroke: currentColor; }
+  .mage-budget-overrun { stroke: currentColor; stroke-width: 1; }
+  .mage-budget-title { font-size: .85rem; font-weight: 600; fill: currentColor; }
+  .mage-budget-figure, .mage-budget-verdict { font-size: .75rem; fill: currentColor; }
+  .mage-budget-label, .mage-budget-amount, .mage-budget-ceiling-label { font-size: .7rem; fill: currentColor; }
+  .mage-budget-inert { font-size: .7rem; fill: currentColor; font-style: italic; }
 
   /*
     The picture reads as the subject of the pane: its own frame, and the drawing scaled to fit it.
@@ -785,6 +824,20 @@
       It stays BEFORE the canvas in the document, which is AT order. The canvas is painted above it
       by `grid-template-areas` (see the stylesheet). Two orderings of the same facts.
     -->
+    <!--
+      The resource budget (section 11): every declared allocation of one dimension, its total, and
+      the declared ceiling the total is decided against.
+
+      Present only when the loaded system declares a quantitative model, and EMPTY otherwise rather
+      than hidden-with-a-placeholder: a system with no quantities has no budget, and an empty box
+      saying so would be furniture. The CSS selector is `:not(:empty)` for that reason.
+
+      This is a projection of the quantitative model, not of a structural one. Before it existed the
+      only picture a quantitative model could get was the structural extractor drawing whichever
+      model a positional rule picked -- the generic fallback section 22.4 forbids. A budget's facts
+      are extent and a threshold; its marks are a length and a line.
+    -->
+    <div id="model-budget"></div>
     <details id="model-reading">
       <summary id="model-reading-summary">The model in words</summary>
       <!--
