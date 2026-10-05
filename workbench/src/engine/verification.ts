@@ -117,12 +117,19 @@ const PROPOSITION_WORDS: Readonly<Record<PropositionValue, true>> = { holds: tru
  * Read a requirement declaration, refusing one that does not state an obligation.
  *
  * **This is where the measured hole closes.** `scripts/gen-example-coverage.ts:333` validates
- * `satisfied_when` through a general outcome helper that accepts all four words, and the authoring
- * picker offers `inconclusive` and `unlicensed` (`src/ui/view-model.ts:1330-1331`) — so
- * `satisfied_when: unlicensed` parses clean today and nothing refuses a requirement that prescribes
- * its own unanswerability. Prescribing that your own model decline to answer is not an engineering
- * obligation. Here it is a `RequirementProblem`, which verifies as `error`, and `error` is a
- * statement about the DECLARATION rather than about the system under design.
+ * `satisfied_when` through `outcome(...)` (`:102`), which accepts all four words — so
+ * `satisfied_when: unlicensed` parses clean in the fixture reader today and nothing refuses a
+ * requirement that prescribes its own unanswerability. Prescribing that your own model decline to
+ * answer is not an engineering obligation. Here it is a `RequirementProblem`, which verifies as
+ * `error`, and `error` is a statement about the DECLARATION rather than about the system under
+ * design.
+ *
+ * `DESIGN-v02-requirements-261004.md` §3.5 cites a second site for this hole — *"the authoring
+ * picker offers it (`src/ui/view-model.ts:1331`)"* — and that half does not hold. The picker there
+ * is `expectations`, which authors `expect`: the DESCRIPTIVE pin, which keeps four values by that
+ * same document's §2 ruling, and `examples/docable.mage.yaml` pins `expect: unlicensed` on purpose.
+ * No `satisfied_when` authoring control exists anywhere in `src/` — the key appears only in the
+ * fixture corpus and its two readers. So one site, not two.
  *
  * Three reachable causes, per `DESIGN-v02-requirements-261004.md` §3.5: `satisfied_when` absent or
  * not an outcome word; `satisfied_when` naming a non-proposition; `expressed_as` naming nothing.

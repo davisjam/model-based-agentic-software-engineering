@@ -190,10 +190,13 @@ test("the corpus's shipped requirements all parse, under BOTH polarities", () =>
 
 test("satisfied_when cannot name a status — the measured hole closes here", () => {
   // MEASURED at this tree: `scripts/gen-example-coverage.ts:333` validates `satisfied_when` through
-  // a general four-word outcome helper, and the authoring picker offers `inconclusive` and
-  // `unlicensed` (`src/ui/view-model.ts:1330-1331`). So `satisfied_when: unlicensed` parses clean
-  // today and nothing refuses a requirement that prescribes its own unanswerability. Prescribing
-  // that your own model decline to answer is not an engineering obligation.
+  // the general four-word `outcome(...)` helper at `:102`, so `satisfied_when: unlicensed` parses
+  // clean in the fixture reader and nothing there refuses a requirement that prescribes its own
+  // unanswerability. Prescribing that your own model decline to answer is not an obligation.
+  //
+  // The design's second cited site for this hole — the authoring picker — does not hold: that
+  // control authors `expect`, the descriptive pin, which keeps four values on purpose. See the
+  // header of `src/engine/verification.ts`.
   for (const word of ["inconclusive", "unlicensed"]) {
     const parsed = parseRequirement({ ...BREACH_REQUIREMENT, satisfied_when: word }, "where");
     assert.equal(parsed.ok, false, `satisfied_when: ${word} must be refused`);
