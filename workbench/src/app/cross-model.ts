@@ -126,9 +126,14 @@ export const SCENE_CONSTRUCTS: Readonly<Record<ModelTypeId, SceneConstruct>> = {
  * entry's correspondence reaches a `null`. Total over `QueryNoun` by `Record`, so a new noun must
  * answer here.
  */
-type AnchorKind = "panel" | "element";
+export type AnchorKind = "panel" | "element";
 
-const ANCHOR_BY_NOUN: Readonly<Record<QueryNoun, AnchorKind | null>> = {
+/**
+ * Exported for the obligation test, not for a caller to dispatch on: `test/cross-model.test.ts`
+ * walks `BINDINGS` against this table and against `witnessOf`, so a binding over a noun pair
+ * neither answers is a red gate rather than a quiet absence.
+ */
+export const ANCHOR_BY_NOUN: Readonly<Record<QueryNoun, AnchorKind | null>> = {
   entity: "element",
   state: "element",
   model: "panel",
@@ -369,7 +374,7 @@ interface WitnessedPair {
  * this module and not about the system. Keeping them apart is what lets one test assert "every
  * registered binding is readable" without that test passing on an empty corpus.
  */
-type CorrespondenceWitness =
+export type CorrespondenceWitness =
   | { readonly kind: "witnessed"; readonly pairs: readonly WitnessedPair[] }
   | { readonly kind: "no-rule" };
 
@@ -380,8 +385,12 @@ type CorrespondenceWitness =
  * so a model-local spelling of the same correspondence is invisible here, which is the same
  * boundary `BindingWitness.keys` draws and the reason `test/bindings-census.test.ts` keeps the
  * model-local names out of the engine.
+ *
+ * Exported for the same reason `ANCHOR_BY_NOUN` is: the obligation that every registered binding be
+ * readable belongs to a test, and a test cannot assert it through a canvas without also depending
+ * on which example happens to author the reference.
  */
-function witnessOf(system: CanonicalSystem, c: Correspondence): CorrespondenceWitness {
+export function witnessOf(system: CanonicalSystem, c: Correspondence): CorrespondenceWitness {
   const pair = `${c.source}->${c.target}`;
 
   // `machine-of-entity`. `CanonMachine.entity` is the kernel's hoisting of the authored `entity:`
