@@ -391,15 +391,20 @@ function auditQuestionRegistration(c: Corpus): Audit {
  * claim nobody made, and the fixture layer exists precisely so that a recorded answer cannot be
  * quietly absent.
  *
- * ## `compared` and `shape` are now DERIVED from a reader that reports what it read
+ * ## Every disposition is now DERIVED from a reader that reports what it read
  *
  * `compared` and `shape` each assert that something downstream receives the key: a control compares
  * the value, or the reader enforces its presence and type. Both claims entail that SOMEONE asks for
  * the key, and until 261005 neither was checked — the disposition was this file's claim about a
  * sibling. The shared reader now reports the fields it was asked for, and this audit requires every
  * `compared` and every `shape` path to appear in that report, or in the small set this gate consumes
- * itself. `prose` is left unconstrained in that direction: the reader does read some prose fields
- * strictly, so "no machine claim is made" does not imply "nobody opens it".
+ * itself.
+ *
+ * `prose` is held the other way, and holding it is what turned up the first finding: it claims NO
+ * machine reads the key, so a prose path the reader opens is an understatement. Two quantitative
+ * fields were disposed `prose` while the reader ran them through its non-empty-string helper; the
+ * channel made the difference observable and they are now `shape`. The distinction between the two
+ * had been a judgement about what a field is FOR, and it is now a reading of what the reader does.
  *
  * The inert case cannot pass. An empty or broken channel leaves every `compared` path unaccounted
  * for and the audit reports all of them, so the arm fails loudly rather than going quiet — which is
@@ -493,11 +498,16 @@ const DISPOSITIONS: Readonly<Record<string, "compared" | "shape" | "prose">> = {
   "quantitative_expectations[].occurrences": "compared",
   "quantitative_expectations[].resident_mb": "compared",
   "quantitative_expectations[].when_charged_mb": "compared",
-  "quantitative_expectations[].arithmetic": "prose",
+  "quantitative_expectations[].arithmetic": "shape",
   "quantitative_expectations[].expected_ms": "compared",
   "quantitative_expectations[].expected_mb": "compared",
   "quantitative_expectations[].baseline_mb": "compared",
-  "quantitative_expectations[].note": "prose",
+  // `shape` rather than `prose`, corrected 261005 when the channel below made the difference
+  // observable: the reader calls these through its non-empty-string helper, so presence and type ARE
+  // enforced and "no machine claim is made" understated what holds them. The two `note` fields the
+  // reader does not open at all stay `prose`, which is now a derived distinction rather than a
+  // judgement about what a field is for.
+  "quantitative_expectations[].note": "shape",
 };
 
 /** Keys whose VALUE is an author-chosen map and whose members are therefore not key paths. */
@@ -564,14 +574,23 @@ function auditClaimFields(c: Corpus): Audit {
           + `drops it — in which case the claim is indistinguishable from a typo`);
         continue;
       }
-      // The disposition, derived. `compared` and `shape` both say something downstream receives the
-      // key; a path nobody asks for receives it nowhere, whatever the table claims.
+      // The disposition, derived in BOTH directions. `compared` and `shape` each say something
+      // downstream receives the key, and a path nobody asks for receives it nowhere whatever the
+      // table claims. `prose` says the opposite — no machine claim — so a prose path the reader
+      // validates is an understatement, and the correction is mechanical rather than a judgement.
       if (disposition !== "prose" && !consumed.has(path)) {
         findings.push(
           `${ex.id}: '${path}' is disposed '${disposition}', and neither the shared fixture reader `
           + `nor this gate asked for it. A key nothing reads reaches no comparator, so the `
           + `disposition is claiming a control that is gone — re-dispose it 'prose' if the claim was `
           + `retired, or restore the reader's use of it if the claim is still meant`);
+        continue;
+      }
+      if (disposition === "prose" && consumed.has(path)) {
+        findings.push(
+          `${ex.id}: '${path}' is disposed 'prose', which claims no machine reads it, and the reader `
+          + `asked for it. Presence and type are therefore enforced — dispose it 'shape', or `
+          + `'compared' if a control also derives the value`);
         continue;
       }
       if (disposition !== "compared") {
@@ -1932,6 +1951,23 @@ test("control: a `compared` disposition no reader asks for is caught", async () 
     new RegExp(`'${abandoned.replace(/[[\]().]/g, "\\$&")}' is disposed 'compared'`),
     "a key the table says a control compares, which no reader asks for, must be caught — before the "
     + "channel existed the disposition was this file's claim about a sibling and could outlive it");
+
+  // The other direction: a `prose` path the reader DOES open understates what holds it. Driven by
+  // adding a path the table disposes `prose` to the channel, which is what the reader beginning to
+  // validate that field would do.
+  // AUTHORED in this example, not merely present in the table: the audit walks what the fixture
+  // writes, so a prose path worker-queue does not author would give the control no subject.
+  const quiet = [...new Set(authoredKeyPaths(live.fixtureRaw))].find(
+    (path) => DISPOSITIONS[path] === "prose" && !live.askedFor.has(path));
+  assert.ok(quiet !== undefined,
+    "worker-queue authors no path the table disposes 'prose' and the reader leaves alone, so either "
+    + "the two directions have collapsed into one or this control has no subject");
+  const opened = await replacing("worker-queue", (ex) => ({
+    ...ex, askedFor: new Set([...ex.askedFor, quiet]),
+  }));
+  assert.match(findingsOf(auditClaimFields(opened)), /is disposed 'prose', which claims no machine/,
+    "a key disposed 'prose' that the reader asks for must be caught — presence and type are enforced, "
+    + "so 'shape' is the honest disposition and the stronger one");
 
   // And the gate's own two keys are not covered by the reader, so the accessor that records them
   // must be what accounts for them. An audit run with an EMPTY channel still has to account for
