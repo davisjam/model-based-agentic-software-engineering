@@ -109,7 +109,7 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-what-a-property-is",
     heading: "What a property is",
-    intro: "A property is a saved question, never a saved answer.",
+    intro: "A property is a saved question. Its verdict is recomputed on demand and stored nowhere.",
     blocks: [
       prose("Asking a question and tracking the answer is what makes a property. What is kept is "
         + "the question. The verdict is recomputed on every later revision and stored nowhere, so a "
@@ -132,7 +132,8 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-how-asking-works",
     heading: "How asking works",
-    intro: "The ask line narrows a catalogue of questions. It does not read a sentence.",
+    intro: "The ask line filters a catalogue of askable questions. Free text is not interpreted "
+      + "as English.",
     blocks: [
       prose("The catalogue offers only questions the loaded models license, so a question the "
         + "system cannot answer is one the list does not contain. Typing filters that list."),

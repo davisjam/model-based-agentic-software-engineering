@@ -823,7 +823,9 @@ test("the two mutations that defeated every existing gate are caught", () => {
   const removed = auditImportGraph(sourceTree("src"), parse(withoutLearnUi));
   assert.ok(removed.findings.some((m) => /`learn-page → ui` is an import the components model does not declare/.test(m)),
     `removing a declaration must surface the import it covered: ${removed.findings.join("; ")}`);
-  assert.ok(removed.findings.some((m) => /src\/learn\/main\.ts/.test(m)),
+  // The import site is wherever the learn page actually reaches `src/ui` — `dom.ts` since the
+  // shared Learn figures were extracted out of the composition root.
+  assert.ok(removed.findings.some((m) => /src\/learn\/dom\.ts/.test(m)),
     "and name the import site, which is where the decision has to be made");
 
   // The other side of mutation 2: an edge declared and not created. Added to the model rather than

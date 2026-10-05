@@ -154,10 +154,10 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   // the two kinds of evidence, because evidence is what only one of the two kinds comes back with.
   {
     anchor: "question-operations",
-    heading: "What is there, before you ask what is true?",
-    lede: "A question has to name what it is about before it can decide anything. Reading a model — "
-      + "which things it declares, how many of them, named how — asks its own kind of question, and "
-      + "it comes back with what is there and no verdict, because it claims nothing.",
+    heading: "Inspecting a model",
+    lede: "A model can be read before anything is decided: which elements it declares, how many, "
+      + "named how. A reading returns elements and counts, with no verdict, because it claims "
+      + "nothing.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "readonly subjects",
@@ -184,9 +184,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-evidence",
-    heading: "How would you know?",
-    lede: "Two kinds of question, two kinds of evidence — and the workbench returns the evidence, "
-      + "not just the verdict.",
+    heading: "Evidence",
+    lede: "The workbench returns evidence with each verdict. A graph answer carries a path; a "
+      + "behavioural answer carries an execution trace.",
     derivedFrom: [
       {
         file: "src/engine/types.ts", symbol: "QUANTIFIER_EVIDENCE",
@@ -210,10 +210,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   // because the second model is reached through the first one's declared omissions.
   {
     anchor: "question-bindings",
-    heading: "One system, several purposeful models — what connects them?",
-    lede: "Two models of one system answer different questions. A binding states how their "
-      + "elements correspond — and it does not combine them into one larger model: each keeps its "
-      + "own purpose and its own omissions.",
+    heading: "Bindings between models",
+    lede: "A binding identifies corresponding elements in different models. The bound models "
+      + "remain separate and retain their own purposes and omissions.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "export const BINDINGS",
@@ -245,10 +244,11 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-compositions",
-    heading: "Which questions need more than one model?",
-    lede: "A binding says which things correspond. A composition lets one model participate in "
-      + "answering a question over another — which is what makes the worst-case latency among "
-      + "successful executions one question rather than two.",
+    heading: "Composition across models",
+    lede: "Composition uses one model to restrict an analysis over another. The workbench supports "
+      + "one composition: a behavioural predicate can select the executions a quantitative query "
+      + "measures, which permits questions such as the worst-case latency among successful "
+      + "executions.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "export const COMPOSITIONS",
@@ -278,9 +278,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-properties",
-    heading: "What happens when the model changes?",
-    lede: "During exploration you ask questions. Once an answer matters, keep the question — and the "
-      + "workbench re-decides it on every later revision.",
+    heading: "Properties and model changes",
+    lede: "A property is a saved question. The workbench evaluates it against the current model "
+      + "whenever the model changes. It does not store the previous verdict.",
     derivedFrom: [
       {
         file: "src/app/properties.ts", symbol: "export function evaluateProperties",
@@ -296,8 +296,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-requirements",
-    heading: "What must be true, and what merely is?",
-    lede: "A property describes. A requirement prescribes — and says which outcome would satisfy it.",
+    heading: "Requirements",
+    lede: "A requirement adds an expected outcome to a property. A differing live outcome then "
+      + "counts as a failure rather than as a finding.",
     derivedFrom: [
       {
         file: "src/app/properties.ts", symbol: "export interface Expectation",
@@ -324,10 +325,10 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   // fixture and the system. The gallery shows one construct; this shows a join.
   {
     anchor: "question-ceilings",
-    heading: "When what must be true is a number, where does the number live?",
-    lede: "Asking whether a design fits a budget takes three things: the figure, a comparison "
-      + "against it, and the obligation that the comparison come out a particular way. Three "
-      + "declarations, one per job — and only the first of them says how much.",
+    heading: "Quantitative requirements",
+    lede: "A budget question takes three declarations: a quantity stating the figure, a question "
+      + "comparing against it, and a requirement stating the expected outcome. Only the first "
+      + "says how much.",
     derivedFrom: [
       {
         file: "src/engine/types.ts", symbol: "export interface QuantityQuery",
@@ -357,9 +358,10 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-agents",
-    heading: "Can an agent use the same model you do?",
-    lede: "Not a simplified copy for the machine. One model, one set of semantic operations, and a "
-      + "gate that holds both sides to the same seam.",
+    heading: "Agent access",
+    lede: "An agent operates on the same model through the same semantic operations as the human "
+      + "interface. A parity gate checks that every capability has both a human and a machine "
+      + "affordance.",
     derivedFrom: [
       {
         file: "src/app/capabilities.ts", symbol: "readonly service",
@@ -375,9 +377,10 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-foundations",
-    heading: "Where do these ideas come from?",
-    lede: "A small educational vocabulary — and for each part of it, either the established idea it "
-      + "realizes a subset of, or the plain statement that it is the workbench's own.",
+    heading: "Semantic foundations",
+    lede: "Each construct's semantics are either borrowed from a named standard concept, grounded "
+      + "in an established foundation, or declared as the workbench's own. The registry records "
+      + "which, per construct.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "export type SemanticBasis",
@@ -401,9 +404,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   },
   {
     anchor: "question-omissions",
-    heading: "What does the workbench leave out?",
-    lede: "Each model is a purposeful reduction, and so is the workbench. Asking past the edge gets "
-      + "a refusal that names what is absent — never a fabricated number.",
+    heading: "Model boundaries",
+    lede: "A model answers only the questions its content supports. Asking past that boundary "
+      + "returns a refusal naming what is absent; the workbench does not invent an answer.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "readonly omits",
@@ -498,7 +501,7 @@ const coverageText = (result: QueryResult): string =>
       : `${result.coverage.kind}, ${result.coverage.statesExplored} state(s)`;
 
 /** One saved question of a shipped example, run. Null when the example does not declare it. */
-function runSaved(system: CanonicalSystem, id: string): QueryResult | null {
+export function runSaved(system: CanonicalSystem, id: string): QueryResult | null {
   const saved = system.queries.get(id);
   return saved === undefined ? null : runQuery(system, saved.raw).result;
 }
@@ -847,17 +850,16 @@ function operationBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 
   blocks.push({
     kind: "prose",
-    text: "One test separates the two kinds: does the question make a claim? “Which entities…” and "
-      + "“how many” report what the model declares, so nothing is left for a witness to establish "
-      + "or for a counterexample to break. “Is this reachable from that” asserts something, so the "
-      + "answer comes back as a verdict carrying the evidence that settles it.",
+    text: "“Which entities…” and “how many” report what the model declares; no witness establishes "
+      + "them and no counterexample breaks them. “Is this reachable from that” makes a claim, so "
+      + "its answer comes back as a verdict carrying the evidence that settles it.",
   });
   blocks.push({
     kind: "prose",
-    text: "That is also why the figure above says what earns it. Count a table read whole and you "
-      + "have a count; count what a search reached before it stopped and you have a floor. A bare "
-      + "integer cannot tell you which one you hold, so a reader supplies the stronger reading. "
-      + "Each model form's own card lists the nouns it lets a question name.",
+    text: "The figure above states how it was obtained. A count over a table read whole is exact; "
+      + "a count over what a search reached before stopping is only a floor. A bare integer cannot "
+      + "distinguish the two, so the readout names its coverage. Each model form's own card lists "
+      + "the nouns it lets a question name.",
   });
   return blocks;
 }
@@ -934,9 +936,8 @@ function evidenceBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   });
   blocks.push({
     kind: "prose",
-    text: "The workbench did not merely report that the claim is false. It returned the execution "
-      + "that breaks it, with the figure that decides it and the unit that figure is in — so the "
-      + "next question is which step to change, not whether to believe the answer.",
+    text: "The result carries the execution that breaks the claim, the computed figure, and the "
+      + "unit that figure is in. The evidence identifies which step to change.",
   });
   return blocks;
 }
@@ -965,9 +966,8 @@ function propertyBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): reado
   return [
     {
       kind: "prose",
-      text: "A property is a saved question, never a saved answer. The verdict is recomputed on "
-        + "every later revision and stored nowhere, so a property cannot go stale: it reports what "
-        + "the models say now.",
+      text: "The verdict is recomputed on every later revision and stored nowhere, so a property "
+        + "cannot go stale: it reports what the models say now.",
     },
     {
       kind: "rows",
@@ -978,9 +978,9 @@ function propertyBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): reado
     },
     {
       kind: "prose",
-      text: "The model changed. The question did not. That is what lets the workbench tell you an "
-        + "engineering fact you meant to preserve has moved — and each of these runs as a what-if "
-        + "branch, so you can look before you keep it.",
+      text: "Each row applies a declared modification and re-evaluates the same saved question. "
+        + "Every modification runs as a what-if branch, so a change can be inspected before it is "
+        + "kept.",
     },
   ];
 }
@@ -1070,8 +1070,8 @@ function requirementBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): re
     },
     {
       kind: "prose",
-      text: "Both directions ship, which is the point: a safety requirement is satisfied when its "
-        + "query HOLDS, a prohibition when its query is REFUTED. The outcome word belongs to the "
+      text: "Both directions ship: a directly stated requirement is satisfied when its query "
+        + "HOLDS, a prohibition when its breach query is REFUTED. The outcome word belongs to the "
         + "question; satisfaction belongs to the requirement.",
     },
   ];

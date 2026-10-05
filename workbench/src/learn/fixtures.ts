@@ -80,6 +80,17 @@ export interface FixtureChange {
 export interface FixtureModification {
   readonly id: string;
   readonly label: string;
+  /** The author's reason for shipping the modification, when the fixture states one. */
+  readonly rationale: string | null;
+  /**
+   * The transaction's operations, verbatim from the fixture.
+   *
+   * Read so the walkthrough can APPLY a declared modification through the real hypothesis seam —
+   * `Workspace.openHypothesis` with these operations and the live hash as `base` — which is the
+   * same drive `test/examples.test.ts` performs. A step that quoted `changes` without applying the
+   * operations would show a before/after the page never computed.
+   */
+  readonly operations: readonly unknown[];
   readonly changes: readonly FixtureChange[];
 }
 
@@ -150,7 +161,19 @@ function readModification(raw: unknown, where: string): FixtureModification {
   if (changes.length === 0) {
     throw new ExampleMetadataError(`${where}.changes: empty, so the modification demonstrates nothing`);
   }
-  return { id: text(raw["id"], `${where}.id`), label: text(raw["label"], `${where}.label`), changes };
+  const transaction = raw["transaction"];
+  if (!isObject(transaction)) throw new ExampleMetadataError(`${where}.transaction: expected a mapping`);
+  const operations = sequence(transaction["operations"], `${where}.transaction.operations`);
+  if (operations.length === 0) {
+    throw new ExampleMetadataError(`${where}.transaction.operations: empty, so there is nothing to apply`);
+  }
+  return {
+    id: text(raw["id"], `${where}.id`),
+    label: text(raw["label"], `${where}.label`),
+    rationale: optional(raw["rationale"], `${where}.rationale`),
+    operations,
+    changes,
+  };
 }
 
 /**

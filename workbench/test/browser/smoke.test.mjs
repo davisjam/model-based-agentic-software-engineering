@@ -38,6 +38,7 @@ import { MODEL_TYPES } from "../../src/engine/model-types.ts";
 import { LEARN_PAGE, MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
 import { GUIDE_ANCHORS } from "../../src/learn/workbench-guide.ts";
 import { QUESTION_ANCHORS } from "../../src/learn/questions.ts";
+import { LESSON_ANCHOR, WALKTHROUGH_ANCHORS } from "../../src/learn/walkthrough.ts";
 
 /**
  * The OS picks the port. Claiming 8146 only avoided the other tiers IN THIS PROCESS; it did
@@ -230,11 +231,18 @@ test("learn.html: boots, and the gallery is the model-type registry", async () =
   //
   //   GUIDE_ANCHORS     the explanatory prose the operational panes used to carry inline. DECLARED
   //                     rather than derived, because no part of a model kernel knows how a pane reads.
-  //   QUESTION_ANCHORS  the reframe's own sections — evidence, properties, requirements, agents,
+  //   QUESTION_ANCHORS  the capability sections — evidence, properties, requirements, agents,
   //                     omissions. Their anchors are declared; their CONTENT is built by running the
   //                     kernel over the shipped examples, which is why they are not gallery cards:
   //                     they answer "what can I do with a model", not "which model form do I need".
-  const expectedSections = [...galleryAnchors, ...GUIDE_ANCHORS, ...QUESTION_ANCHORS].sort();
+  //
+  // And the page's primary path since the lesson restructure: the LESSON section and the
+  // WALKTHROUGH steps, declared in `src/learn/walkthrough.ts`, whose content is built by running
+  // the kernel, the renderer and a real Workspace over the shipped examples.
+  const expectedSections = [
+    LESSON_ANCHOR, ...WALKTHROUGH_ANCHORS,
+    ...galleryAnchors, ...GUIDE_ANCHORS, ...QUESTION_ANCHORS,
+  ].sort();
 
   const rendered = await page.evaluate(() => ({
     sectionIds: [...document.querySelectorAll("#learn-main > section[id]")].map((s) => s.id).sort(),

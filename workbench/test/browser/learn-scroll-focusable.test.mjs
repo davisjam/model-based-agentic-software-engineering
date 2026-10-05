@@ -30,7 +30,7 @@
 // ## What would defeat it
 //
 //   - A scrollable region built with a class other than `.scroll`. The selector is the contract;
-//     a second spelling would be invisible here. `rowsTable` in `src/learn/main.ts` is the one
+//     a second spelling would be invisible here. `rowsTable` in `src/learn/dom.ts` is the one
 //     constructor today, and its doc comment says so.
 //   - A region that scrolls because of CSS applied to something this selector does not match
 //     (an ancestor with `overflow`), which axe would still flag and this would not.

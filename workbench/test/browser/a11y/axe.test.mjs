@@ -306,6 +306,40 @@ const PAGES = [
           );
         },
       },
+      {
+        // 4. the walkthrough ENGAGED: a witness drawn onto a machine figure, a what-if hypothesis
+        //    open with its recomputed verdicts in the live regions, a quantitative readout filled,
+        //    and a refusal shown. These are the DOM states the lesson's primary path puts a
+        //    student in, and none of them exists at landing — auditing only the served paint
+        //    would certify a page the student never stays on.
+        name: "walkthrough",
+        floor: 30,
+        drive: async (page) => {
+          const clicked = await page.evaluate(() => {
+            const press = (anchor, lead) => {
+              const hit = [...document.querySelectorAll(`#${anchor} button.walk-run`)]
+                .find((b) => (b.textContent ?? "").startsWith(lead));
+              if (hit === undefined) return false;
+              hit.click();
+              return true;
+            };
+            for (const d of document.querySelectorAll("#walk-purpose details, #walk-quantities details")) {
+              d.open = true;
+            }
+            return [
+              press("walk-evidence", "Show the witness"),
+              press("walk-changes", "Apply:"),
+              press("walk-quantitative-questions", "Run:"),
+              press("walk-boundaries", "Ask:"),
+            ].every(Boolean);
+          });
+          assert.ok(clicked, "a walkthrough control the drive expected is not on the page");
+          await page.waitForFunction(() =>
+            document.querySelector("#walk-boundaries .walk-outcome")?.textContent
+              ?.startsWith("NOT ANSWERABLE"),
+          { timeout: 30_000 });
+        },
+      },
     ],
     diagram: {
       hosts: "figure.learn-figure .canvas",
