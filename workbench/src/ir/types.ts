@@ -561,6 +561,62 @@ export interface CanonQuantity {
 }
 
 /**
+ * One quantitative model: the declared accounting over ONE dimension, made addressable.
+ *
+ * ## Why this exists
+ *
+ * `quantities` is a flat map of annotations whose targets point at other constructs, so a
+ * quantitative model was not a thing you could name. Everything downstream paid for that. A
+ * projection of a resource budget has to be handed a subject, and there was none — which is why the
+ * Learn page reaches for the structural extractor over a positionally chosen model instead. This is
+ * the subject it should have been handed.
+ *
+ * ## Why ONE PER DIMENSION, and not one per system
+ *
+ * The dimension is what fixes the aggregation axis (§8): memory is evaluated at a configuration and
+ * peaked over the reachable set, duration sums along an execution. Two dimensions are therefore two
+ * accounting models that share a map, not one model with two units — and a budget view of SRAM has
+ * nothing to say about latency. Keying by dimension is the scoping that the semantics already imply.
+ *
+ * ## DERIVED, and every step cites a declaration
+ *
+ * Nothing here is authored and nothing here is positional. `budget` is the `model:`-targeted
+ * quantity of this dimension, which `src/quant/query.ts` already defines as a declared TOTAL
+ * *"exempt from every accounting basis"* and whose `target.ref` names the host. `allocations` is the
+ * evaluator's own membership rule — `src/quant/memory.ts`'s `memoryContributions` selects by
+ * dimension and accountable target kind and by nothing else. So this record consolidates a grouping
+ * two modules were each computing implicitly; it invents no new one.
+ *
+ * Excluded from `systemHash` for the reason `instances` is: a function of what is already hashed.
+ *
+ * ## What it is NOT
+ *
+ * Not the AUTHORED scoping. Scoping quantities under a `quantitative-models:` block in the wire
+ * schema — and moving the `accounting:` declaration inside it, which `CanonicalSystem.accounting`
+ * below anticipates — changes the published schema. This is the addressable construct only.
+ */
+export interface CanonQuantitativeModel {
+  /** The dimension, which is also the id: the map is keyed by it. */
+  readonly dimension: Dimension;
+  /** Derived from the dimension, exactly as `CanonQuantity.scope` is. */
+  readonly scope: QuantityScope;
+  /** The `model:`-targeted quantity declaring this dimension's total, when one is declared. */
+  readonly budget: string | null;
+  /** The model the budget is declared against. Null exactly when `budget` is. */
+  readonly host: string | null;
+  /**
+   * Quantity ids charged against the total, by declared id order.
+   *
+   * Membership is by dimension and accountable target kind. A quantity that reaches no summand —
+   * a memory annotation declaring neither `residency` nor `when`, or both (V37) — is STILL a member,
+   * because a budget view that silently dropped it would show a plausible total over an incomplete
+   * model. Which members actually charge is the readout's finding to report, not this record's to
+   * hide.
+   */
+  readonly allocations: readonly string[];
+}
+
+/**
  * Facts computed FROM the model, not asserted ABOUT the modeled system (§10).
  *
  * Snake_case because these keys ARE the authored identifiers: `metrics.state_count`. A typed record
@@ -606,6 +662,14 @@ export interface CanonicalSystem {
   readonly instances: readonly MachineInstance[];
   readonly events: ReadonlyMap<string, CanonEvent>;
   readonly quantities: ReadonlyMap<string, CanonQuantity>;
+  /**
+   * The quantitative models the annotations above constitute, one per declared dimension.
+   *
+   * DERIVED from `quantities`, the way `instances` is derived from `machines` — so it carries no
+   * authored fact of its own and stays out of the hash. It exists because a quantitative model has
+   * to be nameable before anything can be a projection OF one. See `CanonQuantitativeModel`.
+   */
+  readonly quantitativeModels: ReadonlyMap<Dimension, CanonQuantitativeModel>;
   /**
    * The declared accounting model, keyed by metric name as written.
    *

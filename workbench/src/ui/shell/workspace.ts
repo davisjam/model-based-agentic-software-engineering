@@ -29,7 +29,8 @@ import { parseGraphQuery } from "../../engine/index.ts";
 import type {
   AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
 } from "../../render/types.ts";
-import { paintDiagram, paintPrincipal, fillSelect } from "../render-dom.ts";
+import { paintBudget, paintDiagram, paintPrincipal, fillSelect } from "../render-dom.ts";
+import { budgetViews } from "../../app/budget.ts";
 import {
   resolveSelection, resolveSelections, resolveSubject, sceneNodeIdFor, selectionValue, subjectValue,
 } from "../view-model.ts";
@@ -368,6 +369,7 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   const modelDetail = byId("model-detail");
   const modelContents = byId("model-contents");
   const diagramText = byId("diagram-text");
+  const modelBudget = byId("model-budget");
   const canvas = byId("canvas");
   const canvasMenu = byId("canvas-menu");
   const addMenu = byId<HTMLDetailsElement>("add-menu");
@@ -548,6 +550,21 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
         ctx.viewState.selection, modelContents, select,
       );
       paintDiagram(view?.accessible ?? null, view?.tree ?? null, { text: diagramText, canvas });
+
+      // The resource budget, beside the picture rather than instead of it. A quantitative model is
+      // its own subject with its own projection, so it is NOT selected by the subject chooser and
+      // does not compete with the principal model for the canvas: a budget and a dependency graph
+      // answer different questions about the same components, and showing one at a time would make
+      // the student choose which to look at.
+      //
+      // Empty when the system declares no quantitative model, which is why the region's CSS keys on
+      // `:not(:empty)`. A refusal is NOT painted here: a declared model that cannot be read is a
+      // defect in the source, and validation is the surface that reports it — a second report in the
+      // workspace would be the same finding twice, in the place with the least context for it.
+      paintBudget(
+        frame.state.loaded ? budgetViews(frame.state.system).views : [],
+        modelBudget,
+      );
     },
   };
 }

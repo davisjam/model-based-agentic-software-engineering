@@ -28,9 +28,15 @@
 // exact vocabulary copy is a clean signal where its length is not.
 //
 // WHAT THAT GIVES UP, stated so nobody rediscovers it as a surprise:
-//   - `SHIPPED_EXAMPLE_IDS` has four members, so its count is below the floor and only its member
-//     list is policed. The floor was raised to keep it there, and `MIN_CARDINALITY` carries the
-//     measurement and the cost.
+//   - `SHIPPED_EXAMPLE_IDS` is policed by its member LIST only, never by its count. Its count was
+//     originally kept out by the floor — it had four members, and the floor is five — but a floor is
+//     a proxy for the exclusion rather than the exclusion itself, and the proxy expired the moment a
+//     fifth example shipped. The count then matched five unrelated assertions in one run (§30's five
+//     properties, docable's five relations, five quads, five scene nodes, five queries in a
+//     hand-built document) and not one true positive. So the exclusion is DECLARED now, on
+//     `policeCardinality` below, with the measurement beside it. A registry whose size is a small
+//     round number cannot be policed by its size at all, and whether it is one is not a fact the
+//     floor can know.
 //   - Recurrence 4 is not covered by either rule. A pin of the single word "unavailable" is
 //     indistinguishable from any other string, at any precision this file can reach.
 //   - The scan covers `test/` and `scripts/`, not `src/`. A test or a generator has no reason to
@@ -70,6 +76,15 @@ interface DerivableSource {
   /** What to write where a vocabulary was copied. */
   readonly list: string;
   readonly members: readonly string[];
+  /**
+   * May this source's CARDINALITY be policed, or only its member list?
+   *
+   * False for a source whose size is a value the suite legitimately asserts about other things. The
+   * cardinality rule matches a count, not a subject, so it cannot tell `SHIPPED_EXAMPLE_IDS.length`
+   * from any other five — and the member-list rule has no such problem, because an exact vocabulary
+   * copy is a clean signal where its length is not.
+   */
+  readonly policeCardinality: boolean;
 }
 
 const SOURCES: readonly DerivableSource[] = [
@@ -79,6 +94,7 @@ const SOURCES: readonly DerivableSource[] = [
     cardinality: "CAPABILITIES.length",
     list: "CAPABILITIES.map((c) => c.id)",
     members: CAPABILITIES.map((c) => c.id),
+    policeCardinality: true,
   },
   {
     name: "SHIPPED_EXAMPLE_IDS",
@@ -86,6 +102,9 @@ const SOURCES: readonly DerivableSource[] = [
     cardinality: "SHIPPED_EXAMPLE_IDS.length",
     list: "SHIPPED_EXAMPLE_IDS",
     members: SHIPPED_EXAMPLE_IDS,
+    // Measured, twice. At four members the floor kept its count out; at five its count collided with
+    // five unrelated assertions in the suite and zero true positives. The member list stays policed.
+    policeCardinality: false,
   },
   {
     name: "GRAPH_FORMS",
@@ -93,6 +112,7 @@ const SOURCES: readonly DerivableSource[] = [
     cardinality: "GRAPH_FORMS.length",
     list: "GRAPH_FORMS",
     members: GRAPH_FORMS,
+    policeCardinality: true,
   },
   {
     name: "BEHAVIOR_FORMS",
@@ -100,15 +120,18 @@ const SOURCES: readonly DerivableSource[] = [
     cardinality: "BEHAVIOR_FORMS.length",
     list: "BEHAVIOR_FORMS",
     members: BEHAVIOR_FORMS,
+    policeCardinality: true,
   },
-  // Three members, so the cardinality rule's floor passes over it and only the member-list rule
-  // polices it — the SHIPPED_EXAMPLE_IDS situation, accepted for the same reason.
+  // Member list only, for the SHIPPED_EXAMPLE_IDS reason and stated the same way. Three members sit
+  // under the floor today, and "under the floor" is not a decision — a fourth model type would turn
+  // the count rule on by arithmetic rather than by anyone choosing it.
   {
     name: "MODEL_TYPES",
     module: "src/engine/model-types.ts",
     cardinality: "MODEL_TYPES.length",
     list: "MODEL_TYPES.map((t) => t.id)",
     members: MODEL_TYPES.map((t) => t.id),
+    policeCardinality: false,
   },
 ];
 
@@ -241,7 +264,7 @@ function scan(path: string, text: string): {
   for (const m of text.matchAll(CARDINALITY_PIN)) {
     const count = Number(m[1]);
     if (count < MIN_CARDINALITY) continue;
-    const source = SOURCES.find((s) => s.members.length === count);
+    const source = SOURCES.find((s) => s.policeCardinality && s.members.length === count);
     if (source === undefined) continue;
     report(lineOf(text, m.index), `\`${m[0].trim()}\` pins the cardinality of ${source.name} `
       + `(${source.module}, ${count} members today). Write \`${source.cardinality}\`. The registry moves — `
@@ -305,9 +328,18 @@ test("the sources this check reads are the ones it claims to read", () => {
     assert.ok(s.members.length > 0, `${s.name} is empty — the rules over it are vacuous`);
     assert.equal(new Set(s.members).size, s.members.length, `${s.name} has a duplicate member`);
   }
-  const policedByCount = SOURCES.filter((s) => s.members.length >= MIN_CARDINALITY).map((s) => s.name);
+  const policedByCount = SOURCES
+    .filter((s) => s.policeCardinality && s.members.length >= MIN_CARDINALITY).map((s) => s.name);
   assert.deepEqual([...policedByCount].sort(), ["BEHAVIOR_FORMS", "CAPABILITIES", "GRAPH_FORMS"],
     "the set of sources whose COUNT is policed has changed; re-measure the false-positive rate before accepting it");
+  // And the exclusion is a declaration, not an accident of arithmetic. A source left out by the
+  // floor alone would silently re-enter on its next member — which is exactly what happened to
+  // SHIPPED_EXAMPLE_IDS on its fifth, and the reason `policeCardinality` exists.
+  const excludedByFloorAlone = SOURCES
+    .filter((s) => s.policeCardinality && s.members.length < MIN_CARDINALITY).map((s) => s.name);
+  assert.deepEqual(excludedByFloorAlone, [],
+    "a source policed by count but currently under the floor will start firing on its next member; "
+    + "declare the intent with `policeCardinality` instead of leaving it to the count");
 });
 
 test("both rules actually fire — negative control", () => {

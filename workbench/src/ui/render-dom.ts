@@ -10,6 +10,7 @@
  * whose whole purpose is loading files other people wrote.
  */
 import type { AccessibleScene, SvgNode } from "../render/types.ts";
+import type { BudgetView } from "../render/budget.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
 import type { ProvenanceRecord } from "../app/provenance.ts";
@@ -324,6 +325,108 @@ const SVG_NS = "http://www.w3.org/2000/svg";
  * page would reintroduce exactly the injection surface this file avoids everywhere else, for a
  * document whose whole job is opening files other people wrote.
  */
+/**
+ * The resource budget, as DOM. Text first, picture second.
+ *
+ * The order is the decision. For a graph the picture carries the structure and the twin restates
+ * it; for a budget the FIGURES are the content, so a reader handed only the drawing has the shape of
+ * the problem and none of its numbers. The verdict sentence leads, the table carries every figure,
+ * and the bar illustrates what the table already said.
+ *
+ * Nothing here computes. Every number is a field of `AccessibleBudget`, already in its display unit,
+ * so this surface cannot disagree with the one the quantity layer derived.
+ *
+ * Several budgets render as several blocks: a system declaring memory and duration quantities has
+ * two accounting models, and merging them would put two units on one axis.
+ */
+export function paintBudget(views: readonly BudgetView[], root: HTMLElement): void {
+  root.replaceChildren();
+  for (const view of views) {
+    const twin = view.accessible;
+    const block = el("section", undefined, "mage-budget-block");
+    const heading = el("h3", twin.title, "sublabel");
+    const headingId = ariaId("budget");
+    heading.id = headingId;
+    block.setAttribute("aria-labelledby", headingId);
+    block.append(heading);
+
+    // The verdict, and the `over` class is presentation on top of a sentence that already says it.
+    block.append(el("p", twin.verdict, twin.overBudget ? "intro over" : "intro"));
+
+    // Three columns, and the reason an inert allocation charges nothing is NOT one of them. It is a
+    // sentence, and a sentence in a table cell sized the first column to 259 px and pushed the row
+    // past a 320 px viewport — a WCAG 1.4.10 failure the reflow gate caught. Prose belongs under the
+    // table, where it can wrap; the table carries figures.
+    const table = el("table", undefined, "mage-budget-table");
+    const head = el("tr");
+    head.append(el("th", "Allocation"), el("th", "Holds"), el("th", `Amount (${twin.unit})`, "amount"));
+    const thead = el("thead");
+    thead.append(head);
+    table.append(thead);
+    const body = el("tbody");
+    for (const a of twin.allocations) {
+      const row = el("tr");
+      row.append(
+        el("td", a.label),
+        el("td", a.charge),
+        el("td", a.inertReason === null ? `${a.amount} (${a.declared})` : `— (${a.declared})`, "amount"),
+      );
+      body.append(row);
+    }
+    table.append(body);
+
+    const foot = el("tr");
+    foot.append(el("td", "Total"), el("td", ""), el("td", String(twin.total), "amount"));
+    const tfoot = el("tfoot");
+    tfoot.append(foot);
+    if (twin.budget !== null) {
+      const ceiling = el("tr");
+      ceiling.append(
+        el("td", "Declared ceiling"), el("td", twin.budgetDeclared ?? ""),
+        el("td", String(twin.budget), "amount"),
+      );
+      const margin = el("tr");
+      margin.append(
+        el("td", twin.overBudget ? "Over by" : "Margin"),
+        el("td", twin.marginPercent === null ? "" : `${Math.abs(twin.marginPercent)}%`),
+        el("td", String(Math.abs(twin.margin ?? 0)), "amount"),
+      );
+      tfoot.append(ceiling, margin);
+    }
+    table.append(tfoot);
+    block.append(table);
+
+    // The reasons, out of the table and in full. Each one is a finding about the MODEL — an
+    // annotation that reaches no summand of memory(c) — so it is stated rather than abbreviated: a
+    // row reading "charged nowhere" with no reason sends the reader to the specification.
+    if (twin.unaccounted.length > 0) {
+      const notes = el("ul", undefined, "mage-budget-notes");
+      for (const a of twin.unaccounted) {
+        notes.append(el("li", `${a.label} (${a.declared}) ${a.inertReason ?? "charges nothing"}, so it is excluded from the total.`));
+      }
+      block.append(notes);
+    }
+
+    if (twin.largest !== null) {
+      block.append(el("p", `Largest single allocation: ${twin.largest.label}, ${twin.largest.amount} ${twin.unit}.`, "sublabel"));
+    }
+
+    // The key, for the same reason the diagram carries one: the picture makes distinctions a reader
+    // who does not get it would otherwise never be told about.
+    if (twin.key.length > 0) {
+      const dl = el("dl", undefined, "prov");
+      for (const entry of twin.key) dl.append(el("dt", entry.channel), el("dd", entry.meaning));
+      block.append(dl);
+    }
+
+    const figure = el("figure", undefined, "mage-budget-figure-host");
+    figure.setAttribute("aria-hidden", "true");
+    figure.append(svgElement(view.svg));
+    block.append(figure);
+    root.append(block);
+  }
+}
+
 export function svgElement(node: SvgNode): SVGElement {
   const e = document.createElementNS(SVG_NS, node.tag);
   for (const [k, v] of Object.entries(node.attrs)) e.setAttribute(k, String(v));

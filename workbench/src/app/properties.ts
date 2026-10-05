@@ -429,6 +429,47 @@ export function groundsFor(
         g.machine(b.transition.machine, "the statement names a transition of this machine");
       }
     }
+  } else if (q["kind"] === "quantity") {
+    // The arm that was missing, and the gap was invisible because no shipped example declared a
+    // saved `kind: quantity` question. A quantitative property reached ESTABLISHED citing nothing —
+    // which UX-I5 exists to forbid, and which nothing could have caught over a corpus that never
+    // asked one. The Embedded Sensor Node's pinned budget is the first, and it surfaced this.
+    //
+    // A quantitative verdict derives from two declarations, and they are different dependences, so
+    // the reasons say which:
+    //
+    //   the CEILING's host — the model a `model:`-targeted total is declared against. This is the
+    //     model whose budget is being decided, and it is the citation a reader most wants.
+    //   the ALLOCATIONS' models — the models containing each entity whose annotation reaches the
+    //     metric. These supply the summands, not the bound.
+    //
+    // Both come from `CanonQuantitativeModel`, so this reads the same grouping the evaluator
+    // charges rather than re-deriving which quantities participate.
+    const spec = typeof q["quantity"] === "object" && q["quantity"] !== null
+      ? (q["quantity"] as Record<string, unknown>)
+      : {};
+    const metric = spec["metric"];
+    const dimension = metric === "peak_memory" ? "memory"
+      : metric === "latency" ? "duration"
+      : metric === "cost" ? "cost"
+      : null;
+    const qm = dimension === null ? undefined : system.quantitativeModels.get(dimension);
+    if (qm !== undefined) {
+      const within = typeof spec["within"] === "string" ? spec["within"] : null;
+      // The ceiling the QUESTION names, not whichever one the system declares: a question with no
+      // `within` decides no bound, and citing one would attribute a bound it never used.
+      const ceiling = within === null ? null : system.quantities.get(within);
+      if (ceiling !== undefined && ceiling !== null && ceiling.target.kind === "model") {
+        g.model(ceiling.target.ref,
+          `declares '${within}', the ${dimension} ceiling this statement is decided against`);
+      }
+      for (const id of qm.allocations) {
+        const target = system.quantities.get(id)?.target;
+        if (target?.kind !== "entity") continue;
+        g.entity(target.ref, () =>
+          `contains ${target.ref}, whose declared ${dimension} '${id}' the ${String(metric)} analysis charges`);
+      }
+    }
   }
 
   const ev = result?.evidence ?? null;

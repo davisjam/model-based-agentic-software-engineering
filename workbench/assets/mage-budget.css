@@ -1,0 +1,57 @@
+/* The budget view's presentation, for both pages that render it (the Workspace and Learn).
+   Hand-written and shared on purpose: the view renders on two pages, and two inline copies of these
+   rules would be free to drift. Nothing here carries a semantic distinction -- every fact the
+   drawing encodes is also a field of the accessible twin, which is the text above it. */
+
+#model-budget:not(:empty), .learn-figure .mage-budget-block {
+  margin-block-start: .75rem;
+}
+#model-budget:not(:empty) {
+  padding: .6rem .7rem;
+  border: 1px solid var(--rule, var(--mage-rule));
+  border-radius: 6px;
+}
+
+/* The table must REFLOW, not scroll. At 320 CSS px a table sized from its content overflows the
+   viewport, which is a 1.4.10 failure -- and it was exactly that: the inert-allocation reason was a
+   long sentence in a cell, so the first column took 259px and the row 544. Two halves to the fix:
+   the reason moved OUT of the table into the note list below it, and these rules make what is left
+   wrap instead of pushing. `table-layout: fixed` is what stops a long label from sizing a column. */
+.mage-budget-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  /* `min-width: 0` is load-bearing, not defensive. learn.html's own stylesheet carries
+     `table { min-width: 34rem }`, and a min-width survives `width: 100%` and `table-layout: fixed`
+     alike -- so the budget table overflowed a 320 px viewport by exactly 34rem while every other
+     declaration was already correct. The page's rule is harmless for the tables it was written for
+     because they sit inside a closed `<details>`, which the reflow walk does not measure; this one
+     is in the open. A latent hazard for the next table that is. */
+  min-width: 0;
+}
+.mage-budget-table th, .mage-budget-table td {
+  text-align: left;
+  padding: .1rem .4rem .1rem 0;
+  overflow-wrap: anywhere;
+}
+.mage-budget-table td.amount, .mage-budget-table th.amount { text-align: right; }
+.mage-budget-table .over { font-weight: 600; }
+.mage-budget-notes { margin-block: .3rem; padding-inline-start: 1.1rem; }
+
+/* The drawing. Scaled to its container, never sized from a measured width: it emits a fixed
+   `viewBox` so it can be fitted rather than clipped. */
+.mage-budget-figure-host { margin: .5rem 0 0; }
+.mage-budget-figure-host svg { display: block; width: 100%; height: auto; }
+
+/* The drawing's marks. The overrun is a hatch and the ceiling a dash pattern -- both SHAPES, so
+   neither depends on colour, and both are named in the verdict sentence above the figure. */
+.mage-budget-bar { fill: var(--accent, var(--mage-accent)); fill-opacity: .55; stroke: currentColor; stroke-width: 1; }
+.mage-budget-ceiling { stroke: currentColor; fill: none; }
+.mage-overrun-hatch { stroke: currentColor; }
+.mage-budget-overrun { stroke: currentColor; stroke-width: 1; }
+.mage-budget-title { font-size: .85rem; font-weight: 600; fill: currentColor; }
+.mage-budget-figure, .mage-budget-verdict { font-size: .75rem; fill: currentColor; }
+.mage-budget-label, .mage-budget-amount, .mage-budget-ceiling-label { font-size: .7rem; fill: currentColor; }
+.mage-budget-inert { font-size: .7rem; fill: currentColor; font-style: italic; }

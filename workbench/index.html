@@ -44,6 +44,7 @@
   `var(--bg)` in the rules stays as written -- while the values come from the family.
 -->
 <link rel="stylesheet" href="assets/mage-tokens.css">
+<link rel="stylesheet" href="assets/mage-budget.css">
 <style>
   :root {
     color-scheme: light dark;
@@ -284,7 +285,7 @@
   */
   #workspace:not([hidden]) {
     display: grid;
-    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wreading";
+    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wbudget" "wreading";
   }
   #workspace-h { grid-area: wtitle; }
   #workspace > label.field { grid-area: wtools; }
@@ -292,7 +293,17 @@
   #principal-purpose { grid-area: wpurpose; }
   #canvas { grid-area: wcanvas; }
   #model-detail { grid-area: wdetail; }
+  #model-budget { grid-area: wbudget; }
   #model-reading { grid-area: wreading; }
+
+  /*
+    The budget view's own rules live in `assets/mage-budget.css`, linked above, because the view now
+    renders on TWO pages -- the Workspace here and the quantitative Learn card. Two inline copies of
+    the same rules is the DRY-drift hazard this project extracts on sight, and the second site is
+    where you extract.
+
+    What stays here is only the GRID PLACEMENT, which is this page's layout and not the component's.
+  */
 
   /*
     The picture reads as the subject of the pane: its own frame, and the drawing scaled to fit it.
@@ -785,6 +796,20 @@
       It stays BEFORE the canvas in the document, which is AT order. The canvas is painted above it
       by `grid-template-areas` (see the stylesheet). Two orderings of the same facts.
     -->
+    <!--
+      The resource budget (section 11): every declared allocation of one dimension, its total, and
+      the declared ceiling the total is decided against.
+
+      Present only when the loaded system declares a quantitative model, and EMPTY otherwise rather
+      than hidden-with-a-placeholder: a system with no quantities has no budget, and an empty box
+      saying so would be furniture. The CSS selector is `:not(:empty)` for that reason.
+
+      This is a projection of the quantitative model, not of a structural one. Before it existed the
+      only picture a quantitative model could get was the structural extractor drawing whichever
+      model a positional rule picked -- the generic fallback section 22.4 forbids. A budget's facts
+      are extent and a threshold; its marks are a length and a line.
+    -->
+    <div id="model-budget"></div>
     <details id="model-reading">
       <summary id="model-reading-summary">The model in words</summary>
       <!--

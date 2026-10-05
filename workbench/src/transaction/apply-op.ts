@@ -13,6 +13,7 @@
  * substitute for the rename op V2 forbids.
  */
 import type { Finding, Scalar } from "../ir/types.ts";
+import { parseMagnitude } from "../ir/canonicalize.ts";
 import { MageDocument } from "../yaml/document.ts";
 import type { Path, YamlValue } from "../yaml/document.ts";
 import { blocked, entityReferences, modelReferences, stateReferences } from "./references.ts";
@@ -381,6 +382,40 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       doc.pushIn([...target.path, "notes"], compact({
         id, kind: op.note.kind, text: op.note.text, author: op.note.author, at: op.note.at,
       }));
+      return null;
+    }
+
+    case "set-quantity-value": {
+      const path: Path = ["quantities", op.id];
+      if (!doc.has(path)) return fail(where, `set-quantity-value: no quantity '${op.id}'.`);
+      const quantity = doc.system().quantities.get(op.id);
+      // Unreachable while the key exists, since canonicalization is total over the map. Checked
+      // because an absence here would otherwise write a value onto something the IR does not carry.
+      if (quantity === undefined) return fail(where, `set-quantity-value: quantity '${op.id}' did not canonicalize.`);
+      if (quantity.value.kind !== "point" && quantity.value.kind !== "absent") {
+        return fail(where,
+          `set-quantity-value: quantity '${op.id}' declares a ${quantity.value.kind}, and this op sets a ` +
+          `single value. Overwriting it would discard a declaration the author made — edit the ` +
+          `${quantity.value.kind} in the source, or delete and re-declare the quantity.`);
+      }
+      if (quantity.dimension === null) {
+        return fail(where,
+          `set-quantity-value: quantity '${op.id}' declares dimension '${quantity.dimensionRaw}', which is ` +
+          `not one of the five, so no literal can be checked against it (V28). Fix the dimension first.`);
+      }
+      // The value must normalize IN THE DECLARED DIMENSION. Without this, '64 ms' lands on a memory
+      // quantity: the write succeeds, the magnitude refuses downstream, and the student reads the
+      // failure as a broken tool rather than as the cross-dimension error it is (V30's class).
+      const probe = parseMagnitude(op.value, quantity.dimension);
+      if (probe.base === null) {
+        return fail(where,
+          `set-quantity-value: '${op.value}' is not a readable ${quantity.dimension} magnitude ` +
+          `(${probe.fault ?? "unreadable"}). Quantity '${op.id}' is declared in ${quantity.dimension}; write a ` +
+          `unit-bearing literal in one of its units, the way '${op.id}' is already written.`);
+      }
+      // `range:` is deleted only when it is absent-valued, where it cannot be: the guard above
+      // refuses a declared range, so the key being written is the only value key present.
+      doc.setScalar([...path, "value"], op.value);
       return null;
     }
 

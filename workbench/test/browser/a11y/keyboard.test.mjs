@@ -46,7 +46,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   startServerOnFreePort, launchBrowser, shutdown, openWorkbench, writeReceipt,
-  WORKBENCH_DIR, KEYBOARD_RECEIPT_PATH,
+  WORKBENCH_DIR, KEYBOARD_RECEIPT_PATH, FLAGSHIP_COUNTS,
 } from "../harness.mjs";
 import {
   reachByTab, tabSequence, typeInto, chooseByKeyboard, toggleByKeyboard, pressToggleByKeyboard,
@@ -219,9 +219,7 @@ describe("section 19, operations 1-5: authoring", () => {
     );
     const after = await context();
     assert.equal(after.systemId, "message-bus");
-    assert.deepEqual(after.counts, {
-      entities: 11, models: 3, machines: 0, instances: 0, relations: 18, events: 0, savedQueries: 6,
-    }, "the imported system is not the flagship");
+    assert.deepEqual(after.counts, { ...FLAGSHIP_COUNTS }, "the imported system is not the flagship");
     prove("import", `#file reached in ${presses} Tab presses; imported message-bus, hash ${after.hash}`);
   });
 

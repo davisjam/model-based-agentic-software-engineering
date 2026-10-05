@@ -806,6 +806,13 @@ export function createAgentApi(
         instances: s.system.instances.length,
         relations: s.system.relations.length,
         events: s.system.events.size,
+        // The quantity layer was absent from this tally, so an agent reading the context could not
+        // tell a system that declares a resource budget from one that declares none — and the
+        // quantitative question is exactly the one it would then not think to ask. Two numbers,
+        // because they answer different questions: how many ANNOTATIONS there are, and how many
+        // accounting MODELS they constitute (one per dimension).
+        quantities: s.system.quantities.size,
+        quantitativeModels: s.system.quantitativeModels.size,
         savedQueries: s.system.queries.size,
       },
       canUndo: s.canUndo,

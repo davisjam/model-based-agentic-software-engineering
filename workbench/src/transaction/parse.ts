@@ -306,6 +306,13 @@ const OP_PARSERS: Readonly<Record<OpName, (o: Obj, s: Shape) => Operation | null
     return { op: "add-note", scope, model, id, from, to, type: s.optStr(o, "type"), note };
   },
 
+  "set-quantity-value": (o, s) => {
+    const id = s.id(o, "id"); const value = s.str(o, "value");
+    // Shape only. Whether the literal normalizes in the quantity's declared dimension is decided
+    // where the quantity is in hand, so the refusal can quote the dimension it had to agree with.
+    return id !== null && value !== null ? { op: "set-quantity-value", id, value } : null;
+  },
+
   "save-query": (o, s) => {
     const id = s.id(o, "id");
     const query = s.optObj(o, "query");

@@ -71,10 +71,17 @@ import { Workspace } from "./services.ts";
  * example and left the card unchanged.
  *
  * What is NOT resolved here: §31 drops Worker Queue from its three while §18 keeps it, and nothing
- * in this wave adjudicated that. Four ship.
+ * in this wave adjudicated that. Five ship.
+ *
+ * Embedded Sensor Node sits LAST, and the position is a consequence rather than a preference.
+ * `exemplarFor` takes the FIRST shipped example instantiating a type, and three examples ahead of
+ * this one already declare quantities — so appending leaves every existing Learn card's exemplar
+ * where it is. The quantitative card's exemplar is a separate question from the menu's order: it is
+ * decided by which example has an addressable quantitative model to render, not by position.
  */
 export const SHIPPED_EXAMPLE_IDS =
-  ["message-bus", "transaction-workspace", "document-processing", "worker-queue"] as const;
+  ["message-bus", "transaction-workspace", "document-processing", "worker-queue",
+   "embedded-sensor-node"] as const;
 
 export type ShippedExampleId = (typeof SHIPPED_EXAMPLE_IDS)[number];
 

@@ -23,6 +23,7 @@ import type { CanonicalSystem } from "../src/ir/types.ts";
 import { MODEL_TYPES, modelTypeForQueryKind } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
+import { renderBudgetView } from "../src/app/budget.ts";
 import { Workspace } from "../src/app/services.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
 import {
@@ -68,13 +69,30 @@ test("every type's visual is a shipped subject the type's own presence predicate
     assert.ok(presentTypes(system).includes(s.entry.id),
       `${s.entry.id}: exemplar '${s.visual.example}' does not declare the type it illustrates`);
 
-    // The REAL renderer, over the derived subject: picture and accessible twin from one call.
-    const view = renderView(system, { subject: s.visual.subject });
-    assert.ok(view.accessible.nodes.length > 0,
-      `${s.entry.id}: the exemplar scene is empty — nothing for hover/select to reach`);
-    assert.equal(view.accessible.subject.id, s.visual.subject.id);
-    assert.ok(view.svg.includes(`data-subject-id="${s.visual.subject.id}"`),
-      `${s.entry.id}: the SVG does not identify its subject`);
+    // The REAL projection, over the derived subject: picture and accessible twin from one call.
+    // Two arms, because the kernel has two kinds of subject a picture can be of — and the
+    // quantitative arm is the one that used to borrow the structural extractor over a positionally
+    // chosen model, which is the generic fallback a registered model type may not have.
+    const picture = s.visual.picture;
+    if (picture.kind === "scene") {
+      const view = renderView(system, { subject: picture.subject });
+      assert.ok(view.accessible.nodes.length > 0,
+        `${s.entry.id}: the exemplar scene is empty — nothing for hover/select to reach`);
+      assert.equal(view.accessible.subject.id, picture.subject.id);
+      assert.ok(view.svg.includes(`data-subject-id="${picture.subject.id}"`),
+        `${s.entry.id}: the SVG does not identify its subject`);
+      continue;
+    }
+    const budget = renderBudgetView(system, picture.dimension);
+    assert.ok(budget.ok, budget.ok ? "" : `${s.entry.id}: ${budget.refusal}`);
+    assert.equal(budget.value.accessible.subject.kind, "quantitative-model");
+    assert.equal(budget.value.accessible.subject.id, picture.dimension);
+    assert.ok(budget.value.accessible.allocations.length > 0,
+      `${s.entry.id}: the exemplar budget has no allocations — there is nothing to see`);
+    // A budget rather than a total: the margin is the fact section 11 exists to make obvious, so
+    // the exemplar must be a dimension whose ceiling is declared.
+    assert.notEqual(budget.value.accessible.budget, null,
+      `${s.entry.id}: the exemplar has no declared ceiling, so the card teaches a total, not a budget`);
   }
 });
 

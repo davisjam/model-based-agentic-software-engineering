@@ -98,6 +98,14 @@ entities:
       supplied_queries: 8
       suggested_queries: 5
 
+  example.embedded-sensor-node:
+    type: default-example
+    label: "Embedded Sensor Node"
+    properties:
+      purposeful_models: 2
+      supplied_queries: 4
+      suggested_queries: 3
+
   capability.structural-models:
     type: semantic-capability
     label: "A structural model: entities and typed relations, with a declared purpose."
@@ -282,6 +290,7 @@ models:
       - example.transaction-workspace
       - example.document-processing
       - example.worker-queue
+      - example.embedded-sensor-node
       - capability.structural-models
       - capability.typed-relationships
       - capability.state-machines
@@ -311,9 +320,11 @@ models:
       - { from: example.transaction-workspace, to: capability.structural-models, type: exercises }
       - { from: example.document-processing, to: capability.structural-models, type: exercises }
       - { from: example.worker-queue, to: capability.structural-models, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.structural-models, type: exercises }
       - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
       - { from: example.transaction-workspace, to: capability.typed-relationships, type: exercises }
       - { from: example.document-processing, to: capability.typed-relationships, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.typed-relationships, type: exercises }
       - { from: example.transaction-workspace, to: capability.state-machines, type: exercises }
       - { from: example.document-processing, to: capability.state-machines, type: exercises }
       - { from: example.worker-queue, to: capability.state-machines, type: exercises }
@@ -322,13 +333,16 @@ models:
       - { from: example.transaction-workspace, to: capability.cross-model-identity, type: exercises }
       - { from: example.document-processing, to: capability.cross-model-identity, type: exercises }
       - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.cross-model-identity, type: exercises }
       - { from: example.message-bus, to: capability.model-composition, type: exercises }
       - { from: example.transaction-workspace, to: capability.model-composition, type: exercises }
       - { from: example.document-processing, to: capability.model-composition, type: exercises }
       - { from: example.worker-queue, to: capability.model-composition, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.model-composition, type: exercises }
       - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
       - { from: example.transaction-workspace, to: capability.graph-reachability, type: exercises }
       - { from: example.document-processing, to: capability.graph-reachability, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.graph-reachability, type: exercises }
       - { from: example.transaction-workspace, to: capability.safety, type: exercises }
       - { from: example.worker-queue, to: capability.safety, type: exercises }
       - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
@@ -344,6 +358,7 @@ models:
       - { from: example.transaction-workspace, to: capability.witnesses, type: exercises }
       - { from: example.document-processing, to: capability.witnesses, type: exercises }
       - { from: example.worker-queue, to: capability.witnesses, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.witnesses, type: exercises }
       - { from: example.transaction-workspace, to: capability.counterexamples, type: exercises }
       - { from: example.document-processing, to: capability.counterexamples, type: exercises }
       - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
@@ -353,6 +368,7 @@ models:
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
       - { from: example.document-processing, to: capability.quantitative-annotations, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.quantitative-annotations, type: exercises }
       - { from: example.document-processing, to: capability.declared-accounting, type: exercises }
       - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
       - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
