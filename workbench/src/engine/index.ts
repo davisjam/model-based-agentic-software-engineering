@@ -22,6 +22,7 @@
  */
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem, Coverage, Outcome, QueryResult, SavedQuery } from "../ir/types.ts";
+import { bearsAConclusion, evaluationOf } from "../ir/types.ts";
 import { runQuantityQuery } from "../quant/query.ts";
 import { runBehaviorQuery } from "./behavior.ts";
 import { runGraphQuery, type GraphAnswer } from "./graph.ts";
@@ -62,6 +63,11 @@ export {
   type Refusal, type RefusalReason, type Verdict,
 } from "./types.ts";
 export { admitQuantityQuery, runQuantityQuery, type QuantityPlan } from "../quant/query.ts";
+export {
+  parseRequirement, verificationError, VERIFICATION_TEXT, verify, verifyDeclaration,
+  type InconclusiveCause, type Requirement, type RequirementParse, type RequirementProblem,
+  type Verification, type VerificationStatus,
+} from "./verification.ts";
 
 /**
  * A verdict plus the structured non-visual twin.
@@ -191,56 +197,44 @@ const OUTCOME_WORDS: Readonly<Record<Outcome, true>> = {
 const isOutcome = (s: string): s is Outcome => Object.hasOwn(OUTCOME_WORDS, s);
 
 /**
- * Whether this coverage can carry a CONCLUSIVE reading of the outcome travelling with it.
+ * How the pin stands against the answer. TOTAL over `EvaluationStatus` by the compiler — no
+ * `default`, and a declared return type, so a status added to the vocabulary is a type error here
+ * before it is a wrong word anywhere else.
  *
- * A witness is coverage-insensitive and an absence is not, and the kernel already applies that
- * asymmetry one layer down: every evaluator that finds settling evidence reports `exhaustive(...)`
- * however little of the space was walked, and every truncated absence reports `inconclusive` under
- * `bounded` (`behavior.ts:19-31`, `graph.ts:621-627`, `quant/query.ts:235-240`,
- * `quant/requirement.ts:130-136`). So `holds`/`refuted` under `bounded` is not reachable from any
- * shipped evaluator — which is why this is a declared guard rather than an assumption. V22 forbids
- * putting refuting force behind a truncated exploration (`render/accessible.ts:60-62`), and a
- * requirement line is the strongest reading any surface puts on a result, so it must not be the one
- * surface that drops the condition (`DESIGN-v02-requirements-261004.md` §3.2).
- */
-function bearsAConclusion(coverage: Coverage): boolean {
-  switch (coverage.kind) {
-    case "exhaustive": return true;
-    case "not-applicable": return true;
-    case "bounded": return false;
-  }
-}
-
-/**
- * How the pin stands against the answer. TOTAL over `Outcome` by the compiler — no `default`, and a
- * declared return type, so a new outcome word is a type error here before it is a wrong word
- * anywhere else.
+ * Switching over the EVALUATION rather than over `Outcome` is the §5.4 split applied to this path.
+ * The arms here were already split by remedy, but they were derived from a four-valued union in
+ * which `inconclusive` and `unlicensed` sit in the same position as `holds` — so the split was a
+ * convention this function kept, and the next reader to switch on `res.outcome` was free to drop it.
+ * `evaluationOf` makes the two non-propositions unreachable as proposition values, and the one
+ * comparison left (`expected !== ev.verdict`) now compares two truth values rather than a prediction
+ * against a status. `error` is absent because `ResultEvaluation` excludes it: the engine's contract
+ * is that nothing throws, so no result carries an evaluator error.
  */
 function standingOf(expected: Outcome, res: QueryResult): ExpectationVerdict {
-  switch (res.outcome) {
-    // Both conclusive. Matching the pin is met, provided the coverage can bear a conclusion;
+  const ev = evaluationOf(res);
+  switch (ev.status) {
+    // A proposition value. Matching the pin is met, provided the coverage can bear a conclusion;
     // contradicting it is the accusation, and nothing softens it.
-    case "holds":
-    case "refuted":
-      if (expected !== res.outcome) return { kind: "unmet", expected, outcome: res.outcome };
-      return bearsAConclusion(res.coverage)
-        ? { kind: "met", outcome: res.outcome }
-        : { kind: "unsettled", expected, outcome: res.outcome, limit: res.coverage.reason };
+    case "completed":
+      if (expected !== ev.verdict) return { kind: "unmet", expected, outcome: ev.verdict };
+      return bearsAConclusion(ev.coverage)
+        ? { kind: "met", outcome: ev.verdict }
+        : { kind: "unsettled", expected, outcome: ev.verdict, limit: ev.coverage.reason };
 
     // The search did not settle the question. A pin that NAMED `inconclusive` is met by it — that
     // is a legitimate prediction about a bounded search — and every other pin is unsettled rather
     // than contradicted: "not refuted" is not "violated".
-    case "inconclusive":
+    case "exhausted":
       return expected === "inconclusive"
-        ? { kind: "met", outcome: res.outcome }
-        : { kind: "unsettled", expected, outcome: res.outcome, limit: res.coverage.reason };
+        ? { kind: "met", outcome: "inconclusive" }
+        : { kind: "unsettled", expected, outcome: "inconclusive", limit: ev.limit };
 
     // The models decline. Folding this into `unsettled` would send the engineer to raise a budget
     // when the answer is to declare a relation type, and four layers below here keep the two apart.
     case "unlicensed":
       return expected === "unlicensed"
-        ? { kind: "met", outcome: res.outcome }
-        : { kind: "declined", expected, refusal: res.refusal };
+        ? { kind: "met", outcome: "unlicensed" }
+        : { kind: "declined", expected, refusal: ev.refusal };
   }
 }
 
