@@ -343,13 +343,15 @@ coverage-independent (the same declaration refuses at `limit: 3` and at exhausti
 zero findings — §4. *Unblocks:* Phase B can migrate without removing the only thing that catches a
 mis-authored ceiling.
 
-**Phase B — migrate the last two requirements; ten of ten.** Two saved `within:` queries over
-`latency-requirement` and `peak-memory-requirement`, both rows moved to `expressed_as` +
-`satisfied_when: holds`. Verdicts already measured (§0.5): VIOLATED and SATISFIED, both matching the
-oracle. *Unblocks:* the `decided_by` route retires from the corpus, and the example's §0.4 note becomes
-a statement about pedagogy alone. Note the live scope question Phase B must answer rather than assume
-— the author declined these two saved queries because they *"change what the example is about"*. That
-judgment is the author's; this ruling establishes only that the construct does not force the issue.
+**Phase B — migrate the last two requirements; ten of ten. ⚠️ DECLINED by the author, 2026-10-05 —
+see §9.** Two saved `within:` queries over `latency-requirement` and `peak-memory-requirement`, both
+rows moved to `expressed_as` + `satisfied_when: holds`. Verdicts already measured (§0.5): VIOLATED and
+SATISFIED, both matching the oracle. *Unblocks:* the `decided_by` route retires from the corpus, and
+the example's §0.4 note becomes a statement about pedagogy alone. The live scope question this phase
+was told to answer rather than assume — the author declined these two saved queries because they
+*"change what the example is about"* — **is now answered, and the answer is that the phase does not
+run.** The judgment was the author's to make and the author has made it; this ruling's own finding
+stands unchanged, that the construct does not force the issue either way.
 
 **Phase C — re-point the two tests that key off `decided_by`.** `test/examples.test.ts:416-421` and
 `:842`. The ceiling-single-source check at `:842` must survive in some form: it is the only assertion
@@ -387,7 +389,8 @@ limitation was written down as a *construct* limitation.
   analysis time is saved nowhere to be named, and the authored shape has no key for a ceiling."* The
   second clause is true and harmless. The first is wrong: `mage-query.schema.json:141` saves exactly
   that question, and two shipped queries are one. Amend to say the two *document-processing* rows have
-  no saved query **because none was written for them**, by the author's stated choice.
+  no saved query **because none was written for them** — a choice, now ratified and dated in §9 rather
+  than inferred from the example's own comment.
 
 - **§7.0's second consequence** — *"Migrating them would trade away an INDEPENDENT oracle."* It would
   not. The oracle is `quantitative_expectations`, declared and checked independently of the
@@ -422,3 +425,68 @@ one example's scope, and the example says so itself.
 (not committed, per the brief). Reading the schema alone would have produced the opposite ruling twice
 over: `requirements` genuinely has no ceiling key, and `quantity` genuinely has no ceiling key either
 — the capability lives in a third file, on the *query*. The probe is what found it.
+
+---
+
+## 9. RATIFIED 2026-10-05 — `decided_by` stays, Phase B is declined, and the route is licensed fixture-side
+
+**This section exists because the record was an inference.** §8 told the next reader that the two
+`document-processing` rows have no saved query *"because none was written for them, by the author's
+stated choice"*, and that sentence was derived from a comment in the example rather than from a
+decision. An inference invites re-litigation: the next reader weighs it, finds §0.5's measurement that
+both rows migrate today with no change to any construct, and re-opens a question the author has
+already closed. A dated ratification does not invite that. Nothing in the tree changes here — no
+model, no fixture row, no requirement, no schema. What changes is that the reader finds a decision.
+
+### What the author ratified
+
+The new evidence changed the author's view of the **technical limitation** and not the earlier **design
+judgment**. §0.1 and §0.5 established that `queries:` saves a ceiling today and that both rows migrate
+with no construct change, which retired the claim that the corpus was pinned by what the language could
+express. The judgment that survives it:
+
+> *"`document-processing` has a pedagogical identity, and making every available decision into a saved
+> authored requirement just because the representation can express it is exactly the kind of 'surface
+> completeness' I don't want. … `decided_by` is now a **deliberate, licensed second route** rather than
+> an accidental residue."*
+
+Three consequences, each a statement about the record rather than about the code:
+
+- **The two rows stay on the `decided_by` route.** Not because migration is blocked — §0.5 measured
+  that it is not — but because the saved queries it would require teach a join this example is not
+  about. The hold-back is pedagogical scope, chosen with the expressive power in hand.
+- **Phase B does not run** (§7, now marked declined). The phases that survive it are A, C and D, and C
+  loses its reason to exist: it was the debt Phase B incurred.
+- **`decided_by` is a licensed route rather than a residue.** A residue is something nobody decided to
+  keep. This is kept on purpose, and the next reader who finds it should read it as a choice.
+
+### Consistency with §2, checked rather than assumed
+
+§2 of this ruling holds that *"`decided_by` is fixture bookkeeping; the construct set must not name
+it."* That ruling and the ratification above are **consistent, and they are about different layers.**
+
+§2 answers *where may this key be named* and refuses one place: the authored construct set. Its grounds
+are that `decided_by` appears only in `expected-results.yaml`, which answers to no schema, and that its
+readers are the fixture layer and the coverage script — so naming a test-oracle key among the authored
+constructs would give a requirement two kinds for the sake of a surface the author never writes. The
+ratification answers a different question: *must the two rows that use it migrate off it.* It says no.
+
+So **"licensed" means licensed FIXTURE-SIDE.** The route stays exactly where §2 located it, read by the
+fixture layer and the coverage script, and it is **not** promoted into the authored construct set. A
+reading that took "licensed second route" as a mandate to give the model schema a `decided_by` key
+would contradict §2, and §2 stands. The word *second* is doing the work: a second route through the
+fixture, beside `expressed_as`, not a second authored construct.
+
+One thing worth stating because the two sections could be misread as disagreeing about migration. §2
+argues migration is *cheap* — it does not cost the independent oracle, because the oracle is the
+`quantitative_expectations` block and `decided_by` only points at it. That argument survives intact and
+is what makes the ratification a free choice rather than a constrained one. §2 established that
+nothing forces the move; the author has declined to make it. "The implementation can support this" and
+"the release should teach this" are different questions, and this is the one answering the second.
+
+### What a future reader should do with this
+
+Re-open it on new evidence about **pedagogy**, not about expressiveness. Evidence that the construct
+can express the migration is already in this document and was weighed. A later decision that
+`document-processing` should teach the ceiling join after all is a decision about what the example is
+for, and it belongs to whoever owns the example's identity.

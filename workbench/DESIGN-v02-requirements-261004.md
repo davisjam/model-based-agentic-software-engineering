@@ -659,10 +659,20 @@ That sentence stated a FIXTURE limit as a CONSTRUCT limit, and it is wrong.
 reference to a declared quantity, not a literal — and two shipped queries already use it
 (`examples/document-processing/system.mage.yaml:691`,
 `examples/embedded-sensor-node/system.mage.yaml:423`). The two rows have no saved query **because
-none was written for them**, by the author's stated choice: saving them "would also add two saved
+none was written for them**: saving them "would also add two saved
 queries to teach a join, which is a change to what the example is about and not a migration of it"
 (`examples/document-processing/system.mage.yaml:756-757`). The hold-back is pedagogical scope, not
-expressive power. One thing follows that the design did not anticipate:
+expressive power.
+
+**⚠️ Ratified 2026-10-05, replacing the inference this paragraph used to carry**
+(`DECISIONS-RULED-ceiling-requirement-261005.md` §9). The sentence above once added *"by the author's
+stated choice"*, which was read off the example's comment rather than off a decision — and an inference
+invites the next reader to re-weigh it against §0.5's measurement that both rows migrate today with no
+construct change. It is now a dated ruling: the two rows **stay** on the `decided_by` route, the
+migration phase is **declined**, and `decided_by` is a deliberate licensed route rather than an
+accidental residue. Licensed **fixture-side** — the ceiling ruling's §2 holds that the authored
+construct set must not name it, and that stands unchanged. One thing follows that the design did not
+anticipate:
 
 - **The nearest available distortion produces a false `satisfied`.** `max-latency-among-successful-executions`
   is a saved query over the same executions, so `expressed_as` could name it — and it asks only
