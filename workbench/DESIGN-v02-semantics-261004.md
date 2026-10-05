@@ -1351,10 +1351,10 @@ The rows are not all the same kind of claim, so each carries its class.
 
 | MAGE IR construct | Standard | Standard concept, as named in the 261004 ruling | Class | Clause |
 |---|---|---|---|---|
-| entity / type, relation, attribute | KerML, SysML v2 | typed-element, relationship, feature subsets | **borrowed** | owed |
-| machine, state, transition | SysML v2 | behavioral / state / succession subsets | **borrowed** | owed |
+| entity / type, relation, attribute | KerML, SysML v2 | typed-element, relationship, feature subsets | **borrowed** | KerML 1.0 §8.3.4.4.2, §8.3.3.2.2 — fixture `conformance/kerml/association-link-typing-001`, `spec-inspected` |
+| machine, state, transition | SysML v2 | behavioral / state / succession subsets | **borrowed** | SysML v2.0 §8.3.18.9 via KerML 1.0 §9.2.10 — fixture `conformance/sysml/transition-guard-occurrence-001`, `normative-artifact` |
 | binding | KerML | binding subset | **borrowed** | owed |
-| quantity / unit | SysML v2 | Quantities and Units library subset | **borrowed** | owed |
+| quantity / unit | SysML v2 | Quantities and Units library subset | **borrowed** | SysML v2.0 §9.8, §9.8.3 — fixture `conformance/sysml/quantity-unit-magnitude-001`, `normative-artifact` |
 | requirement, verification | SysML v2 | requirement and verification-case subsets | **borrowed** | owed |
 | relational query | — | Workbench analysis semantics | **extension** | n/a |
 | LTL query | — | standard linear temporal logic, deliberately outside SysML and KerML | **extension, externally grounded** | n/a |
@@ -1379,6 +1379,39 @@ commitment with a named discharge point: the fixture's `claim.md` (§35.6) quote
 sentence with its clause, and the table's cell is filled from the fixture rather than the reverse.
 Until then the concept column carries the concept *names* the ruling used, which is a weaker and
 truthful claim.
+
+**As-built, 261004: three of the five cells are now filled, and each carries the fixture that filled
+it and the method that fixture used.** The clause numbers above come from the formal specifications —
+KerML 1.0, OMG Document Number `formal/2026-03-01`, and SysML v2.0 Part 1,
+`formal/2026-03-02` — read at `conformance/` authoring time and quoted in each fixture's `claim.md`.
+Three things about those three cells, because a filled cell is the thing most likely to be read as
+stronger than it is.
+
+- **The method travels with the clause, and it has three values rather than two.**
+  `oracle-executed`, `normative-artifact` and `spec-inspected`. The middle rung is where a
+  correspondence is decided by OMG's normative *machine-readable* material — declared structure,
+  multiplicities, values, invariants — with no prose step between the artifact and the claim, and it
+  is reachable without a runtime dependency because OMG publishes `KerML.xmi`, `SysML.xmi` and the
+  normative libraries beside the PDFs. `spec-inspected` is where the decisive step is a sentence. The
+  three are never collapsed, and **a `spec-inspected` fixture is not executable conformance**.
+- **No oracle ran, and the row shapes say which did what.** Two cells are `normative-artifact` and
+  one is `spec-inspected`. A fixture's method reports the *weakest* rung its pinned interpretation
+  depends on, so the link-typing row reads `spec-inspected` even though its structural half is
+  declared in `KerML.xmi` — the half is listed under that fixture's `evidence[]` with its own rung
+  rather than lifting the headline.
+- **A filled cell does not make the correspondence `checked`.** §35.5 rung 3 is unchanged by all
+  three: nothing in CI re-derives the standard's half. The cell means a clause has been read and
+  quoted at a date, with a bound — `asserted`, in §13's vocabulary, with better evidence than a bare
+  reading.
+
+**`binding` and `requirement, verification` stay `owed`, and that is not a backlog item.** Verified
+261004: no `binding` construct exists in either JSON schema, in `src/ir/types.ts` or in
+`src/engine/model-types.ts`, and no `verification` construct exists anywhere — §14's
+bindings/compositions split and §20 have not landed. A fixture for either would describe a shape the
+Workbench does not have, which is fiction rather than provenance. The cells stay `owed` until the
+constructs exist; `conformance/manifest.json`'s `owed` array carries the same two rows with the same
+reason, and `test/conformance.test.ts` asserts both are still named there, so an unmet obligation
+cannot quietly disappear.
 
 ### 35.5 Where the provenance is recorded, and what holds it
 
@@ -1566,6 +1599,61 @@ shipping `NOT_PROVEN` beside its numbers (`test/model-coverage.test.ts:123`, hel
 `:491`). A fixture for the binding subset says what one binding means in both places. It says
 nothing about the next construct, and nothing about completeness.
 
+### 35.6a As-built: the corpus, and three places it diverges from §35.6 (261004)
+
+`conformance/` exists with three fixtures. `conformance/README.md` is the corpus's own account and is
+not restated here; this subclause records only where the built thing differs from the shape above, so
+a reader comparing the two does not read a deliberate revision as drift.
+
+**1. The method field has three values, not two.** §35.6's two templates are `executed` and
+`specification-read`. The author's 261004 revision splits the second, because OMG publishes normative
+*machine-readable* artifacts beside the PDFs and checking a correspondence against one of those is
+stronger than reading prose while still needing nothing installed. The three spellings are
+`oracle-executed`, `normative-artifact`, `spec-inspected`. The standing instruction is **never
+collapse them**, and in particular **do not call a `spec-inspected` fixture executable conformance**.
+
+Two disciplines in the built corpus hold that. A fixture's `method` reports the **weakest** rung its
+pinned interpretation depends on, and `evidence[]` lists each component with its own rung — so a
+claim whose structure is declared in the XMI but whose decisive step is a Description sentence
+records `spec-inspected`, with the declared half visible but not promoting the headline. And the
+corpus publishes a derived status line of the form *"checked by N fixtures: X oracle-executed,
+Y normative-artifact, Z spec-inspected"*, which `test/conformance.test.ts` re-derives from the
+manifest and compares against both the manifest's own string and the README's prose.
+
+**At 261004 that line reads: checked by 3 fixtures: 0 oracle-executed, 2 normative-artifact,
+1 spec-inspected.** No reference implementation ran, and none will while §35.1 holds.
+
+**2. The directories are nested and the corpus has a manifest.** §35.6 specifies a flat
+`conformance/<standard>-<concept>-<nnn>/`. The built shape is
+`conformance/<standard>/<concept>-<nnn>/` plus `README.md` and `manifest.json`, which is the author's
+revision. The manifest is where the richer per-fixture record lives: the MAGE construct, its
+`semanticBasis` owner, the normative concept, the normative document *and* its OMG document number,
+the clause and the machine-readable artifact, both sides' models, the expected correspondence, the
+method, and the oracle's version where one ran.
+
+**3. A fixture must pin a claim that could be FALSE, which §35.6 implies and does not say.** The
+corpus makes it explicit, because it is the difference between a fixture and a file asserting that
+something corresponds. Each `claim.md` carries the competing reading and the verdict *it* would
+produce — "a relation type is a display label", "a transition is an edge of the diagram", "a unit is
+a decorative suffix" — and the pinned `expect` is chosen so the two readings disagree.
+`test/conformance.test.ts` then drives the converse by mutating the fixture model: the verdict must
+move when the meaning moves and hold still when it does not. Every mutation there was
+sabotage-checked, each reddening exactly one test. Without that, a `refuted` earned by the claim and
+a `refuted` earned by asking about nothing are the same row — the failure class
+`AUDIT-system-models-261004.md` gap 1 established by mutation.
+
+**What the corpus does not yet do, named so it is a choice rather than a rediscovery.** The registry
+still understates it. `SemanticBasis`'s `borrowed` arm carries `clause` and `fixture`, and all three
+rows still read `clause: CLAUSE_OWED, fixture: null` — this wave was scoped out of editing those
+declarations, so the §35.4 table above and the corpus on disk are ahead of
+`src/engine/model-types.ts`. The understatement is the safe direction and it is still a disagreement.
+Wiring each borrowed row to its fixture directory and its clause is the next edit, and the control
+that will check it already exists: `test/model-types.test.ts`'s biconditional requires a named
+fixture to exist on disk and to come with a clause carrying a number, in both directions. The
+sibling follow-up the author named — a CI rule that a borrowed mapping declaring
+`fixtureRequired: true` fails without a manifest entry — belongs with that edit, since the manifest
+and the registry are the two halves it would join.
+
 ### 35.7 SysML v2 subset import and export: a dated non-goal
 
 **Recorded 261004. Not v0.2.** §32 already lists "importing arbitrary SysML models" and "exporting
@@ -1593,6 +1681,12 @@ concepts of §3. It is still not v0.2.
 into a permanent omission, which is the lesson 261004 produced twice. If the answer at v0.3 is still
 no, the answer gets re-recorded with its date and this entry is superseded rather than left to
 imply that nobody looked.
+
+**Trigger status, 261004: condition 1 is partly met and the binding half of it is not met at all.**
+Three of the five borrowed rows have a fixture (§35.6a); two do not, and **no fixture is
+`method: "executed"`** — the corpus is 2 `normative-artifact` and 1 `spec-inspected`, and nothing in
+it ran an implementation. Condition 1 asks for both halves and has neither, so the trigger has not
+fired. Recorded because a reader who sees `conformance/` exist might otherwise take it to have.
 
 ---
 

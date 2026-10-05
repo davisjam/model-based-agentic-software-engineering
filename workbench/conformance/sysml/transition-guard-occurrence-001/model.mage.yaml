@@ -1,0 +1,119 @@
+# CONFORMANCE FIXTURE. The MAGE half of one correspondence claim; `claim.md` states the claim and
+# `oracle.json` records how it was checked. Read those two before reading this file.
+#
+# The claim this model exists to make falsifiable: a transition's guard conditions whether the
+# transition OCCURS, so a declared transition no reachable configuration can enable contributes no
+# step and its target is never entered by that route. `open` is drawn one edge away from `armed` and
+# is unreachable, because `unlock` requires `key: 1` and no transition in this machine ever assigns
+# `key`. A reading under which a transition were a static edge of the state diagram would answer
+# `holds` to both pinned queries.
+#
+# Nothing here is a shipped example and nothing imports it.
+
+mage: 1
+
+system:
+  id: sysml-transition-guard-occurrence
+  name: A guarded transition that never occurs
+  description: >
+    One machine whose state diagram is connected and whose reachable configuration space is not: the
+    sole edge into the final state carries a guard no execution satisfies.
+
+entities:
+
+  lock:
+    type: component
+    label: Lock
+
+machines:
+
+  gate:
+    # `machine-of-entity` -- the structural element whose behaviour this machine describes.
+    entity: lock
+    purpose:
+      question: Can the gate reach open?
+      represents: [arming and disarming, the key the unlock guard reads]
+      omits: [wall-clock time, who arms the gate, what passes through it when open]
+    initial: closed
+    states:
+      closed:
+      armed:
+      open:
+    variables:
+      # Finite domain, mandatory (V17). Deliberately the minimum width that lets the guard be
+      # SATISFIABLE in principle: a width-one domain would make `key: 1` unsatisfiable by the
+      # variable's declaration rather than by the transition table, which is a different claim.
+      key:
+        type: integer
+        range: [0, 1]
+        initial: 0
+    transitions:
+
+      - from: closed
+        to: armed
+        label: arm
+
+      # Present so the reachable space is more than a single path and the positive control below is
+      # about re-entry rather than about a two-configuration system.
+      - from: armed
+        to: closed
+        label: disarm
+
+      # THE guarded edge. `key` is 0 in the initial configuration and no transition above assigns
+      # it, so no reachable configuration satisfies this guard. The edge is declared; the step is
+      # never enabled. Adding `effects: { key: 1 }` to `arm` is the mutation the conformance test
+      # applies, and it is what flips both pinned queries to `holds` without touching a single
+      # state or edge.
+      - from: armed
+        to: open
+        label: unlock
+        requires:
+          key: 1
+
+queries:
+
+  # THE pinned claim, in the form that asks about occupancy. `refuted` under exhaustive coverage
+  # says no reachable execution enters `open`.
+  open-is-never-entered:
+    name: The gate can reach open
+    kind: behavior
+    quantifier: exists
+    expect: refuted
+    behavior:
+      form: reach
+      target:
+        gate.state: open
+
+  # The same claim in the form that asks about the TRANSITION rather than about the state, because
+  # the two are different questions and the correspondence is about the transition. `transition-live`
+  # asks whether the named transition is executable in some reachable configuration.
+  unlock-never-occurs:
+    name: The unlock transition is executable somewhere
+    kind: behavior
+    quantifier: exists
+    expect: refuted
+    behavior:
+      form: transition-live
+      transition:
+        machine: gate
+        from: armed
+        to: open
+
+  # The positive control. Without it the two `refuted`s above are consistent with an empty or
+  # unexplored configuration space, which would make this fixture pass by construction.
+  armed-is-entered:
+    name: The gate can reach armed
+    kind: behavior
+    quantifier: exists
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        gate.state: armed
+
+views:
+
+  gate:
+    label: Gate
+    machines: [gate]
+    direction: top-to-bottom

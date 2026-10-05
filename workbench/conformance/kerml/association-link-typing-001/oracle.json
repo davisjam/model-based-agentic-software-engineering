@@ -1,0 +1,40 @@
+{
+  "fixture": "kerml/association-link-typing-001",
+  "method": "spec-inspected",
+  "methodWhy": "The pinned interpretation is reached from quoted Description text plus a declaration pattern the normative library exhibits rather than mandates. The structural half -- that Association generalizes Classifier and Relationship, and must specialize Links::Link -- IS decided by a normative machine-readable artifact and is listed under evidence as normative-artifact. The method field reports the WEAKEST rung the claim depends on, so the headline never reads stronger than the claim.",
+  "standard": "KerML",
+  "normativeDocument": {
+    "title": "Kernel Modeling Language (KerML), Version 1.0",
+    "omgDocumentNumber": "formal/2026-03-01",
+    "date": "March 2026",
+    "url": "https://www.omg.org/spec/KerML/1.0/"
+  },
+  "clause": "KerML 1.0, 8.3.4.4.2 Association; 8.3.3.2.2 Classifier",
+  "evidence": [
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/KerML/20250201/KerML.xmi",
+      "locator": "packagedElement name=\"Association\", xmi:id=\"Kernel-Associations-Association\"",
+      "what": "Declared structure: two <generalization> children, to Core-Classifiers-Classifier and to Root-Elements-Relationship; and ownedRule checkAssociationSpecialization with specification specializesFromLibrary('Links::Link'). Read without interpreting prose."
+    },
+    {
+      "rung": "normative-artifact",
+      "source": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar",
+      "locator": "Kernel Semantic Library/Links.kerml lines 10-30 and 41-64",
+      "what": "Declared structure: BinaryLink declares two distinct end features, source and target, each Anything[1] subsetting participant; and the links / binaryLinks / selfLinks chain narrows a link population by type through subsetting."
+    },
+    {
+      "rung": "spec-inspected",
+      "source": "KerML 1.0 formal/2026-03-01, clause 8.3.3.2.2 Classifier, Description",
+      "locator": "first bullet of the Description",
+      "what": "DECISIVE and prose: 'A Classifier is a Type that classifies: Things (in the universe) regardless of how Features relate them.' Getting from 'Association is a Classifier' to 'a question over one Association ranges over its links only' uses this sentence plus the Links pattern. That inference is the reason this fixture is not normative-artifact."
+    }
+  ],
+  "oracle": null,
+  "oracleWhy": "No reference implementation was executed. The Workbench takes no runtime dependency on the SysML v2 Pilot Implementation (DESIGN-v02-semantics-261004.md section 35.1), and this wave added none. source.kerml Part B has not been parsed by any tool.",
+  "establishedBy": "MAGE Workbench conformance-fixtures wave (agent)",
+  "establishedAt": "2026-10-04",
+  "reviewedByPerson": null,
+  "reviewedByPersonWhy": "Section 35.6's template field is spelled read_by: <person>, and no person has read this fixture. Recorded as null rather than filled with the wave's name, because an agent reading a specification and a person reading one are different warrants and section 13.3's K4 is about the second.",
+  "bound": "Establishes the restricted, exclusively-classified case only. Does not exercise multiple classification through Association subclassification, which KerML permits and MAGE cannot express. Does not check endpoint typing, which MAGE relation types do not declare. Does not establish that a user-defined Association is obliged to have a type-restricted link feature -- the library exhibits that pattern for its own types and mandates nothing."
+}

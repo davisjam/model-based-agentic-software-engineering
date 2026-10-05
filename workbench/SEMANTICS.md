@@ -1418,15 +1418,50 @@ the pinned-property mechanism are extensions, and §35.4 says so row by row.
 that the cited concept means what we say is a person reading a specification on a date — K4 exactly,
 and the house form applies unchanged: state the bound with the claim. It cannot reach `checked`,
 because `checked` requires a gate that re-derives the claim per run, and with no runtime dependency
-nothing in CI can execute the reference implementation. **Borrowed-semantics provenance is `asserted`
-until a conformance fixture exists**, and a fixture then splits the claim rather than promoting it:
-the Workbench half becomes verdict-checked by landing a tracked model with `expect` (K2, via
-`test/model-coverage.test.ts:171`), while the correspondence to the standard stays `asserted` with a
-transcribed warrant. §35.5 works the three enforcement rungs through; §35.6 gives the fixture shape,
-including the field that records whether a correspondence was checked by executing the oracle or by
-reading the specification.
+nothing in CI can execute the reference implementation. A fixture therefore splits the claim rather
+than promoting it: the Workbench half becomes verdict-checked by landing a tracked model with
+`expect` (K2, via `test/model-coverage.test.ts:171`), while the correspondence to the standard stays
+`asserted`. §35.5 works the three enforcement rungs through; §35.6 and §35.6a give the fixture shape
+and the field that records how a correspondence was established.
 
-**The axis makes no claim about `src/` today.** Verified at `f3a9991c`: `SysML`, `KerML` and
-`semantic_basis` appear nowhere under `src/`, `test/`, `models/`, or either JSON schema. So §35's
-first effect is to introduce attribution where there is none — the complement of §13.5's list, where
-an absence is recorded so it reads as a ruling.
+**As-built, 261004: three of the five borrowed rows now have a fixture, and the axis is still
+`asserted`.** `conformance/` ships three (`conformance/manifest.json`), and the honest wording is
+worth getting exactly right, because "it has a fixture now" is the sentence most likely to be read as
+a promotion.
+
+- **The correspondence is `asserted`, with better evidence than a bare reading.** What changed is
+  not the kind but the *warrant*: each row now cites a clause of a named formal specification with
+  its OMG document number, quotes the sentence or the declaration it rests on, names the
+  machine-readable artifact where one decided it, and states a bound. A reader can reproduce the
+  reading by hand. Nothing re-derives the standard's half per run, so §13.1's earn-discipline is
+  unmet and the word does not change.
+- **The MAGE half is `checked`, and only that half.** Each fixture's `model.mage.yaml` is an
+  ordinary tracked model with pinned `expect`, so the coverage gate decides its verdicts on every
+  node run. `test/conformance.test.ts` adds what `expect` cannot carry — that each verdict is
+  sensitive to the meaning under test, by mutating the model and requiring the verdict to move when
+  the meaning moves and hold still when it does not.
+- **Three warrant rungs below `checked`, and they are not interchangeable.** The corpus records
+  `oracle-executed`, `normative-artifact` (decided by OMG's normative machine-readable material —
+  declared structure, multiplicities, values, invariants — with no prose step) or `spec-inspected`
+  (the decisive step is a sentence). At 261004: **0 oracle-executed, 2 normative-artifact,
+  1 spec-inspected.** No reference implementation ran. A `spec-inspected` fixture is not executable
+  conformance and must not be described as such.
+- **No enum value is minted, and that is deliberate.** §13.6's OQ3 asks whether `checked` is one
+  kind or two; `normative-artifact` is a third candidate that fits neither of its senses, and it is
+  recorded as further input to that question. Per OQ2's ruling, edits to the correspondence enum
+  belong to the records' owners. The three method values live in `conformance/manifest.json`, which
+  is the corpus's own vocabulary and not this document's.
+- **Two rows are still `owed`, and not as a backlog item.** `binding` and
+  `requirement, verification` have no construct to correspond — §14's bindings/compositions split
+  and §20 have not landed — so a fixture for either would describe a shape the Workbench does not
+  have. §35.4 keeps both cells `owed` and the manifest keeps both rows with the reason.
+
+**The axis's claim about `src/` has changed, and the earlier absence is now historical.** At
+`f3a9991c` the strings `SysML`, `KerML` and `semantic_basis` appeared nowhere under `src/`, `test/`,
+`models/`, or either JSON schema, which is what made §35's first effect the *introduction* of
+attribution rather than the correction of a false one. Re-measured 261004: `SysML`, `KerML` and
+`semanticBasis` now appear in two files under `src/` and three under `test/`, carrying the eleven
+registry declarations §35.5 placed. Two parts of the original reading still hold and are the
+load-bearing parts: `models/` and both JSON schemas remain untouched, and the snake-case
+`semantic_basis` — the YAML spelling — appears nowhere at all, which is §35.5's ruling that the claim
+is about the *language* and so must not be authorable per model.

@@ -1,0 +1,139 @@
+# CONFORMANCE FIXTURE. The MAGE half of one correspondence claim; `claim.md` states the claim and
+# `oracle.json` records how it was checked. Read those two before reading this file.
+#
+# The claim this model exists to make falsifiable: a magnitude is a number paired with exactly one
+# unit of its dimension, so a ceiling comparison is decided by the magnitudes and not by the unit
+# tokens the author happened to write. The numbers below are chosen so the two readings disagree:
+#
+#   as magnitudes   300 ms + 300 ms = 600 ms, and 600 ms <= 1 s        -> holds
+#   as bare numbers 300 + 300 = 600, and 600 <= 1 is false             -> refuted
+#
+# So `expect: holds` is the discriminating pin, and a reading under which the unit were a decorative
+# label answers `refuted`. The conformance test adds the other direction: a magnitude-PRESERVING
+# rewrite of either side must not change the verdict, and a magnitude-CHANGING one must.
+#
+# Nothing here is a shipped example and nothing imports it.
+
+mage: 1
+
+system:
+  id: sysml-quantity-unit-magnitude
+  name: A latency ceiling written in a different unit from its charges
+  description: >
+    Two stages charging 300 ms each along one execution, decided against a ceiling declared as 1 s.
+    The unit tokens differ on the two sides of the comparison on purpose.
+
+entities:
+
+  stage-a:
+    type: component
+    label: Stage A
+    properties:
+      # `state-of-entity` -- the lifecycle state during whose occupancy this component runs, which
+      # is what licenses the entity basis to charge a trace step entering that state to it.
+      executes_in_state: { value: first }
+
+  stage-b:
+    type: component
+    label: Stage B
+    properties:
+      executes_in_state: { value: second }
+
+models:
+
+  timing:
+    type: graph
+    label: Timing
+    purpose:
+      question: What does each stage of the run cost?
+      represents: [stage identity, the latency each stage charges when it runs]
+      omits: [the order the stages run in, how many times each runs, memory, money]
+    entities: [stage-a, stage-b]
+    relations: []
+
+machines:
+
+  run:
+    purpose:
+      question: What stages does a run pass through before it finishes?
+      represents: [the two stages as occupancy, that a run finishes after both]
+      omits: [what each stage costs, retries, failure]
+    initial: first
+    states:
+      first:
+      second:
+      finished:
+    transitions:
+      - from: first
+        to: second
+        label: advance
+      - from: second
+        to: finished
+        label: finish
+
+accounting:
+  # An execution's latency is the sum over each OCCURRENCE of an accounted entity along it (V35).
+  # The publishing execution visits `first` once and `second` once, so the total is one charge from
+  # each stage: 300 ms + 300 ms.
+  latency:
+    basis: entities
+
+quantities:
+
+  a-latency:
+    target: entity:stage-a
+    dimension: duration
+    value: 300 ms
+    description: One pass of Stage A.
+
+  b-latency:
+    target: entity:stage-b
+    dimension: duration
+    value: 300 ms
+    description: One pass of Stage B.
+
+  # The ceiling, written in SECONDS while both charges are written in MILLISECONDS. That asymmetry
+  # is the fixture, not an oversight: it is the only thing that makes the verdict discriminate
+  # between a magnitude and a label. 1 s is 1000 ms by the conversion factor of the `milli` prefix,
+  # so the comparison is 600 ms <= 1000 ms.
+  budget:
+    target: model:timing
+    dimension: duration
+    value: 1 s
+    description: Required run latency, as a declared ceiling.
+
+queries:
+
+  # THE pinned claim. `forall` because a ceiling claim is universal; `within` names the declared
+  # ceiling; `target` selects the executions that reach `finished`, which are the ones the ceiling
+  # is about.
+  run-stays-within-its-budget:
+    name: Every run that finishes stays within the declared latency budget
+    kind: quantity
+    quantifier: forall
+    expect: holds
+    quantity:
+      metric: latency
+      target:
+        run.state: finished
+      within: budget
+
+  # The positive control for the behavioural half: if `finished` were unreachable the ceiling query
+  # would be deciding over an empty set of executions, and `holds` would mean nothing.
+  run-finishes:
+    name: A run can reach finished
+    kind: behavior
+    quantifier: exists
+    expect: holds
+    behavior:
+      form: reach
+      target:
+        run.state: finished
+
+views:
+
+  run:
+    label: Run
+    machines: [run]
+    models: [timing]
+    direction: left-to-right
