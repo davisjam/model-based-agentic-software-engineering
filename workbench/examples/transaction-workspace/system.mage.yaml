@@ -611,6 +611,26 @@ queries:
         machine: verdict-deadline
         sync: deadline_expires
 
+# Two obligations and two polarities, which is why they ship together. The first names an
+# existential BREACH query and forbids it; the second names a universal and requires it. Neither
+# polarity is privileged and neither query was rewritten to match the other's reading.
+#
+# One declared modification breaks both — it adds an unguarded proposed-to-committed edge — so the
+# pair is also the demonstration that a verification moves with the model and is stored nowhere.
+requirements:
+
+  commit-requires-validation:
+    statement: >
+      No proposed change is committed without passing through Valid.
+    expressed_as: commit-without-validating
+    satisfied_when: refuted
+
+  no-stale-base-commit:
+    statement: >
+      A change never commits against a base that is no longer the one the workspace serves.
+    expressed_as: committed-base-is-current
+    satisfied_when: holds
+
 views:
 
   lifecycle:

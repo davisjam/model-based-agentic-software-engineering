@@ -29,7 +29,9 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
-import { checkExpectation, parseRequirement, verify } from "../src/engine/index.ts";
+import {
+  checkExpectation, parseRequirement, verify, verifySystemRequirements,
+} from "../src/engine/index.ts";
 import type { Requirement } from "../src/engine/index.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
@@ -303,21 +305,49 @@ const recorded = (exp: QueryExpectation): QueryEvaluation => evaluationOf({
   refusal: exp.refusalContains,
 });
 
+/**
+ * The authored declaration behind a fixture requirement, as the model holds it.
+ *
+ * Reads `SavedRequirement.raw` rather than a parse, because the parity assertion below is about the
+ * AUTHORED BYTES: a migration that dropped `satisfied_when` on the way into the model would still
+ * parse, and would still verify, having silently become a different obligation.
+ */
+const authoredFields = (raw: unknown): Record<string, unknown> =>
+  typeof raw === "object" && raw !== null && !Array.isArray(raw) ? raw as Record<string, unknown> : {};
+
 test("a requirement's status agrees with whatever decides it", () => {
-  // Every shipped example carries its requirements in its FIXTURE, joined to the thing that decides
-  // them. That was forced while MAGE had no requirement construct; since `requirements:` landed on
-  // 261004 it is a migration nobody has done yet, and until it is this join is the only thing
-  // holding the recorded statuses honest. Without it the join is a comment: a requirement could
-  // claim to be satisfied by a query whose recorded outcome refutes it.
+  // Every shipped example now AUTHORS its graph and behaviour requirements in its model, and the
+  // verification is derived from the model plus the live query run — `verifySystemRequirements`,
+  // which runs the saved queries and interprets each answer against the declaration it decides.
+  // The fixture keeps `status` as the ORACLE that derivation is checked against, because a status
+  // has no authored home: recording one in the model would let a declaration claim its own
+  // satisfaction, which is the thing the construct refuses.
   //
-  // Two routes, and the fixture reader already refuses a requirement declaring both or neither:
+  // Three routes now, and the first two are the migration:
   //
-  //   expressedAs  a saved query decides it. The outcome must agree with `satisfiedWhen`.
+  //   derived      the AUTHORED requirement, verified against the live engine. The strong claim:
+  //                the model's own declaration, the product's own answer, no recorded value on
+  //                either side of the derivation.
+  //   expressedAs  the fixture's copy of the same declaration, verified against the fixture's
+  //                RECORDED answer. Kept, not replaced — see below.
   //   decidedBy    the quantity query form decides it, run RIGHT HERE: `within:` the declared
   //                ceiling, the metric from the hand-derived expectation that is its oracle. These
-  //                statuses carried `pending-evaluator` while nothing in src/ could decide them —
-  //                a hand-derived figure must not read as machine-verified — and they read as
-  //                verdicts now because the product reaches them.
+  //                two requirements do NOT migrate: `expressed_as` is a join to a saved query by
+  //                id, and a composed ceiling question is not saved anywhere to be named. This arm
+  //                already runs the live product, so nothing is weaker for their staying.
+  //
+  // ## Why the recorded arm is KEPT rather than replaced
+  //
+  // The derived arm is stronger on the join and the declaration, and WEAKER on one axis: coverage.
+  // `recorded()` builds its evaluation from the fixture's pinned `coverage` kind and reason, and
+  // `verify` is coverage-sensitive on the satisfied arm — an absence of evidence does not survive a
+  // truncated walk. So a fixture pinning `bounded` against a live run that explores exhaustively
+  // agrees with the derived arm and disagrees with the recorded one. The two assertions therefore
+  // catch different drift: the derived one catches a model whose answer moved, the recorded one
+  // catches a fixture whose pinned coverage no longer supports the status it records. Dropping the
+  // recorded arm would also make this test depend on "every supplied query returns the expected
+  // outcome" above for the live-equals-recorded half, and a gate that holds only while a sibling
+  // gate holds is one deletion away from holding nothing.
   //
   // BOTH routes interpret through `verify` rather than comparing by hand, and that is the §5.3
   // separation applied to the gate that holds the corpus. The first route computed
@@ -329,13 +359,50 @@ test("a requirement's status agrees with whatever decides it", () => {
   // satisfied the comparison by appearing on both sides. Neither shape can be written now:
   // `satisfiedWhen` is two-valued and `verify` is total.
   for (const ex of examples()) {
+    const system = ex.workspace.state.system;
     assert.ok(ex.fixture.requirements.length > 0, `${ex.id}: section 2 asks for at least one requirement`);
+    // Derived once per example: this runs every saved query, so it is also the assertion that no
+    // authored requirement dangles. A requirement naming a query the system does not declare comes
+    // back `error`, which can never equal a recorded `satisfied` or `violated`.
+    const derived = verifySystemRequirements(system);
+    const fixtureIds = new Set(ex.fixture.requirements.map((r) => r.id));
+    // Nothing authored escapes the oracle. Without this an author could add a requirement to the
+    // model, have it verify `violated`, and ship it green because no fixture row names it.
+    for (const id of derived.keys()) {
+      assert.ok(fixtureIds.has(id),
+        `${ex.id}: the model authors requirement '${id}' and the fixture records no status for it, `
+        + `so nothing checks what it derives`);
+    }
     for (const req of ex.fixture.requirements) {
       if (req.expressedAs !== null) {
         const q = ex.fixture.queries.find((x) => x.id === req.expressedAs);
         assert.ok(q !== undefined, `${ex.id}/${req.id}: names query '${req.expressedAs}', which is not supplied`);
-        // Through the real parse, so a `satisfied_when` naming a status is refused here and not
-        // merely absent from the corpus by luck.
+
+        // --- The derived arm. The model authors it; the engine decides it; nothing is recorded. ---
+        const saved = system.requirements.get(req.id);
+        assert.ok(saved !== undefined,
+          `${ex.id}/${req.id}: takes the saved-query route and the MODEL does not author it. `
+          + `Since 261005 every such requirement lives in the model's 'requirements:' block — a `
+          + `fixture-only declaration is the pre-migration shape and this gate refuses it.`);
+        const fields = authoredFields(saved.raw);
+        // Parity between the two copies. The fixture's copy exists because the Learn page reads a
+        // requirement's statement from the fixture; this holds the copies equal so neither drifts
+        // into describing an obligation the other does not state.
+        assert.equal(fields["expressed_as"], req.expressedAs,
+          `${ex.id}/${req.id}: the model and the fixture name different deciding queries`);
+        assert.equal(fields["satisfied_when"], req.satisfiedWhen,
+          `${ex.id}/${req.id}: the model and the fixture declare different satisfaction conditions`);
+        assert.equal(String(fields["statement"]).trim(), req.statement.trim(),
+          `${ex.id}/${req.id}: the model and the fixture state different obligations`);
+        const live = derived.get(req.id);
+        assert.ok(live !== undefined, `${ex.id}/${req.id}: not verified from the authored model`);
+        assert.equal(live.status, req.status,
+          `${ex.id}/${req.id}: the fixture records '${req.status}'; the AUTHORED requirement verified `
+          + `against the live engine derives '${live.status}' (${JSON.stringify(live)}). `
+          + `The disagreement is the finding — do not adjust the fixture to match the code.`);
+
+        // --- The recorded arm, kept. Through the real parse, so a `satisfied_when` naming a status
+        // is refused here and not merely absent from the corpus by luck. ---
         const parsed = parseRequirement({
           id: req.id, statement: req.statement,
           expressed_as: req.expressedAs, satisfied_when: req.satisfiedWhen,
@@ -346,6 +413,12 @@ test("a requirement's status agrees with whatever decides it", () => {
           `against satisfied_when ${String(req.satisfiedWhen)}`);
         continue;
       }
+      // The composed-ceiling route. Stated rather than implied: these requirements are deliberately
+      // NOT in the model, because there is no saved query for `expressed_as` to name.
+      assert.equal(system.requirements.get(req.id), undefined,
+        `${ex.id}/${req.id}: a 'decided_by' requirement is decided by a COMPOSED question, and the `
+        + `model authors one anyway. If a saved query now states this ceiling, give the fixture row `
+        + `'expressed_as' and let the derived arm decide it.`);
       const decider = ex.fixture.quantitativeExpectations.find((e) => e.id === req.decidedBy);
       assert.ok(decider !== undefined,
         `${ex.id}/${req.id}: names expectation '${String(req.decidedBy)}', which is not supplied`);
@@ -372,6 +445,52 @@ test("a requirement's status agrees with whatever decides it", () => {
         `The disagreement is the finding — do not adjust the fixture to match the code.`);
     }
   }
+});
+
+test("the derived verification actually fires -- negative control on the authored requirement", () => {
+  // The gate above asserts a derived status against a recorded one, and a derivation that cannot
+  // disagree proves nothing. So mutate the AUTHORED BYTES four ways and check each is caught. The
+  // mutations run through `parse` -> `canonicalize` -> `verifySystemRequirements`, which is the
+  // same chain the gate uses, so a mutation caught here is a defect the gate would catch.
+  const mutate = (
+    id: string, req: string, change: (r: Record<string, unknown>) => void,
+  ): ReturnType<typeof verifySystemRequirements> => {
+    const doc = parse(exampleText(id)) as Record<string, unknown>;
+    const block = doc["requirements"] as Record<string, Record<string, unknown>>;
+    assert.ok(block[req] !== undefined, `${id}: the model must author '${req}' for this control to mean anything`);
+    change(block[req]);
+    return verifySystemRequirements(canonicalize(doc));
+  };
+
+  // Baseline: untouched, the model's own answer. `violated` on purpose — analytics permits internal
+  // data and subscribes to an event carrying a restricted address.
+  const id = "no-restricted-data-to-an-impermitted-subscriber";
+  assert.equal(
+    verifySystemRequirements(canonicalize(parse(exampleText("message-bus")))).get(id)?.status,
+    "violated", "the real declaration must derive the status the fixture records");
+
+  // Flip the polarity. The breach query still holds; the obligation now claims to be discharged by
+  // it, so the verification must flip to `satisfied`. This is the mutation a migration would make
+  // by accident, and the one that silently inverts an obligation.
+  assert.equal(mutate("message-bus", id, (r) => { r["satisfied_when"] = "holds"; }).get(id)?.status,
+    "satisfied", "a flipped satisfaction condition must change the derived verification");
+
+  // Dangle the join. A requirement naming a query the system does not declare is a DECLARATION
+  // error, never an inconclusive search — nothing is there to discharge.
+  assert.equal(mutate("message-bus", id, (r) => { r["expressed_as"] = "no-such-query"; }).get(id)?.status,
+    "error", "a dangling expressed_as must derive error");
+
+  // Prescribe an evaluation status. `inconclusive` is not a satisfaction condition, and a
+  // requirement that prescribes its own unanswerability is a declaration error.
+  assert.equal(mutate("message-bus", id, (r) => { r["satisfied_when"] = "inconclusive"; }).get(id)?.status,
+    "error", "satisfied_when naming an evaluation status must derive error");
+
+  // And the other polarity, on an example whose requirement reads as a universal: `holds` discharges
+  // `sram-fits-budget`, so declaring `refuted` must accuse a system that is in fact within budget.
+  const sram = "firmware-fits-physical-sram";
+  assert.equal(
+    mutate("embedded-sensor-node", sram, (r) => { r["satisfied_when"] = "refuted"; }).get(sram)?.status,
+    "violated", "the holds-polarity requirement must be falsifiable too");
 });
 
 // ----------------------------------------------------------------------------------------------

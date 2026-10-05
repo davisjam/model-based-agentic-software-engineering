@@ -502,6 +502,23 @@ queries:
       from: order-created
       to: analytics
 
+# The obligation the safety join exists to judge, authored in the model rather than recorded beside
+# it. `expressed_as` names the POSITIVE breach query above and the prohibition lives in
+# `satisfied_when: refuted`: the query states the breach, the requirement forbids it, and nothing
+# negates the query to make the requirement read positively.
+#
+# No status here, deliberately. This requirement is VIOLATED on the system as shipped, and that
+# verdict is derived on every read from the query's own answer — the one the modification repairs.
+# Recording it would freeze an answer the construct exists to recompute.
+requirements:
+
+  no-restricted-data-to-an-impermitted-subscriber:
+    statement: >
+      No event type carrying data above a service's permitted sensitivity may be delivered to that
+      service.
+    expressed_as: restricted-data-reaches-impermitted-subscriber
+    satisfied_when: refuted
+
 views:
 
   flow:

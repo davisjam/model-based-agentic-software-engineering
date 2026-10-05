@@ -467,3 +467,15 @@ queries:
       relation: feeds
       from: sensor-driver
       to: radio-stack
+
+# The obligation this example exists to state. `sram-fits-budget` asks the universal DIRECTLY — the
+# allocations fit within the declared budget — so the obligation is discharged when it holds, and
+# there is no breach query to refute. The other polarity ships in message-bus and transaction-
+# workspace; neither is the default.
+requirements:
+
+  firmware-fits-physical-sram:
+    statement: >
+      The modeled firmware's SRAM allocations fit within the part's 256 KiB of physical SRAM.
+    expressed_as: sram-fits-budget
+    satisfied_when: holds
