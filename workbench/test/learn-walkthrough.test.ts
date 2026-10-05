@@ -28,7 +28,8 @@ import { fixturePathFor, readFixture, type LoadedFixtures } from "../src/learn/f
 import { QUESTION_ANCHORS } from "../src/learn/questions.ts";
 import { GUIDE_ANCHORS } from "../src/learn/workbench-guide.ts";
 import {
-  LESSON, LESSON_ANCHOR, REFERENCE_ANCHOR, WALKTHROUGH_ANCHORS, WALKTHROUGH_STEPS,
+  LESSON, LESSON_ANCHOR, REFERENCE_ANCHOR, WALKTHROUGH_ANCHORS, WALKTHROUGH_GROUPS,
+  WALKTHROUGH_STEPS,
   type StepGrounding,
 } from "../src/learn/walkthrough.ts";
 
@@ -109,6 +110,65 @@ test("the lesson is short: the opening stays within the ruled word budget", () =
 // ----------------------------------------------------------------------------------------------
 // Groundings resolve against the shipped corpus
 // ----------------------------------------------------------------------------------------------
+
+test("the group partition is total and disjoint: every step in exactly one group", () => {
+  const grouped = WALKTHROUGH_GROUPS.flatMap((g) => [...g.anchors]);
+  const steps = WALKTHROUGH_STEPS.map((s) => s.anchor);
+
+  // Counted, not set-compared. A set comparison reports "none missing, none extra" while a step is
+  // declared twice -- which is exactly how a duplicate anchor survived a first pass of this change.
+  assert.equal(grouped.length, new Set(grouped).size,
+    `an anchor appears in more than one group: `
+    + `${grouped.filter((a, i) => grouped.indexOf(a) !== i).join(", ")}`);
+  assert.equal(steps.length, new Set(steps).size,
+    `a step anchor is declared twice: ${steps.filter((a, i) => steps.indexOf(a) !== i).join(", ")}`);
+
+  assert.deepEqual([...grouped].sort(), [...steps].sort(),
+    "every step must sit in exactly one group, and every group entry must name a real step");
+  for (const g of WALKTHROUGH_GROUPS) {
+    assert.ok(g.anchors.length > 0, `group '${g.title}' is empty`);
+  }
+});
+
+test("the groups partition the steps in READING order, not merely as a set", () => {
+  // The grid renders group by group with continuous numbering, so a group whose anchors are
+  // scattered through the step list would number its tiles out of order. Membership alone cannot
+  // catch that; contiguity can.
+  const index = new Map(WALKTHROUGH_STEPS.map((s, i) => [s.anchor, i]));
+  let expected = 0;
+  for (const g of WALKTHROUGH_GROUPS) {
+    for (const anchor of g.anchors) {
+      assert.equal(index.get(anchor), expected,
+        `group '${g.title}' expects '${anchor}' at step ${expected + 1}`);
+      expected += 1;
+    }
+  }
+  assert.equal(expected, WALKTHROUGH_STEPS.length);
+});
+
+test("every model card's Ask names a saved query the corpus declares and the engine answers", () => {
+  const carded = WALKTHROUGH_STEPS.filter((s) => s.card !== undefined);
+  assert.ok(carded.length > 0, "the model-form steps are supposed to carry cards");
+
+  for (const step of carded) {
+    const card = step.card;
+    if (card === undefined) continue;
+    const system = systemOf(card.ask.example);
+    assert.ok(system.queries.has(card.ask.query),
+      `'${step.anchor}' card asks '${card.ask.query}', which '${card.ask.example}' does not declare`);
+
+    // The card renders the question's own LABEL, so a query without one would render its raw id.
+    const result = runQuery(system, card.ask.query);
+    assert.ok(result !== null,
+      `'${step.anchor}' card asks '${card.ask.query}', which the engine does not answer`);
+
+    // A card's Ask must also appear in the step's grounding, or the resolution test above never
+    // sees it and a renamed query would break only the page.
+    assert.ok(step.grounding.some(
+      (g) => g.kind === "query" && g.query === card.ask.query && g.example === card.ask.example),
+      `'${step.anchor}' card asks '${card.ask.query}' but does not ground it`);
+  }
+});
 
 test("every grounding names a shipped artifact, in the corpus's own spelling", () => {
   for (const { anchor, g } of groundings()) {

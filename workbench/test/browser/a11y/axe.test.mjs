@@ -323,13 +323,13 @@ const PAGES = [
               hit.click();
               return true;
             };
-            for (const d of document.querySelectorAll("#walk-purpose details, #walk-quantities details")) {
+            for (const d of document.querySelectorAll("#walk-purpose details, #walk-quantitative details")) {
               d.open = true;
             }
             return [
               press("walk-evidence", "Show the witness"),
               press("walk-changes", "Apply:"),
-              press("walk-quantitative-questions", "Run:"),
+              press("walk-quantitative", "Run:"),
               press("walk-boundaries", "Ask:"),
             ].every(Boolean);
           });
