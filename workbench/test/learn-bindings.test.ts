@@ -51,7 +51,7 @@ import {
   MODEL_TYPE_USES,
 } from "../src/app/learn.ts";
 import {
-  buildTypeSections, composedQuantityQuery, type LoadedSystems,
+  buildTypeSections, composedQuantityQuery, declaredUnitOf, type LoadedSystems,
 } from "../src/learn/content.ts";
 import { fixturePathFor, readFixture, type LoadedFixtures } from "../src/learn/fixtures.ts";
 import {
@@ -567,9 +567,16 @@ test("the composed readout is a fresh run, and the engine's own sentence carries
   assert.equal(term("Verdict"), live.outcome,
     "the verdict is not the outcome the engine computes for the composed question now");
   assert.equal(term("The declared ceiling it is decided against"), composed.ceiling);
-  assert.ok(live.magnitude !== null && live.magnitude.unit !== null
-    && term("The figure that decides it").includes(live.magnitude.unit),
-    "the figure cell drops the unit — the unit travelling WITH the number is §7's whole point");
+  // The unit travels WITH the number, and it is the unit the CEILING declares — not the dimension's
+  // base. Asserting the base unit passes for free on a ceiling written in it, so it would have let
+  // a `2 s` ceiling go on being decided by a figure quoted in milliseconds.
+  const ceilingUnit = declaredUnitOf(system, composed.ceiling);
+  assert.ok(ceilingUnit !== null,
+    `ceiling '${composed.ceiling}' declares no single unit, so this test cannot say which unit the `
+    + "figure owes the reader");
+  assert.ok(live.magnitude !== null && term("The figure that decides it").endsWith(` ${ceilingUnit}`),
+    `the figure cell does not read in '${ceilingUnit}', the unit its ceiling is declared in, so the `
+    + "page asks the reader to convert before they can tell whether the model fits");
 
   const bareTerm = readout(sectionAt(COMPOSITION_ANCHOR), "The same metric and the same ceiling");
   assert.equal(bareTerm("The question, as the engine understood it"), bare.interpretedAs);
@@ -580,7 +587,7 @@ test("the composed readout is a fresh run, and the engine's own sentence carries
   // against the sentence: a page that promised a lower figure would be teaching that a selection
   // always flatters.
   assert.equal(bareTerm("What this selection changed"),
-    selectionEffect({ composed: live, uncomposed: bare }),
+    selectionEffect({ composed: live, uncomposed: bare, ceilingUnit }),
     "the section's account of what the selection changed is not the comparison of the two answers "
     + "the engine returned");
 

@@ -38,7 +38,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
-import type { CanonicalSystem } from "../src/ir/types.ts";
+import type { CanonicalSystem, QueryResult } from "../src/ir/types.ts";
+import { DIMENSION_IDS, DIMENSIONS } from "../src/ir/types.ts";
 import { MODEL_TYPES, type SemanticBasis } from "../src/engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../src/engine/types.ts";
 import { runQuery } from "../src/engine/index.ts";
@@ -47,11 +48,11 @@ import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../src/app/capabilities.ts";
 import { anchorForType, anchorForUse, MODEL_TYPE_USES } from "../src/app/learn.ts";
 import {
-  ceilingQuestions, composedQuantityQuery, quantityRows, type LoadedSystems,
+  ceilingQuestions, composedQuantityQuery, declaredUnitOf, quantityRows, type LoadedSystems,
 } from "../src/learn/content.ts";
 import { fixturePathFor, readFixture, type LoadedFixtures } from "../src/learn/fixtures.ts";
 import {
-  buildQuestionSections, QUESTION_ANCHORS, QUESTION_SECTIONS,
+  buildQuestionSections, magnitudeText, QUESTION_ANCHORS, QUESTION_SECTIONS,
   type BuiltQuestionSection, type QuestionBlock,
 } from "../src/learn/questions.ts";
 import { GUIDE_ANCHORS } from "../src/learn/workbench-guide.ts";
@@ -520,6 +521,120 @@ test("the worked readout is the chain whose question measures every execution, n
     "the readout's figure term does not name the ceiling the chain cites");
   assert.ok(readout("Must it?").includes(`'${chain.requirement}'`),
     "the readout's obligation term does not name the requirement the chain belongs to");
+});
+
+// ---------------------------------------------------------------------------------------------
+// The figure reads in the unit its ceiling declares — the readout the shared formatter broke
+//
+// A result carries its dimension's BASE unit, which `memory` spells `MB`, so the worked readout
+// quoted `0.2265625 MB` beside a `256 KB` ceiling: the right number, and the student had to convert
+// before they could tell whether the firmware fits. The four tests below hold the fix from four
+// sides — the identity the formatter owes one figure, the exactness of the conversion, the unit
+// every chain in the corpus gets, and the absence of a base-unit figure from the page.
+//
+// Every verdict here is read off a COMPUTED BLOCK, never off rendered geometry, so none of them can
+// pass at one window width and fail at another.
+// ---------------------------------------------------------------------------------------------
+
+test("a 256 KB figure renders as '256 KB' — and in MB only when MB is what was declared", () => {
+  // The identity the shared formatter dropped, stated on one figure so the regression has a name.
+  // 256 KB is 0.25 of the memory base unit; a result carries the 0.25, and the declaration is what
+  // says which of the two the reader is owed.
+  const perKb = DIMENSIONS.memory.units["KB"];
+  assert.ok(perKb !== undefined, "the memory dimension no longer declares a KB unit");
+  const quarterMb: QueryResult = {
+    outcome: "holds", coverage: { kind: "not-applicable", statesExplored: 0, reason: null }, evidence: null, refusal: null,
+    interpretedAs: null, compilation: [], systemHash: "test",
+    magnitude: { value: 256 * perKb, dimension: "memory", unit: DIMENSIONS.memory.base },
+  };
+  assert.equal(magnitudeText(quarterMb, "KB"), "256 KB",
+    "a figure of 256 KB does not read as '256 KB' against a ceiling declared in KB");
+  assert.equal(magnitudeText(quarterMb, "MB"), "0.25 MB",
+    "the formatter is not rendering the DECLARED unit — it has acquired a favourite one");
+  // And it converts nothing across dimensions: presentation does not get to do the arithmetic the
+  // validation layer refuses. `ms` belongs to duration, so the figure stays in its own base unit.
+  assert.equal(magnitudeText(quarterMb, "ms"), "0.25 MB",
+    "a unit from another dimension was applied to the figure, which is a cross-dimension conversion");
+  assert.equal(magnitudeText(quarterMb, "furlongs"), "0.25 MB",
+    "an unknown unit token changed the figure instead of leaving it in its base unit");
+});
+
+test("base-to-declared conversion is exact for every unit the dimension table declares", () => {
+  // The dimension table's own guarantee, read at the unit where this formatter divides by it: every
+  // factor is an integer multiple of a power of two, so the division introduces no rounding and the
+  // page can print the figure without reaching for a rounding rule that could flatter a ceiling.
+  for (const dimension of DIMENSION_IDS) {
+    for (const [unit, factor] of Object.entries(DIMENSIONS[dimension].units)) {
+      for (const written of [1, 3, 232, 256, 750]) {
+        const result: QueryResult = {
+          outcome: "holds", coverage: { kind: "not-applicable", statesExplored: 0, reason: null }, evidence: null, refusal: null,
+          interpretedAs: null, compilation: [], systemHash: "test",
+          magnitude: { value: written * factor, dimension, unit: DIMENSIONS[dimension].base },
+        };
+        assert.equal(magnitudeText(result, unit), `${written} ${unit}`,
+          `${written} ${unit} does not round-trip through the base unit exactly, so a figure on the `
+          + "page can disagree with the declaration it is compared against");
+      }
+    }
+  }
+});
+
+test("every ceiling chain's live figure reads in the unit that chain's ceiling declares", () => {
+  // The CLASS, over the whole corpus rather than the one row the page works through. Both shipped
+  // chains declare a unit their dimension does not base at — `256 KB` on memory, `2 s` on duration —
+  // so a formatter that reverted to the base unit fails here on either of them.
+  const chains = corpusChains();
+  assert.ok(chains.length > 0, "no ceiling chain to check the figures of");
+  for (const chain of chains) {
+    const system = systems.get(chain.example);
+    assert.ok(system !== undefined);
+    const saved = system.queries.get(chain.question);
+    assert.ok(saved !== undefined);
+    const result = runQuery(system, saved.raw).result;
+    if (result.magnitude === null) continue;
+    const unit = declaredUnitOf(system, chain.ceiling);
+    assert.ok(unit !== null,
+      `ceiling '${chain.ceiling}' declares no single unit, so nothing says what unit its figure owes`);
+    assert.ok(magnitudeText(result, unit).endsWith(` ${unit}`),
+      `'${chain.question}' is decided by a figure not quoted in '${unit}', the unit its ceiling `
+      + `'${chain.ceiling}' declares`);
+  }
+});
+
+test("the worked readout states the ceiling and the figure in ONE unit, and not the base", () => {
+  // The readout the shared formatter broke, pinned where it broke: two adjacent terms of the same
+  // block, one quoting the declaration and one quoting what the engine computed. The claim is that a
+  // reader can compare them by eye. So the assertion is that they carry the SAME unit — which is
+  // stronger than either term alone and is the property the student actually needs.
+  //
+  // Scoped to this one readout deliberately. A page-wide search for the base-unit rendering gives a
+  // false positive: two shipped chains share a metric and a worst case, and one of their ceilings IS
+  // declared in the base unit, so `2750 ms` appears on the page as a correct figure for the
+  // composition. A negative assertion over the whole page would condemn it.
+  const readout = readoutLabelled(sectionAt("question-ceilings"), "Three questions, three declarations");
+  const chain = corpusChains().find((c) => readout("Does the design stay under it?").includes(`'${c.question}'`));
+  assert.ok(chain !== undefined, "the worked readout's question is not a licensed chain's");
+  const system = systems.get(chain.example);
+  assert.ok(system !== undefined);
+  const unit = declaredUnitOf(system, chain.ceiling);
+  assert.ok(unit !== null, `ceiling '${chain.ceiling}' declares no single unit`);
+  const result = runQuery(system, savedRaw(system, chain.question)).result;
+
+  const declared = readout("How much is there?");
+  const answer = readout("And does it, on this revision?");
+  assert.ok(declared.includes(` ${unit} `) || declared.includes(` ${unit}`),
+    `the declaration term does not quote the ceiling's own unit '${unit}'`);
+  assert.ok(answer.includes(` ${unit},`),
+    `the figure term reads '${answer}', which does not quote the figure in '${unit}' — the unit the `
+    + `line above declares. A reader has to convert before they can tell whether the model fits.`);
+  // And specifically not the base unit, which is the regression: `0.2265625 MB` against a `256 KB`
+  // ceiling is the right number rendered so the reader cannot use it.
+  const base = magnitudeText(result, null);
+  assert.notEqual(base, magnitudeText(result, unit),
+    `ceiling '${chain.ceiling}' is declared in the dimension's own base unit, so this readout cannot `
+    + "exhibit the conversion this test exists to refuse — point it at a chain that can");
+  assert.ok(!answer.includes(base),
+    `the figure term carries '${base}', the base-unit rendering, beside a ceiling declared in '${unit}'`);
 });
 
 test("the ceilings section claims no refusal, because the arm that would justify one is not landed", () => {

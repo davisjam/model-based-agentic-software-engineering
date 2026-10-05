@@ -95,10 +95,12 @@ import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../engine/types.ts";
 import { countElements, selectElements, type Cardinality } from "../engine/elements.ts";
 import { runQuery } from "../engine/index.ts";
 import type { CanonicalSystem, Evidence, Purpose, QueryResult } from "../ir/types.ts";
+import { DIMENSIONS, UNIT_DIMENSIONS } from "../ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
 import {
-  ceilingQuestions, composedQuantityQuery, exemplarFor, quantityRows, savedStatements,
+  ceilingQuestions, composedQuantityQuery, declaredUnitOf, exemplarFor, quantityRows,
+  savedStatements,
   type CeilingQuestion, type LoadedSystems, type QuantityRow,
 } from "./content.ts";
 import type { LoadedFixtures } from "./fixtures.ts";
@@ -438,10 +440,49 @@ export const QUESTION_ANCHORS: readonly string[] = QUESTION_SECTIONS.map((s) => 
 const nameOf = (systems: LoadedSystems, id: ShippedExampleId): string =>
   systems.get(id)?.name ?? id;
 
-/** A magnitude with its unit, or a dash. The unit travels WITH the number; that is the whole point. */
-const magnitudeText = (result: QueryResult): string =>
-  result.magnitude === null ? "—"
-    : `${result.magnitude.value}${result.magnitude.unit === null ? "" : ` ${result.magnitude.unit}`}`;
+/**
+ * A computed figure in the unit the author DECLARED, with that unit, or a dash.
+ *
+ * ## Why the declared unit and not the result's own
+ *
+ * `ResultMagnitude` carries the dimension's BASE unit, and that contract is right where it lives:
+ * a figure crossing the query surface without its dimension would let a consumer add milliseconds
+ * to megabytes, which validation refuses. But `memory` bases at `MB`, so a model declaring a
+ * `256 KB` ceiling and `232 KB` of allocations got a readout of `0.2265625 MB` — arithmetically
+ * exact, and it hands the student the unit conversion they came here to be spared. The figure and
+ * the ceiling it is decided against must be directly comparable, so the figure is shown in the
+ * ceiling's unit.
+ *
+ * `declaredUnit` is therefore the unit of the thing this figure is judged against, resolved from
+ * that quantity's own declaration — never chosen here, and never from a table of nice units.
+ *
+ * ## What it refuses
+ *
+ * A unit belonging to another dimension converts nothing: the figure stays in its base unit, which
+ * is what shipped before this and is still true. Presentation does not get to do the cross-dimension
+ * arithmetic the validation layer exists to forbid. Same for an unknown token, and for `null` — a
+ * dimensionless result carries no unit and gains none.
+ *
+ * ## The number stays exact
+ *
+ * Every factor in the dimension table is an integer multiple of a power of two, so dividing a base
+ * figure by one introduces no rounding: `0.2265625 / 2^-10` is 232 on the nose. Nothing is rounded
+ * for display either, because a figure rounded toward a ceiling would read as fitting under it.
+ *
+ * Exported so a test can re-derive the rendering rather than match a sentence, which is why
+ * `selectionEffect` is exported too.
+ */
+export function magnitudeText(result: QueryResult, declaredUnit: string | null): string {
+  const m = result.magnitude;
+  if (m === null) return "—";
+  const factor = declaredUnit === null || UNIT_DIMENSIONS.get(declaredUnit) !== m.dimension
+    ? undefined
+    : DIMENSIONS[m.dimension].units[declaredUnit];
+  const [value, unit] = factor === undefined || factor === 0
+    ? [m.value, m.unit]
+    : [m.value / factor, declaredUnit];
+  return `${value}${unit === null ? "" : ` ${unit}`}`;
+}
 
 /** Evidence as one phrase: its role, its shape, and how long it is. */
 const evidenceText = (evidence: Evidence | null): string =>
@@ -622,6 +663,8 @@ function shippedCounterexample(systems: LoadedSystems): {
   readonly example: ShippedExampleId;
   readonly metric: string;
   readonly ceiling: string;
+  /** The unit the chosen ceiling declares, so the figure deciding it reads in the same unit. */
+  readonly ceilingUnit: string | null;
   readonly result: QueryResult;
 } | null {
   const quantitative = MODEL_TYPES.find((t) => t.id === "quantitative-model");
@@ -633,7 +676,10 @@ function shippedCounterexample(systems: LoadedSystems): {
     if (composed === null) continue;
     const result = runQuery(system, composed.query).result;
     if (result.evidence?.role !== "counterexample") continue;
-    return { example, metric: composed.metric, ceiling: composed.ceiling, result };
+    return {
+      example, metric: composed.metric, ceiling: composed.ceiling,
+      ceilingUnit: declaredUnitOf(system, composed.ceiling), result,
+    };
   }
   return null;
 }
@@ -880,7 +926,8 @@ function evidenceBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
       ["The question", `Does every execution keep ${counterexample.metric} at or under `
         + `'${counterexample.ceiling}'?`],
       ["Answer", counterexample.result.outcome],
-      ["The figure that decides it", magnitudeText(counterexample.result)],
+      ["The figure that decides it",
+        magnitudeText(counterexample.result, counterexample.ceilingUnit)],
       ["Evidence", evidenceText(counterexample.result.evidence)],
       ["Coverage", coverageText(counterexample.result)],
     ],
@@ -1124,9 +1171,13 @@ function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readon
         ["Must it?",
           `'${worked.requirementId}' obliges it, and is satisfied when that question is `
           + `${worked.satisfiedWhen}`],
+        // The figure reads in the ceiling's own unit, so the row above and this one can be compared
+        // by eye. A reader asked to convert between them is being asked to check the model by hand,
+        // which is the work this separation exists to do for them.
         ["And does it, on this revision?",
           answer === null ? "—"
-            : `${answer.outcome} — ${magnitudeText(answer)}, ${coverageText(answer)}`],
+            : `${answer.outcome} — ${magnitudeText(answer, worked.ceiling.unit)}, `
+              + coverageText(answer)],
       ],
     });
     blocks.push({
@@ -1732,6 +1783,8 @@ interface ComposedReading {
   readonly selection: StateSelection;
   readonly metric: string;
   readonly ceiling: string;
+  /** The unit that ceiling declares. Every figure in this reading is shown in it. */
+  readonly ceilingUnit: string | null;
   readonly composed: QueryResult;
   readonly uncomposed: QueryResult;
   /** The machine whose state vocabulary the selection's value belongs to. */
@@ -1767,6 +1820,7 @@ function composedReading(systems: LoadedSystems): ComposedReading | null {
     return {
       composition, systemName: system.name, selection,
       metric: composedQuery.metric, ceiling: composedQuery.ceiling,
+      ceilingUnit: declaredUnitOf(system, composedQuery.ceiling),
       composed, uncomposed, machineId: machine[0],
       spread: machine[1].states.map((state) => {
         const q = composedQuantityQuery(
@@ -1790,11 +1844,20 @@ function composedReading(systems: LoadedSystems): ComposedReading | null {
  * on the page is to say so and point at the spread, where a different selection does move it.
  */
 export function selectionEffect(
-  reading: { readonly composed: QueryResult; readonly uncomposed: QueryResult },
+  reading: {
+    readonly composed: QueryResult;
+    readonly uncomposed: QueryResult;
+    readonly ceilingUnit: string | null;
+  },
 ): string {
-  const after = magnitudeText(reading.composed);
-  const before = magnitudeText(reading.uncomposed);
-  if (after !== before) {
+  const after = magnitudeText(reading.composed, reading.ceilingUnit);
+  const before = magnitudeText(reading.uncomposed, reading.ceilingUnit);
+  // Compared as NUMBERS and rendered as text, which are two jobs this once did with one value. The
+  // engine normalizes both figures to the same base unit, so their values are directly comparable;
+  // comparing the rendered strings instead would make the verdict depend on how the figures are
+  // displayed, and would call two distinct figures unchanged the day a display unit coarsened them.
+  const moved = (reading.composed.magnitude?.value ?? null) !== (reading.uncomposed.magnitude?.value ?? null);
+  if (moved) {
     return `the worst case moved from ${before} to ${after}, because the executions measured are `
       + "now only the selected ones";
   }
@@ -1847,7 +1910,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
       ["The behavioural selection, as its author stated it", reading.selection.statement],
       ["The question, as the engine understood it", reading.composed.interpretedAs ?? "—"],
       ["Verdict", reading.composed.outcome],
-      ["The figure that decides it", magnitudeText(reading.composed)],
+      ["The figure that decides it", magnitudeText(reading.composed, reading.ceilingUnit)],
       ["Evidence", evidenceText(reading.composed.evidence)],
       ["The declared ceiling it is decided against", reading.ceiling],
     ] as const,
@@ -1858,7 +1921,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     pairs: [
       ["The question, as the engine understood it", reading.uncomposed.interpretedAs ?? "—"],
       ["Verdict", reading.uncomposed.outcome],
-      ["The figure that decides it", magnitudeText(reading.uncomposed)],
+      ["The figure that decides it", magnitudeText(reading.uncomposed, reading.ceilingUnit)],
       // READ off the two answers rather than promised beside them. A selection that happens to
       // keep the worst execution changes nothing about the figure, and a page that implied
       // otherwise would be teaching that selecting always flatters.
@@ -1869,7 +1932,8 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     kind: "rows",
     label: `The same question, selected on each state ${reading.machineId} declares`,
     columns: ["Executions that reach", "Verdict", "The figure that decides it"],
-    rows: reading.spread.map((s) => [s.state, s.result.outcome, magnitudeText(s.result)]),
+    rows: reading.spread.map(
+      (s) => [s.state, s.result.outcome, magnitudeText(s.result, reading.ceilingUnit)]),
   });
   blocks.push({
     kind: "prose",

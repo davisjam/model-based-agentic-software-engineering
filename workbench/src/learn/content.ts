@@ -34,6 +34,7 @@
  */
 import {
   ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Purpose,
+  type QuantityValue,
 } from "../ir/types.ts";
 import type { Query } from "../engine/types.ts";
 import { absentSubstrateProse, MODEL_TYPES, type ModelTypeId } from "../engine/model-types.ts";
@@ -78,6 +79,15 @@ export interface QuantityRow {
   readonly dimension: string;
   /** The declared magnitude, verbatim: "750 ms", "100 ms–500 ms". */
   readonly value: string;
+  /**
+   * The unit token the author WROTE, or null when the declaration states none this row can name.
+   *
+   * `value` already quotes the declaration, so a reader sees "256 KB" either way. This field is for
+   * a surface that must put a COMPUTED figure beside that declaration: a result carries its
+   * dimension's base unit, and a readout quoting `0.2265625 MB` against a `256 KB` ceiling asks the
+   * student to convert before they can tell whether the model fits.
+   */
+  readonly unit: string | null;
 }
 
 export interface LearnTypeSection {
@@ -193,6 +203,35 @@ export function propertyJoinStatements(system: CanonicalSystem): readonly SavedS
   return joins;
 }
 
+/**
+ * The unit token one declared value was written in, or null when it names no single one.
+ *
+ * A range must agree at both ends. A model writing `100 ms–0.5 s` gets null and falls back to the
+ * base unit downstream, which follows the quantity layer's own ruling about a model that mixes
+ * units: picking one would make the readout's unit depend on which end the author wrote first.
+ * An expression spans operands with units of their own, so it names none either.
+ */
+function unitOfValue(value: QuantityValue): string | null {
+  switch (value.kind) {
+    case "point": return value.magnitude.unit;
+    case "range": return value.low.unit === value.high.unit ? value.high.unit : null;
+    case "expression": case "absent": return null;
+  }
+}
+
+/**
+ * The unit a named quantity's magnitude was written in, for a caller holding the NAME and not the row.
+ *
+ * Extracted on the second site rather than the third: `quantityRows` reads the same field for the
+ * row it builds, and a surface resolving a ceiling id — a saved question's `within:`, a
+ * composition's chosen ceiling — has no row in hand. Two readers of one declaration would be free
+ * to disagree about what unit it states.
+ */
+export function declaredUnitOf(system: CanonicalSystem, quantityId: string): string | null {
+  const q = system.quantities.get(quantityId);
+  return q === undefined ? null : unitOfValue(q.value);
+}
+
 /** The declared quantities, each quoted verbatim from the system. */
 export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
   return [...system.quantities.values()].map((q) => ({
@@ -204,6 +243,7 @@ export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
       : q.value.kind === "range" ? `${q.value.low.raw}–${q.value.high.raw}`
       : q.value.kind === "expression" ? q.value.source
       : "(absent)",
+    unit: unitOfValue(q.value),
   }));
 }
 
