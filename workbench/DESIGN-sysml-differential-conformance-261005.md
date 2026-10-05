@@ -1,6 +1,8 @@
 # Differential and bounded-exhaustive conformance against SysML v2 / KerML — design (261005)
 
-**Status: DESIGN + INVESTIGATION. No code, fixture, or manifest changed by this wave.**
+**Status: DESIGN + INVESTIGATION. No fixture or manifest changed by this wave. One code artifact
+ships with it by follow-up ruling: `conformance/oracle/FixtureValidateDriver.java`, the P1 harness
+seed (§7a).**
 **Authority:** `conformance/manifest.json` (`methods`, `ceiling`), `DESIGN-v02-semantics-261004.md`
 §35.4–§35.6a, `src/engine/model-types.ts`, `SEMANTICS.md` §13 + §13.7.
 **Baseline, measured by this wave at `46614d00`:** `npm run check && npm run test` → 1389 pass /
@@ -13,7 +15,9 @@ implementation"* — is lifted by decision. §35.1's no-dependency ruling no lon
 So the target is §35.5 rung 3 `checked` where a per-run gate can hold it, with transcribed
 `oracle-executed` evidence as the fallback, not the goal. This document was asked to rule on the
 transcript question anyway, and does (§3), because the ruling turns out to matter for which fixtures
-can ever be `oracle-executed` at all.
+can ever be `oracle-executed` at all. A second author question — can SysIDE serve as an independent
+second oracle, and does its version lag matter? — arrived during revision and is measured and ruled
+in §7b.
 
 Every feasibility number below was measured on this machine on 2026-10-05, not assumed. The probe
 artifacts live in session scratch and are deliberately not committed; §7 records what was run and
@@ -66,14 +70,32 @@ it can DECIDE is the load-bearing finding, because it bounds every proposal belo
   `requirement-verification-verdict-001`) parse and validate clean through release `2026-08`
   (kernel 0.62.0). This wave is the first time any tool parsed them — every `source.sysml` header
   says "has NOT been parsed by any tool", and that sentence is now falsifiable per run.
-- **Parse KerML textual models through the headless REPL: NO.** `SysMLInteractive` names its input
-  buffer `1.sysml` and rejects `classifier` / `assoc` ("no viable alternative") — the two KerML
-  fixtures' Part B cannot be fed to it as-is. The KerML grammar IS in the jar (the library loader
-  reads 50+ `.kerml` files on every start), but no shipped headless entry point exposes it. Routes:
-  (a) a ~50-line Java driver against the jar's KerML Xtext setup — engineering cost, version-fragile;
-  (b) a SysML-spelled sibling source per KerML fixture (SysML text reaches the same kernel library
-  types; fixture 2's `bind` is SysML's spelling of a BindingConnector specialization), with the
-  specialization chain argued in `claim.md`. (b) is cheaper and honest if the chain is stated.
+- **Parse KerML textual models: YES — headless, but not through the REPL.** This finding was first
+  recorded as "NO" and the author's pushback refuted the framing; re-verified by this wave. The
+  REPL cannot accept KerML: `SysMLInteractive` hardcodes its buffer to a `.sysml` name (all four
+  extensions `.kerml`/`.kermlx`/`.sysml`/`.sysmlx` are registered in the class; the buffer is
+  fixed), and `%load` is a remote-API project load against a repository server, not a local-file
+  load. That is a limitation of the REPL, NOT of the Pilot Implementation. A ~40-line Java driver
+  against the jar's own Xtext setups parses and validates `.kerml` clean (§7a): fixture 1's Part B
+  → 0 errors / 0 warnings. Three steps make it work and each is load-bearing: force
+  `SysMLPackage` EPackage registration first (the KerML grammar imports the SysML metamodel —
+  without it, parse dies on an unresolved metamodel proxy, which is what makes headless KerML LOOK
+  impossible), run both standalone setups keeping KerML's injector, and load the ENTIRE
+  `sysml.library` into the same resource set before the fixture — an unloaded-library run reports
+  errors it invented (`Must directly or indirectly specialize Base::Anything`), a weak oracle in
+  this project's organizing-defect shape. Consequence: the KerML fixtures stay in KerML; the
+  earlier fallback of SysML-spelled sibling sources is DROPPED — a fixture re-spelled into a
+  different language to be checked is a weaker artifact than one checked in its own. The KerML half
+  now has TWO independent routes: the Java driver, and the second oracle of §7b, whose KerML
+  grammar is its own TypeScript/Langium implementation sharing no code with the Pilot.
+- **First contact with the real grammar caught a live fixture defect.** Fixture 2's Part B
+  (`kerml/binding-connector-identity-001/source.kerml`) does NOT parse: 8 errors, led by
+  `no viable alternative at input 'connect'` and `Couldn't resolve reference to Type
+  'BindingConnector'` — the composed model types its binding with the METACLASS name (an
+  abstract-syntax class, not a library type) and uses a connector spelling the KerML grammar does
+  not accept. Exactly the risk P0 names: a standard-side model nobody ever parsed, corresponding
+  to nothing. Not fixed by this wave (fixtures are out of its scope); P0 transcribes the failure
+  honestly and the Part B repair belongs to a fixture wave.
 - **Execute state machines, verification cases, or any model: NO.** The magic set is
   `%eval %export %help %list %load %projects %publish %repo %show %view %viz`. No execution engine
   is reachable. The pinned claims of fixtures B2 (guard conditions occurrence) and B5 (verdict
@@ -92,8 +114,8 @@ it can DECIDE is the load-bearing finding, because it bounds every proposal belo
   syntax in the headless main at this version; `%show` is the usable surface.
 
 **Consequence.** The Pilot's decidable surface covers: standard-side well-formedness for all five
-areas (via SysML spellings), name resolution, declared + implicit structure, and literal expression
-evaluation. It does not cover: behavioral occurrence, verification-case verdicts, or quantity
+areas, in each fixture's own language (`.kerml` via the driver, `.sysml` via driver or REPL), name
+resolution, declared + implicit structure, and literal expression evaluation. It does not cover: behavioral occurrence, verification-case verdicts, or quantity
 normalization. So "run the reference implementation and compare verdicts" is available for the
 STRUCTURAL half of the correspondence and unavailable for the SEMANTIC half of B2, B3-normalization,
 and B5 — for those, the independent check is the normative machine-readable libraries themselves
@@ -148,9 +170,12 @@ applies to `method`; and whichever runner does NOT run it (default `npm test`, G
 must be a DECLARED exclusion — the gate-wiring rule this repo learned on 261002–261003: an
 undeclared exclusion and a forgotten gate look identical from the script list. Verdict on "too hairy
 for github CI": **it is not hairy** — `setup-java` (Temurin 17+), one cached 126 MB artifact keyed
-by sha256, ~5 s of runtime. Recommend pre-push as the gate of record and a CI mirror as the
-bypass-resistant copy; if CI's network posture blocks the fetch despite caching, drop CI per the
-author's pre-authorization and declare the exclusion in `pages.yml`'s own comment.
+by sha256, ~5 s of runtime — and the premise that CI is new territory is already false:
+`.github/workflows/pages.yml` runs the workbench gates (`npm ci` + the check/test suite in
+`workbench/`, verified at the workflow's lines 73–91) on every push today, so P1's CI mirror is one
+more step in a job that exists, not a new pipeline. Recommend pre-push as the gate of record and a
+CI mirror as the bypass-resistant copy; if CI's network posture blocks the fetch despite caching,
+drop CI per the author's pre-authorization and declare the exclusion in `pages.yml`'s own comment.
 
 ## 4. Bounded exhaustiveness — the spaces, the generators, the bounds, and why each bound
 
@@ -274,14 +299,90 @@ diagnostics, unmapped names — all counted and listed, never silently absorbed.
   ~5–6 s to pre-push against a gate that already runs minutes. License EPL-2.0 — compatible with a
   dev-time gate dependency; not redistributed.
 - **CI: not hairy** (§3): `setup-java` + `actions/cache` on the zip's sha + the same 5 s.
-- **Verdicts measured:** three SysML Part B fixtures validate clean; KerML Part B rejected by the
-  REPL grammar; `%eval` literals reduce, quantity expressions do not; `LengthValue = 2 [kg]` passes
-  validation silently; `%show` exposes implicit structure; `%export` unusable headless at 0.62.0.
+- **Verdicts measured:** three SysML Part B fixtures validate clean (REPL and driver agree);
+  KerML fixture 1 clean through the driver; KerML fixture 2 fails parse through the driver (§2 —
+  a real defect, first caught 261005); `%eval` literals reduce, quantity expressions do not;
+  `LengthValue = 2 [kg]` passes validation silently through BOTH the REPL and the driver (same
+  validator — re-verified, the weak-oracle finding survives the driver); `%show` exposes implicit
+  structure; `%export` unusable headless at 0.62.0.
+### 7a. The driver — P1's vehicle, measured
+
+`conformance/oracle/FixtureValidateDriver.java` (committed with this design as the harness seed;
+grown from the author-side `KermlProbe3` probe) loads both Xtext grammars, walks `sysml.library`
+into one resource set, parses + validates one fixture file, prints typed
+`Issue`/`Severity` counts, exits 0/1. Measured on this machine, Temurin 21, kernel 0.62.0: library
+load 94 files in ~1.5–2.3 s (one cold-IO outlier 8.2 s), full verdict in ~2.8–3.3 s per JVM; it
+reproduces the REPL's clean verdicts on all three SysML fixtures and handles the two KerML
+fixtures the REPL cannot. **Ruling: the driver replaces the REPL for N1 validity across all five
+fixtures** — structured severities a gate can assert on without parsing REPL prose, no
+blank-line/`%exit`/EOF-loop protocol, one grammar story for both languages; P1's gate loads the
+library once and validates all five in a single JVM (~3 s + sub-second marginal). **The REPL is
+retained for what the driver does not expose:** `%show`'s implicit-structure surface (N2/N3) and
+`%eval` (literal evaluation) — P4's movement tables use the REPL (or extend the driver to walk the
+resolved resource, which the same API permits; deferred until P4 needs it).
+
 - **Second-best checks, ranked, for what the Pilot cannot decide:** (1) the normative `.kpar`/XMI
   artifacts as a per-run structural oracle — already the corpus's `normative-artifact` rung, and §5
-  upgrades one such join to a gate; (2) definitional oracles for the bounded spaces (§4); (3) an
-  independent SysML v2 parser (e.g. Sensmetry's open-source SysIDE core) as a second validity
-  opinion — unprobed this wave, noted not designed-for.
+  upgrades one such join to a gate; (2) definitional oracles for the bounded spaces (§4); (3) the
+  second validity oracle of §7b — probed this wave, it works, and its warrant has a clock on it.
+- **Visualization surfaces, noted and NOT designed** (rendering is an author-held decision): the
+  Pilot's REPL exposes `%viz` (PlantUML renderings — tree, interconnection and state-machine
+  views; requires GraphViz installed; listed in `%help`, unprobed this wave). On the Sensmetry
+  side, diagram generation is in the PAID products only. `%viz` may be free evidence for N3's
+  movement tables; costing that is deferred with the rendering decision.
+
+### 7b. The second oracle — SysIDE's deprecated open core, probed, and what its freeze means
+
+The candidate the author raised is Sensmetry's SysIDE. Verified product split: the FREE VS Code
+extension ("Syside Editor") documents NO CLI; the CLI and diagram generation live in the PAID
+Syside Modeler/Automator. The open-source `sysml-2ls` (gitlab.com/sensmetry/public/sysml-2ls) is
+the DEPRECATED predecessor — its 0.9.1 release (2025-10-02) renames it "SysIDE Editor Legacy" —
+an independent SysML v2 AND KerML implementation in TypeScript on Langium, code EPL-2.0/GPL-2.0
+w/ Classpath-exception, pinned to the **2024-12** spec release (`syside-base/src/stdlib.ts`
+declares `version: "2024-12"`). On licensing, a relayed premise did not survive measurement: the
+claim was that upstream SysML-v2-Release licenses its models EPL-2.0 and only the SysIDE fork is
+LGPL — the official `2024-12` release's own `LICENSE` is **LGPL-3.0** (measured in the clone this
+probe used), so the library text is LGPL from OMG regardless of which copy an oracle reads.
+Immaterial for a dev-time gate that fetches and never redistributes; material to anyone who
+proposes vendoring the library into the repo.
+
+**Headless: YES, measured — but only as a library, and the shipped CLI is a trap.** `syside-cli
+dump --validate --stdlib standard` parses but NEVER loads a standard library (nothing sets
+`standardLibraryPath`, and stdlib loading lives in `WorkspaceManager.initializeWorkspace`, which
+the CLI never drives) — so it reports library-absence artifacts (`Could not resolve reference to
+Element named 'Links'`) as fixture errors: the same weak-oracle shape as the Java driver's trap,
+in a second implementation. The working recipe is ~25 lines against the programmatic API
+(`createSysMLServices(SysMLNodeFileSystem, { standardLibraryPath }) ` + `initializeWorkspace([])`
++ `DocumentBuilder.build` with `validationChecks: "all"`; the repo's own
+`scripts/run-validation.ts` is the precedent), bundled by the repo's own esbuild script. Built
+from source at 0.9.1 (pnpm workspace; one broken `shx` prebuild worked around). Measured: ~7.3–8.5
+s per process, stdlib build dominating; sub-second marginal per fixture in one process; pure Node,
+no JVM.
+
+**Measured verdicts — the two oracles AGREE on all six probes.** Fixture 1 clean (0/0, agreeing
+with the Pilot); fixture 2 REJECTED with substantially the Pilot's diagnosis (`Could not resolve
+reference to Type named 'BindingConnector'`, `A BindingConnector must be binary`) — the fixture
+defect of §2 is now independently confirmed by two implementations sharing no code; all three
+SysML fixtures clean; and `LengthValue = 2 [kg]` passes BOTH oracles silently — the agreement
+extends to the blind spot, so two-oracle agreement must never be reported as strength where both
+are weak the same way (B3's semantic half stays uncovered by both).
+
+**Ruling on the two-oracle stability control: run it ONCE per fixture revision and transcribe;
+do not wire it blocking.** The author's framing — agreement between Pilot 2026-08 and a 2024-12
+implementation checks the premise that our borrowed subset is version-stable across that window —
+is right, and the relayed "a disagreement is uninterpretable" objection was too pessimistic: a
+disagreement is a triggered investigation with exactly two outcomes (MAGE/fixture wrong, or a
+clause our envelope touches moved between versions), both worth knowing, rare, resolvable by
+inspection. But the control DECAYS: the second oracle is frozen, so every future spec revision
+widens a gap the gate cannot attribute, and a blocking gate whose meaning silently changes over
+time is this project's organizing defect with a clock attached. The decay resolves cleanly once
+noticed: SysIDE's verdict on an UNCHANGED fixture is deterministic, so a standing pre-push re-run
+can only ever fire on fixture EDITS — which is authoring time anyway. Therefore: at each fixture's
+authoring or revision, run both oracles, transcribe both verdicts with both versions and the date
+into `oracle.json` `evidence[]` as corroborating components (the §35.6 `executed`-template
+discipline, twice), and state the window the agreement covers. That is the whole value of the
+standing gate without the unmaintained standing dependency; the Pilot-only gate (§7a) remains the
+per-run control. If SysIDE's successor ever ships a maintained free headless surface, revisit.
 
 ## 8. Phases, cheapest first — with the rung each reaches, stated
 
@@ -289,19 +390,23 @@ Vocabulary: §13's `asserted`/`checked` for the correspondence kind; the manifes
 rungs for fixture evidence; §35.5's rungs 1–3 for enforcement.
 
 - **P0 — oracle-validate the standard side, transcribe (hours; the thinnest phase that genuinely
-  strengthens).** Run the three SysML Part B sources (and SysML-spelled siblings for the two KerML
-  fixtures, chains argued in `claim.md`) through the pinned oracle; record verdict + version +
-  date in each `oracle.json` `evidence[]` as a CORROBORATING `oracle-executed` component — decisive
-  only for "the standard-side model is well-formed," which no fixture currently rests on but every
-  fixture presumes. No `method` headline changes (per `methodDiscipline`, and changing one on a
-  parse run would be a gate reporting other than it measured). What it buys, honestly: it closes
-  the real risk that a fixture's standard-side model is not legal SysML — a fixture about an
-  illegal model corresponds to nothing — and it is small, and saying so is the ceiling discipline
-  applied to this document.
+  strengthens).** Run all five Part B sources — each in its own language — through the pinned
+  oracle via the driver (§7a); record verdict + version + date in each `oracle.json` `evidence[]`
+  as a CORROBORATING `oracle-executed` component — decisive only for "the standard-side model is
+  well-formed," which no fixture currently rests on but every fixture presumes. P0's first run
+  already has a known red: fixture 2's Part B fails parse (§2), so P0 transcribes four cleans and
+  one honest failure, and the Part B repair is P0's companion edit, owned by a fixture wave. P0
+  also carries the §7b one-shot: both oracles' verdicts transcribed per fixture, versions + date +
+  covered window stated — the measured runs of 261005 are already most of this work. No
+  `method` headline changes (per `methodDiscipline`, and changing one on a parse run would be a
+  gate reporting other than it measured). What it buys: it closes the real risk that a fixture's
+  standard-side model is not legal SysML/KerML — a risk now DEMONSTRATED, not hypothesized — and
+  it is small, and saying so is the ceiling discipline applied to this document.
 - **P1 — the oracle gate at pre-push (1–2 days).** Fetch-cache script (pin by sha), a
-  `test:oracle` tier feeding every tracked `source.sysml` + per-fixture N1 expectation lists
-  through one REPL session, wired into pre-push, tier named in its output, exclusions declared in
-  the runners that skip it; CI mirror if the cache behaves. Reaches: "standard-side validity +
+  `test:oracle` tier running the §7a driver over every tracked `source.kerml`/`source.sysml` +
+  per-fixture N1 expectation lists — one JVM, library loaded once, all five fixtures, no REPL —
+  wired into pre-push, tier named in its output, exclusions declared in the runners that skip it;
+  CI mirror if the cache behaves. Reaches: "standard-side validity +
   pinned diagnostics" becomes `checked` (rung 3, at pre-push). The MEANING correspondence stays
   `asserted` — P1 re-derives the vehicle, not the claim — and the gate's own output must say that
   sentence, or it becomes the 5-of-5 misreading with a JVM attached.
@@ -347,3 +452,48 @@ paragraph should keep saying so until they land.
    prose copied from the sibling constraint) — found by exactly the kind of close differential
    reading this design mechanizes. The method finds real defects in both directions, including
    upstream.
+6. **This design's own first version got the KerML finding wrong, and the author's pushback was
+   right.** "Parse KerML through the headless REPL: NO" was true but misleading: the limitation is
+   the REPL's hardcoded `.sysml` buffer and its remote-only `%load`, not the Pilot — the KerML
+   grammar runs headless through a ~40-line driver (§7a), re-verified by this wave, at seconds not
+   "engineering cost, version-fragile." The SysML-spelled-sibling fallback it motivated is dropped.
+7. **The oracle's first contact with the corpus found a defect the corpus could not find in
+   itself:** fixture 2's Part B is not legal KerML (§2) — composed from memory, typed against a
+   metaclass, never parsed. `test/conformance.test.ts` was green the whole time, because every one
+   of its assertions reads the MAGE half. That is the entire argument for P0/P1 in one sentence.
+   The defect was subsequently confirmed by the second oracle (§7b) with the same diagnosis — two
+   independent implementations, no shared code.
+8. **The SysIDE premises arrived twice and both needed correction, in opposite directions.** The
+   first relay framed it as a maintained independent implementation suitable for a standing
+   two-oracle gate; the verified situation is a DEPRECATED open core frozen at 2024-12, with the
+   maintained CLI in a paid product. The second relay's instinct — one-shot transcription over a
+   blocking gate — is adopted in §7b, with the decay argument made explicit. And in the other
+   direction: the headless probe the relays flagged as the real risk SUCCEEDED (the Langium
+   library surface works at ~25 lines), so the downgrade is about the warrant's shelf life, not
+   about feasibility. Every premise in this document that came from a relay was re-measured here
+   before being built on; the two that could not be (the paid-product boundary, `%viz`'s output
+   shape) are cited as documentation reads and marked unprobed.
+
+## 10. Against the sibling writeup — agreements and the one finding it adds
+
+`WRITEUP-engine-vs-sysml-kerml-261005.md` landed on main between this design's first commit and
+this revision: an independent re-derivation of the engine-vs-standard relationship. Compared
+deliberately rather than silently harmonised:
+
+- **The envelope agrees, independently.** Its Part 3 derives the same five borrowed areas by the
+  same count (4 registry objects + 1 registry-less row), citing this design's §1; its per-area
+  rung table (B1/B4 `spec-inspected`, B2/B3/B5 `normative-artifact`, all five correspondence
+  `asserted`, 0 `oracle-executed`) matches §1 and §3 here. No factual disagreement found between
+  the two documents.
+- **It adds a finding this design lacked, adopted here by citation:** the registry understates the
+  corpus on ALL five rows — every borrowed basis object still reads `clause: CLAUSE_OWED,
+  fixture: null` (`model-types.ts:735/:825/:980/:1109`) while the manifest records all five rows
+  discharged. The biconditional control in `test/model-types.test.ts` cannot fire while `fixture`
+  is `null`, so the wiring edit §35.6a calls "the next edit" is a precondition for any of this
+  design's phases claiming registry-joined evidence; it belongs to the wave that owns
+  `conformance/`.
+- **One of its facts is already superseded by this revision's probes:** its §5.4.2 records the
+  fixture headers' "has NOT been parsed by any tool" as falsified for three of five (the SysML
+  three, via the Pilot). With the KerML driver (§7a) and the second oracle (§7b) it is now
+  falsified for five of five — four parse clean, one fails, and both oracles agree on all six
+  probe verdicts including the failure.
