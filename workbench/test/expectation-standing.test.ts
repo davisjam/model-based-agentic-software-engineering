@@ -48,9 +48,9 @@
 // non-accusation would pass either way, so `readsAsAnAccusation` is driven in both directions.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
-import ts from "typescript";
+import { readFileSync } from "node:fs";
 import { parse } from "yaml";
+import { declaredUnion, unionMembersIn } from "./union-probe.ts";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { checkExpectation } from "../src/engine/index.ts";
 import { bounded, exhaustive, NOT_APPLICABLE, result } from "../src/engine/types.ts";
@@ -68,44 +68,20 @@ import type { Coverage, Outcome, QueryResult } from "../src/ir/types.ts";
 const OUTCOME_SOURCE = "src/ir/types.ts";
 
 /**
- * The members of `export type Outcome = …`, parsed out of the text this is given.
+ * The members of `export type Outcome = …`, through the shared probe.
  *
- * A real parse rather than a pattern over text: the union is a one-line alias today and a regex
- * would read it, but it would also read a comment mentioning the words, and it would stop reading
- * the day somebody wraps the alias across lines.
- *
- * It takes the TEXT so the control can drive it with source declaring no `Outcome` and with source
- * declaring a non-literal one. An assertion whose subject is always present is untested by its own
- * passing, which is the shape the mutation controls in the two sibling gates are built to avoid.
+ * The parse itself moved to `test/union-probe.ts` on 261004, when `test/verification.test.ts`
+ * became the second file asking this question — of three aliases, which is what forced the
+ * parameter. The 261004 assessment that declined a shared helper compared this file against two
+ * that ask DIFFERENT questions and was right about those; a second asker of the same question is
+ * the extract-now signal, and the probe's negative control is the part worth writing once.
  */
-function outcomesIn(path: string, text: string): readonly string[] {
-  const source = ts.createSourceFile(path, text, ts.ScriptTarget.ES2022, true);
-  const found: string[] = [];
-  for (const statement of source.statements) {
-    if (!ts.isTypeAliasDeclaration(statement) || statement.name.text !== "Outcome") continue;
-    const union = statement.type;
-    const members = ts.isUnionTypeNode(union) ? union.types : [union];
-    for (const member of members) {
-      assert.ok(ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal),
-        `Outcome gained a non-literal member at ${path}; this parse reads string literals only`);
-      if (ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal)) {
-        found.push(member.literal.text);
-      }
-    }
-  }
-  assert.ok(found.length > 0, `no 'Outcome' type alias found in ${path} — the parse is wrong`);
-  return found;
-}
+const outcomesIn = (path: string, text: string): readonly string[] =>
+  unionMembersIn("Outcome", path, text);
 
 /** The vocabulary as the shipped kernel declares it. The path is asserted, not trusted. */
-function declaredOutcomes(path: string = OUTCOME_SOURCE): readonly string[] {
-  assert.ok(existsSync(path),
-    `${path} does not exist, so the Outcome vocabulary would be read from nothing. This file holds `
-    + `STANDING_PER_OUTCOME TOTAL over that declaration, and a parse with no subject makes the `
-    + `claim vacuous. If the kernel's types moved, point this probe at the file that declares `
-    + `\`Outcome\` now.`);
-  return outcomesIn(path, readFileSync(path, "utf8"));
-}
+const declaredOutcomes = (path: string = OUTCOME_SOURCE): readonly string[] =>
+  declaredUnion("Outcome", path);
 
 /**
  * How a pin stands when the engine answers each outcome, DECLARED here, for both polarities.
