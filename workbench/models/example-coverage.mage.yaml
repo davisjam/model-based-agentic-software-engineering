@@ -14,8 +14,12 @@
 # performance numbers -- and the Performance row is exercised: the `kind: quantity` query form
 # aggregates each metric (the aggregation derived from the dimension's scope), decides the
 # declared ceilings, and reports the figure on the result's magnitude field, which the schema
-# probe finds. Requirements stays unavailable for a plainer reason -- there is no requirement
-# construct, and the examples carry their requirements in their fixtures.
+# probe finds. Requirements reads UNEXERCISED rather than unavailable since 261004: the
+# `requirements:` construct landed, so the row is reachable, and no shipped example authors one
+# yet -- every example still carries its requirements in its fixture. Unexercised is the honest
+# word for that and the row is detected off the AUTHORED model to keep it so; detecting off the
+# fixture would read `exercised` the moment the construct landed, on evidence from a file that
+# is not the model.
 #
 # Transaction Workspace adds no row, and that is worth reading rather than skipping: every
 # capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR
@@ -265,11 +269,7 @@ entities:
     label: "A requirement as a first-class object the model is judged against, not prose beside it."
     properties:
       matrix_row: "Requirements"
-      status: { value: unavailable, domain: coverage-status }
-
-  construct.model-requirements:
-    type: absent-construct
-    label: "A requirement construct: a named, checkable obligation the model is judged against."
+      status: { value: unexercised, domain: coverage-status }
 
 models:
 
@@ -314,7 +314,6 @@ models:
       - capability.configuration-memory-accounting
       - capability.performance
       - capability.requirements
-      - construct.model-requirements
     relations:
       - { from: example.message-bus, to: capability.structural-models, type: exercises }
       - { from: example.transaction-workspace, to: capability.structural-models, type: exercises }
@@ -373,7 +372,6 @@ models:
       - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
       - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
       - { from: example.document-processing, to: capability.performance, type: exercises }
-      - { from: capability.requirements, to: construct.model-requirements, type: blocked-by }
 
 # One assertion per capability. `expect` makes a saved query a CI gate: re-running them
 # re-derives the matrix, so the answer to the model's question is executable rather than read off
@@ -609,13 +607,3 @@ queries:
       form: predecessors
       relation: exercises
       to: capability.requirements
-
-  blocked.requirements:
-    name: "MAGE lacks a construct, so requirements is unreachable"
-    kind: graph
-    quantifier: exists
-    expect: holds
-    graph:
-      form: successors
-      relation: blocked-by
-      from: capability.requirements

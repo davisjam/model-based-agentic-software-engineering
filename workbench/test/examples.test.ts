@@ -1027,6 +1027,29 @@ test("EX-I3: the coverage model reports the gaps rather than omitting them", () 
   for (const row of CAPABILITY_ROWS) {
     assert.ok(yaml.includes(`  capability.${row.id}:`), `${row.id} missing from the generated model`);
   }
-  assert.match(yaml, /status: \{ value: unavailable, domain: coverage-status \}/,
-    "an unavailable row must be visible in the file a reader opens");
+
+  // Every row's DERIVED status must be the one the file shows. This replaces a match for the literal
+  // word `unavailable`, which read as an invariant and was a snapshot — the same mistake this test's
+  // own header warns about, one assertion lower. It pinned "MAGE still lacks a construct for
+  // something", and `requirements` was the last row holding that true; landing the construct on
+  // 261004 left zero `unavailable` rows and turned the assertion red on an advance. The invariant it
+  // was reaching for is that the file does not flatter the report, and this is that claim, checked
+  // per row and for all three words rather than for one of them.
+  for (const row of CAPABILITY_ROWS) {
+    const status = report.status.get(row.id);
+    const block = yaml.split(`  capability.${row.id}:\n`)[1]?.split("\n\n")[0] ?? "";
+    assert.ok(block.includes(`status: { value: ${status}, domain: coverage-status }`),
+      `capability.${row.id} derives '${status}' and the generated file does not say so`);
+  }
+
+  // The gap must be VISIBLE to a reader of the file, not only present in the report object — which
+  // is what the old `unavailable` match was for. Stated over the gap rather than over one kind of
+  // gap, so a product advance that converts an unavailable row into an unexercised one does not
+  // read as a regression.
+  const gaps = CAPABILITY_ROWS.filter((r) => report.status.get(r.id) !== "exercised");
+  assert.ok(gaps.length > 0, "the report claims no gap at all; see the negative control above");
+  for (const row of gaps) {
+    assert.ok(yaml.includes(`status: { value: ${report.status.get(row.id)}, domain: coverage-status }`),
+      `capability.${row.id} is a gap the file does not show`);
+  }
 });

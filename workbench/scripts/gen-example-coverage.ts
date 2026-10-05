@@ -906,7 +906,13 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
     label: "A requirement as a first-class object the model is judged against, not prose beside it.",
     matrixRow: "Requirements",
     requires: ["model.requirements"],
-    detect: (ctx) => ctx.fixture.requirements.length > 0,
+    // The AUTHORED model, not the fixture. While the construct was absent this distinction cost
+    // nothing — `requires` pinned the row to `unavailable` whatever `detect` said — so the fixture
+    // reading was free and wrong at the same time. The day `requirements:` landed it would have
+    // flipped the row to `exercised` on the strength of `expected-results.yaml`, which is where a
+    // requirement lives when the model CANNOT hold one. That is the capability this row claims
+    // exercised by the example suite, so the evidence has to be the example's own model.
+    detect: (ctx) => ctx.system.requirements.size > 0,
   },
 ];
 
@@ -986,8 +992,12 @@ export function generateExampleCoverageModel(
     "# performance numbers -- and the Performance row is exercised: the `kind: quantity` query form",
     "# aggregates each metric (the aggregation derived from the dimension's scope), decides the",
     "# declared ceilings, and reports the figure on the result's magnitude field, which the schema",
-    "# probe finds. Requirements stays unavailable for a plainer reason -- there is no requirement",
-    "# construct, and the examples carry their requirements in their fixtures.",
+    "# probe finds. Requirements reads UNEXERCISED rather than unavailable since 261004: the",
+    "# `requirements:` construct landed, so the row is reachable, and no shipped example authors one",
+    "# yet -- every example still carries its requirements in its fixture. Unexercised is the honest",
+    "# word for that and the row is detected off the AUTHORED model to keep it so; detecting off the",
+    "# fixture would read `exercised` the moment the construct landed, on evidence from a file that",
+    "# is not the model.",
     "#",
     "# Transaction Workspace adds no row, and that is worth reading rather than skipping: every",
     "# capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR",
