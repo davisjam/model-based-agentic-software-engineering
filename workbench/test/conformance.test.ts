@@ -199,6 +199,43 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
   }
 });
 
+test("the owed rows are owed because the construct is absent, and the schema says so", () => {
+  // This is the one check here that will go red on PURPOSE, and the red is the point.
+  //
+  // "There is no binding construct, so a fixture would be fiction" is a NEGATIVE claim, and a
+  // negative claim is only as wide as the search that produced it. A grep could have read the wrong
+  // subtree, or searched a spelling the codebase does not use. The authored construct set does not
+  // have that weakness: it is the top-level `properties` of the published model schema, closed and
+  // enumerable, so the absence of a construct is a LOOKUP.
+  //
+  // And it gives the obligation a trigger instead of a reminder. The day §14 lands `bindings:` or
+  // §20 lands `requirements:`, this test fails and its message says a fixture is now buildable —
+  // which is strictly better than a prose note in a manifest nobody rereads.
+  const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {
+    readonly properties: Readonly<Record<string, unknown>>;
+  };
+  const authored = Object.keys(schema.properties).sort();
+
+  const manifest = JSON.parse(read("", "manifest.json")) as {
+    readonly authoredConstructSet: readonly string[];
+    readonly owed: readonly { readonly row: string; readonly absentConstructs: readonly string[] }[];
+  };
+  assert.deepEqual([...manifest.authoredConstructSet].sort(), authored,
+    "the manifest's record of the authored construct set is stale — re-read mage-model.schema.json's "
+    + "top-level `properties`, because every absence claim below is relative to it");
+
+  for (const o of manifest.owed) {
+    assert.ok(o.absentConstructs.length > 0, `owed '${o.row}': names no construct to be absent`);
+    for (const name of o.absentConstructs) {
+      assert.ok(!authored.includes(name),
+        `mage-model.schema.json now declares a top-level '${name}' construct, so §35.4's '${o.row}' `
+        + `row is no longer owed for want of something to correspond. A fixture is buildable: build `
+        + `it under conformance/, move the row out of the manifest's \`owed\` array, and fill its `
+        + `Clause cell in DESIGN-v02-semantics-261004.md §35.4.`);
+    }
+  }
+});
+
 test("the README publishes the same status line the manifest derives", () => {
   // The number is read without the file, so the claim and its limit travel together or the README
   // becomes the stale copy. Same discipline as the coverage gate shipping NOT_PROVEN beside its

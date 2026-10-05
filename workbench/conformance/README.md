@@ -14,6 +14,15 @@ of the five. The other two are listed under `owed` in `manifest.json` with the r
 not merely undone — the constructs do not exist, so a fixture for either would describe a shape the
 Workbench does not have.
 
+**That absence is checked, not asserted, and it carries its own trigger.** "There is no binding
+construct" is a negative claim, and a negative claim is only as wide as the search behind it. The
+authored construct set has no such weakness: it is the top-level `properties` of
+`mage-model.schema.json`, closed and enumerable, so the absence of a construct is a lookup.
+`test/conformance.test.ts` reads that set and fails if any name in an `owed` row's
+`absentConstructs` turns up in it. So the day §14 lands `bindings:` or §20 lands `requirements:`,
+the suite goes red and the message says a fixture is now buildable — better than a reminder in a
+file nobody rereads.
+
 ## What a fixture is
 
 One directory per correspondence, under `kerml/` or `sysml/`:

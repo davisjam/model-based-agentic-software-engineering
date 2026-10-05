@@ -107,16 +107,23 @@
       "reviewedByPerson": null
     }
   ],
+  "owedEvidence": "The authored construct set is CLOSED and enumerable -- it is the top-level `properties` of mage-model.schema.json -- so the absence of a construct is a lookup rather than a grep that might have searched the wrong subtree or the wrong spelling. test/conformance.test.ts reads that set and asserts each `absentConstructs` name below is missing from it. The day section 14 or section 20 lands a construct, that test goes RED and says a fixture is now buildable, which is the trigger this corpus wants rather than a prose note nobody rereads.",
+  "authoredConstructSet": [
+    "accounting", "domains", "entities", "events", "machines", "mage",
+    "models", "quantities", "queries", "relation-types", "system", "views"
+  ],
   "owed": [
     {
       "row": "binding",
       "standard": "KerML",
-      "reason": "Out of scope, and a fixture would be fiction: section 14's bindings/compositions split has not landed, so there is no MAGE binding construct to correspond. Verified 2026-10-04 -- no binding: key in either JSON schema, in src/ir/types.ts, or in src/engine/model-types.ts."
+      "absentConstructs": ["binding", "bindings"],
+      "reason": "Out of scope, and a fixture would be fiction: section 14's bindings/compositions split has not landed, so there is no MAGE binding construct to correspond. Verified 2026-10-04 on all three axes -- the authored construct set above contains no binding key; `bind`/`binding` occurs in src/ and in the schemas only inside prose, including a schema description saying multiplicity gives occupancy and NOT binding (V14); and section 35.5 says so itself, placing binding's nearest registry object as JoinSemantics while recording that the construct is not yet built."
     },
     {
       "row": "requirement, verification",
       "standard": "SysML v2",
-      "reason": "Out of scope for the same reason: section 20 has not landed. Verified 2026-10-04 -- no verification construct anywhere in src/ir/types.ts or mage-model.schema.json. A requirement is spelled today as a model:-targeted quantity (SEMANTICS.md 5.3), which is a workaround rather than the construct."
+      "absentConstructs": ["requirements", "verification", "verifications", "cases"],
+      "reason": "Out of scope for the same reason: section 20 has not landed. Verified 2026-10-04 -- the authored construct set contains no requirements or verification key, and `verif` occurs nowhere in src/ or either schema as a construct. Two near misses, named so a later reader does not mistake either for the construct: src/quant/requirement.ts holds REQUIREMENT_METRICS, which is the three metric NAMES (latency, cost, peak_memory) and not a requirement construct; and a requirement is spelled today as a model:-targeted quantity (SEMANTICS.md 5.3), which that example file itself calls a workaround."
     }
   ]
 }
