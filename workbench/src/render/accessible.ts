@@ -204,16 +204,40 @@ export function deriveEvidenceEmphasis(
     if (!nodeIds.has(id)) return;
     out.push({ target: id, kind, reason: `position ${i + 1} on the ${evidence.role} path`, step: i + 1 });
   });
+
+  // THE HOPS, all or none — and the "none" arm is a soundness rule, not a fallback.
+  //
+  // `Evidence` records WHICH nodes a graph answer travelled through and not which relation carried
+  // it, so matching an edge on its `(from, to)` pair alone is the only join available here. That
+  // join is sound exactly when the scene is the model the answer was computed over, and unsound
+  // otherwise. The shipped case that exposed it: a system declaring two purposeful models over one
+  // identity namespace, one with a composable propagation relation and one keeping publication and
+  // subscription distinct with composition FORBIDDEN. A witness found over the composable model,
+  // drawn over the other, matched two of its publication edges by their endpoint pairs and numbered
+  // them as hops of a path — so the picture asserted a composition that model explicitly declines.
+  // Rendering deciding semantics, which is the one thing it may never do.
+  //
+  // A partial match is the tell, and it is a reliable one: a scene is built from ONE model subject,
+  // so a genuine path over that model's relation resolves EVERY consecutive pair. Resolving some is
+  // therefore proof that this is not the model that carried the answer, and the hops are dropped
+  // together. The nodes stay — the entities really are named by the answer, under shared identity —
+  // so a reader still sees who is involved, and `AccessibleScene.evidence` still carries the ordered
+  // step list that is the witness's primary form.
+  //
+  // The machine arm above has had this guard since it was written (`mine.has(inst)` — "evidence for
+  // another machine does not leak into this machine's view"). This is the same rule for the other
+  // arm, which is why it reads as a restatement rather than as a new policy.
+  const hops: EmphasisAssignment[] = [];
   for (let i = 0; i + 1 < path.length; i += 1) {
     const from = path[i] as string;
     const to = path[i + 1] as string;
     const edge = scene.edges
       .filter((e) => e.kind === "relation" && e.from === from && e.to === to)
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))[0];
-    if (edge !== undefined) {
-      out.push({ target: edge.id, kind, reason: `hop ${i + 1} of the ${evidence.role} path`, step: i + 1 });
-    }
+    if (edge === undefined) return out;
+    hops.push({ target: edge.id, kind, reason: `hop ${i + 1} of the ${evidence.role} path`, step: i + 1 });
   }
+  out.push(...hops);
   return out;
 }
 

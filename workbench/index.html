@@ -944,6 +944,18 @@
       <summary id="ask-evidence-summary">Inspect evidence</summary>
       <h3 id="ask-evidence-h">Evidence reading</h3>
       <section id="ask-evidence" aria-labelledby="ask-evidence-h"></section>
+      <!--
+        The witness, drawn. The reading above is the witness's PRIMARY form -- a numbered list of
+        steps, which is what a screen reader gets and what the picture is derived from -- and this
+        button projects the same steps onto the diagram, over the model that carried the answer.
+        It appears only for a kept question with a witness; the hint says which of the two is
+        missing when it does not, because "nothing happened" is the unhelpful version.
+
+        Navigation, not a capability: it writes the view's `witness`, which is outside semantic
+        state exactly as `target` and `selection` are. Declared in CHROME_CONTROLS for that reason.
+      -->
+      <p><button type="button" id="ask-witness-show">Show on the diagram</button></p>
+      <p id="ask-witness-state" class="hint"></p>
     </details>
     <div id="ask-track-box" hidden>
       <h3 id="ask-track-h">Track this claim</h3>

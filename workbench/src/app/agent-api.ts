@@ -736,12 +736,32 @@ export interface ViewApi {
   selection(): readonly string[];
   focus(target: string): void;
   target(): string | null;
+  /**
+   * Draw one SAVED question's witness over the model that carried it, or clear the focus with null.
+   *
+   * A saved id and not a query document, which is the same bound `window.mage.evidence` already
+   * takes: a focus has to survive an edit and re-derive, so it must name something stable. A
+   * verdict is derived state — recompute, never store (`src/app/properties.ts:20-34`) — and an
+   * ad-hoc question has no name to recompute from. Track it, then focus it.
+   */
+  witness(queryId: string | null): void;
+  witnessing(): string | null;
 }
 
-/** Non-semantic view state. Deliberately NOT in the IR, so it cannot affect a query result. */
+/**
+ * Non-semantic view state. Deliberately NOT in the IR, so it cannot affect a query result.
+ *
+ * `witness` is OPTIONAL, which is the one field that is. Every caller that constructs a `ViewState`
+ * is declaring where the view is pointed, and a caller with no interest in witnesses should not have
+ * to say so — the shell writes it, the agent writes it, and a test driving the query API reads an
+ * absent focus as no focus. Made required instead, this field would have edited ten construction
+ * sites to add the same `null`.
+ */
 export interface ViewState {
   target: string | null;
   selection: string[];
+  /** A saved query id whose evidence the diagram emphasises, or absent/null for no focus. */
+  witness?: string | null;
 }
 
 export function createAgentApi(
@@ -925,6 +945,12 @@ export function createAgentApi(
       selection: () => [...viewState.selection],
       focus: (target) => { viewState.target = target; onViewChange(); },
       target: () => viewState.target,
+      // Accepted even for a question this revision does not save, and the asymmetry is deliberate:
+      // an agent may retract a question between focusing it and the next paint, and the paint
+      // resolves the focus against the live system anyway. Refusing here would make the agent
+      // handle a race the shell already handles by drawing nothing.
+      witness: (queryId) => { viewState.witness = queryId; onViewChange(); },
+      witnessing: () => viewState.witness ?? null,
     },
 
     undo: () => workspace.undo(),

@@ -174,6 +174,48 @@ queries:
 #
 # `base` is omitted: it must equal the live system hash, which the test fills in. A hash written
 # down here would be stale the moment the example changed.
+#
+# ## Two repairs, and the model declines to rank them
+#
+# §9.6 of DESIGN-v02-examples-and-semantic-completion-261004.md asks for three student tasks. The
+# first is here twice, as two DIFFERENT repairs of one breach:
+#
+#   drop the subscription   remove the data flow       Analytics loses the event
+#   widen the permission    keep the flow, permit it   Analytics may process restricted data
+#
+# Both make the safety query answer `refuted`. Which one is CORRECT is not a question any of these
+# models represents -- a model that could rank them would be a policy model, and this system
+# declares none. That is the lesson the pair carries, and it is why the first repair was not left as
+# the only one: a student who sees exactly one way to discharge a requirement learns that
+# requirements have repairs, not that they have choices.
+#
+# ## §9.6 task 2 is NOT here, and the reason is a gap in the operation vocabulary
+#
+# Task 2 -- "introduce a debugging subscriber and restore the requirement" -- needs a new service
+# added to the `event-flow` and `event-propagation` models. `add-entity` puts it in the identity
+# namespace and `add-relation` draws its edge, but a graph model's membership is its declared
+# `entities:` list and NO operation extends one. `add-relation` accepts the endpoint anyway, with no
+# finding, and a fresh load of the exported bytes validates clean -- so the edit half-lands: the
+# engine answers using the new edge (the breach query's witness names the new service) while the
+# renderer draws neither the node nor the edge, because `buildScene` takes the declared membership
+# as the scene. A modification shipped here would therefore teach a student that their edit changed
+# the answer and not the picture.
+#
+# Pinned as a divergence in `test/witness-reaches-the-view.test.ts` rather than worked around: which
+# side is wrong is a real fork -- either membership is DERIVED from the relations, or a relation
+# outside it is a well-formedness violation, and V3 today checks only that an endpoint is a declared
+# SYSTEM entity. That belongs to whoever owns the validator and the operation set.
+#
+# ## The direction §9.4 Q5 asks for, and why it is not a fixture row either
+#
+# Q5 wants the student to ADD an impermitted subscriber and watch the requirement go
+# satisfied -> violated. This example ships `violated` on purpose -- a first fixture shipping
+# `satisfied` would never exercise the breach arm, and the safety query would return a vacuous
+# `holds` -- so from the base revision every modification here runs violated -> satisfied instead.
+# Q5's direction needs the REPAIRED revision as its base, which is a two-transaction activity; a
+# fixture modification is one transaction from the base. The same test drives both steps and pins
+# the breach moving from Analytics to the new subscriber, which is the half Q5 says the UI must
+# identify ("the changed verdict AND witness").
 # ---------------------------------------------------------------------------
 modifications:
 
@@ -191,6 +233,30 @@ modifications:
         - op: delete-relation
           model: event-propagation
           id: propagate-order-created-analytics
+    changes:
+      - query: restricted-data-reaches-impermitted-subscriber
+        from: holds
+        to: refuted
+
+  - id: permit-analytics-restricted-data
+    label: Let Analytics process restricted data
+    rationale: >
+      §9.6 task 1 -- "repair the structural breach without deleting the restricted functionality".
+      The repair above discharges the requirement by removing the flow; this one keeps every edge and
+      widens the policy instead, so Analytics still receives OrderCreated and is now declared able to
+      process what it carries. One property edit, no relation touched, and the safety query flips.
+
+      The pair is the point. A requirement is discharged by changing the system OR by changing what
+      the system is permitted to do, and nothing in these models prefers one. Whether granting
+      Analytics access to a shipping address is acceptable is a question for a reviewer, not for a
+      reachability query -- which is exactly the boundary `purpose.omits` is for.
+    transaction:
+      operations:
+        - op: set-property
+          id: analytics
+          name: permits
+          value: restricted
+          domain: sensitivity
     changes:
       - query: restricted-data-reaches-impermitted-subscriber
         from: holds
