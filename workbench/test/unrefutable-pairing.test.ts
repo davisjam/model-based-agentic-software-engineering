@@ -168,16 +168,35 @@ test("D1: the CORRECT ceiling query with one inverted word reads error, not sati
 // ---------------------------------------------------------------------------------------------
 
 test("the two sound quantity-decided requirements keep deriving what they derive today", () => {
-  // The Sensor Node budget is the one the commissioning brief claimed a student cannot write. It is
-  // authored, shipped, and reads SATISFIED through the join the brief said does not exist — so it is
-  // the control that matters most: a rule that broke it would be worse than the hole it closes.
-  assert.equal(verified(doc("embedded-sensor-node"), "firmware-fits-physical-sram").status,
-    "satisfied", "the shipped SRAM budget obligation is sound and within budget");
+  // Exactly two requirements in the corpus are quantity-decided, and BOTH are pinned. Enumerated
+  // from the corpus rather than read off the ruling's §0.3, which describes the Sensor Node chain as
+  // though it were the only one — the census pin below is what makes the count checkable.
+  //
+  // Both must stay sound, and the rule must leave each alone for a DIFFERENT reason. A rule that
+  // broke either is worse than the hole it closes.
+  const sound: readonly (readonly [string, string, string, string])[] = [
+    // The one the commissioning brief claimed a student cannot write. Authored, shipped, and
+    // discharged through the join the brief said does not exist.
+    ["embedded-sensor-node", "firmware-fits-physical-sram", "satisfied", "holds"],
+    // The control that carries more weight: soundly authored AND currently violated, at 2,750 ms
+    // against a declared 2,000 ms. A rule that refuses mis-authored pairings must leave a
+    // sound-but-VIOLATED pairing alone — this is the only row that tests that, because it is the
+    // only one where the deciding query returns the verdict that does NOT discharge the obligation.
+    ["document-processing", "successful-processing-within-two-seconds", "violated", "refuted"],
+  ];
 
-  // And the accusing arm must stay live. This one is VIOLATED on purpose — 2,750 ms against a
-  // declared 2,000 ms — which proves the rule did not buy its green by refusing everything.
-  assert.equal(verified(doc("document-processing"), "successful-processing-within-two-seconds").status,
-    "violated", "the shipped latency obligation accuses the system, and must keep accusing it");
+  for (const [example, req, status, verdict] of sound) {
+    const v = verified(doc(example), req);
+    assert.notEqual(v.status, "error",
+      `${example}/${req} reads error — the arm is refusing a SOUND declaration, which is a worse `
+      + `defect than the hole it was written to close`);
+    assert.equal(v.status, status, `${example}/${req}: the derived status must not move`);
+    assert.ok(v.status === "satisfied" || v.status === "violated");
+    assert.equal(v.verdict, verdict,
+      `${example}/${req}: the verdict must not move either — the status alone would not distinguish `
+      + `a preserved reading from a coincidence`);
+  }
+  assert.equal(sound.length, 2, "two quantity-decided requirements ship; a changed count means re-census");
 });
 
 test("every shipped requirement in the corpus is unaffected — zero findings at HEAD", () => {
