@@ -29,12 +29,15 @@ import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
-import { checkExpectation } from "../src/engine/index.ts";
+import { checkExpectation, parseRequirement, verify } from "../src/engine/index.ts";
+import type { Requirement } from "../src/engine/index.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
-import type { CanonQuantity, CanonicalSystem, Evidence, QueryResult, Scalar } from "../src/ir/types.ts";
-import { DIMENSIONS } from "../src/ir/types.ts";
+import type {
+  CanonQuantity, CanonicalSystem, Coverage, Evidence, QueryEvaluation, QueryResult, Scalar,
+} from "../src/ir/types.ts";
+import { DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
 import {
   CAPABILITY_ROWS, EXAMPLE_IDS, deriveCoverage, exampleText, generateExampleCoverageModel,
   loadExample, machineVocabulary, purposefulModels, realPorts, sharedIdentities,
@@ -287,6 +290,19 @@ test("the supplied and presented query sets are exactly as declared", () => {
   }
 });
 
+/**
+ * The fixture's recorded answer, as an evaluation. `statesExplored` is not pinned by a fixture and
+ * decides nothing here, so it is 0 rather than invented.
+ */
+const recorded = (exp: QueryExpectation): QueryEvaluation => evaluationOf({
+  outcome: exp.outcome,
+  coverage: {
+    kind: exp.coverage, statesExplored: 0,
+    reason: (exp.coverageReason ?? null) as Coverage["reason"],
+  },
+  refusal: exp.refusalContains,
+});
+
 test("a requirement's status agrees with whatever decides it", () => {
   // MAGE v0.1 has no requirement construct, so a requirement lives in the fixture joined to the
   // thing that decides it. Without this check the join is a comment: a requirement could claim to be
@@ -300,16 +316,32 @@ test("a requirement's status agrees with whatever decides it", () => {
   //                statuses carried `pending-evaluator` while nothing in src/ could decide them —
   //                a hand-derived figure must not read as machine-verified — and they read as
   //                verdicts now because the product reaches them.
+  //
+  // BOTH routes interpret through `verify` rather than comparing by hand, and that is the §5.3
+  // separation applied to the gate that holds the corpus. The first route computed
+  // `q.expected.outcome === req.satisfiedWhen` and asserted the boolean against `status ===
+  // "satisfied"`, which is the four-valued negation: a fixture recording `inconclusive` would have
+  // been read as a requirement the system breaches. The second built the status with
+  // `refuted ? "violated" : holds ? "satisfied" : res.outcome`, whose fall-through hands an
+  // EVALUATION STATUS to an assertion about a verification status — so `unlicensed` could have
+  // satisfied the comparison by appearing on both sides. Neither shape can be written now:
+  // `satisfiedWhen` is two-valued and `verify` is total.
   for (const ex of examples()) {
     assert.ok(ex.fixture.requirements.length > 0, `${ex.id}: section 2 asks for at least one requirement`);
     for (const req of ex.fixture.requirements) {
       if (req.expressedAs !== null) {
         const q = ex.fixture.queries.find((x) => x.id === req.expressedAs);
         assert.ok(q !== undefined, `${ex.id}/${req.id}: names query '${req.expressedAs}', which is not supplied`);
-        const met = q.expected.outcome === req.satisfiedWhen;
-        assert.equal(met, req.status === "satisfied",
+        // Through the real parse, so a `satisfied_when` naming a status is refused here and not
+        // merely absent from the corpus by luck.
+        const parsed = parseRequirement({
+          id: req.id, statement: req.statement,
+          expressed_as: req.expressedAs, satisfied_when: req.satisfiedWhen,
+        }, `${ex.id}/${req.id}`);
+        assert.ok(parsed.ok, `${ex.id}/${req.id}: ${parsed.ok ? "" : parsed.problem.problem}`);
+        assert.equal(verify(parsed.value, recorded(q.expected)).status, req.status,
           `${ex.id}/${req.id}: status '${req.status}' disagrees with '${q.id}' answering ${q.expected.outcome} ` +
-          `against satisfied_when ${req.satisfiedWhen}`);
+          `against satisfied_when ${String(req.satisfiedWhen)}`);
         continue;
       }
       const decider = ex.fixture.quantitativeExpectations.find((e) => e.id === req.decidedBy);
@@ -325,9 +357,15 @@ test("a requirement's status agrees with whatever decides it", () => {
           within: req.declaredAs,
         },
       });
-      const verdict = res.outcome === "refuted" ? "violated"
-        : res.outcome === "holds" ? "satisfied" : res.outcome;
-      assert.equal(req.status, verdict,
+      // A ceiling requirement declares no `satisfied_when`, and `holds` is not a default chosen for
+      // convenience: a `within:` question states the ceiling claim DIRECTLY, so the obligation is
+      // discharged when it holds. Made explicit rather than implied, because the alternative is a
+      // reader inferring the polarity from the absence of a key.
+      const ceiling: Requirement = {
+        id: req.id, statement: req.statement,
+        expressedAs: `${req.declaredAs} (composed)`, satisfiedWhen: "holds",
+      };
+      assert.equal(verify(ceiling, evaluationOf(res)).status, req.status,
         `${ex.id}/${req.id}: the fixture records '${req.status}'; the product decides '${res.outcome}'. ` +
         `The disagreement is the finding — do not adjust the fixture to match the code.`);
     }

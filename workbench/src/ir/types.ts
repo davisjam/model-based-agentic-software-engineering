@@ -678,6 +678,144 @@ export interface Coverage {
 }
 
 /**
+ * Whether this coverage can carry a CONCLUSIVE reading of the verdict travelling with it.
+ *
+ * Total over `Coverage["kind"]` by the compiler. Declared beside `Coverage` because two layers ask
+ * it — the pin path in `src/engine/index.ts` and the requirement layer in
+ * `src/engine/verification.ts` — and a second copy is how the two would come to disagree about the
+ * one rule V22 states: a truncated exploration carries no refuting force
+ * (`src/render/accessible.ts:60-62`). `quant/requirement.ts:13-14` says the same from the
+ * evaluator's side, and a requirement line is the strongest reading any surface puts on a result, so
+ * it must not be the one surface that drops the condition.
+ *
+ * A declared GUARD rather than an assumption: no shipped evaluator produces `holds`/`refuted` under
+ * `bounded`, because each reports `exhaustive(...)` when it finds settling evidence and
+ * `inconclusive` when it truncates. The guard is what keeps that an invariant instead of a habit.
+ */
+export const bearsAConclusion = (coverage: Coverage): boolean => {
+  switch (coverage.kind) {
+    case "exhaustive": return true;
+    case "not-applicable": return true;
+    case "bounded": return false;
+  }
+};
+
+// --------------------------------------------------------------------------------------------
+// The evaluation split — a status is not a truth value
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The two values a proposition can take. Nothing else belongs here.
+ *
+ * `Outcome` above carries four words, and two of them are not propositions: `inconclusive` says the
+ * evaluator ran out of budget, and `unlicensed` says the purposeful models do not authorize the
+ * question. Both are facts about the EVALUATION, and both sit in the same union as `holds` and
+ * `refuted`, which is what lets a consumer compare an outcome against a predicted one and read the
+ * mismatch as a verdict about the system under design. `Examples and Semantic Completion` §5.4
+ * names that masquerade and asks for the split.
+ *
+ * Named `PropositionValue` rather than `Verdict` because `src/engine/types.ts:505` already owns that
+ * word for a result-plus-refusal bundle. The FIELD is `verdict`, which is the author's spelling; the
+ * TYPE is spelled differently so a grep for either lands somewhere unambiguous. The same
+ * scope-by-type reasoning the requirement layer applies to `violated`.
+ */
+export type PropositionValue = "holds" | "refuted";
+
+/**
+ * Whether an evaluation reached a proposition value, and if not, what stopped it.
+ *
+ * The author's four words (§5.4). `completed` is the only one under which a truth value exists, and
+ * `QueryEvaluation` below is a discriminated union precisely so the compiler — not a convention —
+ * is what stops a reader from taking `verdict` off a status that has none.
+ *
+ * `exhausted` is the author's word for the evaluator/resource condition. The kernel spells the same
+ * condition `Outcome: "inconclusive"` with `Coverage.kind: "bounded"`, and `exhausted` is also the
+ * SPARQL evaluator's own `ExhaustedResult.kind` (`src/sparql/eval.ts:70`) — a demoted diagnostic
+ * surface whose vocabulary §36.1 of the semantics spec refuses to promote. Reusing the word here is
+ * deliberate and it is not a promotion: this union is a projection OF a result, never a member of
+ * the result vocabulary, and `Outcome` stays four-valued at its declaration above.
+ */
+export type EvaluationStatus = "completed" | "unlicensed" | "exhausted" | "error";
+
+/**
+ * What one evaluation produced: a status always, a proposition value exactly when completed.
+ *
+ * ```
+ * evaluation: { status: completed | unlicensed | exhausted | error, verdict: holds | refuted }
+ *                                                                   # only when completed
+ * ```
+ *
+ * The author's shape, as a discriminated union rather than an optional field, which is the
+ * difference between a documented rule and an enforced one: `ev.verdict` does not typecheck until
+ * the reader has narrowed on `ev.status === "completed"`.
+ *
+ * `coverage` rides the `completed` arm alone because that is the only arm where it decides
+ * anything. A witness is coverage-insensitive and an absence is not — so whether a completed
+ * verdict bears a conclusion depends on which DIRECTION the requirement reads it in, and the
+ * requirement layer is where that asymmetry is applied. The two non-completed arms carry what their
+ * remedy needs instead: `limit` says which budget ran out, `refusal` says which distinction the
+ * models decline. Those remedies differ — raise the bound, declare a relation type — and a layer
+ * that dropped them would leave the reader with a status word and nowhere to go.
+ *
+ * NOT an IR field and not in `systemHash`. Derived per read from a `QueryResult`, like
+ * `modelMetrics` below and for V18's reason: record the answer and the answer changes the system it
+ * was about. That is also what keeps the published schema out of this: the wire format carries
+ * `outcome`, this union is how `src/` reads it.
+ */
+export type QueryEvaluation =
+  | {
+    readonly status: "completed";
+    readonly verdict: PropositionValue;
+    readonly coverage: Coverage;
+  }
+  /** The evaluator's budget ran out. The remedy is a bigger budget, never a model change. */
+  | { readonly status: "exhausted"; readonly limit: Coverage["reason"] }
+  /** The purposeful models do not license the question. The remedy is a model. */
+  | { readonly status: "unlicensed"; readonly refusal: string | null }
+  /** The evaluation could not be performed or its declaration could not be read. */
+  | { readonly status: "error"; readonly problem: string };
+
+/**
+ * What a projection FROM a result can produce: everything but `error`.
+ *
+ * The engine's contract is that nothing throws — a question the model does not license, a reference
+ * that does not resolve, an expression outside the grammar all arrive as SUCCESSFUL results with
+ * `outcome: "unlicensed"` (`src/engine/index.ts:7-11`). So no `QueryResult` carries an evaluator
+ * error, and `evaluationOf` says so in its return type rather than in a comment. `error` stays in
+ * `QueryEvaluation` because the requirement layer reaches it from a declaration that could not be
+ * read, and the worker transport can fail where the engine cannot.
+ */
+export type ResultEvaluation = Extract<
+  QueryEvaluation, { status: "completed" | "exhausted" | "unlicensed" }
+>;
+
+/**
+ * A result, read as an evaluation. TOTAL over `Outcome` by the compiler: no `default`, and a
+ * declared return type, so a fifth outcome word would be a type error here before it could be read
+ * as a truth value anywhere else — the discipline `src/engine/check.ts:204` already uses for
+ * `RefusalReason`.
+ *
+ * This is the one translation site between the two vocabularies. Every consumer that needs to know
+ * whether an answer is a proposition at all should read this rather than switching on `outcome`
+ * itself, because switching on `outcome` is what puts `unlicensed` in the same position as `holds`.
+ */
+export const evaluationOf = (
+  res: Pick<QueryResult, "outcome" | "coverage" | "refusal">,
+): ResultEvaluation => {
+  switch (res.outcome) {
+    case "holds":
+    case "refuted":
+      return { status: "completed", verdict: res.outcome, coverage: res.coverage };
+    // The kernel's `inconclusive` IS the author's `exhausted`: every evaluator that truncates a
+    // walk reports it under `bounded` coverage, and `reason` names which limit bit.
+    case "inconclusive":
+      return { status: "exhausted", limit: res.coverage.reason };
+    case "unlicensed":
+      return { status: "unlicensed", refusal: res.refusal };
+  }
+};
+
+/**
  * A disclosed rewrite or caveat on a result, in a closed vocabulary a renderer can branch on.
  *
  * `vacuous` carries the one caveat that an `Outcome` cannot. A universal over an empty selected set

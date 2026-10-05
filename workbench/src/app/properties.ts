@@ -54,6 +54,7 @@ import { checkExpectation, parseBehaviorQuery, parseGraphQuery } from "../engine
 import type { ExpectationVerdict, Predicate } from "../engine/index.ts";
 import { modelsDeclaring } from "../engine/graph.ts";
 import type { CanonicalSystem, Coverage, Evidence, QueryResult } from "../ir/types.ts";
+import { evaluationOf } from "../ir/types.ts";
 import type { UxViolation } from "./capabilities.ts";
 
 /** §9.1's vocabulary. A word, never an icon: the icons there are explicitly nonnormative. */
@@ -449,14 +450,30 @@ export function groundsFor(
 // Evaluation
 // --------------------------------------------------------------------------------------------
 
+/**
+ * The §9.1 status word for one result. TOTAL over `EvaluationStatus` by the compiler.
+ *
+ * It switched over `Outcome` with a `default` arm, and the `default` is what made the totality a
+ * hope: `inconclusive` was the fall-through, so a fifth outcome word would have been spoken as "the
+ * search was bounded, so this is not a 'no'" without anyone deciding that it was. Switching over
+ * `evaluationOf` instead makes the two non-propositions ARMS rather than residue — the same §5.4
+ * split the requirement layer and the pin path read. `error` does not appear because
+ * `ResultEvaluation` excludes it: the engine's contract is that nothing throws.
+ *
+ * The five words over four outcomes stay exactly as they were; this changes what holds the mapping,
+ * not the mapping. `conditional` remains the V23 disclosure on a CONCLUSIVE outcome, which is why
+ * it is reachable only from the `completed` arm.
+ */
 function statusOf(result: QueryResult | undefined): PropertyStatus {
   if (result === undefined) return "not-evaluated";
   const conditional = result.compilation.length > 0;
-  switch (result.outcome) {
-    case "holds": return conditional ? "conditional" : "established";
-    case "refuted": return conditional ? "conditional" : "refuted";
+  const ev = evaluationOf(result);
+  switch (ev.status) {
+    case "completed":
+      if (conditional) return "conditional";
+      return ev.verdict === "holds" ? "established" : "refuted";
     case "unlicensed": return "not-answerable";
-    default: return "inconclusive";
+    case "exhausted": return "inconclusive";
   }
 }
 
