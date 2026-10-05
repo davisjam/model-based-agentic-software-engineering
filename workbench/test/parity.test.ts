@@ -57,6 +57,11 @@ const PARITY = new Set([
   // both sides validate the reference, so an authored dangling ceiling is one finding, not a
   // refusal one tool explains and the other never sees.
   "V35", "V36", "V37", "V38", "V39",
+  // V40 is V3's own loop read in the other direction -- a plain structural check over declared
+  // data, which is the shape that belongs in parity rather than in the asymmetry table. Both sides
+  // already walk `models.<id>.entities` and `models.<id>.relations` for V3, so an asymmetry here
+  // would record nothing about the specification and only that one side had not caught up.
+  "V40",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -282,6 +287,22 @@ test("violations agree, rule by rule", () => {
       "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
       entities: { a: {} },
       models: { g: { type: "graph", entities: ["a", "ghost"], relations: [{ from: "a", to: "ghost", type: "calls" }] } },
+    }],
+    // The pair that fixes the BOUNDARY between the two rules, which is the half of V40 a single
+    // case cannot pin. Above, `ghost` resolves nowhere: V3 owns it and V40 says nothing, so the
+    // finding set is unchanged by V40's arrival. Below, `b` resolves at system level and is absent
+    // from the membership: V3 is satisfied and V40 is the only rule with anything to say.
+    ["V40 an endpoint outside the model's membership", {
+      ...base,
+      "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
+      entities: { a: {}, b: {} },
+      models: { g: { type: "graph", entities: ["a"], relations: [{ from: "a", to: "b", type: "calls" }] } },
+    }],
+    ["V40 a model that asserts an edge and declares no membership at all", {
+      ...base,
+      "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
+      entities: { a: {}, b: {} },
+      models: { g: { type: "graph", relations: [{ from: "a", to: "b", type: "calls" }] } },
     }],
     ["V26 guard against an undeclared state", {
       ...base, machines: {

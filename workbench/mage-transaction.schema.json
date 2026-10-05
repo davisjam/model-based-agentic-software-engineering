@@ -64,6 +64,7 @@
         { "$ref": "#/$defs/opDeleteRelation" },
         { "$ref": "#/$defs/opSetPurpose" },
         { "$ref": "#/$defs/opAddModel" },
+        { "$ref": "#/$defs/opAddModelEntity" },
         { "$ref": "#/$defs/opDeleteModel" },
         { "$ref": "#/$defs/opAddNote" },
         { "$ref": "#/$defs/opSaveQuery" },
@@ -238,6 +239,17 @@
           "type": "array",
           "items": { "$ref": "#/$defs/id" }
         }
+      }
+    },
+    "opAddModelEntity": {
+      "description": "Include an already-declared entity in a graph model's membership -- the one operation that extends a model's `entities:` list. It creates no entity: models reference entities and never redeclare them (V3), so adding a component is two acts, add-entity then this one, for each model that should see it. That is not friction to be smoothed away -- a model is a purposeful reduction, and an op that put a new id into every model would be guessing which reductions the author meant it to join. Refused when the entity is already a member; an unknown id is checked by V3 at the validation stage, as it is for add-model and add-relation. Without this op, V40 makes a model's membership unextendable: add-relation to a non-member is a finding, and nothing could clear it.",
+      "type": "object",
+      "required": ["op", "model", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "add-model-entity" },
+        "model": { "$ref": "#/$defs/id" },
+        "id": { "$ref": "#/$defs/id" }
       }
     },
     "opDeleteModel": {

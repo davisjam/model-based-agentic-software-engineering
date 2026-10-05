@@ -302,14 +302,31 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
     domains = doc.get("domains") or {}
 
     # V3 -- models reference system-level entities; they never redeclare them.
+    # V40 -- and a model's relations are edges over the entities it DECLARES. The second is the
+    # first read in the other direction, and it is the rule that makes the half-landed edit
+    # impossible: an endpoint that resolves at system level but is absent from `entities:` used to
+    # produce no finding on either side, so the engine answered using an entity the model never
+    # declared and a fresh load of the exported bytes was clean.
     for mid, model in models.items():
-        for eid in (model.get("entities") or []):
+        members = model.get("entities") or []
+        for eid in members:
             if eid not in entities:
                 f.add("V3", f"models.{mid}.entities", f"'{eid}' is not a declared system entity.")
         for rel in (model.get("relations") or []):
             for side in ("from", "to"):
-                if rel.get(side) not in entities:
-                    f.add("V3", f"models.{mid}.relations", f"{side}: '{rel.get(side)}' is not a declared entity.")
+                endpoint = rel.get(side)
+                if endpoint not in entities:
+                    f.add("V3", f"models.{mid}.relations", f"{side}: '{endpoint}' is not a declared entity.")
+                    # V40 declines: the endpoint resolves nowhere, so V3 has already named the one
+                    # defect at the one site to edit, and a second sentence about it teaches nothing.
+                    continue
+                if endpoint not in members:
+                    f.add("V40", f"models.{mid}.relations",
+                          f"{side}: '{endpoint}' is a declared entity but not a member of model "
+                          f"'{mid}' -- a model's relations are edges over the entities it declares, "
+                          f"and an edge to one it does not declare is an edge no view of it would "
+                          f"draw. Extend the membership with add-model-entity, or point the "
+                          f"relation at a member.")
             if rel.get("type") not in rel_types:
                 f.add("V3", f"models.{mid}.relations", f"type: '{rel.get('type')}' is not a declared relation-type.")
 
@@ -1721,6 +1738,14 @@ def self_test() -> int:
         ("V39", {**base, "queries": {"under-ceiling": {
             "kind": "quantity", "quantifier": "forall",
             "quantity": {"metric": "latency", "within": "ghost"}}}}),
+        # V40: the half-landed membership edit. `ghost` is a declared entity, so V3 is satisfied and
+        # used to be the end of it -- the model asserts an edge to an entity it never declared.
+        ("V40", {**base,
+                 "relation-types": {"calls": {"description": "d",
+                                              "composition": {"path": "allowed"}}},
+                 "entities": {"api": {}, "ghost": {}},
+                 "models": {"g": {"type": "graph", "entities": ["api"],
+                                  "relations": [{"from": "api", "to": "ghost", "type": "calls"}]}}}),
     ]
     failures = 0
     for expect, doc in cases:

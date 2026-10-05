@@ -324,6 +324,24 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       return null;
     }
 
+    case "add-model-entity": {
+      if (!doc.has(["models", op.model])) return fail(where, `add-model-entity: no model '${op.model}'.`);
+      const path: Path = ["models", op.model, "entities"];
+      const listed = doc.get(path);
+      if (Array.isArray(listed) && listed.includes(op.id)) {
+        return fail(where,
+          `add-model-entity: '${op.id}' is already a member of model '${op.model}'. A membership is a ` +
+          `set, so a second entry would make the model's own reduction ambiguous to read.`);
+      }
+      // `pushIn` creates the sequence when the model declares none, which is the ordinary case for
+      // a model authored with relations and no `entities:` block. The id is NOT checked against the
+      // entity table here: the op's target is the MODEL, and resolving a reference is stage 4's
+      // subject — V3 fires on `models.<id>.entities`, the field this writes, exactly as it does for
+      // an id `add-model` was handed at creation.
+      doc.pushIn(path, op.id);
+      return null;
+    }
+
     case "delete-model": {
       if (!doc.has(["models", op.id])) return fail(where, `delete-model: no model '${op.id}'.`);
       const refused = refuseBlocked(where, `model '${op.id}'`, modelReferences(doc.system(), op.id));

@@ -172,8 +172,30 @@ export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
     }
   }
   for (const r of s.relations) {
+    const owner = s.models.get(r.model);
     for (const [side, id] of [["from", r.from], ["to", r.to]] as const) {
-      if (!s.entities.has(id)) c.add("V3", `models.${r.model}.relations`, `${side}: '${id}' is not a declared entity.`, [r.model, id]);
+      if (!s.entities.has(id)) {
+        c.add("V3", `models.${r.model}.relations`, `${side}: '${id}' is not a declared entity.`, [r.model, id]);
+        // V40 declines here. The endpoint resolves nowhere, so "not a member of this model" is a
+        // second sentence about one defect that V3 has already named at the site to edit — the same
+        // restraint V36 shows towards V27 and V26 towards a malformed guard reference.
+        continue;
+      }
+      // V40 — a model's relations are edges over the entities it DECLARES. A relation whose
+      // endpoint resolves at system level but is absent from `entities:` is the half-landed edit
+      // nothing else catches: the engine's adjacency is built from relations, so it answers using
+      // an entity the model never declared, the RDF projection emits no `mage:includes` for it, and
+      // a fresh load of the exported bytes was clean. The rule is V3's reference discipline pointed
+      // the other way, and it is the rung both interfaces reach: the `add-relation` form narrows
+      // its endpoint pickers to the chosen model's own entities, which offers the invariant to a
+      // person and holds nothing against `window.mage.transact`.
+      if (owner !== undefined && !owner.entities.includes(id)) {
+        c.add("V40", `models.${r.model}.relations`,
+          `${side}: '${id}' is a declared entity but not a member of model '${r.model}' — a model's ` +
+          `relations are edges over the entities it declares, and an edge to one it does not ` +
+          `declare is an edge no view of it would draw. Extend the membership with add-model-entity, ` +
+          `or point the relation at a member.`, [r.model, id]);
+      }
     }
     if (!s.relationTypes.has(r.type)) {
       c.add("V3", `models.${r.model}.relations`, `type: '${r.type}' is not a declared relation-type.`, [r.model, r.type]);

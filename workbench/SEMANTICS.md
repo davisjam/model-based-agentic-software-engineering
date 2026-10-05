@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V39** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V40** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -63,6 +63,16 @@ entities:
   deletion, never a rename.
 - **Models reference entities; they never redeclare them (V3).** A `graph` model lists ids under
   `entities:`; every id MUST resolve to a system-level entity.
+- **A model's membership is the list it declares, and its relations are edges over that list
+  (V40).** Both endpoints of a relation a model asserts MUST appear in that model's `entities:`.
+  The rule is V3 read in the other direction, and it closes the half-landed edit: the engine builds
+  its adjacency from relations, so an endpoint outside the membership is one the engine *answers
+  with* while the model does not declare it — and nothing else notices. The export reloads clean,
+  the RDF projection emits no `mage:includes` for it, and a reader asking what the model covers
+  gets a set the answer contradicts. Adding a component is therefore two acts, not one: `add-entity`
+  declares the identity, `add-model-entity` extends the membership of each model that should see it.
+  When an endpoint resolves nowhere at all, V3 owns the finding and V40 stays quiet — one defect,
+  one sentence, at the one site to edit.
 - Containment is declared on the entity (`contains: [...]`) and yields hierarchical paths
   (`docable/remediation/parser`). Containment MUST be acyclic (V4) and single-parent (V5).
 
