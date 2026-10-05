@@ -47,12 +47,17 @@ export interface FixtureRequirement {
   /** The prohibition or obligation in the author's words — normative, never interrogative. */
   readonly statement: string;
   /**
-   * The saved query that decides it, or null for a quantitative requirement.
+   * The saved query that decides it, or null when no saved query states the question.
    *
-   * Two shapes ship, and the null is the second one: a graph or behaviour requirement names the
-   * saved query it is expressed as, while a quantitative one names the declared ceiling
-   * (`declaredAs`) and the analysis that decides it (`decidedBy`), because the question is composed
-   * from the ceiling rather than saved in the system.
+   * CORRECTED 261005. This used to read *"null for a quantitative requirement … because the question
+   * is composed from the ceiling rather than saved in the system"*, and a quantitative requirement is
+   * exactly where that fails: `embedded-sensor-node`'s `firmware-fits-physical-sram` names
+   * `expressed_as: sram-fits-budget`, a saved `kind: quantity` question whose `within:` cites the
+   * declared budget. `document-processing`'s `successful-processing-within-two-seconds` does the same.
+   *
+   * So the null does not track the requirement's KIND. It tracks whether a saved question states the
+   * question, and two `document-processing` rows are null only because none was written for them —
+   * the author's own note calls that a choice about the example's scope, not a missing construct.
    */
   readonly expressedAs: string | null;
   /** The `model:`-targeted quantity declaring the ceiling, for a quantitative requirement. */

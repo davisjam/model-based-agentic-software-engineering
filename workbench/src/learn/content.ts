@@ -136,6 +136,51 @@ export function savedStatements(system: CanonicalSystem, kind: Query["kind"]): r
   return out;
 }
 
+/**
+ * What a saved quantity question declares about a ceiling, read from its own `raw`.
+ *
+ * `within` holds a NAME, and a quantity question has no field a magnitude could go into instead:
+ * `QuantityQuery.limit` is the state-exploration bound the evaluator defaults
+ * (`src/quant/query.ts:102`), not a figure. So the only route from a question to a number runs
+ * through resolving this id against `system.quantities`. The three-role section rests on that, which
+ * is why it is read here rather than asserted there.
+ *
+ * Guarded like `propertyJoinStatements`, for its reason: the examples suite validates these
+ * fixtures, so a raw that does not match the shape is skipped rather than thrown on.
+ */
+export interface CeilingQuestion {
+  readonly id: string;
+  /** The authored question text, or the id when the author gave none. */
+  readonly label: string;
+  /** The declared quantifier, read rather than assumed. */
+  readonly quantifier: string;
+  readonly metric: string;
+  /** The `within:` id, which resolves to a declared quantity. */
+  readonly ceiling: string;
+  /** Whether the question narrows the executions it measures — the admitted composition's field. */
+  readonly selects: boolean;
+}
+
+/** Every saved question of a system that decides a DECLARED ceiling: those declaring `within:`. */
+export function ceilingQuestions(system: CanonicalSystem): readonly CeilingQuestion[] {
+  const out: CeilingQuestion[] = [];
+  for (const saved of savedStatements(system, "quantity")) {
+    const raw = system.queries.get(saved.id)?.raw;
+    if (!isObject(raw) || !isObject(raw["quantity"])) continue;
+    const quantity = raw["quantity"];
+    const within = quantity["within"];
+    const metric = quantity["metric"];
+    const quantifier = raw["quantifier"];
+    if (typeof within !== "string" || typeof metric !== "string") continue;
+    if (typeof quantifier !== "string") continue;
+    out.push({
+      id: saved.id, label: saved.label, quantifier, metric, ceiling: within,
+      selects: quantity["target"] !== undefined,
+    });
+  }
+  return out;
+}
+
 /** Saved graph properties whose `where` joins entity properties — the data-policy use, executable. */
 export function propertyJoinStatements(system: CanonicalSystem): readonly SavedStatement[] {
   const joins: SavedStatement[] = [];
@@ -230,9 +275,19 @@ export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystem
 /**
  * The quantitative question a system's OWN declared ceiling licenses, derived from the system.
  *
- * No shipped example SAVES a quantity query — the fixtures decide quantitative requirements through
- * the suite — so a page that wanted to show one had two choices: write the question by hand, or
- * derive it from what the system declares. This derives it: a `model:`-targeted quantity names the
+ * CORRECTED 261005: this header used to open *"no shipped example SAVES a quantity query — the
+ * fixtures decide quantitative requirements through the suite"*, and that premise has not held for
+ * some time. Five saved quantity questions ship (four in `document-processing`, one in
+ * `embedded-sensor-node`), and two of them declare `within:` and are named by a requirement's
+ * `expressed_as`. The derivation below is still needed, for a narrower reason than the one it was
+ * given: two `document-processing` fixture rows name a declared ceiling through `declared_as` with no
+ * saved question to run, so `decideRequirement` composes their question here. For a row that names a
+ * saved one, the saved question is run instead and nothing is composed.
+ *
+ * A stale premise in this position is the expensive kind — it reads as license to hand-write what the
+ * corpus already declares. See `ceilingQuestions` above for the reader the three-role section uses.
+ *
+ * This derives the question: a `model:`-targeted quantity names the
  * ceiling, and the metric comes from the engine's own dimension table (`ACCOUNTED_METRICS`), which
  * is the REVERSE of the lookup the evaluator performs. A dimension no path metric accounts falls
  * back to the metric that accounts none, which is how the configuration-scoped metric is reached

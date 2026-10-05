@@ -25,7 +25,14 @@
  * the page cannot claim a verdict the engine stopped producing — repair `document-processing`'s
  * retry policy and the counterexample section would show a `holds` and say so.
  * `question-requirements` puts the fixture's recorded `status` beside the live outcome, so a drift
- * between them is visible on the page and not only in CI. `question-agents` renders
+ * between them is visible on the page and not only in CI.
+ * `question-ceilings` resolves a two-name chain — requirement to saved question to declared quantity
+ * — and runs the question at the end of it, so the separation it teaches is four lookups a reader can
+ * repeat rather than a taxonomy. Its "the magnitude it states" column is the claim it exists to make,
+ * and that column is filled from each declaration's own fields; a figure appearing in a second row
+ * would show up on the page as a second figure. It states no refusal, because the arm that refuses an
+ * obligation named against a question that cannot decide it is scoped and not landed.
+ * `question-agents` renders
  * `affordanceParityGate()`'s own headline, including a non-zero violation count if one appears.
  * `question-omissions` quotes the refusals the shipped questions actually earn.
  * `question-bindings` states the §8 lesson — a binding does not merge the models — as two
@@ -90,7 +97,10 @@ import { runQuery } from "../engine/index.ts";
 import type { CanonicalSystem, Evidence, Purpose, QueryResult } from "../ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
-import { composedQuantityQuery, exemplarFor, savedStatements, type LoadedSystems } from "./content.ts";
+import {
+  ceilingQuestions, composedQuantityQuery, exemplarFor, quantityRows, savedStatements,
+  type CeilingQuestion, type LoadedSystems, type QuantityRow,
+} from "./content.ts";
 import type { LoadedFixtures } from "./fixtures.ts";
 
 /**
@@ -300,6 +310,46 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
       {
         file: "src/ir/types.ts", symbol: "export type Outcome",
         role: "the four outcomes a question can have — deliberately not true/false",
+      },
+    ],
+  },
+  // EIGHTH, directly after requirements, because it narrows the section before it. A reader has just
+  // met the obligation and the outcome that satisfies it; the open question is what happens when the
+  // thing obliged is a MAGNITUDE, which is where a figure could be written down twice. Placed here
+  // rather than in the quantitative gallery section for a reason the gallery's own derivation gives:
+  // that section's exemplar is whichever shipped example the registry's presence predicate reaches
+  // first, and the chain this section reads spans a requirement, a question and a quantity across the
+  // fixture and the system. The gallery shows one construct; this shows a join.
+  {
+    anchor: "question-ceilings",
+    heading: "When what must be true is a number, where does the number live?",
+    lede: "Asking whether a design fits a budget takes three things: the figure, a comparison "
+      + "against it, and the obligation that the comparison come out a particular way. Three "
+      + "declarations, one per job — and only the first of them says how much.",
+    derivedFrom: [
+      {
+        file: "src/engine/types.ts", symbol: "export interface QuantityQuery",
+        role: "`within` — the declared quantity a question decides against, held as a NAME; the "
+          + "shape carries no field a magnitude could be written into instead, so a question cannot "
+          + "state a second copy of the figure even by accident",
+      },
+      {
+        file: "src/quant/query.ts", symbol: "export function admitQuantityQuery",
+        role: "where the name becomes a number: the admission resolves the cited quantity and "
+          + "converts its unit before anything explores, which is why the comparison belongs to the "
+          + "question and the figure belongs to the quantity",
+      },
+      {
+        file: "src/learn/fixtures.ts", symbol: "readonly expressedAs",
+        role: "the obligation's own join — it names the question that decides it, and the fixture "
+          + "shape gives a requirement no magnitude field either, so the chain to the figure is two "
+          + "names long and has no shortcut",
+      },
+      {
+        file: "examples/embedded-sensor-node/system.mage.yaml", symbol: "sram-budget:",
+        role: "the worked example, and the author's own account of the separation: a budget is "
+          + "declared as a quantity because it is a number, and the obligation that cites it is a "
+          + "separate declaration naming the query rather than restating the figure",
       },
     ],
   },
@@ -891,11 +941,16 @@ function propertyBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): reado
 /**
  * What decides one shipped requirement, and what it answers NOW.
  *
- * Two shapes, because two ship. A graph or behavioural requirement names the saved query it is
- * expressed as, and that query is run. A QUANTITATIVE one names the declared ceiling instead, so
- * the question is derived from that ceiling — `composedQuantityQuery` with the requirement's own
- * `declared_as`, not the system's first ceiling, because the two quantitative requirements shipped
- * are of different dimensions and the first would decide both against the wrong one.
+ * Two shapes, because two ship — and the split is NOT by requirement kind. CORRECTED 261005: this
+ * comment used to say a quantitative requirement "names the declared ceiling instead", which two
+ * shipped quantity-decided requirements refute (`firmware-fits-physical-sram` and
+ * `successful-processing-within-two-seconds` both name a saved question through `expressed_as`).
+ *
+ * The real split is whether a saved question states the question. When one does, it is run. When none
+ * does — two `document-processing` rows name only a `declared_as` ceiling — the question is derived
+ * from that ceiling via `composedQuantityQuery`, with the requirement's OWN ceiling rather than the
+ * system's first, because those two rows are of different dimensions and the first would decide both
+ * against the wrong one.
  */
 function decideRequirement(
   system: CanonicalSystem, req: { readonly expressedAs: string | null; readonly declaredAs: string | null },
@@ -973,6 +1028,139 @@ function requirementBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): re
         + "question; satisfaction belongs to the requirement.",
     },
   ];
+}
+
+// ---------------------------------------------------------------------------------------------
+// Ceilings — the three-role separation, read off the corpus rather than stated
+//
+// A requirement about a magnitude is assembled from three declarations: a quantity declares the
+// figure, a saved question compares against it BY REFERENCE, and the requirement obliges the
+// comparison to come out a particular way. The chain below is the join that shows it, and every cell
+// of it resolves a name the corpus authored.
+//
+// What this section does NOT say: that anything refuses a requirement whose named question cannot
+// decide it. Such a pairing derives `satisfied` today, which is a measured defect with a ruling
+// against it and an engine arm scoped but not landed. A page claiming that refusal would be claiming
+// enforcement that does not exist, so the section teaches the sound shape and stops there.
+// ---------------------------------------------------------------------------------------------
+
+/** One requirement whose deciding question cites a declared ceiling, with every link resolved. */
+interface CeilingChain {
+  readonly example: ShippedExampleId;
+  readonly requirementId: string;
+  readonly statement: string;
+  readonly satisfiedWhen: string;
+  readonly question: CeilingQuestion;
+  readonly ceiling: QuantityRow;
+  readonly result: QueryResult | null;
+}
+
+/**
+ * Every obligation in the corpus that reaches a declared ceiling, by resolving the two names.
+ *
+ * A row survives only when BOTH links resolve: the requirement's `expressed_as` names a saved
+ * question this system declares, and that question's `within:` names a quantity it declares. A
+ * dangling link drops the row rather than rendering a half chain, which is the same choice
+ * `groundedIn` makes about an ungrounded pairing.
+ */
+function ceilingChains(systems: LoadedSystems, fixtures: LoadedFixtures): readonly CeilingChain[] {
+  const out: CeilingChain[] = [];
+  for (const example of SHIPPED_EXAMPLE_IDS) {
+    const system = systems.get(example);
+    const fixture = fixtures.get(example);
+    if (system === undefined || fixture === undefined) continue;
+    const asked = new Map(ceilingQuestions(system).map((q) => [q.id, q]));
+    const declared = new Map(quantityRows(system).map((r) => [r.id, r]));
+    for (const req of fixture.requirements) {
+      if (req.expressedAs === null) continue;
+      const question = asked.get(req.expressedAs);
+      if (question === undefined) continue;
+      const ceiling = declared.get(question.ceiling);
+      if (ceiling === undefined) continue;
+      out.push({
+        example,
+        requirementId: req.id,
+        statement: req.statement,
+        // A ceiling claim is universal, so `holds` is the only outcome that satisfies it; the
+        // fixture states it anyway on both shipped rows, and this reads what is there.
+        satisfiedWhen: req.satisfiedWhen ?? "holds",
+        question,
+        ceiling,
+        result: runSaved(system, question.id),
+      });
+    }
+  }
+  return out;
+}
+
+function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readonly QuestionBlock[] {
+  const chains = ceilingChains(systems, fixtures);
+  // The worked example, chosen by a property rather than by name: the chain whose question measures
+  // every execution instead of narrowing them. The narrowed one is a COMPOSITION, and the section
+  // before last already teaches that — showing it here would make the selection look like part of
+  // the separation. Falls back to the first chain so this section cannot empty itself.
+  const worked = chains.find((c) => !c.question.selects) ?? chains[0];
+  const blocks: QuestionBlock[] = [
+    {
+      kind: "prose",
+      text: "\"Does the firmware fit in the part's SRAM?\" sounds like one question and decomposes "
+        + "into three. How much SRAM the part has. Whether the design stays under that. Whether it "
+        + "must. Each one wants a different kind of declaration, so the workbench keeps them apart "
+        + "instead of folding them into a single line that would answer all three at once.",
+    },
+  ];
+  if (worked !== undefined) {
+    const answer = worked.result;
+    blocks.push({
+      kind: "pairs",
+      label: `Three questions, three declarations — ${nameOf(systems, worked.example)}`,
+      pairs: [
+        ["How much is there?",
+          `'${worked.ceiling.id}' declares ${worked.ceiling.value} of `
+          + `${worked.ceiling.dimension} against ${worked.ceiling.target}`],
+        ["Does the design stay under it?",
+          `'${worked.question.id}' asks ${worked.question.quantifier} `
+          + `${worked.question.metric} within '${worked.question.ceiling}'`],
+        ["Must it?",
+          `'${worked.requirementId}' obliges it, and is satisfied when that question is `
+          + `${worked.satisfiedWhen}`],
+        ["And does it, on this revision?",
+          answer === null ? "—"
+            : `${answer.outcome} — ${magnitudeText(answer)}, ${coverageText(answer)}`],
+      ],
+    });
+    blocks.push({
+      kind: "rows",
+      label: "What each of the three declarations carries",
+      columns: ["The declaration", "Its job", "The magnitude it states", "The name it cites"],
+      rows: [
+        [`${worked.ceiling.id} (quantity)`, "declares the figure", worked.ceiling.value, "—"],
+        [`${worked.question.id} (question)`, "compares against it", "—",
+          `within: ${worked.question.ceiling}`],
+        [`${worked.requirementId} (requirement)`, "obliges the comparison", "—",
+          `expressed_as: ${worked.question.id}`],
+      ],
+    });
+  }
+  blocks.push({
+    kind: "rows",
+    label: "Every obligation the corpus states about a declared ceiling",
+    columns: ["The obligation", "names the question", "which cites the ceiling", "declaring",
+      "and it answers"],
+    rows: chains.map((c) => [
+      c.requirementId, c.question.id, c.ceiling.id, c.ceiling.value,
+      c.result === null ? "—" : c.result.outcome,
+    ]),
+  });
+  blocks.push({
+    kind: "prose",
+    text: "Both verdicts ship, which keeps this a shape rather than a success story: the corpus meets "
+      + "one budget and misses one deadline through the same three declarations. The figure itself "
+      + "has one home. A question cites the quantity by name, a requirement cites the question by "
+      + "name, so re-specifying the part edits a single declaration. Nothing downstream can disagree "
+      + "with it, because neither of the other two has anywhere to keep a copy.",
+  });
+  return blocks;
 }
 
 function agentBlocks(): readonly QuestionBlock[] {
@@ -1711,6 +1899,7 @@ export function buildQuestionSections(
       case "question-compositions": return { section, blocks: compositionBlocks(systems) };
       case "question-properties": return { section, blocks: propertyBlocks(systems, fixtures) };
       case "question-requirements": return { section, blocks: requirementBlocks(systems, fixtures) };
+      case "question-ceilings": return { section, blocks: ceilingBlocks(systems, fixtures) };
       case "question-agents": return { section, blocks: agentBlocks() };
       case "question-foundations": return { section, blocks: foundationBlocks() };
       case "question-omissions": return { section, blocks: omissionBlocks(systems) };

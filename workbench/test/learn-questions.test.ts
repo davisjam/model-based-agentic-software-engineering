@@ -46,7 +46,9 @@ import { Workspace } from "../src/app/services.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../src/app/capabilities.ts";
 import { anchorForType, anchorForUse, MODEL_TYPE_USES } from "../src/app/learn.ts";
-import { composedQuantityQuery, type LoadedSystems } from "../src/learn/content.ts";
+import {
+  ceilingQuestions, composedQuantityQuery, quantityRows, type LoadedSystems,
+} from "../src/learn/content.ts";
 import { fixturePathFor, readFixture, type LoadedFixtures } from "../src/learn/fixtures.ts";
 import {
   buildQuestionSections, QUESTION_ANCHORS, QUESTION_SECTIONS,
@@ -346,6 +348,191 @@ test("BOTH polarities ship, which is what makes the section teach a rule", () =>
   const table = rowsLabelled(sectionAt("question-requirements"), "The polarity");
   assert.deepEqual(new Set(table.rows.map((r) => r[0])), polarities,
     "the polarity table does not show every satisfying outcome the fixtures declare");
+});
+
+// ---------------------------------------------------------------------------------------------
+// (3b) Ceilings — the three-role separation, and the single-source claim it rests on
+//
+// The section says a figure has one home: a quantity declares it, a question cites the quantity by
+// name, a requirement cites the question by name. Each test below attacks a different way that could
+// be false — a row the corpus does not license, a second magnitude on the page, a chain whose live
+// verdict disagrees with the fixture, or a claim of enforcement that is not landed.
+// ---------------------------------------------------------------------------------------------
+
+/** The obligation-to-ceiling chains the CORPUS licenses, derived here independently of the page. */
+const corpusChains = (): readonly {
+  example: ShippedExampleId; requirement: string; question: string; ceiling: string; status: string;
+}[] => {
+  const out: {
+    example: ShippedExampleId; requirement: string; question: string; ceiling: string; status: string;
+  }[] = [];
+  for (const example of SHIPPED_EXAMPLE_IDS) {
+    const system = systems.get(example);
+    const fixture = fixtures.get(example);
+    if (system === undefined || fixture === undefined) continue;
+    const asked = new Map(ceilingQuestions(system).map((q) => [q.id, q]));
+    for (const req of fixture.requirements) {
+      const q = req.expressedAs === null ? undefined : asked.get(req.expressedAs);
+      if (q === undefined) continue;
+      if (!system.quantities.has(q.ceiling)) continue;
+      out.push({
+        example, requirement: req.id, question: q.id, ceiling: q.ceiling, status: req.status,
+      });
+    }
+  }
+  return out;
+};
+
+test("the ceiling table is exactly the obligations the corpus licenses — none invented, none lost", () => {
+  const table = rowsLabelled(sectionAt("question-ceilings"), "Every obligation");
+  const licensed = corpusChains();
+  assert.ok(licensed.length > 0,
+    "no shipped requirement names a saved question that cites a declared ceiling; the section would "
+    + "render an empty table and teach the separation from nothing");
+  assert.deepEqual(
+    new Set(table.rows.map((r) => `${r[0] ?? ""}/${r[1] ?? ""}/${r[2] ?? ""}`)),
+    new Set(licensed.map((c) => `${c.requirement}/${c.question}/${c.ceiling}`)),
+    "the ceiling table is not the chain set the corpus declares");
+});
+
+test("every ceiling row's two names RESOLVE, so the chain on the page is a real join", () => {
+  const table = rowsLabelled(sectionAt("question-ceilings"), "Every obligation");
+  for (const row of table.rows) {
+    const [requirement, question, ceiling, figure] = row;
+    const chain = corpusChains().find((c) => c.requirement === requirement);
+    assert.ok(chain !== undefined, `'${requirement ?? ""}' is on the page and the corpus has no such chain`);
+    const system = systems.get(chain.example);
+    assert.ok(system !== undefined);
+    const saved = system.queries.get(question ?? "");
+    assert.ok(saved !== undefined,
+      `'${requirement ?? ""}' is shown naming '${question ?? ""}', which the system does not save`);
+    const declared = system.quantities.get(ceiling ?? "");
+    assert.ok(declared !== undefined,
+      `'${question ?? ""}' is shown citing '${ceiling ?? ""}', which the system does not declare`);
+    // The figure column is the DECLARED magnitude, not a restatement of it.
+    assert.equal(figure, quantityRows(system).find((r) => r.id === ceiling)?.value,
+      `'${ceiling ?? ""}' is shown with a figure its declaration does not state`);
+  }
+});
+
+test("only the quantity states a magnitude — the claim the section exists to make", () => {
+  const table = rowsLabelled(sectionAt("question-ceilings"), "What each of the three declarations carries");
+  const magnitude = table.columns.indexOf("The magnitude it states");
+  const cites = table.columns.indexOf("The name it cites");
+  assert.ok(magnitude >= 0 && cites >= 0, "the three-role table has lost one of its two claim columns");
+  assert.equal(table.rows.length, 3, "the separation is three declarations; the table shows another number");
+
+  const stated = table.rows.filter((r) => r[magnitude] !== "—");
+  assert.equal(stated.length, 1,
+    "more than one of the three declarations is shown stating a magnitude, which is the duplication "
+    + `the separation exists to prevent: ${JSON.stringify(stated)}`);
+  assert.ok((stated[0]?.[0] ?? "").includes("(quantity)"),
+    "the declaration stating the magnitude is not the quantity");
+  // And the other two carry a NAME, or the chain has a gap the page is not showing.
+  for (const row of table.rows.filter((r) => r[magnitude] === "—")) {
+    assert.notEqual(row[cites], "—",
+      `'${row[0] ?? ""}' is shown stating no magnitude AND citing no name, so nothing joins it`);
+  }
+});
+
+test("the figure appears in the quantity's declaration and in neither of the other two", () => {
+  // The single-source property, checked against the MODEL rather than against the page's own table.
+  // `statement` is deliberately exempt: a requirement's statement is prose written for a human and it
+  // may well say "256 KiB". What must not carry the figure is anything the engine reads to decide the
+  // obligation — the query's own fields and the requirement's join keys.
+  for (const chain of corpusChains()) {
+    const system = systems.get(chain.example);
+    assert.ok(system !== undefined);
+    const figure = quantityRows(system).find((r) => r.id === chain.ceiling)?.value;
+    assert.ok(figure !== undefined, `'${chain.ceiling}' declares no readable magnitude`);
+
+    const raw = savedRaw(system, chain.question);
+    assert.ok(!JSON.stringify(raw).includes(figure),
+      `saved question '${chain.question}' carries the figure '${figure}' as well as citing `
+      + `'${chain.ceiling}' — a second copy free to drift from the declaration`);
+
+    const fixture = fixtures.get(chain.example);
+    const req = fixture?.requirements.find((r) => r.id === chain.requirement);
+    assert.ok(req !== undefined);
+    for (const [field, value] of [
+      ["expressed_as", req.expressedAs], ["satisfied_when", req.satisfiedWhen],
+      ["declared_as", req.declaredAs],
+    ] as const) {
+      assert.ok(value === null || !value.includes(figure),
+        `requirement '${chain.requirement}' carries the figure in its '${field}', which must hold a `
+        + "name rather than a magnitude");
+    }
+  }
+});
+
+test("every ceiling chain's LIVE verdict agrees with the status its fixture records", () => {
+  const table = rowsLabelled(sectionAt("question-ceilings"), "Every obligation");
+  const answers = table.columns.indexOf("and it answers");
+  assert.ok(answers >= 0, "the ceiling table has no outcome column");
+  for (const row of table.rows) {
+    const chain = corpusChains().find((c) => c.requirement === row[0]);
+    assert.ok(chain !== undefined);
+    const system = systems.get(chain.example);
+    assert.ok(system !== undefined);
+    const saved = system.queries.get(chain.question);
+    assert.ok(saved !== undefined);
+    const live = runQuery(system, saved.raw).result?.outcome;
+    assert.equal(row[answers], live,
+      `'${chain.requirement}' is shown answering '${row[answers] ?? ""}' and the engine says '${live ?? ""}'`);
+    // A ceiling claim is universal, so `holds` is the satisfying outcome and anything else is not.
+    assert.equal(chain.status, live === "holds" ? "satisfied" : "violated",
+      `'${chain.requirement}' answers '${live ?? ""}' and its fixture records '${chain.status}'`);
+  }
+});
+
+test("both verdicts ship, so the section teaches a shape rather than a success story", () => {
+  // Asserted against the CORPUS: if every ceiling obligation held, the closing prose's "one budget is
+  // met and one deadline is missed" would be describing a corpus that no longer exists, and a reader
+  // would be shown a construct that has never been seen to fail.
+  const outcomes = new Set(corpusChains().map((c) => {
+    const system = systems.get(c.example);
+    assert.ok(system !== undefined);
+    const saved = system.queries.get(c.question);
+    assert.ok(saved !== undefined);
+    return runQuery(system, saved.raw).result?.outcome;
+  }));
+  assert.ok(outcomes.size >= 2,
+    `every ceiling obligation in the corpus answers the same way (${[...outcomes].join(", ")}); the `
+    + "section's closing claim that both verdicts ship no longer holds");
+});
+
+test("the worked readout is the chain whose question measures every execution, not the composed one", () => {
+  // The exemplar is picked by a PROPERTY — no `target:` — so the readout cannot quietly become the
+  // composed question, which the compositions section already teaches and which would make the
+  // selection look like part of the three-role separation.
+  const readout = readoutLabelled(sectionAt("question-ceilings"), "Three questions, three declarations");
+  const asked = readout("Does the design stay under it?");
+  const chain = corpusChains().find((c) => asked.includes(`'${c.question}'`));
+  assert.ok(chain !== undefined, `the readout's question '${asked}' is not a licensed chain's question`);
+  const system = systems.get(chain.example);
+  assert.ok(system !== undefined);
+  const question = ceilingQuestions(system).find((q) => q.id === chain.question);
+  assert.ok(question !== undefined);
+  assert.equal(question.selects, false,
+    `the worked readout uses '${chain.question}', which narrows the executions it measures`);
+  // And the readout's own three terms name the three declarations, in the chain's order.
+  assert.ok(readout("How much is there?").includes(`'${chain.ceiling}'`),
+    "the readout's figure term does not name the ceiling the chain cites");
+  assert.ok(readout("Must it?").includes(`'${chain.requirement}'`),
+    "the readout's obligation term does not name the requirement the chain belongs to");
+});
+
+test("the ceilings section claims no refusal, because the arm that would justify one is not landed", () => {
+  // A requirement naming a question that cannot decide it derives `satisfied` today. The engine arm
+  // that refuses that pairing is ruled and scoped, NOT shipped, so this section must teach the sound
+  // shape without claiming the unsound one is caught. When that arm lands, this assertion is the
+  // thing to update — deliberately, and with the refusal then shown by running it.
+  const section = sectionAt("question-ceilings");
+  const prose = section.blocks.filter((b) => b.kind === "prose").map((b) => b.text).join(" ");
+  for (const claim of ["refuses", "refused", "rejects", "rejected", "an error", "will not let"]) {
+    assert.ok(!prose.toLowerCase().includes(claim),
+      `the ceilings prose says '${claim}', which claims enforcement the engine does not yet perform`);
+  }
 });
 
 // ---------------------------------------------------------------------------------------------
