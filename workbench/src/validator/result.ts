@@ -36,7 +36,7 @@ import type { Finding } from "../ir/types.ts";
 export type ValidationRule =
   | "V1" | "V3" | "V4" | "V5" | "V6" | "V8" | "V9" | "V10" | "V11" | "V12" | "V13" | "V14"
   | "V17" | "V19" | "V24" | "V25" | "V26"
-  | "V27" | "V28" | "V29" | "V30" | "V31" | "V35" | "V36" | "V37" | "V38" | "V39"
+  | "V27" | "V28" | "V29" | "V30" | "V31" | "V35" | "V36" | "V37" | "V38" | "V39" | "V40"
   | "ANNOTATION";
 
 export type Severity = "error" | "warning";
@@ -58,7 +58,7 @@ export const SEVERITY: { readonly [R in ValidationRule]: Severity } = {
   V10: "error", V11: "error", V12: "error", V13: "error", V14: "error", V17: "error",
   V19: "error", V24: "error", V25: "error", V26: "error",
   V27: "error", V28: "error", V29: "error", V30: "error", V31: "error", V35: "error",
-  V36: "error", V37: "error", V38: "error", V39: "error",
+  V36: "error", V37: "error", V38: "error", V39: "error", V40: "error",
   ANNOTATION: "error",
 };
 
@@ -100,6 +100,11 @@ export const SPEC_SECTION: { readonly [R in ValidationRule]: string } = {
   V37: "### 5.3 The accounting model is declared, and MAGE refuses to guess",
   V38: "### 5.3 The accounting model is declared, and MAGE refuses to guess",
   V39: "### 5.3 The accounting model is declared, and MAGE refuses to guess",
+  // V40 is filed with V3 rather than under §3's graph semantics, and the subject is why: it is a
+  // rule about MEMBERSHIP — which entities a model declares — not about what an edge means. §2 is
+  // where a reader goes to learn that models reference entities and never redeclare them, and V40
+  // is that sentence read in the other direction.
+  V40: "## 2. Identity",
   ANNOTATION: "### 5.1 Annotation is carried, not interpreted",
 };
 

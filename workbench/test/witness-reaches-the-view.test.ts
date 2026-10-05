@@ -241,6 +241,12 @@ test("Q5's direction: repair, then add an impermitted subscriber, and the witnes
       operations: [
         { op: "add-entity", id: "debug", type: "service", label: "Debug" },
         { op: "set-property", id: "debug", name: "permits", value: "internal", domain: "sensitivity" },
+        // The two ops the divergence below used to be ABOUT. A graph model's membership is its
+        // declared `entities:` list, and an edge to an entity the model does not declare is now a
+        // V40 finding — so the edit that introduces a service declares it in each reduction that
+        // should see it, and the transaction is the whole change rather than half of one.
+        { op: "add-model-entity", model: "event-flow", id: "debug" },
+        { op: "add-model-entity", model: "event-propagation", id: "debug" },
         {
           op: "add-relation", model: "event-flow", id: "debug-subscribes-order-created",
           from: "debug", to: "order-created", type: "subscribes",
@@ -262,40 +268,31 @@ test("Q5's direction: repair, then add an impermitted subscriber, and the witnes
     "a witness that still named the repaired service would mean the repair did not take");
 
   // ---------------------------------------------------------------------------------------------
-  // AND HERE IS WHERE STEP 8 STOPS, recorded as a divergence rather than worked around.
+  // STEP 8 NOW COMPLETES, and these are the assertions the divergence block became.
   //
-  // A graph model's membership is its declared `entities:` list, and NO operation extends one.
-  // `add-entity` puts the service in the identity namespace; `add-relation` accepts an endpoint
-  // outside the membership with no finding; a fresh load of the exported bytes validates CLEAN. So
-  // the two consumers of the same revision disagree: the ENGINE answers using the new edge — the
-  // assertions above are its answer — while `buildScene` takes the declared membership as the scene
-  // and draws neither the node nor the edge.
+  // The fork that block named is settled, and the ruling is the second branch: a relation whose
+  // endpoint sits outside its model's membership is a well-formedness violation (V40), and the
+  // operation set owes a way to extend a model (`add-model-entity`). Membership is NOT derived from
+  // the relations. A model is a purposeful reduction, so deriving its membership from the edges
+  // somebody drew would let a relation quietly widen what the model claims to cover — and
+  // `buildScene`, the inspector's "Selects" list and the RDF projection's `mage:includes` would
+  // then each be reporting a set the author never declared.
   //
-  // For a student doing §9.4 Q5 that is the worst available shape of failure: the verdict changes
-  // and the picture does not, which reads as a broken diagram rather than as a missing operation.
-  //
-  // WHICH SIDE IS WRONG IS A REAL FORK, and it is not this file's to settle:
-  //   - membership is DERIVED from the relations, and `buildScene` should draw a declared edge; or
-  //   - a relation whose endpoint is outside the membership is a well-formedness violation, and the
-  //     operation set owes a way to extend a model — V3 today checks only that an endpoint is a
-  //     declared SYSTEM entity (`src/validator/rules.ts:176`), which this state satisfies.
-  // Either ruling makes the two assertions below fail, which is the point of writing them: closing
-  // the gap is what deletes this block, and nothing else will.
+  // What that buys the student is the whole of step 8: the verdict moves, and the picture moves
+  // with it. Before, the engine answered over the new edge while the scene stayed at the declared
+  // membership, so the diagram looked broken rather than informative.
   // ---------------------------------------------------------------------------------------------
   const model = ws.state.system.models.get("event-flow");
   assert.ok(model !== undefined);
-  assert.ok(!model.entities.includes("debug"),
-    "DIVERGENCE: no operation adds an entity to a graph model's membership, so the new service is "
-    + "outside it — if this now passes, the fork above was settled and this block should go");
+  assert.ok(model.entities.includes("debug"),
+    "the model declares the service the answer is about — the membership is extended by an op now");
 
   const view = drawWith(ws.state.system, "event-flow", violated);
   const marked = new Set(assignments(view).map((a) => a.target));
-  assert.ok(!marked.has("debug"),
-    "DIVERGENCE: the breach's witness names a service the picture does not draw — step 8 of the "
-    + "structural loop ('immediately see the property change') is unreachable for an edit that "
-    + "introduces a service, because the answer moved and the diagram cannot show it");
-  assert.ok(view.accessible.nodes.every((n) => n.id !== "debug"),
-    "DIVERGENCE: the scene is the declared membership, so the added service is not a node");
+  assert.ok(marked.has("debug"),
+    "step 8: the breach's witness names the new service and the picture emphasises it");
+  assert.ok(view.accessible.nodes.some((n) => n.id === "debug"),
+    "the scene is the declared membership, and the membership now declares the added service");
 });
 
 // ------------------------------------------------------------------------------------------------

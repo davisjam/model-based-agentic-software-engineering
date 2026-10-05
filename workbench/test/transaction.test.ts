@@ -152,6 +152,11 @@ test("later ops see earlier ops, so delete-plus-add substitutes for the rename V
   commits(e,
     { op: "delete-entity", id: "repair-engine", cascade: true },
     { op: "add-entity", id: "repair_engine", type: "component", label: "Repair Engine" },
+    // FOUR ops, not three, since V40. The cascade took the old id out of `service-flow`'s
+    // membership along with the relations naming it, so the substitute has to put the new id back
+    // — and before V40 it did not, which made the repo's own rename recipe produce a model
+    // asserting an edge to an entity it no longer declared. The rule found that, not a reader.
+    { op: "add-model-entity", model: "service-flow", id: "repair_engine" },
     { op: "add-relation", model: "service-flow", from: "remediation", to: "repair_engine", type: "owns" });
 
   const s = e.system();
@@ -160,6 +165,11 @@ test("later ops see earlier ops, so delete-plus-add substitutes for the rename V
   // The consequence is visible: the old containment entry went with the cascade rather than being
   // silently rewritten, which is exactly what makes the change legible in a diff.
   assert.deepEqual(s.entities.get("remediation")?.contains, ["parser"]);
+  // And the rename is COMPLETE rather than half-done: the model that asserts the edge declares the
+  // endpoint, so every consumer of this revision — the engine's adjacency, the scene, the RDF
+  // projection — describes the same system.
+  assert.ok(s.models.get("service-flow")?.entities.includes("repair_engine"),
+    "a rename substitute that drops the model membership leaves the model asserting an undeclared edge");
 });
 
 test("add-state writes the empty-value idiom the file already uses, not an explicit null", () => {
