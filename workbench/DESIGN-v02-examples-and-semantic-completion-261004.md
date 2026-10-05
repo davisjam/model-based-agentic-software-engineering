@@ -2126,7 +2126,30 @@ Autonomous Delivery System: deliberately show multiple purposeful views rather t
 
 Add a V-rule:
 
-V-RENDER: Every rendered view is a typed projection of an authoritative model. Model types own their render projections. Cross-model visual connections correspond only to registered bindings or compositions. Rendering must neither create nor alter semantic facts.
+V-RENDER: Every rendered view is a typed projection of an authoritative model. Model types own their render projections; a type declares a projection or declares itself nonvisual, and there is no generic fallback. Rendering may not alter semantic facts — the IR is immutable and the renderer holds no mutation authority. Rendering may not create them: every rendered element resolves to a canonical element or to a declared synthesis class, and the residue — that a view's prose asserts no more than its fields support — is `asserted`.
+
+V-RENDER-X: Cross-model visual connections are *derived from* registered bindings and compositions, not merely consistent with them.
+
+> **Edited 261005 by the wave that implemented §22's registry — flagged for the author's review.**
+> Three changes, each because the rule as drafted claimed enforcement the code did not have, or
+> claimed less than it has. Full argument in `DESIGN-render-rules-261004.md` §C and §H.
+>
+> 1. **"Neither create nor alter" is split.** The verb pair fused a type-system guarantee to a
+>    reviewer's judgment. *Alter* is the best-held clause in the rule — every declared member of
+>    `src/ir/types.ts` is `readonly`, with `ReadonlyMap` collections, re-derived by `npm run check`
+>    on every run. *Create* is the hard half and stays `asserted` at the residue: "semantic fact"
+>    names no type, so it decomposes into claims that have a subject (every element resolves to a
+>    canonical id or to a declared synthesis class, held by `test/render-no-invention.test.ts`) plus
+>    one that does not (the twin's prose asserting no more than its fields support).
+> 2. **"Model types own their render projections" gains the clause that makes it checkable.** A
+>    required `renderStrategy` field on `ModelType`, with a `nonvisual` arm, is what the compiler can
+>    hold; "no generic fallback" then becomes a type error rather than a style note.
+> 3. **The cross-model clause moves out into V-RENDER-X.** §H proposed marking it *"a commitment,
+>    not a constraint"* because no multi-model canvas existed. **That caveat is deliberately NOT
+>    carried, and the reason is §J:** the canvas landed in `src/app/cross-model.ts` between §H's
+>    drafting and this edit, it landed as *derived from* rather than *checked against*, and
+>    `test/cross-model.test.ts` holds it. So the clause is a live constraint and marking it a
+>    commitment would now understate it — the opposite error, and the same class.
 
 And add a corresponding rule for terminology:
 
@@ -2136,4 +2159,14 @@ These should be compiler/test-enforceable where possible rather than style-guide
 
 One nuance: I would not define “join” more clearly and keep it. I think we’ve now discovered that join was hiding two different things. The clean definition is that there isn’t a generic semantic join. There are bindings and compositions, and a multi-model visualization can show either.
 
-The per-type Mermaid rule is also important for the examples. It means the embedded-memory example doesn’t have to pretend that a state machine, a memory budget, and a component graph are all fundamentally the same kind of boxes-and-arrows object. Mermaid is just the renderer underneath each appropriate visual projection.
+The per-type renderer rule is also important for the examples. It means the embedded-memory example doesn’t have to pretend that a state machine, a memory budget, and a component graph are all fundamentally the same kind of boxes-and-arrows object. The per-type renderer sits underneath each appropriate visual projection.
+
+> **Edited 261005: "Mermaid" → "the per-type renderer", flagged for the author's review.** The rule
+> survives the substitution intact; the dependency it names was declined on the record. `PLAN.md`
+> rules that dagre was chosen over Mermaid/PlantUML, ELK.js and Graphviz-WASM because the renderer
+> must be synchronous and DOM-free, and Mermaid is absent from the dependency set — the workbench
+> took Mermaid's layout engine (dagre) and declined its renderer. Leaving the name in sends every
+> future reader of this section looking for a library that was rejected by ruling. §22.1, §22.2,
+> §22.3 and §23.4 carry the same framing and are NOT edited here; that is a prose sweep this wave's
+> scope did not include (`DESIGN-render-rules-261004.md` §G recommends it, with Mermaid named once
+> in a note as considered and declined).
