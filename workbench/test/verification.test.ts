@@ -267,7 +267,9 @@ const VERIFICATION_PER_STATUS: Readonly<Record<EvaluationStatus, {
   readonly reason: string;
 }>> = {
   completed: {
-    evaluation: (v) => ({ status: "completed", verdict: v, coverage: exhaustive(37) }),
+    // `vacuous: null` is the EARNED verdict, and this table is about earned ones. The vacuous
+    // projection of this same row is V43's, pinned in `vacuous-verification.test.ts`.
+    evaluation: (v) => ({ status: "completed", verdict: v, coverage: exhaustive(37), vacuous: null }),
     satisfying: "satisfied", breaching: "violated",
     reason: "both sides are proposition values, so the comparison is sound and the breach is the "
       + "verdict that is not the one discharging the obligation",
@@ -343,11 +345,16 @@ test("a witness is coverage-insensitive; an absence is not", () => {
   // counterexample, so the breach stands. A breach NOT FOUND inside a budget is "we did not look
   // at all of it", which is not a demonstration that the prohibition holds — V22's rule, which
   // `render/accessible.ts` and `quant/requirement.ts` already apply from their own sides.
+  // Both rows are EARNED verdicts (`vacuous: null`), which is what makes this the coverage
+  // asymmetry rather than V43's. A vacuous verdict is not a witness at all, so it reaches neither
+  // column here — the two rules compose rather than competing, and V43 is tested on its own.
   const truncated = bounded(1_000, "depth-limit");
-  const exhibited = verify(breachQuery, { status: "completed", verdict: "holds", coverage: truncated });
+  const exhibited = verify(breachQuery,
+    { status: "completed", verdict: "holds", coverage: truncated, vacuous: null });
   assert.equal(exhibited.status, "violated", "presence of evidence survives a small budget");
 
-  const absent = verify(breachQuery, { status: "completed", verdict: "refuted", coverage: truncated });
+  const absent = verify(breachQuery,
+    { status: "completed", verdict: "refuted", coverage: truncated, vacuous: null });
   assert.equal(absent.status, "inconclusive", "absence of evidence does not");
   assert.ok(absent.status === "inconclusive");
   assert.deepEqual(absent.because, { kind: "bounded", limit: "depth-limit" });

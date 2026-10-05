@@ -862,6 +862,28 @@ export type QueryEvaluation =
     readonly status: "completed";
     readonly verdict: PropositionValue;
     readonly coverage: Coverage;
+    /**
+     * The author's predicate or selection decided this verdict, not the system under design —
+     * V41's disclosure, projected for the one layer that must act on it. `null` is the earned
+     * verdict, and the common case.
+     *
+     * It rides the `completed` arm for the same reason `coverage` does: this is the only arm where
+     * a verdict exists to be qualified. And it rides BESIDE coverage rather than inside it because
+     * the two answer different questions. Coverage asks how much of the space was walked; this asks
+     * whether anything could have been charged at all. A vacuous verdict is reported under
+     * `exhaustive` coverage, so a reader consulting coverage alone sees a complete walk and a green
+     * verdict and has been told nothing.
+     *
+     * Typed as the `Compilation` itself rather than as a flag, which keeps the evaluator's own
+     * sentence attached to the fact. This union's two non-completed arms already carry what their
+     * remedy needs — `limit` names the budget, `refusal` names the missing distinction — and a
+     * reader handed a bare `true` would have a condition with nowhere to go. Reusing the existing
+     * closed vocabulary also means no second spelling of the disclosure.
+     *
+     * Required rather than optional, which is this union's standing discipline: a construction site
+     * that has not decided does not compile, and deciding is cheap.
+     */
+    readonly vacuous: Compilation | null;
   }
   /** The evaluator's budget ran out. The remedy is a bigger budget, never a model change. */
   | { readonly status: "exhausted"; readonly limit: Coverage["reason"] }
@@ -895,12 +917,19 @@ export type ResultEvaluation = Extract<
  * itself, because switching on `outcome` is what puts `unlicensed` in the same position as `holds`.
  */
 export const evaluationOf = (
-  res: Pick<QueryResult, "outcome" | "coverage" | "refusal">,
+  res: Pick<QueryResult, "outcome" | "coverage" | "refusal" | "compilation">,
 ): ResultEvaluation => {
   switch (res.outcome) {
     case "holds":
     case "refuted":
-      return { status: "completed", verdict: res.outcome, coverage: res.coverage };
+      return {
+        status: "completed", verdict: res.outcome, coverage: res.coverage,
+        // Both proposition arms read it, not just `holds`. V41's table has a vacuous row under each:
+        // an `invariant` whose violation no state vector admits `holds`, and a `reach` whose target
+        // contradicts itself is `refuted`. Scoping this to `holds` would leave the second silent,
+        // and the second is the one a shipped query already produces.
+        vacuous: res.compilation.find((c) => c.kind === "vacuous") ?? null,
+      };
     // The kernel's `inconclusive` IS the author's `exhausted`: every evaluator that truncates a
     // walk reports it under `bounded` coverage, and `reason` names which limit bit.
     case "inconclusive":
@@ -925,6 +954,13 @@ export const evaluationOf = (
  * count under exhaustive coverage — emits this same kind rather than re-deriving the disclosure in
  * its own dialect. `mage-query.schema.json` carries the same enum for the wire format, and
  * `test/quant-query.test.ts` reads it rather than restating it.
+ *
+ * **The `vacuous` arm now has a consumer that changes an answer, not just a renderer that shows
+ * one.** `evaluationOf` projects it onto `QueryEvaluation`, and the requirement layer refuses to
+ * read a vacuous verdict as either a discharge or a breach (V43). So emitting this kind is no longer
+ * cosmetic: an evaluator that discloses it where the verdict was EARNED downgrades a sound
+ * requirement to `inconclusive`. That is the cost behind V41's "MUST NOT emit when the predicate is
+ * satisfiable but unreachable", and it is now paid in verdicts rather than in reader attention.
  */
 export interface Compilation {
   readonly kind: "history-variable" | "symmetry-reduction" | "vacuous" | "other";

@@ -295,6 +295,14 @@ test("the supplied and presented query sets are exactly as declared", () => {
 /**
  * The fixture's recorded answer, as an evaluation. `statesExplored` is not pinned by a fixture and
  * decides nothing here, so it is 0 rather than invented.
+ *
+ * `compilation: []` is a STATED LIMIT, not a convenience. A fixture row records `outcome`,
+ * `coverage` and a refusal substring; it records no disclosures, so this arm cannot see a vacuous
+ * verdict and will read one as earned (V43). The limit is self-detecting rather than silent: the
+ * derived arm above compares the LIVE engine against the same `req.status` this arm compares
+ * against, so a requirement decided by a vacuous query would make exactly one of the two
+ * assertions fail. No fixture row is affected today — no shipped requirement names a query that
+ * discloses vacuity. Recording disclosures in the fixture schema is the fix if one ever does.
  */
 const recorded = (exp: QueryExpectation): QueryEvaluation => evaluationOf({
   outcome: exp.outcome,
@@ -303,6 +311,7 @@ const recorded = (exp: QueryExpectation): QueryEvaluation => evaluationOf({
     reason: (exp.coverageReason ?? null) as Coverage["reason"],
   },
   refusal: exp.refusalContains,
+  compilation: [],
 });
 
 /**

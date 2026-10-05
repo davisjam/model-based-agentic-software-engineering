@@ -194,7 +194,17 @@ export type InconclusiveCause =
   /** The purposeful models decline the question. The refusal sentence names what is missing. */
   | { readonly kind: "unlicensed"; readonly refusal: string | null }
   /** Nothing has been evaluated for the deciding query. */
-  | { readonly kind: "not-evaluated" };
+  | { readonly kind: "not-evaluated" }
+  /**
+   * The deciding query answered, and its answer was fixed by the author's own predicate or
+   * selection rather than by the system under design (V43). The remedy is the fourth one this
+   * union keeps apart: make the selection reachable, or fix the predicate.
+   *
+   * `detail` carries the evaluator's own disclosure sentence, so the reader gets the specific
+   * contradiction rather than the category. Null when the evaluator disclosed the kind without
+   * prose, which the type permits and no shipped evaluator does.
+   */
+  | { readonly kind: "vacuous"; readonly detail: string | null };
 
 /**
  * What a requirement and a result MEAN together.
@@ -261,6 +271,25 @@ export function verify(req: Requirement, ev: QueryEvaluation | null): Verificati
   }
   switch (ev.status) {
     case "completed":
+      // V43, and it outranks BOTH settled arms below rather than only the discharging one.
+      //
+      // A vacuous verdict is a fact about the author's predicate or selection, which puts it on the
+      // same side of this layer's line as a declaration error: it says nothing about the system
+      // under design, so it can support neither a discharge nor an accusation. Reading it as
+      // `satisfied` reports an obligation met by a claim charged against nothing — the 2,750 ms
+      // against a declared 750 ms this rule was written for. Reading its mirror as `violated`
+      // accuses the system on a contradiction the author wrote, which is the same error pointed the
+      // other way and the one `verify`'s whole existence is owed to.
+      //
+      // This does NOT breach the header's asymmetry — a witness is coverage-insensitive, and a
+      // vacuous verdict is not a witness. V41's table is explicit that both of its vacuous rows
+      // carry no evidence at all, so there is no witness here for coverage to be insensitive about.
+      if (ev.vacuous !== null) {
+        return {
+          status: "inconclusive", requirement: id,
+          because: { kind: "vacuous", detail: ev.vacuous.explanation },
+        };
+      }
       // Sound here, and ONLY here, because both sides are proposition values: see the header. The
       // breach is exhibited exactly when the verdict is not the one that discharges the obligation,
       // and a counterexample found inside a truncated search is a real counterexample.
@@ -331,12 +360,15 @@ export function verify(req: Requirement, ev: QueryEvaluation | null): Verificati
  * What this does NOT catch, stated so a reader does not over-read it: the rule decides whether the
  * named query can decide an obligation OF THIS SHAPE, never whether it decides THIS obligation. A
  * ceiling query over a narrower selection than the statement claims, or against a more lenient
- * declared ceiling than the statement names, satisfies every condition here. The degenerate member
- * of that family is live and the evaluator already detects it: a `target:` no configuration can
- * satisfy returns a VACUOUS `holds` carrying a typed `vacuous` disclosure, and this layer never
- * sees it — `results` is a `Pick` that does not carry `compilation`. Catching it is a separate
- * ruling with a different shape, because it is a fact about the RESULT and this arm must stay a
- * fact about the DECLARATION.
+ * declared ceiling than the statement names, satisfies every condition here. A ceiling query against
+ * a more lenient declared ceiling still reads `satisfied`, and that residue is unchanged.
+ *
+ * The DEGENERATE member of that family is no longer open. A `target:` no configuration can satisfy
+ * returns a VACUOUS `holds`, and `verify` now reads the evaluator's typed `vacuous` disclosure and
+ * answers `inconclusive` with cause `vacuous` (V43). That rule lives in `verify` rather than here,
+ * and the split is the point: vacuity is a fact about the RESULT, so it belongs on the
+ * coverage-sensitive side of this file's asymmetry, while this arm stays a fact about the
+ * DECLARATION and stays static.
  */
 function cannotDecide(req: Requirement, deciding: Query): string | null {
   if (deciding.kind !== "quantity") return null;
@@ -380,7 +412,7 @@ function cannotDecide(req: Requirement, deciding: Query): string | null {
 export function verifyDeclaration(
   raw: unknown,
   where: string,
-  results: ReadonlyMap<string, Pick<QueryResult, "outcome" | "coverage" | "refusal">>,
+  results: ReadonlyMap<string, Pick<QueryResult, "outcome" | "coverage" | "refusal" | "compilation">>,
   known: ReadonlySet<string> = new Set(results.keys()),
   shapes: ReadonlyMap<string, Query> = new Map(),
 ): Verification {
