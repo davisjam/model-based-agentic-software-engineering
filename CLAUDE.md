@@ -176,6 +176,22 @@ re-deriving these, so they live here:**
     two instances caught BEFORE dispatch on 261004 were both caught by exactly that step, which is
     the evidence it works. And say in the brief that its ground truth is a starting point the agent
     must verify — the reports that corrected these briefs all came from agents told to do so.
+  - **A premise taken from a DESIGN DOC is a claim about the past, and the step above cannot catch a
+    stale one.** Re-reading a cited line confirms the doc says it; it does not confirm the doc is
+    still true of the code. Three briefs on 261005 stated a load-bearing premise accurately quoted
+    from a doc and false at HEAD: the render brief said the forbidden generic fallback *"ships today"*
+    (§A.3's own measurement — a commit that removed it was already an ANCESTOR of the wave's baseline);
+    the ceiling brief said a student *"cannot author a budget requirement"* (the schema has carried
+    `within:` for a version, and the Sensor Node ships exactly that requirement); the migration brief
+    said the join gate *"compares two recorded strings"* (Phase 2's wording — it already interpreted
+    through `verify`). Each wave refuted its brief and did the right work anyway, so the cost was a
+    redirect rather than a defect; a brief that had been BELIEVED would have produced three wrong
+    changes.
+    The step: **when a premise is "the code does / does not do X," cite CODE at the brief's base sha
+    — never a doc that asserts it.** A doc may motivate the work; it may not supply the fact. And
+    keep the standing instruction that makes the failure cheap: every brief tells the agent the
+    premises are a starting point and asks it to report what the brief got wrong. All three
+    corrections above came from that sentence.
   - **A negative claim is only as wide as the search that produced it, and the step above cannot
     catch one.** The dual of the bullet above, and the more dangerous half: that step says *re-read
     each cited line*, which is unavailable when the finding IS that nothing matched. Twice on 261004
