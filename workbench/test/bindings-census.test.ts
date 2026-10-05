@@ -54,9 +54,27 @@
 //      no list of reference fields, so a NEW authored field carrying a cross-type reference is
 //      picked up without anyone editing this file.
 //   3. a leaf under a construct of type A whose value resolves in the namespace of a DIFFERENT
-//      type B is a cross-type reference, and yields (A→B, the authored key it sits under).
+//      type B is a cross-type reference, and yields (A→B, the authored key it sits under) — where
+//      the key is NORMALISED through the property bag's two spellings (see `authoredKey`).
 //   4. every derived (pair, key) must be named by a `BindingSemantics` whose `from`/`to` are that
 //      pair and whose `witness` declares that key — and every declared key must be derived.
+//
+// ## Why step 3 normalises, stated so it is not "simplified" back
+//
+// `$defs/propertyBag` is a `oneOf`: a property is authored as a scalar (`executes_in_state:
+// parsing`) or as an object (`executes_in_state: { value: parsing }`). The walk reaches STRING
+// LEAVES, so the object spelling arrives one segment deeper, under the bag's generic `value`
+// wrapper. Keyed as given, one authored fact becomes two keys and the census demands a declaration
+// for `value` — the schema's wrapper, which is nobody's binding and which every object-form
+// property in any model would answer to. `authoredKey` therefore keys on the property NAME under
+// both spellings, scoped to the bag's POSITION rather than to the key name, because a `domain`
+// segment elsewhere (`machines.<id>.variables.<var>.domain`) is a different fact and collapsing by
+// name would file it under the variable. That function's doc comment carries the full reasoning.
+//
+// Found the way the under-reporting was: only after a merge. A sibling wave landed a conformance
+// fixture authoring `executes_in_state` in the object form, and the control went red on a model
+// that did not exist when this file was written — which is the second time in one day a control
+// here caught something invisible on either branch alone.
 //
 // ## What would defeat it — the four holes, named rather than left for a reader to find
 //
@@ -203,14 +221,58 @@ const pair = (from: ModelTypeId, to: ModelTypeId): string => `${from} -> ${to}`;
 const ref = (from: ModelTypeId, to: ModelTypeId, key: string): string => `${pair(from, to)} @ ${key}`;
 
 /**
- * The authored key a leaf sits under — its last NON-NUMERIC path segment.
+ * The segment a property bag's keys sit one level under. The schema puts a bag at two authored
+ * positions and both are under a key of this name; the premise test asserts that rather than
+ * trusting it, so a schema that moved a bag elsewhere goes red here.
+ */
+const BAG_AT = "properties";
+
+/** The bag's object-form key holding the property's OWN value (`$defs/propertyBag`). */
+const BAG_VALUE = "value";
+
+const isIndex = (seg: string): boolean => /^[0-9]+$/.test(seg);
+
+/**
+ * The authored key a leaf sits under, with the property bag's object form NORMALISED to the
+ * property name.
+ *
+ * **Two things this handles, and one it deliberately does not.**
  *
  * Numeric segments are array indices the generic walk produces (`relations.0.to`), and an index is
  * not a field name. Taking the last segment blindly would make every element of a list its own key
  * and the obligation unstatable.
+ *
+ * `$defs/propertyBag` is a `oneOf`, so ONE authored fact has TWO spellings — `executes_in_state:
+ * parsing` and `executes_in_state: { value: parsing }` — and the walk reaches a string leaf, so the
+ * object spelling arrives one segment deeper under the bag's generic `value` wrapper. Left
+ * unnormalised they are different keys, and the census then demands a declaration for `value`: a
+ * key that is the schema's wrapper rather than anyone's binding, and one that every object-form
+ * property in any model would answer to. So the key is the property NAME under both spellings. This
+ * is why the normalisation exists and why "simplifying" it back would break the control: it is not
+ * tidying, it is the difference between keying on an authored fact and keying on a syntax.
+ *
+ * **Scoped to POSITION, never to the key name**, which is the part that took a check. A segment
+ * named `value` or `domain` is only a bag wrapper when it sits directly under a property name that
+ * sits directly under `properties`. Collapsing by name instead would reach
+ * `machines.<id>.variables.<var>.domain` — a variable's domain declaration, which the tracked models
+ * author five times today — and report it under the VARIABLE's name, attributing a domain reference
+ * to a correspondence that is not one. That is the wrong-attribution direction this file refuses
+ * everywhere else, so it is refused here.
+ *
+ * **`domain` is not normalised, and the asymmetry is the point.** `value` IS the property's own
+ * value, so attributing it to the property name renames one fact. `domain` is a different fact — a
+ * pointer into `domains:`, which `DECLINED` already excludes as "a type-level vocabulary properties
+ * range over, not elements" — so folding it into the property name would file a domain reference as
+ * a property correspondence. It keeps its own key, unchanged, which loses no coverage: a domain id
+ * that ever resolved into another type's namespace would still surface, as `… @ domain`, for
+ * someone to classify.
  */
-const authoredKey = (path: readonly string[]): string =>
-  [...path].reverse().find((seg) => !/^[0-9]+$/.test(seg)) ?? path[0] ?? "";
+function authoredKey(path: readonly string[]): string {
+  const segs = path.filter((seg) => !isIndex(seg));
+  const n = segs.length;
+  if (n >= 3 && segs[n - 1] === BAG_VALUE && segs[n - 3] === BAG_AT) return segs[n - 2] ?? "";
+  return segs[n - 1] ?? path[0] ?? "";
+}
 
 /** Each derived (cross-type pair, authored key), mapped to the sites that witness it. */
 function derivedReferences(): ReadonlyMap<string, readonly string[]> {
@@ -289,6 +351,108 @@ test("the walk's construct set is total over the keys the tracked models use", (
     assert.ok(observed.has(key),
       `'${key}' is classified but no tracked model uses it — the classification has gone stale`);
   }
+});
+
+test("the property-bag normalisation matches the schema, in position and in key set", () => {
+  // The normalisation's two premises, read off `mage-model.schema.json` rather than off the one
+  // example that exposed the need for it. Both are the kind of fact a schema edit moves silently:
+  // a bag at a third position, or a third wrapper key, would make `authoredKey` key some authored
+  // references on a syntax again, and nothing else in this file would notice.
+  const schema: unknown = JSON.parse(readFileSync("mage-model.schema.json", "utf8"));
+
+  // (a) POSITION — every reference to the bag sits under a key named BAG_AT.
+  const positions: string[][] = [];
+  const walk = (node: unknown, path: readonly string[]): void => {
+    if (Array.isArray(node)) { node.forEach((v, i) => walk(v, [...path, String(i)])); return; }
+    if (typeof node !== "object" || node === null) return;
+    const rec = node as Record<string, unknown>;
+    if (rec["$ref"] === "#/$defs/propertyBag") { positions.push([...path]); return; }
+    for (const [k, v] of Object.entries(rec)) walk(v, [...path, k]);
+  };
+  walk(schema, []);
+  assert.ok(positions.length > 0,
+    "the schema references no property bag, so the normalisation in `authoredKey` has no basis");
+  for (const p of positions) {
+    assert.equal(p[p.length - 1], BAG_AT,
+      `a property bag sits at '${p.join(".")}', whose last segment is not '${BAG_AT}'. `
+      + `\`authoredKey\` recognises the bag's object form BY POSITION, so a bag somewhere else is `
+      + `unnormalised and its references will be keyed on the wrapper instead of the property.`);
+  }
+
+  // (b) KEY SET — the object spelling permits exactly `value` (required) and `domain`.
+  const defs = (schema as Record<string, unknown>)["$defs"];
+  const bag = typeof defs === "object" && defs !== null
+    ? (defs as Record<string, unknown>)["propertyBag"] : undefined;
+  assert.ok(typeof bag === "object" && bag !== null, "$defs/propertyBag is gone");
+  const additional = (bag as Record<string, unknown>)["additionalProperties"];
+  const arms = typeof additional === "object" && additional !== null
+    ? (additional as Record<string, unknown>)["oneOf"] : undefined;
+  assert.ok(Array.isArray(arms), "the bag is no longer a oneOf over a scalar and an object spelling");
+  const objectArm = arms.find((a): a is Record<string, unknown> =>
+    typeof a === "object" && a !== null && (a as Record<string, unknown>)["type"] === "object");
+  assert.ok(objectArm !== undefined,
+    "the bag declares no OBJECT spelling — if it is scalar-only the normalisation is dead code, and "
+    + "if the spelling moved the normalisation is keying on the wrong thing");
+  assert.deepEqual(Object.keys((objectArm["properties"] ?? {}) as Record<string, unknown>).sort(),
+    ["domain", BAG_VALUE].sort(),
+    "the object spelling's keys are no longer {value, domain}. A third wrapper key needs a decision "
+    + "in `authoredKey`: normalise it like `value` if it carries the property's own value, or leave "
+    + "it keyed on itself like `domain` if it is a different fact.");
+  assert.deepEqual(objectArm["required"], [BAG_VALUE],
+    `the object spelling no longer requires '${BAG_VALUE}', so it is not the value wrapper this normalises`);
+  assert.equal(objectArm["additionalProperties"], false,
+    "the object spelling admits open keys, so the wrapper set above is not closed and the key-set "
+    + "assertion cannot bound what `authoredKey` must handle");
+});
+
+test("the normalisation reads the bag's object form, and nothing that merely looks like it", () => {
+  // Permanent coverage for BOTH spellings, independent of what the corpus happens to author — the
+  // object form entered the walk's reach only when a conformance fixture landed, and this is what
+  // stops it leaving again. The negative cases are the masking risk, checked rather than argued.
+  const key = (...p: string[]): string => authoredKey(p);
+
+  // One authored fact, two spellings, one key.
+  assert.equal(key("entities", "stage-a", "properties", "executes_in_state"), "executes_in_state");
+  assert.equal(key("entities", "stage-a", "properties", "executes_in_state", BAG_VALUE), "executes_in_state");
+  // The bag's other position, under a relation, and through an array index.
+  assert.equal(key("models", "m", "relations", "0", "properties", "weight", BAG_VALUE), "weight");
+  assert.equal(key("models", "m", "relations", "0", "to"), "to");
+
+  // POSITION, not key name. A variable's `domain` is not a bag wrapper and must keep its own key,
+  // or a domain reference would be reported under the variable's name.
+  assert.equal(key("machines", "transaction", "variables", "base", "domain"), "domain");
+  // A property's `domain` is in bag position and still keeps its own key, deliberately: it points
+  // into `domains:` rather than carrying the property's value.
+  assert.equal(key("entities", "x", "properties", "classification", "domain"), "domain");
+  // A property named `value`, in both spellings. The outer `value` is a property name here, not a
+  // wrapper, because the segment two above it is not `properties`.
+  assert.equal(key("entities", "x", "properties", BAG_VALUE), BAG_VALUE);
+  assert.equal(key("entities", "x", "properties", BAG_VALUE, BAG_VALUE), BAG_VALUE);
+});
+
+test("the tracked corpus exercises both property spellings, so neither drifts out of coverage", () => {
+  // The unit test above holds the normalisation; this holds that the WALK still meets both
+  // spellings, so a corpus that quietly lost one would be visible rather than leaving a branch
+  // exercised only by a fixture written here.
+  let scalar = 0;
+  let object = 0;
+  for (const file of trackedModels()) {
+    const raw = parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+    for (const [construct] of Object.entries(WALKED)) {
+      const block = raw[construct];
+      if (block === undefined) continue;
+      for (const leaf of leaves(block, [construct])) {
+        const segs = leaf.path.filter((s) => !isIndex(s));
+        if (segs[segs.length - 2] === BAG_AT) scalar += 1;
+        else if (segs[segs.length - 1] === BAG_VALUE && segs[segs.length - 3] === BAG_AT) object += 1;
+      }
+    }
+  }
+  assert.ok(scalar > 0, "no tracked model authors a property in the SCALAR spelling");
+  assert.ok(object > 0,
+    "no tracked model authors a property in the OBJECT spelling (`p: { value: … }`), so the "
+    + "normalisation in `authoredKey` is exercised by this file's unit test alone. Either a model "
+    + "lost the spelling or the walk stopped reaching it — the second is the one that matters.");
 });
 
 test("no entity id spells a state name, so a derived pair is a reference and not a collision", () => {
