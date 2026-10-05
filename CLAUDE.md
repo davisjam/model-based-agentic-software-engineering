@@ -91,6 +91,26 @@ re-deriving these, so they live here:**
   - `git add -A` stays banned for the same family of reasons, but note it was NOT the mechanism here —
     blaming it would have left the real hole open. (Diagnosed by the agent whose commit swept the files,
     correcting the orchestrator, who had asserted the mechanism without reading the command.)
+- **The orchestrator's own dispatch ritual, written down because I ran it ~15 times by hand on
+  261004.** Per wave: `git worktree add ../gc-wt/<name> -b <name> main`, then **three** `node_modules`
+  symlinks — repo root, `workbench/`, `book/` — each pointing at the main checkout's copy. All three
+  are needed: the workbench suite resolves from `workbench/node_modules`, and the browser/a11y tiers
+  resolve Puppeteer and axe-core from `book/node_modules` and the root. A wave that can run `npm test`
+  but not `test:browser` is usually a missing `book/` symlink. **Never `npm install` in a worktree** —
+  the symlink means it mutates every live agent's tree at once.
+- **Verify a merge on the MERGED tree, not on the branch — and land nothing on a number measured
+  elsewhere.** Branches cut hours apart are each green against a different `main`. On 261004 two waves
+  were individually green and their merge was red: a conformance fixture authored a property in the
+  schema's object form (`{ value: … }`) while every shipped example used the scalar, and the other
+  wave's newly per-key census refused it. Neither branch could have seen it. So after `git merge`, re-run
+  `check`, `check:parity`, `test`, `build` — plus `test:browser` and `test:a11y` if anything reaches the
+  page — **before** pushing. Likewise: tell each agent to **measure its own baseline**; a count quoted
+  from an orchestrator brief is stale the moment a sibling lands.
+- **Push under `run_in_background`.** The `pre-push` gate rebuilds the site and runs the Typst renders;
+  it regularly exceeds a 120 s foreground call and gets killed mid-gate. Log to a file and verify by
+  reading `main -> main` out of it. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
+  the message must come **before** `--`, or git reads it as a pathspec and fails with "did not match any
+  file(s) known to git".
 - **Do not mix isolation modes in one wave.** If some agents in a wave get worktrees, they all do. On
   261002 three workbench agents had worktrees and did not collide; the one agent left on `main` is the
   one that collided. The control worked exactly where it was applied and failed exactly where it was not.
