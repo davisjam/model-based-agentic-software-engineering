@@ -25,6 +25,7 @@ import { ACCOUNTED_METRICS, DIMENSIONS, type Dimension } from "../ir/types.ts";
 import {
   detail, exhaustive, result, unlicensed, type Fail, type Verdict,
 } from "../engine/types.ts";
+import type { Satisfiability } from "../engine/predicate.ts";
 import { maxOverExecutions, defaultPathOptions, type PathMetric } from "./latency.ts";
 import { peakMemory, defaultMemoryOptions } from "./memory.ts";
 import { parseBound, type QuantAnswer, type RequirementAnalysis } from "./types.ts";
@@ -44,10 +45,27 @@ export interface QuantRequirement {
   readonly bound: string;
 }
 
+/**
+ * An execution selection whose SATISFIABILITY is already decided (V44).
+ *
+ * `match` is what the walk needs. `satisfiability` is what the vacuity disclosure needs, and it is
+ * decided from the declarations alone — before any walk, by projecting the predicate onto the
+ * coordinates it reads. Carrying the DECIDED answer rather than the predicate is what makes
+ * budget-independence structural instead of conventional: at the point the disclosure is chosen
+ * there is no predicate left to re-decide and no scope to decide it against, so a later edit cannot
+ * quietly condition it on coverage the way the empty-selection proxy did.
+ */
+export interface ExecutionSelection {
+  readonly match: (cfg: Configuration) => boolean;
+  readonly satisfiability: Satisfiability;
+  /** The authored selection, for the remedy sentence the disclosure carries. */
+  readonly described: string;
+}
+
 export interface RequirementOptions {
   readonly limit: number;
   /** Path metrics only: restrict the worst case to executions reaching this. See PathOptions.target. */
-  readonly target: ((cfg: Configuration) => boolean) | null;
+  readonly target: ExecutionSelection | null;
 }
 
 export const defaultRequirementOptions = (): RequirementOptions =>
@@ -132,35 +150,65 @@ export function evaluatePath(
   dimension: Dimension, unit: string, operator: Operator, bound: number, boundRaw: string,
   options: RequirementOptions,
 ): QuantAnswer {
-  const max = maxOverExecutions(system, metric, { limit: options.limit, end: "upper", target: options.target });
+  const max = maxOverExecutions(system, metric, {
+    limit: options.limit, end: "upper", target: options.target?.match ?? null,
+  });
   if (!max.ok) return refuse(hash, max, interpretedAs);
   const analysisBase = { metric, dimension, unit, bound };
 
   if (max.value.kind === "none") {
     // Only a target selection can produce this: no explored execution reaches the selected
-    // configurations. Under a complete walk the universal claim holds VACUOUSLY — disclosed,
-    // because a vacuous holds that looks earned is the failure this suite has shipped once
-    // already. Under a truncated walk nothing is established either way (V22).
+    // configurations. TWO independent axes decide what to say, and keeping them apart is the whole
+    // of V44 — the defect was one proxy standing in for both.
     //
-    // The prose said this before the kind existed and still says it; the kind is what a consumer
-    // can act on. Only the vacuous arm is typed `vacuous`: the truncated arm already reads as
-    // unsettled from `outcome: "inconclusive"` beside `coverage.kind: "bounded"`, and nothing
-    // there holds, vacuously or otherwise — that is bounded absence, not vacuity.
-    const vacuous = max.value.coverage.kind !== "bounded";
+    // The OUTCOME follows coverage (V22), unchanged: a truncated walk cannot report a universal as
+    // established, and `holds` beside `bounded` is the certainty-from-truncation this suite asserts
+    // against in several places. Unsatisfiability does NOT promote it — that matches the behavioural
+    // evaluator, which also keeps the outcome unsettled under a bound and lets only the disclosure
+    // ride along.
+    //
+    // The DISCLOSURE follows SATISFIABILITY, never coverage:
+    //
+    //  - UNSATISFIABLE: no configuration the state vector admits satisfies the selection. Decided
+    //    before the walk begins, so the disclosure travels at EVERY budget — the emptiness is a fact
+    //    about the author's predicate, and truncation cannot weaken it.
+    //  - SATISFIABLE: the EARNED absence. The model can represent the selection and the design
+    //    prevents it, which is a statement about the system. Disclosing vacuity here is the
+    //    over-firing §7.1 forbids, and since V43 reads the disclosure it would downgrade a sound
+    //    requirement rather than merely mislabel a verdict.
+    //  - UNKNOWN: the projection exceeded its enumeration budget, so vacuity was not decided. Never
+    //    read as satisfiable, so never claimed earned — and never claimed vacuous either.
+    const selection = options.target;
+    const unsatisfiable = selection?.satisfiability === "unsatisfiable";
+    const truncated = max.value.coverage.kind === "bounded";
     return {
       result: result({
-        outcome: vacuous ? "holds" : "inconclusive",
+        outcome: truncated ? "inconclusive" : "holds",
         coverage: max.value.coverage, systemHash: hash, interpretedAs,
         compilation: [
           ...asCompilation(max.value.notes),
-          vacuous
-            ? disclose("vacuous",
-              `No execution reaches the selected configurations, so the bound holds vacuously — ` +
-              `there is nothing to charge. If the selection was meant to be reachable, that ` +
-              `absence is the finding.`)
-            : disclose("other",
-              `No execution in the explored region reaches the selected configurations, and the ` +
-              `walk was truncated — nothing is established either way.`),
+          ...(unsatisfiable
+            ? [disclose("vacuous",
+              `No configuration the state vector admits satisfies '${selection?.described ?? "the selection"}', ` +
+              `so the bound holds vacuously — it was decided by the predicate, and there is nothing ` +
+              `to charge. The sound reading is that this model cannot REPRESENT the selected ` +
+              `executions, which is stronger than "no execution reaches them". If the selection was ` +
+              `meant to be reachable, that absence is the finding: fix the predicate.`)]
+            : truncated
+              ? [disclose("other",
+                `No execution in the explored region reaches the selected configurations, and the ` +
+                `walk was truncated — nothing is established either way.`)]
+              : [disclose("other",
+                `No execution reaches the selected configurations, so the bound holds with nothing ` +
+                `to charge. The selection is SATISFIABLE in the state vector, so this is the design ` +
+                `preventing it rather than a contradiction in the predicate — an earned absence, and ` +
+                `the finding if the selection was meant to be reachable.`)]),
+          ...(selection?.satisfiability === "unknown"
+            ? [disclose("other",
+              `Whether the selection is satisfiable at all was NOT decided: the projection onto the ` +
+              `coordinates it reads exceeded the enumeration budget. So this absence is not known to ` +
+              `be earned, and it is not reported as vacuous either.`)]
+            : []),
         ],
       }),
       refusal: null,

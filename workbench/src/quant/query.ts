@@ -17,18 +17,19 @@
  */
 import { systemHash } from "../ir/hash.ts";
 import type {
-  CanonicalSystem, Configuration, Dimension, Evidence, QuantityScope,
+  CanonicalSystem, Dimension, Evidence, QuantityScope,
 } from "../ir/types.ts";
 import { ACCOUNTED_METRICS, AGGREGATE_TARGET_KIND, DIMENSIONS } from "../ir/types.ts";
 import { buildScope } from "../engine/refs.ts";
-import { compilePredicate, describePredicate } from "../engine/predicate.ts";
-import { DEFAULT_STATE_LIMIT } from "../engine/explore.ts";
+import { compilePredicate, describePredicate, satisfiability } from "../engine/predicate.ts";
+import { compileSystem, DEFAULT_STATE_LIMIT } from "../engine/explore.ts";
 import {
   detail, refusedAdmission as refused, result, unlicensed,
   type Admission, type QuantityQuery, type Quantifier, type RefusalDetail, type Verdict,
 } from "../engine/types.ts";
 import {
-  evaluatePath, evaluatePeak, REQUIREMENT_METRICS, type RequirementMetric,
+  evaluatePath, evaluatePeak, REQUIREMENT_METRICS,
+  type ExecutionSelection, type RequirementMetric,
 } from "./requirement.ts";
 import { maxOverExecutions, type PathMetric } from "./latency.ts";
 import { peakMemory } from "./memory.ts";
@@ -68,7 +69,8 @@ export interface QuantityPlan {
   readonly limit: number;
   /** Non-null exactly when the question decides a declared ceiling rather than reporting a figure. */
   readonly ceiling: QuantityCeiling | null;
-  readonly target: ((cfg: Configuration) => boolean) | null;
+  /** The execution selection with its satisfiability already decided (V44), or none. */
+  readonly target: ExecutionSelection | null;
   /** The selection clause, for the interpretation sentence. Empty when no target was given. */
   readonly selection: string;
 }
@@ -168,13 +170,28 @@ export function admitQuantityQuery(
       null, detail("quantifier-mismatch")));
   }
 
-  // The execution selection, compiled against the system's own vocabulary before anything runs.
-  let target: ((cfg: Configuration) => boolean) | null = null;
+  // The execution selection, compiled against the system's own vocabulary before anything runs —
+  // and its satisfiability decided here too, which is where this function's own discipline puts it:
+  // every decision above is made from declarations alone and nothing walks an execution. Vacuity is
+  // such a decision, so deciding it at admission is what keeps the disclosure budget-independent
+  // (V44) rather than leaving a coverage value in scope where it could be consulted.
+  let target: ExecutionSelection | null = null;
   let selection = "";
   if (q.target !== null) {
-    const p = compilePredicate(buildScope(system), q.target);
+    const scope = buildScope(system);
+    const p = compilePredicate(scope, q.target);
     if (!p.ok) return refused(refuse(hash, p.refusal, null, p.detail ?? detail("unknown-vocabulary")));
-    target = p.value;
+    // A system that will not compile has no state vector to decide satisfiability against. Report
+    // the third answer and let the walk raise the real refusal, rather than inventing a second
+    // refusal path here for a condition the evaluator already reports well.
+    const compiled = compileSystem(system);
+    target = {
+      match: p.value,
+      satisfiability: compiled.ok
+        ? satisfiability(scope, q.target, p.value, compiled.value.initial)
+        : "unknown",
+      described: describePredicate(q.target),
+    };
     selection = ` reaching ${describePredicate(q.target)}`;
   }
 
@@ -224,24 +241,52 @@ function evaluateQuantity(system: CanonicalSystem, p: QuantityPlan, hash: string
 function measurePath(
   system: CanonicalSystem, hash: string, metric: PathMetric,
   dimension: Dimension, unit: string, limit: number,
-  target: ((cfg: Configuration) => boolean) | null, selection: string,
+  target: ExecutionSelection | null, selection: string,
 ): Verdict {
   const interpretedAs =
     `What is the worst-case ${metric} over executions${selection}? (upper ends of declared ranges)`;
-  const max = maxOverExecutions(system, metric, { limit, end: "upper", target });
+  const max = maxOverExecutions(system, metric, { limit, end: "upper", target: target?.match ?? null });
   if (!max.ok) return refuse(hash, max.refusal, interpretedAs, max.detail ?? detail("unknown-vocabulary"));
 
   if (max.value.kind === "none") {
-    // Exhaustive absence refutes the existential; a truncated absence settles nothing (V22).
+    // Exhaustive absence refutes the existential; a truncated absence settles nothing (V22). That is
+    // the OUTCOME axis and it reads coverage. The DISCLOSURE axis reads satisfiability, and this is
+    // the V41 row the measurement path had been missing: a `refuted` over a target no state vector
+    // admits is decided by the predicate, so it carries the same typed kind the ceiling path and the
+    // behavioural evaluator emit. Keyed on satisfiability rather than on an empty selection, so it
+    // cannot fire on the earned absence — the same discrimination V44 makes above.
     const bounded = max.value.coverage.kind === "bounded";
+    const unsatisfiable = target?.satisfiability === "unsatisfiable";
     return asVerdict({
       result: result({
         outcome: bounded ? "inconclusive" : "refuted",
         coverage: max.value.coverage, systemHash: hash, interpretedAs,
-        compilation: [...max.value.notes.map(note), note(bounded
-          ? `No execution in the explored region reaches the selected configurations, and the walk ` +
-            `was truncated — nothing is established either way.`
-          : `No execution reaches the selected configurations, so there is nothing to measure.`)],
+        compilation: [
+          ...max.value.notes.map(note),
+          ...(unsatisfiable
+            ? [{
+              kind: "vacuous" as const,
+              explanation:
+                `No configuration the state vector admits satisfies ` +
+                `'${target?.described ?? "the selection"}', so there is nothing to measure and the ` +
+                `refutation is vacuous: it was decided by the predicate, and no transition structure ` +
+                `was consulted. The sound reading is that this model cannot REPRESENT the selected ` +
+                `executions. If the selection was meant to be reachable, that absence is the ` +
+                `finding: fix the predicate.`,
+            }]
+            : [note(bounded
+              ? `No execution in the explored region reaches the selected configurations, and the ` +
+                `walk was truncated — nothing is established either way.`
+              : `No execution reaches the selected configurations, so there is nothing to measure. ` +
+                `The selection is SATISFIABLE in the state vector, so this is the design preventing ` +
+                `it rather than a contradiction in the predicate — an earned absence.`)]),
+          ...(target?.satisfiability === "unknown"
+            ? [note(
+              `Whether the selection is satisfiable at all was NOT decided: the projection onto the ` +
+              `coordinates it reads exceeded the enumeration budget. So this absence is not known to ` +
+              `be earned, and it is not reported as vacuous either.`)]
+            : []),
+        ],
       }),
       refusal: null,
     });

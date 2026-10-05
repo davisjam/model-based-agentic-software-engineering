@@ -235,20 +235,44 @@ test("a ceiling over an empty selected set holds VACUOUSLY, and says so in a typ
     "an earned holds must not claim vacuity, or the channel tags everything and tells nothing");
 });
 
-test("an empty selection under a TRUNCATED walk is bounded absence, not vacuity", () => {
-  // §3.2's line, kept distinct from §3.1's. Under a bound the selected set is empty only in the
-  // explored region, so nothing holds — vacuously or otherwise — and the honest answer is
-  // `inconclusive`. Tagging this `vacuous` would read as "true of nothing" where the truth is
-  // "not looked at", which is the stronger claim and the wrong one.
-  const res = runQuery(pipeline(), quantityQuery("forall", {
+test("under ONE budget, bounded absence and vacuity are told apart by satisfiability (V44)", () => {
+  // §3.2's line, RE-POINTED by V44 rather than relaxed — the direction its own successor took with
+  // Phase A's BOUNDARY assertion. §3.2 was right that bounded absence is not vacuity, and wrong
+  // about what distinguishes them: it read the COVERAGE, so it called every truncated absence
+  // non-vacuous. The discriminator is the PREDICATE, so both arms are pinned here at the same
+  // `limit` — which is what makes this a statement about satisfiability rather than about depth.
+  //
+  // VACUITY: this test would pass while the property is violated if `limit: 2` did not actually
+  // truncate, because then both rows would be exhaustive and the pair would be agreement about
+  // nothing. Both rows therefore assert `bounded` coverage, and the two rows differ ONLY in the
+  // target — same system, same ceiling, same budget.
+
+  // (a) SATISFIABLE and simply not reached yet: `published` is reachable in this pipeline, just not
+  // within two configurations. Nothing holds, vacuously or otherwise — the truth is "not looked at",
+  // and tagging it `vacuous` would be the stronger claim and the wrong one.
+  const unexplored = runQuery(pipeline(), quantityQuery("forall", {
+    metric: "latency", within: "latency-ceiling",
+    target: { "document.state": "published" }, limit: 2,
+  })).result;
+  assert.equal(unexplored.outcome, "inconclusive");
+  assert.equal(unexplored.coverage.kind, "bounded", "the budget must really bite, or this pair proves nothing");
+  assert.equal(unexplored.compilation.find((c) => c.kind === "vacuous"), undefined,
+    "a satisfiable selection the walk has not reached is bounded absence: 'not looked at', never "
+    + "'true of nothing'");
+  assert.ok(unexplored.compilation.some((c) => /truncated/.test(c.explanation)),
+    "the truncation must still be disclosed in prose");
+
+  // (b) UNSATISFIABLE at the SAME budget: `ge: 9` is outside retry_count's declared [0, 1] domain,
+  // so no configuration the vector admits satisfies it. That is settled before the walk begins, so
+  // the disclosure travels under truncation too — V41's letter, which the old reading withheld.
+  const vacuous = runQuery(pipeline(), quantityQuery("forall", {
     metric: "latency", within: "latency-ceiling",
     target: { "document.retry_count": { ge: 9 } }, limit: 2,
   })).result;
-  assert.equal(res.outcome, "inconclusive");
-  assert.equal(res.coverage.kind, "bounded");
-  assert.equal(res.compilation.find((c) => c.kind === "vacuous"), undefined);
-  assert.ok(res.compilation.some((c) => /truncated/.test(c.explanation)),
-    "the truncation must still be disclosed in prose");
+  assert.equal(vacuous.outcome, "inconclusive", "the OUTCOME still follows coverage (V22) — unchanged");
+  assert.equal(vacuous.coverage.kind, "bounded");
+  assert.ok(vacuous.compilation.find((c) => c.kind === "vacuous"),
+    "unsatisfiability is a fact about the predicate, so no budget may withhold the disclosure");
 });
 
 test("a within query that holds carries exhaustive coverage and the observed figure", () => {
