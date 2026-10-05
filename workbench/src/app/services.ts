@@ -31,6 +31,8 @@ import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import { evaluateOne, evaluateProperties } from "./properties.ts";
 import type { EvaluatedProperty } from "./properties.ts";
+import { composeCrossModelView } from "./cross-model.ts";
+import type { ComposedCrossModelView, CrossModelRequest } from "./cross-model.ts";
 import type {
   AnalysisPort, EnginePort, PendingResult, RenderPort, RenderedView, SceneRequest,
 } from "./ports.ts";
@@ -583,6 +585,21 @@ export class Workspace {
   /** Non-semantic. A view never changes what the model asserts. */
   renderView(request: SceneRequest): RenderedView {
     return this.#ports.render.render(this.#engine.system(), request);
+  }
+
+  /**
+   * Show several purposeful models together, with the registered correspondences between them.
+   *
+   * Non-semantic for the same reason `renderView` is, and one step further: the connections are
+   * DERIVED from `BINDINGS` and `COMPOSITIONS`, so the canvas cannot assert a correspondence the
+   * kernel does not declare. It renders each panel through the one render seam above — a cross-model
+   * view is a composition of per-type views, never a flattening of two models into one graph
+   * (`src/app/cross-model.ts`, `DESIGN-render-rules-261004.md` §E).
+   */
+  composeCrossModelView(request: CrossModelRequest): ComposedCrossModelView {
+    return composeCrossModelView(
+      this.#engine.system(), request, (req) => this.renderView(req),
+    );
   }
 
   /** Escape hatch for a caller that holds only a document: canonicalize without loading. */
