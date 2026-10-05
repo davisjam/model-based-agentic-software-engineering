@@ -70,8 +70,10 @@ import { Workspace } from "./services.ts";
  * the transaction example, not a toy traffic light"). Appending instead would have shipped the
  * example and left the card unchanged.
  *
- * What is NOT resolved here: §31 drops Worker Queue from its three while §18 keeps it, and nothing
- * in this wave adjudicated that. Six ship.
+ * Worker Queue's membership was open when this list was first written and is now RULED: it ships as a
+ * declared non-flagship, and the declaration lives in `SHIPPED_EXAMPLES` below rather than in this
+ * comment. §31 drops it from its three while §18 keeps it; that disagreement is the membership
+ * question the ruling records rather than resolves.
  *
  * Embedded Sensor Node sits FIFTH, and the position is a consequence rather than a preference.
  * `exemplarFor` takes the FIRST shipped example instantiating a type, and three examples ahead of
@@ -87,11 +89,150 @@ import { Workspace } from "./services.ts";
  * behavior card, the quantitative card and the graph card all at once, at a system a first-time
  * reader should meet last rather than first.
  */
-export const SHIPPED_EXAMPLE_IDS =
-  ["message-bus", "transaction-workspace", "document-processing", "worker-queue",
-   "embedded-sensor-node", "autonomous-delivery"] as const;
+/**
+ * The flagships §21 names, as a closed vocabulary.
+ *
+ * Spelled as §21 spells them, because the point of the list is to be the other end of a mapping: a
+ * flagship row below names one of these, and a §21 slot renamed without this list moving fails to
+ * resolve rather than silently pointing at nothing.
+ */
+export const SPEC_FLAGSHIPS = [
+  "Secure Message Bus", "Transaction Protocol", "Embedded Sensor Node", "Processing Pipeline",
+  "Autonomous Delivery System",
+] as const;
 
-export type ShippedExampleId = (typeof SHIPPED_EXAMPLE_IDS)[number];
+export type SpecFlagship = (typeof SPEC_FLAGSHIPS)[number];
+
+/**
+ * Why a shipped example ships — a flagship realising a §21 slot, or a built-in that is not one.
+ *
+ * ## The shape, and what the compiler holds with it
+ *
+ * `RenderStrategy` on a model type is the landed precedent: a required discriminated field whose every
+ * arm carries the obligation its own case creates, so a row cannot ship without answering the
+ * question. The same arrangement here. `status` is required on every `SHIPPED_EXAMPLES` row, so a
+ * seventh example cannot be appended without saying which kind it is — which is the gap the 261005
+ * release-gate audit found: *"a seventh example added tomorrow is indistinguishable from a sixth
+ * flagship."*
+ *
+ * ## Two axes, and the arms keep them apart
+ *
+ * The author's 261005 ruling separates two things this declaration must not re-fuse:
+ *
+ * > *"Retain it because it exercises otherwise-unrepresented synchronization semantics. Do not
+ * > promote it merely because it happens to carry important coverage; test/semantic coverage and
+ * > teaching prominence are different concepts."*
+ *
+ * So **semantic coverage** and **teaching prominence** are two facts, and the type keeps them in
+ * separate fields on separate arms:
+ *
+ * - The `flagship` arm carries `realises` and NOTHING about coverage. A flagship is a flagship because
+ *   §21's progression gives it a slot — never because of what it exercises. The arm has no field in
+ *   which to write a coverage reason, so the conflation is not expressible.
+ * - The `built-in` arm carries `covers` AND `membership`, both required. `covers` answers *why keep
+ *   it* (coverage). `membership` answers *why it is not a flagship* (prominence). Dropping either is a
+ *   compile error, so neither can stand in for the other.
+ *
+ * What the type cannot hold is the CONTENT of those two strings staying on their own axes. A row could
+ * write the coverage sentence into `membership` and the compiler would accept it. The separation is
+ * structural in shape and editorial in substance, and this comment is where the reader is told which.
+ */
+export type ExampleStatus =
+  | {
+    readonly kind: "flagship";
+    /** Which §21 slot this example realises. One slot, one example; a test holds the bijection. */
+    readonly realises: SpecFlagship;
+  }
+  | {
+    readonly kind: "built-in";
+    /**
+     * The semantic coverage that would be lost by deleting it — the RETENTION reason, and nothing to
+     * do with prominence.
+     */
+    readonly covers: string;
+    /**
+     * The recorded membership question: why the spec does not name it a flagship. The PROMINENCE
+     * axis. A reason the spec's own documents disagree is still a recorded reason; an unrecorded one
+     * is what criterion 14 forbids.
+     */
+    readonly membership: string;
+  };
+
+export interface ShippedExample {
+  readonly id: string;
+  readonly status: ExampleStatus;
+}
+
+/**
+ * What ships, in menu order, each row declaring why.
+ *
+ * `as const satisfies` rather than a plain annotation: `satisfies` runs the check that every row
+ * declares a `status`, and `as const` keeps the ids literal so `ShippedExampleId` stays a union of
+ * exactly these strings. An annotation alone would widen `id` to `string` and every keyed map in
+ * `src/learn/` would lose its key type.
+ */
+export const SHIPPED_EXAMPLES = [
+  { id: "message-bus", status: { kind: "flagship", realises: "Secure Message Bus" } },
+  { id: "transaction-workspace", status: { kind: "flagship", realises: "Transaction Protocol" } },
+  {
+    id: "document-processing",
+    // §21's gloss for this slot is "different purposeful models participate in one engineering
+    // question through an explicitly defined semantic composition", and this example's own summary
+    // describes a pipeline lifecycle plus a quantitative model over the same components. It is also
+    // the example the one registered COMPOSITIONS row serves. Ruled by the 261005 audit from the
+    // example's own fixture rather than assumed from the directory name.
+    status: { kind: "flagship", realises: "Processing Pipeline" },
+  },
+  {
+    id: "worker-queue",
+    status: {
+      kind: "built-in",
+      covers: "the only shipped transition guard that reads ANOTHER machine's state "
+        + "(`job-lifecycle` requires `job-lease.state`), which is the arm of V42 obligation 2 that "
+        + "says a guard is not a step: the reading instance moves alone and leaves what it read "
+        + "untouched. Measured across the corpus on 261005. The event arm of the same obligation is "
+        + "covered elsewhere -- `autonomous-delivery` also declares two machines and synchronises "
+        + "them on declared events -- so this row's coverage claim is the guard, not multi-machine "
+        + "composition in general.",
+      membership: "§31 of `DESIGN-v02-semantics-261004.md` drops Worker Queue from its three "
+        + "flagships while §18 of `requirements-default-examples-261002.md` keeps it, and no ruling "
+        + "has adjudicated that disagreement. §21's progression does not give it a slot, so it is "
+        + "not a flagship. Nothing about the coverage above bears on this: the author's 261005 "
+        + "ruling is explicit that coverage must not promote an example, and the converse holds "
+        + "too -- prominence is decided by the progression, not by what the example exercises.",
+    },
+  },
+  { id: "embedded-sensor-node", status: { kind: "flagship", realises: "Embedded Sensor Node" } },
+  {
+    id: "autonomous-delivery",
+    status: { kind: "flagship", realises: "Autonomous Delivery System" },
+  },
+] as const satisfies readonly ShippedExample[];
+
+export type ShippedExampleId = (typeof SHIPPED_EXAMPLES)[number]["id"];
+
+/**
+ * The shipped ids, derived from the declaration above.
+ *
+ * Still the sole declaration of what ships — the rows moved, the ownership did not. Derived rather
+ * than listed a second time for the reason the header gives about the coverage script: two lists of
+ * the same set disagreed within the hour the last time one existed.
+ */
+export const SHIPPED_EXAMPLE_IDS: readonly ShippedExampleId[] =
+  SHIPPED_EXAMPLES.map((e) => e.id);
+
+/**
+ * The example realising a §21 flagship, or `null` if none does.
+ *
+ * A function rather than a stored inverse map, per the derived-state discipline: a second table would
+ * be the mapping copied into something an edit could leave behind. Callers that need the whole
+ * mapping walk `SHIPPED_EXAMPLES`.
+ */
+export function flagshipRealisedBy(slot: SpecFlagship): ShippedExampleId | null {
+  const row = SHIPPED_EXAMPLES.find(
+    (e) => e.status.kind === "flagship" && e.status.realises === slot);
+  return row?.id ?? null;
+}
 
 /** One of an example's purposeful models, with the question it answers. */
 export interface ExampleModelBlurb {

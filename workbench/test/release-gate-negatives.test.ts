@@ -24,11 +24,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { parse as parseYaml } from "yaml";
 import { BINDINGS, COMPOSITIONS, MODEL_TYPES } from "../src/engine/model-types.ts";
 import { VERIFICATION_TEXT } from "../src/engine/verification.ts";
 import { CAPABILITIES } from "../src/app/capabilities.ts";
 import type { Outcome } from "../src/ir/types.ts";
-import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import {
+  SHIPPED_EXAMPLES, SHIPPED_EXAMPLE_IDS, SPEC_FLAGSHIPS, flagshipRealisedBy,
+} from "../src/app/examples.ts";
+import type { ExampleStatus } from "../src/app/examples.ts";
 
 const SCHEMAS = ["mage-model.schema.json", "mage-query.schema.json", "mage-transaction.schema.json"] as const;
 
@@ -394,6 +398,141 @@ test("§20.14: every shipped example id resolves to a built-in on disk", () => {
         `${path} is missing or too short -- '${id}' is offered by the menu and does not ship`);
     }
   }
+});
+
+/**
+ * The flagship mapping is a bijection onto §21's slots, and every shipped row declares its kind.
+ *
+ * The gap the audit reported and left open: *"nothing in code names WHICH five of six built-ins are
+ * flagships"*, so a seventh example was indistinguishable from a sixth flagship. `SHIPPED_EXAMPLES`
+ * now declares a `status` per row and this reads it. Three failures it catches, which are the three
+ * the ratified decision asks for:
+ *
+ * - **A flagship with no id.** A §21 slot that no shipped row realises. Caught by walking
+ *   `SPEC_FLAGSHIPS` as the denominator rather than walking the rows, so a slot nobody claims is a
+ *   missing key rather than an absence nobody looks for.
+ * - **Two flagships on one id.** One example realising two slots, or two rows realising the same slot.
+ *   Both directions, because "mapped to exactly one example id" is violated either way.
+ * - **A shipped example with no declared status.** The compiler catches the omission —
+ *   `as const satisfies readonly ShippedExample[]` refuses a row without `status` — so what is left
+ *   here is the ACCOMMODATION: a `status` present and empty, a `realises` naming no §21 slot, or a
+ *   `built-in` whose two required reasons are blank strings. The type says a field exists; this says
+ *   it says something.
+ *
+ * **Where it passes while the property is violated:** the mapping's TRUTH is not checkable from here.
+ * `document-processing` could be rewritten until it no longer realises a Processing Pipeline, and this
+ * would keep passing, because nothing mechanical reads a §21 gloss and compares it to an example. What
+ * closed is the weaker and more useful half — the mapping now EXISTS in code, is total over §21's
+ * slots, and is injective — so the failure mode that remains needs someone to rewrite an example
+ * without touching its declaration, rather than merely to append a row.
+ */
+test("§20.14: §21's flagships map one-to-one onto shipped ids, and every row declares its kind", () => {
+  assert.ok(SPEC_FLAGSHIPS.length > 1, "§21's flagship vocabulary did not load");
+
+  // (a) A flagship with no id. Denominator is the spec's slot list, so an unclaimed slot fails here.
+  const unrealised = SPEC_FLAGSHIPS.filter((slot) => flagshipRealisedBy(slot) === null);
+  assert.deepEqual(unrealised, [],
+    `§21 names a flagship that no shipped example realises: ${unrealised.join(", ")}.\n`
+    + `Criterion 14 requires every flagship to ship. Either an example was removed without its slot, `
+    + `or a row's \`realises\` no longer spells the slot as §21 spells it.`);
+
+  // (b) Two flagships on one id, in both directions.
+  const claims = SHIPPED_EXAMPLES.flatMap<{ readonly id: string; readonly slot: string }>(
+    (e) => e.status.kind === "flagship" ? [{ id: e.id, slot: e.status.realises }] : []);
+  const slots = claims.map((c) => c.slot);
+  const ids = claims.map((c) => c.id);
+  assert.deepEqual([...slots].sort(), [...new Set(slots)].sort(),
+    `two shipped examples realise the same §21 flagship: `
+    + `${slots.filter((s, i) => slots.indexOf(s) !== i).join(", ")}. `
+    + `"Mapped to exactly one example id" fails on this side.`);
+  assert.deepEqual([...ids].sort(), [...new Set(ids)].sort(),
+    `one shipped example realises two §21 flagships: `
+    + `${ids.filter((d, i) => ids.indexOf(d) !== i).join(", ")}. `
+    + `A flagship realises one slot; an example carrying two has absorbed a slot that should ship as `
+    + `its own example or not at all.`);
+
+  // (c) A shipped example with no declared status -- the accommodation the compiler cannot refuse.
+  for (const row of SHIPPED_EXAMPLES) {
+    const s: ExampleStatus = row.status;
+    if (s.kind === "flagship") {
+      assert.ok((SPEC_FLAGSHIPS as readonly string[]).includes(s.realises),
+        `'${row.id}' realises '${s.realises}', which §21 does not name. A flagship declaration that `
+        + `resolves to no slot is the folklore the declaration replaced, wearing a field.`);
+    } else {
+      assert.ok(s.covers.trim().length > 40,
+        `'${row.id}' is a declared non-flagship whose \`covers\` says nothing. Criterion 14 requires `
+        + `a retention reason: what semantic coverage is lost by deleting it.`);
+      assert.ok(s.membership.trim().length > 40,
+        `'${row.id}' is a declared non-flagship whose \`membership\` says nothing. Criterion 14 `
+        + `requires the membership question RECORDED -- why the spec does not name it a flagship. `
+        + `That is the teaching-prominence axis, and the 261005 ruling is explicit that it is not the `
+        + `coverage axis: coverage must not promote an example, and it must not demote one either.`);
+      assert.notEqual(s.covers.trim(), s.membership.trim(),
+        `'${row.id}' gives the same sentence as its retention reason and its membership question. `
+        + `Those are two axes -- semantic coverage and teaching prominence -- and one sentence `
+        + `answering both has conflated exactly what the ruling separated.`);
+    }
+  }
+
+  // Every shipped id is a row above, so the derived list and the declaration cannot diverge.
+  assert.deepEqual([...SHIPPED_EXAMPLE_IDS], SHIPPED_EXAMPLES.map((e) => e.id),
+    "the shipped id list and the declaration disagree, which is the duplicated-list defect the "
+    + "registry header records");
+});
+
+/**
+ * The non-flagship's retention reason is TRUE of the corpus — honesty, not bookkeeping.
+ *
+ * The declaration makes a factual claim about what only one example exercises, and an unheld factual
+ * claim in a registry is the rot class this session spent the day draining. The brief this work came
+ * from asserted a WIDER claim — that `worker-queue` is the only example with more than one machine and
+ * the only one declaring any event — and it is false at HEAD: `autonomous-delivery` declares two
+ * machines and synchronises them on five declared events. The surviving claim is narrower and
+ * measured: `worker-queue` holds the only transition guard that reads another machine's state.
+ *
+ * So this walks the corpus for cross-machine guards and requires exactly one example to carry any.
+ *
+ * **Where it passes while the property is violated:** the guard is located by a dotted key naming
+ * another machine, so a cross-machine read spelled some other way is invisible — a derived variable
+ * that resolves across machines, or a guard form the schema gains later. It also says nothing about
+ * whether the coverage is WORTH retaining, which is a judgment and was the author's to make.
+ */
+test("§20.14: the declared non-flagship's retention reason still holds over the corpus", () => {
+  const nonFlagships = SHIPPED_EXAMPLES.filter((e) => e.status.kind === "built-in").map((e) => e.id);
+  assert.ok(nonFlagships.length > 0,
+    "no shipped example is a declared non-flagship, so this honesty check has no subject -- delete it "
+    + "with the row it was written for rather than leaving it vacuously green");
+
+  const withCrossMachineGuard: string[] = [];
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const doc: unknown = parseYaml(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"));
+    const machines = (doc as { machines?: Record<string, unknown> }).machines ?? {};
+    const names = Object.keys(machines);
+    const crossing = names.some((own) => {
+      const m = machines[own] as { transitions?: readonly unknown[] } | undefined;
+      return (m?.transitions ?? []).some((t) => {
+        const requires = (t as { requires?: Record<string, unknown> }).requires ?? {};
+        return Object.keys(requires).some((key) => {
+          const head = key.split(".")[0];
+          return head !== undefined && head !== key && names.includes(head) && head !== own;
+        });
+      });
+    });
+    if (crossing) withCrossMachineGuard.push(id);
+  }
+
+  assert.ok(withCrossMachineGuard.length > 0,
+    "no shipped example has a transition guard reading another machine's state, so V42's "
+    + "`guards are not steps` arm has no witness at all -- the non-flagship's retention reason is "
+    + "now false in the other direction");
+  assert.deepEqual(withCrossMachineGuard, nonFlagships,
+    `the cross-machine guard witness set is [${withCrossMachineGuard.join(", ")}] and the declared `
+    + `non-flagship set is [${nonFlagships.join(", ")}].\n`
+    + `The non-flagship row's \`covers\` claims it holds the ONLY such guard. If another example `
+    + `gained one, that claim is stale and the row's retention reason needs rewriting -- not this `
+    + `assertion relaxing. If the non-flagship lost its guard, its stated coverage is gone and the `
+    + `retention decision is open again. Either way the DECISION is the author's; what this holds is `
+    + `that the reason recorded for it is still true.`);
 });
 
 // ----------------------------------------------------------------------------------------------

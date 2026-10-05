@@ -1789,7 +1789,7 @@ Do not call this semantic regime complete until all of the following are true:
 11. Behavior → Quantity composition is typed and registered.
 12. All five owed SysML/KerML conformance fixture families exist.
 13. Each conformance fixture's evidence method is recorded honestly, and the grade is DERIVED from the fixture's own `evidence[]` rather than compared against a second copy of itself. A fixture's `method` is the weakest rung among its DECISIVE evidence; evidence marked corroborating does not set the grade.
-14. Every one of §21's five flagships ships as a built-in example, each mapped to exactly one example id; any additional built-in is declared a non-flagship with its membership question recorded.
+14. Every flagship §21 names ships as a built-in example, mapped to exactly one example id, and the mapping is DECLARED in the application's example registry rather than left in prose. Any additional built-in is declared a non-flagship carrying both of two separate facts: the semantic coverage that would be lost by deleting it, and its recorded membership question. Coverage neither promotes nor demotes — teaching prominence is decided by §21's progression.
 15. Every executable student question is backed by a registered query.
 16. Every expected answer is test-pinned.
 17. Every promised mutation is tested.
@@ -1819,15 +1819,24 @@ The five examples should collectively tell one story.
 **Two notes a reader of this section needs, recorded here because both were discovered by reading
 code rather than by reading §20 (release-gate audit, 2026-10-05).**
 
-**The five flagships map onto six shipped built-ins.** `Secure Message Bus` → `message-bus`,
-`Transaction Protocol` → `transaction-workspace`, `Embedded Sensor Node` → `embedded-sensor-node`,
-`Processing Pipeline` → `document-processing`, `Autonomous Delivery System` → `autonomous-delivery`.
-A sixth built-in, `worker-queue`, ships as a **non-flagship**: §31 drops Worker Queue from its three
-while §18 keeps it, and nothing has adjudicated that — the open membership question is declared
-beside the shipped-id list in the application's example registry. **Nothing in code names which five
-are flagships**, so the mapping above lives only in prose and a seventh built-in would be
-indistinguishable from a sixth flagship. Criterion 14 is checkable in neither direction until the
-registry declares the subset.
+**The flagships map onto the shipped built-ins, and the mapping lives in code.** `Secure Message Bus`
+→ `message-bus`, `Transaction Protocol` → `transaction-workspace`, `Embedded Sensor Node` →
+`embedded-sensor-node`, `Processing Pipeline` → `document-processing`, `Autonomous Delivery System` →
+`autonomous-delivery`. The table above restates a declaration rather than being one: the application's
+example registry gives every shipped row a required status — a flagship naming the §21 slot it
+realises, or a declared non-flagship — so a row cannot ship without saying which it is, and a slot no
+example realises fails a test rather than going unnoticed.
+
+**`worker-queue` ships as a declared non-flagship, and its two reasons sit on two axes
+(ratified 2026-10-05).** Its retention reason is **semantic coverage**: it holds the only transition
+guard in the corpus that reads another machine's state, which is the arm of V42 that distinguishes a
+guard from a step. Its non-flagship status is **teaching prominence**: §31 of
+`DESIGN-v02-semantics-261004.md` drops Worker Queue from its three while §18 of
+`requirements-default-examples-261002.md` keeps it, no ruling has adjudicated that, and §21's
+progression gives it no slot. The author ruled these must not be collapsed — *"do not promote it merely
+because it happens to carry important coverage; test/semantic coverage and teaching prominence are
+different concepts"* — so the registry carries them as separate required fields and the converse holds
+as well: coverage does not demote either.
 
 **This progression order is NOT the order a student sees.** The shipped menu runs Message Bus →
 Transaction Workspace → Document Processing → Worker Queue → Embedded Sensor Node → Autonomous
