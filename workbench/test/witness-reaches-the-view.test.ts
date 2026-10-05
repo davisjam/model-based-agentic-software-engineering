@@ -40,6 +40,8 @@ import { realPorts } from "../scripts/gen-example-coverage.ts";
 import { renderView } from "../src/render/index.ts";
 import type { CanonicalSystem, QueryResult } from "../src/ir/types.ts";
 import type { EmphasisAssignment, RenderedView } from "../src/render/types.ts";
+import { witnessFocus } from "../src/ui/shell/workspace.ts";
+import { savedProperties, witnessShowState } from "../src/ui/shell/askbar.ts";
 
 /** The example under test, loaded through the same seam the page and the agent use. */
 function messageBus(): CanonicalSystem {
@@ -294,6 +296,78 @@ test("Q5's direction: repair, then add an impermitted subscriber, and the witnes
     + "introduces a service, because the answer moved and the diagram cannot show it");
   assert.ok(view.accessible.nodes.every((n) => n.id !== "debug"),
     "DIVERGENCE: the scene is the declared membership, so the added service is not a node");
+});
+
+// ------------------------------------------------------------------------------------------------
+// The focus itself: what the shell resolves a `ViewState.witness` to
+// ------------------------------------------------------------------------------------------------
+
+test("the focus derives its model from the question, and the model is one that declares it", () => {
+  const system = messageBus();
+  const ws = new Workspace(realPorts);
+  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  const run = (raw: unknown): QueryResult => ws.query(raw);
+
+  for (const [id, saved] of system.queries) {
+    const focus = witnessFocus(system, id, run);
+    const res = ws.query(saved.raw);
+    // The two states are decided by the ANSWER, so they are compared against it rather than
+    // against a list of ids: a question with evidence is drawable, one without is not.
+    if (res.evidence === null) {
+      assert.equal(focus, null, `${id}: no evidence, so there is nothing to draw`);
+      continue;
+    }
+    assert.ok(focus !== null, `${id}: an answer with a witness must be drawable somewhere`);
+    assert.equal(focus.subject.kind, "model");
+    // The claim: the chosen model declares the relation the question traverses, so its scene can
+    // carry the hops. Checked against the model's own relations, not against the derivation.
+    const relations = system.relations.filter((r) => r.model === focus.subject.id);
+    assert.ok(relations.length > 0, `${focus.subject.id} declares relations`);
+    assert.ok(system.models.has(focus.subject.id), "and it is a declared model");
+  }
+});
+
+test("a focus on a question nobody saved resolves to nothing, rather than to a guess", () => {
+  const system = messageBus();
+  const ws = new Workspace(realPorts);
+  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  const run = (raw: unknown): QueryResult => ws.query(raw);
+
+  // The agent-side race this is for: `view.witness(id)` accepts any id, because a question can be
+  // retracted between the focus and the paint. The paint resolves against the live system and draws
+  // nothing, which is why the focus setter does not need to refuse.
+  assert.equal(witnessFocus(system, "no-such-question", run), null);
+  assert.equal(witnessFocus(system, null, run), null);
+  assert.equal(witnessFocus(system, undefined, run), null);
+});
+
+test("the offer explains itself, and an unkept question is told where to go", () => {
+  const system = messageBus();
+  const ws = new Workspace(realPorts);
+  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  const run = (raw: unknown): QueryResult => ws.query(raw);
+
+  const saved = savedProperties(system);
+  const breach = saved.find((i) => i.savedId === "restricted-data-reaches-impermitted-subscriber");
+  assert.ok(breach !== undefined, "the breach question is offered as a saved property");
+  const offered = witnessShowState(system, run, breach);
+  assert.ok(offered.focus !== null, "a kept question with a witness is drawable");
+  assert.match(offered.sentence, new RegExp(offered.focus.subject.id),
+    "the sentence names the model the button will move to, before it is pressed");
+
+  // An ad-hoc question is the one case the surface has to redirect rather than refuse, because the
+  // route exists one box below it.
+  const adHoc = { key: "x", label: "anything", source: "contextual" as const, savedId: null, ask: null };
+  const unkept = witnessShowState(system, run, adHoc);
+  assert.equal(unkept.focus, null);
+  assert.match(unkept.sentence, /Track/,
+    "an unkept question is sent to the Track box, not told that nothing happened");
+
+  // And a question whose answer is a refusal: a sentence, not a path.
+  const refused = saved.find((i) => i.savedId === "did-analytics-receive-it-at-2-04");
+  assert.ok(refused !== undefined);
+  assert.equal(witnessShowState(system, run, refused).focus, null,
+    "a refusal has no path to draw, and the reading above says what came back instead");
 });
 
 test("a predecessors answer draws no hops, because its node order means nothing", () => {

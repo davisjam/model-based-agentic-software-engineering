@@ -925,6 +925,35 @@ describe("the API surface outside the capability census", () => {
     drives.push({ operation: "view.*", target: view.target });
   });
 
+  it("a witness focus is view state too, and it names a saved question rather than a verdict", async () => {
+    // The witness focus joins `select` and `focus` on the non-semantic side, and for the same
+    // reason: it moves which picture carries the highlight and changes nothing the model asserts.
+    // What it adds over the two above is that it must survive a re-read — a focus names a saved
+    // QUESTION, so the next paint recomputes the answer rather than redrawing a stored verdict.
+    await loadFlagship();
+    const focus = await page.evaluate(() => {
+      const saved = Object.keys(window.mage.savedQueries());
+      // The first saved question whose answer carries a witness. Chosen from the live answers, not
+      // written down: a hardcoded id would pin this test to one example's authoring.
+      const withWitness = saved.find((id) => window.mage.evidence(id).found) ?? null;
+      const before = window.mage.context().hash;
+      window.mage.view.witness(withWitness);
+      const held = window.mage.view.witnessing();
+      window.mage.view.witness(null);
+      return {
+        withWitness, held, cleared: window.mage.view.witnessing(),
+        before, after: window.mage.context().hash,
+      };
+    });
+    assert.notEqual(focus.withWitness, null,
+      "the flagship example must save at least one question whose answer carries a witness");
+    assert.equal(focus.held, focus.withWitness, "witness() and witnessing() disagree");
+    assert.equal(focus.cleared, null, "null must clear the focus, or there is no way back to no focus");
+    assert.equal(focus.after, focus.before,
+      "focusing a witness advanced the system hash, so view state has leaked into semantic state");
+    drives.push({ operation: "view.witness", target: focus.withWitness });
+  });
+
   it("the fenced SPARQL console answers, and reports itself as fenced", async () => {
     // `debug.sparql` is OUTSIDE the semantic interface by a ruling, so it is in no capability row —
     // and a debugging surface nobody drives is the next false green. Driven here, with the fence

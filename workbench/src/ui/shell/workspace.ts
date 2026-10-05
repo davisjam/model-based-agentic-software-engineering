@@ -23,7 +23,9 @@
  * whose keyboard analogue is the tree, which is also why SH-I4 can hold: nothing focusable is
  * inside an `aria-hidden` subtree, so no caret can land where a screen reader says nothing.
  */
-import type { CanonicalSystem } from "../../ir/types.ts";
+import type { CanonicalSystem, QueryResult } from "../../ir/types.ts";
+import { modelsDeclaring } from "../../engine/graph.ts";
+import { parseGraphQuery } from "../../engine/index.ts";
 import type {
   AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
 } from "../../render/types.ts";
@@ -105,6 +107,68 @@ function edgeSelection(
  * null for a row the selection encoding cannot address, which is a fact about the kernel and is
  * therefore a field rather than an omission.
  */
+// --------------------------------------------------------------------------------------------
+// The witness focus
+// --------------------------------------------------------------------------------------------
+
+/**
+ * The resolved witness focus: which model to draw it over, and the answer whose evidence it is.
+ *
+ * Both fields come from running the question again, which is the whole posture: a focus names a
+ * saved question, never a verdict, so an edit re-derives the picture instead of re-drawing a stale
+ * one. That is step 8 of the structural loop — modify a relationship and the highlight moves — and
+ * it is only free because nothing here is stored.
+ */
+export interface WitnessFocus {
+  readonly subject: SceneSubject;
+  readonly result: QueryResult;
+}
+
+/**
+ * Where a saved question's witness can be drawn, or null when it cannot be drawn anywhere.
+ *
+ * **The model is DERIVED from the question, not chosen.** A graph question traverses one relation
+ * type, and the models declaring that type are the models whose scene carries its hops —
+ * `modelsDeclaring` is the same derivation `groundsFor` cites when it says a model "declares the
+ * relations this statement traverses", and the same one a refusal uses to name the models that
+ * would have to represent an absent relation. Picking any other model would put the emphasis on a
+ * picture that did not produce it, which the renderer now declines to draw hops for anyway.
+ *
+ * Four nulls, each a real state rather than a failure:
+ *
+ *   - the focus names a question this revision does not save (an agent retracted it, or a paint
+ *     raced a retraction);
+ *   - the answer carries no evidence — a refusal, or a conclusive absence. "No witness" is a
+ *     result, and a view that highlighted nothing while claiming a focus would say otherwise;
+ *   - the question is not a graph question. Behavioral evidence is drawn over a MACHINE and the
+ *     subject is already the machine being viewed, so a focus adds nothing there;
+ *   - no model declares the relation, which is the refusal case: there is no picture to draw it on.
+ */
+export function witnessFocus(
+  system: CanonicalSystem,
+  queryId: string | null | undefined,
+  run: (raw: unknown) => QueryResult,
+): WitnessFocus | null {
+  if (queryId === null || queryId === undefined) return null;
+  const saved = system.queries.get(queryId);
+  if (saved === undefined) return null;
+
+  const raw = saved.raw;
+  const q = typeof raw === "object" && raw !== null && !Array.isArray(raw)
+    ? (raw as Record<string, unknown>)
+    : {};
+  if (q["kind"] !== "graph") return null;
+  const parsed = parseGraphQuery(q["graph"]);
+  if (!parsed.ok) return null;
+
+  const result = run(raw);
+  if (result.evidence === null) return null;
+
+  const model = modelsDeclaring(system, parsed.value.relation)[0];
+  if (model === undefined) return null;
+  return { subject: { kind: "model", id: model }, result };
+}
+
 export interface ContentsRow {
   readonly label: string;
   readonly detail: string;
@@ -426,9 +490,29 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
 
       // One subject at a time, chosen by the user or by `window.mage.view.focus`.
       //
-      // No evidence is passed: the property list answers every saved question at once, so there is
-      // no single "current result" to emphasise, and picking one would be the UI inventing a focus
-      // the user did not ask for.
+      // EVIDENCE IS PASSED ONLY FOR A FOCUS SOMEBODY ASKED FOR. The property list answers every
+      // saved question at once, so there is no single "current result" to emphasise, and picking one
+      // would be the UI inventing a focus the user did not ask for. `ViewState.witness` is that ask,
+      // from a person (the answer's "Show on the diagram") or from an agent
+      // (`window.mage.view.witness`) — so the default paint is unchanged and the focused paint is a
+      // navigation state like `target` and `selection` beside it.
+      //
+      // The focus is RE-RUN here rather than carried from wherever it was set, which is what makes
+      // step 8 of the structural loop work: edit a relation, and the next paint re-derives the
+      // witness over the new revision. A stored evidence object would highlight last revision's
+      // answer, which is the one failure mode a view must never have.
+      //
+      // It applies only while the drawn subject IS the model that carried the answer. Switching the
+      // subject picker therefore drops the emphasis instead of projecting a witness onto a picture
+      // that did not produce it — the same leak `deriveEvidenceEmphasis` now refuses hops for, held
+      // here as well because the two guards answer to different readers.
+      const focus = witnessFocus(
+        frame.state.system, ctx.viewState.witness, (raw) => ctx.workspace.query(raw));
+      const focused = focus !== null && subject !== null
+        && focus.subject.kind === subject.kind && focus.subject.id === subject.id
+        ? focus.result
+        : null;
+
       let view: RenderedView | null = null;
       if (subject !== null) {
         // The renderer's `selection` is SCENE NODE IDS, a different vocabulary from the wire
@@ -442,6 +526,12 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
           subject,
           selection: nodeIds,
           hints: positionHints,
+          // Outcome and coverage travel WITH the evidence, never without it: V22 downgrades a
+          // treatment under bounded coverage, and the renderer cannot apply that rule to evidence
+          // whose coverage it was not given.
+          evidence: focused?.evidence ?? null,
+          outcome: focused?.outcome ?? null,
+          coverage: focused?.coverage ?? null,
         });
         positionHints = view.positions;
       }

@@ -230,6 +230,13 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
       + "affordance is the menu / inspector / palette control that opened the dialog",
   },
   { id: "edit-dialog-cancel", why: "dismisses the edit dialog without submitting" },
+  {
+    id: "ask-witness-show",
+    why: "draws the answered question's witness over the model that carried it; it writes the "
+      + "view's `witness`, which is outside semantic state exactly as `target` and `selection` are "
+      + "(DESIGN-shell-261002.md section 4, ruling 1) — the WITNESS is `inspect-evidence`'s, "
+      + "declared and wired on both sides, and this moves only which picture shows it",
+  },
 ];
 
 /**

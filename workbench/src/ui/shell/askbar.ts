@@ -69,6 +69,7 @@ import type { QueryCheckResult } from "../../engine/check.ts";
 import { byId, input, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
 import { regionHost } from "./surfaces.ts";
+import { witnessFocus } from "./workspace.ts";
 import type { SubmitEdit } from "./edit-forms.ts";
 
 // --------------------------------------------------------------------------------------------
@@ -361,6 +362,51 @@ export function evidenceLines(reading: EvidenceReading): readonly string[] {
 }
 
 /**
+ * Whether this answer's witness can be drawn, where, and what the surface says when it cannot.
+ *
+ * Step 5 of the structural loop asks for a HIGHLIGHTED witness, and the three ways that is
+ * unavailable are genuinely different acts for the reader, so each gets its own sentence rather
+ * than a disabled button with no explanation:
+ *
+ *   - the question is not KEPT. A focus names a saved question, because it has to re-derive on
+ *     every later revision and an ad-hoc question has no name to re-derive from. The route is the
+ *     Track box directly below, and the sentence names it.
+ *   - the answer carries NO witness. A refusal has a sentence, not a path; a conclusive absence has
+ *     nothing to highlight. Both are results, and the reading above already says which.
+ *   - no picture carries it. Behavioral evidence belongs over a machine, and a graph question whose
+ *     relation no model declares was refused — neither has a diagram to draw on.
+ *
+ * Returns the focus as well as the sentence, so the caller sets the subject from the same
+ * derivation it just described rather than re-deriving and possibly disagreeing with itself.
+ */
+export function witnessShowState(
+  system: CanonicalSystem,
+  run: (raw: unknown) => QueryResult,
+  item: AskItem,
+): { readonly focus: ReturnType<typeof witnessFocus>; readonly sentence: string } {
+  if (item.savedId === null) {
+    return {
+      focus: null,
+      sentence: "Track this claim to draw its witness. A highlight is recomputed on every later "
+        + "revision, so it has to name a kept question rather than this one answer.",
+    };
+  }
+  const focus = witnessFocus(system, item.savedId, run);
+  if (focus === null) {
+    return {
+      focus: null,
+      sentence: "There is no path to draw for this answer — see the reading above for what came "
+        + "back instead.",
+    };
+  }
+  return {
+    focus,
+    sentence: `Draws this ${focus.result.evidence?.role ?? "answer"} over the `
+      + `'${focus.subject.id}' model, which declares the relations it traverses.`,
+  };
+}
+
+/**
  * The sentences a check report reads as, one per arm.
  *
  * Derived from the report, never re-decided: the refused arm's sentence is the ENGINE's own, passed
@@ -414,6 +460,8 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
 
   const evidenceBox = byId<HTMLDetailsElement>("ask-evidence-box");
   const evidenceHost = byId("ask-evidence");
+  const witnessShow = byId<HTMLButtonElement>("ask-witness-show");
+  const witnessState = byId("ask-witness-state");
   const trackBox = byId("ask-track-box");
   const trackClaim = input("ask-track-claim");
 
@@ -490,6 +538,8 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
     evidenceBox.open = false;
     evidenceHost.replaceChildren();
     trackBox.hidden = true;
+    witnessShow.disabled = true;
+    witnessState.textContent = "";
   }
 
   /** Paint one answer and the two acts correction 7 attaches to it. */
@@ -513,6 +563,13 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
     evidenceBox.hidden = false;
     evidenceBox.open = false;
     evidenceHost.replaceChildren();
+
+    // The draw-it offer, decided by the same function the click handler uses.
+    const shown = system === null
+      ? { focus: null, sentence: "Load a model system first." }
+      : witnessShowState(system, (raw) => ctx.workspace.query(raw), item);
+    witnessShow.disabled = shown.focus === null;
+    witnessState.textContent = shown.sentence;
 
     // Track is for a question that is not already kept. A saved question IS a property.
     trackBox.hidden = item.savedId !== null;
@@ -602,6 +659,28 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
       list.append(li);
     }
     evidenceHost.replaceChildren(list);
+  });
+
+  // Draw the witness. TWO view writes in one act, and both are the user's ask: the subject moves to
+  // the model that declares the relations the answer traverses, and the focus names the question.
+  // Moving the subject is not an overreach here — a highlight on a picture that cannot carry the
+  // hops is the thing this avoids, and the sentence beside the button said which model it would be
+  // before it was pressed.
+  witnessShow.addEventListener("click", () => {
+    const state = answered;
+    const frame = current;
+    if (state === null || frame === null) return;
+    const shown = witnessShowState(frame.state.system, (raw) => ctx.workspace.query(raw), state.item);
+    if (shown.focus === null || state.item.savedId === null) {
+      ctx.announce(shown.sentence);
+      return;
+    }
+    ctx.viewState.target = `model:${shown.focus.subject.id}`;
+    ctx.viewState.witness = state.item.savedId;
+    ctx.announce(`Drawing the ${shown.focus.result.evidence?.role ?? "answer"} for `
+      + `"${state.item.label}" over the '${shown.focus.subject.id}' model. The diagram's text view `
+      + "lists the same steps, numbered.");
+    ctx.repaint();
   });
 
   byId("ask-track-go").addEventListener("click", () => {
