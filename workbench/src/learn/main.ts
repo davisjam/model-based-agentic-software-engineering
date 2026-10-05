@@ -41,10 +41,11 @@ import { parse } from "yaml";
 import { Workspace } from "../app/services.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 import { learnHrefForType, type LearnEntry } from "../app/learn.ts";
-import type { CanonicalSystem } from "../ir/types.ts";
+import type { CanonicalSystem, Dimension } from "../ir/types.ts";
 import { renderView } from "../render/index.ts";
 import type { Point, RenderedView, SceneSubject } from "../render/types.ts";
-import { paintDiagram } from "../ui/render-dom.ts";
+import { paintBudget, paintDiagram } from "../ui/render-dom.ts";
+import { renderBudgetView } from "../app/budget.ts";
 import {
   buildTypeSections, buildUseSections,
   type LearnTypeSection, type LearnUseSection, type SavedStatement,
@@ -108,6 +109,30 @@ function scopeDiagramAriaIds(canvas: HTMLElement, figureIndex: number): void {
  * the picture and the twin. Clicking a drawn node sets the same picker, so pointer and keyboard
  * share one code path.
  */
+/**
+ * The quantitative projection, as a Learn figure.
+ *
+ * Simpler than `figure` below and deliberately so: there is no node picker, because a budget's
+ * marks address allocations rather than selectable elements, and no separate text-view disclosure,
+ * because `paintBudget` puts every figure in the prose ABOVE the drawing rather than behind a
+ * summary. A reader who never opens a `<details>` still gets the numbers.
+ *
+ * A refusal is rendered as the refusal. The quantity layer's sentence names the authoring move, and
+ * a Learn page that silently omitted the figure would teach that the type has no picture.
+ */
+function budgetFigure(system: CanonicalSystem, dimension: Dimension, caption: string): HTMLElement {
+  const fig = el("figure", undefined, "learn-figure");
+  const view = renderBudgetView(system, dimension);
+  if (!view.ok) {
+    fig.append(el("p", view.refusal, "refusal"));
+    return fig;
+  }
+  const host = el("div");
+  paintBudget([view.value], host);
+  fig.append(host, el("figcaption", caption));
+  return fig;
+}
+
 function figure(
   system: CanonicalSystem,
   subject: SceneSubject,
@@ -281,13 +306,23 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
     `A ${s.entry.label} is the purposeful reduction that answers it.`, "intro"));
 
   // PART 2 — the model. A real subject from a shipped example, drawn by the workbench's renderer.
+  //
+  // Two pictures, because the kernel has two kinds of subject. The quantitative type used to take
+  // the scene arm over a positionally chosen model, which drew a dependency graph where a budget
+  // belonged; it takes its own projection now.
   if (s.visual !== null) {
     const system = systems.get(s.visual.example);
+    const picture = s.visual.picture;
     if (system !== undefined) {
       section.append(sub(PART.model));
-      const what = s.visual.subject.kind === "model" ? "model" : "machine";
-      section.append(figure(system, s.visual.subject,
-        `${what} '${s.visual.subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`));
+      if (picture.kind === "scene") {
+        const what = picture.subject.kind === "model" ? "model" : "machine";
+        section.append(figure(system, picture.subject,
+          `${what} '${picture.subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`));
+      } else {
+        section.append(budgetFigure(system, picture.dimension,
+          `the ${picture.dimension} budget of the shipped example “${system.name}”, drawn by the workbench's own quantitative projection — not a dependency graph with numbers beside it.`));
+      }
       if (s.purpose !== null && s.purpose.represents.length > 0) {
         section.append(el("p", "What this exemplar preserves, in its own words:", "intro"));
         section.append(bulletList(s.purpose.represents));
@@ -296,7 +331,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   }
 
   if (s.quantities.length > 0) {
-    section.append(el("p", "The quantities themselves: annotations over the subject above.", "intro"));
+    section.append(el("p", "Every quantity the example declares, as written:", "intro"));
     section.append(rowsTable(
       ["Quantity", "Annotates", "Dimension", "Declared value"],
       s.quantities.map((q) => [q.id, q.target, q.dimension, q.value]),
@@ -408,9 +443,13 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   section.append(under);
 
   const system = systems.get(s.visual.example);
-  if (system !== undefined) {
-    section.append(figure(system, s.visual.subject,
-      `model '${s.visual.subject.id}' from the shipped example “${system.name}” — the use's exemplar, drawn by the workbench's renderer.`,
+  // A use's exemplar is always a declared MODEL -- `buildUseSections` constructs the picture from
+  // `use.exemplar`, which names one. The narrowing is here rather than asserted because the compiler
+  // can hold it: a use that ever gained a budget exemplar would be a type error at this line.
+  if (system !== undefined && s.visual.picture.kind === "scene") {
+    const subject = s.visual.picture.subject;
+    section.append(figure(system, subject,
+      `model '${subject.id}' from the shipped example “${system.name}” — the use's exemplar, drawn by the workbench's renderer.`,
       s.showProperties));
   }
   if (s.purpose !== null && s.purpose.represents.length > 0) {

@@ -343,7 +343,7 @@ export function paintBudget(views: readonly BudgetView[], root: HTMLElement): vo
   root.replaceChildren();
   for (const view of views) {
     const twin = view.accessible;
-    const block = el("section");
+    const block = el("section", undefined, "mage-budget-block");
     const heading = el("h3", twin.title, "sublabel");
     const headingId = ariaId("budget");
     heading.id = headingId;
@@ -353,48 +353,59 @@ export function paintBudget(views: readonly BudgetView[], root: HTMLElement): vo
     // The verdict, and the `over` class is presentation on top of a sentence that already says it.
     block.append(el("p", twin.verdict, twin.overBudget ? "intro over" : "intro"));
 
-    const table = el("table");
+    // Three columns, and the reason an inert allocation charges nothing is NOT one of them. It is a
+    // sentence, and a sentence in a table cell sized the first column to 259 px and pushed the row
+    // past a 320 px viewport — a WCAG 1.4.10 failure the reflow gate caught. Prose belongs under the
+    // table, where it can wrap; the table carries figures.
+    const table = el("table", undefined, "mage-budget-table");
     const head = el("tr");
-    head.append(el("th", "Allocation"), el("th", "Holds"), el("th", `Amount (${twin.unit})`), el("th", "Declared"));
+    head.append(el("th", "Allocation"), el("th", "Holds"), el("th", `Amount (${twin.unit})`, "amount"));
     const thead = el("thead");
     thead.append(head);
     table.append(thead);
     const body = el("tbody");
     for (const a of twin.allocations) {
       const row = el("tr");
-      const amount = el("td", a.inertReason === null ? String(a.amount) : "—", "amount");
       row.append(
         el("td", a.label),
-        el("td", a.inertReason === null ? a.charge : `charged nowhere — ${a.inertReason}`),
-        amount,
-        el("td", a.declared),
+        el("td", a.charge),
+        el("td", a.inertReason === null ? `${a.amount} (${a.declared})` : `— (${a.declared})`, "amount"),
       );
       body.append(row);
     }
     table.append(body);
 
     const foot = el("tr");
-    foot.append(
-      el("td", "Total"), el("td", ""), el("td", String(twin.total), "amount"), el("td", ""),
-    );
+    foot.append(el("td", "Total"), el("td", ""), el("td", String(twin.total), "amount"));
     const tfoot = el("tfoot");
     tfoot.append(foot);
     if (twin.budget !== null) {
       const ceiling = el("tr");
       ceiling.append(
-        el("td", "Declared ceiling"), el("td", ""),
-        el("td", String(twin.budget), "amount"), el("td", twin.budgetDeclared ?? ""),
+        el("td", "Declared ceiling"), el("td", twin.budgetDeclared ?? ""),
+        el("td", String(twin.budget), "amount"),
       );
       const margin = el("tr");
       margin.append(
-        el("td", twin.overBudget ? "Over by" : "Margin"), el("td", ""),
-        el("td", String(Math.abs(twin.margin ?? 0)), "amount"),
+        el("td", twin.overBudget ? "Over by" : "Margin"),
         el("td", twin.marginPercent === null ? "" : `${Math.abs(twin.marginPercent)}%`),
+        el("td", String(Math.abs(twin.margin ?? 0)), "amount"),
       );
       tfoot.append(ceiling, margin);
     }
     table.append(tfoot);
     block.append(table);
+
+    // The reasons, out of the table and in full. Each one is a finding about the MODEL — an
+    // annotation that reaches no summand of memory(c) — so it is stated rather than abbreviated: a
+    // row reading "charged nowhere" with no reason sends the reader to the specification.
+    if (twin.unaccounted.length > 0) {
+      const notes = el("ul", undefined, "mage-budget-notes");
+      for (const a of twin.unaccounted) {
+        notes.append(el("li", `${a.label} (${a.declared}) ${a.inertReason ?? "charges nothing"}, so it is excluded from the total.`));
+      }
+      block.append(notes);
+    }
 
     if (twin.largest !== null) {
       block.append(el("p", `Largest single allocation: ${twin.largest.label}, ${twin.largest.amount} ${twin.unit}.`, "sublabel"));
@@ -408,7 +419,7 @@ export function paintBudget(views: readonly BudgetView[], root: HTMLElement): vo
       block.append(dl);
     }
 
-    const figure = el("figure");
+    const figure = el("figure", undefined, "mage-budget-figure-host");
     figure.setAttribute("aria-hidden", "true");
     figure.append(svgElement(view.svg));
     block.append(figure);

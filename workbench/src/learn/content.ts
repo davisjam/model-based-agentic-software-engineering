@@ -32,7 +32,9 @@
  * own controls. Those name page furniture, not kernel capability. Anything that claims what MAGE
  * supports comes from the sources above.
  */
-import { ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Purpose } from "../ir/types.ts";
+import {
+  ACCOUNTED_METRICS, type AccountedMetric, type CanonicalSystem, type Dimension, type Purpose,
+} from "../ir/types.ts";
 import type { Query } from "../engine/types.ts";
 import { absentSubstrateProse, MODEL_TYPES, type ModelTypeId } from "../engine/model-types.ts";
 import type { SceneSubject } from "../render/types.ts";
@@ -46,9 +48,25 @@ import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 export type LoadedSystems = ReadonlyMap<ShippedExampleId, CanonicalSystem>;
 
 /** The subject a card's visual renders: a real subject in a shipped example, never an illustration. */
+/**
+ * What a type's exemplar visual is a picture OF.
+ *
+ * Two arms, because the kernel has two kinds of thing a projection can be of: a node-link SCENE
+ * (`CanonModel` or `CanonMachine`) and a quantitative model. Before this was a union the
+ * quantitative type had no third arm to take, so it reached for the structural extractor over a
+ * subject a positional rule picked — the generic fallback §22.4 forbids, shipped with an honest
+ * comment. A honest comment on a forbidden behaviour is still the forbidden behaviour.
+ *
+ * Addressability is what made the arm possible, not a renderer decision: `CanonQuantitativeModel`
+ * gave a quantitative model a name, and a projection needs a subject before it can be a projection.
+ */
+export type ExemplarPicture =
+  | { readonly kind: "scene"; readonly subject: SceneSubject }
+  | { readonly kind: "budget"; readonly dimension: Dimension };
+
 export interface ExemplarVisual {
   readonly example: ShippedExampleId;
-  readonly subject: SceneSubject;
+  readonly picture: ExemplarPicture;
 }
 
 /** One saved property of the exemplar, by the statement its author gave it. */
@@ -150,38 +168,47 @@ export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
 }
 
 /**
- * The visual's subject for a model type: the first shipped example whose system instantiates the
- * type (the registry's own `presentIn`, through `presentTypes`), then the first declared subject.
+ * The visual for a model type: the first shipped example whose system instantiates the type (the
+ * registry's own `presentIn`, through `presentTypes`), then that system's own declared subject.
  *
- * The quantitative type has no scene of its own — v0.1's quantities ANNOTATE a subject rather than
- * being one (the registry's SEMANTICS citation says so) — so its visual renders the substrate the
- * annotations name: the model a `model:`-targeted quantity declares its ceiling against, falling
- * back to the system's first model or machine.
+ * ## The fallback that used to live here, and what replaced it
+ *
+ * The quantitative arm used to return a SCENE subject — the model a `model:`-targeted quantity
+ * declares its ceiling against, falling back to the system's first model and then its first machine.
+ * The first step was declaration-driven; the last two were positional, and all three ended in the
+ * structural extractor. §22.3 forbids forcing quantities into the structural renderer and §22.4
+ * forbids a generic fallback for a registered model type, so the behaviour was prohibited even where
+ * the comment describing it was accurate.
+ *
+ * It is a `budget` picture now, over the dimension the system's quantitative model is keyed by. No
+ * position is consulted at any step. The sequencing that made this possible ran opposite to the way
+ * the specification reads: the SUBJECT had to become addressable before a projection could be of it.
  */
 export function exemplarFor(typeId: ModelTypeId, systems: LoadedSystems): ExemplarVisual | null {
   for (const example of SHIPPED_EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined || !presentTypes(system).includes(typeId)) continue;
-    const subject = subjectFor(typeId, system);
-    if (subject !== null) return { example, subject };
+    const picture = pictureFor(typeId, system);
+    if (picture !== null) return { example, picture };
   }
   return null;
 }
 
-function subjectFor(typeId: ModelTypeId, system: CanonicalSystem): SceneSubject | null {
+function pictureFor(typeId: ModelTypeId, system: CanonicalSystem): ExemplarPicture | null {
   const firstModel = [...system.models.keys()][0];
   const firstMachine = [...system.machines.keys()][0];
   switch (typeId) {
     case "structural-graph":
-      return firstModel === undefined ? null : { kind: "model", id: firstModel };
+      return firstModel === undefined ? null : { kind: "scene", subject: { kind: "model", id: firstModel } };
     case "state-machine":
-      return firstMachine === undefined ? null : { kind: "machine", id: firstMachine };
+      return firstMachine === undefined ? null : { kind: "scene", subject: { kind: "machine", id: firstMachine } };
     case "quantitative-model": {
-      const ceiling = [...system.quantities.values()]
-        .find((q) => q.target.kind === "model" && system.models.has(q.target.ref));
-      if (ceiling !== undefined) return { kind: "model", id: ceiling.target.ref };
-      if (firstModel !== undefined) return { kind: "model", id: firstModel };
-      return firstMachine === undefined ? null : { kind: "machine", id: firstMachine };
+      // Preferring a model WITH a declared ceiling, because a budget teaches what a bare total
+      // cannot: the margin is the fact §11 exists to make obvious. A dimension with no ceiling is
+      // still a legal quantitative model and still renders, as a total.
+      const models = [...system.quantitativeModels.values()];
+      const chosen = models.find((m) => m.budget !== null) ?? models[0];
+      return chosen === undefined ? null : { kind: "budget", dimension: chosen.dimension };
     }
   }
 }
@@ -191,6 +218,21 @@ export function purposeOf(system: CanonicalSystem, subject: SceneSubject): Purpo
   return (subject.kind === "model"
     ? system.models.get(subject.id)?.purpose
     : system.machines.get(subject.id)?.purpose) ?? null;
+}
+
+/**
+ * The purpose a picture's own subject declares, whichever arm it is.
+ *
+ * A budget's subject is a quantitative model, which carries no `purpose` block of its own — so the
+ * purpose cited is the HOST model's, the one its declared ceiling is written against. That is a
+ * citation rather than a substitution: the host is named by `CanonQuantity.target.ref`, and the
+ * omissions it lists ("operating modes, so no allocation's lifetime is represented") are exactly
+ * what bounds the budget's claim.
+ */
+export function purposeOfPicture(system: CanonicalSystem, picture: ExemplarPicture): Purpose | null {
+  if (picture.kind === "scene") return purposeOf(system, picture.subject);
+  const host = system.quantitativeModels.get(picture.dimension)?.host;
+  return host === null || host === undefined ? null : system.models.get(host)?.purpose ?? null;
 }
 
 /** Shipped examples declaring both types of a pairing — where the composition can actually be asked. */
@@ -271,7 +313,7 @@ export function buildTypeSections(systems: LoadedSystems): readonly LearnTypeSec
       entry,
       anchor: anchorForType(entry.id),
       visual,
-      purpose: visual === null || system === undefined ? null : purposeOf(system, visual.subject),
+      purpose: visual === null || system === undefined ? null : purposeOfPicture(system, visual.picture),
       statements: system === undefined ? [] : savedStatements(system, queryKindOf(entry.id)),
       quantities:
         entry.id === "quantitative-model" && system !== undefined ? quantityRows(system) : [],
@@ -305,7 +347,7 @@ export function buildUseSections(systems: LoadedSystems): readonly LearnUseSecti
       use,
       anchor: anchorForUse(use.id),
       ofTypeLabel: ofType.label,
-      visual: { example: shipped, subject },
+      visual: { example: shipped, picture: { kind: "scene", subject } },
       purpose: purposeOf(system, subject),
       showProperties: [...names].sort(),
       statements: propertyJoinStatements(system),

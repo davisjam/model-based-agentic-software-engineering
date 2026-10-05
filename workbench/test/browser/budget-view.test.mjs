@@ -115,6 +115,10 @@ describe("the budget view reaches the page a student opens", () => {
       const head = document.querySelectorAll("#model-budget thead th")[2];
       return (head?.textContent ?? "").trim();
     });
+    // Three columns, not four: the reason an allocation charges nothing is prose and lives under the
+    // table, because a sentence in a cell sized the first column past a 320 px viewport (1.4.10).
+    const columns = await page.evaluate(() => document.querySelectorAll("#model-budget thead th").length);
+    assert.equal(columns, 3, "the budget table's column count changed — check the reflow gate");
     assert.match(unit, /\(KB\)/, `the amount column is not in the declared unit: "${unit}"`);
     assert.ok(!/0\.2265625/.test(budget.text), "a base-unit figure reached the page");
 
