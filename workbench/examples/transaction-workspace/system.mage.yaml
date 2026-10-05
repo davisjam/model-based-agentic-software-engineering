@@ -36,37 +36,48 @@
 #                  picture, and deleting it is one of the declared modifications below.
 #
 # §31 calls this example "Transaction/workspace" and assigns it behavior, states, transitions,
-# bindings, LTL and counterexamples. Five of those six ship here. LTL does not.
+# bindings, LTL and counterexamples. All six are now exercised over this machine; the two temporal
+# ones reach the engine through a pinned property rather than through a saved query, and the next
+# section says exactly why.
 #
-# ## What this example CANNOT be asked yet, said plainly
+# ## The temporal half: answered, and NOT a saved query
 #
-# §31's key property for this example is `G(proposed -> F(committed or refused))`, and no saved query
-# below states it. The LTL layer landed its formula and automaton construction
-# (`DESIGN-v02-ltl-foundation-261004.md`) with no verdict path, so a query carrying that formula
-# would be a question the engine cannot answer -- and a shipped example whose saved query comes back
-# unanswerable claims more than it holds.
+# The LTL layer's verdict path landed -- formula, automaton of the negation, product walk,
+# stutter-closure, SCC emptiness, counterexample assembly and the four-valued verdict mapping
+# (`DESIGN-v02-ltl-foundation-261004.md`). So §31's key property for this example has a reading and
+# an answer, and the answer was MEASURED over this machine rather than read off the specification:
 #
-# What ships instead is the reachability half the guidance's §5 asks for first ("Can a transaction
-# reach Committed? Can it reach Refused?"), plus the two things the engine can say about the
-# starvation execution without an infinite-trace operator:
+#   Q5  G(proposed -> F(committed or refused))          REFUTED   (measured 2026-10-04)
+#   Q4  G(refused -> G not committed)                   HOLDS     (measured 2026-10-04)
 #
-#   `validated-transaction-can-wait-indefinitely` HOLDS, with a lasso whose cycle is the
-#   `await_adoption` step. The repeated configuration §27's counterexample needs EXISTS.
+# Q5's counterexample is a lasso: `propose`, `base_advances`, `validate`, and then the `valid`
+# configuration repeating under `await_adoption` forever. Q4 holds because `refused` is terminal
+# here, and the second declared modification below is what takes that away.
 #
-#   `verdict-is-eventually-forced` is REFUSED, and the refusal names the vocabulary that would
-#   license it: this system declares no deadline machine, so nothing in it can force a verdict.
+# Neither is a saved query, and the reason is a gap in the QUERY SURFACE rather than in the checker.
+# `BEHAVIOR_FORMS` in `src/engine/types.ts` lists six forms and none of them carries a formula;
+# `mage-query.schema.json` has no formula field; and `runLtlProperty` says of itself that it is
+# "deliberately NOT wired into the query facade or the capability registry", because producing a
+# verdict value and dispatching a saved query to it are different decisions. Writing `form: ltl`
+# here would be inventing that surface inside an example, which §9.7 forbids outright: no
+# example-specific evaluator logic. So the two properties live where a measured temporal claim can
+# be checked today -- `test/example-transaction-temporal.test.ts`, which asks them of THIS file
+# through the registered evaluator and pins what comes back. The notes on `transaction-engine`
+# carry the same two formulas and verdicts for a reader, and that test asserts the notes and the
+# measurement agree, so the prose cannot go stale on its own.
 #
-# Those two together are the honest statement of P5's shape: the counterexample's configuration is
-# reachable, and the temporal claim it would refute is not yet expressible. When the LTL evaluator
-# lands, P5 is asked of THIS machine and the author's §30 tension gets its verdict -- the comment on
-# `await_adoption` names which way it will go and why.
+# What the surface would need, named so the next wave does not have to re-derive it: a seventh
+# behavior form carrying a formula string, the formula field on the published query schema, atom
+# resolution reusing `resolveFormula`, and the `forall`-only quantifier pairing `admitLtlProperty`
+# already enforces.
 #
 # ## No quantities, and that is a declaration
 #
 # This example declares no `quantities:` and no `accounting:`. Cost is Document Processing's subject
-# (§31's example C), and the lifecycle here deliberately represents no duration -- which is exactly
-# why `verdict-is-eventually-forced` has no reading over it. Adding a timeout quantity would delete
-# the lesson without making the temporal question answerable.
+# (§31's example C), and the lifecycle here deliberately represents no duration. Adding a timeout
+# quantity would not change Q5's answer: a duration is a magnitude, and what a response property
+# needs is a transition that FORCES the step. `verdict-is-eventually-forced` below names the thing
+# that would.
 
 mage: 1
 
@@ -161,6 +172,33 @@ entities:
           Both models name this entity. The machine declares `entity: transaction-engine` and the
           graph model lists it among the pipeline's components, which is what makes the two
           reductions of one engine rather than two unrelated diagrams.
+      # The two temporal questions, carried where a reader and an agent can both find them. A note
+      # is prose and nothing more -- the `kind:` vocabulary says so of `assumption`, and it is just
+      # as true here: writing a verdict into a note does not check it. What checks these is
+      # `test/example-transaction-temporal.test.ts`, which asks each formula of this file through
+      # the registered LTL evaluator and asserts that the measured outcome is the word written
+      # below. So the note cannot drift from the machine without the build going red.
+      - id: eventual-verdict-is-refuted
+        kind: question
+        text: >
+          Does every proposed change eventually commit or refuse?
+          G(proposed -> F(committed or refused)) -- the response property §31 assigns this example.
+          MEASURED refuted. The counterexample is a lasso: propose, base_advances, validate, and
+          then the `valid` configuration repeating under `await_adoption` forever. Nothing in the
+          model takes the verdict and MAGE assumes no fairness, so the trace that postpones it
+          forever is admitted. That is starvation, and it is the lesson rather than a defect --
+          every state of this machine is reachable while this property is false, which is the whole
+          distinction between reachability and liveness.
+      - id: refusal-is-final-and-holds
+        kind: question
+        text: >
+          Once refused, can a change later commit without being proposed again?
+          G(refused -> G not committed) -- the safety formulation of the same question.
+          MEASURED holds. What carries it is that `refused` has no outgoing transition, so the
+          claim is about the ABSENCE of a retry edge and not about a guard. The
+          `retry-after-refusal` modification adds that edge, and this property is the one it takes
+          away -- which is why the fixture records it as a requirement to reconsider rather than as
+          a bug to fix.
       - id: a-binding-is-not-a-merge
         kind: comment
         text: >
@@ -326,12 +364,16 @@ machines:
       # would silently assert that a validated change is adopted immediately, which is a claim about
       # scheduling that no part of this model is entitled to make.
       #
-      # Two consequences, both deliberate. `validated-transaction-can-wait-indefinitely` holds, with
-      # a lasso, because the configuration genuinely repeats. And when the LTL evaluator lands, §30's
-      # P5 -- G(proposed -> F(committed or refused)) -- is REFUTED over this machine, with this edge
-      # as the counterexample: §11 admits every execution and assumes no fairness, so the trace that
-      # takes this step forever is admitted. The author's §30 tension says a starvation
-      # counterexample a student can see is the stronger lesson. This edge is what makes it visible.
+      # Two consequences, both deliberate, and both now measured rather than predicted.
+      # `validated-transaction-can-wait-indefinitely` holds, with a lasso, because the configuration
+      # genuinely repeats. And §30's P5 -- G(proposed -> F(committed or refused)) -- is REFUTED over
+      # this machine with this edge as the counterexample's cycle: §11 admits every execution and
+      # assumes no fairness, so the trace that takes this step forever is admitted. Deleting the edge
+      # flips P5 to `holds`, which is what pins the refutation to this modeling decision rather than
+      # to an accident of the composition -- `test/acceptance-p1-p5.test.ts` runs that control and
+      # `test/example-transaction-temporal.test.ts` reads the resulting counterexample. The author's
+      # §30 tension says a starvation counterexample a student can see is the stronger lesson. This
+      # edge is what makes it visible.
       - from: valid
         to: valid
         label: await_adoption
@@ -427,9 +469,10 @@ models:
 # Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
 # fixture also carries the models each question needs and the evidence it must produce.
 #
-# Every form used below ships a verdict path today: `reach`, `invariant`, `repeatable-cycle`,
-# `transition-live` and the graph `path`. No query carries an LTL formula, a requirement construct or
-# a quantity aggregation -- see the header's "What this example CANNOT be asked yet".
+# Every form used below ships a verdict path AND a query surface: `reach`, `invariant`,
+# `repeatable-cycle`, `transition-live` and the graph `path`. No query carries an LTL formula, and
+# that is a statement about the surface rather than about the checker -- see the header's "The
+# temporal half". No query carries a requirement construct or a quantity aggregation either.
 # ---------------------------------------------------------------------------
 queries:
 
@@ -545,14 +588,19 @@ queries:
       from: transaction-engine
       to: workspace-store
 
-  # The purposeful omission, made executable -- and it is the TEMPORAL one, which is what makes it
-  # worth shipping here rather than in a unit test.
+  # The purposeful omission, made executable. Re-examined once the LTL verdict path landed, and it
+  # stays REFUSED -- for a reason that changed, which is why the note is worth reading twice.
   #
-  # "Does every proposed change eventually reach a verdict?" has no reading over this system, and the
-  # reason is structural rather than a missing feature: §11 admits every execution with no fairness
-  # assumption, so an eventually-claim needs something in the MODEL that forces the step. A deadline
-  # would be that something. This system declares no deadline machine, the engine refuses, and the
-  # refusal names the vocabulary a reader would have to add.
+  # "Does every proposed change eventually reach a verdict?" now HAS a reading: that is Q5, and over
+  # this machine it answers `refuted` with a lasso. So the old reason recorded here -- that the
+  # eventually-claim was not expressible -- is retired.
+  #
+  # What this query asks is a different and still-unanswerable question: is there a MECHANISM that
+  # forces the step? §11 admits every execution and assumes no fairness, so Q5 can only answer
+  # `holds` if the model declares something that takes the verdict. A deadline machine would be that
+  # something. This system declares none, so the engine refuses by name -- "no declared transition
+  # matches machine verdict-deadline, sync deadline_expires" -- and the refusal is the shape of the
+  # repair rather than the shape of a gap in the engine.
   verdict-is-eventually-forced:
     name: Something forces a verdict on a validated change
     kind: behavior
