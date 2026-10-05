@@ -153,7 +153,7 @@ These overlap heavily; graded together.
 | Agent hypothesis review; visible distinction; ordinary commit (§13–14) | **SATISFIED** | Hypothesis bar, banner, accept/discard driven by keyboard tier. |
 | Multi-pane Separate / Linked modes (human-ux §6) | **NOT satisfied** | The workbench draws one subject at a time. `src/ui/invariants.ts:83` documents that the linked-view half of UX-I7 is satisfied vacuously. |
 | Properties first-class with status, grounds, staleness (human-ux §9) | **SATISFIED** | `EvaluatedProperty` + UX-I5 grounding; staleness demotes the verdict (`view-model.ts:805`); driven. |
-| Requirements as first-class constructs (human-ux §13) | **NOT satisfied — reported honestly** | No requirement construct in the schema or IR. Requirements live in example fixtures, joined to the query that decides them; the coverage model reports the row `unavailable` rather than omitting it. |
+| Requirements as first-class constructs (human-ux §13) | **NOT satisfied — reported honestly** | No requirement construct in the schema or IR. Requirements live in example fixtures, joined to the query that decides them; the coverage model reports the row `unavailable` rather than omitting it. ⚠️ **Falsified after this audit — see §9.** |
 | Change-impact review before commit (human-ux §874–1050) | **PARTIAL** | Edits re-evaluate properties and the UI announces which verdicts moved (`keyboard.test.mjs:601`); hypotheses give what-if. There is no pre-commit impact report object and no requirement-blocks-commit mechanism (nothing to block on — see previous row). |
 | Undo/redo, one history, agent included (§18) | **SATISFIED** | One history through the engine; both interfaces expose it; keyboard-driven. |
 | Capability registry drives describe/tests/models/CI (§22, UX-I1) | **SATISFIED** | `capabilities.ts` → `describe()`, parity check, `scripts/gen-affordances.ts` → `models/workbench-affordances.mage.yaml`, asserted in CI. |
@@ -164,14 +164,14 @@ These overlap heavily; graded together.
 | Requirement | Verdict | Evidence |
 |---|---|---|
 | Three examples; ≥2 purposeful models each; shared identity; single- and cross-model questions | **SATISFIED** | Driven: 3/3 load, 23/23 saved queries agree with fixtures. EX-I2 asserted per example (`examples.test.ts:186`). |
-| §2 common list: requirement, notes, provenance, 3–5 suggested questions, useful modification, deterministic fixtures | **SATISFIED** | Suggested: 5/4/5. Modifications are walked by test — each must change a recorded answer and change it back on discard (`examples.test.ts:392`). Requirement carried in fixtures (construct absent — see 4.4). |
+| §2 common list: requirement, notes, provenance, 3–5 suggested questions, useful modification, deterministic fixtures | **SATISFIED** | Suggested: 5/4/5. Modifications are walked by test — each must change a recorded answer and change it back on discard (`examples.test.ts:392`). Requirement carried in fixtures (construct absent — see 4.4). ⚠️ **Falsified after this audit — see §9.** |
 | §3 prominent Load Example with description | **SATISFIED — with a user-visible defect** | The loader works and is driven; the hint text beside it is false (DEFECT-1). |
 | §5.6 cache what-if; hit-rate omission → not answerable | **PARTIAL** | The refusal exists and names the missing frequency; with a frequency declared the query still refuses (`reserved-feature`) because expectation is ruled out of v0.1. The example ships `caches_for` but no cache hypothesis walkthrough. |
 | §10 fixtures pin semantics, not rendering | **SATISFIED** | Fixture header states the discipline; spot-checked against content. |
 | §12 same operations through `window.mage`; no example-specific API | **SATISFIED** | `examples()`/`loadExample()`; EX-I1 tests. |
 | EX-I1 example equivalence | **SATISFIED** | No src file names an example (`examples.test.ts:162`); load path is the ordinary one. |
 | EX-I2 model plurality | **SATISFIED** | Asserted per example. |
-| EX-I3 analysis diversity | **SATISFIED — as an honest report** | `models/example-coverage.mage.yaml`, generated and drift-checked: 21 exercised, `containment-hierarchy` unexercised, `requirements` **unavailable** with a `blocked-by` edge naming the absent construct. The invariant is satisfied because the gaps are *reported*; a reader must not mistake it for "everything is exercised". |
+| EX-I3 analysis diversity | **SATISFIED — as an honest report** | `models/example-coverage.mage.yaml`, generated and drift-checked: 21 exercised, `containment-hierarchy` unexercised, `requirements` **unavailable** with a `blocked-by` edge naming the absent construct. The invariant is satisfied because the gaps are *reported*; a reader must not mistake it for "everything is exercised". ⚠️ **The `requirements` row was falsified after this audit — see §9; `containment-hierarchy` still stands.** |
 
 ---
 
@@ -238,7 +238,8 @@ Verified, not copied:
 
 - **No requirement construct.** The coverage model's `requirements` row is `unavailable` with a
   `blocked-by` edge; requirements live in example fixtures. Follows: no requirement-blocks-commit
-  workflow.
+  workflow. ⚠️ **First sentence falsified after this audit — see §9. The commit-blocking workflow is
+  still absent.**
 - **No expected-value analysis.** Ruled out of v0.1 (DESIGN-quantities Q4) *after* the requirements
   document accepted it; `expectedMetric` always refuses, with two honest reasons. The interim route
   is the documented two-hypothesis comparison.
@@ -299,3 +300,43 @@ from the commit log: the log oversells nothing this audit found, while the stand
 undersell a product that outran them. The gap between what was shipped and what was said is, here,
 mostly the gap between a self-correcting commit record and self-describing artifacts with no gate
 to keep them honest — the next wave of controls belongs on the prose, not the code.
+
+---
+
+## 9. Addendum, 261005 — what later work falsified, recorded rather than rewritten
+
+**No verdict or evidence sentence above this heading has been changed; the findings stand as measured
+at `b604e424`.** The only edits above are four dated `⚠️ … see §9` pointers appended to the rows this
+section corrects — added because a reader who meets §4.4 alone would otherwise be misled, and nothing
+in the audit would tell them to look further.
+
+**Why an addendum and not a rewrite.** This audit pins itself to a SHA in its title and its method
+paragraph, so a verdict inside it is a reading taken at that commit, not a standing claim about the
+product. Rewriting §4.4, §4.5 or §7 would make the document assert, under a pinned SHA, something
+nobody measured there, and would erase the evidence that later work changed anything. It would also
+reproduce inside the audit the exact failure §8.3 complains about — a text that later rulings reversed
+and nobody reconciled — except worse, because a silent edit leaves no trace that a reversal happened.
+A snapshot is worth keeping only if it stays a snapshot.
+
+**What changed.** On 261004 the authored-constructs wave promoted `requirements:` into the model
+(`DECISIONS-RULED-authored-constructs-261004.md` §1), and on 261005 the example migration carried
+eight of ten shipped requirements onto it. The requirement construct the audit found absent now
+exists:
+
+| Audit claim, true at `b604e424` | Status at 261005 | Verified by |
+|---|---|---|
+| §4.4 "No requirement construct in the schema or IR" | **FALSIFIED** | `mage-model.schema.json:265` declares `requirements:`; the IR carries `SavedRequirement` (`src/ir/types.ts:667`) reached through `CanonicalSystem.requirements` (`:712`) |
+| §4.5 §2-row "Requirement carried in fixtures (construct absent — see 4.4)" | **FALSIFIED** | All five examples author a `requirements:` block; `examples/document-processing/system.mage.yaml:775` is one |
+| §4.5 EX-I3 "`requirements` **unavailable** with a `blocked-by` edge naming the absent construct" | **FALSIFIED** | `capability.requirements` now reads `exercised`, with five `exercises` edges (`models/example-coverage.mage.yaml:379-383`) |
+| §7 residual "**No requirement construct.** … Follows: no requirement-blocks-commit workflow" | **First sentence FALSIFIED; second still holds** | The construct ships; no commit-blocking workflow was built on it |
+
+**Two consequences the audit drew from the absent construct, re-read.** §4.4's change-impact row says
+there is "nothing to block on — see previous row"; the thing to block on now exists, so that row's
+PARTIAL verdict rests only on the missing impact-report object. And §4.5's EX-I3 caution — that a
+reader "must not mistake it for everything is exercised" — survives, because
+`containment-hierarchy` is still unexercised.
+
+**What this addendum does not claim.** No gate above was re-run at 261005, so every number in §1
+remains a `b604e424` measurement. Two of document-processing's four requirements still take the
+fixture-side `decided_by` route; that is a choice about one example's teaching scope, not a gap in
+the construct (`DECISIONS-RULED-ceiling-requirement-261005.md` §0.4, §8).

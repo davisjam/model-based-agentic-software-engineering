@@ -73,7 +73,7 @@ below, authored before this document asked the question.
 
 ### 0.4 So why did two requirements not migrate
 
-Not for want of a construct. `examples/document-processing/system.mage.yaml:762-764`, the author's own
+Not for want of a construct. `examples/document-processing/system.mage.yaml:756-757`, the author's own
 note, gives the actual reason:
 
 > Saving the two composed questions here would make them expressible; it would also add two saved
@@ -234,10 +234,19 @@ quantity` query verifies as `error` unless that query declares `within:` and the
 belongs beside one of the same class that already exists: `verifyDeclaration`
 (`src/engine/verification.ts:303-319`) already refuses a requirement whose named query the system does
 not *declare*. The new arm refuses one whose named query cannot *decide* it. Same function, same
-`error` status, adjacent sentence, no new status word and no fifth `InconclusiveCause`. The inputs are
+`error` status, adjacent sentence, no new status word and **no new `InconclusiveCause` member**. The inputs are
 in hand: `verifySystemRequirements` (`src/engine/index.ts:150-162`) iterates `system.queries`, and
 `SavedQuery` carries the query raw (`src/ir/types.ts:647-650`) — *"the engine owns the vocabulary, the
 IR owns the identity"* — so the deciding query's shape is available at the join with no IR change.
+
+**⚠️ Corrected 261005.** This sentence first read "no fifth `InconclusiveCause`", and
+`DECISIONS-RULED-vacuous-verification-261005.md` §1.2 caught the ordinal: the union held **three**
+members when this ruling was written, so a new one would have been the fourth. The claim the sentence
+makes is that Phase A's arm adds no cause at all, which the ordinal never carried, so it is now stated
+without one. Worth knowing why the number is not simply bumped: the vacuity ruling landed `vacuous` as
+that fourth member the same day (`src/engine/verification.ts:191-207`), so "fifth" is accurate at HEAD
+and was wrong when written. An ordinal in prose counts a set that keeps moving, and either spelling
+would be stale by the next landing.
 
 **This leaves V41's cost-benefit exactly where §4 of the authored-constructs ruling left it.** V41 was
 declined because a dangling `expressed_as` already reads `error`, so a validator rule would buy
@@ -358,6 +367,17 @@ rule stated abstractly.
 ---
 
 ## 8. Corrections owed — what §7.0, the corpus and the brief got wrong
+
+> **✅ DRAINED 261005, all four.** The amendments landed in the same session as this ruling. The
+> `file:line` citations in the four bullets below point at the text **as this ruling found it**, and
+> that text has since been amended — do not re-apply these corrections, and do not read a bullet's
+> line range as current. Where each landed: §7.0 of `DESIGN-v02-requirements-261004.md` carries a
+> dated "Corrected 261005" paragraph and a withdrawn-consequence block; §4 of
+> `DECISIONS-RULED-authored-constructs-261004.md` carries a "Third correction, 261005" note;
+> `examples/document-processing/system.mage.yaml:753-774` and `expected-results.yaml:48-79` now lead
+> with the accurate sentence. A fifth correction, owed by
+> `DECISIONS-RULED-vacuous-verification-261005.md` §5 rather than by this section, landed in §4 above
+> (the `InconclusiveCause` ordinal).
 
 The brief warned that §7.0 exists because earlier wording understated the code, and asked for every
 sentence to be checked. Four need amending, and the direction is the same each time: a *fixture*

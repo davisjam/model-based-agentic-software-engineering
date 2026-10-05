@@ -135,6 +135,21 @@ can never be discharged is a bad trigger.
   COMPOSED from a declared ceiling at analysis time, which no `queries:` entry saves. The authored
   shape has nowhere to name a ceiling instead of a query, so those two keep their fixture
   declaration and the gate's live composed-query arm keeps deciding them.
+
+  **⚠️ Third correction, 261005** (`DECISIONS-RULED-ceiling-requirement-261005.md` §8). The two
+  sentences immediately above are true word by word and misleading in effect, so read them with this
+  one. "Nowhere to name a ceiling instead of a query" invites the reading that a ceiling cannot be
+  named, and naming a query **is** how a ceiling is named: `mage-query.schema.json:141` declares
+  `within:` on a `kind: quantity` query, pointing at a `model:`-targeted quantity, and two shipped
+  queries carry it (`examples/document-processing/system.mage.yaml:691`,
+  `examples/embedded-sensor-node/system.mage.yaml:423`). "Which no `queries:` entry saves" describes
+  one example's `queries:` block, not the construct. Both of document-processing's rows migrate today
+  with no schema, IR or key change — the ruling's §0.5 probe did it and reproduced the oracle's own
+  2,750 ms and 384 MB. They stay fixture-side because the author chose not to add two saved queries
+  to an example that is not about teaching a join
+  (`examples/document-processing/system.mage.yaml:756-757`). Recorded here rather than left to §7.0
+  alone, because the ruling found this paragraph REPEATING §7.0's wording, and a reader who met the
+  claim twice would go undo the migration instead of writing the two queries.
 - **Neither conformance fixture is built.** Both need normative OMG citations, and a clause written
   from memory reads as checked — which is §35.4's standing reason and not something this pass could
   honestly discharge.

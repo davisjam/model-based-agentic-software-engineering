@@ -107,9 +107,14 @@ A fourth remedy needs a fourth member. Reusing any of the three would hand the a
 send them somewhere that cannot help.
 
 **Correcting the record on a count:** Phase A's §4 says its placement needs *"no new status word and
-no fifth `InconclusiveCause`."* The union has **three** members, so a new one is the fourth, not the
-fifth. The sentence's argument is untouched — Phase A's arm genuinely needed neither — but the number
-is off by one, and this ruling adds the fourth rather than a fifth.
+no fifth `InconclusiveCause`."* The union had **three** members when that sentence was written, so a
+new one is the fourth, not the fifth. The sentence's argument is untouched — Phase A's arm genuinely
+needed neither — but the number is off by one, and this ruling adds the fourth rather than a fifth.
+
+Read the count as of *before* this ruling. Once `vacuous` lands the union holds four
+(`src/engine/verification.ts:191-207`), which makes a next cause genuinely a fifth and makes Phase A's
+original wording accidentally right. Phase A's sentence was amended on 261005 to claim no new member
+rather than to name an ordinal, so neither document now carries a number that the next landing moves.
 
 ### 1.3 Why both directions, not just the discharging one
 
@@ -218,7 +223,9 @@ Three corrections, all found by probing a stated premise.
    refused was a fifth **status word** (`not-verifiable`), and it refused it *by ruling that the typed
    cause field carries the distinction instead*. Adding a cause member uses that ruling's sanctioned
    mechanism rather than defying it. Relatedly, Phase A's §4 calls a new cause "a fifth" when the union
-   has three members — the new one is the fourth.
+   has three members — the new one is the fourth. **Landed 261005:** Phase A's sentence now claims no
+   new `InconclusiveCause` member and names no ordinal, since `vacuous` made the union four and would
+   have made "fifth" right for the wrong reason.
 2. **A measurement query over an impossible selection is NOT vacuous.** The brief's framing implies the
    `vacuous` channel covers the empty-selection case generally; it does not. The `exists` measurement
    path returns `refuted` with only an `other` disclosure. This cost a rewrite of the precedence test,

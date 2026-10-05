@@ -649,21 +649,45 @@ document-processing's four. (The first two commits of this wave say "nine of ele
 messages; that was a miscount, corrected here against a count of the authored blocks at HEAD.)
 `document-processing`'s
 `normal-processing-latency` and `peak-memory` take the `decided_by` route, and `expressed_as` joins
-to a SAVED query by id — a question composed from a declared ceiling at analysis time is saved
-nowhere to be named, and the authored shape has no key for a ceiling. Two things follow that the
-design did not anticipate:
+to a SAVED query by id. The authored shape has no key for a ceiling, which is true and costs
+nothing: a requirement names the query, and the query names the ceiling.
+
+**⚠️ Corrected 261005 (`DECISIONS-RULED-ceiling-requirement-261005.md` §8).** This paragraph first
+read "a question composed from a declared ceiling at analysis time is saved nowhere to be named."
+That sentence stated a FIXTURE limit as a CONSTRUCT limit, and it is wrong.
+`mage-query.schema.json:141` declares `within:` on a `kind: quantity` query — the ceiling as a
+reference to a declared quantity, not a literal — and two shipped queries already use it
+(`examples/document-processing/system.mage.yaml:691`,
+`examples/embedded-sensor-node/system.mage.yaml:423`). The two rows have no saved query **because
+none was written for them**, by the author's stated choice: saving them "would also add two saved
+queries to teach a join, which is a change to what the example is about and not a migration of it"
+(`examples/document-processing/system.mage.yaml:756-757`). The hold-back is pedagogical scope, not
+expressive power. One thing follows that the design did not anticipate:
 
 - **The nearest available distortion produces a false `satisfied`.** `max-latency-among-successful-executions`
   is a saved query over the same executions, so `expressed_as` could name it — and it asks only
   whether a determinate maximum EXISTS, naming no ceiling. Authored that way the 750 ms obligation
   derives `satisfied` (measured) while the product holds 2,750 ms against a 750 ms ceiling. The gate
   catches it, because the fixture still records `violated`.
-- **Migrating them would trade away an INDEPENDENT oracle.** A `decided_by` requirement is checked
-  against a hand-derived arithmetic expectation — `expected_ms: 2750` from declared charges times
-  occurrence counts, joined through each quantity's own `target` — which is a claim about the
-  fixture's numbers and not about the product. An `expressed_as` requirement has no such oracle; its
-  check is the product against itself plus a recorded status. So the two staying fixture-side is not
-  only forced, it is the stronger arrangement until a saved query states those ceilings directly.
+
+**⚠️ A second consequence this section claimed, withdrawn 261005** (same ruling, §2 and §8). It read
+"Migrating them would trade away an INDEPENDENT oracle," and it would not. The oracle is the
+`quantitative_expectations` block — hand-derived, `hand_derived: true`, its premises, its arithmetic
+and its product-agreement each separately checked
+(`examples/document-processing/expected-results.yaml:10-31`). That block is declared independently of
+how any requirement is declared, and `decided_by` only *points* at it. Move a row to `expressed_as`
+and the entry it pointed at stays, still hand-derived, still checked, still the oracle.
+
+The sentence that closed the withdrawn claim — the two staying fixture-side being "the stronger
+arrangement until a saved query states those ceilings directly" — is right in form, and its condition
+is already met elsewhere in the same example. `successful-executions-within-two-seconds`
+(`examples/document-processing/system.mage.yaml:691`) states its ceiling directly through `within:`,
+and the obligation citing it takes the `expressed_as` route. So the arrangement holds for exactly as
+long as nobody writes the other two queries, which is a choice about the example and not a property
+of the construct. What migration does cost is re-pointing two tests that key off the `decided_by`
+route at the `declared_as`/`within:` join: `test/examples.test.ts:427` asserts such a requirement is
+absent from the model, and `:874` filters `decidedBy !== null` and asserts the filtered set is
+non-empty. Bookkeeping, not a loss of checking power.
 
 ### 7.1 The first fixture — and why one is not enough
 

@@ -48,9 +48,17 @@ models:
 # ---------------------------------------------------------------------------
 # Requirements (section 2: "at least one requirement").
 #
-# Two of these four DECLARATIONS live in `system.mage.yaml`'s `requirements:` block and two do not,
-# and the split is a fact about the construct: `expressed_as` is a join to a SAVED query by id, so
-# a requirement decided by a question COMPOSED from a ceiling at analysis time has nothing to name.
+# Two of these four DECLARATIONS live in `system.mage.yaml`'s `requirements:` block and two do not.
+# The split is a fact about THIS EXAMPLE's scope, not about the construct. Saving the two composed
+# questions in `system.mage.yaml` would make them expressible; it would also add two saved queries to
+# teach a join, which is a change to what the example is about and not a migration of it. That is the
+# reason the two stay here.
+#
+# Corrected 261005 (`DECISIONS-RULED-ceiling-requirement-261005.md` §8): an earlier wording said such
+# a requirement "has nothing to name." It has nothing to name IN THIS FILE's `queries:` block, which
+# is a different claim. A `kind: quantity` query names a ceiling through `within:`, and the 2-second
+# obligation below is decided by exactly such a query.
+#
 # Two routes exist here, and this example uses both:
 #
 #   expressed_as  a saved query decides it. `satisfied_when` is the outcome that means it holds.

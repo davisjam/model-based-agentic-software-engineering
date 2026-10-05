@@ -751,17 +751,27 @@ queries:
       to: model-gateway
 
 # Two of this example's four obligations are authored here, and two are NOT. The split is a fact
-# about the construct rather than an omission, so it is stated where a reader meets it.
+# about THIS EXAMPLE's scope, not about the construct, so it is stated where a reader meets it.
+#
+# Saving the two composed questions here would make them expressible. It would also add two saved
+# queries to teach a join, which is a change to what the example is about and not a migration of it.
+# That is the whole reason, and it is a choice rather than a limit.
 #
 # `expressed_as` is a join to a SAVED query by id, and the engine refuses a requirement naming a
 # query the system does not declare. Both requirements below name one. The other two —
 # `normal-processing-latency` against the 750 ms `latency-requirement`, and `peak-memory` against
-# the 512 MB `peak-memory-requirement` — are decided by a `kind: quantity` question COMPOSED from
-# the declared ceiling at analysis time, which no `queries:` entry saves. There is nowhere in a
-# requirement to name a ceiling instead of a query, so those two keep their fixture declaration and
-# the suite decides them by running the composed question against the hand-derived oracle. Saving
-# the two composed questions here would make them expressible; it would also add two saved queries
-# to teach a join, which is a change to what the example is about and not a migration of it.
+# the 512 MB `peak-memory-requirement` — have no saved query here to name, so they keep their
+# fixture declaration and the suite decides them by running the composed question against the
+# hand-derived oracle.
+#
+# What a reader must NOT conclude (corrected 261005, `DECISIONS-RULED-ceiling-requirement-261005.md`
+# §8): that a ceiling cannot be named. Naming a query IS how a ceiling is named — a `kind: quantity`
+# query carries `within:`, which points at a `model:`-targeted quantity, and the obligation below
+# names such a query. An earlier wording here said the composed question was one "no `queries:` entry
+# saves" and that there was "nowhere in a requirement to name a ceiling instead of a query"; both
+# described this file's `queries:` block as though it described MAGE. The ruling's probe added one
+# `within:` query per row over the ceilings this file ALREADY declares and reproduced the oracle's own
+# 2,750 ms and 384 MB, with no schema change, no IR change and no new key.
 requirements:
 
   publication-requires-validation:
