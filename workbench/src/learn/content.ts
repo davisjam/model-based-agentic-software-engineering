@@ -5,8 +5,13 @@
  * module assembles everything a Learn section shows, and every capability fact comes from a source
  * the kernel itself consults or ships:
  *
- *   - the entries, questions, property families, omissions, compositions, schema citations and
- *     refusal prose: the model-type registry, through `deriveLearnEntries` / `MODEL_TYPE_USES`;
+ *   - the entries, questions, question forms, selectable subjects, omissions, compositions, schema
+ *     citations and refusal prose: the model-type registry, through `deriveLearnEntries` /
+ *     `MODEL_TYPE_USES`. BOTH arms of the query semantics since 261004: a form is a question the
+ *     engine decides, a subject is a thing a question names, and `select` and `count` derive from
+ *     the second arm only — so projecting `forms` alone left a shipped capability off the page
+ *     (`DESIGN-v02-quantification-261004.md` §3.4, and `src/app/learn.ts`'s header for why the
+ *     registry rather than the agent facade is where this page reads it);
  *   - the visuals' subjects: the shipped examples, chosen by the registry's own `presentIn`
  *     predicate over the canonical systems — the first shipped example that instantiates the type;
  *   - "what it preserves" and "try asking": the exemplar's declared `purpose` and saved queries,

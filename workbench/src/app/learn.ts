@@ -13,6 +13,34 @@
  * dispatcher, the agent facade and the inspector's contextual actions read too, which is what
  * makes "one declaration, two affordances" a fact about the code rather than a hope.
  *
+ * ## Both arms of the query semantics, because one of them was carrying an invisible capability
+ *
+ * `QuerySemantics` has two arms and this projection read one. A FORM is a question the engine
+ * decides; a SUBJECT is a thing a question names. `select` and `count` derive from the subject arm
+ * and from no form at all — `DESIGN-v02-quantification-261004.md` §3.4 rules them "the cardinality
+ * of a subject enumeration ... the same derivation arm, one step further" — so a card projecting
+ * `forms` alone described everything the kernel DECIDES and nothing it lets a question NAME. An
+ * agent could enumerate a system's entities by property constraints; a student reading Learn had no
+ * way to find out the capability existed.
+ *
+ * Reading `query.subjects` fixes that at the source the gallery already derives from, which is a
+ * stronger position than the one the design proposed. The design's Phase 2 asked for a SECOND
+ * derivation source, the agent facade's `MODEL_FACADE` table, "which already carries its registry
+ * grounding" — and the grounding it carries is this field: the `elements` row derives from
+ * `{ from: "query-subject", noun: "entity", selector: "property-constraints" }`, whose matching
+ * declaration is the structural type's own `subjects` entry. The facade maps an API method onto
+ * that declaration; Learn needs the declaration. Taking it here is the same fact one hop closer to
+ * the kernel, with no second source to keep in agreement.
+ *
+ * The facade route is also closed, and by architecture rather than by preference.
+ * `models/workbench-components.mage.yaml` resolves `src/app/agent-api.ts` to `agent-adapter` under
+ * its longest-prefix rule, draws no `learn-page → agent-adapter` edge, and its `depends-on` absence
+ * clause reads "an edge that is not drawn here is an edge the implementation may not create" —
+ * which `test/import-graph.test.ts` holds against every import in the tree. Measured, with the
+ * import in place, at the commit before this one: the gate names the edge and says it is "either a
+ * dependency to undo or an architecture decision to make and draw." Undone, because the registry
+ * carries the same grounding and the Learn page is already permitted to read it.
+ *
  * ## The four-cards question, settled on a second axis
  *
  * The author's gallery sketch shows four cards; the kernel has three model types. The fourth,
@@ -34,7 +62,7 @@
  */
 import type { CanonicalSystem } from "../ir/types.ts";
 import {
-  MODEL_TYPES, type ModelType, type ModelTypeId, type SchemaAuthority,
+  MODEL_TYPES, type ModelType, type ModelTypeId, type QuerySubject, type SchemaAuthority,
 } from "../engine/model-types.ts";
 import type { RefusalDetail } from "../engine/types.ts";
 
@@ -45,6 +73,16 @@ export interface LearnEntry {
   readonly question: string;
   /** The question forms the type answers, held BY REFERENCE to `ModelType.query.forms`. */
   readonly forms: readonly string[];
+  /**
+   * What a question of this type may NAME and select, BY REFERENCE to `ModelType.query.subjects`.
+   *
+   * The other arm of the same declaration, and each entry carries its own `declaredBy` role — the
+   * sentence saying how that noun is named and what it is. So a card can show the arm without this
+   * module wording anything: the state machine's `state` subject says in the registry's own words
+   * that a state is named inside a predicate and "never selected on its own", which is the honesty
+   * a hand-written list of nouns would have had to remember.
+   */
+  readonly subjects: readonly QuerySubject[];
   readonly schema: readonly SchemaAuthority[];
   readonly omits: readonly string[];
   readonly combineWith: {
@@ -67,6 +105,7 @@ const entryOf = (t: ModelType): LearnEntry => {
     label: t.label,
     question: t.question,
     forms: t.query.forms,
+    subjects: t.query.subjects,
     schema: t.schema,
     omits: t.omits,
     combineWith: {

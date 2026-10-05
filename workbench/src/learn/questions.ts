@@ -6,8 +6,8 @@
  * `workbench-guide.ts` holds sections nothing in the kernel derives, because nothing in a model
  * kernel knows how a pane reads. These are the opposite case: each one teaches a CAPABILITY, so
  * each one must come from a source the kernel consults or ships, and a section whose source went
- * away must change what it says. Four do it by running a question and rendering what comes back;
- * the fifth renders a gate's own verdict.
+ * away must change what it says. Five do it by running a question and rendering what comes back;
+ * the sixth renders a gate's own verdict.
  *
  * So the declaration here carries only furniture — an anchor, the engineering question that is the
  * heading, one framing sentence — plus `derivedFrom`, the citations in the registry's own
@@ -16,13 +16,37 @@
  *
  * ## The honesty property each section has
  *
- * None of them states an outcome. `question-evidence` and `question-properties` RUN the queries, so
+ * None of them states an outcome. `question-operations` runs a selection and a count and renders
+ * the values that came back, including the absence of a verdict: its "Verdict" term branches on
+ * whether the returned answer carries an `outcome` at all, so the section stops claiming the
+ * question makes no claim the moment the engine starts deciding one.
+ * `question-evidence` and `question-properties` RUN the queries, so
  * the page cannot claim a verdict the engine stopped producing — repair `document-processing`'s
  * retry policy and the counterexample section would show a `holds` and say so.
  * `question-requirements` puts the fixture's recorded `status` beside the live outcome, so a drift
  * between them is visible on the page and not only in CI. `question-agents` renders
  * `affordanceParityGate()`'s own headline, including a non-zero violation count if one appears.
  * `question-omissions` quotes the refusals the shipped questions actually earn.
+ *
+ * ## Where the operations section comes from, and why not from the facade
+ *
+ * `question-operations` teaches the operations that are not forms — `select` and `count`, which the
+ * registry declares as a SUBJECT enumeration rather than as a question the engine decides
+ * (`DESIGN-v02-quantification-261004.md` §3.4). It runs them: `selectElements` and `countElements`
+ * over the structural type's own exemplar, so every figure on the page is one the kernel computed
+ * for the revision the page loaded, and the question text is the engine's own
+ * `interpretElementSelector` sentence rather than a restatement of the selector.
+ *
+ * The design's Phase 2 asked for the agent facade's `MODEL_FACADE` table as a second derivation
+ * source. That is not available to this page and the blocker is architectural, not a preference:
+ * `models/workbench-components.mage.yaml` resolves `src/app/agent-api.ts` to `agent-adapter` by its
+ * longest-prefix rule and draws no `learn-page → agent-adapter` edge, and
+ * `test/import-graph.test.ts` holds the declared edge set against every import in the tree.
+ * Measured with the import in place, at the commit before this one, the gate names the edge and
+ * says it is "either a dependency to undo or an architecture decision to make and draw." Undone,
+ * because the grounding the facade table carries for these two operations IS `query.subjects` —
+ * which this page may read, and which the gallery already derives from.
+ * See `src/app/learn.ts`'s header for the full argument.
  *
  * ## Where the standards section comes from
  *
@@ -49,14 +73,15 @@
  */
 import {
   CLAUSE_OWED, MODEL_TYPES,
-  type ModelType, type SchemaAuthority, type SemanticBasis,
+  type ModelType, type ModelTypeId, type SchemaAuthority, type SemanticBasis,
 } from "../engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../engine/types.ts";
+import { countElements, selectElements, type Cardinality } from "../engine/elements.ts";
 import { runQuery } from "../engine/index.ts";
 import type { CanonicalSystem, Evidence, QueryResult } from "../ir/types.ts";
 import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
-import { composedQuantityQuery, type LoadedSystems } from "./content.ts";
+import { composedQuantityQuery, exemplarFor, savedStatements, type LoadedSystems } from "./content.ts";
 import type { LoadedFixtures } from "./fixtures.ts";
 
 /**
@@ -104,6 +129,38 @@ export interface BuiltQuestionSection {
 }
 
 export const QUESTION_SECTIONS: readonly QuestionSection[] = [
+  // FIRST, and the order is the pedagogy: a reader meets the two kinds of question before meeting
+  // the two kinds of evidence, because evidence is what only one of the two kinds comes back with.
+  {
+    anchor: "question-operations",
+    heading: "What is there, before you ask what is true?",
+    lede: "A question has to name what it is about before it can decide anything. Reading a model — "
+      + "which things it declares, how many of them, named how — asks its own kind of question, and "
+      + "it comes back with what is there and no verdict, because it claims nothing.",
+    derivedFrom: [
+      {
+        file: "src/engine/model-types.ts", symbol: "readonly subjects",
+        role: "what each model form lets a question NAME and select — the declaration a selection "
+          + "derives from, which is not a question form and is why neither `select` nor `count` can "
+          + "reach this page through the form arm",
+      },
+      {
+        file: "src/engine/elements.ts", symbol: "export function selectElements",
+        role: "the entity table read whole and filtered by the property-constraint grammar — the "
+          + "operation this section runs, rather than describes",
+      },
+      {
+        file: "src/engine/elements.ts", symbol: "export function interpretElementSelector",
+        role: "the sentence a selection question was understood as, built from the selector rather "
+          + "than from the answer, so a refused question still says what was read",
+      },
+      {
+        file: "src/engine/elements.ts", symbol: "export type Cardinality",
+        role: "how many, carried with the domain whose exhaustive read earns the figure — so a "
+          + "number from a table read whole cannot be mistaken for one a bounded search reached",
+      },
+    ],
+  },
   {
     anchor: "question-evidence",
     heading: "How would you know?",
@@ -305,6 +362,118 @@ function runEveryShippedQuestion(systems: LoadedSystems): readonly RanQuestion[]
   return out;
 }
 
+// ---------------------------------------------------------------------------------------------
+// The selection operations, run
+//
+// `select` and `count` reach the page the way every other capability on it does: by being invoked
+// over a shipped example. Nothing here decides anything — which is the lesson — so there is no
+// outcome, no coverage and no evidence to render, and `verdictOf` says so by READING the answer
+// instead of asserting it.
+// ---------------------------------------------------------------------------------------------
+
+/** The structural model type, named once. A registry rename is a compile error, not a wrong page. */
+const STRUCTURAL: ModelTypeId = "structural-graph";
+
+/**
+ * What verdict an answer carries — and the point is the else-branch.
+ *
+ * Read off the returned value rather than declared beside it. A selection and a count are typed
+ * without an `outcome`, so today this always takes the second branch; the day either grows one, the
+ * page prints it instead of claiming there is none. A sentence asserting "this makes no claim" would
+ * have kept saying so.
+ */
+const verdictOf = (answer: object): string =>
+  "outcome" in answer
+    ? String((answer as { readonly outcome: unknown }).outcome)
+    : "none — the answer carries no outcome and no evidence, because the question claims nothing";
+
+/** One shipped model, READ: which entities of one declared type it has, and how many. */
+interface SelectionReading {
+  readonly example: ShippedExampleId;
+  /** The engine's own sentence for the selector, from `interpretElementSelector`. */
+  readonly question: string;
+  readonly declaredTypes: readonly string[];
+  readonly ids: readonly string[];
+  readonly count: Cardinality;
+  /**
+   * Each answer's verdict, read from THAT answer rather than from the other.
+   *
+   * Two fields for what is one sentence today, because the two readouts render two values and a
+   * shared field would let one of them speak for an answer it never looked at.
+   */
+  readonly selectionVerdict: string;
+  readonly countVerdict: string;
+}
+
+/**
+ * The selection question this section asks, and the shipped model it asks it of.
+ *
+ * Both choices are DERIVED, and the rules are written down because a derived choice still has to be
+ * defensible:
+ *
+ *   - the MODEL is the structural type's own exemplar — `exemplarFor` takes the first shipped
+ *     example the registry's `presentIn` predicate selects — so this section and the structural
+ *     card talk about one system rather than two;
+ *   - the TYPE is the declared entity type with the most entities, ties broken by the sorted order
+ *     `declaredTypes` already carries, because a count of one teaches nothing about counting.
+ *
+ * Returns null rather than inventing a subject when no shipped example declares a structural model
+ * with entities — the same shape `shippedCounterexample` uses, and the builder reports the absence
+ * instead of hiding it.
+ */
+function selectionReading(systems: LoadedSystems): SelectionReading | null {
+  const visual = exemplarFor(STRUCTURAL, systems);
+  if (visual === null) return null;
+  const system = systems.get(visual.example);
+  if (system === undefined) return null;
+  let chosen: { readonly type: string; readonly count: Cardinality } | null = null;
+  for (const type of countElements(system, {}).declaredTypes) {
+    const counted = countElements(system, { type });
+    if (!counted.counted) continue;
+    if (chosen === null || counted.count.value > chosen.count.value) {
+      chosen = { type, count: counted.count };
+    }
+  }
+  if (chosen === null) return null;
+  const selector = { type: chosen.type };
+  const selection = selectElements(system, selector);
+  const counted = countElements(system, selector);
+  if (!selection.selected || !counted.counted) return null;
+  return {
+    example: visual.example,
+    question: selection.interpretedAs,
+    declaredTypes: selection.declaredTypes,
+    ids: selection.ids,
+    count: counted.count,
+    selectionVerdict: verdictOf(selection),
+    countVerdict: verdictOf(counted),
+  };
+}
+
+/**
+ * A question of the SAME model that decides something — the contrast the section's line needs.
+ *
+ * The exemplar's own saved graph questions, in the order the canonical system holds them, and the
+ * first that is not refused: a refusal would teach that this kind of question declines rather than
+ * that it returns a verdict, which is the opposite of the point. `question-omissions` is where the
+ * refusals belong, and it has them.
+ */
+function decidingQuestion(
+  systems: LoadedSystems, example: ShippedExampleId,
+): { readonly statement: string; readonly result: QueryResult } | null {
+  const system = systems.get(example);
+  if (system === undefined) return null;
+  let first: { readonly statement: string; readonly result: QueryResult } | null = null;
+  for (const q of savedStatements(system, "graph")) {
+    const result = runSaved(system, q.id);
+    if (result === null) continue;
+    const reading = { statement: statementOf(system, q.id), result };
+    first ??= reading;
+    if (result.refusal === null) return reading;
+  }
+  return first;
+}
+
 /**
  * The counterexample the shipped examples produce today, computed.
  *
@@ -438,6 +607,78 @@ function notAttributedItems(): readonly string[] {
 // ---------------------------------------------------------------------------------------------
 // The builders — one per declared section, selected exhaustively
 // ---------------------------------------------------------------------------------------------
+
+function operationBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
+  const reading = selectionReading(systems);
+  if (reading === null) {
+    // Reported, not hidden. A section that silently vanished would read as though the workbench
+    // could not enumerate a model at all.
+    return [{
+      kind: "prose",
+      text: "No shipped example declares a structural model with entities to select, so there is "
+        + "nothing to read here yet.",
+    }];
+  }
+
+  // TWO readouts for ONE question, because they are two operations and the difference between them
+  // is the lesson: the first hands back the things, the second hands back the figure and drops the
+  // list, so asking "how many" over a large table does not return the table.
+  const blocks: QuestionBlock[] = [
+    {
+      kind: "pairs",
+      label: "Asked now — which things this shipped model declares",
+      pairs: [
+        ["Asked of", nameOf(systems, reading.example)],
+        ["The question, as the engine understood it", reading.question],
+        ["What is there", reading.ids.join(", ")],
+        ["Verdict", reading.selectionVerdict],
+        ["Entity types this system declares", reading.declaredTypes.join(", ")],
+      ],
+    },
+    {
+      kind: "pairs",
+      label: "The same question, counted — the figure, without the list",
+      pairs: [
+        ["How many", String(reading.count.value)],
+        // `basis` names the domain whose exhaustive read earns the figure, and the type carries
+        // `exact: true` as a literal — so a bounded count cannot borrow this wording without
+        // breaking this line first.
+        ["What makes that figure exact", `the ${reading.count.basis.replace(/-/g, " ")}, read whole`],
+        ["Verdict", reading.countVerdict],
+      ],
+    },
+  ];
+
+  const deciding = decidingQuestion(systems, reading.example);
+  if (deciding !== null) {
+    blocks.push({
+      kind: "pairs",
+      label: "The other kind, asked of the same model — a question that makes a claim",
+      pairs: [
+        ["The question, as its author stated it", deciding.statement],
+        ["Verdict", deciding.result.outcome],
+        ["Evidence", evidenceText(deciding.result.evidence)],
+        ["Coverage", coverageText(deciding.result)],
+      ],
+    });
+  }
+
+  blocks.push({
+    kind: "prose",
+    text: "One test separates the two kinds: does the question make a claim? “Which entities…” and "
+      + "“how many” report what the model declares, so nothing is left for a witness to establish "
+      + "or for a counterexample to break. “Is this reachable from that” asserts something, so the "
+      + "answer comes back as a verdict carrying the evidence that settles it.",
+  });
+  blocks.push({
+    kind: "prose",
+    text: "That is also why the figure above says what earns it. Count a table read whole and you "
+      + "have a count; count what a search reached before it stopped and you have a floor. A bare "
+      + "integer cannot tell you which one you hold, so a reader supplies the stronger reading. "
+      + "Each model form's own card lists the nouns it lets a question name.",
+  });
+  return blocks;
+}
 
 function evidenceBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   const blocks: QuestionBlock[] = [
@@ -872,6 +1113,7 @@ export function buildQuestionSections(
 ): readonly BuiltQuestionSection[] {
   return QUESTION_SECTIONS.map((section) => {
     switch (section.anchor) {
+      case "question-operations": return { section, blocks: operationBlocks(systems) };
       case "question-evidence": return { section, blocks: evidenceBlocks(systems) };
       case "question-properties": return { section, blocks: propertyBlocks(systems, fixtures) };
       case "question-requirements": return { section, blocks: requirementBlocks(systems, fixtures) };
