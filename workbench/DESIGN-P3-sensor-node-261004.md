@@ -193,6 +193,58 @@ published-schema gate, and is deferred.
 
 ---
 
+## 3.2 What shipped, against the five steps
+
+Measured on the final tree: `check` clean, `check:parity` 0 violations over 26 capabilities, `test`
+1214 pass / 0 fail, `build` over 91 inputs, `test:browser` 120 pass, `test:a11y` 112 pass.
+
+| Step | Shipped | Where |
+|---|---|---|
+| **1.** See the allocations and the budget clearly | **Yes**, on two surfaces | A budget region in the Workspace (`#model-budget`), and the quantitative Learn card |
+| **2a.** Total | **Yes** | `budgetReadout.total`, on both surfaces, in the declared unit |
+| **2b.** Largest allocation | **Yes** | `budgetReadout.largest`, named in prose beneath the table |
+| **2c.** Margin | **Yes**, with its percentage | `margin` / `marginFraction`; §11.4's Q6 asks its 20% question in the second |
+| **3.** Check the budget property | **Yes** | `sram-fits-budget`, a saved `forall` + `within` query, pinned in `expected-results.yaml` |
+| **4.** Double a queue | **Yes** | `set-quantity-value`, the sixteenth operation, driven by the example's `modifications:` block |
+| **5.** See the answer and the property change | **Yes** | The fixture drives holds → refuted; the readout's margin goes 24 KB → −8 KB with it |
+
+### The example's figures
+
+232 KB over nine allocations against a 256 KB ceiling — 9.375% margin. `model-weights` is the
+largest single allocation at 72 KB, 31% of the budget on its own. Doubling `telemetry-queue-sram`
+from 32 KB to 64 KB takes the total to 264 KB and refutes the pinned requirement by 8 KB. Halving
+the classifier's weights to 36 KB restores 23.4% margin, while dropping the logging buffer and
+halving the radio stack reaches 19.5% and does not — which is what makes §11.4's Q6 a search.
+
+### Five defects the gates found, all in shipped code rather than in this wave's
+
+1. **`groundsFor` had no `quantity` arm**, so a quantitative property reached ESTABLISHED citing no
+   model at all — UX-I5's exact prohibition. Invisible because no shipped example had ever declared a
+   saved `kind: quantity` question. It now cites the ceiling's host and the allocations' models, with
+   different reasons for each kind of dependence.
+2. **The agent context reported no quantity counts**, so an agent reading
+   `window.mage.context().counts` could not tell a system with a resource budget from one without —
+   and the quantitative question is exactly the one it would then not think to ask.
+3. **WCAG 2.4.3 on `learn.html` at 576px.** The card's shipped-example links were a comma-separated
+   inline run; at four they fit on a line and the fifth made them wrap, putting several tab stops on
+   one visual row. Fixed as a class — one link per row cannot invert — so the next example cannot
+   reopen it.
+4. **WCAG 1.4.10 at 320px**, twice over. The inert-allocation reason was a sentence in a table cell,
+   which sized the first column to 259px; and `learn.html`'s own stylesheet sets a 34rem min-width on
+   every table, which survives `width: 100%` and `table-layout: fixed` alike. The page rule is
+   harmless for the tables it was written for — they sit inside a closed `<details>` the reflow walk
+   does not measure — and is a latent hazard for the next table that does not.
+5. **The `derived-values` lint's cardinality floor stopped carrying an exclusion its own header
+   declared.** `SHIPPED_EXAMPLE_IDS` was kept out of count-policing by having four members; the fifth
+   let its count match five unrelated assertions and zero true positives. The exclusion is declared
+   now, and a new pin fails any source left out by arithmetic alone.
+
+A sixth was mine: the browser probe read a context field that does not exist, so its row-count
+assertion never ran. It asserts its denominator is non-vacuous before dividing by it, which is what
+surfaced finding 2.
+
+---
+
 ## 4. Deferred to P4, named
 
 - **§11.5's Q7–Q9** — peak memory over modeled operating behaviour, the per-mode fit, and the
@@ -203,6 +255,15 @@ published-schema gate, and is deferred.
 - **§11.4's Q6** — "which change restores at least 20% SRAM margin". A design activity over a margin
   readout, and it needs step 4's modify path before it can be an activity at all.
 - **The authored quantitative-model block**, per §3.1 above.
+- **A `set-quantity-value` dialog in the UI.** The operation ships on the transaction vocabulary and
+  the wire schema, so the agent path and the fixture path both drive it; a human reaches it through
+  `window.mage.transact` rather than a form. The ten editing dialogs are a declared affordance set
+  with a parity gate behind them, and adding an eleventh is that gate's work rather than this one's.
+- **The render-strategy registry** of `DESIGN-render-rules-261004.md` §B. This wave built the
+  projection the registry would declare and left the registry to its own Epic — but it also answered
+  that document's open question 1 by construction: the quantitative arm is `projected` now, not
+  `annotates`, so the arm that would have recorded today's fallback honestly has nothing left to
+  record.
 
 ---
 
@@ -235,4 +296,26 @@ published-schema gate, and is deferred.
    as a `peak_memory` measurement teaches a student that the total of declared allocations *is* the
    peak, which §11.5 then has to un-teach — and un-teaching it is precisely §11.5's purposeful-reduction
    moment. So the two questions must be asked by two different surfaces, or the example's own climax
-   is spoiled by its setup.
+   is spoiled by its setup. **Resolved that way:** the total is a readout and the budget decision is
+   the one saved query, which is also the §3.4 claim-versus-data line the quantification design draws.
+5. **§11.7 asks the example to exercise "Behavior → Quantity composition", and Phase 1 cannot.** The
+   acceptance list mixes Phase 1 and §11.5 obligations without saying so, and §11.6 forbids reaching
+   for the second before the composition is designed and registered. Of §11.7's nine items, Phase 1
+   exercises seven — quantity, units, sum, max, requirement, margin, purposeful omission — and defers
+   the composition and the model expansion. Read as a Phase 1 checklist the list fails; read as the
+   example's whole arc it passes. The section should say which.
+6. **The fixture's quantitative-expectation schema cannot express a sub-megabyte model.**
+   `expected_mb`, `resident_mb` and `when_charged_mb` are each read as a positive integer, so 232 KB
+   has no spelling there that is not a rounding. The example's hand-derived oracle therefore lives in
+   `test/quantitative-model.test.ts`, where it re-derives the sum from the declarations rather than
+   restating it, and the budget requirement is joined by `expressed_as` rather than `decided_by`. A
+   schema that admits a unit-bearing literal — the form every other magnitude in this project takes —
+   would close it.
+7. **Two shipped invariants constrain an example the specification describes as single-model.** §11.2
+   lists components and one 256 KiB budget; EX-I2 requires two purposeful models, a shared identity
+   and a question needing both, and §2 requires three to five suggested questions. Both are
+   reasonable and neither is visible from §11. The example gained a second purposeful model — a data
+   path carrying no magnitude — which turned out to improve it: the cross-model question *"does an
+   optional component feed an essential one?"* holds, and its witness is the optional classifier
+   feeding the essential transmit path, which also owns the two largest allocations. That is a
+   finding about the design rather than a formality, and §11 did not ask for it.
