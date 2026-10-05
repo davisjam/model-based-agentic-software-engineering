@@ -96,7 +96,11 @@ with a *correct* column, is now the conformance oracle for the evaluator we writ
 ### 0.2a Self-models: what we model about ourselves, and what we deliberately do not
 
 Recorded 261004 from `AUDIT-system-models-261004.md`, so the omissions below read as decisions
-rather than as gaps a later wave should "complete."
+rather than as gaps a later wave should "complete." Re-read against the rest of the 261004 landings
+in `RECONCILE-self-models-261004.md`, which classes every finding **stale / deliberate omission /
+newly in-scope** and is the place to look before "completing" anything below — three of its findings
+were models and docs *understating* a control that already existed, which is the direction that
+invites building the control twice.
 
 **Four self-models exist:** `models/workbench-components.mage.yaml` (hand-written architecture
 constraint), `models/workbench-affordances.mage.yaml` (generated projection of the capability
