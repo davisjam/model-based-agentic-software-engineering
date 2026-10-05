@@ -315,14 +315,30 @@ export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystem
 /**
  * The quantitative question a system's OWN declared ceiling licenses, derived from the system.
  *
- * CORRECTED 261005: this header used to open *"no shipped example SAVES a quantity query — the
- * fixtures decide quantitative requirements through the suite"*, and that premise has not held for
- * some time. Five saved quantity questions ship (four in `document-processing`, one in
- * `embedded-sensor-node`), and two of them declare `within:` and are named by a requirement's
+ * This header used to open *"no shipped example SAVES a quantity query — the fixtures decide
+ * quantitative requirements through the suite"*, and the corpus had already falsified it. Saved
+ * quantity questions DO ship, and some of them declare `within:` and are named by a requirement's
  * `expressed_as`. The derivation below is still needed, for a narrower reason than the one it was
- * given: two `document-processing` fixture rows name a declared ceiling through `declared_as` with no
- * saved question to run, so `decideRequirement` composes their question here. For a row that names a
- * saved one, the saved question is run instead and nothing is composed.
+ * given: some fixture rows name a declared ceiling through `declared_as` with no saved question to
+ * run, so `decideRequirement` composes their question here. For a row that names a saved one, the
+ * saved question is run instead and nothing is composed.
+ *
+ * **Which questions, and how many, is a question for `ceilingQuestions` above and
+ * `savedStatements(system, "quantity")`, not for this comment.** A count written here would be a
+ * second answer to something the corpus already answers on demand, and the earlier correction wrote
+ * two — "five saved quantity questions, two declaring `within:`" — against a corpus that was eight
+ * and four by the time the edit landed, because the capstone's three arrived hours later. The
+ * correction carried a date, which is the trap: a stamp records WHEN someone looked, and when-someone-
+ * looked is the fact that decays. It makes a number LOOK verified without giving it anything to
+ * answer to.
+ *
+ * So the claim here is the one the work actually needs — that saved ceiling questions EXIST, which is
+ * why the derivation's scope is narrower than the premise it replaced — and its truth condition is
+ * held rather than measured: `test/learn-questions.test.ts`'s ceiling-table test refuses an empty
+ * chain set by name ("no shipped requirement names a saved question that cites a declared ceiling"),
+ * and asserts the rendered table IS the chain set `ceilingQuestions` derives. A corpus that lost its
+ * saved ceiling questions turns that suite red. A corpus that GAINS three leaves it green and leaves
+ * this sentence true, which is the property a figure cannot have.
  *
  * A stale premise in this position is the expensive kind — it reads as license to hand-write what the
  * corpus already declares. See `ceilingQuestions` above for the reader the three-role section uses.
