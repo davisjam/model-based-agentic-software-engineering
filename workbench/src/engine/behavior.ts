@@ -37,6 +37,7 @@ import {
   compilePredicate, describePredicate, satisfiability, type CompiledPredicate,
 } from "./predicate.ts";
 import type { RefScope } from "./refs.ts";
+import { omissionCovering } from "./omission.ts";
 import {
   bounded, detail, exhaustive, refusedAdmission as refused, result, unlicensed, verdict,
   type Admission, type BehaviorForm, type BehaviorQuery, type Predicate, type Quantifier,
@@ -225,10 +226,30 @@ export function admitBehaviorQuery(
       if (!declaresMatching(system, selector)) {
         // Not `refuted`: refuting would claim the transition is never executable, when in fact the
         // model declares no such transition for the claim to be about.
+        //
+        // And when a PURPOSE says the distinction was deliberately left out, say so. The graph path
+        // has done this through `undeclared()` since it shipped; this path said only "not about
+        // this model's vocabulary", which reads to a student as a weak engine rather than as a
+        // modelling decision. Same sentence structure as `undeclared()`: the structural clause is
+        // kept verbatim and the omission is APPENDED, because both facts are true and a reader
+        // needs both — the selector matches nothing, AND that is a choice with a place to go.
+        const need = describeSelector(selector);
+        const omitted = omissionCovering(system, need);
+        if (omitted !== null) {
+          const one = omitted.declaredBy.length === 1;
+          const who = one
+            ? `model '${omitted.declaredBy[0] ?? ""}'`
+            : `models ${omitted.declaredBy.map((m) => `'${m}'`).join(", ")}`;
+          return refused(unlicensed(systemHash,
+            `no declared transition matches ${need}, and the absence is a declared modelling ` +
+            `decision: ${who} deliberately ${one ? "omits" : "omit"} '${omitted.text}'. ` +
+            `Answering would mean adding the distinction to a model that chose to leave it out.`,
+            interpretedAs, detail("missing-distinction", [omitted.text], omitted.declaredBy)));
+        }
         return refused(unlicensed(systemHash,
-          `no declared transition matches ${describeSelector(selector)}. The question is not ` +
+          `no declared transition matches ${need}. The question is not ` +
           `about this model's vocabulary.`,
-          interpretedAs, detail("unknown-vocabulary", [describeSelector(selector)])));
+          interpretedAs, detail("unknown-vocabulary", [need])));
       }
       return plan({
         on: "transition", form: q.form, selector,
