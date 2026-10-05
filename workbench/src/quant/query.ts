@@ -309,6 +309,27 @@ function measurePath(
   });
 }
 
+/**
+ * The premise a peak carries when nothing in the system models time.
+ *
+ * `peak_memory` is the maximum of memory(c) over REACHABLE configurations. With no machine
+ * declared there is exactly one reachable configuration, so the peak IS the resident sum — every
+ * allocation counted at once, because no allocation's lifetime is represented. That is a sound
+ * answer to the question the model can state, and it is NOT the question a reader hears: "peak"
+ * invites the real-world peak, which needs operating modes this model deliberately omits.
+ *
+ * So the premise ships WITH the figure. A measurement that cannot be read without a fact the
+ * reader does not have is a measurement that misleads by omission — and this one sits at the
+ * climax of the sensor lab, where the whole teaching point is that the boundary should be visible
+ * as an engineering object rather than inferred from silence.
+ */
+function residentPremiseNote(system: CanonicalSystem): string | null {
+  if (system.machines.size > 0) return null;
+  return "This system declares no state machine, so it has one reachable configuration and this "
+    + "peak is the RESIDENT SUM — every allocation counted together. No allocation's lifetime is "
+    + "modeled, so whether they are ever simultaneously live is outside what this model can say.";
+}
+
 function measurePeak(
   system: CanonicalSystem, hash: string, dimension: Dimension, unit: string, limit: number,
 ): Verdict {
@@ -317,6 +338,7 @@ function measurePeak(
   if (!peak.ok) return refuse(hash, peak.refusal, interpretedAs, peak.detail ?? detail("unknown-vocabulary"));
 
   const { peak: value, trace, coverage, notes } = peak.value;
+  const premise = residentPremiseNote(system);
   const evidence: Evidence = { shape: "trace", role: "witness", steps: trace, cycle: null, nodes: null };
   const bounded = coverage.kind === "bounded";
   return asVerdict({
@@ -324,11 +346,14 @@ function measurePeak(
       outcome: bounded ? "inconclusive" : "holds",
       coverage, systemHash: hash, interpretedAs, evidence,
       magnitude: { value, dimension, unit: DIMENSIONS[dimension].base },
-      compilation: bounded
-        ? [...notes.map(note), note(
-            `The walk was truncated, so ${value} ${unit} is the peak over the EXPLORED region ` +
-            `only — a weaker claim than a peak over the reachable set.`)]
-        : notes.map(note),
+      compilation: [
+        ...notes.map(note),
+        ...(bounded
+          ? [note(`The walk was truncated, so ${value} ${unit} is the peak over the EXPLORED region `
+                  + `only — a weaker claim than a peak over the reachable set.`)]
+          : []),
+        ...(premise === null ? [] : [note(premise)]),
+      ],
     }),
     refusal: null,
   });

@@ -279,12 +279,13 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   {
     anchor: "question-properties",
     heading: "Properties and model changes",
-    lede: "A property is a saved question. The workbench evaluates it against the current model "
+    lede: "A property is a saved CLAIM, not a saved question: it carries a statement the models "
+      + "must keep true, and the workbench asks the question that decides it against the current model "
       + "whenever the model changes. It does not store the previous verdict.",
     derivedFrom: [
       {
         file: "src/app/properties.ts", symbol: "export function evaluateProperties",
-        role: "a property is a saved question whose verdict is recomputed and stored nowhere, so it "
+        role: "a property is a saved claim whose verdict is recomputed and stored nowhere, so it "
           + "cannot go stale",
       },
       {
