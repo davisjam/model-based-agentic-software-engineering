@@ -18,24 +18,28 @@
   "evidence": [
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar",
       "locator": "Systems Library/Requirements.sysml lines 19-47 (RequirementConstraintCheck), line 49 (RequirementCheck), lines 173-185 (the two polarity subsets)",
       "what": "DECISIVE, declared: 'return result = allTrue(assumptions()) implies allTrue(constraints())' -- satisfaction is the value of that implication, not a recorded field. And polarity is carried by WHICH SUBSET a usage joins: 'satisfiedRequirementChecks :> requirementChecks, assertedConstraintChecks' versus 'notSatisfiedRequirementChecks: RequirementCheck[0..*] :> requirementChecks, negatedConstraintChecks'. The constraint itself is not rewritten to change polarity, which is the declared counterpart of MAGE keeping the breach query positive and putting the polarity in satisfied_when."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar",
       "locator": "Systems Library/VerificationCases.sysml line 13 (VerificationCase), line 22 (the verdict), lines 58-68 (VerdictKind), lines 70-79 (PassIf)",
       "what": "DECISIVE, declared: 'return verdict : VerdictKind :>> result;' inside 'abstract verification def VerificationCase :> Case' -- the verdict REDEFINES the case's return, so it is produced by performing the case and stored on nothing. 'enum def VerdictKind { pass; fail; inconclusive; error; }' closes the vocabulary at four. 'calc def PassIf' returns 'if isPassing? VerdictKind::pass else VerdictKind::fail', so a Boolean reaches only two of the four and inconclusive/error are declared to be something other than a failed check."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/SysML.xmi",
       "locator": "packagedElement xmi:id=\"Systems-Requirements-RequirementDefinition\", ownedRule checkRequirementDefinitionSpecialization and deriveRequirementDefinitionRequiredConstraint; packagedElement xmi:id=\"Systems-VerificationCases-VerificationCaseDefinition\", ownedRule checkVerificationCaseSpecialization",
       "what": "Declared, and this is the chain by which the library elements above govern an author's requirement: body=\"specializesFromLibrary('Requirements::RequirementCheck')\" and body=\"specializesFromLibrary('VerificationCases::VerificationCase')\". The derivation 'requiredConstraint = ownedFeatureMembership->selectByKind(RequirementConstraintMembership)->select(kind = RequirementConstraintKind::requirement).ownedConstraint' declares that a requirement's required constraints are separated from its assumptions by a membership kind."
     },
     {
       "rung": "spec-inspected",
+      "decisive": false,
       "source": "SysML v2.0 formal/26-03-02, clauses 8.3.21.8 (p.357) and 8.3.24.3 (p.375) (identical text in the SysML.xmi ownedComments)",
       "locator": "the Description of each",
       "what": "CORROBORATING prose: 'A RequirementDefinition is a ConstraintDefinition that defines a requirement used in the context of a specification as a constraint that a valid solution must satisfy' and 'A VerificationCaseDefinition is a CaseDefinition for the purpose of verification of the subject of the case against its requirements.' Listed separately so the record does not present prose as declared structure."

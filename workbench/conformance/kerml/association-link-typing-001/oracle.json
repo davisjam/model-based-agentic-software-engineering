@@ -13,18 +13,21 @@
   "evidence": [
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/KerML/20250201/KerML.xmi",
       "locator": "packagedElement name=\"Association\", xmi:id=\"Kernel-Associations-Association\"",
       "what": "Declared structure: two <generalization> children, to Core-Classifiers-Classifier and to Root-Elements-Relationship; and ownedRule checkAssociationSpecialization with specification specializesFromLibrary('Links::Link'). Read without interpreting prose."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar",
       "locator": "Kernel Semantic Library/Links.kerml lines 10-30 and 41-64",
       "what": "Declared structure: BinaryLink declares two distinct end features, source and target, each Anything[1] subsetting participant; and the links / binaryLinks / selfLinks chain narrows a link population by type through subsetting."
     },
     {
       "rung": "spec-inspected",
+      "decisive": true,
       "source": "KerML 1.0 formal/2026-03-01, clause 8.3.3.2.2 Classifier, Description",
       "locator": "first bullet of the Description",
       "what": "DECISIVE and prose: 'A Classifier is a Type that classifies: Things (in the universe) regardless of how Features relate them.' Getting from 'Association is a Classifier' to 'a question over one Association ranges over its links only' uses this sentence plus the Links pattern. That inference is the reason this fixture is not normative-artifact."

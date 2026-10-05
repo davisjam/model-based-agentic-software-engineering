@@ -13,24 +13,28 @@
   "evidence": [
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar",
       "locator": "Kernel Semantic Library/TransitionPerformances.kerml lines 21-65",
       "what": "DECISIVE, declared: transitionLink: HappensBefore[0..1]; connector guardConstraint: TPCGuardConstraint[*] from transitionLink to guard; and assoc struct TPCGuardConstraint { private inv { allTrue(constrainedGuard()) } }. A happens-before link exists only where every guard evaluates true, and a transition whose guard never can gets the multiplicity's lower bound of 0."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Systems-Library.kpar",
       "locator": "Systems Library/Actions.sysml lines 325-343",
       "what": "Declared: abstract action def TransitionAction :> Action, TransitionPerformance -- the base type of all TransitionUsages. This is the declared chain by which the KerML invariant governs a SysML state transition."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/SysML.xmi",
       "locator": "packagedElement name=\"TransitionUsage\", xmi:id=\"Systems-States-TransitionUsage\", ownedRule checkTransitionUsageSpecialization",
       "what": "Declared: specializesFromLibrary('Actions::transitionActions'), closing the chain above; and the guardExpression, succession, source and target attributes exist as declared features."
     },
     {
       "rung": "spec-inspected",
+      "decisive": false,
       "source": "SysML v2.0 formal/2026-03-02, clause 8.3.18.9 TransitionUsage, Description (identical text in SysML.xmi ownedComment)",
       "locator": "first paragraph of the Description",
       "what": "CORROBORATING prose: 'When triggered by a triggerAction, when its guardExpression is true, the TransitionUsage asserts that its source is exited ... and then its target is entered.' Listed separately so the record does not present prose as declared structure."

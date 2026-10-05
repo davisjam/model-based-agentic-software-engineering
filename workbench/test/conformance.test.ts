@@ -41,9 +41,106 @@ import type { Verification } from "../src/engine/verification.ts";
 // The corpus, declared once
 // ----------------------------------------------------------------------------------------------
 
-/** The three published methods. Closed, so a fourth cannot land unnoticed in a manifest. */
+/**
+ * The three published methods, STRONGEST FIRST — so "weakest" below is a position in this array
+ * rather than a comparison nobody wrote down. Closed, so a fourth cannot land unnoticed in a
+ * manifest.
+ */
 const METHODS = ["oracle-executed", "normative-artifact", "spec-inspected"] as const;
 type Method = (typeof METHODS)[number];
+
+/** One component of a fixture's reading, as `oracle.json` records it. */
+interface EvidenceComponent {
+  readonly rung: string;
+  /**
+   * Whether the pinned interpretation RESTS on this component.
+   *
+   * Promoted from the `what` prose, which already self-labels the decisive and the corroborating
+   * entries. A field rather than a sentence because the grade is computed from it: the manifest's
+   * `methodDiscipline` says `method` is the weakest DECISIVE rung, and a rule stated in prose is a
+   * rule the next gate author re-derives by reading.
+   */
+  readonly decisive: boolean;
+  readonly what: string;
+}
+
+/**
+ * The grade a fixture's own evidence FORCES: the weakest rung among its decisive components.
+ *
+ * This is the manifest's `methodDiscipline`, executed. Before 2026-10-05 the grade was held by
+ * `assert.equal(record.method, f.method)` against a copy of it in this file — double-entry
+ * bookkeeping, which catches a manifest edited without the test and cannot catch a fixture whose
+ * grade is simply wrong. Two copies agreeing on a wrong value is a green suite, so a mis-grade was
+ * unfalsifiable. Deriving makes the grade a function of the evidence, which is what the discipline
+ * sentence always claimed it was.
+ *
+ * Corroborating components are excluded rather than min()-ed over, and that is the sentence the
+ * manifest used to get wrong: it said "the weakest rung the interpretation DEPENDS ON", which reads
+ * as a minimum over every entry. Taken that way two of the five fixtures violated it — both because
+ * they list a confirming SysML Description they explicitly disclaim ("it is not what the claim rests
+ * on"). Grading a fixture down for citing evidence it took care to label corroborating punishes the
+ * scrupulous record and rewards the one that omits the sentence.
+ *
+ * Pure in `evidence` so the negative control below can drive it with a doctored array instead of
+ * editing a fixture out from under a concurrent writer.
+ */
+function gradeOf(id: string, evidence: readonly EvidenceComponent[]): Method {
+  assert.ok(evidence.length > 0,
+    `${id}: oracle.json lists no evidence, so there is nothing for the grade to be derived FROM`);
+  for (const e of evidence) {
+    assert.ok(METHODS.includes(e.rung as Method),
+      `${id}: evidence rung '${e.rung}' is not one of the published methods — `
+      + `a rung outside ${METHODS.join(", ")} has no position in the strength order`);
+    assert.equal(typeof e.decisive, "boolean",
+      `${id}: an evidence component declares no \`decisive\` flag. The grade is the weakest DECISIVE `
+      + `rung, so a component that does not say whether the claim rests on it cannot be graded.`);
+  }
+  const decisive = evidence.filter((e) => e.decisive);
+  assert.ok(decisive.length > 0,
+    `${id}: every evidence component is corroborating, so nothing carries the claim. A reading whose `
+    + `decisive component is unlisted has no derivable grade — list it, or the headline is a guess.`);
+  const weakest = Math.max(...decisive.map((e) => METHODS.indexOf(e.rung as Method)));
+  return METHODS[weakest] as Method;
+}
+
+/**
+ * That each `decisive` flag agrees with the prose it was promoted from.
+ *
+ * The flag is the authored surface the grade reads, so an edit to the flag alone moves the grade
+ * while the sentence beside it still says the opposite. Where the `what` self-labels — every fixture
+ * writes `DECISIVE` or `CORROBORATING` in the entries where the distinction decides something — the
+ * two must agree. An entry carrying neither word is unconstrained here, which is the honest bound:
+ * this holds the field against the prose, not the prose against the specification.
+ */
+function assertFlagsMatchProse(id: string, evidence: readonly EvidenceComponent[]): void {
+  for (const [i, e] of evidence.entries()) {
+    const saysCorroborating = e.what.includes("CORROBORATING");
+    const saysDecisive = e.what.includes("DECISIVE");
+    assert.ok(!(saysCorroborating && saysDecisive),
+      `${id} evidence[${i}]: the prose claims both DECISIVE and CORROBORATING`);
+    if (saysCorroborating || saysDecisive) {
+      assert.equal(e.decisive, saysDecisive,
+        `${id} evidence[${i}]: \`decisive: ${e.decisive}\` contradicts its own \`what\`, which reads `
+        + `${saysDecisive ? "DECISIVE" : "CORROBORATING"}. The flag sets the fixture's grade, so the `
+        + `two disagreeing means the grade rests on a claim the record argues against.`);
+    }
+  }
+}
+
+/** A fixture's evidence array, off disk. */
+function evidenceOf(id: string): readonly EvidenceComponent[] {
+  const oracle = JSON.parse(read(id, "oracle.json")) as {
+    readonly evidence?: readonly EvidenceComponent[];
+  };
+  return oracle.evidence ?? [];
+}
+
+/** The grade the fixture's own `oracle.json` forces. */
+function derivedMethod(id: string): Method {
+  const evidence = evidenceOf(id);
+  assertFlagsMatchProse(id, evidence);
+  return gradeOf(id, evidence);
+}
 
 /**
  * §35.4's five rows, each with the LOOKUP that decides whether its construct still exists.
@@ -73,19 +170,25 @@ interface Fixture {
   readonly id: string;
   /** The §35.4 row this fixture discharges, so the manifest cannot name a row that is gone. */
   readonly row: Section354Row;
-  readonly method: Method;
 }
 
 /**
  * What the corpus claims to contain, as this file reads it — the join the manifest is checked
  * against rather than a second copy of it.
+ *
+ * No `method` here, deliberately. It used to carry one, and that copy was the whole of criterion
+ * 13's enforcement: the test asserted the manifest's grade equalled this file's, so the two had to
+ * be edited together and neither had to be RIGHT. The grade is now derived per fixture by
+ * `derivedMethod` from that fixture's own `evidence[]`, and the manifest is checked against the
+ * derivation. The row stays, because which §35.4 row a fixture discharges is a declared
+ * correspondence rather than a computable one, and `rowResolves` holds it against the live registry.
  */
 const CORPUS: readonly Fixture[] = [
-  { id: "kerml/association-link-typing-001", row: "structural-graph", method: "spec-inspected" },
-  { id: "kerml/binding-connector-identity-001", row: "binding", method: "spec-inspected" },
-  { id: "sysml/transition-guard-occurrence-001", row: "state-machine", method: "normative-artifact" },
-  { id: "sysml/quantity-unit-magnitude-001", row: "quantitative-model", method: "normative-artifact" },
-  { id: "sysml/requirement-verification-verdict-001", row: "requirement, verification", method: "normative-artifact" },
+  { id: "kerml/association-link-typing-001", row: "structural-graph" },
+  { id: "kerml/binding-connector-identity-001", row: "binding" },
+  { id: "sysml/transition-guard-occurrence-001", row: "state-machine" },
+  { id: "sysml/quantity-unit-magnitude-001", row: "quantitative-model" },
+  { id: "sysml/requirement-verification-verdict-001", row: "requirement, verification" },
 ];
 
 /**
@@ -238,6 +341,85 @@ function mutate(text: string, from: string, to: string, expectedHits = 1): strin
 // Corpus hygiene — the manifest describes what is on disk
 // ----------------------------------------------------------------------------------------------
 
+/**
+ * The grade derivation MOVES when the evidence moves — negative control.
+ *
+ * A derivation nobody has watched fail is worth no more than the double-entry it replaced, and this
+ * one's whole claim is that a mis-grade now goes red. So each arm doctors a real fixture's evidence
+ * array in memory and asserts the derived grade changes. The fixtures on disk are never edited:
+ * `gradeOf` takes the array as a parameter precisely so a concurrent writer's tree is not mutated to
+ * prove a property about this file.
+ *
+ * `what` is neutral on the doctored entries so `assertFlagsMatchProse` is not the thing firing —
+ * each arm has to exercise the grade computation itself. That check gets its own arm below.
+ */
+test("the method derivation moves when the evidence moves — negative control", () => {
+  const na = "normative-artifact";
+  const si = "spec-inspected";
+  const decl = (rung: string, decisive: boolean): EvidenceComponent =>
+    ({ rung, decisive, what: "a declared fact" });
+
+  // The honest shape of the three normative-artifact fixtures: declared facts carry the claim, a
+  // confirming sentence is listed and disclaimed. The sentence must not set the grade.
+  assert.equal(gradeOf("probe", [decl(na, true), decl(na, true), decl(si, false)]), na,
+    "a corroborating sentence dragged the grade down — this is exactly the min()-over-everything "
+    + "reading the manifest's old wording invited, and it mis-graded two of the five fixtures");
+
+  // Promote that same sentence to decisive and the grade MUST fall. This is the mis-grade the old
+  // double-entry assertion could not see: a fixture whose claim rests on prose, headlined
+  // `normative-artifact`, with the test file carrying the same wrong word.
+  assert.equal(gradeOf("probe", [decl(na, true), decl(na, true), decl(si, true)]), si,
+    "a decisive prose component did not pull the grade to spec-inspected");
+
+  // And the other direction: strike the decisive sentence from a spec-inspected fixture and the
+  // grade rises, so the derivation is not simply reporting whatever rung appears last.
+  assert.equal(gradeOf("probe", [decl(na, true), decl(si, false)]), na,
+    "the derivation ignored `decisive` and graded on the weakest rung present");
+
+  // A reading with no decisive component has no derivable grade. Refusing is the only sound answer:
+  // returning the weakest rung present would invent a claim the record does not make.
+  assert.throws(() => gradeOf("probe", [decl(na, false), decl(si, false)]), /every evidence component is corroborating/,
+    "an all-corroborating reading was graded rather than refused");
+  assert.throws(() => gradeOf("probe", []), /nothing for the grade to be derived FROM/,
+    "an empty evidence array was graded");
+
+  // A rung outside the published three has no position in the strength order, so it cannot be
+  // silently sorted to one end.
+  assert.throws(() => gradeOf("probe", [decl("reviewed-by-person", true)]), /is not one of the published methods/,
+    "an unpublished rung was accepted into the strength order");
+});
+
+/**
+ * A `decisive` flag that contradicts its own prose fails — negative control.
+ *
+ * The flag is what the grade reads, and the prose is what justifies the flag. Editing the flag alone
+ * is the cheapest way to move a grade, so the disagreement has to be the failure.
+ */
+test("a decisive flag contradicting its own prose fails — negative control", () => {
+  const corroborating = "CORROBORATING prose: the Description says the same thing.";
+  const decisive = "DECISIVE prose: the step from declared structure to identity.";
+
+  assert.throws(
+    () => assertFlagsMatchProse("probe", [{ rung: "spec-inspected", decisive: true, what: corroborating }]),
+    /contradicts its own `what`/,
+    "a corroborating component flagged decisive was accepted");
+  assert.throws(
+    () => assertFlagsMatchProse("probe", [{ rung: "spec-inspected", decisive: false, what: decisive }]),
+    /contradicts its own `what`/,
+    "a decisive component flagged corroborating was accepted — the shape that would QUIETLY RAISE a "
+    + "grade, by hiding the sentence the claim rests on from the derivation");
+
+  // An entry self-labelling both ways cannot be checked against, so it is refused rather than read.
+  assert.throws(
+    () => assertFlagsMatchProse("probe", [{ rung: "spec-inspected", decisive: true, what: `${decisive} ${corroborating}` }]),
+    /claims both DECISIVE and CORROBORATING/);
+
+  // Silence is allowed: most declared-structure entries name neither word, and inventing a default
+  // here would assert agreement nobody wrote.
+  assertFlagsMatchProse("probe", [{ rung: "normative-artifact", decisive: true, what: "Declared structure." }]);
+  assertFlagsMatchProse("probe", [{ rung: "normative-artifact", decisive: false, what: "Artifact identity." }]);
+});
+
 test("every fixture ships all four files, and the manifest agrees with them", () => {
   const manifest = JSON.parse(read("", "manifest.json").replace(/^/, "")) as {
     readonly status: string;
@@ -257,8 +439,15 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
   for (const f of CORPUS) {
     const record = manifest.fixtures.find((m) => m.id === f.id);
     assert.ok(record !== undefined, `${f.id}: not in the manifest`);
-    assert.equal(record.method, f.method, `${f.id}: the manifest's method is not this file's`);
     assert.ok(METHODS.includes(record.method as Method), `${f.id}: '${record.method}' is not a published method`);
+
+    // The grade, DERIVED from this fixture's own evidence and compared — not compared against a
+    // second copy of itself. `methodDiscipline` executed rather than read.
+    assert.equal(record.method, derivedMethod(f.id),
+      `${f.id}: the manifest grades this '${record.method}', and its own oracle.json evidence[] `
+      + `forces '${derivedMethod(f.id)}' — the weakest rung among the components marked decisive. `
+      + `Either the grade overstates what the claim rests on, or a component's \`decisive\` flag is `
+      + `wrong. The manifest's methodDiscipline is the rule this assertion implements.`);
 
     // The four files §35.6 requires, each non-trivial. A claim.md that said only "this
     // corresponds" would clear a presence check and establish nothing, so the floor is a length.
@@ -294,7 +483,10 @@ test("every fixture ships all four files, and the manifest agrees with them", ()
   }
 
   // The status line is DERIVED here and compared, so it cannot drift from the corpus it summarizes.
-  const n = (m: Method): number => CORPUS.filter((f) => f.method === m).length;
+  // Derived now from each fixture's evidence rather than from a `method` column in this file, so the
+  // headline count and the per-fixture grade answer to the same source.
+  const grades = CORPUS.map((f) => derivedMethod(f.id));
+  const n = (m: Method): number => grades.filter((g) => g === m).length;
   const expected = `checked by ${CORPUS.length} fixtures: ${n("oracle-executed")} oracle-executed, `
     + `${n("normative-artifact")} normative-artifact, ${n("spec-inspected")} spec-inspected`;
   assert.equal(manifest.status, expected, "the manifest's status line does not describe its own corpus");

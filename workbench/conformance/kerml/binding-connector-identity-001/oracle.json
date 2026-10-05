@@ -18,24 +18,28 @@
   "evidence": [
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/KerML/20250201/KerML.xmi",
       "locator": "packagedElement xmi:id=\"Kernel-Connectors-BindingConnector\", its two ownedRule constraints",
       "what": "DECLARED invariants on the metaclass, so they hold of every BindingConnector rather than being exhibited by an example. validateBindingConnectorIsBinary: body=\"relatedFeature->size() = 2\". checkBindingConnectorSpecialization: body=\"specializesFromLibrary('Links::selfLinks')\". Both language=\"OCL2.0\". The element's sole generalization is Kernel-Connectors-Connector."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/KerML/20250201/Semantic-Library.kpar",
       "locator": "Kernel Semantic Library/Links.kerml lines 32-41 (SelfLink) and 57-65 (selfLinks)",
       "what": "DECLARED: 'assoc all SelfLink specializes BinaryLink' whose two ends subset each other -- 'end feature thisThing: Anything redefines source subsets sameThing crosses sameThing.self' and 'end self2 [1] feature sameThing: Anything redefines target subsets thisThing'. This is the structural form of the identity, and lines 57-65 declare the selfLinks Feature that the constraint above names."
     },
     {
       "rung": "spec-inspected",
+      "decisive": true,
       "source": "KerML 1.0 formal/26-03-01, clause 8.4.4.6.2 Binding Connectors, p.262 (same sentence not present in KerML.xmi; the library's Links.kerml doc comment states it in other words)",
       "locator": "second sentence of the clause",
       "what": "DECISIVE prose: 'SelfLink has two associationEnds that subset each other, meaning they identify the same things (have the same values), which then also applies to BindingConnector connectorEnds that redefine the associationEnds of SelfLink.' This is the step from declared mutual subsetting to identity, and it is what makes the fixture's method spec-inspected."
     },
     {
       "rung": "spec-inspected",
+      "decisive": false,
       "source": "KerML 1.0 formal/26-03-01, clause 8.3.4.5.2 Binding Connector, p.185 (identical text in the KerML.xmi ownedComment of Kernel-Connectors-BindingConnector)",
       "locator": "the Description",
       "what": "CORROBORATING prose: 'A BindingConnector is a binary Connector that requires its relatedFeatures to identify the same things (have the same values).' Listed separately so the record does not present a comment as declared structure."

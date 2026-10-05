@@ -13,24 +13,28 @@
   "evidence": [
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Quantities-and-Units-Domain-Library.kpar",
       "locator": "Quantities and Units/ISQBase.sysml lines 41-63",
       "what": "DECISIVE, declared: attribute def DurationValue :> ScalarQuantityValue { attribute :>> num: Real; attribute :>> mRef: DurationUnit[1]; } and attribute def DurationUnit :> SimpleUnit with quantityDimension fixed to isq.T exponent 1. A magnitude is a pair, the unit arm is required and single, and the unit's dimension is fixed."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Quantities-and-Units-Domain-Library.kpar",
       "locator": "Quantities and Units/SIPrefixes.sysml line 21; MeasurementReferences.sysml lines 318-350",
       "what": "DECISIVE, declared VALUE: milli has conversionFactor = 1E-3; and ConversionByPrefix derives a unit's conversionFactor from prefix.conversionFactor against a referenceUnit. The 1:1000 ratio between a milli-prefixed unit and its reference unit is read off, not inferred."
     },
     {
       "rung": "normative-artifact",
+      "decisive": true,
       "source": "https://www.omg.org/spec/SysML/20250201/Quantities-and-Units-Domain-Library.kpar",
       "locator": "Quantities and Units/SI.sysml line 24 and line 304",
       "what": "Declared: attribute <s> second : DurationUnit, the reference unit; and attribute <mm> millimetre : LengthUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = milli; :>> referenceUnit = m; } }, the library's own spelling of a milli-prefixed unit. The second is the pattern source.sysml Part B copies."
     },
     {
       "rung": "normative-artifact",
+      "decisive": false,
       "source": "https://www.omg.org/spec/SysML/20250201/Quantities-and-Units-Domain-Library.kpar",
       "locator": "Quantities and Units/.meta.json",
       "what": "Artifact identity: { \"created\": \"2025-03-13T00:00:00Z\", \"metamodel\": \"https://www.omg.org/spec/SysML/20250201\" }. Recorded so the excerpts above are attributable to a named published artifact rather than to a download."
