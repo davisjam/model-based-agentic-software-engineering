@@ -33,7 +33,9 @@ import {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, pathBetween,
   traceTo, type CompiledSystem, type ExploreOptions, type StateSpace,
 } from "./explore.ts";
-import { compilePredicate, describePredicate, type CompiledPredicate } from "./predicate.ts";
+import {
+  compilePredicate, describePredicate, satisfiability, type CompiledPredicate,
+} from "./predicate.ts";
 import type { RefScope } from "./refs.ts";
 import {
   bounded, detail, exhaustive, refusedAdmission as refused, result, unlicensed, verdict,
@@ -67,6 +69,43 @@ const lasso = (prefix: readonly Step[], cycle: readonly Step[]): Evidence =>
 const asCompilation = (notes: readonly string[]): readonly Compilation[] =>
   notes.map((explanation) => ({ kind: "other", explanation }));
 
+const disclose = (kind: Compilation["kind"], explanation: string): Compilation => ({ kind, explanation });
+
+/**
+ * V41 — the vacuity disclosure for a behavioural verdict decided by the PREDICATE rather than by the
+ * transition structure.
+ *
+ * `outcome` cannot carry this. A `reach` whose target contradicts itself is `refuted`, and so is a
+ * `reach` the design genuinely prevents; an `invariant` whose violation is unsatisfiable `holds`, and
+ * so does one the design genuinely maintains. The pairs are indistinguishable in the result, and the
+ * first member of each is a modelling error wearing the second's verdict. The `vacuous` arm of
+ * `Compilation.kind` already exists for exactly this and already binds forward by its own
+ * declaration (`src/ir/types.ts`), so the disclosure travels there rather than in a new dialect.
+ *
+ * Only `unsatisfiable` discloses. `satisfiable` is the earned verdict and needs no caveat, and
+ * `unknown` — the projection exceeded its budget — must stay silent rather than claim either, because
+ * a disclosure that fires on "not computed" trains readers to ignore it.
+ */
+function vacuityOf(
+  plan: BehaviorPlan, subject: CompiledPredicate, form: PredicateForm,
+): readonly Compilation[] {
+  if (plan.subject.on !== "configurations") return [];
+  const verdict = satisfiability(plan.compiled.scope, plan.subject.raw, subject, plan.compiled.initial);
+  if (verdict !== "unsatisfiable") return [];
+  const described = describePredicate(plan.subject.raw);
+  return [disclose("vacuous", form === "invariant"
+    ? `No configuration the state vector admits can violate '${described}', so the claim holds ` +
+      `VACUOUSLY: it was decided by the predicate, and no transition structure was consulted. A ` +
+      `machine cannot occupy two control states at once, and a variable cannot hold two values at ` +
+      `once — a conjunction that asks for either is a contradiction, not a property the design ` +
+      `maintains. If this was meant to be a safety property the design earns, the predicate is the ` +
+      `finding.`
+    : `No configuration the state vector admits satisfies '${described}', so the refutation is ` +
+      `VACUOUS: it was decided by the predicate, and no transition structure was consulted. The ` +
+      `sound reading is that this model cannot REPRESENT the situation, which is stronger than ` +
+      `"it does not happen here" and weaker than "it was searched for and not found".`)];
+}
+
 // --------------------------------------------------------------------------------------------
 // Admission — every pre-evaluation decision, in one place, consumed by the evaluator
 // --------------------------------------------------------------------------------------------
@@ -82,7 +121,12 @@ type PredicateForm = "reach" | "invariant" | "recurrence" | "repeatable-cycle";
  * witness or a counterexample — is the evaluator's, and it is not a licensing decision.
  */
 export type BehaviorSubject =
-  | { readonly on: "configurations"; readonly form: PredicateForm; readonly predicate: CompiledPredicate }
+  | {
+      readonly on: "configurations"; readonly form: PredicateForm;
+      readonly predicate: CompiledPredicate;
+      /** The predicate as authored. Carried so vacuity can project onto the coordinates it reads (V41). */
+      readonly raw: Predicate;
+    }
   | { readonly on: "whole-space"; readonly form: "deadend" }
   | {
       readonly on: "transition"; readonly form: "transition-live";
@@ -158,7 +202,7 @@ export function admitBehaviorQuery(
     if (!compiledPredicate.ok) {
       return refused(unlicensed(systemHash, `${field}: ${compiledPredicate.refusal}`, interpretedAs));
     }
-    return plan({ on: "configurations", form, predicate: compiledPredicate.value });
+    return plan({ on: "configurations", form, predicate: compiledPredicate.value, raw });
   };
 
   switch (q.form) {
@@ -222,7 +266,7 @@ function evaluateBehavior(p: BehaviorPlan, systemHash: string): Verdict {
           if (at !== null) {
             return settled(space, systemHash, interpretedAs, "holds", trace(traceTo(space, at), "witness"));
           }
-          return unsettled(space, systemHash, interpretedAs, "refuted");
+          return unsettled(space, systemHash, interpretedAs, "refuted", vacuityOf(p, target, "reach"));
         }
 
         case "invariant": {
@@ -234,13 +278,16 @@ function evaluateBehavior(p: BehaviorPlan, systemHash: string): Verdict {
             return settled(space, systemHash, interpretedAs, "refuted",
               trace(traceTo(space, at), "counterexample"));
           }
-          return unsettled(space, systemHash, interpretedAs, "holds");
+          return unsettled(space, systemHash, interpretedAs, "holds",
+            vacuityOf(p, violates, "invariant"));
         }
 
         case "repeatable-cycle":
-          return repeatableCycle(exploreSpace(compiled, base), target, systemHash, interpretedAs);
+          return repeatableCycle(exploreSpace(compiled, base), target, systemHash, interpretedAs,
+            vacuityOf(p, target, "repeatable-cycle"));
         case "recurrence":
-          return recurrence(exploreSpace(compiled, base), target, systemHash, interpretedAs);
+          return recurrence(exploreSpace(compiled, base), target, systemHash, interpretedAs,
+            vacuityOf(p, target, "recurrence"));
       }
     }
 
@@ -290,23 +337,27 @@ function settled(
  */
 function unsettled(
   space: StateSpace, systemHash: string, interpretedAs: string, exhaustiveOutcome: "holds" | "refuted",
+  disclosures: readonly Compilation[] = [],
 ): Verdict {
   if (space.stopReason === "state-limit") {
     return verdict(result({
       outcome: "inconclusive",
       coverage: bounded(space.statesExplored, "state-limit"),
       systemHash, interpretedAs,
-      compilation: asCompilation([
+      // The vacuity disclosure rides along under a bound too. Unsatisfiability is a fact about the
+      // predicate, so the truncation cannot weaken it — and a predicate no configuration can satisfy
+      // is the better finding of the two.
+      compilation: [...asCompilation([
         ...space.notes,
         `Exploration stopped at the ${space.statesExplored}-configuration limit with work ` +
         `outstanding, so the answer covers only the explored region. The sound statement is ` +
         `"not within the explored region", never "not at all".`,
-      ]),
+      ]), ...disclosures],
     }));
   }
   return verdict(result({
     outcome: exhaustiveOutcome, coverage: exhaustive(space.statesExplored), systemHash, interpretedAs,
-    compilation: asCompilation(space.notes),
+    compilation: [...asCompilation(space.notes), ...disclosures],
   }));
 }
 
@@ -329,6 +380,7 @@ function unsettled(
  */
 function recurrence(
   space: StateSpace, target: CompiledPredicate, systemHash: string, interpretedAs: string,
+  disclosures: readonly Compilation[] = [],
 ): Verdict {
   const hits: number[] = [];
   space.configs.forEach((cfg, i) => {
@@ -350,7 +402,7 @@ function recurrence(
     return settled(space, systemHash, interpretedAs, "holds",
       lasso(traceTo(space, best.at), best.segment));
   }
-  return unsettled(space, systemHash, interpretedAs, "refuted");
+  return unsettled(space, systemHash, interpretedAs, "refuted", disclosures);
 }
 
 /**
@@ -366,6 +418,7 @@ function recurrence(
  */
 function repeatableCycle(
   space: StateSpace, target: CompiledPredicate, systemHash: string, interpretedAs: string,
+  disclosures: readonly Compilation[] = [],
 ): Verdict {
   for (let i = 0; i < space.configs.length; i += 1) {
     const cfg = space.configs[i];
@@ -375,7 +428,7 @@ function repeatableCycle(
       return settled(space, systemHash, interpretedAs, "holds", lasso(traceTo(space, i), cycle));
     }
   }
-  return unsettled(space, systemHash, interpretedAs, "refuted");
+  return unsettled(space, systemHash, interpretedAs, "refuted", disclosures);
 }
 
 // --------------------------------------------------------------------------------------------
