@@ -22,7 +22,7 @@
  */
 import type { CanonicalSystem, Coverage, Evidence, QueryResult } from "../ir/types.ts";
 import { runQuery } from "../engine/index.ts";
-import { BINDINGS, MODEL_TYPES } from "../engine/model-types.ts";
+import { BINDINGS } from "../engine/model-types.ts";
 import { renderView } from "../render/index.ts";
 import type { AccessibleNode } from "../render/types.ts";
 import { Workspace, type Ports } from "../app/services.ts";
@@ -35,7 +35,8 @@ import {
   bulletList, el, liveBudget, liveFigure, pairsList, rowsTable,
 } from "./dom.ts";
 import {
-  LESSON, REFERENCE_ANCHOR, WALKTHROUGH_STEPS, WALK_DP, WALK_ESN, WALK_TW,
+  LESSON, REFERENCE_ANCHOR, WALKTHROUGH_GROUPS, WALKTHROUGH_STEPS,
+  WALK_DP, WALK_ESN, WALK_MB, WALK_TW,
   type WalkStep,
 } from "./walkthrough.ts";
 
@@ -181,29 +182,61 @@ export function renderLesson(): HTMLElement {
   return section;
 }
 
+/**
+ * The jump grid, rendered GROUP BY GROUP so the navigation carries the ontology. Step numbers stay
+ * continuous across groups — a student says "step 11", not "step 1 of Working with models".
+ */
 export function renderWalkthroughNav(): HTMLElement {
   const nav = el("nav");
   nav.setAttribute("aria-label", "Walkthrough");
-  const list = el("ol", undefined, "walk-cards");
-  WALKTHROUGH_STEPS.forEach((step, i) => {
-    const li = el("li", undefined, "walk-card");
-    const a = el("a");
-    a.href = `#${step.anchor}`;
-    a.append(el("span", `${i + 1}. ${step.title}`, "walk-card-title"));
-    li.append(a);
-    list.append(li);
-  });
-  nav.append(list);
+  const indexOf = new Map(WALKTHROUGH_STEPS.map((s, i) => [s.anchor, i]));
+
+  for (const group of WALKTHROUGH_GROUPS) {
+    const heading = el("h3", group.title, "walk-group-title");
+    heading.id = `walk-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`;
+    const list = el("ol", undefined, "walk-cards");
+    list.setAttribute("aria-labelledby", heading.id);
+    for (const anchor of group.anchors) {
+      const i = indexOf.get(anchor);
+      // A group naming an anchor no step declares is a partition defect, not a rendering one; the
+      // conformance test catches it first, so failing loudly here beats a silently short grid.
+      if (i === undefined) throw new Error(`group “${group.title}” names unknown step ${anchor}`);
+      const step = must(WALKTHROUGH_STEPS[i], `no step at ${i}`);
+      const li = el("li", undefined, "walk-card");
+      const a = el("a");
+      a.href = `#${step.anchor}`;
+      a.append(el("span", `${i + 1}. ${step.title}`, "walk-card-title"));
+      li.append(a);
+      list.append(li);
+    }
+    nav.append(heading, list);
+  }
   return nav;
 }
 
-function stepSection(step: WalkStep, index: number, body: readonly Node[]): HTMLElement {
+/**
+ * The shared card on the four model-form steps. The `Ask:` line is NOT declared prose — the card
+ * names a shipped question and this reads that question's own label out of the corpus, so the card
+ * cannot drift from the question it points at.
+ */
+function renderModelCard(deps: WalkthroughDeps, card: NonNullable<WalkStep["card"]>): HTMLElement {
+  const box = el("div", undefined, "walk-model-card");
+  box.append(el("p", card.represents, "walk-card-represents"));
+  const system = systemOf(deps, card.ask.example);
+  box.append(el("p", `Ask: ${nameOf(system, card.ask.query)}`, "walk-card-ask"));
+  return box;
+}
+
+function stepSection(
+  deps: WalkthroughDeps, step: WalkStep, index: number, body: readonly Node[],
+): HTMLElement {
   const section = el("section");
   section.id = step.anchor;
   const h = el("h2", `${index + 1}. ${step.title}`);
   h.id = `${step.anchor}-h`;
   section.setAttribute("aria-labelledby", h.id);
   section.append(h, el("p", step.definition, "walk-define"));
+  if (step.card !== undefined) section.append(renderModelCard(deps, step.card));
   if (step.instruction !== null) section.append(el("p", step.instruction, "walk-do"));
   section.append(...body);
 
@@ -227,30 +260,49 @@ function stepSection(step: WalkStep, index: number, body: readonly Node[]): HTML
 // The steps
 // --------------------------------------------------------------------------------------------
 
+/**
+ * Builders keyed by ANCHOR, not by position.
+ *
+ * This was a positional array index-matched to `WALKTHROUGH_STEPS`, guarded only by a length check.
+ * That guard cannot see a re-order: move two steps and every body still renders, under the wrong
+ * heading. Keying by anchor makes the join the compiler's problem — a step whose anchor has no
+ * builder is a missing key, and a builder for a retired anchor is an excess one.
+ */
+function stepBuilders(
+  deps: WalkthroughDeps,
+): Readonly<Record<string, (step: WalkStep) => readonly Node[]>> {
+  return {
+    "walk-purpose": (s) => stepPurpose(deps, s),
+    "walk-structural": (s) => [...stepEntities(deps, s), ...stepRelationships(deps, s)],
+    "walk-behavioral": (s) => stepStateMachines(deps, s),
+    "walk-quantitative": (s) => [
+      ...stepQuantities(deps, s), ...stepQuantitativeQuestions(deps, s),
+    ],
+    "walk-combining": (s) => stepCombining(deps, s),
+    "walk-questions": (s) => stepQuestions(deps, s),
+    "walk-evidence": (s) => stepEvidence(deps, s),
+    "walk-properties": (s) => stepProperties(deps, s),
+    "walk-requirements": (s) => stepRequirements(deps, s),
+    "walk-boundaries": (s) => stepBoundaries(deps, s),
+    "walk-changes": (s) => stepChanges(deps, s),
+    "walk-bindings": (s) => stepBindings(deps, s),
+    "walk-composition": (s) => stepComposition(deps, s),
+    "walk-agents": () => stepAgents(),
+  };
+}
+
 export function renderWalkthroughSteps(deps: WalkthroughDeps): readonly HTMLElement[] {
-  const builders: readonly ((step: WalkStep) => readonly Node[])[] = [
-    (s) => stepEntities(deps, s),
-    (s) => stepRelationships(deps, s),
-    (s) => stepPurpose(deps, s),
-    (s) => stepStateMachines(deps, s),
-    (s) => stepQuestions(deps, s),
-    (s) => stepEvidence(deps, s),
-    (s) => stepProperties(deps, s),
-    (s) => stepRequirements(deps, s),
-    (s) => stepChanges(deps, s),
-    (s) => stepQuantities(deps, s),
-    (s) => stepQuantitativeQuestions(deps, s),
-    (s) => stepMultipleModels(deps, s),
-    (s) => stepBindings(deps, s),
-    (s) => stepComposition(deps, s),
-    (s) => stepBoundaries(deps, s),
-    () => stepAgents(),
-  ];
-  if (builders.length !== WALKTHROUGH_STEPS.length) {
-    throw new Error("every declared walkthrough step needs a builder");
+  const builders = stepBuilders(deps);
+  const extra = Object.keys(builders).filter(
+    (a) => !WALKTHROUGH_STEPS.some((s) => s.anchor === a));
+  if (extra.length > 0) {
+    throw new Error(`builder for a step that no longer exists: ${extra.join(", ")}`);
   }
-  return WALKTHROUGH_STEPS.map((step, i) =>
-    stepSection(step, i, must(builders[i], `no builder for step ${i + 1}`)(step)));
+  return WALKTHROUGH_STEPS.map((step, i) => {
+    const build = builders[step.anchor];
+    if (build === undefined) throw new Error(`no builder for step ${step.anchor}`);
+    return stepSection(deps, step, i, build(step));
+  });
 }
 
 const groundingModel = (step: WalkStep): string =>
@@ -556,44 +608,46 @@ function stepQuantitativeQuestions(deps: WalkthroughDeps, step: WalkStep): reado
   return [budget.root, controls, out];
 }
 
-function stepMultipleModels(deps: WalkthroughDeps, step: WalkStep): readonly Node[] {
+/**
+ * Combining models — the step that motivates needing more than one, without teaching the machinery.
+ *
+ * It runs ONE question against two models of the same system and shows the two answers differ in
+ * KIND: the model that does not license the question says so, which is a successful answer and not
+ * a denial. Then one question that needs two models at once. Both verdicts are computed here, by
+ * the same `runSaved` seam every other step uses — nothing on this step is authored.
+ */
+function stepCombining(deps: WalkthroughDeps, step: WalkStep): readonly Node[] {
   void step;
-  const system = systemOf(deps, WALK_DP);
-  const quantQuestion =
-    MODEL_TYPES.find((t) => t.id === "quantitative-model")?.question ?? "what does an execution cost?";
-  const options: readonly { readonly label: string; readonly question: string }[] = [
-    ...[...system.models.values()].map((m) => ({
-      label: `${m.label} — a structural model`, question: questionOf(m.purpose),
-    })),
-    ...[...system.machines.values()].map((m) => ({
-      label: `${m.id} — a state machine`, question: questionOf(m.purpose),
-    })),
-    ...[...system.quantitativeModels.values()].map((q) => ({
-      label: `${q.dimension} — a quantitative model`, question: quantQuestion,
-    })),
+  const mb = systemOf(deps, WALK_MB);
+  const dp = systemOf(deps, WALK_DP);
+
+  const pair: readonly { readonly query: string; readonly lede: string }[] = [
+    { query: "subscribes-chain-checkout-to-fulfillment", lede: "Asked of the subscription model" },
+    { query: "checkout-event-reaches-fulfillment", lede: "Asked of the propagation model" },
   ];
-  const label = el("label", "Model");
-  const picker = el("select");
-  picker.id = "walk-multi-model-picker";
-  label.htmlFor = picker.id;
-  options.forEach((o, i) => {
-    const opt = el("option", o.label);
-    opt.value = String(i);
-    picker.append(opt);
+  const rows = pair.map(({ query, lede }) => {
+    const r = mustRun(mb, query);
+    const line = outcomeLine("");
+    line.textContent = `${lede} — “${nameOf(mb, query)}”: ${outcomeWord(r)}.`;
+    return line;
   });
-  const out = outcomeLine("");
-  const show = (): void => {
-    const o = options[Number(picker.value)];
-    out.textContent = o === undefined ? "" : `Answers: ${o.question}`;
-  };
-  picker.addEventListener("change", show);
-  show();
-  const controls = el("p", undefined, "learn-figure-controls");
-  controls.append(label, picker);
+
+  const composed = mustRun(dp, "max-latency-among-successful-executions");
+  const composedLine = outcomeLine("");
+  composedLine.textContent =
+    `“${nameOf(dp, "max-latency-among-successful-executions")}”: `
+    + `${outcomeWord(composed)} — a behavioral predicate selects which executions the quantitative `
+    + "question measures, so this one needs both models at once.";
+
   return [
-    el("p", `“${system.name}” declares ${options.length} purposeful models over one identity `
-      + "namespace.", "intro"),
-    controls, out,
+    el("p", `“${mb.name}” carries two models of the same events. The same question put to each `
+      + "gets answers that differ in kind.", "intro"),
+    ...rows,
+    el("p", "NOT ANSWERABLE is a successful answer: the model reports that it does not license the "
+      + "question. It is not “refuted”, which would assert no such chain exists — a claim that "
+      + "model never made.", "walk-define"),
+    el("p", `And in “${dp.name}”, a question neither model answers alone:`, "intro"),
+    composedLine,
   ];
 }
 

@@ -108,8 +108,8 @@ describe("the walkthrough's structure", () => {
 
 describe("the steps' observable consequences", () => {
   it("step 1: selecting the entity quotes the accessible description", async () => {
-    await clickStepButton("walk-entities", "Select Transaction Engine");
-    const text = await outcomeText("walk-entities");
+    await clickStepButton("walk-structural", "Select Transaction Engine");
+    const text = await outcomeText("walk-structural");
     assert.match(text, /^Selected: /, "the selection did not reach the consequence line");
     assert.match(text, /Transaction Engine/,
       "the consequence line does not describe the selected entity");
@@ -155,18 +155,18 @@ describe("the steps' observable consequences", () => {
     const [change] = changesOf("embedded-sensor-node", "double-the-telemetry-queue");
     assert.ok(change !== undefined);
 
-    await clickStepButton("walk-quantitative-questions", "Run:");
-    const ran = await outcomeText("walk-quantitative-questions");
+    await clickStepButton("walk-quantitative", "Run:");
+    const ran = await outcomeText("walk-quantitative");
     assert.match(ran, new RegExp(`: ${change.from}\\b`));
     assert.match(ran, /computed total .*\d/, "the computed figure is missing from the readout");
 
-    await clickStepButton("walk-quantitative-questions", "Apply:");
-    assert.match(await outcomeText("walk-quantitative-questions"),
+    await clickStepButton("walk-quantitative", "Apply:");
+    assert.match(await outcomeText("walk-quantitative"),
       new RegExp(`: ${change.to}\\b`),
       "doubling the queue did not move the verdict the fixture records");
 
-    await clickStepButton("walk-quantitative-questions", "Discard the change");
-    assert.match(await outcomeText("walk-quantitative-questions"),
+    await clickStepButton("walk-quantitative", "Discard the change");
+    assert.match(await outcomeText("walk-quantitative"),
       new RegExp(`: ${change.from}\\b`));
   });
 

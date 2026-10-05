@@ -68,6 +68,7 @@ export const LESSON = {
 export const WALK_TW: ShippedExampleId = "transaction-workspace";
 export const WALK_ESN: ShippedExampleId = "embedded-sensor-node";
 export const WALK_DP: ShippedExampleId = "document-processing";
+export const WALK_MB: ShippedExampleId = "message-bus";
 
 /**
  * What a step runs on, in the corpus's own spellings. One shape per kind of artifact, so the
@@ -85,6 +86,21 @@ export type StepGrounding =
   | { readonly kind: "system"; readonly example: ShippedExampleId }
   | { readonly kind: "capability"; readonly service: string };
 
+/**
+ * The shared card the four model-form steps carry, in one shape so a student meets each form the
+ * same way: what it represents, and the characteristic question it answers.
+ *
+ * `ask` is a REFERENCE, never a sentence. The view resolves it against the shipped corpus and
+ * renders that question's own label, so the card cannot drift from the question it names — the same
+ * reason a step declaration has no field for an outcome.
+ */
+export interface ModelCard {
+  /** What this model form represents. One line, declared furniture. */
+  readonly represents: string;
+  /** The characteristic question, named in the corpus's spelling. */
+  readonly ask: { readonly example: ShippedExampleId; readonly query: string };
+}
+
 export interface WalkStep {
   /** The in-page anchor. Distinct from every other anchor family; the smoke tier checks the set. */
   readonly anchor: string;
@@ -95,30 +111,27 @@ export interface WalkStep {
   /** The one thing to do, or null for a step that is read rather than operated. */
   readonly instruction: string | null;
   readonly grounding: readonly StepGrounding[];
+  /** Present on the four model-form steps; absent elsewhere. */
+  readonly card?: ModelCard;
   /** Depth links into the reference sections, each an anchor on this page. */
   readonly more: readonly { readonly label: string; readonly anchor: string }[];
 }
 
+/**
+ * The four groups the walkthrough is read in. The navigation renders these titles, so the page's
+ * structure teaches the ontology rather than leaving a student to infer it from sixteen flat tiles.
+ *
+ * `test/learn-walkthrough.test.ts` asserts the partition is TOTAL and DISJOINT — every step in
+ * exactly one group, no group empty — which is what catches a step added later with no group.
+ */
+export interface WalkGroup {
+  readonly title: string;
+  /** The ordered step anchors in this group. */
+  readonly anchors: readonly string[];
+}
+
 export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
-  {
-    anchor: "walk-entities",
-    title: "Entities",
-    definition: "A structural model contains entities: the things it must distinguish to answer "
-      + "its question. Selecting an entity shows what it is and what it carries.",
-    instruction: "Click Transaction Engine in the diagram, or choose it with the picker.",
-    grounding: [{ kind: "model", example: WALK_TW, model: "change-pipeline" }],
-    more: [{ label: "More about structural models", anchor: "type-structural-graph" }],
-  },
-  {
-    anchor: "walk-relationships",
-    title: "Relationships",
-    definition: "A relationship states how two entities are related. Every relationship has a "
-      + "declared type, and the type carries the meaning: what an edge asserts, and what its "
-      + "absence does and does not imply.",
-    instruction: "Choose a relationship to read its declared meaning.",
-    grounding: [{ kind: "model", example: WALK_TW, model: "change-pipeline" }],
-    more: [{ label: "More about structural models", anchor: "type-structural-graph" }],
-  },
+  // ---- Models -------------------------------------------------------------------------------
   {
     anchor: "walk-purpose",
     title: "Purpose and omissions",
@@ -130,15 +143,90 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     more: [{ label: "More about model boundaries", anchor: "question-omissions" }],
   },
   {
-    anchor: "walk-state-machines",
-    title: "State machines",
-    definition: "A state machine describes behavior over time: the states one subject can occupy "
-      + "and the transitions between them. A structural model cannot say any of this, which is why "
-      + "the same system carries a second model.",
+    anchor: "walk-structural",
+    title: "Structural models",
+    definition: "A structural model says what is connected to what. It contains entities — the "
+      + "things it must distinguish to answer its question — and relationships between them. Every "
+      + "relationship has a declared type, and the type carries the meaning: what an edge asserts, "
+      + "and what its absence does and does not imply.",
+    instruction: "Click Transaction Engine in the diagram, then choose a relationship to read its "
+      + "declared meaning.",
+    grounding: [
+      { kind: "model", example: WALK_TW, model: "change-pipeline" },
+      { kind: "query", example: WALK_MB, query: "checkout-event-reaches-fulfillment" },
+    ],
+    card: {
+      represents: "entities and relationships",
+      ask: { example: WALK_MB, query: "checkout-event-reaches-fulfillment" },
+    },
+    more: [{ label: "More about structural models", anchor: "type-structural-graph" }],
+  },
+  {
+    anchor: "walk-behavioral",
+    title: "Behavioral models",
+    definition: "A behavioral model says what can happen over time: the states one subject can "
+      + "occupy and the transitions between them. A structural model cannot say any of this, which "
+      + "is why the same system carries a second model.",
     instruction: "Select the state “valid” to see its incoming and outgoing transitions.",
-    grounding: [{ kind: "machine", example: WALK_TW, machine: "transaction-lifecycle" }],
+    grounding: [
+      { kind: "machine", example: WALK_TW, machine: "transaction-lifecycle" },
+      { kind: "query", example: WALK_TW, query: "transaction-can-be-refused" },
+    ],
+    card: {
+      represents: "states and transitions over time",
+      ask: { example: WALK_TW, query: "transaction-can-be-refused" },
+    },
     more: [{ label: "More about state machines", anchor: "type-state-machine" }],
   },
+  {
+    anchor: "walk-quantitative",
+    title: "Quantitative models",
+    definition: "A quantitative model says what an execution costs. A quantity associates a "
+      + "magnitude, dimension and unit with an element of a model, and a declared ceiling is itself "
+      + "a quantity, so the budget and the allocations share one vocabulary. A quantitative "
+      + "question compares a computed figure against that ceiling.",
+    instruction: "Read the allocations against the declared ceiling, then double the telemetry "
+      + "queue and run the question again.",
+    grounding: [
+      { kind: "budget", example: WALK_ESN, dimension: "memory" },
+      { kind: "query", example: WALK_ESN, query: "sram-fits-budget" },
+      { kind: "modification", example: WALK_ESN, modification: "double-the-telemetry-queue" },
+    ],
+    card: {
+      represents: "quantities associated with an execution",
+      ask: { example: WALK_ESN, query: "sram-fits-budget" },
+    },
+    more: [
+      { label: "More about quantitative models", anchor: "type-quantitative-model" },
+      { label: "More about quantitative requirements", anchor: "question-ceilings" },
+    ],
+  },
+  {
+    anchor: "walk-combining",
+    title: "Combining models",
+    definition: "One system can carry several purposeful models, and some questions need more than "
+      + "one of them. Ask the same question of two models and the answers differ in kind: a model "
+      + "that does not license the question reports that it does not, which is a successful answer "
+      + "and not a denial. It is not “refuted” — that would assert no such chain exists, a claim "
+      + "the model never made.",
+    instruction: "Ask the chain question of each model in turn, then run the latency question that "
+      + "needs both.",
+    grounding: [
+      { kind: "query", example: WALK_MB, query: "subscribes-chain-checkout-to-fulfillment" },
+      { kind: "query", example: WALK_MB, query: "checkout-event-reaches-fulfillment" },
+      { kind: "query", example: WALK_DP, query: "max-latency-among-successful-executions" },
+    ],
+    card: {
+      represents: "separate purposes preserved, while supporting questions that need more than one "
+        + "model",
+      ask: { example: WALK_DP, query: "max-latency-among-successful-executions" },
+    },
+    more: [
+      { label: "The model gallery", anchor: "reference" },
+      { label: "More about composition", anchor: "question-compositions" },
+    ],
+  },
+  // ---- Asking models ------------------------------------------------------------------------
   {
     anchor: "walk-questions",
     title: "Questions",
@@ -181,6 +269,20 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     more: [{ label: "More about requirements", anchor: "question-requirements" }],
   },
   {
+    anchor: "walk-boundaries",
+    title: "Model boundaries",
+    definition: "A model answers only the questions its content supports. Past that boundary the "
+      + "Workbench answers NOT ANSWERABLE and names what is missing. That is a different thing "
+      + "from a question answered “refuted”, which is a decided answer.",
+    instruction: "Ask it.",
+    grounding: [
+      { kind: "query", example: WALK_TW, query: "verdict-is-eventually-forced" },
+      { kind: "query", example: WALK_TW, query: "commit-without-validating" },
+    ],
+    more: [{ label: "More about model boundaries", anchor: "question-omissions" }],
+  },
+  // ---- Working with models ------------------------------------------------------------------
+  {
     anchor: "walk-changes",
     title: "What-if changes",
     definition: "Changing the model changes the answers. A what-if branch applies a change without "
@@ -191,38 +293,6 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
       { kind: "modification", example: WALK_TW, modification: "commit-without-validating-shortcut" },
     ],
     more: [{ label: "More about properties and changes", anchor: "question-properties" }],
-  },
-  {
-    anchor: "walk-quantities",
-    title: "Quantities",
-    definition: "A quantity associates a magnitude, dimension and unit with an element of a model. "
-      + "A declared ceiling is itself a quantity, so the budget and the allocations share one "
-      + "vocabulary.",
-    instruction: "Read the allocations against the declared ceiling, then open the full list.",
-    grounding: [{ kind: "budget", example: WALK_ESN, dimension: "memory" }],
-    more: [{ label: "More about quantitative models", anchor: "type-quantitative-model" }],
-  },
-  {
-    anchor: "walk-quantitative-questions",
-    title: "Quantitative questions",
-    definition: "A quantitative question compares a computed figure against a declared ceiling. "
-      + "Change an allocation and the comparison is recomputed.",
-    instruction: "Run the question, then double the telemetry queue and run it again.",
-    grounding: [
-      { kind: "query", example: WALK_ESN, query: "sram-fits-budget" },
-      { kind: "modification", example: WALK_ESN, modification: "double-the-telemetry-queue" },
-      { kind: "budget", example: WALK_ESN, dimension: "memory" },
-    ],
-    more: [{ label: "More about quantitative requirements", anchor: "question-ceilings" }],
-  },
-  {
-    anchor: "walk-multiple-models",
-    title: "Multiple models",
-    definition: "One system can have several purposeful models. Each answers a different question; "
-      + "none is the complete model.",
-    instruction: "Choose a model to read the question it answers.",
-    grounding: [{ kind: "system", example: WALK_DP }],
-    more: [{ label: "The model gallery", anchor: "reference" }],
   },
   {
     anchor: "walk-bindings",
@@ -246,19 +316,7 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     ],
     more: [{ label: "More about composition", anchor: "question-compositions" }],
   },
-  {
-    anchor: "walk-boundaries",
-    title: "Model boundaries",
-    definition: "A model answers only the questions its content supports. Past that boundary the "
-      + "Workbench answers NOT ANSWERABLE and names what is missing. That is a different thing "
-      + "from a question answered “refuted”, which is a decided answer.",
-    instruction: "Ask it.",
-    grounding: [
-      { kind: "query", example: WALK_TW, query: "verdict-is-eventually-forced" },
-      { kind: "query", example: WALK_TW, query: "commit-without-validating" },
-    ],
-    more: [{ label: "More about model boundaries", anchor: "question-omissions" }],
-  },
+  // ---- Agents -------------------------------------------------------------------------------
   {
     anchor: "walk-agents",
     title: "Agents",
@@ -271,6 +329,37 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
       { kind: "capability", service: "workspace.openHypothesis" },
     ],
     more: [{ label: "More about agent access", anchor: "question-agents" }],
+  },
+];
+
+/**
+ * The four groups, in reading order. Each names the steps it contains, so the navigation can render
+ * the ontology instead of a flat tile grid.
+ *
+ * The anchors are listed literally rather than sliced out of `WALKTHROUGH_STEPS` by index: an index
+ * range would silently re-partition when a step moves, which is the drift the group partition
+ * exists to catch.
+ */
+export const WALKTHROUGH_GROUPS: readonly WalkGroup[] = [
+  {
+    title: "Models",
+    anchors: [
+      "walk-purpose", "walk-structural", "walk-behavioral", "walk-quantitative", "walk-combining",
+    ],
+  },
+  {
+    title: "Asking models",
+    anchors: [
+      "walk-questions", "walk-evidence", "walk-properties", "walk-requirements", "walk-boundaries",
+    ],
+  },
+  {
+    title: "Working with models",
+    anchors: ["walk-changes", "walk-bindings", "walk-composition"],
+  },
+  {
+    title: "Agents",
+    anchors: ["walk-agents"],
   },
 ];
 
