@@ -1797,6 +1797,18 @@ Do not call this semantic regime complete until all of the following are true:
 19. Learn’s standards claims derive from registry provenance.
 20. The agent facade exposes the same semantic operations as the human interface.
 21. No built-in example relies on hidden example-specific semantics.
+22. Every semantic layer the criteria above certify is reachable from at least one shipped surface, or its non-reachability in v0.2 is declared HERE rather than left in a doc comment. **The temporal layer is the declared case.** Trace semantics, terminal behaviour, the fairness policy, first-class counterexamples and the finite/infinite distinction are satisfied AT the LTL layer, and that layer is engine-internal in v0.2 — deliberately not author-reachable. No query form, no schema vocabulary, no capability row and no agent-facade operation admits a temporal formula, so neither a student nor an agent can ask a temporal question, and nothing above certifies that they can. What a student's temporal reasoning does reach is the behavioural forms that bridge to LTL (`DESIGN-v02-ltl-foundation-261004.md` §9.1), which ship and are registered. Authoring a narrow temporal slice is the first v0.3 item, scoped in `SCOPE-v03-temporal-slice-261005.md`; the facade criterion above is why it cannot be student-only.
+
+> **Why criterion 22 is its own criterion rather than an amendment to the temporal ones (ratified
+> 2026-10-05).** The author ruled that *"implemented" is not "part of the language"*, and that wiring
+> LTL to make a gate's wording come true would be backwards. The criteria about trace semantics,
+> terminal behaviour, fairness, counterexamples and the finite/infinite distinction stay true exactly
+> as written; what was missing was the sentence that stops them being read as more than they say.
+> Folding that sentence into each of them would state one scope fact in several places, every copy
+> free to rot, and would make each criterion carry two unrelated claims — a property of trace
+> semantics and a property of the release. Stated once, it reads as what it is: a bound on the whole
+> list, where a reader of the gate looks for scope. It also maps to one guard rather than to several
+> (`test/release-gate-negatives.test.ts`).
 
 ⸻
 
