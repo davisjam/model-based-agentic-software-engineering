@@ -113,6 +113,15 @@ re-deriving these, so they live here:**
     On 261004 three consecutive pushes printed a clean `82 passed, 0 failed` and exited **141**
     (SIGPIPE) with `origin/main` unmoved — five merges sat local while every surface said success.
     The only honest check is `git rev-parse origin/main`.
+  - **SERIALIZE pushes: exactly one backgrounded push on `main` at a time, and the only proof it landed
+    is `git log --oneline origin/main..HEAD` returning EMPTY.** `origin`'s sha alone is not enough,
+    because a backgrounded push photographs the tip at LAUNCH and the gate then runs for minutes. Two
+    failure modes followed on 261005, both with a misleading exit code: (1) a merge onto `main` WHILE a
+    push transferred left the new commit unpushed with `push=0` in hand; (2) a SECOND push launched
+    while the first transferred was remote-rejected — `cannot lock ref 'refs/heads/main': is at <new>
+    but expected <older>` — printing `push=1` that reads like a gate failure when the gate had in fact
+    passed 82/86. Read the log's TAIL to tell them apart, and `merge-base --is-ancestor` before
+    retrying: if local descends from `origin`, the retry is a plain fast-forward and nothing was lost.
   - **Cause, diagnosed rather than guessed:** git opens the SSH connection first, the hook then runs
     for minutes, and GitHub closes the idle session — in the measured case at line 240 of a
     1077-line push log, with the hook still working for another 800 lines. `git ls-remote` succeeded
