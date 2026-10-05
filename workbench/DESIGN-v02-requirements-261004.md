@@ -617,6 +617,50 @@ strings compared by a test. Phase 2's gate is that it changes no Phase-1 verdict
 **Phase 3 — Learn.** The `src/app/examples.ts` reader, the derived section, the rendered five-row
 table, and the retirement of `workbench-guide.ts:120-121`.
 
+### 7.0 As-built, 261005 — ⚠️ two divergences from Phase 2, both measured
+
+Phase 1 and Phase 2's schema half landed on 261004. The example migration landed on 261005 and
+departed from Phase 2's wording twice. Recorded here because the wording, repeated in
+`DECISIONS-RULED-authored-constructs-261004.md` §4, would send the next reader to undo both.
+
+**1. "Two recorded strings compared by a test" understates what was there.** The gate at
+`test/examples.test.ts` already interpreted through `verify` — it derived a `VerificationStatus`
+from the fixture's recorded outcome AND its recorded coverage, then compared that to the recorded
+status. Two recorded INPUTS, one derived comparison. The distinction decides the next point.
+
+**2. The join was NOT moved out of the test; a derived arm was added beside the recorded one.**
+Phase 2 reads "move the join … so a requirement's status comes from a loaded system rather than from
+two recorded strings." The first half shipped: `verifySystemRequirements` runs the saved queries and
+derives each verification from the authored model, and the gate asserts that. The second half did
+not, and the reason is a measured asymmetry rather than caution. `verify` is coverage-sensitive on
+the `satisfied` arm — an absence of evidence does not survive a truncated walk — and the recorded
+arm feeds it the fixture's PINNED coverage. So the two arms answer different questions, and one
+input proves it: a `refuted` outcome against `satisfied_when: refuted` derives `satisfied` under the
+live exhaustive coverage and `inconclusive` under a pinned `bounded` coverage. Retiring the recorded
+arm would drop the only check that a fixture's pinned coverage still supports the status it records.
+
+Today no shipped pair exhibits the divergence — every query deciding a migrated requirement records
+`coverage: exhaustive`, so the arms agree trivially. The retained arm is forward-policing, which is
+the same argument this project applies to authoring a lint at zero findings.
+
+**What did not migrate, and what that cost.** Nine of eleven requirements. `document-processing`'s
+`normal-processing-latency` and `peak-memory` take the `decided_by` route, and `expressed_as` joins
+to a SAVED query by id — a question composed from a declared ceiling at analysis time is saved
+nowhere to be named, and the authored shape has no key for a ceiling. Two things follow that the
+design did not anticipate:
+
+- **The nearest available distortion produces a false `satisfied`.** `max-latency-among-successful-executions`
+  is a saved query over the same executions, so `expressed_as` could name it — and it asks only
+  whether a determinate maximum EXISTS, naming no ceiling. Authored that way the 750 ms obligation
+  derives `satisfied` (measured) while the product holds 2,750 ms against a 750 ms ceiling. The gate
+  catches it, because the fixture still records `violated`.
+- **Migrating them would trade away an INDEPENDENT oracle.** A `decided_by` requirement is checked
+  against a hand-derived arithmetic expectation — `expected_ms: 2750` from declared charges times
+  occurrence counts, joined through each quantity's own `target` — which is a claim about the
+  fixture's numbers and not about the product. An `expressed_as` requirement has no such oracle; its
+  check is the product against itself plus a recorded status. So the two staying fixture-side is not
+  only forced, it is the stronger arrangement until a saved query states those ceilings directly.
+
 ### 7.1 The first fixture — and why one is not enough
 
 **`examples/message-bus`, requirement `no-restricted-data-to-an-impermitted-subscriber`.** It is the
