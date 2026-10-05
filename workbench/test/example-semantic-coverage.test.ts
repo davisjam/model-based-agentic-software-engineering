@@ -9,7 +9,7 @@
 // is zero, and an empty numerator over an empty denominator fails rather than passes.
 //
 // It does NOT prove that the examples teach well, that a question is worth asking, or that a note
-// says something true. Six of the eleven clauses were already held before this file existed — by
+// says something true. Most of §16's clauses were already held before this file existed — by
 // `test/examples.test.ts`, `test/bindings-census.test.ts` and the validator's own reference rules —
 // and where that is so this file holds TOTALITY rather than re-deciding the verdict: that nothing
 // authored escapes the control that decides it. Naming which control decides what is half of what
@@ -27,7 +27,8 @@
 //
 // ## Vacuity is guarded per obligation, and the guard is named per obligation
 //
-// Eleven walks over empty collections all pass. So each audit returns its `subjects` — the
+// A walk over an empty collection passes, and so does every walk beside it. So each audit returns
+// its `subjects` — the
 // denominator — beside its `findings`, and a separate gate refuses any audit whose denominator is
 // empty. Each audit also carries a `witness` sentence naming where its non-emptiness comes from,
 // and in every case that source is a DIFFERENT reader from the one the audit checks: the presented
@@ -42,17 +43,17 @@
 // be a named, explained set — because a subject silently dropped from a numerator is the vacuous
 // pass this project keeps finding, wearing the one costume a coverage gate is most likely to wear.
 //
-// ## The eleventh clause is REVIEWABLE, and this file says so instead of pretending
+// ## The closing prohibition is REVIEWABLE, and this file says so instead of pretending
 //
 // *"No prose-only question may imply capability the kernel cannot perform."* That is a claim about
 // prose against the kernel, and it is not a loop. Its obligation carries `grade: "asserted"` in
 // §13.1's vocabulary and `audit: null` — no predicate — and a gate below holds the two together, so
 // an author who adds a predicate must also change the grade. The full ruling is at `prose-capability`
-// below. The short version: the three instances of this class found on 261005 were a doc comment
-// whose rationale was false of five shipped examples, a registry entry denying a model type was
-// addressable when it was, and twice a test pinning a false sentence as a substring. A keyword scan
-// over example prose would have caught none of them and would have fired on `256 KiB` eight times in
-// a file whose prose is scrupulously correct about there being no `KiB` token.
+// below. The short version: the instances of this class found on 261005 were a doc comment whose
+// stated rationale was false of the shipped examples it generalized over, a registry entry denying
+// that a model type was addressable when it was, and two tests pinning a false sentence as a
+// substring. A keyword scan over example prose would have caught none of them, and would have fired
+// on every `256 KiB` in a file whose prose is scrupulously correct about there being no `KiB` token.
 //
 // ## What this file found, so a reader does not have to reconstruct it
 //
@@ -61,9 +62,9 @@
 //   - FIXED. `message-bus` presented `Restricted data reaches Analytics` for a query whose own
 //     statement is `An event carrying restricted data reaches a service not permitted to process
 //     it`. The label named one service the query never mentions; it was true only because the search
-//     returned that service's witness. 53 of the corpus's other labels are their query's own
-//     statement verbatim, so equality is the corpus's own discipline and `question-registration`
-//     now holds it.
+//     returned that service's witness. Every other label in the corpus was already its query's own
+//     statement verbatim, so equality is the corpus's own discipline rather than a rule imposed on
+//     it, and `question-registration` now holds it.
 //   - FIXED. The capstone's two hand-derived quantitative expectations were premise-checked by
 //     nothing: the three tests that walk charges, occurrences and ceilings all open
 //     `loadExample("document-processing")`. The fixture disclosed it and asked for the
@@ -71,9 +72,10 @@
 //     each figure against the engine where a magnitude-bearing query of the metric is registered.
 //   - REPORTED, engine. `src/engine/ltl.ts`'s tokenizer forbids `-` inside a reference, while
 //     `resolveRef` accepts one and every behaviour query in the corpus uses one. So the LTL TEXT
-//     surface cannot name eight of the nine machines the examples declare — `always
-//     (motion-interlock.state: enabled)` comes back as a GRAMMAR error — and only `mission` is
-//     reachable. The object grammar accepts them, which is why the temporal test never met this.
+//     surface cannot name any hyphenated machine the examples declare — `always
+//     (motion-interlock.state: enabled)` comes back as a GRAMMAR error — which leaves only the one
+//     machine whose id has no hyphen. The object grammar accepts them, which is why the temporal
+//     test never met this.
 //     `ltl-formulas` therefore type-checks through `resolveFormula` and records the text-surface
 //     refusal as a measured finding rather than routing around it.
 //   - REPORTED, loader. `canonicalize` reads a relation type's `composition.path` as
@@ -124,7 +126,7 @@ const SPEC = "DESIGN-v02-examples-and-semantic-completion-261004.md";
 /**
  * The clauses §16 states, read out of the document.
  *
- * Ten are bullets under "For every built-in example:"; the eleventh is the paragraph that closes the
+ * Most are bullets under "For every built-in example:". The last is the paragraph that closes the
  * section, and it is a clause rather than commentary — it states a prohibition in the same voice.
  * Parsed rather than transcribed so the obligation table cannot quietly stop covering the spec, and
  * so no number describing the spec is written anywhere in this file.
@@ -147,7 +149,8 @@ function specClauses(): readonly string[] {
 
   const clauses = [...bullets, ...closing];
   assert.ok(bullets.length > 0, `${SPEC}: §16 lists no bulleted clause, so this gate's denominator is empty`);
-  assert.ok(closing.length > 0, `${SPEC}: §16's closing prohibition is gone; it is clause eleven here`);
+  assert.ok(closing.length > 0,
+    `${SPEC}: §16's closing prohibition is gone, and it is a clause here rather than commentary`);
   return clauses;
 }
 
@@ -273,6 +276,12 @@ const audit = (
  * no query suggested, and the thing it is joined against comes from `canonicalize`. A walk that
  * enumerated nothing would fail the comparison against a presented set the application insists is
  * non-empty, rather than carrying the zero-findings claim for free.
+ *
+ * PASSES WHILE VIOLATED: a label equal to its query's `name` and WRONG about the question the form
+ * decides. `An event carrying restricted data reaches a service not permitted to process it` on a
+ * query comparing the wrong two properties would satisfy every join here. Nothing mechanical reads a
+ * form and judges whether a sentence describes it; that is the closing prohibition's territory, and
+ * it is reviewable for the same reason.
  */
 function auditQuestionRegistration(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -352,6 +361,12 @@ function auditQuestionRegistration(c: Corpus): Audit {
  * VACUITY: the walk's output is compared against the TYPED fixture the reader produced — if the walk
  * found no `queries[].expected.outcome` while the reader produced queries, the walk is reading the
  * wrong document and says so, rather than reporting an empty denominator as a clean one.
+ *
+ * PASSES WHILE VIOLATED: a key disposed `compared` here whose comparing control is later deleted.
+ * The disposition is this file's claim about a sibling, not a derivation from it, so a key would go
+ * on reading `compared` while nothing compared it. Closing that needs the comparison to name the key
+ * it consumes — a reader instrumented to report which fields it was asked for — and that is a change
+ * to the shared fixture reader rather than to this gate.
  */
 const DISPOSITIONS: Readonly<Record<string, "compared" | "shape" | "prose">> = {
   "example": "compared",
@@ -544,6 +559,12 @@ function magnitudesOfMetric(ex: Example, metric: string): readonly number[] {
  * VACUITY: the requirement census is built from the AUTHORED YAML and compared against the join's
  * enumeration, which is `test/vacuous-verification.test.ts`'s construction and for its reason — a
  * census computed by calling the join twice agrees with itself about having done nothing.
+ *
+ * PASSES WHILE VIOLATED: an expectation whose metric the example registers no quantity query for.
+ * `document-processing/peak-memory` is live in exactly that position and comes back as a named
+ * residue: its premises are checked and its TOTAL is not, so a wrong figure there would survive this
+ * obligation. It survives the sibling arithmetic test only because that test exists by name for that
+ * example, which is the dependency the residue records.
  */
 function auditPinnedProperties(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -649,6 +670,12 @@ function auditPinnedProperties(c: Corpus): Audit {
  * VACUITY: the denominator is the union of the authored `requirements:` block and the fixture's
  * rows, two documents read separately, and a requirement present in one and not the other is itself
  * a finding — so neither side can be empty without the comparison failing.
+ *
+ * PASSES WHILE VIOLATED: a `statement` quoting a figure no `declared_as` names. The ceiling join
+ * fires only where the fixture declares one; `every delivery completes within the 900 s one battery
+ * charge sustains` carries its number in prose and in the query's `within:` quantity, and nothing
+ * joins the two. `test/vacuous-verification.test.ts` records the same residue from the other side —
+ * "the statement's figure and the query's ceiling are two declarations and nothing joins them".
  */
 function auditRequirementReferences(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -751,6 +778,12 @@ function auditRequirementReferences(c: Corpus): Audit {
  * row that no example witnesses is a finding — so the denominator cannot be empty while the registry
  * is non-empty. The negative control below perturbs each instance and requires a validator finding,
  * which is what proves the referents are checked rather than merely well-spelled today.
+ *
+ * PASSES WHILE VIOLATED: a referent that resolves and is WRONG. `executes_in_state: validating` on
+ * the parser names a declared state of a declared machine, so every check here is satisfied, and the
+ * entity is charged against an occupancy it never has. Correspondence — that the binding means what
+ * it says — is `asserted` in §13.1's sense and §35 rules it so for the sibling case; this obligation
+ * holds presence and resolution, and claims nothing further.
  */
 function auditBindingReferents(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -850,6 +883,12 @@ function schemaPathValues(): readonly string[] {
  *
  * VACUITY: both halves are counted into one denominator and each half is separately required to be
  * non-empty, so an example set that stopped composing anything could not carry a clean reading.
+ *
+ * PASSES WHILE VIOLATED: a SECOND cross-model composition. The registry admits one row by ruling and
+ * this check asks whether that row exists, not whether an instance is the kind it describes — so a
+ * composition running some other pair of domains would be matched by the row that does not describe
+ * it. Closing that needs each instance's own (from, to) derived from the query's operands rather than
+ * assumed, and v0.2 has no second pair to derive it against.
  */
 function auditCompositionRegistration(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -949,6 +988,11 @@ function magnitudesOf(q: CanonQuantity): readonly (readonly [string, Magnitude, 
  *
  * VACUITY: the denominator is compared against the quantities the corpus declares, so a walk that
  * found no magnitude while quantities exist fails rather than reporting a clean sweep of nothing.
+ *
+ * PASSES WHILE VIOLATED: a recognized unit that is the wrong one. `256 KB` where the author meant
+ * kilobytes rather than the memory table's kibibytes normalizes cleanly and reads as recognized here.
+ * The sensor node declares exactly that literal deliberately and explains why in its own prose, which
+ * is the clearest evidence a unit token cannot carry the author's intent.
  */
 function auditUnitsRecognized(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -1037,7 +1081,7 @@ const BINARY_WORDS: Readonly<Record<string, (a: ParsedFormula, b: ParsedFormula)
  * The OBJECT grammar, not the text grammar, and the reason is a measured defect rather than a
  * preference: the text tokenizer's reference pattern forbids `-`, so `motion-interlock.state:
  * enabled` comes back as a grammar error while `resolveRef` resolves the same reference happily.
- * Eight of the nine machines the corpus declares are hyphenated. Routing through `proposition` and
+ * Every machine the corpus declares is hyphenated but one. Routing through `proposition` and
  * the combinators reaches `resolveFormula` — the kernel's own type-checker — without going through
  * the pattern that cannot spell the corpus.
  *
@@ -1127,6 +1171,12 @@ function translate(system: CanonicalSystem, text: string): { ok: true; value: Pa
  * VACUITY: the occurrences are found by scanning the shipped files, and the type-checker is proven
  * live by the negative control below — a formula naming an undeclared state must refuse. Without
  * that control a translation that produced an unresolvable atom table would pass every formula.
+ *
+ * PASSES WHILE VIOLATED: a prose formula whose VERDICT has gone stale. The corpus writes each formula
+ * beside an answer and a date, and this obligation reads the formula and not the answer, so a model
+ * edit that flipped `G(refused -> G not committed)` would leave the prose claiming `HOLDS` and every
+ * atom still resolving. `test/example-transaction-temporal.test.ts` holds those two verdicts against
+ * a live run, by name, which is what this obligation leans on and does not replace.
  */
 function auditLtlFormulas(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -1183,6 +1233,12 @@ const constraintCount = (e: EvidenceExpectation): number =>
  * VACUITY: the obtainable set is driven here, so the denominator and the numerator come from two
  * sources — the fixture's promises and the engine's answers — and the degeneracy check makes an
  * empty promise a finding rather than a free pass.
+ *
+ * PASSES WHILE VIOLATED: a promise constrained only where the evidence is INSENSITIVE to the defect.
+ * A witness pinned by its final configuration alone is kept by any path reaching that configuration,
+ * including a degenerate one-hop path — which is how this project once shipped a vacuous `holds`, and
+ * why `checkout-event-reaches-fulfillment` pins its hop sequence. Counting constraints cannot tell a
+ * discriminating pin from an incidental one; that judgement is per question.
  */
 function auditEvidencePromises(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -1249,6 +1305,12 @@ function auditEvidencePromises(c: Corpus): Audit {
  * VACUITY: a corpus of none-flipping modifications could satisfy "every non-flip is paired" only if
  * some sibling flips, so the pairing rule is self-witnessing; and the flip count is asserted
  * non-zero so the whole arm cannot hold over a corpus that moves nothing.
+ *
+ * PASSES WHILE VIOLATED: a modification that flips an answer for a reason other than the one its
+ * `rationale` gives. The pairing rule reads verdicts and never the prose beside them, so a mutation
+ * documented as removing a retry and in fact removing a guard would move the answer and satisfy this
+ * obligation exactly. What the transition demonstrates is the author's claim; that it occurred is
+ * all a gate can hold.
  */
 function auditMutationTransitions(c: Corpus): Audit {
   const subjects: string[] = [];
@@ -1441,7 +1503,7 @@ test("§16's clause list and this file's obligations cover each other exactly", 
 });
 
 test("every obligation declares a denominator, and no denominator is empty", async () => {
-  // The vacuity gate, applied to this file. Eleven walks over empty collections all pass, so the
+  // The vacuity gate, applied to this file. A walk over an empty collection passes, so the
   // denominators are read BEFORE any finding is, and an obligation that audits nothing fails here
   // whatever its findings say. `model-coverage`'s own sentence: an empty numerator over an empty
   // denominator is the vacuous pass this project keeps finding.
@@ -1541,8 +1603,8 @@ test("the prose-question surface the ruling hands a reviewer is non-empty and de
     for (const r of ex.fixture.requirements) surface.push(`${ex.id}/statement:${r.id}`);
   }
   assert.ok(surface.length > 0,
-    "no shipped example declares a purposeful question or a requirement statement, so the eleventh "
-    + "clause has no subject and its ruling needs re-deriving rather than inheriting");
+    "no shipped example declares a purposeful question or a requirement statement, so §16's closing "
+    + "prohibition has no subject and its ruling needs re-deriving rather than inheriting");
   const examples = new Set(surface.map((s) => s.slice(0, s.indexOf("/"))));
   assert.equal(examples.size, c.length,
     `the prose surface covers ${examples.size} of the ${c.length} shipped examples, so a reviewer `

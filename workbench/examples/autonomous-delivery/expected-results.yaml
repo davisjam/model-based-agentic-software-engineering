@@ -603,12 +603,23 @@ queries:
 # one was then obtained from the engine; they agreed. The premises are stated separately so a
 # disagreement localizes to one premise rather than to "the answer is different".
 #
-# NOTE on how far these are checked: `test/examples.test.ts` premise-checks the hand arithmetic for
-# `document-processing` only -- the three tests that walk charges, occurrences and ceilings all begin
-# `loadExample("document-processing")`. This block is therefore read STRICTLY by the fixture reader
-# and cross-checked against the engine by hand rather than by the suite. Reported rather than worked
-# around; generalizing those three tests over the corpus is a follow-up this example would benefit
-# from, and it is the reason every figure below is also pinned as a magnitude in the notes above.
+# NOTE on how far these are checked. The follow-up this block used to ask for has landed:
+# `test/example-semantic-coverage.test.ts`'s `pinned-properties-evaluated` obligation walks EVERY
+# example's expectations rather than `document-processing` alone, and it checks two different things.
+# Every premise is checked against the model -- each `charges` key names a declared quantity and the
+# figure IS that quantity's normalized magnitude at the declared end, each `occurrences` key names a
+# declared entity, each `trace_from` and `reachability_from` names a registered query. And the TOTAL
+# is cross-checked against the engine wherever this example registers a quantity query of the
+# matching metric: `expected_ms` below is compared to the magnitude
+# `delivering-missions-within-the-duration-budget` reports, and `expected_mb` to the magnitude
+# `compute-payload-fits-onboard-ram` reports.
+#
+# What is still NOT checked by a gate, stated rather than implied: the ARITHMETIC in each
+# `arithmetic` block. The memory rule is a maximum over the `when:` charges here and a sum in
+# `document-processing`, because a machine holds one control state and that premise is the capstone's
+# whole claim -- so one generic formula would be wrong for one of the two examples, and writing one
+# would be a second implementation of `memory(c)`. The totals are held against the engine instead,
+# which is the stronger comparison and needs no rule.
 # ---------------------------------------------------------------------------------------------------
 quantitative_expectations:
 
