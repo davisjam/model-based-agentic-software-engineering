@@ -231,6 +231,22 @@ export interface CrossModelAnchor {
 }
 
 /**
+ * The polyline a connection is drawn along: anchor, out to the panel's facing border, across the
+ * gutter, in to the other anchor.
+ *
+ * §23.3 draws the line BETWEEN the two frames, and the first cut of this module drew it as a
+ * straight segment between anchors — which runs diagonally through whichever boxes lie between the
+ * element and the other panel, and lands the label on top of the panel's own contents. The route
+ * leaves each panel horizontally and does its travelling in the gutter, which is where the spec's
+ * figure puts it and where there is nothing to collide with.
+ */
+export interface CrossModelRoute {
+  readonly points: readonly Point[];
+  /** The gutter segment's two ends — where a bundle's label belongs. */
+  readonly gutter: readonly [Point, Point];
+}
+
+/**
  * A drawn cross-model connection.
  *
  * There is deliberately no exported constructor and no exported function that builds one: the only
@@ -242,6 +258,7 @@ export interface CrossModelConnection {
   readonly relation: CrossModelRelation;
   readonly from: CrossModelAnchor;
   readonly to: CrossModelAnchor;
+  readonly route: CrossModelRoute;
 }
 
 /**
@@ -469,18 +486,6 @@ function viewBoxOf(tree: SvgNode): Rect {
   return { x: x as number, y: y as number, w: w as number, h: h as number };
 }
 
-/** Where a line from `toward` meets the frame's border. Deterministic, and never inside the box. */
-function borderPoint(frame: Rect, toward: Point): Point {
-  const cx = frame.x + frame.w / 2;
-  const cy = frame.y + frame.h / 2;
-  const dx = toward.x - cx;
-  const dy = toward.y - cy;
-  if (dx === 0 && dy === 0) return { x: cx, y: cy };
-  const sx = dx === 0 ? Infinity : (frame.w / 2) / Math.abs(dx);
-  const sy = dy === 0 ? Infinity : (frame.h / 2) / Math.abs(dy);
-  const s = Math.min(sx, sy);
-  return { x: cx + dx * s, y: cy + dy * s };
-}
 
 // --------------------------------------------------------------------------------------------
 // The registry seam
@@ -663,11 +668,7 @@ function connectionsFor(
           : `${sp.key}/${a.id}~${tp.key}/${b.id}`;
         if (seen.has(key)) continue;
         seen.add(key);
-        out.push({
-          relation,
-          from: { ...a, point: pointFor(a, sp, b.point) },
-          to: { ...b, point: pointFor(b, tp, a.point) },
-        });
+        out.push({ relation, ...route(sp, a, tp, b) });
       }
     }
   }
@@ -679,7 +680,8 @@ interface AnchorDraft {
   readonly panel: string;
   readonly id: string;
   readonly label: string;
-  readonly point: Point;
+  /** The element's box in outer-canvas coordinates; the panel's frame for a panel anchor. */
+  readonly box: Rect;
 }
 
 /** The anchor for one end, if this panel carries it. `null` when it does not. */
@@ -693,11 +695,7 @@ function anchorIn(
   if (anchor === "panel") {
     if (panel.subject.id !== id) return null;
     return {
-      anchor,
-      panel: panel.key,
-      id,
-      label: panel.view.accessible.title,
-      point: { x: panel.frame.x + panel.frame.w / 2, y: panel.frame.y + panel.frame.h / 2 },
+      anchor, panel: panel.key, id, label: panel.view.accessible.title, box: panel.frame,
     };
   }
   const node = panel.view.layout.nodes.get(id);
@@ -708,16 +706,57 @@ function anchorIn(
     panel: panel.key,
     id,
     label: twin?.label ?? id,
-    point: {
-      x: panel.origin.x + node.rect.x + node.rect.w / 2,
-      y: panel.origin.y + node.rect.y + node.rect.h / 2,
+    box: {
+      x: panel.origin.x + node.rect.x, y: panel.origin.y + node.rect.y,
+      w: node.rect.w, h: node.rect.h,
     },
   };
 }
 
-/** A panel anchor is clipped to its frame border so the line arrives at the boundary, not inside it. */
-function pointFor(draft: AnchorDraft, panel: CrossModelPanel, toward: Point): Point {
-  return draft.anchor === "panel" ? borderPoint(panel.frame, toward) : draft.point;
+/**
+ * Route one connection: out of each anchor horizontally, across the gutter, in to the other.
+ *
+ * The vertical coordinate of an ELEMENT end is the element's own; a PANEL end has no element, so it
+ * takes the other end's height clamped into its frame — which is what makes the `machine-of-entity`
+ * line arrive beside the entity it names rather than at an arbitrary mid-frame point.
+ */
+function route(
+  sp: CrossModelPanel, a: AnchorDraft, tp: CrossModelPanel, b: AnchorDraft,
+): { readonly from: CrossModelAnchor; readonly to: CrossModelAnchor; readonly route: CrossModelRoute } {
+  const mid = (r: Rect): number => r.y + r.h / 2;
+  const clamp = (v: number, r: Rect): number =>
+    Math.min(Math.max(v, r.y + BAND + PAD), r.y + r.h - PAD);
+
+  const ay = a.anchor === "element" ? mid(a.box) : null;
+  const by = b.anchor === "element" ? mid(b.box) : null;
+  const sy = ay ?? (by === null ? mid(sp.frame) : clamp(by, sp.frame));
+  const ty = by ?? (ay === null ? mid(tp.frame) : clamp(ay, tp.frame));
+
+  // Which side each panel presents to the other. Panels are laid out in a row, so the comparison is
+  // a total order and the route never doubles back through its own frame.
+  const rightward = tp.frame.x >= sp.frame.x + sp.frame.w;
+  const sBorder = rightward ? sp.frame.x + sp.frame.w : sp.frame.x;
+  const tBorder = rightward ? tp.frame.x : tp.frame.x + tp.frame.w;
+
+  const start: Point = a.anchor === "element"
+    ? { x: rightward ? a.box.x + a.box.w : a.box.x, y: sy }
+    : { x: sBorder, y: sy };
+  const end: Point = b.anchor === "element"
+    ? { x: rightward ? b.box.x : b.box.x + b.box.w, y: ty }
+    : { x: tBorder, y: ty };
+  const exitS: Point = { x: sBorder, y: sy };
+  const exitT: Point = { x: tBorder, y: ty };
+
+  const points: Point[] = [];
+  for (const p of [start, exitS, exitT, end]) {
+    const last = points[points.length - 1];
+    if (last === undefined || last.x !== p.x || last.y !== p.y) points.push(p);
+  }
+  return {
+    from: { anchor: a.anchor, panel: a.panel, id: a.id, label: a.label, point: start },
+    to: { anchor: b.anchor, panel: b.panel, id: b.id, label: b.label, point: end },
+    route: { points, gutter: [exitS, exitT] },
+  };
 }
 
 // --------------------------------------------------------------------------------------------
@@ -855,7 +894,9 @@ function connectionLine(c: CrossModelConnection): SvgNode {
     "data-to": `${c.to.panel}/${c.to.id}`,
   }, [
     el("path", {
-      d: `M ${n2(c.from.point.x)} ${n2(c.from.point.y)} L ${n2(c.to.point.x)} ${n2(c.to.point.y)}`,
+      d: c.route.points
+        .map((p, i) => `${i === 0 ? "M" : "L"} ${n2(p.x)} ${n2(p.y)}`)
+        .join(" "),
       class: `mage-xmodel${c.relation.kind === "composition" ? " mage-xmodel-composition" : ""}`,
       "marker-end": "url(#mage-arrow)",
     }),
@@ -890,26 +931,66 @@ function bundles(connections: readonly CrossModelConnection[]): readonly Bundle[
   }));
 }
 
-function bundleLabelGroup(bundle: Bundle, index: number): SvgNode {
-  const base = connectionLabel(bundle.relation);
-  const label = bundle.members.length === 1 ? base : `${base} (${bundle.members.length})`;
-  const cx = mean(bundle.members.flatMap((c) => [c.from.point.x, c.to.point.x]));
-  const cy = mean(bundle.members.flatMap((c) => [c.from.point.y, c.to.point.y]));
-  // Two bundles between one pair of panels would stack their plates on one coordinate, which is the
-  // collision the renderer's own label reservation exists to prevent. Offset by bundle index.
-  const y = cy + index * 22;
-  const extent = textExtent(label, LABEL_CLASS);
+interface PlacedLabel {
+  readonly bundle: Bundle;
+  readonly text: string;
+  readonly plate: Rect;
+  readonly baseline: number;
+}
+
+/**
+ * Where each bundle's label goes: its own gutter centroid, pushed down until it clears the plates
+ * already placed.
+ *
+ * The first cut offset by bundle INDEX, which is the same guess the renderer's viewBox used to make
+ * about legend width and for the same reason it was wrong: two bundles whose centroids differ by
+ * less than a plate height still collide, and two whose centroids are far apart get separated for
+ * nothing. Measuring the plates and resolving the overlap is cheap, deterministic and correct —
+ * `textExtent` is the estimator the layout engine itself reserves label boxes with.
+ */
+function placeLabels(bundled: readonly Bundle[]): readonly PlacedLabel[] {
+  const placed: PlacedLabel[] = [];
+  for (const bundle of bundled) {
+    const base = connectionLabel(bundle.relation);
+    const text = bundle.members.length === 1 ? base : `${base} (${bundle.members.length})`;
+    // In the GUTTER, which is where §23.3's figure writes it and the one strip of canvas with
+    // nothing of either model on it. Averaged over the bundle's own gutter segments, so a bundle of
+    // four lines is labelled at their centre rather than at the first one's height.
+    const cx = mean(bundle.members.flatMap((c) => [c.route.gutter[0].x, c.route.gutter[1].x]));
+    const cy = mean(bundle.members.flatMap((c) => [c.route.gutter[0].y, c.route.gutter[1].y]));
+    const extent = textExtent(text, LABEL_CLASS);
+    const w = extent.w + 10;
+    const h = extent.h + 6;
+    let y = cy;
+    for (;;) {
+      const plate: Rect = { x: cx - w / 2, y: y - extent.h, w, h };
+      const clash = placed.some((p) =>
+        plate.x < p.plate.x + p.plate.w && p.plate.x < plate.x + plate.w
+        && plate.y < p.plate.y + p.plate.h && p.plate.y < plate.y + plate.h);
+      if (!clash) {
+        placed.push({ bundle, text, plate, baseline: y + 3 });
+        break;
+      }
+      y += h + 4;
+    }
+  }
+  return placed;
+}
+
+function bundleLabelGroup(label: PlacedLabel): SvgNode {
   return el("g", {
-    "data-xmodel-label": bundle.relation.entry.name,
-    "data-xmodel-kind": bundle.relation.kind,
-    "data-xmodel-count": bundle.members.length,
+    "data-xmodel-label": label.bundle.relation.entry.name,
+    "data-xmodel-kind": label.bundle.relation.kind,
+    "data-xmodel-count": label.bundle.members.length,
   }, [
     el("rect", {
-      x: cx - extent.w / 2 - 5, y: y - extent.h, width: extent.w + 10, height: extent.h + 6,
+      x: label.plate.x, y: label.plate.y, width: label.plate.w, height: label.plate.h,
       rx: 3, class: "mage-xmodel-label-plate",
     }),
-    el("text", { x: cx, y: y + 3, class: `${LABEL_CLASS} mage-xmodel-label`, "text-anchor": "middle" },
-      [], label),
+    el("text", {
+      x: label.plate.x + label.plate.w / 2, y: label.baseline,
+      class: `${LABEL_CLASS} mage-xmodel-label`, "text-anchor": "middle",
+    }, [], label.text),
   ]);
 }
 
@@ -931,19 +1012,21 @@ function canvasTree(
   connections: readonly CrossModelConnection[],
 ): SvgNode {
   const lifted = panels[0]?.view.tree.children.find((c) => c.tag === "defs");
-  const bundled = bundles(connections);
-  const right = Math.max(0, ...panels.map((p) => p.frame.x + p.frame.w));
-  const bottom = Math.max(0, ...panels.map((p) => p.frame.y + p.frame.h));
-  // Room below the frames for a plate pushed down by the bundle-index offset, so a second bundle's
-  // label is inside the viewBox rather than clipped by it.
-  const slack = bundled.length * 22 + PAD;
+  const labels = placeLabels(bundles(connections));
+  const right = Math.max(0, ...panels.map((p) => p.frame.x + p.frame.w),
+    ...labels.map((l) => l.plate.x + l.plate.w));
+  // MEASURED, not guessed. A plate pushed below the frames by collision resolution must be inside
+  // the viewBox, and the renderer's own header records what guessing a strip's extent cost once:
+  // "that number was a guess at how wide a row of legend text would be, and it was wrong."
+  const bottom = Math.max(0, ...panels.map((p) => p.frame.y + p.frame.h),
+    ...labels.map((l) => l.plate.y + l.plate.h));
   const titleId = "mage-xmodel-title";
   const descId = "mage-xmodel-desc";
   return el("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    viewBox: `${-PAD} ${-PAD} ${right + 2 * PAD} ${bottom + 2 * PAD + slack}`,
+    viewBox: `${-PAD} ${-PAD} ${right + 2 * PAD} ${bottom + 2 * PAD}`,
     width: right + 2 * PAD,
-    height: bottom + 2 * PAD + slack,
+    height: bottom + 2 * PAD,
     class: "mage-svg mage-xmodel-canvas",
     role: "img",
     "aria-labelledby": `${titleId} ${descId}`,
@@ -957,7 +1040,7 @@ function canvasTree(
     el("defs", {}, [el("style", { type: "text/css" }, [], CROSS_MODEL_STYLE)]),
     el("g", { "data-layer": "panels" }, panels.map(panelGroup)),
     el("g", { "data-layer": "cross-model" }, connections.map(connectionLine)),
-    el("g", { "data-layer": "cross-model-labels" }, bundled.map(bundleLabelGroup)),
+    el("g", { "data-layer": "cross-model-labels" }, labels.map(bundleLabelGroup)),
   ]);
 }
 
