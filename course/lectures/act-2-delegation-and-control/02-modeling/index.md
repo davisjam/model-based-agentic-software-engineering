@@ -34,7 +34,7 @@ materials:
   - title: "Lecture 1 slides — Modeling: Purposeful Reduction"
     src: 2-2-Modeling-1-Purposeful-Reduction.pptx
   - title: "Lecture 2 slides — Modeling: Degrees of Semantic Commitment"
-    src: 2-2-Modeling-2-Systems-of-Models.pptx
+    src: 2-2-Modeling-2-Degrees-of-Semantic-Commitment.pptx
 ---
 
 **Premise.** *A model is useful because it leaves things out and makes explicit what must remain.*
