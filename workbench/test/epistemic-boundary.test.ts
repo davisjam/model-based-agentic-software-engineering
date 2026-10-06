@@ -146,6 +146,9 @@ const PROPERTY_CHANNELS: Readonly<Record<string, "verdict" | "quotes" | "authore
   coverage: "verdict",
   grounds: "verdict",
   groundSubjects: "structural",
+  // The cross-model marker: derived from the statement's own atoms spanning machines — structure
+  // of the saved question, not a verdict about it.
+  composes: "structural",
   groundsMissing: "verdict",
   evidence: "verdict",
   refusal: "quotes",

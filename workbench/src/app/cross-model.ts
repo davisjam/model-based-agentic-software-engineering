@@ -451,12 +451,29 @@ export function witnessOf(system: CanonicalSystem, c: Correspondence): Correspon
 // Geometry
 // --------------------------------------------------------------------------------------------
 
-/** Space between panel frames. Wide enough that a label at the midpoint clears both frames. */
-const GUTTER = 150;
+/**
+ * Space between panel frames. Wide enough that a label in the band clears both frames.
+ *
+ * The band is HORIZONTAL and the panels STACK, which is a measured decision, not a preference.
+ * The first cut laid panels in a row, and the layout sweep (261006, all six examples, 2–5
+ * surfaces) found two degradations: the canvas grew to 2300–4400 units wide while the workspace
+ * scales its SVG to column width, so every composed view arrived illegible — including the Worker
+ * Queue lab's own; and a correspondence between NON-adjacent panels travelled straight across the
+ * panel between them (Message Bus, 21 lines). Stacking keeps each panel at its own one-model
+ * width (≈ legible at 1:1 in the column), spends growth on the axis a page scrolls natively, and
+ * the author's sketch draws exactly this: the `same job [binding]` band BETWEEN the two machines.
+ */
+const GUTTER = 110;
 /** The type band above each panel — §23.3's `-------- STRUCTURE --------` header. */
 const BAND = 26;
 /** Frame padding around a panel's own viewBox. */
 const PAD = 10;
+/**
+ * The x of the left routing channel — the empty strip a connection between NON-adjacent panels
+ * travels in. Outside every frame (frames start at x = 0), so the §23.3 rule "never across a
+ * panel it does not touch" holds by construction rather than by luck of panel heights.
+ */
+const CHANNEL = -70;
 const LABEL_CLASS = "mage-key" as const;
 
 const n2 = (v: number): number => Math.round(v * 100) / 100;
@@ -702,48 +719,68 @@ function anchorIn(
 }
 
 /**
- * Route one connection: out of each anchor horizontally, across the gutter, in to the other.
+ * Route one connection: out of each anchor vertically, through the gutter band, in to the other.
  *
- * The vertical coordinate of an ELEMENT end is the element's own; a PANEL end has no element, so it
- * takes the other end's height clamped into its frame — which is what makes the `machine-of-entity`
- * line arrive beside the entity it names rather than at an arbitrary mid-frame point.
+ * The horizontal coordinate of an ELEMENT end is the element's own; a PANEL end has no element, so
+ * it takes the other end's x clamped into its frame — which is what makes the `machine-of-entity`
+ * line arrive above the entity it names rather than at an arbitrary mid-frame point.
+ *
+ * ADJACENT panels share one gutter band and the route crosses it directly. NON-adjacent panels
+ * route through the left CHANNEL — out to the source's gutter, left past every frame, down (or
+ * up) the channel, back in at the target's gutter. The sweep that forced this is in the layout
+ * constants' header: a straight run between non-adjacent panels crossed the panel between them.
  */
 function route(
   sp: CrossModelPanel, a: AnchorDraft, tp: CrossModelPanel, b: AnchorDraft,
 ): { readonly from: CrossModelAnchor; readonly to: CrossModelAnchor; readonly route: CrossModelRoute } {
-  const mid = (r: Rect): number => r.y + r.h / 2;
+  const mid = (r: Rect): number => r.x + r.w / 2;
   const clamp = (v: number, r: Rect): number =>
-    Math.min(Math.max(v, r.y + BAND + PAD), r.y + r.h - PAD);
+    Math.min(Math.max(v, r.x + PAD), r.x + r.w - PAD);
 
-  const ay = a.anchor === "element" ? mid(a.box) : null;
-  const by = b.anchor === "element" ? mid(b.box) : null;
-  const sy = ay ?? (by === null ? mid(sp.frame) : clamp(by, sp.frame));
-  const ty = by ?? (ay === null ? mid(tp.frame) : clamp(ay, tp.frame));
+  const ax = a.anchor === "element" ? mid(a.box) : null;
+  const bx = b.anchor === "element" ? mid(b.box) : null;
+  const sx = ax ?? (bx === null ? mid(sp.frame) : clamp(bx, sp.frame));
+  const tx = bx ?? (ax === null ? mid(tp.frame) : clamp(ax, tp.frame));
 
-  // Which side each panel presents to the other. Panels are laid out in a row, so the comparison is
-  // a total order and the route never doubles back through its own frame.
-  const rightward = tp.frame.x >= sp.frame.x + sp.frame.w;
-  const sBorder = rightward ? sp.frame.x + sp.frame.w : sp.frame.x;
-  const tBorder = rightward ? tp.frame.x : tp.frame.x + tp.frame.w;
+  // Which face each panel presents to the other. Panels stack in a column, so the comparison is a
+  // total order and the route never doubles back through its own frame.
+  const downward = tp.frame.y >= sp.frame.y + sp.frame.h;
+  const sBorder = downward ? sp.frame.y + sp.frame.h : sp.frame.y;
+  const tBorder = downward ? tp.frame.y : tp.frame.y + tp.frame.h;
+
+  // The gutter band each end crosses. Equal exactly when the panels are adjacent — then the route
+  // is a direct crossing; otherwise it detours through the channel.
+  const gs = downward ? sBorder + GUTTER / 2 : sBorder - GUTTER / 2;
+  const gt = downward ? tBorder - GUTTER / 2 : tBorder + GUTTER / 2;
+  const adjacent = Math.abs(gs - gt) < 0.5;
 
   const start: Point = a.anchor === "element"
-    ? { x: rightward ? a.box.x + a.box.w : a.box.x, y: sy }
-    : { x: sBorder, y: sy };
+    ? { x: sx, y: downward ? a.box.y + a.box.h : a.box.y }
+    : { x: sx, y: sBorder };
   const end: Point = b.anchor === "element"
-    ? { x: rightward ? b.box.x : b.box.x + b.box.w, y: ty }
-    : { x: tBorder, y: ty };
-  const exitS: Point = { x: sBorder, y: sy };
-  const exitT: Point = { x: tBorder, y: ty };
+    ? { x: tx, y: downward ? b.box.y : b.box.y + b.box.h }
+    : { x: tx, y: tBorder };
 
+  const waypoints: readonly Point[] = adjacent
+    ? [start, { x: sx, y: gs }, { x: tx, y: gs }, end]
+    : [
+      start, { x: sx, y: gs }, { x: CHANNEL, y: gs },
+      { x: CHANNEL, y: gt }, { x: tx, y: gt }, end,
+    ];
   const points: Point[] = [];
-  for (const p of [start, exitS, exitT, end]) {
+  for (const p of waypoints) {
     const last = points[points.length - 1];
     if (last === undefined || last.x !== p.x || last.y !== p.y) points.push(p);
   }
+  // Where this connection's label belongs: the direct crossing for neighbours, the channel run
+  // for a detour — the two segments with nothing of any model on them.
+  const gutter: readonly [Point, Point] = adjacent
+    ? [{ x: sx, y: gs }, { x: tx, y: gs }]
+    : [{ x: CHANNEL, y: gs }, { x: CHANNEL, y: gt }];
   return {
     from: { anchor: a.anchor, panel: a.panel, id: a.id, label: a.label, point: start },
     to: { anchor: b.anchor, panel: b.panel, id: b.id, label: b.label, point: end },
-    route: { points, gutter: [exitS, exitT] },
+    route: { points, gutter },
   };
 }
 
@@ -791,8 +828,10 @@ export function composeCrossModelView(
       ...(request.selection !== undefined ? { selection: request.selection } : {}),
     });
     const box = viewBoxOf(view.tree);
+    // Stacked, not rowed — the measured decision the layout constants' header records. Frames
+    // share x = 0 so the left CHANNEL is outside every one of them by construction.
     const frame: Rect = {
-      x: cursor, y: 0, w: box.w + 2 * PAD, h: box.h + 2 * PAD + BAND,
+      x: 0, y: cursor, w: box.w + 2 * PAD, h: box.h + 2 * PAD + BAND,
     };
     panels.push({
       key: panelKey(subject),
@@ -802,7 +841,7 @@ export function composeCrossModelView(
       frame,
       origin: { x: frame.x + PAD - box.x, y: frame.y + BAND + PAD - box.y },
     });
-    cursor = frame.x + frame.w + GUTTER;
+    cursor = frame.y + frame.h + GUTTER;
   }
 
   const { connections, undrawn } = derive(system, panels, registry);
@@ -886,6 +925,51 @@ function connectionLine(c: CrossModelConnection): SvgNode {
         .map((p, i) => `${i === 0 ? "M" : "L"} ${n2(p.x)} ${n2(p.y)}`)
         .join(" "),
       class: `mage-xmodel${c.relation.kind === "composition" ? " mage-xmodel-composition" : ""}`,
+      "marker-end": "url(#mage-arrow)",
+    }),
+  ]);
+}
+
+/**
+ * A large bundle drawn by its DRAWN count is drawn as one line, panel to panel.
+ *
+ * Measured, not preferred: the 261006 sweep's Message Bus canvas drew seven `appears-in` lines
+ * per panel pair — every one exiting vertically through its own panel's stacked boxes — and the
+ * seven said nothing the bundle label's `(7)` does not. So past this threshold the PICTURE shows
+ * one labelled correspondence per pair while the TWIN keeps every element-level row, which is the
+ * usual division: the reading carries the facts, the picture carries the shape.
+ */
+const COLLAPSE_ABOVE = 3;
+
+/** One line standing for a whole bundle, routed like its members but border-to-border. */
+function collapsedLine(
+  frames: ReadonlyMap<string, Rect>, bundle: Bundle,
+): SvgNode {
+  const m0 = bundle.members[0] as CrossModelConnection;
+  const sF = frames.get(m0.from.panel) as Rect;
+  const tF = frames.get(m0.to.panel) as Rect;
+  const downward = tF.y >= sF.y + sF.h;
+  const sBorder = downward ? sF.y + sF.h : sF.y;
+  const tBorder = downward ? tF.y : tF.y + tF.h;
+  const [g0, g1] = m0.route.gutter;
+  const viaChannel = g0.x === CHANNEL && g1.x === CHANNEL;
+  const sx = mean(bundle.members.map((m) => (m.route.points[1] ?? m.from.point).x));
+  const tx = mean(bundle.members.map((m) =>
+    (m.route.points[m.route.points.length - 2] ?? m.to.point).x));
+  const points: Point[] = viaChannel
+    ? [{ x: sx, y: sBorder }, { x: sx, y: g0.y }, { x: CHANNEL, y: g0.y },
+      { x: CHANNEL, y: g1.y }, { x: tx, y: g1.y }, { x: tx, y: tBorder }]
+    : [{ x: sx, y: sBorder }, { x: sx, y: g0.y }, { x: tx, y: g0.y }, { x: tx, y: tBorder }];
+  return el("g", {
+    "data-xmodel": m0.relation.entry.name,
+    "data-xmodel-kind": m0.relation.kind,
+    "data-from": m0.from.panel,
+    "data-to": m0.to.panel,
+    "data-collapsed": bundle.members.length,
+  }, [
+    el("path", {
+      d: points.map((p, i) => `${i === 0 ? "M" : "L"} ${n2(p.x)} ${n2(p.y)}`).join(" "),
+      class: `mage-xmodel${m0.relation.kind === "composition" ? " mage-xmodel-composition" : ""}`,
       "marker-end": "url(#mage-arrow)",
     }),
   ]);
@@ -1000,20 +1084,27 @@ function canvasTree(
   connections: readonly CrossModelConnection[],
 ): SvgNode {
   const lifted = panels[0]?.view.tree.children.find((c) => c.tag === "defs");
-  const labels = placeLabels(bundles(connections));
+  const bundled = bundles(connections);
+  const frames = new Map(panels.map((p) => [p.key, p.frame]));
+  const lines = bundled.flatMap((b) =>
+    b.members.length > COLLAPSE_ABOVE ? [collapsedLine(frames, b)] : b.members.map(connectionLine));
+  const labels = placeLabels(bundled);
+  // MEASURED, not guessed — on all four sides, because the channel and its plates live LEFT of
+  // the frames now. A plate pushed clear by collision resolution must be inside the viewBox, and
+  // the renderer's own header records what guessing a strip's extent cost once: "that number was
+  // a guess at how wide a row of legend text would be, and it was wrong."
+  const routeXs = connections.flatMap((c) => c.route.points.map((p) => p.x));
+  const left = Math.min(0, ...routeXs, ...labels.map((l) => l.plate.x));
   const right = Math.max(0, ...panels.map((p) => p.frame.x + p.frame.w),
     ...labels.map((l) => l.plate.x + l.plate.w));
-  // MEASURED, not guessed. A plate pushed below the frames by collision resolution must be inside
-  // the viewBox, and the renderer's own header records what guessing a strip's extent cost once:
-  // "that number was a guess at how wide a row of legend text would be, and it was wrong."
   const bottom = Math.max(0, ...panels.map((p) => p.frame.y + p.frame.h),
     ...labels.map((l) => l.plate.y + l.plate.h));
   const titleId = "mage-xmodel-title";
   const descId = "mage-xmodel-desc";
   return el("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    viewBox: `${-PAD} ${-PAD} ${right + 2 * PAD} ${bottom + 2 * PAD}`,
-    width: right + 2 * PAD,
+    viewBox: `${n2(left - PAD)} ${-PAD} ${n2(right - left + 2 * PAD)} ${bottom + 2 * PAD}`,
+    width: n2(right - left + 2 * PAD),
     height: bottom + 2 * PAD,
     class: "mage-svg mage-xmodel-canvas",
     role: "img",
@@ -1027,7 +1118,7 @@ function canvasTree(
     ...(lifted === undefined ? [] : [lifted]),
     el("defs", {}, [el("style", { type: "text/css" }, [], CROSS_MODEL_STYLE)]),
     el("g", { "data-layer": "panels" }, panels.map(panelGroup)),
-    el("g", { "data-layer": "cross-model" }, connections.map(connectionLine)),
+    el("g", { "data-layer": "cross-model" }, lines),
     el("g", { "data-layer": "cross-model-labels" }, labels.map(bundleLabelGroup)),
   ]);
 }
@@ -1100,4 +1191,445 @@ export function refusalProse(r: PanelRefusal): string {
       return `this system declares no ${r.subject.kind} "${r.subject.id}", so the `
         + `${r.type.label} panel states the absence rather than drawing an empty picture`;
   }
+}
+
+// --------------------------------------------------------------------------------------------
+// The binding, in its own words
+// --------------------------------------------------------------------------------------------
+
+/**
+ * One registry row's full reading, for a surface that shows a binding as its subject.
+ *
+ * Every sentence-bearing field is the REGISTRY'S, quoted verbatim — `interpretation`,
+ * `licensing.why`, `witness.why`, `declaredBy.role`. This function adds connective frames only
+ * ("licensed by construction:", "declared at"), never a parallel explanatory vocabulary: a reading
+ * authored here could drift from what the registry asserts, and the registry is the composition
+ * semantics this workbench has exactly one of. `test/property-composition.test.ts` pins the
+ * quotation field by field.
+ */
+export interface BindingWords {
+  /** §23.2's displayed kind line — `bound by: appears-in` / `composed by: …`. */
+  readonly label: string;
+  readonly name: string;
+  readonly kind: "binding" | "composition";
+  /** The registry's own interpretation sentence, verbatim. */
+  readonly interpretation: string;
+  /** How the correspondence is licensed, leading with the licensing kind. */
+  readonly licensing: string;
+  /**
+   * True for a correspondence nothing declares — `appears-in`'s case. A surface should SAY that
+   * nothing declares it rather than offering a declaration to navigate to: the absence is the
+   * lesson, not a gap.
+   */
+  readonly byConstruction: boolean;
+  /** How a model document witnesses the correspondence, or how the composition enters a query. */
+  readonly witness: string;
+  /** Where the correspondence is authored. Total on the registry, so total here. */
+  readonly declaredBy: SchemaAuthority;
+}
+
+export function bindingWords(relation: CrossModelRelation): BindingWords {
+  const entry = relation.entry;
+  const licensing = entry.licensing.kind === "by-construction"
+    ? `licensed by construction: ${entry.licensing.why}`
+    : `licensed by a declaration, read from ${entry.licensing.by.file} `
+      + `(${entry.licensing.by.symbol}): ${entry.licensing.by.role}`;
+  const witness = relation.kind === "binding"
+    ? (relation.entry.witness.kind === "authored-property"
+      ? "witnessed by an authored property, spelled "
+        + relation.entry.witness.keys.map((k) => `'${k}'`).join(", ")
+      : `witnessed by shared membership: ${relation.entry.witness.why}`)
+    : `enters the question at ${relation.entry.declaredBy.file} `
+      + `(${relation.entry.declaredBy.symbol}): ${relation.entry.declaredBy.role}`;
+  return {
+    label: connectionLabel(relation),
+    name: entry.name,
+    kind: relation.kind,
+    interpretation: entry.interpretation,
+    licensing,
+    byConstruction: entry.licensing.kind === "by-construction",
+    witness,
+    declaredBy: entry.declaredBy,
+  };
+}
+
+// --------------------------------------------------------------------------------------------
+// The model-composition graph — the system's topology, derived from the registry
+// --------------------------------------------------------------------------------------------
+
+/**
+ * One place two purposeful models' meanings meet: the registered binding, the two subjects, and
+ * the element the correspondence runs through.
+ *
+ * This is the Navigate rail's topology reading — `Worker Pool ── job ── Job Lifecycle` — and it is
+ * DERIVED the same way the canvas's lines are: a walk over the registry and `witnessOf`, with no
+ * other input, so the rail cannot assert a meeting the kernel does not license. The models remain
+ * purposeful reductions; this names where their meanings meet.
+ */
+export interface CompositionEdge {
+  readonly binding: BindingSemantics;
+  readonly a: SceneSubject;
+  readonly b: SceneSubject;
+  /** The corresponded element — the entity (or state's entity) the two subjects share. */
+  readonly element: string;
+}
+
+export function modelCompositionGraph(
+  system: CanonicalSystem,
+  registry: CrossModelRegistry = KERNEL_CROSS_MODEL_REGISTRY,
+): readonly CompositionEdge[] {
+  const out: CompositionEdge[] = [];
+  const seen = new Set<string>();
+  const add = (binding: BindingSemantics, a: SceneSubject, b: SceneSubject, element: string): void => {
+    const ends = [`${a.kind}:${a.id}`, `${b.kind}:${b.id}`].sort().join("~");
+    const key = `${binding.name}|${ends}|${element}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ binding, a, b, element });
+  };
+  const modelsContaining = (entity: string): readonly string[] =>
+    [...system.models.values()].filter((m) => m.entities.includes(entity)).map((m) => m.id);
+
+  for (const binding of registry.bindings) {
+    const witness = witnessOf(system, binding.correspondence);
+    if (witness.kind === "no-rule") continue;
+    const pair = `${binding.correspondence.source}->${binding.correspondence.target}`;
+    for (const w of witness.pairs) {
+      if (pair === "machine->entity") {
+        for (const model of modelsContaining(w.target)) {
+          add(binding, { kind: "machine", id: w.source }, { kind: "model", id: model }, w.target);
+        }
+      } else if (pair === "entity->state") {
+        // The machine the state belongs to: the authored qualifier, or the unique machine
+        // declaring a state of that name. An ambiguous bare name yields no edge — guessing would
+        // draw a meeting with the wrong lifecycle, which is worse than omitting one.
+        const owners = w.targetSubject !== null
+          ? [w.targetSubject]
+          : [...system.machines.values()].filter((m) => m.states.includes(w.target)).map((m) => m.id);
+        if (owners.length !== 1) continue;
+        const machine = owners[0] as string;
+        for (const model of modelsContaining(w.source)) {
+          add(binding, { kind: "model", id: model }, { kind: "machine", id: machine }, w.source);
+        }
+      } else if (pair === "entity->model") {
+        // `appears-in`: every unordered pair of purposeful models naming this entity. The pairs
+        // list already carries (entity, model) rows, so the pairing happens here.
+        const others = witness.pairs.filter((o) => o.source === w.source && o.target !== w.target);
+        for (const o of others) {
+          add(binding, { kind: "model", id: w.target }, { kind: "model", id: o.target }, w.source);
+        }
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * One composed view the model's own bindings license: a shared element, and every purposeful
+ * model whose meaning meets on it.
+ *
+ * The author's ruling (261006): *"Offering the named JOINs present in the model as part of this
+ * list seems like a good choice. No ephemerality needed, it just shows what the underlying model
+ * already encodes as modeled."* So a composed view is OFFERED alongside the one-model subjects,
+ * derived — never authored here — from the same `modelCompositionGraph` walk the topology reading
+ * uses: a system whose two machines both declare `entity: job` has encoded a composed view of the
+ * job, and the list says so.
+ *
+ * `subjects` is ordered machines-flanking-models: the element's carrier model sits between the
+ * machines bound to it, so the shared element is the middle of the drawn row — §23's figure.
+ */
+export interface DerivedComposedView {
+  /**
+   * Every shared element the bindings correspond on, between exactly these subjects. A list, not
+   * one element: the sweep that sized this surface found Message Bus deriving SEVEN per-element
+   * views whose panel sets were identical — seven subject-list choices rendering one picture.
+   * One view per SUBJECT SET, carrying its elements, is the honest offering.
+   */
+  readonly elements: readonly string[];
+  readonly subjects: readonly SceneSubject[];
+  /** Every registered binding with a meeting on one of these elements. */
+  readonly bindings: readonly BindingSemantics[];
+}
+
+export function derivedComposedViews(
+  system: CanonicalSystem,
+  registry: CrossModelRegistry = KERNEL_CROSS_MODEL_REGISTRY,
+): readonly DerivedComposedView[] {
+  const byElement = new Map<string, CompositionEdge[]>();
+  for (const edge of modelCompositionGraph(system, registry)) {
+    const list = byElement.get(edge.element);
+    if (list === undefined) byElement.set(edge.element, [edge]);
+    else list.push(edge);
+  }
+  interface Draft {
+    readonly elements: string[];
+    readonly subjects: readonly SceneSubject[];
+    readonly bindings: Set<BindingSemantics>;
+  }
+  const bySubjectSet = new Map<string, Draft>();
+  for (const [element, edges] of byElement) {
+    const machines: SceneSubject[] = [];
+    const models: SceneSubject[] = [];
+    const seen = new Set<string>();
+    for (const edge of edges) {
+      for (const s of [edge.a, edge.b]) {
+        const key = `${s.kind}:${s.id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        (s.kind === "machine" ? machines : models).push(s);
+      }
+    }
+    if (machines.length + models.length < 2) continue;
+    const [first, ...rest] = machines;
+    const subjects = [...(first === undefined ? [] : [first]), ...models, ...rest];
+    const setKey = [...seen].sort().join("~");
+    const draft = bySubjectSet.get(setKey);
+    if (draft === undefined) {
+      bySubjectSet.set(setKey, {
+        elements: [element], subjects, bindings: new Set(edges.map((e) => e.binding)),
+      });
+    } else {
+      draft.elements.push(element);
+      for (const e of edges) draft.bindings.add(e.binding);
+    }
+  }
+  return [...bySubjectSet.values()].map((d) => ({
+    elements: d.elements, subjects: d.subjects, bindings: [...d.bindings],
+  }));
+}
+
+// --------------------------------------------------------------------------------------------
+// The composed property view — a cross-model claim, shown over the models that state it
+// --------------------------------------------------------------------------------------------
+
+/**
+ * What the facade asks for when a CROSS-MODEL property is selected: the claim's words, the panels
+ * its vocabulary spans, and the control states its constraint names.
+ *
+ * The semantic content arrives FROM the saved query via `constraintSpan`
+ * (`src/app/properties.ts`) — the statement, the engine's own `describePredicate` prose, and the
+ * (machine, state) sites — so this module adds geometry and nothing semantic. The composer stays
+ * what it is everywhere above: a projection that reads declarations and draws, with the registry
+ * as the only source of a correspondence line.
+ */
+export interface PropertyCompositionRequest {
+  /** The saved query id. */
+  readonly id: string;
+  /** What the claim says, in the author's words. */
+  readonly statement: string;
+  /** The behaviour form — `invariant`, `reach`, … — or null when the query states none. */
+  readonly form: string | null;
+  /** The engine's plain-language reading of the constraint (`describePredicate`), quoted. */
+  readonly prose: string | null;
+  readonly panels: readonly CrossModelPanelRequest[];
+  /** The control states the constraint names, resolved against each machine's own `states`. */
+  readonly ends: readonly { readonly machine: string; readonly state: string }[];
+}
+
+/** One end of the drawn constraint: the state node it anchors on, located on the outer canvas. */
+export interface ConstraintAnchor {
+  readonly panel: string;
+  readonly machine: string;
+  readonly state: string;
+  readonly label: string;
+  readonly box: Rect;
+}
+
+/**
+ * The constraint, drawn or honestly not. NOT a `CrossModelConnection` and never rendered as one:
+ * a binding asserts a CORRESPONDENCE the kernel licenses; this overlay renders the PROPERTY'S OWN
+ * predicate — the obligation being checked — in its own layer, its own stroke, and the engine's
+ * own words. Conflating the two would teach that a constraint is a correspondence, which is the
+ * confusion §23.2's "not every line is a join" rule exists to prevent.
+ */
+export type ConstraintOverlay =
+  | { readonly drawn: true; readonly text: string; readonly anchors: readonly ConstraintAnchor[] }
+  | { readonly drawn: false; readonly text: string; readonly why: string };
+
+/** The composed property view's twin: the canvas's, plus the property and its constraint in words. */
+export interface AccessiblePropertyComposition {
+  readonly property: {
+    readonly id: string;
+    readonly statement: string;
+    readonly form: string | null;
+    readonly prose: string | null;
+  };
+  readonly constraint: {
+    readonly text: string;
+    readonly drawn: boolean;
+    readonly why: string | null;
+    readonly ends: readonly { readonly machine: string; readonly state: string }[];
+  };
+  readonly canvas: AccessibleCrossModel;
+}
+
+export interface ComposedPropertyView {
+  /** The canvas WITH the constraint layer. `base.svg` is the registry-only canvas, untouched. */
+  readonly svg: string;
+  readonly tree: SvgNode;
+  readonly base: ComposedCrossModelView;
+  readonly constraint: ConstraintOverlay;
+  readonly accessible: AccessiblePropertyComposition;
+}
+
+/** The constraint layer's own vocabulary. Dotted, never the binding's solid or the composition's
+ * dash — and the stroke is never the sole carrier: the label and the twin say it in words. */
+const CONSTRAINT_STYLE = `
+.mage-constraint { fill: none; stroke: #7a2e2e; stroke-width: 2; stroke-dasharray: 2 3; }
+.mage-constraint-label { fill: #7a2e2e; }
+.mage-constraint-plate { fill: #ffffff; stroke: #7a2e2e; stroke-width: 1; }
+`.trim();
+
+/**
+ * The constraint's own channel, left of the binding channel — the two must not share a lane, or
+ * a reader tracing a dotted obligation would ride onto a solid correspondence.
+ */
+const CONSTRAINT_CHANNEL = CHANNEL - 70;
+
+/**
+ * Compose the view a cross-model property licenses: the panels its vocabulary spans, every
+ * registered correspondence between them, and the constraint itself drawn BESIDE the panels in
+ * its own layer and channel.
+ *
+ * The panels and connections come from `composeCrossModelView`, unchanged — this function draws no
+ * correspondence of its own. What it adds is the one thing the registry deliberately cannot
+ * supply: the PROPERTY's predicate, anchored on the control states it names, labelled with the
+ * engine's own reading. The emphasis selection (the named states, each machine's bound entity) is
+ * forwarded to the panels' own renderers, which already own emphasis.
+ */
+export function composePropertyView(
+  system: CanonicalSystem,
+  request: PropertyCompositionRequest,
+  render: (req: SceneRequest) => RenderedView,
+  registry: CrossModelRegistry = KERNEL_CROSS_MODEL_REGISTRY,
+): ComposedPropertyView {
+  // Emphasis: the constraint's own states, plus each presented machine's bound entity — the
+  // element the binding lines converge on, which is the middle object the view exists to show.
+  const boundEntities = request.panels
+    .filter((p) => p.type === "state-machine")
+    .map((p) => system.machines.get(p.id)?.entity)
+    .filter((e): e is string => e !== null && e !== undefined);
+  const selection = [...new Set([...request.ends.map((e) => e.state), ...boundEntities])];
+
+  const base = composeCrossModelView(system, { panels: request.panels, selection }, render, registry);
+
+  // Anchor each named state on the panel that draws its machine. A state the panels cannot anchor
+  // is reported, never silently dropped — same rule as `NotDrawn`.
+  const anchors: ConstraintAnchor[] = [];
+  const missing: string[] = [];
+  for (const end of request.ends) {
+    const panel = base.panels.find(
+      (p) => p.subject.kind === "machine" && p.subject.id === end.machine);
+    const node = panel?.view.layout.nodes.get(end.state);
+    if (panel === undefined || node === undefined) {
+      missing.push(`${end.machine}.${end.state}`);
+      continue;
+    }
+    const twinNode = panel.view.accessible.nodes.find((n) => n.id === end.state);
+    anchors.push({
+      panel: panel.key,
+      machine: end.machine,
+      state: end.state,
+      label: twinNode?.label ?? end.state,
+      box: {
+        x: panel.origin.x + node.rect.x, y: panel.origin.y + node.rect.y,
+        w: node.rect.w, h: node.rect.h,
+      },
+    });
+  }
+
+  const text = request.prose === null
+    ? `the property "${request.statement}"`
+    : `property requires: ${request.prose}`;
+  const constraint: ConstraintOverlay = anchors.length >= 2
+    ? { drawn: true, text, anchors }
+    : {
+      drawn: false,
+      text,
+      why: missing.length > 0
+        ? `no panel draws ${missing.join(", ")}, so the constraint is stated in words instead`
+        : "the constraint names fewer than two drawable control states, so there is nothing to "
+          + "span a line between",
+    };
+
+  const tree = constraint.drawn
+    ? withConstraintLayer(base.tree, constraint.anchors, text)
+    : base.tree;
+
+  return {
+    svg: serialize(tree),
+    tree,
+    base,
+    constraint,
+    accessible: {
+      property: {
+        id: request.id, statement: request.statement, form: request.form, prose: request.prose,
+      },
+      constraint: {
+        text,
+        drawn: constraint.drawn,
+        why: constraint.drawn ? null : constraint.why,
+        ends: request.ends,
+      },
+      canvas: base.accessible,
+    },
+  };
+}
+
+/**
+ * The base canvas with the constraint drawn beside it: a dotted trunk in its own channel, one
+ * stub per anchored state, and the label plated above the whole stack — §6.7's sketch, where the
+ * `property requires` edge leaves `processing` and arrives beside `free` without crossing either
+ * machine's own picture. The stacked layout routes it in the left margin for the same reason the
+ * binding channel lives there: there is nothing of any model to collide with.
+ */
+function withConstraintLayer(
+  base: SvgNode, anchors: readonly ConstraintAnchor[], text: string,
+): SvgNode {
+  const box = String(base.attrs["viewBox"] ?? "").trim().split(/\s+/).map(Number);
+  const [vx, vy, vw, vh] = box as [number, number, number, number];
+
+  const trunkX = Math.min(CONSTRAINT_CHANNEL, vx - 40);
+  const ys = anchors.map((a) => a.box.y + a.box.h / 2);
+  const extent = textExtent(text, LABEL_CLASS);
+  const plate: Rect = {
+    x: trunkX, y: vy - extent.h - 16, w: extent.w + 10, h: extent.h + 6,
+  };
+
+  const trunk = `M ${n2(trunkX)} ${n2(plate.y + plate.h)} L ${n2(trunkX)} ${n2(Math.max(...ys))}`;
+  // Each stub stops at the panel's frame edge (every frame starts at x = 0 in the stacked
+  // layout), at the state's own height. The first cut ran the stub INTO the state box, and the
+  // render showed it striking through whatever transitions and labels lay between the frame and
+  // the state — so the arrow now points at the panel at the state's height, and the state itself
+  // carries the selection emphasis the composer already requests for every constraint end.
+  const stubs = anchors.map((a) => el("path", {
+    d: `M ${n2(trunkX)} ${n2(a.box.y + a.box.h / 2)} L 0 ${n2(a.box.y + a.box.h / 2)}`,
+    class: "mage-constraint",
+    "marker-end": "url(#mage-arrow)",
+  }));
+  const layer = el("g", { "data-layer": "property-constraint" }, [
+    el("defs", {}, [el("style", { type: "text/css" }, [], CONSTRAINT_STYLE)]),
+    el("path", { d: trunk, class: "mage-constraint" }),
+    ...stubs,
+    el("rect", {
+      x: n2(plate.x), y: n2(plate.y), width: n2(plate.w), height: n2(plate.h),
+      rx: 3, class: "mage-constraint-plate",
+    }),
+    el("text", {
+      x: n2(plate.x + 5), y: n2(plate.y + extent.h), class: `${LABEL_CLASS} mage-constraint-label`,
+    }, [], text),
+  ]);
+
+  // The viewBox grows left for the channel and up for the plate — and right if the plate
+  // overhangs. Measured, for the reason `canvasTree` gives: a guessed extent was wrong once.
+  const top = Math.min(vy, plate.y - PAD);
+  const left = Math.min(vx, trunkX - PAD);
+  const right = Math.max(vx + vw, plate.x + plate.w + PAD);
+  const bottom = vy + vh;
+  return el(base.tag, {
+    ...base.attrs,
+    viewBox: `${n2(left)} ${n2(top)} ${n2(right - left)} ${n2(bottom - top)}`,
+    width: n2(right - left),
+    height: n2(bottom - top),
+  }, [...base.children, layer], base.text);
 }

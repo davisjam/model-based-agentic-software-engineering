@@ -30,10 +30,25 @@ import { TransactionEngine } from "../transaction/engine.ts";
 import type { RejectionKind } from "../transaction/types.ts";
 import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
-import { evaluateOne, evaluateProperties } from "./properties.ts";
+import { constraintSpan, evaluateOne, evaluateProperties } from "./properties.ts";
 import type { EvaluatedProperty } from "./properties.ts";
-import { composeCrossModelView } from "./cross-model.ts";
-import type { ComposedCrossModelView, CrossModelRequest } from "./cross-model.ts";
+import {
+  composeCrossModelView, composePropertyView, derivedComposedViews, modelCompositionGraph,
+} from "./cross-model.ts";
+import type {
+  ComposedCrossModelView, ComposedPropertyView, CompositionEdge, CrossModelPanelRequest,
+  CrossModelRequest, DerivedComposedView,
+} from "./cross-model.ts";
+
+// The UI reaches the cross-model vocabulary through this facade, never through the composer
+// directly — `test/cross-model.test.ts` holds that this file is the composer's only importer, so
+// there is exactly one route to a cross-model line. These types and the one pure reader are
+// re-exported for the surfaces that render what the facade composed.
+export { bindingWords } from "./cross-model.ts";
+export type {
+  BindingWords, ComposedCrossModelView, ComposedPropertyView, CompositionEdge, ConstraintOverlay,
+  DerivedComposedView,
+} from "./cross-model.ts";
 import type {
   AnalysisPort, EnginePort, PendingResult, RenderPort, RenderedView, SceneRequest,
 } from "./ports.ts";
@@ -662,6 +677,65 @@ export class Workspace {
     return composeCrossModelView(
       this.#engine.system(), request, (req) => this.renderView(req),
     );
+  }
+
+  /**
+   * The composed view a CROSS-MODEL property licenses, or null for a property that is not one.
+   *
+   * Null is the common case and the design: a claim whose constraint vocabulary lives in one
+   * machine gets the ordinary one-model view, and `constraintSpan` — the statement's OWN atoms,
+   * not the wider grounds — is what decides. The panels are the machines the constraint spans with
+   * the models that CARRY the binding between them placed in the middle: the model containing a
+   * machine's bound entity is where both `machine-of-entity` lines land, so the shared element
+   * sits between the machines it corresponds — §23's figure, derived rather than arranged.
+   */
+  composePropertyView(queryId: string): ComposedPropertyView | null {
+    const system = this.#engine.system();
+    const saved = system.queries.get(queryId);
+    if (saved === undefined) return null;
+    const span = constraintSpan(system, saved.raw);
+    if (span.machines.length < 2) return null;
+
+    const carriers: string[] = [];
+    for (const id of span.machines) {
+      const entity = system.machines.get(id)?.entity;
+      if (entity === null || entity === undefined) continue;
+      for (const m of system.models.values()) {
+        if (m.entities.includes(entity) && !carriers.includes(m.id)) carriers.push(m.id);
+      }
+    }
+    const [firstMachine, ...restMachines] = span.machines;
+    const panels: readonly CrossModelPanelRequest[] = [
+      ...(firstMachine === undefined ? [] : [{ type: "state-machine" as const, id: firstMachine }]),
+      ...carriers.map((id) => ({ type: "structural-graph" as const, id })),
+      ...restMachines.map((id) => ({ type: "state-machine" as const, id })),
+    ];
+
+    const nameField = typeof saved.raw === "object" && saved.raw !== null && !Array.isArray(saved.raw)
+      ? (saved.raw as Record<string, unknown>)["name"]
+      : undefined;
+    return composePropertyView(system, {
+      id: queryId,
+      statement: typeof nameField === "string" && nameField.trim() !== "" ? nameField : queryId,
+      form: span.form,
+      prose: span.prose,
+      panels,
+      ends: span.sites.flatMap((s) =>
+        s.state === null ? [] : [{ machine: s.machine, state: s.state }]),
+    }, (req) => this.renderView(req));
+  }
+
+  /** Where the loaded system's models meet, derived from the binding registry (`CompositionEdge`). */
+  modelCompositionGraph(): readonly CompositionEdge[] {
+    return modelCompositionGraph(this.#engine.system());
+  }
+
+  /**
+   * The composed views the model's own bindings license — what the system already encodes as
+   * modeled, offered in the subject list beside the one-model views (author ruling, 261006).
+   */
+  derivedComposedViews(): readonly DerivedComposedView[] {
+    return derivedComposedViews(this.#engine.system());
   }
 
   /** Escape hatch for a caller that holds only a document: canonicalize without loading. */
