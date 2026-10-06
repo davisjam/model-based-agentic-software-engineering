@@ -427,3 +427,19 @@ was a `showProperties` opt-in the page never passed, not missing code. Fit rule:
 if it fits WHOLE, never an ellipsis; long clauses stay in the description + inspector.
 
 **HOST LOAD 100** (other session's fleet). Do not dispatch more; do not push until green + quiet.
+
+## [FIX] follow-up — the gate set is a fact re-derived in THREE places
+
+"Which tiers constitute a verified tree" is now authored independently in `tools/land.py`'s `GATES`
+tuple (5), `.github/workflows/pages.yml`'s job steps (6 matching invocations), and `hooks/pre-push`
+(10). Two languages plus a hook. Measured 261006.
+
+They agree today. Nothing makes them keep agreeing: a tier added to CI and not to `land.py` means a
+local landing reports GREEN on a tree CI will red, which is exactly the false-confidence failure
+`land.py` was built to end. The placement rule written into CLAUDE.md today ("pre-push only for
+cheap-under-load + deterministic + fails-on-the-author's-own-edit; everything else is a CI fan-out
+gate") is the POLICY; a shared manifest the three read would be the MECHANISM.
+
+NOT extracted now, deliberately: the workflow was restructured hours ago, `land.py` is a day old,
+and the UX redesign owns the fleet. Extract on the next touch of any of the three — the join is
+already the second-site trigger, so the next edit is the one to pay for it.
