@@ -27,9 +27,10 @@ import {
   METRICS,
   SUBLABEL_PITCH,
   TEXT_SIZES,
-  inNodeLines,
+  claimsByTarget,
   initialMarkerCentre,
   initialMarkerTarget,
+  nodeBoxLines,
   textExtent,
 } from "./layout.ts";
 import type { LayoutEngine } from "./layout.ts";
@@ -524,6 +525,7 @@ export function renderView(
     ...(req.direction !== undefined ? { direction: req.direction } : {}),
     ...(req.hints !== undefined ? { hints: req.hints } : {}),
     ...(req.showProperties !== undefined ? { showProperties: req.showProperties } : {}),
+    ...(req.claims !== undefined ? { claims: req.claims } : {}),
   });
 
   const emphasis: EmphasisAssignment[] = [
@@ -560,11 +562,13 @@ export function renderView(
     if (b.kind === "region" && a.kind !== "region") return 1;
     return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   });
+  const claims = claimsByTarget(req.claims);
   const nodeNodes = ordered.map((n) => {
-    // `inNodeLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
+    // `nodeBoxLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
     // line the box already has height and width for — a leaf grows downward, a region's lines sit
-    // in the band between its header and its children.
-    const subs = inNodeLines(scene.nodes.find((s) => s.id === n.id)?.properties ?? [], show);
+    // in the band between its header and its children. Claim lines ride behind attribute lines.
+    const subs = nodeBoxLines(
+      scene.nodes.find((s) => s.id === n.id)?.properties ?? [], show, claims.get(n.id) ?? []);
     return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0);
   });
 

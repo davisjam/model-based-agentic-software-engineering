@@ -537,9 +537,19 @@
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /*
+    Viewer mode (the default). The mutation and query-authoring surfaces stay in the document —
+    window.mage, the affordance registry and the page contract all still see them — but a human is
+    not offered them until the Advanced toggle flips body[data-mode]. display:none also removes
+    them from the accessibility tree and the tab order, so the viewer's focus walk is the short
+    one. Chosen over the `hidden` attribute because regions toggle `hidden` per-paint via mountIf,
+    and the two mechanisms must not fight over one attribute.
+  */
+  body[data-mode="viewer"] .advanced-only { display: none !important; }
 </style>
 </head>
-<body>
+<body data-mode="viewer">
 <!--
   The skip link's target follows SH-I1: Start on an empty workspace, the model workspace once
   something is loaded. A fixed target would point at a `hidden` region half the time, which is worse
@@ -596,7 +606,7 @@
     Open a .mage.yaml
     <input id="file" type="file" accept=".yaml,.yml,.json" class="sr-only">
   </label>
-  <button id="new-system" type="button">Create new model system</button>
+  <button id="new-system" type="button" class="advanced-only">Create new model system</button>
   <!--
     Export and Run ship DISABLED for the same reason Undo and Redo do: with nothing loaded there is
     nothing to write out and no question to run. A control that is enabled and cannot work costs a
@@ -612,8 +622,8 @@
   -->
   <button id="reset" type="button">Reset</button>
   <button id="run" type="button" class="primary" disabled>Run all questions</button>
-  <button id="undo" type="button" disabled>Undo</button>
-  <button id="redo" type="button" disabled>Redo</button>
+  <button id="undo" type="button" class="advanced-only" disabled>Undo</button>
+  <button id="redo" type="button" class="advanced-only" disabled>Redo</button>
   <!--
     The command palette's opener, and the reason it is a VISIBLE control and not only a shortcut.
     A keystroke nobody can see is not an affordance: UX-I1 asks for a human-accessible path, and
@@ -624,7 +634,7 @@
     unavailable, and a disabled control is not a tab stop — which is also why the five-stop
     pristine walk (test/browser/a11y/keyboard.test.mjs) does not grow a sixth.
   -->
-  <button id="palette-open" type="button" disabled>Commands (⌘K)</button>
+  <button id="palette-open" type="button" class="advanced-only" disabled>Commands (⌘K)</button>
   <!--
     The deliberate route to a what-if, and `create-hypothesis`'s human affordance since correction 8
     deleted the radio pair that used to carry it.
@@ -640,7 +650,18 @@
     DISABLED for the reason Export, Run and Commands do: with nothing loaded there is nothing to
     branch, and a disabled control is not a tab stop — the five-stop pristine walk does not grow.
   -->
-  <button id="whatif-arm" type="button" aria-pressed="false" disabled>Start a what-if…</button>
+  <button id="whatif-arm" type="button" class="advanced-only" aria-pressed="false" disabled>Start a what-if…</button>
+  <!--
+    The mode switch (the author's "the browser is the inspection and analysis surface, not the
+    agent surface"). The DEFAULT surface is a viewer: every control whose act would change the
+    model — and the ask/query surfaces that suggest the workbench is the conversational interface —
+    carries class="advanced-only" and is display:none until this toggle turns the body's data-mode
+    to "advanced". Nothing is deleted: the editor, the query builder, the System Browser and the
+    what-if machinery all keep their markup, their wiring and their window.mage parity; the toggle
+    changes only which surfaces a HUMAN is offered. aria-pressed carries the state, and the
+    announcement names what appeared or went away.
+  -->
+  <button id="advanced-toggle" type="button" aria-pressed="false">Advanced</button>
 </header>
 
 <!--
@@ -813,7 +834,7 @@
       rather than inspector actions: none of them needs anything selected. The destructive and
       modifying ones live on the object they concern, in the inspector.
     -->
-    <details id="add-menu">
+    <details id="add-menu" class="advanced-only">
       <summary id="add-menu-summary">+ Add</summary>
       <!--
         Quieter. The hint explained the whole division of operations — additive here, everything
@@ -937,7 +958,7 @@
       changes a relation in place; offering either would be a control that cannot work. The gap is
       recorded in DESIGN-shell-261002.md §9c rather than papered over with a disabled button.
     -->
-    <div id="inspector-actions">
+    <div id="inspector-actions" class="advanced-only">
       <h3 id="inspector-actions-h">Actions</h3>
       <p class="hint" id="inspector-actions-hint"></p>
       <button id="act-rename" type="button" disabled>Rename…</button>
@@ -970,7 +991,7 @@
     order and announces its own state (SH-I2). Advanced query, the evidence reading and the formal
     builder all use the one spelling.
   -->
-  <section id="askbar" aria-labelledby="askbar-h" hidden>
+  <section id="askbar" class="advanced-only" aria-labelledby="askbar-h" hidden>
     <h2 id="askbar-h">Ask about the model system</h2>
     <!--
       Quieter, and this one was the loudest: five sentences of semantics above a one-line text
@@ -1194,7 +1215,7 @@
     The option lists are refreshed from the model on every repaint; the markup is not rebuilt, so
     the caret stays where the user put it.
   -->
-  <section id="edit" aria-labelledby="edit-h" hidden>
+  <section id="edit" class="advanced-only" aria-labelledby="edit-h" hidden>
     <h2 id="edit-h">Edit</h2>
     <p class="intro">
       Every edit is one validated transaction. A rejected edit changes nothing and says why. The
@@ -1378,7 +1399,7 @@
     system, which is this region's genre, so this is where it waits rather than in a pane a later
     wave would have to clear out.
   -->
-  <section id="system-browser" aria-labelledby="system-browser-h" hidden>
+  <section id="system-browser" class="advanced-only" aria-labelledby="system-browser-h" hidden>
     <h2 id="system-browser-h">System Browser</h2>
     <!--
       THE EXHAUSTIVE VIEW IS NOW ON DEMAND, which is the whole of wave 3's correction-3 work.

@@ -523,8 +523,17 @@ export async function openServedPage(browser, pathname, origin) {
   // ahead of the module that would restore a session -- with no second `goto`. A double navigation
   // would work too, and it trips `makes no request that fails at the transport`: superseding the
   // first request aborts it, and the aborted request is a transport failure to the sibling gate.
+  // …and starts in ADVANCED mode. The shipped default is the viewer (body[data-mode="viewer"]
+  // hides every authoring surface), and this tier's fixtures drive those surfaces directly — the
+  // ask forms, the edit dialogs, the Inspector's actions. Seeding the mode key here keeps every
+  // existing assertion running against the full surface; the viewer DEFAULT and the toggle have
+  // their own probe (viewer-mode.test.mjs), which flips the mode itself and asserts both sides.
   await page.evaluateOnNewDocument(() => {
-    try { localStorage.clear(); sessionStorage.clear(); } catch { /* storage disabled: nothing to clear */ }
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+      sessionStorage.setItem("wb-mode", "advanced");
+    } catch { /* storage disabled: nothing to clear */ }
   });
 
   await page.goto(`${origin}/${pathname}`, { waitUntil: "networkidle0", timeout: 60_000 });

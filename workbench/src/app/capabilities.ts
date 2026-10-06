@@ -285,6 +285,14 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
       + "missing a parity here -- an agent reads the same case from window.mage.examples()",
   },
   {
+    id: "advanced-toggle",
+    why: "switches the page between the viewer default and Advanced mode by flipping "
+      + "body[data-mode] — pure presentation of which surfaces a human is OFFERED. It reaches no "
+      + "model state and no agent operation needs parity with it: window.mage sees the same "
+      + "workspace in both modes, which is the point of the split (the browser is the inspection "
+      + "surface; the agent is the mutation surface)",
+  },
+  {
     id: "ask-witness-show",
     why: "draws the answered question's witness over the model that carried it; it writes the "
       + "view's `witness`, which is outside semantic state exactly as `target` and `selection` are "
@@ -319,6 +327,13 @@ export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: s
     selector: "#model-contents button",
     why: "the model contents tree's rows: one per drawn element, activating one sets the view's "
       + "selection and mutates no model state (DESIGN-shell-261002.md section 4, ruling 1)",
+  },
+  {
+    selector: "#question-list button[data-rail=\"witness\"]",
+    why: "the property rail's 'Show on model' rows: one per tracked claim, activating one writes "
+      + "the view's `witness` and `target` — the same pure view movement `ask-witness-show` is "
+      + "exempted for above, offered where the claim lives so the viewer surface can explain a "
+      + "verdict on the diagram; no model state is reached",
   },
   {
     selector: "#edit-dialog-type-rows button",

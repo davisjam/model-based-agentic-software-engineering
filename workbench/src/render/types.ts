@@ -249,6 +249,26 @@ export interface AccessibleProperty {
   readonly domain: string | null;
 }
 
+/**
+ * One tracked claim a node participates in, SUPPLIED BY THE CALLER — the renderer never computes a
+ * verdict, so these arrive on the request exactly as evidence does. The same pattern as declared
+ * attributes (`showProperties`): the picture shows a `glyph statement` sub-line in the node box
+ * when it fits, and the structured twin always carries the full claim either way, so the visual
+ * and accessible channels cannot drift.
+ */
+export interface NodeClaim {
+  /** The scene node id (entity id, or a machine's state name) the claim attaches to. */
+  readonly target: string;
+  /** The saved-query id of the property — the join key to the properties rail. */
+  readonly property: string;
+  /** The rail's three-valued glyph (checkmark, cross, question mark). Decoration beside `word`. */
+  readonly glyph: string;
+  /** The status word the glyph summarizes — ESTABLISHED, REFUTED, NOT ANSWERABLE, and kin. */
+  readonly word: string;
+  /** The claim in the author's words. */
+  readonly statement: string;
+}
+
 export interface AccessibleNode {
   readonly id: string;
   readonly label: string;
@@ -259,6 +279,12 @@ export interface AccessibleNode {
   /** Containment restated as a relation, because the enclosing region is positional. */
   readonly contains: readonly string[];
   readonly properties: readonly AccessibleProperty[];
+  /**
+   * The tracked claims this node participates in, verdicts included — ALL of them, whether or not
+   * the picture had room for the sub-line. The caller supplies them on the request (`claims`);
+   * the twin restates every one, which is the FR-A11Y-2 posture `properties` already takes.
+   */
+  readonly claims: readonly NodeClaim[];
   readonly initial: boolean;
   readonly emphasis: readonly EmphasisAssignment[];
   /** Reading order over the whole scene: rank then lane. Order is a convenience, never meaning. */
@@ -442,6 +468,14 @@ export interface LayoutOptions {
    * the engine must reserve node height and width for the sub-lines it will be asked to paint.
    */
   readonly showProperties?: readonly string[] | undefined;
+  /**
+   * Tracked claims to surface on the nodes that participate in them, as `glyph statement`
+   * sub-lines below the attribute lines. Lives on `LayoutOptions` for the same reason
+   * `showProperties` does: text participates in layout, so the engine must reserve node height
+   * and width for the lines it will be asked to paint. The twin carries every claim regardless
+   * of fit; the renderer computes no verdict — it paints what the caller established.
+   */
+  readonly claims?: readonly NodeClaim[] | undefined;
 }
 
 export interface SceneRequest extends LayoutOptions {

@@ -62,6 +62,7 @@ export type {
   LayoutOptions,
   LegendEntry,
   MarkStyle,
+  NodeClaim,
   NodeKind,
   Point,
   Rect,

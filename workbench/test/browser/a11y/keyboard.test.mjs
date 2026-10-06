@@ -103,7 +103,7 @@ after(async () => {
 describe("the tab order itself", () => {
   it("opens on the skip link and then the toolbar, with no unreachable stop in between", async () => {
     await releaseFocus(page);
-    const forward = await tabSequence(page, 8);
+    const forward = await tabSequence(page, 9);
     // Pinned from a FRESH page. Undo, Redo, Export and Run are all disabled with no model loaded,
     // so none appears. Export and Run joined that list when F-2 was fixed: they shipped enabled,
     // which put two controls that could do nothing ahead of the one that could. The remaining
@@ -144,9 +144,17 @@ describe("the tab order itself", () => {
     // snapshot earns its keep — it is what caught F-2, where Export and Run shipped enabled ahead
     // of the only control that could do anything — but a fourth patch is the signal to derive the
     // expectation from the shell's declared control order instead of restating it here.
+    //
+    // A NINTH STOP JOINED — `button#advanced-toggle`, the viewer/advanced mode switch — and this
+    // IS the fourth hand-patch the paragraph above said would be the signal. Noted and deferred
+    // with the work it belongs to: this walk runs under the harness's advanced-mode seed, where
+    // the header offers the full toolbar; the shipped default is the viewer, whose shorter walk
+    // (no new-system) is the viewer-mode probe's to hold. The toggle sits last in the header,
+    // after every control it governs, so the ordering claim — the ways IN before the model — is
+    // unchanged.
     assert.deepEqual(forward, [
       "a#skip", "a#", "a#learn", "input#file", "button#new-system", "button#reset",
-      "select#example-choice", "button#example-load",
+      "button#advanced-toggle", "select#example-choice", "button#example-load",
     ], "the opening tab order changed");
     // Backwards too: a one-way tab order traps a keyboard user at the end of the page.
     await pressShiftTab(page);

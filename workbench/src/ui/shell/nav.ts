@@ -41,10 +41,11 @@
  */
 import type { CapabilityId } from "../../app/capabilities.ts";
 import { CAPABILITIES } from "../../app/capabilities.ts";
-import type { PropertyStatus } from "../../app/properties.ts";
+import { statusMark } from "../../app/properties.ts";
 import type { CompositionEdge } from "../../app/services.ts";
 import type { CanonicalSystem } from "../../ir/types.ts";
 import { propertyBlock } from "../render-dom.ts";
+import { witnessFocus } from "./workspace.ts";
 import { purposeBlock, resolveSubject, subjectValue } from "../view-model.ts";
 import type { PropertyRow, ViewModel } from "../view-model.ts";
 import { byId, mountIf } from "./context.ts";
@@ -133,35 +134,12 @@ export interface NavRails {
 }
 
 /**
- * The glyph, per status, exhaustively.
- *
- * A `Record<PropertyStatus, …>` rather than a switch with a default: adding a status to the
- * vocabulary then fails to compile here, which is the point of taking the typed status rather than
- * reading the word out of the sentence.
- *
- * `conditional` takes `?` and not `✓`. It holds of a REWRITTEN form of the statement, so a tick
- * would claim the statement as written was established; the word beside it says which, and the
- * disclosure says what the rewrite was.
+ * The glyph and word tables moved to `src/app/properties.ts` (`STATUS_GLYPH` / `statusWord` /
+ * `statusMark`), beside `STATUS_TEXT`, when the workspace began painting the same marks as claim
+ * sub-lines inside node boxes — one table, two surfaces, no drift. Re-exported so the rail's
+ * callers keep their import.
  */
-const GLYPH: Readonly<Record<PropertyStatus, string>> = {
-  established: "✓",
-  refuted: "✗",
-  conditional: "?",
-  "not-answerable": "?",
-  inconclusive: "?",
-  "not-evaluated": "?",
-};
-
-/**
- * The status as a short word, DERIVED from the status key rather than written again.
- *
- * `STATUS_TEXT` leads with exactly this word and then explains it; the rail has room for the word
- * only. Copying the six leading words into a second table would be the drift this repo keeps
- * writing up, so the key is uppercased instead and `test/shell-nav.test.ts` pins that the long form
- * still opens with the short one.
- */
-export const statusWord = (status: PropertyStatus): string =>
-  status.replace(/-/g, " ").toUpperCase();
+export { statusWord } from "../../app/properties.ts";
 
 /**
  * A stale verdict is marked `?`, whatever the verdict was.
@@ -170,9 +148,7 @@ export const statusWord = (status: PropertyStatus): string =>
  * claim about what is loaded. `PropertyRow` demotes the verdict out of `status` for the same reason;
  * the mark follows it rather than deciding separately.
  */
-const markOf = (row: PropertyRow): RailMark => row.stale
-  ? { glyph: "?", word: "NOT CURRENT" }
-  : { glyph: GLYPH[row.statusKey], word: statusWord(row.statusKey) };
+const markOf = (row: PropertyRow): RailMark => statusMark(row.statusKey, row.stale);
 
 /**
  * Both rails, as data, before any element exists.
@@ -240,14 +216,16 @@ export function navRails(
     properties,
     propertiesEmpty: properties.length > 0
       ? null
-      // The lifecycle the author drew, named where the user is standing: ask, then track. The old
-      // sentence said "above", which stopped being true when the ask bar moved to the bottom.
+      // The taught loop, named where the user is standing: the human tells the AGENT, which
+      // formalizes the claim; the workbench shows what was formalized and whether it holds. The
+      // old sentence sent the reader to the ask bar, which the viewer surface no longer offers —
+      // the browser is the inspection surface, not the agent surface.
       //
-      // The lifecycle stays; what a property IS — a saved question, re-evaluated on every later
-      // revision — moved to Learn (`src/learn/workbench-guide.ts`, "What a property is"). A rail
-      // row is where a reader learns the next act, not the semantics of the object it produces.
-      : "This model system asserts no claims yet. Ask a question in the ask bar, then track the "
-        + "answer.",
+      // What a property IS — a saved question, re-evaluated on every later revision — stays in
+      // Learn (`src/learn/workbench-guide.ts`, "What a property is"). A rail row is where a
+      // reader learns the next act, not the semantics of the object it produces.
+      : "This model system asserts no claims yet. Tell your agent what must hold of the system; "
+        + "it records the claim, and the verdict appears here.",
   };
 }
 
@@ -378,6 +356,18 @@ function propertyNode(row: PropertyRailRow): HTMLLIElement {
     el("summary", "Status, grounding and evidence"),
     propertyBlock(row.full),
   );
+  // "Show on model" — the claim's evidence drawn ON the diagram, from the rail itself. The same
+  // view movement the ask surface's witness button performs (`ViewState.witness`, outside semantic
+  // state), offered where the property LIVES so the viewer surface explains verdicts without any
+  // authoring affordance. A claim with nothing drawable gets the honest sentence when activated —
+  // which cases those are is `witnessFocus`'s contract, resolved at click against the live system.
+  const show = el("button", "Show on model");
+  show.type = "button";
+  show.dataset["rail"] = "witness";
+  show.dataset["arg"] = row.id;
+  const showRow = el("p");
+  showRow.append(show);
+  details.append(showRow);
   li.append(details);
   return li;
 }
@@ -424,11 +414,33 @@ export function mountNav(ctx: ShellContext): ShellRegion {
     host.addEventListener("click", (event) => {
       const from = event.target;
       if (!(from instanceof Element)) return;
-      const link = from.closest<HTMLAnchorElement>("a[data-rail]");
+      const link = from.closest<HTMLElement>("[data-rail]");
       if (link === null) return;
       const arg = link.dataset["arg"];
       if (arg === undefined) return;
       const action = link.dataset["rail"];
+      if (action === "witness") {
+        // Draw this claim's evidence over the model or machine that carries it. Re-derived at
+        // click against the live system — a retracted claim or a now-refusing statement answers
+        // honestly instead of drawing a stale picture.
+        const system = ctx.workspace.state.system;
+        const focus = witnessFocus(system, arg, (raw) => ctx.workspace.query(raw));
+        if (focus === null) {
+          ctx.announce("This claim has no drawable evidence right now: a refusal or a conclusive "
+            + "absence has no path or trace to draw, and an unevaluated claim has none yet. The "
+            + "status, grounding and any refusal sentence in this row are the whole of the "
+            + "evidence.");
+          return;
+        }
+        ctx.viewState.target = subjectValue(focus.subject);
+        ctx.viewState.composed = null;
+        ctx.viewState.witness = arg;
+        ctx.announce(`Workspace draws the ${focus.result.evidence?.role ?? "evidence"} for this `
+          + `claim over ${focus.subject.id}, with its steps numbered on the diagram and listed in `
+          + "the model reading.");
+        ctx.repaint();
+        return;
+      }
       if (action === "invoke") {
         event.preventDefault();
         const control = document.getElementById(arg);

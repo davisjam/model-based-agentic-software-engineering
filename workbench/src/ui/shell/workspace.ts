@@ -28,8 +28,10 @@ import { modelsDeclaring } from "../../engine/graph.ts";
 import { modelTypeOf } from "../../engine/model-types.ts";
 import { parseGraphQuery } from "../../engine/index.ts";
 import type {
-  AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
+  AccessibleEdge, AccessibleNode, AccessibleScene, NodeClaim, Point, RenderedView, SceneSubject,
 } from "../../render/types.ts";
+import type { EvaluatedProperty } from "../../app/properties.ts";
+import { constraintSpan, statusMark } from "../../app/properties.ts";
 import { paintBudget, paintDiagram, paintPrincipal, fillSelect, svgElement } from "../render-dom.ts";
 import { budgetViews } from "../../app/budget.ts";
 import { bindingWords } from "../../app/services.ts";
@@ -162,6 +164,19 @@ export function witnessFocus(
   const q = typeof raw === "object" && raw !== null && !Array.isArray(raw)
     ? (raw as Record<string, unknown>)
     : {};
+  if (q["kind"] === "behavior") {
+    // The behavioural arm, added when the property rail gained "Show on model": a counterexample
+    // or witness TRACE draws over the machine whose state space the statement's own vocabulary
+    // names — `constraintSpan`, the same derivation the composed view keys on, so the picture
+    // that carries the emphasis is the machine that produced the steps. The first machine of the
+    // span: for a cross-model statement the composed view is the full answer, and this draws the
+    // trace over one participating machine rather than refusing to draw it anywhere.
+    const machine = constraintSpan(system, raw).machines[0];
+    if (machine === undefined) return null;
+    const result = run(raw);
+    if (result.evidence === null) return null;
+    return { subject: { kind: "machine", id: machine }, result };
+  }
   if (q["kind"] !== "graph") return null;
   const parsed = parseGraphQuery(q["graph"]);
   if (!parsed.ok) return null;
@@ -172,6 +187,58 @@ export function witnessFocus(
   const model = modelsDeclaring(system, parsed.value.relation)[0];
   if (model === undefined) return null;
   return { subject: { kind: "model", id: model }, result };
+}
+
+/**
+ * The tracked claims each node of the drawn subject participates in, with their verdicts — the
+ * caller-side half of the renderer's `claims` channel.
+ *
+ * Derived per paint from the SAME evaluated properties the rail paints, so a node's in-box mark
+ * and the rail row for the claim cannot disagree. Participation is the statement's OWN vocabulary,
+ * not the verdict's derivation chain: a machine subject takes the constraint sites whose state the
+ * statement names (`constraintSpan`, the derivation the composed view already keys on); a model
+ * subject takes a graph statement's endpoints when they are entities of the drawn model. Grounds
+ * are deliberately NOT used here — they cite every model a verdict derives from, and marking every
+ * cited neighbour would claim participation the statement never states.
+ */
+export function nodeClaims(
+  system: CanonicalSystem,
+  subject: SceneSubject,
+  properties: readonly EvaluatedProperty[],
+): readonly NodeClaim[] {
+  const out: NodeClaim[] = [];
+  const seen = new Set<string>();
+  for (const p of properties) {
+    const saved = system.queries.get(p.id);
+    if (saved === undefined) continue;
+    const raw = saved.raw;
+    const mark = statusMark(p.status, p.stale);
+    const add = (target: string): void => {
+      const key = `${target}|${p.id}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push({
+        target, property: p.id, glyph: mark.glyph, word: mark.word, statement: p.statement,
+      });
+    };
+    if (subject.kind === "machine") {
+      for (const site of constraintSpan(system, raw).sites) {
+        if (site.machine === subject.id && site.state !== null) add(site.state);
+      }
+      continue;
+    }
+    const q = typeof raw === "object" && raw !== null && !Array.isArray(raw)
+      ? (raw as Record<string, unknown>)
+      : {};
+    if (q["kind"] !== "graph") continue;
+    const parsed = parseGraphQuery(q["graph"]);
+    if (!parsed.ok) continue;
+    const entities = new Set(system.models.get(subject.id)?.entities ?? []);
+    for (const end of [parsed.value.from, parsed.value.to]) {
+      if (end !== null && entities.has(end)) add(end);
+    }
+  }
+  return out;
 }
 
 export interface ContentsRow {
@@ -696,6 +763,19 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   canvas.addEventListener("contextmenu", (event) => {
     const value = hitSelection(event.target);
     event.preventDefault();
+    // Viewer mode: the canvas is an inspection surface and offers no operations. A right-click
+    // still SELECTS — that changes what you see, never the model — and the announcement names
+    // where mutation lives, which is the agent (or the Advanced mode this page keeps).
+    if (document.body.dataset["mode"] !== "advanced") {
+      closeMenu();
+      if (value !== null) {
+        select(value);
+        return;
+      }
+      ctx.announce("The workbench is a viewer: inspecting never changes the model. Tell your "
+        + "agent what to change, or open Advanced for the editing surfaces.");
+      return;
+    }
     if (value === null) {
       closeMenu();
       addMenu.open = true;
@@ -873,6 +953,9 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
           subject,
           selection: nodeIds,
           hints: positionHints,
+          // The tracked claims this subject's nodes participate in, verdicts included — the same
+          // evaluated set the rail paints this frame, so the two surfaces cannot disagree.
+          claims: nodeClaims(frame.state.system, subject, frame.properties),
           // Outcome and coverage travel WITH the evidence, never without it: V22 downgrades a
           // treatment under bounded coverage, and the renderer cannot apply that rule to evidence
           // whose coverage it was not given.
