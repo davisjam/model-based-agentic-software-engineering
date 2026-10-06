@@ -9,7 +9,7 @@ readings:
       items:
         - cite: davis2026mage
           locator: 'chap. 3 introduction, §§3.1–3.3.3, and §3.4'
-          annotation: '{mage:3.1} and {mage:3.4} Davis, 2026. The spine of the unit, assigned in part rather than whole. Before Lecture 1, read the chapter opening and §§3.1–3.3.3: the opening establishes Alignment as the companion to Modeling; §3.1 develops guidance versus enforcement, intervention boundaries, and how different obligations become visible at different grains of work; §§3.2–3.3.3 carry the intellectual payload — agreement is not correctness, correspondence / conformance / acceptance, the earliest decidable boundary, the four roles, and matching the mechanism to the property rather than climbing a maturity ladder. Before Lecture 2, read §3.4: the ex ante / ex post distinction, governance conversion and its diagnostic, the merge failure made concrete, engineering capital, and where enforcement stops. Reading these beforehand lets the lectures use the vocabulary instead of spending the session introducing it. The remaining sections are optional; see below.'
+          annotation: '{mage:3.1} and {mage:3.4} Davis, 2026. The chapter opening and §§3.1–3.3.3 establish the core Alignment argument: guidance versus enforcement, correspondence / conformance / acceptance, the earliest decidable boundary, the four control roles, and matching mechanisms to properties. §3.4 then shows how the governed environment changes through experience: failures expose missing controls, recurring judgments can undergo governance conversion, and accumulated controls become engineering capital. Read these sections before class so that the session can use the vocabulary to reason about concrete engineering situations rather than spending the session introducing it.'
     - heading: Place the check where the semantics exist
       items:
         - cite: saltzerreedclark1984e2e
@@ -47,11 +47,6 @@ There is also a difference between asking for a property and checking it. A codi
 MAGE calls this broader practice Alignment: connecting engineering obligations to mechanisms that can constrain work, produce evidence, evaluate that evidence, and control what the environment accepts.
 
 **Alignment Principle.** *Make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.*
-
-## Two lectures, one progression
-
-- **Lecture 1 — From Guidance to Authority** begins with the checks students already run and asks how an engineer decides what to enforce, where a property can actually be decided, and which mechanism should do the work. GUIDANCE → BOUNDARY → OBLIGATION → MECHANISM.
-- **Lecture 2 — Governing Realization** asks how the governed environment grows: how failures and recurring judgments become durable engineering structure, what that structure is worth, and where enforcement should stop. FAILURE → DIAGNOSIS → GOVERNANCE CONVERSION → ENGINEERING CAPITAL.
 
 ## Check it where it can be decided
 
@@ -105,8 +100,20 @@ Alignment is not a march toward making every engineering decision mechanical. An
 
 These are design choices, not maturity levels. A cost metric may be worth observing without a hard budget. A probabilistic validator may serve triage while remaining too uncertain to block production. Stronger Alignment does not mean more gates; it means the obligations engineering chooses to enforce are enforced dependably at appropriate boundaries.
 
+## When failures become controls
+
+Alignment also explains how an engineering environment changes over time. A failure may initially require diagnosis and judgment: an engineer discovers that a consequential obligation was absent, weakly represented, checked at the wrong boundary, or left to guidance when the environment could have enforced it.
+
+When the same judgment is likely to matter again, the engineer can change the environment. A recurring review question becomes a validator. A convention becomes an architectural constraint. A remembered check becomes a gate. A known-dangerous operation disappears behind a sanctioned interface. MAGE calls this governance conversion: converting engineering knowledge acquired through experience into durable control.
+
+The result has value beyond the individual failure that produced it. Future engineers and agents no longer need to reconstruct the same judgment from scratch, and the environment can prevent or reject whole classes of recurrence. These accumulated models, constraints, validators, gates, and sanctioned paths are a form of engineering capital: prior engineering judgment embedded in reusable structure.
+
+But conversion is not automatic. Some failures expose obligations that remain difficult to represent or evaluate, and some judgments should remain judgments. The question is not "Can we add another gate?" It is whether a recurring engineering judgment can be represented faithfully enough, evaluated reliably enough, and placed at an appropriate boundary to deserve authority over future work.
+
 ## From engineering knowledge to engineering control
 
 The three units now fit together. Agents asked how engineers delegate realization without delegating responsibility: BOUND → EQUIP → AUTHORIZE → VERIFY. Modeling asked how engineers preserve consequential distinctions while leaving irrelevant choices free, and how those purposeful reductions remain interpretable, connected, and correspondent to the system. Alignment asks what happens when some of that engineering knowledge must do more than inform the next reasoner: state the obligation, check it where it can actually be decided, choose an appropriate mechanism, and determine what happens when the check fails.
 
-And the environment does not remain fixed: failures expose what it does not yet know, see, evaluate, or enforce — the next unit asks how the development process converts those lessons into durable structure. The objective is not to eliminate engineering judgment. It is to decide where judgment should remain judgment, and where recurring judgment should become durable engineering structure. That is Alignment.
+The environment does not remain fixed. Failures reveal what it does not yet know, see, evaluate, or enforce, and recurring judgments can sometimes be converted into durable control. The next unit, Failure-Aware Engineering, asks how to make that learning systematic.
+
+The objective is not to eliminate engineering judgment. It is to decide where judgment should remain judgment, and where recurring judgment should become durable engineering structure. That is Alignment.
