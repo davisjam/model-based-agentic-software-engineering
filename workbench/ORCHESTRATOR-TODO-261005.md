@@ -201,3 +201,20 @@ and is cheaply reconstructible.
 Wedges when run concurrently with itself: alive at ~0.11 s CPU, sometimes with NO Chrome launched.
 Hit 3× today (~90 min lost). Bound every tier with `timeout`; run ONE at a time; CPU is the
 liveness discriminator, never process count. Documented in the root `CLAUDE.md`.
+
+## 261006 late — the browser-tier wedge, MECHANISM FOUND
+Four incidents, ~2 hours lost, the last one blocking a publish. Signature: `npm run test:browser`
+alive at ~0.11 s CPU with **no Chrome launched at all**, and its own cleanup (`kill` + `pkill`)
+wedging behind it.
+
+**The tier passes clean in isolation — 173 pass / 0 fail.** So it is contention, not a code defect.
+**Mechanism: 12 stale `puppeteer_dev_chrome_profile-*` directories had accumulated** under
+`/var/folders/*/*/T/`. Clearing them plus killing the stuck procs unwedges it.
+
+- Immediate recovery: `pkill -f "npm run test:browser|node --test test/browser|Chrome for Testing"`,
+  then `rm -rf /var/folders/*/*/T/puppeteer_dev_chrome_profile-*`, then retry ONE tier.
+- The real fix, not yet built: a unique profile/user-data-dir per run plus cleanup, or a per-tier
+  lock. The OS-chosen port already rules out port collision. This WILL hit CI the day two jobs
+  overlap.
+- Sequencing rule that works today: never push while a wave may run a tier; the pre-push gate runs
+  the tier itself, so a wedge there blocks publication entirely.
