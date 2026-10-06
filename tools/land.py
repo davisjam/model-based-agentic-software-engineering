@@ -73,10 +73,37 @@ def _patch_ids(rev_range: str) -> set[str]:
     return out
 
 
+def _node_bin() -> str:
+    """The bin directory for the node version this repo pins.
+
+    Without this the gates run on whatever node is first on PATH — v20 on this machine, against a
+    repo pinned to v24 — and `npm run build` exits 1 in about a second. That reads as a red merge.
+    A control that cries wolf is worse than no control, because the next red gets waved through, so
+    this resolves the pinned version and REFUSES to run rather than guessing.
+    """
+    import os
+
+    nvmrc = ROOT / ".nvmrc"
+    if not nvmrc.is_file():
+        raise SystemExit(".nvmrc is missing — cannot establish which node the gates must run on")
+    want = nvmrc.read_text().strip().lstrip("v")
+    nvm_dir = Path(os.environ.get("NVM_DIR", Path.home() / ".nvm"))
+    candidates = sorted((nvm_dir / "versions" / "node").glob(f"v{want}*"))
+    if not candidates:
+        raise SystemExit(f"node v{want} (from .nvmrc) is not installed under {nvm_dir}; run `nvm install`")
+    chosen = candidates[-1] / "bin"
+    probe = subprocess.run((str(chosen / "node"), "--version"), capture_output=True, text=True)
+    actual = probe.stdout.strip().lstrip("v")
+    if not actual.startswith(want.split(".")[0]):
+        raise SystemExit(f"resolved node {actual} does not satisfy .nvmrc v{want}")
+    return str(chosen)
+
+
 def _run_gate(label: str, argv: tuple[str, ...], cwd: str, limit: int) -> GateResult:
     import os
 
     env = dict(os.environ) | GATE_ENV.get(label, {})
+    env["PATH"] = _node_bin() + os.pathsep + env.get("PATH", "")
     started = time.monotonic()
     try:
         done = subprocess.run(
