@@ -483,13 +483,52 @@ export function cssReflowWidths(cssText, { rootFontPx = 16, floor = 320 } = {}) 
  * actionable: every element extending past the viewport that is NOT inside a scroll container of
  * its own. Both pages put wide tables inside `.scroll { overflow-x: auto }` deliberately -- 1.4.10
  * permits that, and counting them would report the fix as the defect.
+ *
+ * The attribution threshold is SUB-PIXEL, and it was not always. This probe first skipped any
+ * element within `viewport + 1`, a whole-pixel slack, and then met a page whose `scrollWidth` was
+ * 321 on a 320 viewport: a real 1.4.10 failure, verdict red, offender list EMPTY -- it told the
+ * next reader a page was broken without saying where. Chromium rounds `scrollWidth` to the nearest
+ * integer, so a 1px document overflow is caused by a border box crossing the edge by as little as
+ * half a pixel, which a 1px slack silently forgives. The slack is now 0.4px: enough to drop
+ * float-noise at the boundary, small enough that any edge capable of moving `scrollWidth` is named,
+ * with its measured right edge kept to two decimals so sub-pixel causes read as what they are.
+ *
+ * And element boxes are not the only thing that scrolls a document. The offender this probe could
+ * not name was TEXT INK: an unbreakable token (`window.mage.debug.sparql`, in a plain list item)
+ * wider than its line box juts past the viewport while every element's own border box -- including
+ * its parent's -- ends at or before the edge. `getBoundingClientRect` on elements cannot see it;
+ * `Range.getClientRects` on the text nodes can. The ink pass runs only when the document actually
+ * overflows, so a green page pays nothing for it.
+ *
+ * Finally the probe asserts its own attribution rather than trusting the walks: a measured
+ * overflow with an empty offender list is reported as the probe defect it is. When both passes
+ * find nothing, the widest uncontained edges are returned in their place, marked `nearest` --
+ * a fallback that says where the content edge actually is -- and `attributed: false` says plainly
+ * that the model missed. The caller can then fail on the probe rather than reading an empty list
+ * as a page with nothing to report.
  */
 export async function reflowAt(page, width, height = 512) {
   await page.setViewport({ width, height, deviceScaleFactor: 1 });
   return page.evaluate(() => {
     const doc = document.scrollingElement;
     const viewport = doc.clientWidth;
+    // Below half a pixel an edge cannot move the rounded scrollWidth; above it, it can. 0.4 rather
+    // than 0.5 so an edge at exactly 320.5 -- the smallest cause of a 1px overflow -- is inside
+    // the net rather than sitting on its boundary.
+    const SUBPIXEL_SLACK = 0.4;
+    // Identity the next reader can act on: up to the nearest ancestor with an id, the same shape
+    // the contrast walk reports. A bare `li` names nothing on a page full of them.
+    const path = (el) => {
+      const bits = [];
+      for (let n = el; n !== null && n !== document.documentElement; n = n.parentElement) {
+        bits.unshift(n.id !== "" ? `#${n.id}` : n.tagName.toLowerCase()
+          + (n.classList.length > 0 ? `.${[...n.classList].join(".")}` : ""));
+        if (n.id !== "") break;
+      }
+      return bits.join(" > ");
+    };
     const offenders = [];
+    const uncontained = [];
     let inspected = 0;
     for (const el of document.querySelectorAll("body *")) {
       const cs = getComputedStyle(el);
@@ -497,7 +536,6 @@ export async function reflowAt(page, width, height = 512) {
       const r = el.getBoundingClientRect();
       if (r.width === 0 && r.height === 0) continue;
       inspected += 1;
-      if (r.right <= viewport + 1) continue;
       // A scrollable ancestor means the overflow is contained, which is what 1.4.10 asks for.
       let contained = false;
       for (let n = el.parentElement; n !== null; n = n.parentElement) {
@@ -505,16 +543,53 @@ export async function reflowAt(page, width, height = 512) {
         if (ocs.overflowX === "auto" || ocs.overflowX === "scroll") { contained = true; break; }
       }
       if (contained) continue;
-      offenders.push({
-        path: el.id !== "" ? `#${el.id}` : el.tagName.toLowerCase()
-          + (el.classList.length > 0 ? `.${[...el.classList].join(".")}` : ""),
-        right: Math.round(r.right), width: Math.round(r.width),
-      });
+      uncontained.push({ el, right: r.right });
+      if (r.right > viewport + SUBPIXEL_SLACK) {
+        offenders.push({
+          kind: "element", path: path(el),
+          right: Number(r.right.toFixed(2)), width: Number(r.width.toFixed(2)),
+        });
+      }
+    }
+    const horizontalOverflowPx = Math.max(0, doc.scrollWidth - doc.clientWidth);
+    // The ink pass: text runs crossing the boundary inside uncontained elements. Only when the
+    // document overflows -- which is also the only time its answer is needed.
+    if (horizontalOverflowPx > 0) {
+      for (const { el } of uncontained) {
+        for (const node of el.childNodes) {
+          if (node.nodeType !== Node.TEXT_NODE || node.textContent.trim() === "") continue;
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          let worst = null;
+          for (const tr of range.getClientRects()) {
+            if (tr.right > viewport + SUBPIXEL_SLACK && (worst === null || tr.right > worst.right)) worst = tr;
+          }
+          if (worst !== null) {
+            offenders.push({
+              kind: "text", path: path(el),
+              text: node.textContent.trim().replace(/\s+/g, " ").slice(0, 64),
+              right: Number(worst.right.toFixed(2)), width: Number(worst.width.toFixed(2)),
+            });
+          }
+        }
+      }
+    }
+    // Worst first: whatever reaches furthest past the edge is the thing to read about.
+    offenders.sort((a, b) => b.right - a.right);
+    // The precondition, asserted here where both walks' results are known: an overflow this probe
+    // cannot attribute is a finding about the PROBE. The nearest edges are the best substitute for
+    // the name the walks failed to produce -- never an empty list wearing a clean bill of health.
+    const attributed = horizontalOverflowPx === 0 || offenders.length > 0;
+    if (!attributed) {
+      uncontained.sort((a, b) => b.right - a.right);
+      for (const u of uncontained.slice(0, 3)) {
+        offenders.push({ kind: "nearest", path: path(u.el), right: Number(u.right.toFixed(2)) });
+      }
     }
     return {
-      viewport, inspected,
+      viewport, inspected, attributed,
       scrollWidth: doc.scrollWidth, clientWidth: doc.clientWidth,
-      horizontalOverflowPx: Math.max(0, doc.scrollWidth - doc.clientWidth),
+      horizontalOverflowPx,
       offenders: offenders.slice(0, 12),
     };
   });
