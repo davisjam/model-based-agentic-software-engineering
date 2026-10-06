@@ -518,7 +518,11 @@ queries:
 
   - id: delivering-missions-within-the-duration-budget
     label: Every delivery completes within the declared mission-duration budget
-    suggested: true
+    # Un-suggested by the 261005 case ruling: the presented five keep one quantity-under-a-ceiling
+    # question (the RAM capstone) and spend the freed slot on the battery refusal, so the set spans
+    # established, refuted, and not answerable. Still saved, still pinned, still refuted at 2,715 s
+    # against 900 s for whoever asks.
+    suggested: false
     models: [mission, control-authority, compute-platform, mission-endurance]
     expected:
       outcome: refuted
@@ -574,7 +578,9 @@ queries:
 
   - id: charge-remaining-at-delivery
     label: The battery still has charge when the parcel is handed over
-    suggested: false
+    # Suggested since the 261005 case ruling: the capstone's presented set owes the student one
+    # question the models refuse by name, and this is the example's largest purposeful omission.
+    suggested: true
     models: [mission-endurance, mission]
     expected:
       outcome: unlicensed

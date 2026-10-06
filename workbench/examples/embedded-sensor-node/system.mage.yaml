@@ -469,6 +469,34 @@ queries:
       from: sensor-driver
       to: radio-stack
 
+  # The refuted companion to the reachability above, and the contrast is the lesson: the radio is
+  # reachable from the driver and NOT directly -- every modeled route runs through the optional
+  # classifier and the queue. One hop, so `feeds` composition is not what carries it.
+  driver-feeds-radio-directly:
+    name: The sensor driver feeds the radio stack directly
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: feeds
+      from: sensor-driver
+      to: radio-stack
+
+  # Purposeful omission, made executable -- the firmware model's own flagship gap. With no
+  # operating modes, "are these two allocations live at the same moment" has no vocabulary here:
+  # the relation is undeclared, and the purpose declares the distinction omitted, so the engine
+  # refuses and quotes the declaration rather than answering a resident-sum question it was not
+  # asked. This is the question whose honest refusal motivates the operating-modes expansion.
+  weights-live-with-workspace:
+    name: The model weights and the inference workspace are live at the same moment
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: live_at_the_same_moment
+      from: model-weights
+      to: inference-workspace
+
 # The obligation this example exists to state. `sram-fits-budget` asks the universal DIRECTLY — the
 # allocations fit within the declared budget — so the obligation is discharged when it holds, and
 # there is no breach query to refute. The other polarity ships in message-bus and transaction-

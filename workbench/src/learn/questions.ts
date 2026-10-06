@@ -635,9 +635,13 @@ function selectionReading(systems: LoadedSystems): SelectionReading | null {
  * A question of the SAME model that decides something — the contrast the section's line needs.
  *
  * The exemplar's own saved graph questions, in the order the canonical system holds them, and the
- * first that is not refused: a refusal would teach that this kind of question declines rather than
- * that it returns a verdict, which is the opposite of the point. `question-omissions` is where the
- * refusals belong, and it has them.
+ * first that is not refused AND comes back with evidence. The refusal half: a refusal would teach
+ * that this kind of question declines rather than that it returns a verdict, which is the opposite
+ * of the point — `question-omissions` is where the refusals belong, and it has them. The evidence
+ * half joined when message-bus gained a refuted-with-no-witness question (261005): the section's
+ * own closing line says a claim "comes back as a verdict carrying the evidence that settles it",
+ * so the exemplar must be one that does — an exhaustive no is a real verdict and the wrong
+ * illustration here, exactly as a refusal is.
  */
 function decidingQuestion(
   systems: LoadedSystems, example: ShippedExampleId,
@@ -650,7 +654,9 @@ function decidingQuestion(
     if (result === null) continue;
     const reading = { statement: statementOf(system, q.id), result };
     first ??= reading;
-    if (result.refusal === null) return reading;
+    if (result.refusal === null && result.evidence !== null && result.evidence.shape !== "none") {
+      return reading;
+    }
   }
   return first;
 }

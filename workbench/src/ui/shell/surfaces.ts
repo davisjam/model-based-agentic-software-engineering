@@ -29,7 +29,7 @@
  * designed, which is the unverifiable prose declaration §2.1 refuses.
  */
 export type NavSurface =
-  | "header" | "start" | "nav-models" | "nav-properties" | "workspace" | "inspector"
+  | "header" | "start" | "case" | "nav-models" | "nav-properties" | "workspace" | "inspector"
   | "askbar" | "statusbar" | "palette" | "review" | "system-browser" | "advanced-query"
   | "edit";
 
@@ -82,6 +82,10 @@ const built = (
 export const SURFACES: readonly Surface[] = [
   built("header", "header", "landmark"),
   built("start", "start"),
+  // The case panel: a shipped example's pedagogical envelope, mounted iff the current import came
+  // from an example. A landmark, because it is a named region a screen-reader user jumps to; its
+  // one button is chrome (CHROME_CONTROLS), so no capability path cites this surface yet.
+  built("case", "case"),
   built("nav-models", "nav-models"),
   // The property rail keeps `question-list`. `DESIGN-shell-261002.md` §5 pins the id — the browser
   // tier asserts against it — so the rail inherits the name rather than improving it.

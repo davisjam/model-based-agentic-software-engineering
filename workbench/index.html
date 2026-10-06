@@ -193,6 +193,7 @@
       "banner banner banner"
       "review review review"
       "start  start  start"
+      "case   case   case"
       "nav    work   inspect"
       "ask    ask    ask"
       "status status status"
@@ -202,6 +203,18 @@
   #banner { grid-area: banner; }
   #hypothesis-bar { grid-area: review; }
   #start { grid-area: start; }
+  /* The case panel sits in a full-width row ABOVE the nav/work band: the pedagogical context
+     frames the machinery, so it comes first in both the grid and the DOM (the two orders agree
+     here on purpose -- there is no correction-10 split to manage for a region that is prose). */
+  #case { grid-area: case; }
+  #case[hidden] { display: none; }
+  #case details {
+    border: 1px solid var(--line, #d0d0d0); border-radius: 6px; padding: 0.75rem 1rem;
+    background: var(--panel, #fafafa);
+  }
+  #case summary { cursor: pointer; font-weight: 600; }
+  #case .case-models { margin-block: 0.5rem 0; }
+  #case button { margin-block-start: 0.75rem; }
   #nav { grid-area: nav; }
   #workspace { grid-area: work; }
   #inspector { grid-area: inspect; }
@@ -701,6 +714,33 @@
       <div id="example-description"></div>
       <button type="button" id="example-load" class="primary">Load this example</button>
     </fieldset>
+  </section>
+
+  <!--
+    The CASE panel: the pedagogical envelope of a shipped example, and the half of the author's
+    261005 ruling that outranks the card copy -- "the case must remain visible after loading. The
+    workspace should not erase the pedagogical context."
+
+    Mounted iff a system is loaded AND the import came from a shipped example (the catalogue's
+    `currentCase()`, pinned per-import by the workspace's load nonce). A file a user opened gets no
+    case, and an example followed by a file open loses it -- the panel never narrates a document it
+    does not describe. EX-I1 is untouched: the workspace below this panel is ordinary and editable,
+    and the case is CONTEXT, NOT A CONSTRAINT -- the same boundary a note declares. Nothing in here
+    is engine input, enters a hash, or moves a verdict (`src/app/examples.ts`, `ExampleCase`).
+
+    A native `details`/`summary`, open by default, for the add-menu's reason: the summary is in the
+    tab order and announces its own expanded state with no ARIA (SH-I2). "Start investigating"
+    collapses it -- the author's affordance for "put me in the workspace" -- and the summary itself
+    is the recoverable way back. The button is chrome (it moves only the view), so it is exempted
+    in CHROME_CONTROLS rather than declared a capability.
+  -->
+  <section id="case" aria-labelledby="case-h" hidden>
+    <h2 id="case-h">Case</h2>
+    <details id="case-details" open>
+      <summary id="case-summary">About this example</summary>
+      <div id="case-body"></div>
+      <button id="case-collapse" type="button">Start investigating</button>
+    </details>
   </section>
 
   <!--

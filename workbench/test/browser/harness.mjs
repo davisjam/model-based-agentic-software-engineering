@@ -441,7 +441,7 @@ export const FLAGSHIP_COUNTS = Object.freeze({
   // context can tell "no resource budget here" from "the context does not report budgets".
   quantities: 0,
   quantitativeModels: 0,
-  savedQueries: 6,
+  savedQueries: 7,
 });
 
 export async function loadFlagshipExample(page) {

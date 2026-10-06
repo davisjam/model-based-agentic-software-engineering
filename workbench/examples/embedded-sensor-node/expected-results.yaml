@@ -72,7 +72,9 @@ queries:
 
   - id: radio-stack-owns-buffers
     label: The radio stack owns buffers of its own
-    suggested: true
+    # Un-suggested by the 261005 case ruling, which caps the presented set at five and spends the
+    # slots on a spread of outcomes; still saved, still pinned, still the ownership lesson.
+    suggested: false
     models: [sensor-firmware]
     expected:
       outcome: holds
@@ -114,7 +116,7 @@ queries:
 
   - id: sample-reaches-the-radio
     label: A sample reaches the radio from the sensor driver
-    suggested: false
+    suggested: true
     models: [sensor-dataflow]
     expected:
       outcome: holds
@@ -128,6 +130,43 @@ queries:
       licensed and the whole path comes back as the witness. Asked of the dataflow model, which is
       the only one that represents flow -- and which represents no magnitude, so a reader who tries
       to ask it what a step costs is told the question has no reading here rather than handed a zero.
+
+      Suggested since the 261005 case ruling, as the established half of a deliberate pair with the
+      direct question below: reachable, and not directly.
+
+  - id: driver-feeds-radio-directly
+    label: The sensor driver feeds the radio stack directly
+    suggested: true
+    models: [sensor-dataflow]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The refuted member of the presented spread (261005 case ruling), and the reachability
+      question's honest companion: a sample reaches the radio and never directly. One hop, so
+      `feeds` composition does not gate it, and the exhaustive no is a fact about the design --
+      every modeled route runs through the optional classifier and the queue, which is the same
+      fact the cross-model criticality question turns into a finding.
+
+  - id: weights-live-with-workspace
+    label: The model weights and the inference workspace are live at the same moment
+    suggested: true
+    models: [sensor-firmware]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "is not declared by this system"
+      no_evidence: true
+    note: >
+      Purposeful omission, executed rather than described -- the firmware model's own flagship gap,
+      now askable. `live_at_the_same_moment` is declared nowhere, and `sensor-firmware`'s purpose
+      declares "whether two allocations are ever live at the same moment" omitted, so the refusal
+      rung reports `missing-distinction` and quotes the declaration rather than a bare absence.
+      `unlicensed` is a SUCCESSFUL result reporting what the model does not authorize: with no
+      operating modes the model answers "what if everything is live at once" and cannot answer "is
+      everything live at once" -- which is the earned transition to Behavior, stated by the engine
+      instead of by a comment.
 
 modifications:
 

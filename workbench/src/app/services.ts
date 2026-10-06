@@ -163,6 +163,7 @@ export class Workspace {
   #authoritative: TransactionEngine | null = null;
   #hypothesis: string | null = null;
   #loaded = false;
+  #loadNonce = 0;
   #listeners = new Set<Listener>();
   readonly #ports: Ports;
 
@@ -195,6 +196,21 @@ export class Workspace {
     return () => this.#listeners.delete(fn);
   }
 
+  /**
+   * Which import this workspace currently holds: a counter that advances on every successful
+   * `load` and on `reset`, and on nothing else.
+   *
+   * It exists so a layer ABOVE the workspace can pin contextual metadata to one import — "the case
+   * panel describes the load that is still on screen" — and have that pin expire the moment any
+   * route replaces the document, without this class learning what was loaded. Deliberately NOT an
+   * example marker: EX-I1 says the workspace cannot tell an example from a file a user wrote, and a
+   * nonce that counts every import uniformly keeps it that way. Edits, undo and hypotheses do not
+   * advance it, because none of them replaces the document a load installed.
+   */
+  get loadNonce(): number {
+    return this.#loadNonce;
+  }
+
   #emit(): void {
     const snapshot = this.state;
     for (const fn of this.#listeners) fn(snapshot);
@@ -214,6 +230,7 @@ export class Workspace {
     this.#authoritative = null;
     this.#hypothesis = null;
     this.#loaded = true;
+    this.#loadNonce += 1;
     this.#emit();
     return { ok: true, findings: loaded.findings };
   }
@@ -236,6 +253,7 @@ export class Workspace {
     this.#authoritative = null;
     this.#hypothesis = null;
     this.#loaded = false;
+    this.#loadNonce += 1;
     this.#emit();
   }
 

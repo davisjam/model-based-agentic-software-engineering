@@ -579,8 +579,13 @@ export function paintProvenance(records: readonly ProvenanceRecord[], root: HTML
 /**
  * An example's description, shown before it loads (section 3).
  *
- * Every string here comes from the example's own files. Nothing is phrased in this function except
- * the two sub-headings, which is what keeps the panel honest about the thing it describes.
+ * Every string here comes from the example's own files or its case envelope — the authored
+ * invitation to a question the fixture pins. Nothing is phrased in this function except the two
+ * sub-headings, which is what keeps the panel honest about the thing it describes.
+ *
+ * `Try asking` prints the case's ASK, not the saved query's statement: the card invites an
+ * inquiry, and the rail after loading shows the declarative claim the same id resolves to. The
+ * join between the two is enforced where the description is built (`joinCaseQuestions`).
  */
 export function paintExampleDescription(
   description: ExampleDescription | null, root: HTMLElement,
@@ -605,7 +610,7 @@ export function paintExampleDescription(
 
   root.append(el("p", "Try asking", "sublabel"));
   const asking = el("ul", undefined, "notes");
-  for (const q of description.tryAsking) asking.append(el("li", q));
+  for (const q of description.tryAsking) asking.append(el("li", q.ask));
   root.append(asking);
 }
 

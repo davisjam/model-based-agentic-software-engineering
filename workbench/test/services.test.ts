@@ -425,12 +425,21 @@ test("a description is read from the example, never written beside it", async ()
     assert.equal(d.title, fixture.title.trim(), `${id}: the title must be the example's own`);
     assert.equal(d.summary, fixture.summary.trim(), `${id}: the summary must be the example's own`);
 
-    // The presented questions are the fixture's `suggested` set, by their natural-language labels.
-    assert.deepEqual([...d.tryAsking],
-      fixture.queries.filter((q) => q.suggested).map((q) => q.label),
+    // The presented questions are the fixture's `suggested` set, joined by query id to the case
+    // envelope's interrogatives: the STATEMENT is the fixture row's own label, the ASK is the
+    // case's phrasing of the same question, and the order is the fixture's.
+    assert.deepEqual(d.tryAsking.map((q) => ({ query: q.query, statement: q.statement })),
+      fixture.queries.filter((q) => q.suggested).map((q) => ({ query: q.id, statement: q.label })),
       `${id}: the presented questions must be the ones the example marks suggested`);
+    for (const q of d.tryAsking) {
+      assert.notEqual(q.ask.trim(), "", `${id}/${q.query}: the case presents an empty ask`);
+    }
     assert.ok(d.tryAsking.length >= 3 && d.tryAsking.length <= 5,
       `${id}: ${d.tryAsking.length} presented questions, section 2 asks for 3 to 5`);
+    // The case prose itself: non-empty, and never fed to the engine — the loaded system's bytes
+    // are the example file alone, which the load test above already holds.
+    assert.notEqual(d.scenario.trim(), "", `${id}: the case states no scenario`);
+    assert.notEqual(d.investigate.trim(), "", `${id}: the case states nothing to investigate`);
 
     // And the models, with their questions, from the system itself -- machines included, because a
     // machine carries a purpose exactly as a graph model does.

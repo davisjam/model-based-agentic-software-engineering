@@ -17,10 +17,14 @@
  * describes — the duplication this project removes on sight, and the reason the coverage model is
  * regenerated from example metadata instead of maintained by hand.
  *
- * So the description is DERIVED:
+ * So the description is DERIVED wherever the fact already exists:
  *
- *   title, summary, "try asking"  <- `examples/<id>/expected-results.yaml`
- *   models and their questions    <- `examples/<id>/system.mage.yaml`, through `canonicalize`
+ *   title, summary, the suggested set  <- `examples/<id>/expected-results.yaml`
+ *   models and their questions         <- `examples/<id>/system.mage.yaml`, through `canonicalize`
+ *   scenario, investigation, the ASK   <- the case envelope on `SHIPPED_EXAMPLES` below — authored
+ *                                         here because it exists nowhere else, and JOINED by query
+ *                                         id to the suggested set so an ask cannot outlive the
+ *                                         query that answers it (`joinCaseQuestions`)
  *
  * Reading the fixture for presentation metadata deserves a note. `expected-results.yaml` is the
  * example's own metadata file: it already carries `title`, `summary` and the `suggested` flag that
@@ -158,9 +162,63 @@ export type ExampleStatus =
     readonly membership: string;
   };
 
+/**
+ * One question a case invites the student to ask, joined by id to a saved query the example ships.
+ *
+ * Two spellings of one question, and the split is the property grammar's (`src/app/properties.ts`):
+ * a PROPERTY states — the saved query's `name` is a declarative claim the rail shows beside a
+ * verdict — while an INVITATION asks. `ask` is the interrogative a student types or reads on the
+ * card; `query` names the suggested saved query whose fixture-pinned outcome answers it. The join
+ * is enforced in `describe()`: an ask naming no suggested query, or a suggested query no case asks
+ * about, is a loud `ExampleMetadataError` rather than a card that drifts from the corpus.
+ */
+export interface CaseQuestion {
+  /** A saved-query id the example's fixture marks `suggested`. CI pins that query's outcome. */
+  readonly query: string;
+  /** The question as a student would ask it. Interrogative here; the saved `name` stays a claim. */
+  readonly ask: string;
+}
+
+/**
+ * The case envelope: why this system exists and what the student is meant to investigate.
+ *
+ * ## Boundary: CONTEXT, NOT A CONSTRAINT — the same line a note draws
+ *
+ * The case is contextual metadata, exactly as a note is "context, not a constraint" (A1): it says
+ * why you might ask these questions; the MODEL determines which of them it can answer. So nothing
+ * here may become engine input. The case is not part of the system's YAML, never reaches
+ * `Workspace.load`, enters no hash, and moves no verdict — and a shipped example stays an ordinary
+ * editable workspace after loading (EX-I1). If you are about to thread a case field into
+ * `canonicalize`, a query, or a validator, you are blurring this boundary: stop, and put the fact
+ * in the model instead, where it would be semantics.
+ *
+ * ## Why it lives HERE and not in the example's YAML
+ *
+ * `purpose` was the alternative home and it is engine-adjacent on purpose: a purpose's `omits` is
+ * V24-checked vocabulary and its text rides in the source the hash covers, so case prose there
+ * would make editing the STORY advance the model's revision. The app layer already owns what
+ * "shipped" means (`SHIPPED_EXAMPLES` above); the story of why a shipped example exists is the
+ * same kind of fact, so it sits on the same rows. The parts of a case that ARE the example's own —
+ * title, summary, models, questions, outcomes — stay derived from the shipped files; only the
+ * scenario, the investigation framing, and the interrogative phrasings live here.
+ */
+export interface ExampleCase {
+  /** 2-4 sentences establishing the system and the situation. */
+  readonly scenario: string;
+  /** 1-2 sentences naming the engineering uncertainty, without giving away the answer. */
+  readonly investigate: string;
+  /**
+   * 4-6 questions chosen so their outcomes SPAN established, refuted, and not answerable — every
+   * example teaches the boundary of its models as well as their power. A test walks this against
+   * each fixture's pinned outcomes, so the spread is held rather than hoped for.
+   */
+  readonly tryAsking: readonly CaseQuestion[];
+}
+
 export interface ShippedExample {
   readonly id: string;
   readonly status: ExampleStatus;
+  readonly case: ExampleCase;
 }
 
 /**
@@ -172,8 +230,56 @@ export interface ShippedExample {
  * `src/learn/` would lose its key type.
  */
 export const SHIPPED_EXAMPLES = [
-  { id: "message-bus", status: { kind: "flagship", realises: "Secure Message Bus" } },
-  { id: "transaction-workspace", status: { kind: "flagship", realises: "Transaction Protocol" } },
+  {
+    id: "message-bus",
+    status: { kind: "flagship", realises: "Secure Message Bus" },
+    case: {
+      scenario: "An online order system runs on an event bus. Services do not call one another to "
+        + "move an order along; they publish event types and subscribe to the ones they act on. "
+        + "Each event type carries payload fields of a declared sensitivity — a shipping address "
+        + "is restricted, a product id is public — and each service declares the highest "
+        + "sensitivity it is permitted to process.",
+      investigate: "Does decoupling the services keep sensitive data inside its permitted "
+        + "boundary? And which questions about the bus can a model of permissions answer at all?",
+      tryAsking: [
+        { query: "who-subscribes-to-order-created", ask: "Which services subscribe to OrderCreated?" },
+        {
+          query: "checkout-event-reaches-fulfillment",
+          ask: "Can an event originating at Checkout eventually reach Fulfillment?",
+        },
+        {
+          query: "restricted-data-reaches-impermitted-subscriber",
+          ask: "Can restricted data reach a service that is not permitted to process it?",
+        },
+        { query: "checkout-calls-fulfillment-directly", ask: "Can Checkout call Fulfillment directly?" },
+        { query: "did-analytics-receive-it-at-2-04", ask: "Did Analytics receive OrderCreated at 2:04 PM?" },
+      ],
+    },
+  },
+  {
+    id: "transaction-workspace",
+    status: { kind: "flagship", realises: "Transaction Protocol" },
+    // The author's own case, verbatim (261005): the worked example the other five match.
+    case: {
+      scenario: "Multiple producers propose changes to a shared workspace. A proposal is prepared "
+        + "against one base, but that base may change before the proposal commits.",
+      investigate: "What prevents an invalid or stale change from reaching the authoritative "
+        + "workspace? What does the model guarantee after a change has been validated?",
+      tryAsking: [
+        { query: "transaction-can-commit", ask: "Can a proposed change reach Committed?" },
+        { query: "transaction-can-be-refused", ask: "Can it reach Refused?" },
+        { query: "commit-without-validating", ask: "Can a change commit without first becoming Valid?" },
+        {
+          query: "committed-base-is-current",
+          ask: "Can a change commit against a base that is no longer current?",
+        },
+        {
+          query: "verdict-is-eventually-forced",
+          ask: "Must every validated change eventually be committed or refused?",
+        },
+      ],
+    },
+  },
   {
     id: "document-processing",
     // §21's gloss for this slot is "different purposeful models participate in one engineering
@@ -182,6 +288,35 @@ export const SHIPPED_EXAMPLES = [
     // the example the one registered COMPOSITIONS row serves. Ruled by the 261005 audit from the
     // example's own fixture rather than assumed from the directory name.
     status: { kind: "flagship", realises: "Processing Pipeline" },
+    case: {
+      scenario: "A remediation pipeline carries a document from intake to publication: parse, "
+        + "remediate, validate, publish, with a bounded number of retries when validation fails. "
+        + "The service has promised a processing-latency target and runs in a fixed memory "
+        + "envelope, so one model prices the pipeline's stages while a second tracks the "
+        + "document's lifecycle through them.",
+      investigate: "Can a document be published without passing validation, and does the modeled "
+        + "pipeline keep its latency and memory promises? One promised figure is not derivable "
+        + "from these models — find which, and why.",
+      tryAsking: [
+        {
+          query: "publish-without-validating",
+          ask: "Can a document be published without ever reaching validating?",
+        },
+        { query: "retry-forever", ask: "Can processing retry indefinitely?" },
+        {
+          query: "publishes-after-three-retries",
+          ask: "Can a document publish after spending every permitted retry?",
+        },
+        {
+          query: "max-latency-among-successful-executions",
+          ask: "What is the maximum modeled latency among executions that publish?",
+        },
+        {
+          query: "expected-latency-with-the-cache",
+          ask: "Does the cache improve expected latency without violating the memory requirement?",
+        },
+      ],
+    },
   },
   {
     id: "worker-queue",
@@ -201,11 +336,90 @@ export const SHIPPED_EXAMPLES = [
         + "ruling is explicit that coverage must not promote an example, and the converse holds "
         + "too -- prominence is decided by the progression, not by what the example exercises.",
     },
+    case: {
+      scenario: "A job queue feeds a pool of workers. A worker must take a lease on a job before "
+        + "processing it, a failed run is retried a bounded number of times, and a job that "
+        + "exhausts its retries is parked in a dead-letter state for a person to examine rather "
+        + "than retried forever.",
+      investigate: "Can custody blur — a job in processing while no worker holds its lease — and "
+        + "can the retry policy deny a job a terminal outcome? Decide, too, whether \"who runs "
+        + "next\" is a question these models can answer.",
+      tryAsking: [
+        { query: "completed-is-reachable", ask: "Can a job reach completed?" },
+        { query: "dead-letter-is-reachable", ask: "Can a job end up in dead_letter?" },
+        { query: "job-can-retry-forever", ask: "Can a job stay in the retry loop indefinitely?" },
+        {
+          query: "lease-held-while-processing",
+          ask: "Is a job ever in processing while no worker holds its lease?",
+        },
+        { query: "is-the-scheduler-fair", ask: "Does the scheduler give both workers a turn?" },
+      ],
+    },
   },
-  { id: "embedded-sensor-node", status: { kind: "flagship", realises: "Embedded Sensor Node" } },
+  {
+    id: "embedded-sensor-node",
+    status: { kind: "flagship", realises: "Embedded Sensor Node" },
+    case: {
+      scenario: "A battery-powered sensor node samples, classifies on-device, and transmits its "
+        + "readings. The part has 256 KiB of SRAM and nine allocations want some of it. One model "
+        + "prices each allocation against that ceiling; a second traces a sample's path from the "
+        + "sensor driver to the radio and carries no sizes at all.",
+      investigate: "Does the modeled firmware fit the part, and with how much margin? Decide "
+        + "which allocation you would attack first if it stopped fitting — and whether these "
+        + "models can even say which allocations are live together.",
+      tryAsking: [
+        { query: "sram-fits-budget", ask: "Does the modeled firmware fit in the 256 KiB SRAM budget?" },
+        { query: "sample-reaches-the-radio", ask: "Can a sample reach the radio from the sensor driver?" },
+        {
+          query: "driver-feeds-radio-directly",
+          ask: "Does the sensor driver hand samples straight to the radio?",
+        },
+        {
+          query: "optional-component-feeds-an-essential-one",
+          ask: "Does any optional component feed an essential one?",
+        },
+        {
+          query: "weights-live-with-workspace",
+          ask: "Are the model weights and the inference workspace ever live at the same moment?",
+        },
+      ],
+    },
+  },
   {
     id: "autonomous-delivery",
     status: { kind: "flagship", realises: "Autonomous Delivery System" },
+    case: {
+      scenario: "A delivery rover drives public footpaths with no one aboard. A mission planner "
+        + "chooses routes, a safety monitor sits between the planner and the drive system, and a "
+        + "rover that loses localization is allowed a bounded number of recovery attempts. Five "
+        + "purposeful models reduce the one vehicle: command authority, mission lifecycle, motion "
+        + "interlock, onboard RAM, and battery endurance.",
+      investigate: "Can anything command motion around the safety monitor, and must a mission "
+        + "always end in a delivery or an abort? Then ask what each promise — memory, time, "
+        + "charge — costs to establish, and which of them these models refuse to price.",
+      tryAsking: [
+        {
+          query: "planner-commands-drive-directly",
+          ask: "Can the mission planner command the drive system directly?",
+        },
+        {
+          query: "motion-inhibited-whenever-faulted",
+          ask: "Is motion ever enabled while the mission is in a fault state?",
+        },
+        {
+          query: "mission-can-strand-without-an-outcome",
+          ask: "Can a mission stop for good without delivering or aborting?",
+        },
+        {
+          query: "compute-payload-fits-onboard-ram",
+          ask: "Does the autonomy payload's peak RAM fit the compute module's carve-out?",
+        },
+        {
+          query: "charge-remaining-at-delivery",
+          ask: "Does the battery still have charge when the parcel is handed over?",
+        },
+      ],
+    },
   },
 ] as const satisfies readonly ShippedExample[];
 
@@ -234,6 +448,16 @@ export function flagshipRealisedBy(slot: SpecFlagship): ShippedExampleId | null 
   return row?.id ?? null;
 }
 
+/**
+ * The case envelope of a shipped example. Throws on an unknown id for `regionHost`'s reason: a
+ * caller asking for a shipped example's case has no useful behaviour when the row is missing.
+ */
+export function caseOf(id: ShippedExampleId): ExampleCase {
+  const row = SHIPPED_EXAMPLES.find((e) => e.id === id);
+  if (row === undefined) throw new UnknownExampleError(`'${id}' is not a shipped example`);
+  return row.case;
+}
+
 /** One of an example's purposeful models, with the question it answers. */
 export interface ExampleModelBlurb {
   readonly id: string;
@@ -243,13 +467,27 @@ export interface ExampleModelBlurb {
   readonly question: string | null;
 }
 
+/**
+ * One presented question: the case's interrogative, the suggested saved query it invites, and that
+ * query's own declarative statement. Three fields, one join — `ask` is what the card prints,
+ * `statement` is what the Properties rail will show for the same question after loading, and
+ * `query` is the id that ties both to the fixture row whose outcome CI pins.
+ */
+export interface PresentedQuestion {
+  readonly query: string;
+  readonly ask: string;
+  readonly statement: string;
+}
+
 export interface ExampleDescription {
   readonly id: string;
   readonly title: string;
   readonly summary: string;
+  readonly scenario: string;
+  readonly investigate: string;
   readonly models: readonly ExampleModelBlurb[];
-  /** The presented questions, by their natural-language labels. Section 2 caps the set at 3-5. */
-  readonly tryAsking: readonly string[];
+  /** The presented questions. Section 2 caps the set at 3-5. */
+  readonly tryAsking: readonly PresentedQuestion[];
 }
 
 /**
@@ -287,7 +525,7 @@ function text(v: unknown, where: string): string {
 function readPresentation(id: string, source: string): {
   readonly title: string;
   readonly summary: string;
-  readonly tryAsking: readonly string[];
+  readonly suggested: readonly { readonly id: string; readonly label: string }[];
 } {
   const where = fixturePath(id);
   const doc: unknown = parse(source);
@@ -295,20 +533,58 @@ function readPresentation(id: string, source: string): {
   const queries = doc["queries"];
   if (!Array.isArray(queries)) throw new ExampleMetadataError(`${where}.queries: expected a sequence`);
 
-  const tryAsking: string[] = [];
+  const suggested: { readonly id: string; readonly label: string }[] = [];
   for (const [i, raw] of queries.entries()) {
     if (!isObject(raw)) throw new ExampleMetadataError(`${where}.queries[${i}]: expected a mapping`);
     if (raw["suggested"] !== true) continue;
-    tryAsking.push(text(raw["label"], `${where}.queries[${i}].label`));
+    suggested.push({
+      id: text(raw["id"], `${where}.queries[${i}].id`),
+      label: text(raw["label"], `${where}.queries[${i}].label`),
+    });
   }
-  if (tryAsking.length === 0) {
+  if (suggested.length === 0) {
     throw new ExampleMetadataError(`${where}: no query is marked suggested, so there is nothing to present`);
   }
   return {
     title: text(doc["title"], `${where}.title`),
     summary: text(doc["summary"], `${where}.summary`),
-    tryAsking,
+    suggested,
   };
+}
+
+/**
+ * Join the case's invitations to the fixture's suggested set, by query id, in the fixture's order.
+ *
+ * Strict in both directions for `readPresentation`'s reason: a case ask naming no suggested query
+ * would present a question nothing pins, and a suggested query no case asks about would quietly
+ * drop a question the corpus believes it offers. Either is a broken example, said loudly with the
+ * file to open.
+ */
+function joinCaseQuestions(
+  id: string,
+  suggested: readonly { readonly id: string; readonly label: string }[],
+  tryAsking: readonly CaseQuestion[],
+): readonly PresentedQuestion[] {
+  const where = fixturePath(id);
+  const byQuery = new Map(tryAsking.map((q) => [q.query, q.ask]));
+  if (byQuery.size !== tryAsking.length) {
+    throw new ExampleMetadataError(`${id}: the case asks about one query twice`);
+  }
+  const suggestedIds = new Set(suggested.map((s) => s.id));
+  for (const q of tryAsking) {
+    if (!suggestedIds.has(q.query)) {
+      throw new ExampleMetadataError(
+        `${id}: the case asks about '${q.query}', which ${where} does not mark suggested`);
+    }
+  }
+  return suggested.map((s) => {
+    const ask = byQuery.get(s.id);
+    if (ask === undefined) {
+      throw new ExampleMetadataError(
+        `${id}: ${where} marks '${s.id}' suggested and the case never asks about it`);
+    }
+    return { query: s.id, ask, statement: s.label };
+  });
 }
 
 /**
@@ -322,10 +598,37 @@ export class ExampleCatalog {
   readonly #workspace: Workspace;
   readonly #read: AssetReader;
   readonly #sources = new Map<string, string>();
+  /**
+   * The example whose case the workspace currently shows, pinned to the import that installed it.
+   *
+   * The pin is {id, loadNonce-at-load}: any later load — a file, a new system, another example, a
+   * Reset — advances the workspace's nonce and the pin silently expires, so the case panel can
+   * never describe a document that did not come from its example. Edits, undo and hypotheses do
+   * not advance the nonce, and that is the requirement: a shipped example stays an ordinary
+   * editable workspace WITH its case, because the case is context, not a constraint.
+   */
+  #pinnedCase: { readonly id: ShippedExampleId; readonly nonce: number } | null = null;
 
   constructor(workspace: Workspace, read: AssetReader) {
     this.#workspace = workspace;
     this.#read = read;
+  }
+
+  /** The shipped example the current import came from, or null when it came from anywhere else. */
+  currentCase(): ShippedExampleId | null {
+    if (this.#pinnedCase === null) return null;
+    return this.#pinnedCase.nonce === this.#workspace.loadNonce ? this.#pinnedCase.id : null;
+  }
+
+  /**
+   * Re-pin a case onto the CURRENT import — the session-restore seam. A restored session's text
+   * went through the ordinary `Workspace.load`, so the catalogue never saw it; this tells the
+   * catalogue which example that session began from. Refuses an unshipped id rather than pinning
+   * a case to a document it cannot describe.
+   */
+  adoptCase(id: string): void {
+    this.#assertShipped(id);
+    this.#pinnedCase = { id, nonce: this.#workspace.loadNonce };
   }
 
   /** What the menu may offer. Closed, and short for a stated reason. */
@@ -349,8 +652,15 @@ export class ExampleCatalog {
         id: m.id, label: m.id, kind: "machine" as const, question: m.purpose.question,
       })),
     ];
-    const { title, summary, tryAsking } = readPresentation(id, fixture);
-    return { id, title, summary, models, tryAsking };
+    const { title, summary, suggested } = readPresentation(id, fixture);
+    const envelope = caseOf(id);
+    return {
+      id, title, summary,
+      scenario: envelope.scenario,
+      investigate: envelope.investigate,
+      models,
+      tryAsking: joinCaseQuestions(id, suggested, envelope.tryAsking),
+    };
   }
 
   describeAll(): Promise<readonly ExampleDescription[]> {
@@ -366,10 +676,14 @@ export class ExampleCatalog {
    */
   async load(id: string): Promise<{ readonly ok: boolean; readonly findings: readonly Finding[] }> {
     this.#assertShipped(id);
-    return this.#workspace.load(await this.#source(id));
+    const result = this.#workspace.load(await this.#source(id));
+    // Pin AFTER the load, against the nonce that load minted, and only when it took: a refused
+    // import leaves the previous document — and the previous document's case — in place.
+    if (result.ok) this.#pinnedCase = { id, nonce: this.#workspace.loadNonce };
+    return result;
   }
 
-  #assertShipped(id: string): void {
+  #assertShipped(id: string): asserts id is ShippedExampleId {
     if (!(SHIPPED_EXAMPLE_IDS as readonly string[]).includes(id)) {
       throw new UnknownExampleError(
         `'${id}' is not a shipped example; the workbench offers ${SHIPPED_EXAMPLE_IDS.join(", ")}.`);

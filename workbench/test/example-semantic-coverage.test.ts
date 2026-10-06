@@ -94,7 +94,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse, stringify } from "yaml";
 import { SHIPPED_EXAMPLE_IDS, ExampleCatalog } from "../src/app/examples.ts";
-import type { ShippedExampleId } from "../src/app/examples.ts";
+import type { PresentedQuestion, ShippedExampleId } from "../src/app/examples.ts";
 import { Workspace } from "../src/app/services.ts";
 import { DIMENSIONS, UNIT_DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
 import type {
@@ -178,7 +178,7 @@ interface Example {
    */
   readonly askedFor: ReadonlySet<string>;
   /** The questions a student is PRESENTED, through the application's own catalogue. */
-  readonly presented: readonly string[];
+  readonly presented: readonly PresentedQuestion[];
   readonly workspace: Workspace;
 }
 
@@ -320,15 +320,23 @@ function auditQuestionRegistration(c: Corpus): Audit {
   const subjects: string[] = [];
   const findings: string[] = [];
   for (const ex of c) {
-    const byLabel = new Map(ex.fixture.queries.map((q) => [q.label.trim(), q] as const));
-    for (const label of ex.presented) {
-      subjects.push(`${ex.id}/${label}`);
-      const row = byLabel.get(label.trim());
+    const byId = new Map(ex.fixture.queries.map((q) => [q.id, q] as const));
+    for (const q of ex.presented) {
+      subjects.push(`${ex.id}/${q.query}`);
+      const row = byId.get(q.query);
       if (row === undefined) {
         findings.push(
-          `${ex.id}: the catalogue presents '${label}' and no fixture row carries that label, so the `
-          + `question a student reads is attached to nothing`);
+          `${ex.id}: the catalogue presents '${q.ask}' for query '${q.query}' and no fixture row `
+          + `carries that id, so the question a student reads is attached to nothing`);
         continue;
+      }
+      // The presented STATEMENT must be the row's own label — the ask is the case's interrogative,
+      // and the statement beside it is what the Properties rail will show for the same id, so a
+      // drifted copy here is two claims wearing one question.
+      if (q.statement.trim() !== row.label.trim()) {
+        findings.push(
+          `${ex.id}/${row.id}: the catalogue carries statement '${q.statement.trim()}' and the fixture `
+          + `labels the row '${row.label.trim()}' — two statements of one question`);
       }
       const saved = ex.system.queries.get(row.id);
       if (saved === undefined) {
@@ -358,9 +366,9 @@ function auditQuestionRegistration(c: Corpus): Audit {
     }
     // Both directions: a suggested row the catalogue does not present is a question the corpus
     // believes it ships and the application does not.
-    const presented = new Set(ex.presented.map((l) => l.trim()));
+    const presented = new Set(ex.presented.map((q) => q.query));
     for (const q of ex.fixture.queries) {
-      if (q.suggested && !presented.has(q.label.trim())) {
+      if (q.suggested && !presented.has(q.id)) {
         findings.push(
           `${ex.id}/${q.id}: marked suggested and the catalogue does not present it, so the corpus and `
           + `the application disagree about what a student is offered`);
@@ -1895,9 +1903,10 @@ const findingsOf = (result: Audit): string => result.findings.join("\n");
 
 test("control: a presented label that is not its query's statement is caught", async () => {
   const drifted = await replacing("message-bus", (ex) => ({
-    ...ex, presented: ["A question nobody saved"],
+    ...ex,
+    presented: [{ query: "a-query-nobody-saved", ask: "A question nobody saved?", statement: "A question nobody saved" }],
   }));
-  assert.match(findingsOf(auditQuestionRegistration(drifted)), /carries that label/,
+  assert.match(findingsOf(auditQuestionRegistration(drifted)), /carries that id/,
     "a presented question attached to no fixture row must be caught");
 
   const relabelled = await replacing("message-bus", (ex) => {
@@ -1905,7 +1914,7 @@ test("control: a presented label that is not its query's statement is caught", a
     // would leave the audit with nothing to compare and the control would pass on an absence.
     const first = ex.fixture.queries.find((q) => q.suggested);
     assert.ok(first !== undefined, "message-bus must suggest a query for this control");
-    assert.ok(ex.presented.includes(first.label), "and the catalogue must present it");
+    assert.ok(ex.presented.some((p) => p.query === first.id), "and the catalogue must present it");
     return {
       ...ex,
       fixture: {
@@ -1913,7 +1922,8 @@ test("control: a presented label that is not its query's statement is caught", a
         queries: ex.fixture.queries.map(
           (q) => (q.id === first.id ? { ...q, label: "A narrower claim" } : q)),
       },
-      presented: ex.presented.map((l) => (l === first.label ? "A narrower claim" : l)),
+      presented: ex.presented.map(
+        (p) => (p.query === first.id ? { ...p, statement: "A narrower claim" } : p)),
     };
   });
   assert.match(findingsOf(auditQuestionRegistration(relabelled)), /Two statements of one question/,
