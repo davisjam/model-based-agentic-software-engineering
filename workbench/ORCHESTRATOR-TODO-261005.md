@@ -10,70 +10,36 @@ stop."*
 
 ---
 
-## State of `main`
+## LANDED AND PUBLISHED — 261006
 
-`526e8631d`, **11 commits ahead of `origin/main`** (`git log --oneline origin/main..HEAD`).
-`origin/main` is `6acc3d507`, whose CI run concluded **success** — the a11y keyboard fix is green on
-the published tip.
+`origin/main` is **`6afe9ad2c`**, verified by content (`git log --oneline origin/main..HEAD` empty),
+across two publishes totalling 26 commits. CI on the first tip (`d7904b207`) concluded **build
+success, deploy success**; the run for the final tip was still in flight when this was written —
+check it before trusting the site.
 
-**`main`'s node tier is RED by two assertions** — `semantic-live.test.ts:318` and `:373`, out of
-1435 tests (1433 pass). This is a designed coupling, not a break: the gate pinned two known defects
-as an exact set, a sibling wave fixed one of them, and the gate correctly reports its own pin as
-stale. **The fix already exists on a branch** (see T1). Nothing is published while this is red.
+T1 through T7 are **done**: the liveness-sweep third state (which turned `main` green), the
+browser+a11y tiers in pre-push, the Alignment deck, the shadow-types design, the example cases, the
+merged-tree verification, and both publishes.
 
----
+**Merged-tree verification, the gate that mattered** — five waves landed together, and branches cut
+hours apart are each green against a different `main`:
 
-## In flight
+| Gate | Result |
+|---|---|
+| `tsc --noEmit` | clean |
+| node tier | 1441 / 1441, 0 fail |
+| browser tier | 166 pass, 0 fail, 1 deliberate todo |
+| a11y tier | 113 / 113, three receipts written |
+| `catalog.py validate` | 85 entries, 0 issues |
 
-| # | Agent | Branch | Job | State |
-|---|---|---|---|---|
-| A1 | `alignment-copyedit` | `deck-alignment-261005` | render + re-measure + commit the applied copyedit | RULED, working |
-| A2 | `example-cases` | `wb-example-cases-261005` | index.html copy + six case envelopes | working |
-| A3 | `shadow-types-design` | `wb-shadow-types-design-261005` | Phase-1 design for mandatory shadow typing | working |
+Two reds surfaced during that verification and both were controls working rather than defects: the
+semantic-live gate went red on its own stale pin once the corrections landed (resolved with a third
+`REFUSED` verdict state rather than a deletion), and the browser harness refused to run against a
+stale `dist/workbench.js` after `src/ir/hash.ts` changed — reporting staleness instead of three
+phantom product failures.
 
-Killed as redundant: `pin-integration` — it was resolving the semantic-live pin on a worktree cut
-from the merged tree, but `wb-example-corrections-261005` had already solved it after rebasing
-(T1). Two agents converging on one fix; the earlier one won on merit.
-
----
-
-## Ready to land, in order
-
-**T1 — `wb-example-corrections-261005` @ `dc0ddfc3f`** — *"the liveness sweep gains a third state,
-and both red alerts discharge."* Touches `semantic-live.test.ts` + `perturbation.ts`, verified by
-`git diff --name-only`. **This is what turns `main` green, so it lands first.** The earlier commits
-from this branch are already merged (`cb3d5c1fe`); this is the post-rebase addition.
-
-**T2 — `wb-prepush-browser-261005` @ `60accdae7`** — the browser tier wired into pre-push, plus the
-gap matrix. Deliberately held until `main` is green, so a red tier is not what first exercises a
-newly-blocking gate.
-
-**T3 — `deck-alignment-261005`** — currently `678938a2e` (deck + six section breaks) with the
-copyedit uncommitted in the working tree; A1 is committing it. Lands as one branch when A1 returns.
-
-**T4 — `wb-example-cases-261005`** — when A2 returns. Reaches the page, so browser + a11y tiers are
-mandatory on the merged tree.
-
-**T5 — `wb-shadow-types-design-261005`** — when A3 returns. Doc-only; cheapest to land.
-
----
-
-## Then, and this is the finish line
-
-**T6 — verify on the MERGED tree, not on the branches.** Non-negotiable here: branches cut hours
-apart are each green against a different `main`, and on 261004 two individually-green waves merged
-red. Full set: `npx tsc --noEmit`, `npm test`, `npm run test:browser`, `npm run test:a11y`,
-`catalog.py validate`, `catalog.py build`.
-
-**T7 — push, then PUBLISH.** Push discipline, learned the hard way today and now in `CLAUDE.md`:
-- `catalog_tests.py --tier1` to completion FIRST, then push backgrounded.
-- **But check `sysctl -n vm.loadavg` first** — pre-warming addresses the cache, not the CPU, and
-  today a warm gate still ran 25 minutes under load 47 from five agents. Push when the fleet is
-  quiet, or expect a long gate. Order the push *before* a wave or *after* it lands, never between.
-- **The only proof of landing is `git log --oneline origin/main..HEAD` returning EMPTY.** Not the
-  exit code — three documented failure modes all exit misleadingly.
-- Then watch Actions to CONCLUSION (`python3 /tmp/gc-ci-poll.py <run-id>`); a clean push proves only
-  that the hook ran. Logs are 403, so the failing STEP NAME from the jobs API is the diagnostic.
+All eight wave worktrees were removed after confirming zero unmerged commits each; branch refs are
+kept as the audit trail.
 
 ---
 
