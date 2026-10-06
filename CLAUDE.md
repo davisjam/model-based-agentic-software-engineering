@@ -126,6 +126,22 @@ re-deriving these, so they live here:**
     for minutes, and GitHub closes the idle session — in the measured case at line 240 of a
     1077-line push log, with the hook still working for another 800 lines. `git ls-remote` succeeded
     throughout, so it is idle-timeout, not connectivity.
+  - **A THIRD mode, 261005, and the keepalive fix below does NOT prevent it:** the push dies with
+    `git@github.com: Permission denied (publickey)` / `Could not read from remote repository` — while
+    `git ls-remote origin` **succeeds seconds later**. So it is not a key, an access right, or
+    connectivity. Credential state that was good when the push launched has aged out across the ~20
+    minutes the gate runs before git transfers. Keepalives address the SOCKET, not an aging agent
+    key. On the same day, mode 1 (idle timeout) was ALSO hit with the keepalive config already in
+    place — which is the evidence that config is necessary and not sufficient.
+  - **The mitigation that actually worked, and the one to reach for first:** run
+    `python3 catalog_tests.py --tier1` to completion FIRST, then push backgrounded. The in-push gate
+    then runs cache-warm and the transfer window shrinks from ~20 minutes to a minute or two. On
+    261005 both successful pushes pre-warmed; both failures ran a cold gate. A retry after a
+    publickey failure is a plain fast-forward and loses nothing — check `merge-base --is-ancestor`
+    before assuming otherwise.
+  - **All three modes share one root, which is worth stating once:** the gate runs BEFORE the
+    transfer, so both the verdict and the credential age across a long window. That is why the exit
+    code is never the check and `git log --oneline origin/main..HEAD` returning EMPTY always is.
   - **Fix, repo-local so nothing outside the working tree is touched:**
     `git config core.sshCommand "ssh -o ServerAliveInterval=20 -o ServerAliveCountMax=30"`.
     Reverts with `git config --unset core.sshCommand`. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
