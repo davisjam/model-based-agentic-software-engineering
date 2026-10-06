@@ -13,7 +13,7 @@ import type { Ports, SparqlAnswer } from "../src/app/services.ts";
 import {
   CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParity,
 } from "../src/app/capabilities.ts";
-import { ExampleCatalog, UnknownExampleError } from "../src/app/examples.ts";
+import { ExampleCatalog, UnknownExampleError, scenarioLead } from "../src/app/examples.ts";
 // The configuration-space readout, imported for its WORDS. The module touches the DOM only inside
 // `mountSystemBrowser`, so the two describers are reachable from a node tier with no browser.
 import { describeExploreResult, describeSpaceSummary } from "../src/ui/shell/browser.ts";
@@ -440,6 +440,15 @@ test("a description is read from the example, never written beside it", async ()
     // are the example file alone, which the load test above already holds.
     assert.notEqual(d.scenario.trim(), "", `${id}: the case states no scenario`);
     assert.notEqual(d.investigate.trim(), "", `${id}: the case states nothing to investigate`);
+
+    // The Start card's abbreviation of that scenario: derived, never authored. A PREFIX of the
+    // authored prose (so the abbreviation cannot say anything the scenario does not), non-empty,
+    // and a whole statement rather than a cut-off clause.
+    const lead = scenarioLead(d.scenario);
+    assert.notEqual(lead.trim(), "", `${id}: the scenario abbreviates to nothing`);
+    assert.ok(d.scenario.startsWith(lead),
+      `${id}: the abbreviated case is not a prefix of the authored scenario`);
+    assert.match(lead, /[.?!]$/, `${id}: the abbreviated case ends mid-sentence: "${lead}"`);
 
     // And the models, with their questions, from the system itself -- machines included, because a
     // machine carries a purpose exactly as a graph model does.

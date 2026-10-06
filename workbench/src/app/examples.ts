@@ -534,6 +534,22 @@ export function caseOf(id: ShippedExampleId): ExampleCase {
   return row.case;
 }
 
+/**
+ * The case in abbreviated form: the scenario's first two sentences.
+ *
+ * The author's ruling put the case in two places — "on the Start card in abbreviated form" and,
+ * after loading, in full in the case panel. This is the abbreviation, and it is DERIVED rather
+ * than authored a second time: the authored shape is situate → mechanism → problem (the note on
+ * `SHIPPED_EXAMPLES`), so the first two sentences name the system and its mechanism and leave the
+ * problem to the card's "Try asking" list. One derivation, used by both the painted card and the
+ * picker's announcement, so a screen-reader user hears what a sighted user reads.
+ */
+export function scenarioLead(scenario: string): string {
+  const sentences = scenario.match(/[^.?!]+[.?!]+/g);
+  if (sentences === null) return scenario;
+  return sentences.slice(0, 2).map((s) => s.trim()).join(" ");
+}
+
 /** One of an example's purposeful models, with the question it answers. */
 export interface ExampleModelBlurb {
   readonly id: string;

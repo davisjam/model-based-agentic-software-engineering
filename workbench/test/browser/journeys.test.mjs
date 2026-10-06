@@ -115,7 +115,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parse } from "yaml";
-import { flagshipRealisedBy } from "../../src/app/examples.ts";
+import { caseOf, flagshipRealisedBy, scenarioLead } from "../../src/app/examples.ts";
 import { evaluationOf } from "../../src/ir/types.ts";
 import { STATUS_WORD } from "../../src/ui/shell/review.ts";
 import { statusWord } from "../../src/ui/shell/nav.ts";
@@ -458,11 +458,12 @@ describe(`rung 1 — ${EXAMPLE} opens through the picker and the page says which
       + `title '${fixture.title}', so the menu names the example something its manifest does not`);
     assert.match(opened.beforeLoad.description, new RegExp(escapeForRegExp(fixture.title)),
       "the Start region's description does not name the example");
-    // The manifest's summary is a folded block, so the first sentence is the stable part to pin.
-    const firstSentence = String(fixture.summary).replace(/\s+/g, " ").trim().split(". ")[0];
-    assert.match(opened.beforeLoad.description, new RegExp(escapeForRegExp(firstSentence)),
-      "the Start description does not carry the manifest's summary, so a student choosing this "
-      + "example is not told what it is");
+    // The card leads with the CASE, abbreviated — the author's "on the Start card in abbreviated
+    // form" — looked up through the same derivation the card paints, never retyped here.
+    const lead = scenarioLead(caseOf(EXAMPLE).scenario).replace(/\s+/g, " ").trim();
+    assert.match(opened.beforeLoad.description, new RegExp(escapeForRegExp(lead)),
+      "the Start description does not lead with the example's case scenario, so a student "
+      + "choosing this example still reads the dataset-style fixture summary");
   });
 
   it("the workspace mounts, Start unmounts, and the page names the system it loaded", () => {
