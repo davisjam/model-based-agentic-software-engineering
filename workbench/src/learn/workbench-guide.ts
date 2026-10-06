@@ -162,6 +162,43 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
       },
     ],
   },
+  {
+    // The agent tail (author's instruction, 261006): the site's generated `llms.txt` points an
+    // arriving agent HERE, so this section carries the detailed account rather than the index
+    // duplicating it. Unlike its siblings it vacated no pane — the material was previously said
+    // nowhere on a served page; the co-authoring path was discoverable only by reading test files.
+    // `catalog.py` reads this section's anchor + intro at build time (the one guide section whose
+    // heading mentions an agent), so renaming or deleting it fails the site build loudly instead of
+    // shipping a dead link.
+    anchor: "guide-working-with-a-coding-agent",
+    heading: "Working with a coding agent",
+    intro: "One shared workspace: a human in the page, and a coding agent driving the same model "
+      + "system through window.mage.",
+    blocks: [
+      prose("The Workbench is fully client-side. The engine ships in the page's own bundle, so "
+        + "there is no server and no API endpoint behind it. An agent operates the page itself, in "
+        + "the browser where it is open."),
+      prose("window.mage is the agent surface, and window.mage.describe() is the place to start. "
+        + "It publishes the API version, the JSON schemas for models, queries and transactions, "
+        + "and the operations. It also states the negative space as plainly as the positive: "
+        + "notSupported lists what the Workbench refuses to do, affordanceGaps what it cannot yet "
+        + "express, and outsideSemanticInterface what is on screen but deliberately outside the "
+        + "semantic surface. An agent that reads describe() first learns the boundary before "
+        + "acting, instead of discovering it by failing."),
+      prose("Co-authoring runs over Chrome DevTools Protocol attach. The agent attaches to the "
+        + "human's existing Chromium — a browser the agent did not launch — and the two share one "
+        + "workspace. The agent mutates through window.mage; the human's own session sees the "
+        + "hash, the state and the visible page move. It works in the other direction too: a "
+        + "control the human operates is observed by the attached agent. The browser tier's "
+        + "test/browser/attach.test.mjs drives exactly this flow, deterministically, with no agent "
+        + "in the loop."),
+      prose("The limit, stated here so it is learned rather than discovered: MAGE opens no port, "
+        + "discovers no agent, and holds no socket. The transport — launching Chromium with a "
+        + "debugging port, attaching to it, deciding who may attach — belongs to the execution "
+        + "environment."),
+    ],
+    movedFrom: [],
+  },
 ];
 
 /** Every guide anchor. The smoke tier adds these to the registry's when it checks the section set. */

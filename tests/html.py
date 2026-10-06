@@ -1227,3 +1227,55 @@ def check_models_view_site():
         issues.append("models-view: render produced no sections/outcomes — the source models look empty "
                       "or the renderer is broken")
     return (FAIL if issues else PASS), issues
+
+
+def check_llms_txt_parity():
+    """The agent-facing index (`llms.txt`) really is DERIVED, and stays that way. Byte-freshness of
+    the COMMITTED copy vs a render is the regen-drift gate's job (its scope is derived from
+    `render_site_pages`, which emits llms.txt + robots.txt); THIS check pins the containment
+    properties of the GENERATOR that make the file an index rather than a hand-list — properties the
+    byte gate cannot see, because an edit that drops a whole section from `_llms_txt` leaves
+    committed == fresh: (1) every top-level page the build emits appears in it; (2) every mechanism
+    census entry appears in it; (3) robots.txt points at llms.txt and allows crawling; (4) neither
+    file points at the unpublished internal playbook (`/AGENTS.md` — excluded from the Pages
+    artifact by ruling, 261006), and the workflow still carries that exclusion. (1)+(2) are checked
+    against a FRESH render, not a disk walk — the tracked hand-authored figure pages
+    (`catalogue-figure.html`, `development-workflow.html`) are served but not emitted by
+    `render_site_pages`, so a disk walk would flag exactly the pages the derivation rightly skips.
+    (1)+(2) are the standing form of the demonstration that a page added to the build appears in
+    llms.txt with no hand edit."""
+    pages, _counts = catalog.render_site_pages(catalog.all_entries())
+    if "llms.txt" not in pages or "robots.txt" not in pages:
+        return FAIL, ["render_site_pages no longer emits llms.txt / robots.txt — the agent index "
+                      "left the build"]
+    llms = pages["llms.txt"]
+    robots = pages["robots.txt"]
+    issues: list[str] = []
+    # (1) every top-level emitted page is indexed (INDEX.html is emitted-never-committed and shadowed
+    # by index.html on a case-insensitive FS; llms.txt links it like any other emitted page).
+    for rel in sorted(pages):
+        if rel.endswith(".html") and "/" not in rel and f"/{rel})" not in llms:
+            issues.append(f"emitted top-level page {rel} is not linked from llms.txt — the Site "
+                          "pages derivation regressed")
+    # (2) every census entry is indexed, by its served markdown path.
+    for e in catalog.all_entries():
+        if f"/{e.path})" not in llms:
+            issues.append(f"census entry {e.path} is not linked from llms.txt — the catalogue "
+                          "derivation regressed")
+    # (3) robots: permissive + the pointer.
+    if "Allow: /" not in robots:
+        issues.append("robots.txt no longer allows crawling — policy is OPEN (author ruling, 261006)")
+    if "/llms.txt" not in robots:
+        issues.append("robots.txt does not point at llms.txt")
+    # (4) the unpublished playbook stays unpublished: no pointer, and the workflow keeps the exclusion.
+    for name, text in (("llms.txt", llms), ("robots.txt", robots)):
+        if "AGENTS.md" in text:
+            issues.append(f"{name} references AGENTS.md — the playbook is excluded from the published "
+                          "site and must not be pointed at")
+    wf = os.path.join(ROOT, ".github", "workflows", "pages.yml")
+    if os.path.isfile(wf):
+        wf_text = open(wf, encoding="utf-8").read()
+        if "--exclude='/AGENTS.md'" not in wf_text or "--exclude='/book/AGENTS.md'" not in wf_text:
+            issues.append("pages.yml lost the anchored /AGENTS.md exclusions — the internal playbooks "
+                          "would publish again")
+    return (FAIL if issues else PASS), issues

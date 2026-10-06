@@ -2958,26 +2958,35 @@ def _v3_nav() -> str:
         '</nav>')
 
 
+_HERO_LEADS: "tuple[str, ...]" = (
+    # The hero's descriptive lead — what MAGE is, its two principles, and governance conversion — in
+    # plain language, not book vocabulary. Stated ONCE here: `_v3_hero` renders these on the landing,
+    # and `_llms_txt` reuses the same sentences as the agent index's summary, so the two surfaces
+    # cannot say different things about what MAGE is.
+    "Model-Based Agentic Engineering (MAGE) is an engineering methodology "
+    "for environments in which AI agents perform substantial implementation work.",
+    "MAGE has two principles that apply throughout the work. Modeling makes "
+    "important engineering knowledge and intent explicit. Alignment makes important requirements "
+    "effective by checking the work against them.",
+    "MAGE does not assume that engineers get everything right the first time. "
+    "Software engineering routinely proceeds from incomplete, imprecise, and evolving requirements, and "
+    "autonomous work exposes gaps that were not apparent in advance. MAGE therefore also emphasizes "
+    "governance conversion: changing the engineering environment so that future work can inherit what "
+    "was learned rather than rediscover it.",
+)
+
+
 def _v3_hero() -> str:
-    """The hero: the eyebrow question (core_question), the title, a descriptive lead (three paragraphs —
-    what MAGE is, its two principles, and governance conversion — in plain language, not book vocabulary),
+    """The hero: the eyebrow question (core_question), the title, the descriptive lead (`_HERO_LEADS`),
     and three buttons. Evidence is deliberately not in the definition."""
     q = (_load_big_ideas().get("core_question") or {}).get("question", "")
+    leads = "".join(f'  <p class="v3-lead">{p}</p>\n' for p in _HERO_LEADS)
     return (
         '<header class="v3-hero">\n'
         f'  <p class="v3-eyebrow">{_esc(q)}</p>\n'
         f'  <h1 class="v3-title">{html.escape(BOOK_MANIFEST["title"])}</h1>\n'
         f'  <p class="v3-subtitle">{html.escape(BOOK_MANIFEST["subtitle"])}</p>\n'
-        '  <p class="v3-lead">Model-Based Agentic Engineering (MAGE) is an engineering methodology '
-        'for environments in which AI agents perform substantial implementation work.</p>\n'
-        '  <p class="v3-lead">MAGE has two principles that apply throughout the work. Modeling makes '
-        'important engineering knowledge and intent explicit. Alignment makes important requirements '
-        'effective by checking the work against them.</p>\n'
-        '  <p class="v3-lead">MAGE does not assume that engineers get everything right the first time. '
-        'Software engineering routinely proceeds from incomplete, imprecise, and evolving requirements, and '
-        'autonomous work exposes gaps that were not apparent in advance. MAGE therefore also emphasizes '
-        'governance conversion: changing the engineering environment so that future work can inherit what '
-        'was learned rather than rediscover it.</p>\n'
+        f'{leads}'
         '  <div class="v3-hero-btns">\n'
         '    <a class="v3-btn v3-btn-primary" href="book/mage-book/index.html">Read the book</a>\n'
         '    <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>\n'
@@ -4750,6 +4759,172 @@ def check_orphan_pages() -> list[str]:
     return sorted(orphans)
 
 
+def _learn_agent_guide_ref() -> "tuple[str, str, str]":
+    """(anchor, heading, intro) of the Workbench Learn guide's coding-agent section, read at build time
+    from the guide's own declared table (`workbench/src/learn/workbench-guide.ts`) — the single source
+    the Learn page renders from. `llms.txt` points agents at that section, so the pointer is DERIVED:
+    rename or delete the section and the build fails loudly here instead of shipping a dead link.
+    Selection is by heading (the one guide section whose heading mentions an agent); exactly one must
+    match, so a second agent-ish section is a build error, not a silent mis-pointer."""
+    src_path = os.path.join(ROOT, "workbench", "src", "learn", "workbench-guide.ts")
+    src = open(src_path, encoding="utf-8").read()
+    secs = re.findall(
+        r'anchor:\s*"([^"]+)",\s*heading:\s*"([^"]+)",\s*intro:\s*((?:"(?:[^"\\]|\\.)*"\s*\+?\s*)+)',
+        src)
+    agent = [(a, h, raw) for a, h, raw in secs if "agent" in h.lower()]
+    if len(agent) != 1:
+        raise SystemExit(
+            f"llms.txt: expected exactly ONE Learn guide section with 'agent' in its heading in "
+            f"{src_path}, found {len(agent)} — llms.txt points at it, so the section must exist "
+            f"unambiguously (see _learn_agent_guide_ref).")
+    anchor, heading, raw = agent[0]
+    intro = "".join(re.findall(r'"((?:[^"\\]|\\.)*)"', raw))
+    return anchor, heading, intro
+
+
+def _first_sentence(text: str, cap: int = 200) -> str:
+    """The first sentence of a description, for a one-line llms.txt entry (the full text lives at the
+    link target — repeating all of it would be duplication, not indexing)."""
+    text = " ".join(text.split())
+    cut = text.find(". ")
+    s = text[:cut + 1] if cut != -1 else text
+    return s if len(s) <= cap else s[:cap - 1].rstrip() + "…"
+
+
+def _llms_txt(entries: "list[Entry]", pages: "dict[str, str]") -> str:
+    """The agent-facing site index (llmstxt.org convention: H1, blockquote summary, H2 link sections) —
+    GENERATED, never hand-written. Every entry is DERIVED from a structure the build already owns:
+    the hero lead (`_HERO_LEADS`), the emitted top-level page set + each page's own <title> (the
+    `pages` dict this build is about to write), the mechanism census (`entries`), the book/handbook
+    manifest constants, the workbench's shipped schema files (the same files `window.mage.describe()`
+    bundles), the Learn guide's agent section (`_learn_agent_guide_ref`), and resources.json. A page
+    added to the build appears here on the next render with no hand edit; that property is pinned by
+    the llms-parity check in the test suite and the regen-drift gate (scope-derived, so this file is
+    covered the moment it is emitted)."""
+    base = _REPO_META["pages_url"].rstrip("/")
+    out: list[str] = []
+    out.append(f"# {BOOK_MANIFEST['title']} (MAGE)")
+    out.append("")
+    out.append("<!-- GENERATED by catalog.py build (_llms_txt) — DO NOT EDIT. Every line is derived "
+               "from the site build's own sources; regenerate with `python3 catalog.py build`. -->")
+    out.append("")
+    out.append(f"> {_HERO_LEADS[0]}")
+    out.append("")
+    for p in _HERO_LEADS[1:]:
+        out.append(p)
+        out.append("")
+    out.append("Rendered pages are `.html`; the catalogue's markdown sources are served at the same "
+               "paths with `.md` and are the agent-friendly form.")
+    out.append("")
+
+    def link(label: str, rel_or_url: str, desc: str = "") -> str:
+        url = rel_or_url if rel_or_url.startswith(("http://", "https://")) else f"{base}/{rel_or_url}"
+        return f"- [{label}]({url})" + (f": {desc}" if desc else "")
+
+    # ── Site pages: every top-level page THIS build emits, titled by the page's own <title>. ──
+    out.append("## Site pages")
+    out.append("")
+    top = sorted(rel for rel in pages if rel.endswith(".html") and os.sep not in rel)
+    top = ["index.html"] + [r for r in top if r != "index.html"]  # entry point first
+    for rel in top:
+        m = re.search(r"<title>(.*?)</title>", pages[rel], re.S)
+        title = html.unescape(m.group(1).strip()) if m else rel
+        out.append(link(title, rel))
+    out.append("")
+
+    # ── The two books (manifest-derived; chapter lists live at each book's own index page). ──
+    out.append("## The book")
+    out.append("")
+    epub_href = _PDF_HREF[:-len(".pdf")] + ".epub"
+    out.append(link(f"{BOOK_MANIFEST['title']} — web edition", "book/mage-book/index.html",
+                    f"{BOOK_MANIFEST['subtitle']}. The index lists every chapter."))
+    out.append(link("MAGE book — PDF", _PDF_HREF))
+    out.append(link("MAGE book — ePub", epub_href))
+    out.append(link("The Software Engineering Handbook — web edition", _HANDBOOK_WEB))
+    out.append(link("The Software Engineering Handbook — PDF", f"book/se-handbook/{_HANDBOOK_PDF}"))
+    out.append("")
+
+    # ── The mechanism catalogue: one line per census entry, summary from the entry's own card. ──
+    out.append(f"## The mechanism catalogue ({len(entries)} mechanisms)")
+    out.append("")
+    out.append(link("Catalogue census", "INDEX.md", "one row per mechanism, grouped by family"))
+    out.append(link("Catalogue views", "catalogue-views.html",
+                    "every mechanism, grouped by role, family, form, and enforcement"))
+    for e in sorted(entries, key=lambda e: e.path):
+        out.append(link(e.title_only(), e.path, e.summary))
+    out.append("")
+
+    # ── The course. ──
+    out.append("## Teach with MAGE")
+    out.append("")
+    out.append(link("Teach with MAGE", "teach/index.html",
+                    "course and teaching materials; the index lists every unit"))
+    out.append("")
+
+    # ── The Model Workbench — the machine surface. Learn's agent section is the detailed account;
+    #    this index only points (the schemas listed are the SAME files describe() ships inline). ──
+    anchor, heading, intro = _learn_agent_guide_ref()
+    out.append("## Model Workbench")
+    out.append("")
+    out.append(link("Model Workbench", _WORKBENCH_PAGE,
+                    "open a MAGE model system in the browser; fully client-side"))
+    out.append(link(f"Learn: {heading}", f"workbench/learn.html#{anchor}", intro))
+    out.append(link("Learn the Workbench", "workbench/learn.html"))
+    for rel in sorted(glob.glob(os.path.join(ROOT, "workbench", "*.schema.json"))):
+        name = os.path.basename(rel)
+        schema = json.load(open(rel, encoding="utf-8"))
+        out.append(link(schema.get("title", name), f"workbench/{name}",
+                        _first_sentence(schema.get("description", ""))))
+    out.append("")
+
+    # ── Resources (projected from the same model as talks.html / writings.html). ──
+    res = _load_resources()
+    out.append("## Resources")
+    out.append("")
+    for rec in res.get("writings", []):
+        href = next((str(rec[f]) for f in ("pdf", "url", "doi") if rec.get(f)), "")
+        if rec.get("title") and href:
+            meta = " · ".join(str(rec[k]).strip() for k in ("kind", "venue", "date") if rec.get(k))
+            out.append(link(str(rec["title"]), href, meta))
+    for rec in res.get("talks", []):
+        href = next((str(rec[f]) for f in ("slides", "event_url", "video_url") if rec.get(f)), "")
+        if rec.get("title") and href:
+            meta = " · ".join(str(rec[k]).strip() for k in ("venue", "date") if rec.get(k))
+            out.append(link(str(rec["title"]), href, meta))
+    out.append("")
+
+    out.append("## Optional")
+    out.append("")
+    out.append(link("GitHub repository", _REPO_URL,
+                    "the sources this site is generated from, including every mechanism's markdown"))
+    out.append("")
+    return "\n".join(out)
+
+
+def _robots_txt() -> str:
+    """robots.txt, generated beside llms.txt. Policy (author's ruling, 261006): OPEN — this site is
+    published to be read, by people, by crawlers, and by AI agents; the file's job is the pointer to
+    `llms.txt`. Honest caveat, stated in the file: this is a GitHub *project* site served under a
+    subpath, and the robots exclusion protocol only consults the ORIGIN root
+    (`https://<owner>.github.io/robots.txt`), so this file is advisory documentation at this URL —
+    which costs nothing, because the policy is allow-everything anyway."""
+    base = _REPO_META["pages_url"].rstrip("/")
+    return (
+        "# GENERATED by catalog.py build (_robots_txt) — DO NOT EDIT. "
+        "Regenerate with `python3 catalog.py build`.\n"
+        "# Policy: open. This site is published to be read — by people, by crawlers, and by AI "
+        "agents.\n"
+        "# Note: this is a GitHub project site served under a subpath; crawlers resolve robots.txt "
+        "at the origin root,\n"
+        "# so this file is advisory at this URL. The policy below is allow-everything either way.\n"
+        "\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        "# Machine-readable index of this site for LLM agents:\n"
+        f"# {base}/llms.txt\n")
+
+
 def render_site_pages(entries: list[Entry]) -> "tuple[dict[str, str], dict[str, int]]":
     """Render every page the site build emits: {repo-relative path -> HTML text}. Writes nothing.
 
@@ -4895,6 +5070,13 @@ def render_site_pages(entries: list[Entry]) -> "tuple[dict[str, str], dict[str, 
     # The six concept ENTRY pages (`concept-<slug>.html`) were rendered in the md loop above from their
     # hand-authored `concept-<slug>.md`, with the model's figures + `more` projected in — no separate
     # whole-body projection now (Option B: the entry is authored + parity-gated, not generated whole).
+    # The agent-facing index + crawler policy, generated LAST so `_llms_txt` can derive its "Site pages"
+    # section from the full `pages` dict (a page added to this build appears in llms.txt on the same
+    # render). Emitting them HERE, not in cmd_build, puts them inside the derived scope of the
+    # regen-drift gate and the determinism check — the same can't-drift coverage every generated page
+    # gets. They are .txt, so the html-walk gates (orphan, leak, axe) ignore them by construction.
+    pages["llms.txt"] = _llms_txt(entries, pages)
+    pages["robots.txt"] = _robots_txt()
     return pages, {"md_pages": written, "ic_pages": n_ic, "concept_pages": n_concept}
 
 
@@ -5071,6 +5253,7 @@ def cmd_build(_args) -> int:
     print(f"built {_IC_INDEX_PAGE} + {counts['ic_pages']} industry-case page(s)")
     print(f"built {counts['md_pages']} entry/index pages + landing index.html + catalogue-views.html "
           f"+ {counts['concept_pages']} concept entry pages ({len(entries)} mechanisms in census)")
+    print("built llms.txt + robots.txt (agent-facing index, derived from this build's own page set)")
     # Regenerate the Extended Figure Gallery dev artifact (live/unused/draft figures, for review). Non-fatal
     # subprocess (a review tool must never break the build); output is gitignored + orphan-gate-excluded
     # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known.

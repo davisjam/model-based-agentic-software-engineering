@@ -178,6 +178,9 @@ def _regenerate_and_stage() -> None:
     # are gitignored, so this pathspec cannot resurrect one — the book's web edition lives in the emitted,
     # never-committed `book/web/` tree (the C3 publish swap ended the book's tracked-HTML discipline).
     subprocess.run(["git", "add", "--", "*.html"], cwd=ROOT)
+    # The generated agent-facing index + crawler policy (emitted by the same build; not matched by the
+    # *.html pathspec above, and stale copies redden the regen-drift gate at pre-push).
+    subprocess.run(["git", "add", "--", "llms.txt", "robots.txt"], cwd=ROOT)
     subprocess.run(["git", "add", "--", "plugin"], cwd=ROOT)  # stage the regenerated skill bundle (plugin/**/*.html is gitignored)
 
 
