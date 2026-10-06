@@ -31,7 +31,7 @@ import {
   bounded, detail, exhaustive, fail, GRAPH_COMPOSING, NOT_APPLICABLE, ok, ORDER_OPS, result,
   refusedAdmission as refused, unlicensed, verdict,
   type Admission, type Comparison, type GraphQuery, type GraphWhere,
-  type Quantifier, type Res, type Verdict,
+  type PropConstraint, type Quantifier, type Res, type Verdict,
 } from "./types.ts";
 // The property-constraint matcher, which `elements` is the second caller of (§2.4). It moved to
 // that module rather than being copied into it: one grammar, one matcher, so a traversal's endpoint
@@ -456,9 +456,11 @@ export function admitGraphQuery(
 
   // Containment is not a relation type: §2 declares it on the entity and it yields hierarchical
   // paths by construction, so it is licensed without consulting `composition.path`.
+  // The sentence rides on EVERY refusal below, including these two earliest ones — it is built
+  // from the query alone, so an admission that declines can still say what was asked (V21).
   if (q.form !== "containment" && relType === undefined) {
     return refused(refuseUndeclared(system, systemHash,
-      `relation type '${q.relation}' is not declared by this system`, q.relation));
+      `relation type '${q.relation}' is not declared by this system`, q.relation, interpretation(q)));
   }
 
   if (quantifier === "forall") {
@@ -469,7 +471,7 @@ export function admitGraphQuery(
       `graph form '${q.form}' is existential: it is established by a witness. There is no ` +
       `universal graph form in v0.1, so quantifier 'forall' has no reading here. Use ` +
       `quantifier: exists, or ask a behavior query.`,
-      null, detail("quantifier-mismatch")));
+      interpretation(q), detail("quantifier-mismatch")));
   }
 
   if (GRAPH_COMPOSING.has(q.form) && relType?.pathComposition === "forbidden") {
@@ -733,29 +735,79 @@ function containment(
 }
 
 /**
+ * What each comparison operator SAYS, in the sentence's register. TOTAL over `GuardOp` by the
+ * compiler — a new operator cannot ship without someone wording it, which is the discipline every
+ * closed vocabulary here follows.
+ */
+const COMPARE_WORDS: Readonly<Record<GuardOp, string>> = {
+  eq: "equals", ne: "differs from",
+  lt: "is below", le: "is at most", gt: "is above", ge: "is at least",
+};
+
+/** `source.permits < target.carries` as prose: "the source's 'permits' is below the target's 'carries'". */
+const comparisonClause = (c: Comparison): string => {
+  const side = (ref: string): string => {
+    const dot = ref.indexOf(".");
+    if (dot <= 0) return `'${ref}'`;
+    const owner = ref.slice(0, dot) === "source" ? "the source's" : "the target's";
+    return `${owner} '${ref.slice(dot + 1)}'`;
+  };
+  return `${side(c.left)} ${COMPARE_WORDS[c.op]} ${side(c.right)}`;
+};
+
+/** One endpoint-property constraint as prose: "'permits' is 'internal'" / "is not" / "is one of". */
+const constraintClause = (side: "source" | "target", c: PropConstraint): string => {
+  const values = c.values.map((v) => `'${String(v)}'`).join(", ");
+  const relation = c.op === "eq" ? "is" : c.op === "ne" ? "is not" : "is one of";
+  return `the ${side}'s '${c.property}' ${relation} ${values}`;
+};
+
+/**
+ * The `where` clause, carried into the sentence — or an empty string when there is none.
+ *
+ * The 261006 lab-solver run found the breach query's `interpretedAs` reading "Is there a direct
+ * 'subscribes' relation from any entity to any entity?" while the query's `compare:
+ * source.permits < target.carries` join — the entire point of the question — was silently absent.
+ * An agent trusting `interpretedAs`, as V21 invites it to, would misread the witness as mere
+ * subscription. A sentence that claims to be "the question actually evaluated" must carry every
+ * clause the evaluator reads, or it is describing a different question.
+ */
+function whereClause(where: GraphWhere | null): string {
+  if (where === null) return "";
+  const clauses = [
+    ...where.source.map((c) => constraintClause("source", c)),
+    ...where.target.map((c) => constraintClause("target", c)),
+    ...where.compare.map(comparisonClause),
+  ];
+  return clauses.length === 0 ? "" : `, where ${clauses.join(" and ")}`;
+}
+
+/**
  * The question actually evaluated, in plain language (V21), and the non-visual twin of what the
  * renderer will highlight (FR-A11Y-2). Built from the query, never from the answer, so a refusal
- * still says what was asked.
+ * still says what was asked — and from EVERY clause of the query, so the sentence cannot describe
+ * a weaker question than the one evaluated (see `whereClause`).
  */
 export function interpretation(q: GraphQuery): string {
   const src = q.from ?? "any entity";
   const dst = q.to ?? "any entity";
   const via = `'${q.relation}'`;
+  const where = whereClause(q.where);
   switch (q.form) {
-    case "direct": return `Is there a direct ${via} relation from ${src} to ${dst}?`;
+    case "direct": return `Is there a direct ${via} relation from ${src} to ${dst}${where}?`;
     case "reachability":
-    case "path": return `Is ${dst} reachable from ${src} through one or more ${via} relations?`;
-    case "shortest-path": return `What is the shortest ${via} path from ${src} to ${dst}?`;
-    case "all-paths": return `What ${via} paths lead from ${src} to ${dst}?`;
-    case "predecessors": return `Which entities point at ${q.to ?? q.from ?? "it"} through ${via}?`;
-    case "successors": return `Which entities does ${q.from ?? q.to ?? "it"} point at through ${via}?`;
-    case "cycles": return `Does the ${via} graph contain a cycle?`;
+    case "path": return `Is ${dst} reachable from ${src} through one or more ${via} relations${where}?`;
+    case "shortest-path": return `What is the shortest ${via} path from ${src} to ${dst}${where}?`;
+    case "all-paths": return `What ${via} paths lead from ${src} to ${dst}${where}?`;
+    case "predecessors": return `Which entities point at ${q.to ?? q.from ?? "it"} through ${via}${where}?`;
+    case "successors": return `Which entities does ${q.from ?? q.to ?? "it"} point at through ${via}${where}?`;
+    case "cycles": return `Does the ${via} graph contain a cycle${where}?`;
     case "components": return q.from === null
-      ? `How does ${via} partition the entities into connected components?`
-      : `Which entities share a ${via} component with ${q.from}?`;
+      ? `How does ${via} partition the entities into connected components${where}?`
+      : `Which entities share a ${via} component with ${q.from}${where}?`;
     case "containment": return q.from !== null && q.to !== null
-      ? `Does ${q.from} transitively contain ${q.to}?`
-      : `What is the containment path of ${q.to ?? q.from ?? "it"}?`;
+      ? `Does ${q.from} transitively contain ${q.to}${where}?`
+      : `What is the containment path of ${q.to ?? q.from ?? "it"}${where}?`;
   }
 }
 
