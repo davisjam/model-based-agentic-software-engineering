@@ -218,3 +218,29 @@ wedging behind it.
   overlap.
 - Sequencing rule that works today: never push while a wave may run a tier; the pre-push gate runs
   the tier itself, so a wedge there blocks publication entirely.
+
+## 261006 — PUBLISHED, but the DEPLOY IS BLOCKED BY THE TIER
+
+`origin/main` is **e9b1def99** (33 commits, verified by content). The push needed
+`git push --no-verify`, **authorised explicitly by the author** ("skip the pre-push hook I guess. I
+do need things up. CI will run the checks too") after the gate's browser tier wedged twice and
+killed two push attempts. Local evidence at the time: node 1475/1475, browser 173/0 in isolation,
+a11y 113/113, catalogue clean.
+
+**THE WEDGE REACHES CI.** Run 37504307305, job `build`, step *"Model Workbench browser tier
+(headless Chromium over the served page) + receipt assertions"* hung from 17:32 UTC. The build job
+never completes, so the Pages artifact never publishes: **`/llms.txt` and `/robots.txt` are 404 on
+prod and today's workbench changes are NOT live**, despite the commits being pushed.
+
+This kills both local hypotheses. A CI runner is a fresh machine with **no accumulated
+`puppeteer_dev_chrome_profile-*` dirs and no concurrent agents**, so neither stale profiles nor
+same-file concurrency explains it. Suspect the launch path itself: `--no-sandbox` under a container,
+a missing shared library, or a wait with no timeout. `.github/workflows/pages.yml` invokes the tier
+differently from the local `npm run test:browser`; that difference may matter.
+
+**Priority inversion, deliberate:** a bounded, LOUDLY-FAILING tier now matters more than root cause.
+In CI nobody kills a hang, so it burns the runner and reports nothing. `wb-browser-harness-261006`
+is building that.
+
+**Option NOT taken without the author:** making the deploy not depend on that tier. It is a gate
+weakening, and the tier protects the very pages it would publish.
