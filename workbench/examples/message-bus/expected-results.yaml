@@ -17,8 +17,10 @@
 example: message-bus
 system: system.mage.yaml
 title: Message Bus
+# "separate models", not "linked": the author's copyedit (261005) flags "linked" as accidentally
+# claiming explicit model composition. The models share entities; the summary no longer overclaims.
 summary: >
-  Explore an event-driven order system through linked event-flow, propagation and data-policy models.
+  An event-driven order system with separate models for event flow, propagation, and data policy.
 
 # Purposeful models, for the EX-I2 check. Machines and graph models both carry a `purpose`, so both
 # count; this example has no machines.
