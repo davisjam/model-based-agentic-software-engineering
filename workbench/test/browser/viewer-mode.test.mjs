@@ -20,6 +20,22 @@ import {
   startServerOnFreePort, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
 } from "./harness.mjs";
 
+/**
+ * The announcer debounces 250ms on REAL time, and nothing in this file grants virtual time (a
+ * granted budget PAUSES the page clock — the harness's own caveat), so the honest wait is on the
+ * CONTENT: capture #live, act, wait for it to differ. Bounded, and failing loudly if no
+ * announcement ever lands.
+ */
+const liveText = (page) => page.evaluate(() =>
+  (document.getElementById("live")?.textContent ?? "").replace(/\s+/g, " ").trim());
+const nextAnnouncement = async (page, prior) => {
+  await page.waitForFunction((p) => {
+    const t = (document.getElementById("live")?.textContent ?? "").replace(/\s+/g, " ").trim();
+    return t !== "" && t !== p;
+  }, { timeout: 30_000 }, prior);
+  return liveText(page);
+};
+
 let server;
 let browser;
 let page;
@@ -121,6 +137,110 @@ describe("the viewer/advanced mode toggle", () => {
     for (const id of ["askbar", "new-system"]) {
       const v = await visible(id);
       assert.ok(v.exists && v.visible, `#${id} must come back in advanced mode`);
+    }
+    // Leave the suite in VIEWER mode for the probes below — they are about the viewer's own
+    // surface, and running them against Advanced would prove nothing about the default.
+    await page.click("#advanced-toggle");
+    assert.equal(await mode(), "viewer");
+  });
+});
+
+describe("the Refresh control", () => {
+  it("is offered in the viewer, enabled with a model loaded, and takes keyboard focus with a visible ring", async () => {
+    assert.equal(await mode(), "viewer", "precondition: viewer mode on");
+    const state = await page.evaluate(() => {
+      const el = document.getElementById("refresh");
+      if (el === null) return { exists: false };
+      return {
+        exists: true,
+        visible: el.offsetParent !== null,
+        disabled: el.disabled,
+        label: (el.textContent ?? "").replace(/\s+/g, " ").trim(),
+      };
+    });
+    assert.ok(state.exists, "precondition: #refresh must be on the page");
+    assert.ok(state.visible, "Refresh is the viewer's own control");
+    assert.ok(!state.disabled, "a loaded model means Refresh is enabled");
+    assert.equal(state.label, "↻ Refresh");
+    // KEYBOARD focus, not programmatic: :focus-visible fires for key-driven focus, and the ring
+    // is the global `:focus-visible { outline: 3px solid … }` rule. Focus the PRECEDING enabled
+    // control, press Tab once, and assert both where focus landed and what it looks like — a
+    // walk from an arbitrary position would wander a loaded page's dozens of stops.
+    await page.evaluate(() => document.getElementById("run").focus());
+    await page.keyboard.press("Tab");
+    const landed = await page.evaluate(() => document.activeElement?.id ?? "(none)");
+    assert.equal(landed, "refresh", "Tab from the control before it must land on Refresh");
+    const ring = await page.evaluate(() => {
+      const s = getComputedStyle(document.activeElement, null);
+      return { outlineStyle: s.outlineStyle, outlineWidth: s.outlineWidth };
+    });
+    assert.notEqual(ring.outlineStyle, "none", "keyboard focus must draw a visible ring");
+    assert.notEqual(parseFloat(ring.outlineWidth), 0, "the focus ring must have width");
+  });
+
+  it("acknowledges every press, and says when nothing changed since the last refresh", async () => {
+    let prior = await liveText(page);
+    await page.click("#refresh");
+    const first = await nextAnnouncement(page, prior);
+    assert.match(first, /^Refreshed\./, "the first press acknowledges");
+    assert.match(first, /re-evaluated/, "the first press states what it re-read");
+    prior = first;
+    await page.click("#refresh");
+    const second = await nextAnnouncement(page, prior);
+    assert.match(second, /Nothing has changed since your last refresh/,
+      "an unchanged revision is acknowledged, not silent");
+  });
+
+  it("after an agent edit, Refresh reports the change — and mutates nothing itself", async () => {
+    const before = await page.evaluate(() => window.mage.context().hash);
+    const r = await page.evaluate(() => window.mage.transact({
+      transaction: {
+        base: window.mage.context().hash,
+        operations: [{ op: "add-entity", id: "refresh-probe-entity", label: "Refresh probe" }],
+      },
+    }));
+    assert.ok(r.ok, `precondition: the agent's transaction must land: ${JSON.stringify(r.findings ?? r)}`);
+    const prior = await liveText(page);
+    await page.click("#refresh");
+    const said = await nextAnnouncement(page, prior);
+    assert.match(said, /Refreshed\. The workbench shows the current revision/,
+      "a changed revision takes the changed acknowledgement");
+    const after = await page.evaluate(() => window.mage.context().hash);
+    assert.notEqual(after, before, "precondition: the transact moved the hash");
+    await page.click("#refresh");
+    const finalHash = await page.evaluate(() => window.mage.context().hash);
+    assert.equal(finalHash, after, "Refresh itself must never move the revision");
+  });
+});
+
+describe("verdict marks reach the properties rail", () => {
+  it("every rail glyph matches the evaluated status, and conclusive verdicts render as ✓/✗", async () => {
+    // The parity claim: the glyph on each rail row is the mark of the status window.mage reports
+    // for the same property — one table, two surfaces. Preconditions first: properties must
+    // exist, and at least one must be conclusively evaluated, else the ✓/✗ half of the probe
+    // would pass over an empty set.
+    const evaluated = await page.evaluate(() => window.mage.properties().map((p) => ({
+      id: p.id, status: p.status, stale: p.stale ?? false,
+    })));
+    assert.ok(evaluated.length > 0, "precondition: the flagship must track properties");
+    const conclusive = evaluated.filter((p) =>
+      !p.stale && (p.status === "established" || p.status === "refuted"));
+    assert.ok(conclusive.length > 0,
+      "precondition: the flagship must conclusively evaluate at least one property — "
+      + `statuses seen: ${JSON.stringify(evaluated.map((p) => p.status))}`);
+    const marks = await page.evaluate(() => [...document
+      .querySelectorAll("#question-list li[data-property]")]
+      .map((li) => ({
+        id: li.dataset.property,
+        glyph: (li.querySelector(".mark")?.textContent ?? "").trim(),
+      })));
+    assert.equal(marks.length, evaluated.length, "one rail row per evaluated property");
+    const GLYPH = { established: "✓", refuted: "✗" };
+    for (const p of conclusive) {
+      const row = marks.find((m) => m.id === p.id);
+      assert.ok(row !== undefined, `rail row for ${p.id} must exist`);
+      assert.equal(row.glyph, GLYPH[p.status],
+        `${p.id} is ${p.status}; its rail glyph must say so`);
     }
   });
 });

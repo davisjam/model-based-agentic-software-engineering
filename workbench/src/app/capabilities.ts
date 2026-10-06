@@ -285,6 +285,13 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
       + "missing a parity here -- an agent reads the same case from window.mage.examples()",
   },
   {
+    id: "refresh",
+    why: "re-reads the current state and re-renders every surface, mutating nothing — the taught "
+      + "loop's 'inspect what the agent just changed' as one header act. The paint it triggers is "
+      + "the same one every observation makes; no agent operation needs parity with a repaint, "
+      + "and the acknowledgement it announces is presentation, not model state",
+  },
+  {
     id: "advanced-toggle",
     why: "switches the page between the viewer default and Advanced mode by flipping "
       + "body[data-mode] — pure presentation of which surfaces a human is OFFERED. It reaches no "

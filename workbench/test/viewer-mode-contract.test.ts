@@ -48,11 +48,24 @@ test("every authoring surface carries the advanced-only class", () => {
   }
 });
 
+test("Refresh ships in the header, left of Advanced, disabled until something is loaded", () => {
+  const refresh = /<button id="refresh"[^>]*>/.exec(html)?.[0];
+  assert.ok(refresh !== undefined, "#refresh must exist");
+  assert.match(refresh, /\bdisabled\b/, "nothing loaded means nothing to re-read");
+  assert.doesNotMatch(refresh, /advanced-only/, "Refresh is the viewer's own control");
+  const refreshAt = html.indexOf('<button id="refresh"');
+  const toggleAt = html.indexOf('<button id="advanced-toggle"');
+  assert.ok(refreshAt !== -1 && toggleAt !== -1 && refreshAt < toggleAt,
+    "Refresh precedes Advanced in document order — the wireframe's '↻ Refresh  ⚙ Advanced'");
+  // The glyph rides in the visible text; the clean accessible name is the aria-label.
+  assert.match(html, /<button id="refresh"[^>]*aria-label="Refresh"[^>]*>↻ Refresh</);
+});
+
 test("the inspection surfaces do NOT carry the advanced-only class", () => {
   // The viewer's own surfaces: navigation, the workspace, the inspector's reading, properties,
   // status, Start, the case panel, and the header's read-side controls.
   for (const id of ["nav", "workspace", "inspector", "question-list", "statusbar", "start",
-    "case", "export", "run", "reset", "learn"]) {
+    "case", "export", "run", "reset", "refresh", "learn"]) {
     const tag = new RegExp(`<[a-z]+ id="${id}"[^>]*>`).exec(html)?.[0];
     assert.ok(tag !== undefined, `#${id} must exist`);
     assert.doesNotMatch(tag, /advanced-only/, `#${id} is an inspection surface and stays offered`);

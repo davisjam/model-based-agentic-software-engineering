@@ -661,6 +661,17 @@
     changes only which surfaces a HUMAN is offered. aria-pressed carries the state, and the
     announcement names what appeared or went away.
   -->
+  <!--
+    The wireframe's ↻ Refresh, left of Advanced. It re-reads the current state and re-renders —
+    it MUTATES NOTHING, which is the whole viewer contract — and it exists because the taught
+    loop's "inspect what the agent just changed" needs a sanctioned act that is not a page
+    reload. It always ACKNOWLEDGES: the announcement says whether anything changed since the
+    last refresh, because a control that appears to do nothing is its own usability problem.
+    Ships disabled with nothing loaded, like Export and Run, so the pristine walk does not grow.
+    The glyph rides in the visible text; aria-label carries the clean name so a screen reader
+    says "Refresh" rather than naming the arrow glyph first.
+  -->
+  <button id="refresh" type="button" aria-label="Refresh" disabled>↻ Refresh</button>
   <button id="advanced-toggle" type="button" aria-pressed="false">Advanced</button>
 </header>
 
