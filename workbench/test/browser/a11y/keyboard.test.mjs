@@ -124,17 +124,25 @@ describe("the tab order itself", () => {
     // bypass and the ways in because that is where page chrome belongs and because the bypass exists
     // to skip exactly this; a keyboard user who wants the model presses Enter on the skip link, as
     // the test below pins. The ways in still come before the model, which is the ordering claim.
-    // AN EIGHTH STOP JOINED: `button#reset`, which landed with session persistence. A session now
-    // survives a reload and Reset is the only thing that wipes it, so Reset has to be reachable by
-    // keyboard or the one control that can undo persistence is mouse-only. It sits last in the
-    // HEADER toolbar (`index.html:592`, after `new-system`), and the example chooser lives in the
-    // Start region further down the document (`:690,:696`) — so the ordering claim this test makes
-    // is unchanged: the ways IN still come before the model, and Reset is header chrome grouped
-    // with the other start-over control rather than a step between a way in and the model.
+    //
+    // AN EIGHTH STOP JOINED: `button#reset`, and it is the one toolbar control that stays enabled
+    // with nothing loaded. Session persistence made a reload restore where the student left off, so
+    // Reset is the deliberate way out — and it has to be reachable from exactly the state a restored
+    // session lands in, which is why it does not take the disabled-with-no-model treatment Export,
+    // Run, Undo and Redo do. It sits last in the HEADER toolbar (`index.html:592`, after
+    // `new-system`) while the example chooser lives in the Start region further down the document
+    // (`:690,:696`), so the ordering claim is unchanged: the ways IN still come before the model,
+    // and Reset is header chrome grouped with the other start-over control rather than a step
+    // between a way in and the model.
+    //
+    // THIS PIN WENT RED ON MAIN FOR THE WHOLE OF 261005, and that is the measurement that put the
+    // browser and a11y tiers into `hooks/pre-push`. The change that added Reset reported "tsc, node
+    // 1420, parity, build" — every gate pre-push reached, and not the one that holds this line. The
+    // tier existed; nothing ran it.
     //
     // Third hand-patch of this pin (the shell's `a#skip` id, the two nav stops, now Reset). The
-    // snapshot earns its keep -- it is what caught F-2, where Export and Run shipped enabled ahead
-    // of the only control that could do anything -- but a fourth patch is the signal to derive the
+    // snapshot earns its keep — it is what caught F-2, where Export and Run shipped enabled ahead
+    // of the only control that could do anything — but a fourth patch is the signal to derive the
     // expectation from the shell's declared control order instead of restating it here.
     assert.deepEqual(forward, [
       "a#skip", "a#", "a#learn", "input#file", "button#new-system", "button#reset",
@@ -154,9 +162,10 @@ describe("the tab order itself", () => {
     // SH-I1 removes it. The workspace is mounted iff a system is loaded, so on a fresh page the
     // subject chooser is inside a `hidden` region: not in the accessibility tree, not in the tab
     // order, and — the point — not a control a keyboard user reaches before there is anything to
-    // draw. That took the walk to five; the persistent page nav took it to seven, and the two it
-    // added are navigation rather than controls (see the pin above). What this test asserts is
-    // unchanged by either number: the walk does not reach into the unmounted workspace.
+    // draw. That took the walk to five; the persistent page nav took it to seven, and Reset — the one
+    // toolbar control that stays enabled with nothing loaded — to eight (see the pin above). What
+    // this test asserts is unchanged by any of those numbers: the walk does not reach into the
+    // unmounted workspace.
     //
     // Asserted as ABSENCE-plus-cause rather than by pressing a sixth Tab, because what the browser
     // does at the end of a document's tab ring is the browser's business and not this page's claim.
