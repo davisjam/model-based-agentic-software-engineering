@@ -456,7 +456,7 @@ test("the bound-pair readout is the two models' OWN purposes, and the binding me
 
   const question = (p: { question: string | null }): string =>
     p.question === null ? "(none declared)" : p.question.trim();
-  assert.equal(term("What the behavioural model asks"),
+  assert.equal(term("What the behavioral model asks"),
     `${pair.machineId} — ${question(machine.purpose)}`);
   assert.equal(term("What the structural model asks"),
     `${pair.modelId} — ${question(model.purpose)}`);
@@ -465,7 +465,7 @@ test("the bound-pair readout is the two models' OWN purposes, and the binding me
   // still declares its own omissions, and the shared term is the real intersection.
   assert.ok(machine.purpose.omits.length > 0 && model.purpose.omits.length > 0,
     "one of the bound models declares no omissions, so 'each retains its omissions' is vacuous here");
-  assert.equal(term("What the behavioural model leaves out"), machine.purpose.omits.join("; "));
+  assert.equal(term("What the behavioral model leaves out"), machine.purpose.omits.join("; "));
   assert.equal(term("What the structural model leaves out"), model.purpose.omits.join("; "));
   const shared = machine.purpose.omits.filter((o) => model.purpose.omits.includes(o));
   assert.equal(term("Omissions both of them declare"),
@@ -560,7 +560,7 @@ test("the composed readout is a fresh run, and the engine's own sentence carries
 
   const term = readout(sectionAt(COMPOSITION_ANCHOR), "The composed question");
   assert.equal(term("Asked of"), system.name);
-  assert.equal(term("The behavioural selection, as its author stated it"), statement,
+  assert.equal(term("The behavioral selection, as its author stated it"), statement,
     "the readout names a selection the system's own saved questions do not state");
   assert.equal(term("The question, as the engine understood it"), live.interpretedAs,
     "the section words the composed question itself instead of showing what the engine understood");

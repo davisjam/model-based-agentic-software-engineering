@@ -66,7 +66,7 @@ const bullets = (label: string, items: readonly string[]): GuideBlock =>
 export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-the-panes",
-    heading: "How the workbench is laid out",
+    heading: "How the Workbench is laid out",
     intro: "Four panes, and each one answers a different question about the same model system.",
     blocks: [
       bullets("What each pane is for", [

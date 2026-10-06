@@ -15,7 +15,7 @@
  * The lesson paragraphs, the step titles and the defining sentences are page furniture, declared
  * the way `workbench-guide.ts` declares its sections: nothing in a model kernel knows how a lesson
  * reads. Every FACT a step shows — a diagram, an outcome, a magnitude, a refusal, a before/after
- * flip — is computed by the view layer at build time through the same seams the workbench binds:
+ * flip — is computed by the view layer at build time through the same seams the Workbench binds:
  * `renderView`, `runQuery`, `Workspace.openHypothesis`. A step declaration cannot carry an outcome,
  * because the shape has no field for one.
  *

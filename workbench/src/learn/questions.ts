@@ -195,8 +195,8 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   {
     anchor: "question-evidence",
     heading: "Evidence",
-    lede: "The workbench returns evidence with each verdict. A graph answer carries a path; a "
-      + "behavioural answer carries an execution trace.",
+    lede: "The Workbench returns evidence with each verdict. A graph answer carries a path; a "
+      + "behavioral answer carries an execution trace.",
     derivedFrom: [
       {
         file: "src/engine/types.ts", symbol: "QUANTIFIER_EVIDENCE",
@@ -255,8 +255,8 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   {
     anchor: "question-compositions",
     heading: "Composition across models",
-    lede: "Composition uses one model to restrict an analysis over another. The workbench supports "
-      + "one composition: a behavioural predicate can select the executions a quantitative query "
+    lede: "Composition uses one model to restrict an analysis over another. The Workbench supports "
+      + "one composition: a behavioral predicate can select the executions a quantitative query "
       + "measures, which permits questions such as the worst-case latency among successful "
       + "executions.",
     derivedFrom: [
@@ -274,9 +274,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
       },
       {
         file: "src/engine/types.ts", symbol: "export interface QuantityQuery",
-        role: "`target` — the reach predicate where a behavioural result enters a quantitative "
+        role: "`target` — the reach predicate where a behavioral result enters a quantitative "
           + "question; the one field the admitted composition is declared against, and the one "
-          + "this section fills from a shipped behavioural question to ask the composed question",
+          + "this section fills from a shipped behavioral question to ask the composed question",
       },
       {
         file: "src/quant/query.ts", symbol: "export function admitQuantityQuery",
@@ -290,7 +290,7 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
     anchor: "question-properties",
     heading: "Properties and model changes",
     lede: "A property is a saved CLAIM, not a saved question: it carries a statement the models "
-      + "must keep true, and the workbench asks the question that decides it against the current model "
+      + "must keep true, and the Workbench asks the question that decides it against the current model "
       + "whenever the model changes. It does not store the previous verdict.",
     derivedFrom: [
       {
@@ -390,14 +390,14 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
     anchor: "question-foundations",
     heading: "Semantic foundations",
     lede: "Each construct's semantics are either borrowed from a named standard concept, grounded "
-      + "in an established foundation, or declared as the workbench's own. The registry records "
+      + "in an established foundation, or declared as the Workbench's own. The registry records "
       + "which, per construct.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "export type SemanticBasis",
         role: "where each construct's semantics come from: the standard concept it is borrowed "
           + "from, the foundation outside this project it is grounded in, or the reason it is the "
-          + "workbench's own — required on every registry row, so nothing is attributed by omission",
+          + "Workbench's own — required on every registry row, so nothing is attributed by omission",
       },
       {
         file: "DESIGN-v02-semantics-261004.md",
@@ -417,7 +417,7 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
     anchor: "question-omissions",
     heading: "Model boundaries",
     lede: "A model answers only the questions its content supports. Asking past that boundary "
-      + "returns a refusal naming what is absent; the workbench does not invent an answer.",
+      + "returns a refusal naming what is absent; the Workbench does not invent an answer.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "readonly omits",
@@ -797,7 +797,7 @@ function notAttributedItems(): readonly string[] {
     const key = `${row.askedOf ?? ""}|${row.basis.kind}|${grounding?.file ?? ""}|${grounding?.symbol ?? ""}`;
     const tail = (row.askedOf === null ? "" : ` (asked of a ${row.askedOf})`)
       + (grounding === null
-        ? " — extension: the workbench claims no standard here."
+        ? " — extension: the Workbench claims no standard here."
         : ` — extension, grounded in ${grounding.role}.`);
     const group = groups.get(key);
     if (group === undefined) groups.set(key, { tail, subjects: [row.what] });
@@ -813,7 +813,7 @@ function notAttributedItems(): readonly string[] {
 function operationBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   const reading = selectionReading(systems);
   if (reading === null) {
-    // Reported, not hidden. A section that silently vanished would read as though the workbench
+    // Reported, not hidden. A section that silently vanished would read as though the Workbench
     // could not enumerate a model at all.
     return [{
       kind: "prose",
@@ -928,7 +928,7 @@ function evidenceBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 
   if (counterexample === null) {
     // Reported, not hidden. A page that silently dropped the section's second half would read as
-    // though the workbench only ever produces witnesses.
+    // though the Workbench only ever produces witnesses.
     blocks.push({
       kind: "prose",
       text: "No shipped example currently refutes a declared ceiling, so there is no counterexample "
@@ -1197,7 +1197,7 @@ function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readon
       text: "\"Does the firmware fit in the part's SRAM?\" sounds like one question. Those are "
         + "three separate questions: how much SRAM the part has, whether the design stays under "
         + "that amount, and whether staying under it is required. Each one wants a different kind "
-        + "of declaration, so the workbench keeps them apart instead of folding them into a single "
+        + "of declaration, so the Workbench keeps them apart instead of folding them into a single "
         + "line that would answer all three at once.",
     },
   ];
@@ -1324,12 +1324,12 @@ function foundationBlocks(): readonly QuestionBlock[] {
       // The claim is built from the standards the registry actually names, so a registry that
       // borrowed nothing could not produce this sentence — it would say so instead.
       text: standards.length === 0
-        ? "The workbench uses a small educational modeling vocabulary, and its registry currently "
+        ? "The Workbench uses a small educational modeling vocabulary, and its registry currently "
           + "attributes none of it to a published standard. Every construct below is the "
-          + "workbench's own or grounded outside any standard it borrows from."
-        : "The workbench uses a small educational modeling vocabulary. What each model form "
+          + "Workbench's own or grounded outside any standard it borrows from."
+        : "The Workbench uses a small educational modeling vocabulary. What each model form "
           + `REPRESENTS is a declared subset of ${inProse(standards)} concepts; what you can ASK of `
-          + "it is a mix of established verification ideas and the workbench's own analysis "
+          + "it is a mix of established verification ideas and the Workbench's own analysis "
           + "semantics. The rows below say which, construct by construct, and name a standard only "
           + "where something is actually borrowed.",
     },
@@ -1398,7 +1398,7 @@ function foundationBlocks(): readonly QuestionBlock[] {
         `${countOf("borrowed")} of ${primitives.length}`],
       ["Question forms grounded outside this project",
         `${countOf("extension-grounded")} of ${primitives.length}`],
-      ["Question forms that are the workbench's own",
+      ["Question forms that are the Workbench's own",
         `${countOf("extension")} of ${primitives.length}`],
       ["Conformance fixtures demonstrating a borrowed correspondence",
         `${borrowed.filter((b) => b.basis.fixture !== null).length} of ${borrowed.length}`],
@@ -1412,7 +1412,7 @@ function foundationBlocks(): readonly QuestionBlock[] {
     provenance: true,
     text: "Every borrowed row above is `asserted`, which is a specific and limited claim: a person "
       + "read the specification and the model together, on a date. Nothing re-derives it on every "
-      + "run. The workbench takes no runtime dependency on the SysML v2 reference implementation, "
+      + "run. The Workbench takes no runtime dependency on the SysML v2 reference implementation, "
       + "so no gate here checks a correspondence against the standard, and none is implied — the "
       + "conformance fixtures that would let a reader reproduce one by hand are owed, and the table "
       + "says so rather than leaving the cell blank.",
@@ -1479,7 +1479,7 @@ function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     blocks.push({
       kind: "prose",
       text: `Each of those is a subset claim, which is the same thing as saying ${inProse(standards)} `
-        + "carry more than the workbench exposes. What they carry beyond it is not listed here: the "
+        + "carry more than the Workbench exposes. What they carry beyond it is not listed here: the "
         + "registry records which concept each construct subsets, not what the specification holds "
         + "around it, and a list written from anywhere else would be a claim about a standard made "
         + "from memory.",
@@ -1488,7 +1488,7 @@ function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 
   blocks.push({
     kind: "prose",
-    text: "The workbench is itself a purposeful reduction. It carries the concepts its engineering "
+    text: "The Workbench is itself a purposeful reduction. It carries the concepts its engineering "
       + "questions need and refuses the rest by name, which is the same discipline each model form "
       + "applies to its own system.",
   });
@@ -1649,7 +1649,7 @@ function bindingCorpusRows(systems: LoadedSystems): readonly BindingCorpusRow[] 
 }
 
 /**
- * One real binding between a behavioural model and the structural model that declares its entity.
+ * One real binding between a behavioral model and the structural model that declares its entity.
  *
  * The §8 lesson needs an INSTANCE, because the lesson is about two declarations: *"a binding does
  * not combine the models into one larger model. Each retains its purpose and omissions."* Shown as
@@ -1719,7 +1719,7 @@ const semicolons = (items: readonly string[]): string =>
 function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   const blocks: QuestionBlock[] = [{
     kind: "rows",
-    label: "Every binding the workbench declares",
+    label: "Every binding the Workbench declares",
     columns: ["Binding", "Between", "What the correspondence means", "What licenses it"],
     rows: BINDINGS.map((b) => [
       b.name, betweenText(b.from, b.to), b.interpretation, gateText(b.licensing),
@@ -1762,7 +1762,7 @@ function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   if (pair === null) {
     blocks.push({
       kind: "prose",
-      text: "No shipped example declares a behavioural model against an entity a purposeful model "
+      text: "No shipped example declares a behavioral model against an entity a purposeful model "
         + "also declares, so this page cannot show the two-declaration case from a real system.",
     });
     return blocks;
@@ -1778,25 +1778,25 @@ function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
       ["The binding", pair.binding.name],
       ["Asked of", pair.systemName],
       ["The correspondence, as the model writes it", `${pair.machineId}.entity = ${pair.entityId}`],
-      ["What the behavioural model asks", `${pair.machineId} — ${questionText(pair.machinePurpose)}`],
+      ["What the behavioral model asks", `${pair.machineId} — ${questionText(pair.machinePurpose)}`],
       ["What the structural model asks", `${pair.modelId} — ${questionText(pair.modelPurpose)}`],
-      ["What the behavioural model leaves out", semicolons(pair.machinePurpose.omits)],
+      ["What the behavioral model leaves out", semicolons(pair.machinePurpose.omits)],
       ["What the structural model leaves out", semicolons(pair.modelPurpose.omits)],
       ["Omissions both of them declare", semicolons(shared)],
     ] as const,
   });
   blocks.push({
     kind: "prose",
-    text: `The binding changed neither list. ${onlyBehavioural.length} of the behavioural model's `
+    text: `The binding changed neither list. ${onlyBehavioural.length} of the behavioral model's `
       + `omissions are not the structural model's, and ${onlyStructural.length} of the structural `
-      + `model's are not the behavioural model's. A single merged model would have to represent `
+      + `model's are not the behavioral model's. A single merged model would have to represent `
       + "distinctions that each author deliberately chose to omit. The correspondence lets an "
       + "answer in one model name an element the other declares, and nothing more.",
   });
   blocks.push({
     kind: "prose",
     text: `Each of those two models is drawn above, in its own section, by the renderer for its own `
-      + "model form — their boundaries are two pictures rather than one. The workbench does not "
+      + "model form — their boundaries are two pictures rather than one. The Workbench does not "
       + "yet draw the correspondence itself: there is no cross-model canvas, so the line between "
       + "the two is this readout.",
   });
@@ -1806,13 +1806,13 @@ function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 /**
  * The composed question, asked — and the same question with the selection dropped.
  *
- * §9's case, worked: a behavioural predicate selects the executions a quantitative question is
+ * §9's case, worked: a behavioral predicate selects the executions a quantitative question is
  * evaluated over, which is what makes "the worst-case latency among successful executions" ONE
  * question. Both halves are run, because the lesson is the difference between them and a page that
  * showed only the composed figure would be showing a number, not a composition.
  *
- * The selection is a shipped saved behavioural question, not one written here, and the rule is:
- * form `reach` — the behavioural form that denotes "executions reaching φ", which is what
+ * The selection is a shipped saved behavioral question, not one written here, and the rule is:
+ * form `reach` — the behavioral form that denotes "executions reaching φ", which is what
  * `QuantityQuery.target` means — with no `avoid` clause and a single-state target. The exclusions
  * are the point. An `avoid` clause narrows by exclusion and the quantity's reach predicate has
  * nowhere to put it, so carrying one across would show a selection the engine did not make; a
@@ -1863,12 +1863,12 @@ interface ComposedReading {
 
 function composedReading(systems: LoadedSystems): ComposedReading | null {
   // Which composition can be ASKED here, derived from the registry's own query-kind mapping rather
-  // than from two literal type ids: the one whose source domain is the dialect a behavioural
+  // than from two literal type ids: the one whose source domain is the dialect a behavioral
   // predicate belongs to and whose target domain is the dialect the question is asked in.
-  const behavioural = modelTypeForQueryKind("behavior");
+  const behavioral = modelTypeForQueryKind("behavior");
   const quantitative = modelTypeForQueryKind("quantity");
   const composition = COMPOSITIONS.find(
-    (c) => c.from === behavioural.id && c.to === quantitative.id);
+    (c) => c.from === behavioral.id && c.to === quantitative.id);
   if (composition === undefined) return null;
 
   for (const example of SHIPPED_EXAMPLE_IDS) {
@@ -1904,7 +1904,7 @@ function composedReading(systems: LoadedSystems): ComposedReading | null {
 }
 
 /**
- * What the behavioural selection did to the answer, by comparing the two the engine returned.
+ * What the behavioral selection did to the answer, by comparing the two the engine returned.
  *
  * Exported so the gate can re-derive the comparison instead of matching the sentence, and written
  * as a comparison rather than as a claim: the composed worst case is not guaranteed to be lower,
@@ -1942,7 +1942,7 @@ export function selectionEffect(
 function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   const blocks: QuestionBlock[] = [{
     kind: "rows",
-    label: "Every cross-domain composition the workbench admits",
+    label: "Every cross-domain composition the Workbench admits",
     columns: ["Composition", "Between", "What it means", "What it narrows"],
     rows: COMPOSITIONS.map((c) => [
       c.name, betweenText(c.from, c.to), c.interpretation, c.restricts,
@@ -1963,7 +1963,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   if (reading === null) {
     blocks.push({
       kind: "prose",
-      text: "No shipped example declares both a behavioural model and a quantitative ceiling with a "
+      text: "No shipped example declares both a behavioral model and a quantitative ceiling with a "
         + "saved reachability question to select on, so this page cannot show the composition at "
         + "work on a real system.",
     });
@@ -1975,7 +1975,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     label: "The composed question, asked now",
     pairs: [
       ["Asked of", reading.systemName],
-      ["The behavioural selection, as its author stated it", reading.selection.statement],
+      ["The behavioral selection, as its author stated it", reading.selection.statement],
       ["The question, as the engine understood it", reading.composed.interpretedAs ?? "—"],
       ["Verdict", reading.composed.outcome],
       ["The figure that decides it", magnitudeText(reading.composed, reading.ceilingUnit)],
@@ -1985,7 +1985,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   });
   blocks.push({
     kind: "pairs",
-    label: "The same metric and the same ceiling, with no behavioural selection",
+    label: "The same metric and the same ceiling, with no behavioral selection",
     pairs: [
       ["The question, as the engine understood it", reading.uncomposed.interpretedAs ?? "—"],
       ["Verdict", reading.uncomposed.outcome],
@@ -2005,9 +2005,9 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   });
   blocks.push({
     kind: "prose",
-    text: "One question, and the behavioural model decides what it is about: the verdict and the "
+    text: "One question, and the behavioral model decides what it is about: the verdict and the "
       + "figure both move as the selection moves, because the executions measured are the ones the "
-      + "behavioural predicate reaches. That is what a composition is — the quantitative dialect "
+      + "behavioral predicate reaches. That is what a composition is — the quantitative dialect "
       + "still returns its own kind of answer, a magnitude decided against a declared ceiling, and "
       + "no new kind of result was introduced to join the two.",
   });

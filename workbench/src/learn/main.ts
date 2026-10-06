@@ -1,6 +1,6 @@
 /**
  * The Learn page: a short lesson, a clickable construct-by-construct walkthrough, and the derived
- * reference material — every fact derived (UX-I9), every visual the workbench's own renderer over
+ * reference material — every fact derived (UX-I9), every visual the Workbench's own renderer over
  * a shipped example.
  *
  * ## The page's shape
@@ -31,9 +31,9 @@
  *     suite polices the surfaces they vacated instead of a registry row.
  *
  * Composition root only. The content comes from the modules above; the pictures come from
- * `renderView` — the same seam the workbench binds, returning the SVG and its accessible twin
+ * `renderView` — the same seam the Workbench binds, returning the SVG and its accessible twin
  * together, so a Learn visual cannot show a fact assistive technology does not get. The DOM
- * binders are the workbench's own (`src/ui/render-dom.ts`): reused, not copied, so a fix to how a
+ * binders are the Workbench's own (`src/ui/render-dom.ts`): reused, not copied, so a fix to how a
  * diagram or its twin paints reaches this page without anyone remembering to port it.
  *
  * Source-code citations — schema authorities, derivation citations, kernel-feature lists — are
@@ -130,17 +130,25 @@ const PART = {
 // Reference sections
 // --------------------------------------------------------------------------------------------
 
+/**
+ * Sentence case for a heading derived from a registry label ("structural model" → "Structural
+ * models"). The LABEL stays lowercase — it is also used mid-sentence — so the case decision is the
+ * heading render's, at the one site that makes headings (author's item 11: sentence case
+ * consistently across this page's headings).
+ */
+const headingCase = (label: string): string => label.charAt(0).toUpperCase() + label.slice(1);
+
 function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId, CanonicalSystem>): HTMLElement {
   const section = el("section");
   section.id = s.anchor;
   // The heading names the thing; the registry's engineering question sits directly under it. Both
-  // strings are the registry's own.
-  const h = el("h2", `${s.entry.label}s`);
+  // strings are the registry's own, sentence-cased here.
+  const h = el("h2", headingCase(`${s.entry.label}s`));
   h.id = `${s.anchor}-h`;
   section.setAttribute("aria-labelledby", h.id);
   section.append(h, el("p", `Answers: ${s.entry.question}`, "intro"));
 
-  // The model: a real subject from a shipped example, drawn by the workbench's renderer. Two
+  // The model: a real subject from a shipped example, drawn by the Workbench's renderer. Two
   // picture kinds, because the kernel has two kinds of subject — a scene, or a budget projection.
   if (s.visual !== null) {
     const system = systems.get(s.visual.example);
@@ -150,10 +158,10 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
       if (picture.kind === "scene") {
         const what = picture.subject.kind === "model" ? "model" : "machine";
         section.append(figure(system, picture.subject,
-          `${what} '${picture.subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`));
+          `${what} '${picture.subject.id}' from the shipped example “${system.name}”, drawn by the Workbench's renderer.`));
       } else {
         section.append(budgetFigure(system, picture.dimension,
-          `the ${picture.dimension} budget of the shipped example “${system.name}”, drawn by the workbench's own quantitative projection.`));
+          `the ${picture.dimension} budget of the shipped example “${system.name}”, drawn by the Workbench's own quantitative projection.`));
       }
       if (s.purpose !== null && s.purpose.represents.length > 0) {
         section.append(el("p", "What this model preserves", "intro"));
@@ -246,7 +254,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   section.append(sub(PART.missing));
   // The sentence is the kernel's own `missing-model-type` refusal, generated from the same
   // registry entry this section renders — the NOT ANSWERABLE panel links back here.
-  section.append(el("p", `Ask without one and the workbench answers NOT ANSWERABLE with: “${s.refusalProse}”`, "refusal"));
+  section.append(el("p", `Ask without one and the Workbench answers NOT ANSWERABLE with: “${s.refusalProse}”`, "refusal"));
   section.append(provenanceDetails(s.entry.schema,
     "To add one, the shape is defined at:"));
   return section;
@@ -274,7 +282,7 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   if (system !== undefined && s.visual.picture.kind === "scene") {
     const subject = s.visual.picture.subject;
     section.append(figure(system, subject,
-      `model '${subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`,
+      `model '${subject.id}' from the shipped example “${system.name}”, drawn by the Workbench's renderer.`,
       s.showProperties));
   }
   if (s.purpose !== null && s.purpose.represents.length > 0) {
@@ -438,7 +446,7 @@ async function boot(): Promise<void> {
   // this application work", which is not a kernel question. A list of links rather than a sentence
   // with one link in it, so a keyboard user reaches each by Tab.
   const guideNav = el("nav");
-  guideNav.setAttribute("aria-label", "About the workbench");
+  guideNav.setAttribute("aria-label", "About the Workbench");
   guideNav.append(el("p", "How the application itself is laid out:", "intro"));
   const guideList = el("ul", undefined, "notes");
   for (const s of WORKBENCH_GUIDE) {
@@ -453,7 +461,7 @@ async function boot(): Promise<void> {
   main.append(nav, questionNav, guideNav);
 
   // Reading order: the three model forms first, in the registry's own order — structure,
-  // behaviour, quantity — because each form's omissions are the next form's question. Then the
+  // behavior, quantity — because each form's omissions are the next form's question. Then the
   // uses, which are purposes OF those forms. Then the capability sections. The guide stays last,
   // because it explains the application rather than the modelling.
   for (const s of typeSections) main.append(typeSection(s, systems));

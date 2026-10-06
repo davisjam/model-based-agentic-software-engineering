@@ -9,7 +9,7 @@
  * with a changed system or a query result — because the walkthrough's what-if steps repaint after a
  * hypothesis and the gallery's one-shot use is the degenerate case of the same shape.
  *
- * Everything here renders through the workbench's own seams: `renderView` / `renderBudgetView` for
+ * Everything here renders through the Workbench's own seams: `renderView` / `renderBudgetView` for
  * the pictures, `paintDiagram` / `paintBudget` for the DOM. Nothing in this module decides a
  * semantic fact; it draws what it is handed.
  */

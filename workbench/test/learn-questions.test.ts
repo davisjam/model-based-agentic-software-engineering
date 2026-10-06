@@ -814,7 +814,7 @@ test("the census is counted from the registry, not written down", () => {
     `${forms("borrowed")} of ${primitives.length}`);
   assert.equal(cell("Question forms grounded outside this project"),
     `${forms("extension-grounded")} of ${primitives.length}`);
-  assert.equal(cell("Question forms that are the workbench's own"),
+  assert.equal(cell("Question forms that are the Workbench's own"),
     `${forms("extension")} of ${primitives.length}`);
 
   const borrowed = EVERY_BASIS.filter((b) => b.kind === "borrowed");
