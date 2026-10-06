@@ -462,6 +462,15 @@ describe("1.4.10 and D-2: reflow, and focus order against visual order", () => {
       for (const r of m.reflow) {
         assert.ok(r.inspected > 50,
           `only ${r.inspected} elements measured at ${r.width}px on ${def.name}`);
+        // The probe's own precondition, checked before its verdict is read: a measured overflow
+        // with no named cause is a defect in the PROBE, and reporting it as a page failure sends
+        // the next reader to fix a page with no address. This file once printed exactly that --
+        // "scrollWidth 321 vs 320. Offenders: []" -- and the discovery cost it charged is why
+        // this assertion exists.
+        assert.ok(r.attributed,
+          `${def.name} overflows by ${r.horizontalOverflowPx}px at ${r.width}px and the probe `
+          + "could not attribute it to any element box or text run -- a probe gap, not only a "
+          + `page defect. Nearest uncontained edges: ${JSON.stringify(r.offenders)}`);
         assert.equal(r.horizontalOverflowPx, 0,
           `${def.name} scrolls sideways at ${r.width}px (${r.why}): scrollWidth ${r.scrollWidth} `
           + `vs ${r.clientWidth}. Offenders: ${JSON.stringify(r.offenders)}`);
@@ -619,6 +628,66 @@ describe("1.4.10 and D-2: reflow, and focus order against visual order", () => {
         `a 2000px block on a 320px viewport produced ${broken.horizontalOverflowPx}px of overflow`);
       assert.ok(broken.offenders.some((o) => o.path === "#reflow-sabotage"),
         `the probe saw the overflow and did not name it: ${JSON.stringify(broken.offenders)}`);
+    } finally { await page.close(); }
+  });
+
+  it("the reflow probe NAMES a one-pixel offender, a sub-pixel one, and one that is text ink", async () => {
+    // The control for the failure this probe actually shipped: a page overflowing by ONE pixel,
+    // verdict red, offender list EMPTY. The 2000px control above proves the probe sees a gross
+    // overflow; it said nothing about the classes the original walk forgave -- an element inside
+    // its whole-pixel slack, an edge that only rounding pushes over, and ink that juts past the
+    // viewport while every element box stays at it. Each is injected, must be NAMED (not merely
+    // counted), and is removed -- and the page must measure clean again afterwards, which is what
+    // makes these three measurements of the probe rather than of a progressively-broken page.
+    const page = await sabotagePage();
+    try {
+      await page.setViewport({ width: 320, height: 512, deviceScaleFactor: 1 });
+      assert.equal((await reflowAt(page, 320)).horizontalOverflowPx, 0, "the control page already overflows");
+
+      const inject = (css, textContent = "") => page.evaluate((style, text) => {
+        const el = document.createElement("div");
+        el.id = "reflow-minimal";
+        el.style.cssText = style;
+        el.textContent = text;
+        document.body.append(el);
+      }, css, textContent);
+      const remove = () => page.evaluate(() => document.querySelector("#reflow-minimal").remove());
+
+      // (a) One whole pixel: border box at 321 on a 320 viewport.
+      await inject("position:absolute; left:0; top:0; width:321px; height:4px;");
+      const onePx = await reflowAt(page, 320);
+      assert.equal(onePx.horizontalOverflowPx, 1,
+        `a 321px box on a 320px viewport should overflow by exactly 1px, got ${onePx.horizontalOverflowPx}`);
+      assert.ok(onePx.offenders.some((o) => o.path === "#reflow-minimal"),
+        `1px of overflow and the offender is not named: ${JSON.stringify(onePx.offenders)}`);
+      await remove();
+
+      // (b) Sub-pixel: an edge at 320.6 that only scrollWidth's rounding turns into a 1px
+      // overflow. The attribution has to survive the rounding rather than reporting nothing
+      // because nothing crosses by a whole pixel.
+      await inject("position:absolute; left:0; top:0; width:320.6px; height:4px;");
+      const subPx = await reflowAt(page, 320);
+      assert.equal(subPx.horizontalOverflowPx, 1,
+        `a 320.6px box should round to 1px of overflow, got ${subPx.horizontalOverflowPx}`);
+      assert.ok(subPx.offenders.some((o) => o.path === "#reflow-minimal"),
+        `sub-pixel overflow and the offender is not named: ${JSON.stringify(subPx.offenders)}`);
+      await remove();
+
+      // (c) Ink: an unbreakable token wider than the viewport in a block whose own border box
+      // ends AT the edge -- the element walk is structurally blind to it, so this passes only if
+      // the text pass runs. `overflow-wrap: normal` inline, so no page-level wrap rule (such as
+      // the one this control's finding put on learn.html) can quietly defuse the sabotage.
+      await inject("overflow-wrap: normal; word-break: normal;", "mage.".repeat(30));
+      const ink = await reflowAt(page, 320);
+      assert.ok(ink.horizontalOverflowPx > 0,
+        "an unbreakable 150-character token on a 320px viewport did not overflow the document");
+      assert.ok(ink.offenders.some((o) => o.kind === "text" && o.path.includes("#reflow-minimal")
+          && typeof o.text === "string" && o.text.includes("mage.")),
+        `the overflow is text ink and no text run is named: ${JSON.stringify(ink.offenders)}`);
+      await remove();
+
+      assert.equal((await reflowAt(page, 320)).horizontalOverflowPx, 0,
+        "the sabotage did not clean up after itself, so the controls above measured each other");
     } finally { await page.close(); }
   });
 });

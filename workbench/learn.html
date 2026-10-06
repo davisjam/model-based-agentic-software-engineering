@@ -51,6 +51,13 @@
     margin: 0; background: var(--bg); color: var(--ink);
     /* 1.5, not the family's 1.62 — an application page, not a reading column. See index.html. */
     font: 16px/1.5 var(--mage-font-body);
+    /* Unbroken tokens (API paths like `window.mage.debug.sparql`) appear in running prose, not
+       only in dl.prov below — and a token wider than its line box juts past the 320px reflow
+       floor as INK, without moving any element's own border box. Measured at the 1.4.10 gate
+       under the CI font stack: text right edge 320.59px, scrollWidth 321, in a ul.notes li.
+       `break-word`, not `anywhere`: it breaks only a token that actually overflows its line and
+       stays out of min-content sizing, so table and grid measurement are untouched. */
+    overflow-wrap: break-word;
   }
   :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
