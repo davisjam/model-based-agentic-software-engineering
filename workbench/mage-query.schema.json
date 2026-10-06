@@ -258,9 +258,10 @@
           }
         },
         "refusal": {
-          "description": "Why the model does not license the question. Required when outcome=unlicensed.",
+          "description": "Why the model does not license the question, as the sentence a person reads. Required when outcome=unlicensed. The same fact as data travels in refusalDetail; the two are written by one constructor and cannot disagree.",
           "type": "string"
         },
+        "refusalDetail": { "$ref": "#/$defs/refusalDetail" },
         "compilation": {
           "description": "Disclosed rewrites, e.g. an auxiliary history variable added to answer a past-time question (V23).",
           "type": "array",
@@ -325,6 +326,59 @@
         "to": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } },
         "label": { "type": "string" }
       }
+    },
+
+    "refusalReason": {
+      "description": "The closed cause vocabulary every refusal carries (result.refusalDetail.reason, and the refusal arm of check()). A refusal is a SUCCESSFUL outcome (V7): composition-forbidden: the relation type declares composition.path forbidden (V7). missing-distinction: the model represents the subject but deliberately omits what the question needs (V24). unknown-vocabulary: the question names an entity, state, variable or relation this system does not declare. missing-model-type: the system declares no substrate of the model type the question interrogates. unsupported-form: the form exists in this schema but this version does not evaluate it. quantifier-mismatch: the declared quantifier asks for evidence the form cannot produce (section 7). unsupported-expression: an effect or derived expression outside the deliberately tiny grammars. reserved-feature: legal to write, reserved for a future version, refused rather than misread (V14/V15). category-error: the question pairs a quantity with the aggregation axis its scope does not have (section 8). Mirrors REFUSAL_REASONS in src/ir/types.ts; the parity is test-held in both directions.",
+      "enum": [
+        "composition-forbidden",
+        "missing-distinction",
+        "unknown-vocabulary",
+        "missing-model-type",
+        "unsupported-form",
+        "quantifier-mismatch",
+        "unsupported-expression",
+        "reserved-feature",
+        "category-error"
+      ]
+    },
+
+    "refusalDetail": {
+      "description": "The refusal's typed half: the cause as data, beside the sentence in result.refusal. An agent branches on reason; missing lists the distinctions the model would need in order to answer (empty when the gap is not a modeling one); models lists the models consulted while deciding, so a caller can say where to add the distinction.",
+      "type": "object",
+      "required": ["reason", "missing", "models"],
+      "additionalProperties": false,
+      "properties": {
+        "reason": { "$ref": "#/$defs/refusalReason" },
+        "missing": { "type": "array", "items": { "type": "string" } },
+        "models": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "modelType": {
+      "description": "The model-type registry's closed id vocabulary -- the modelType a check() report names in its licensed arm, and the type each query kind interrogates: structural-graph answers kind=graph (the graphQuery forms), state-machine answers kind=behavior (the behaviorQuery forms), quantitative-model answers kind=quantity (the quantityQuery metrics).",
+      "enum": ["structural-graph", "state-machine", "quantitative-model"]
+    },
+
+    "binding": {
+      "description": "The closed binding-name vocabulary: every declared correspondence between elements in different purposeful models, and the names the composed view's focus accepts. appears-in: one entity's identity across the purposeful models that mention it (entity-model). machine-of-entity: this behavioural model describes this structural entity (machine-entity). state-of-entity: an entity property naming the lifecycle state during whose occupancy it runs (entity-state).",
+      "enum": ["appears-in", "machine-of-entity", "state-of-entity"]
+    },
+
+    "querySubject": {
+      "description": "What a question may be ABOUT, per model type: the registry's closed {noun, selector} pairs. The selector names the grammar that picks instances of the noun out: by-id takes a declared identifier; property-constraints takes a {property: value | {ne} | {in: []}} object; predicate takes a predicate over machine state; selector takes a partial match on declared transition fields (machine/from/to/sync). A name outside the declared vocabulary is an invalid question, not evidence of absence.",
+      "oneOf": [
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "structural-graph" }, "noun": { "const": "entity" }, "selector": { "const": "property-constraints" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "structural-graph" }, "noun": { "const": "relation type" }, "selector": { "const": "by-id" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "structural-graph" }, "noun": { "const": "model" }, "selector": { "const": "by-id" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "state-machine" }, "noun": { "const": "machine" }, "selector": { "const": "by-id" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "state-machine" }, "noun": { "const": "state" }, "selector": { "const": "predicate" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "state-machine" }, "noun": { "const": "variable" }, "selector": { "const": "predicate" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "state-machine" }, "noun": { "const": "transition" }, "selector": { "const": "selector" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "quantitative-model" }, "noun": { "const": "quantity" }, "selector": { "const": "by-id" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "quantitative-model" }, "noun": { "const": "execution" }, "selector": { "const": "predicate" } } },
+        { "type": "object", "required": ["modelType", "noun", "selector"], "additionalProperties": false, "properties": { "modelType": { "const": "quantitative-model" }, "noun": { "const": "ceiling" }, "selector": { "const": "by-id" } } }
+      ]
     }
   }
 }

@@ -58,12 +58,48 @@ export type CapabilityId =
  */
 export type AffordanceStatus = "wired" | "refusing" | "absent";
 
-export interface Affordance {
+/**
+ * One parameter of a machine callable, as `describe()` publishes it.
+ *
+ * `schema` points into the publication's own `schemas` record (`"query#/$defs/query"`) when a
+ * published JSON Schema fixes the shape — the schemas already ship inline, so the declaration
+ * references them rather than restating them (the OpenAPI operation/schema join). `type` is the
+ * compact spelling for everything else: a `string` id, a `number` budget, a direction union. One
+ * of the two always says what to pass; prose alone never does.
+ */
+export interface MachineParameter {
+  readonly name: string;
+  /** Compact type spelling: "string", "number", "\"outgoing\" | \"incoming\"", "object". */
+  readonly type: string;
+  readonly required: boolean;
+  /** What the value means, in the caller's terms. */
+  readonly summary: string;
+  /** A pointer into describe().schemas — "<key>#<json-pointer>" — or null when `type` suffices. */
+  readonly schema: string | null;
+}
+
+/**
+ * What every affordance declaration shares, human or machine: a site and its status. The parity
+ * and closure checks read exactly this much, so they take this base — a human affordance has no
+ * parameter list to declare and should not be forced to pretend otherwise.
+ */
+export interface AffordanceSite {
   /** Where a person or an agent actually invokes it: "canvas.connect", "transaction.add-relation". */
   readonly at: string;
   readonly status: AffordanceStatus;
   /** Why, when not wired. Required by a test for anything not `wired`. */
   readonly note?: string;
+}
+
+export interface Affordance extends AffordanceSite {
+  /**
+   * What the callable takes, in order. REQUIRED, so a machine affordance cannot be declared
+   * without saying what to pass it — an empty array is the statement "takes nothing", which is a
+   * declaration and not an omission. `describe().operations[].calls` publishes these per callable;
+   * before the field existed an operation advertised only that it exists and what it returns, and
+   * what to PASS it lived in this repo's source, which an agent holding the publication cannot read.
+   */
+  readonly parameters: readonly MachineParameter[];
 }
 
 /**
@@ -404,7 +440,38 @@ export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
 ];
 
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
-const wired = (at: string): Affordance => ({ at, status: "wired" });
+const wired = (at: string, parameters: readonly MachineParameter[]): Affordance =>
+  ({ at, status: "wired", parameters });
+
+/** One parameter row. `schema` defaults to null — most values are a bare id or a count. */
+const param = (
+  name: string, type: string, required: boolean, summary: string, schema: string | null = null,
+): MachineParameter => ({ name, type, required, summary, schema });
+
+/**
+ * The one query-document parameter, written once. `query`, `ask` and `check` all take the same
+ * untyped document and hand it to the engine's own parser; three hand-written copies of that
+ * declaration would be three chances for one signature to drift.
+ */
+const QUERY_DOCUMENT: MachineParameter = param(
+  "query", "object", true,
+  "a query document: kind (graph | behavior | quantity), an explicit quantifier, and the payload "
+    + "field named after the kind. The engine parses and admits it; nothing is inferred.",
+  "query#/$defs/query",
+);
+
+/**
+ * The transact affordance, written once and reused by every editing capability. Ten rows share the
+ * one callable and the one signature; a per-row copy is the DRY drift this constant removes.
+ */
+const TRANSACT: Affordance = wired("window.mage.transact", [
+  param(
+    "transaction", "object", true,
+    "a transaction document: the base revision hash it was composed against, plus the operations "
+      + "to apply atomically. A stale base is refused rather than rebased.",
+    "transaction#",
+  ),
+]);
 
 const step = (
   surface: NavSurface, via: NavStep["via"], requires?: NavPrecondition,
@@ -528,7 +595,11 @@ export const CAPABILITIES: readonly Capability[] = [
     // say more. `header.load-example` used to sit in this list, and moved out when loading a shipped
     // example became a capability with its own service.
     human: [control("header.file-input", "file", []), control("header.new-system", "new-system", [])],
-    machine: [wired("window.mage.load")],
+    machine: [wired("window.mage.load", [
+      param("text", "string", true,
+        "the model system as .mage.yaml text; the parsed document conforms to the published model schema",
+        "model#"),
+    ])],
     producesEvidence: false,
   },
   {
@@ -540,7 +611,9 @@ export const CAPABILITIES: readonly Capability[] = [
     // capability earns its own row because the SELECTION and the description are semantics `import`
     // does not have: an agent asking what it may load gets an answer here and nowhere else.
     human: [control("start.load-example", "example-load", [step("start", "activate")])],
-    machine: [wired("window.mage.loadExample"), wired("window.mage.examples")],
+    machine: [wired("window.mage.loadExample", [
+      param("id", "string", true, "a shipped example's id, as examples() lists them"),
+    ]), wired("window.mage.examples", [])],
     producesEvidence: false,
   },
   {
@@ -548,7 +621,7 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Write the model system back out, comments and key order preserved.",
     service: "workspace.export",
     human: [header("header.export", "export", "loaded")],
-    machine: [wired("window.mage.export")],
+    machine: [wired("window.mage.export", [])],
     producesEvidence: false,
   },
   {
@@ -582,8 +655,18 @@ export const CAPABILITIES: readonly Capability[] = [
     // it reads the entity table and the relation-type declarations and reports one entity's
     // establishment record. UX-I1 compares seams, and the seam is this row's.
     machine: [
-      wired("window.mage.inspect"), wired("window.mage.model.elements"),
-      wired("window.mage.model.count"), wired("window.mage.model.explainType"),
+      wired("window.mage.inspect", []), wired("window.mage.model.elements", [
+      param("selector", "object", false,
+        "{ type?: string, where?: { prop: value | { ne: value } | { in: [values] } } } -- declared "
+          + "type and the property-constraint grammar; omitted selects every entity"),
+    ]),
+      wired("window.mage.model.count", [
+      param("selector", "object", false,
+        "the same selector elements() takes; the figure is that enumeration's cardinality"),
+    ]), wired("window.mage.model.explainType", [
+      param("entity", "string", true,
+        "a declared entity id; the reading is null for an id this system does not declare"),
+    ]),
     ],
     producesEvidence: false,
   },
@@ -611,7 +694,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // "identifying violations of a model constraint" — and it delegates to the same
     // `workspace.validate`. A second spelling, not a second rule set: there is one `rules.ts` pass
     // and one authority, and the facade adds a word rather than a party.
-    machine: [wired("window.mage.validate"), wired("window.mage.model.violations")],
+    machine: [wired("window.mage.validate", []), wired("window.mage.model.violations", [])],
     producesEvidence: true,
   },
   {
@@ -685,10 +768,27 @@ export const CAPABILITIES: readonly Capability[] = [
     // the emitted document carries the form it declared. `elements` is NOT here — see the `inspect`
     // row, which is the seam it actually reaches.
     machine: [
-      wired("window.mage.query"), wired("window.mage.ask"),
-      wired("window.mage.analysis.resolveExhausted"),
-      wired("window.mage.model.related"), wired("window.mage.model.reachable"),
-      wired("window.mage.model.path"),
+      wired("window.mage.query", [QUERY_DOCUMENT]), wired("window.mage.ask", [QUERY_DOCUMENT]),
+      wired("window.mage.analysis.resolveExhausted", [
+      param("escalation", "object", true,
+        "the escalation handle off an exhausted answer, passed back unchanged -- it is obtainable "
+          + "nowhere else"),
+      param("budget", "number", false, "step budget for the re-run; defaults to the Worker's larger bound"),
+    ]),
+      wired("window.mage.model.related", [
+      param("from", "string", true, "the entity id to step from"),
+      param("relation", "string", true, "a declared relation type id"),
+      param("direction", '"outgoing" | "incoming"', true, "which way to read the declared edge"),
+    ]), wired("window.mage.model.reachable", [
+      param("from", "string", true, "the entity id to compose from"),
+      param("relation", "string", true, "a declared relation type id; composition.path forbidden refuses here"),
+      param("to", "string", false, "a target entity id; omitted asks whether anything is reachable"),
+    ]),
+      wired("window.mage.model.path", [
+      param("from", "string", true, "the entity id the trace starts at"),
+      param("to", "string", true, "the entity id the trace must reach"),
+      param("relation", "string", true, "the declared relation type the path composes"),
+    ]),
     ],
     producesEvidence: true,
   },
@@ -724,7 +824,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // defended by a claim about scope. `explore-space` was the last capability in this shape, and it
     // turned out to be one a person obviously should have had.
     human: [advanced("properties-section.check", "ask-check-go")],
-    machine: [wired("window.mage.check")],
+    machine: [wired("window.mage.check", [QUERY_DOCUMENT])],
     // A check result is a semantic result: it reports what the model licenses, with the cause and
     // the alternatives. UX-I2 governs it, which is part of what the missing human control owes.
     producesEvidence: true,
@@ -741,7 +841,7 @@ export const CAPABILITIES: readonly Capability[] = [
       header("header.run-all", "run", "loaded"),
       readout("properties-section.list", "question-list", "nav-properties"),
     ],
-    machine: [wired("window.mage.savedQueries"), wired("window.mage.properties")],
+    machine: [wired("window.mage.savedQueries", []), wired("window.mage.properties", [])],
     producesEvidence: true,
   },
   {
@@ -788,7 +888,9 @@ export const CAPABILITIES: readonly Capability[] = [
     // were declared before they were buildable — and each time the violation named the work that
     // closed it. This is the third closure.
     human: [inBrowser("system-browser.explore", "explore-space-go", "activate")],
-    machine: [wired("window.mage.analysis.explore")],
+    machine: [wired("window.mage.analysis.explore", [
+      param("limit", "number", false, "cap on configurations to walk; defaults to the interactive bound"),
+    ])],
     producesEvidence: true,
   },
   {
@@ -811,7 +913,10 @@ export const CAPABILITIES: readonly Capability[] = [
       // there is no claim row, so there is no disclosure to open.
       path: [step("nav-properties", "disclose", "property-exists"), step("nav-properties", "read")],
     }],
-    machine: [wired("window.mage.evidence")],
+    machine: [wired("window.mage.evidence", [
+      param("queryId", "string", true,
+        "a saved question's id; a reading for an unknown id lists what this system does save"),
+    ])],
     producesEvidence: true,
   },
   {
@@ -819,7 +924,7 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Return to the previous semantic revision.",
     service: "workspace.undo",
     human: [header("header.undo", "undo", "edited")],
-    machine: [wired("window.mage.undo")],
+    machine: [wired("window.mage.undo", [])],
     producesEvidence: false,
   },
   {
@@ -827,7 +932,7 @@ export const CAPABILITIES: readonly Capability[] = [
     summary: "Re-apply an undone revision.",
     service: "workspace.redo",
     human: [header("header.redo", "redo", "undone")],
-    machine: [wired("window.mage.redo")],
+    machine: [wired("window.mage.redo", [])],
     producesEvidence: false,
   },
 
@@ -857,7 +962,7 @@ export const CAPABILITIES: readonly Capability[] = [
       editSection("edit-section.add-entity", "add-entity-go"),
       editSection("edit-section.add-state", "add-state-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -871,7 +976,7 @@ export const CAPABILITIES: readonly Capability[] = [
       inspectorAction("inspector.delete-element", "act-delete-element", "selection:element"),
       editSection("edit-section.delete-element", "delete-element-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -888,7 +993,7 @@ export const CAPABILITIES: readonly Capability[] = [
       inspectorAction("inspector.connect", "act-connect", "selection:element"),
       editSection("edit-section.add-relation", "add-relation-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -899,7 +1004,7 @@ export const CAPABILITIES: readonly Capability[] = [
       inspectorAction("inspector.delete-relation", "act-delete-relation", "selection:relation"),
       editSection("edit-section.delete-relation", "delete-relation-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -912,7 +1017,7 @@ export const CAPABILITIES: readonly Capability[] = [
       editSection("edit-section.set-label", "set-label-go"),
       editSection("edit-section.set-property", "set-property-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
 
@@ -928,7 +1033,7 @@ export const CAPABILITIES: readonly Capability[] = [
       addMenuItem("add-menu.model", "add-menu-model"),
       editSection("edit-section.add-model", "add-model-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -947,7 +1052,7 @@ export const CAPABILITIES: readonly Capability[] = [
       inspectorAction("inspector.delete-model", "act-delete-model", "selection:model"),
       editSection("edit-section.delete-model", "delete-model-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -963,7 +1068,7 @@ export const CAPABILITIES: readonly Capability[] = [
       inspectorAction("inspector.note", "act-note", "selection:element"),
       editSection("edit-section.add-note", "add-note-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   // ---- properties. The statement is semantic; the verdict is not, and is stored nowhere. ------
@@ -992,7 +1097,7 @@ export const CAPABILITIES: readonly Capability[] = [
       control("askbar.track", "ask-track-go", [step("askbar", "activate", "answer-present")]),
       advanced("properties-section.save", "save-property-go"),
     ],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
   {
@@ -1002,7 +1107,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // The pair of the one above. A claim you cannot withdraw is a claim the model system cannot
     // stop asserting, and `delete-query` already existed with no way for a person to reach it.
     human: [advanced("properties-section.retract", "retract-property-go", "property-exists")],
-    machine: [wired("window.mage.transact")],
+    machine: [TRANSACT],
     producesEvidence: false,
   },
 
@@ -1031,7 +1136,7 @@ export const CAPABILITIES: readonly Capability[] = [
     // old sentence here while the page did the opposite is precisely the misleading-prose class
     // §8.3 named: a requirement reversed by a ruling and never amended.
     human: [inBrowser("provenance-section.records", "provenance-list", "read")],
-    machine: [wired("window.mage.provenance")],
+    machine: [wired("window.mage.provenance", [])],
     producesEvidence: false,
   },
 
@@ -1055,7 +1160,12 @@ export const CAPABILITIES: readonly Capability[] = [
     //     committing it even though no obligation is at stake. One toggle, off by default, so the
     //     normal user edits normally.
     human: [header("review.whatif", "whatif-arm", "loaded")],
-    machine: [wired("window.mage.hypothesis.open")],
+    machine: [wired("window.mage.hypothesis.open", [
+      param("label", "string", true, "what the what-if branch is called in review"),
+      param("transaction", "object", true,
+        "the transaction to apply hypothetically, through the same validated path as any edit",
+        "transaction#"),
+    ])],
     producesEvidence: true,
   },
   {
@@ -1064,7 +1174,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "workspace.applyHypothesis",
     human: [control("hypothesis-bar.accept", "hypothesis-apply",
       [step("review", "activate", "hypothesis-open")])],
-    machine: [wired("window.mage.hypothesis.apply")],
+    machine: [wired("window.mage.hypothesis.apply", [])],
     producesEvidence: false,
   },
   {
@@ -1073,7 +1183,7 @@ export const CAPABILITIES: readonly Capability[] = [
     service: "workspace.discardHypothesis",
     human: [control("hypothesis-bar.discard", "hypothesis-discard",
       [step("review", "activate", "hypothesis-open")])],
-    machine: [wired("window.mage.hypothesis.discard")],
+    machine: [wired("window.mage.hypothesis.discard", [])],
     producesEvidence: false,
   },
 ];
@@ -1110,7 +1220,7 @@ export interface UxViolation {
   readonly problem: string;
 }
 
-const anyWired = (as: readonly Affordance[]): boolean => as.some((a) => a.status === "wired");
+const anyWired = (as: readonly AffordanceSite[]): boolean => as.some((a) => a.status === "wired");
 
 /**
  * UX-I1 — every capability has a wired affordance on BOTH sides, over the same service.
@@ -1373,7 +1483,7 @@ export function checkRegistryClosure(
   hatches: readonly EscapeHatch[] = ESCAPE_HATCHES,
 ): readonly ParityViolation[] {
   const out: ParityViolation[] = [];
-  const known = (pick: (c: Capability) => readonly Affordance[]): Set<string> =>
+  const known = (pick: (c: Capability) => readonly AffordanceSite[]): Set<string> =>
     new Set(registry.flatMap((c) => pick(c).map((a) => a.at)));
 
   const humanKnown = known((c) => c.human);

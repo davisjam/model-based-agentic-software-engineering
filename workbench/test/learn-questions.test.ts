@@ -544,7 +544,7 @@ test("a 256 KB figure renders as '256 KB' — and in MB only when MB is what was
   assert.ok(perKb !== undefined, "the memory dimension no longer declares a KB unit");
   const quarterMb: QueryResult = {
     outcome: "holds", coverage: { kind: "not-applicable", statesExplored: 0, reason: null }, evidence: null, refusal: null,
-    interpretedAs: null, compilation: [], systemHash: "test",
+    refusalDetail: null, interpretedAs: null, compilation: [], systemHash: "test",
     magnitude: { value: 256 * perKb, dimension: "memory", unit: DIMENSIONS.memory.base },
   };
   assert.equal(magnitudeText(quarterMb, "KB"), "256 KB",
@@ -568,7 +568,7 @@ test("base-to-declared conversion is exact for every unit the dimension table de
       for (const written of [1, 3, 232, 256, 750]) {
         const result: QueryResult = {
           outcome: "holds", coverage: { kind: "not-applicable", statesExplored: 0, reason: null }, evidence: null, refusal: null,
-          interpretedAs: null, compilation: [], systemHash: "test",
+          refusalDetail: null, interpretedAs: null, compilation: [], systemHash: "test",
           magnitude: { value: written * factor, dimension, unit: DIMENSIONS[dimension].base },
         };
         assert.equal(magnitudeText(result, unit), `${written} ${unit}`,

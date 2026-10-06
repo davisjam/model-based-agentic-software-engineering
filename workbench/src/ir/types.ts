@@ -1069,12 +1069,89 @@ export interface ResultMagnitude {
   readonly unit: string | null;
 }
 
+// --------------------------------------------------------------------------------------------
+// Refusal causes — the typed vocabulary beside the sentence
+// --------------------------------------------------------------------------------------------
+
+/**
+ * Why a question is not answerable, as a closed vocabulary.
+ *
+ * Lives HERE rather than in `src/engine/types.ts` (which re-exports it) because the cause now
+ * travels on the wire result below: the IR is the innermost layer, so the engine may import this
+ * and not the reverse. One list, and the type is derived from it — the `GRAPH_FORMS` idiom — so
+ * the runtime vocabulary the schema parity check reads cannot drift from the compile-time union.
+ */
+export const REFUSAL_REASONS = [
+  /** V7 — the relation type declares `composition.path: forbidden`. */
+  "composition-forbidden",
+  /**
+   * V24 — the model represents something, but deliberately omits what the question needs.
+   *
+   * Produced on both paths: the quantitative one (`src/quant/`, for an expectation with no declared
+   * frequency and for an entity with no behavioral counterpart) and the graph one
+   * (`src/engine/omission.ts`, when a name resolves nowhere and a `purpose.omits` covers it). §7.6
+   * rules which cause wins when several are true.
+   */
+  "missing-distinction",
+  /** The question names an entity, state, variable or relation this system does not declare. */
+  "unknown-vocabulary",
+  /**
+   * The system declares NO substrate of the model type the question interrogates — no machine for
+   * a behavioural question, no quantities for a quantitative one. Coarser than
+   * `missing-distinction` (which presumes a model that chose its reductions) and than
+   * `unknown-vocabulary` (which sends the reader hunting for a misspelling that is not the
+   * problem). The prose names the missing type from the model-type registry
+   * (`src/engine/model-types.ts`), so the refusal and the Learn entry it points toward cannot
+   * describe different capabilities.
+   */
+  "missing-model-type",
+  /** The form exists in the schema but this version does not evaluate it. */
+  "unsupported-form",
+  /** §7 — the declared quantifier asks for evidence the form cannot produce. */
+  "quantifier-mismatch",
+  /** An effect or derived expression outside the deliberately tiny grammars (expr.ts). */
+  "unsupported-expression",
+  /** V14 / V15 — legal to write, reserved for a future version, refused rather than misread. */
+  "reserved-feature",
+  /**
+   * §8 — the question pairs a quantity with the aggregation axis its scope does not have. The
+   * aggregation is DERIVED from the dimension's scope, never chosen per query, so asking for a
+   * configuration-scoped quantity along an execution denotes nothing: it is refused as a category
+   * error rather than computed as a wrong answer.
+   */
+  "category-error",
+] as const;
+
+export type RefusalReason = typeof REFUSAL_REASONS[number];
+
+/**
+ * The structured half of a refusal: the cause as data, beside the sentence a person reads.
+ *
+ * An agent needs the same fact the prose carries, as a value it can switch on — which distinction
+ * is missing, so it can propose the model change that would make the question answerable rather
+ * than re-asking the same thing.
+ */
+export interface RefusalDetail {
+  readonly reason: RefusalReason;
+  /** Distinctions the model would need in order to answer. Empty when the gap is not a modeling one. */
+  readonly missing: readonly string[];
+  /** Models consulted while deciding, so a caller can say where to add the distinction. */
+  readonly models: readonly string[];
+}
+
 export interface QueryResult {
   readonly outcome: Outcome;
   readonly coverage: Coverage;
   readonly evidence: Evidence | null;
   /** Required when outcome is "unlicensed": why the model does not authorize the question. */
   readonly refusal: string | null;
+  /**
+   * The refusal's typed cause, beside the sentence. Non-null exactly when the engine refused with
+   * a structured cause; a reader branches on `refusalDetail.reason` and shows `refusal`. The two
+   * are one fact twice spelled — the engine's `unlicensed(...)` constructor writes both, so they
+   * cannot disagree site by site.
+   */
+  readonly refusalDetail: RefusalDetail | null;
   readonly interpretedAs: string | null;
   /** Disclosed rewrites, e.g. the history variable added for a past-time question (V23). */
   readonly compilation: readonly Compilation[];
