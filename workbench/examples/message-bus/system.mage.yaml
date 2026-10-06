@@ -17,16 +17,14 @@
 # question because it forgot the distinction that made composition meaningless. A model earns the
 # right to compose by giving something up.
 #
-# ## Known divergence: `notes:` and `provenance:` are not yet in the published schema
+# ## A closed divergence, recorded because the note it replaces was read for a while
 #
 # Section 8 requires a rationale note per model and provenance identifying the example as
 # MAGE-provided, and the v0.1 IR supports both -- `Note`, `Provenance` and `Annotated` in
-# src/ir/types.ts, read by canonicalize(). `mage-model.schema.json` has not caught up: it declares
-# `additionalProperties: false` and no `notes` key anywhere, and its `provenance` is a different
-# object entirely (subject / correspondence, the model-to-world claim) under the same name. So
-# `python3 validate.py` reports SCHEMA findings for this file while the TypeScript loader accepts it
-# and validates it clean. The schema is the side that is behind, and it belongs to another agent
-# this round.
+# src/ir/types.ts, read by canonicalize(). `mage-model.schema.json` carried neither key, so
+# `python3 validate.py` reported SCHEMA findings for this file while the TypeScript loader validated
+# it clean. The schema carries `notes` and a merged `provenance` now, and both tools report this
+# file clean.
 
 mage: 1
 
@@ -105,6 +103,20 @@ relation-types:
     composition:
       # A field of a field is not a thing; nothing composes here.
       path: forbidden
+    # The OBLIGATION between the two surfaces that hold one fact (section 3.2). An event type's
+    # `carries` is authored, because v0.1 aggregates nothing over a relation -- see the
+    # `order-created-aggregate` note below, which is the honest statement of why. This declares what
+    # the authored value must EQUAL, so the engine can reject a disagreement without computing the
+    # value and without the model pretending it aggregates.
+    #
+    # What it buys a reader: editing a field's `classification`, or deleting one of these edges, used
+    # to move nothing a student could see. The most natural remediation -- fix the data policy at the
+    # FIELD level -- was a silent no-op. It now contradicts the declaration, at load time (V46) and in
+    # the sentence the finding carries.
+    aggregates:
+      declared: carries
+      over: classification
+      using: max
     properties:
       symmetric: false
       acyclic: true
@@ -141,9 +153,15 @@ entities:
     type: service
     label: Analytics
     properties:
-      # The one visible violation (section 4.5). Analytics subscribes to OrderCreated, which carries a
-      # restricted shipping address. The safety query returns a real counterexample rather than a
+      # The one visible violation (section 4.5). Analytics subscribes to OrderCreated, whose
+      # `carries` is `restricted`. The safety query returns a real counterexample rather than a
       # vacuous holds.
+      #
+      # Be exact about WHICH value the breach reads. The query compares `source.permits` against
+      # `target.carries`, so the breach rides on the event type's authored aggregate and never on a
+      # field. The shipping-address field is why that aggregate SAYS `restricted` -- an authoring
+      # fact, now held to the value by the aggregation declared on `carries_field` -- and it is not
+      # a term the query evaluates.
       permits: { value: internal, domain: sensitivity }
 
   fulfillment:
@@ -158,8 +176,9 @@ entities:
     properties:
       # DECLARED, not derived. v0.1 aggregates nothing over `carries_field`, so the highest
       # sensitivity an event type carries is stated here and the field breakdown is represented
-      # separately. test/examples.test.ts pins the two in sync, which is the only rung available
-      # when neither unification nor codegen is: a parity control.
+      # separately. The aggregation declared on `carries_field` pins the two in sync -- the rung
+      # available when neither unification nor codegen is, and now a LOAD-TIME one rather than a
+      # test a reader never runs.
       carries: { value: restricted, domain: sensitivity }
     notes:
       - id: order-created-aggregate
@@ -167,9 +186,10 @@ entities:
         text: >
           `carries` is the maximum sensitivity over this event type's fields. It is written down
           rather than computed because MAGE v0.1 has no aggregation over a relation, and the
-          cross-model safety query needs the value on the endpoint of a `subscribes` edge. A test
-          asserts it equals the maximum over the `carries_field` edges, so the two surfaces cannot
-          drift apart silently.
+          cross-model safety query needs the value on the endpoint of a `subscribes` edge. The
+          aggregation declared on `carries_field` asserts it equals the maximum over those edges, so
+          the two surfaces cannot drift apart silently -- and a reader who repairs the field layer
+          sees the contradiction rather than nothing.
 
   payment-completed:
     type: event-type

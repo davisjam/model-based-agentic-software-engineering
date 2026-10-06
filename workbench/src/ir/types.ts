@@ -74,6 +74,23 @@ export interface PropertyValue {
   readonly domain: string | null;
 }
 
+/**
+ * A declared aggregation over a relation type (§3.2, V45/V46).
+ *
+ * The OBLIGATION, never the value. v0.1 computes nothing over a relation, so the source's aggregate
+ * stays authored on the entity; this says what it must equal, so a repair at the edge layer stops
+ * being a silent no-op. `using` carries the raw declaration because an unsupported operator is V45's
+ * finding rather than a parse failure — defaulting it would make a typo mean `max`.
+ */
+export interface CanonRelationAggregate {
+  /** The property on the SOURCE entity carrying the authored aggregate. */
+  readonly declared: string;
+  /** The property read off each TARGET entity and aggregated. */
+  readonly over: string;
+  /** As written. `max` is the only supported operator; anything else is a V45 finding. */
+  readonly using: string;
+}
+
 export interface CanonRelationType {
   readonly id: string;
   readonly description: string;
@@ -82,6 +99,8 @@ export interface CanonRelationType {
   readonly pathComposition: "allowed" | "forbidden";
   readonly symmetric: boolean;
   readonly acyclic: boolean;
+  /** §3.2. Null when the author declared no aggregation, which is the ordinary case. */
+  readonly aggregates: CanonRelationAggregate | null;
 }
 
 export interface CanonRelation {

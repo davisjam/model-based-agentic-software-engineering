@@ -37,6 +37,7 @@ export type ValidationRule =
   | "V1" | "V3" | "V4" | "V5" | "V6" | "V8" | "V9" | "V10" | "V11" | "V12" | "V13" | "V14"
   | "V17" | "V19" | "V24" | "V25" | "V26"
   | "V27" | "V28" | "V29" | "V30" | "V31" | "V35" | "V36" | "V37" | "V38" | "V39" | "V40"
+  | "V45" | "V46"
   | "ANNOTATION";
 
 export type Severity = "error" | "warning";
@@ -59,6 +60,11 @@ export const SEVERITY: { readonly [R in ValidationRule]: Severity } = {
   V19: "error", V24: "error", V25: "error", V26: "error",
   V27: "error", V28: "error", V29: "error", V30: "error", V31: "error", V35: "error",
   V36: "error", V37: "error", V38: "error", V39: "error", V40: "error",
+  // §3.2's pair, and `error` is the decision rather than the default. A declared aggregate that
+  // disagrees with its own fields is the §5.3 class exactly: an annotation that typechecks,
+  // validates, and reaches nothing. Downgrading V46 to `warning` would restore the silence it was
+  // written to break -- a student's field-level repair would once again move nothing a gate reads.
+  V45: "error", V46: "error",
   ANNOTATION: "error",
 };
 
@@ -105,6 +111,8 @@ export const SPEC_SECTION: { readonly [R in ValidationRule]: string } = {
   // where a reader goes to learn that models reference entities and never redeclare them, and V40
   // is that sentence read in the other direction.
   V40: "## 2. Identity",
+  V45: "### 3.2 Aggregation over a relation is declared, then it is checked",
+  V46: "### 3.2 Aggregation over a relation is declared, then it is checked",
   ANNOTATION: "### 5.1 Annotation is carried, not interpreted",
 };
 

@@ -161,7 +161,7 @@ function guardDomain(s: CanonicalSystem, ref: string): GuardDomain | null {
 
 const listed = (values: readonly Scalar[]): string => values.map((v) => String(v)).join(", ");
 
-/** V1–V24 and V26–V31 — meaning, once the loaded model is known to be the written one. */
+/** V1–V24, V26–V31, V35–V40 and V45–V46 — meaning, once the loaded model is the written one. */
 export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
 
@@ -408,9 +408,144 @@ export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
     }
   }
 
+  // V45 / V46 — a declared aggregation over a relation resolves, and the authored value agrees.
+  c.findings.push(...checkRelationAggregates(s));
+
   // Quantities last, and through the same entry point so every caller of checkMeaning gets them.
   // The pass stays separately exported because it has its own subject and its own tests.
   c.findings.push(...checkQuantities(s));
+
+  return c.findings;
+}
+
+// ---------------------------------------------------------------------------------------------
+// V45 / V46 — aggregation over a relation (§3.2)
+// ---------------------------------------------------------------------------------------------
+
+/** The only operator §3.2 supports. A closed set of one, for `basis`'s reason. */
+const AGGREGATION_OPERATORS: readonly string[] = ["max"];
+
+/**
+ * V45 and V46 — the obligation an author declares when two surfaces hold one fact.
+ *
+ * v0.1 computes nothing over a relation, so an aggregate like "the highest sensitivity this event
+ * type carries" is AUTHORED on the entity while its breakdown lives in edges. Nothing joined the
+ * two, which made the edge layer decoration: delete an edge or reclassify a field and no answer
+ * moved, so the most natural repair a reader can attempt was a silent no-op. §3.2 makes the join
+ * declarable without making the value derivable — keeping the teaching artifact and gating the
+ * disagreement.
+ *
+ * Carries NO example name, and that is the property to keep. The rung reads what a system declares;
+ * `max`, `ordered-enum` and the property names all arrive from the model.
+ */
+export function checkRelationAggregates(s: CanonicalSystem): readonly SubjectedFinding[] {
+  const c = new Collector();
+
+  for (const rt of s.relationTypes.values()) {
+    const agg = rt.aggregates;
+    if (agg === null) continue;
+    const where = `relation-types.${rt.id}.aggregates`;
+
+    // The declaration's own shape first. A rung that walked edges under a nonsense operator would
+    // report a disagreement with an aggregate nobody defined.
+    if (!AGGREGATION_OPERATORS.includes(agg.using)) {
+      c.add("V45", where,
+        `using: '${agg.using}' is not a supported aggregation operator. Declared: ` +
+        `${AGGREGATION_OPERATORS.join(", ")}. The vocabulary is closed on purpose — a permissive ` +
+        `one cannot be narrowed again without breaking every model that relied on it.`, [rt.id]);
+      continue;
+    }
+    for (const [key, name] of [["declared", agg.declared], ["over", agg.over]] as const) {
+      if (name === "") {
+        c.add("V45", where,
+          `${key}: names no property. An aggregation declares the AUTHORED property on the source ` +
+          `('declared') and the property read off each target ('over'); neither can be empty.`, [rt.id]);
+      }
+    }
+    if (agg.declared === "" || agg.over === "") continue;
+
+    const edges = s.relations.filter((r) => r.type === rt.id);
+    // Group by source, so one finding names one entity rather than one per edge.
+    const bySource = new Map<string, string[]>();
+    for (const e of edges) bySource.set(e.from, [...(bySource.get(e.from) ?? []), e.to]);
+
+    // The reaches-nothing case, §5.3's governing principle reached by a second route: an entity
+    // carrying the authored aggregate while sourcing no edge declares a maximum over an empty set.
+    for (const entity of s.entities.values()) {
+      if (!entity.properties.has(agg.declared) || bySource.has(entity.id)) continue;
+      c.add("V45", `entities.${entity.id}.properties.${agg.declared}`,
+        `'${agg.declared}' is declared as the ${agg.using} of '${agg.over}' over '${rt.id}' edges, ` +
+        `and '${entity.id}' is the source of none — so the value aggregates nothing and no edit to ` +
+        `the model can move it. Draw the edges, or drop the property.`, [entity.id, rt.id]);
+    }
+
+    for (const [source, targets] of [...bySource].sort(([a], [b]) => (a < b ? -1 : 1))) {
+      const declared = s.entities.get(source)?.properties.get(agg.declared);
+      if (declared === undefined) {
+        c.add("V45", `entities.${source}.properties`,
+          `'${source}' sources a '${rt.id}' edge but declares no '${agg.declared}'. The aggregation ` +
+          `on '${rt.id}' says every source carries that property as the ${agg.using} of its ` +
+          `targets' '${agg.over}'; without it the join is unmade and the edges assert nothing.`,
+          [source, rt.id]);
+        continue;
+      }
+      const domain = declared.domain === null ? null : s.domains.get(declared.domain);
+      if (domain === undefined || domain === null || domain.kind !== "ordered-enum") {
+        c.add("V45", `entities.${source}.properties.${agg.declared}`,
+          `'${agg.declared}' must name a declared ordered-enum domain for '${agg.using}' to denote ` +
+          `anything; it names ${declared.domain === null ? "no domain" : `'${declared.domain}'`}. ` +
+          `A maximum over an unordered vocabulary is not a value.`, [source, rt.id]);
+        continue;
+      }
+
+      const rank = (v: Scalar): number => domain.values.indexOf(String(v));
+      let highest = -1;
+      let highestAt = "";
+      let unusable = false;
+      for (const target of [...targets].sort()) {
+        const read = s.entities.get(target)?.properties.get(agg.over);
+        if (read === undefined) {
+          c.add("V45", `entities.${target}.properties`,
+            `'${target}' is the target of a '${rt.id}' edge but declares no '${agg.over}', so it ` +
+            `contributes nothing to '${source}'.${agg.declared} and the aggregate silently ignores ` +
+            `it. Declare the property, or remove the edge.`, [target, rt.id]);
+          unusable = true;
+          continue;
+        }
+        if (read.domain !== declared.domain) {
+          c.add("V45", `entities.${target}.properties.${agg.over}`,
+            `'${agg.over}' names ${read.domain === null ? "no domain" : `domain '${read.domain}'`} ` +
+            `while '${source}'.${agg.declared} names '${String(declared.domain)}' — the aggregation ` +
+            `would compare two unrelated vocabularies. Both sides name one ordered domain.`,
+            [target, source, rt.id]);
+          unusable = true;
+          continue;
+        }
+        const at = rank(read.value);
+        if (at < 0) {
+          c.add("V45", `entities.${target}.properties.${agg.over}`,
+            `'${String(read.value)}' is not a value of domain '${String(read.domain)}' ` +
+            `(${listed(domain.values)}), so it has no rank to aggregate.`, [target, rt.id]);
+          unusable = true;
+          continue;
+        }
+        if (at > highest) { highest = at; highestAt = target; }
+      }
+      // V45 already named the unreadable side. A V46 complaint on top of it would report a
+      // disagreement with a maximum taken over the targets that happened to parse — the same
+      // restraint V36 shows towards V27.
+      if (unusable) continue;
+
+      if (rank(declared.value) !== highest) {
+        c.add("V46", `entities.${source}.properties.${agg.declared}`,
+          `'${source}' declares ${agg.declared}: '${String(declared.value)}' while the ${agg.using} ` +
+          `of '${agg.over}' over its '${rt.id}' edges is '${String(domain.values[highest])}' ` +
+          `(from '${highestAt}'). The value is authored because v0.1 aggregates nothing over a ` +
+          `relation, so BOTH surfaces are yours: move the declaration, or change the field that ` +
+          `decides it. One transaction can do both.`, [source, highestAt, rt.id]);
+      }
+    }
+  }
 
   return c.findings;
 }

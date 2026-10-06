@@ -12,7 +12,8 @@
  */
 import type {
   AccountedMetric, AccountingBasis, Annotated, CanonAccounting, CanonDomain, CanonEntity, CanonEvent,
-  CanonMachine, CanonModel, CanonQuantity, CanonRelation, CanonRelationType, CanonTransition,
+  CanonMachine, CanonModel, CanonQuantity, CanonRelation, CanonRelationAggregate,
+  CanonRelationType, CanonTransition,
   CanonQuantitativeModel, CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor,
   ExprOperand, ExprTerm, Guard,
   GuardOp, HistoryEntry, MachineInstance, Magnitude, MagnitudeFault, Note, NoteKind, PropertyValue,
@@ -147,6 +148,20 @@ function entities(raw: unknown): Map<string, CanonEntity> {
   return out;
 }
 
+/**
+ * §3.2's declaration, read without defaults.
+ *
+ * Every field arrives AS WRITTEN, including an unsupported `using`. The validator owns the
+ * complaint, so a typo reaches V45 with its own spelling in the message rather than being coerced
+ * into `max` here — the same discipline `pathComposition` deliberately does NOT follow, because a
+ * missing composition must not license transitive reasoning while a missing aggregation declares
+ * nothing at all.
+ */
+function relationAggregate(raw: unknown): CanonRelationAggregate | null {
+  if (!isObj(raw)) return null;
+  return { declared: asStr(raw["declared"]), over: asStr(raw["over"]), using: asStr(raw["using"]) };
+}
+
 function relationTypes(raw: unknown): Map<string, CanonRelationType> {
   const out = new Map<string, CanonRelationType>();
   for (const [id, spec] of sortedEntries(raw)) {
@@ -162,6 +177,7 @@ function relationTypes(raw: unknown): Map<string, CanonRelationType> {
       pathComposition: comp["path"] === "allowed" ? "allowed" : "forbidden",
       symmetric: props["symmetric"] === true,
       acyclic: props["acyclic"] === true,
+      aggregates: relationAggregate(s["aggregates"]),
     });
   }
   return out;

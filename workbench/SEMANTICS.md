@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V44** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V46** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -160,6 +160,55 @@ question is not answerable from a model is information.
 **V8.** `properties.acyclic: true` makes a cycle in that relation type a validation error.
 `properties.symmetric: true` means the engine treats each edge as bidirectional for traversal; it
 does not require a reverse edge to be declared.
+
+### 3.2 Aggregation over a relation is declared, then it is checked
+
+MAGE v0.1 computes nothing over a relation. An author who needs the highest sensitivity an event
+type carries, or the longest deadline a component inherits, writes the value on the entity and keeps
+the breakdown in edges beside it. Two surfaces hold one fact, and §5.3's governing principle applies
+with no change of subject: an annotation that typechecks, validates, and then reaches nothing is the
+worst available outcome, because nothing looks wrong. A student who repairs the *edges* and watches
+every answer stay put learns that the edge layer is decoration.
+
+So the **obligation** is declarable, even though the value is not derivable:
+
+```yaml
+relation-types:
+  carries_field:
+    description: Messages of this event type carry this payload field.
+    composition:
+      path: forbidden
+    aggregates:
+      declared: carries           # the property on the SOURCE, authored
+      over: classification        # the property read off each TARGET
+      using: max                  # a closed set of one
+```
+
+The declaration says: along every edge of this type, the source's `declared` property equals the
+`using` aggregate of the targets' `over` property. It does not make the engine compute the value. The
+value stays authored — which is the point, because v0.1 aggregates nothing and a model that hid that
+would teach the opposite — and the engine gains the right to reject a disagreement.
+
+`using` is `max` and nothing else, for the reason §5.3 gives for `basis`: a permissive vocabulary
+cannot be narrowed again without breaking every model that relied on it. `min` and `sum` are
+additions someone makes deliberately.
+
+**V45 — a declared aggregation resolves.** `using` names a supported operator; `declared` and `over`
+name properties, not empty strings. Along each edge of the type, the source declares `declared` and
+the target declares `over`. Both properties name the **same** declared `ordered-enum` domain — `max`
+over an unordered vocabulary denotes nothing, which is V20's hazard reached by a second route. And an
+entity that declares the aggregated property while sourcing no edge of the type is the reaches-nothing
+case: the declaration is about an aggregate over an empty set, so it is a finding rather than a
+vacuous pass.
+
+**V46 — the declared value equals the aggregate.** Rank by the domain's declaration order and
+compare. This is the rule a student's field-level edit meets: reclassify a field, and the event type's
+authored aggregate now contradicts its own fields, at load time and in the sentence the finding
+carries. Repairing both in one transaction is the lesson — the author owns both surfaces, because the
+engine aggregates neither.
+
+The parity test holds both rules across the two implementations. They are structural checks over
+declared data, which is the shape that belongs in the parity set rather than the asymmetry table.
 
 ---
 
