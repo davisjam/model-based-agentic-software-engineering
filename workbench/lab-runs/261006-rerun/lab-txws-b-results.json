@@ -1,0 +1,575 @@
+{
+  "loaded": {
+    "systemId": "transaction-workspace",
+    "hash": "fnv1a64:5fe7178d7128667f",
+    "hypothesis": null,
+    "findings": [],
+    "counts": {
+      "entities": 5,
+      "models": 1,
+      "machines": 2,
+      "instances": 2,
+      "relations": 4,
+      "events": 1,
+      "quantities": 0,
+      "quantitativeModels": 0,
+      "savedQueries": 9
+    },
+    "canUndo": false,
+    "canRedo": false
+  },
+  "counts": {
+    "entities": 5,
+    "models": 1,
+    "machines": 2,
+    "instances": 2,
+    "relations": 4,
+    "events": 1,
+    "quantities": 0,
+    "quantitativeModels": 0,
+    "savedQueries": 9
+  },
+  "outcomes": {
+    "base-can-keep-advancing": "refuted",
+    "candidate-reaches-the-authoritative-store": "holds",
+    "commit-without-validating": "refuted",
+    "committed-base-is-current": "holds",
+    "transaction-can-be-refused": "holds",
+    "transaction-can-commit": "holds",
+    "validated-transaction-can-wait-indefinitely": "holds",
+    "validator-runs-on-some-execution": "holds",
+    "verdict-is-eventually-forced": "holds"
+  },
+  "forced": {
+    "outcome": "holds",
+    "coverage": {
+      "kind": "exhaustive",
+      "statesExplored": 9,
+      "reason": null
+    },
+    "evidence": {
+      "shape": "trace",
+      "role": "witness",
+      "steps": [
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "propose",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "idle",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        },
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "validate",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        },
+        {
+          "instances": [
+            "transaction-lifecycle",
+            "verdict-deadline"
+          ],
+          "sync": "deadline_expires",
+          "label": "deadline_expires",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "refused",
+              "verdict-deadline": "expired"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        }
+      ],
+      "cycle": null,
+      "nodes": null
+    },
+    "refusal": null,
+    "refusalDetail": null,
+    "interpretedAs": "Is machine verdict-deadline, sync deadline_expires executable in some reachable configuration?",
+    "compilation": [],
+    "magnitude": null,
+    "systemHash": "fnv1a64:5fe7178d7128667f"
+  },
+  "forcedEvidence": {
+    "found": true,
+    "queryId": "verdict-is-eventually-forced",
+    "result": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 9,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle",
+              "verdict-deadline"
+            ],
+            "sync": "deadline_expires",
+            "label": "deadline_expires",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "refused",
+                "verdict-deadline": "expired"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is machine verdict-deadline, sync deadline_expires executable in some reachable configuration?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:5fe7178d7128667f"
+    },
+    "evidence": {
+      "shape": "trace",
+      "role": "witness",
+      "steps": [
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "propose",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "idle",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        },
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "validate",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        },
+        {
+          "instances": [
+            "transaction-lifecycle",
+            "verdict-deadline"
+          ],
+          "sync": "deadline_expires",
+          "label": "deadline_expires",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "refused",
+              "verdict-deadline": "expired"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        }
+      ],
+      "cycle": null,
+      "nodes": null
+    }
+  },
+  "waitEvidence": {
+    "found": true,
+    "queryId": "validated-transaction-can-wait-indefinitely",
+    "result": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 10,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "lasso",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "await_adoption",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid",
+                "verdict-deadline": "armed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution that reaches a configuration where transaction-lifecycle.state is valid and can then repeat that configuration forever? (A loop that advances a bounded variable is NOT repeatable; ask 'recurrence' for whether the state is merely re-entered.)",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:5fe7178d7128667f"
+    },
+    "evidence": {
+      "shape": "lasso",
+      "role": "witness",
+      "steps": [
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "propose",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "idle",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        },
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "validate",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "proposed",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        }
+      ],
+      "cycle": [
+        {
+          "instances": [
+            "transaction-lifecycle"
+          ],
+          "sync": null,
+          "label": "await_adoption",
+          "from": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          },
+          "to": {
+            "control": {
+              "transaction-lifecycle": "valid",
+              "verdict-deadline": "armed"
+            },
+            "values": {
+              "transaction-lifecycle.base_current": true
+            }
+          }
+        }
+      ],
+      "nodes": null
+    }
+  },
+  "requirements": {
+    "commit-requires-validation": {
+      "id": "commit-requires-validation",
+      "statement": "No proposed change is committed without passing through Valid.",
+      "expressedAs": "commit-without-validating",
+      "satisfiedWhen": "refuted",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "commit-requires-validation",
+        "verdict": "refuted"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:5fe7178d7128667f"
+    },
+    "no-stale-base-commit": {
+      "id": "no-stale-base-commit",
+      "statement": "A change never commits against a base that is no longer the one the workspace serves.",
+      "expressedAs": "committed-base-is-current",
+      "satisfiedWhen": "holds",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "no-stale-base-commit",
+        "verdict": "holds"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:5fe7178d7128667f"
+    }
+  },
+  "exhaustedProbe": {
+    "explore2": {
+      "status": "ok-space",
+      "space": {
+        "statesExplored": 2,
+        "complete": false,
+        "stopReason": "state-limit",
+        "deadEnds": 0,
+        "notes": [],
+        "limit": 2
+      }
+    },
+    "ask": {
+      "id": "(unsaved)",
+      "statement": "(unsaved)",
+      "kind": "property",
+      "status": "not-answerable",
+      "outcome": "unlicensed",
+      "coverage": {
+        "kind": "not-applicable",
+        "statesExplored": 0,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": "target: 'machine' names nothing in this system. References address a control state ('<machine>.state'), a variable, or a derived value.",
+      "compilation": [],
+      "grounds": [],
+      "constraintMachines": [],
+      "expectation": null,
+      "evaluatedAt": "fnv1a64:5fe7178d7128667f",
+      "currentRevision": "fnv1a64:5fe7178d7128667f",
+      "stale": false
+    }
+  }
+}

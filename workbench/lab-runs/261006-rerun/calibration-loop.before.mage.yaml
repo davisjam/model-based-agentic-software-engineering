@@ -1,0 +1,254 @@
+# Calibration Loop -- MAGE built-in example (SEMANTICS.md 3.3's lab).
+#
+# Central lesson, distinct from every other shipped example: this model contains NO error --
+# validation is clean -- but it is too under-specified to license the connection the task asks
+# for. The system's posture is "you have not told me enough to justify what you want", never "you
+# did something forbidden". Unknown does not mean compatible.
+#
+# Two teams modeled independently. The instrumentation team wrote `sensor --produces--> reading`;
+# the control team wrote `sample --consumed_by--> controller`. A prior integrator declared the
+# boundary contract: anything conveyed between the teams is established as a `measurement`
+# (`conveys` below, and the `entity-types:` vocabulary that makes the declaration resolvable while
+# nothing yet carries the kind). The task: connect the sensor's output to the controller's input
+# WITHOUT weakening the model.
+#
+# `reading` and `sample` are deliberately untyped -- the corpus's only unnamed entities, which is
+# the point. Each has a fresh shadow type (τ_reading, τ_sample), distinct until a name is earned
+# by authorship. The connecting edge `reading --conveys--> sample` is therefore REFUSED until both
+# kinds are named: a shadow is established as nothing, and the edge cannot establish it (V48, T3).
+#
+# The wrong answers, named as wrong (each "works" by discarding information instead of supplying
+# it):
+#   1. Delete the typing -- remove `conveys`' domain/range: the edge loads, and so does every
+#      future nonsense edge; the integrator's one guarantee is gone.
+#   2. A universal Data type -- retype everything `data`: the declaration still "holds" while
+#      distinguishing nothing; omission has been turned into permission by hand.
+#   3. Force the edge -- connect through an undeclared relation type: loads clean, asserts
+#      nothing, and the model now contains a connection no semantics backs -- the D7 edge,
+#      re-authored on purpose.
+#   4. Equate the shadows arbitrarily -- name both `measurement` without believing it: the
+#      composition is "possible" and the model now states a semantic fact nobody established.
+# The only right move supplies the missing fact BECAUSE IT IS TRUE, which is what the shipped
+# modification does.
+
+mage: 1
+
+system:
+  id: calibration-loop
+  name: Calibration Loop
+  description: >
+    Two independently modeled halves of one instrument-and-controller loop, and the typed boundary
+    contract that decides whether they may be connected.
+
+# The integrator's vocabulary: the kind the boundary contract names, declared so the declaration
+# resolves (V47) while no entity yet carries it. This is the declared-vocabulary case.
+entity-types:
+  measurement:
+    description: >
+      A quantified observation crossing the team boundary. The integrator's contract: anything
+      conveyed between the instrumentation side and the control side is established as one.
+
+relation-types:
+
+  produces:
+    description: The instrumentation side emits this output on each sampling cycle.
+    absence: No emission is represented. The instrumentation team's purposeful reduction.
+    composition:
+      # One hop is the fact; a chain of emissions asserts nothing this team modeled.
+      path: forbidden
+    properties:
+      symmetric: false
+
+  consumed_by:
+    description: The control side reads this input on each control cycle.
+    absence: No consumption is represented. The control team's purposeful reduction.
+    composition:
+      path: forbidden
+    properties:
+      symmetric: false
+
+  conveys:
+    description: >
+      The source is delivered as the target across the team boundary -- the integrator's contract,
+      and the only relation type here that states what may sit at its ends.
+    absence: >
+      No delivery across the boundary is represented; the two halves remain unconnected fragments,
+      each internally fine.
+    composition:
+      path: allowed
+    domain: measurement
+    range: measurement
+    properties:
+      symmetric: false
+
+entities:
+
+  sensor:
+    type: instrument
+    label: Sensor
+    properties:
+      team: instrumentation
+
+  # Deliberately untyped: its kind is its own fresh shadow, τ_reading, until authorship earns
+  # otherwise. Named `type: measurement` is the task's one right move -- IF that is what it is.
+  reading:
+    label: Reading
+    properties:
+      team: instrumentation
+
+  # Deliberately untyped, and distinct from `reading` BY CONSTRUCTION: two shadows are never
+  # equal. That these two are "obviously the same thing" is exactly the semantic fact the model
+  # does not yet state.
+  sample:
+    label: Sample
+    properties:
+      team: control
+
+  controller:
+    type: actuator
+    label: Controller
+    properties:
+      team: control
+
+models:
+
+  # One model per TEAM, plus the integrator's boundary model -- which is what "modeled
+  # independently" means structurally. Each team fragment is internally fine; `reading` and
+  # `sample` each appear in a team model AND in the boundary model (shared identity, EX-I2), and
+  # the delivery question composes all three.
+  instrumentation:
+    type: graph
+    label: Instrumentation
+    purpose:
+      question: What does the sensor emit, and as what?
+      represents:
+        - sensor identity
+        - the emitted output
+      omits:
+        - the control cycle
+        - sampling timing
+        - transport beyond the emission
+    entities: [sensor, reading]
+    relations:
+      - id: sensor-produces-reading
+        from: sensor
+        to: reading
+        type: produces
+    notes:
+      - id: instrumentation-rationale
+        kind: rationale
+        text: >
+          The instrumentation team's purposeful reduction: emission only. `produces` deliberately
+          declares no endpoint kinds -- within one team's fragment the distinction buys nothing,
+          and omitting it is honest reduction, not sloppiness.
+
+  control:
+    type: graph
+    label: Control
+    purpose:
+      question: What does the controller consume, and from where?
+      represents:
+        - controller identity
+        - the consumed input
+      omits:
+        - the sampling cycle
+        - actuation effects
+        - transport before consumption
+    entities: [sample, controller]
+    relations:
+      - id: sample-consumed-by-controller
+        from: sample
+        to: controller
+        type: consumed_by
+    notes:
+      - id: control-rationale
+        kind: rationale
+        text: >
+          The control team's half, written without sight of the instrumentation model. Nothing
+          relates its `sample` to the other team's `reading`; the two names live in one id
+          namespace but nothing yet asserts they are the same KIND of thing.
+
+  signal-path:
+    type: graph
+    label: Signal Path
+    purpose:
+      question: Is the sensor's output actually delivered as the controller's input?
+      represents:
+        - the typed boundary contract between the teams
+        - cross-team delivery
+      omits:
+        - calibration coefficients
+        - buffering at the boundary
+    entities: [reading, sample]
+    relations: []
+    notes:
+      - id: signal-path-rationale
+        kind: rationale
+        text: >
+          The integrator's model, and deliberately EMPTY of edges at ship: the `conveys` contract
+          is declared, both candidate endpoints are members, and the connecting edge cannot be
+          added while their kinds are unestablished (V48 -- a shadow type is a member of nothing,
+          and the edge cannot establish it). The repair that works authors `type: measurement` on
+          both BECAUSE IT IS TRUE, then draws the edge the contract now licenses.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model two independently built halves of a calibration loop so that connecting them
+        requires establishing, not assuming, that the instrumentation team's reading and the
+        control team's sample are the same kind of thing.
+      rationale: MAGE-provided example, calibration-loop, version 1.
+
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture is what CI compares against the live engine.
+queries:
+
+  reading-is-delivered-as-sample:
+    name: The instrumentation team's reading is delivered as the control team's sample
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: conveys
+      from: reading
+      to: sample
+
+  sensor-produces-the-reading:
+    name: The sensor emits the reading
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: produces
+      from: sensor
+      to: reading
+
+  sample-feeds-the-controller:
+    name: The sample is consumed by the controller
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: consumed_by
+      from: sample
+      to: controller
+
+  # The V7 refusal member: `produces` forbids path composition, so a reachability question over it
+  # is UNLICENSED -- a successful answer reporting what the instrumentation team's model does not
+  # authorize, not a denial that a path exists.
+  sensor-reaches-controller-through-produces:
+    name: The controller is reachable from the sensor through emissions alone
+    kind: graph
+    quantifier: exists
+    graph:
+      form: reachability
+      relation: produces
+      from: sensor
+      to: controller
+
+requirements:
+
+  reading-reaches-the-controller:
+    statement: >
+      Every sensor reading is delivered across the team boundary as the control team's sample.
+    expressed_as: reading-is-delivered-as-sample
+    satisfied_when: holds

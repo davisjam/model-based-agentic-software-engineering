@@ -1,0 +1,129 @@
+{
+  "hits": {
+    "sanctionedRoute": [
+      "describe.authoring.sanctionedRoute (KEY)"
+    ],
+    "resolveExhausted": [
+      "describe.operations.5.calls.2.at",
+      "describe.outsideSemanticInterface.0.reason"
+    ],
+    "refusalDetail": [
+      "describe.schemas.query.$defs.result.properties.refusal.description",
+      "describe.schemas.query.$defs.result.properties.refusalDetail (KEY)",
+      "describe.schemas.query.$defs.result.properties.refusalDetail.$ref",
+      "describe.schemas.query.$defs.refusalReason.description",
+      "describe.schemas.query.$defs.refusalDetail (KEY)"
+    ]
+  },
+  "authoring": {
+    "sanctionedRoute": "window.mage.export() -> edit the YAML -> window.mage.load(text). Whole-document authoring is the SUPPORTED route for every construct the op vocabulary does not reach; load() runs the full validation a transaction runs, so nothing about the route is second-class.",
+    "constructs": [
+      {
+        "construct": "mage",
+        "coverage": "document",
+        "note": "the format version header"
+      },
+      {
+        "construct": "system",
+        "coverage": "document",
+        "note": "the system id and name header"
+      },
+      {
+        "construct": "domains",
+        "coverage": "document",
+        "note": "ordered-enum vocabulary declarations"
+      },
+      {
+        "construct": "entity-types",
+        "coverage": "document",
+        "note": "the entity-type vocabulary itself; set-entity-type TYPES an entity, it does not declare a vocabulary entry"
+      },
+      {
+        "construct": "relation-types",
+        "coverage": "document",
+        "note": "relation-type declarations, including composition and absence clauses"
+      },
+      {
+        "construct": "entities",
+        "coverage": "ops",
+        "ops": [
+          "add-entity",
+          "delete-entity",
+          "set-label",
+          "set-property",
+          "set-entity-type",
+          "add-note"
+        ]
+      },
+      {
+        "construct": "events",
+        "coverage": "document",
+        "note": "synchronized-event declarations and their participant lists"
+      },
+      {
+        "construct": "machines",
+        "coverage": "partial",
+        "ops": [
+          "add-state",
+          "delete-state",
+          "add-transition",
+          "delete-transition",
+          "set-purpose",
+          "add-note"
+        ],
+        "note": "states and transitions of an EXISTING machine are op-editable; creating or deleting a machine, declaring instances, variables or derived values is whole-document only"
+      },
+      {
+        "construct": "models",
+        "coverage": "ops",
+        "ops": [
+          "add-model",
+          "delete-model",
+          "add-model-entity",
+          "add-relation",
+          "delete-relation",
+          "set-purpose",
+          "add-note"
+        ]
+      },
+      {
+        "construct": "quantities",
+        "coverage": "partial",
+        "ops": [
+          "set-quantity-value"
+        ],
+        "note": "set-quantity-value edits a declared POINT value; adding or deleting a quantity, or declaring a range or expression, is whole-document only"
+      },
+      {
+        "construct": "accounting",
+        "coverage": "document",
+        "note": "charge-basis declarations the quantity layer reads"
+      },
+      {
+        "construct": "queries",
+        "coverage": "ops",
+        "ops": [
+          "save-query",
+          "delete-query"
+        ]
+      },
+      {
+        "construct": "requirements",
+        "coverage": "document",
+        "note": "obligations (statement / expressed_as / satisfied_when)"
+      }
+    ],
+    "gaps": [
+      "requirement verification statuses (satisfied / violated / inconclusive / error) are machine-readable via window.mage.requirements() and no human surface renders them yet; the property list's requirement rows show a saved query's expectation standing, which is a different construct",
+      "saved-query DEFINITIONS have no read-path of their own: savedQueries() returns results, and a definition is read from the whole document via window.mage.export()"
+    ]
+  },
+  "notSupported": [
+    "fairness and liveness: 'can it reach X' is in scope, 'will it eventually reach X' is not",
+    "past-time temporal operators: such a query is compiled to a safety property over a disclosed history variable",
+    "instance binding: multiplicity gives occupancy, never which instance holds which resource",
+    "participant selection: an event synchronizing with a multiply-instantiated machine is refused",
+    "real-valued or unbounded variables: every variable has a finite enumerated domain",
+    "SMT and optimization"
+  ]
+}

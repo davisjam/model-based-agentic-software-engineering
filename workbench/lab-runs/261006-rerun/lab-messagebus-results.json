@@ -1,0 +1,172 @@
+{
+  "baseHash": "fnv1a64:29d555dbdf8db28c",
+  "requirementsBefore": {
+    "no-restricted-data-to-an-impermitted-subscriber": {
+      "id": "no-restricted-data-to-an-impermitted-subscriber",
+      "statement": "No event type carrying data above a service's permitted sensitivity may be delivered to that service.",
+      "expressedAs": "restricted-data-reaches-impermitted-subscriber",
+      "satisfiedWhen": "refuted",
+      "verification": {
+        "status": "violated",
+        "requirement": "no-restricted-data-to-an-impermitted-subscriber",
+        "verdict": "holds"
+      },
+      "meaning": "VIOLATED — the breach is exhibited, and a witness is not softened by coverage",
+      "systemHash": "fnv1a64:29d555dbdf8db28c"
+    }
+  },
+  "breachId": "restricted-data-reaches-impermitted-subscriber",
+  "outcomesBefore": {
+    "checkout-calls-fulfillment-directly": "refuted",
+    "checkout-event-reaches-fulfillment": "holds",
+    "did-analytics-receive-it-at-2-04": "unlicensed",
+    "restricted-data-reaches-impermitted-subscriber": "holds",
+    "subscribes-chain-checkout-to-fulfillment": "unlicensed",
+    "who-publishes-order-created": "holds",
+    "who-subscribes-to-order-created": "holds"
+  },
+  "breachBefore": {
+    "outcome": "holds",
+    "coverage": {
+      "kind": "exhaustive",
+      "statesExplored": 6,
+      "reason": null
+    },
+    "evidence": {
+      "shape": "path",
+      "role": "witness",
+      "steps": [],
+      "cycle": null,
+      "nodes": [
+        "analytics",
+        "order-created"
+      ]
+    },
+    "refusal": null,
+    "refusalDetail": null,
+    "interpretedAs": "Is there a direct 'subscribes' relation from any entity to any entity, where the source's 'permits' is below the target's 'carries'?",
+    "compilation": [],
+    "magnitude": null,
+    "systemHash": "fnv1a64:29d555dbdf8db28c"
+  },
+  "interpretedAsBefore": "Is there a direct 'subscribes' relation from any entity to any entity, where the source's 'permits' is below the target's 'carries'?",
+  "refusalPairs": {
+    "did-analytics-receive-it-at-2-04": {
+      "outcome": "unlicensed",
+      "refusal": "relation type 'observed_delivery' is not declared by this system, and the absence is a declared modelling decision: models 'data-policy', 'event-flow', 'event-propagation' deliberately omit 'observed runtime delivery'. There is no misspelling to hunt for — the model represents what its purpose says it represents, and this is outside it. Answering would mean adding the distinction to a model that chose to leave it out.",
+      "refusalDetail": {
+        "reason": "missing-distinction",
+        "missing": [
+          "observed runtime delivery"
+        ],
+        "models": [
+          "data-policy",
+          "event-flow",
+          "event-propagation"
+        ]
+      }
+    },
+    "subscribes-chain-checkout-to-fulfillment": {
+      "outcome": "unlicensed",
+      "refusal": "'subscribes' is declared as a direct relation without path-composition semantics. A multi-hop 'subscribes' query is not licensed by this model.",
+      "refusalDetail": {
+        "reason": "composition-forbidden",
+        "missing": [
+          "path-composition semantics for relation type 'subscribes'"
+        ],
+        "models": [
+          "event-flow"
+        ]
+      }
+    }
+  },
+  "naive": {
+    "ok": true,
+    "v": {
+      "ok": false,
+      "findings": [
+        {
+          "rule": "V46",
+          "where": "entities.order-created.properties.carries",
+          "message": "'order-created' declares carries: 'internal' while the max of 'classification' over its 'carries_field' edges is 'restricted' (from 'shipping-address'). The value is authored because v0.1 aggregates nothing over a relation, so BOTH surfaces are yours: move the declaration, or change the field that decides it. One transaction can do both."
+        }
+      ],
+      "hash": "fnv1a64:29d555dbdf8db28c"
+    }
+  },
+  "modelIds": [
+    "data-policy",
+    "event-flow",
+    "event-propagation"
+  ],
+  "directionExperiment": {
+    "out": {
+      "interpretedAs": "Which entities point at order-created through 'carries_field'?",
+      "outcome": "refuted",
+      "hasShipping": false
+    },
+    "outgoing": {
+      "interpretedAs": "Which entities does order-created point at through 'carries_field'?",
+      "outcome": "holds",
+      "hasShipping": true
+    },
+    "from": {
+      "interpretedAs": "Which entities point at order-created through 'carries_field'?",
+      "outcome": "refuted",
+      "hasShipping": false
+    },
+    "forward": {
+      "interpretedAs": "Which entities point at order-created through 'carries_field'?",
+      "outcome": "refuted",
+      "hasShipping": false
+    }
+  },
+  "sound": {
+    "ok": true,
+    "v": {
+      "ok": true,
+      "findings": [],
+      "hash": "fnv1a64:46a2bdbbc1531aaf"
+    }
+  },
+  "afterHash": "fnv1a64:46a2bdbbc1531aaf",
+  "outcomesAfter": {
+    "checkout-calls-fulfillment-directly": "refuted",
+    "checkout-event-reaches-fulfillment": "holds",
+    "did-analytics-receive-it-at-2-04": "unlicensed",
+    "restricted-data-reaches-impermitted-subscriber": "refuted",
+    "subscribes-chain-checkout-to-fulfillment": "unlicensed",
+    "who-publishes-order-created": "holds",
+    "who-subscribes-to-order-created": "holds"
+  },
+  "breachAfter": {
+    "outcome": "refuted",
+    "coverage": {
+      "kind": "exhaustive",
+      "statesExplored": 6,
+      "reason": null
+    },
+    "evidence": null,
+    "refusal": null,
+    "refusalDetail": null,
+    "interpretedAs": "Is there a direct 'subscribes' relation from any entity to any entity, where the source's 'permits' is below the target's 'carries'?",
+    "compilation": [],
+    "magnitude": null,
+    "systemHash": "fnv1a64:46a2bdbbc1531aaf"
+  },
+  "requirementsAfter": {
+    "no-restricted-data-to-an-impermitted-subscriber": {
+      "id": "no-restricted-data-to-an-impermitted-subscriber",
+      "statement": "No event type carrying data above a service's permitted sensitivity may be delivered to that service.",
+      "expressedAs": "restricted-data-reaches-impermitted-subscriber",
+      "satisfiedWhen": "refuted",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "no-restricted-data-to-an-impermitted-subscriber",
+        "verdict": "refuted"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:46a2bdbbc1531aaf"
+    }
+  }
+}

@@ -1,0 +1,583 @@
+# Message Bus -- MAGE default example 1 of 3.
+#
+# Central lesson: relations have semantics, and two purposeful models joined through shared identity
+# answer a question neither answers alone.
+#
+# Graph-centric on purpose. No state machines live here; Worker Queue teaches those.
+#
+# Three purposeful models over ONE identity namespace:
+#
+#   event-flow         the permission facts. publishes / subscribes / calls, none of which compose.
+#   event-propagation  the SAME facts with the publish-vs-subscribe distinction deliberately
+#                      dropped, which is what buys it path composition.
+#   data-policy        what each event carries and what each service may process.
+#
+# The two event models are the example's sharpest point. event-flow refuses a multi-hop question
+# because a chain of `subscribes` edges asserts nothing; event-propagation answers the same shape of
+# question because it forgot the distinction that made composition meaningless. A model earns the
+# right to compose by giving something up.
+#
+# ## A closed divergence, recorded because the note it replaces was read for a while
+#
+# Section 8 requires a rationale note per model and provenance identifying the example as
+# MAGE-provided, and the v0.1 IR supports both -- `Note`, `Provenance` and `Annotated` in
+# src/ir/types.ts, read by canonicalize(). `mage-model.schema.json` carried neither key, so
+# `python3 validate.py` reported SCHEMA findings for this file while the TypeScript loader validated
+# it clean. The schema carries `notes` and a merged `provenance` now, and both tools report this
+# file clean.
+
+mage: 1
+
+system:
+  id: message-bus
+  name: Order Message Bus
+  description: >
+    An event-driven order system. Permitted event flow, derived propagation, and data policy, over
+    one namespace of services, event types and payload fields.
+
+# ---------------------------------------------------------------------------
+# The ordered domain that makes the cross-model safety join well typed (V20).
+# Without it, `permits < carries` compares two unrelated vocabularies.
+# ---------------------------------------------------------------------------
+domains:
+  sensitivity:
+    type: ordered-enum
+    values: [public, internal, restricted]
+    description: Ascending sensitivity. A service permitting only internal data may not receive restricted data.
+
+relation-types:
+
+  publishes:
+    description: The design permits the service to emit this event type.
+    absence: >
+      No permission to publish is represented. This says nothing about whether any message of that
+      type was ever actually emitted, by this service or any other.
+    composition:
+      # FORBIDDEN, and this is the heart of the example. A chain of `publishes` edges asserts
+      # nothing: the target of a publish is an event type, and an event type publishes nothing. A
+      # multi-hop `publishes` query therefore comes back unlicensed (V7) rather than false --
+      # `refuted` would claim no such chain exists, which is a claim this model never made.
+      path: forbidden
+    # Section 3.3: only a service publishes, and only an event type is published. One line each,
+    # and the D7 edge -- `shipping-address --publishes--> customer-id`, which loaded clean for as
+    # long as nothing stated what may sit at these ends -- is a load-time V48 finding.
+    domain: service
+    range: event-type
+    properties:
+      symmetric: false
+      acyclic: false
+
+  subscribes:
+    description: The design permits the service to receive this event type.
+    absence: >
+      No subscription is represented. It does NOT follow that the service never sees the data: it may
+      reach the same payload through another event it does subscribe to, or through a direct call.
+    composition:
+      path: forbidden
+    domain: service
+    range: event-type
+    properties:
+      symmetric: false
+
+  calls:
+    description: The design permits the source service to invoke the target service synchronously.
+    absence: >
+      No synchronous invocation is permitted. The absence of a `calls` edge does NOT mean the two
+      services are decoupled -- they may be joined through a published event, which is why an
+      event-driven architecture does not reduce to a call graph.
+    composition:
+      # Reachability through permitted calls is a meaningful question, so multi-hop is licensed.
+      path: allowed
+    # One edge in the whole corpus, and the declaration still covers it completely -- the
+    # single-edge case is where use-based inference derives nothing and a declared line is the
+    # entire difference between checked and unconstrained (section 3.3).
+    domain: service
+    range: service
+    properties:
+      symmetric: false
+      acyclic: false
+
+  may_propagate_to:
+    description: >
+      Data may move one step along this edge: from a service to an event type it may publish, or from
+      an event type to a service that may receive it.
+    absence: No propagation step is represented in that direction.
+    composition:
+      # ALLOWED. This relation exists to be composed, and it can be because it has already thrown
+      # away the distinction that made composing publishes-then-subscribes meaningless.
+      path: allowed
+    # The union is deliberate and WEAKER than the truth: every edge of this type alternates --
+    # service to event type, event type to service -- and a domain/range vocabulary cannot say
+    # "alternates", so the union admits a service-to-service hop no shipped edge makes. Declared
+    # anyway, because the union still refuses a field at either end, and the honest limit belongs
+    # in the example rather than papered over (section 3.3: what a union cannot express is an
+    # alternation constraint; a model that means one writes the union and says so in prose).
+    domain: [service, event-type]
+    range: [service, event-type]
+    properties:
+      symmetric: false
+
+  carries_field:
+    description: Messages of this event type carry this payload field.
+    absence: The event type does not carry that field.
+    composition:
+      # A field of a field is not a thing; nothing composes here.
+      path: forbidden
+    # The OBLIGATION between the two surfaces that hold one fact (section 3.2). An event type's
+    # `carries` is authored, because v0.1 aggregates nothing over a relation -- see the
+    # `order-created-aggregate` note below, which is the honest statement of why. This declares what
+    # the authored value must EQUAL, so the engine can reject a disagreement without computing the
+    # value and without the model pretending it aggregates.
+    #
+    # What it buys a reader: editing a field's `classification`, or deleting one of these edges, used
+    # to move nothing a student could see. The most natural remediation -- fix the data policy at the
+    # FIELD level -- was a silent no-op. It now contradicts the declaration, at load time (V46) and in
+    # the sentence the finding carries.
+    aggregates:
+      declared: carries
+      over: classification
+      using: max
+    # Section 3.3's intensional half beside 3.2's extensional one: `aggregates` obliges the
+    # PROPERTIES along a well-kinded edge, domain/range refuse a mis-kinded edge outright. The D7
+    # injection violates both; V48 owns it and V45/V46 stay quiet (one defect, one finding).
+    domain: event-type
+    range: field
+    properties:
+      symmetric: false
+      acyclic: true
+
+# ---------------------------------------------------------------------------
+# THE identity namespace, shared by all three models. Ids are immutable (V2).
+#
+# `permits` on a service and `carries` on an event type are what the data-policy model contributes
+# to the cross-model join; `subscribes` is what event-flow contributes. Properties are system-level,
+# so a graph model selects entities and relations -- never a subset of an entity's properties. That
+# is why no model here declares a property name in its `omits`: it would be a lie V24 would catch.
+# ---------------------------------------------------------------------------
+entities:
+
+  checkout:
+    type: service
+    label: Checkout
+    properties:
+      permits: { value: restricted, domain: sensitivity }
+
+  billing:
+    type: service
+    label: Billing
+    properties:
+      permits: { value: restricted, domain: sensitivity }
+
+  inventory:
+    type: service
+    label: Inventory
+    properties:
+      permits: { value: restricted, domain: sensitivity }
+
+  analytics:
+    type: service
+    label: Analytics
+    properties:
+      # The one visible violation (section 4.5). Analytics subscribes to OrderCreated, whose
+      # `carries` is `restricted`. The safety query returns a real counterexample rather than a
+      # vacuous holds.
+      #
+      # Be exact about WHICH value the breach reads. The query compares `source.permits` against
+      # `target.carries`, so the breach rides on the event type's authored aggregate and never on a
+      # field. The shipping-address field is why that aggregate SAYS `restricted` -- an authoring
+      # fact, now held to the value by the aggregation declared on `carries_field` -- and it is not
+      # a term the query evaluates.
+      permits: { value: internal, domain: sensitivity }
+
+  fulfillment:
+    type: service
+    label: Fulfillment
+    properties:
+      permits: { value: restricted, domain: sensitivity }
+
+  order-created:
+    type: event-type
+    label: OrderCreated
+    properties:
+      # DECLARED, not derived. v0.1 aggregates nothing over `carries_field`, so the highest
+      # sensitivity an event type carries is stated here and the field breakdown is represented
+      # separately. The aggregation declared on `carries_field` pins the two in sync -- the rung
+      # available when neither unification nor codegen is, and now a LOAD-TIME one rather than a
+      # test a reader never runs.
+      carries: { value: restricted, domain: sensitivity }
+    notes:
+      - id: order-created-aggregate
+        kind: rationale
+        text: >
+          `carries` is the maximum sensitivity over this event type's fields. It is written down
+          rather than computed because MAGE v0.1 has no aggregation over a relation, and the
+          cross-model safety query needs the value on the endpoint of a `subscribes` edge. The
+          aggregation declared on `carries_field` asserts it equals the maximum over those edges, so
+          the two surfaces cannot drift apart silently -- and a reader who repairs the field layer
+          sees the contradiction rather than nothing.
+
+  payment-completed:
+    type: event-type
+    label: PaymentCompleted
+    properties:
+      carries: { value: internal, domain: sensitivity }
+
+  customer-id:
+    type: field
+    label: customer-id
+    properties:
+      classification: { value: internal, domain: sensitivity }
+
+  shipping-address:
+    type: field
+    label: shipping-address
+    properties:
+      classification: { value: restricted, domain: sensitivity }
+
+  product-id:
+    type: field
+    label: product-id
+    properties:
+      classification: { value: public, domain: sensitivity }
+
+  payment-status:
+    type: field
+    label: payment-status
+    properties:
+      classification: { value: internal, domain: sensitivity }
+
+models:
+
+  event-flow:
+    type: graph
+    label: Event Flow
+    purpose:
+      # "publish or subscribe", in the model's own vocabulary -- the relation is `subscribes`, and
+      # the author's copyedit (261005) is explicit: don't translate the model vocabulary away.
+      question: Which services may publish or subscribe to each event type, and which may call one another directly?
+      represents:
+        - service identity
+        - event-type identity
+        - permitted publication
+        - permitted subscription
+        - permitted synchronous invocation
+      # Checked against this model's real vocabulary, not merely asserted (V24).
+      omits:
+        - observed runtime delivery
+        - delivery latency
+        - message ordering guarantees
+        - retry and dead-lettering of undelivered messages
+        - broker partitioning and consumer groups
+    entities: [checkout, billing, inventory, analytics, fulfillment, order-created, payment-completed]
+    notes:
+      - id: event-flow-rationale
+        kind: rationale
+        text: >
+          This model represents PERMITTED event flow, not observed runtime delivery. It therefore
+          supports architectural questions about which consumers may receive which event types, and
+          refuses questions about whether a particular message arrived. The three relation types are
+          kept distinct because they assert different things: `publishes` and `subscribes` name
+          halves of a decoupled hop, and `calls` names a synchronous dependency. Collapsing them
+          into one arrow would turn an event-driven architecture into a call graph and quietly
+          license inferences neither relation supports.
+      - id: event-flow-composition
+        kind: comment
+        text: >
+          Both event relations declare composition.path forbidden. A two-hop `subscribes` question is
+          answered `unlicensed`, which is a successful result reporting what the model does not
+          authorize. For the composed question, ask event-propagation.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Build the smallest graph model that distinguishes publishes, subscribes and calls over an
+        order-processing bus, and that refuses multi-hop questions over the event relations.
+      rationale: MAGE-provided example, message-bus, version 1.
+    relations:
+      - id: checkout-publishes-order-created
+        from: checkout
+        to: order-created
+        type: publishes
+      - id: billing-publishes-payment-completed
+        from: billing
+        to: payment-completed
+        type: publishes
+      - id: billing-subscribes-order-created
+        from: billing
+        to: order-created
+        type: subscribes
+      - id: inventory-subscribes-order-created
+        from: inventory
+        to: order-created
+        type: subscribes
+      - id: analytics-subscribes-order-created
+        from: analytics
+        to: order-created
+        type: subscribes
+        notes:
+          - id: analytics-subscription-is-the-violation
+            kind: comment
+            text: >
+              The deliberate violation. Removing this edge is the suggested modification in section
+              4.6, and the safety counterexample disappears with it.
+      - id: fulfillment-subscribes-payment-completed
+        from: fulfillment
+        to: payment-completed
+        type: subscribes
+      - id: fulfillment-calls-inventory
+        from: fulfillment
+        to: inventory
+        type: calls
+
+  event-propagation:
+    type: graph
+    label: Event Propagation
+    purpose:
+      # The contrast with Event Flow, stated as the author's copyedit (261005) words it: immediate
+      # relationships there, transitive consequence here.
+      question: Where can an event originating at one service eventually reach?
+      represents:
+        - service identity
+        - event-type identity
+        - one-step propagation of data between a service and an event type
+      # The first entry is the purposeful reduction, and it is what licenses composition here.
+      omits:
+        - the direction of a hop as publication or as subscription
+        - observed runtime delivery
+        - delivery latency
+        - message ordering guarantees
+    entities: [checkout, billing, inventory, analytics, fulfillment, order-created, payment-completed]
+    notes:
+      - id: event-propagation-rationale
+        kind: rationale
+        text: >
+          This model answers the reachability question event-flow refuses, and it earns the right by
+          giving something up. Dropping the publication-versus-subscription distinction leaves a
+          single relation whose composition means something: a path is a sequence of permitted hops
+          along which data may travel. The cost is that the model can no longer say who published
+          what, which is why event-flow still exists. Two models, one fact set, different preserved
+          distinctions.
+      - id: event-propagation-derivation
+        kind: assumption
+        text: >
+          Every edge here is the image of an event-flow edge: a `publishes` edge from service to
+          event type, or a `subscribes` edge read backwards from event type to service. Saying so in a
+          note does not make it true -- annotation is non-semantic by invariant A1 -- so
+          test/examples.test.ts derives the expected edge set from event-flow and compares.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Derive the composable propagation relation from the publish and subscribe permissions, so
+        the multi-hop question has a model that licenses it.
+      rationale: MAGE-provided example, message-bus, version 1.
+    relations:
+      - id: propagate-checkout-order-created
+        from: checkout
+        to: order-created
+        type: may_propagate_to
+      - id: propagate-billing-payment-completed
+        from: billing
+        to: payment-completed
+        type: may_propagate_to
+      - id: propagate-order-created-billing
+        from: order-created
+        to: billing
+        type: may_propagate_to
+      - id: propagate-order-created-inventory
+        from: order-created
+        to: inventory
+        type: may_propagate_to
+      - id: propagate-order-created-analytics
+        from: order-created
+        to: analytics
+        type: may_propagate_to
+      - id: propagate-payment-completed-fulfillment
+        from: payment-completed
+        to: fulfillment
+        type: may_propagate_to
+
+  data-policy:
+    type: graph
+    label: Data Policy
+    purpose:
+      question: What data does each event type carry, and what sensitivity may each service process?
+      represents:
+        - event-type identity
+        - payload-field identity
+        - sensitivity of each field
+        - the highest sensitivity each event type carries
+        - the highest sensitivity each service may process
+      omits:
+        - observed runtime delivery
+        - which service wrote a given field
+        - encryption in transit
+        - field-level redaction and masking
+        - data retention periods
+    entities:
+      - checkout
+      - billing
+      - inventory
+      - analytics
+      - fulfillment
+      - order-created
+      - payment-completed
+      - customer-id
+      - shipping-address
+      - product-id
+      - payment-status
+    notes:
+      - id: data-policy-rationale
+        kind: rationale
+        text: >
+          This model represents a policy, not an observation: what a service is PERMITTED to process
+          and what an event type is DECLARED to carry. It carries no event-flow edges at all, so it
+          cannot say which service receives which event. That is the division of labour the
+          cross-model question exploits -- event-flow supplies the edge, data-policy supplies the
+          sensitivities on its endpoints, and the join is sound because both models name the same
+          entities.
+      - id: data-policy-vocabulary
+        kind: comment
+        text: >
+          The classification vocabulary stays deliberately small: public, internal, restricted,
+          declared as an ordered-enum so that `permits < carries` typechecks (V20). A partial order
+          over labels is out of scope for v0.1.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model what each event type carries and what each service may process, with a three-level
+        ordered sensitivity vocabulary and no event-flow edges.
+      rationale: MAGE-provided example, message-bus, version 1.
+    relations:
+      - id: order-created-carries-customer-id
+        from: order-created
+        to: customer-id
+        type: carries_field
+      - id: order-created-carries-shipping-address
+        from: order-created
+        to: shipping-address
+        type: carries_field
+      - id: order-created-carries-product-id
+        from: order-created
+        to: product-id
+        type: carries_field
+      - id: payment-completed-carries-customer-id
+        from: payment-completed
+        to: customer-id
+        type: carries_field
+      - id: payment-completed-carries-payment-status
+        from: payment-completed
+        to: payment-status
+        type: carries_field
+
+# ---------------------------------------------------------------------------
+# Suggested questions are EXECUTABLE artifacts, not instructional strings. Each is a saved query
+# re-run whenever the model changes; the natural-language label is the `name`.
+#
+# Expected outcomes live in expected-results.yaml, not in an `expect:` field here. One source of
+# truth: the fixture file also carries the models each question needs and the evidence it must
+# produce, and a second copy in this file would be free to drift from it.
+# ---------------------------------------------------------------------------
+queries:
+
+  who-publishes-order-created:
+    name: Checkout publishes OrderCreated
+    kind: graph
+    quantifier: exists
+    graph:
+      form: predecessors
+      relation: publishes
+      to: order-created
+
+  who-subscribes-to-order-created:
+    name: Analytics, Billing and Inventory subscribe to OrderCreated
+    kind: graph
+    quantifier: exists
+    graph:
+      form: predecessors
+      relation: subscribes
+      to: order-created
+
+  # The V7 refusal case, and the reason both event relations declare forbidden composition. A
+  # two-hop `subscribes` question is answered `unlicensed` with a refusal sentence -- not `refuted`,
+  # which would assert that no such chain exists.
+  subscribes-chain-checkout-to-fulfillment:
+    name: Fulfillment is reachable from Checkout through a chain of subscriptions
+    kind: graph
+    quantifier: exists
+    graph:
+      form: reachability
+      relation: subscribes
+      from: checkout
+      to: fulfillment
+
+  # The same shape of question, asked of the model that licenses it. The witness is a four-hop path,
+  # which is how you can tell the answer is not the degenerate src == dst one.
+  checkout-event-reaches-fulfillment:
+    name: Events originating at Checkout eventually reach Fulfillment
+    kind: graph
+    quantifier: exists
+    graph:
+      form: path
+      relation: may_propagate_to
+      from: checkout
+      to: fulfillment
+
+  # THE cross-model question. Neither model answers it: event-flow has the `subscribes` edge and no
+  # sensitivities; data-policy has the sensitivities and no edge. Shared identity permits the join.
+  #
+  # `holds` here IS the safety violation: the question is existential, so a witness is a breach.
+  restricted-data-reaches-impermitted-subscriber:
+    name: An event carrying restricted data reaches a service not permitted to process it
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: subscribes
+      where:
+        compare:
+          - left: source.permits
+            op: lt
+            right: target.carries
+
+  # The REFUTED member of the presented spread (261005 case ruling). The only `calls` edge runs
+  # fulfillment -> inventory, so this direct question gets an exhaustive no -- which is the lesson:
+  # in an event-driven design the two services are joined through published events, not calls, and
+  # the relation type's absence clause says exactly that.
+  checkout-calls-fulfillment-directly:
+    name: Checkout calls Fulfillment directly
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: calls
+      from: checkout
+      to: fulfillment
+
+  # Purposeful omission, made executable. This model represents permission, never observation, so
+  # there is no vocabulary in which to ask what arrived and when. The engine refuses and names the
+  # cause rather than pretending the distinction is there.
+  did-analytics-receive-it-at-2-04:
+    name: Analytics received OrderCreated at 2:04 PM
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: observed_delivery
+      from: order-created
+      to: analytics
+
+# The obligation the safety join exists to judge, authored in the model rather than recorded beside
+# it. `expressed_as` names the POSITIVE breach query above and the prohibition lives in
+# `satisfied_when: refuted`: the query states the breach, the requirement forbids it, and nothing
+# negates the query to make the requirement read positively.
+#
+# No status here, deliberately. This requirement is VIOLATED on the system as shipped, and that
+# verdict is derived on every read from the query's own answer — the one the modification repairs.
+# Recording it would freeze an answer the construct exists to recompute.
+requirements:
+
+  no-restricted-data-to-an-impermitted-subscriber:
+    statement: >
+      No event type carrying data above a service's permitted sensitivity may be delivered to that
+      service.
+    expressed_as: restricted-data-reaches-impermitted-subscriber
+    satisfied_when: refuted

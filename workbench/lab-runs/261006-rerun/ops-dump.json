@@ -1,0 +1,413 @@
+{
+  "operations": [
+    {
+      "name": "import",
+      "calls": [
+        {
+          "at": "window.mage.load",
+          "params": [
+            "text"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "load-example",
+      "calls": [
+        {
+          "at": "window.mage.loadExample",
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "at": "window.mage.examples",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "export",
+      "calls": [
+        {
+          "at": "window.mage.export",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "inspect",
+      "calls": [
+        {
+          "at": "window.mage.inspect",
+          "params": []
+        },
+        {
+          "at": "window.mage.model.elements",
+          "params": [
+            "selector?"
+          ]
+        },
+        {
+          "at": "window.mage.model.count",
+          "params": [
+            "selector?"
+          ]
+        },
+        {
+          "at": "window.mage.model.explainType",
+          "params": [
+            "entity"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "validate",
+      "calls": [
+        {
+          "at": "window.mage.validate",
+          "params": []
+        },
+        {
+          "at": "window.mage.model.violations",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "query",
+      "calls": [
+        {
+          "at": "window.mage.query",
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "at": "window.mage.ask",
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "at": "window.mage.analysis.resolveExhausted",
+          "params": [
+            "escalation",
+            "budget?"
+          ]
+        },
+        {
+          "at": "window.mage.model.related",
+          "params": [
+            "from",
+            "relation",
+            "direction"
+          ]
+        },
+        {
+          "at": "window.mage.model.reachable",
+          "params": [
+            "from",
+            "relation",
+            "to?"
+          ]
+        },
+        {
+          "at": "window.mage.model.path",
+          "params": [
+            "from",
+            "to",
+            "relation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "check-query",
+      "calls": [
+        {
+          "at": "window.mage.check",
+          "params": [
+            "query"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "analyze",
+      "calls": [
+        {
+          "at": "window.mage.savedQueries",
+          "params": []
+        },
+        {
+          "at": "window.mage.properties",
+          "params": []
+        },
+        {
+          "at": "window.mage.requirements",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "explore-space",
+      "calls": [
+        {
+          "at": "window.mage.analysis.explore",
+          "params": [
+            "limit?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "inspect-evidence",
+      "calls": [
+        {
+          "at": "window.mage.evidence",
+          "params": [
+            "queryId"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "undo",
+      "calls": [
+        {
+          "at": "window.mage.undo",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "redo",
+      "calls": [
+        {
+          "at": "window.mage.redo",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "create-element",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "delete-element",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "create-relation",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "delete-relation",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "edit-property",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "create-model",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "delete-model",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "add-note",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "save-property",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "retract-property",
+      "calls": [
+        {
+          "at": "window.mage.transact",
+          "params": [
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "inspect-provenance",
+      "calls": [
+        {
+          "at": "window.mage.provenance",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "create-hypothesis",
+      "calls": [
+        {
+          "at": "window.mage.hypothesis.open",
+          "params": [
+            "label",
+            "transaction"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "commit-hypothesis",
+      "calls": [
+        {
+          "at": "window.mage.hypothesis.apply",
+          "params": []
+        }
+      ]
+    },
+    {
+      "name": "discard-hypothesis",
+      "calls": [
+        {
+          "at": "window.mage.hypothesis.discard",
+          "params": []
+        }
+      ]
+    }
+  ],
+  "loadExampleCtx": {
+    "systemId": "calibration-loop",
+    "hash": "fnv1a64:2f95e9f333b179c1",
+    "hypothesis": null,
+    "findings": [],
+    "counts": {
+      "entities": 4,
+      "models": 3,
+      "machines": 0,
+      "instances": 0,
+      "relations": 2,
+      "events": 0,
+      "quantities": 0,
+      "quantitativeModels": 0,
+      "savedQueries": 4
+    },
+    "canUndo": false,
+    "canRedo": false
+  },
+  "savedQueriesShape": {
+    "n": 4,
+    "keys": [
+      "reading-is-delivered-as-sample",
+      "sample-feeds-the-controller",
+      "sensor-produces-the-reading",
+      "sensor-reaches-controller-through-produces"
+    ],
+    "first": {
+      "outcome": "refuted",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 0,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is there a direct 'conveys' relation from reading to sample?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:2f95e9f333b179c1"
+    }
+  },
+  "requirements": {
+    "reading-reaches-the-controller": {
+      "id": "reading-reaches-the-controller",
+      "statement": "Every sensor reading is delivered across the team boundary as the control team's sample.",
+      "expressedAs": "reading-is-delivered-as-sample",
+      "satisfiedWhen": "holds",
+      "verification": {
+        "status": "violated",
+        "requirement": "reading-reaches-the-controller",
+        "verdict": "refuted"
+      },
+      "meaning": "VIOLATED — the breach is exhibited, and a witness is not softened by coverage",
+      "systemHash": "fnv1a64:2f95e9f333b179c1"
+    }
+  },
+  "modelShape": [
+    "elements",
+    "count",
+    "related",
+    "reachable",
+    "path",
+    "violations",
+    "explainType"
+  ],
+  "inspectShape": "function",
+  "evidenceShape": "function"
+}

@@ -1,0 +1,187 @@
+{
+  "mageKeys": [
+    "version",
+    "describe",
+    "context",
+    "inspect",
+    "transact",
+    "hypothesis",
+    "query",
+    "check",
+    "validate",
+    "ask",
+    "model",
+    "debug",
+    "savedQueries",
+    "properties",
+    "requirements",
+    "evidence",
+    "view",
+    "undo",
+    "redo",
+    "load",
+    "export",
+    "examples",
+    "loadExample",
+    "provenance",
+    "analysis"
+  ],
+  "version": "0.4.0",
+  "describeKeys": [
+    "version",
+    "semantics",
+    "schemas",
+    "operations",
+    "affordanceGaps",
+    "authoring",
+    "outsideSemanticInterface",
+    "notSupported"
+  ],
+  "affordanceGaps": [],
+  "sanctionedRoute": "ABSENT key sanctionedRoute",
+  "resolveExhausted": "mentioned somewhere in operations/api",
+  "describeBlobHasResolveExhausted": true,
+  "examples": [
+    {
+      "id": "message-bus",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "transaction-workspace",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "document-processing",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "worker-queue",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "embedded-sensor-node",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "autonomous-delivery",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    },
+    {
+      "id": "calibration-loop",
+      "keys": [
+        "id",
+        "title",
+        "summary",
+        "scenario",
+        "investigate",
+        "models",
+        "tryAsking"
+      ]
+    }
+  ],
+  "requirementsShape": {},
+  "operationsShape": [
+    {
+      "name": "import",
+      "summary": "Open a .mage.yaml model system, or start an empty one.",
+      "returns": "void or a context object",
+      "calls": [
+        {
+          "at": "window.mage.load",
+          "parameters": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "summary": "the model system as .mage.yaml text; the parsed document conforms to the published model schema",
+              "schema": "model#"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "load-example",
+      "summary": "Load a shipped example, as an ordinary editable workspace.",
+      "returns": "void or a context object",
+      "calls": [
+        {
+          "at": "window.mage.loadExample",
+          "parameters": [
+            {
+              "name": "id",
+              "type": "string",
+              "required": true,
+              "summary": "a shipped example's id, as examples() lists them",
+              "schema": null
+            }
+          ]
+        },
+        {
+          "at": "window.mage.examples",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "name": "export",
+      "summary": "Write the model system back out, comments and key order preserved.",
+      "returns": "void or a context object",
+      "calls": [
+        {
+          "at": "window.mage.export",
+          "parameters": []
+        }
+      ]
+    }
+  ],
+  "refusalVocab": "ABSENT d.refusals/d.refusalCauses"
+}

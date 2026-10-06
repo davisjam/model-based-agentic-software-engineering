@@ -1,0 +1,16 @@
+{
+  "charge-remaining-at-delivery": {
+    "outcome": "unlicensed",
+    "refusal": "target: 'battery-charge.state' names nothing in this system, and the absence is a declared modelling decision: models 'mission', 'mission-endurance' deliberately omit 'the battery's state of charge'. There is no misspelling to hunt for — the model represents what its purpose says it represents, and this is outside it. Answering would mean adding the distinction to a model that chose to leave it out.",
+    "refusalDetail": {
+      "reason": "missing-distinction",
+      "missing": [
+        "the battery's state of charge"
+      ],
+      "models": [
+        "mission",
+        "mission-endurance"
+      ]
+    }
+  }
+}
