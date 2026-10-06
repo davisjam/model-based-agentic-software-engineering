@@ -119,6 +119,7 @@ from tests.html import (
     check_one_h1_per_served_source_selftest,
     check_outcomes_site,
     check_html_links,
+    check_llms_txt_parity,
     check_no_duplicate_ids,
     check_no_empty_table_header,
     check_no_link_dpub_role_on_nonanchor,
@@ -285,6 +286,9 @@ CHECKS = [
           lambda strict: _render_determinism()),
     Check("html: committed generated pages equal a fresh render (regen drift)", 1,
           lambda strict: _regen_drift()),
+    Check("html: llms.txt/robots.txt agent index — every top-level page + census entry indexed; robots "
+          "points at llms.txt; unpublished playbook not pointed at (llms-parity)", 1,
+          lambda strict: check_llms_txt_parity()),
     Check("markdown: #anchor resolution", 1, lambda strict: check_markdown_anchors()),
     Check("render: XSS neutralization (escape seam + link scheme)", 1, lambda strict: check_render_safety()),
     Check("html: link + anchor resolution", 1, lambda strict: check_html_links()),
