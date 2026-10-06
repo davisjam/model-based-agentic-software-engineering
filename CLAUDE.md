@@ -423,6 +423,34 @@ re-deriving these, so they live here:**
   `workbench/test/gate-reachability.test.ts` walks the default gate and the workflow against a gate set
   derived from `package.json`, and `tests/ci.py` holds an install ahead of the suite that needs it.
   Checking a runner you have not watched fail is worth little: sabotage it, see the red, restore.
+- **BOUND every test-tier run with `timeout`. The browser tier can hang at zero CPU, and an agent's
+  own cleanup can hang behind it.** Measured 261006: an agent ran `npm run test:browser` unbounded;
+  it sat **19 minutes 46 seconds at 0.11 s of CPU** — alive, consuming nothing, producing nothing.
+  The agent noticed and issued `kill … ; sleep 2; pkill -f "test/browser"`, and THAT wedged too, for
+  another twenty minutes. The agent could not rescue itself, and from outside it looked busy.
+  - **Why it is hard to see:** the task transcript stops growing during a tool call, so a hung
+    command and a long-but-working one look identical from the outside. The discriminator is CPU,
+    not existence: `ps -o pid,etime,time,pcpu` — a process with large ELAPSED and near-zero TIME is
+    stuck, and one at 20-35% is working. Checking only `pgrep`/process-count tells you nothing, and
+    counting `grep` matches will count YOUR OWN probe shell and report a dead agent as healthy.
+  - **The fix is the flag, not more vigilance.** A bounded run fails loudly and the agent carries
+    on; an unbounded one silently costs the wall-clock of everything waiting on it. **This is an
+    ORCHESTRATOR defect before it is an agent one** — the 261006 incident happened because all three
+    briefs in flight spelled the gate block unbounded, and the agent ran exactly what it was told.
+    Copy this block into briefs verbatim rather than retyping it:
+
+        cd workbench && timeout 300 npm run build && timeout 300 npx tsc --noEmit \
+          && timeout 900 npm test && timeout 900 npm run test:browser \
+          && timeout 900 npm run test:a11y
+        cd .. && timeout 600 python3 catalog.py validate && timeout 600 python3 catalog.py build
+
+    Build and type-check are minutes at worst; the three tiers are the ones that hang. And do NOT
+    pipe a tier through `tail` without a timeout in front of it — the output you wanted to trim is
+    also the only evidence of where it stopped.
+  - **Before killing a leaked browser, check it is actually leaked.** Clearing that hang surfaced 27
+    headless Chrome processes that looked like orphans and were owned by a LIVE `test:a11y` run at
+    25-35% CPU — killing them would have destroyed the run the unblock had just freed. `ps -o ppid`
+    and look for a live `node --test` owner first.
 - **A worktree's `node_modules` may be a SYMLINK to the main checkout's — never `npm install` in one.**
   Parallel agents share that one directory, so an install mutates every live agent at once: silently, and
   blamed on whichever one fails next. A brief that needs a package to *measure* something must say to
