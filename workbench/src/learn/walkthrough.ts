@@ -331,7 +331,9 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     anchor: "walk-bindings",
     title: "Bindings",
     definition: "A binding identifies corresponding elements in different models. The models "
-      + "remain separate and retain their own purposes and omissions.",
+      + "remain separate and retain their own purposes and omissions. Establish how the models "
+      + "relate, and the workbench can show you the resulting composition — the relationship is "
+      + "the model; the view is a consequence.",
     instruction: null,
     grounding: [{ kind: "machine", example: WALK_TW, machine: "transaction-lifecycle" }],
     more: [{ label: "More about bindings", anchor: "question-bindings" }],

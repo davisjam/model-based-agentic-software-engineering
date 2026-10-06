@@ -818,16 +818,3 @@ requirements:
       Peak memory over reachable configurations is at most 512 MB.
     expressed_as: peak-memory-within-the-declared-ceiling
     satisfied_when: holds
-
-views:
-
-  lifecycle:
-    label: Document lifecycle
-    machines: [document-lifecycle]
-    direction: top-to-bottom
-
-  pipeline:
-    label: Pipeline performance
-    models: [pipeline-performance]
-    direction: left-to-right
-    show-properties: [executes_in_state]

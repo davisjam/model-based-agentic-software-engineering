@@ -252,10 +252,3 @@ requirements:
       Every sensor reading is delivered across the team boundary as the control team's sample.
     expressed_as: reading-is-delivered-as-sample
     satisfied_when: holds
-
-views:
-
-  loop:
-    label: Signal path
-    models: [instrumentation, control, signal-path]
-    direction: left-to-right

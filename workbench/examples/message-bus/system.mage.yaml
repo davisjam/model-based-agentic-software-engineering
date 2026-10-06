@@ -581,20 +581,3 @@ requirements:
       service.
     expressed_as: restricted-data-reaches-impermitted-subscriber
     satisfied_when: refuted
-
-views:
-
-  flow:
-    label: Event flow
-    models: [event-flow]
-    direction: left-to-right
-
-  policy:
-    label: Data policy
-    models: [data-policy]
-    show-properties: [permits, carries, classification]
-
-  safety:
-    label: Safety join
-    models: [event-flow, data-policy]
-    show-properties: [permits, carries]

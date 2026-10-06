@@ -347,12 +347,6 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       if (!doc.has(["models", op.id])) return fail(where, `delete-model: no model '${op.id}'.`);
       const refused = refuseBlocked(where, `model '${op.id}'`, modelReferences(doc.system(), op.id));
       if (refused !== null) return refused;
-      // A view is presentation: it sits outside the IR and outside the hash, so dropping its
-      // mention of a model that no longer exists asserts nothing and is done here. A relation is a
-      // claim, which is why one is pruned quietly and the other refuses above.
-      for (const view of doc.keysAt(["views"])) {
-        doc.dropSeqItems(["views", view, "models"], (item) => item === op.id);
-      }
       doc.deleteIn(["models", op.id]);
       return null;
     }

@@ -632,16 +632,3 @@ requirements:
       A change never commits against a base that is no longer the one the workspace serves.
     expressed_as: committed-base-is-current
     satisfied_when: holds
-
-views:
-
-  lifecycle:
-    label: Transaction lifecycle
-    machines: [transaction-lifecycle]
-    direction: top-to-bottom
-
-  pipeline:
-    label: Change pipeline
-    models: [change-pipeline]
-    direction: left-to-right
-    show-properties: [executes_in_state]

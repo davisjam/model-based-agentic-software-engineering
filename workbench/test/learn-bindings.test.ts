@@ -486,16 +486,20 @@ test("the bound-pair readout is the two models' OWN purposes, and the binding me
   }
 });
 
-test("the section says the correspondence is not drawn, because no cross-model canvas exists", () => {
-  // §23.3 asks for the two models side by side with the binding drawn between their canonical
-  // elements. `DESIGN-render-rules-261004.md` §A.4 measured that no cross-model visual connection
-  // exists: `SceneSubject` names ONE subject. A page that quietly omitted the picture would leave a
-  // reader looking for it; this pins the disclosure instead, and it is the assertion to DELETE on
-  // the day a composer lands rather than a claim to loosen.
+test("the section says the composed view is derived from the declared relationship", () => {
+  // The predecessor of this test pinned the disclosure that no cross-model canvas existed, and
+  // said to delete that assertion the day a composer lands. It landed (`src/app/cross-model.ts`,
+  // derived composed views in the subject list), and the authored `views:` section was deleted in
+  // the same ruling (261006): composition is derived exclusively from semantic relationships. So
+  // the pin moves to the new claim — the section must say the joint picture FOLLOWS from the
+  // declared binding, not that a reader declares a presentation to get it.
   const text = prose(sectionAt(BINDING_ANCHOR));
-  assert.match(text, /cross-model canvas/,
-    "the bindings section no longer says why the correspondence is a readout rather than a drawn "
-    + "line — if a cross-model composer has landed, draw it and delete this test");
+  assert.match(text, /establish how the models relate/i,
+    "the bindings section no longer says the composed view is derived from the declared "
+    + "relationship — the relationship is the model; the view is a consequence");
+  assert.match(text, /the view is a consequence/,
+    "the section dropped the consequence framing: a reader should learn that showing two models "
+    + "together is licensed by the relationship the modeller asserted, never by listing them");
 });
 
 // ---------------------------------------------------------------------------------------------

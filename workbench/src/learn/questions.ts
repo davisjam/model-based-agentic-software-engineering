@@ -222,7 +222,9 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
     anchor: "question-bindings",
     heading: "Bindings between models",
     lede: "A binding identifies corresponding elements in different models. The bound models "
-      + "remain separate and retain their own purposes and omissions.",
+      + "remain separate and retain their own purposes and omissions. Establish how the models "
+      + "relate, and the workbench can show you the resulting composition — the relationship is "
+      + "the model; the view is a consequence.",
     derivedFrom: [
       {
         file: "src/engine/model-types.ts", symbol: "export const BINDINGS",
@@ -1504,14 +1506,15 @@ function omissionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 // totalized, so neither section can add a relationship the kernel does not declare, drop one it
 // does, or move a row across the line — the registry decides which array a row is in.
 //
-// What the page does NOT do with them: draw them. §23.3 asks for two models side by side with a
-// line between their canonical elements, and no cross-model canvas exists
-// (`DESIGN-render-rules-261004.md` §A.4 measured it: `SceneSubject` names ONE subject and nothing
-// composes two rendered views). So the correspondence is a readout, the two bound models are each
-// drawn in their own section by their own renderer, and `bindingBlocks` says so on the page rather
-// than leaving a reader to wonder where the picture went. Inventing a composer here would put a
-// second, unregistered source of cross-model edges in the app layer, which is the failure that
-// design's §E is written to prevent.
+// What the page does NOT do with them: draw them. The Workspace now composes the bound models
+// into a derived cross-model view (`src/app/cross-model.ts`, offered in the subject list beside
+// the one-model views), and that composition is DERIVED from these same registries — the modeller
+// asserts the relationship, and the view follows from it (author ruling, 261006: the authored
+// `views:` section was deleted for exactly this reason — a presentation declaration would let two
+// models appear together without a relationship to justify it). This page keeps the registry rows
+// as a readout and points at the Workspace rather than growing its own composer: a second,
+// unregistered source of cross-model edges in the app layer is the failure
+// `DESIGN-render-rules-261004.md` §E is written to prevent.
 // ---------------------------------------------------------------------------------------------
 
 const TYPE_LABELS: ReadonlyMap<ModelTypeId, string> =
@@ -1796,9 +1799,12 @@ function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
   blocks.push({
     kind: "prose",
     text: `Each of those two models is drawn above, in its own section, by the renderer for its own `
-      + "model form — their boundaries are two pictures rather than one. The Workbench does not "
-      + "yet draw the correspondence itself: there is no cross-model canvas, so the line between "
-      + "the two is this readout.",
+      + "model form — their boundaries are two pictures rather than one. The Workspace can also "
+      + "show them together: establish how the models relate, and it derives the composed view "
+      + "from the declared bindings, drawing each panel with its own renderer and the "
+      + "correspondence as the line between them. The relationship is the model; the view is a "
+      + "consequence — two models are never shown together merely because someone listed them "
+      + "side by side.",
   });
   return blocks;
 }

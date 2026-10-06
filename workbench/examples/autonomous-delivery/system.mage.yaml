@@ -1043,28 +1043,3 @@ requirements:
       Every delivery completes within the 900 s of mission time one battery charge sustains.
     expressed_as: delivering-missions-within-the-duration-budget
     satisfied_when: holds
-
-views:
-
-  authority:
-    label: Control authority
-    models: [control-authority]
-    show-properties: [authority]
-
-  lifecycle:
-    label: Mission lifecycle
-    machines: [mission]
-    direction: top-to-bottom
-
-  interlock:
-    label: Motion interlock
-    machines: [motion-interlock]
-    direction: left-to-right
-
-  ram:
-    label: Compute platform RAM
-    models: [compute-platform]
-
-  endurance:
-    label: Mission endurance
-    models: [mission-endurance]

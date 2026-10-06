@@ -142,10 +142,3 @@ queries:
       relation: conveys
       from: alpha
       to: shared
-
-views:
-
-  junction:
-    label: Junction
-    models: [upstream, downstream]
-    direction: left-to-right

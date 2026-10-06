@@ -446,20 +446,3 @@ requirements:
       dead_letter.
     expressed_as: job-can-retry-forever
     satisfied_when: refuted
-
-views:
-
-  lifecycle:
-    label: Job lifecycle
-    machines: [job-lifecycle]
-    direction: top-to-bottom
-
-  custody:
-    label: Lease custody
-    machines: [job-lease]
-    direction: left-to-right
-
-  pool:
-    label: Worker pool
-    models: [worker-pool]
-    show-properties: [holds_lease_as]

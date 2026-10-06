@@ -129,11 +129,3 @@ queries:
       form: reach
       target:
         run.state: finished
-
-views:
-
-  run:
-    label: Run
-    machines: [run]
-    models: [timing]
-    direction: left-to-right
