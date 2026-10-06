@@ -662,13 +662,32 @@ describe("1.4.10 and D-2: reflow, and focus order against visual order", () => {
         `1px of overflow and the offender is not named: ${JSON.stringify(onePx.offenders)}`);
       await remove();
 
-      // (b) Sub-pixel: an edge at 320.6 that only scrollWidth's rounding turns into a 1px
-      // overflow. The attribution has to survive the rounding rather than reporting nothing
-      // because nothing crosses by a whole pixel.
+      // (b) Sub-pixel, in two halves around a boundary that was MEASURED rather than assumed.
+      // This control first shipped asserting that a 320.6px box rounds to 1px of overflow, from
+      // the premise that Chromium rounds scrollWidth to the nearest integer. It does not: swept
+      // in 1/32px steps on the pinned Chromium (blank page and this page, flag on and off, same
+      // at 320 / 576 / 1025), the document's rounded scrollWidth moves at an overhang of exactly
+      // +0.75px -- 320.734375 leaves it at 320, 320.75 makes it 321. So a 320.6px box scrolls
+      // nothing: there is no 1.4.10 failure there to attribute, and the assertion -- born red on
+      // its own branch -- was wrong about the engine, not the probe about the page.
+      // First the near side: the probe must not INVENT an overflow from a sub-boundary edge.
+      // This pins the engine's measured boundary; if a Chromium bump moves it, this line names
+      // what actually changed -- re-measure before touching the probe.
       await inject("position:absolute; left:0; top:0; width:320.6px; height:4px;");
+      const below = await reflowAt(page, 320);
+      assert.equal(below.horizontalOverflowPx, 0,
+        `a 320.6px box sits below the +0.75px overhang at which this engine's scrollWidth moves, `
+        + `so the document must not scroll, got ${below.horizontalOverflowPx}px -- the rounding `
+        + `boundary has moved; re-measure it before touching the probe`);
+      await remove();
+      // Then the far side: an overhang past the boundary and still under one pixel. Rounding
+      // turns it into a 1px overflow, no border box crosses by a whole pixel, and the retired
+      // whole-pixel slack (right <= viewport + 1) would have forgiven it -- the attribution has
+      // to survive the rounding rather than reporting nothing.
+      await inject("position:absolute; left:0; top:0; width:320.9px; height:4px;");
       const subPx = await reflowAt(page, 320);
       assert.equal(subPx.horizontalOverflowPx, 1,
-        `a 320.6px box should round to 1px of overflow, got ${subPx.horizontalOverflowPx}`);
+        `a 320.9px box should round to 1px of overflow, got ${subPx.horizontalOverflowPx}`);
       assert.ok(subPx.offenders.some((o) => o.path === "#reflow-minimal"),
         `sub-pixel overflow and the offender is not named: ${JSON.stringify(subPx.offenders)}`);
       await remove();

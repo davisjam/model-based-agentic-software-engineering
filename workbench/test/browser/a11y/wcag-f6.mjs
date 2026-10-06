@@ -487,9 +487,11 @@ export function cssReflowWidths(cssText, { rootFontPx = 16, floor = 320 } = {}) 
  * The attribution threshold is SUB-PIXEL, and it was not always. This probe first skipped any
  * element within `viewport + 1`, a whole-pixel slack, and then met a page whose `scrollWidth` was
  * 321 on a 320 viewport: a real 1.4.10 failure, verdict red, offender list EMPTY -- it told the
- * next reader a page was broken without saying where. Chromium rounds `scrollWidth` to the nearest
- * integer, so a 1px document overflow is caused by a border box crossing the edge by as little as
- * half a pixel, which a 1px slack silently forgives. The slack is now 0.4px: enough to drop
+ * next reader a page was broken without saying where. Chromium reports a rounded `scrollWidth`,
+ * and the rounding was measured rather than assumed: the document's scrollWidth moves at an
+ * overhang of exactly +0.75px (swept in 1/32px steps; the same boundary at 320, 576 and 1025), so
+ * a 1px document overflow is caused by a border box crossing the edge by as little as
+ * three-quarters of a pixel, which a 1px slack silently forgives. The slack is now 0.4px: enough to drop
  * float-noise at the boundary, small enough that any edge capable of moving `scrollWidth` is named,
  * with its measured right edge kept to two decimals so sub-pixel causes read as what they are.
  *
@@ -512,9 +514,11 @@ export async function reflowAt(page, width, height = 512) {
   return page.evaluate(() => {
     const doc = document.scrollingElement;
     const viewport = doc.clientWidth;
-    // Below half a pixel an edge cannot move the rounded scrollWidth; above it, it can. 0.4 rather
-    // than 0.5 so an edge at exactly 320.5 -- the smallest cause of a 1px overflow -- is inside
-    // the net rather than sitting on its boundary.
+    // Measured on the pinned Chromium: an edge cannot move the rounded scrollWidth until its
+    // overhang reaches +0.75px, where the flip is exact and viewport-independent. 0.4 keeps a
+    // margin under that smallest attributable cause, so every edge capable of moving the verdict
+    // is inside the net -- at the cost of also naming some edges that cannot, which only ever
+    // surfaces when the document genuinely overflows, since a green page's list is never read.
     const SUBPIXEL_SLACK = 0.4;
     // Identity the next reader can act on: up to the nearest ancestor with an id, the same shape
     // the contrast walk reports. A bare `li` names nothing on a page full of them.
