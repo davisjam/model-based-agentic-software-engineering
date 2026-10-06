@@ -311,11 +311,26 @@ The author's framing, which is the right one: *types are how we prevent this.*
   `pathComposition`, `symmetric`, `acyclic`, `aggregates`. **There is no domain and no range** — no
   statement of what may sit at either end of an edge of this type.
 - `CanonEntity` (`:62`) DOES carry `type: string | null`.
-- **0 of 77 entities across all six shipped examples plus the language specimen set it.** The slot
-  exists and is dead corpus-wide.
+- ~~**0 of 77 entities across all six shipped examples plus the language specimen set it.** The slot
+  exists and is dead corpus-wide.~~ **FALSE — corrected 261006, and the truth is better.** That
+  figure came from a broken probe of mine that mis-read the YAML shape and returned zeros; the
+  entity count was wrong too (48 across the six examples, not 77). Re-measured three ways by the
+  design wave — a per-file YAML count, the actual loader (`canonicalize` reads `s["type"]` at
+  `src/ir/canonicalize.ts:132`, and has at every revision back through `e1e27eb00`), and a runtime
+  probe — **the corpus is fully typed: 160 of 160 entities carry `type:`**, 48/48 across the shipped
+  examples, and the `type:` fields predate this decision by several landings.
 
-So the engine cannot reject the pairing, for two compounding reasons: there is no constraint to
-check, and there would be nothing to check it against.
+  **The corrected finding, which is sharper than the one it replaces:** *the slot is set
+  corpus-wide, displayed, queried (`src/engine/elements.ts:50`), hashed (`src/ir/hash.ts:66`) and
+  projected to RDF (`mage:entityType`) — and **checked by nothing**.* No rule in
+  `src/validator/rules.ts` reads an entity's `type`; `SEMANTICS.md` §3 never mentions it; the schema
+  admits it as a bare string with no stated meaning. Every model author reached for `type:`
+  unprompted, 160 times.
+
+So the engine cannot reject the pairing — but not for the reason first given. There are types
+everywhere; what is missing is any contract that holds them to anything. That inverts the migration
+story: there is nothing to migrate, and "naming unifies deliberately" already has 160 worked
+instances. The job is to give those names force, not to introduce them.
 
 ### What already covers part of it, by accident
 
