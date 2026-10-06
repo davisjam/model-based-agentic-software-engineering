@@ -641,6 +641,43 @@ for Hemingway — short sentences, strong verbs, few qualifiers.
 then `python3 catalog.py validate` (must be 0 issues). The schema, INDEX-consistency, link-integrity,
 and hover-summary checks all live there.
 
+## Where a new check runs — the placement rule
+
+The publishing workflow ([`.github/workflows/pages.yml`](.github/workflows/pages.yml)) is a parallel
+fan-out — producer jobs emit the published pieces, gate jobs hold quality lines, and `deploy` waits
+only on `assemble`'s artifact-integrity asserts. The pre-push hook is the scoped accelerator on the
+author's machine. A new check goes to exactly one station; place it by this rule rather than asking:
+
+- **Pre-push, only when ALL THREE hold:** (a) **cheap under load** — seconds of single-threaded work
+  measured on a LOADED host, not an idle one. This machine routinely runs an agent fleet (load
+  average 47 was measured mid-wave), and this repo has no compute mediator, so nothing throttles N
+  agents against a push gate competing for the same cores; a check that is "fast in isolation" is
+  not fast here. (b) **deterministic on this machine** — no browser, no network, no verdict that
+  depends on the environment (fonts are the canonical offender: the runner installs none, and
+  `WB_F6_SIMULATE_CI_FONTS=1` exists precisely because an a11y verdict differs under CI's font
+  stack — only the runner's answer is authoritative, so the check must live where the runner is).
+  (c) **fails on the author's own edit** — scoped to the pushed change's own inputs, so a red names
+  the pusher's work, not a sibling's landing.
+  The reason the bar is all three: pre-push is already deliberately weaker than CI (`--tier1` vs
+  `--full`, scope-guarded renders), and a slow pre-push gate does not become a careful ritual — it
+  becomes `--no-verify` (observed 261006: a 14-minute pre-push under fleet load, bypassed by the
+  human). A bypassed gate is worse than a CI-latency gate, so when in doubt the check goes UP.
+- **CI, as a fan-out gate job** for everything else — slow, contended, browser-driven, or
+  environment-sensitive. Add the check to the job that already owns its inputs (the workbench
+  bundle → `browser-tiers`; the built site HTML → `site-gates`), or a new job fanning out from the
+  producer it consumes. A red gate job turns the RUN red — visible on the commit, the alerting
+  surface — but does not block `deploy`.
+- **CI, blocking deploy (`assemble`)** only for artifact INTEGRITY: "the thing we are about to
+  publish is present and well-formed" — a missing bundle, PDF, or thumb; a leaked internal
+  playbook. Behavior/quality verdicts never gate the unrelated rest of the site: on 261006 a red
+  FR-A11Y tier held `llms.txt`/`robots.txt` unpublished though nothing about them was broken, and
+  that class of coupling is what the fan-out removed.
+
+Moving a check between stations is allowed; deleting one is not. CI runs the authoritative,
+unconditional superset; pre-push may only ever hold a scoped subset of what CI holds. And wire the
+check into every runner that should reach it, or declare the exclusion — the reachability test
+(`workbench/test/gate-reachability.test.ts`) and `tests/ci.py` police the wiring.
+
 ## Build & deploy
 
 The site is generated from the markdown — **never hand-edit the `.html`** (it carries a
