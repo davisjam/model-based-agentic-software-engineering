@@ -46,7 +46,7 @@ export const LESSON = {
     "Engineers build models to answer questions about systems. A model preserves the information "
       + "needed for its question and leaves other information out. What a model omits is as much a "
       + "part of it as what it keeps.",
-    "The Workbench supports several kinds of purposeful model. A structural model represents "
+    "The Workbench supports several kinds of purposeful models. A structural model represents "
       + "relationships among parts of a system. A state machine represents behavior over time. A "
       + "quantitative model represents quantities such as latency or memory consumption.",
     "Models become useful when you ask questions of them. The Workbench evaluates each question "
@@ -206,10 +206,10 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
     anchor: "walk-combining",
     title: "Combining models",
     definition: "One system can carry several purposeful models, and some questions need more than "
-      + "one of them. Ask the same question of two models and the answers differ in kind: a model "
-      + "that does not license the question reports that it does not, which is a successful answer "
-      + "and not a denial. It is not “refuted” — that would assert no such chain exists, a claim "
-      + "the model never made.",
+      + "one of them. Ask the same question of two models and the answers can differ in kind. A "
+      + "model that does not license the question reports NOT ANSWERABLE. That is a successful "
+      + "answer, not a denial. It is not “refuted” — that would assert no such chain exists, a "
+      + "claim the model never made.",
     instruction: "Ask the chain question of each model in turn, then run the latency question that "
       + "needs both.",
     grounding: [
@@ -243,9 +243,9 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
       + "is its own kind — distinct from every other — until a name or a declaration earns "
       + "otherwise. Omitting a distinction a model does not need is purposeful reduction; it "
       + "never makes the omitted distinctions interchangeable. A relation type may declare what "
-      + "kinds sit at its ends, and the constraint arrives with that declaration: an edge of a "
-      + "declared type is checked against it, and an unnamed endpoint is refused until named — "
-      + "the edge itself can never establish what its endpoints are.",
+      + "kinds sit at its ends, and the constraint arrives with that declaration. An edge of a "
+      + "declared type is checked against it, and an unnamed endpoint is refused until named. "
+      + "The edge itself can never establish what its endpoints are.",
     instruction: "Load the Calibration Loop and try to connect the teams: add the conveys edge "
       + "between reading and sample in a what-if change, read the two findings that refuse it, "
       + "then name both kinds (type: measurement) and run the delivery question again.",

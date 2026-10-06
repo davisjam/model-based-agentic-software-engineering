@@ -308,13 +308,13 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
   {
     anchor: "question-requirements",
     heading: "Requirements",
-    lede: "A requirement adds an expected outcome to a property. A differing live outcome then "
-      + "counts as a failure rather than as a finding.",
+    lede: "A requirement adds an expected outcome to a property. If the current outcome differs, "
+      + "the requirement is violated.",
     derivedFrom: [
       {
         file: "src/app/properties.ts", symbol: "export interface Expectation",
-        role: "declaring an expectation is what makes a property a requirement; a differing outcome "
-          + "then counts as a failure rather than as a finding",
+        role: "declaring an expectation is what makes a property a requirement; if the current "
+          + "outcome differs, the requirement is violated",
       },
       {
         file: "examples/message-bus/expected-results.yaml", symbol: "requirements:",
@@ -1194,10 +1194,11 @@ function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readon
   const blocks: QuestionBlock[] = [
     {
       kind: "prose",
-      text: "\"Does the firmware fit in the part's SRAM?\" sounds like one question and decomposes "
-        + "into three. How much SRAM the part has. Whether the design stays under that. Whether it "
-        + "must. Each one wants a different kind of declaration, so the workbench keeps them apart "
-        + "instead of folding them into a single line that would answer all three at once.",
+      text: "\"Does the firmware fit in the part's SRAM?\" sounds like one question. Those are "
+        + "three separate questions: how much SRAM the part has, whether the design stays under "
+        + "that amount, and whether staying under it is required. Each one wants a different kind "
+        + "of declaration, so the workbench keeps them apart instead of folding them into a single "
+        + "line that would answer all three at once.",
     },
   ];
   if (worked !== undefined) {
@@ -1213,8 +1214,8 @@ function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readon
           `'${worked.question.id}' asks ${worked.question.quantifier} `
           + `${worked.question.metric} within '${worked.question.ceiling}'`],
         ["Must it?",
-          `'${worked.requirementId}' obliges it, and is satisfied when that question is `
-          + `${worked.satisfiedWhen}`],
+          `'${worked.requirementId}' obliges it, and is satisfied when that question answers `
+          + `“${worked.satisfiedWhen}”`],
         // The figure reads in the ceiling's own unit, so the row above and this one can be compared
         // by eye. A reader asked to convert between them is being asked to check the model by hand,
         // which is the work this separation exists to do for them.
@@ -1249,8 +1250,9 @@ function ceilingBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readon
   });
   blocks.push({
     kind: "prose",
-    text: "Both verdicts ship, which keeps this a shape rather than a success story: the corpus meets "
-      + "one budget and misses one deadline through the same three declarations. The figure itself "
+    text: "The examples include both satisfied and violated budgets, so this structure is not "
+      + "presented only through successful cases: the corpus meets one budget and misses one "
+      + "deadline through the same three declarations. The figure itself "
       + "has one home. A question cites the quantity by name, a requirement cites the question by "
       + "name, so re-specifying the part edits a single declaration. Nothing downstream can disagree "
       + "with it, because neither of the other two has anywhere to keep a copy.",
@@ -1787,9 +1789,9 @@ function bindingBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     kind: "prose",
     text: `The binding changed neither list. ${onlyBehavioural.length} of the behavioural model's `
       + `omissions are not the structural model's, and ${onlyStructural.length} of the structural `
-      + `model's are not the behavioural model's; a single merged model would have to drop both `
-      + "sets, and that is the reduction each author chose. The correspondence lets an answer in "
-      + "one model name an element the other declares, and nothing more.",
+      + `model's are not the behavioural model's. A single merged model would have to represent `
+      + "distinctions that each author deliberately chose to omit. The correspondence lets an "
+      + "answer in one model name an element the other declares, and nothing more.",
   });
   blocks.push({
     kind: "prose",

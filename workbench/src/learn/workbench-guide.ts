@@ -112,14 +112,15 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
     intro: "A property is a saved claim. The Workbench retains the question that decides the claim "
       + "and recomputes its verdict on demand.",
     blocks: [
-      prose("What the Workbench keeps is the question that decides the claim — never the verdict. "
-        + "The verdict is recomputed on every later revision and stored nowhere, so a property "
-        + "cannot go stale: it reports what the models say now."),
+      // Deliberately short (author's item 20): the full recomputation account is canonical under
+      // "Properties and model changes", and this section had carried it verbatim a second time.
+      prose("Because nothing stores the verdict, a property cannot go stale: it reports what the "
+        + "models say now. The full account is under “Properties and model changes” above."),
       prose("A verdict always names the models that established it. A bounded search reports itself "
         + "as inconclusive rather than as a no, because a search that stopped at its budget has not "
         + "shown that the thing it looked for is absent."),
-      prose("Declaring an expectation makes a property a requirement. A differing outcome then "
-        + "counts as a failure rather than as a finding."),
+      prose("Declaring an expectation makes a property a requirement. If the current outcome "
+        + "differs, the requirement is violated."),
     ],
     movedFrom: [
       // The properties rail's empty sentence carried the lifecycle AND the semantics. The

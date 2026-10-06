@@ -103,9 +103,10 @@ function provenanceDetails(
  */
 function relationshipKinds(pair: LearnEntry["combineWith"]): HTMLElement {
   if (pair.bindings.length === 0 && pair.compositions.length === 0) {
-    return el("p", "The workbench declares no binding and no composition between these two model "
-      + "forms. Pairing them is a route through this page, not a relationship the model system "
-      + "states — the relationships it does state are below.", "intro");
+    return el("p", "The Workbench does not currently compose these two model forms into one "
+      + "question, and declares no binding between them. Pairing them is a route through this "
+      + "page, not a relationship the model system states — the relationships it does state are "
+      + "below.", "intro");
   }
   const pairs: (readonly [string, string])[] = [];
   for (const b of pair.bindings) pairs.push([`bound by: ${b.name}`, b.interpretation]);
@@ -162,7 +163,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   }
 
   if (s.quantities.length > 0) {
-    section.append(el("p", "Every quantity the example declares, as written:", "intro"));
+    section.append(el("p", "Every quantity the example declares, as written", "intro"));
     section.append(rowsTable(
       ["Quantity", "Annotates", "Dimension", "Declared value"],
       s.quantities.map((q) => [q.id, q.target, q.dimension, q.value]),
@@ -211,8 +212,18 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   // is the informative case.
   section.append(sub(PART.next));
   const combine = el("div", undefined, "learn-combine");
-  combine.append(el("p", `Add a ${s.entry.combineWith.partnerLabel} to this system.`, "outcome"));
-  combine.append(el("p", `Then you can ask: “${s.entry.combineWith.richerQuestion}”`));
+  // When the kernel declares nothing between the pair, "Then you can ask" would overclaim a
+  // composition the Workbench does not perform (author's item 16) — so the question is framed as
+  // the motivation for the pairing, and `relationshipKinds`' empty branch states the limit.
+  const paired = s.entry.combineWith.bindings.length > 0
+    || s.entry.combineWith.compositions.length > 0;
+  combine.append(el("p", paired
+    ? `Add a ${s.entry.combineWith.partnerLabel} to this system.`
+    : `Add a ${s.entry.combineWith.partnerLabel} to represent what this model deliberately `
+      + "leaves out.", "outcome"));
+  combine.append(el("p", paired
+    ? `Then you can ask: “${s.entry.combineWith.richerQuestion}”`
+    : `The question that motivates the pairing: “${s.entry.combineWith.richerQuestion}”`));
   combine.append(relationshipKinds(s.entry.combineWith));
   if (s.combinedIn.length > 0) {
     // ONE LINK PER VISUAL ROW, and that is an accessibility decision rather than a layout taste:
@@ -263,7 +274,7 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
   if (system !== undefined && s.visual.picture.kind === "scene") {
     const subject = s.visual.picture.subject;
     section.append(figure(system, subject,
-      `model '${subject.id}' from the shipped example “${system.name}” — the use's exemplar, drawn by the workbench's renderer.`,
+      `model '${subject.id}' from the shipped example “${system.name}”, drawn by the workbench's renderer.`,
       s.showProperties));
   }
   if (s.purpose !== null && s.purpose.represents.length > 0) {
@@ -399,8 +410,8 @@ async function boot(): Promise<void> {
 
   const nav = el("nav");
   nav.setAttribute("aria-label", "Model gallery");
-  nav.append(el("p", "One entry per model form the kernel registers, led by the engineering "
-    + "question it answers.", "intro"));
+  nav.append(el("p", "One entry for each model form registered by the kernel, led by the "
+    + "engineering question it answers.", "intro"));
   const cards = el("ul", undefined, "learn-cards");
   for (const s of typeSections) cards.append(galleryCard(s.anchor, s.entry.question, s.entry.label));
   for (const s of useSections) {
