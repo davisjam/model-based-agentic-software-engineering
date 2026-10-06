@@ -434,7 +434,10 @@ export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
     reason:
       "raw SPARQL over the RDF projection, for debugging the projection and the licensing seam. "
       + "Outside the semantic interface because a syntactically valid SPARQL query can ask "
-      + "questions the RDF representation permits and the MAGE metamodel does not license.",
+      + "questions the RDF representation permits and the MAGE metamodel does not license. "
+      + "Takes (text, budget?); an evaluation that spends its step budget answers `exhausted` "
+      + "and carries the `escalation` handle `window.mage.analysis.resolveExhausted` takes — "
+      + "the handle's only producer.",
     fencedBy: "DECISIONS-RULED-model-query-261002.md",
   },
 ];
@@ -770,9 +773,22 @@ export const CAPABILITIES: readonly Capability[] = [
     machine: [
       wired("window.mage.query", [QUERY_DOCUMENT]), wired("window.mage.ask", [QUERY_DOCUMENT]),
       wired("window.mage.analysis.resolveExhausted", [
+      // The producer is POINTED AT, because the 261006 lab-solver run proved the bare phrase "off
+      // an exhausted answer" is not followable: the agent tried ask-with-limit, query, and
+      // explore-with-tiny-limit — all of which answer `inconclusive` and carry no handle — and
+      // concluded the escalation path was unreachable from the published surface. The pointer goes
+      // THROUGH `describe().outsideSemanticInterface` rather than naming the console's site here,
+      // because MQ-I4 fences the semantic interface from advertising a hatch site anywhere but
+      // that one field — so the hatch's own entry carries the producing condition, and this
+      // summary says where to look. `test/exhausted-escalation-reachable.test.ts` holds both
+      // halves of the join and that the route actually yields a handle this call accepts.
       param("escalation", "object", true,
-        "the escalation handle off an exhausted answer, passed back unchanged -- it is obtainable "
-          + "nowhere else"),
+        "the `escalation` handle off an `exhausted` answer, passed back unchanged -- it is "
+          + "obtainable nowhere else. Its ONLY producer is the fenced surface declared under "
+          + "`describe().outsideSemanticInterface`; that entry says how an exhausted answer "
+          + "arises and that the handle rides beside it. A behavioural or graph query that hits "
+          + "its `limit` answers `inconclusive` and carries NO escalation -- raise `limit` or use "
+          + "`analysis.explore` for those"),
       param("budget", "number", false, "step budget for the re-run; defaults to the Worker's larger bound"),
     ]),
       wired("window.mage.model.related", [
