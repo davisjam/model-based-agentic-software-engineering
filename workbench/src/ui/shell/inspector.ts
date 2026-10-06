@@ -42,7 +42,7 @@
  * things by the same act.
  */
 import { modelsDeclaring } from "../../engine/graph.ts";
-import { modelTypeForQueryKind } from "../../engine/model-types.ts";
+import { modelTypeForQueryKind, modelTypeOf } from "../../engine/model-types.ts";
 import type { Query } from "../../engine/types.ts";
 import {
   LEARN_PAGE, MODEL_TYPE_USES, anchorForUse, deriveLearnEntries, learnHrefForType,
@@ -409,7 +409,9 @@ function modelInspection(system: CanonicalSystem, id: string): Inspection {
   if (m === undefined) throw new Error(`modelInspection called for '${id}', which this system does not declare`);
   return {
     title: m.label === m.id ? m.id : `${m.label} (${m.id})`,
-    type: "purposeful model",
+    // The registry's own label for the kind — the inspector names a thing by its TYPE, the same
+    // vocabulary every other surface quotes, not the generic "purposeful model".
+    type: modelTypeOf("structural-graph").label,
     alsoSelected: [],
     blocks: [
       block("Asks", [line(m.purpose.question ?? "States no engineering question, so nothing can "
@@ -429,14 +431,15 @@ function modelInspection(system: CanonicalSystem, id: string): Inspection {
 function machineInspection(system: CanonicalSystem, id: string): Inspection {
   const m = system.machines.get(id);
   if (m === undefined) throw new Error(`machineInspection called for '${id}', which this system does not declare`);
+  const machineType = modelTypeOf("state-machine").label;
   return {
-    title: id,
-    type: m.instances > 1 ? `machine (${m.instances} instances)` : "machine",
+    title: m.label === m.id ? m.id : `${m.label} (${m.id})`,
+    type: m.instances > 1 ? `${machineType} (${m.instances} instances)` : machineType,
     alsoSelected: [],
     blocks: [
       block("Asks", [line(m.purpose.question ?? "States no engineering question, so nothing can "
         + "say which facts it may leave out.")]),
-      block("Draw it", [navigate(`Show ${id} in the workspace`,
+      block("Draw it", [navigate(`Show ${m.label} in the workspace`,
         { kind: "target", subject: `machine:${id}` })]),
       block("States", m.states.map((s) => navigate(
         s === m.initial ? `${s} — initial` : s,

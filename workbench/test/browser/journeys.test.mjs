@@ -489,7 +489,7 @@ describe(`rung 1 — ${EXAMPLE} opens through the picker and the page says which
    * above becomes the body read it should have been.
    */
   it("the body carries counts and no name — the as-built identity gap, pinned not endorsed", () => {
-    assert.match(opened.afterLoad.summary, /\d+ models?, \d+ entit/,
+    assert.match(opened.afterLoad.summary, /\d+ structural models?, \d+ entit/,
       `#summary is expected to be the counts sentence; it reads '${opened.afterLoad.summary}'`);
     assert.doesNotMatch(opened.afterLoad.summary, new RegExp(escapeForRegExp(opened.systemName)),
       "#summary now names the system, which closes the gap this test records: move rung 1's "

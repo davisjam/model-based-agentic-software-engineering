@@ -102,7 +102,10 @@ test("a machine reaches the rail, because a machine is a purposeful model too", 
     for (const machine of system.machines.keys()) {
       const row = rails.models.find((m) => m.subject === subjectValue({ kind: "machine", id: machine }));
       assert.ok(row, `${id}: machine ${machine} is not in the models rail`);
-      assert.equal(row.name, machine, `${id}: machine ${machine} is named something else in the rail`);
+      // The row wears the machine's authored display label (261006: machines carry `label` like
+      // every other model; the raw kebab id was the fallback, not the name).
+      assert.equal(row.name, system.machines.get(machine)?.label ?? machine,
+        `${id}: machine ${machine} is named something else in the rail`);
     }
   }
 });

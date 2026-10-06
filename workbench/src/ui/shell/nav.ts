@@ -204,7 +204,7 @@ export function navRails(
       subject: choice.value,
       name: subject.kind === "model"
         ? system.models.get(subject.id)?.label ?? subject.id
-        : subject.id,
+        : system.machines.get(subject.id)?.label ?? subject.id,
       question: block.question,
       unstated: block.unstated,
       current: choice.value === current,
@@ -222,7 +222,9 @@ export function navRails(
   }));
 
   const subjectLabel = (s: { kind: string; id: string }): string =>
-    s.kind === "model" ? system.models.get(s.id)?.label ?? s.id : s.id;
+    s.kind === "model"
+      ? system.models.get(s.id)?.label ?? s.id
+      : system.machines.get(s.id)?.label ?? s.id;
   const meetings: MeetingRow[] = topology.map((edge) => ({
     value: `${edge.element}|${edge.binding.name}`,
     text: `${subjectLabel(edge.a)} — ${edge.element} — ${subjectLabel(edge.b)}`,

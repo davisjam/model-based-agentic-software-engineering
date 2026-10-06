@@ -194,6 +194,7 @@ function repaint(): void {
   const properties = workspace.properties();
   const vm = buildViewModel(state.system, state.findings, properties, {
     hypothesis: state.hypothesis,
+    loaded: state.loaded,
     // RESOLVED here, once per paint: the view model badges rows by kind and id, not by
     // string equality against a wire value that may be in either spelling.
     selection: resolveSelections(state.system, viewState.selection),
@@ -316,7 +317,7 @@ byId<HTMLButtonElement>("reset").addEventListener("click", () => {
 
 repaint();
 announcer.action(stored !== null && workspace.state.loaded
-  ? `MAGE Model Workbench ready, with your previous session restored`
+  ? `MAGE Workbench ready, with your previous session restored`
     + `${restoredFrom === null ? "" : ` (${restoredFrom})`}. Undo history does not survive a reload; `
     + `press Reset to return to the starting state. Agent API ${AGENT_API_VERSION} at window.mage.`
-  : `MAGE Model Workbench ready. Agent API ${AGENT_API_VERSION} at window.mage.`);
+  : `MAGE Workbench ready. Agent API ${AGENT_API_VERSION} at window.mage.`);

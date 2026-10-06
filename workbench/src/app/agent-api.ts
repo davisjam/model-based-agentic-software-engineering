@@ -618,6 +618,8 @@ export interface ModelInspection {
 
 export interface MachineInspection {
   readonly id: string;
+  /** Display name, defaulting to the id — the parity `ModelInspection.label` already has. */
+  readonly label: string;
   readonly entity: string | null;
   readonly instances: number;
   readonly initial: string;
@@ -927,7 +929,7 @@ export function createAgentApi(
           relations: s.relations.filter((r) => r.model === m.id).map((r) => ({ from: r.from, to: r.to, type: r.type })),
         })),
         machines: [...s.machines.values()].map((m) => ({
-          id: m.id, entity: m.entity, instances: m.instances, initial: m.initial, states: m.states,
+          id: m.id, label: m.label, entity: m.entity, instances: m.instances, initial: m.initial, states: m.states,
           variables: [...m.variables.values()].map((v) => ({ id: v.id, domain: v.domain })),
           transitions: m.transitions.map((t) => ({ from: t.from, to: t.to, sync: t.sync, label: t.label })),
         })),

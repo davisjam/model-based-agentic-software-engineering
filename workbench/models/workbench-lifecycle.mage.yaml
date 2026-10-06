@@ -381,6 +381,7 @@ machines:
   # machine is free to step. That window is where both of the author's named claims live.
   # -------------------------------------------------------------------------
   transaction:
+    label: Transaction
     entity: transaction-engine
     purpose:
       question: Can a transaction commit against a system that is not the one its base names?
@@ -502,6 +503,7 @@ machines:
   # counterexample that was a conflation of two hashes. Header bound 3 is that finding.
   # -------------------------------------------------------------------------
   workspace:
+    label: Workspace
     entity: workspace-facade
     purpose:
       question: Can content a discarded hypothesis produced become what the workbench serves?
@@ -623,6 +625,7 @@ machines:
   # flips. A vacuously-holding invariant and a load-bearing one look identical in a results table.
   # -------------------------------------------------------------------------
   presentation:
+    label: Presentation
     entity: presented-answer
     purpose:
       question: Can an answer for one revision be presented as though it described another?
@@ -722,6 +725,7 @@ machines:
   # than modelled.
   # -------------------------------------------------------------------------
   second_author:
+    label: Second Author
     entity: shell-edit-funnel
     purpose:
       question: Can another party move the system under a base an agent has already captured?

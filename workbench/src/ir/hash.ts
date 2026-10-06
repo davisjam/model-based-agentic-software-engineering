@@ -86,6 +86,12 @@ function semanticProjection(s: CanonicalSystem): unknown {
       .map((r) => [r.type, r.from, r.to, r.model])
       .sort((a, b) => a.join(" ").localeCompare(b.join(" "))),
     sorted(s.models, (m) => [m.label, m.purpose.question, m.purpose.represents, m.purpose.omits, [...m.entities].sort()]),
+    // `m.label` is DELIBERATELY ABSENT, and the asymmetry with the model row below is recorded
+    // rather than hidden: `CanonModel.label` has hashed since the first projection, and removing it
+    // now would re-identify every shipped system for zero semantic change — the invalidation the
+    // version-independence argument forbids. The machine label arrived later (261006) under the
+    // ruling "a label is display only: it must never reach the canonical hash", so it stays out,
+    // and a machine relabel leaves the revision where it was, like a note.
     sorted(s.machines, (m) => [
       m.entity, m.instances, m.initial, [...m.states].sort(),
       [...m.variables.entries()].sort().map(([k, v]) => [k, v.kind, v.domain, v.initial]),

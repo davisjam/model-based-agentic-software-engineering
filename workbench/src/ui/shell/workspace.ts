@@ -25,6 +25,7 @@
  */
 import type { CanonicalSystem, QueryResult } from "../../ir/types.ts";
 import { modelsDeclaring } from "../../engine/graph.ts";
+import { modelTypeOf } from "../../engine/model-types.ts";
 import { parseGraphQuery } from "../../engine/index.ts";
 import type {
   AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
@@ -230,12 +231,17 @@ export function modelContents(
   // a model, is addressed by id. Falling back to the id keeps the row selectable for a subject the
   // renderer drew from a revision the system has since left.
   const subjectLabel = machine
-    ? system.machines.get(subject.id)?.id ?? subject.id
+    ? system.machines.get(subject.id)?.label ?? subject.id
     : system.models.get(subject.id)?.label ?? subject.id;
   const question = (machine ? system.machines.get(subject.id) : system.models.get(subject.id))
     ?.purpose.question ?? "";
   return {
-    subjectHeading: machine ? "This machine" : "This model",
+    // The registry's label for the kind: "This state machine" / "This structural model". The old
+    // "This machine" / "This model" pair read as two categories of thing; the engine says both are
+    // models and the TYPE is the difference.
+    subjectHeading: machine
+      ? `This ${modelTypeOf("state-machine").label}`
+      : `This ${modelTypeOf("structural-graph").label}`,
     subject: {
       label: subjectLabel,
       // The engineering question, which is the one fact about a model that is not in any row below

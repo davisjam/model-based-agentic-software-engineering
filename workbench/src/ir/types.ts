@@ -268,6 +268,13 @@ export interface CanonTransition {
 
 export interface CanonMachine {
   readonly id: string;
+  /**
+   * Display name, defaulting to the id — the same affordance `CanonModel.label` gives a structural
+   * model, added so one list never shows "Control Authority" beside "motion-interlock". DISPLAY
+   * ONLY: it is excluded from the canonical hash (see `hash.ts`) and never addresses anything —
+   * every selector and transaction still names the machine by `id`.
+   */
+  readonly label: string;
   readonly entity: string | null;
   readonly instances: number;
   readonly purpose: Purpose;

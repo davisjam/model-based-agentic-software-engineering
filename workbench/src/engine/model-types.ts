@@ -1579,6 +1579,33 @@ export const compositionsOf = (
 ): readonly CompositionSemantics[] =>
   COMPOSITIONS.filter((c) => c.from === id || c.to === id);
 
+const BY_ID: ReadonlyMap<ModelTypeId, ModelType> = new Map(
+  MODEL_TYPES.map((t) => [t.id, t]),
+);
+
+/**
+ * The registered type, by id. Total over `ModelTypeId` because the registry declares one entry per
+ * member of the closed union — the registry test holds that — so the throw is the same
+ * widened-union tripwire `modelTypeForQueryKind` carries.
+ */
+export function modelTypeOf(id: ModelTypeId): ModelType {
+  const t = BY_ID.get(id);
+  if (t === undefined) throw new Error(`no registered model type has id '${id}'`);
+  return t;
+}
+
+/**
+ * A type's display label with its first letter raised — for the START of a label or heading
+ * ("Structural model: Worker Pool"), where the registry's sentence-case label is quoted rather
+ * than re-authored. Everything a user sees calls a thing by its TYPE's label; `label` itself stays
+ * lowercase for mid-sentence use ("3 structural models"). One function, so no surface hand-cases
+ * a second spelling of a registry word.
+ */
+export function modelTypeHeading(id: ModelTypeId): string {
+  const label = modelTypeOf(id).label;
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
 const BY_KIND: ReadonlyMap<Query["kind"], ModelType> = new Map(
   MODEL_TYPES.map((t) => [t.queryKind, t]),
 );

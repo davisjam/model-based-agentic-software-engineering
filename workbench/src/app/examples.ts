@@ -692,7 +692,7 @@ export class ExampleCatalog {
       // Machines carry a purpose exactly as a graph model does. A description that listed only
       // `system.models` would report worker-queue as having one model and would be wrong.
       ...[...system.machines.values()].map((m) => ({
-        id: m.id, label: m.id, kind: "machine" as const, question: m.purpose.question,
+        id: m.id, label: m.label, kind: "machine" as const, question: m.purpose.question,
       })),
     ];
     const { title, summary, suggested } = readPresentation(id, fixture);

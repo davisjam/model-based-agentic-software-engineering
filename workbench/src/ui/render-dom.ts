@@ -13,6 +13,9 @@ import type { AccessibleScene, SvgNode } from "../render/types.ts";
 import type { BudgetView } from "../render/budget.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
+// The display vocabulary for the kinds of model, quoted from the registry (one source of these
+// words; no surface authors a parallel spelling).
+import { modelTypeOf } from "../engine/model-types.ts";
 import type { ProvenanceRecord } from "../app/provenance.ts";
 import type {
   Choice, FindingRow, PrincipalModel, PropertyRow, PurposeBlock, Row, Section, ViewModel,
@@ -184,8 +187,11 @@ export function paintPrincipal(
       + "appears here with the engineering question it answers.", "intro"));
     return;
   }
-  root.append(el("h3", `${principal.label} — the model being viewed`));
-  root.append(el("p", `${principal.kind} ${principal.id}`, "id"));
+  // Named by its TYPE, the registry's own label: "the structural model being viewed", "the state
+  // machine being viewed". The generic word said nothing the heading's position did not.
+  const typeLabel = modelTypeOf(principal.kind === "machine" ? "state-machine" : "structural-graph").label;
+  root.append(el("h3", `${principal.label} — the ${typeLabel} being viewed`));
+  root.append(el("p", `${typeLabel} ${principal.id}`, "id"));
   // With a `detail` root the grounds go there, behind disclosures; without one they stay flat
   // beneath the question. ONE module still decides how a purpose reads — the caller chooses the
   // depth, not the wording — which is the arrangement wave 1a settled on for a property row.
@@ -599,8 +605,11 @@ export function paintExampleDescription(
   for (const m of description.models) {
     const li = el("li");
     // The space is a real text node, not a margin. A screen reader reads the concatenated text, so
-    // the kind chip and the label would otherwise arrive as "graphData Policy".
-    li.append(el("span", m.kind, "state"), document.createTextNode(" "), el("strong", m.label));
+    // the kind chip and the label would otherwise arrive as "structural modelData Policy".
+    // The chip wears the registry's label for the kind — "graph" was the wire spelling (the YAML's
+    // `type: graph` maps to the registry's `structural-graph`), not a word for a student.
+    const kindLabel = modelTypeOf(m.kind === "machine" ? "state-machine" : "structural-graph").label;
+    li.append(el("span", kindLabel, "state"), document.createTextNode(" "), el("strong", m.label));
     // The question comes with the model because it is what the model is FOR -- and because a list of
     // model names teaches a reader nothing about why there is more than one.
     if (m.question !== null) li.append(document.createTextNode(` — ${m.question}`));
@@ -638,8 +647,15 @@ export function paint(vm: ViewModel, roots: {
 }): void {
   // The tab title carries the hypothesis too. A user who switched tabs and came back needs to know
   // they are not looking at the authoritative model before they read anything else.
+  //
+  // The document-name segment appears only when a document is OPEN — `vm.loaded`, the same
+  // authority the Start-vs-workspace mount keys on (SH-I1) — never inferred from the title's text:
+  // the empty workspace is literally a system named "untitled", and a student could author that
+  // name on purpose. A fresh tab reads "MAGE Workbench", not "untitled — MAGE Workbench".
   const prefix = vm.hypothesis === null ? "" : `HYPOTHESIS "${vm.hypothesis}" — `;
-  document.title = `${prefix}${vm.title} — MAGE Model Workbench`;
+  document.title = vm.loaded
+    ? `${prefix}${vm.title} — MAGE Workbench`
+    : `${prefix}MAGE Workbench`;
   roots.summary.textContent = vm.summary;
 
   roots.banner.replaceChildren();
