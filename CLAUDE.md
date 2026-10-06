@@ -196,6 +196,28 @@ re-deriving these, so they live here:**
     genuinely not in it. A verification that cannot distinguish "not there" from "I looked in the
     wrong place" reports the second as the first, and that direction of error is expensive: it
     condemns working code and sends someone to fix what is not broken.
+  - **A throwaway probe you WROTE must assert its own preconditions, or it will hand you a confident
+    wrong number.** The bullet above covers a probe that returns NOTHING. The nastier costume is a
+    probe that returns something — a count, a verdict, a clean bill of health — computed over the
+    wrong thing. Four instances on 261005-261006, all orchestrator-authored, all one mechanism:
+    - a `.pptx` table converter matched slides by TITLE, the author had retitled the slide, and it
+      converted nothing (its own 0-of-20 guard caught it — the guard is why this one cost minutes);
+    - an injection probe's anchor did not match the file's actual indentation, so it injected
+      nothing and `validate` reported **clean on an unmodified file**, which was one step from being
+      reported as evidence that the engine rejects the edge;
+    - an entity-type census mis-read the YAML shape and returned `0 of 77 typed`, when the corpus is
+      **160 of 160 typed** — and that figure shipped into a published decision record before the
+      design wave re-measured it three ways and refuted it;
+    - an `lsof` pre-flight written as `lsof "$F" | head -3 && echo ABORT || echo ok` printed ABORT
+      and then wrote the file anyway, because `head` exits 0 on empty input. The guard inverted
+      silently.
+    **The control is cheap and mechanical: a probe must fail loudly rather than return a value.**
+    Assert the anchor matched before editing; assert the denominator is non-zero before dividing;
+    assert the parse found the shape it expected (`assert anchor in s`, `assert len(found) > 0`);
+    test a conditional's FALSE branch before trusting its TRUE one. And prefer the authoritative
+    reader to your own parse — the census above was wrong because it re-implemented YAML traversal
+    the loader already does correctly, and the refutation ran `canonicalize` instead.
+    A probe with no precondition is not a measurement; it is a number with the provenance removed.
   - **A brief's `file:line` facts are claims, and the orchestrator is the worst-placed person to
     trust them.** The same failure recurred SIX times on 261004, always by the same mechanism: a
     `file:line` asserted into a brief from a grep hit, without reading enough around it.
