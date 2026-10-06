@@ -322,22 +322,27 @@ re-deriving these, so they live here:**
   was verified, since the commit is not the author's own claim. Only redo work the gates reject. A
   dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
   statement about its plan and not about the disk.
-- **New work for a COMPLETED agent goes to a FRESH dispatch, not a resume — a resumed agent
-  routinely no-ops.** `SendMessage` to an agent that has already finished frequently produces a
-  re-assertion of its completion and nothing else. Twice on 261005: one agent sent a cross-wave
-  coupling to resolve replied *"Complete. 3 commits, clean tree, unpushed, gates green. No
-  orchestrator actions taken."*; another sent a 911-line author copyedit as a second assignment
-  replied *"Task complete. Orchestrator-scoped hook; no action."* — it had classified the assignment
-  as hook text and discarded it. The cause is structural: a finished agent wakes with its own final
-  report as the nearest frame, and this session delivers Stop-hook and pool-probe text through the
-  same channel as orchestrator messages, so a message opening with context or rationale reads as
-  more of that noise. **The failure is silent in the worst way** — `SendMessage` answers "resumed it
-  in the background" and the no-op arrives as an ordinary completion notification, so it looks done.
-  So: branch state is what carries the work, and a fresh agent in the SAME worktree costs a
-  cold-start rather than a silent loss. Keep `SendMessage` for agents still IN FLIGHT, where it
-  works well — correcting a premise mid-task saved two waves from writing a false claim the same
-  day. If you must resume a finished one, open with an unmistakable assignment line and never with
-  preamble, then verify by content rather than by the completion notice.
+- **Resuming a COMPLETED agent with new work DOES work — its closing report is what lies. Verify the
+  disk, and never re-dispatch on the strength of a terse reply.** Twice on 261005 a finished agent
+  was handed a new assignment by `SendMessage` and answered as though it had done nothing: one
+  replied *"Complete. 3 commits, clean tree, unpushed, gates green. No orchestrator actions
+  taken."*, the other *"Task complete. Orchestrator-scoped hook; no action."* **Both had in fact
+  done the work** — the first landed the cross-wave reconciliation it was sent to do
+  (`dc0ddfc3f`, a third verdict state that discharged both pinned findings), the second applied a
+  911-line copyedit across a 33-slide deck, confirmed later by probing the file for two of the
+  spec's judgment-call landmarks. A finished agent wakes with its own final report as the nearest
+  frame and tends to re-emit it, so the report describes its PREVIOUS state while the tree holds the
+  new work.
+  - **The expensive move is believing the report.** Reading "no action" as a no-op produced a second
+    agent dispatched onto the same `.pptx`, which raced the first. Only the second agent's
+    exact-match failsafe — every old string already replaced, so exit without saving — stopped a
+    whole-package overwrite with no partial-credit version. That is the orchestrator committing the
+    never-infer-from-a-fragment error against an agent's PROSE, where the rule is usually invoked
+    against a `grep` hit or a slide run.
+  - So: after any resume, probe the artifact (`git log`, `git status --porcelain`, or the file
+    itself) before concluding anything, exactly as for liveness. And if a branch already carries a
+    fix, check for it before dispatching a second agent to produce one — two agents converging on
+    one defect is pure waste, and the one that rebased first usually wins on merit.
 
 - **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
   `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
