@@ -13,6 +13,7 @@ import type { AccessibleScene, SvgNode } from "../render/types.ts";
 import type { BudgetView } from "../render/budget.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
+import { scenarioLead } from "../app/examples.ts";
 // The display vocabulary for the kinds of model, quoted from the registry (one source of these
 // words; no surface authors a parallel spelling).
 import { modelTypeOf } from "../engine/model-types.ts";
@@ -589,6 +590,11 @@ export function paintProvenance(records: readonly ProvenanceRecord[], root: HTML
  * invitation to a question the fixture pins. Nothing is phrased in this function except the two
  * sub-headings, which is what keeps the panel honest about the thing it describes.
  *
+ * The card LEADS WITH THE CASE: `scenarioLead` abbreviates the authored scenario, per the ruling
+ * that the case appears "on the Start card in abbreviated form" and in full in the case panel
+ * after loading. The fixture's own `summary` is not rendered here — it is the dataset-style
+ * one-liner the case envelope replaced.
+ *
  * `Try asking` prints the case's ASK, not the saved query's statement: the card invites an
  * inquiry, and the rail after loading shows the declarative claim the same id resolves to. The
  * join between the two is enforced where the description is built (`joinCaseQuestions`).
@@ -598,7 +604,7 @@ export function paintExampleDescription(
 ): void {
   root.replaceChildren();
   if (description === null) return;
-  root.append(el("h3", description.title), el("p", description.summary, "intro"));
+  root.append(el("h3", description.title), el("p", scenarioLead(description.scenario), "intro"));
 
   root.append(el("p", "Models", "sublabel"));
   const models = el("ul", undefined, "notes");

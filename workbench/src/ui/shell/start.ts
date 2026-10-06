@@ -20,6 +20,7 @@
  * menu-plus-description the flat page shipped; what changed is when the region exists at all.
  */
 import type { ExampleDescription } from "../../app/examples.ts";
+import { scenarioLead } from "../../app/examples.ts";
 import { paintExampleDescription, paintExampleProblem, fillSelect } from "../render-dom.ts";
 import { byId, mountIf, sel } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
@@ -42,7 +43,10 @@ export function mountStart(ctx: ShellContext): ShellRegion {
     showDescription();
     const chosen = descriptions.get(choice.value);
     if (chosen !== undefined) {
-      ctx.announce(`${chosen.title}. ${chosen.summary} ${chosen.models.length} model(s). `
+      // The announcement says what the card leads with — the abbreviated case, through the same
+      // derivation `paintExampleDescription` paints — so a screen-reader user hears what a
+      // sighted user reads.
+      ctx.announce(`${chosen.title}. ${scenarioLead(chosen.scenario)} ${chosen.models.length} model(s). `
         + "Press Load this example to open it.");
     }
   });
