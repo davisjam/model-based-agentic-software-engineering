@@ -146,8 +146,10 @@ question, not a patch.
 
 # 261006 — SESSION DELTA (banked against compaction)
 
-**Local `main` is 27 commits ahead of `origin`. NOTHING IS PUSHED — the author ruled
-"we need to not be pushing, we are working locally right now, faster iteration" (261006).**
+**PUBLISH REVERSED 261006:** the author then asked to "publish what we have so far so I can try in
+my own browser on prod", so the local-only hold is LIFTED and 28 commits are being pushed. If a
+fresh session finds `origin/main..HEAD` non-empty, the push failed — retry is a plain fast-forward
+and loses nothing; pre-warm `catalog_tests.py --tier1` first and check `sysctl -n vm.loadavg`.
 Node tier **1475/1475**, tsc clean, catalogue 0 issues. Localhost serving the current build on
 `127.0.0.1:8099` for the author's own iteration.
 
