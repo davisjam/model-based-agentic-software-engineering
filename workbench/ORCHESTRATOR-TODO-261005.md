@@ -304,3 +304,19 @@ artifact — when an intermittent failure's evidence keeps shifting, suspect the
   ~7 min across four, fanning into `deploy`).
 - Prod deploy from the earlier push was still blocked by the 23-min browser step when last checked;
   the harness fix is what unblocks it, so RE-CHECK the Actions run after this push lands.
+
+## 261006 — HARNESS FIX PUBLISHED AND THE GATE VALIDATED
+
+`origin/main` = **26118ff3f**, pushed **WITH the pre-push hook enabled and passing**. That is the
+end-to-end proof: the gate that blocked two releases today runs clean now that the leaked-handle bug
+in `composed-view.test.mjs` is fixed. `--no-verify` is no longer needed and should not be used again.
+
+One commit stranded behind that push (the bank committed WHILE the push transferred — the documented
+photograph-the-tip failure). Pushed separately. **Do not commit to main while a push is in flight.**
+
+NEXT, in order, briefs already written:
+1. Land `wb-solver-findings-261006` (agent-citizenship fixes; 5 commits when last probed).
+2. Three-lab re-run WITH `export()` artifacts — `/tmp/brief-lab-rerun.md`. The author asked for
+   loadable models; the first run produced none.
+3. CI parallel split — `/tmp/` notes + measured durations in the section above.
+RE-CHECK after each: `/llms.txt` and `/robots.txt` on prod were 404 while the old build hung.
