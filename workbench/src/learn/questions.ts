@@ -118,18 +118,28 @@ import type { LoadedFixtures } from "./fixtures.ts";
  * Nothing here carries a `verdict` arm. A computed readout is reduced to `pairs` at BUILD time, so
  * every figure the page shows is a value a test can address by its term, and no formatting decision
  * lives in the DOM layer where a test would have to parse it back out.
+ *
+ * `provenance` routes a block into the section's "Implementation and provenance" disclosure rather
+ * than the reading path (author ruling, 261006): clause ids, `owed`, `asserted` and file citations
+ * are audit vocabulary, not reference teaching. The block stays in `blocks` — a test addresses it
+ * by its label exactly as before — and only the renderer treats the flag.
  */
 export type QuestionBlock =
-  | { readonly kind: "prose"; readonly text: string }
-  | { readonly kind: "bullets"; readonly label: string; readonly items: readonly string[] }
+  | { readonly kind: "prose"; readonly text: string; readonly provenance?: boolean }
+  | {
+    readonly kind: "bullets"; readonly label: string; readonly items: readonly string[];
+    readonly provenance?: boolean;
+  }
   | {
     readonly kind: "pairs"; readonly label: string;
     readonly pairs: readonly (readonly [string, string])[];
+    readonly provenance?: boolean;
   }
   | {
     readonly kind: "rows"; readonly label: string;
     readonly columns: readonly string[];
     readonly rows: readonly (readonly string[])[];
+    readonly provenance?: boolean;
   };
 
 /** The declared half of a question section: furniture, plus where its content comes from. */
@@ -1327,18 +1337,16 @@ function foundationBlocks(): readonly QuestionBlock[] {
     blocks.push({
       kind: "rows",
       label: "What each model form represents, and the standard concept it realizes a subset of",
-      columns: ["Model form", "Standard", "The concept it realizes a subset of", "Clause", "Conformance fixture"],
-      rows: borrowed.map(({ of, basis }) => [
-        of.label, basis.standard, basis.concept, basis.clause, basis.fixture ?? CLAUSE_OWED,
-      ]),
+      columns: ["Model form", "Standard", "The concept it realizes a subset of"],
+      rows: borrowed.map(({ of, basis }) => [of.label, basis.standard, basis.concept]),
     });
   }
 
   blocks.push({
     kind: "rows",
     label: "Where each question form's semantics come from",
-    columns: ["Question forms", "Asked of", "Where their semantics come from", "Cited at"],
-    rows: forms.map((r) => [r.what, r.askedOf ?? "—", basisAccount(r.basis), basisCitation(r.basis)]),
+    columns: ["Question forms", "Asked of", "Where their semantics come from"],
+    rows: forms.map((r) => [r.what, r.askedOf ?? "—", basisAccount(r.basis)]),
   });
 
   const ours = notAttributedItems();
@@ -1355,8 +1363,31 @@ function foundationBlocks(): readonly QuestionBlock[] {
     });
   }
 
+  // The audit half, routed behind "Implementation and provenance" (author ruling, 261006): clause
+  // ids, `owed`, `asserted` and citation file paths are implementation-project vocabulary. The
+  // reading path above keeps what is borrowed from where; an auditor opens the disclosure and gets
+  // every citation, including the two tables that re-key the ones the reading path dropped.
+  if (borrowed.length > 0) {
+    blocks.push({
+      kind: "rows",
+      provenance: true,
+      label: "The borrowed correspondences, clause by clause",
+      columns: ["Model form", "Clause", "Conformance fixture"],
+      rows: borrowed.map(({ of, basis }) => [of.label, basis.clause, basis.fixture ?? CLAUSE_OWED]),
+    });
+  }
+
+  blocks.push({
+    kind: "rows",
+    provenance: true,
+    label: "Citations for each question form's basis",
+    columns: ["Question forms", "Cited at"],
+    rows: forms.map((r) => [r.what, basisCitation(r.basis)]),
+  });
+
   blocks.push({
     kind: "pairs",
+    provenance: true,
     label: "The attribution, counted now",
     pairs: [
       ["Model-form substrates borrowed from a standard",
@@ -1376,6 +1407,7 @@ function foundationBlocks(): readonly QuestionBlock[] {
 
   blocks.push({
     kind: "prose",
+    provenance: true,
     text: "Every borrowed row above is `asserted`, which is a specific and limited claim: a person "
       + "read the specification and the model together, on a date. Nothing re-derives it on every "
       + "run. The workbench takes no runtime dependency on the SysML v2 reference implementation, "

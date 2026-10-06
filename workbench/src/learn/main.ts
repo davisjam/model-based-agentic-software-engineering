@@ -76,10 +76,16 @@ function statementList(statements: readonly SavedStatement[]): HTMLElement {
  * a disclosure because they are provenance, not pedagogy: the reading path teaches the construct,
  * and the disclosure holds the receipts.
  */
-function provenanceDetails(citations: readonly SchemaAuthority[], lead?: string): HTMLElement {
+function provenanceDetails(
+  citations: readonly SchemaAuthority[], lead?: string, extra: readonly Node[] = [],
+): HTMLElement {
   const details = el("details", undefined, "walk-provenance");
   details.append(el("summary", "Implementation and provenance"));
   if (lead !== undefined) details.append(el("p", lead, "intro"));
+  // Provenance-flagged blocks (clause citations, the attribution census) render here, above the
+  // citation list — the author's ruling that audit vocabulary stays reachable but off the reading
+  // path.
+  details.append(...extra);
   const dl = el("dl", undefined, "prov");
   for (const c of citations) dl.append(el("dt", `${c.file} — ${c.symbol}`), el("dd", c.role));
   details.append(dl);
@@ -287,6 +293,18 @@ function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, C
  * citations are rendered (behind the provenance disclosure): a reader can open the authority
  * instead of trusting this page.
  */
+/**
+ * One built block as DOM. A readout is a description list, not a two-column table: a table whose
+ * header cells have nothing to say reports `empty-table-header` (axe), because the markup claims a
+ * data grid for what is a term-and-value list.
+ */
+function questionBlockNodes(block: BuiltQuestionSection["blocks"][number]): readonly Node[] {
+  if (block.kind === "prose") return [el("p", block.text)];
+  if (block.kind === "bullets") return [sub(block.label), bulletList(block.items)];
+  if (block.kind === "pairs") return [sub(block.label), pairsList(block.pairs)];
+  return [sub(block.label), rowsTable(block.columns, block.rows)];
+}
+
 function questionSection(s: BuiltQuestionSection): HTMLElement {
   const section = el("section");
   section.id = s.section.anchor;
@@ -296,22 +314,12 @@ function questionSection(s: BuiltQuestionSection): HTMLElement {
   section.append(h, el("p", s.section.lede, "intro"));
 
   for (const block of s.blocks) {
-    if (block.kind === "prose") { section.append(el("p", block.text)); continue; }
-    if (block.kind === "bullets") {
-      section.append(sub(block.label), bulletList(block.items));
-      continue;
-    }
-    if (block.kind === "pairs") {
-      // A readout is a description list, not a two-column table: a table whose header cells have
-      // nothing to say reports `empty-table-header` (axe), because the markup claims a data grid
-      // for what is a term-and-value list.
-      section.append(sub(block.label), pairsList(block.pairs));
-      continue;
-    }
-    section.append(sub(block.label), rowsTable(block.columns, block.rows));
+    if (block.provenance === true) continue;
+    section.append(...questionBlockNodes(block));
   }
 
-  section.append(provenanceDetails(s.section.derivedFrom));
+  section.append(provenanceDetails(s.section.derivedFrom, undefined,
+    s.blocks.filter((b) => b.provenance === true).flatMap((b) => [...questionBlockNodes(b)])));
   return section;
 }
 
