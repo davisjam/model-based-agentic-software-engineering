@@ -837,11 +837,25 @@ export const CAPABILITIES: readonly Capability[] = [
     // edit to see which claims moved. `window.mage.properties` is the machine twin of that same
     // read -- the verdict with the models and evidence it derives from (UX-I5), which satisfies
     // UX-I2 for a surface whose whole content is a semantic result.
+    //
+    // `window.mage.requirements` is a third spelling of this row's one capability, by the row test
+    // the `query` row states: a second ROW must report a capability the product GAINED, and this
+    // reports none -- it reads the SAME `runSavedQueries` re-run and joins it against the authored
+    // `requirements:` declarations through the engine's one verification join. What it adds is the
+    // interpreted obligation (satisfied / violated / inconclusive-with-cause / error) an agent
+    // previously derived by hand from a saved query's outcome plus `satisfied_when` read out of
+    // export YAML (261006 lab-solver run, guess 3). The human half of that interpretation is the
+    // property list's requirement rows; the DECLARED remainder -- no human surface yet renders the
+    // four verification status words for authored requirements -- is published as data in
+    // `describe().authoring.gaps` rather than left for a reader to discover by failing.
     human: [
       header("header.run-all", "run", "loaded"),
       readout("properties-section.list", "question-list", "nav-properties"),
     ],
-    machine: [wired("window.mage.savedQueries", []), wired("window.mage.properties", [])],
+    machine: [
+      wired("window.mage.savedQueries", []), wired("window.mage.properties", []),
+      wired("window.mage.requirements", []),
+    ],
     producesEvidence: true,
   },
   {

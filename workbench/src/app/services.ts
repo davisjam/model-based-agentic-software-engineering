@@ -26,6 +26,11 @@ import { VALIDATION_AUTHORITY, wellFormed } from "../validator/result.ts";
 import type { ValidationResult } from "../validator/result.ts";
 import { checkQuery } from "../engine/check.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
+import { parseQuery } from "../engine/types.ts";
+import type { Query } from "../engine/types.ts";
+import { parseRequirement, verifyDeclaration, VERIFICATION_TEXT } from "../engine/verification.ts";
+import type { PropositionValue } from "../ir/types.ts";
+import type { Verification } from "../engine/verification.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
 import type { RejectionKind } from "../transaction/types.ts";
 import { collectProvenance } from "./provenance.ts";
@@ -39,6 +44,31 @@ import type {
   ComposedCrossModelView, ComposedPropertyView, CompositionEdge, CrossModelPanelRequest,
   CrossModelRequest, DerivedComposedView,
 } from "./cross-model.ts";
+
+/**
+ * One authored requirement, read: the declaration beside the verification derived from it.
+ *
+ * The declaration half is `null` per field when `parseRequirement` could not read it — the
+ * verification then carries the `error` arm naming why, and a reader is never shown a half-parsed
+ * obligation as though it were stated. `meaning` is `VERIFICATION_TEXT[verification.status]`, the
+ * one place each status word's reading is spelled, carried here because the two misreadings it
+ * guards against — `inconclusive` as a no, `error` as a breach — are exactly the ones an agent
+ * branching on the word alone would make.
+ */
+export interface RequirementReading {
+  readonly id: string;
+  /** The obligation in the author's modal voice, or null when the declaration could not be read. */
+  readonly statement: string | null;
+  /** The deciding saved query's id. */
+  readonly expressedAs: string | null;
+  /** The proposition value that discharges the obligation. */
+  readonly satisfiedWhen: PropositionValue | null;
+  readonly verification: Verification;
+  /** What the status word MEANS, from the engine's own table. */
+  readonly meaning: string;
+  /** The revision this reading describes — derived per read, stored nowhere. */
+  readonly systemHash: string;
+}
 
 // The UI reaches the cross-model vocabulary through this facade, never through the composer
 // directly — `test/cross-model.test.ts` holds that this file is the composer's only importer, so
@@ -481,6 +511,51 @@ export class Workspace {
    */
   properties(): readonly EvaluatedProperty[] {
     return evaluateProperties(this.#engine.system(), this.runSavedQueries(), this.#engine.hash());
+  }
+
+  /**
+   * Every authored requirement, with its verification derived NOW — the §13 construct, finally
+   * readable through a service.
+   *
+   * The model schema has always said verification is *"derived per read and stored nowhere"*, and
+   * until this method nothing an application surface could call derived it: `verify` and
+   * `verifySystemRequirements` lived in the engine, exercised by tests and reachable from no
+   * `window.mage` call and no panel. The 261006 lab-solver run measured the cost — an agent judged
+   * every requirement by joining the deciding query's outcome with `satisfied_when` read out of
+   * export YAML, by hand, each time. A construct whose verdict is derivable but published nowhere
+   * is one only its author can read.
+   *
+   * Recomputed per call, like `properties()` next door and by the same V18 reasoning: the only
+   * honest way to read a verdict is to compute one. The deciding results come from
+   * `runSavedQueries()` — the SAME seam the property list re-runs — so a requirement's verdict can
+   * never disagree with the published result of the query that decides it.
+   */
+  requirements(): ReadonlyMap<string, RequirementReading> {
+    const system = this.#engine.system();
+    const hash = this.#engine.hash();
+    const results = this.runSavedQueries();
+    const known = new Set(system.queries.keys());
+    const shapes = new Map<string, Query>();
+    for (const [id, saved] of system.queries) {
+      const parsed = parseQuery(saved.raw);
+      if (parsed.ok) shapes.set(id, parsed.value);
+    }
+    const out = new Map<string, RequirementReading>();
+    for (const [id, declared] of system.requirements) {
+      const where = `requirements.${id}`;
+      const verification = verifyDeclaration(declared.raw, where, results, known, shapes);
+      const parsed = parseRequirement(declared.raw, where);
+      out.set(id, {
+        id,
+        statement: parsed.ok ? parsed.value.statement : null,
+        expressedAs: parsed.ok ? parsed.value.expressedAs : null,
+        satisfiedWhen: parsed.ok ? parsed.value.satisfiedWhen : null,
+        verification,
+        meaning: VERIFICATION_TEXT[verification.status],
+        systemHash: hash,
+      });
+    }
+    return out;
   }
 
   /**

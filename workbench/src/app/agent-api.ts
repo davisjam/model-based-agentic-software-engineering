@@ -22,7 +22,7 @@
 import type { Evidence, Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
-import type { SparqlAnswer, Workspace } from "./services.ts";
+import type { RequirementReading, SparqlAnswer, Workspace } from "./services.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
 import { countElements, selectElements } from "../engine/elements.ts";
 import type { ElementCount, ElementSelection } from "../engine/elements.ts";
@@ -168,6 +168,20 @@ export interface MageAgentApi {
    * Recomputed per call. There is no cached verdict here any more than there is one in the IR.
    */
   properties(): readonly EvaluatedProperty[];
+  /**
+   * Every authored requirement with its verification derived NOW — the §13 construct, readable at
+   * last.
+   *
+   * The model schema always said verification is "derived per read and stored nowhere", and no
+   * call here derived it: an agent judging an obligation had to join the deciding query's outcome
+   * against `satisfied_when` read out of `export()` YAML, by hand, every time (261006 lab-solver
+   * run, guess 3). This is that join, performed by the one implementation that owns it: the
+   * declaration beside the four-valued verification — satisfied / violated / inconclusive-with-
+   * cause / error — plus `meaning`, the engine's own sentence for what the status word does and
+   * does not say. Keyed by the authored requirement id. Recomputed per call, like `properties()`,
+   * over the SAME saved-query re-run the property list reads.
+   */
+  requirements(): Record<string, RequirementReading>;
   /**
    * Read one saved question's witness, counterexample or lasso — recomputed, and never nullable.
    *
@@ -1070,6 +1084,11 @@ export function createAgentApi(
     savedQueries: () => Object.fromEntries(workspace.runSavedQueries()),
 
     properties: () => workspace.properties(),
+
+    // Straight through, like `properties` — the facade holds the system, the declarations and the
+    // one verification join, so there is nothing here to decide. `Object.fromEntries` because the
+    // wire is JSON: a Map serializes to {} silently, the exact defect the evidence seam just paid for.
+    requirements: () => Object.fromEntries(workspace.requirements()),
 
     evidence: readEvidence,
 
