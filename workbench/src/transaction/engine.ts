@@ -22,7 +22,10 @@
  * and a wrong inverse corrupts silently. The IR is immutable and a revision is a parsed document, so
  * keeping whole revisions is cheap and obviously correct — undo is a pointer move.
  */
-import { validate } from "../validator/rules.ts";
+// The detail-carrying pass, not the narrowed `validate`: a rejection's findings reach the agent
+// that must repair them, and the typed half (subjects, severity, spec) is exactly what it edits
+// by. The narrowed triple stays what the Python parity surface compares; nothing here is on it.
+import { validateWithDetail } from "../validator/rules.ts";
 import type { CanonicalSystem, Finding } from "../ir/types.ts";
 import { MageDocument } from "../yaml/document.ts";
 import { applyOperation } from "./apply-op.ts";
@@ -85,7 +88,7 @@ export class TransactionEngine {
     if (loaded.document === null) return { engine: null, findings: loaded.findings };
     const document = loaded.document.seal();
     const system = document.system();
-    const baselineFindings = validate(system);
+    const baselineFindings = validateWithDetail(system);
     const revision: Revision = {
       document, system, hash: document.hash(), rationale: null, operations: [],
     };
@@ -143,7 +146,7 @@ export class TransactionEngine {
 
     // 4. Validate the ENTIRE resulting system, and reject on anything the base did not already have.
     const candidateSystem = candidate.system();
-    const added = introduced(this.baselineFindings, validate(candidateSystem));
+    const added = introduced(this.baselineFindings, validateWithDetail(candidateSystem));
     if (added.length > 0) {
       return reject("validation-failed",
         `the resulting system would violate ${added.length} semantic rule(s): ` +

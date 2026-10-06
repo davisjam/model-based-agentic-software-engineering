@@ -23,7 +23,7 @@
  * different questions — V5 is reported at the claiming entity and is about the child it claims — and
  * collapsing them would send an agent to repair the wrong object.
  */
-import type { Finding } from "../ir/types.ts";
+import type { Finding, FindingDetail } from "../ir/types.ts";
 
 /**
  * Every rule id the validator emits. Closed, and the compiler holds it closed: `Collector.add`
@@ -40,7 +40,11 @@ export type ValidationRule =
   | "V45" | "V46" | "V47" | "V48"
   | "ANNOTATION";
 
-export type Severity = "error" | "warning";
+/**
+ * Defined where `FindingDetail` is, aliased here: the wire's typed half and the validator's
+ * enrichment are one vocabulary, held together by the compiler rather than by two spellings.
+ */
+export type Severity = FindingDetail["severity"];
 
 /**
  * Rule → severity. A mapped type over the union, so adding a rule to `ValidationRule` without a

@@ -27,6 +27,7 @@ import type { QueryCheckResult } from "../engine/check.ts";
 import { countElements, selectElements } from "../engine/elements.ts";
 import type { ElementCount, ElementSelection } from "../engine/elements.ts";
 import type { ModelTypeId, QueryNoun, SubjectSelector } from "../engine/model-types.ts";
+import { detail, unlicensed } from "../engine/types.ts";
 import type { GraphForm } from "../engine/types.ts";
 import { SEVERITY, SPEC_SECTION, VALIDATION_AUTHORITY } from "../validator/result.ts";
 import type { Severity, ValidationResult, ValidationRule } from "../validator/result.ts";
@@ -269,6 +270,37 @@ const RELATED_FORM: Readonly<Record<TraversalDirection, GraphForm>> = {
   outgoing: "successors",
   incoming: "predecessors",
 };
+
+/**
+ * Is this value one of the two declared directions? Derived from `RELATED_FORM`'s own keys, so the
+ * guard and the vocabulary cannot drift.
+ *
+ * `TraversalDirection` constrains the facade's signature at compile time, but `window.mage` takes
+ * runtime input from an agent, and the constructor below reads `direction === "outgoing"` with an
+ * `else` arm. Before this guard, `"out"`, `"from"` and `"forward"` all fell to that arm — the
+ * INCOMING question, answered authoritatively, with no refusal and no note. A silent fallback to a
+ * different question is worse than an error; the facade refuses instead (`refuseDirection`).
+ */
+export const isTraversalDirection = (d: unknown): d is TraversalDirection =>
+  typeof d === "string" && (Object.keys(RELATED_FORM) as readonly string[]).includes(d);
+
+/**
+ * The refusal an unrecognized direction earns, teaching the correct form the way the engine's own
+ * refusals do: the accepted values, and what each one asks. Deliberately NOT a synonym map — a
+ * guess about which question was meant is the failure this refusal replaces.
+ */
+export const refuseDirection = (
+  systemHash: string, from: string, relation: string, direction: unknown,
+): QueryResult =>
+  unlicensed(
+    systemHash,
+    `traversal direction '${String(direction)}' is not one of ` +
+      `${Object.keys(RELATED_FORM).join(", ")}. 'outgoing' asks which entities '${from}' points ` +
+      `at through '${relation}'; 'incoming' asks which entities point at it. The two are ` +
+      `different questions, so the direction is refused rather than guessed.`,
+    null,
+    detail("unsupported-expression", [`a traversal direction: ${Object.keys(RELATED_FORM).map((d) => `'${d}'`).join(" or ")}`]),
+  ).result;
 
 const REACHABLE_FORM: GraphForm = "reachability";
 const PATH_FORM: GraphForm = "path";
@@ -1077,7 +1109,14 @@ export function createAgentApi(
     model: {
       elements: (selector) => selectElements(workspace.state.system, selector),
       count: (selector) => countElements(workspace.state.system, selector),
-      related: (from, relation, direction) => workspace.query(relatedQuery(from, relation, direction)),
+      // Guarded, unlike its siblings, because `direction` is the one parameter here whose
+      // unrecognized value used to fall through a ternary to the OPPOSITE question. `from` and
+      // `relation` stay unguarded on purpose: an unknown name is vocabulary, and the engine
+      // already refuses it with the model's own words.
+      related: (from, relation, direction) =>
+        isTraversalDirection(direction)
+          ? workspace.query(relatedQuery(from, relation, direction))
+          : refuseDirection(workspace.state.hash, from, relation, direction),
       reachable: (from, relation, to) =>
         workspace.query(reachableQuery(from, relation, to ?? null)),
       path: (from, to, relation) => workspace.query(pathQuery(from, to, relation)),
