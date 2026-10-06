@@ -57,17 +57,19 @@ kept as the audit trail.
    reading split and the `materials:` entries, so it was deliberately left alone.
 3. **Truth gate, five open questions** — in `/tmp/truth-gate-design-261005.md` §10. Not yet folded
    into the repo; it belongs in `workbench/` beside its siblings.
-4. **`wb-edit2a-261003`** — of the 74 branches the crashed session left behind, 73 are fully landed
-   by patch-id and this one holds **2 unlanded commits** (`f479d7c8f`, `84d303d7e`). Real work from
-   the session whose tab died. Untouched.
+4. ~~**`wb-edit2a-261003`**~~ — **RECOVERED AND LANDED 261006.** Of the 74 branches the crashed
+   session left behind, 73 were fully landed by patch-id and this one held 2 unlanded commits. It
+   was 62 lines of §9c.1 in `DESIGN-shell-261002.md`: the measured cost of wave 2a to the D-2
+   focus-order pin, and why the two land orders are asymmetric for the gate. A measurement, which
+   does not go stale the way a claim about current code does. The merge conflicted additively —
+   both sides had appended a section at the same point — and both survive in numerical order.
 
 ---
 
 ## Known debt, named rather than silently carried
 
-- **The Truth-gate design lives in `/tmp`.** It is a 505-line deliverable with a schema, a predicate
-  and a migration census, and `/tmp` is not a home. Fold it into `workbench/` as
-  `DESIGN-truth-gate-261005.md`.
+- ~~The Truth-gate design lives in `/tmp`.~~ **DISCHARGED 261006** — folded to
+  `workbench/DESIGN-truth-gate-261005.md`, unmodified, beside the two gates it shaped.
 - **Two addressing schemes are not unified.** The gates wave's `subject:` is a single locator string
   at family granularity; the Truth design's `subjects:` is structured and names individual relations
   by id. The locator builders are exported so the Truth phase joins rather than re-derives, but the
