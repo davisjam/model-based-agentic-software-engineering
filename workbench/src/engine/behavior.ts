@@ -41,8 +41,8 @@ import type { RefScope } from "./refs.ts";
 import { omissionCovering, omissionProse } from "./omission.ts";
 import {
   bounded, detail, exhaustive, refusedAdmission as refused, result, unlicensed, verdict,
-  type Admission, type BehaviorForm, type BehaviorQuery, type Predicate, type Quantifier,
-  type TransitionSelector, type Verdict,
+  type Admission, type BehaviorForm, type BehaviorQuery, type Fail, type Predicate,
+  type Quantifier, type TransitionSelector, type Verdict,
 } from "./types.ts";
 
 /**
@@ -185,7 +185,7 @@ export function admitBehaviorQuery(
   const scope = compiled.value.scope;
 
   const avoid = compileOptional(scope, q.avoid);
-  if (!avoid.ok) return refused(unlicensed(systemHash, `avoid: ${avoid.refusal}`, interpretedAs));
+  if (!avoid.ok) return refused(unlicensed(systemHash, `avoid: ${avoid.refusal}`, interpretedAs, avoid.detail));
 
   const limit = q.limit ?? DEFAULT_STATE_LIMIT;
   const options: ExploreOptions = { ...defaultOptions(limit), avoid: avoid.value };
@@ -200,9 +200,13 @@ export function admitBehaviorQuery(
       return refused(unlicensed(systemHash,
         `a '${form}' query must carry a '${field}' predicate.`, interpretedAs));
     }
+    // The sentence gains the field prefix; the TYPED cause passes through untouched. Dropping
+    // `detail` here is how the capstone's charge-remaining refusal shipped `unknown-vocabulary`
+    // with empty arrays while its prose named the declared omission and two models.
     const compiledPredicate = compilePredicate(scope, raw);
     if (!compiledPredicate.ok) {
-      return refused(unlicensed(systemHash, `${field}: ${compiledPredicate.refusal}`, interpretedAs));
+      return refused(unlicensed(
+        systemHash, `${field}: ${compiledPredicate.refusal}`, interpretedAs, compiledPredicate.detail));
     }
     return plan({ on: "configurations", form, predicate: compiledPredicate.value, raw });
   };
@@ -332,7 +336,7 @@ function evaluateBehavior(p: BehaviorPlan, systemHash: string): Verdict {
 
 // --------------------------------------------------------------------------------------------
 
-function compileOptional(scope: RefScope, pred: Predicate | null): { ok: true; value: CompiledPredicate | null } | { ok: false; refusal: string } {
+function compileOptional(scope: RefScope, pred: Predicate | null): { ok: true; value: CompiledPredicate | null } | Fail {
   if (pred === null) return { ok: true, value: null };
   const compiled = compilePredicate(scope, pred);
   return compiled.ok ? { ok: true, value: compiled.value } : compiled;
