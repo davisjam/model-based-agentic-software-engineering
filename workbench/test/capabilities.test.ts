@@ -27,7 +27,7 @@ import {
   CAPABILITIES, CHROME_CONTROLS, affordanceParityGate, boundHumanAffordances,
   checkAffordanceParity, checkRegistryClosure, generateAffordanceModel,
 } from "../src/app/capabilities.ts";
-import type { Affordance, CapabilityId } from "../src/app/capabilities.ts";
+import type { AffordanceSite, CapabilityId } from "../src/app/capabilities.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 
 /**
@@ -132,7 +132,7 @@ test("the parity gate's verdict tracks the registry it is given — negative con
   // The threshold has one home now, so it has to be watched there. A gate that cannot go red is
   // worth nothing to either of the two runners that depend on it.
   const broken = CAPABILITIES.map((c) =>
-    c.id === "import" ? { ...c, machine: [{ at: "gone", status: "absent" as const, note: "removed for the test" }] } : c);
+    c.id === "import" ? { ...c, machine: [{ at: "gone", status: "absent" as const, note: "removed for the test", parameters: [] }] } : c);
   const red = affordanceParityGate(broken);
   assert.equal(red.passed, false, "a one-sided capability must fail the gate");
   assert.match(red.headline, /UX-I1: 1 violation\(s\) over \d+ capabilities/);
@@ -243,7 +243,7 @@ test("every capability names exactly one application service", () => {
 });
 
 /** An affordance is honest if it works, or says why it does not. */
-const explained = (a: Affordance): boolean => a.status === "wired" || (a.note ?? "").length > 8;
+const explained = (a: AffordanceSite): boolean => a.status === "wired" || (a.note ?? "").length > 8;
 
 test("anything not wired must explain itself", () => {
   // An unexplained gap is indistinguishable from an oversight. A note is what makes a baseline

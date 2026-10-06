@@ -24,14 +24,18 @@
 // for `alternatives`: a member added to the union fails `tsc` here before it can ship unmeasured.
 // That is a lookup the compiler enforces, not a snapshot that drifts.
 //
-// ## AUDIT-ONLY, by the exact-set discipline
+// ## BLOCKING — the ledger drained, by the exact-set discipline
 //
-// The audit finds real omissions at HEAD. Per the landing rule for new checks that find >0, the
-// known gaps are pinned in `KNOWN_GAPS` below — the `KNOWN_INERT_CLAIMS` shape from
-// `test/semantic-live.test.ts`: an EXACT set, asserted both ways. A NEW omission fails this file;
-// a HEALED omission also fails it, and the fix is to delete the entry. Publishing the missing
-// vocabulary is the follow-up this pin is the ledger for; this change deliberately does not touch
-// `src/app/**`.
+// This file landed AUDIT-ONLY per the landing rule for new checks that find >0: six omissions,
+// pinned in `KNOWN_GAPS` below as an EXACT set asserted both ways (the `KNOWN_INERT_CLAIMS` shape
+// from `test/semantic-live.test.ts`). The 261006 follow-up published every pinned vocabulary —
+// the refusal causes, subjects, model-type ids and binding names as query-schema enums; the
+// operations' parameters via the capability registry; the semantics as structured rule data — and
+// deleted the entries as each row turned red, which is the pin working. `KNOWN_GAPS` is now EMPTY
+// and the measured set must match it: any future omission fails this file at once, and is either
+// published or pinned here with a briefing-grade reason. That empty set IS the promotion to
+// BLOCKING; no runner change was needed, because the suite always ran this file — what changed is
+// that nothing is excused.
 //
 // What already held before this file, for the record: graph/behavior form parity with the schema
 // (`test/engine-forms.test.ts`), the metric enum (`test/quant-query.test.ts`), the transaction op
@@ -46,12 +50,14 @@ import type { ApiDescription, MageAgentApi } from "../src/app/agent-api.ts";
 import { Workspace } from "../src/app/services.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
-import { BEHAVIOR_FORMS, GRAPH_FORMS, QUANTIFIERS } from "../src/engine/types.ts";
-import type { Query, RefusalReason } from "../src/engine/types.ts";
+import { BEHAVIOR_FORMS, GRAPH_FORMS, QUANTIFIERS, REFUSAL_REASONS } from "../src/engine/types.ts";
+import type { Query } from "../src/engine/types.ts";
 import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
 import { BINDINGS, MODEL_TYPES } from "../src/engine/model-types.ts";
 import { DIMENSIONS } from "../src/ir/types.ts";
 import type { Coverage, EvidenceRole, EvidenceShape, GuardOp, Outcome } from "../src/ir/types.ts";
+import { SEVERITY, SPEC_SECTION } from "../src/validator/result.ts";
+import type { ValidationRule } from "../src/validator/result.ts";
 import { realPorts, exampleText } from "../scripts/gen-example-coverage.ts";
 
 // ----------------------------------------------------------------------------------------------
@@ -139,17 +145,10 @@ function assertExactVocabulary(label: string, engine: readonly string[], publish
 // Union vocabularies, total by the compiler (the `check.ts` `alternatives` idiom)
 // ----------------------------------------------------------------------------------------------
 
-const REFUSAL_REASONS: Readonly<Record<RefusalReason, true>> = {
-  "composition-forbidden": true,
-  "missing-distinction": true,
-  "unknown-vocabulary": true,
-  "missing-model-type": true,
-  "unsupported-form": true,
-  "quantifier-mismatch": true,
-  "unsupported-expression": true,
-  "reserved-feature": true,
-  "category-error": true,
-};
+// `REFUSAL_REASONS` is imported, not restated: since the vocabulary moved onto the wire result it
+// has a runtime list in `src/ir/types.ts` from which the union is derived — the same arrangement
+// `GRAPH_FORMS` has — so this file reads the substrate instead of holding a `Record<Union, true>`
+// copy of it. The unions below still exist only as types, so the Record idiom stays for them.
 
 const GUARD_OPS: Readonly<Record<GuardOp, true>> = { eq: true, ne: true, lt: true, le: true, gt: true, ge: true };
 
@@ -223,6 +222,12 @@ const QUERY_ENUMS: readonly { readonly label: string; readonly path: readonly st
   { label: "magnitude dimensions", path: ["$defs", "result", "properties", "magnitude", "properties", "dimension"], engine: Object.keys(DIMENSIONS) },
   { label: "evidence shapes", path: ["$defs", "evidence", "properties", "shape"], engine: keys(EVIDENCE_SHAPES) },
   { label: "evidence roles", path: ["$defs", "evidence", "properties", "role"], engine: keys(EVIDENCE_ROLES) },
+  // The three vocabularies the 261006 gap-fill published. In this table they get the full
+  // both-direction treatment every older enum gets: an engine member the schema omits is
+  // undiscoverable, a schema member the engine refuses is a lie.
+  { label: "refusal causes", path: ["$defs", "refusalReason"], engine: REFUSAL_REASONS },
+  { label: "model-type ids", path: ["$defs", "modelType"], engine: MODEL_TYPES.map((t) => t.id) },
+  { label: "binding names", path: ["$defs", "binding"], engine: BINDINGS.map((b) => b.name) },
 ];
 
 test("every query-language vocabulary is published as an enum an agent can choose from", () => {
@@ -267,12 +272,13 @@ function measureGaps(d: ApiDescription): ReadonlyMap<string, string> {
   const queryTokens = dataTokens(d.schemas["query"]);
 
   // Query language first: the refusal vocabulary. `RefusalReason` is the closed cause set every
-  // refusal and every `check()` report carries; the published `result.refusal` is a bare string.
-  // An agent cannot tell a refusal from a failure, nor one refusal cause from another, without it.
-  const missingReasons = keys(REFUSAL_REASONS).filter((r) => !allTokens.has(r));
+  // refusal and every `check()` report carries; published as `$defs.refusalReason`, and carried on
+  // the wire as `result.refusalDetail` beside the prose sentence. An agent cannot tell a refusal
+  // from a failure, nor one refusal cause from another, without it.
+  const missingReasons = REFUSAL_REASONS.filter((r) => !allTokens.has(r));
   if (missingReasons.length > 0) {
     gaps.set("refusal-vocabulary",
-      `${missingReasons.length} of ${keys(REFUSAL_REASONS).length} refusal causes unpublished: ${missingReasons.join(", ")}`);
+      `${missingReasons.length} of ${REFUSAL_REASONS.length} refusal causes unpublished: ${missingReasons.join(", ")}`);
   }
 
   // Query language second: the subject vocabulary. The registry declares which nouns each model
@@ -291,20 +297,34 @@ function measureGaps(d: ApiDescription): ReadonlyMap<string, string> {
       + `${missingSelectors.length} of ${selectors.length} selectors (${missingSelectors.join(", ")}) unpublished`);
   }
 
-  // Operations publish existence and return shape, never parameters. An agent learns `query` exists
-  // and what it returns; what to PASS it lives only in the schemas' example-free shapes and prose.
-  const paramless = d.operations.filter((op) => Object.keys(op).every((k) => OPERATION_FIELDS.has(k)));
+  // Operations must publish what to PASS them, not only that they exist and what they return. An
+  // operation is paramless when it carries only the original three fields, when its `calls` list
+  // is empty, or when a callable in it declares no parameters array at all — `parameters: []` is
+  // the honest "takes nothing" and passes; a missing array is an undeclared signature and fails.
+  const paramless = d.operations.filter((op) => {
+    if (Object.keys(op).every((k) => OPERATION_FIELDS.has(k))) return true;
+    const calls = (op as { readonly calls?: readonly { readonly parameters?: unknown }[] }).calls;
+    if (calls === undefined) return false; // healed some other way; the key check above governs
+    return calls.length === 0 || calls.some((c) => !Array.isArray(c.parameters));
+  });
   if (paramless.length > 0) {
     gaps.set("operation-parameters",
       `${paramless.length} of ${d.operations.length} operations publish only name/summary/returns — no parameter data`);
   }
 
-  // The semantics are a pointer into this repo's working tree. The schemas travel inline so an
-  // agent "needs no second fetch and no network" — the semantics get a path instead, to a file the
-  // publication does not carry, naming rules (V1-V25) whose ids appear nowhere as data.
-  if (typeof d.semantics === "string") {
+  // The semantics must be data the publication carries — at minimum the closed rule-id vocabulary,
+  // non-empty. A bare string is the original defect: a prose pointer into a repo the publication
+  // does not ship. A structured object with no rules would be the same defect wearing braces.
+  const sem: unknown = d.semantics;
+  const semRules = typeof sem === "object" && sem !== null
+    ? (sem as { readonly rules?: unknown }).rules
+    : undefined;
+  if (typeof sem === "string") {
     gaps.set("semantics-prose-pointer",
-      `describe().semantics is a prose pointer ("${d.semantics.slice(0, 60)}…") to a file the publication does not ship`);
+      `describe().semantics is a prose pointer ("${sem.slice(0, 60)}…") to a file the publication does not ship`);
+  } else if (!Array.isArray(semRules) || semRules.length === 0) {
+    gaps.set("semantics-prose-pointer",
+      "describe().semantics is structured but publishes no rules — the vocabulary is still not data");
   }
 
   // The model-type registry's own vocabulary: the type ids `check()` reports back in its licensed
@@ -332,48 +352,40 @@ function measureGaps(d: ApiDescription): ReadonlyMap<string, string> {
 /**
  * The omissions measured at HEAD, pinned as an EXACT set — the `KNOWN_INERT_CLAIMS` discipline.
  *
- * A new omission fails this file. A healed omission ALSO fails it, and the fix is to delete the
- * entry — so the follow-up that publishes the missing vocabulary turns each row red as it lands,
- * which is this pin working. Each value says what the follow-up owes, not merely that something is
- * missing; the reason floor below rejects a thin one.
+ * EMPTY since 261006: the follow-up published all six pinned vocabularies and deleted each entry
+ * as its row turned red, which is this pin working. The machinery stays, because it is the
+ * landing rule for the NEXT omission: a new gap fails this file, and is either published or
+ * pinned here with a reason that briefs the follow-up (the reason floor below rejects a thin
+ * one). An empty set is the file's BLOCKING state — nothing is excused.
+ *
+ * What each drained entry was published AS, so the ledger's history stays readable:
+ *  - refusal-vocabulary → `$defs.refusalReason` enum; `result.refusalDetail` carries
+ *    `{reason, missing, models}` on the wire beside the prose sentence.
+ *  - query-subject-vocabulary → `$defs.querySubject`, one arm per registry {modelType, noun,
+ *    selector} pair.
+ *  - operation-parameters → `describe().operations[].calls`, each callable with its declared
+ *    parameters (capability registry, `wired(at, parameters)`).
+ *  - semantics-prose-pointer → `describe().semantics` is structured: statement, source, and the
+ *    closed rule vocabulary with severity and the SEMANTICS.md section per rule.
+ *  - model-type-ids → `$defs.modelType` enum.
+ *  - binding-names → `$defs.binding` enum.
  */
-const KNOWN_GAPS: Readonly<Record<string, string>> = {
-  "refusal-vocabulary":
-    "publish the closed RefusalReason cause set as data — the typed `{reason, missing, models}` shape "
-    + "src/engine/types.ts says the query schema is growing; today `result.refusal` is a bare string, so "
-    + "an agent cannot tell refusal causes apart without reading this repo's source",
-  "query-subject-vocabulary":
-    "publish each model type's query subjects — the {noun, selector} pairs the registry declares — in the "
-    + "query schema as data, so an agent learns what a question may name before a refusal teaches it",
-  "operation-parameters":
-    "give OperationDescription a parameters field (or a per-operation schema reference), so an operation "
-    + "advertises what to pass it, not only that it exists and what it returns — OpenAPI's operation/schema join",
-  "semantics-prose-pointer":
-    "ship the semantics as data the publication carries — at minimum the closed rule-id vocabulary "
-    + "(V-rules) with one sentence each, in describe() itself rather than a repo path an agent cannot fetch",
-  "model-type-ids":
-    "publish the model-type registry's ids (and per-type form lists) as data, so the `modelType` a "
-    + "check() report names is a value the agent has seen in the self-description rather than a novel token",
-  "binding-names":
-    "publish the closed binding-name vocabulary the composed view's `focus` accepts and the registry "
-    + "declares, so an agent can request a composed reading without discovering names from the UI",
-};
+const KNOWN_GAPS: Readonly<Record<string, string>> = {};
 
 /** A reason floor, same cause as `test/gate-reachability.test.ts` states: a thin reason is a note. */
 const MIN_REASON = 60;
 
-test("sufficiency audit: every gap is pinned, no pinned gap has silently healed", (t) => {
+test("sufficiency audit (BLOCKING): zero gaps — a new omission fails here, pinned or published", (t) => {
   for (const [key, reason] of Object.entries(KNOWN_GAPS)) {
     assert.ok(reason.length >= MIN_REASON, `KNOWN_GAPS["${key}"]: the reason must brief the follow-up, not note the gap`);
   }
 
   const gaps = measureGaps(description);
 
-  // The inventory, query language first — the audit's deliverable, in the run's own output.
-  for (const key of Object.keys(KNOWN_GAPS)) {
-    const detail = gaps.get(key);
-    if (detail !== undefined) t.diagnostic(`GAP ${key}: ${detail}`);
-  }
+  // The inventory — every MEASURED gap, pinned or not, in the run's own output. (The audit-only
+  // era iterated the pins; an empty ledger would then have silenced exactly the findings that
+  // matter most, the unpinned ones.)
+  for (const [key, detail] of gaps) t.diagnostic(`GAP ${key}: ${detail}`);
 
   assert.deepEqual([...gaps.keys()].sort(), Object.keys(KNOWN_GAPS).sort(),
     "the measured gap set and KNOWN_GAPS disagree. A key only in the measurement is a NEW omission — "
@@ -406,24 +418,126 @@ test("negative control: a vocabulary dropped from the publication is a loud abse
     "enumAt must report a missing enum as null, never as an empty pass");
 });
 
-test("negative control: a healed publication discharges every finding", () => {
-  const healedQuery = structuredClone(SCHEMAS["query"]) as { $defs: Record<string, unknown> };
-  // One injected enum per unpublished vocabulary, in the schema an agent would read for it.
-  healedQuery.$defs["refusalReason"] = { enum: keys(REFUSAL_REASONS) };
-  healedQuery.$defs["querySubject"] = {
-    enum: [
-      ...new Set(MODEL_TYPES.flatMap((t) => t.query.subjects.flatMap((s) => [s.noun, s.selector]))),
-    ],
-  };
-  healedQuery.$defs["modelType"] = { enum: MODEL_TYPES.map((t) => t.id) };
-  healedQuery.$defs["binding"] = { enum: BINDINGS.map((b) => b.name) };
-  const healed = {
+// The healed-publication control from the audit-only era inverted: the LIVE publication is now the
+// healed one, so the discharge direction is simply the blocking test above reporting nothing. What
+// still needs watching is the red direction — a detector that cannot fail is decoration — so each
+// detector is handed a sabotaged description and must find its gap again.
+test("negative control: every detector still goes red on a sabotaged publication", () => {
+  // (1) The schema enums deleted → the four vocabulary detectors fire.
+  const strippedQuery = structuredClone(SCHEMAS["query"]) as { $defs: Record<string, unknown> };
+  delete strippedQuery.$defs["refusalReason"];
+  delete strippedQuery.$defs["refusalDetail"];
+  delete strippedQuery.$defs["querySubject"];
+  delete strippedQuery.$defs["modelType"];
+  delete strippedQuery.$defs["binding"];
+  const stripped = { ...description, schemas: { ...SCHEMAS, query: strippedQuery } };
+  const strippedGaps = measureGaps(stripped);
+  for (const key of ["refusal-vocabulary", "query-subject-vocabulary", "model-type-ids", "binding-names"]) {
+    assert.ok(strippedGaps.has(key), `stripping the published enums must re-surface "${key}"`);
+  }
+
+  // (2) The semantics demoted back to a prose pointer, and to a rule-less husk.
+  const prose = { ...description, semantics: "workbench/SEMANTICS.md" } as unknown as ApiDescription;
+  assert.ok(measureGaps(prose).has("semantics-prose-pointer"),
+    "a prose-pointer semantics must be found again");
+  const husk = { ...description, semantics: { statement: "", source: "", rules: [] } } as unknown as ApiDescription;
+  assert.ok(measureGaps(husk).has("semantics-prose-pointer"),
+    "a structured semantics publishing zero rules is the same defect wearing braces");
+
+  // (3) The operations stripped back to name/summary/returns, and calls hollowed out.
+  const bare = {
     ...description,
-    schemas: { ...SCHEMAS, query: healedQuery },
-    operations: description.operations.map((op) => ({ ...op, parameters: { $ref: "#/$defs/query" } })),
-    semantics: { rules: [] },
+    operations: description.operations.map(({ name, summary, returns }) => ({ name, summary, returns })),
   } as unknown as ApiDescription;
-  assert.deepEqual([...measureGaps(healed).keys()], [],
-    "with every vocabulary published as data, parameters declared and semantics structured, "
-    + "the audit must report nothing — a gap that cannot heal is not a measurement");
+  assert.ok(measureGaps(bare).has("operation-parameters"),
+    "operations publishing only the original three fields must be found again");
+  const hollow = {
+    ...description,
+    operations: description.operations.map((op) => ({ ...op, calls: [] })),
+  } as unknown as ApiDescription;
+  assert.ok(measureGaps(hollow).has("operation-parameters"),
+    "an operation whose calls list is empty declares no signature and must be found");
+});
+
+// ----------------------------------------------------------------------------------------------
+// The published surface, held to the substrate it was derived from — the drained gaps' parity
+// ----------------------------------------------------------------------------------------------
+
+test("the query-subject pairs the schema publishes are the registry's, exactly", () => {
+  const arms = (publishedQuery() as {
+    readonly $defs: { readonly querySubject?: { readonly oneOf?: readonly unknown[] } };
+  }).$defs.querySubject?.oneOf;
+  assert.ok(Array.isArray(arms), "$defs.querySubject.oneOf must exist — the pairs are not reachable as data");
+
+  const constAt = (arm: unknown, key: string): string => {
+    const node = (arm as { readonly properties?: Record<string, { readonly const?: unknown }> }).properties?.[key];
+    const c = node?.const;
+    assert.ok(typeof c === "string", `querySubject arm must publish "${key}" as a string const`);
+    return c;
+  };
+  const published = arms.map((a) => `${constAt(a, "modelType")} | ${constAt(a, "noun")} | ${constAt(a, "selector")}`).sort();
+  const declared = MODEL_TYPES
+    .flatMap((t) => t.query.subjects.map((s) => `${t.id} | ${s.noun} | ${s.selector}`)).sort();
+  assert.deepEqual(published, declared,
+    "the schema's {modelType, noun, selector} arms and the registry's subjects must name the same "
+    + "pairs — a registry subject the schema omits is undiscoverable, a schema arm the registry "
+    + "does not declare is a lie");
+});
+
+test("describe().semantics.rules are the validator's own tables, joined and total", () => {
+  const ids = (Object.keys(SEVERITY) as readonly ValidationRule[]).slice().sort();
+  assert.deepEqual(description.semantics.rules.map((r) => r.id).slice().sort(), ids,
+    "the published rule vocabulary must be exactly the validator's closed rule set");
+  for (const r of description.semantics.rules) {
+    assert.equal(r.severity, SEVERITY[r.id], `rule ${r.id}: published severity must be the validator's`);
+    assert.equal(r.section, SPEC_SECTION[r.id], `rule ${r.id}: published section must be the spec join`);
+  }
+  assert.ok(description.semantics.rules.length > 0, "an empty rules list publishes nothing");
+});
+
+test("every operation's calls are the registry's machine affordances, each with a signature", () => {
+  for (const op of description.operations) {
+    assert.ok(op.calls.length > 0, `operation "${op.name}" publishes no callable`);
+    for (const call of op.calls) {
+      assert.match(call.at, /^window\.mage(\.|$)/, `${op.name}: "${call.at}" is not a window.mage callable`);
+      assert.ok(Array.isArray(call.parameters),
+        `${op.name} / ${call.at}: parameters must be an array — [] is "takes nothing", absence is undeclared`);
+      for (const p of call.parameters) {
+        assert.ok(p.name.length > 0 && p.type.length > 0 && p.summary.length > 0,
+          `${op.name} / ${call.at}: a parameter must carry name, type and summary`);
+        if (p.schema !== null) {
+          const [key, pointer] = p.schema.split("#");
+          assert.ok(key !== undefined && key in description.schemas,
+            `${op.name} / ${call.at} / ${p.name}: schema ref "${p.schema}" names no published schema`);
+          if (pointer !== undefined && pointer.startsWith("/$defs/")) {
+            const def = pointer.slice("/$defs/".length);
+            const defs = (description.schemas[key!] as { readonly $defs?: Record<string, unknown> }).$defs ?? {};
+            assert.ok(def in defs,
+              `${op.name} / ${call.at} / ${p.name}: "${p.schema}" points at a $def the schema does not have`);
+          }
+        }
+      }
+    }
+  }
+});
+
+test("a refused query carries its typed cause on the wire result, agreeing with check()", () => {
+  const api = publishedApi();
+  const doc = {
+    kind: "graph", quantifier: "exists",
+    graph: { form: "reachability", relation: "no-such-relation", from: "nowhere" },
+  };
+  const res = api.query(doc);
+  assert.equal(res.outcome, "unlicensed", "the probe query must be one the model refuses");
+  assert.ok(typeof res.refusal === "string" && res.refusal.length > 0,
+    "the human sentence must still travel — the typed cause is beside it, not instead of it");
+  assert.ok(res.refusalDetail !== null, "the refusal's typed cause must reach the wire result");
+  assert.ok((REFUSAL_REASONS as readonly string[]).includes(res.refusalDetail.reason),
+    `"${res.refusalDetail.reason}" is not in the published cause vocabulary`);
+  const checked = api.check(doc);
+  assert.equal(checked.outcome, "refused", "check() must refuse what query() refused");
+  if (checked.outcome === "refused") {
+    assert.equal(res.refusalDetail.reason, checked.refusal.reason,
+      "the wire result and the check report must name one cause — two opinions is the defect");
+  }
 });

@@ -28,14 +28,15 @@ import { countElements, selectElements } from "../engine/elements.ts";
 import type { ElementCount, ElementSelection } from "../engine/elements.ts";
 import type { ModelTypeId, QueryNoun, SubjectSelector } from "../engine/model-types.ts";
 import type { GraphForm } from "../engine/types.ts";
-import { VALIDATION_AUTHORITY } from "../validator/result.ts";
-import type { ValidationResult } from "../validator/result.ts";
+import { SEVERITY, SPEC_SECTION, VALIDATION_AUTHORITY } from "../validator/result.ts";
+import type { Severity, ValidationResult, ValidationRule } from "../validator/result.ts";
 import { explainType } from "../validator/typing.ts";
 import type { TypeExplanation } from "../validator/typing.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
-import { CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParity } from "./capabilities.ts";
+import { CAPABILITIES, ESCAPE_HATCHES, checkAffordanceParity } from "./capabilities.ts";
+import type { MachineParameter } from "./capabilities.ts";
 
 /**
  * Bumped on a breaking change to this surface. Implementation internals are not API.
@@ -54,10 +55,22 @@ import { CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParit
  * and nothing more: the namespace correctly advertises "you have now left the supported semantic
  * interface," even though the namespace itself is not an enforcement mechanism. Every control keys
  * off `ESCAPE_HATCHES[].at`, so the fence does not depend on the name and ratification gives the
- * name no teeth it lacked. The version constant is read from the declaration rather than written
- * here twice.
+ * name no teeth it lacked.
+ *
+ * 0.4.0 — `describe()` becomes sufficient for a cold reader, in three breaking strokes. (1)
+ * `semantics` is structured data (`SemanticsDescription`) rather than a prose path into a repo the
+ * publication does not ship. (2) Every operation publishes `calls`: each machine callable with its
+ * parameters, declared in the capability registry and derived here. (3) `QueryResult` carries
+ * `refusalDetail` — the typed cause the engine always had and the wire used to discard — and the
+ * query schema publishes the closed `refusalReason` vocabulary plus the model-type ids, binding
+ * names and query-subject pairs as enums. Measured by `test/agent-sufficiency.test.ts`, whose
+ * pinned-gap ledger this release drains to empty.
+ *
+ * The constant is written here again (0.3.0 read it from the rename record): the record stays the
+ * historical statement of ITS change, and a version that can only ever equal the last rename's
+ * cannot advance past it.
  */
-export const AGENT_API_VERSION: string = SPARQL_HATCH_RENAME.apiVersion;
+export const AGENT_API_VERSION: string = "0.4.0";
 
 export interface MageAgentApi {
   readonly version: string;
@@ -515,9 +528,42 @@ export interface AnalysisApi {
   cancel(id: number): void;
 }
 
+/**
+ * One rule of the semantics, as data: the id a `Finding` carries, the severity the validator
+ * assigns it, and the SEMANTICS.md section heading that states it. Derived from the validator's
+ * own total tables (`SEVERITY`, `SPEC_SECTION`), never authored here — so the publication cannot
+ * disagree with the one implementation that decides the rules.
+ */
+export interface SemanticsRule {
+  readonly id: ValidationRule;
+  readonly severity: Severity;
+  /** The SEMANTICS.md section heading that states the rule, verbatim. */
+  readonly section: string;
+}
+
+/**
+ * The semantics, as data the publication carries.
+ *
+ * This used to be one prose sentence pointing at `workbench/SEMANTICS.md` — a file the publication
+ * does not ship, naming rule ids that appeared nowhere as data. The closed rule vocabulary now
+ * travels here; `source` keeps the pointer for a reader who has the repo, demoted from the whole
+ * payload to a field of it.
+ */
+export interface SemanticsDescription {
+  /** The one-line framing: what fixes meaning and what fixes shape. */
+  readonly statement: string;
+  /** Where the full normative text lives, for a reader with this repo. A pointer, not the payload. */
+  readonly source: string;
+  /**
+   * Every rule id `validate()` can report, with its severity and the section that states it. The
+   * ids a `Finding.rule` or a refusal's prose cites are values a reader of this list has seen.
+   */
+  readonly rules: readonly SemanticsRule[];
+}
+
 export interface ApiDescription {
   readonly version: string;
-  readonly semantics: string;
+  readonly semantics: SemanticsDescription;
   /** The published JSON Schemas, inline, so an agent needs no second fetch and no network. */
   readonly schemas: Readonly<Record<string, unknown>>;
   readonly operations: readonly OperationDescription[];
@@ -556,6 +602,21 @@ export interface OperationDescription {
   readonly name: string;
   readonly summary: string;
   readonly returns: string;
+  /**
+   * Each machine callable this operation is invoked through, with what to pass it — derived from
+   * the capability registry's own machine affordances, where every callable now declares its
+   * parameters. Before this field an operation advertised that it exists and what it returns;
+   * what to PASS it lived only in this repo's source, which a reader of the publication cannot
+   * see. A parameter whose shape a published schema fixes references the schema
+   * (`"query#/$defs/query"`) rather than restating it.
+   */
+  readonly calls: readonly CallDescription[];
+}
+
+/** One callable: where it is invoked, and its parameters in order. Empty parameters = takes nothing. */
+export interface CallDescription {
+  readonly at: string;
+  readonly parameters: readonly MachineParameter[];
 }
 
 export interface WorkspaceContext {
@@ -875,14 +936,26 @@ export function createAgentApi(
 
     describe: () => ({
       version: AGENT_API_VERSION,
-      semantics: "workbench/SEMANTICS.md — rules V1-V25 fix meaning; the schemas fix shape.",
+      // DERIVED from the validator's own total tables — the one implementation that decides the
+      // rules is the one source the publication reads, so the two cannot disagree. The prose path
+      // survives as `source`, for a reader who has the repo; it is no longer the whole payload.
+      semantics: {
+        statement: "the rules below fix meaning; the schemas fix shape.",
+        source: "workbench/SEMANTICS.md",
+        rules: (Object.keys(SEVERITY) as readonly ValidationRule[]).map((id) => ({
+          id, severity: SEVERITY[id], section: SPEC_SECTION[id],
+        })),
+      },
       schemas,
       // DERIVED from the capability registry, not hand-listed. A hand-written copy here would be
       // the second source of truth the registry exists to eliminate -- and it was, until this change.
+      // `calls` carries each machine callable's declared parameters (wired(at, parameters) in the
+      // registry), so an operation now says what to pass it, not only that it exists.
       operations: CAPABILITIES.map((c) => ({
         name: c.id,
         summary: c.summary,
         returns: c.producesEvidence ? "a result carrying outcome, coverage and evidence" : "void or a context object",
+        calls: c.machine.map((m) => ({ at: m.at, parameters: m.parameters })),
       })),
       // FR-AGENT-2: an agent must be able to tell what the workbench LICENSES. That includes which
       // capabilities it cannot currently reach a human affordance for -- an agent that edits a model

@@ -78,11 +78,20 @@ test("MQ-I4: every hatch's fence citation resolves to a file that actually fence
 
 test("§G2 is ratified, and ratification bought legibility rather than enforcement", () => {
   // The ruling, 261004: the rename stands. Pinned because a `ratified` flag nothing reads is a field
-  // that drifts back — and `AGENT_API_VERSION` is derived from this record, so the version and the
-  // decision cannot disagree.
+  // that drifts back. `AGENT_API_VERSION` was READ from this record while the rename was the
+  // surface's latest change; 0.4.0 (the describe() sufficiency release) ended that derivation, so
+  // the pin weakens to ordering: the published version must not fall BEHIND the rename the record
+  // declares, or the record describes a change the surface has un-shipped.
   assert.equal(SPARQL_HATCH_RENAME.ratified, true, "§G2 was ruled (a); the record must say so");
-  assert.equal(AGENT_API_VERSION, SPARQL_HATCH_RENAME.apiVersion,
-    "the published version must be the one the rename record declares");
+  const triple = (v: string): readonly number[] => v.split(".").map((n) => Number.parseInt(n, 10));
+  const [maj, min, pat] = triple(AGENT_API_VERSION);
+  const [rMaj, rMin, rPat] = triple(SPARQL_HATCH_RENAME.apiVersion);
+  assert.ok([maj, min, pat, rMaj, rMin, rPat].every((n) => Number.isInteger(n)),
+    "both versions must read as x.y.z");
+  assert.ok(
+    maj! > rMaj! || (maj === rMaj && (min! > rMin! || (min === rMin && pat! >= rPat!))),
+    `the published version (${AGENT_API_VERSION}) must not precede the rename record's `
+      + `(${SPARQL_HATCH_RENAME.apiVersion}) — the record is history the surface still carries`);
   assert.notEqual(SPARQL_HATCH_RENAME.at, SPARQL_HATCH_RENAME.previously,
     "a rename whose before and after agree renamed nothing");
 
@@ -96,7 +105,7 @@ test("§G2 is ratified, and ratification bought legibility rather than enforceme
     "the fence must hold for a hatch declared at any site; if it depends on the name, the name is "
     + "doing enforcement work the ruling says it does not do");
   const reRegistered: readonly Capability[] = CAPABILITIES.map((c) => (c.id === "query"
-    ? { ...c, machine: [...c.machine, { at: "window.mage.someOtherName", status: "wired" as const }] }
+    ? { ...c, machine: [...c.machine, { at: "window.mage.someOtherName", status: "wired" as const, parameters: [] }] }
     : c));
   assert.equal(checkEscapeHatchFence(reRegistered, elsewhere).length, 1,
     "and it must still CATCH a hatch re-registered inside the interface under that other name — "
@@ -121,7 +130,7 @@ test("MQ-I4: a hatch is in exactly one list, and the BLOCKING gate is what notic
   // has only ever returned the empty list.
   const site = SPARQL_HATCH_RENAME.at;
   const sabotaged: readonly Capability[] = CAPABILITIES.map((c) => (c.id === "query"
-    ? { ...c, machine: [...c.machine, { at: site, status: "wired" as const }] }
+    ? { ...c, machine: [...c.machine, { at: site, status: "wired" as const, parameters: [] }] }
     : c));
   const caught = checkEscapeHatchFence(sabotaged);
   assert.equal(caught.length, 1, "re-registering the hatch as a `query` affordance must be caught");

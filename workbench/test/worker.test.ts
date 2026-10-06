@@ -38,7 +38,7 @@ const result = (hash: string, bounded = false): QueryResult => ({
   coverage: bounded
     ? { kind: "bounded", statesExplored: 1_000_000, reason: "state-limit" }
     : { kind: "exhaustive", statesExplored: 37, reason: null },
-  evidence: null, refusal: null, interpretedAs: null, compilation: [], magnitude: null, systemHash: hash,
+  evidence: null, refusal: null, refusalDetail: null, interpretedAs: null, compilation: [], magnitude: null, systemHash: hash,
 });
 
 class FakeWorker implements WorkerLike {

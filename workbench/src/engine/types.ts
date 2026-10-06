@@ -18,7 +18,7 @@
  * Optionals are modelled as `| null`, never `?`. `exactOptionalPropertyTypes` makes the two
  * genuinely different, and a single representation of absence is one fewer thing to get wrong.
  */
-import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, ResultMagnitude, Scalar } from "../ir/types.ts";
+import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, RefusalDetail, RefusalReason, ResultMagnitude, Scalar } from "../ir/types.ts";
 
 // --------------------------------------------------------------------------------------------
 // Result plumbing
@@ -27,51 +27,13 @@ import type { Coverage, Evidence, GuardOp, Outcome, QueryResult, ResultMagnitude
 /**
  * Why a question is not answerable. Structured, not only prose.
  *
- * `QueryResult.refusal` is a sentence, and a sentence is what a human reads. An agent needs the
- * same fact as data — which distinction is missing, so it can propose the model change that would
- * make the question answerable rather than re-asking the same thing. This is the shape the query
- * schema is growing (`{ status, reason, missing, models }`); the schema change is the
- * orchestrator's, so the structure lives here for now and travels on `Verdict`.
+ * The vocabulary and the detail shape are DEFINED in `src/ir/types.ts` now — the cause travels on
+ * the wire result (`QueryResult.refusalDetail`) and is published as an enum in the query schema,
+ * so the innermost layer owns it. Re-exported here because the engine's own modules and the
+ * refusal constructors below are where every producer meets them.
  */
-export type RefusalReason =
-  /** V7 — the relation type declares `composition.path: forbidden`. */
-  | "composition-forbidden"
-  /**
-   * V24 — the model represents something, but deliberately omits what the question needs.
-   *
-   * Produced on both paths: the quantitative one (`src/quant/`, for an expectation with no declared
-   * frequency and for an entity with no behavioral counterpart) and the graph one
-   * (`src/engine/omission.ts`, when a name resolves nowhere and a `purpose.omits` covers it). §7.6
-   * rules which cause wins when several are true.
-   */
-  | "missing-distinction"
-  /** The question names an entity, state, variable or relation this system does not declare. */
-  | "unknown-vocabulary"
-  /**
-   * The system declares NO substrate of the model type the question interrogates — no machine for
-   * a behavioural question, no quantities for a quantitative one. Coarser than
-   * `missing-distinction` (which presumes a model that chose its reductions) and than
-   * `unknown-vocabulary` (which sends the reader hunting for a misspelling that is not the
-   * problem). The prose names the missing type from the model-type registry
-   * (`src/engine/model-types.ts`), so the refusal and the Learn entry it points toward cannot
-   * describe different capabilities.
-   */
-  | "missing-model-type"
-  /** The form exists in the schema but this version does not evaluate it. */
-  | "unsupported-form"
-  /** §7 — the declared quantifier asks for evidence the form cannot produce. */
-  | "quantifier-mismatch"
-  /** An effect or derived expression outside the deliberately tiny grammars (expr.ts). */
-  | "unsupported-expression"
-  /** V14 / V15 — legal to write, reserved for a future version, refused rather than misread. */
-  | "reserved-feature"
-  /**
-   * §8 — the question pairs a quantity with the aggregation axis its scope does not have. The
-   * aggregation is DERIVED from the dimension's scope, never chosen per query, so asking for a
-   * configuration-scoped quantity along an execution denotes nothing: it is refused as a category
-   * error rather than computed as a wrong answer.
-   */
-  | "category-error";
+export type { RefusalDetail, RefusalReason } from "../ir/types.ts";
+export { REFUSAL_REASONS } from "../ir/types.ts";
 
 export interface Refusal {
   readonly reason: RefusalReason;
@@ -79,12 +41,6 @@ export interface Refusal {
   /** Distinctions the model would need in order to answer. Empty when the gap is not a modeling one. */
   readonly missing: readonly string[];
   /** Models consulted while deciding, so a caller can say where to add the distinction. */
-  readonly models: readonly string[];
-}
-
-export interface RefusalDetail {
-  readonly reason: RefusalReason;
-  readonly missing: readonly string[];
   readonly models: readonly string[];
 }
 
@@ -479,6 +435,7 @@ export function result(fields: {
   readonly systemHash: string;
   readonly evidence?: Evidence | null;
   readonly refusal?: string | null;
+  readonly refusalDetail?: RefusalDetail | null;
   readonly interpretedAs?: string | null;
   readonly compilation?: readonly QueryResult["compilation"][number][];
   readonly magnitude?: ResultMagnitude | null;
@@ -488,6 +445,7 @@ export function result(fields: {
     coverage: fields.coverage,
     evidence: fields.evidence ?? null,
     refusal: fields.refusal ?? null,
+    refusalDetail: fields.refusalDetail ?? null,
     interpretedAs: fields.interpretedAs ?? null,
     compilation: fields.compilation ?? [],
     magnitude: fields.magnitude ?? null,
@@ -526,14 +484,23 @@ export type Admission<P> =
 
 export const refusedAdmission = <P>(v: Verdict): Admission<P> => ({ admitted: false, verdict: v });
 
-/** The one shape a refusal takes: a successful result that reports what the model does not license. */
+/**
+ * The one shape a refusal takes: a successful result that reports what the model does not license.
+ *
+ * The detail is written onto the wire result too (`refusalDetail`), not only onto the engine-side
+ * `Verdict` — the agent-facing `QueryResult` used to discard the typed cause at exactly this seam,
+ * handing an agent prose it could not branch on.
+ */
 export function unlicensed(
   systemHash: string, prose: string, interpretedAs: string | null = null,
   refusalDetail: RefusalDetail | null = null,
 ): Verdict {
   const d = refusalDetail ?? detail("unknown-vocabulary");
   return {
-    result: result({ outcome: "unlicensed", coverage: NOT_APPLICABLE, systemHash, refusal: prose, interpretedAs }),
+    result: result({
+      outcome: "unlicensed", coverage: NOT_APPLICABLE, systemHash,
+      refusal: prose, refusalDetail: d, interpretedAs,
+    }),
     refusal: { reason: d.reason, prose, missing: d.missing, models: d.models },
     nodeSets: [],
   };
