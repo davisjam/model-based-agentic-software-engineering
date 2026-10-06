@@ -52,7 +52,7 @@ import { licensesTraversal } from "../../sparql/licensing.ts";
 import { unlicensedByModel } from "../../sparql/refusal.ts";
 import type { Annotated, CanonRelation, CanonTransition, CanonicalSystem } from "../../ir/types.ts";
 import {
-  CAVEAT as ASSUMPTION_CAVEAT, relationValue, resolveSelection, selectionValue,
+  notesCaveatFor, relationValue, resolveSelection, selectionValue,
 } from "../view-model.ts";
 import type { RelationRef, Selection, SelectionRef } from "../view-model.ts";
 import { byId, mountIf } from "./context.ts";
@@ -241,9 +241,11 @@ function annotationBlocks(a: Annotated): readonly InspectorBlock[] {
     line(`${n.kind}: ${n.text}${n.author === null ? "" : ` — ${n.author}`}`));
   // The A1 boundary, said where the assumption is. A note CLAIMING something is an assumption does
   // not make it part of analysis, which is counter-intuitive enough that the surface carrying the
-  // note is where it has to be stated. The sentence is imported rather than written again: the model
-  // tables already say it, and two wordings of one boundary is how a reader learns to distrust both.
-  if (a.notes.some((n) => n.kind === "assumption")) notes.push(line(ASSUMPTION_CAVEAT));
+  // note is where it has to be stated. The PREDICATE is imported, not only the sentence: this site
+  // and the model tables used to each decide which kinds get the caveat, so extending the policy
+  // would have moved one surface and left the other saying the boundary is somewhere else.
+  const caveat = notesCaveatFor(a.notes);
+  if (caveat !== null) notes.push(line(caveat));
 
   const provenance: InspectorLine[] = [];
   if (a.provenance !== null) {

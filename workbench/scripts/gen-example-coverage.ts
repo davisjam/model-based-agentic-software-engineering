@@ -300,6 +300,48 @@ export interface FixtureModel {
   readonly kind: "graph" | "machine";
 }
 
+/**
+ * One INERT label: the author's claim that a named declaration is explanation rather than machinery.
+ *
+ * The escape hatch the SEMANTIC-LIVE gate (`test/semantic-live.test.ts`) requires — "or be labelled
+ * explicitly non-operative" — and the TRUTH gate's `inert:` claim form. **They are one object, and
+ * this is its spelling**, settled 261005 between the two waves so the corpus does not grow two ways
+ * to say it. `inert: true` is the vocabulary both the audit and both gates' failure messages already
+ * use; `operative: false` was the first draft here and reads as a double negative at every call site.
+ *
+ * The POSITIVE direction is deliberately absent. "This declaration carries that query's answer" is a
+ * causal claim, and a causal claim needs the query it moves and the evidence that it does — which is
+ * TRUTH's `claims:` shape, not a boolean. One way to say each thing.
+ *
+ * `subject` is a LOCATOR in a declared grammar, resolved against the shipped corpus by the gate, in
+ * the same spirit as a walkthrough step's `grounding`: a renamed machine or a dropped relation type
+ * turns the gate red rather than leaving a row that describes nothing. The builders live in
+ * `test/perturbation.ts` beside the enumeration that emits them. Three spellings, and the gate
+ * prints the exact string to paste when it reports a missing row:
+ *
+ *   `guard:<machine>/<from>-><to>`   the guards on one transition, as a unit
+ *   `relation:<model>/<type>`        every relation of that type asserted by that model
+ *   `property:<name>`               every entity property of that name, system-wide
+ *
+ * The label is a CLAIM the gate measures, not a waiver it honours: a subject labelled inert whose
+ * deletion DOES move an answer is reported — prose waving live machinery away as commentary, the
+ * symmetric lie to prose crediting an inert declaration.
+ */
+export interface FixtureDeclaration {
+  readonly id: string;
+  readonly subject: string;
+  /** Always true. The field exists to be the word the row is about; see the type's header. */
+  readonly inert: true;
+  /**
+   * What governs the declaration's correctness instead of the engine: a sibling parity control, a
+   * stronger declaration that subsumes it, or the reader. A closed vocabulary, checked by the gate —
+   * free text here would make the structured pointer another sentence.
+   */
+  readonly heldBy: string;
+  /** Why, in the author's words. A length floor is enforced by the gate. */
+  readonly reason: string;
+}
+
 export interface Fixture {
   readonly example: string;
   readonly title: string;
@@ -310,6 +352,12 @@ export interface Fixture {
   readonly modifications: readonly FixtureModification[];
   /** Empty for an example with no quantities. */
   readonly quantitativeExpectations: readonly QuantitativeExpectation[];
+  /**
+   * The semantic-liveness ledger. Empty is legal and means the gate's mandatory denominator for
+   * this example is empty — never that the example opted out, which the gate derives rather than
+   * reads.
+   */
+  readonly declarations: readonly FixtureDeclaration[];
 }
 
 function readEvidence(raw: unknown, where: string): EvidenceExpectation {
@@ -489,11 +537,37 @@ function readFixtureFields(exampleId: string): Fixture {
     };
   });
 
+  // Absent is legal and distinct from empty only to the reader: both produce `[]`, and the gate's
+  // denominator comes from the measured sweep, so neither can read as an opt-out.
+  const declarations = (doc["declarations"] === undefined
+    ? []
+    : arr(doc["declarations"], `${path}.declarations`)
+  ).map((d, i): FixtureDeclaration => {
+    const w = `${path}.declarations[${i}]`;
+    const o = obj(d, w);
+    // `inert: false` is refused rather than accepted and ignored. A row that says a declaration is
+    // NOT inert is making a causal claim, and a causal claim without the query it moves and the
+    // evidence that it does is the shape this gate exists to refuse. That belongs in a `claims:`
+    // row, not in a boolean here.
+    if (!bool(o["inert"], `${w}.inert`)) {
+      throw new FixtureError(`${w}: 'inert' must be true. A declaration that DOES carry an answer is `
+        + "a causal claim and needs the query it moves plus the evidence; state it as a claim rather "
+        + "than as the negation of this label.");
+    }
+    return {
+      id: str(o["id"], `${w}.id`),
+      subject: str(o["subject"], `${w}.subject`),
+      inert: true,
+      heldBy: str(o["held_by"], `${w}.held_by`),
+      reason: str(o["reason"], `${w}.reason`),
+    };
+  });
+
   return {
     example: str(doc["example"], `${path}.example`),
     title: str(doc["title"], `${path}.title`),
     summary: str(doc["summary"], `${path}.summary`),
-    models, requirements, queries, modifications,
+    models, requirements, queries, modifications, declarations,
     quantitativeExpectations: quantitative,
   };
 }

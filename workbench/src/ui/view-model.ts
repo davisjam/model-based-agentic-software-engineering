@@ -899,6 +899,31 @@ export const CAVEAT = "An assumption written as a note is context, not a constra
   + "it. To make an assumption bind a result, represent it as a property, a variable or a guard.";
 
 /**
+ * The note kinds whose rendering carries the A1 caveat.
+ *
+ * EVERY kind is non-semantic — `systemHash` excludes annotation entirely — so this set is not about
+ * which notes analysis reads. It is about which ones a reader is liable to take for a constraint.
+ * `assumption` is the one that reads as binding, which is why it is the one that gets a sentence;
+ * the other four are distinguished by their kind-word, shown beside each line.
+ *
+ * Declared as a set rather than inlined so the policy has one home. `test/epistemic-boundary.test.ts`
+ * requires every member of `NoteKind` to be disposed here or in its own census, so a sixth kind
+ * cannot land with nobody having decided which side of the boundary it sits on.
+ */
+export const CAVEATED_NOTE_KINDS: ReadonlySet<string> = new Set(["assumption"]);
+
+/**
+ * The caveat for a set of rendered notes, or null.
+ *
+ * ONE home for the predicate, not only for the sentence. The inspector and the model tables both
+ * render notes and each used to spell `kind === "assumption"` for itself, so extending the policy to
+ * a second kind would have moved one surface and left the other — two surfaces disagreeing about
+ * where the A1 boundary is said, which is the same failure as two wordings of it.
+ */
+export const notesCaveatFor = (notes: readonly { readonly kind: string }[]): string | null =>
+  notes.some((n) => CAVEATED_NOTE_KINDS.has(n.kind)) ? CAVEAT : null;
+
+/**
  * The inspector's per-row block, from the shared derivation.
  *
  * The field order used to be written out here and again in the Provenance section. Two copies of
@@ -915,7 +940,7 @@ function annotated(a: Annotated): Pick<Row, "notes" | "provenance" | "notesCavea
   return {
     notes,
     provenance: provenanceBlock(a),
-    notesCaveat: notes.some((n) => n.kind === "assumption") ? CAVEAT : null,
+    notesCaveat: notesCaveatFor(notes),
   };
 }
 

@@ -693,3 +693,44 @@ modifications:
       - query: publish-without-validating
         from: refuted
         to: holds
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts).
+#
+# That gate deletes every guard, relation type and property here, re-runs every saved question and
+# every requirement, and asks whether an answer moved. Inert is fine; prose calling an inert
+# declaration causal is the defect. Each row is a CLAIM the gate measures both ways.
+# ---------------------------------------------------------------------------
+
+declarations:
+
+  - id: retry-guard-restates-the-declared-domain
+    subject: guard:document-lifecycle/waiting->remediating
+    inert: true
+    held_by: stronger-declaration
+    reason: >
+      `retry_count < 3` restates the bound `range: [0, 3]` already carries. The transition's effect
+      is `retry_count + 1`, and a step whose effect would leave a variable's declared finite domain
+      is SKIPPED rather than clamped, so the domain stops the fourth retry on its own and the guard
+      decides no reachable step. Kept because it states the retry policy where a reader of the
+      transition looks; the claim that the loop is bounded rests on the finite domain.
+
+  - id: cache-topology-is-not-the-cache-figure
+    subject: relation:pipeline-performance/caches_for
+    inert: true
+    held_by: the-reader
+    reason: >
+      Which component the cache fronts. The cache question, `expected-latency-with-the-cache`, is
+      asked over `cache_hit_frequency` -- the quantified edge -- so the topology edge decides
+      nothing. The two are separate on purpose: a hit frequency is a measured figure about a
+      relationship, and the relationship itself is a design fact that holds whatever the figure is.
+
+  - id: invocation-edge-is-pipeline-structure
+    subject: relation:pipeline-performance/invokes
+    inert: true
+    held_by: the-reader
+    reason: >
+      Remediation's call into the model gateway. No saved question is asked over `invokes`: the
+      latency questions resolve charges through component quantities and the ordering question is a
+      path over `precedes`. It is here so the model says which components talk to which, which is
+      what its stated purpose is about, rather than only the edges a shipped query traverses.
