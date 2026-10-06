@@ -643,6 +643,68 @@ that got and what stopped it, because the stopping point is a pin in a file wave
   `inspector.rename`. The surviving `edit-section.*` sites keep an empty path: they are still
   visible in the default loaded workspace, below the shell, until the markup goes.
 
+#### 9c.1 — what wave 2a cost the D-2 focus-order pin, measured by the wave that owns it
+
+Recorded here because the number is a LAND-ORDER fact, and both branches declined to write it into
+their own gate for the same reason: a pin that is green only in a combined state neither branch is
+in would be red for whichever lands first.
+
+Wave 2a added seven focusable controls (`#palette-open`, `#add-menu-summary`, and five `+ Add`
+items that render only while the disclosure is open; the inspector's seven are `disabled` without a
+selection, and both `<dialog>`s are closed). Measured by `wb-focusorder-261003`, which owns
+`test/browser/a11y/wcag-f6.test.mjs`, on its own fix merged with wave 2a on a scratch branch:
+
+| widths | its fix alone | its fix + wave 2a |
+|---|---|---|
+| within-region inversions | `{320: 0, 368: 0, 672: 30, 976: 77, 1024: 75, 1025: 75}` | `{320: 0, 368: 0, 672: 30, 976: 76, 1024: 74, 1025: 75}` |
+
+**Wave 2a's whole cost is −1 at 976 and −1 at 1024.** `#palette-open` is not implicated at all — the
+header is one row at every measured width. **Whoever lands second re-measures and takes
+`{320: 0, 368: 0, 672: 30, 976: 76, 1024: 74, 1025: 75}`; the diff is two entries.** That value is
+the same in both orders, so neither branch is blocked on the other.
+
+**The two orders are not symmetric for the GATE, though, and the orchestrator picks between them**
+— neither branch can, both being sub-agents with branches rather than the lander:
+
+- **focus-order fix first:** its own fix turns the pin green (it takes 320/368 from 40 to 0), then
+  wave 2a reds it by exactly the two entries above until somebody re-measures. A green step, then a
+  known two-line fix.
+- **wave 2a first:** the pin stays red the whole way, because the grid overlap it is really
+  reporting is still there. Wave 2a makes nothing newly red — it is red before and after — but the
+  intermediate state offers no green moment to confirm against, and the stale constant keeps
+  inviting exactly the misreading recorded below.
+
+**The method that settled which one moved, and it is the reusable part.** The failing number was 40
+at 320px, which is what a known probe defect once FABRICATED on a one-column page — so the first
+reading from the other side was that the instrument had regressed and the pin was stale, and the
+first reading from this side was that wave 2a had caused it. Both were inferences from a constant
+disagreeing with a measurement. What broke the tie was refusing to infer: a STATIC pass over the
+page with no focus, no tabbing and no scrolling returned the same positions the tab walk did, which
+ruled out the instrument and left the page — and only then was the CSS worth reading. Stated as the
+rule, because both of us nearly got it wrong in opposite directions: *a constant and a measurement
+disagreeing tells you they disagree; it never tells you which one moved.* Measure a third thing
+whose answer is independent of the one in doubt.
+
+Two things about the pin changed under wave 2a, so a future reader must re-measure rather than
+reconcile against the shape this wave saw:
+
+- `EXPECTED_INVERSIONS` counts **within-region** inversions now, not the total. A three-column shell
+  tabs one whole region before the next while an eye scanning rows crosses all three, so the
+  cross-region total moves whenever anybody adds a control to any column — it measured the layout's
+  column count, not an ordering defect. Wave 2a's raw total at 1025 was 256 against a 228 fork
+  total, which is why it looked alarming; within-region held at 75.
+- `focusOrderAt` corrects for scrollable ancestors. `#nav` is `max-height: 80vh; overflow-y: auto`,
+  so focusing a rail link scrolled the RAIL and the walk read a straight column of links as a
+  zig-zag.
+
+And the defect that walk was really reporting, fixed on that branch and not by wave 2a: `#edit` and
+`#system-browser` both declared `grid-area: extra` against one `"extra extra extra"` row
+(`index.html:147,157`), under a comment claiming they would "stack inside their own area". Two grid
+items in one named area share the cell, so the Edit fieldsets painted straight through the System
+Browser's tables in every loaded state at every width. Worth recording beside correction 4 because
+it is the same lesson one layer down: a comment asserting a layout behaviour is not a layout
+behaviour, and the thing that caught it was a walk that measured geometry rather than read the CSS.
+
 ### 9d. Wave 2b as built — one declaration, one guard, and the invariant that rejected the first draft
 
 Appended by wave 2b after landing. Correction 10 is the one the author called the largest visual
