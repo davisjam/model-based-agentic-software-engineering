@@ -320,3 +320,27 @@ NEXT, in order, briefs already written:
    loadable models; the first run produced none.
 3. CI parallel split — `/tmp/` notes + measured durations in the section above.
 RE-CHECK after each: `/llms.txt` and `/robots.txt` on prod were 404 while the old build hung.
+
+## 261006 — ALL SIX LAB-RUN FINDINGS LANDED; deploy still blocked on one a11y regression
+
+Merged into local main, each with a test that would have caught it:
+1 behaviour evidence publishes REAL configurations (was empty Maps) · 2 `window.mage.requirements()`
+makes verdicts readable by agents · 3 `resolveExhausted`'s input obtainable from the publication ·
+4 `interpretedAs` carries the where-clause join · 5 `refusalDetail` parity with its sentence,
+corpus-wide · 6 `sanctionedRoute` DECLARES the export→edit→load path (`affordanceGaps` stays a
+derived parity list, not overloaded). Node tier **1503/1503**.
+
+Finding #6 was RECOVERED by the orchestrator — the agent finished and went quiet with 4 files
+uncommitted. Verified (tsc clean, 1503/1503) before committing on its behalf.
+
+**DEPLOY IS BLOCKED BY A REAL a11y REGRESSION, not the harness.** CI run 37512334273 failed the
+FR-A11Y tier (2.2 min — ran and failed, did not wedge): `summary` elements focus INVISIBLY on
+index.html, both themes. WCAG 2.4.7. Introduced today by the case panel ("About this example") and
+the composed-view binding readings adding `summary` as a keyboard-reachable control kind.
+**Only reproduces with `WB_F6_SIMULATE_CI_FONTS=1`** — a plain a11y run passes 113/113 and lies.
+`wb-summary-focus-261006` is fixing it; it is forbidden from adding `summary` to KNOWN_UNINDICATED
+or weakening the probe.
+
+**Machine hygiene:** 13 orphaned `node --test` processes (1-4 h elapsed, ~1 s CPU each) were the
+corpses of the day's wedges — every hung tier left one alive forever. Killed; node count 20 → 7.
+Check for these after any wedge.
