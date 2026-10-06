@@ -381,6 +381,22 @@ export async function openServedPage(browser, pathname, origin = ORIGIN) {
   page.on("response", (r) => { if (r.status() === 404) diagnostics.notFound.push(new URL(r.url()).pathname); });
   page.on("requestfailed", (r) => diagnostics.requestFailures.push(`${new URL(r.url()).pathname}: ${r.failure()?.errorText}`));
 
+  // EVERY page this tier opens starts with EMPTY storage.
+  //
+  // `browser.newPage()` shares one browser and one origin, so `localStorage` persists across pages
+  // and across test FILES. Until the workbench stored anything, no test could tell; the session
+  // feature made it visible at once -- a file that loaded an example left a session behind, and the
+  // next file's "pristine page is Start" assertion restored that model and found the workspace
+  // mounted. The assertion was right; the isolation was the lie.
+  //
+  // `evaluateOnNewDocument` runs BEFORE any page script on every navigation, so the clear happens
+  // ahead of the module that would restore a session -- with no second `goto`. A double navigation
+  // would work too, and it trips `makes no request that fails at the transport`: superseding the
+  // first request aborts it, and the aborted request is a transport failure to the sibling gate.
+  await page.evaluateOnNewDocument(() => {
+    try { localStorage.clear(); sessionStorage.clear(); } catch { /* storage disabled: nothing to clear */ }
+  });
+
   await page.goto(`${origin}/${pathname}`, { waitUntil: "networkidle0", timeout: 60_000 });
   return { page, diagnostics };
 }
