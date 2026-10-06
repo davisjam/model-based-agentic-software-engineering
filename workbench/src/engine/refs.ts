@@ -26,6 +26,7 @@
  */
 import type { CanonVariable, CanonicalSystem, Configuration, GuardOp, MachineInstance, Scalar } from "../ir/types.ts";
 import { parseDerived } from "./expr.ts";
+import { omissionCovering, omissionProse } from "./omission.ts";
 import { fail, ok, ORDER_OPS, type Atom, type Res } from "./types.ts";
 
 export type Ref =
@@ -134,8 +135,21 @@ export function resolveRef(scope: RefScope, raw: string): Res<Ref> {
     const inst = headInstance(scope, owner);
     return inst.ok ? memberRef(scope, inst.value, text) : inst;
   }
+  // The capstone's one unanswerable question arrives HERE, and until 261005 it got the grammar
+  // lesson only: "'battery-charge.state' names nothing in this system." True, and it sends a
+  // student hunting for a misspelling -- the exact failure `omission.ts` was written to prevent --
+  // while the model declares "the battery's state of charge" as a purposeful omission in two
+  // places and `omissionCovering` matches it.
+  //
+  // Word-cover the BARE name, not `raw`: a qualified reference like 'battery-charge.state' is not
+  // word-covered by the omission's prose, while 'battery-charge' is. The structural clause is kept
+  // verbatim and the omission appended, from the one place that sentence is worded.
+  const need = text === "" ? raw : text;
+  const omitted = omissionCovering(scope.system, need);
+  const absence = `'${raw}' names nothing in this system`;
+  if (omitted !== null) return fail(omissionProse(absence, omitted).prose);
   return fail(
-    `'${raw}' names nothing in this system. References address a control state ` +
+    `${absence}. References address a control state ` +
     `('<machine>.state'), a variable, or a derived value.`);
 }
 
