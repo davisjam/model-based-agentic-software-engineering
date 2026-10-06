@@ -395,3 +395,35 @@ attribution + sabotage proof.
 
 **In flight (3):** ci-split (1 commit), direction-honesty, reflow-320.
 **DO NOT PUSH while these run** -- no compute mediator here; order the push after they land.
+
+## 261006 late — MAIN IS RED (orchestrator-caused); fix in flight
+
+**What I did wrong:** merged the lab-rerun wave after verifying its CONTENT but WITHOUT re-running
+the node tier on the merged tree -- the exact discipline CLAUDE.md states and I had quoted an hour
+earlier. Each branch was green alone; the merge is 1502/1503.
+
+**The interaction:** the lab wave committed 7 `export()` snapshots under
+`workbench/lab-runs/261006-rerun/`. The gate "every tracked model's own assertions are evaluated"
+walks EVERY tracked `.mage.yaml` and demands each saved query carry an `expect`. Run-evidence
+snapshots are not maintained models -> ~40 findings. **Do NOT fix by editing the exports** -- their
+value is byte-faithful export() output that round-trips; adding `expect:` makes them something the
+tool never emitted. Fix = scope/exempt run-evidence as a CLASS + sabotage control proving the gate
+still bites for real examples. `wb-labrun-scope-261006`, 2 commits, in flight.
+
+**Landed and verified meanwhile:**
+- reflow RCA (`f314806f9`): cause was an unbroken token (`window.mage.debug.sparql`) overflowing as
+  INK without moving any border box -- which is exactly why the probe said `Offenders: []`. Not a
+  bad probe; it looked for boxes crossing the line and none did. Text edge 320.59px measured.
+  `overflow-wrap: break-word` (NOT `anywhere` -- stays out of min-content sizing).
+- direction-honesty (`c31fb7622`): 447 lines, 2 new test files.
+- CI fan-out (`e7e7ec0d7`): deploy needs ONLY `assemble`; browser-tiers + site-gates red the RUN
+  without holding publication. Its 2 tier1 failures = WORKTREE ARTIFACT (3 gitignored thumbnail
+  PNGs exist only in the main checkout) -- every fresh worktree shows these; do not chase.
+  It concluded NOTHING moves down to pre-push: a slow pre-push gate becomes `--no-verify`.
+
+**Ready, NOT merged (main red):** `wb-node-attrs-261006` (`081fbb63c`) -- in-node attribute lines.
+Verified live: sensor nodes render "Inference engine / 12 KB", "Model weights / 72 KB". Root cause
+was a `showProperties` opt-in the page never passed, not missing code. Fit rule: a line renders only
+if it fits WHOLE, never an ellipsis; long clauses stay in the description + inspector.
+
+**HOST LOAD 100** (other session's fleet). Do not dispatch more; do not push until green + quiet.
