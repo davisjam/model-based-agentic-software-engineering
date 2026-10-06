@@ -300,18 +300,6 @@ modifications:
 
 declarations:
 
-  - id: field-classification-is-held-by-a-parity-control
-    subject: property:classification
-    inert: true
-    held_by: parity-control
-    reason: >
-      The per-field sensitivity. No saved question reads it: the cross-model safety query compares
-      `source.permits` against `target.carries` over `subscribes` edges, and `carries` is the
-      event-type aggregate. The field classifications are held instead by the parity control in
-      test/examples.test.ts, which asserts `carries` equals the maximum classification over the
-      `carries_field` edges. v0.1 aggregates nothing over a relation, so a control comparing two
-      authored surfaces is the strongest rung available -- but it is a control, not an answer.
-
   - id: calls-carries-its-relation-types-absence-clause
     subject: relation:event-flow/calls
     inert: true

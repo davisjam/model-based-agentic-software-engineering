@@ -30,7 +30,7 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
 import {
-  checkExpectation, parseRequirement, verify, verifySystemRequirements,
+  checkExpectation, parseRequirement, runSavedQueries, verify, verifySystemRequirements,
 } from "../src/engine/index.ts";
 import type { Requirement } from "../src/engine/index.ts";
 import { ExampleCatalog } from "../src/app/examples.ts";
@@ -760,6 +760,45 @@ test("worker-queue: the custody invariant is held jointly, and no single deletio
     "with `processing` unreachable the safety property still answers holds -- which is the trap");
   assert.equal(hollow.get("completed-is-reachable"), "refuted",
     "and the companion question is what says the model went hollow rather than safe");
+});
+
+test("message-bus: `carries` decides the breach, measured where the perturbation gate cannot", () => {
+  // A fact the semantic-liveness sweep used to measure and no longer can, parked here on purpose.
+  //
+  // That sweep deletes one declaration and asks whether a saved answer moves. Before the
+  // aggregation gate landed, unsetting `carries` on order-created moved
+  // `restricted-data-reaches-impermitted-subscriber` from holds to refuted -- the strongest evidence
+  // that the breach query reads the event-type aggregate. Now V45 refuses the deletion first, so the
+  // sweep records the family as REQUIRED and the answer-liveness axis goes dark for it.
+  //
+  // REQUIRED is the sound reading and it is strictly weaker than what was known, so the fact moves
+  // here rather than being lost. Measured against the IR directly, which is the one place the
+  // transaction gate is not in the way; recovering it inside the sweep would need a validation-free
+  // apply path through the transaction engine, and a test-only route through production code buys
+  // less than it costs.
+  const BREACH = "restricted-data-reaches-impermitted-subscriber";
+  const base = exampleText("message-bus");
+  const answerTo = (text: string): string | undefined => {
+    const sys = canonicalize(parse(text));
+    return [...runSavedQueries(sys)].find(([id]) => id === BREACH)?.[1].result.outcome;
+  };
+  assert.equal(answerTo(base), "holds", "the example must ship the breach visible");
+
+  const CARRIES = "      carries: { value: restricted, domain: sensitivity }\n";
+  assert.ok(base.includes(CARRIES), "the authored aggregate must still be written this way");
+  assert.equal(answerTo(base.replace(CARRIES, "")), "refuted",
+    "without `carries` on order-created the breach query must flip -- the comparison is " +
+    "`source.permits` against `target.carries`, so the aggregate is what decides it");
+
+  // And the companion half, which is why `required` is not `live`: the FIELD layer moves nothing.
+  // A prose claim that the query reads shipping-address would still be wrong, and this is the
+  // measurement that says so.
+  const CLASS = "      classification: { value: restricted, domain: sensitivity }\n";
+  assert.ok(base.includes(CLASS), "shipping-address must still carry the restricted classification");
+  assert.equal(answerTo(base.replace(CLASS, "")), "holds",
+    "dropping the field's classification must NOT move the breach answer -- the field layer is " +
+    "required for validity and still reads on no answer, which is the distinction the liveness " +
+    "gate's third state exists to keep");
 });
 
 test("message-bus: a field-level edit to the data policy is no longer a silent no-op", () => {
