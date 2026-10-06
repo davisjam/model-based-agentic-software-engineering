@@ -218,6 +218,27 @@ re-deriving these, so they live here:**
     reader to your own parse — the census above was wrong because it re-implemented YAML traversal
     the loader already does correctly, and the refutation ran `canonicalize` instead.
     A probe with no precondition is not a measurement; it is a number with the provenance removed.
+  - **Two further costumes, both found on 261006. First: a probe that GUESSES A SHAPE reports the
+    absence of its own guess.** Four in one sitting, all orchestrator-authored against
+    `window.mage`, each read at first as a missing feature: `requirements()` was assumed to return
+    an array and returns an object; `sanctionedRoute` was assumed top-level and lives at
+    `.authoring.sanctionedRoute`; `cases()`/`loadCase()` were invented, the real names being
+    `examples()`/`loadExample()`; example ids were assumed to be `{id}` objects and are plain
+    strings. `MISSING` was one keystroke from a report that the landed work had not landed.
+    **Dump the shape before asserting on it** — `Object.keys`, a recursive key-find, one
+    `JSON.stringify` — and prefer the surface's own published description (`describe()`,
+    `examples()`) to a remembered name. Note which way the error points: a guessed shape yields a
+    FALSE NEGATIVE, so it slanders working code, which is the direction that wastes a wave.
+    **Second: a pixel probe must restore the coordinate state its geometry was written in.** The
+    F6 focus-ring probe clipped in page coordinates while its subject sat in a scrolled
+    `overflow: auto` rail; Tab's minimal-reveal re-scrolled the rail between the two shots and the
+    clip then sampled pixels the control had moved out from under. Same commit, same element, ring
+    painted and `:focus-visible` matched throughout: 1804/4704 band pixels with the scroll held
+    still, 0/4704 through the unrestored dance, 155/4704 under CI's fonts. It read as a WCAG 2.4.7
+    regression in a day-old panel and was reported upward as one. Any screenshot comparison must
+    hold still everything but the single property under measurement — and its control test must
+    show the measurement still goes RED when the property is genuinely removed, or the fix is
+    indistinguishable from a weakened probe.
   - **A brief's `file:line` facts are claims, and the orchestrator is the worst-placed person to
     trust them.** The same failure recurred SIX times on 261004, always by the same mechanism: a
     `file:line` asserted into a brief from a grep hit, without reading enough around it.

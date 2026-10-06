@@ -344,3 +344,25 @@ or weakening the probe.
 **Machine hygiene:** 13 orphaned `node --test` processes (1-4 h elapsed, ~1 s CPU each) were the
 corpses of the day's wedges — every hung tier left one alive forever. Killed; node count 20 → 7.
 Check for these after any wedge.
+
+## 261006 later — the a11y "regression" was a PROBE BUG; pushed; prod awaiting CI
+
+**Corrected the record.** There was no WCAG 2.4.7 defect. The F6 probe clipped in page coordinates
+while the first measured `summary` sits in the nav rail (`overflow: auto`, ~3400px in an 800px box);
+Tab re-scrolled the rail between the two shots. Ring painted and `:focus-visible` matched the whole
+time: 1804/4704 band px scroll-held-still, 0/4704 unrestored, 155/4704 on CI fonts. Fix records and
+restores every ancestor scroll; two controls, the second strips all outlines and requires RED, so it
+cannot pass by weakening. a11y tier **114/114 with and without `WB_F6_SIMULATE_CI_FONTS=1`**.
+
+**Pushed `--no-verify`** (owner's standing call) — 11 commits, `origin/main..HEAD` EMPTY at 15:12.
+Prod still stale as of 15:13 (bundle 681018 vs local 724482, `sanctionedRoute` 0 hits, llms.txt 404)
+— CI's ~15min serial gate is running. Watcher polling every 90s, 40min cap: `/tmp/watch-prod.log`.
+
+**localhost :8100 verified live** (it WAS stale when the owner asked — 13 sources newer than dist;
+rebuilt). `requirements()` returns a real verdict for calibration-loop (`status: violated`),
+`.authoring.sanctionedRoute` declared, index/learn/llms/robots all 200, no page errors.
+
+**In flight:** three-lab re-run with `export()` artifacts; CI fan-out + pre-push placement rule.
+
+**My own probes were wrong 4x this stretch** (shape-guessing against `window.mage`). Both new
+mechanisms are now written into CLAUDE.md under the existing precondition control.
