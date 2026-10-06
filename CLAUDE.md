@@ -357,18 +357,34 @@ re-deriving these, so they live here:**
     intent; the commit is the only thing that survives.
   - The orchestrator's half: on EVERY return, `git status --porcelain` the worktree before accepting
     a completion. Untracked work plus a confident closing line is the shape this failure takes.
-- **The browser tier is not safe to run CONCURRENTLY WITH ITSELF — serialize it.** Twice on 261006,
-  with an identical fingerprint: `npm run test:browser` alive at **~0.11 s of CPU** and going
-  nowhere, once for 19m46s inside an agent and once for 8 minutes inside the pre-push gate. The
-  second time the cause was visible — **two `node --test` processes running the SAME file
-  (`composed-view.test.mjs`) at once**, one from the gate and one from a worktree agent. Each run
-  alone passes; the pair wedges.
-  - Practical rule until the harness is fixed: do not launch a push (whose gate runs the tier) while
-    agents may be running tiers, and do not run two tiers yourself. Order the push BEFORE a wave or
-    AFTER it lands — the same sequencing the pre-warm bullet asks for, for a second reason.
-  - This is a HARNESS defect, not bad luck, and it will bite CI the day two jobs overlap. Whoever
-    fixes it wants a per-tier lock or a unique profile/user-data-dir per run; the OS-chosen port
-    already rules out port collision as the cause.
+- **The 261006 browser-tier wedge is FIXED, and concurrency was never the mechanism.** The tier
+  hung at ~0.11 s of CPU five times that day (19m46s in one agent, the pre-push gate, finally a
+  GitHub Actions run — a fresh machine with no stale profiles and no concurrent agents, which is
+  what ruled the environmental theories out). The mechanism, reproduced in ISOLATION and then
+  watched both fail and pass: `composed-view.test.mjs`'s after hook called `shutdown(server,
+  browser)` POSITIONALLY where the signature takes one `{ browser, server }` object, so both
+  destructured to `undefined`, the hook cleaned up nothing without a sound, and the leaked server +
+  Chromium handles kept the child process from ever exiting — `node --test` waits on the child
+  forever. The "two runs wedge, one passes" observation was two independently-wedged runs side by
+  side; the file wedged every run, and a `timeout`-bounded run prints its full pass summary on
+  SIGTERM, which is how a wedge read as "passes clean in isolation."
+  - **The harness now makes this failure class loud and bounded** (all sabotage-verified): the
+    call is fixed; `shutdown` throws on any wrong call shape; a leak watchdog in `harness.mjs`
+    turns any still-leaked browser/server into an exit-1 red ~60 s after the file's tests finish,
+    naming the resource and its creation stack, then force-releasing it; `--test-timeout=300000`
+    on the browser tiers bounds mid-test wedges; and the three CI browser steps carry
+    `timeout-minutes` as the outer belt.
+  - **Concurrent tiers are now actually safe, verified** — two full `test:browser` runs at once,
+    both 173/0. That took removing the tier's LAST fixed port (8143, `workbench.test.mjs`): two
+    overlapping tier runs raced for it and the loser cancelled a whole file's tests (37) on
+    EADDRINUSE. Every suite now starts on a kernel-chosen port, and the harness no longer exports
+    a default port or origin to regress onto.
+  - Killed runs no longer poison the tmpdir: every launch gets an explicit `wb-browser-*` profile
+    dir the harness itself removes on every path, and the harness sweeps profile dirs older than
+    a day at startup (12 stale `puppeteer_dev_chrome_profile-*` dirs had accumulated by the time
+    the wedge was measured — a symptom of killed runs, not a cause of wedges).
+  - Still keep tier runs `timeout`-bounded in briefs (the bullet below): the watchdog covers the
+    leak class it can see, and an outer bound is what catches the class nobody has met yet.
 - **Resuming a COMPLETED agent with new work DOES work — its closing report is what lies. Verify the
   disk, and never re-dispatch on the strength of a terse reply.** Twice on 261005 a finished agent
   was handed a new assignment by `SendMessage` and answered as though it had done nothing: one
