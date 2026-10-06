@@ -271,6 +271,7 @@ machines:
   # every proposal eventually reach a verdict?).
   # -------------------------------------------------------------------------
   transaction-lifecycle:
+    label: Transaction Lifecycle
     entity: transaction-engine
     purpose:
       # The author's 261005 card wording, verbatim.

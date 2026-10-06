@@ -137,6 +137,7 @@ events:
 machines:
 
   job-lifecycle:
+    label: Job Lifecycle
     entity: job
     purpose:
       question: Can every accepted job reach a terminal state under the modeled retry policy?
@@ -239,6 +240,7 @@ machines:
           retry_count: 3
 
   job-lease:
+    label: Job Lease
     entity: job
     purpose:
       question: Which worker, if any, holds this job?

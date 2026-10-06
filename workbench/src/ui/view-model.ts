@@ -25,11 +25,31 @@ import type { SceneSubject } from "../render/types.ts";
 // forms in a select is a second source of truth that `tsc` would not catch drifting: a `GraphForm[]`
 // missing a member is a legal subset. The engine's own header says so where the array is declared.
 import { GRAPH_FORMS } from "../engine/types.ts";
+// The display vocabulary for the three kinds of model, quoted from the registry rather than
+// re-authored here. The engine's own census (`MODEL_TYPES`) says a machine IS a model —
+// `state-machine` is one of three model types — so every surface below names a thing by its TYPE's
+// label ("structural model", "state machine", "quantitative model") and the generic container word
+// appears nowhere. "Model:" beside "Machine:" was a false contrast the registry already refuted.
+import { modelTypeHeading, modelTypeOf } from "../engine/model-types.ts";
 import { NOTE_KINDS, isNoteKind } from "../transaction/types.ts";
 import type { Operation } from "../transaction/types.ts";
 
+const STRUCTURAL = modelTypeOf("structural-graph").label;
+const MACHINE = modelTypeOf("state-machine").label;
+const QUANTITATIVE = modelTypeOf("quantitative-model").label;
+const STRUCTURAL_H = modelTypeHeading("structural-graph");
+const MACHINE_H = modelTypeHeading("state-machine");
+
 export interface ViewModel {
   readonly title: string;
+  /**
+   * Whether a document is open — `Workspace.state.loaded`, carried onto the frame so a renderer
+   * never infers emptiness from the title's TEXT. The empty workspace is literally a system named
+   * "untitled", which a student could also author on purpose; the flag is the authority SH-I1
+   * already keys the Start-vs-workspace mount on, and the document title reads it to drop the
+   * document-name segment when nothing is open.
+   */
+  readonly loaded: boolean;
   readonly summary: string;
   /** The hypothesis label, repeated out of the banner so the document title can carry it too. */
   readonly hypothesis: string | null;
@@ -1121,6 +1141,12 @@ export function buildViewModel(
     readonly selection: readonly Selection[];
     /** The drawn subject, so §5.1's principal model can state its purpose beside the picture. */
     readonly principal?: SceneSubject | null;
+    /**
+     * `Workspace.state.loaded`. Optional so a test building a view model straight from a system it
+     * just authored keeps meaning "a document is open"; the live caller always passes the state's
+     * own flag.
+     */
+    readonly loaded?: boolean;
   },
 ): ViewModel {
   // One set per selectable kind, because an entity id and a machine id can collide and a single
@@ -1167,8 +1193,8 @@ export function buildViewModel(
   const machineRows: Row[] = [...system.machines.values()].flatMap((m) => {
     const head: Row = {
       id: m.id,
-      label: m.id,
-      kind: m.instances > 1 ? `machine (${m.instances} instances)` : "machine",
+      label: m.label,
+      kind: m.instances > 1 ? `${MACHINE} (${m.instances} instances)` : MACHINE,
       detail: [
         `starts in ${m.initial}`,
         `${plural(m.states.length, "state")}: ${m.states.join(", ")}`,
@@ -1237,7 +1263,7 @@ export function buildViewModel(
   const modelRows: Row[] = [...system.models.values()].map((m) => ({
     id: m.id,
     label: m.label,
-    kind: "purposeful model",
+    kind: STRUCTURAL,
     detail: [
       // The question comes first because it is what the model is FOR, and what a refusal cites.
       m.purpose.question !== null ? `asks: ${m.purpose.question}` : "states no engineering question",
@@ -1252,11 +1278,14 @@ export function buildViewModel(
     ...annotated(m.annotation),
   }));
 
+  // The section ids are selectors other code addresses; only the HEADINGS group by the registry's
+  // type labels. "Models" over one list and "Machines" over another was a false contrast — a
+  // machine is a model (the state-machine type); the type is what distinguishes the sections.
   const sections: Section[] = [
-    { id: "models", heading: "Models", intro: "Each model is a purposeful reduction: what it asks, what it represents, and what it declines to say.", rows: modelRows },
+    { id: "models", heading: `${STRUCTURAL_H}s`, intro: "Each model is a purposeful reduction: what it asks, what it represents, and what it declines to say.", rows: modelRows },
     { id: "entities", heading: "Entities", intro: "The one identity namespace. Every model refers to these.", rows: entityRows },
     { id: "relations", heading: "Relations", intro: "Typed edges, with what each type asserts and what its absence asserts.", rows: relationRows },
-    { id: "machines", heading: "Machines and transitions", intro: "Behaviour. A synchronized transition fires together with its event's other participants.", rows: machineRows },
+    { id: "machines", heading: `${MACHINE_H}s and transitions`, intro: "Behaviour. A synchronized transition fires together with its event's other participants.", rows: machineRows },
   ].filter((s) => s.rows.length > 0);
 
   // Requirements first (§13). A requirement is a claim the engineer declared matters, so burying it
@@ -1277,12 +1306,21 @@ export function buildViewModel(
 
   return {
     title: system.name,
-    summary: `${plural(system.models.size, "model")}, ` +
-      `${plural(system.entities.size, "entity", "entities")}, ` +
-      `${plural(system.machines.size, "machine")}, ` +
-      `${plural(system.instances.length, "machine instance")}, ` +
-      `${plural(system.relations.length, "relation")}, ` +
-      `${plural(system.queries.size, "saved property", "saved properties")}.`,
+    loaded: options.loaded ?? true,
+    // Counts grouped by TYPE, in the registry's own words: "3 models, 2 machines" read as though
+    // the machines were not models. The quantitative model is counted only when declared — for the
+    // many systems declaring none, "0 quantitative models" would be noise, not information.
+    summary: [
+      plural(system.models.size, STRUCTURAL),
+      plural(system.entities.size, "entity", "entities"),
+      plural(system.machines.size, MACHINE),
+      plural(system.instances.length, `${MACHINE} instance`),
+      ...(system.quantitativeModels.size > 0
+        ? [plural(system.quantitativeModels.size, QUANTITATIVE)]
+        : []),
+      plural(system.relations.length, "relation"),
+      plural(system.queries.size, "saved property", "saved properties"),
+    ].join(", ") + ".",
     hypothesis: options.hypothesis,
     banner,
     sections,
@@ -1292,9 +1330,13 @@ export function buildViewModel(
     // One subject per model and one per machine, and never a composed one. That is UX-I7 held by
     // the shape of the data: there is no value here that names two models, so no selection can
     // present them as a single thing. `checkModelPlurality` walks this list for exactly that.
+    // The VALUE prefixes (`model:` / `machine:`) are selectors other code and tests depend on and
+    // do not change; only the human-facing label names the subject by its TYPE. "Model: Worker
+    // Pool" told the student nothing `Machine: job-lease` did not already contradict — the engine
+    // knows the subtype, so the label says it.
     subjects: [
-      ...[...system.models.values()].map((m) => ({ value: `model:${m.id}`, label: `Model: ${m.label}` })),
-      ...[...system.machines.keys()].map((id) => ({ value: `machine:${id}`, label: `Machine: ${id}` })),
+      ...[...system.models.values()].map((m) => ({ value: `model:${m.id}`, label: `${STRUCTURAL_H}: ${m.label}` })),
+      ...[...system.machines.values()].map((m) => ({ value: `machine:${m.id}`, label: `${MACHINE_H}: ${m.label}` })),
     ],
     principal: subject === null || principalPurpose === null
       ? null
@@ -1303,7 +1345,7 @@ export function buildViewModel(
           id: subject.id,
           label: subject.kind === "model"
             ? system.models.get(subject.id)?.label ?? subject.id
-            : subject.id,
+            : system.machines.get(subject.id)?.label ?? subject.id,
           purpose: purposeBlock(principalPurpose),
         },
   };
@@ -1349,7 +1391,7 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
     })),
     ...[...system.models.values()].map((m): Choice => ({
       value: annotationTargetValue({ kind: "model", id: m.id }),
-      label: `Model: ${m.label}`,
+      label: `${STRUCTURAL_H}: ${m.label}`,
     })),
     ...system.relations.map((r): Choice => ({
       value: annotationTargetValue({
@@ -1364,7 +1406,10 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
 
   return {
     entities: [...system.entities.keys()].map(entityChoice),
-    machines: [...system.machines.keys()].map((id) => ({ value: id, label: id })),
+    machines: [...system.machines.values()].map((m) => ({
+      value: m.id,
+      label: m.label === m.id ? m.id : `${m.label} (${m.id})`,
+    })),
     models: [...system.models.values()].map((m) => ({ value: m.id, label: m.label })),
     // Only declared types. Offering a type the model system never declared would produce a
     // transaction the validator refuses under V3, which is a worse answer than not offering it.
@@ -1377,8 +1422,8 @@ function buildEditOptions(system: CanonicalSystem): EditOptions {
     elements,
     labelled: [
       ...[...system.entities.keys()].map((id): Choice => ({ value: id, label: `Entity: ${id}` })),
-      ...[...system.models.keys()].map((id): Choice => ({ value: id, label: `Model: ${id}` })),
-      ...[...system.machines.keys()].map((id): Choice => ({ value: id, label: `Machine: ${id}` })),
+      ...[...system.models.keys()].map((id): Choice => ({ value: id, label: `${STRUCTURAL_H}: ${id}` })),
+      ...[...system.machines.keys()].map((id): Choice => ({ value: id, label: `${MACHINE_H}: ${id}` })),
     ],
     relations,
     propertyNames,

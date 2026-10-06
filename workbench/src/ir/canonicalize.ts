@@ -310,6 +310,7 @@ function machines(raw: unknown, declared: Map<string, CanonDomain>): Map<string,
     for (const [did, expr] of sortedEntries(s["derived"])) if (typeof expr === "string") derived.set(did, expr);
     out.set(id, {
       id,
+      label: asStr(s["label"], id),
       entity: typeof s["entity"] === "string" ? s["entity"] : null,
       instances: Math.max(1, Math.trunc(asNum(s["instances"], 1))),
       purpose: purpose(s["purpose"]),

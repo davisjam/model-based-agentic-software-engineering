@@ -234,13 +234,18 @@ export const SHIPPED_EXAMPLES = [
     id: "message-bus",
     status: { kind: "flagship", realises: "Secure Message Bus" },
     case: {
-      scenario: "An online order system runs on an event bus. Services do not call one another to "
-        + "move an order along; they publish event types and subscribe to the ones they act on. "
-        + "Each event type carries payload fields of a declared sensitivity — a shipping address "
-        + "is restricted, a product id is public — and each service declares the highest "
-        + "sensitivity it is permitted to process.",
+      // The author's case prose, verbatim (261006): situate the system -> describe the engineering
+      // mechanism -> expose the problem. The same shape governs all seven.
+      scenario: "An online retailer must coordinate many services as each order moves from "
+        + "checkout to delivery. It does this through an event bus: checkout, inventory, "
+        + "fulfillment, and other services do not call one another to move an order along, but "
+        + "instead publish event types and subscribe to the ones they act on. Each event carries "
+        + "fields with a declared sensitivity. A product id may be public, while a shipping "
+        + "address is restricted. Each service likewise declares the highest sensitivity it may "
+        + "process.",
       investigate: "Does decoupling the services keep sensitive data inside its permitted "
-        + "boundary? And which questions about the bus can a model of permissions answer at all?",
+        + "boundary? Could a restricted field reach a service that should never see it? Then "
+        + "determine which questions about the bus a model of permissions can answer at all.",
       tryAsking: [
         { query: "who-subscribes-to-order-created", ask: "Which services subscribe to OrderCreated?" },
         {
@@ -259,12 +264,22 @@ export const SHIPPED_EXAMPLES = [
   {
     id: "transaction-workspace",
     status: { kind: "flagship", realises: "Transaction Protocol" },
-    // The author's own case, verbatim (261005): the worked example the other five match.
+    // The author's case prose, verbatim (261006 revision of his own 261005 case). Deliberately the
+    // LONGEST of the seven, and he says why: the student must grasp optimistic concurrency in
+    // substance without being taught the term, so the causal chain is spelled out — shared
+    // authoritative state -> work against observed version -> concurrent change -> stale base ->
+    // validation before authority. Do not trim it for symmetry with the others.
     case: {
-      scenario: "Multiple producers propose changes to a shared workspace. A proposal is prepared "
-        + "against one base, but that base may change before the proposal commits.",
+      scenario: "A collaborative engineering system lets several tools and teams make changes to "
+        + "a shared body of authoritative data. Rather than editing that data directly, each "
+        + "producer prepares a proposed transaction against the version of the workspace it has "
+        + "seen. While that work is underway, another producer may commit a change, making the "
+        + "first producer's base stale. Before a proposal becomes authoritative, the system "
+        + "therefore has to determine both whether the proposed change is valid and whether the "
+        + "assumptions under which it was prepared still hold.",
       investigate: "What prevents an invalid or stale change from reaching the authoritative "
-        + "workspace? What does the model guarantee after a change has been validated?",
+        + "workspace? Once a change has been validated, what does the model actually guarantee "
+        + "about what happens next?",
       tryAsking: [
         { query: "transaction-can-commit", ask: "Can a proposed change reach Committed?" },
         { query: "transaction-can-be-refused", ask: "Can it reach Refused?" },
@@ -289,14 +304,20 @@ export const SHIPPED_EXAMPLES = [
     // example's own fixture rather than assumed from the directory name.
     status: { kind: "flagship", realises: "Processing Pipeline" },
     case: {
-      scenario: "A remediation pipeline carries a document from intake to publication: parse, "
-        + "remediate, validate, publish, with a bounded number of retries when validation fails. "
-        + "The service has promised a processing-latency target and runs in a fixed memory "
-        + "envelope, so one model prices the pipeline's stages while a second tracks the "
-        + "document's lifecycle through them.",
-      investigate: "Can a document be published without passing validation, and does the modeled "
-        + "pipeline keep its latency and memory promises? One promised figure is not derivable "
-        + "from these models — find which, and why.",
+      scenario: "An accessibility-remediation service accepts documents that must be transformed "
+        + "and checked before they can be returned for publication. Each document passes through "
+        + "parse, remediate, validate, and publish stages. A failed validation sends the document "
+        + "back for another remediation attempt, but retries are bounded. The service promises a "
+        + "processing-latency target and must run within a fixed memory envelope. Its models "
+        + "capture both the cost of the pipeline stages and the document's lifecycle through them.",
+      // "One additional quantitative promise that these models cannot establish" is the flagship
+      // purposeful omission (requirements section 5.6): the cache's expected-latency claim, whose
+      // weights — the hit rate — the model declines to supply; the refusal names
+      // cache_hit_frequency. Verified against expected-results.yaml before pasting.
+      investigate: "Can a document reach publication without passing validation? Does the modeled "
+        + "pipeline satisfy its latency and memory promises? The service makes one additional "
+        + "quantitative promise that these models cannot establish. Find it, and explain what "
+        + "information is missing.",
       tryAsking: [
         {
           query: "publish-without-validating",
@@ -337,13 +358,14 @@ export const SHIPPED_EXAMPLES = [
         + "too -- prominence is decided by the progression, not by what the example exercises.",
     },
     case: {
-      scenario: "A job queue feeds a pool of workers. A worker must take a lease on a job before "
-        + "processing it, a failed run is retried a bounded number of times, and a job that "
-        + "exhausts its retries is parked in a dead-letter state for a person to examine rather "
-        + "than retried forever.",
-      investigate: "Can custody blur — a job in processing while no worker holds its lease — and "
-        + "can the retry policy deny a job a terminal outcome? Decide, too, whether \"who runs "
-        + "next\" is a question these models can answer.",
+      scenario: "A background-processing service must distribute a continuing stream of jobs "
+        + "across a pool of workers without losing work or retrying failures forever. A worker "
+        + "must acquire a lease before processing a job. Failed runs may be retried, but only a "
+        + "bounded number of times. A job that exhausts its retries is parked in a dead-letter "
+        + "state for human examination rather than cycling forever.",
+      investigate: "Can custody become ambiguous, with a job in processing while no worker holds "
+        + "its lease? Can the retry policy leave a job without a terminal outcome? Finally, can "
+        + "these models tell you which worker or job runs next?",
       tryAsking: [
         { query: "completed-is-reachable", ask: "Can a job reach completed?" },
         { query: "dead-letter-is-reachable", ask: "Can a job end up in dead_letter?" },
@@ -360,13 +382,16 @@ export const SHIPPED_EXAMPLES = [
     id: "embedded-sensor-node",
     status: { kind: "flagship", realises: "Embedded Sensor Node" },
     case: {
-      scenario: "A battery-powered sensor node samples, classifies on-device, and transmits its "
-        + "readings. The part has 256 KiB of SRAM and nine allocations want some of it. One model "
-        + "prices each allocation against that ceiling; a second traces a sample's path from the "
-        + "sensor driver to the radio and carries no sizes at all.",
-      investigate: "Does the modeled firmware fit the part, and with how much margin? Decide "
-        + "which allocation you would attack first if it stopped fitting — and whether these "
-        + "models can even say which allocations are live together.",
+      scenario: "A small battery-powered device must turn sensor readings into useful results "
+        + "without exceeding the severe resource limits of its embedded hardware. The node "
+        + "samples its environment, classifies readings on-device, and transmits the results. The "
+        + "part has only 256 KiB of SRAM, and nine allocations compete for that memory. One model "
+        + "accounts for those allocations against the hardware limit; another traces a sample's "
+        + "path from the sensor driver to the radio but carries no size information.",
+      investigate: "Does the modeled firmware fit in SRAM, and with how much margin? If it "
+        + "stopped fitting, which allocation would you attack first? Before trusting that answer, "
+        + "determine whether these models can tell you which allocations are live at the same "
+        + "time.",
       tryAsking: [
         { query: "sram-fits-budget", ask: "Does the modeled firmware fit in the 256 KiB SRAM budget?" },
         { query: "sample-reaches-the-radio", ask: "Can a sample reach the radio from the sensor driver?" },
@@ -389,14 +414,20 @@ export const SHIPPED_EXAMPLES = [
     id: "autonomous-delivery",
     status: { kind: "flagship", realises: "Autonomous Delivery System" },
     case: {
-      scenario: "A delivery rover drives public footpaths with no one aboard. A mission planner "
-        + "chooses routes, a safety monitor sits between the planner and the drive system, and a "
-        + "rover that loses localization is allowed a bounded number of recovery attempts. Five "
-        + "purposeful models reduce the one vehicle: command authority, mission lifecycle, motion "
-        + "interlock, onboard RAM, and battery endurance.",
-      investigate: "Can anything command motion around the safety monitor, and must a mission "
-        + "always end in a delivery or an abort? Then ask what each promise — memory, time, "
-        + "charge — costs to establish, and which of them these models refuse to price.",
+      // "Five models" is verified at 261006: three graph models (Control Authority, Compute
+      // Platform RAM, Mission Endurance) plus two machines (Mission, Motion Interlock) — five,
+      // counting by the registry's everything-is-a-model framing.
+      scenario: "A delivery company wants an autonomous rover to carry packages along public "
+        + "footpaths without an onboard operator. A mission planner chooses routes and issues "
+        + "commands, but a safety monitor stands between planning and the drive system so that "
+        + "unsafe motion can be stopped independently. Loss of localization triggers recovery, "
+        + "with only a bounded number of attempts before the mission must give up. Five models "
+        + "describe different aspects of the same rover: command authority, mission lifecycle, "
+        + "motion interlock, onboard RAM, and battery endurance.",
+      investigate: "Can anything command motion around the safety monitor? Must every mission "
+        + "eventually end in delivery or abort? Then examine the rover's quantitative promises "
+        + "about memory, time, and charge. Which can these models establish, what does "
+        + "establishing each one require, and which promise lies beyond what has been modeled?",
       tryAsking: [
         {
           query: "planner-commands-drive-directly",
@@ -441,15 +472,17 @@ export const SHIPPED_EXAMPLES = [
         + "slot, that is the author's edit, recorded there.",
     },
     case: {
-      scenario: "Two teams modeled one calibration loop independently. The instrumentation team's "
-        + "fragment says the sensor produces a reading; the control team's says a sample is "
-        + "consumed by the controller. A prior integrator declared the boundary contract: "
-        + "anything conveyed between the teams is established as a measurement. Nobody has "
-        + "stated what a reading or a sample actually is.",
-      investigate: "Connect the sensor's output to the controller's input — without weakening "
-        + "the model. The connecting edge is refused until both kinds are named: ask "
-        + "explainType('reading') and explainType('sample') to see why the two are still "
-        + "distinct, and decide what the model is missing before you decide what to type.",
+      scenario: "A control system is being developed by two teams that must agree on what "
+        + "crosses the boundary between sensing and control. The instrumentation team modeled "
+        + "the sensor as producing a reading; the control team modeled the controller as "
+        + "consuming a sample. An earlier integrator established the boundary contract: anything "
+        + "conveyed between the teams must be a measurement. But nobody defined what a reading "
+        + "or a sample actually is.",
+      investigate: "Connect the sensor's output to the controller's input without weakening the "
+        + "model. The connecting edge is refused because its endpoint types have not been "
+        + "related. Ask explainType('reading') and explainType('sample') why they remain "
+        + "distinct. What information is missing? Decide that before deciding what either type "
+        + "should become.",
       tryAsking: [
         {
           query: "reading-is-delivered-as-sample",
@@ -692,7 +725,7 @@ export class ExampleCatalog {
       // Machines carry a purpose exactly as a graph model does. A description that listed only
       // `system.models` would report worker-queue as having one model and would be wrong.
       ...[...system.machines.values()].map((m) => ({
-        id: m.id, label: m.id, kind: "machine" as const, question: m.purpose.question,
+        id: m.id, label: m.label, kind: "machine" as const, question: m.purpose.question,
       })),
     ];
     const { title, summary, suggested } = readPresentation(id, fixture);

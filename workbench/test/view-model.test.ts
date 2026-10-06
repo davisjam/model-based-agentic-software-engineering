@@ -1167,7 +1167,9 @@ test("a note may only be attached to something that can carry one", () => {
   // or a transition is not offered, because a note written there is dropped on the next load --
   // and a control that appears to work and silently loses the text is worse than no control.
   const edit = vm().edit;
-  for (const prefix of ["Entity:", "Model:", "Relation:"]) {
+  // "Structural model:" rather than "Model:" — the 261006 subtype ruling: every surface names a
+  // model by its TYPE's registry label, and the generic container word is gone.
+  for (const prefix of ["Entity:", "Structural model:", "Relation:"]) {
     assert.ok(edit.annotatable.some((c) => c.label.startsWith(prefix)), `${prefix} must be offered`);
   }
   assert.ok(edit.annotatable.every((c) => parseAnnotationTarget(c.value) !== null),
@@ -1186,7 +1188,8 @@ test("set-label offers all three namespaces it can address", () => {
   // The op takes a bare id and no scope, so an id naming both an entity and a machine is ambiguous
   // and the engine refuses it. Saying which namespace each choice came from is how a user sees that.
   const labelled = vm().edit.labelled;
-  for (const prefix of ["Entity:", "Model:", "Machine:"]) {
+  // The two model namespaces carry their registry type labels (261006 subtype ruling).
+  for (const prefix of ["Entity:", "Structural model:", "State machine:"]) {
     assert.ok(labelled.some((c) => c.label.startsWith(prefix)), `${prefix} must be offered`);
   }
 });
@@ -1213,7 +1216,10 @@ test("every drawable subject is offered, labelled by what it is", () => {
   const m = vm();
   const s = sys();
   assert.equal(m.subjects.length, s.models.size + s.machines.size);
-  assert.ok(m.subjects.every((c) => c.label.startsWith("Model: ") || c.label.startsWith("Machine: ")));
+  // Labelled by TYPE, from the registry's own words (261006 subtype ruling): the Draw list says
+  // "Structural model: Worker Pool" / "State machine: …", never the generic "Model:".
+  assert.ok(m.subjects.every((c) =>
+    c.label.startsWith("Structural model: ") || c.label.startsWith("State machine: ")));
   for (const c of m.subjects) {
     assert.ok(resolveSubject(s, c.value) !== null, `'${c.value}' must resolve to a subject`);
   }

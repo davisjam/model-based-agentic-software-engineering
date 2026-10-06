@@ -282,8 +282,10 @@ describe("UX-I2 / UX-I3: the human and agent surfaces report one authoritative s
       summary: (document.getElementById("summary")?.textContent ?? "").replace(/\s+/g, " ").trim(),
       counts: window.mage.context().counts,
     }));
+    // The nouns are the registry's type labels (261006 subtype ruling): the census counts
+    // "structural models" and "state machines", never "models" against "machines".
     for (const [noun, key] of [
-      ["models", "models"], ["entities", "entities"], ["machines", "machines"],
+      ["structural models", "models"], ["entities", "entities"], ["state machines", "machines"],
       ["relations", "relations"],
     ]) {
       assert.match(
@@ -292,7 +294,7 @@ describe("UX-I2 / UX-I3: the human and agent surfaces report one authoritative s
       );
     }
     assert.match(summary, new RegExp(`\\b${counts.savedQueries} saved propert(y|ies)\\b`), `#summary omits the saved-property count: "${summary}"`);
-    assert.match(summary, new RegExp(`\\b${counts.instances} machine instances?\\b`), `#summary omits the instance count: "${summary}"`);
+    assert.match(summary, new RegExp(`\\b${counts.instances} state machine instances?\\b`), `#summary omits the instance count: "${summary}"`);
   });
 
   it("the human question list renders a result for every saved query", async () => {
@@ -636,7 +638,9 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
     assert.ok(live.text.includes(title),
       `the announcement does not name the system that loaded ("${title}"): "${live.text}"`);
     const counts = await agentPage.evaluate(() => window.mage.context().counts);
-    assert.match(live.text, new RegExp(`\\b${counts.models} models\\b`),
+    // "structural models" — the announcement sizes what loaded in the registry's type vocabulary
+    // (261006 subtype ruling), the same nouns the #summary census uses.
+    assert.match(live.text, new RegExp(`\\b${counts.models} structural models\\b`),
       `the announcement does not size what loaded: "${live.text}"`);
   });
 

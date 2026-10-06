@@ -114,6 +114,7 @@ events:
 machines:
 
   document:
+    label: Document
     entity: remediation          # optional correspondence (V6)
     purpose:
       question: Can a document reach published without being reviewed?
@@ -166,6 +167,7 @@ machines:
           retry_count: retry_count + 1
 
   worker:
+    label: Worker
     # DELIBERATELY one instance. `instances: 2` would be legal and would let us ask
     # "can two workers be held at once?" -- but it would also make `acquire` illegal
     # under V14, because v0.1 has no participant selection. Multiplicity gives

@@ -63,8 +63,8 @@ const PRECONDITION_WORDS: Readonly<Record<string, readonly [met: string, unmet: 
   "loaded": ["ready", "needs a model system loaded"],
   "selection:element": ["an element is selected", "needs an entity or a state selected"],
   "selection:relation": ["a relation is selected", "needs a relation selected"],
-  "selection:model": ["a model is selected", "needs a model selected"],
-  "selection:machine": ["a machine is selected", "needs a state machine selected"],
+  "selection:model": ["a structural model is selected", "needs a structural model selected"],
+  "selection:machine": ["a state machine is selected", "needs a state machine selected"],
 };
 
 /**

@@ -371,6 +371,7 @@ quantities:
 machines:
 
   document-lifecycle:
+    label: Document Lifecycle
     entity: document
     purpose:
       question: What states can a document enter, and what must occur before publication?

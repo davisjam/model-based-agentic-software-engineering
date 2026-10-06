@@ -197,6 +197,10 @@
         "required": ["initial", "states", "transitions"],
         "additionalProperties": false,
         "properties": {
+          "label": {
+            "description": "Display name, defaulting to the id. Display only: it never addresses the machine (transactions and selectors use the id) and never enters the transaction base.",
+            "type": "string"
+          },
           "entity": {
             "description": "Optional correspondence to a system entity (V6).",
             "$ref": "#/$defs/id"

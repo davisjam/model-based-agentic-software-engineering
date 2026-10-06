@@ -74,7 +74,7 @@ export const PUBLISHED_PAGES: readonly PublishedPage[] = [
   },
   {
     path: "workbench/",
-    mustContain: "<title>MAGE Model Workbench</title>",
+    mustContain: "<title>MAGE Workbench</title>",
     why: "the workbench shell's title, hand-authored in index.html rather than rendered, so it moves "
       + "only when someone renames the app.",
     // Hand-authored, and `workbench` is in catalog.py's NON_SITE_DIRS, so the render never touches

@@ -51,6 +51,7 @@
  * second voice in one live region, so the root makes exactly one.
  */
 import { annotationHash } from "../../ir/hash.ts";
+import { modelTypeOf } from "../../engine/model-types.ts";
 import type { PropertyRow } from "../view-model.ts";
 import type { ShellFrame } from "./context.ts";
 
@@ -125,12 +126,17 @@ export class Announcer {
       systemId: state.system.systemId,
       title: state.system.name,
       hash: state.hash,
+      // The count nouns are the registry's type labels, pluralized — the same vocabulary the
+      // summary line uses, so an announcement never reads "models" against "machines" as though a
+      // machine were not a model. `countPhrase` drops zero counts, so the quantitative row costs
+      // nothing on the many systems declaring none.
       counts: new Map([
-        ["models", state.system.models.size],
+        [`${modelTypeOf("structural-graph").label}s`, state.system.models.size],
         ["entities", state.system.entities.size],
         ["relations", state.system.relations.length],
-        ["machines", state.system.machines.size],
-        ["machine instances", state.system.instances.length],
+        [`${modelTypeOf("state-machine").label}s`, state.system.machines.size],
+        [`${modelTypeOf("state-machine").label} instances`, state.system.instances.length],
+        [`${modelTypeOf("quantitative-model").label}s`, state.system.quantitativeModels.size],
         ["saved properties", state.system.queries.size],
       ]),
       findings: state.findings.length,

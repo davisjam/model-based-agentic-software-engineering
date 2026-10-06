@@ -332,6 +332,7 @@ events:
 machines:
 
   mission:
+    label: Mission
     entity: rover
     purpose:
       question: What states does one delivery pass through, and does the recovery policy bound it?
@@ -421,6 +422,7 @@ machines:
           recovery_count: 3
 
   motion-interlock:
+    label: Motion Interlock
     entity: rover
     purpose:
       question: Is the drive system currently permitted to move?
