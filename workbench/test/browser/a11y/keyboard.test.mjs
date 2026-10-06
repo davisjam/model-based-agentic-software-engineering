@@ -103,7 +103,7 @@ after(async () => {
 describe("the tab order itself", () => {
   it("opens on the skip link and then the toolbar, with no unreachable stop in between", async () => {
     await releaseFocus(page);
-    const forward = await tabSequence(page, 7);
+    const forward = await tabSequence(page, 8);
     // Pinned from a FRESH page. Undo, Redo, Export and Run are all disabled with no model loaded,
     // so none appears. Export and Run joined that list when F-2 was fixed: they shipped enabled,
     // which put two controls that could do nothing ahead of the one that could. The remaining
@@ -124,9 +124,20 @@ describe("the tab order itself", () => {
     // bypass and the ways in because that is where page chrome belongs and because the bypass exists
     // to skip exactly this; a keyboard user who wants the model presses Enter on the skip link, as
     // the test below pins. The ways in still come before the model, which is the ordering claim.
+    //
+    // RESET JOINED, and it is the one toolbar control that is enabled with nothing loaded. Session
+    // persistence made a reload restore where the student left off, so Reset is the deliberate way
+    // out — and it has to be reachable from exactly the state a restored session lands in, which is
+    // why it does not take the disabled-with-no-model treatment Export, Run, Undo and Redo do. So it
+    // stands between `new-system` and the example chooser, in document order, and the walk is eight
+    // stops rather than seven. The ordering claim is unchanged: ways in, then the model.
+    //
+    // This pin went RED on main for the whole of 261005, which is the measurement that put the
+    // browser and a11y tiers into `hooks/pre-push`. The change that added Reset reported "tsc, node
+    // 1420, parity, build" — every gate pre-push reached, and not the one that holds this line.
     assert.deepEqual(forward, [
-      "a#skip", "a#", "a#learn", "input#file", "button#new-system", "select#example-choice",
-      "button#example-load",
+      "a#skip", "a#", "a#learn", "input#file", "button#new-system", "button#reset",
+      "select#example-choice", "button#example-load",
     ], "the opening tab order changed");
     // Backwards too: a one-way tab order traps a keyboard user at the end of the page.
     await pressShiftTab(page);
@@ -142,9 +153,10 @@ describe("the tab order itself", () => {
     // SH-I1 removes it. The workspace is mounted iff a system is loaded, so on a fresh page the
     // subject chooser is inside a `hidden` region: not in the accessibility tree, not in the tab
     // order, and — the point — not a control a keyboard user reaches before there is anything to
-    // draw. That took the walk to five; the persistent page nav took it to seven, and the two it
-    // added are navigation rather than controls (see the pin above). What this test asserts is
-    // unchanged by either number: the walk does not reach into the unmounted workspace.
+    // draw. That took the walk to five; the persistent page nav took it to seven, and Reset — the one
+    // toolbar control that stays enabled with nothing loaded — to eight (see the pin above). What
+    // this test asserts is unchanged by any of those numbers: the walk does not reach into the
+    // unmounted workspace.
     //
     // Asserted as ABSENCE-plus-cause rather than by pressing a sixth Tab, because what the browser
     // does at the end of a document's tab ring is the browser's business and not this page's claim.

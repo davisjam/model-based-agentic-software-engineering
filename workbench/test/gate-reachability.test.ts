@@ -19,12 +19,25 @@
 //      list would have passed everything else in the pipeline. Patched by adding the CI step.
 //
 // Instances 1 and 3 are the same defect against two different runners, which is why this check
-// walks TWO AXES rather than one:
+// walks THREE AXES rather than one:
 //   - the DEFAULT GATE axis — `npm run all`, what a developer or agent runs before reporting;
-//   - the PUBLISHING axis — the Pages workflow, what runs before anything ships.
+//   - the PUBLISHING axis — the Pages workflow, what runs before anything ships;
+//   - the PRE-PUSH axis — `hooks/pre-push`, the last gate a change passes on this machine.
 // A gate missing from the first lets an agent report green over an unrun check. A gate missing from
-// the second lets a defect reach the published site. Neither axis implies the other, and holding
-// only one would have missed one of the two instances.
+// the second lets a defect reach the published site. A gate missing from the third lets a push leave
+// for CI carrying a failure CI will find — which is the cheapest of the three to suffer and the most
+// expensive to diagnose, because the push itself succeeds. No axis implies another.
+//
+// THE PRE-PUSH AXIS IS THE FOURTH INSTANCE, and it landed with this axis rather than before it.
+// Until 261005 the hook re-enumerated `check`, `test` and `build` by hand, so the smoke, browser and
+// a11y tiers ran in CI alone. Two changes that same day reported their gates accurately — "tsc, node
+// 1420, parity, build", exactly what the hook reached — and each broke a tier it never ran: session
+// persistence broke the browser tier's pristine-page assertion through shared `localStorage`, and the
+// RESET button it added entered the toolbar's tab order and left the a11y opening-tab-order pin RED
+// ON MAIN for the rest of the day. The pin was the only mechanical holder of that line. This file's
+// previous revision named the gap and deferred it — "adding pre-push as a third axis would go red at
+// HEAD, and the repo's rule is drain-then-promote" — which was the right call and is now spent: the
+// hook runs all four, so the axis is asserted.
 //
 // A THIRD axis sits at the foot of this file, and it is the same failure one level down. Both axes
 // above reason about SCRIPT NAMES; a test runner takes GLOBS. So a gate can land in a file no
@@ -57,11 +70,18 @@
 //
 // WHAT IT DOES NOT COVER, stated so nobody rediscovers it as a surprise. It checks INVOCATION, not
 // RUNNABILITY — instance 2 was a gate the runner reached and could not execute, and no part of this
-// file would have caught it (`tests/ci.py` does). And it reads the default gate and the publishing
-// workflow, not every runner: `hooks/pre-push` re-enumerates `check`, `test` and `build` by hand and
-// therefore does not reach `test:smoke` today, the same class one level up. Adding pre-push as a
-// third axis would go red at HEAD, and the repo's rule is drain-then-promote, so it is reported to
-// that hook's owner instead of asserted here.
+// file would have caught it (`tests/ci.py` does). The pre-push axis makes that distinction sharper
+// rather than softer, because that hook declines to run things on purpose: its workbench block fires
+// only when a `workbench/` path moved, skips every Node gate on a shell below Node 22, and skips each
+// browser tier whose Chromium or axe-core tree is not installed. All three skips are deliberate and
+// loud, and a reader of THIS file must not take "reached" for "ran" — a developer on Node 20 pushes
+// through a hook that invoked nothing in this package. What the axis holds is the wiring: the hook
+// names every gate, so the tier that is skipped is a tier someone chose to skip.
+//
+// It also reads three runners and not every runner. `hooks/pre-commit` runs no gate from this package
+// at all — it validates and re-renders the catalogue — and that is not an omission this file should
+// police: a per-commit browser tier would cost an agent two minutes per commit, and pre-push is the
+// boundary where a change stops being local.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
@@ -71,6 +91,9 @@ const ROOT_GATE = "all";
 
 /** The publishing runner: nothing reaches the site without passing through it. */
 const PUBLISH_RUNNER = ".github/workflows/pages.yml";
+
+/** The last gate on this machine. A change that clears it is a change git is about to transfer. */
+const PRE_PUSH_RUNNER = "hooks/pre-push";
 
 /**
  * A declared exclusion from one axis: why that runner does not reach this gate, and the literal
@@ -174,6 +197,44 @@ const EXEMPT_FROM_PUBLISH: Readonly<Record<string, Exemption>> = {
 };
 
 /**
+ * Gates the PRE-PUSH hook does not invoke by name.
+ *
+ * Short by design: this hook runs every verdict-producing gate in the package except the three below,
+ * and the three are the ones a push cannot usefully re-ask. Each exemption's evidence is a literal
+ * argv spelling from the hook itself, so a reorganisation that drops the work fails here.
+ */
+const EXEMPT_FROM_PRE_PUSH: Readonly<Record<string, Exemption>> = {
+  "check:published": MANUAL_PUBLISHED_PROBE,
+  // The hook invokes the typecheck directly, like CI and for the same reason — a type error should
+  // report ahead of a bundler error — and it does so through `npx` rather than `npm run` to keep one
+  // process-spawn shape across the whole block. The evidence is the argv.
+  check: {
+    evidenceIn: PRE_PUSH_RUNNER,
+    evidence: '"npx", "tsc", "--noEmit"',
+    reason: "The hook runs the typecheck directly, as an argv rather than through the script — the "
+      + "same work under a different spelling, first in the block so a type error reports ahead of a "
+      + "failing test or a bundler error. The evidence is that argv, so a rewrite that drops the "
+      + "typecheck fails this check even though no script name moved.",
+  },
+  // The Node preflight, and the one exemption here whose reason is not "something else does it" but
+  // "this runner has to answer the question BEFORE it can ask it". The preflight is a Node program:
+  // on a Node 20 shell it dies with the same ERR_UNKNOWN_FILE_EXTENSION it exists to explain. So the
+  // hook checks the major version itself, with the stdlib, and SKIPS the whole block rather than
+  // failing — a missing toolchain is not a broken change. If that probe is ever replaced by a call to
+  // the preflight script, DELETE this entry: an exemption for a gate that is reached is reported.
+  "check:node": {
+    evidenceIn: PRE_PUSH_RUNNER,
+    evidence: '[exe, "--version"]',
+    reason: "The preflight is itself a Node program that loads a .ts entry point, so on the wrong "
+      + "Node it fails the way it exists to diagnose. The hook therefore asks the question in Python "
+      + "before spawning anything: it reads the major version, and where PATH's Node is too old it "
+      + "looks through nvm's installed versions for one that clears the floor rather than skipping "
+      + "the block. The evidence is that probe's argv — delete it and the hook starts handing a Node "
+      + "20 shell a .ts file.",
+  },
+};
+
+/**
  * A reason floor, for the cause stated in `test/derived-values.test.ts`: an unjustified declaration
  * is how a control becomes decoration. "too slow" is a note; a cost, a dependency or a constraint is
  * a decision someone else can review.
@@ -207,6 +268,34 @@ const invokedBy = (command: string): readonly string[] => {
     .map((m) => m[1] ?? "");
   if (/\bnpm\s+test\b/.test(command)) names.push("test");
   return names.filter((n) => n.length > 0);
+};
+
+/**
+ * The pre-push hook's invocations, which are not written as command LINES.
+ *
+ * A shell runner spells a gate `npm run test:browser`; this hook is Python with no shell, so the same
+ * gate is `["npm", "run", "test:browser", "--silent"]` — which `invokedBy` cannot see through the
+ * quotes and commas. So the argv LISTS are extracted and normalised into the command spelling, and
+ * nothing else is.
+ *
+ * TWO PRECISIONS, both load-bearing, both learned elsewhere in this file:
+ *   - DOCSTRINGS AND COMMENTS OUT FIRST. That hook argues at length about which tiers it runs and
+ *     why, naming every one of them, and reading its prose as its behaviour would report the whole
+ *     package as covered. This is the lesson `test/capabilities.test.ts` learned on an HTML comment.
+ *   - ONLY BRACKETED LISTS, not every string. Each gate in that hook carries a human LABEL beside
+ *     its argv — `("npm test (unit + parity + source hygiene)", ["npm", "test", "--silent"])` — and
+ *     the label spells the command too. Scanning all text would let a label stand in for an argv that
+ *     no longer runs it, which is a false GREEN on a wiring check. A list literal is the hook's own
+ *     spelling of "this is a command I run".
+ *
+ * The residual error is a false RED: an invocation written some other way — `shell=True`, a composed
+ * string — is reported as unreached. That direction is the safe one, and the repo bans the shell.
+ */
+const pythonArgvCommands = (source: string): string => {
+  const code = stripComments(source, "py");
+  return [...code.matchAll(/\[[^[\]]*\]/g)]
+    .map((m) => m[0].replace(/["',]/g, " "))
+    .join("\n");
 };
 
 /** Every script the root gate arrives at, following the chain. */
@@ -291,6 +380,7 @@ function audit(
   scripts: Readonly<Record<string, string>>,
   exemptFromAll: Readonly<Record<string, Exemption>>,
   exemptFromPublish: Readonly<Record<string, Exemption>>,
+  exemptFromPrePush: Readonly<Record<string, Exemption>>,
   readFile: (path: string) => string | null,
 ): readonly string[] {
   if (scripts[ROOT_GATE] === undefined) {
@@ -304,6 +394,11 @@ function audit(
   const workflow = readFile(PUBLISH_RUNNER);
   if (workflow === null) {
     issues.push(`\`${PUBLISH_RUNNER}\` is missing — the publishing axis cannot be checked, and an `
+      + `unreadable runner must never read as a pass`);
+  }
+  const hook = readFile(PRE_PUSH_RUNNER);
+  if (hook === null) {
+    issues.push(`\`${PRE_PUSH_RUNNER}\` is missing — the pre-push axis cannot be checked, and an `
       + `unreadable runner must never read as a pass`);
   }
 
@@ -323,6 +418,16 @@ function audit(
       remedy: "Add a step that runs it, or declare what CI does instead and the command that proves it.",
     }, readFile));
   }
+
+  if (hook !== null) {
+    issues.push(...auditAxis(gates, {
+      runner: `\`${PRE_PUSH_RUNNER}\``,
+      reached: new Set(invokedBy(pythonArgvCommands(hook))),
+      exemptions: exemptFromPrePush,
+      remedy: "Add it to the hook's workbench block, or declare what covers it before the push and "
+        + "the argv that proves it.",
+    }, readFile));
+  }
   return issues;
 }
 
@@ -340,12 +445,38 @@ const manifestScripts = (): Readonly<Record<string, string>> => {
 const readRepoFile = (path: string): string | null =>
   existsSync(`../${path}`) ? readFileSync(`../${path}`, "utf8") : null;
 
-test("every gate is reached by the default gate and by CI, or its exclusion is declared", () => {
+test("every gate is reached by the default gate, by CI and by pre-push, or its exclusion is declared", () => {
   const scripts = manifestScripts();
   assert.ok(Object.keys(scripts).length > 3,
     `read ${Object.keys(scripts).length} scripts from package.json — the manifest is not being read`);
-  const issues = audit(scripts, EXEMPT_FROM_ALL, EXEMPT_FROM_PUBLISH, readRepoFile);
+  const issues = audit(
+    scripts, EXEMPT_FROM_ALL, EXEMPT_FROM_PUBLISH, EXEMPT_FROM_PRE_PUSH, readRepoFile);
   assert.deepEqual(issues, [], `gate wiring:\n  ${issues.join("\n  ")}\n`);
+});
+
+test("the pre-push hook's argv lists are parsed, and its prose is not", () => {
+  // The axis above is only as good as this extraction, and both directions cost something. Reading
+  // nothing reports every gate unreached — a false red that gets a wiring check deleted. Reading the
+  // hook's PROSE reports every gate reached — a false green, which is the defect itself wearing the
+  // check's own clothes. So both are asserted against the real file rather than left to the axis.
+  const hook = readRepoFile(PRE_PUSH_RUNNER);
+  assert.ok(hook !== null, `${PRE_PUSH_RUNNER} is unreadable — the axis above is asserting nothing`);
+  const reached = new Set(invokedBy(pythonArgvCommands(hook ?? "")));
+  for (const name of ["test", "test:browser", "test:a11y", "test:smoke", "check:parity"]) {
+    assert.ok(reached.has(name),
+      `the extraction does not see \`${name}\` in ${PRE_PUSH_RUNNER}, which runs it. Found: `
+      + `${[...reached].sort().join(", ")}`);
+  }
+  // The hook opens with a docstring that names every gate it runs and several it does not, and its
+  // body carries more of the same in `#` comments. Stripping is what keeps that discussion out of the
+  // verdict, so the stripping is asserted on the real file: the subject must still be there to strip.
+  assert.ok(hook?.includes('"""'),
+    "the hook has lost its docstring — the false-green half of this control now checks nothing");
+  const code = stripComments(hook ?? "", "py");
+  assert.ok(!code.includes('"""'), "the docstring survived stripping, so prose is being read as commands");
+  assert.ok(code.length < (hook ?? "").length * 0.8,
+    `stripping removed only ${(hook ?? "").length - code.length} of ${(hook ?? "").length} characters; `
+    + "this hook is mostly prose, so a small delta means the stripper is not matching its shape");
 });
 
 test("the gate predicate still matches this package's gates", () => {
@@ -361,12 +492,29 @@ test("the check fires on each defect it exists to catch — negative control", (
   // A control nobody has watched fail is a control nobody knows works, and this file exists because
   // three gates were wired wrong in one day without anything going red.
   const WF = ".github/workflows/pages.yml";
+  const HOOK = "hooks/pre-push";
   const ciRunsEverything = "steps:\n  - run: |\n      npx tsc --noEmit\n      npm test\n"
     + "      npm run test:a11y\n";
-  const repo = (text: string) => (path: string): string | null => (path === WF ? text : null);
+  // A hook in the real one's shape: a docstring, then argv lists. BUILT from pieces rather than
+  // spelled, for the reason the single-threshold control below gives — the audits in this file read
+  // this file, and a fixture that spells a runner's text verbatim becomes a finding about itself.
+  const argv = (...words: readonly string[]): string =>
+    `subprocess.run([${words.map((w) => `"${w}"`).join(", ")}], cwd=WB)\n`;
+  const hookRunsEverything = '"""The hook\'s prose, which names tiers it does not run."""\n'
+    + argv("npx", "tsc", "--noEmit") + argv("npm", "test", "--silent")
+    + argv("npm", "run", "test:a11y", "--silent");
+  const repo = (text: string, hook = hookRunsEverything) => (path: string): string | null =>
+    (path === WF ? text : path === HOOK ? hook : null);
   const full = repo(ciRunsEverything);
   const tscOnly: Readonly<Record<string, Exemption>> = {
     check: { evidenceIn: WF, evidence: "npx tsc --noEmit", reason: "x".repeat(MIN_REASON) + " direct" },
+  };
+  // The hook's counterpart: it runs the typecheck as an argv, so the evidence is that argv.
+  const hookTscOnly: Readonly<Record<string, Exemption>> = {
+    check: {
+      evidenceIn: HOOK, evidence: '"npx", "tsc", "--noEmit"',
+      reason: "x".repeat(MIN_REASON) + " the hook spawns the typecheck directly",
+    },
   };
 
   // Instance 1, as it actually was: the tier exists, the default gate stops short of it.
@@ -376,7 +524,7 @@ test("the check fires on each defect it exists to catch — negative control", (
     "test:a11y": "node --test a11y",
     all: "npm run check && npm run test",
   };
-  const found = audit(unwired, {}, tscOnly, full);
+  const found = audit(unwired, {}, tscOnly, hookTscOnly, full);
   assert.equal(found.length, 1, `an unwired gate must be reported, got ${found.length}: ${found.join("; ")}`);
   assert.match(found[0] ?? "", /test:a11y/, "the report must name the script");
   assert.match(found[0] ?? "", /does not reach it/, "the report must say what is wrong");
@@ -385,56 +533,105 @@ test("the check fires on each defect it exists to catch — negative control", (
   const declared: Readonly<Record<string, Exemption>> = {
     "test:a11y": { evidenceIn: WF, evidence: "npm run test:a11y", reason: "x".repeat(MIN_REASON) + " cost" },
   };
-  assert.deepEqual(audit(unwired, declared, tscOnly, full), [],
+  assert.deepEqual(audit(unwired, declared, tscOnly, hookTscOnly, full), [],
     "a declared exclusion whose evidence holds must pass");
 
   // Instance 3: the gate is wired into `all` and the publishing workflow never runs it.
   const wired = { ...unwired, all: "npm run check && npm run test && npm run test:a11y" };
   const ciMissesIt = repo("steps:\n  - run: |\n      npx tsc --noEmit\n      npm test\n");
-  const missed = audit(wired, {}, tscOnly, ciMissesIt);
+  const missed = audit(wired, {}, tscOnly, hookTscOnly, ciMissesIt);
   assert.equal(missed.length, 1, `a gate CI does not run must be reported, got ${missed.length}`);
   assert.match(missed[0] ?? "", /pages\.yml` does not reach it/, "the report must name the publishing runner");
 
   // Instance 3's own cost, in one sentence: the default gate being green says nothing about the
   // publishing path, so the two axes must be independent.
-  assert.deepEqual(audit(unwired, declared, tscOnly, full), [], "the axes are independent");
+  assert.deepEqual(audit(unwired, declared, tscOnly, hookTscOnly, full), [], "the axes are independent");
 
   // The spelling case: CI runs the typecheck directly. Matching names would flag it...
-  assert.match(audit(wired, {}, {}, full)[0] ?? "", /`check` is a gate/,
+  assert.match(audit(wired, {}, {}, hookTscOnly, full)[0] ?? "", /`check` is a gate/,
     "a gate CI runs under another spelling is reported when undeclared");
   // ...and the declaration clears it only while that command is still there.
   const ciWithoutTsc = repo("steps:\n  - run: |\n      npm test\n      npm run test:a11y\n");
-  assert.match(audit(wired, {}, tscOnly, ciWithoutTsc)[0] ?? "", /and it does not/,
+  assert.match(audit(wired, {}, tscOnly, hookTscOnly, ciWithoutTsc)[0] ?? "", /and it does not/,
     "a gutted equivalent must be reported — the evidence is the command, not the name");
 
   // A declaration whose evidence file does not exist claims coverage that cannot be read.
   const nowhere: Readonly<Record<string, Exemption>> = {
     "test:a11y": { evidenceIn: "gone.yml", evidence: "npm run test:a11y", reason: "x".repeat(MIN_REASON) + " cost" },
   };
-  assert.match(audit(unwired, nowhere, tscOnly, full)[0] ?? "", /does not exist/,
+  assert.match(audit(unwired, nowhere, tscOnly, hookTscOnly, full)[0] ?? "", /does not exist/,
     "an evidence path that does not exist must be reported");
 
   // A thin reason is how an exemption map turns into a list of excuses.
   const terse: Readonly<Record<string, Exemption>> = {
     "test:a11y": { evidenceIn: WF, evidence: "npm run test:a11y", reason: "too slow" },
   };
-  assert.match(audit(unwired, terse, tscOnly, full)[0] ?? "", /at least \d+ are required/,
+  assert.match(audit(unwired, terse, tscOnly, hookTscOnly, full)[0] ?? "", /at least \d+ are required/,
     "a reason under the floor must be reported");
 
   // A stale declaration, left behind after the gate was wired in properly.
-  assert.match(audit(wired, declared, tscOnly, full)[0] ?? "", /is exempted from/,
+  assert.match(audit(wired, declared, tscOnly, hookTscOnly, full)[0] ?? "", /is exempted from/,
     "an exemption over a reached gate must be reported");
 
   // An exemption for a script nobody has: the entry outlived its subject.
   const ghost: Readonly<Record<string, Exemption>> = {
     "test:gone": { evidenceIn: WF, evidence: "npm test", reason: "x".repeat(MIN_REASON) + " gone" },
   };
-  assert.match(audit(wired, ghost, tscOnly, full)[0] ?? "", /not a gate in/,
+  assert.match(audit(wired, ghost, tscOnly, hookTscOnly, full)[0] ?? "", /not a gate in/,
     "an exemption naming no script must be reported");
 
   // An unreadable publishing runner must not read as a pass.
-  assert.match(audit(wired, {}, tscOnly, () => null)[0] ?? "", /cannot be checked/,
+  assert.match(audit(wired, {}, tscOnly, hookTscOnly, () => null)[0] ?? "", /cannot be checked/,
     "a missing workflow must be reported, never skipped");
+
+  // ── The pre-push axis, which is the fourth instance ───────────────────────────────────────────
+  //
+  // Instance 4 as it actually was: the hook enumerated the typecheck, the unit tier and the bundle
+  // build by hand, so the browser-facing tiers ran in CI alone and two changes broke them in a day.
+  const hookStopsAtBuild = '"""Runs tsc, the node tier and the bundle. CI runs the browser tiers."""\n'
+    + argv("npx", "tsc", "--noEmit") + argv("npm", "test", "--silent")
+    + argv("npm", "run", "build", "--silent");
+  const beforeTheFix = audit(wired, {}, tscOnly, {}, repo(ciRunsEverything, hookStopsAtBuild));
+  assert.ok(beforeTheFix.some((m) => /`test:a11y`.*pre-push` does not reach it/.test(m)),
+    `a tier the hook never runs must be reported: ${beforeTheFix.join("; ")}`);
+  // And declaring it is the sanctioned answer on this axis too, for a tier whose cost earns it.
+  const hookDeclared: Readonly<Record<string, Exemption>> = {
+    ...hookTscOnly,
+    "test:a11y": {
+      evidenceIn: WF, evidence: "npm run test:a11y",
+      reason: "x".repeat(MIN_REASON) + " measured cost against the push window",
+    },
+  };
+  assert.deepEqual(
+    audit(wired, {}, tscOnly, hookDeclared, repo(ciRunsEverything, hookStopsAtBuild)), [],
+    "a declared pre-push exclusion whose evidence holds must pass");
+
+  // THE FALSE GREEN, which is the dangerous direction and the reason the extraction is narrow. A
+  // hook that DISCUSSES a tier in prose, or labels a gate with a command it does not run, must read
+  // as not running it. Both shapes are real: that hook's docstring names every tier, and each gate in
+  // it carries a human label beside its argv.
+  const hookOnlyTalksAboutIt =
+    '"""This hook also runs npm run test:a11y, it says, in prose nobody executes."""\n'
+    + argv("npx", "tsc", "--noEmit") + argv("npm", "test", "--silent");
+  const talked = audit(wired, {}, tscOnly, {}, repo(ciRunsEverything, hookOnlyTalksAboutIt));
+  assert.ok(talked.some((m) => /`test:a11y`.*pre-push` does not reach it/.test(m)),
+    `a tier named only in the hook's docstring must still read as unreached: ${talked.join("; ")}`);
+  const hookLabelLies = argv("npx", "tsc", "--noEmit")
+    + 'for label, args in (("npm run test:a11y (the a11y tier)", '
+    + '["npm", "test", "--silent"]),):\n    subprocess.run(args)\n';
+  const labelled = audit(wired, {}, tscOnly, {}, repo(ciRunsEverything, hookLabelLies));
+  assert.ok(labelled.some((m) => /`test:a11y`.*pre-push` does not reach it/.test(m)),
+    `a label naming a gate its argv does not run must read as unreached: ${labelled.join("; ")}`);
+
+  // And the argv spelling MUST be seen, or the axis reports every gate unreached and gets deleted.
+  assert.deepEqual(audit(wired, {}, tscOnly, hookTscOnly, full), [],
+    "the hook's argv lists must be read as invocations");
+
+  // An unreadable hook must not read as a pass either.
+  const hookGone = (path: string): string | null => (path === WF ? ciRunsEverything : null);
+  const noHook = audit(wired, {}, tscOnly, hookTscOnly, hookGone);
+  assert.ok(noHook.some((m) => /hooks\/pre-push` is missing/.test(m)),
+    `a missing hook must be reported, never skipped: ${noHook.join("; ")}`);
 
   // The chain must be followed, not pattern-matched on `all`'s text: a gate reached through an
   // intermediate script is wired, and must not be reported.
@@ -445,12 +642,12 @@ test("the check fires on each defect it exists to catch — negative control", (
     "test:a11y": "node --test a11y",
     all: "npm run check && npm run test && npm run browser",
   };
-  assert.deepEqual(audit(indirect, {}, tscOnly, full), [],
+  assert.deepEqual(audit(indirect, {}, tscOnly, hookTscOnly, full), [],
     "a gate reached through an intermediate script is wired");
 
   // And the shorthand, which both CI and hooks/pre-push use.
   const shorthand = { check: "tsc --noEmit", test: "node --test", all: "npm run check && npm test" };
-  assert.deepEqual(audit(shorthand, {}, tscOnly, full), [], "`npm test` reaches the `test` script");
+  assert.deepEqual(audit(shorthand, {}, tscOnly, hookTscOnly, full), [], "`npm test` reaches the `test` script");
 });
 
 // ----------------------------------------------------------------------------------------------
@@ -524,11 +721,20 @@ const PARITY_SCRIPT = "check:parity";
  */
 const LITERAL_THRESHOLD = /\bviolations\.length\s*(?:===|!==|==|>=|<=|>|<)\s*\d/;
 
-/** Comments out: line and block comments for TypeScript, hash comments for YAML. */
-const stripComments = (text: string, kind: "ts" | "yaml"): string =>
-  kind === "ts"
-    ? text.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/.*$/gm, " ")
-    : text.replace(/#.*$/gm, " ");
+/**
+ * Comments out: line and block comments for TypeScript, hash comments for YAML, and for Python the
+ * hash comments PLUS triple-quoted blocks.
+ *
+ * A Python module docstring is not a comment to the language — it is a string expression — and it is
+ * prose to every reader. `hooks/pre-push` opens with sixty lines of it naming each gate it runs, so
+ * leaving it in would make that hook read as covering everything it discusses. Docstrings go first,
+ * or a `#` inside one truncates the block's own terminator.
+ */
+const stripComments = (text: string, kind: "ts" | "yaml" | "py"): string => {
+  if (kind === "ts") return text.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/.*$/gm, " ");
+  if (kind === "py") return text.replace(/"""[\s\S]*?"""/g, " ").replace(/#.*$/gm, " ");
+  return text.replace(/#.*$/gm, " ");
+};
 
 /** One file the audit reads: its package-relative path and its code, comments already out. */
 interface SourceFile {

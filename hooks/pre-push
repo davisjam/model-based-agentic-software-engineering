@@ -29,9 +29,25 @@ Four gates, in order, so a change that would fail CI cannot leave the machine:
 
 Plus, when the push touches it:
 
-  5. `workbench/validate.py --self-test` and a validation pass over every `workbench/**/*.mage.yaml`
+  5. The workbench's own gates — the typecheck, UX-I1 affordance parity, the node unit tier, the
+     bundle build, and then the three BROWSER-FACING tiers (smoke / browser / a11y) that serve
+     `workbench/dist/` to a real Chromium. Those three used to run only in CI, which made a defect
+     only a browser can see invisible before push BY CONSTRUCTION; on 261005 that cost one red CI
+     run and left an a11y tab-order pin red on main for a day. ~147s measured, skip-if-absent on the
+     Chromium and axe-core trees this hook does not own. See the block itself for the numbers.
+
+     The block needs Node >= 22 (`.nvmrc` pins 24). Where PATH's `node` is older — which on this
+     machine is the DEFAULT, nvm's default alias being v20.17.0 — the hook searches nvm's installed
+     versions for one that clears the floor instead of standing down, because a gate skipped by
+     default is a gate that does not exist. It skips only when there is genuinely no such Node.
+
+  6. `workbench/validate.py --self-test` and a validation pass over every `workbench/**/*.mage.yaml`
      — the workbench's schema/semantics gate and its architectural assertions. A commit that lets the
      semantic kernel depend on a view fails here.
+
+The wiring is held mechanically: `workbench/test/gate-reachability.test.ts` walks THIS FILE as one of
+its three axes, against a gate set derived from `workbench/package.json`. A gate added to the manifest
+and forgotten here fails a test instead of a push.
 
 ## Scope selection — why some gates are skipped
 
@@ -46,7 +62,10 @@ a gate's inputs.** A wrong guess therefore costs time, never correctness. Specif
   - `catalog.py build` ALWAYS runs. It is the render gate, and nearly every tree feeds the site.
   - The book PDF runs iff a path under `book/` or `book-models/` moved.
   - The handbook PDF runs iff a path under `handbook/` moved.
-  - The workbench gate runs iff a path under `workbench/` moved.
+  - The workbench gates run iff a path under `workbench/` moved — ALL of them, including the three
+    browser-facing tiers. The scope guard is per-TREE and not per-tier on purpose: `workbench/dist/`
+    is bundled from the whole of `workbench/src/`, so any source change can move what a browser
+    sees, and a finer guess would be the first thing to be wrong.
   - If the range cannot be determined (a new branch, a shallow clone, an unreadable ref), EVERY gate
     runs. Unknown scope is never treated as empty scope.
 
@@ -168,25 +187,136 @@ if _touches(changed, SCOPES["workbench"]):
     # otherwise see a confusing failure from inside tsc rather than a clear one here, so the version
     # is checked up front and the gate SKIPS rather than failing — a missing toolchain is not a
     # broken change, and CI runs these unconditionally.
-    node_ok = False
-    try:
-        out = subprocess.run(["node", "--version"], capture_output=True, text=True, check=True).stdout
-        node_ok = int(out.lstrip("v").split(".")[0]) >= 22
-    except (subprocess.CalledProcessError, OSError, ValueError):
-        node_ok = False
+    #
+    # BUT A SKIP IS A GATE THAT DID NOT RUN, and measured 261005 the skip was the COMMON case rather
+    # than the rare one: this machine's login shell resolves `node` to nvm's default alias, v20.17.0,
+    # so pushing without `nvm use` skipped every gate in this block — the three browser tiers wired in
+    # the same day included. A gate whose precondition is false by default is the gap this hook was
+    # just strengthened to close, wearing a different costume: nothing is unwired, and nothing runs.
+    #
+    # So the hook LOOKS for the Node it needs before giving up. `.nvmrc` says nvm, and nvm keeps every
+    # installed version under `$NVM_DIR/versions/node/v<x.y.z>/bin` — a path a hook can read without
+    # sourcing a shell function. The pinned version is preferred, then the highest that clears the
+    # floor. Nothing outside that directory is searched and nothing is installed, so the fallback is
+    # still a genuine skip: no nvm, or no version at or above the floor, and the block stands down.
+    FLOOR = 22
+
+    def _node_major(exe: str) -> int:
+        try:
+            out = subprocess.run([exe, "--version"], capture_output=True, text=True, check=True).stdout
+            return int(out.lstrip("v").split(".")[0])
+        except (subprocess.CalledProcessError, OSError, ValueError):
+            return -1
+
+    def _nvm_candidates() -> list[str]:
+        """nvm's installed `bin` directories, the `.nvmrc` pin first, then newest major first."""
+        root = os.path.join(os.environ.get("NVM_DIR") or os.path.expanduser("~/.nvm"),
+                            "versions", "node")
+        if not os.path.isdir(root):
+            return []
+        try:
+            with open(os.path.join(ROOT, ".nvmrc"), encoding="utf-8") as fh:
+                pin = fh.read().strip()
+        except OSError:
+            pin = ""
+
+        def rank(name: str) -> tuple[bool, int]:
+            try:
+                major = int(name.lstrip("v").split(".")[0])
+            except ValueError:
+                major = -1
+            return (bool(pin) and name.startswith(f"v{pin}."), major)
+
+        try:
+            names = sorted(os.listdir(root), key=rank, reverse=True)
+        except OSError:
+            return []
+        return [os.path.join(root, n, "bin") for n in names]
+
+    # The environment every command in this block runs under. Empty prefix => PATH's own Node is fine.
+    wb_env = dict(os.environ)
+    node_ok = _node_major("node") >= FLOOR
+    if not node_ok:
+        for bin_dir in _nvm_candidates():
+            if _node_major(os.path.join(bin_dir, "node")) >= FLOOR:
+                wb_env["PATH"] = bin_dir + os.pathsep + wb_env.get("PATH", "")
+                print(f"pre-push: workbench gates using {bin_dir} — PATH's `node` is below "
+                      f"{FLOOR} and this one is not", file=sys.stderr)
+                node_ok = True
+                break
 
     if not node_ok:
-        print("pre-push: workbench TypeScript gates SKIPPED — Node >= 22 not on PATH "
-              "(`nvm use` reads .nvmrc); CI runs them unconditionally", file=sys.stderr)
+        print(f"pre-push: workbench gates SKIPPED — no Node >= {FLOOR} on PATH and none installed "
+              "under nvm (`nvm install` reads .nvmrc); CI runs them unconditionally", file=sys.stderr)
     else:
         for label, args in (
             ("tsc --noEmit (strict + noUncheckedIndexedAccess + exactOptionalPropertyTypes)",
              ["npx", "tsc", "--noEmit"]),
+            ("npm run check:parity (UX-I1: no capability with only one affordance)",
+             ["npm", "run", "check:parity", "--silent"]),
             ("npm test (unit + parity + source hygiene)", ["npm", "test", "--silent"]),
             ("npm run build (the published bundle must actually bundle)", ["npm", "run", "build", "--silent"]),
         ):
             print(f"pre-push: workbench {label} …", file=sys.stderr)
-            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench")).returncode
+            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench"), env=wb_env).returncode
+            if rc:
+                _fail(f"\npre-push: workbench {label} FAILED — push refused.\n"
+                      "Fix the error above ")
+
+        # ── The browser-facing tiers ────────────────────────────────────────────────────────────
+        #
+        # They run HERE, after `npm run build`, because each one serves `workbench/dist/` to a real
+        # Chromium: without the bundle they would load a page with no app and assert over an empty
+        # shell. CI orders them the same way and hard-asserts the bundle before each.
+        #
+        # WHY THEY ARE HERE AT ALL, measured rather than assumed. Until 261005 these three tiers ran
+        # only in CI, so a defect only a browser can see was invisible before push BY CONSTRUCTION —
+        # and twice in one day that is exactly what happened. Session persistence broke the browser
+        # tier's pristine-page assertion through shared `localStorage`; the RESET button it added
+        # entered the toolbar's tab order and left the a11y tier's opening-tab-order pin RED ON MAIN
+        # for the rest of the day. Both changes reported their gates honestly — "tsc, node, parity,
+        # build" — and those are precisely the gates this hook reached. A tier CI runs and the local
+        # gate does not makes every push a coin flip on that tier.
+        #
+        # THE COST, measured on this machine at 261005 and the reason the list stops where it does:
+        #   check:parity    0.3s
+        #   test:smoke      7.6s   two served pages boot, no fallback strings
+        #   test:browser   14.9s   167 tests, one Chromium
+        #   test:a11y     124.0s   axe over four states, §19's thirteen operations by keyboard,
+        #                          WCAG F6, and a generated drive per declared navigation path
+        # ~147s added, against a gate that already exceeds twenty minutes cold on a push that moves
+        # the book. The duration matters more than it looks: this hook runs BEFORE git transfers, so
+        # every minute here ages both the verdict and the SSH credential (see CLAUDE.md's three push
+        # failure modes). ~2.5 minutes bought the tier that held a live red for a day, which is the
+        # trade; a tier costing ten would have earned a scoped subset instead.
+        #
+        # SKIP-IF-ABSENT, like the Node check above and for the same reason. Chromium comes from
+        # `book/node_modules` and axe-core from the repo-root `node_modules` — neither is a dependency
+        # of `workbench/package.json`, deliberately, because that tree is a symlink shared across
+        # parallel agent worktrees. A developer who has not installed them has a missing toolchain,
+        # not a broken change, and CI installs both unconditionally. The skip is LOUD and names the
+        # install, because a silent skip is the failure this whole block exists to close.
+        chromium = os.path.join(ROOT, "book", "node_modules", "puppeteer", "package.json")
+        axe = os.path.join(ROOT, "node_modules", "axe-core", "axe.min.js")
+        for label, args, needs in (
+            ("npm run test:smoke (both served pages boot; no fallback string renders)",
+             ["npm", "run", "test:smoke", "--silent"],
+             ((chromium, "Puppeteer's Chromium (`npm ci` in book/)"),)),
+            ("npm run test:browser (167 assertions over the served page in headless Chromium)",
+             ["npm", "run", "test:browser", "--silent"],
+             ((chromium, "Puppeteer's Chromium (`npm ci` in book/)"),)),
+            ("npm run test:a11y (axe over four states + §19 by keyboard + every declared path)",
+             ["npm", "run", "test:a11y", "--silent"],
+             ((chromium, "Puppeteer's Chromium (`npm ci` in book/)"),
+              (axe, "axe-core (`npm ci` at the repo root)"))),
+        ):
+            absent = [why for path, why in needs if not os.path.isfile(path)]
+            if absent:
+                print(f"pre-push: workbench {label} SKIPPED — missing {'; '.join(absent)}; "
+                      "CI runs it unconditionally", file=sys.stderr)
+                continue
+            print(f"pre-push: workbench {label} …", file=sys.stderr)
+            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench"), env=wb_env).returncode
             if rc:
                 _fail(f"\npre-push: workbench {label} FAILED — push refused.\n"
                       "Fix the error above ")
