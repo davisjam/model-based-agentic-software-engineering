@@ -141,3 +141,61 @@ own construct is called. Find what the engine actually names it before inventing
 
 **Status: QUEUED, not started.** Wants a Phase-1 design first — this is a presentation architecture
 question, not a patch.
+
+---
+
+# 261006 — SESSION DELTA (banked against compaction)
+
+**Local `main` is 27 commits ahead of `origin`. NOTHING IS PUSHED — the author ruled
+"we need to not be pushing, we are working locally right now, faster iteration" (261006).**
+Node tier **1475/1475**, tsc clean, catalogue 0 issues. Localhost serving the current build on
+`127.0.0.1:8099` for the author's own iteration.
+
+## Landed locally since the last bank
+| work | note |
+|---|---|
+| Composition visualisation (the JOIN view) | binding drawn, offered in Draw, read aloud; panels STACK (measured, zoom hypothesis killed) |
+| Mandatory shadow typing | V47/V48, `calibration-loop` example, `walk-typing` Learn lesson; hashes preserved by construction |
+| Learn copyedit, all 30 items | item 30 first and alone; ALL CAPS preserved per the author's withdrawal of item 6 |
+| Models-by-subtype + "untitled" tab | the category fix: a machine IS a model; brand unified to "MAGE Workbench" |
+| Author's case prose, verbatim, 7 examples | factual claims verified against the models before pasting |
+| `llms.txt` + `robots.txt`, GENERATED | AGENTS.md unpublished (not deleted); `plugin/` AGENTS.md files still publish |
+| Learn agent section, detailed | CDP co-authoring documented; `llms.txt` points, Learn explains |
+| `describe()` gap-fill | all six gaps closed; sufficiency audit PROMOTED TO BLOCKING at zero gaps |
+| `views:` deleted | hash byte-identical across all 17 models; −206 lines |
+| Start card leads with the scenario | `investigate` stays off the card (TRY ASKING carries the questions) |
+| Alignment lander restored | "Two lectures" cut; "When failures become controls" added; engineering capital back |
+| 3 governance controls | probe-preconditions, bounded gates, commit-before-report |
+
+## IN FLIGHT
+- **`wb-solver-findings-261006`** (Fable) — closing the nine findings from the lab run, ranked. Top
+  two: behaviour traces ship EMPTY per-step configurations (schema promises variable maps), and
+  `resolveExhausted` documented but unobtainable.
+
+## THE LAB RUN — the headline result
+A Fable drove the running app in a real headless browser (Playwright `chrome-headless-shell` — a
+`Chrome for Testing` process grep sees NOTHING, which fooled the orchestrator once), pressed Reset,
+and **never opened `workbench/src/**`**. Report: `/tmp/lab-solver-report-261006.md`.
+
+> "With the surface as it now stands, an agent can do this work: all seven labs were solved …
+> No step required reading engine source, and no refusal left me unable to decide what to do next."
+
+Only findings #1 and #2 would have blocked a lab on less forgiving examples.
+
+## KNOWN GAP — the run produced NO loadable artifacts
+The edits lived in page memory; nothing was exported. The brief asked for a narrative report and
+forbade repo writes, so the agent had no sanctioned place for artifacts. **Any future solver run
+must `export()` each end-state model to a file** so the author can load them. `calibration-loop`'s
+solution is three ops (set-entity-type reading=measurement, same for sample, add the `conveys` edge)
+and is cheaply reconstructible.
+
+## AWAITING THE AUTHOR
+1. `validate.py` now REFUSES a document carrying `views:` while the TS loader ignores unknown keys —
+   the two layers disagree on an old file. Reported, not shimmed.
+2. The Alignment unit still declares TWO `sessions:` in its front matter; the one-vs-two question
+   was deliberately not resolved.
+
+## ENVIRONMENT — the browser tier
+Wedges when run concurrently with itself: alive at ~0.11 s CPU, sometimes with NO Chrome launched.
+Hit 3× today (~90 min lost). Bound every tier with `timeout`; run ONE at a time; CPU is the
+liveness discriminator, never process count. Documented in the root `CLAUDE.md`.
