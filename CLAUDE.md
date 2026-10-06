@@ -139,6 +139,16 @@ re-deriving these, so they live here:**
     261005 both successful pushes pre-warmed; both failures ran a cold gate. A retry after a
     publickey failure is a plain fast-forward and loses nothing — check `merge-base --is-ancestor`
     before assuming otherwise.
+  - **…and pre-warming is DEFEATED by a concurrent agent fleet, so check the load first.** Warming
+    addresses the CACHE; it does nothing about CPU, and the in-push gate re-runs the suite either
+    way. Measured later on 261005: a pre-warm passed 83/0, then the in-push gate ran **25 minutes**
+    with five dispatched agents holding **load average 47** across ~51 heavy processes (`node
+    --test`, `soffice`, headless Chrome, `tsc`) — the window pre-warming exists to close, reopened,
+    and reopened precisely where the credential ages and the SSH session idles out. This repo has no
+    compute mediator, so nothing throttles N agents against a push gate competing for the same
+    cores. So: `sysctl -n vm.loadavg` before pushing, and **order the push BEFORE dispatching a
+    wave, or after it lands** — never dispatch five agents and then immediately push, which is the
+    sequencing mistake that produced the measurement.
   - **All three modes share one root, which is worth stating once:** the gate runs BEFORE the
     transfer, so both the verdict and the credential age across a long window. That is why the exit
     code is never the check and `git log --oneline origin/main..HEAD` returning EMPTY always is.
