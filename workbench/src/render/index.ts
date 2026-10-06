@@ -16,8 +16,10 @@ export { dagreLayoutEngine, defaultLayoutEngine } from "./layout-dagre.ts";
 export {
   labelWidth,
   textExtent,
+  inNodeLines,
   METRICS,
   LANE_PITCH,
+  SUBLABEL_PITCH,
   TEXT_SIZES,
 } from "./layout.ts";
 export { assembleLayout, bounds, liftToOuter, place, sizes } from "./layout.ts";

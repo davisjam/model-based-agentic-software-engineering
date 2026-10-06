@@ -139,12 +139,55 @@ export const textExtent = (text: string, cls: TextClass): Size => ({
   h: TEXT_SIZES[cls],
 });
 
-/** Leaf sizes first, then regions, which must be large enough to enclose their children. */
-export function sizes(scene: SceneGraph): Map<string, Size> {
+/** Vertical pitch between in-node attribute sub-lines; the painter and the sizer share it. */
+export const SUBLABEL_PITCH = TEXT_SIZES["mage-sublabel"] + 2;
+
+/**
+ * Which of a node's declared attributes render INSIDE the node box, as `name: value` sub-lines.
+ *
+ * The rule for a value that does not fit: a line renders in-node only when the whole `name: value`
+ * fits the node's maximum width without truncation; otherwise it renders NOWHERE in the picture
+ * and stays reachable in the accessible description, the reading order, and the inspector. Never
+ * an ellipsis — a clipped `holds: held while thread-a…` loses exactly the clause that gave the
+ * value its meaning, so the short quantitative values land in the box and the qualifying prose
+ * stays in the readout, whole.
+ *
+ * `show` is the caller's narrowing (null means every declared attribute). Only what the model
+ * DECLARES is ever rendered; an entity declaring nothing yields no lines and its box is unchanged.
+ *
+ * Lives here rather than in the painter because text participates in layout: `sizes` reserves node
+ * height and width from this same list, so the painter cannot paint a line the box has no room for.
+ */
+export function inNodeLines(
+  properties: readonly { readonly name: string; readonly value: string }[],
+  show: ReadonlySet<string> | null,
+): readonly string[] {
+  return properties
+    .filter((p) => show === null || show.has(p.name))
+    .map((p) => `${p.name}: ${p.value}`)
+    .filter((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w <= METRICS.nodeMaxWidth);
+}
+
+/**
+ * Leaf sizes first, then regions, which must be large enough to enclose their children.
+ *
+ * A node with in-node attribute lines grows: one `SUBLABEL_PITCH` of height per line, and enough
+ * width for its widest line. A region's lines sit in a band between its header and its children,
+ * so its height reserves that band too — `place` offsets the children by the same amount.
+ */
+export function sizes(scene: SceneGraph, show: ReadonlySet<string> | null = null): Map<string, Size> {
   const out = new Map<string, Size>();
-  for (const n of scene.nodes) out.set(n.id, { w: labelWidth(n.label), h: METRICS.nodeHeight });
+  for (const n of scene.nodes) {
+    const lines = inNodeLines(n.properties, show);
+    const w = Math.max(
+      labelWidth(n.label),
+      ...lines.map((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w),
+    );
+    out.set(n.id, { w, h: METRICS.nodeHeight + lines.length * SUBLABEL_PITCH });
+  }
   for (const n of scene.nodes) {
     if (n.contains.length === 0) continue;
+    const lines = inNodeLines(n.properties, show);
     let row = 2 * METRICS.regionPadX;
     let tallest: number = METRICS.nodeHeight;
     n.contains.forEach((c, i) => {
@@ -153,8 +196,12 @@ export function sizes(scene: SceneGraph): Map<string, Size> {
       tallest = Math.max(tallest, s.h);
     });
     out.set(n.id, {
-      w: Math.max(labelWidth(n.label), row),
-      h: METRICS.regionHeader + METRICS.regionPadY * 2 + tallest,
+      w: Math.max(
+        labelWidth(n.label),
+        row,
+        ...lines.map((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w),
+      ),
+      h: METRICS.regionHeader + lines.length * SUBLABEL_PITCH + METRICS.regionPadY * 2 + tallest,
     });
   }
   return out;
@@ -240,6 +287,7 @@ export function place(
   fresh: ReadonlyMap<string, Rect>,
   d: Direction,
   hints: ReadonlyMap<string, Point> | undefined,
+  show: ReadonlySet<string> | null = null,
 ): Placement {
   const ext = (id: string): Size => size.get(id) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
   const outer = scene.nodes.filter((n) => n.parent === null).map((n) => n.id);
@@ -310,12 +358,15 @@ export function place(
 
   // (4) Region children are derived from the region's own rect, so a pinned region pins its
   //     contents too. Containment is drawn as enclosure; the twin restates it as a relation.
+  //     The region's own attribute sub-lines occupy a band below the header — `sizes` reserved it
+  //     from the SAME `inNodeLines` call, so the children shift down by exactly that band.
   for (const n of scene.nodes) {
     if (n.contains.length === 0) continue;
     const box = rects.get(n.id);
     if (box === undefined) continue;
     let x = box.x + METRICS.regionPadX;
-    const y = box.y + METRICS.regionHeader + METRICS.regionPadY;
+    const y =
+      box.y + METRICS.regionHeader + inNodeLines(n.properties, show).length * SUBLABEL_PITCH + METRICS.regionPadY;
     for (const c of n.contains) {
       const s = ext(c);
       rects.set(c, { x, y, w: s.w, h: s.h });

@@ -43,6 +43,7 @@ import type {
   SceneRequest,
 } from "./types.ts";
 import { ARROW_FORMS, MARKS, MARK_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS } from "./types.ts";
+import { inNodeLines } from "./layout.ts";
 
 const quote = (s: string): string => `"${s}"`;
 
@@ -270,8 +271,14 @@ const humanize = (id: string): string => id.replace(/[_-]+/g, " ").trim();
  * Relation types are sorted, so the form/class assignment is a function of the model rather than of
  * the order the author happened to declare its relations in.
  */
-function keyFor(scene: SceneGraph): readonly KeyEntry[] {
+function keyFor(scene: SceneGraph, show: ReadonlySet<string> | null): readonly KeyEntry[] {
   const out: KeyEntry[] = [];
+  // When any leaf box carries attribute sub-lines, the key row for its shape SAYS so — small text
+  // inside a box that no key names would be a private convention, which is the legend ruling's
+  // whole complaint. Stated per shape kind, because entities and states can both carry attributes.
+  const annotated = new Set(
+    scene.nodes.filter((n) => inNodeLines(n.properties, show).length > 0).map((n) => n.kind),
+  );
 
   const types = [
     ...new Set(
@@ -292,7 +299,10 @@ function keyFor(scene: SceneGraph): readonly KeyEntry[] {
 
   const kinds = [...new Set(scene.nodes.map((n) => n.kind))].sort();
   for (const kind of kinds) {
-    out.push({ channel: "shape", id: kind, form: kind, className: `mage-shape-${kind}`, meaning: SHAPE_MEANINGS[kind] });
+    const meaning = annotated.has(kind)
+      ? `${SHAPE_MEANINGS[kind]}; small text inside lists its declared attributes`
+      : SHAPE_MEANINGS[kind];
+    out.push({ channel: "shape", id: kind, form: kind, className: `mage-shape-${kind}`, meaning });
   }
   return out;
 }
@@ -480,6 +490,6 @@ export function buildAccessibleScene(
     coverage: req.coverage ?? null,
     refusal: req.refusal ?? null,
     legend: legendFor(used),
-    key: keyFor(scene),
+    key: keyFor(scene, req.showProperties === undefined ? null : new Set(req.showProperties)),
   };
 }

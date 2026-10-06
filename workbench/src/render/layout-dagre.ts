@@ -140,7 +140,8 @@ function denseRanks(raw: ReadonlyMap<string, number>): ReadonlyMap<string, numbe
  */
 export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutOptions = {}) => {
   const d = opts.direction ?? "left-to-right";
-  const size = sizes(scene);
+  const show = opts.showProperties === undefined ? null : new Set(opts.showProperties);
+  const size = sizes(scene, show);
   const ext = (id: string): Size => size.get(id) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
   const { outer, lifted } = liftToOuter(scene);
 
@@ -229,7 +230,7 @@ export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutO
   }
 
   // --- hints win, and edge geometry follows the boxes -----------------------------------------
-  const { rects, pinned, shift } = place(scene, size, fresh, d, opts.hints);
+  const { rects, pinned, shift } = place(scene, size, fresh, d, opts.hints, show);
 
   const byId = new Map(lifted.map((l) => [l.edge.id, l]));
   const edges: LayoutEdge[] = scene.edges.map((e): LayoutEdge => {
