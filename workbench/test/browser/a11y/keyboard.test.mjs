@@ -350,7 +350,7 @@ describe("section 19, operations 6-10: inspection and analysis", () => {
       `a direct subscribes-to-OrderCreated question should be established in this model: "${answer}"`);
     // §3.4: asking saves nothing.
     const saved = (await context()).counts.savedQueries;
-    assert.equal(saved, 6, `asking a question changed the saved-question count to ${saved}`);
+    assert.equal(saved, 7, `asking a question changed the saved-question count to ${saved}`);
     prove("execute a query", `direct subscribes -> order-created asked by keyboard; answer "${answer.slice(0, 80)}"`);
   });
 

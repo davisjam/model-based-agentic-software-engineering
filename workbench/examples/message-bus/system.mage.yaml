@@ -227,7 +227,9 @@ models:
     type: graph
     label: Event Flow
     purpose:
-      question: Which services may publish each event type, which may receive it, and which may call each other directly?
+      # "publish or subscribe", in the model's own vocabulary -- the relation is `subscribes`, and
+      # the author's copyedit (261005) is explicit: don't translate the model vocabulary away.
+      question: Which services may publish or subscribe to each event type, and which may call one another directly?
       represents:
         - service identity
         - event-type identity
@@ -305,7 +307,9 @@ models:
     type: graph
     label: Event Propagation
     purpose:
-      question: Can an event originating at one service eventually cause an event to reach another service?
+      # The contrast with Event Flow, stated as the author's copyedit (261005) words it: immediate
+      # relationships there, transitive consequence here.
+      question: Where can an event originating at one service eventually reach?
       represents:
         - service identity
         - event-type identity
@@ -508,6 +512,20 @@ queries:
           - left: source.permits
             op: lt
             right: target.carries
+
+  # The REFUTED member of the presented spread (261005 case ruling). The only `calls` edge runs
+  # fulfillment -> inventory, so this direct question gets an exhaustive no -- which is the lesson:
+  # in an event-driven design the two services are joined through published events, not calls, and
+  # the relation type's absence clause says exactly that.
+  checkout-calls-fulfillment-directly:
+    name: Checkout calls Fulfillment directly
+    kind: graph
+    quantifier: exists
+    graph:
+      form: direct
+      relation: calls
+      from: checkout
+      to: fulfillment
 
   # Purposeful omission, made executable. This model represents permission, never observation, so
   # there is no vocabulary in which to ask what arrived and when. The engine refuses and names the

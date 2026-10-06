@@ -273,9 +273,9 @@ machines:
   transaction-lifecycle:
     entity: transaction-engine
     purpose:
+      # The author's 261005 card wording, verbatim.
       question: >
-        What can happen to one proposed change over time, and can it commit against a base that is
-        no longer current?
+        What states can a proposed change pass through, and what must be true before it commits?
       represents:
         - the states one proposed change passes through
         - validation as the only route to a verdict
@@ -403,9 +403,10 @@ models:
     type: graph
     label: Change Pipeline
     purpose:
+      # The author's 261005 card wording, verbatim.
       question: >
-        Which components take part in applying a proposed change, and which of them can write to the
-        authoritative workspace?
+        Which components participate in applying a change, and which can modify the authoritative
+        workspace?
       represents:
         - the components one candidate change passes through
         - who may submit a candidate, and to whom

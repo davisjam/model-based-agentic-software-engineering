@@ -17,8 +17,10 @@
 example: message-bus
 system: system.mage.yaml
 title: Message Bus
+# "separate models", not "linked": the author's copyedit (261005) flags "linked" as accidentally
+# claiming explicit model composition. The models share entities; the summary no longer overclaims.
 summary: >
-  Explore an event-driven order system through linked event-flow, propagation and data-policy models.
+  An event-driven order system with separate models for event flow, propagation, and data policy.
 
 # Purposeful models, for the EX-I2 check. Machines and graph models both carry a `purpose`, so both
 # count; this example has no machines.
@@ -95,7 +97,10 @@ queries:
 
   - id: subscribes-chain-checkout-to-fulfillment
     label: Fulfillment is reachable from Checkout through a chain of subscriptions
-    suggested: true
+    # Un-suggested by the 261005 case ruling: the presented five keep one refusal each kind -- the
+    # historical-fact one below -- and the direct `calls` question joins as the refuted member.
+    # Still saved and still pinned; the V7 lesson waits in the Properties rail.
+    suggested: false
     models: [event-flow]
     expected:
       outcome: unlicensed
@@ -162,6 +167,22 @@ queries:
       of moving nothing. A student's field-level repair is a visible contradiction, and the repair
       that works edits both surfaces in one transaction -- which IS the lesson, since v0.1 aggregates
       neither for them.
+
+  - id: checkout-calls-fulfillment-directly
+    label: Checkout calls Fulfillment directly
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The refuted member of the presented spread, added by the 261005 case ruling so the suggested
+      set spans established, refuted, and not answerable. Single-model and one hop, so `calls`
+      composition does not gate it. The exhaustive no is a claim about the DESIGN -- no direct
+      synchronous invocation is permitted between these two -- and the relation type's absence
+      clause carries the caution that refuted-here does not mean decoupled: the two services are
+      joined through the published events, which is what the propagation question establishes.
 
   - id: did-analytics-receive-it-at-2-04
     label: Analytics received OrderCreated at 2:04 PM
@@ -305,8 +326,12 @@ declarations:
     inert: true
     held_by: the-reader
     reason: >
-      One synchronous-invocation edge, and no saved question is asked over `calls`. It is here so
-      the absence clause on the relation type has something to be about: the absence of a `calls`
-      edge does not mean two services are decoupled, because they may be joined through a published
-      event. A vocabulary that offered only event edges could not teach that distinction, and the
-      edge is what makes the clause a statement about this model rather than a general remark.
+      One synchronous-invocation edge, fulfillment -> inventory. A saved question now IS asked over
+      `calls` (checkout-calls-fulfillment-directly, 261005) and the family stays inert, for a
+      reason worth stating exactly: that question asks about a different pair, and its refuted
+      verdict rests on the ABSENCE of a checkout -> fulfillment edge -- deleting the one edge that
+      exists cannot create the one that does not, so no recorded answer moves. The edge is here so
+      the absence clause on the relation type has something to be about, and so the refuted answer
+      is about a model that represents calls rather than one that never mentions them: the absence
+      of a `calls` edge does not mean two services are decoupled, because they may be joined
+      through a published event.

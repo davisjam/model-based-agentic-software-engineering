@@ -38,6 +38,7 @@ import { surfaceElement } from "./shell/surfaces.ts";
 import { Announcer } from "./shell/announcer.ts";
 import { mountHeader } from "./shell/header.ts";
 import { mountStart } from "./shell/start.ts";
+import { mountCase } from "./shell/case.ts";
 import { mountNav } from "./shell/nav.ts";
 import { mountWorkspace } from "./shell/workspace.ts";
 import { mountInspector } from "./shell/inspector.ts";
@@ -165,6 +166,9 @@ const editDialogs = mountEditDialogs(ctx, editForms.submitEdit);
 const regions: readonly ShellRegion[] = [
   mountHeader(ctx),
   mountStart(ctx),
+  // The case panel, between Start and the nav band in the regions list as in the document: it is
+  // mounted iff a loaded system's import came from a shipped example (ExampleCatalog.currentCase).
+  mountCase(ctx),
   mountNav(ctx),
   // `open` again, because the canvas context menu dispatches into the same dialogs the palette and
   // the `+ Add` menu do: one catalogue of operations, one way to open one of them.
@@ -249,7 +253,11 @@ function retargetSkipLink(loaded: boolean): void {
 // forgets to add to the next mutation.
 workspace.subscribe(() => {
   repaint();
-  if (workspace.state.loaded) session.save(restoredFrom, workspace.export());
+  // `currentCase()` rather than the restore-time variable: a session begun by loading an example
+  // in THIS visit saves that example's id too, so the case panel survives a reload — and a
+  // session whose example was replaced by a file open honestly saves null. The restore-time
+  // variable used to be the only source, which recorded null for every fresh example load.
+  if (workspace.state.loaded) session.save(examples.currentCase(), workspace.export());
 });
 
 // -- window.mage ------------------------------------------------------------------------------
@@ -276,6 +284,16 @@ if (stored !== null) {
   const r = workspace.load(stored.text);
   if (r.ok) {
     restoredFrom = stored.exampleId;
+    // Re-pin the case onto the import the restore just made, so the panel survives the reload the
+    // session exists to survive. A stored id that is no longer shipped is dropped rather than
+    // guessed at — the session's text still restores; only its case context is gone.
+    if (stored.exampleId !== null) {
+      try {
+        examples.adoptCase(stored.exampleId);
+      } catch {
+        // Deliberate swallow: an unshipped id in an old session is stale context, not a failure.
+      }
+    }
   } else {
     // A stored text the loader now refuses is a corpus or schema change under a saved session.
     // Drop it rather than leaving a student stuck on a model that cannot open, and say so.

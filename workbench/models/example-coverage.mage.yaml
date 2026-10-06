@@ -82,7 +82,7 @@ entities:
     label: "Message Bus"
     properties:
       purposeful_models: 3
-      supplied_queries: 6
+      supplied_queries: 7
       suggested_queries: 5
 
   example.transaction-workspace:
@@ -114,8 +114,8 @@ entities:
     label: "Embedded Sensor Node"
     properties:
       purposeful_models: 2
-      supplied_queries: 4
-      suggested_queries: 3
+      supplied_queries: 6
+      suggested_queries: 5
 
   example.autonomous-delivery:
     type: default-example
@@ -395,6 +395,7 @@ models:
       - { from: example.transaction-workspace, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.document-processing, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.embedded-sensor-node, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.autonomous-delivery, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
       - { from: example.document-processing, to: capability.quantitative-annotations, type: exercises }

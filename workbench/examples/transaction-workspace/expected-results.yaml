@@ -41,9 +41,11 @@
 example: transaction-workspace
 system: system.mage.yaml
 title: Transaction Workspace
+# The author's 261005 card copy, verbatim.
 summary: >
-  Explore one proposed change to a shared workspace through the components that apply it and the
-  lifecycle it follows, and see where a binding stops being a merge.
+  A shared workspace accepts proposed changes while its authoritative base may continue to change.
+  Explore how validation, commitment, and refusal interact when a change is prepared against a base
+  that may become stale.
 
 # Purposeful models, for the EX-I2 check. A machine carries a `purpose` exactly as a graph model
 # does, so both count.
@@ -163,7 +165,10 @@ queries:
 
   - id: committed-base-is-current
     label: A change never commits against a base that is no longer current
-    suggested: false
+    # Suggested since the 261005 case ruling: the author's Try-asking pairs this with the
+    # verdict-is-eventually-forced refusal -- "they look superficially similar but separate safety
+    # from liveness", and that pair is the case's whole lesson.
+    suggested: true
     models: [transaction-lifecycle]
     expected:
       outcome: holds
@@ -179,7 +184,10 @@ queries:
 
   - id: validated-transaction-can-wait-indefinitely
     label: A validated change can sit unadopted indefinitely
-    suggested: true
+    # Un-suggested by the 261005 case ruling, which caps the presented set at five and prefers the
+    # stale-base/forced-verdict pair; still saved, still pinned, still the §27 counterexample --
+    # and still one disclosure away in the Properties rail after loading.
+    suggested: false
     models: [transaction-lifecycle]
     expected:
       outcome: holds
