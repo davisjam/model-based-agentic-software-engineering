@@ -68,6 +68,7 @@
         { "$ref": "#/$defs/opDeleteModel" },
         { "$ref": "#/$defs/opAddNote" },
         { "$ref": "#/$defs/opSetQuantityValue" },
+        { "$ref": "#/$defs/opSetEntityType" },
         { "$ref": "#/$defs/opSaveQuery" },
         { "$ref": "#/$defs/opDeleteQuery" }
       ]
@@ -320,6 +321,17 @@
           "description": "Timestamp, QUOTED. A bare one is coerced by a YAML 1.1 loader (SEMANTICS.md 10.1).",
           "type": "string"
         }
+      }
+    },
+    "opSetEntityType": {
+      "description": "Author an existing entity's `type:` -- the establishment act SEMANTICS.md 3.3 requires before a declared relation type will accept the entity at a constrained end. Typing is how an author asserts a kind, so it is an ordinary authored edit: an agent naming a kind it has not been told is asserting a semantic fact nobody established, which 3.3's lab lesson names as the wrong move.",
+      "type": "object",
+      "required": ["op", "id", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-entity-type" },
+        "id": { "$ref": "#/$defs/id" },
+        "value": { "type": "string", "minLength": 1 }
       }
     },
     "opSaveQuery": {

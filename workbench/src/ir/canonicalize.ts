@@ -12,6 +12,7 @@
  */
 import type {
   AccountedMetric, AccountingBasis, Annotated, CanonAccounting, CanonDomain, CanonEntity, CanonEvent,
+  CanonEntityType,
   CanonMachine, CanonModel, CanonQuantity, CanonRelation, CanonRelationAggregate,
   CanonRelationType, CanonTransition,
   CanonQuantitativeModel, CanonVariable, CanonicalSystem, Dimension, Effect, ExprFactor,
@@ -162,6 +163,21 @@ function relationAggregate(raw: unknown): CanonRelationAggregate | null {
   return { declared: asStr(raw["declared"]), over: asStr(raw["over"]), using: asStr(raw["using"]) };
 }
 
+/**
+ * §3.3's endpoint declaration, normalized but never defaulted.
+ *
+ * A bare string and its one-element list are one declaration (and one hash). An ABSENT key is null
+ * — undeclared, constraining nothing — while an authored empty list survives as `[]` so V47 can
+ * name it: defaulting it to null here would turn "declares no kind" into "declares nothing",
+ * which are different mistakes with different repairs.
+ */
+function endpointDeclaration(raw: unknown): readonly string[] | null {
+  if (raw === undefined || raw === null) return null;
+  if (typeof raw === "string") return [raw];
+  if (Array.isArray(raw)) return strArr(raw);
+  return null;
+}
+
 function relationTypes(raw: unknown): Map<string, CanonRelationType> {
   const out = new Map<string, CanonRelationType>();
   for (const [id, spec] of sortedEntries(raw)) {
@@ -178,6 +194,8 @@ function relationTypes(raw: unknown): Map<string, CanonRelationType> {
       symmetric: props["symmetric"] === true,
       acyclic: props["acyclic"] === true,
       aggregates: relationAggregate(s["aggregates"]),
+      domain: endpointDeclaration(s["domain"]),
+      range: endpointDeclaration(s["range"]),
     });
   }
   return out;
@@ -598,6 +616,19 @@ function accounting(raw: unknown): Map<string, CanonAccounting> {
   return out;
 }
 
+/**
+ * The optional `entity-types:` vocabulary (§3.3). Description read with the same leniency as a
+ * relation type's — the validator owns complaints, not the loader.
+ */
+function entityTypes(raw: unknown): Map<string, CanonEntityType> {
+  const out = new Map<string, CanonEntityType>();
+  for (const [id, spec] of sortedEntries(raw)) {
+    const s = isObj(spec) ? spec : {};
+    out.set(id, { id, description: asStr(s["description"]) });
+  }
+  return out;
+}
+
 // --------------------------------------------------------------------------------------------
 
 export function canonicalize(doc: unknown): CanonicalSystem {
@@ -637,6 +668,7 @@ export function canonicalize(doc: unknown): CanonicalSystem {
     domains: dom,
     entities: entities(d["entities"]),
     relationTypes: relationTypes(d["relation-types"]),
+    entityTypes: entityTypes(d["entity-types"]),
     // Sorted so the hash does not move when an author reorders relations within a model.
     // Keyed with JSON.stringify rather than a NUL-separated template literal. NUL is a
     // tempting separator because it cannot occur in the data -- but it makes the file

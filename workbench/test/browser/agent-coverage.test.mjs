@@ -359,6 +359,28 @@ const DRIVERS = {
     assert.equal(Object.hasOwn(counted.refused, "count"), false,
       "a refused count carried a figure; the engine established no selection to count");
 
+    // `window.mage.model.explainType` is this row's FOURTH machine affordance — the same
+    // `workspace.state` read, reported as one entity's establishment record (SEMANTICS §3.3).
+    // Driven against `inspect()`'s own `type` field, which is the comparison that matters: the
+    // record's `type` must be the authored value the table shows, and on a clean flagship every
+    // declared constraint the entity sits under must read `member` — a `violation` here would
+    // mean the served bundle's verdicts drifted from the validator that ships beside it.
+    const explained = await page.evaluate(() => {
+      const typed = window.mage.inspect().entities.find((e) => e.type !== null);
+      return {
+        record: window.mage.model.explainType(typed.id),
+        expectType: typed.type,
+        unknown: window.mage.model.explainType("no-such-entity"),
+      };
+    });
+    assert.equal(explained.record.established, "authored");
+    assert.equal(explained.record.type, explained.expectType,
+      "`explainType` and `inspect` disagree about an entity's authored type");
+    assert.equal(explained.record.shadow, null, "an authored entity carries no shadow spelling");
+    assert.ok(explained.record.constraints.every((c) => c.verdict === "member"),
+      "the flagship ships clean, so every declared constraint must read member");
+    assert.equal(explained.unknown, null, "an undeclared id has nothing to explain");
+
     return {
       ...inspection, selected: selected.all.ids.length, byType: selected.byType.ids.length,
       counted: counted.all.count.value,

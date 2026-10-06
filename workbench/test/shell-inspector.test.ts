@@ -460,7 +460,16 @@ test("every declared relation type's semantics are reachable through one of its 
       assert.ok(textOf(blockNamed(i, "Composition")).length > 0);
       covered.add(r.type);
     }
-    assert.deepEqual([...system.relationTypes.keys()].filter((t) => !covered.has(t)), [],
+    // The one declared exception, and it is pedagogy rather than a gap: calibration-loop's
+    // `conveys` ships deliberately UNINSTANTIATED — the integrator's contract exists precisely so
+    // a student meets the edge-refused-until-named beat (SEMANTICS §3.3), and the first legal
+    // `conveys` edge is the one the student authors. Its absence/composition semantics stay
+    // readable in the System Browser table, which for a type whose whole point is that no edge
+    // exists yet is the right surface. Any OTHER uninstantiated type still reads as the gap it is.
+    const deliberatelyUninstantiated = system.systemId === "calibration-loop" ? ["conveys"] : [];
+    assert.deepEqual(
+      [...system.relationTypes.keys()].filter((t) => !covered.has(t)),
+      deliberatelyUninstantiated,
       "a declared relation type with no edge cannot be selected, so its absence and composition "
       + "semantics are readable only in the System Browser table");
   }

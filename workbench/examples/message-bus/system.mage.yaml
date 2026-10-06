@@ -58,6 +58,11 @@ relation-types:
       # multi-hop `publishes` query therefore comes back unlicensed (V7) rather than false --
       # `refuted` would claim no such chain exists, which is a claim this model never made.
       path: forbidden
+    # Section 3.3: only a service publishes, and only an event type is published. One line each,
+    # and the D7 edge -- `shipping-address --publishes--> customer-id`, which loaded clean for as
+    # long as nothing stated what may sit at these ends -- is a load-time V48 finding.
+    domain: service
+    range: event-type
     properties:
       symmetric: false
       acyclic: false
@@ -69,6 +74,8 @@ relation-types:
       reach the same payload through another event it does subscribe to, or through a direct call.
     composition:
       path: forbidden
+    domain: service
+    range: event-type
     properties:
       symmetric: false
 
@@ -81,6 +88,11 @@ relation-types:
     composition:
       # Reachability through permitted calls is a meaningful question, so multi-hop is licensed.
       path: allowed
+    # One edge in the whole corpus, and the declaration still covers it completely -- the
+    # single-edge case is where use-based inference derives nothing and a declared line is the
+    # entire difference between checked and unconstrained (section 3.3).
+    domain: service
+    range: service
     properties:
       symmetric: false
       acyclic: false
@@ -94,6 +106,14 @@ relation-types:
       # ALLOWED. This relation exists to be composed, and it can be because it has already thrown
       # away the distinction that made composing publishes-then-subscribes meaningless.
       path: allowed
+    # The union is deliberate and WEAKER than the truth: every edge of this type alternates --
+    # service to event type, event type to service -- and a domain/range vocabulary cannot say
+    # "alternates", so the union admits a service-to-service hop no shipped edge makes. Declared
+    # anyway, because the union still refuses a field at either end, and the honest limit belongs
+    # in the example rather than papered over (section 3.3: what a union cannot express is an
+    # alternation constraint; a model that means one writes the union and says so in prose).
+    domain: [service, event-type]
+    range: [service, event-type]
     properties:
       symmetric: false
 
@@ -117,6 +137,11 @@ relation-types:
       declared: carries
       over: classification
       using: max
+    # Section 3.3's intensional half beside 3.2's extensional one: `aggregates` obliges the
+    # PROPERTIES along a well-kinded edge, domain/range refuse a mis-kinded edge outright. The D7
+    # injection violates both; V48 owns it and V45/V46 stay quiet (one defect, one finding).
+    domain: event-type
+    range: field
     properties:
       symmetric: false
       acyclic: true

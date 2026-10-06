@@ -37,7 +37,7 @@ export type ValidationRule =
   | "V1" | "V3" | "V4" | "V5" | "V6" | "V8" | "V9" | "V10" | "V11" | "V12" | "V13" | "V14"
   | "V17" | "V19" | "V24" | "V25" | "V26"
   | "V27" | "V28" | "V29" | "V30" | "V31" | "V35" | "V36" | "V37" | "V38" | "V39" | "V40"
-  | "V45" | "V46"
+  | "V45" | "V46" | "V47" | "V48"
   | "ANNOTATION";
 
 export type Severity = "error" | "warning";
@@ -65,6 +65,11 @@ export const SEVERITY: { readonly [R in ValidationRule]: Severity } = {
   // validates, and reaches nothing. Downgrading V46 to `warning` would restore the silence it was
   // written to break -- a student's field-level repair would once again move nothing a gate reads.
   V45: "error", V46: "error",
+  // §3.3's pair. `error` from birth rather than through an audit-only staircase, because both find
+  // ZERO on the corpus at landing: no shipped relation type declared domain/range before this rule
+  // existed, so the first finding either rung can ever raise is in the authoring session that
+  // writes a wrong declaration — ordinary red-gate development, not a corpus drain.
+  V47: "error", V48: "error",
   ANNOTATION: "error",
 };
 
@@ -113,6 +118,8 @@ export const SPEC_SECTION: { readonly [R in ValidationRule]: string } = {
   V40: "## 2. Identity",
   V45: "### 3.2 Aggregation over a relation is declared, then it is checked",
   V46: "### 3.2 Aggregation over a relation is declared, then it is checked",
+  V47: "### 3.3 Typing: unknown does not mean compatible",
+  V48: "### 3.3 Typing: unknown does not mean compatible",
   ANNOTATION: "### 5.1 Annotation is carried, not interpreted",
 };
 

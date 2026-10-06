@@ -8,7 +8,7 @@ This is the authoritative semantics. The JSON Schemas beside it
 [`mage-transaction.schema.json`](mage-transaction.schema.json)) constrain *shape*; this document
 fixes *meaning*. Where a question is about what a model asserts, this file decides it.
 
-Validation rules are numbered **V1…V46** so implementations, tests, and error messages can cite them.
+Validation rules are numbered **V1…V48** so implementations, tests, and error messages can cite them.
 Numbers are append-only: a new rule takes the next free one and lands in the section that owns its
 subject, so the sequence stays stable rather than sorted.
 
@@ -209,6 +209,89 @@ engine aggregates neither.
 
 The parity test holds both rules across the two implementations. They are structural checks over
 declared data, which is the shape that belongs in the parity set rather than the asymmetry table.
+
+### 3.3 Typing: unknown does not mean compatible
+
+Every entity has a type. The authored `type:` string names it; when none is authored, the entity
+has a fresh **shadow type**, spelled `τ_<entity-id>` in findings and reports. Shadow types are
+nominal: two shadows are distinct unless equality is earned by authorship, and nothing else earns
+it. There is no universal unknown type, and there is no finding for "untyped" — the shadow *is*
+the semantics of omission. Omitting a distinction a model does not need is purposeful reduction,
+exactly as §8 treats omitted vocabulary; it never makes the omitted distinctions interchangeable.
+
+A relation type MAY declare what kinds sit at its ends:
+
+```yaml
+relation-types:
+  publishes:
+    description: The design permits the service to emit this event type.
+    absence: No permission to publish is represented.
+    composition:
+      path: forbidden
+    domain: service              # one name, or a list
+    range: event-type
+  may_propagate_to:
+    description: One hop of permitted propagation, service or event type alike.
+    absence: No propagation hop is represented.
+    composition:
+      path: allowed
+    domain: [service, event-type]   # a list means membership in the union
+    range: [service, event-type]
+```
+
+A list means membership in the union — unions are first-class, because heterogeneous relation
+types are a deliberate modeling pattern here (a path-licensed type that alternates kinds is how
+cross-kind reachability is asked at all), not an error to forbid. What a union cannot express is
+an alternation constraint; a model that means one writes the union and says so in prose.
+
+An optional top-level `entity-types:` section declares kind names with descriptions. It is a
+vocabulary, not a taxonomy: no subtyping, no structure, and an entity's `type:` need not appear in
+it. Its job is to let a declaration name a kind before any entity carries it, and to give "naming
+a semantic equivalence class" an authored home.
+
+**What the absence of a declaration asserts, in this section's own voice:** an undeclared domain
+constrains nothing and licenses nothing — in particular it never asserts that anything may compose
+with anything. Omission of a *declaration* means "unconstrained ends", never "compatible ends";
+omission of an entity's *type* means "its own kind", never "any kind". Both omissions stay
+purposeful reduction; neither turns into permission.
+
+**V47 — a domain/range declaration resolves.** Every name in a relation type's `domain:` or
+`range:` names a declared entity type: a member of `entity-types:`, or a type some entity carries.
+An authored empty list is a V47 finding — it declares no kind; delete the key or name one. This is
+V45's "declares names that resolve" shape pointed at types, and it catches the silently-dead
+declaration: a kind renamed everywhere except in the declaration that was supposed to guard it.
+
+**V48 — a relation occurrence conforms to its relation type's declared ends.** For every edge of a
+relation type that declares `domain:` (or `range:`), the source's (target's) established type must
+be a member of the declared set. A type is *established* by authorship only — the `type:` field,
+written by the human or by an agent transaction. A shadow type is established as nothing, so an
+unnamed endpoint at a declared position is a V48 finding whose message says what is missing, not
+what is wrong: name the entity's kind if that is what it is — **the edge being checked never
+establishes its own endpoint's type.** (This is the checking-not-inference fork: an RDFS reasoner
+handed `shipping-address --publishes--> customer-id` under `publishes : service → event-type`
+would *conclude* that a shipping address is a service; this rule rejects the edge instead, which
+is why the RDF projection emits `mage:domain`/`mage:range` rather than `rdfs:domain`/`rdfs:range`.)
+
+One defect, one finding: an edge carrying a V48 finding is skipped by V45/V46. A wrong-kind edge's
+missing aggregate property is downstream of the edge being nonsense, and a second finding would
+send the student to add a property to an entity that should never have been an endpoint.
+
+The layer boundary, stated so nothing above over-claims: the type layer says only which kinds may
+sit at a relation type's ends. What compositions mean, and what they require, stays with each
+analysis — and occurrences of relation types that declare nothing impose no endpoint constraint.
+On a declaration-free model this section's rules find nothing, by design: the declarations are not
+an enrichment of the mechanism, they are the mechanism. What mandatory typing with shadow fallback
+buys is that declarations are cheap (one line, no entity migration, no second regime), total in
+reach (every endpoint already has a type to check), and honest (160 authored `type:` values stop
+being decoration). Types catch category errors, not falsehoods: `checkout --calls--> checkout` is
+well typed and wrong, and queries, requirements and the aggregation rules own that half.
+
+Both rules are structural checks over declared data, in the parity set beside V45/V46. The
+`explain-type` operation reports an entity's establishment record — authored or unnamed, its
+shadow spelling, and every declared constraint it sits under with the verdict on each
+(`member`, `violation`, or `unestablished`) — which is the honest v1 answer to "why are these two
+still distinct?": nothing unifies shadows except authorship, so distinctness is the default state,
+and the report shows what each side would need.
 
 ---
 

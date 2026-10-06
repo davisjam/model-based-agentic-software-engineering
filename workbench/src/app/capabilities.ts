@@ -576,9 +576,14 @@ export const CAPABILITIES: readonly Capability[] = [
     // in its own words, and a figure that states the read which makes it exact
     // (`DESIGN-v02-quantification-261004.md` §3.2). Registering it under `query` would repeat the
     // §7.1 mistake the paragraph above corrects.
+    // `window.mage.model.explainType` lands here for `elements`' reason, with one more sentence
+    // owed: its verdict vocabulary is the validator's (its MODEL_FACADE row derives from the
+    // validation authority), but the method reaches `workspace.state` and runs no validate pass —
+    // it reads the entity table and the relation-type declarations and reports one entity's
+    // establishment record. UX-I1 compares seams, and the seam is this row's.
     machine: [
       wired("window.mage.inspect"), wired("window.mage.model.elements"),
-      wired("window.mage.model.count"),
+      wired("window.mage.model.count"), wired("window.mage.model.explainType"),
     ],
     producesEvidence: false,
   },

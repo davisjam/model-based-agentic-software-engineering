@@ -36,7 +36,7 @@ import {
 } from "./dom.ts";
 import {
   LESSON, REFERENCE_ANCHOR, WALKTHROUGH_GROUPS, WALKTHROUGH_STEPS,
-  WALK_DP, WALK_ESN, WALK_MB, WALK_TW,
+  WALK_CL, WALK_DP, WALK_ESN, WALK_MB, WALK_TW,
   type WalkStep,
 } from "./walkthrough.ts";
 
@@ -279,6 +279,7 @@ function stepBuilders(
       ...stepQuantities(deps, s), ...stepQuantitativeQuestions(deps, s),
     ],
     "walk-combining": (s) => stepCombining(deps, s),
+    "walk-typing": (s) => stepTyping(deps, s),
     "walk-questions": (s) => stepQuestions(deps, s),
     "walk-evidence": (s) => stepEvidence(deps, s),
     "walk-properties": (s) => stepProperties(deps, s),
@@ -543,6 +544,80 @@ function stepChanges(deps: WalkthroughDeps, step: WalkStep): readonly Node[] {
   });
   const controls = el("p", undefined, "walk-buttons");
   controls.append(apply, discard);
+  return [fig.root, controls, out];
+}
+
+/**
+ * The typing step — refusal first, establishment second, in the fixture's own words.
+ *
+ * Both drives come from the DECLARED modification rather than operations spelled here: the
+ * refusal beat filters the fixture's operations down to the `add-relation` alone (the "force the
+ * edge" wrong answer, derived so the view cannot drift from the fixture), and the establishment
+ * beat applies the modification whole. The refusal's findings are the engine's own V48 sentences,
+ * quoted verbatim — the step cannot show a refusal the engine stopped producing.
+ */
+function stepTyping(deps: WalkthroughDeps, step: WalkStep): readonly Node[] {
+  const base = systemOf(deps, WALK_CL);
+  const modelId = groundingModel(step);
+  const { modification } = groundingModification(step);
+  const mod = modificationOf(deps, WALK_CL, modification);
+  const watched = mod.changes.map((c) => c.query);
+
+  const fig = liveFigure(base, { kind: "model", id: modelId },
+    "the integrator's boundary model — deliberately empty of edges until the kinds are "
+    + "established.");
+  const out = outcomeLine("");
+  let ws: Workspace | null = null;
+
+  const report = (system: CanonicalSystem, note: string): void => {
+    const verdicts = watched.map((q) => `“${nameOf(base, q)}”: ${outcomeWord(mustRun(system, q))}`);
+    out.textContent = `${note} ${verdicts.join(". ")}.`;
+  };
+  report(base, "Before any change —");
+
+  const workspace = (): Workspace => {
+    ws ??= learnWorkspace(must(deps.texts.get(WALK_CL), "no source text for calibration-loop"));
+    return ws;
+  };
+
+  const edgeOnly: FixtureModification = {
+    ...mod,
+    label: "Connect without naming",
+    rationale: null,
+    operations: mod.operations.filter((o) => isObject(o) && o["op"] === "add-relation"),
+  };
+  const force = button("Try: connect without naming", () => {
+    const w = workspace();
+    if (w.state.hypothesis !== null) return;
+    const opened = w.openHypothesis(edgeOnly.label, hypothesisOf(w, edgeOnly));
+    if (opened.ok) {
+      // Unreachable while the lab ships unnamed endpoints; said rather than swallowed.
+      w.discardHypothesis();
+      out.textContent = "The edge was accepted — the lab's endpoints have been named upstream.";
+      return;
+    }
+    out.textContent = "Refused — "
+      + opened.findings.map((f) => f.message).join(" ");
+  });
+  const apply = button(`Apply: ${mod.label}`, () => {
+    const w = workspace();
+    if (w.state.hypothesis !== null) return;
+    const opened = w.openHypothesis(mod.label, hypothesisOf(w, mod));
+    if (!opened.ok) {
+      out.textContent = "The change was rejected: "
+        + opened.findings.map((f) => f.message).join("; ");
+      return;
+    }
+    fig.update(w.state.system);
+    report(w.state.system, "With both kinds named and the edge drawn, the same saved question re-evaluates —");
+  });
+  const discard = button("Discard the change", () => {
+    if (ws === null || !ws.discardHypothesis()) return;
+    fig.update(ws.state.system);
+    report(ws.state.system, "Discarded. The model is back as it was —");
+  });
+  const controls = el("p", undefined, "walk-buttons");
+  controls.append(force, apply, discard);
   return [fig.root, controls, out];
 }
 

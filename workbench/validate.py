@@ -491,8 +491,14 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
     # them; the pass stays a separate function because it has its own subject and its own tests.
     check_quantities(doc, f)
 
+    # V47 / V48 -- typing (3.3): declared domain/range resolve, and every occurrence of a declared
+    # relation type conforms. Runs before the aggregation pair because its verdict feeds their
+    # suppression: an edge V48 already named is nonsense, and demanding aggregate properties of a
+    # nonsense edge would send the student to repair an endpoint that should never have been one.
+    suppressed = check_typing(doc, f)
+
     # V45 / V46 -- a declared aggregation over a relation resolves, and the authored value agrees.
-    check_relation_aggregates(doc, f)
+    check_relation_aggregates(doc, f, suppressed)
 
     # V24 -- omits is checked against the model's real vocabulary, not merely asserted.
     for mid, model in models.items():
@@ -532,7 +538,7 @@ def _prop(entities: dict, eid: str, name: str) -> tuple[object, str | None] | No
     return raw, None
 
 
-def check_relation_aggregates(doc: dict, f: Findings) -> None:
+def check_relation_aggregates(doc: dict, f: Findings, suppressed: set[int] | None = None) -> None:
     """V45/V46 -- the obligation an author declares when two surfaces hold one fact.
 
     v0.1 computes nothing over a relation, so an aggregate like "the highest sensitivity this event
@@ -542,7 +548,14 @@ def check_relation_aggregates(doc: dict, f: Findings) -> None:
     making the value derivable.
 
     Carries no example name. `max`, `ordered-enum` and both property names arrive from the model.
+
+    `suppressed` is 3.3's one-defect-one-finding rule: an edge V48 has already named is skipped
+    here (its missing or disagreeing aggregate property is downstream of the edge being
+    mis-kinded), identified by `id()` because the same loaded dicts flow through both passes. The
+    reaches-nothing arm keeps reading the UNSUPPRESSED membership, so suppressing an entity's only
+    edge does not manufacture a "sources none" finding in its place.
     """
+    suppressed = suppressed or set()
     entities = doc.get("entities") or {}
     domains = doc.get("domains") or {}
     relations = _relations(doc)
@@ -573,17 +586,21 @@ def check_relation_aggregates(doc: dict, f: Findings) -> None:
             continue
 
         by_source: dict[str, list[str]] = {}
+        sources_any_edge: set[str] = set()
         for rel in relations:
             if rel.get("type") != rid:
                 continue
             src, dst = rel.get("from"), rel.get("to")
             if isinstance(src, str) and isinstance(dst, str):
+                sources_any_edge.add(src)
+                if id(rel) in suppressed:
+                    continue
                 by_source.setdefault(src, []).append(dst)
 
         # The reaches-nothing case: an entity carrying the authored aggregate while sourcing no
         # edge declares a maximum over an empty set.
         for eid in entities:
-            if _prop(entities, eid, declared_name) is None or eid in by_source:
+            if _prop(entities, eid, declared_name) is None or eid in sources_any_edge:
                 continue
             f.add("V45", f"entities.{eid}.properties.{declared_name}",
                   f"'{declared_name}' is declared as the {using} of '{over_name}' over '{rid}' "
@@ -654,6 +671,116 @@ def check_relation_aggregates(doc: dict, f: Findings) -> None:
                       f"'{highest_at}'). The value is authored because v0.1 aggregates nothing over "
                       f"a relation, so BOTH surfaces are yours: move the declaration, or change the "
                       f"field that decides it. One transaction can do both.")
+
+
+# ---------------------------------------------------------------------------------------------
+# V47 / V48 -- typing (SEMANTICS.md 3.3). Mirrors src/validator/typing.ts checkTyping, finding
+# for finding and `where` for `where`, which is the surface test/parity.test.ts compares.
+# ---------------------------------------------------------------------------------------------
+
+def _endpoint_declaration(raw: object) -> list[str] | None:
+    """A domain/range declaration, normalized but never defaulted (canonicalize's reading): a bare
+    string is its one-element list; an ABSENT key is None (undeclared, constraining nothing); an
+    authored empty list survives as [] so V47 can name it."""
+    if raw is None:
+        return None
+    if isinstance(raw, str):
+        return [raw]
+    if isinstance(raw, list):
+        return [x for x in raw if isinstance(x, str)]
+    return None
+
+
+def _spelled_kinds(declared: list[str]) -> str:
+    quoted = [f"'{n}'" for n in declared]
+    return quoted[0] if len(quoted) == 1 else "one of " + ", ".join(quoted)
+
+
+def check_typing(doc: dict, f: Findings) -> set[int]:
+    """V47/V48 -- declared domain/range resolve; occurrences of declared relation types conform.
+
+    Every entity has a type -- the authored `type:` or its own fresh shadow -- and a shadow is
+    established as nothing, so an unnamed endpoint at a declared position is a V48 finding: the
+    edge being checked never establishes its own endpoint's type. Occurrences of UNDECLARED
+    relation types impose no constraint; on a declaration-free model this pass finds nothing, by
+    design. Returns the `id()`s of edges carrying a V48 finding, for the V45/V46 suppression.
+    """
+    entities = doc.get("entities") or {}
+    ent_types = doc.get("entity-types") or {}
+
+    # The resolution universe: the declared vocabulary UNION the types entities actually carry,
+    # so adopting `entity-types:` never manufactures findings about kinds in honest use.
+    kinds = set(ent_types.keys()) if isinstance(ent_types, dict) else set()
+    for spec in entities.values():
+        t = spec.get("type") if isinstance(spec, dict) else None
+        if isinstance(t, str):
+            kinds.add(t)
+
+    # V47 -- declarations resolve. V45's "declares names that resolve" shape pointed at types.
+    declarations: dict[object, tuple[list[str] | None, list[str] | None]] = {}
+    for rid, spec in (doc.get("relation-types") or {}).items():
+        spec = spec if isinstance(spec, dict) else {}
+        dom = _endpoint_declaration(spec.get("domain"))
+        ran = _endpoint_declaration(spec.get("range"))
+        declarations[rid] = (dom, ran)
+        for key, declared in (("domain", dom), ("range", ran)):
+            if declared is None:
+                continue
+            where = f"relation-types.{rid}.{key}"
+            if len(declared) == 0:
+                f.add("V47", where,
+                      f'{key}: declares no kind. An empty list is not "nothing may sit here" -- '
+                      f"that assertion is 'absence:' prose. Delete the key, or name a kind.")
+                continue
+            for name in declared:
+                if name not in kinds:
+                    f.add("V47", where,
+                          f"'{name}' resolves to no declared entity type: it is not a member of "
+                          f"'entity-types:' and no entity carries it as its 'type:'. The "
+                          f"declaration would hold while reaching nothing -- name a declared "
+                          f"kind, or declare this one.")
+
+    # V48 -- occurrences conform. Local by construction: one edge, one declaration, two
+    # authored-or-absent type fields. A dangling endpoint is V3's finding, not this rung's.
+    suppressed: set[int] = set()
+    for mid, model in (doc.get("models") or {}).items():
+        if not isinstance(model, dict):
+            continue
+        where = f"models.{mid}.relations"
+        for rel in (model.get("relations") or []):
+            if not isinstance(rel, dict):
+                continue
+            decl = declarations.get(rel.get("type"))
+            if decl is None:
+                continue
+            for position, key, declared in (("from", "domain", decl[0]), ("to", "range", decl[1])):
+                if not declared:
+                    continue
+                endpoint = rel.get(position)
+                if endpoint not in entities:
+                    continue
+                spec = entities.get(endpoint)
+                authored = spec.get("type") if isinstance(spec, dict) else None
+                authored = authored if isinstance(authored, str) else None
+                if authored is not None and authored in declared:
+                    continue
+                suppressed.add(id(rel))
+                if authored is None:
+                    naming = (f"Name its kind ('type: {declared[0]}') if that is what it is"
+                              if len(declared) == 1
+                              else "Name its kind if one of those is what it is")
+                    f.add("V48", where,
+                          f"'{endpoint}' has no authored type; '{rel.get('type')}' requires "
+                          f"{_spelled_kinds(declared)} here. {naming} -- the edge cannot "
+                          f"establish it.")
+                else:
+                    f.add("V48", where,
+                          f"'{endpoint}' is typed '{authored}', which is not in the "
+                          f"{_spelled_kinds(declared)} that 'relation-types.{rel.get('type')}."
+                          f"{key}' declares. The edge is checked, never trusted: the endpoint is "
+                          f"the wrong kind here, or the authored type or the declaration is "
+                          f"wrong -- all three surfaces are yours.")
+    return suppressed
 
 
 # ---------------------------------------------------------------------------------------------

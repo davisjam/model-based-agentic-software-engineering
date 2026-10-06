@@ -1,0 +1,159 @@
+# Expected results for the calibration-loop example. Read by test/examples.test.ts, which drives
+# the real application seams -- Workspace.load, Workspace.query, createAgentApi -- and compares.
+#
+# Fixture discipline (section 10): these pin SEMANTIC outcomes and nothing else. See the
+# message-bus fixture for the path / nodes_include distinction; `direct` answers here pin the
+# two-node witness because a one-node witness would mean an endpoint had not resolved.
+#
+# What this fixture deliberately CANNOT pin, and where that lives instead: the lesson's refusal --
+# `add-relation` of the `conveys` edge alone is REJECTED with two V48 findings (a shadow type is
+# established as nothing, and the edge cannot establish it) -- is a rejected transaction, not a
+# clean modification, so the modification harness has no row shape for it. The standing
+# regression for that beat is test/typing.test.ts ("the lab refusal: the edge alone is rejected
+# with two V48 findings"). The modification below is the task's one RIGHT move: establish both
+# kinds because they are true, then connect.
+
+example: calibration-loop
+system: system.mage.yaml
+title: Calibration Loop
+summary: >
+  Two teams modeled one instrument-and-controller loop independently. Both halves are internally
+  fine; connecting them requires establishing -- not assuming -- that a reading and a sample are
+  the same kind of thing.
+
+# Purposeful models, for the EX-I2 check. One per team plus the integrator's boundary model; no
+# machines, no quantities -- the lesson is the typing layer, and the models stay minimal so the
+# one lesson is the whole surface.
+models:
+  - id: instrumentation
+    kind: graph
+  - id: control
+    kind: graph
+  - id: signal-path
+    kind: graph
+
+# ---------------------------------------------------------------------------
+# Requirements (section 2: "at least one requirement"). The declaration lives in the model;
+# `status` is derived per read and recorded here as the oracle.
+# ---------------------------------------------------------------------------
+requirements:
+  - id: reading-reaches-the-controller
+    statement: >
+      Every sensor reading is delivered across the team boundary as the control team's sample.
+    expressed_as: reading-is-delivered-as-sample
+    satisfied_when: holds
+    status: violated
+    note: >
+      Violated at ship, on purpose: the two team fragments are unconnected, so the delivery
+      question is refuted and the requirement with it. The task is to repair this WITHOUT
+      weakening the model -- and the typed boundary contract on `conveys` is what makes the lazy
+      repairs (delete the typing, a universal Data type, an undeclared edge) visible as the
+      information-discarding moves they are.
+
+queries:
+
+  - id: reading-is-delivered-as-sample
+    label: The instrumentation team's reading is delivered as the control team's sample
+    suggested: true
+    models: [instrumentation, control, signal-path]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      Refuted, not unanswerable: `direct` over `conveys` is licensed and exhaustively decided, and
+      no such edge exists. The interesting part is what happens when a student tries to ADD the
+      edge -- the hypothesis is rejected with two V48 findings, because `reading` and `sample`
+      have no authored type and `conveys` requires `measurement` at both ends. A shadow type is
+      established as nothing; the edge cannot establish it. After the shipped modification
+      (name both kinds, then connect) this flips to holds.
+
+  - id: sensor-produces-the-reading
+    label: The sensor emits the reading
+    suggested: true
+    models: [instrumentation]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [sensor, reading]
+    note: >
+      The instrumentation fragment is internally fine -- which is the point. Nothing in this half
+      is wrong; it is the connection between halves that is unestablished.
+
+  - id: sample-feeds-the-controller
+    label: The sample is consumed by the controller
+    suggested: true
+    models: [control]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [sample, controller]
+    note: >
+      The control fragment, equally fine on its own terms.
+
+  - id: sensor-reaches-controller-through-produces
+    label: The controller is reachable from the sensor through emissions alone
+    suggested: true
+    models: [instrumentation]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "is not licensed by this model"
+      no_evidence: true
+    note: >
+      The refusal member of the presented spread (V7): `produces` declares no path-composition
+      semantics, so a multi-hop question over it is unlicensed -- a successful answer reporting
+      what the instrumentation team's model does not authorize. A three-type "sensor reaches
+      controller" question is not expressible at all: a graph query traverses ONE relation type.
+
+# ---------------------------------------------------------------------------
+# Non-operative declarations, labelled (the semantic-liveness gate's escape hatch).
+# ---------------------------------------------------------------------------
+declarations:
+
+  - id: team-is-for-the-reader
+    subject: property:team
+    inert: true
+    held_by: the-reader
+    reason: >
+      `team:` records which side authored each entity -- the scenario's two-teams fact, carried
+      where a reader inspecting an entity will meet it. No query, requirement or declaration reads
+      it, and none should: the boundary the example teaches is carried by the TYPE layer
+      (`conveys`' declared ends and the entity-types vocabulary), not by a property comparison.
+      Making `team` operative would hand the lesson to the wrong mechanism.
+
+modifications:
+
+  - id: name-the-kinds-and-connect
+    label: Name both kinds, then connect the teams
+    rationale: >
+      The task's one RIGHT move, in the order the type layer teaches: establish that the reading
+      and the sample are each a `measurement` -- authored facts, supplied because they are true --
+      and only then draw the `conveys` edge the contract now licenses. Run in the other order the
+      edge is rejected (two V48 findings; the edge cannot establish its own endpoints' kinds),
+      which is the lesson's refusal beat and is pinned in test/typing.test.ts. The wrong answers
+      each discard information instead of supplying it: deleting `conveys`' typing, a universal
+      Data type, an undeclared connector, or naming kinds without believing them.
+    transaction:
+      operations:
+        - op: set-entity-type
+          id: reading
+          value: measurement
+        - op: set-entity-type
+          id: sample
+          value: measurement
+        - op: add-relation
+          model: signal-path
+          from: reading
+          to: sample
+          type: conveys
+    changes:
+      - query: reading-is-delivered-as-sample
+        from: refuted
+        to: holds

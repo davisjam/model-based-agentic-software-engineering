@@ -77,6 +77,14 @@ export const MAGE = {
   pathComposition: V("pathComposition"),
   symmetric: V("symmetric"),
   acyclic: V("acyclic"),
+  /**
+   * A declared SOURCE kind (one triple per union member) — deliberately `mage:domain`, never
+   * `rdfs:domain`, whose semantics are inference: an RDFS reasoner would CONCLUDE an endpoint's
+   * type from a nonsense edge, which is the exact inversion V48 exists to refuse (SEMANTICS §3.3).
+   */
+  domain: V("domain"),
+  /** A declared TARGET kind. `mage:range`, never `rdfs:range`, for `domain`'s reason. */
+  range: V("range"),
 
   // --- domains and values --------------------------------------------------------------------
   /** `enum`, `ordered-enum`, `boolean` or `integer`. */

@@ -313,6 +313,11 @@ const OP_PARSERS: Readonly<Record<OpName, (o: Obj, s: Shape) => Operation | null
     return id !== null && value !== null ? { op: "set-quantity-value", id, value } : null;
   },
 
+  "set-entity-type": (o, s) => {
+    const id = s.id(o, "id"); const value = s.str(o, "value");
+    return id !== null && value !== null ? { op: "set-entity-type", id, value } : null;
+  },
+
   "save-query": (o, s) => {
     const id = s.id(o, "id");
     const query = s.optObj(o, "query");

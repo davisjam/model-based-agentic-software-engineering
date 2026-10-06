@@ -10,9 +10,11 @@
  * reference resolution, graph acyclicity, participant symmetry, and loader hazards.
  */
 import type {
-  AccountedMetric, Annotated, CanonMachine, CanonQuantity, CanonicalSystem, Dimension, ExprOperand,
+  AccountedMetric, Annotated, CanonMachine, CanonQuantity, CanonRelation, CanonicalSystem,
+  Dimension, ExprOperand,
   Finding, GuardOp, Magnitude, Scalar, TargetKind,
 } from "../ir/types.ts";
+import { checkTyping } from "./typing.ts";
 import {
   ACCOUNTABLE_TARGET_KINDS, ACCOUNTED_METRICS, ACCOUNTED_METRIC_IDS, ACCOUNTING_BASES,
   AGGREGATE_TARGET_KIND, BASIS_TARGET_KINDS, DIMENSIONS, DIMENSION_IDS, EXECUTES_IN_STATE,
@@ -161,7 +163,7 @@ function guardDomain(s: CanonicalSystem, ref: string): GuardDomain | null {
 
 const listed = (values: readonly Scalar[]): string => values.map((v) => String(v)).join(", ");
 
-/** V1–V24, V26–V31, V35–V40 and V45–V46 — meaning, once the loaded model is the written one. */
+/** V1–V24, V26–V31, V35–V40 and V45–V48 — meaning, once the loaded model is the written one. */
 export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
   const c = new Collector();
 
@@ -408,8 +410,15 @@ export function checkMeaning(s: CanonicalSystem): readonly SubjectedFinding[] {
     }
   }
 
+  // V47 / V48 — typing (§3.3): declared domain/range resolve, and every occurrence of a declared
+  // relation type conforms. Runs before the aggregation pair because its verdict feeds their
+  // suppression: an edge V48 already named is nonsense, and demanding aggregate properties of a
+  // nonsense edge would send the student to repair an endpoint that should never have been one.
+  const typing = checkTyping(s);
+  c.findings.push(...typing.findings);
+
   // V45 / V46 — a declared aggregation over a relation resolves, and the authored value agrees.
-  c.findings.push(...checkRelationAggregates(s));
+  c.findings.push(...checkRelationAggregates(s, typing.suppressed));
 
   // Quantities last, and through the same entry point so every caller of checkMeaning gets them.
   // The pass stays separately exported because it has its own subject and its own tests.
@@ -437,8 +446,16 @@ const AGGREGATION_OPERATORS: readonly string[] = ["max"];
  *
  * Carries NO example name, and that is the property to keep. The rung reads what a system declares;
  * `max`, `ordered-enum` and the property names all arrive from the model.
+ *
+ * `suppressed` is §3.3's one-defect-one-finding rule (the discipline D6 states as "V26 must not
+ * double-report"): an edge V48 has already named is skipped here, because its missing or
+ * disagreeing aggregate property is downstream of the edge being mis-kinded. The reaches-nothing
+ * arm keeps reading the UNSUPPRESSED membership, so suppressing an entity's only edge does not
+ * manufacture a "sources none" finding in its place.
  */
-export function checkRelationAggregates(s: CanonicalSystem): readonly SubjectedFinding[] {
+export function checkRelationAggregates(
+  s: CanonicalSystem, suppressed: ReadonlySet<CanonRelation> = new Set(),
+): readonly SubjectedFinding[] {
   const c = new Collector();
 
   for (const rt of s.relationTypes.values()) {
@@ -464,15 +481,18 @@ export function checkRelationAggregates(s: CanonicalSystem): readonly SubjectedF
     }
     if (agg.declared === "" || agg.over === "") continue;
 
-    const edges = s.relations.filter((r) => r.type === rt.id);
-    // Group by source, so one finding names one entity rather than one per edge.
+    const allEdges = s.relations.filter((r) => r.type === rt.id);
+    const edges = allEdges.filter((r) => !suppressed.has(r));
+    // Group by source, so one finding names one entity rather than one per edge. The unfiltered
+    // grouping serves only the reaches-nothing arm below.
     const bySource = new Map<string, string[]>();
     for (const e of edges) bySource.set(e.from, [...(bySource.get(e.from) ?? []), e.to]);
+    const sourcesAnyEdge = new Set(allEdges.map((e) => e.from));
 
     // The reaches-nothing case, §5.3's governing principle reached by a second route: an entity
     // carrying the authored aggregate while sourcing no edge declares a maximum over an empty set.
     for (const entity of s.entities.values()) {
-      if (!entity.properties.has(agg.declared) || bySource.has(entity.id)) continue;
+      if (!entity.properties.has(agg.declared) || sourcesAnyEdge.has(entity.id)) continue;
       c.add("V45", `entities.${entity.id}.properties.${agg.declared}`,
         `'${agg.declared}' is declared as the ${agg.using} of '${agg.over}' over '${rt.id}' edges, ` +
         `and '${entity.id}' is the source of none — so the value aggregates nothing and no edit to ` +

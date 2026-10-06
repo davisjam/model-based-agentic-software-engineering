@@ -419,6 +419,17 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       return null;
     }
 
+    case "set-entity-type": {
+      // §3.3's establishment act: authorship is the ONLY thing that establishes an entity's kind
+      // (an edge never does, T3), and this is authorship's transactional spelling. No unset arm:
+      // un-naming a kind returns the entity to its shadow, which is a real edit an author makes in
+      // the source with the consequences visible — the op vocabulary carries the common move.
+      const path: Path = ["entities", op.id];
+      if (!doc.has(path)) return fail(where, `set-entity-type: no entity '${op.id}'.`);
+      doc.setScalar([...path, "type"], op.value);
+      return null;
+    }
+
     case "save-query":
       doc.setIn(["queries", op.id], op.query as YamlValue);
       return null;

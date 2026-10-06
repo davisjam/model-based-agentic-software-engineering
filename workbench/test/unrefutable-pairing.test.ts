@@ -235,7 +235,11 @@ test("every shipped requirement in the corpus is unaffected — zero findings at
   // with `satisfied_when: holds`, the newest one included, and the arm still finds nothing. The
   // migration moved a requirement's ROUTE and changed no verdict — `peak-memory` read satisfied
   // through its oracle and reads satisfied through the engine.
-  assert.equal(counted, 15, "fifteen authored requirements ship; a changed count means re-read §0.2");
+  //
+  // Sixteen since 261006: calibration-loop (SEMANTICS §3.3's lab) ships
+  // `reading-reaches-the-controller`, an ordinary `satisfied_when: holds` over a graph query —
+  // violated at ship on purpose, which is the task — and the arm finds nothing in it.
+  assert.equal(counted, 16, "sixteen authored requirements ship; a changed count means re-read §0.2");
 });
 
 test("SCOPE: satisfied_when: refuted over behavior and graph queries is ordinary, not a defect", () => {

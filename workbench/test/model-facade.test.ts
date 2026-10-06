@@ -180,7 +180,13 @@ test("MQ-I8: the facade table is TOTAL over the callables the namespace presents
   // cardinality of the enumeration `elements` already performs. It clears §G5 because it pipes
   // nothing: `countElements` re-derives the selection rather than consuming `elements`' result, so
   // no intermediate answer crosses between two operations.
-  assert.deepEqual(callables, ["count", "elements", "path", "reachable", "related", "violations"],
+  // `explainType` is the second such edit — SEMANTICS §3.3's establishment record, specified by
+  // the shadow-types design (§5.3) at the author's D7 ruling. It clears §G5's line the way
+  // `count` does: it pipes nothing — one read of the entity table and the relation-type
+  // declarations, no intermediate answer crossing between operations — and its verdict vocabulary
+  // is the validation authority's own, so no second opinion enters the interface.
+  assert.deepEqual(callables,
+    ["count", "elements", "explainType", "path", "reachable", "related", "violations"],
     "the facade's operation set changed; §4.1's line and §G5's hold make that an author's decision");
 });
 
@@ -202,6 +208,10 @@ test("MQ-I8: every facade site is a declared machine affordance, and every such 
   const rowOf = (at: string): string =>
     registered.find((a) => a.at === at)?.capability ?? "(unregistered)";
   assert.equal(rowOf(facadeSite("elements")), "inspect");
+  // `explainType` joins the same row: it reads `workspace.state` — the entity table plus the
+  // relation-type declarations — and runs no validate pass. Its DERIVATION names the validation
+  // authority (the verdict vocabulary is V48's); the registry names the seam. Different questions.
+  assert.equal(rowOf(facadeSite("explainType")), "inspect");
   // `count` joins `elements` on the `inspect` row rather than earning one of its own: it reaches
   // the same `workspace.state` read, and a second row has to report a capability the product
   // GAINED, which reading `ids.length` was never blocked on.
