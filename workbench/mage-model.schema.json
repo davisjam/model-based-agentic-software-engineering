@@ -81,6 +81,26 @@
               }
             }
           },
+          "aggregates": {
+            "description": "Declares that an AUTHORED property on the source is the aggregate of a property read off each target (V45, V46). v0.1 computes nothing over a relation, so the value stays written on the entity; this declaration is what lets the validator reject a disagreement instead of leaving the edge layer decorative.",
+            "type": "object",
+            "required": ["declared", "over", "using"],
+            "additionalProperties": false,
+            "properties": {
+              "declared": {
+                "description": "The property on the SOURCE entity carrying the authored aggregate.",
+                "$ref": "#/$defs/id"
+              },
+              "over": {
+                "description": "The property read off each TARGET entity and aggregated.",
+                "$ref": "#/$defs/id"
+              },
+              "using": {
+                "description": "The aggregation operator. A closed set of one: a permissive vocabulary cannot be narrowed again without breaking every model that relied on it.",
+                "enum": ["max"]
+              }
+            }
+          },
           "properties": {
             "type": "object",
             "additionalProperties": false,

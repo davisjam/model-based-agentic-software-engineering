@@ -21,15 +21,16 @@
 # "can it reach X" is in scope, "will it eventually reach X" is not. The saved queries and
 # expected-results.yaml say so in those terms, and so should any prose that cites them.
 #
-# ## Two known divergences, both reported rather than worked around
-#
-# `notes:` and the IR-shaped `provenance:` are absent from mage-model.schema.json, so
-# `python3 validate.py` reports SCHEMA findings for this file while the TypeScript loader accepts it
-# and validates it clean. Same gap as message-bus; see that file's header.
+# ## One known divergence, reported rather than worked around
 #
 # A machine carries no annotation at all: `CanonMachine` has no `annotation` field, so `notes:` on a
 # machine would load as nothing. Both machines declare `entity: job`, so the per-model rationale
 # section 8 asks for lives on that entity instead. An annotation slot on the machine is the fix.
+#
+# A second divergence used to live here and has closed: `notes:` and the IR-shaped `provenance:`
+# were absent from mage-model.schema.json, so `python3 validate.py` reported SCHEMA findings on a
+# file the TypeScript loader validated clean. The schema carries both keys now and both tools
+# report this file clean.
 
 mage: 1
 
@@ -120,6 +121,13 @@ events:
       lease is still free. Both lease targets are offered, so the choice of worker is explored as
       nondeterminism rather than resolved.
 
+      That atomicity is one half of `processing-implies-custody`. Every route into `processing`
+      passes through `claimed`, and this event is the only way in, so the lease has left `free` by
+      the time the job can begin -- and the guard on `claimed -> processing` is the other half,
+      holding the property on its own the moment a route bypasses this event. Neither declaration
+      carries it alone, and removing this one does not weaken the property: it makes job-lifecycle a
+      participant that never participates, which the engine refuses (V12).
+
   release:
     participants: [job-lifecycle, job-lease]
     description: >
@@ -171,9 +179,35 @@ machines:
         to: claimed
         sync: claim
 
-      # A GUARD, not synchronization: the job reads the lease's state and moves alone. This is the
-      # transition section 6.7 asks you to break and then repair -- an unguarded path into
-      # processing is what makes the safety counterexample appear.
+      # A GUARD, not synchronization: the job reads the lease's state and moves alone.
+      #
+      # `processing-implies-custody` is held JOINTLY, by this guard and the `claim` synchronization
+      # together, and by construction rather than by either declaration alone. Do NOT break this
+      # transition for section 6.7. NO single deletion exhibits the violation, which is measured:
+      #
+      #   delete the `requires:` below          all eight saved answers stay put. `claimed` is
+      #                                         reachable only through `claim`, which steps the
+      #                                         lease out of `free` in the same system transition,
+      #                                         so the guard never meets a configuration to reject.
+      #
+      #   delete `sync: claim` above            the engine REFUSES the system. job-lifecycle would
+      #                                         be a declared participant of `claim` that never
+      #                                         participates, which is V12 -- a modeling error, not
+      #                                         a counterexample. The question cannot be asked.
+      #
+      #   delete this transition                `processing` becomes unreachable, so the safety
+      #                                         query still answers `holds` under exhaustive
+      #                                         coverage and `completed-is-reachable` turns
+      #                                         `refuted`. Green for the want of a witness, and the
+      #                                         engine discloses nothing: V44 reserves vacuity for
+      #                                         an unsatisfiable PREDICATE, and this predicate is
+      #                                         satisfiable.
+      #
+      # So section 6.7 ADDS an unguarded path, and expected-results.yaml ships exactly that:
+      # `begin-processing-without-the-lease` adds `queued -> processing`, which skips `claim` and so
+      # skips the custody handover. Its repair guards the NEW transition -- which is also the arm
+      # that earns this guard its place, because once a route into `claimed` bypasses `claim` the
+      # guard is the only thing left holding the property.
       - from: claimed
         to: processing
         label: begin

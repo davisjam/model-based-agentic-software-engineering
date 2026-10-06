@@ -672,26 +672,154 @@ test("V24 for machines: a machine's omissions do not name its own vocabulary", (
   assert.deepEqual(offenders, [], offenders.join("\n  "));
 });
 
-test("message-bus: the declared `carries` aggregate equals the maximum over the fields", () => {
-  // `carries` on an event type is written down because v0.1 aggregates nothing over a relation, and
-  // the cross-model safety query needs the value on the endpoint of a `subscribes` edge. Two
-  // surfaces for one fact; neither unification nor codegen is available, so this is the control.
-  const system = loadExample("message-bus").workspace.state.system;
-  const order = system.domains.get("sensitivity")?.values ?? [];
-  assert.ok(order.length === 3, "the sensitivity domain must be the three-level ordered enum");
+test("worker-queue: the custody invariant is held jointly, and no single deletion exhibits it", () => {
+  // The claim this example's prose makes, held as a measurement rather than left as a comment.
+  //
+  // The comment on `claimed -> processing` used to call itself the transition section 6.7 asks a
+  // student to break, and that was false in the expensive direction: deleting the guard moves NO
+  // answer, so a student who did the exercise as written saw nothing change and concluded either
+  // that the engine was broken or that guards do not matter. The transition 6.7 adds is an
+  // unguarded `queued -> processing`, which skips `claim` entirely.
+  //
+  // `processing-implies-custody` is carried JOINTLY and by construction, so the honest claim is
+  // partly about what CANNOT be shown. Five arms. Three deletions, each failing to exhibit the
+  // violation for a DIFFERENT reason -- the guard moves nothing (1), `sync: claim` is refused
+  // before it can be evaluated (4), and removing the transition makes `processing` unreachable so
+  // the property goes green for want of a witness (5). Then the world where a route bypasses
+  // `claim`, in which the guard alone decides the verdict (2, 3) and so earns its place.
+  //
+  // Driven through `openHypothesis`, the seam a student drives.
+  const SAFETY = "lease-held-while-processing";
+  const answers = (ws: Workspace): Map<string, string> => {
+    const out = new Map<string, string>();
+    for (const [id, saved] of ws.state.system.queries) out.set(id, ws.query(saved.raw).outcome);
+    return out;
+  };
+  // A sync-free way into `claimed`: the lease is still free when the job gets there, which is the
+  // only world in which the guard has a configuration to reject.
+  const backdoorIntoClaimed = { op: "add-transition", machine: "job-lifecycle", from: "queued", to: "claimed", label: "sneak" };
+  const unguardBegin = [
+    { op: "delete-transition", machine: "job-lifecycle", from: "claimed", to: "processing" },
+    { op: "add-transition", machine: "job-lifecycle", from: "claimed", to: "processing", label: "begin" },
+  ];
+  const open = (ws: Workspace, label: string, operations: readonly unknown[]): void => {
+    const opened = ws.openHypothesis(label, {
+      transaction: { base: ws.state.hash, rationale: `pin: ${label}`, operations },
+    });
+    assert.ok(opened.ok, `${label}: refused -- ${opened.findings.map((f) => f.message).join("; ")}`);
+  };
 
-  const rank = (v: Scalar): number => order.indexOf(String(v));
-  for (const entity of system.entities.values()) {
-    const declared = entity.properties.get("carries")?.value;
-    if (declared === undefined) continue;
-    const fields = system.relations
-      .filter((r) => r.type === "carries_field" && r.from === entity.id)
-      .map((r) => system.entities.get(r.to)?.properties.get("classification")?.value);
-    assert.ok(fields.length > 0, `${entity.id}: declares 'carries' but carries no field`);
-    const highest = fields.reduce<number>((acc, v) => Math.max(acc, v === undefined ? -1 : rank(v)), -1);
-    assert.equal(rank(declared), highest,
-      `${entity.id}: carries '${String(declared)}' but its highest field is '${String(order[highest])}'`);
+  const base = answers(loadExample("worker-queue").workspace);
+  assert.equal(base.get(SAFETY), "holds", "the example must ship the safety property holding");
+
+  const noGuard = loadExample("worker-queue").workspace;
+  open(noGuard, "unguard begin", unguardBegin);
+  assert.deepEqual([...answers(noGuard)], [...base],
+    "deleting the guard on `claimed -> processing` must move NO saved answer. If this fails the " +
+    "guard has become live and the comment on that transition is now wrong the other way -- " +
+    "rewrite it rather than relaxing this assertion.");
+
+  const noGuardBackdoor = loadExample("worker-queue").workspace;
+  open(noGuardBackdoor, "unguard begin, then route around claim", [...unguardBegin, backdoorIntoClaimed]);
+  assert.equal(answers(noGuardBackdoor).get(SAFETY), "refuted",
+    "a route into `claimed` that skips `claim`, with no guard, must refute the custody invariant");
+
+  const guardBackdoor = loadExample("worker-queue").workspace;
+  open(guardBackdoor, "route around claim, guard intact", [backdoorIntoClaimed]);
+  assert.equal(answers(guardBackdoor).get(SAFETY), "holds",
+    "the same route WITH the guard must leave the invariant standing -- this is the arm that " +
+    "earns the guard its place, and the half of 'held jointly' the guard holds");
+
+  // Arm 4. Dropping `sync: claim` is not a weakening that the engine then evaluates; it is a
+  // participant that never participates, which V12 refuses outright. So the transaction is
+  // REJECTED and the question never gets asked -- the reason this half of the joint holding
+  // cannot be demonstrated by perturbation at all.
+  const noSync = loadExample("worker-queue").workspace;
+  const dropSync = noSync.openHypothesis("drop sync: claim", {
+    transaction: {
+      base: noSync.state.hash, rationale: "pin: V12 refuses, rather than answering",
+      operations: [
+        { op: "delete-transition", machine: "job-lifecycle", from: "queued", to: "claimed", sync: "claim" },
+        { op: "add-transition", machine: "job-lifecycle", from: "queued", to: "claimed", label: "take" },
+      ],
+    },
+  });
+  assert.ok(!dropSync.ok, "dropping `sync: claim` must be refused, not evaluated");
+  assert.deepEqual(dropSync.findings.map((f) => f.rule), ["V12"],
+    `the refusal must be V12 -- got ${dropSync.findings.map((f) => `${f.rule}: ${f.message}`).join("; ")}`);
+
+  // Arm 5. Deleting the guarded transition does not refute the property either: `processing`
+  // becomes unreachable, so a universal over it holds with nothing to witness. The engine
+  // discloses nothing, and correctly -- V44 reserves vacuity for an unsatisfiable PREDICATE, and
+  // this predicate is satisfiable. The companion reachability query is what exposes the hollowness.
+  const noTransition = loadExample("worker-queue").workspace;
+  open(noTransition, "delete begin entirely",
+    [{ op: "delete-transition", machine: "job-lifecycle", from: "claimed", to: "processing" }]);
+  const hollow = answers(noTransition);
+  assert.equal(hollow.get(SAFETY), "holds",
+    "with `processing` unreachable the safety property still answers holds -- which is the trap");
+  assert.equal(hollow.get("completed-is-reachable"), "refuted",
+    "and the companion question is what says the model went hollow rather than safe");
+});
+
+test("message-bus: a field-level edit to the data policy is no longer a silent no-op", () => {
+  // This test used to RECOMPUTE the aggregate here and assert equality. The computation moved to
+  // the validator (V45/V46, SEMANTICS.md 3.2) and this is what replaced it, for the reason the
+  // author gave when ruling the fix: the judgement already existed and already caught a drifted
+  // `carries` -- what was missing was the path by which a STUDENT met it. A test nobody runs is not
+  // a path. So the equality claim now lives in one place per language, and the test checks the
+  // thing the test is better at: that the finding reaches the surface a reader is looking at.
+  //
+  // Two arms, and the first is the one that was broken. Reclassify the field that decides the
+  // aggregate; the edit is refused WITH the explanation, rather than committing and moving nothing.
+  // Then the repair that works -- both surfaces in one transaction -- because v0.1 aggregates
+  // neither for the author, and that is the lesson the breach exists to teach.
+  const ws = loadExample("message-bus").workspace;
+  assert.deepEqual(ws.state.findings, [], "the example must ship clean");
+
+  const declaresAggregation = ws.state.system.relationTypes.get("carries_field")?.aggregates;
+  assert.deepEqual(declaresAggregation, { declared: "carries", over: "classification", using: "max" },
+    "the example must DECLARE the aggregation; without it V45/V46 have nothing to check and the " +
+    "field layer goes back to being decorative");
+
+  const reclassify = {
+    op: "set-property", id: "shipping-address", name: "classification",
+    value: "public", domain: "sensitivity",
+  };
+  const fieldOnly = ws.openHypothesis("reclassify the field alone", {
+    transaction: {
+      base: ws.state.hash, rationale: "the remediation a student reaches for first",
+      operations: [reclassify],
+    },
+  });
+  assert.ok(!fieldOnly.ok,
+    "reclassifying shipping-address alone must be REFUSED. If this commits, the field layer is " +
+    "decorative again and the most natural repair a reader can attempt is a silent no-op.");
+  assert.deepEqual(fieldOnly.findings.map((f) => f.rule), ["V46"],
+    `the refusal must name V46 -- got ${fieldOnly.findings.map((f) => `${f.rule}: ${f.message}`).join("; ")}`);
+  const explained = fieldOnly.findings[0]?.message ?? "";
+  for (const needed of ["order-created", "carries", "restricted", "internal"]) {
+    assert.ok(explained.includes(needed),
+      `the finding must name '${needed}' so a reader can repair it without guessing: "${explained}"`);
   }
+
+  // The repair. Both surfaces, one transaction -- and `carries` drops to the new maximum over the
+  // remaining fields, which is `internal` from customer-id rather than `public` from the field
+  // that was edited. Stating the expected value here is the point: a student who copies the
+  // field's new value into `carries` is still wrong, and the finding above says so.
+  const together = ws.openHypothesis("reclassify the field AND the aggregate", {
+    transaction: {
+      base: ws.state.hash, rationale: "the repair that holds, because the author owns both surfaces",
+      operations: [
+        reclassify,
+        { op: "set-property", id: "order-created", name: "carries", value: "internal", domain: "sensitivity" },
+      ],
+    },
+  });
+  assert.ok(together.ok,
+    `the two-surface repair must commit -- ${together.findings.map((f) => f.message).join("; ")}`);
+  assert.deepEqual(ws.state.findings, [], "and the repaired revision must be clean");
+  assert.ok(ws.discardHypothesis(), "leave the authoritative revision as it was found");
 });
 
 test("message-bus: event-propagation is exactly the image of event-flow's permissions", () => {

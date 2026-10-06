@@ -635,8 +635,15 @@ const DRIVERS = {
     await loadFlagship();
     const made = await page.evaluate(() => {
       const model = window.mage.inspect().models.find((m) => m.relations.length > 0);
-      const type = model.relations[0].type;
-      const [from, to] = [model.entities[0], model.entities[1]];
+      // The endpoints come from an EDGE the model already asserts, not from `entities[0..1]`.
+      // The old pairing was luck: it took a type from `relations[0]` and endpoints from the
+      // membership list, which on the flagship means `checkout --carries_field--> billing` -- one
+      // service carrying another as a payload field. Nothing validated the pairing, so a coverage
+      // gate reported `add-relation` working while the edge it built was nonsense; the first rule
+      // to read a relation type's own semantics (V45) turned it red. Reusing an existing edge's
+      // endpoints makes the new edge well typed by construction, for every relation type.
+      const template = model.relations[0];
+      const { type, from, to } = template;
       const before = model.relations.length;
       const outcome = window.mage.transact({
         transaction: {

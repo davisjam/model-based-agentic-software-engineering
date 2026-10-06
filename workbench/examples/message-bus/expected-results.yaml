@@ -148,8 +148,20 @@ queries:
 
       `holds` IS the safety breach. The question is existential, so the witness
       `analytics -> order-created` is the counterexample to the requirement above: Analytics permits
-      internal, OrderCreated carries restricted. The field that makes it restricted is
-      shipping-address, which the data-policy model represents as a `carries_field` edge.
+      internal, OrderCreated carries restricted.
+
+      Be exact about which value the breach reads, because the earlier wording here was not. The
+      form compares `source.permits` against `target.carries`, so the breach rides entirely on the
+      event type's AUTHORED aggregate. No field is a term in it. shipping-address is why that
+      aggregate says `restricted` -- an authoring fact, not an evaluated one -- and reading it as the
+      field the query consults teaches a mental model the engine does not have.
+
+      That distinction used to be invisible and is now gated. The aggregation declared on
+      `carries_field` says `carries` equals the maximum `classification` over the fields, so
+      reclassifying shipping-address or deleting its edge raises a V46 finding at load time instead
+      of moving nothing. A student's field-level repair is a visible contradiction, and the repair
+      that works edits both surfaces in one transaction -- which IS the lesson, since v0.1 aggregates
+      neither for them.
 
   - id: did-analytics-receive-it-at-2-04
     label: Analytics received OrderCreated at 2:04 PM

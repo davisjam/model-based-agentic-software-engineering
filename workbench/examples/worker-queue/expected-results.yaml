@@ -161,6 +161,25 @@ queries:
       and a counterexample refutes it. Held non-vacuously: both conjuncts are individually
       reachable, and the modification below produces the counterexample on demand.
 
+      It is carried JOINTLY -- by the `claim` synchronization and by the guard on
+      `claimed -> processing` -- and by construction rather than by either declaration alone. No
+      single deletion exhibits the violation, and all three attempts are measured:
+
+      Delete the guard and all eight answers above stay put: `claim` is the only route into
+      `claimed` and it steps the lease out of `free` in the same system transition, so the guard
+      never meets a configuration to reject. Delete `sync: claim` and the engine refuses the system
+      outright -- job-lifecycle becomes a declared participant of `claim` that never participates,
+      which is V12 and a modeling error rather than a counterexample. Delete the
+      `claimed -> processing` transition and `processing` goes unreachable, so this query still
+      answers `holds` under exhaustive coverage while `completed-is-reachable` turns `refuted`:
+      green for the want of a witness, with no disclosure, because V44 reserves vacuity for an
+      unsatisfiable predicate and this predicate is satisfiable.
+
+      Which is why the modification below ADDS a route that skips `claim` rather than editing
+      anything, and why its repair guards the NEW transition. The repair's own note already says the
+      right thing -- the guard, not the absence of the transition, is what carries the invariant --
+      and that is the arm which earns the existing guard its place.
+
   - id: two-workers-own-one-job
     label: Two workers can simultaneously own the same job
     suggested: false
@@ -203,8 +222,8 @@ modifications:
     label: Let processing begin before the lease is acquired
     rationale: >
       Section 6.7. An unguarded `queued -> processing` transition is the fault a real queue has when
-      a worker short-circuits the claim. One step is enough to refute the invariant, and the
-      counterexample names the step.
+      a worker short-circuits the claim. It bypasses the `claim` event, so the lease never leaves
+      `free`. One step is enough to refute the invariant, and the counterexample names the step.
     transaction:
       operations:
         - op: add-transition

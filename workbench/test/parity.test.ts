@@ -62,6 +62,13 @@ const PARITY = new Set([
   // already walk `models.<id>.entities` and `models.<id>.relations` for V3, so an asymmetry here
   // would record nothing about the specification and only that one side had not caught up.
   "V40",
+  // V45/V46 are structural checks over declared data -- the shape the comments above say belongs
+  // here rather than in the asymmetry table. Both sides walk `relation-types.<t>.aggregates`, the
+  // relations, and the entity properties, and both rank through the same ordered-enum declaration.
+  // An asymmetry would record nothing about SEMANTICS.md 3.2 and only that one side had not caught
+  // up -- and this is the pair that decides whether a student's field-level edit is visible at all,
+  // so a tool that silently accepted the drift would re-open the defect in one interface.
+  "V45", "V46",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -281,6 +288,57 @@ test("violations agree, rule by rule", () => {
       "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
       entities: { a: {}, b: {} },
       models: { g: { type: "graph", entities: ["a", "b"], purpose: { omits: ["calls"] }, relations: [{ from: "a", to: "b", type: "calls" }] } },
+    }],
+    // SEMANTICS.md 3.2's pair, declaration first. One ordered domain, one aggregating relation
+    // type, three fields: the shape message-bus ships, reduced to its skeleton so a disagreement
+    // here names the rule rather than the example.
+    ["V46 declared aggregate disagrees", {
+      ...base,
+      domains: { sens: { type: "ordered-enum", values: ["public", "internal", "restricted"] } },
+      "relation-types": {
+        has_field: {
+          description: "d", composition: { path: "forbidden" },
+          aggregates: { declared: "carries", over: "classification", using: "max" },
+        },
+      },
+      entities: {
+        evt: { properties: { carries: { value: "public", domain: "sens" } } },
+        f: { properties: { classification: { value: "restricted", domain: "sens" } } },
+      },
+      models: { g: { type: "graph", entities: ["evt", "f"], relations: [{ from: "evt", to: "f", type: "has_field" }] } },
+    }],
+    // V45's domain arm, and the reason the rule insists on an ORDERED domain: `max` over an
+    // unordered vocabulary is not a value, so there is nothing for V46 to compare and it stays
+    // quiet. A case that only exercised V46 would leave the two tools free to disagree about which
+    // rule fires -- the distinction `assertParity` compares by `rule @ where`.
+    ["V45 aggregate over an unordered domain", {
+      ...base,
+      domains: { sens: { type: "enum", values: ["public", "internal", "restricted"] } },
+      "relation-types": {
+        has_field: {
+          description: "d", composition: { path: "forbidden" },
+          aggregates: { declared: "carries", over: "classification", using: "max" },
+        },
+      },
+      entities: {
+        evt: { properties: { carries: { value: "public", domain: "sens" } } },
+        f: { properties: { classification: { value: "restricted", domain: "sens" } } },
+      },
+      models: { g: { type: "graph", entities: ["evt", "f"], relations: [{ from: "evt", to: "f", type: "has_field" }] } },
+    }],
+    // And the reaches-nothing arm: the authored aggregate with no edge under it. 5.3's governing
+    // principle reached by a second route -- an annotation that validates and then aggregates over
+    // an empty set is the state in which nothing looks wrong.
+    ["V45 aggregate sources no edge", {
+      ...base,
+      domains: { sens: { type: "ordered-enum", values: ["public", "internal", "restricted"] } },
+      "relation-types": {
+        has_field: {
+          description: "d", composition: { path: "forbidden" },
+          aggregates: { declared: "carries", over: "classification", using: "max" },
+        },
+      },
+      entities: { evt: { properties: { carries: { value: "public", domain: "sens" } } } },
     }],
     ["V3 dangling relation", {
       ...base,

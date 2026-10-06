@@ -66,7 +66,13 @@ function semanticProjection(s: CanonicalSystem): unknown {
       e.type, e.label, [...e.properties.entries()].sort().map(([k, v]) => [k, v.value, v.domain]),
       [...e.contains].sort(),
     ]),
-    sorted(s.relationTypes, (r) => [r.pathComposition, r.symmetric, r.acyclic]),
+    // `aggregates` is in the hash because it is SEMANTIC: it decides whether a revision is
+    // well formed (V45/V46), unlike a note. Declaring one is a different system from declaring
+    // none, and a transaction's `base` must say so.
+    sorted(s.relationTypes, (r) => [
+      r.pathComposition, r.symmetric, r.acyclic,
+      r.aggregates === null ? null : [r.aggregates.declared, r.aggregates.over, r.aggregates.using],
+    ]),
     // Already sorted by canonicalize; re-sorted here so the hash does not depend on that promise.
     [...s.relations]
       .map((r) => [r.type, r.from, r.to, r.model])

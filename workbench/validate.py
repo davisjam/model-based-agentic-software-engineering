@@ -491,6 +491,9 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
     # them; the pass stays a separate function because it has its own subject and its own tests.
     check_quantities(doc, f)
 
+    # V45 / V46 -- a declared aggregation over a relation resolves, and the authored value agrees.
+    check_relation_aggregates(doc, f)
+
     # V24 -- omits is checked against the model's real vocabulary, not merely asserted.
     for mid, model in models.items():
         vocab = {rel.get("type") for rel in (model.get("relations") or [])}
@@ -500,6 +503,157 @@ def check_meaning(doc: dict, f: Findings, verbose: bool = True) -> None:
             if omitted in vocab:
                 f.add("V24", f"models.{mid}.purpose.omits",
                       f"'{omitted}' is declared omitted but appears in this model -- the declaration would lie to a reader.")
+
+
+# ---------------------------------------------------------------------------------------------
+# V45 / V46 -- aggregation over a relation (SEMANTICS.md 3.2).
+# Mirrors src/validator/rules.ts checkRelationAggregates, finding for finding and `where` for
+# `where`, which is the surface test/parity.test.ts compares.
+# ---------------------------------------------------------------------------------------------
+
+AGGREGATION_OPERATORS = ["max"]
+
+
+def _prop(entities: dict, eid: str, name: str) -> tuple[object, str | None] | None:
+    """One property as (value, domain), or None when the entity does not declare it.
+
+    Mirrors canonicalize.ts `properties`: a bare scalar carries no domain, and the object form
+    carries one. A dict without `value` declares nothing, which is the schema's finding.
+    """
+    props = ((entities.get(eid) or {}).get("properties") or {})
+    if name not in props:
+        return None
+    raw = props[name]
+    if isinstance(raw, dict):
+        if "value" not in raw:
+            return None
+        dom = raw.get("domain")
+        return raw["value"], dom if isinstance(dom, str) else None
+    return raw, None
+
+
+def check_relation_aggregates(doc: dict, f: Findings) -> None:
+    """V45/V46 -- the obligation an author declares when two surfaces hold one fact.
+
+    v0.1 computes nothing over a relation, so an aggregate like "the highest sensitivity this event
+    type carries" is AUTHORED on the entity while its breakdown lives in edges. Nothing joined the
+    two, which made the edge layer decoration: reclassify a field and no answer moved, so the most
+    natural repair a reader can attempt was a silent no-op. 3.2 makes the join declarable without
+    making the value derivable.
+
+    Carries no example name. `max`, `ordered-enum` and both property names arrive from the model.
+    """
+    entities = doc.get("entities") or {}
+    domains = doc.get("domains") or {}
+    relations = _relations(doc)
+
+    for rid, spec in (doc.get("relation-types") or {}).items():
+        agg = (spec or {}).get("aggregates")
+        if not isinstance(agg, dict):
+            continue
+        where = f"relation-types.{rid}.aggregates"
+        using = agg.get("using") if isinstance(agg.get("using"), str) else ""
+        declared_name = agg.get("declared") if isinstance(agg.get("declared"), str) else ""
+        over_name = agg.get("over") if isinstance(agg.get("over"), str) else ""
+
+        if using not in AGGREGATION_OPERATORS:
+            f.add("V45", where,
+                  f"using: '{using}' is not a supported aggregation operator. Declared: "
+                  f"{', '.join(AGGREGATION_OPERATORS)}. The vocabulary is closed on purpose -- a "
+                  f"permissive one cannot be narrowed again without breaking every model that "
+                  f"relied on it.")
+            continue
+        for key, name in (("declared", declared_name), ("over", over_name)):
+            if not name:
+                f.add("V45", where,
+                      f"{key}: names no property. An aggregation declares the AUTHORED property on "
+                      f"the source ('declared') and the property read off each target ('over'); "
+                      f"neither can be empty.")
+        if not declared_name or not over_name:
+            continue
+
+        by_source: dict[str, list[str]] = {}
+        for rel in relations:
+            if rel.get("type") != rid:
+                continue
+            src, dst = rel.get("from"), rel.get("to")
+            if isinstance(src, str) and isinstance(dst, str):
+                by_source.setdefault(src, []).append(dst)
+
+        # The reaches-nothing case: an entity carrying the authored aggregate while sourcing no
+        # edge declares a maximum over an empty set.
+        for eid in entities:
+            if _prop(entities, eid, declared_name) is None or eid in by_source:
+                continue
+            f.add("V45", f"entities.{eid}.properties.{declared_name}",
+                  f"'{declared_name}' is declared as the {using} of '{over_name}' over '{rid}' "
+                  f"edges, and '{eid}' is the source of none -- so the value aggregates nothing and "
+                  f"no edit to the model can move it. Draw the edges, or drop the property.")
+
+        for source in sorted(by_source):
+            held = _prop(entities, source, declared_name)
+            if held is None:
+                f.add("V45", f"entities.{source}.properties",
+                      f"'{source}' sources a '{rid}' edge but declares no '{declared_name}'. The "
+                      f"aggregation on '{rid}' says every source carries that property as the "
+                      f"{using} of its targets' '{over_name}'; without it the join is unmade and "
+                      f"the edges assert nothing.")
+                continue
+            held_value, held_domain = held
+            dom_spec = domains.get(held_domain) if isinstance(held_domain, str) else None
+            dom_spec = dom_spec if isinstance(dom_spec, dict) else None
+            if dom_spec is None or dom_spec.get("type") != "ordered-enum":
+                named = "no domain" if held_domain is None else f"'{held_domain}'"
+                f.add("V45", f"entities.{source}.properties.{declared_name}",
+                      f"'{declared_name}' must name a declared ordered-enum domain for '{using}' to "
+                      f"denote anything; it names {named}. A maximum over an unordered vocabulary "
+                      f"is not a value.")
+                continue
+            values = [v for v in (dom_spec.get("values") or []) if isinstance(v, str)]
+
+            highest, highest_at, unusable = -1, "", False
+            for target in sorted(by_source[source]):
+                read = _prop(entities, target, over_name)
+                if read is None:
+                    f.add("V45", f"entities.{target}.properties",
+                          f"'{target}' is the target of a '{rid}' edge but declares no "
+                          f"'{over_name}', so it contributes nothing to "
+                          f"'{source}'.{declared_name} and the aggregate silently ignores it. "
+                          f"Declare the property, or remove the edge.")
+                    unusable = True
+                    continue
+                read_value, read_domain = read
+                if read_domain != held_domain:
+                    named = "no domain" if read_domain is None else f"domain '{read_domain}'"
+                    f.add("V45", f"entities.{target}.properties.{over_name}",
+                          f"'{over_name}' names {named} while '{source}'.{declared_name} names "
+                          f"'{held_domain}' -- the aggregation would compare two unrelated "
+                          f"vocabularies. Both sides name one ordered domain.")
+                    unusable = True
+                    continue
+                at = values.index(read_value) if read_value in values else -1
+                if at < 0:
+                    f.add("V45", f"entities.{target}.properties.{over_name}",
+                          f"'{read_value}' is not a value of domain '{read_domain}' "
+                          f"({', '.join(values)}), so it has no rank to aggregate.")
+                    unusable = True
+                    continue
+                if at > highest:
+                    highest, highest_at = at, target
+
+            # V45 already named the unreadable side; a V46 complaint on top of it would report a
+            # disagreement with a maximum over the targets that happened to parse.
+            if unusable:
+                continue
+
+            held_rank = values.index(held_value) if held_value in values else -1
+            if held_rank != highest:
+                f.add("V46", f"entities.{source}.properties.{declared_name}",
+                      f"'{source}' declares {declared_name}: '{held_value}' while the {using} of "
+                      f"'{over_name}' over its '{rid}' edges is '{values[highest]}' (from "
+                      f"'{highest_at}'). The value is authored because v0.1 aggregates nothing over "
+                      f"a relation, so BOTH surfaces are yours: move the declaration, or change the "
+                      f"field that decides it. One transaction can do both.")
 
 
 # ---------------------------------------------------------------------------------------------
