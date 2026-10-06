@@ -157,6 +157,20 @@ re-deriving these, so they live here:**
     Reverts with `git config --unset core.sshCommand`. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
   the message must come **before** `--`, or git reads it as a pathspec and fails with "did not match any
   file(s) known to git".
+- **An orchestrator holding an UNPUSHED `main` sets a trap for every agent it briefs.** A brief that
+  says "rebase on main first" is read by the agent as `git fetch origin main && git rebase
+  origin/main` -- the only `main` an agent can fetch. When the orchestrator is deliberately sitting on
+  local merges (waiting for a quiet host, or for a red tree to go green), `origin/main` lags, and the
+  agent rebases onto a base that is missing work already merged locally. Measured 261006: local main
+  was 9 commits ahead of origin, and the fix agent's branch came back carrying rebased COPIES of two
+  commits already merged into local main -- patch-id-identical, different shas.
+  - It is recoverable and usually benign: `git rebase main` on the branch drops patch-equivalent
+    commits, and `git show <sha> | git patch-id --stable` against `git log origin/main..main` tells
+    you which commits are duplicates BEFORE you merge. Verify by patch-id, never by sha.
+  - The cheap prevention is to say WHICH main: a brief should name the base explicitly
+    (`git rebase <sha>`) whenever local and origin have diverged, because "main" is ambiguous
+    exactly when it matters. And prefer pushing before dispatching a wave -- the same ordering rule
+    the push-gate bullet above gives for load reasons holds here for correctness reasons.
 - **Do not mix isolation modes in one wave.** If some agents in a wave get worktrees, they all do. On
   261002 three workbench agents had worktrees and did not collide; the one agent left on `main` is the
   one that collided. The control worked exactly where it was applied and failed exactly where it was not.
