@@ -41,7 +41,7 @@ before(async () => {
   const text = await readFile(
     join(WORKBENCH_DIR, "examples", "worker-queue", "system.mage.yaml"), "utf8");
   await page.evaluate((source) => { window.mage.load(source); }, text);
-  await page.waitForSelector("#nav-properties [data-property]");
+  await page.waitForSelector("#question-list [data-property]");
 });
 
 after(async () => { await shutdown(server, browser); });
@@ -72,7 +72,7 @@ test("the Navigate rail reads as topology, not a flat list of peers", async () =
 });
 
 test("selecting the cross-model property composes the models, the binding, and the constraint", async () => {
-  const link = await page.$(`#nav-properties a[data-rail="compose"][data-arg="${LEASE}"]`);
+  const link = await page.$(`#question-list a[data-rail="compose"][data-arg="${LEASE}"]`);
   assert.ok(link !== null,
     "the cross-model claim's rail row must offer the composed view, not a one-model explain");
   await link.click();
