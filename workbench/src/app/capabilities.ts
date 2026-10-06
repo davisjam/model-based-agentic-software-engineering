@@ -231,6 +231,14 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
   },
   { id: "edit-dialog-cancel", why: "dismisses the edit dialog without submitting" },
   {
+    id: "reset",
+    why: "clears the persisted SESSION and returns the workbench to its base state. Chrome rather "
+      + "than a capability because it moves no model: there is no semantic operation an agent "
+      + "could be missing here — `window.mage.load` already replaces a model, and an agent has no "
+      + "page to reload. The thing Reset undoes is a browser-storage side effect the agent surface "
+      + "does not have, so declaring a capability would advertise a parity that is not meaningful",
+  },
+  {
     id: "ask-witness-show",
     why: "draws the answered question's witness over the model that carried it; it writes the "
       + "view's `witness`, which is outside semantic state exactly as `target` and `selection` are "

@@ -23,6 +23,7 @@
 import { runQuery } from "../engine/index.ts";
 import { renderView } from "../render/index.ts";
 import { Workspace } from "../app/services.ts";
+import { Session } from "../app/session.ts";
 import type { Ports } from "../app/services.ts";
 import { ExampleCatalog } from "../app/examples.ts";
 import { AGENT_API_VERSION, createAgentApi } from "../app/agent-api.ts";
@@ -114,6 +115,15 @@ const ports: Ports = {
 
 const workspace = new Workspace(ports);
 const viewState: ViewState = { target: null, selection: [] };
+
+/**
+ * The session. A reload restores where the student left off; RESET is the only wipe.
+ *
+ * `#restoredFrom` is the example id a restored session began at, kept so Reset can say what it is
+ * returning to rather than dropping the student at a bare chooser with no explanation.
+ */
+const session = new Session();
+let restoredFrom: string | null = null;
 
 /**
  * The example catalogue, over `fetch`.
@@ -233,7 +243,14 @@ function retargetSkipLink(loaded: boolean): void {
   skip.textContent = loaded ? "Skip to the model workspace" : "Skip to Start";
 }
 
-workspace.subscribe(() => repaint());
+// Persist on every state change that leaves something loaded. `subscribe` already fires for every
+// transaction, load, undo and hypothesis move, so this rides the one notification the workspace
+// already makes rather than hunting call sites — a save hooked per-mutation is a save someone
+// forgets to add to the next mutation.
+workspace.subscribe(() => {
+  repaint();
+  if (workspace.state.loaded) session.save(restoredFrom, workspace.export());
+});
 
 // -- window.mage ------------------------------------------------------------------------------
 //
@@ -250,5 +267,38 @@ const api = createAgentApi(
 
 Object.defineProperty(window, "mage", { value: api, writable: false, configurable: false });
 
+// -- the session ------------------------------------------------------------------------------
+//
+// RESTORE before the first paint, so a returning student never sees the empty Start region flash
+// past on the way to their own model.
+const stored = session.restore();
+if (stored !== null) {
+  const r = workspace.load(stored.text);
+  if (r.ok) {
+    restoredFrom = stored.exampleId;
+  } else {
+    // A stored text the loader now refuses is a corpus or schema change under a saved session.
+    // Drop it rather than leaving a student stuck on a model that cannot open, and say so.
+    session.clear();
+    console.warn("the stored session no longer loads; it has been discarded");
+  }
+}
+
+// RESET: the only wipe. Clears the session AND returns to the base state — the example chooser,
+// with the shipped examples — rather than leaving the just-cleared model on screen, which would
+// read as "Reset did nothing".
+byId<HTMLButtonElement>("reset").addEventListener("click", () => {
+  session.clear();
+  restoredFrom = null;
+  workspace.reset();
+  repaint();
+  announcer.action("Reset. The saved session is cleared and the workbench is back to its starting "
+    + "state; choose an example to begin.");
+});
+
 repaint();
-announcer.action(`MAGE Model Workbench ready. Agent API ${AGENT_API_VERSION} at window.mage.`);
+announcer.action(stored !== null && workspace.state.loaded
+  ? `MAGE Model Workbench ready, with your previous session restored`
+    + `${restoredFrom === null ? "" : ` (${restoredFrom})`}. Undo history does not survive a reload; `
+    + `press Reset to return to the starting state. Agent API ${AGENT_API_VERSION} at window.mage.`
+  : `MAGE Model Workbench ready. Agent API ${AGENT_API_VERSION} at window.mage.`);
