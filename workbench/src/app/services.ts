@@ -218,6 +218,27 @@ export class Workspace {
     return { ok: true, findings: loaded.findings };
   }
 
+  /**
+   * Back to the base state: nothing loaded, no hypothesis, no revision history.
+   *
+   * The exact state the constructor leaves behind, reached the same way — by booting a fresh engine
+   * over `EMPTY` rather than by unsetting fields one at a time. A hand-rolled teardown is where the
+   * next field added to this class gets forgotten, and a Reset that leaves one field behind is a
+   * Reset the student cannot trust.
+   *
+   * `loaded` returning to false is what re-mounts the Start region and its example chooser (SH-I1),
+   * so Reset lands on the chooser rather than on an empty workspace.
+   */
+  reset(): void {
+    const boot = TransactionEngine.load(EMPTY);
+    if (boot.engine === null) throw new Error("the empty model must load");
+    this.#engine = boot.engine;
+    this.#authoritative = null;
+    this.#hypothesis = null;
+    this.#loaded = false;
+    this.#emit();
+  }
+
   /** Export, preserving the comments and key order of whatever was imported. */
   export(): string {
     return this.#engine.toText();
