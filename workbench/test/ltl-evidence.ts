@@ -23,7 +23,7 @@
 // once. Its own negative controls -- three sabotages that must each be caught -- stay in
 // `test/ltl-product.test.ts`, where the fixture they run against lives.
 import type { CanonicalSystem, Configuration, Evidence, Step } from "../src/ir/types.ts";
-import { configKey } from "../src/ir/types.ts";
+import { configKey, liftStep } from "../src/ir/types.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { successorsOf } from "../src/engine/explore.ts";
 import { admitLtlProperty, isStutterStep } from "../src/engine/ltl-product.ts";
@@ -42,7 +42,10 @@ export function counterexampleViolates(
   if (evidence === null) return "the refutation carries no evidence";
   if (evidence.shape !== "lasso") return `evidence shape is '${evidence.shape}', expected 'lasso'`;
   if (evidence.role !== "counterexample") return `evidence role is '${evidence.role}'`;
-  const cycle = evidence.cycle ?? [];
+  // Published evidence carries plain-record configurations; the replay below runs the engine's own
+  // step relation, so lift them back into Map form at this one boundary.
+  const prefix = evidence.steps.map(liftStep);
+  const cycle = (evidence.cycle ?? []).map(liftStep);
   if (cycle.length === 0) return "the lasso's cycle is empty, so the trace is not infinite";
 
   const admission = admitLtlProperty(system, formula, "forall", systemHash(system));
@@ -59,7 +62,7 @@ export function counterexampleViolates(
   if (configKey(cycleStart) !== configKey(cycleEnd)) {
     return "the lasso's cycle does not return to the configuration it left";
   }
-  const walk = [...evidence.steps, ...cycle];
+  const walk = [...prefix, ...cycle];
   const start = walk[0]?.from;
   if (start === undefined) return "the lasso has no first configuration";
   if (configKey(start) !== configKey(compiled.initial)) {
@@ -95,7 +98,7 @@ export function counterexampleViolates(
     return set;
   };
   const lasso = makeLasso(
-    configsOf(evidence.steps).map(letterAt), configsOf(cycle).map(letterAt));
+    configsOf(prefix).map(letterAt), configsOf(cycle).map(letterAt));
   if (!lasso.ok) return `the lasso is not well formed: ${lasso.refusal}`;
   if (satisfies(property.formula, lasso.value)) {
     return "the returned trace SATISFIES the formula, so it is not a counterexample";
@@ -103,10 +106,10 @@ export function counterexampleViolates(
   return null;
 }
 
-/** Every configuration the lasso visits, prefix and cycle together. */
+/** Every configuration the lasso visits, prefix and cycle together, lifted into engine form. */
 export const configurationsOn = (evidence: Evidence | null): readonly Configuration[] => {
   if (evidence === null) return [];
-  const steps = [...evidence.steps, ...(evidence.cycle ?? [])];
+  const steps = [...evidence.steps, ...(evidence.cycle ?? [])].map(liftStep);
   return [...steps.map((s) => s.from), ...(steps.length > 0 ? [steps[steps.length - 1]?.to] : [])]
     .filter((c): c is Configuration => c !== undefined);
 };

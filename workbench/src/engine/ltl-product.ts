@@ -62,7 +62,8 @@
  * `holds` nobody notices.
  */
 import { configKey } from "../ir/types.ts";
-import type { CanonicalSystem, Compilation, Configuration, Evidence, Step } from "../ir/types.ts";
+import type { CanonicalSystem, Compilation, Configuration, Evidence, EvidenceStep, Step } from "../ir/types.ts";
+import { evidenceSteps } from "../ir/types.ts";
 import {
   compileSystem, DEFAULT_STATE_LIMIT, successorsOf, type CompiledSystem,
 } from "./explore.ts";
@@ -96,7 +97,7 @@ const stutterStep = (cfg: Configuration): Step =>
  * because `successorsOf` builds each from the transitions that carried it. A renderer uses this to
  * say "the system halts here" instead of animating a self-loop.
  */
-export const isStutterStep = (step: Step): boolean => step.instances.length === 0;
+export const isStutterStep = (step: Step | EvidenceStep): boolean => step.instances.length === 0;
 
 // ----------------------------------------------------------------------------------------------
 // The product
@@ -536,7 +537,10 @@ export function assembleCounterexample(
   if (closing === null || closing.length === 0) return null;
   cycle.push(...closing);
 
-  return { shape: "lasso", role: "counterexample", steps: prefix, cycle, nodes: null };
+  return {
+    shape: "lasso", role: "counterexample",
+    steps: evidenceSteps(prefix), cycle: evidenceSteps(cycle), nodes: null,
+  };
 }
 
 // ----------------------------------------------------------------------------------------------

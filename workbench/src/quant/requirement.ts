@@ -21,7 +21,7 @@ import { systemHash } from "../ir/hash.ts";
 import type {
   CanonicalSystem, Compilation, Configuration, Coverage, Evidence, ResultMagnitude,
 } from "../ir/types.ts";
-import { ACCOUNTED_METRICS, DIMENSIONS, type Dimension } from "../ir/types.ts";
+import { ACCOUNTED_METRICS, DIMENSIONS, evidenceSteps, type Dimension } from "../ir/types.ts";
 import {
   detail, exhaustive, result, unlicensed, type Fail, type Verdict,
 } from "../engine/types.ts";
@@ -259,7 +259,7 @@ export function evaluatePath(
     // so coverage reads exhaustive with respect to the question (V22, behavior.ts discipline).
     const evidence: Evidence = {
       shape: "lasso", role: "counterexample",
-      steps: max.value.prefix, cycle: max.value.cycle, nodes: null,
+      steps: evidenceSteps(max.value.prefix), cycle: evidenceSteps(max.value.cycle), nodes: null,
     };
     return {
       result: result({
@@ -279,7 +279,7 @@ export function evaluatePath(
 
   const { total, trace, charges, coverage, notes } = max.value;
   if (violates(total, operator, bound)) {
-    const evidence: Evidence = { shape: "trace", role: "counterexample", steps: trace, cycle: null, nodes: null };
+    const evidence: Evidence = { shape: "trace", role: "counterexample", steps: evidenceSteps(trace), cycle: null, nodes: null };
     return {
       result: result({
         outcome: "refuted", coverage: exhaustive(coverageStates(coverage)), systemHash: hash,
@@ -308,7 +308,7 @@ export function evaluatePeak(
   if (violates(observed, operator, bound)) {
     // The counterexample is the configuration, reached by the trace. An empty trace means the
     // INITIAL configuration already violates — still a trace, of length zero.
-    const evidence: Evidence = { shape: "trace", role: "counterexample", steps: trace, cycle: null, nodes: null };
+    const evidence: Evidence = { shape: "trace", role: "counterexample", steps: evidenceSteps(trace), cycle: null, nodes: null };
     return {
       result: result({
         outcome: "refuted", coverage: exhaustive(coverageStates(coverage)), systemHash: hash,

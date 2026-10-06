@@ -799,15 +799,73 @@ export interface Step {
   readonly to: Configuration;
 }
 
+/**
+ * A configuration as EVIDENCE carries it: the same two coordinate families as `Configuration`,
+ * spelled as plain records so serialization keeps them.
+ *
+ * The walk's `Configuration` holds Maps, and a `Map` is invisible to `JSON.stringify` — it
+ * serializes as `{}`. Evidence is a published artifact: it crosses `window.mage`, is read out of a
+ * page with `JSON.stringify`, and is promised by the query schema's `step` definition. Until this
+ * type existed, every published witness step carried `from: {control: {}, values: {}}` — a
+ * counterexample that could not say which state the system was in. The split is the fix at the
+ * seam rather than at each caller: the walk keeps its Maps (and its cheap aliasing of live
+ * configurations), and an `Evidence` CANNOT be constructed around them — the compiler holds the
+ * conversion.
+ */
+export interface StepConfiguration {
+  /** instance id -> state id */
+  readonly control: Readonly<Record<string, string>>;
+  /** `<instance>.<variable>` -> value */
+  readonly values: Readonly<Record<string, Scalar>>;
+}
+
+/** A step as evidence publishes it: `Step`, with its configurations in serializable form. */
+export interface EvidenceStep {
+  readonly instances: readonly string[];
+  readonly sync: string | null;
+  readonly label: string | null;
+  readonly from: StepConfiguration;
+  readonly to: StepConfiguration;
+}
+
+export const stepConfiguration = (c: Configuration): StepConfiguration => ({
+  control: Object.fromEntries(c.control),
+  values: Object.fromEntries(c.values),
+});
+
+export const evidenceStep = (s: Step): EvidenceStep => ({
+  instances: s.instances, sync: s.sync, label: s.label,
+  from: stepConfiguration(s.from), to: stepConfiguration(s.to),
+});
+
+/** The one conversion every evidence constructor calls; `Step[]` into `Evidence` is a type error. */
+export const evidenceSteps = (steps: readonly Step[]): readonly EvidenceStep[] =>
+  steps.map(evidenceStep);
+
+/**
+ * The inverse, for a checker that replays PUBLISHED evidence against the engine's own step
+ * relation (`test/ltl-evidence.ts` re-decides every LTL refutation this way). Faithful in both
+ * directions: `liftConfiguration(stepConfiguration(c))` carries exactly `c`'s entries.
+ */
+export const liftConfiguration = (c: StepConfiguration): Configuration => ({
+  control: new Map(Object.entries(c.control)),
+  values: new Map(Object.entries(c.values)),
+});
+
+export const liftStep = (s: EvidenceStep): Step => ({
+  instances: s.instances, sync: s.sync, label: s.label,
+  from: liftConfiguration(s.from), to: liftConfiguration(s.to),
+});
+
 export type EvidenceShape = "trace" | "lasso" | "path" | "none";
 export type EvidenceRole = "witness" | "counterexample";
 
 export interface Evidence {
   readonly shape: EvidenceShape;
   readonly role: EvidenceRole;
-  readonly steps: readonly Step[];
+  readonly steps: readonly EvidenceStep[];
   /** The repeating suffix; present iff shape is "lasso". */
-  readonly cycle: readonly Step[] | null;
+  readonly cycle: readonly EvidenceStep[] | null;
   /** Entity ids, for graph evidence. */
   readonly nodes: readonly string[] | null;
 }
@@ -1205,5 +1263,16 @@ export const modelMetrics = (s: CanonicalSystem): ModelMetrics => {
 export const configKey = (c: Configuration): string => {
   const control = [...c.control.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   const values = [...c.values.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  return JSON.stringify([control, values]);
+};
+
+/**
+ * `configKey`, for a configuration as evidence carries it. Same canonical form — sorted entry
+ * pairs — so a walk configuration and its published copy agree on identity: `stepConfigKey(
+ * stepConfiguration(c)) === configKey(c)`, pinned by `test/evidence-configurations.test.ts`.
+ */
+export const stepConfigKey = (c: StepConfiguration): string => {
+  const control = Object.entries(c.control).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  const values = Object.entries(c.values).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   return JSON.stringify([control, values]);
 };

@@ -15,7 +15,8 @@
  * the services facade is flagged in the report.
  */
 import type {
-  Configuration, EvidenceRole, EvidenceShape, QueryResult, ResultMagnitude, Scalar, Step,
+  EvidenceRole, EvidenceShape, EvidenceStep, QueryResult, ResultMagnitude, Scalar,
+  StepConfiguration,
 } from "../ir/types.ts";
 
 export interface Delta {
@@ -75,20 +76,20 @@ function coverageSentence(c: QueryResult["coverage"]): string {
     `in the explored region", not "does not exist".`;
 }
 
-function deltas(from: Configuration, to: Configuration): readonly Delta[] {
+function deltas(from: StepConfiguration, to: StepConfiguration): readonly Delta[] {
   const out: Delta[] = [];
-  for (const [id, after] of to.control) {
-    const before = from.control.get(id);
+  for (const [id, after] of Object.entries(to.control)) {
+    const before = from.control[id];
     if (before !== after) out.push({ ref: `${id}.state`, from: before ?? null, to: after });
   }
-  for (const [key, after] of to.values) {
-    const before = from.values.get(key);
+  for (const [key, after] of Object.entries(to.values)) {
+    const before = from.values[key];
     if (before !== after) out.push({ ref: key, from: before ?? null, to: after });
   }
   return out.sort((a, b) => a.ref.localeCompare(b.ref));
 }
 
-function narrateStep(step: Step, position: number, repeating: boolean): NarratedStep {
+function narrateStep(step: EvidenceStep, position: number, repeating: boolean): NarratedStep {
   const changed = deltas(step.from, step.to);
   const who = step.instances.length > 1
     ? `${step.instances.join(" and ")} move together`

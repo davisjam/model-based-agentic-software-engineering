@@ -25,7 +25,7 @@ import type {
   Evidence,
   EvidenceRole,
   Outcome,
-  Step,
+  EvidenceStep,
 } from "../ir/types.ts";
 import type { SceneEdge, SceneGraph } from "./scene.ts";
 import type {
@@ -75,20 +75,20 @@ export function presentableOutcome(
 // --------------------------------------------------------------------------------------------
 
 /** Only what actually changed: `document: waiting -> processing`, `retry_count: 0 -> 1`. */
-function stepChanges(s: Step): readonly string[] {
+function stepChanges(s: EvidenceStep): readonly string[] {
   const out: string[] = [];
-  for (const [inst, to] of [...s.to.control.entries()].sort()) {
-    const from = s.from.control.get(inst);
+  for (const [inst, to] of Object.entries(s.to.control).sort()) {
+    const from = s.from.control[inst];
     if (from !== to) out.push(`${inst}: ${from ?? "(unset)"} -> ${to}`);
   }
-  for (const [k, to] of [...s.to.values.entries()].sort()) {
-    const from = s.from.values.get(k);
+  for (const [k, to] of Object.entries(s.to.values).sort()) {
+    const from = s.from.values[k];
     if (from !== to) out.push(`${k}: ${from === undefined ? "(unset)" : String(from)} -> ${String(to)}`);
   }
   return out;
 }
 
-function describeStep(index: number, s: Step, inCycle: boolean): AccessibleStep {
+function describeStep(index: number, s: EvidenceStep, inCycle: boolean): AccessibleStep {
   const changes = stepChanges(s);
   const who = s.instances.length === 0 ? "the system" : s.instances.join(" and ");
   const what =
@@ -181,8 +181,8 @@ export function deriveEvidenceEmphasis(
       const step = i + 1;
       for (const inst of [...s.instances].sort()) {
         if (!mine.has(inst)) continue;
-        const from = s.from.control.get(inst);
-        const to = s.to.control.get(inst);
+        const from = s.from.control[inst];
+        const to = s.to.control[inst];
         if (from === undefined || to === undefined) continue;
         for (const st of from === to ? [from] : [from, to]) {
           if (nodeIds.has(st)) {

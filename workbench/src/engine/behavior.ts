@@ -29,6 +29,7 @@
  * for a BFS that found a path after visiting a handful of nodes.
  */
 import type { CanonicalSystem, Compilation, Evidence, Step } from "../ir/types.ts";
+import { evidenceSteps } from "../ir/types.ts";
 import {
   compileSystem, cycleThrough, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, pathBetween,
   traceTo, type CompiledSystem, type ExploreOptions, type StateSpace,
@@ -62,10 +63,10 @@ const NATURAL_QUANTIFIER: Readonly<Record<BehaviorForm, Quantifier>> = {
 };
 
 const trace = (steps: readonly Step[], role: Evidence["role"]): Evidence =>
-  ({ shape: "trace", role, steps, cycle: null, nodes: null });
+  ({ shape: "trace", role, steps: evidenceSteps(steps), cycle: null, nodes: null });
 
 const lasso = (prefix: readonly Step[], cycle: readonly Step[]): Evidence =>
-  ({ shape: "lasso", role: "witness", steps: prefix, cycle, nodes: null });
+  ({ shape: "lasso", role: "witness", steps: evidenceSteps(prefix), cycle: evidenceSteps(cycle), nodes: null });
 
 const asCompilation = (notes: readonly string[]): readonly Compilation[] =>
   notes.map((explanation) => ({ kind: "other", explanation }));

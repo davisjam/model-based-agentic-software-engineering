@@ -27,6 +27,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
+import type { StepConfiguration } from "../src/ir/types.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { Workspace } from "../src/app/services.ts";
 import {
@@ -64,9 +65,8 @@ const savedRaw = (system: CanonicalSystem, id: string): unknown => {
 // The comparator, as a function returning mismatches
 // ----------------------------------------------------------------------------------------------
 
-const finalValue = (cfg: { control: ReadonlyMap<string, string>; values: ReadonlyMap<string, Scalar> },
-  ref: string): Scalar | undefined =>
-  ref.endsWith(".state") ? cfg.control.get(ref.slice(0, -".state".length)) : cfg.values.get(ref);
+const finalValue = (cfg: StepConfiguration, ref: string): Scalar | undefined =>
+  ref.endsWith(".state") ? cfg.control[ref.slice(0, -".state".length)] : cfg.values[ref];
 
 function checkEvidence(where: string, ev: Evidence | null, exp: EvidenceExpectation): readonly string[] {
   const bad: string[] = [];
@@ -922,8 +922,8 @@ function visitedStates(ev: Evidence, instance: string): readonly string[] {
   const steps = [...ev.steps, ...(ev.cycle ?? [])];
   const first = steps[0];
   if (first === undefined) return [];
-  const seen = [String(first.from.control.get(instance))];
-  for (const s of steps) seen.push(String(s.to.control.get(instance)));
+  const seen = [String(first.from.control[instance])];
+  for (const s of steps) seen.push(String(s.to.control[instance]));
   return seen;
 }
 
@@ -1141,7 +1141,7 @@ test("the product computes a path latency", () => {
   assert.ok(freeOracle.expected <= latencyReq.limit,
     "the retry-free execution must sit inside the declared ceiling, or the example's lesson is gone");
   const last = free.evidence?.steps.at(-1);
-  assert.equal(last?.to.control.get("document-lifecycle"), "published",
+  assert.equal(last?.to.control["document-lifecycle"], "published",
     "the witness must END at the selected configuration, or the figure is about something else");
 });
 
@@ -1160,7 +1160,7 @@ test("the product computes memory(c) and a peak over reachable configurations", 
   assert.deepEqual(res.magnitude,
     { value: resident + active, dimension: "memory", unit: DIMENSIONS.memory.base });
   assert.equal(res.magnitude?.value, oracle.expected);
-  assert.equal(res.evidence?.steps.at(-1)?.to.control.get("document-lifecycle"), "remediating",
+  assert.equal(res.evidence?.steps.at(-1)?.to.control["document-lifecycle"], "remediating",
     "the witness is the configuration where the when-charged quantity is active");
 });
 

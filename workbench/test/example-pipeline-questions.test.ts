@@ -104,8 +104,8 @@ test("§12.3 Q1: the saved nominal-latency question computes the hand-derived re
   // And the figure is about the execution the question NAMES: a worst case whose witness stopped
   // short of the selection would be a number about a prefix.
   const last = res.evidence?.steps.at(-1);
-  assert.equal(last?.to.control.get(MACHINE), "published");
-  assert.equal(last?.to.values.get(`${MACHINE}.retry_count`), 0,
+  assert.equal(last?.to.control[MACHINE], "published");
+  assert.equal(last?.to.values[`${MACHINE}.retry_count`], 0,
     "retry_count at publication is what identifies the nominal execution, not the trace length");
 });
 
@@ -122,8 +122,8 @@ test("§12.3 Q3 and Q4: both saved questions compute the hand-derived maximum", 
   // Q4's witness must END at the selection, which is what distinguishes a selected maximum from an
   // unselected one that happens to agree with it.
   const last = successful.evidence?.steps.at(-1);
-  assert.equal(last?.to.control.get(MACHINE), "published");
-  assert.equal(last?.to.values.get(`${MACHINE}.retry_count`), 3);
+  assert.equal(last?.to.control[MACHINE], "published");
+  assert.equal(last?.to.values[`${MACHINE}.retry_count`], 3);
 });
 
 test("§12.3 Q5 and Q6: the two-second ceiling is refuted, and the refutation names the execution", () => {
@@ -267,6 +267,6 @@ test("the selection moves the figure, and the two §12.1 asks about are the pair
   assert.equal(magnitudeOf("retries exhausted", exhausted), max,
     "the failure terminal and the success terminal cost the same, which is why the two §12.1 " +
     "questions agree; a model whose failure path charged differently would separate them");
-  assert.equal(exhausted.evidence?.steps.at(-1)?.to.control.get(MACHINE), "waiting",
+  assert.equal(exhausted.evidence?.steps.at(-1)?.to.control[MACHINE], "waiting",
     "the witness must be the execution that never published, or this is measuring the same trace twice");
 });
