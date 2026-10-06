@@ -366,3 +366,32 @@ rebuilt). `requirements()` returns a real verdict for calibration-loop (`status:
 
 **My own probes were wrong 4x this stretch** (shape-guessing against `window.mage`). Both new
 mechanisms are now written into CLAUDE.md under the existing precondition control.
+
+## 261006 — PROD IS LIVE (15:27:45) and verified end-to-end
+
+Bundle 724482 byte-identical to local; `/llms.txt` + `/robots.txt` 200; `sanctionedRoute` in the
+published bundle. Headless probe of the PUBLISHED site, both pages, **no page errors and no failed
+requests**: index.html 200 titled "Calibration Loop - MAGE Workbench" (example-aware, as asked),
+learn.html 200 titled "Learn Modeling - MAGE", 26 ops, `requirements()` returns the `violated`
+verdict, `.authoring.sanctionedRoute` declared.
+
+**Lab re-run LANDED** (`8168def24`): three labs solved without opening `workbench/src/`, seven
+`export()` artifacts committed under `workbench/lab-runs/261006-rerun/` (loadable via Import).
+Verdicts: #1 real configurations "changes the experience most" (run 1 saw `{control:{},values:{}}`
+everywhere); #2 resolveExhausted produced END-TO-END at `budget: 1` -> `ok-evaluation`; #3/#4/#5/#6
+all real, #5 verified at the previously-bad site. **Nearest to cosmetic, self-reported:** the
+saved-query-definitions half of #6 declares the gap but opens no read-path -- "spared me nothing".
+
+**DEFECT FOUND BY THE LAB RUN -> fix dispatched.** `model.related` silently answers the OPPOSITE
+question on an unrecognized `direction`: `agent-api.ts:306` is a bare
+`direction === "outgoing" ? outgoing : incoming`, so `"out"`/`"from"`/`"forward"` all take the
+INCOMING branch and answer that, no refusal. Its own driver mis-measured a model because of it.
+Sibling: transaction refusals have no typed half (prose-only `{rule,where,message}`).
+
+**a11y at main: 113/114 under `WB_F6_SIMULATE_CI_FONTS=1`, 114/114 without.** Real 1.4.10 reflow --
+`learn.html` scrollWidth 321 vs 320, and the probe reports `Offenders: []`, i.e. it cannot attribute
+its own finding. CI's real fonts do NOT trigger it (deploy passed). Fix dispatched, including probe
+attribution + sabotage proof.
+
+**In flight (3):** ci-split (1 commit), direction-honesty, reflow-320.
+**DO NOT PUSH while these run** -- no compute mediator here; order the push after they land.
