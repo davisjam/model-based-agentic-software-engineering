@@ -31,6 +31,9 @@
 // registry still loads in a node test with no DOM. `DESIGN-shell-261002.md` §9a settled this —
 // declaring the union here and the SURFACES table there would split one fact across two files.
 import type { NavSurface } from "../ui/shell/surfaces.ts";
+// Type-only, for `AuthoringCoverage.ops`: a declaration naming an op the transaction parser does
+// not implement fails to compile, which is the compiler-held half of the authoring-scope join.
+import type { OpName } from "../transaction/types.ts";
 
 /** Every public semantic capability. The list is closed; adding one is a deliberate act. */
 export type CapabilityId =
@@ -441,6 +444,100 @@ export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
     fencedBy: "DECISIONS-RULED-model-query-261002.md",
   },
 ];
+
+// ----------------------------------------------------------------------------------------------
+// Authoring scope — what the transaction op vocabulary reaches, DECLARED
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * How far the op vocabulary reaches one authored construct of the model document.
+ *
+ * `ops` is typed against the transaction parser's own `OpName`, so a declaration naming an op the
+ * parser does not implement fails to COMPILE — the highest rung available for this join. The
+ * `construct` strings are the model schema's top-level property names, and
+ * `test/authoring-scope-declared.test.ts` holds that this list and the schema's keys partition
+ * each other exactly, so a construct added to the schema cannot ship unclassified.
+ */
+export type AuthoringCoverage =
+  /** Fully authorable through transaction ops. */
+  | { readonly construct: string; readonly coverage: "ops"; readonly ops: readonly OpName[] }
+  /** Some acts are ops; the rest is whole-document. `note` says which is which. */
+  | {
+    readonly construct: string; readonly coverage: "partial";
+    readonly ops: readonly OpName[]; readonly note: string;
+  }
+  /** No op reaches it; the whole-document route is the only author. */
+  | { readonly construct: string; readonly coverage: "document"; readonly note: string };
+
+/**
+ * The declared boundary of transactional authoring, published by `describe().authoring`.
+ *
+ * The 261006 lab-solver run paid for this being implicit: the op vocabulary cannot author
+ * machines, events, variables, domains, relation types, entity-type declarations, quantities or
+ * requirements, the only route is whole-document export → edit → load, and the agent INFERRED
+ * that rather than being told — while `affordanceGaps` (a DERIVED list of UX-I1 violations, zero
+ * by gate) read as "no gaps anywhere". One refusal even recommended "delete and re-declare the
+ * quantity", an act no op performs. The gaps are deliberate scope; deliberate scope gets
+ * DECLARED, in data, where an agent reads the rest of the surface.
+ */
+export const AUTHORING_SCOPE: {
+  /** The supported path for everything `coverage: "document"`/`"partial"` leaves beyond the ops. */
+  readonly sanctionedRoute: string;
+  readonly constructs: readonly AuthoringCoverage[];
+  /**
+   * Declared machine/human asymmetries that are deliberate scope — the DECLARED complement of the
+   * derived `affordanceGaps`, which only ever reports violations of the parity invariant.
+   */
+  readonly gaps: readonly string[];
+} = {
+  sanctionedRoute:
+    "window.mage.export() -> edit the YAML -> window.mage.load(text). Whole-document authoring is "
+    + "the SUPPORTED route for every construct the op vocabulary does not reach; load() runs the "
+    + "full validation a transaction runs, so nothing about the route is second-class.",
+  constructs: [
+    { construct: "mage", coverage: "document", note: "the format version header" },
+    { construct: "system", coverage: "document", note: "the system id and name header" },
+    { construct: "domains", coverage: "document", note: "ordered-enum vocabulary declarations" },
+    {
+      construct: "entity-types", coverage: "document",
+      note: "the entity-type vocabulary itself; set-entity-type TYPES an entity, it does not "
+        + "declare a vocabulary entry",
+    },
+    { construct: "relation-types", coverage: "document", note: "relation-type declarations, including composition and absence clauses" },
+    {
+      construct: "entities", coverage: "ops",
+      ops: ["add-entity", "delete-entity", "set-label", "set-property", "set-entity-type", "add-note"],
+    },
+    { construct: "events", coverage: "document", note: "synchronized-event declarations and their participant lists" },
+    {
+      construct: "machines", coverage: "partial",
+      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "add-note"],
+      note: "states and transitions of an EXISTING machine are op-editable; creating or deleting a "
+        + "machine, declaring instances, variables or derived values is whole-document only",
+    },
+    {
+      construct: "models", coverage: "ops",
+      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "add-note"],
+    },
+    {
+      construct: "quantities", coverage: "partial",
+      ops: ["set-quantity-value"],
+      note: "set-quantity-value edits a declared POINT value; adding or deleting a quantity, or "
+        + "declaring a range or expression, is whole-document only",
+    },
+    { construct: "accounting", coverage: "document", note: "charge-basis declarations the quantity layer reads" },
+    { construct: "queries", coverage: "ops", ops: ["save-query", "delete-query"] },
+    { construct: "requirements", coverage: "document", note: "obligations (statement / expressed_as / satisfied_when)" },
+  ],
+  gaps: [
+    "requirement verification statuses (satisfied / violated / inconclusive / error) are "
+      + "machine-readable via window.mage.requirements() and no human surface renders them yet; "
+      + "the property list's requirement rows show a saved query's expectation standing, which is "
+      + "a different construct",
+    "saved-query DEFINITIONS have no read-path of their own: savedQueries() returns results, and "
+      + "a definition is read from the whole document via window.mage.export()",
+  ],
+};
 
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string, parameters: readonly MachineParameter[]): Affordance =>

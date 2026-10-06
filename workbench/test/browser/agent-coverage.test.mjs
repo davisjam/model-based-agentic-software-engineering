@@ -514,11 +514,14 @@ const DRIVERS = {
     const read = await page.evaluate(() => {
       const results = window.mage.savedQueries();
       const properties = window.mage.properties();
+      // The row's third spelling: the authored requirements, verified against the SAME re-run.
+      const requirements = window.mage.requirements();
       return {
         saved: Object.keys(results).length,
         properties: properties.length,
         outcomes: Object.values(results).map((r) => r.outcome),
         grounded: properties.filter((p) => p.grounds.length > 0).length,
+        requirements: Object.values(requirements).map((r) => r.verification.status),
       };
     });
     assert.ok(read.saved > 0, "the flagship system saves questions; savedQueries() returned none");
@@ -526,6 +529,11 @@ const DRIVERS = {
       "properties() and savedQueries() disagree about how many statements this system holds");
     assert.ok(read.outcomes.every((o) => typeof o === "string" && o.length > 0),
       "a saved question came back with no outcome");
+    assert.ok(read.requirements.length > 0,
+      "the flagship authors a requirement; requirements() returned none");
+    assert.ok(read.requirements.every((s) =>
+      ["satisfied", "violated", "inconclusive", "error"].includes(s)),
+    "a requirement reading came back outside the four-valued verification vocabulary");
     return read;
   },
 
