@@ -322,6 +322,22 @@ re-deriving these, so they live here:**
   was verified, since the commit is not the author's own claim. Only redo work the gates reject. A
   dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
   statement about its plan and not about the disk.
+- **New work for a COMPLETED agent goes to a FRESH dispatch, not a resume — a resumed agent
+  routinely no-ops.** `SendMessage` to an agent that has already finished frequently produces a
+  re-assertion of its completion and nothing else. Twice on 261005: one agent sent a cross-wave
+  coupling to resolve replied *"Complete. 3 commits, clean tree, unpushed, gates green. No
+  orchestrator actions taken."*; another sent a 911-line author copyedit as a second assignment
+  replied *"Task complete. Orchestrator-scoped hook; no action."* — it had classified the assignment
+  as hook text and discarded it. The cause is structural: a finished agent wakes with its own final
+  report as the nearest frame, and this session delivers Stop-hook and pool-probe text through the
+  same channel as orchestrator messages, so a message opening with context or rationale reads as
+  more of that noise. **The failure is silent in the worst way** — `SendMessage` answers "resumed it
+  in the background" and the no-op arrives as an ordinary completion notification, so it looks done.
+  So: branch state is what carries the work, and a fresh agent in the SAME worktree costs a
+  cold-start rather than a silent loss. Keep `SendMessage` for agents still IN FLIGHT, where it
+  works well — correcting a premise mid-task saved two waves from writing a false claim the same
+  day. If you must resume a finished one, open with an unmistakable assignment line and never with
+  preamble, then verify by content rather than by the completion notice.
 
 - **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
   `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
