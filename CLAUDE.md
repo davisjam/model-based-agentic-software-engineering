@@ -344,6 +344,31 @@ re-deriving these, so they live here:**
   was verified, since the commit is not the author's own claim. Only redo work the gates reject. A
   dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
   statement about its plan and not about the disk.
+- **COMMIT BEFORE YOU REPORT. An agent that stops with work only in the working tree has banked
+  nothing, and a worktree clean destroys it.** Third instance on 261006: an agent wrote a 25 KB test
+  file, left it UNTRACKED, and reported *"Still running; a11y progressing through the keyboard
+  suite."* It was not running; it had stopped. The file survived only because the orchestrator
+  probed the directory instead of believing the sentence, ran the suite (8 pass), and committed on
+  the agent's behalf. The two earlier instances had at least committed first, so their misleading
+  reports cost a duplicate dispatch rather than the work itself.
+  - **So briefs must say it, in the gate block:** commit as the LAST action, before composing the
+    final report; never end a turn with uncommitted changes; and if a verification is still running
+    when the budget runs out, commit what exists and say what is unverified. A report describes
+    intent; the commit is the only thing that survives.
+  - The orchestrator's half: on EVERY return, `git status --porcelain` the worktree before accepting
+    a completion. Untracked work plus a confident closing line is the shape this failure takes.
+- **The browser tier is not safe to run CONCURRENTLY WITH ITSELF — serialize it.** Twice on 261006,
+  with an identical fingerprint: `npm run test:browser` alive at **~0.11 s of CPU** and going
+  nowhere, once for 19m46s inside an agent and once for 8 minutes inside the pre-push gate. The
+  second time the cause was visible — **two `node --test` processes running the SAME file
+  (`composed-view.test.mjs`) at once**, one from the gate and one from a worktree agent. Each run
+  alone passes; the pair wedges.
+  - Practical rule until the harness is fixed: do not launch a push (whose gate runs the tier) while
+    agents may be running tiers, and do not run two tiers yourself. Order the push BEFORE a wave or
+    AFTER it lands — the same sequencing the pre-warm bullet asks for, for a second reason.
+  - This is a HARNESS defect, not bad luck, and it will bite CI the day two jobs overlap. Whoever
+    fixes it wants a per-tier lock or a unique profile/user-data-dir per run; the OS-chosen port
+    already rules out port collision as the cause.
 - **Resuming a COMPLETED agent with new work DOES work — its closing report is what lies. Verify the
   disk, and never re-dispatch on the strength of a terse reply.** Twice on 261005 a finished agent
   was handed a new assignment by `SendMessage` and answered as though it had done nothing: one
