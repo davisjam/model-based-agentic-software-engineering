@@ -803,6 +803,26 @@ const PINNED_GATE_FILES: readonly { readonly file: string; readonly script: stri
       + "nothing else.",
   },
   {
+    file: "test/semantic-live.test.ts",
+    script: "test",
+    reason: "The perturbation census: every guard, relation type and property in every shipped "
+      + "example deleted through the real hypothesis seam, with every saved answer and requirement "
+      + "re-run to see whether one moves. It is the ONLY mechanical holder of the claim that a "
+      + "declaration the corpus presents as causal carries a result — the fixtures pin ANSWERS, so "
+      + "an inert declaration changes none of them and a release audit had to find two by hand. "
+      + "Delete this file and the two quarantined findings lose the thing that reports them.",
+  },
+  {
+    file: "test/epistemic-boundary.test.ts",
+    script: "test",
+    reason: "A1's PRESENTATION half: no authored string reaches a verdict channel, every note kind "
+      + "is disposed as caveated or not, and the caveat predicate has one home. A1 itself is held "
+      + "structurally — `systemHash` excludes annotation — and that guarantees a note moved no "
+      + "result while guaranteeing nothing about whether a reader can tell. This file is the only "
+      + "holder of the second half, and of the channel census that keeps a new view-model field "
+      + "from landing with nobody having decided which side of the boundary it is on.",
+  },
+  {
     file: "test/adapter-reexport.test.ts",
     script: "test",
     reason: "The one property the component model's edges cannot express: no file re-exports a "

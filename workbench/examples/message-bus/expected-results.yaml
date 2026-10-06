@@ -271,3 +271,42 @@ modifications:
       - query: restricted-data-reaches-impermitted-subscriber
         from: holds
         to: refuted
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts).
+#
+# That gate deletes every guard, relation type and property here, re-runs every saved question and
+# every requirement, and asks whether an answer moved. Inert is fine; prose that calls an inert
+# declaration causal is not. A row is a CLAIM the gate measures in both directions -- a family
+# labelled inert that later gains a deciding member is reported.
+#
+# `relation:data-policy/carries_field` is deliberately NOT here. It is inert and the
+# `restricted-data-reaches-impermitted-subscriber` note explains the counterexample by naming it,
+# which is the defect; a row saying "documentation on purpose" would allowlist exactly what the
+# finding is about. It is quarantined in the gate's pinned set until that sentence is corrected.
+# ---------------------------------------------------------------------------
+
+declarations:
+
+  - id: field-classification-is-held-by-a-parity-control
+    subject: property:classification
+    inert: true
+    held_by: parity-control
+    reason: >
+      The per-field sensitivity. No saved question reads it: the cross-model safety query compares
+      `source.permits` against `target.carries` over `subscribes` edges, and `carries` is the
+      event-type aggregate. The field classifications are held instead by the parity control in
+      test/examples.test.ts, which asserts `carries` equals the maximum classification over the
+      `carries_field` edges. v0.1 aggregates nothing over a relation, so a control comparing two
+      authored surfaces is the strongest rung available -- but it is a control, not an answer.
+
+  - id: calls-carries-its-relation-types-absence-clause
+    subject: relation:event-flow/calls
+    inert: true
+    held_by: the-reader
+    reason: >
+      One synchronous-invocation edge, and no saved question is asked over `calls`. It is here so
+      the absence clause on the relation type has something to be about: the absence of a `calls`
+      edge does not mean two services are decoupled, because they may be joined through a published
+      event. A vocabulary that offered only event edges could not teach that distinction, and the
+      edge is what makes the clause a statement about this model rather than a general remark.

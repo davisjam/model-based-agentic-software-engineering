@@ -508,6 +508,17 @@ const DISPOSITIONS: Readonly<Record<string, "compared" | "shape" | "prose">> = {
   // reader does not open at all stay `prose`, which is now a derived distinction rather than a
   // judgement about what a field is for.
   "quantitative_expectations[].note": "shape",
+  // The inert-label ledger. Every field is `compared`, not `shape`: `test/semantic-live.test.ts`
+  // resolves `subject` against the sweep's own locators, measures `inert` against what deleting the
+  // declaration actually does, checks `held_by` for membership in a closed vocabulary, and enforces a
+  // length floor on `reason` -- four comparisons against values rather than type checks. `inert` is
+  // refused outright when false, which is a comparison too.
+  "declarations": "shape",
+  "declarations[].id": "compared",
+  "declarations[].subject": "compared",
+  "declarations[].inert": "compared",
+  "declarations[].held_by": "compared",
+  "declarations[].reason": "compared",
 };
 
 /** Keys whose VALUE is an author-chosen map and whose members are therefore not key paths. */

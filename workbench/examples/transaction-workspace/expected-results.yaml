@@ -451,3 +451,59 @@ modifications:
       - query: base-can-keep-advancing
         from: refuted
         to: holds
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts).
+#
+# That gate deletes every guard, relation type and property here, re-runs every saved question and
+# every requirement, and asks whether an answer moved. A declaration whose removal moves nothing is
+# inert, which is fine until prose calls it the thing that carries a result. Each row is a CLAIM
+# the gate measures: labelled inert and measured live is reported too.
+# ---------------------------------------------------------------------------
+
+declarations:
+
+  - id: refuse-stale-guard-makes-the-pair-total
+    subject: guard:transaction-lifecycle/valid->refused
+    inert: true
+    held_by: model-shape
+    reason: >
+      `base_current = false`, the exact complement of the guard on `valid -> committed`. What it
+      buys is TOTALITY of the pair -- a validated change whose base has moved has a verdict
+      available -- which is a property of the model's shape rather than of any answer. No saved
+      question moves when it goes, because `refused` is already reachable unguarded from `proposed`
+      through `reject`, so reachability is decided elsewhere. The machine's own comment claims
+      exactly this and no more, which is the wording to keep.
+
+  - id: validator-binding-has-no-accounting-to-feed
+    subject: property:executes_in_state
+    inert: true
+    held_by: parity-control
+    reason: >
+      The binding from the validator component to the lifecycle state it runs in. It is the join the
+      quantitative layer consumes when there is accounting to run, and this example declares no
+      quantities, so nothing reads it here -- `validator-runs-on-some-execution` asks for the state
+      directly. The binding census in test/bindings-census.test.ts is what holds it, and the live
+      instance of the same property is in document-processing, where latency charges resolve through
+      it.
+
+  - id: pipeline-shape-beyond-the-one-path-asked-about
+    subject: relation:change-pipeline/records_in
+    inert: true
+    held_by: the-reader
+    reason: >
+      Where the engine records a committed change. The only question asked over this model is
+      `candidate-reaches-the-authoritative-store`, a path over `hands_to`, so the audit edge decides
+      nothing. It is here because the model's stated purpose is the shape of the change pipeline, and
+      a pipeline that showed only the edges some query happens to traverse would be a reduction of a
+      reduction.
+
+  - id: submission-edge-names-the-pipelines-entry-point
+    subject: relation:change-pipeline/submits_to
+    inert: true
+    held_by: the-reader
+    reason: >
+      The proposer's entry into the pipeline. Inert for the same reason as the audit edge above: the
+      one saved question over this model is a path from the engine to the store, which starts
+      downstream of the submission. It is what makes the proposer a part of the model rather than an
+      actor outside it, and a reader looking for where a change comes from looks here.

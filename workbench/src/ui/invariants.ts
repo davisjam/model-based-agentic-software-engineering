@@ -14,7 +14,9 @@
  * over the IR would pass on a workbench that showed nothing.
  */
 import type { UxViolation } from "../app/capabilities.ts";
-import type { PurposeBlock, ViewModel } from "./view-model.ts";
+import type { Annotated, CanonicalSystem, Purpose } from "../ir/types.ts";
+import type { PropertyRow, PurposeBlock, ViewModel } from "./view-model.ts";
+import { CAVEATED_NOTE_KINDS } from "./view-model.ts";
 
 /** A purpose block is a statement either way; an empty one is a gap dressed as a field. */
 function stated(p: PurposeBlock): boolean {
@@ -140,6 +142,160 @@ export function checkModelPlurality(vm: ViewModel): readonly UxViolation[] {
         problem: "a drawable subject names more than one model; a linked presentation must keep each "
           + "model independently inspectable and must not create a semantic supermodel (§6.3)",
       });
+    }
+  }
+  return out;
+}
+
+// --------------------------------------------------------------------------------------------
+// A1's PRESENTATION half — the epistemic boundary
+// --------------------------------------------------------------------------------------------
+
+/**
+ * A1 is held in the engine and nothing held it in the UI.
+ *
+ * **The invariant (A1):** annotation SHALL NOT alter the semantic interpretation or analysis result
+ * of a model. That half is structural — `systemHash` excludes annotation entirely, so two systems
+ * differing only in notes are the same system, and no note can move a verdict.
+ *
+ * The half with no holder is the one a reader experiences: **a string the UI shows as an answer must
+ * come from the engine, and a string that is the author's own explanation must be distinguishable
+ * from one.** A1 guarantees the author's sentence changed no result; it guarantees nothing about
+ * whether the reader can tell. Confuse the two and an inert note reads as evidence — the same defect
+ * class as prose crediting an inert declaration, one layer out.
+ *
+ * ## What is checked, and the axis that makes it checkable
+ *
+ * Not authored-versus-assembled. A model row's `detail` legitimately assembles authored facts behind
+ * naming prefixes (`asks:`, `represents`, `deliberately omits`, `Absence means:`), and a rule
+ * forbidding that would fail a correct design. The axis is **VERDICT-BEARING**: the channels a reader
+ * takes for the engine's answer, which are the property rows' verdict fields and the banner. An
+ * authored sentence appearing there is indistinguishable from a derived one.
+ *
+ * Two things are checked:
+ *
+ *   1. **No authored system string reaches a verdict-bearing channel.** Every note text, purpose
+ *      `represents` entry and provenance value in the system, against every verdict field of every
+ *      property row. The one sanctioned crossing is `refusal`, which quotes `purpose.omits` on
+ *      purpose — the refusal rung consults the declaration and names it as the author's, so the
+ *      quotation IS the evidence. That crossing is declared by the caller rather than assumed here.
+ *   2. **Every rendered note carrying a caveated kind says so.** `notesCaveat` must be present
+ *      exactly where a note of a caveated kind is rendered, and absent otherwise. A row that renders
+ *      an assumption and states no boundary presents authored context in a notes block that looks
+ *      like any other — and a row that states the boundary with no assumption on it teaches the
+ *      reader to ignore the sentence.
+ *
+ * What is NOT checked here, stated rather than left to be rediscovered: whether the DOM renders the
+ * caveat it is handed, and whether the kind-word beside each note is visually distinct. The first is
+ * the browser tier's; the second is a styling claim, and this file's subject is the structure.
+ */
+export interface EpistemicViolation {
+  readonly invariant: "A1-PRESENTATION";
+  readonly subject: string;
+  readonly problem: string;
+}
+
+/** One authored string in the system, with the home that explains where it came from. */
+export interface AuthoredString {
+  readonly home: string;
+  readonly text: string;
+}
+
+const purposeStrings = (home: string, p: Purpose): readonly AuthoredString[] => [
+  ...(p.question === null ? [] : [{ home: `${home}.purpose.question`, text: p.question }]),
+  ...p.represents.map((text) => ({ home: `${home}.purpose.represents`, text })),
+];
+
+const annotationStrings = (home: string, a: Annotated): readonly AuthoredString[] => [
+  ...a.notes.map((n) => ({ home: `${home}.notes.${n.id}`, text: n.text })),
+  ...(a.provenance === null ? [] : [a.provenance.prompt, a.provenance.rationale]
+    .filter((t): t is string => t !== null)
+    .map((text) => ({ home: `${home}.provenance`, text }))),
+];
+
+/**
+ * Every authored string a system carries, each with its home.
+ *
+ * `purpose.omits` is deliberately ABSENT. It is authored text the ENGINE reads — the refusal rung
+ * consults it and quotes the author's own wording when a question's subject was declined — so it is
+ * not purely explanation, and including it here would report the sanctioned crossing as a violation.
+ * It is disposed in the gate's own census instead, where the reason can be stated.
+ */
+export function authoredStrings(system: CanonicalSystem): readonly AuthoredString[] {
+  const out: AuthoredString[] = [];
+  for (const e of system.entities.values()) out.push(...annotationStrings(`entity:${e.id}`, e.annotation));
+  for (const m of system.models.values()) {
+    out.push(...annotationStrings(`model:${m.id}`, m.annotation), ...purposeStrings(`model:${m.id}`, m.purpose));
+  }
+  for (const r of system.relations) {
+    out.push(...annotationStrings(`relation:${r.model}/${r.from}->${r.to}`, r.annotation));
+  }
+  for (const m of system.machines.values()) out.push(...purposeStrings(`machine:${m.id}`, m.purpose));
+  return out.filter((a) => a.text.trim().length > 0);
+}
+
+/** The verdict-bearing fields of a property row, named so the census can be total over them. */
+export const verdictFields = (p: PropertyRow): readonly (readonly [string, string])[] => [
+  ["status", p.status], ["verdict", p.verdict ?? ""], ["coverage", p.coverage],
+  ["expectation", p.expectation ?? ""], ["revision", p.revision],
+  ["groundsMissing", p.groundsMissing ?? ""],
+  // Included and then EXEMPTED by the caller's sanctioned set, rather than omitted here. Omitting
+  // it would make the exemption decorative: the field would go unchecked whether anyone declared it
+  // or not, and withdrawing the declaration would change nothing.
+  ["refusal", p.refusal ?? ""],
+  ...p.evidence.map((e, i) => [`evidence[${i}]`, e] as const),
+  ...p.grounds.map((g, i) => [`grounds[${i}]`, g] as const),
+  ...p.compilation.map((c, i) => [`compilation[${i}]`, c] as const),
+];
+
+/**
+ * A1's presentation half, as a function over the view model and the system behind it.
+ *
+ * `sanctioned` names the verdict fields a caller has declared may quote the author — today only
+ * `refusal`, and the gate holds the evidence for that declaration. Passed in rather than hardcoded
+ * so the exemption is the caller's claim and shows up in the caller's census.
+ */
+export function checkEpistemicBoundary(
+  vm: ViewModel,
+  system: CanonicalSystem,
+  sanctioned: ReadonlySet<string> = new Set(["refusal"]),
+): readonly EpistemicViolation[] {
+  const out: EpistemicViolation[] = [];
+  const authored = authoredStrings(system);
+
+  for (const p of vm.properties) {
+    for (const [field, text] of verdictFields(p)) {
+      if (sanctioned.has(field) || text.trim().length === 0) continue;
+      for (const a of authored) {
+        if (!text.includes(a.text.trim())) continue;
+        out.push({
+          invariant: "A1-PRESENTATION", subject: `${p.id}.${field}`,
+          problem: `the verdict field '${field}' of property '${p.id}' contains the authored string `
+            + `at ${a.home}. A reader takes a verdict channel for the engine's answer, so authored `
+            + `explanation there is indistinguishable from derived evidence.`,
+        });
+      }
+    }
+  }
+
+  for (const section of vm.sections) {
+    for (const row of section.rows) {
+      const caveated = row.notes.filter((n) => CAVEATED_NOTE_KINDS.has(n.kind));
+      if (caveated.length > 0 && row.notesCaveat === null) {
+        out.push({
+          invariant: "A1-PRESENTATION", subject: `${section.id}/${row.id}`,
+          problem: `renders ${caveated.length} note(s) of a caveated kind `
+            + `(${caveated.map((n) => n.kind).join(", ")}) and states no boundary beside them, so `
+            + "authored context is presented in a block that looks like any other.",
+        });
+      }
+      if (caveated.length === 0 && row.notesCaveat !== null) {
+        out.push({
+          invariant: "A1-PRESENTATION", subject: `${section.id}/${row.id}`,
+          problem: "states the annotation boundary on a row carrying no note of a caveated kind. A "
+            + "caveat on everything is a caveat a reader learns to skip.",
+        });
+      }
     }
   }
   return out;

@@ -779,3 +779,69 @@ modifications:
       - query: compute-payload-fits-onboard-ram
         from: holds
         to: refuted
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts).
+#
+# That gate deletes every guard, relation type and property here, re-runs every saved question and
+# every requirement, and asks whether an answer moved. Inert is fine on its own; prose that calls an
+# inert declaration causal is the defect the gate exists for. Each row is a CLAIM it measures in
+# both directions -- a family labelled inert that later decides something is reported.
+# ---------------------------------------------------------------------------
+
+declarations:
+
+  - id: resume-guard-restates-the-declared-domain
+    subject: guard:mission/recovering->driving
+    inert: true
+    held_by: stronger-declaration
+    reason: >
+      `recovery_count < 3` restates the bound `range: [0, 3]` already carries. The transition's
+      effect is `recovery_count + 1`, and a step whose effect would leave a variable's declared
+      finite domain is SKIPPED rather than clamped, so the domain alone stops the fourth
+      re-localization and the guard decides no reachable step. It states the policy where a reader
+      of the transition looks; the refutation of endless recovery rests on the finite domain.
+
+  - id: give-up-guard-makes-the-recovery-pair-total
+    subject: guard:mission/recovering->aborted
+    inert: true
+    held_by: model-shape
+    reason: >
+      `recovery_count = 3`, the exact complement of the resume guard above, so the two edges out of
+      `recovering` are total over the counter. What it buys is that shape rather than any answer:
+      `aborted` is already reachable unguarded from `planning` through `reject-plan`, so no saved
+      question moves when the guard goes. The pair being total is what makes "a mission that keeps
+      losing localization ends" a statement about the model rather than about a search.
+
+  - id: buffer-ownership-is-not-the-memory-accounting
+    subject: relation:compute-platform/owns_buffer
+    inert: true
+    held_by: the-reader
+    reason: >
+      Which subsystem owns which buffer. The peak-memory question resolves charges through the
+      buffers' own declared quantities, not through this edge set, so deleting it moves no figure
+      and no verdict. It is here because a carve-out a reader cannot attribute is a number without
+      an owner: the edges say who to ask when the budget is exceeded, which is the model's stated
+      purpose and not something a quantity can carry.
+
+  - id: endurance-topology-carries-no-duration-figure
+    subject: relation:mission-endurance/carries
+    inert: true
+    held_by: the-reader
+    reason: >
+      That the rover carries the battery. The endurance questions are a behavioural reachability
+      over `battery-charge.state` and a latency budget over mission duration, and neither traverses
+      this model's edges, so the containment fact decides nothing. It is what makes the battery part
+      of the rover rather than a free-floating entity, which a reader needs before the charge states
+      mean anything.
+
+  - id: power-edges-name-what-the-battery-feeds
+    subject: relation:mission-endurance/powers
+    inert: true
+    held_by: the-reader
+    reason: >
+      Which subsystems the battery powers. Inert for the same reason as the containment edge above:
+      no question is asked over this model's relations, and charge is modeled as enumerated battery
+      states rather than as a flow along these edges. They are here so the endurance model states
+      WHAT depletes the battery, which is the fact a reader needs to judge whether the state
+      enumeration is the right reduction.
