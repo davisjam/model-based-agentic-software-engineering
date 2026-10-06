@@ -161,15 +161,24 @@ queries:
       and a counterexample refutes it. Held non-vacuously: both conjuncts are individually
       reachable, and the modification below produces the counterexample on demand.
 
-      What CARRIES it is the `claim` synchronization, not the guard on `claimed -> processing`.
-      `claim` steps the job into `claimed` and the lease out of `free` in one system transition, and
-      it is the only route into `claimed`, so every route into `processing` passes a held lease. The
-      guard restates that and is redundant at this revision -- delete it and all eight answers above
-      stay put. Say so plainly, because the opposite reading sends a student to break a transition
-      that cannot move an answer.
+      It is carried JOINTLY -- by the `claim` synchronization and by the guard on
+      `claimed -> processing` -- and by construction rather than by either declaration alone. No
+      single deletion exhibits the violation, and all three attempts are measured:
 
-      Which is why the modification below ADDS a route that skips `claim` rather than unguarding
-      this one, and why its repair guards the new transition instead of restoring the old guard.
+      Delete the guard and all eight answers above stay put: `claim` is the only route into
+      `claimed` and it steps the lease out of `free` in the same system transition, so the guard
+      never meets a configuration to reject. Delete `sync: claim` and the engine refuses the system
+      outright -- job-lifecycle becomes a declared participant of `claim` that never participates,
+      which is V12 and a modeling error rather than a counterexample. Delete the
+      `claimed -> processing` transition and `processing` goes unreachable, so this query still
+      answers `holds` under exhaustive coverage while `completed-is-reachable` turns `refuted`:
+      green for the want of a witness, with no disclosure, because V44 reserves vacuity for an
+      unsatisfiable predicate and this predicate is satisfiable.
+
+      Which is why the modification below ADDS a route that skips `claim` rather than editing
+      anything, and why its repair guards the NEW transition. The repair's own note already says the
+      right thing -- the guard, not the absence of the transition, is what carries the invariant --
+      and that is the arm which earns the existing guard its place.
 
   - id: two-workers-own-one-job
     label: Two workers can simultaneously own the same job
