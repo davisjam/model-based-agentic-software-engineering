@@ -148,6 +148,19 @@ async function countChangedPixels(page, beforeB64, afterB64, inset) {
  * position would be the wrong region for the one control that moves when focused -- the skip link
  * sits at `left: -9999px` until `:focus` pulls it on screen -- and that control is also the one
  * whose indication most needs proving.
+ *
+ * The ANCESTOR SCROLL STATE is recorded with the geometry and restored before every shot and every
+ * rect read, because the clip's page coordinates say nothing about a scrolled container's inside.
+ * The control that forced this: the first measured `summary` sits in the nav rail, `overflow: auto`
+ * over ~3400px of content in an 800px box. Reaching it by Tab scrolls the RAIL, not the page; this
+ * probe's own release-and-reach between its two shots scrolls it again, differently (Chromium's
+ * minimal reveal, against this function's explicit centering); and a clip pinned to page
+ * coordinates then samples pixels the control is no longer under. Measured, same commit, same
+ * element, ring painted and `:focus-visible` matched throughout: 1804 of 4704 band pixels when the
+ * scroll is held still, 0 of 4704 through the unrestored dance here, 155 of 4704 on the CI runner's
+ * fonts -- a verdict that followed the scroll state, where `focusOrderAt`'s correction below
+ * follows it for positions. Restoring the recorded state before both shots makes the two
+ * screenshots a measurement of focus, which is the only thing that may differ between them.
  */
 export async function focusRingDiff(page, selector, { inset = 8, label = selector } = {}) {
   if (await page.evaluate((sel) => document.querySelector(sel) === null, selector)) {
@@ -184,6 +197,18 @@ export async function focusRingDiff(page, selector, { inset = 8, label = selecto
           height: Math.ceil(Math.min(r.height + pad * 2, window.innerHeight)),
         };
       })(),
+      // Every ancestor's scroll position at the moment the clip was computed, by depth. The clip's
+      // page coordinates are only meaningful under THIS state -- see the scrolled-rail note above.
+      // The document scroller is excluded (the window scroll is restored separately, from the
+      // clip), the same split `focusOrderAt` uses.
+      ancestorScroll: (() => {
+        const out = [];
+        for (let n = el.parentElement; n !== null && n !== document.documentElement
+          && n !== document.body; n = n.parentElement) {
+          out.push([n.scrollTop, n.scrollLeft]);
+        }
+        return out;
+      })(),
     };
   }, inset);
   if (!Number.isFinite(focused.clip.width) || !Number.isFinite(focused.clip.height)
@@ -196,27 +221,44 @@ export async function focusRingDiff(page, selector, { inset = 8, label = selecto
   }
 
   /**
-   * Scroll the clip region into the viewport, then capture it.
+   * Put every scroller back where the clip was computed, then capture the region.
    *
-   * The scroll is explicit and identical before both shots. `captureBeyondViewport` is left off --
-   * it emulates a taller viewport, which is a layout change in the middle of a pixel comparison --
-   * so the region must genuinely be on screen, and Tab's own scrolling does not put it in the same
-   * place twice.
+   * The restore is explicit and identical before both shots: the recorded ancestor scrolls by
+   * depth, then the window. Without the ancestor half, Tab's own minimal-reveal scrolling between
+   * the shots moves a control inside a scrolled rail out from under its page-coordinate clip.
+   * `captureBeyondViewport` is left off -- it emulates a taller viewport, which is a layout change
+   * in the middle of a pixel comparison -- so the region must genuinely be on screen.
    */
+  const restoreScroll = () => page.evaluate((sel, scrolls, y) => {
+    let depth = 0;
+    for (let n = document.querySelector(sel).parentElement; n !== null
+      && n !== document.documentElement && n !== document.body; n = n.parentElement) {
+      const s = scrolls[depth];
+      if (s !== undefined) { n.scrollTop = s[0]; n.scrollLeft = s[1]; }
+      depth += 1;
+    }
+    window.scrollTo(0, Math.max(0, y - 100));
+  }, selector, focused.ancestorScroll, focused.clip.y);
   const shot = async () => {
-    await page.evaluate((y) => window.scrollTo(0, Math.max(0, y - 100)), focused.clip.y);
+    await restoreScroll();
     return page.screenshot({ clip: focused.clip, encoding: "base64", captureBeyondViewport: false });
   };
   await releaseFocus(page);
+  const before = await shot();
+  // Read under the SAME restored scroll the focused rect below is read under, so `moved` compares
+  // two positions in one coordinate state rather than measuring wherever the walk left the page.
   const unfocused = await page.evaluate((sel) => {
     const r = document.querySelector(sel).getBoundingClientRect();
     return { rect: { x: r.x, y: r.y }, outlineStyle: getComputedStyle(document.querySelector(sel)).outlineStyle };
   }, selector);
-  const before = await shot();
   await reachBySelector(page, selector);
   const after = await shot();
-  const moved = Math.abs(unfocused.rect.x - focused.rect.x) > 1
-    || Math.abs(unfocused.rect.y - focused.rect.y) > 1;
+  const focusedNow = await page.evaluate((sel) => {
+    const r = document.querySelector(sel).getBoundingClientRect();
+    return { x: r.x, y: r.y };
+  }, selector);
+  const moved = Math.abs(unfocused.rect.x - focusedNow.x) > 1
+    || Math.abs(unfocused.rect.y - focusedNow.y) > 1;
   const diff = await countChangedPixels(page, before, after, inset);
   return {
     label, selector, present: true, presses, moved, inset,
