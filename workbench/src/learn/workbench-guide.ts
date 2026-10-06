@@ -109,11 +109,12 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-what-a-property-is",
     heading: "What a property is",
-    intro: "A property is a saved question. Its verdict is recomputed on demand and stored nowhere.",
+    intro: "A property is a saved claim. The Workbench retains the question that decides the claim "
+      + "and recomputes its verdict on demand.",
     blocks: [
-      prose("Asking a question and tracking the answer is what makes a property. What is kept is "
-        + "the question. The verdict is recomputed on every later revision and stored nowhere, so a "
-        + "property cannot go stale: it reports what the models say now."),
+      prose("What the Workbench keeps is the question that decides the claim — never the verdict. "
+        + "The verdict is recomputed on every later revision and stored nowhere, so a property "
+        + "cannot go stale: it reports what the models say now."),
       prose("A verdict always names the models that established it. A bounded search reports itself "
         + "as inconclusive rather than as a no, because a search that stopped at its budget has not "
         + "shown that the thing it looked for is absent."),
