@@ -463,7 +463,7 @@ async function boot(): Promise<void> {
   // Reading order: the three model forms first, in the registry's own order — structure,
   // behavior, quantity — because each form's omissions are the next form's question. Then the
   // uses, which are purposes OF those forms. Then the capability sections. The guide stays last,
-  // because it explains the application rather than the modelling.
+  // because it explains the application rather than the modeling.
   for (const s of typeSections) main.append(typeSection(s, systems));
   for (const s of useSections) main.append(useSection(s, systems));
   for (const s of questionSections) main.append(questionSection(s));
