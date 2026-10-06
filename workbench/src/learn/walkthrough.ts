@@ -69,6 +69,7 @@ export const WALK_TW: ShippedExampleId = "transaction-workspace";
 export const WALK_ESN: ShippedExampleId = "embedded-sensor-node";
 export const WALK_DP: ShippedExampleId = "document-processing";
 export const WALK_MB: ShippedExampleId = "message-bus";
+export const WALK_CL: ShippedExampleId = "calibration-loop";
 
 /**
  * What a step runs on, in the corpus's own spellings. One shape per kind of artifact, so the
@@ -226,6 +227,35 @@ export const WALKTHROUGH_STEPS: readonly WalkStep[] = [
       { label: "More about composition", anchor: "question-compositions" },
     ],
   },
+  {
+    // Last in the Models group, after purposeful reduction (walk-purpose), semantic commitment
+    // (the declared-meaning beat of walk-structural) and combining — the group's story becomes:
+    // what a model is for → the three forms → combining → what omitting a distinction does and
+    // does not mean. The five content beats, in the ruling's order: (1) every entity has a type
+    // even if unnamed; (2) unnamed entities get distinct shadow types; (3) relations constrain
+    // endpoint kinds — WHEN their type declares them (the constraint arrives with the
+    // declaration; the walkthrough must not over-claim what the corpus's own gates spent 261005
+    // un-claiming); (4) explicit declarations name and unify; (5) omission means "not
+    // specified", never "anything goes".
+    anchor: "walk-typing",
+    title: "Unknown does not mean compatible",
+    definition: "Every entity has a kind, even when the author has not named it. An unnamed kind "
+      + "is its own kind — distinct from every other — until a name or a declaration earns "
+      + "otherwise. Omitting a distinction a model does not need is purposeful reduction; it "
+      + "never makes the omitted distinctions interchangeable. A relation type may declare what "
+      + "kinds sit at its ends, and the constraint arrives with that declaration: an edge of a "
+      + "declared type is checked against it, and an unnamed endpoint is refused until named — "
+      + "the edge itself can never establish what its endpoints are.",
+    instruction: "Load the Calibration Loop and try to connect the teams: add the conveys edge "
+      + "between reading and sample in a what-if change, read the two findings that refuse it, "
+      + "then name both kinds (type: measurement) and run the delivery question again.",
+    grounding: [
+      { kind: "model", example: WALK_CL, model: "signal-path" },
+      { kind: "query", example: WALK_CL, query: "reading-is-delivered-as-sample" },
+      { kind: "modification", example: WALK_CL, modification: "name-the-kinds-and-connect" },
+    ],
+    more: [{ label: "More about model boundaries", anchor: "question-omissions" }],
+  },
   // ---- Asking models ------------------------------------------------------------------------
   {
     anchor: "walk-questions",
@@ -348,6 +378,7 @@ export const WALKTHROUGH_GROUPS: readonly WalkGroup[] = [
     title: "Models",
     anchors: [
       "walk-purpose", "walk-structural", "walk-behavioral", "walk-quantitative", "walk-combining",
+      "walk-typing",
     ],
   },
   {

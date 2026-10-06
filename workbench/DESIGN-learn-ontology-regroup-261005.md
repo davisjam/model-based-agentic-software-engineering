@@ -22,10 +22,15 @@ Everything afterward elaborates that map rather than revealing it piecemeal.*
 
 | Group | Steps | The story the group tells |
 |---|---|---|
-| **Models** | 1–5 | what a model is for, the three forms, and why one is sometimes not enough |
-| **Asking models** | 6–10 | ask → get evidence → save → oblige → refuse when unsupported |
-| **Working with models** | 11–13 | change a model; make two models correspond; use one to constrain an analysis over another |
-| **Agents** | 14 | the same capabilities, reached by a non-human caller |
+| **Models** | 1–6 | what a model is for, the three forms, why one is sometimes not enough, and what omitting a distinction does and does not mean |
+| **Asking models** | 7–11 | ask → get evidence → save → oblige → refuse when unsupported |
+| **Working with models** | 12–14 | change a model; make two models correspond; use one to constrain an analysis over another |
+| **Agents** | 15 | the same capabilities, reached by a non-human caller |
+
+*(As-built update, 261006: the shadow-types wave — `DESIGN-shadow-types-261005.md` §11 — appends
+`walk-typing`, "Unknown does not mean compatible", LAST in the Models group after
+`walk-combining`, growing Models 5 → 6 steps and the walkthrough 14 → 15. The §2 step map below
+is the 261005 migration record and deliberately keeps its fourteen-step numbering.)*
 
 ---
 

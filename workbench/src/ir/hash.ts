@@ -69,9 +69,17 @@ function semanticProjection(s: CanonicalSystem): unknown {
     // `aggregates` is in the hash because it is SEMANTIC: it decides whether a revision is
     // well formed (V45/V46), unlike a note. Declaring one is a different system from declaring
     // none, and a transaction's `base` must say so.
+    //
+    // `domain`/`range` join it for the same reason (V47/V48 decide well-formedness from them) —
+    // APPENDED ONLY WHEN DECLARED, so every system authored before the keys existed keeps the hash
+    // it had: a projection that widened unconditionally would re-identify the whole corpus on an
+    // engine upgrade with zero semantic edits, which is the invalidation the version-independence
+    // argument (§8 of the shadow-types design) forbids. Normalized to lists by canonicalize, so
+    // `domain: service` and `domain: [service]` are one system.
     sorted(s.relationTypes, (r) => [
       r.pathComposition, r.symmetric, r.acyclic,
       r.aggregates === null ? null : [r.aggregates.declared, r.aggregates.over, r.aggregates.using],
+      ...(r.domain === null && r.range === null ? [] : [[r.domain, r.range]]),
     ]),
     // Already sorted by canonicalize; re-sorted here so the hash does not depend on that promise.
     [...s.relations]
@@ -107,6 +115,11 @@ function semanticProjection(s: CanonicalSystem): unknown {
     // stays out by not being stored anywhere at all (V18), which is a stronger exclusion than
     // omitting a field from this list.
     sorted(s.requirements, (r) => [JSON.stringify(r.raw)]),
+    // The declared entity-type VOCABULARY — membership only, because deleting a member can create
+    // a V47 finding (it decides well-formedness), while the description is prose and stays out the
+    // way a relation type's description does. Appended only when the section exists, for the same
+    // version-independence reason as the relation-type extension above.
+    ...(s.entityTypes.size === 0 ? [] : [[...s.entityTypes.keys()].sort()]),
   ];
 }
 

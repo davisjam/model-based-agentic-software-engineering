@@ -54,6 +54,23 @@
       }
     },
 
+    "entity-types": {
+      "description": "Optional vocabulary of declared entity-type names (SEMANTICS.md 3.3). Gives a domain/range declaration a resolvable target before any entity carries the kind (V47), and gives 'naming a semantic equivalence class' an authored home. A vocabulary, not a taxonomy: no subtyping, and an entity's type: is not required to appear here.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description"],
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "What membership in this kind asserts. For humans.",
+            "type": "string"
+          }
+        }
+      }
+    },
+
     "relation-types": {
       "type": "object",
       "propertyNames": { "$ref": "#/$defs/id" },
@@ -100,6 +117,14 @@
                 "enum": ["max"]
               }
             }
+          },
+          "domain": {
+            "description": "The entity-type name(s) allowed at this relation type's SOURCE (V47, V48). One name or a list; a list means membership in the union. Omitting the key constrains nothing and licenses nothing -- it never asserts that anything may sit here.",
+            "$ref": "#/$defs/endpointTypes"
+          },
+          "range": {
+            "description": "The entity-type name(s) allowed at this relation type's TARGET (V47, V48). Same semantics as domain.",
+            "$ref": "#/$defs/endpointTypes"
           },
           "properties": {
             "type": "object",
@@ -339,6 +364,13 @@
   },
 
   "$defs": {
+    "endpointTypes": {
+      "description": "One entity-type name, or a list meaning membership in the union. An empty authored list declares no kind and is a V47 finding, not a legal 'nothing may sit here' -- that assertion is absence: prose.",
+      "anyOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
     "id": {
       "type": "string",
       "description": "Shape only. Ids that a YAML 1.1 loader would coerce (on/off/yes/no/true/false/null/~, or numeric-looking) are additionally REFUSED by the validator (V25) -- this pattern cannot catch them because the loader mangles them first.",

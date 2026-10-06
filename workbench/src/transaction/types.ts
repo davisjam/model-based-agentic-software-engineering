@@ -72,6 +72,13 @@ export type Operation =
       readonly from?: string | undefined; readonly to?: string | undefined; readonly sync?: string | undefined;
     }
   | {
+      /**
+       * Author an existing entity's `type:` — §3.3's establishment act. An edge never establishes
+       * its endpoint's type (T3); this operation is how an author or agent does.
+       */
+      readonly op: "set-entity-type"; readonly id: string; readonly value: string;
+    }
+  | {
       readonly op: "add-relation"; readonly model: string; readonly from: string; readonly to: string;
       readonly type: string; readonly id?: string | undefined; readonly label?: string | undefined;
     }

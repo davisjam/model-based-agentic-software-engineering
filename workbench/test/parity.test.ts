@@ -69,6 +69,12 @@ const PARITY = new Set([
   // up -- and this is the pair that decides whether a student's field-level edit is visible at all,
   // so a tool that silently accepted the drift would re-open the defect in one interface.
   "V45", "V46",
+  // V47/V48 are the typing pair (SEMANTICS.md 3.3) and the same shape again: both sides walk
+  // `relation-types.<t>.domain|range`, `entity-types:`, the relations and the authored `type:`
+  // fields -- plain structural checks over declared data. These decide whether a DECLARED
+  // relation type's edge can mix kinds at all, so a tool that silently accepted the drift would
+  // re-admit the nonsense edge the pair exists to refuse, in one interface and not the other.
+  "V47", "V48",
   // Not a V-rule: A1 holds annotation outside semantics, so a V-number would contradict the
   // invariant the feature rests on. Both sides implement it, so it belongs in the parity set.
   "ANNOTATION",
@@ -340,6 +346,71 @@ test("violations agree, rule by rule", () => {
       },
       entities: { evt: { properties: { carries: { value: "public", domain: "sens" } } } },
     }],
+    // SEMANTICS.md 3.3's pair. The first is the D7 injection reduced to its skeleton: a declared
+    // `publishes : service -> event-type` and an edge between two fields. Without the declaration
+    // the same document is CLEAN on both sides (the last case) -- the constraint arrives with the
+    // declaration, and a tool that found something in its absence would be claiming the mechanism
+    // this design explicitly does not have.
+    ["V48 wrong-kind endpoints under a declaration", {
+      ...base,
+      "relation-types": {
+        publishes: {
+          description: "d", composition: { path: "forbidden" },
+          domain: "service", range: "event-type",
+        },
+      },
+      entities: {
+        "shipping-address": { type: "field" }, "customer-id": { type: "field" },
+      },
+      models: {
+        g: {
+          type: "graph", entities: ["shipping-address", "customer-id"],
+          relations: [{ from: "shipping-address", to: "customer-id", type: "publishes" }],
+        },
+      },
+    }],
+    // The unestablished arm: a shadow type is a member of nothing, and the edge being checked
+    // never establishes its own endpoint's type (T3) -- so the finding asks for authorship.
+    ["V48 unnamed endpoint at a declared position", {
+      ...base,
+      "entity-types": { measurement: { description: "d" } },
+      "relation-types": {
+        conveys: {
+          description: "d", composition: { path: "allowed" },
+          domain: "measurement", range: "measurement",
+        },
+      },
+      entities: { reading: {}, sample: {} },
+      models: {
+        g: {
+          type: "graph", entities: ["reading", "sample"],
+          relations: [{ from: "reading", to: "sample", type: "conveys" }],
+        },
+      },
+    }],
+    // V47's drift arm: a declaration whose kind nothing declares holds while reaching nothing.
+    ["V47 a declaration names a kind nothing carries", {
+      ...base,
+      "relation-types": {
+        calls: {
+          description: "d", composition: { path: "allowed" }, domain: "service", range: "service",
+        },
+      },
+      entities: { a: { type: "component" }, b: { type: "component" } },
+      models: {
+        g: {
+          type: "graph", entities: ["a", "b"],
+          relations: [{ from: "a", to: "b", type: "calls" }],
+        },
+      },
+    }],
+    ["V47 an authored empty list declares no kind", {
+      ...base,
+      "relation-types": {
+        calls: { description: "d", composition: { path: "allowed" }, domain: [] },
+      },
+      entities: { a: { type: "service" } },
+    }],
     ["V3 dangling relation", {
       ...base,
       "relation-types": { calls: { description: "d", composition: { path: "allowed" } } },
@@ -497,6 +568,55 @@ test("violations agree, rule by rule", () => {
     assertParity(label, text);
     // Each case must actually fire something in the parity set, or it is testing nothing.
     assert.ok(tsFindings(text).filter(inParity).length > 0, `${label} produced no parity finding`);
+  }
+});
+
+test("the typing boundary agrees from the CLEAN side too", () => {
+  // SEMANTICS.md 3.3's negative space, pinned on both tools: a union admits both of its kinds
+  // (the heterogeneous house pattern, declared), and an UNDECLARED relation type constrains
+  // nothing -- the same nonsense edge the V48 case above refuses loads clean when nothing
+  // declares the kinds it mixes. The violations loop cannot carry these, because it requires
+  // every case to fire; the boundary needs the quiet half stated too, or a tool that fired on
+  // the declaration-free edge would pass every test while claiming a mechanism the design
+  // explicitly does not have.
+  const cleanCases: [string, unknown][] = [
+    ["union domain and range admit both kinds", {
+      ...base,
+      "relation-types": {
+        may_propagate_to: {
+          description: "d", composition: { path: "allowed" },
+          domain: ["service", "event-type"], range: ["service", "event-type"],
+        },
+      },
+      entities: { checkout: { type: "service" }, "order-created": { type: "event-type" } },
+      models: {
+        g: {
+          type: "graph", entities: ["checkout", "order-created"],
+          relations: [
+            { from: "checkout", to: "order-created", type: "may_propagate_to" },
+            { from: "order-created", to: "checkout", type: "may_propagate_to" },
+          ],
+        },
+      },
+    }],
+    ["an undeclared relation type constrains nothing", {
+      ...base,
+      "relation-types": { publishes: { description: "d", composition: { path: "forbidden" } } },
+      entities: {
+        "shipping-address": { type: "field" }, "customer-id": { type: "field" },
+      },
+      models: {
+        g: {
+          type: "graph", entities: ["shipping-address", "customer-id"],
+          relations: [{ from: "shipping-address", to: "customer-id", type: "publishes" }],
+        },
+      },
+    }],
+  ];
+  for (const [label, doc] of cleanCases) {
+    const text = stringify(doc);
+    assertParity(label, text);
+    assert.deepEqual(tsFindings(text).filter(inParity), [], `${label} should be clean`);
   }
 });
 

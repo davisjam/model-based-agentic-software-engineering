@@ -30,6 +30,8 @@ import type { ModelTypeId, QueryNoun, SubjectSelector } from "../engine/model-ty
 import type { GraphForm } from "../engine/types.ts";
 import { VALIDATION_AUTHORITY } from "../validator/result.ts";
 import type { ValidationResult } from "../validator/result.ts";
+import { explainType } from "../validator/typing.ts";
+import type { TypeExplanation } from "../validator/typing.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
@@ -296,7 +298,7 @@ export const pathQuery = (from: string, to: string, relation: string): GraphQuer
   ({ kind: "graph", quantifier: "exists", graph: { form: PATH_FORM, relation, from, to } });
 
 export type FacadeOperationName =
-  "elements" | "count" | "related" | "reachable" | "path" | "violations";
+  "elements" | "count" | "related" | "reachable" | "path" | "violations" | "explainType";
 
 /**
  * What a facade operation derives FROM — and the three arms are the honest count.
@@ -394,6 +396,20 @@ export const MODEL_FACADE: readonly FacadeOperation[] = [
       from: "validation-authority", implementation: VALIDATION_AUTHORITY.implementation,
     }],
   },
+  {
+    operation: "explainType",
+    // The establishment record (SEMANTICS §3.3): authored or unnamed, the shadow spelling, and
+    // every declared constraint the entity sits under with a verdict on each. The verdict
+    // vocabulary (member / violation / unestablished) IS V48's membership semantics, so the row
+    // derives from the one validation authority — the facade adds a spelling, never a second
+    // opinion about what a declaration admits. (The capability REGISTRY files the affordance
+    // under `inspect`, and the two placements answer different questions: the derivation names
+    // whose SEMANTICS decide the verdicts; the registry row names the SEAM the method reaches,
+    // and like `elements` it reads `workspace.state` and calls no validate pass.)
+    derivesFrom: [{
+      from: "validation-authority", implementation: VALIDATION_AUTHORITY.implementation,
+    }],
+  },
 ];
 
 /**
@@ -441,6 +457,14 @@ export interface ModelQueryApi {
    * §2.2's table names it by. One service, two spellings; no second rule set and no second verdict.
    */
   violations(): ValidationResult;
+  /**
+   * One entity's establishment record (SEMANTICS §3.3): whether its type is authored or unnamed,
+   * its shadow spelling when unnamed, and every declared-relation constraint it sits under with
+   * the verdict on each. The honest v1 answer to "why are these two still distinct?" — nothing
+   * unifies shadows except authorship, so the report shows what each side would need. Null for an
+   * id the system does not declare.
+   */
+  explainType(entity: string): TypeExplanation | null;
 }
 
 /**
@@ -931,6 +955,9 @@ export function createAgentApi(
         workspace.query(reachableQuery(from, relation, to ?? null)),
       path: (from, to, relation) => workspace.query(pathQuery(from, to, relation)),
       violations: () => workspace.validate(),
+      // The validator component's own function, straight through — the verdicts are V48's
+      // membership semantics and nothing here re-decides them.
+      explainType: (entity) => explainType(workspace.state.system, entity),
     },
 
     // Straight through, like `analysis` below: the facade holds the system, the projection and the

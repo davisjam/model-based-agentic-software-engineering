@@ -298,11 +298,15 @@ function auditExample(
       : `No answer anywhere reads any of this family's ${family.inert} member(s), so it is a layer `
         + "rather than a selection. That is legitimate for content a human reads or a sibling "
         + "control compares -- declare which, in a row.";
+    // The template prints the SETTLED row shape — `inert: true` + a `held_by` from the closed
+    // vocabulary — not the `operative: false` first draft the offenders sweep below rejects; it
+    // did print the draft, and the first author to follow the suggestion met the rejection.
     issues.push(`${exampleId}: \`${family.subject}\` (${family.instances.join(", ")}) is INERT -- `
       + `deleting it moves no saved answer and no requirement verdict. ${why} Add to `
       + `examples/${exampleId}/expected-results.yaml:\n`
       + `      declarations:\n        - id: <a-name>\n          subject: ${family.subject}\n`
-      + `          operative: false\n          reason: >\n            <why it is here>`);
+      + `          inert: true\n          held_by: <one of: ${[...HELD_BY].join(", ")}>\n`
+      + `          reason: >\n            <why it is here>`);
   }
 
   for (const subject of Object.keys(pinned)

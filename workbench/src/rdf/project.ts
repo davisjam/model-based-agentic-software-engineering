@@ -169,6 +169,11 @@ export function project(system: CanonicalSystem): Dataset {
     add(TYPE, MAGE.pathComposition, str(rt.pathComposition));
     add(TYPE, MAGE.symmetric, bool(rt.symmetric));
     add(TYPE, MAGE.acyclic, bool(rt.acyclic));
+    // One triple per union member, as string literals matching `mage:entityType`'s spelling.
+    // `mage:domain`/`mage:range` on purpose — never `rdfs:domain`/`rdfs:range`, whose semantics
+    // are inference rather than checking (SEMANTICS §3.3; the vocabulary comment has the fork).
+    for (const kind of rt.domain ?? []) add(TYPE, MAGE.domain, str(kind));
+    for (const kind of rt.range ?? []) add(TYPE, MAGE.range, str(kind));
   }
 
   // --- models, and the relations that are the only model-scoped quads -----------------------

@@ -101,6 +101,31 @@ export interface CanonRelationType {
   readonly acyclic: boolean;
   /** §3.2. Null when the author declared no aggregation, which is the ordinary case. */
   readonly aggregates: CanonRelationAggregate | null;
+  /**
+   * §3.3. The entity-type names allowed at this relation type's SOURCE, or null when undeclared.
+   *
+   * Null and [] are different declarations: null constrains nothing and licenses nothing (the
+   * ordinary case), while an authored empty list names no kind at all and is a V47 finding rather
+   * than a legal "nothing may sit here". The loader normalizes a bare string to a one-element list,
+   * so `domain: service` and `domain: [service]` are one system (and one hash).
+   */
+  readonly domain: readonly string[] | null;
+  /** §3.3. The entity-type names allowed at the TARGET. Same semantics as `domain`. */
+  readonly range: readonly string[] | null;
+}
+
+/**
+ * One declared entity type — the optional `entity-types:` vocabulary (§3.3).
+ *
+ * Declares a kind by NAME so a domain/range declaration can resolve against it before any entity
+ * carries it (V47), and so "naming a semantic equivalence class" has an authored home. It is a
+ * vocabulary, not a taxonomy: no subtyping, no structure, and an entity's `type:` is not required
+ * to appear here.
+ */
+export interface CanonEntityType {
+  readonly id: string;
+  /** For humans. Prose, so it stays out of the hash the way a relation type's description does. */
+  readonly description: string;
 }
 
 export interface CanonRelation {
@@ -695,6 +720,8 @@ export interface CanonicalSystem {
   readonly domains: ReadonlyMap<string, CanonDomain>;
   readonly entities: ReadonlyMap<string, CanonEntity>;
   readonly relationTypes: ReadonlyMap<string, CanonRelationType>;
+  /** The optional `entity-types:` vocabulary (§3.3). Empty when the section is absent. */
+  readonly entityTypes: ReadonlyMap<string, CanonEntityType>;
   /** Flattened across every model: an architectural claim is not escapable by moving an edge. */
   readonly relations: readonly CanonRelation[];
   readonly models: ReadonlyMap<string, CanonModel>;

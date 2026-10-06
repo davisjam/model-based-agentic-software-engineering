@@ -525,14 +525,35 @@ test("§20.14: the declared non-flagship's retention reason still holds over the
     "no shipped example has a transition guard reading another machine's state, so V42's "
     + "`guards are not steps` arm has no witness at all -- the non-flagship's retention reason is "
     + "now false in the other direction");
-  assert.deepEqual(withCrossMachineGuard, nonFlagships,
-    `the cross-machine guard witness set is [${withCrossMachineGuard.join(", ")}] and the declared `
-    + `non-flagship set is [${nonFlagships.join(", ")}].\n`
-    + `The non-flagship row's \`covers\` claims it holds the ONLY such guard. If another example `
-    + `gained one, that claim is stale and the row's retention reason needs rewriting -- not this `
-    + `assertion relaxing. If the non-flagship lost its guard, its stated coverage is gone and the `
-    + `retention decision is open again. Either way the DECISION is the author's; what this holds is `
-    + `that the reason recorded for it is still true.`);
+  // One assertion per declared non-flagship, each pinning ITS OWN recorded reason — the shape this
+  // test took when the shadow-types wave (261006) shipped a second built-in and the original
+  // "witness set equals non-flagship set" equality stopped describing anything: the two rows are
+  // retained for DIFFERENT coverage, so each reason is checked against its own census. If another
+  // example gains a cross-machine guard or an untyped entity, the stale row's `covers` needs
+  // rewriting -- not these assertions relaxing. The DECISION stays the author's; what this holds
+  // is that the reason recorded for each retention is still true of the corpus.
+  assert.ok(nonFlagships.includes("worker-queue") && nonFlagships.includes("calibration-loop"),
+    `the declared non-flagship set is [${nonFlagships.join(", ")}]; a membership change here is `
+    + "an author's decision and re-opens the per-row checks below");
+  assert.deepEqual(withCrossMachineGuard, ["worker-queue"],
+    `worker-queue's \`covers\` claims the ONLY transition guard that reads another machine's `
+    + `state; the census found [${withCrossMachineGuard.join(", ")}].`);
+
+  // calibration-loop's recorded reason: the corpus's ONLY deliberately untyped entities, which is
+  // what grounds SEMANTICS §3.3's refusal-until-named lesson. Same census discipline: derived
+  // from the shipped files, so a seventh example quietly shipping an unnamed entity -- or the lab
+  // losing its two -- turns this red instead of silently un-grounding `walk-typing`.
+  const withUntypedEntities: string[] = [];
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const doc: unknown = parseYaml(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"));
+    const entities = (doc as { entities?: Record<string, unknown> }).entities ?? {};
+    const untyped = Object.values(entities).some((e) =>
+      typeof (e as { type?: unknown } | null)?.type !== "string");
+    if (untyped) withUntypedEntities.push(id);
+  }
+  assert.deepEqual(withUntypedEntities, ["calibration-loop"],
+    `calibration-loop's \`covers\` claims the corpus's only untyped entities; the census found `
+    + `[${withUntypedEntities.join(", ")}].`);
 });
 
 // ----------------------------------------------------------------------------------------------

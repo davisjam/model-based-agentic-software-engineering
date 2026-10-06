@@ -370,6 +370,8 @@ Used only as the object of `rdf:type`.
 | `mage:pathComposition` | relation type, `mage:canTransitionTo` | `"allowed"` / `"forbidden"` | whether a multi-hop question over this predicate is licensed at all |
 | `mage:symmetric` | relation type | boolean | declared symmetric. The reverse edge is NOT materialised |
 | `mage:acyclic` | relation type | boolean | declared acyclic |
+| `mage:domain` | relation type | string | a declared SOURCE kind, one triple per union member, in `mage:entityType`'s spelling. Deliberately NOT `rdfs:domain`, whose semantics are inference — an RDFS reasoner would *conclude* an endpoint's type from a nonsense edge, the exact inversion V48 refuses (SEMANTICS §3.3) |
+| `mage:range` | relation type | string | a declared TARGET kind. `mage:range`, never `rdfs:range`, for `mage:domain`'s reason |
 | `mage:domainKind` | domain | `"enum"` / `"ordered-enum"` / `"boolean"` / `"integer"` | which kind of domain |
 | `mage:domainValue` | domain | domain value | membership: this value belongs to this domain |
 | `mage:value` | domain value | typed literal | the scalar the domain value stands for |

@@ -421,6 +421,49 @@ export const SHIPPED_EXAMPLES = [
       ],
     },
   },
+  {
+    id: "calibration-loop",
+    status: {
+      kind: "built-in",
+      covers: "the only shipped exercise of SEMANTICS §3.3's refusal mechanics: the corpus's only "
+        + "deliberately UNTYPED entities (`reading`, `sample`), the only relation type whose "
+        + "declared domain/range resolve through the `entity-types:` vocabulary while no entity "
+        + "yet carries the kind (V47's declared-vocabulary arm), and the only place a student "
+        + "meets the V48 refusal-until-named beat -- an edge rejected because a shadow type is "
+        + "established as nothing and the edge cannot establish it (T3). Deleting it would leave "
+        + "the typing layer's teaching job (`walk-typing`) grounded on nothing.",
+      membership: "§21's five-flagship progression predates the typing layer and gives it no "
+        + "slot, so this is not a flagship. Nothing about the coverage above bears on that: the "
+        + "author's 261005 ruling is explicit that coverage must not promote an example -- "
+        + "prominence is decided by the progression, not by what the example exercises. The "
+        + "shadow-types design (§12) names it the sixth lab in the flagship PROGRESSION sense "
+        + "while leaving its shipped status `built-in`; if the progression ever gains a typing "
+        + "slot, that is the author's edit, recorded there.",
+    },
+    case: {
+      scenario: "Two teams modeled one calibration loop independently. The instrumentation team's "
+        + "fragment says the sensor produces a reading; the control team's says a sample is "
+        + "consumed by the controller. A prior integrator declared the boundary contract: "
+        + "anything conveyed between the teams is established as a measurement. Nobody has "
+        + "stated what a reading or a sample actually is.",
+      investigate: "Connect the sensor's output to the controller's input — without weakening "
+        + "the model. The connecting edge is refused until both kinds are named: ask "
+        + "explainType('reading') and explainType('sample') to see why the two are still "
+        + "distinct, and decide what the model is missing before you decide what to type.",
+      tryAsking: [
+        {
+          query: "reading-is-delivered-as-sample",
+          ask: "Is the instrumentation team's reading actually delivered as the control team's sample?",
+        },
+        { query: "sensor-produces-the-reading", ask: "Does the sensor emit the reading?" },
+        { query: "sample-feeds-the-controller", ask: "Does the controller consume the sample?" },
+        {
+          query: "sensor-reaches-controller-through-produces",
+          ask: "Can the controller be reached from the sensor through emissions alone?",
+        },
+      ],
+    },
+  },
 ] as const satisfies readonly ShippedExample[];
 
 export type ShippedExampleId = (typeof SHIPPED_EXAMPLES)[number]["id"];
