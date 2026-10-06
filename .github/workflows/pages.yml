@@ -2,18 +2,43 @@
 # Source = "GitHub Actions" (Settings → Pages). Running `catalog.py build` in CI is the
 # "executable, can't-drift" build: the deployed HTML is regenerated from the .md on every push.
 #
+# ── Job graph (parallel fan-out; one serial job until 261006) ──────────────────────────────────
+#
+#   workbench ──┬────────────────────────────────┐
+#               └─► browser-tiers   (gate only)  │
+#   site-gates                      (gate only)  ├─► assemble ─► deploy
+#   book-editions ───────────────────────────────┤
+#   handbook ────────────────────────────────────┤
+#   web-editions ────────────────────────────────┘
+#
+# PRODUCERS (workbench, book-editions, handbook, web-editions) emit files the published artifact
+# needs; `assemble` downloads their outputs, re-renders the catalogue HTML from source, hard-asserts
+# the artifact's shape, and uploads it. GATE jobs (browser-tiers, site-gates) hold quality lines —
+# the browser/smoke/a11y tiers, the full test suite, the responsive + console gates. A red gate job
+# turns the RUN red (visible on the commit, alerting) but does not block `deploy`: on 261006 a red
+# FR-A11Y tier held llms.txt + robots.txt unpublished though nothing about them was broken, and the
+# ruling is that independent failures must not block unrelated publication. What DOES block deploy
+# is artifact integrity — a missing bundle, PDF, thumb, or a leaked internal playbook fails
+# `assemble`, and nothing ships. The placement rule for a NEW check lives in CLAUDE.md
+# § "Where a new check runs". Coverage is unchanged by the fan-out: every gate that ran serially
+# still runs, with the same assertions, on every push.
+#
 # Security posture (see DEVELOP.md § "Security analysis"):
 #   - Triggers are trusted-only (push to main / manual dispatch). NO pull_request_target, so no
 #     fork/PR can run this with the repo's token ("pwn request" class is designed out).
 #   - No untrusted input is interpolated into any `run:` (no script-injection surface).
-#   - Permissions are job-scoped: the `build` job (which runs third-party test code — axe-core + html-validate) holds
-#     NO deploy/write capability; only the `deploy` job gets `pages: write` + `id-token: write`.
+#   - Permissions are job-scoped: every job that runs third-party test code (axe-core,
+#     html-validate, Puppeteer) holds NO deploy/write capability; only the `deploy` job gets
+#     `pages: write` + `id-token: write`.
 #   - Third-party test tooling is pinned: `npm ci` installs the exact tree in package-lock.json
-#     (integrity-hash verified) — once at the root, once in book/, once in workbench/, each against its own
-#     committed lockfile; axe + html-validate run via `npx --no-install` so they never fetch at run time.
+#     (integrity-hash verified) — per directory, each against its own committed lockfile; axe +
+#     html-validate run via `npx --no-install` so they never fetch at run time.
 #   - Every action is pinned to an immutable commit SHA (a tag like `v4` is movable; a SHA is not).
-#   - The published artifact excludes `.git`, `node_modules`, and `.github` (nothing secret on a public
-#     repo, but it keeps the deploy tree minimal and avoids serving node_modules).
+#   - Inter-job artifacts (the workbench bundle, the rendered PDFs, the MkDocs trees) travel via
+#     actions/upload-artifact / download-artifact, same-run only; caches hold only derived,
+#     content-addressed state (npm tarballs, the Puppeteer Chromium, the mermaid SVG render cache).
+#   - The published artifact excludes `.git`, `node_modules`, and `.github` (nothing secret on a
+#     public repo, but it keeps the deploy tree minimal and avoids serving node_modules).
 name: Deploy Pages
 
 on:
@@ -30,13 +55,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # ── Model Workbench: node-tier gates + the published bundle (PRODUCER) ──────────────────────
+  # Until 261005 the workbench's gates ran ONLY in the pre-push hook — i.e. only on the author's
+  # laptop, and that hook SKIPS the TypeScript gates outright when the shell's Node is older than
+  # 22. A type error or a failing unit test could reach main unseen. They run here unconditionally,
+  # and they run BEFORE the bundle build: a type error is a sharper, more localized signal than a
+  # bundler error, so fail on it first.
+  #
+  # Node comes from .nvmrc — the single source of truth the developer's `nvm use` reads too. No
+  # second version is named here; a second copy is a drift source.
+  #
+  # The bundle is build-derived and gitignored, so a fresh checkout has no workbench/dist/. It is
+  # built here and uploaded as the `workbench-dist` artifact: `assemble` rsyncs it into _site/ and
+  # the browser tiers serve it to a real Chromium. It is asserted non-trivial rather than merely
+  # present, because the failure mode is silent: the shell returns 200 with an empty body and a 404
+  # in the console. esbuild bundles the whole engine, so the real artifact is ~400 KB; 50 KB is a
+  # floor that an empty or truncated emit cannot clear while leaving room for the bundle to shrink
+  # legitimately.
+  workbench:
     runs-on: ubuntu-latest
-    # The build job runs repo + third-party (axe-core) code. It deliberately has NO write/deploy
-    # capability — only what it needs to check out and read Pages config.
     permissions:
       contents: read
-      pages: read
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
@@ -44,32 +83,20 @@ jobs:
           python-version: "3.x"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          # Single source of truth for the Node version: .nvmrc, which `nvm use` also reads, so CI and a
-          # developer's shell cannot drift. package.json `engines` carries the FLOOR (>=22) separately.
+          # Single source of truth for the Node version: .nvmrc, which `nvm use` also reads, so CI
+          # and a developer's shell cannot drift. package.json `engines` carries the FLOOR (>=22)
+          # separately.
           #
-          # Why the floor is 22: html-validate 11.x calls fs.globSync, added in Node 22. On Node 20 it
-          # throws at startup, the T2 validity check catches the throw and SKIPs, and the HTML-validity
-          # gate silently does not run while the summary still reads "0 failed". A pin is the only thing
-          # standing between that check and a false green.
+          # Why the floor is 22: html-validate 11.x calls fs.globSync, added in Node 22. On Node 20
+          # it throws at startup, the T2 validity check catches the throw and SKIPs, and the
+          # HTML-validity gate silently does not run while the summary still reads "0 failed". A pin
+          # is the only thing standing between that check and a false green.
           node-version-file: .nvmrc
-      - name: Install pinned test tooling (axe-core + html-validate, exact tree from lockfile)
-        run: npm ci
-      # ── Model Workbench: its gates, then the published bundle ───────────────────────────────────
-      # Until now the workbench's gates ran ONLY in the pre-push hook — i.e. only on the author's
-      # laptop, and that hook SKIPS the TypeScript gates outright when the shell's Node is older than
-      # 22. A type error or a failing unit test could reach main unseen. They run here unconditionally,
-      # and they run BEFORE the bundle build: a type error is a sharper, more localized signal than a
-      # bundler error, so fail on it first.
-      #
-      # Node is already set up above from .nvmrc — the single source of truth the developer's `nvm use`
-      # reads too. No second version is named here; a second copy is a drift source.
-      #
-      # The bundle is build-derived and gitignored, so a fresh checkout has no workbench/dist/. It is
-      # built here, early, because `workbench/dist/` must exist before the assemble step rsyncs the
-      # tree into _site/ — and asserted non-trivial rather than merely present, because the failure
-      # mode is silent: the shell returns 200 with an empty body and a 404 in the console. esbuild
-      # bundles the whole engine, so the real artifact is ~400 KB; 50 KB is a floor that an empty or
-      # truncated emit cannot clear while leaving room for the bundle to shrink legitimately.
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            book/package-lock.json
+            workbench/package-lock.json
       - name: Model Workbench gates + bundle (tsc, unit suite, esbuild -> workbench/dist/)
         working-directory: workbench
         # `validate.py` is the INDEPENDENT second implementation of the rule set, and
@@ -80,10 +107,8 @@ jobs:
         # second implementation could not start would report green while checking nothing, which is
         # worse than a red build.
         #
-        # These installs must happen HERE rather than in the later book/site steps that also install
-        # PyYAML (further down this file): those run after this one, so the workbench suite reached
-        # validate.py before anything had installed its dependencies. That is what broke the first
-        # push of the shell work.
+        # The pip install happens HERE, in the same block, BEFORE the suite that shells out to it:
+        # an install in a later step is what broke the 261002 push (`tests/ci.py` holds the ordering).
         run: |
           python3 -m pip install "pyyaml>=6,<7" jsonschema
           npm ci
@@ -95,70 +120,83 @@ jobs:
           SIZE=$(wc -c < dist/workbench.js)
           test "$SIZE" -ge 51200 || { echo "ERROR: workbench bundle is $SIZE bytes, under the 51200-byte floor — an empty or truncated emit"; exit 1; }
           echo "workbench bundle: $SIZE bytes"
-      # ── UX-I1 as a hard CI failure (requirements-human-ux section 22) ───────────────────────────
+      # ── UX-I1 as a hard CI failure (requirements-human-ux section 22) ─────────────────────────
       # "CI SHALL fail when a public semantic capability lacks either a human or machine affordance."
-      # It can land blocking now because the count is zero: a new BLOCKING check that finds nothing
-      # at HEAD breaks nobody, which is the exit condition for audit-only-first. A gap means an agent
-      # can change the model in a way no person can see or reverse, so this is asserted hard rather
-      # than ratcheted against a baseline.
-      #
       # A separate step from the gates above on purpose. `npm test` already asserts this, but it
       # asserts it among seven hundred other things; a failure HERE names the invariant in the step
       # title and prints the one-sided capabilities, which is what the person reading a red build
-      # needs. The isolation is the benefit, and it survives the step carrying no logic.
-      #
-      # This step used to run that logic inline — a `node --eval` importing the registry and deciding
-      # `violations.length === 0` for itself, while the unit suite compared the same list against a
-      # recorded BASELINE that accepted one standing violation. One invariant, two implementations,
-      # two thresholds, and the stricter one lived where nobody could run it: two pushes failed here
-      # after a local suite reported green. The threshold is now `PARITY_VIOLATION_CEILING` in
-      # `workbench/src/app/capabilities.ts`, the verdict is `affordanceParityGate()`, and both this
-      # step and the unit suite read it from there. `tests/ci.py` holds the structural half — no step
-      # in this workflow may embed a program instead of invoking a named script.
+      # needs. The threshold is `PARITY_VIOLATION_CEILING` in `workbench/src/app/capabilities.ts`,
+      # the verdict is `affordanceParityGate()`, and both this step and the unit suite read it from
+      # there. `tests/ci.py` holds the structural half — no step in this workflow may embed a
+      # program instead of invoking a named script.
       - name: Model Workbench UX-I1 affordance parity (CI fails on a one-sided capability)
         working-directory: workbench
         run: npm run check:parity
-      # book/ node tooling must be installed BEFORE `catalog.py build`: the build renders every ```mermaid
-      # fence to a static inline SVG at build time via mermaid-cli (mmdc), which lives in book/node_modules.
-      # `npm ci` in book/ also downloads mermaid-cli's + Puppeteer's bundled Chromium (no
-      # PUPPETEER_SKIP_DOWNLOAD), needed for BOTH the SVG pre-render AND the served-page smoke gates
-      # (responsive + console-error) below. The book PDF is rendered by Typst (installed separately below),
-      # so no browser is in the PDF loop.
-      - name: Install book node tooling (mermaid-cli for build-time SVG + Puppeteer for the served-page smoke gates, from book/ lockfile)
-        working-directory: book
-        run: npm ci
-      # ── Model Workbench browser tier (deploy-blocking) ──────────────────────────────────────────
-      # Every other workbench test is node-tier: the IR, the engine, the validator, the view model,
-      # the services facade — all driven directly, none of them loading index.html. So the first
-      # thing a user does, and the CDP agent surface FR-AGENT-1/-2 specify, had no gate at all. This
-      # step serves workbench/ and drives the real page in headless Chromium.
-      #
-      # It must run HERE, not beside the other workbench gates above: it needs BOTH the esbuild
-      # bundle (built in that step) AND Puppeteer + its bundled Chromium (installed by the book
-      # `npm ci` immediately above). Puppeteer is RESOLVED from book/node_modules, never added to
-      # workbench/package.json — workbench/node_modules is a symlink shared across parallel agent
-      # worktrees, so an install there mutates trees this job does not own.
-      #
-      # It serves workbench/, NOT workbench/dist/. dist/ holds bundles only; index.html loads
-      # `./dist/workbench.js`, so a page served from inside dist/ resolves that to
-      # dist/dist/workbench.js and cannot work. Serving dist/ would gate a page nobody ships.
-      #
-      # The receipt assertion is the same discipline as the bundle assertion above, and for a
-      # sharper reason: `node --test` over a glob that matches NOTHING exits 0 and prints "pass 0".
-      # A renamed directory would turn this into a green gate that launched no browser. The suite
-      # writes the receipt only after a browser booted and the page loaded, and the receipt carries
-      # what the run measured — so the log publishes the numbers rather than asserting them blind.
-      #
-      # THREE receipts now, and the two added ones are asserted on their NUMBERS rather than their
-      # existence. The CDP attach tier and the agent-coverage gate both sit under the `test:browser`
-      # glob this step already invokes, so CI has been RUNNING them and publishing nothing. That
-      # matters disproportionately for the coverage gate, because three numbers per axis are its
-      # entire output — operations described / driven / exempt, and the same census over the
-      # callables on the agent object. An unpublished measure is not a measure, and a receipt
-      # reporting `described 26, driven 0` would otherwise sit inside a green tier as a coverage
-      # claim nobody holds. So the check below reads the arithmetic, and it reads the FIELD SHAPE
-      # too: if the suite renames a field this gate goes red rather than quietly measuring
-      # `undefined`.
+      - name: Upload workbench bundle (consumed by browser-tiers + assemble)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: workbench-dist
+          path: workbench/dist
+          if-no-files-found: error
+          retention-days: 3
+
+  # ── Model Workbench browser-facing tiers (GATE — reds the run, does not hold the artifact) ──
+  # Every other workbench test is node-tier: the IR, the engine, the validator, the view model,
+  # the services facade — all driven directly, none of them loading index.html. These tiers serve
+  # workbench/ and drive the real page in headless Chromium: the browser tier (FR-AGENT-1/-2 CDP
+  # surface), the smoke tier (both served pages boot, no fallback strings — the only gate that
+  # loads learn.html as a page rather than as a module), and the FR-A11Y tier (axe over four page
+  # states + section 19's thirteen operations by keyboard + every declared navigation path).
+  #
+  # Puppeteer + its bundled Chromium are RESOLVED from book/node_modules, never added to
+  # workbench/package.json — workbench/node_modules is a symlink shared across parallel agent
+  # worktrees, so an install there mutates trees this job does not own. axe-core is RESOLVED from
+  # the ROOT node_modules, where it is already pinned for the catalogue's own a11y tier.
+  #
+  # The tiers serve workbench/, NOT workbench/dist/. dist/ holds bundles only; index.html loads
+  # `./dist/workbench.js`, so a page served from inside dist/ resolves that to
+  # dist/dist/workbench.js and cannot work. Serving dist/ would gate a page nobody ships.
+  #
+  # Receipts are hard-asserted because `node --test` over a glob that matches NOTHING exits 0 and
+  # prints "pass 0" — a renamed directory would turn a tier into a green gate that launched no
+  # browser. Each suite writes its receipt only after a browser booted and the page loaded, and the
+  # receipt carries what the run measured, so the log publishes the numbers rather than asserting
+  # them blind.
+  #
+  # One a11y probe (wcag-f6) reproduces its CI failure locally only under WB_F6_SIMULATE_CI_FONTS=1
+  # — the runner's font stack differs from a developer's, and this tier's verdict under the
+  # RUNNER's fonts is the authoritative one. That environment sensitivity is why these tiers live
+  # in CI and not in the pre-push hook's unconditional set (CLAUDE.md § "Where a new check runs").
+  browser-tiers:
+    needs: workbench
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            book/package-lock.json
+            workbench/package-lock.json
+      - name: Restore Puppeteer Chromium (book/ lockfile keys the browser build)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('book/package-lock.json') }}
+      - name: Install pinned test tooling (root axe-core + book Puppeteer + workbench dev deps)
+        run: |
+          npm ci
+          npm ci --prefix book
+          npm ci --prefix workbench
+      - name: Download workbench bundle
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: workbench-dist
+          path: workbench/dist
       - name: Model Workbench browser tier (headless Chromium over the served page) + receipt assertions
         # Bounded: a wedged tier used to hold this job to the 6-hour default, publishing nothing
         # and reporting nothing (261006, run 37504307305). The tier bounds itself first — the
@@ -200,46 +238,9 @@ jobs:
             else console.log(`CDP attach — ${att.attachedClients} clients, ${att.loadedCounts.entities} entities loaded, agent to human ${att.agentToHuman?.entitiesBefore}/${att.agentToHuman?.entitiesAfter}, human to agent ${att.humanToAgent?.entitiesBefore}/${att.humanToAgent?.entitiesAfter}`);
             process.exit(bad === 0 ? 0 : 1);
           '
-      # ── Model Workbench FR-A11Y tier (deploy-blocking) ──────────────────────────────────────────
-      # FR-A11Y-1/-2/-3 were declared a definition-of-done criterion rather than a later pass, and
-      # the step above does not test them: it asserts three accessibility properties by hand, in one
-      # page state, and says nothing about heading order, ARIA validity, contrast, or whether a
-      # keyboard can REACH any of the thirteen operations section 19 enumerates.
-      #
-      # Two suites, in their own directory so this step and the one above stay separable:
-      #   a11y/axe.test.mjs       axe-core over four page states (empty / loaded / properties /
-      #                           hypothesis open), plus a contrast measurement of the SVG diagram
-      #                           text, which axe reports as INCOMPLETE and therefore never judged.
-      #   a11y/keyboard.test.mjs  all thirteen of section 19's operations driven by Tab, Enter,
-      #                           Space, arrows and typing — no element.click(), no handler call.
-      #
-      # BLOCKING, and blocking at zero: measured 0 axe violations in all four states (40–47 rules
-      # passing) and 13/13 operations reachable, after the one defect this wave found was fixed in
-      # the same change (figure svg took its background from var(--panel), so the dark theme painted
-      # the renderer's fixed-light #11151c ink on a #201e16 ground — 1.1:1 for the emphasis glyph and
-      # the mark legend). Had that not been closeable here the step would have landed non-blocking
-      # with the findings enumerated: the repo's rule is drain-then-promote, because a blocking-red
-      # gate breaks every agent pushing through it.
-      #
-      # axe-core is RESOLVED from the ROOT node_modules (`npm ci` in the first step), where it is
-      # already pinned at 4.12.1 for the catalogue's own a11y tier — not added to
-      # workbench/package.json, which would pin the same tool twice in one repo and mutate a
-      # node_modules symlinked across parallel agent worktrees. Puppeteer comes from book/ exactly as
-      # the step above resolves it.
-      #
-      # Two receipts, hard-asserted for the same reason as the one above: each suite is its own file,
-      # so each could be the one whose glob silently matched nothing.
-      #
       # The smoke tier covers BOTH served pages — index.html and learn.html — as a post-condition:
-      # no fallback string appears AND an expected content shape IS present. It is the only gate that
-      # looks at learn.html as a page rather than as a module, so without it a Learn gallery that
-      # rendered an empty card list would pass every other check here.
-      #
-      # It was added to `npm run all` when it landed and NOT to this workflow, which is the third
-      # instance today of one failure class: a gate exists and the path meant to run it does not reach
-      # it. The first cost a duplicate-landmark defect that reached main; the second failed this
-      # pipeline on a Python install ordered after the suite that needs it. A gate nobody runs reports
-      # green.
+      # no fallback string appears AND an expected content shape IS present. It is the only gate
+      # that looks at learn.html as a page rather than as a module.
       - name: Model Workbench smoke tier (both served pages boot, no fallback strings)
         timeout-minutes: 10
         working-directory: workbench
@@ -247,13 +248,12 @@ jobs:
           test -f dist/workbench.js || { echo "ERROR: workbench bundle missing — the smoke tier would load a page with no app"; exit 1; }
           test -f dist/learn.js || { echo "ERROR: learn bundle missing — the smoke tier would load a gallery with no app"; exit 1; }
           npm run test:smoke
-      #
-      # THREE receipts since the declared-path drives landed, and the third is the one whose absence
-      # would be least visible. Its suite GENERATES a drive per declared navigation path, so a
-      # registry that lost its `path` fields produces a file of zero tests — and `node --test` prints
-      # a green tier for that. The receipt carries the walked count; the suite asserts it against the
-      # registry's own arithmetic. G1's ruling is the reason it is not optional: a declared path that
-      # nothing walks is a sentence an author wrote.
+      # THREE receipts, and the third is the one whose absence would be least visible. Its suite
+      # GENERATES a drive per declared navigation path, so a registry that lost its `path` fields
+      # produces a file of zero tests — and `node --test` prints a green tier for that. The receipt
+      # carries the walked count; the suite asserts it against the registry's own arithmetic. G1's
+      # ruling is the reason it is not optional: a declared path that nothing walks is a sentence an
+      # author wrote.
       - name: Model Workbench FR-A11Y tier (axe-core over four states + section 19 by keyboard + every declared path) + receipt assertions
         timeout-minutes: 15
         working-directory: workbench
@@ -272,159 +272,380 @@ jobs:
           cat "$WB_AXE_RECEIPT"
           cat "$WB_KEYBOARD_RECEIPT"
           cat "$WB_PATHS_RECEIPT"
-      # Typst backs BOTH the citation render (below) and the PDF print edition (further down), so install it
-      # up front — the pinned release, clone-and-run-safe + reproducible (verify it extracts a runnable
-      # binary, put it on PATH).
-      - name: Install Typst (pinned release; renders citations + the print-native book PDF)
+
+  # ── Catalogue site gates: full suite + responsive + console (GATE) ──────────────────────────
+  # The authoritative `catalog_tests.py --full` run (post-push HEAD==origin, so incremental would
+  # skip Tier 2), plus the two browser-backed page gates. This job re-renders the site HTML from
+  # source first — the suite checks ALREADY-BUILT HTML, so it must check THIS push's render, not
+  # the committed HTML a skipped hook may have left stale.
+  site-gates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            book/package-lock.json
+      - name: Restore Puppeteer Chromium (book/ lockfile keys the browser build)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('book/package-lock.json') }}
+      - name: Restore mermaid SVG render cache (content-addressed; stale entries never hit)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: book/.mermaid-svg-cache
+          key: mermaid-svg-${{ github.sha }}
+          restore-keys: mermaid-svg-
+      - name: Install pinned test tooling (root axe + html-validate; book mermaid-cli + Puppeteer)
+        run: |
+          npm ci
+          npm ci --prefix book
+      - name: Install Typst (pinned release; renders citations + the cover thumbs)
         run: |
           TYPST_VERSION=v0.15.1
           # --retry + --retry-all-errors: the release-asset CDN occasionally returns a transient 5xx
-          # (e.g. a 504 Gateway Timeout); retry so one flake does not fail the whole deploy.
+          # (e.g. a 504 Gateway Timeout); retry so one flake does not fail the whole run.
           curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
           mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
           sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
           typst --version
-      # Derive the two landing cover thumbnails EARLY — they are gitignored, build-derived artifacts
-      # (tools/cover_assets.py: manifest → Typst cover → Pillow downscale), so a fresh CI checkout does
-      # NOT carry them. Producing them here — right after the Typst install, before catalog.py build and
-      # before EVERY consumer (the landing's <img>, the console-error gate's subresource fetch,
-      # book_mkdocs' asset copy, the assemble hard-gate) — guarantees each downstream step sees a thumb
-      # freshly derived from the current manifests. The later "Render book ePub" + handbook build steps
-      # re-derive them idempotently. Deps: Pillow (book/requirements-pdf.txt) for the downscale + PyYAML
-      # for the handbook cover (reads handbook/book.yaml); Typst is already on PATH from the step above.
-      - name: Derive landing cover thumbnails (build-derived, gitignored; before any consumer)
+      # Render the Chicago citation strings from references.bib (the SSOT) before the build that
+      # reads them; derive the landing cover thumbnails (gitignored, build-derived) before the
+      # console gate that fetches them as a subresource.
+      - name: Render citations + derive cover thumbnails (before their consumers)
         run: |
           python3 -m pip install -r book/requirements-pdf.txt
           python3 -m pip install "pyyaml>=6,<7"
+          python3 book/render_citations.py
           python3 tools/cover_assets.py regen
-      # Pandoc backs the supplementary Software Engineering Handbook render (further down): the handbook's
-      # manuscript is read + AST-transformed + citeproc'd by Pandoc, then projected to Typst for the PDF.
-      # Install the pinned release the same clone-and-run-safe way as Typst above (download the pinned
-      # tarball, extract the runnable binary, put it on PATH) — NOT an unpinned `apt-get install pandoc`,
-      # whose version floats and can silently change the AST the Lua filters see.
-      - name: Install Pandoc (pinned release; backs the supplementary handbook render)
-        run: |
-          PANDOC_VERSION=3.9.0.2
-          # Same transient-5xx hardening as the Typst download above.
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
-          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
-          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
-          pandoc --version
-      # Render the Chicago citation strings ONCE from references.bib (the SSOT) → book/data/citations.json,
-      # which BOTH the HTML build (catalog.py build) and the PDF consume. Runs BEFORE the build that reads it,
-      # the same "regenerate from source in CI" discipline the mermaid SVGs and the committed HTML follow. The
-      # committed citations.json is the local cache; CI re-derives it so the published strings can never lag
-      # references.bib (the CITE-FRESH gate in the test suite pins the two in sync either way).
-      - name: Render citations (references.bib -> citations.json via Typst, chicago-notes)
-        run: python3 book/render_citations.py
       - name: Validate schema
         run: python3 catalog.py validate
       - name: Render markdown -> HTML (renders ```mermaid fences to inline SVG via book/ mmdc)
         run: python3 catalog.py build
-      - name: Test suite (blocking — authoritative --full run; post-push HEAD==origin, so incremental would skip Tier 2)
+      - name: Test suite (authoritative --full run; post-push HEAD==origin, so incremental would skip Tier 2)
         run: python3 catalog_tests.py --full
-      # ── PDF print edition (print-native Typst path) ─────────────────────────────────────────────
-      # The book PDF is a CI-generated, Pages-published artifact (not committed). `--pdf` projects the
-      # typed book IR to a Typst document and runs `typst compile` to book/mage-book.pdf, which the rsync
-      # below copies into _site/ so it serves at /book/mage-book.pdf. It runs the content-integrity gate
-      # internally — page floor/ceiling, every chapter + part title present, no-raw-mermaid, density, and a
-      # tag-tree assertion — and exits non-zero (failing the build) if the render is truncated / collapsed /
-      # runaway / ships raw diagram source / drops the a11y tag tree.
-      #
-      # Typst is already installed (up front, before the citation render). poppler (pdftotext / pdfinfo) backs
-      # the content-integrity + tag-tree gates. qpdf runs a lossless object-stream repack after `typst compile`
-      # (Typst emits ~20K uncompressed indirect objects, dominated by the a11y struct tree; the repack packs
-      # them into compressed object streams, cutting the whole-book PDF by ~35% — ≈ 6.7 MB → 4.3 MB — with the
-      # tag tree preserved). Without it the full-bleed rasterized cover pushes the PDF well over its size floor.
+      # Assert the landing `.masonry` region renders a structurally different layout at wide vs
+      # phone width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success
+      # metric made mechanical. Needs a browser (headless Chrome), so it can't live in stdlib-only
+      # `catalog.py validate`; it reuses the book/ Puppeteer + bundled Chromium installed above.
+      - name: Responsive-layout gate (landing wide != phone)
+        run: python3 catalog.py check-responsive
+      # Load EVERY served HTML page in headless Chrome and fail on any pageerror (uncaught
+      # exception / unhandled rejection) or console.error — catches JS-runtime defects
+      # (script-ordering races like an iframe onload firing before its handler is defined, failed
+      # fetches, missing subresources) that the structural gates (validate / axe / html-validate)
+      # cannot see.
+      - name: Console-error gate (no pageerror / console.error on any served page)
+        run: python3 catalog.py check-console
+
+  # ── Book print + ePub editions (PRODUCER) ───────────────────────────────────────────────────
+  # The book PDF is a CI-generated, Pages-published artifact (not committed). `--pdf` projects the
+  # typed book IR to a Typst document and runs `typst compile` to book/mage-book.pdf. It runs the
+  # content-integrity gate internally — page floor/ceiling, every chapter + part title present,
+  # no-raw-mermaid, density, and a tag-tree assertion — and exits non-zero (failing the build) if
+  # the render is truncated / collapsed / runaway / ships raw diagram source / drops the a11y tag
+  # tree. poppler (pdftotext / pdfinfo) backs those gates. qpdf runs a lossless object-stream
+  # repack after `typst compile` (Typst emits ~20K uncompressed indirect objects; the repack cuts
+  # the whole-book PDF by ~35% with the tag tree preserved).
+  #
+  # `--no-split`: the published site ships only the whole-book mage-book.pdf. `--pdf` is
+  # default-on-split LOCALLY (per-section review PDFs); `--no-split` states full-only explicitly at
+  # the call site so CI never pays the per-section compile cost.
+  #
+  # The ePub (book_epub.py — the 4th IR projection, EPUB3) reuses build_pages()' rendered bodies
+  # (no re-render), packs the EPUB3 container, and renders the TITLED cover from the print
+  # edition's own Typst cover page — so it runs after the Typst + requirements-pdf installs
+  # (Typst compiles the cover; Pillow recompresses it).
+  book-editions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: book/package-lock.json
+      - name: Restore Puppeteer Chromium (book/ lockfile keys the browser build)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('book/package-lock.json') }}
+      - name: Restore mermaid SVG render cache (content-addressed; stale entries never hit)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: book/.mermaid-svg-cache
+          key: mermaid-svg-book-${{ github.sha }}
+          restore-keys: mermaid-svg-
+      - name: Install book node tooling (mermaid-cli for build-time SVG, from book/ lockfile)
+        working-directory: book
+        run: npm ci
+      - name: Install Typst (pinned release; renders citations + the print-native book PDF)
+        run: |
+          TYPST_VERSION=v0.15.1
+          # Same transient-5xx hardening as every pinned-release download in this workflow.
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
+          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
+          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
+          typst --version
       - name: Install poppler + qpdf (pdftotext / pdfinfo back the content-integrity + tag-tree gates; qpdf does the lossless object-stream repack)
         run: sudo apt-get update && sudo apt-get install -y poppler-utils qpdf
-      # `--no-split`: the published site ships only the whole-book mage-book.pdf. `--pdf` is default-on-split
-      # LOCALLY (per-section review PDFs); CI is already covered by the GITHUB_ACTIONS env gate, and `--no-split`
-      # states full-only explicitly at the call site so CI never pays the per-section compile cost.
+      - name: Render citations (references.bib -> citations.json via Typst, chicago-notes)
+        run: python3 book/render_citations.py
       - name: Render book PDF (print-native Typst) + content-integrity gate
         run: |
-          # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is already
-          # installed above. catalog.py itself stays stdlib-only — these deps are for the --pdf path only.
+          # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is
+          # already installed above. catalog.py itself stays stdlib-only — these deps are for the
+          # --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
+          python3 -m pip install "pyyaml>=6,<7"
           python3 book/build_book.py --pdf --no-split
-      # ── ePub edition (book_epub.py — the 4th IR projection, EPUB3) ──────────────────────────────
-      # CI-generated, Pages-published beside the PDF (not committed; gitignored like mage-book.pdf).
-      # book_epub.py reuses build_pages()' rendered bodies (no re-render), packs the EPUB3 container,
-      # and renders the TITLED cover from the print edition's own Typst cover page — so it MUST run
-      # after the Typst + requirements-pdf.txt installs above (Typst compiles the cover; Pillow
-      # recompresses it). Runs BEFORE the assemble step below, which rsyncs book/mage-book.epub into
-      # _site/book/mage-book.epub; no validate/test gate reads the .epub (the C3 build-order lesson —
-      # the emit precedes its only consumers, and nothing earlier depends on it).
       - name: Render book ePub (EPUB3 from the same page records as the web edition)
         run: python3 book/book_epub.py
-      # ── Supplementary Software Engineering Handbook PDF + ePub (Pandoc → AST → Typst / ePub3) ────
-      # CI-generated, Pages-published artifacts (like the book PDF above; not committed). `make book`
-      # LINTS the manuscript first and aborts on any error (never degrades silently), then renders
-      # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline AND the
-      # reflowable software-engineering-handbook.epub from the same chapter source (the ePub is folded
-      # into the pdf target). Pandoc + Typst are both installed above; the handbook's bibliography ships
-      # in-tree. Copy ONLY the rendered PDF + ePub into _site/se-handbook/ so they serve at
-      # /se-handbook/software-engineering-handbook.{pdf,epub} — the raw handbook/ manuscript is excluded
-      # from the artifact below (parity with course/site). Fatal on a missing PDF or ePub, mirroring the
-      # book-PDF assembly assertion. (The published subfolder is `se-handbook`; the source tree keeps its
-      # `handbook/` name.) The handbook WEB edition (MkDocs) is built + published by its own step further
-      # down, AFTER the relocate — see "Build handbook web site".
-      - name: Render supplementary handbook PDF + ePub (Pandoc → Typst / ePub3) + copy into _site/se-handbook
+      - name: Upload book editions (consumed by assemble)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: book-editions
+          path: |
+            book/*.pdf
+            book/*.epub
+          if-no-files-found: error
+          retention-days: 3
+
+  # ── Supplementary Software Engineering Handbook: PDF + ePub + web site (PRODUCER) ────────────
+  # CI-generated, Pages-published artifacts (not committed). `make book` LINTS the manuscript
+  # first and aborts on any error (never degrades silently), then renders
+  # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline AND the
+  # reflowable .epub from the same chapter source, plus the standalone per-chapter PDFs
+  # (handbook/dist/chapters/<stem>.pdf). `build.py web` then renders the self-contained MkDocs
+  # site (handbook/dist/site). `assemble` downloads handbook/dist and places everything at its
+  # published home. (The published subfolder is `se-handbook`; the source tree keeps its
+  # `handbook/` name.)
+  handbook:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.x"
+      - name: Install Typst (pinned release; the handbook PDF's layout engine)
         run: |
-          # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party Python dep on
-          # the PDF path; Pandoc + Typst are external CLIs, installed above). catalog.py itself stays
-          # stdlib-only, so nothing has installed PyYAML yet — install it here, pinned to the README's v6.
-          # `make book` also emits the standalone per-chapter PDFs (handbook/dist/chapters/<stem>.pdf);
-          # the handbook-web step below copies + asserts them into the published /book/se-handbook/chapters/.
+          TYPST_VERSION=v0.15.1
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
+          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
+          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
+          typst --version
+      # Pandoc reads + AST-transforms + citeproc's the handbook manuscript, then projects to Typst.
+      # The pinned release, clone-and-run-safe — NOT an unpinned `apt-get install pandoc`, whose
+      # version floats and can silently change the AST the Lua filters see.
+      - name: Install Pandoc (pinned release; backs the handbook render)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
+      - name: Render handbook PDF + ePub + per-chapter PDFs (Pandoc → Typst / ePub3)
+        run: |
+          # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party
+          # Python dep on the PDF path); Pillow (requirements-pdf) backs the cover derivation.
           python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-pdf.txt
           make -C handbook book
+          test -f handbook/dist/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after render"; exit 1; }
+          test -f handbook/dist/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing after render"; exit 1; }
+      - name: Build handbook web site (MkDocs -> handbook/dist/site)
+        run: |
+          python3 -m pip install -r site/requirements.txt
+          python3 handbook/scripts/build.py web
+          test -f handbook/dist/site/index.html || { echo "ERROR: handbook web index missing after build"; exit 1; }
+      - name: Upload handbook dist (consumed by assemble)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: handbook-dist
+          path: handbook/dist
+          if-no-files-found: error
+          retention-days: 3
+
+  # ── Teach-with-MAGE course site + MAGE book web edition (PRODUCER) ──────────────────────────
+  # Both are MkDocs Material builds on the same pinned toolchain (site/requirements.txt), so they
+  # share a job. The teach site builds into _site/teach (served at /teach/); `strict` fails the
+  # build on any broken internal link. The MAGE book web edition (the PUBLISHED book since the C3
+  # publish swap): book_mkdocs.py runs build_pages() (every content pass) and emits the MkDocs tree
+  # consuming the shared web-theme/ shell; `--check-determinism` emits twice and fails on any byte
+  # difference. The --strict Material build then renders book/web/site — flat `<slug>.html` stems
+  # identical to the retired hand-rolled pages (`use_directory_urls: false`), so every published
+  # URL + #anchor is unchanged.
+  web-editions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: book/package-lock.json
+      - name: Restore Puppeteer Chromium (book/ lockfile keys the browser build)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('book/package-lock.json') }}
+      - name: Restore mermaid SVG render cache (content-addressed; stale entries never hit)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: book/.mermaid-svg-cache
+          key: mermaid-svg-web-${{ github.sha }}
+          restore-keys: mermaid-svg-
+      - name: Install book node tooling (mermaid-cli for build_pages' SVG render, from book/ lockfile)
+        working-directory: book
+        run: npm ci
+      - name: Install Typst (pinned release; renders citations + the cover thumbs)
+        run: |
+          TYPST_VERSION=v0.15.1
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
+          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
+          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
+          typst --version
+      - name: Render citations + derive cover thumbnails (build_pages + the asset copy consume them)
+        run: |
+          python3 -m pip install -r book/requirements-pdf.txt
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 book/render_citations.py
+          python3 tools/cover_assets.py regen
+      - name: Build Teach-with-MAGE course site (MkDocs → _site/teach)
+        run: |
+          python3 -m pip install -r site/requirements.txt
+          # -d must be ABSOLUTE: mkdocs resolves a relative --site-dir against the CONFIG dir
+          # (site/), so a bare `_site/teach` would land in site/_site/teach — which the assemble
+          # job's --exclude='site' then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships
+          # at _site/teach.
+          python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
+      - name: Build MAGE book web edition (emit determinism + mkdocs --strict)
+        run: |
+          python3 book/book_mkdocs.py --check-determinism
+          python3 -m mkdocs build --strict -f book/web/mkdocs.yml
+      - name: Upload teach site (consumed by assemble)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: teach-site
+          path: _site/teach
+          if-no-files-found: error
+          retention-days: 3
+      - name: Upload book web site (consumed by assemble)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: book-web-site
+          path: book/web/site
+          if-no-files-found: error
+          retention-days: 3
+
+  # ── Assemble + hard-gate the published artifact (BLOCKS deploy) ─────────────────────────────
+  # The one job deploy waits on. It re-renders the catalogue HTML from source (the "executable,
+  # can't-drift" build — committed HTML can lag when a commit route skips the pre-commit hook),
+  # downloads every producer's output, and asserts the artifact's SHAPE: every published piece
+  # present, no internal playbook leaked. These assertions are artifact INTEGRITY — "what we are
+  # about to publish is whole" — which is the deploy-blocking class. Behavior/quality verdicts
+  # (the gate jobs above) red the run without holding the artifact (CLAUDE.md § "Where a new
+  # check runs").
+  assemble:
+    needs: [workbench, book-editions, handbook, web-editions]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: book/package-lock.json
+      - name: Restore Puppeteer Chromium (book/ lockfile keys the browser build)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('book/package-lock.json') }}
+      - name: Restore mermaid SVG render cache (content-addressed; stale entries never hit)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: book/.mermaid-svg-cache
+          key: mermaid-svg-assemble-${{ github.sha }}
+          restore-keys: mermaid-svg-
+      - name: Install book node tooling (mermaid-cli for the authoritative HTML render)
+        working-directory: book
+        run: npm ci
+      - name: Install Typst (pinned release; renders citations + the cover thumbs)
+        run: |
+          TYPST_VERSION=v0.15.1
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
+          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
+          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
+          typst --version
+      - name: Render citations + derive cover thumbnails (the landing + the thumb hard-gates consume them)
+        run: |
+          python3 -m pip install -r book/requirements-pdf.txt
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 book/render_citations.py
+          python3 tools/cover_assets.py regen
+      - name: Validate schema
+        run: python3 catalog.py validate
+      - name: Render markdown -> HTML (the authoritative render the artifact ships)
+        run: python3 catalog.py build
+      - name: Download workbench bundle
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: workbench-dist
+          path: workbench/dist
+      - name: Download book editions
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: book-editions
+          path: book
+      - name: Download handbook dist
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: handbook-dist
+          path: handbook/dist
+      - name: Download teach site
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: teach-site
+          path: _site/teach
+      - name: Download book web site
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: book-web-site
+          path: book/web/site
+      - name: Place handbook PDF + ePub at _site/se-handbook
+        run: |
           mkdir -p _site/se-handbook
           cp handbook/dist/software-engineering-handbook.pdf _site/se-handbook/software-engineering-handbook.pdf
           cp handbook/dist/software-engineering-handbook.epub _site/se-handbook/software-engineering-handbook.epub
           test -f _site/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing from site artifact"; exit 1; }
           test -f _site/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing from site artifact"; exit 1; }
-      # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
-      # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
-      # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made
-      # mechanical. Needs a browser (headless Chrome), so it can't live in stdlib-only `catalog.py
-      # validate`; it reuses the book/ Puppeteer + bundled Chromium already installed above. A
-      # regression that flattens the masonry to a single column fails the deploy here.
-      - name: Responsive-layout gate (landing wide != phone)
-        run: python3 catalog.py check-responsive
-      # ── Console-error gate (deploy-blocking) ────────────────────────────────────────────────────
-      # Load EVERY served HTML page in headless Chrome and fail the deploy on any pageerror (uncaught
-      # exception / unhandled rejection) or console.error — catches JS-runtime defects (script-ordering
-      # races like an iframe onload firing before its handler is defined, failed fetches, missing
-      # subresources) that the structural gates (validate / axe / html-validate) cannot see. Reuses the
-      # book/ Puppeteer + bundled Chromium already installed above.
-      - name: Console-error gate (no pageerror / console.error on any served page)
-        run: python3 catalog.py check-console
-      # ── Teach-with-MAGE course companion (MkDocs Material → /teach) ─────────────────────────────
-      # The teaching site is a SEPARATE, pinned toolchain (course/ Markdown is the source; catalog.py stays
-      # stdlib-only). It builds into _site/teach so it serves at the /teach/ subpath of this repo's single
-      # Pages deployment (the catalogue + book own the root). `strict` in mkdocs.yml fails the build on any
-      # broken internal link (the teach-site link-integrity gate). The raw course/ + site/ sources are
-      # excluded from the served artifact below (only the rendered /teach/ ships).
-      - name: Build Teach-with-MAGE course site (MkDocs → _site/teach)
-        run: |
-          python3 -m pip install -r site/requirements.txt
-          # -d must be ABSOLUTE: mkdocs resolves a relative --site-dir against the CONFIG dir (site/), so a
-          # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
-          # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
-          python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
-      # ── MAGE web edition (MkDocs — the PUBLISHED book since the C3 publish swap) ────────────────
-      # book_mkdocs.py runs build_pages() (every content pass) and emits the MkDocs tree consuming the
-      # shared web-theme/ shell; `--check-determinism` emits twice and fails on any byte difference
-      # (the C3 replacement for the retired tracked-HTML + pre-commit force-staging discipline). The
-      # --strict Material build then renders book/web/site — flat `<slug>.html` stems identical to the
-      # retired hand-rolled pages (`use_directory_urls: false`), so every published URL + #anchor is
-      # unchanged. The publish step below (after assemble) copies the built site into
-      # _site/book/mage-book/; the generated book/web/ SOURCE tree stays excluded from the artifact.
-      # Toolchain: the same pinned mkdocs+material the teach-site step installed above.
-      - name: Build MAGE book web edition (emit determinism + mkdocs --strict)
-        run: |
-          python3 book/book_mkdocs.py --check-determinism
-          python3 -m mkdocs build --strict -f book/web/mkdocs.yml
       - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site+handbook sources; KEEP book/mage-book.pdf + _site/teach + _site/se-handbook)
         run: |
           mkdir -p _site
@@ -458,14 +679,14 @@ jobs:
           EPUB="${PDF%.pdf}.epub"
           test -f "_site/$EPUB" || { echo "ERROR: $EPUB missing from site artifact"; exit 1; }
           # The two landing cover thumbnails are build-derived (tools/cover_assets.py) + gitignored —
-          # produced by the ePub + handbook build steps above. Hard-gate them into the artifact so the
-          # landing can never ship thumbless (a silently-skipped derivation is a red deploy).
+          # derived above. Hard-gate them into the artifact so the landing can never ship thumbless
+          # (a silently-skipped derivation is a red deploy).
           test -f _site/book/assets/cover-thumb.png || { echo "ERROR: book/assets/cover-thumb.png missing from site artifact"; exit 1; }
           test -f _site/book/assets/handbook-cover-thumb.png || { echo "ERROR: book/assets/handbook-cover-thumb.png missing from site artifact"; exit 1; }
           # The Model Workbench app shell + its build-derived bundle. The shell is tracked and rides in
-          # with the rsync; the bundle is gitignored and exists only because the workbench step above
-          # built it. Hard-gate both: the landing links the shell, and a shell without its bundle is a
-          # 200 that renders nothing — the same class of silent failure the PDF assertion above prevents.
+          # with the rsync; the bundle is gitignored and arrived via the workbench-dist artifact above.
+          # Hard-gate both: the landing links the shell, and a shell without its bundle is a 200 that
+          # renders nothing — the same class of silent failure the PDF assertion above prevents.
           test -f _site/workbench/index.html || { echo "ERROR: workbench/index.html missing from site artifact"; exit 1; }
           test -f _site/workbench/dist/workbench.js || { echo "ERROR: workbench/dist/workbench.js missing from site artifact — the bundle did not ride into _site"; exit 1; }
           test -f _site/workbench/examples/docable.mage.yaml || { echo "ERROR: workbench example model missing from site artifact — the shell's 'Load the example' button fetches it"; exit 1; }
@@ -475,14 +696,15 @@ jobs:
           # unstyled black-on-white, no accent, no panels, and nothing in the log to say why.
           test -f _site/workbench/assets/mage-tokens.css || { echo "ERROR: workbench/assets/mage-tokens.css missing from site artifact — both pages would render with every design token undefined"; exit 1; }
           test -f _site/workbench/assets/favicon.svg || { echo "ERROR: workbench/assets/favicon.svg missing from site artifact — the pages link it as their icon"; exit 1; }
-      # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────────
-      # Copy the MkDocs-built book site (strict-built above) into its published home — flat
-      # `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
+      # ── Publish the MAGE book at /book/mage-book/ + finish the /book/ layout ──────────────────
+      # Copy the MkDocs-built book site (strict-built in web-editions) into its published home —
+      # flat `<slug>.html` stems identical to the retired hand-rolled pages, so every pre-swap URL +
       # #anchor resolves unchanged. Then publish_book_layout.py finishes the layout: a static
-      # meta-refresh stub at every legacy flat _site/book/<slug>.html URL (GitHub Pages has no server
-      # redirects), the whole-book PDF + ePub copied in next to the pages, and the handbook PDF + ePub copied
-      # into _site/book/se-handbook/. Stdlib-only; runs AFTER assemble so it operates on the
-      # fully-populated _site tree. The chapter-page test pins URL continuity across the C3 swap.
+      # meta-refresh stub at every legacy flat _site/book/<slug>.html URL (GitHub Pages has no
+      # server redirects), the whole-book PDF + ePub copied in next to the pages, and the handbook
+      # PDF + ePub copied into _site/book/se-handbook/. Stdlib-only; runs AFTER assemble so it
+      # operates on the fully-populated _site tree. The chapter-page test pins URL continuity
+      # across the C3 swap.
       - name: Publish MAGE book (MkDocs site -> /book/mage-book/) + legacy stubs + PDF/ePub homes
         run: |
           mkdir -p _site/book/mage-book
@@ -495,30 +717,26 @@ jobs:
           test -f _site/book/1.1-the-printer.html || { echo "ERROR: legacy-URL redirect stub missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: relocated handbook PDF missing"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: relocated handbook ePub missing"; exit 1; }
-      # ── Handbook WEB edition (MkDocs → /book/se-handbook/) ──────────────────────────────────────
-      # The handbook renders a self-contained MkDocs site (handbook/dist/site — index.html + one page
-      # per chapter with relative stable-stem cross-links like href="07-design.html"), so the whole
-      # tree serves unchanged at any base path. Build it here — mkdocs + the Material theme were
-      # installed by the teach-site step above (site/requirements.txt, the same pinned toolchain);
-      # Pandoc + PyYAML by the handbook PDF step — and copy it into the relocated /book/se-handbook/
-      # home NEXT TO the handbook PDF (`cp` merges into the existing dir; the trailing assertion
-      # guards the PDF against a clobber). Chapters are then individually linkable at
-      # /book/se-handbook/<stem>.html. Runs AFTER publish_book_layout.py so the copy targets the
-      # final published layout (the book's legacy stubs + PDF homes are already in place).
-      - name: Build handbook web site (MkDocs) + publish at _site/book/se-handbook/ (next to the PDF)
+      # ── Handbook WEB edition at /book/se-handbook/ ────────────────────────────────────────────
+      # The handbook's MkDocs site (built in the handbook job — index.html + one page per chapter
+      # with relative stable-stem cross-links like href="07-design.html") serves unchanged at any
+      # base path. Copy it into the relocated /book/se-handbook/ home NEXT TO the handbook PDF
+      # (`cp` merges into the existing dir; the trailing assertion guards the PDF against a
+      # clobber). Chapters are then individually linkable at /book/se-handbook/<stem>.html. Runs
+      # AFTER publish_book_layout.py so the copy targets the final published layout.
+      - name: Publish handbook web site at _site/book/se-handbook/ (next to the PDF)
         run: |
-          python3 handbook/scripts/build.py web
           mkdir -p _site/book/se-handbook
           cp -r handbook/dist/site/. _site/book/se-handbook/
           test -f _site/book/se-handbook/index.html || { echo "ERROR: handbook web index missing from site artifact"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after web copy"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing after web copy"; exit 1; }
-          # Standalone per-chapter PDFs (emitted by the `make -C handbook book` step above) publish
-          # NEXT TO the pages that link them (each chapter page's "Download this chapter (PDF)"
-          # resolves to chapters/<stem>.pdf). Copied + asserted here — after publish_book_layout.py,
-          # before the artifact upload — so nothing later can rewrite the tree under them. The
-          # assertion derives the expected stem set from book.yaml (never a hand-counted list), so a
-          # new chapter is asserted the moment it enters the book.
+          # Standalone per-chapter PDFs (emitted by the handbook job's `make -C handbook book`)
+          # publish NEXT TO the pages that link them (each chapter page's "Download this chapter
+          # (PDF)" resolves to chapters/<stem>.pdf). Copied + asserted here — after
+          # publish_book_layout.py, before the artifact upload — so nothing later can rewrite the
+          # tree under them. The assertion derives the expected stem set from book.yaml (never a
+          # hand-counted list), so a new chapter is asserted the moment it enters the book.
           mkdir -p _site/book/se-handbook/chapters
           cp handbook/dist/chapters/*.pdf _site/book/se-handbook/chapters/
           python3 - <<'EOF'
@@ -539,7 +757,7 @@ jobs:
           path: _site
 
   deploy:
-    needs: build
+    needs: assemble
     runs-on: ubuntu-latest
     # Only the deploy job gets the deploy credentials (OIDC id-token + pages:write).
     permissions:
