@@ -289,3 +289,81 @@ which surfaced only once someone sat down to write it:
 V26 goes into `PARITY`, not `ASYMMETRIC`. The asymmetry table is an honest record of rules one side
 cannot reach — a schema-layer check, a generated-type check — and each entry carries its reason.
 Domain membership has no such excuse: both sides have the domain and both sides have the guard.
+
+---
+
+## D7 — A relation type declares no DOMAIN or RANGE, so a nonsense edge loads (found 261005)
+
+### How it surfaced
+
+Not by inspection. The browser coverage gate's `create-relation` driver built its edge by taking the
+relation type from `relations[0]` and the endpoints from `entities[0..1]`, which on the flagship
+produced `checkout --carries_field--> billing`: one service carrying another service as a payload
+field. Nothing validated the pairing, so the gate reported the operation working on an edge that
+meant nothing. The driver has been fixed to reuse an existing edge's endpoints, but the fix is to
+the TEST. The question this raises is about the engine.
+
+The author's framing, which is the right one: *types are how we prevent this.*
+
+### Measured at HEAD
+
+- `CanonRelationType` (`src/ir/types.ts:94`) declares `id`, `description`, `absence`,
+  `pathComposition`, `symmetric`, `acyclic`, `aggregates`. **There is no domain and no range** — no
+  statement of what may sit at either end of an edge of this type.
+- `CanonEntity` (`:62`) DOES carry `type: string | null`.
+- **0 of 77 entities across all six shipped examples plus the language specimen set it.** The slot
+  exists and is dead corpus-wide.
+
+So the engine cannot reject the pairing, for two compounding reasons: there is no constraint to
+check, and there would be nothing to check it against.
+
+### What already covers part of it, by accident
+
+V45/V46 — landed 261005 for an unrelated reason, to make message-bus's field layer consequential for
+a student — derive a PARTIAL domain and range from `aggregates`. Where a relation type declares
+`aggregates: {declared: carries, over: classification}`, every source must declare `carries` and
+every target must declare `classification`. Verified by injection:
+
+    injected: checkout --carries_field--> billing
+    [V45] entities.checkout.properties: 'checkout' sources a 'carries_field' edge but declares no
+          'carries'. ... without it the join is unmade and the edges assert nothing.
+
+So the exact nonsense edge that started this is now refused at load time. That coverage is real and
+it was free, but it is incidental: it follows from an aggregation declaration, not from a statement
+about endpoints.
+
+### Where it stops — also verified by injection
+
+`publishes`, `subscribes`, `may_call` and `may_propagate_to` declare no `aggregates`, so they inherit
+nothing. A payload field publishing another payload field loads clean:
+
+    injected: shipping-address --publishes--> customer-id   (a field publishes a field)
+    mage-validate: clean -- shape, meaning, and asserted queries
+
+### The tension, which is why this is a decision and not a bug
+
+Relation-type domain/range is a move UP the semantic-commitment ladder, and that ladder is this
+project's own subject matter. MAGE's thesis is purposeful reduction: declare the distinctions the
+question needs and leave the rest open. Mandatory entity typing buys a class of impossibility and
+spends some of that openness. It is also the ARCHITECTURE-BEFORE-CONTROLS case in its strong form —
+today the error is caught late, partially, and only as a side effect of an unrelated declaration.
+
+### Two shapes, for the author to rule between
+
+1. **Optional domain/range, checked when present.** A relation type MAY declare the entity type(s)
+   permitted at each end; entities MAY declare a `type`. Untyped models behave exactly as today, so
+   nothing in the corpus changes and reduction is preserved. Cost: the guarantee is opt-in, so it
+   protects only models that paid for it, and the dead `type` slot becomes live surface that needs
+   its own semantics (subtyping? a declared vocabulary of entity types? V-rules for both).
+2. **Derive it from what is already declared**, as `aggregates` already does — generalise the rule
+   that a relation type's declared obligations imply what its endpoints must carry. No new
+   commitment and no migration, but partial by construction: it can never reach a relation type that
+   declares no obligations, which is most of them.
+
+A third option worth stating so it is explicitly rejected rather than forgotten: leave it to the
+gates. That is what happened here, and the gate passed for weeks on an edge that meant nothing.
+
+### What is NOT in question
+
+The test-side fix has landed; the coverage driver now reuses a real edge's endpoints. This item is
+only about whether the engine should make the nonsense edge unwritable.
