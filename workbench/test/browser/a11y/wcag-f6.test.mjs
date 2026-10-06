@@ -316,6 +316,63 @@ describe("2.4.7: the focus ring RENDERS, in both themes", () => {
     }
   }
 
+  it("the ring verdict is independent of an ancestor's scroll position, in both directions", async () => {
+    // The control for the 261006 regression's actual mechanism. The first measured `summary` on
+    // index.html sits in the nav rail -- `overflow: auto`, ~3400px of content in an 800px box --
+    // and the probe's clip is written in page coordinates, which say nothing about the rail's
+    // inside. Before this control's fix, the probe's own release-and-reach between its two shots
+    // re-scrolled the rail (Chromium's minimal reveal, against the probe's explicit centering), the
+    // clip sampled pixels the control was no longer under, and the verdict followed the scroll
+    // state: a painted, `:focus-visible`-matched ring measured 1804/4704 band pixels with the
+    // scroll held still, 0/4704 through the unrestored dance, 155/4704 under CI's fonts -- green on
+    // one machine's metrics and a 2.4.7 red on another's, at one commit. So: the same control,
+    // measured from two adversarial starting scrolls, must yield the same verdict, the true one --
+    // and still go red from a scrolled start when the outline is removed, or this is a probe that
+    // stopped looking rather than one that measures.
+    const page = await sabotagePage();
+    try {
+      const target = await page.evaluate(() => {
+        const nav = document.getElementById("nav");
+        const el = nav?.querySelector("details > summary");
+        if (nav === null || el === null) return null;
+        const parts = [];
+        for (let n = el; n !== null && n !== document.documentElement; n = n.parentElement) {
+          if (n.id !== "") { parts.unshift("#" + CSS.escape(n.id)); break; }
+          parts.unshift(n.tagName.toLowerCase() + ":nth-child("
+            + ([...n.parentElement.children].indexOf(n) + 1) + ")");
+        }
+        return {
+          selector: parts.join(" > "),
+          scrollable: nav.scrollHeight - nav.clientHeight,
+          beyondScrollport: el.offsetTop > nav.clientHeight,
+        };
+      });
+      // Preconditions, asserted rather than assumed: a rail that stopped scrolling, or a summary
+      // that moved above the fold, would make every verdict below true of nothing.
+      assert.ok(target !== null, "the nav rail no longer holds a summary, so this control has no subject");
+      assert.ok(target.scrollable > 100,
+        `#nav scrolls by only ${target.scrollable}px, so nothing here exercises the scrolled-ancestor class`);
+      assert.ok(target.beyondScrollport,
+        "the rail summary sits inside the first scrollport, so reaching it never scrolls the rail");
+      for (const start of [0, 10_000]) {
+        await page.evaluate((top) => { document.getElementById("nav").scrollTop = top; }, start);
+        const m = await focusRingDiff(page, target.selector);
+        assert.ok(ringRendered(m),
+          `${target.selector} measured from #nav scrollTop=${start}: ${m.bandChanged} of `
+          + `${m.bandTotal} band pixels changed (maxDelta ${m.maxDelta}) -- the ring is painted `
+          + "(see the in-place measurement in wcag-f6.mjs), so a non-verdict here is the clip "
+          + "sampling pixels the control is not under");
+      }
+      await page.addStyleTag({ content: "*, *::before, *::after { outline: none !important; }" });
+      await page.evaluate(() => { document.getElementById("nav").scrollTop = 0; });
+      const suppressed = await focusRingDiff(page, target.selector);
+      assert.equal(ringRendered(suppressed), false,
+        `with every outline suppressed the scrolled-rail measurement still reports a ring: `
+        + `${suppressed.bandChanged} of ${suppressed.bandTotal} band pixels changed. It is `
+        + "measuring the rail's own movement, not the ring");
+    } finally { await page.close(); }
+  });
+
   it("the ring measurement goes RED when the outline is removed", async () => {
     // The negative control. Without it a green focus-ring gate is indistinguishable from a probe
     // that screenshots the same pixels twice -- which is a bug this probe actually had, twice, in
