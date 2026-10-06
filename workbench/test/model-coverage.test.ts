@@ -50,6 +50,12 @@
  * though no path moved. The exclusion set is derived from `SHIPPED_EXAMPLE_IDS` for the same reason
  * the denominator is derived.
  *
+ * **Run evidence is outside the denominator as a CLASS.** Dated `window.mage.export()` snapshots
+ * under `lab-runs/` are committed evidence of what the tool emitted, not models the project
+ * maintains — see `RUN_EVIDENCE_PREFIX` for the full argument, and the denominator test for the
+ * evidence (dated directory + a REPORT.md declaring the files `export()` artifacts) that keeps a
+ * maintained model from hiding there.
+ *
  * **Exemptions are reasoned and CAPPED, and the cap is zero.** Every query in every subject model
  * carries `expect` at this commit, so the honest ceiling is zero and raising it is a deliberate edit
  * to a named constant — the discipline `test/browser/agent-coverage.test.mjs` and
@@ -78,7 +84,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Workspace } from "../src/app/services.ts";
@@ -117,8 +123,8 @@ const RECEIPT_PATH = process.env["WB_MODEL_COVERAGE_RECEIPT"]
 
 /** What a green run establishes. Shipped in the receipt, asserted present. */
 const CLAIM = "Every saved query carrying `expect` in every tracked model outside the shipped "
-  + "example systems was evaluated through the engine, and its outcome matched. A model edit that "
-  + "changes a verdict changes this gate.";
+  + "example systems and the dated run-evidence snapshots under lab-runs/ was evaluated through "
+  + "the engine, and its outcome matched. A model edit that changes a verdict changes this gate.";
 
 /** What it does not. Shipped beside the claim, because the number is read without the file. */
 const NOT_PROVEN = "This does NOT prove any model corresponds to the code. No gate here derives the "
@@ -167,6 +173,29 @@ const EXCLUDED: Readonly<Record<string, Exclusion>> = Object.fromEntries(
       + "free to drift from the fixture, which is the reason the file says so itself.",
   }]),
 );
+
+/**
+ * Run-evidence snapshots: dated `window.mage.export()` artifacts under `lab-runs/`, excluded from
+ * the denominator as a CLASS — a path predicate, not a list of names — so the next run's exports
+ * are outside by landing rather than by someone remembering.
+ *
+ * WHY run evidence is outside this gate, stated so the next author does not read it as an
+ * oversight: this gate holds models the project SHIPS AND MAINTAINS to their own questions. A
+ * lab-run directory holds byte-faithful `export()` output committed as EVIDENCE — before/after
+ * snapshots a reader loads to watch a requirement flip from violated to satisfied. Nobody
+ * maintains those files' assertions; hand-adding `expect` would make them something the tool never
+ * produced and break the round-trip demonstration they exist for, and the run's verdicts are
+ * already held by the results JSONs and REPORT.md committed beside them. The alternative — a
+ * per-query exemption map naming every snapshot query — is the exempts-its-way-to-green shape the
+ * ceiling above exists to refuse, and it would name these files rather than the class.
+ *
+ * The class is kept NARROW by evidence, checked in the denominator test below: every tracked model
+ * under this prefix must sit in a dated run directory whose REPORT.md declares the files
+ * `export()` artifacts. A maintained model parked under `lab-runs/` to dodge the gate fails there
+ * instead of silently falling outside the denominator.
+ */
+const RUN_EVIDENCE_PREFIX = "lab-runs/";
+const isRunEvidence = (path: string): boolean => path.startsWith(RUN_EVIDENCE_PREFIX);
 
 /** Every tracked `*.mage.yaml`, package-relative. Fails loud: there is no empty-is-fine path. */
 const trackedModels = (): readonly string[] =>
@@ -443,9 +472,9 @@ function renderTable(summaries: readonly ModelSummary[]): string {
 // The gate
 // ----------------------------------------------------------------------------------------------
 
-/** The subject set: tracked models, minus the declared exclusions. */
+/** The subject set: tracked models, minus the declared exclusions and the run-evidence class. */
 const subjects = (): readonly string[] =>
-  trackedModels().filter((path) => EXCLUDED[path] === undefined);
+  trackedModels().filter((path) => EXCLUDED[path] === undefined && !isRunEvidence(path));
 
 test("every tracked model's own assertions are evaluated, and every verdict is met", () => {
   const paths = subjects();
@@ -472,6 +501,13 @@ test("every tracked model's own assertions are evaluated, and every verdict is m
     exemptionCeiling: EXEMPTION_CEILING,
     exemptions: QUERY_EXEMPTIONS,
     excluded: Object.fromEntries(Object.entries(EXCLUDED).map(([k, v]) => [k, v.reason])),
+    runEvidence: {
+      prefix: RUN_EVIDENCE_PREFIX,
+      excluded: trackedModels().filter(isRunEvidence),
+      reason: "Dated `window.mage.export()` snapshots committed as run evidence, excluded as a "
+        + "class: nobody maintains their assertions, the run's results files and REPORT.md hold "
+        + "their verdicts, and a hand-added `expect` would forge bytes the tool never produced.",
+    },
     totals: {
       models: summaries.length,
       queries: total,
@@ -507,6 +543,31 @@ test("the denominator is derived, and each exclusion it declares is real", () =>
       `\`${path}\` is excluded on the evidence that \`${exclusion.evidenceIn}\` contains `
       + `"${exclusion.evidence}", and it does not. The exclusion's whole claim is that something else `
       + `owns this model's verdicts; without that sentence nothing does.`);
+  }
+
+  // The run-evidence class exclusion, held to its evidence. Every tracked model under `lab-runs/`
+  // must be a dated run's export snapshot, declared as such by the run's own report — otherwise it
+  // is a maintained model hiding in the one subtree this gate deliberately does not police, and
+  // the exclusion must go red rather than quietly widen.
+  const runEvidence = tracked.filter(isRunEvidence);
+  assert.ok(runEvidence.length > 0,
+    "no tracked model sits under `lab-runs/`, so the run-evidence class exclusion covers nothing. "
+    + "An exclusion with no subject is a decision about nothing — delete it, or the run artifacts "
+    + "moved and the prefix must follow them.");
+  for (const path of runEvidence) {
+    assert.match(path, /^lab-runs\/\d{6}[^/]*\/[^/]+\.mage\.yaml$/,
+      `\`${path}\` is excluded as run evidence and does not sit directly in a dated run directory `
+      + `(\`lab-runs/<YYMMDD-…>/\`). The class is dated \`export()\` snapshots; anything shaped `
+      + `differently under \`lab-runs/\` is not covered by this exclusion's argument.`);
+    const report = join(path.slice(0, path.lastIndexOf("/")), "REPORT.md");
+    assert.ok(existsSync(report),
+      `\`${path}\` is excluded as run evidence and its run directory carries no REPORT.md. The `
+      + `exclusion's whole claim is that the run's report and results own these verdicts; with no `
+      + `report, nothing does — add the run's report, or move the model where this gate reads it.`);
+    assert.ok(readFileSync(report, "utf8").includes("export()"),
+      `\`${path}\` is excluded as run evidence, and \`${report}\` never says the files are `
+      + `\`export()\` artifacts. That sentence is the exclusion's evidence — without it, this is a `
+      + `maintained model wearing a run directory's clothing, and it belongs in the subject set.`);
   }
 
   // The cross-check `git ls-files` cannot make about itself: the self-model directory walked on
@@ -704,4 +765,15 @@ test("the subject set contains the self-models and the exemplar, and not the exa
     assert.ok(!paths.includes(`examples/${id}/system.mage.yaml`),
       `${id}'s system file is in the subject set and its verdicts live in expected-results.yaml`);
   }
+  // And not the run-evidence snapshots — in both directions. No subject path may sit under
+  // `lab-runs/`, and the exclusion must actually be excluding something tracked, or the class rule
+  // rotted while reading as live.
+  for (const path of paths) {
+    assert.ok(!isRunEvidence(path),
+      `\`${path}\` is under \`${RUN_EVIDENCE_PREFIX}\` and still in the subject set — the `
+      + `run-evidence class exclusion went stale`);
+  }
+  assert.ok(trackedModels().some(isRunEvidence),
+    "no tracked run-evidence snapshot exists for the class exclusion to cover — delete the "
+    + "exclusion or re-point its prefix at where the run artifacts live now");
 });
