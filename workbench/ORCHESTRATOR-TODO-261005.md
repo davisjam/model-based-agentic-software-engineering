@@ -244,3 +244,49 @@ is building that.
 
 **Option NOT taken without the author:** making the deploy not depend on that tier. It is a gate
 weakening, and the tier protects the very pages it would publish.
+
+## 261006 — CI COST, measured (and a correction)
+
+**Correction:** the orchestrator first called the CI run "wedged", then saw log output and called it
+"just slow". The DURATIONS settle it: on the last successful run the browser tier took **0.5 min**.
+Today's run sat on that step past **23 min** — a 46x blowout. It is anomalous, not slow-runner
+noise, so the wedge diagnosis stands and the harness fix stays urgent.
+
+**Where CI's 15 minutes go** (last green run, ONE serial `build` job):
+console-error gate 3.8m · test suite --full 2.8m · FR-A11Y 2.2m · workbench gates+bundle 1.1m ·
+book PDF 0.9m · citations 0.8m · browser tier 0.5m · handbook 0.5m · poppler install 0.4m.
+`deploy` is 0.2m.
+
+**The split that follows from those numbers** — wall-clock becomes the max, not the sum:
+browser-driving job (console-error + a11y + browser ≈ 6.5m) · publishing job (PDFs + citations +
+poppler ≈ 2.6m) · catalogue job (--full ≈ 2.8m) · workbench job (tsc + unit + bundle ≈ 1.1m), all
+fanning into `deploy`. ~15m → ~7m with setup. Separate runners are separate machines, so parallel
+browser work cannot hit the shared-profile contention that bites locally.
+
+**Rejected: moving gates DOWN to pre-push.** That is the direction that cost two hours and two
+failed pushes today — pre-push runs the same tier and blocks a release with nobody watching.
+Pre-push should get CHEAPER; it is the only gate a human waits on in real time.
+
+## 261006 — THE WEDGE IS SOLVED. Root cause: our own test, landed that morning.
+
+`composed-view.test.mjs` (from the JOIN wave, same day) called `shutdown(server, browser)`
+POSITIONALLY where the signature takes one `{ browser, server }` object. Both names destructured to
+`undefined`, the after hook cleaned up nothing, and the leaked http server + Chromium kept the test
+child's event loop alive forever — `node --test` waits on the child, so the tier sat at ~0.1 s CPU
+until killed.
+
+**Why every diagnosis I made was wrong:** a timeout-killed wedge PRINTS ITS FULL PASS SUMMARY on
+SIGTERM. So "173 pass / 0 fail, passes clean in isolation" was an artifact of killing it. Stale
+profiles and concurrency were symptoms riding along; the file wedged alone on a fresh tree.
+
+**Result: browser tier 19 s, 173 pass / 0 fail** (was 23m+ in CI and unbounded locally).
+
+Defences added, each sabotage-verified: `shutdown` throws on a wrong call shape (today's exact call
+now reds, naming the misuse); a harness leak watchdog prints any live handle 60 s after a file ends
+WITH ITS CREATION STACK and fails the file; `--test-timeout=300000`; and the last fixed port is gone
+— two full tiers concurrently went from 37 tests cancelled on EADDRINUSE to both 173/0, so
+concurrent runs are now safe.
+
+**Standing lesson:** five incidents, two hours, two failed pushes and a `--no-verify` release came
+from one positional call. The orchestrator's repeated "it's contention" readings were built on an
+artifact — when an intermittent failure's evidence keeps shifting, suspect the MEASUREMENT.
