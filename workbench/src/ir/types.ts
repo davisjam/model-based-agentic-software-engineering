@@ -1231,11 +1231,34 @@ export interface QueryResult {
 // Findings
 // --------------------------------------------------------------------------------------------
 
+/**
+ * The structured half of a finding: the facts the sentence carries, as data an agent can act on.
+ *
+ * The transaction counterpart of `RefusalDetail` above, and the asymmetry it closes is the same
+ * one: a V46 rejection's sentence names the two conflicting surfaces and the offending field, and
+ * until this type those ids were reachable only by parsing prose. The fields mirror the enriched
+ * `validate(model)` finding (`src/validator/result.ts`), because the rungs that write both are the
+ * same code — this is that enrichment carried onto the wire, not a second opinion about it.
+ */
+export interface FindingDetail {
+  /** The model ids the finding is ABOUT, written by the rung that fired. May be empty: a finding about a site, not about named objects. */
+  readonly subjects: readonly string[];
+  readonly severity: "error" | "warning";
+  /** The SEMANTICS.md section heading that states the rule. */
+  readonly spec: string;
+}
+
 export interface Finding {
   /** "V7", "V25", "SCHEMA", "QUERY" — the same ids the spec and validate.py use. */
   readonly rule: string;
   readonly where: string;
   readonly message: string;
+  /**
+   * The finding's typed half, beside the sentence — `QueryResult.refusalDetail`'s arrangement.
+   * Non-null exactly when the emitter had structured content (the validator's rules); absent or
+   * null on loader, schema and transaction-shape findings, whose cause is the sentence itself.
+   */
+  readonly detail?: FindingDetail | null;
 }
 
 /**

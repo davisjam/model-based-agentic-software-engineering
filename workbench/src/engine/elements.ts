@@ -42,7 +42,7 @@
 import { systemHash } from "../ir/hash.ts";
 import type { CanonicalSystem, Scalar } from "../ir/types.ts";
 import { absentSubstrateVerdict } from "./model-types.ts";
-import { parsePropConstraints, type PropConstraint, type Refusal } from "./types.ts";
+import { parsePropConstraints, unreadableConstraintKeys, type PropConstraint, type Refusal } from "./types.ts";
 
 /**
  * What `elements` was asked for. Both fields optional in the wire document, total here.
@@ -74,6 +74,10 @@ export function parseElementSelector(raw: unknown): ElementSelector | null {
   const rawWhere = obj["where"];
   if (rawWhere === undefined || rawWhere === null) return { type, where: [] };
   if (typeof rawWhere !== "object" || Array.isArray(rawWhere)) return null;
+  // Per KEY, not per clause: `{ a: "x", b: { gt: 1 } }` used to keep the readable constraint and
+  // silently drop the unreadable one, answering a weaker question than the one asked. A selector
+  // any key of which the grammar cannot read is refused whole, like the all-unreadable case.
+  if (unreadableConstraintKeys(rawWhere).length > 0) return null;
   const where = parsePropConstraints(rawWhere);
   if (where.length === 0 && Object.keys(rawWhere as Record<string, unknown>).length > 0) return null;
   return { type, where };

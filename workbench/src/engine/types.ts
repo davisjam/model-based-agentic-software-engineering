@@ -309,22 +309,78 @@ export function parsePropConstraints(raw: unknown): readonly PropConstraint[] {
   return out;
 }
 
-function parseWhere(raw: unknown): GraphWhere | null {
-  if (!isObj(raw)) return null;
+/**
+ * The properties a constraint object names that the grammar above cannot read — an unknown
+ * operator key (`{ gt: 1 }`), a non-scalar value, an empty condition object.
+ *
+ * Exists so the two consumers of the grammar REFUSE a partially-readable clause instead of
+ * silently dropping the unreadable constraint and answering the weaker question. The second
+ * costume of the direction-fallback defect: a dropped conjunct looks exactly like a satisfied one.
+ */
+export function unreadableConstraintKeys(raw: unknown): readonly string[] {
+  if (!isObj(raw)) return [];
+  const bad: string[] = [];
+  for (const [property, cond] of sortedEntries(raw)) {
+    if (isScalar(cond)) continue;
+    if (!isObj(cond) || Object.keys(cond).some((k) => k !== "eq" && k !== "ne" && k !== "in")
+      || parsePropConstraints({ [property]: cond }).length === 0) {
+      bad.push(property);
+    }
+  }
+  return bad;
+}
+
+/** The sentence both `where` refusals teach the grammar with — one wording, two sites. */
+export const CONSTRAINT_GRAMMAR =
+  "the property-constraint grammar: `{ property: value }`, `{ property: { ne: value } }`, " +
+  "`{ property: { in: [...] } }`";
+
+/**
+ * Parse a graph query's `where`, or REFUSE one the grammar cannot fully read. `ok(null)` is
+ * "no constraints asked".
+ *
+ * It used to drop what it could not read and return the clauses that happened to parse — null
+ * when none did — so `where: { source: { classification: { gt: 1 } } }` fell through to the
+ * UNCONSTRAINED traversal: a broader question than the one asked, answered authoritatively, with
+ * no note. Same class as the `related` direction fallback, same fix: an unreadable clause is not
+ * an absent one.
+ */
+function parseWhere(raw: unknown): Res<GraphWhere | null> {
+  if (raw === undefined || raw === null) return ok(null);
+  if (!isObj(raw)) {
+    return fail("a graph 'where' must be an object with 'source', 'target' and/or 'compare'.");
+  }
+  const unknown = Object.keys(raw).filter((k) => k !== "source" && k !== "target" && k !== "compare");
+  if (unknown.length > 0) {
+    return fail(`graph where key(s) ${unknown.map((k) => `'${k}'`).join(", ")} are not read: a ` +
+      `'where' narrows through 'source', 'target' and 'compare' only. An unread clause would ` +
+      `silently widen the question, so it is refused instead.`);
+  }
+  for (const side of ["source", "target"] as const) {
+    const bad = unreadableConstraintKeys(raw[side]);
+    if (bad.length > 0) {
+      return fail(`where.${side} constraint(s) on ${bad.map((k) => `'${k}'`).join(", ")} could not ` +
+        `be read. Each property is constrained by ${CONSTRAINT_GRAMMAR}; dropping an unreadable ` +
+        `constraint would answer a weaker question than the one asked.`);
+    }
+  }
   const compare: Comparison[] = [];
-  for (const c of asArr(raw["compare"])) {
-    if (!isObj(c)) continue;
-    const left = str(c["left"]);
-    const right = str(c["right"]);
-    const op = GUARD_OPS.find((o) => o === c["op"]);
-    if (left !== null && right !== null && op !== undefined) compare.push({ left, op, right });
+  for (const [i, c] of asArr(raw["compare"]).entries()) {
+    const left = isObj(c) ? str(c["left"]) : null;
+    const right = isObj(c) ? str(c["right"]) : null;
+    const op = isObj(c) ? GUARD_OPS.find((o) => o === c["op"]) : undefined;
+    if (left === null || right === null || op === undefined) {
+      return fail(`where.compare[${i}] could not be read: a comparison is ` +
+        `{ left: '<prop>', op: ${GUARD_OPS.map((o) => `'${o}'`).join(" | ")}, right: '<prop>' }.`);
+    }
+    compare.push({ left, op, right });
   }
   const where: GraphWhere = {
     source: parsePropConstraints(raw["source"]),
     target: parsePropConstraints(raw["target"]),
     compare,
   };
-  return where.source.length + where.target.length + where.compare.length === 0 ? null : where;
+  return where.source.length + where.target.length + where.compare.length === 0 ? ok(null) : ok(where);
 }
 
 export function parseGraphQuery(raw: unknown): Res<GraphQuery> {
@@ -335,13 +391,15 @@ export function parseGraphQuery(raw: unknown): Res<GraphQuery> {
   }
   const relation = str(g["relation"]);
   if (relation === null) return fail("a graph query must name the relation type it traverses.");
+  const where = parseWhere(g["where"]);
+  if (!where.ok) return where;
   return ok({
     form: form as GraphForm,
     relation,
     from: str(g["from"]),
     to: str(g["to"]),
     maxHops: posInt(g["max-hops"]),
-    where: parseWhere(g["where"]),
+    where: where.value,
   });
 }
 

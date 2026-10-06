@@ -1223,6 +1223,21 @@ export function validate(s: CanonicalSystem): readonly Finding[] {
 }
 
 /**
+ * The wire pass with the typed half attached — the transaction engine's source.
+ *
+ * `transact()`'s rejection findings used to arrive as the narrowed triple while `validate(model)`
+ * published the enrichment: one rule set, two wire shapes, and the structured content (the
+ * conflicting surfaces, the offending field) survived only inside the sentence on exactly the
+ * path an agent uses to EDIT. This carries the enrichment as `Finding.detail` — nested, the way
+ * `QueryResult.refusalDetail` travels beside its prose — without touching `validate()` above,
+ * whose narrowing is what keeps the Python parity surface at the compared three fields.
+ */
+export function validateWithDetail(s: CanonicalSystem): readonly Finding[] {
+  return validateModel(s).map(({ rule, where, message, subjects, severity, spec }) =>
+    ({ rule, where, message, detail: { subjects, severity, spec } }));
+}
+
+/**
  * The same pass, enriched — the source for `validate(model)` the operation.
  *
  * One pass, not two: these are the findings the rungs wrote, with severity and spec joined on the
