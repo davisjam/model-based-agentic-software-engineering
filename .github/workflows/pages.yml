@@ -160,6 +160,11 @@ jobs:
       # too: if the suite renames a field this gate goes red rather than quietly measuring
       # `undefined`.
       - name: Model Workbench browser tier (headless Chromium over the served page) + receipt assertions
+        # Bounded: a wedged tier used to hold this job to the 6-hour default, publishing nothing
+        # and reporting nothing (261006, run 37504307305). The tier bounds itself first — the
+        # harness leak watchdog and --test-timeout fail fast WITH a diagnosis — this is the outer
+        # belt for wedge classes those cannot see. Normal duration is well under a minute.
+        timeout-minutes: 15
         working-directory: workbench
         env:
           WB_BROWSER_RECEIPT: ${{ runner.temp }}/wb-browser-receipt.json
@@ -236,6 +241,7 @@ jobs:
       # pipeline on a Python install ordered after the suite that needs it. A gate nobody runs reports
       # green.
       - name: Model Workbench smoke tier (both served pages boot, no fallback strings)
+        timeout-minutes: 10
         working-directory: workbench
         run: |
           test -f dist/workbench.js || { echo "ERROR: workbench bundle missing — the smoke tier would load a page with no app"; exit 1; }
@@ -249,6 +255,7 @@ jobs:
       # registry's own arithmetic. G1's ruling is the reason it is not optional: a declared path that
       # nothing walks is a sentence an author wrote.
       - name: Model Workbench FR-A11Y tier (axe-core over four states + section 19 by keyboard + every declared path) + receipt assertions
+        timeout-minutes: 15
         working-directory: workbench
         env:
           WB_AXE_RECEIPT: ${{ runner.temp }}/wb-axe-receipt.json

@@ -44,7 +44,7 @@ before(async () => {
   await page.waitForSelector("#question-list [data-property]");
 });
 
-after(async () => { await shutdown(server, browser); });
+after(async () => { await shutdown({ browser, server }); });
 
 test("the subject list offers the composed view the model encodes", async () => {
   const options = await page.evaluate(() =>

@@ -31,13 +31,14 @@ import {
   checkRegistryClosure,
 } from "../../src/app/capabilities.ts";
 import {
-  startServer, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
-  advanceVirtualTime, measureForReceipt, writeReceipt, PORT, ORIGIN, WORKBENCH_DIR,
+  startServerOnFreePort, launchBrowser, shutdown, openWorkbench, loadFlagshipExample,
+  advanceVirtualTime, measureForReceipt, writeReceipt, WORKBENCH_DIR,
   FLAGSHIP_COUNTS,
 } from "./harness.mjs";
 
 /** One browser and one page for the whole suite: the convergence test needs both interfaces in ONE process. */
 let server;
+let origin;
 let browser;
 let page;
 let diagnostics;
@@ -45,9 +46,13 @@ let loaded;
 let measured;
 
 before(async () => {
-  server = await startServer();
+  // A kernel-chosen port, like every other file in this tier. This file held the fixed default
+  // (8143) the longest, and that default is what two CONCURRENT tier runs — an agent's and the
+  // pre-push gate's, the normal state in this repo — collide on: the loser's before dies on
+  // EADDRINUSE and all its tests cancel. Measured 261006, 37 tests cancelled in one run.
+  ({ server, origin } = await startServerOnFreePort());
   browser = await launchBrowser();
-  ({ page, diagnostics } = await openWorkbench(browser));
+  ({ page, diagnostics } = await openWorkbench(browser, origin));
   loaded = await loadFlagshipExample(page);
   measured = await measureForReceipt(page);
 }, { timeout: 180_000 });
@@ -56,7 +61,7 @@ after(async () => {
   // Written whether or not the assertions passed. It attests that a browser booted and the page
   // loaded — the one thing node's exit code cannot distinguish from a glob that matched no files.
   if (measured) {
-    const path = await writeReceipt({ origin: ORIGIN, ranAt: new Date().toISOString(), ...measured, diagnostics });
+    const path = await writeReceipt({ origin, ranAt: new Date().toISOString(), ...measured, diagnostics });
     console.log(`browser tier receipt: ${path}`);
   }
   await shutdown({ browser, server });
@@ -65,7 +70,7 @@ after(async () => {
 describe("FR-AGENT: the agent surface is reachable from the page context", () => {
   it("installs window.mage with a version", async () => {
     const got = await page.evaluate(() => ({ type: typeof window.mage, version: window.mage?.version ?? null }));
-    assert.equal(got.type, "object", `window.mage is ${got.type} — the agent surface did not install (served at :${PORT})`);
+    assert.equal(got.type, "object", `window.mage is ${got.type} — the agent surface did not install (served at ${origin})`);
     assert.match(got.version, /^\d+\.\d+\.\d+$/);
   });
 
@@ -596,7 +601,7 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
   let agentPage;
 
   before(async () => {
-    ({ page: agentPage } = await openWorkbench(browser));
+    ({ page: agentPage } = await openWorkbench(browser, origin));
   }, { timeout: 120_000 });
 
   /** Record every write to `#live` from now on, and return what they said. */
@@ -814,7 +819,7 @@ describe("correction 4: what a selection determines arrives in the dialog's own 
   let entityId;
 
   before(async () => {
-    ({ page: editPage } = await openWorkbench(browser));
+    ({ page: editPage } = await openWorkbench(browser, origin));
     await loadFlagshipExample(editPage);
     // The example's own LAST entity, not a name typed here: a fixture change renames entities and a
     // hard-coded id would then fail as though the seam had broken. Last rather than first, because
@@ -925,7 +930,7 @@ describe("SH-I1: Start and the workspace are never both mounted", () => {
   let freshPage;
 
   before(async () => {
-    ({ page: freshPage } = await openWorkbench(browser));
+    ({ page: freshPage } = await openWorkbench(browser, origin));
   }, { timeout: 120_000 });
 
   /** Whether each named region is mounted, as a browser sees it — not as the markup reads. */

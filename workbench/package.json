@@ -15,9 +15,9 @@
     "check:parity": "node scripts/check-parity.ts",
     "check:published": "node scripts/check-published.ts",
     "test": "node --test \"test/*.test.ts\" \"test/*.test.mjs\"",
-    "test:smoke": "node --test test/browser/smoke.test.mjs",
-    "test:browser": "node --test \"test/browser/*.test.mjs\"",
-    "test:a11y": "node --test \"test/browser/a11y/*.test.mjs\"",
+    "test:smoke": "node --test --test-timeout=300000 test/browser/smoke.test.mjs",
+    "test:browser": "node --test --test-timeout=300000 \"test/browser/*.test.mjs\"",
+    "test:a11y": "node --test --test-timeout=300000 \"test/browser/a11y/*.test.mjs\"",
     "build": "node build.mjs",
     "all": "npm run check:node && npm run check && npm run check:parity && npm run test && npm run build && npm run test:smoke",
     "affordances": "node scripts/gen-affordances.ts",
@@ -31,6 +31,7 @@
     "pretest:browser": "npm run --silent check:node",
     "pretest:a11y": "npm run --silent check:node"
   },
+  "// why --test-timeout on the browser tiers": "These tiers hold real Chromiums, and a test wedged mid-flight used to hang the whole tier (and the pre-push gate) at zero CPU, forever — the 261006 incidents. 300s bounds each test AND each file wrapper, so a wedge becomes a cancelled-test red inside five minutes instead of a silent infinite stall. The whole tier runs in ~25s on an idle machine, so the ceiling has an order of magnitude of headroom for a loaded one; the harness's leak watchdog covers the sibling failure (tests pass but a leaked handle blocks process exit), which no per-test timeout can see. The node tier has no browsers and keeps the runner default.",
   "// why the pre hooks": "npm runs a `pre<name>` script automatically, which is the only Node wiring here that does not depend on someone remembering it — and a gate you have to remember is what the 261003 failures walked past. Every gate above either loads a .ts entry point or imports one (build.mjs does), so each dies under Node 20 with ERR_UNKNOWN_FILE_EXTENSION: a module-load TypeError that reads like broken code. The preflight costs ~30ms and runs first, so the failure says WRONG NODE and names the fix instead. `check` is wired too, even though tsc runs anywhere: someone on the wrong Node should learn it from the first gate they run rather than the third.",
   "devDependencies": {
     "@types/node": "^26.6.4",
