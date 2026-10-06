@@ -99,7 +99,11 @@ re-deriving these, so they live here:**
   but not `test:browser` is usually a missing `book/` symlink. **Never `npm install` in a worktree** —
   the symlink means it mutates every live agent's tree at once.
 - **Verify a merge on the MERGED tree, not on the branch — and land nothing on a number measured
-  elsewhere.** Branches cut hours apart are each green against a different `main`. On 261004 two waves
+  elsewhere.** **Use `python3 tools/land.py <branch>...`**, which merges and then runs
+  the gate set on the merged tree as one command — the rule below is correct and was still skipped
+  on 261006 (main left red at 1502/1503) because merging is one command and verifying is six. The
+  tool prints its plan first, stops at the first red gate, reports each gate's counts and seconds,
+  and prints the restore sha rather than resetting anything itself. Branches cut hours apart are each green against a different `main`. On 261004 two waves
   were individually green and their merge was red: a conformance fixture authored a property in the
   schema's object form (`{ value: … }`) while every shipped example used the scalar, and the other
   wave's newly per-key census refused it. Neither branch could have seen it. So after `git merge`, re-run
