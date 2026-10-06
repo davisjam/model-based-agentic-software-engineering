@@ -1,11 +1,11 @@
 /**
  * The walkthrough's interactive rendering — the BUILT half of `walkthrough.ts`.
  *
- * Every fact a step shows is computed here through the workbench's own seams, at the moment the
+ * Every fact a step shows is computed here through the Workbench's own seams, at the moment the
  * student acts:
  *
  *   - diagrams and budgets come from `renderView` / `renderBudgetView` via the shared Learn
- *     figures (`dom.ts`), which reuse the workbench's DOM binders;
+ *     figures (`dom.ts`), which reuse the Workbench's DOM binders;
  *   - outcomes, coverage, evidence and magnitudes come from running the example's own SAVED
  *     questions through `runSaved` — the page cannot show a verdict the engine stopped producing;
  *   - the what-if steps drive a real `Workspace` through `openHypothesis` / `discardHypothesis`
@@ -332,7 +332,7 @@ function stepEntities(deps: WalkthroughDeps, step: WalkStep): readonly Node[] {
   const modelId = groundingModel(step);
   const out = outcomeLine("Nothing selected yet.");
   const fig = liveFigure(system, { kind: "model", id: modelId },
-    `model '${modelId}' from “${system.name}”, drawn by the workbench's renderer.`, {
+    `model '${modelId}' from “${system.name}”, drawn by the Workbench's renderer.`, {
       onSelect: (node: AccessibleNode | null) => {
         out.textContent = node === null ? "Nothing selected yet." : `Selected: ${node.description}`;
       },
@@ -625,7 +625,7 @@ function stepQuantities(deps: WalkthroughDeps, step: WalkStep): readonly Node[] 
   void step;
   const system = systemOf(deps, WALK_ESN);
   const budget = liveBudget(system, "memory",
-    `the memory budget of “${system.name}”, drawn by the workbench's quantitative projection.`);
+    `the memory budget of “${system.name}”, drawn by the Workbench's quantitative projection.`);
   const rows = quantityRows(system);
   const ceiling = rows.find((r) => r.target.startsWith("model:"));
   const all = el("details");
@@ -756,7 +756,7 @@ function stepComposition(deps: WalkthroughDeps, step: WalkStep): readonly Node[]
       return `“${nameOf(system, query)}”: ${magnitudeText(result, null)}`;
     });
     out.textContent = `${parts.join(". ")}. The second question measures only the executions its `
-      + "behavioural predicate selects; the selection is the composition.";
+      + "behavioral predicate selects; the selection is the composition.";
   });
   return [
     el("p", `“${system.name}” saves the uncomposed and the composed question side by side.`, "intro"),

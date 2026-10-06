@@ -1,7 +1,7 @@
 /**
  * The Learn page's content model, derived — no DOM, no hand-written capability prose.
  *
- * UX-I9 says a Learn entry derives from the same model-type definition the workbench uses. This
+ * UX-I9 says a Learn entry derives from the same model-type definition the Workbench uses. This
  * module assembles everything a Learn section shows, and every capability fact comes from a source
  * the kernel itself consults or ships:
  *
@@ -260,7 +260,7 @@ export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
  * to the system's first model and then its first machine. The first step was declaration-driven;
  * the last two were positional, and all three ended in the structural extractor. §22.3 forbids
  * forcing quantities into the structural renderer and §22.4 forbids a generic fallback for a
- * registered model type, so the behaviour was prohibited even where the comment describing it was
+ * registered model type, so the behavior was prohibited even where the comment describing it was
  * accurate.
  *
  * That arm was already gone when the registry landed, replaced by a budget over an addressable
@@ -368,8 +368,8 @@ export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystem
  * than a second builder for the same reason the paragraph above gives: the composed and uncomposed
  * questions must differ in exactly one field or a reader cannot tell what the composition did.
  * `QuantityQuery.target` is the field — the registry's `executions-selected-by-behaviour` row
- * cites it as "the reach predicate where a behavioural result enters a quantitative question" — so
- * passing a behavioural predicate here narrows the executions measured and changes nothing else.
+ * cites it as "the reach predicate where a behavioral result enters a quantitative question" — so
+ * passing a behavioral predicate here narrows the executions measured and changes nothing else.
  * Omitted, the question ranges over every execution, which is the contrast the page shows beside it.
  */
 export function composedQuantityQuery(

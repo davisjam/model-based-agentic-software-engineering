@@ -66,7 +66,7 @@ const bullets = (label: string, items: readonly string[]): GuideBlock =>
 export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-the-panes",
-    heading: "How the workbench is laid out",
+    heading: "How the Workbench is laid out",
     intro: "Four panes, and each one answers a different question about the same model system.",
     blocks: [
       bullets("What each pane is for", [
@@ -109,16 +109,18 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-what-a-property-is",
     heading: "What a property is",
-    intro: "A property is a saved question. Its verdict is recomputed on demand and stored nowhere.",
+    intro: "A property is a saved claim. The Workbench retains the question that decides the claim "
+      + "and recomputes its verdict on demand.",
     blocks: [
-      prose("Asking a question and tracking the answer is what makes a property. What is kept is "
-        + "the question. The verdict is recomputed on every later revision and stored nowhere, so a "
-        + "property cannot go stale: it reports what the models say now."),
+      // Deliberately short (author's item 20): the full recomputation account is canonical under
+      // "Properties and model changes", and this section had carried it verbatim a second time.
+      prose("Because nothing stores the verdict, a property cannot go stale: it reports what the "
+        + "models say now. The full account is under “Properties and model changes” above."),
       prose("A verdict always names the models that established it. A bounded search reports itself "
         + "as inconclusive rather than as a no, because a search that stopped at its budget has not "
         + "shown that the thing it looked for is absent."),
-      prose("Declaring an expectation makes a property a requirement. A differing outcome then "
-        + "counts as a failure rather than as a finding."),
+      prose("Declaring an expectation makes a property a requirement. If the current outcome "
+        + "differs, the requirement is violated."),
     ],
     movedFrom: [
       // The properties rail's empty sentence carried the lifecycle AND the semantics. The

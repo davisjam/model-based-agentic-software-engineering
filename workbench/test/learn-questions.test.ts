@@ -701,10 +701,17 @@ const BORROWED_STANDARDS: ReadonlySet<string> = new Set(
   EVERY_BASIS.flatMap((b) => (b.kind === "borrowed" ? [b.standard] : [])));
 
 test("the substrate table is every borrowed substrate, with the registry's own concept and clause", () => {
-  const table = rowsLabelled(sectionAt("question-foundations"), "What each model form represents");
+  // PIN MOVED 261006 (author's item 26): clause ids and `owed` fixtures are audit vocabulary, so
+  // they render in the provenance-flagged citations table rather than the reading-path columns.
+  // The claims are unchanged — only which labelled block carries each cell.
+  const section = sectionAt("question-foundations");
+  const table = rowsLabelled(section, "What each model form represents");
+  const citations = rowsLabelled(section, "The borrowed correspondences");
   const borrowed = MODEL_TYPES.filter((t) => t.semanticBasis.kind === "borrowed");
   assert.equal(table.rows.length, borrowed.length,
     "the substrate table is not the borrowed substrates — a row was added or dropped");
+  assert.equal(citations.rows.length, borrowed.length,
+    "the citations table is not the borrowed substrates — a row was added or dropped");
   for (const t of borrowed) {
     const basis = t.semanticBasis;
     assert.ok(basis.kind === "borrowed");
@@ -712,9 +719,11 @@ test("the substrate table is every borrowed substrate, with the registry's own c
     assert.ok(row !== undefined, `'${t.id}' is borrowed and the section omits it`);
     assert.equal(row[1], basis.standard, `'${t.id}' is shown against the wrong standard`);
     assert.equal(row[2], basis.concept, `'${t.id}' is shown with prose the registry does not carry`);
-    assert.equal(row[3], basis.clause, `'${t.id}' is shown with a clause the registry does not carry`);
+    const cited = citations.rows.find((r) => r[0] === t.label);
+    assert.ok(cited !== undefined, `'${t.id}' is borrowed and the citations table omits it`);
+    assert.equal(cited[1], basis.clause, `'${t.id}' is shown with a clause the registry does not carry`);
     // A fixture that does not exist must not be shown as one; the registry's null reads as owed.
-    assert.equal(row[4], basis.fixture ?? "owed",
+    assert.equal(cited[2], basis.fixture ?? "owed",
       `'${t.id}' is shown a fixture the registry does not name`);
   }
 });
@@ -744,16 +753,18 @@ test("the page names exactly the standards the registry borrows from, and nowher
   assert.deepEqual(new Set(substrate.rows.map((r) => r[1])), BORROWED_STANDARDS,
     "the substrate table's standards are not the standards the registry borrows from");
 
-  // The form table today borrows nothing, so no form row may carry a clause citation — that
-  // column is where an over-attribution would surface, since a clause is a standard's own address.
-  const forms = rowsLabelled(section, "Where each question form");
-  for (const row of forms.rows) {
+  // The form table today borrows nothing, so no form row may carry a clause citation — the
+  // citation cell is where an over-attribution would surface, since a clause is a standard's own
+  // address. PIN MOVED 261006 (item 26): citations live in the provenance-flagged
+  // "Citations for each question form's basis" table, not a reading-path column.
+  const citations = rowsLabelled(section, "Citations for each question form");
+  for (const row of citations.rows) {
     const form = (row[0] ?? "").split(", ")[0] ?? "";
     const primitive = MODEL_TYPES.flatMap((t) => t.query.primitives).find((p) => p.form === form);
     assert.ok(primitive !== undefined);
     if (primitive.semanticBasis.kind === "borrowed") continue;
-    assert.ok(!(row[3] ?? "").startsWith("clause"),
-      `'${row[0] ?? ""}' is not borrowed and is shown with a clause citation: '${row[3] ?? ""}'`);
+    assert.ok(!(row[1] ?? "").startsWith("clause"),
+      `'${row[0] ?? ""}' is not borrowed and is shown with a clause citation: '${row[1] ?? ""}'`);
   }
 });
 
@@ -803,7 +814,7 @@ test("the census is counted from the registry, not written down", () => {
     `${forms("borrowed")} of ${primitives.length}`);
   assert.equal(cell("Question forms grounded outside this project"),
     `${forms("extension-grounded")} of ${primitives.length}`);
-  assert.equal(cell("Question forms that are the workbench's own"),
+  assert.equal(cell("Question forms that are the Workbench's own"),
     `${forms("extension")} of ${primitives.length}`);
 
   const borrowed = EVERY_BASIS.filter((b) => b.kind === "borrowed");
