@@ -1,0 +1,280 @@
+{
+  "budget1": {
+    "answer": {
+      "kind": "exhausted",
+      "steps": 2,
+      "prose": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker."
+    },
+    "escalation": {
+      "spent": {
+        "kind": "exhausted",
+        "steps": 2,
+        "prose": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker."
+      },
+      "questions": [
+        {
+          "kind": "relational",
+          "relation": "hands_to",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        },
+        {
+          "kind": "relational",
+          "relation": "records_in",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        },
+        {
+          "kind": "relational",
+          "relation": "submits_to",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        }
+      ],
+      "query": {
+        "kind": "select",
+        "select": [
+          {
+            "kind": "variable",
+            "name": "a"
+          },
+          {
+            "kind": "variable",
+            "name": "b"
+          },
+          {
+            "kind": "variable",
+            "name": "c"
+          }
+        ],
+        "from": null,
+        "where": [
+          {
+            "kind": "graph",
+            "name": {
+              "kind": "variable",
+              "name": "g"
+            },
+            "patterns": [
+              {
+                "kind": "bgp",
+                "triples": [
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p1"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "b"
+                    }
+                  },
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "b"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p2"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "c"
+                    }
+                  },
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "c"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p3"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "a"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "groupBy": null,
+        "orderBy": null,
+        "limit": null
+      }
+    },
+    "coverage": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker.",
+    "systemHash": "fnv1a64:447b0da352b7ed1e"
+  },
+  "exhausted": {
+    "answer": {
+      "kind": "exhausted",
+      "steps": 2,
+      "prose": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker."
+    },
+    "escalation": {
+      "spent": {
+        "kind": "exhausted",
+        "steps": 2,
+        "prose": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker."
+      },
+      "questions": [
+        {
+          "kind": "relational",
+          "relation": "hands_to",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        },
+        {
+          "kind": "relational",
+          "relation": "records_in",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        },
+        {
+          "kind": "relational",
+          "relation": "submits_to",
+          "traversal": "direct",
+          "evidence": "bindings",
+          "scope": {
+            "kind": "system-union"
+          },
+          "subset": {
+            "kind": "within-subset"
+          }
+        }
+      ],
+      "query": {
+        "kind": "select",
+        "select": [
+          {
+            "kind": "variable",
+            "name": "a"
+          },
+          {
+            "kind": "variable",
+            "name": "b"
+          },
+          {
+            "kind": "variable",
+            "name": "c"
+          }
+        ],
+        "from": null,
+        "where": [
+          {
+            "kind": "graph",
+            "name": {
+              "kind": "variable",
+              "name": "g"
+            },
+            "patterns": [
+              {
+                "kind": "bgp",
+                "triples": [
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p1"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "b"
+                    }
+                  },
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "b"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p2"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "c"
+                    }
+                  },
+                  {
+                    "subject": {
+                      "kind": "variable",
+                      "name": "c"
+                    },
+                    "predicate": {
+                      "kind": "variable",
+                      "name": "p3"
+                    },
+                    "object": {
+                      "kind": "variable",
+                      "name": "a"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "groupBy": null,
+        "orderBy": null,
+        "limit": null
+      }
+    },
+    "coverage": "evaluation stopped at the 1-step budget. The question is licensed but too large for the synchronous evaluator; route it to the analysis Worker.",
+    "systemHash": "fnv1a64:447b0da352b7ed1e"
+  },
+  "resolved": {
+    "status": "ok-evaluation",
+    "evaluation": {
+      "kind": "select",
+      "variables": [
+        "a",
+        "b",
+        "c"
+      ],
+      "rows": []
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "resolveExhaustedDecl": {
+    "at": "window.mage.analysis.resolveExhausted",
+    "parameters": [
+      {
+        "name": "escalation",
+        "type": "object",
+        "required": true,
+        "summary": "the `escalation` handle off an `exhausted` answer, passed back unchanged -- it is obtainable nowhere else. Its ONLY producer is the fenced surface declared under `describe().outsideSemanticInterface`; that entry says how an exhausted answer arises and that the handle rides beside it. A behavioural or graph query that hits its `limit` answers `inconclusive` and carries NO escalation -- raise `limit` or use `analysis.explore` for those",
+        "schema": null
+      },
+      {
+        "name": "budget",
+        "type": "number",
+        "required": false,
+        "summary": "step budget for the re-run; defaults to the Worker's larger bound",
+        "schema": null
+      }
+    ]
+  },
+  "outsideEntry": {
+    "at": "window.mage.debug.sparql",
+    "reason": "raw SPARQL over the RDF projection, for debugging the projection and the licensing seam. Outside the semantic interface because a syntactically valid SPARQL query can ask questions the RDF representation permits and the MAGE metamodel does not license. Takes (text, budget?); an evaluation that spends its step budget answers `exhausted` and carries the `escalation` handle `window.mage.analysis.resolveExhausted` takes — the handle's only producer.",
+    "fencedBy": "DECISIONS-RULED-model-query-261002.md"
+  },
+  "bounded": {
+    "outcome": "inconclusive",
+    "coverage": {
+      "kind": "bounded",
+      "statesExplored": 1,
+      "reason": "state-limit"
+    },
+    "evidence": null,
+    "refusal": null,
+    "refusalDetail": null,
+    "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is committed?",
+    "compilation": [
+      {
+        "kind": "other",
+        "explanation": "Exploration stopped at the 1-configuration limit with work outstanding, so the answer covers only the explored region. The sound statement is \"not within the explored region\", never \"not at all\"."
+      }
+    ],
+    "magnitude": null,
+    "systemHash": "fnv1a64:447b0da352b7ed1e"
+  },
+  "boundedKeys": [
+    "outcome",
+    "coverage",
+    "evidence",
+    "refusal",
+    "refusalDetail",
+    "interpretedAs",
+    "compilation",
+    "magnitude",
+    "systemHash"
+  ],
+  "handles": []
+}

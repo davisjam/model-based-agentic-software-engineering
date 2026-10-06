@@ -1,0 +1,277 @@
+{
+  "steps": [
+    {
+      "name": "edge-while-shadows",
+      "result": {
+        "ok": true,
+        "v": {
+          "ok": false,
+          "findings": [
+            {
+              "rule": "V48",
+              "where": "models.signal-path.relations",
+              "message": "'reading' has no authored type; 'conveys' requires 'measurement' here. Name its kind ('type: measurement') if that is what it is — the edge cannot establish it."
+            },
+            {
+              "rule": "V48",
+              "where": "models.signal-path.relations",
+              "message": "'sample' has no authored type; 'conveys' requires 'measurement' here. Name its kind ('type: measurement') if that is what it is — the edge cannot establish it."
+            }
+          ],
+          "hash": "fnv1a64:2f95e9f333b179c1"
+        }
+      }
+    },
+    {
+      "name": "type-both-data",
+      "result": {
+        "ok": true,
+        "v": {
+          "ok": true,
+          "findings": [],
+          "hash": "fnv1a64:edd0e69bb39bd9e9"
+        }
+      }
+    },
+    {
+      "name": "edge-after-data",
+      "result": {
+        "ok": true,
+        "v": {
+          "ok": false,
+          "findings": [
+            {
+              "rule": "V48",
+              "where": "models.signal-path.relations",
+              "message": "'reading' is typed 'data', which is not in the 'measurement' that 'relation-types.conveys.domain' declares. The edge is checked, never trusted: the endpoint is the wrong kind here, or the authored type or the declaration is wrong — all three surfaces are yours."
+            },
+            {
+              "rule": "V48",
+              "where": "models.signal-path.relations",
+              "message": "'sample' is typed 'data', which is not in the 'measurement' that 'relation-types.conveys.range' declares. The edge is checked, never trusted: the endpoint is the wrong kind here, or the authored type or the declaration is wrong — all three surfaces are yours."
+            }
+          ],
+          "hash": "fnv1a64:edd0e69bb39bd9e9"
+        }
+      }
+    },
+    {
+      "name": "establish-then-connect",
+      "result": {
+        "ok": true,
+        "v": {
+          "ok": true,
+          "findings": [],
+          "hash": "fnv1a64:98931aff9c90532e"
+        }
+      }
+    }
+  ],
+  "baseHash": "fnv1a64:2f95e9f333b179c1",
+  "inspectKeys": [
+    "hash",
+    "entities",
+    "relationTypes",
+    "models",
+    "machines",
+    "events"
+  ],
+  "models": [
+    "control",
+    "instrumentation",
+    "signal-path"
+  ],
+  "explainBefore": {
+    "reading": {
+      "entity": "reading",
+      "established": "unnamed",
+      "type": null,
+      "shadow": "τ_reading",
+      "constraints": []
+    },
+    "sample": {
+      "entity": "sample",
+      "established": "unnamed",
+      "type": null,
+      "shadow": "τ_sample",
+      "constraints": []
+    }
+  },
+  "hashAfterData": "fnv1a64:edd0e69bb39bd9e9",
+  "currentHash": "fnv1a64:2f95e9f333b179c1",
+  "undo": true,
+  "requirementsBefore": {
+    "reading-reaches-the-controller": {
+      "id": "reading-reaches-the-controller",
+      "statement": "Every sensor reading is delivered across the team boundary as the control team's sample.",
+      "expressedAs": "reading-is-delivered-as-sample",
+      "satisfiedWhen": "holds",
+      "verification": {
+        "status": "violated",
+        "requirement": "reading-reaches-the-controller",
+        "verdict": "refuted"
+      },
+      "meaning": "VIOLATED — the breach is exhibited, and a witness is not softened by coverage",
+      "systemHash": "fnv1a64:2f95e9f333b179c1"
+    }
+  },
+  "afterHash": "fnv1a64:98931aff9c90532e",
+  "savedAfter": {
+    "reading-is-delivered-as-sample": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 2,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "path",
+        "role": "witness",
+        "steps": [],
+        "cycle": null,
+        "nodes": [
+          "reading",
+          "sample"
+        ]
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is there a direct 'conveys' relation from reading to sample?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:98931aff9c90532e"
+    },
+    "sample-feeds-the-controller": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 2,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "path",
+        "role": "witness",
+        "steps": [],
+        "cycle": null,
+        "nodes": [
+          "sample",
+          "controller"
+        ]
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is there a direct 'consumed_by' relation from sample to controller?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:98931aff9c90532e"
+    },
+    "sensor-produces-the-reading": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 2,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "path",
+        "role": "witness",
+        "steps": [],
+        "cycle": null,
+        "nodes": [
+          "sensor",
+          "reading"
+        ]
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is there a direct 'produces' relation from sensor to reading?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:98931aff9c90532e"
+    },
+    "sensor-reaches-controller-through-produces": {
+      "outcome": "unlicensed",
+      "coverage": {
+        "kind": "not-applicable",
+        "statesExplored": 0,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": "'produces' is declared as a direct relation without path-composition semantics. A multi-hop 'produces' query is not licensed by this model.",
+      "refusalDetail": {
+        "reason": "composition-forbidden",
+        "missing": [
+          "path-composition semantics for relation type 'produces'"
+        ],
+        "models": [
+          "instrumentation"
+        ]
+      },
+      "interpretedAs": "Is controller reachable from sensor through one or more 'produces' relations?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:98931aff9c90532e"
+    }
+  },
+  "requirementsAfter": {
+    "reading-reaches-the-controller": {
+      "id": "reading-reaches-the-controller",
+      "statement": "Every sensor reading is delivered across the team boundary as the control team's sample.",
+      "expressedAs": "reading-is-delivered-as-sample",
+      "satisfiedWhen": "holds",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "reading-reaches-the-controller",
+        "verdict": "holds"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:98931aff9c90532e"
+    }
+  },
+  "explainAfter": {
+    "reading": {
+      "entity": "reading",
+      "established": "authored",
+      "type": "measurement",
+      "shadow": null,
+      "constraints": [
+        {
+          "relation": {
+            "from": "reading",
+            "to": "sample",
+            "type": "conveys",
+            "model": "signal-path"
+          },
+          "relationType": "conveys",
+          "position": "from",
+          "declared": [
+            "measurement"
+          ],
+          "verdict": "member"
+        }
+      ]
+    },
+    "sample": {
+      "entity": "sample",
+      "established": "authored",
+      "type": "measurement",
+      "shadow": null,
+      "constraints": [
+        {
+          "relation": {
+            "from": "reading",
+            "to": "sample",
+            "type": "conveys",
+            "model": "signal-path"
+          },
+          "relationType": "conveys",
+          "position": "to",
+          "declared": [
+            "measurement"
+          ],
+          "verdict": "member"
+        }
+      ]
+    }
+  }
+}

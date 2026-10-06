@@ -1,0 +1,1181 @@
+{
+  "baseHash": "fnv1a64:447b0da352b7ed1e",
+  "counts": {
+    "entities": 5,
+    "models": 1,
+    "machines": 1,
+    "instances": 1,
+    "relations": 4,
+    "events": 0,
+    "quantities": 0,
+    "quantitativeModels": 0,
+    "savedQueries": 9
+  },
+  "queryIds": [
+    "base-can-keep-advancing",
+    "candidate-reaches-the-authoritative-store",
+    "commit-without-validating",
+    "committed-base-is-current",
+    "transaction-can-be-refused",
+    "transaction-can-commit",
+    "validated-transaction-can-wait-indefinitely",
+    "validator-runs-on-some-execution",
+    "verdict-is-eventually-forced"
+  ],
+  "outcomes": {
+    "base-can-keep-advancing": "refuted",
+    "candidate-reaches-the-authoritative-store": "holds",
+    "commit-without-validating": "refuted",
+    "committed-base-is-current": "holds",
+    "transaction-can-be-refused": "holds",
+    "transaction-can-commit": "holds",
+    "validated-transaction-can-wait-indefinitely": "holds",
+    "validator-runs-on-some-execution": "holds",
+    "verdict-is-eventually-forced": "unlicensed"
+  },
+  "saved": {
+    "base-can-keep-advancing": {
+      "outcome": "refuted",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 8,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution that reaches a configuration where transaction-lifecycle.state is proposed and can then repeat that configuration forever? (A loop that advances a bounded variable is NOT repeatable; ask 'recurrence' for whether the state is merely re-entered.)",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "candidate-reaches-the-authoritative-store": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 3,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "path",
+        "role": "witness",
+        "steps": [],
+        "cycle": null,
+        "nodes": [
+          "transaction-engine",
+          "validator",
+          "workspace-store"
+        ]
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Is workspace-store reachable from transaction-engine through one or more 'hands_to' relations?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "commit-without-validating": {
+      "outcome": "refuted",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 5,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is committed, without ever passing through a configuration where transaction-lifecycle.state is valid?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "committed-base-is-current": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 8,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does every reachable configuration satisfy not ((transaction-lifecycle.state is committed) and (transaction-lifecycle.base_current is false))?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "transaction-can-be-refused": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 5,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "reject",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "refused"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is refused?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "transaction-can-commit": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 8,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "commit",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "committed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is committed?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "validated-transaction-can-wait-indefinitely": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 8,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "lasso",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "await_adoption",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution that reaches a configuration where transaction-lifecycle.state is valid and can then repeat that configuration forever? (A loop that advances a bounded variable is NOT repeatable; ask 'recurrence' for whether the state is merely re-entered.)",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "validator-runs-on-some-execution": {
+      "outcome": "holds",
+      "coverage": {
+        "kind": "exhaustive",
+        "statesExplored": 2,
+        "reason": null
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      },
+      "refusal": null,
+      "refusalDetail": null,
+      "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is proposed?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "verdict-is-eventually-forced": {
+      "outcome": "unlicensed",
+      "coverage": {
+        "kind": "not-applicable",
+        "statesExplored": 0,
+        "reason": null
+      },
+      "evidence": null,
+      "refusal": "no declared transition matches machine verdict-deadline, sync deadline_expires. The question is not about this model's vocabulary.",
+      "refusalDetail": {
+        "reason": "unknown-vocabulary",
+        "missing": [
+          "machine verdict-deadline, sync deadline_expires"
+        ],
+        "models": []
+      },
+      "interpretedAs": "Is machine verdict-deadline, sync deadline_expires executable in some reachable configuration?",
+      "compilation": [],
+      "magnitude": null,
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    }
+  },
+  "evidence": {
+    "base-can-keep-advancing": {
+      "found": false,
+      "queryId": "base-can-keep-advancing",
+      "cause": "no-witness",
+      "result": {
+        "outcome": "refuted",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 8,
+          "reason": null
+        },
+        "evidence": null,
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution that reaches a configuration where transaction-lifecycle.state is proposed and can then repeat that configuration forever? (A loop that advances a bounded variable is NOT repeatable; ask 'recurrence' for whether the state is merely re-entered.)",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "savedQuestions": [
+        "base-can-keep-advancing",
+        "candidate-reaches-the-authoritative-store",
+        "commit-without-validating",
+        "committed-base-is-current",
+        "transaction-can-be-refused",
+        "transaction-can-commit",
+        "validated-transaction-can-wait-indefinitely",
+        "validator-runs-on-some-execution",
+        "verdict-is-eventually-forced"
+      ],
+      "prose": "\"base-can-keep-advancing\" was answered — refuted — and that answer shows no witness, counterexample or lasso. Read the verdict and its grounding through `ask`."
+    },
+    "candidate-reaches-the-authoritative-store": {
+      "found": true,
+      "queryId": "candidate-reaches-the-authoritative-store",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 3,
+          "reason": null
+        },
+        "evidence": {
+          "shape": "path",
+          "role": "witness",
+          "steps": [],
+          "cycle": null,
+          "nodes": [
+            "transaction-engine",
+            "validator",
+            "workspace-store"
+          ]
+        },
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Is workspace-store reachable from transaction-engine through one or more 'hands_to' relations?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "evidence": {
+        "shape": "path",
+        "role": "witness",
+        "steps": [],
+        "cycle": null,
+        "nodes": [
+          "transaction-engine",
+          "validator",
+          "workspace-store"
+        ]
+      }
+    },
+    "commit-without-validating": {
+      "found": false,
+      "queryId": "commit-without-validating",
+      "cause": "no-witness",
+      "result": {
+        "outcome": "refuted",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 5,
+          "reason": null
+        },
+        "evidence": null,
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is committed, without ever passing through a configuration where transaction-lifecycle.state is valid?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "savedQuestions": [
+        "base-can-keep-advancing",
+        "candidate-reaches-the-authoritative-store",
+        "commit-without-validating",
+        "committed-base-is-current",
+        "transaction-can-be-refused",
+        "transaction-can-commit",
+        "validated-transaction-can-wait-indefinitely",
+        "validator-runs-on-some-execution",
+        "verdict-is-eventually-forced"
+      ],
+      "prose": "\"commit-without-validating\" was answered — refuted — and that answer shows no witness, counterexample or lasso. Read the verdict and its grounding through `ask`."
+    },
+    "committed-base-is-current": {
+      "found": false,
+      "queryId": "committed-base-is-current",
+      "cause": "no-witness",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 8,
+          "reason": null
+        },
+        "evidence": null,
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does every reachable configuration satisfy not ((transaction-lifecycle.state is committed) and (transaction-lifecycle.base_current is false))?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "savedQuestions": [
+        "base-can-keep-advancing",
+        "candidate-reaches-the-authoritative-store",
+        "commit-without-validating",
+        "committed-base-is-current",
+        "transaction-can-be-refused",
+        "transaction-can-commit",
+        "validated-transaction-can-wait-indefinitely",
+        "validator-runs-on-some-execution",
+        "verdict-is-eventually-forced"
+      ],
+      "prose": "\"committed-base-is-current\" was answered — holds — and that answer shows no witness, counterexample or lasso. Read the verdict and its grounding through `ask`."
+    },
+    "transaction-can-be-refused": {
+      "found": true,
+      "queryId": "transaction-can-be-refused",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 5,
+          "reason": null
+        },
+        "evidence": {
+          "shape": "trace",
+          "role": "witness",
+          "steps": [
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "propose",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "idle"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            },
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "reject",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "refused"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            }
+          ],
+          "cycle": null,
+          "nodes": null
+        },
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is refused?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "reject",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "refused"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      }
+    },
+    "transaction-can-commit": {
+      "found": true,
+      "queryId": "transaction-can-commit",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 8,
+          "reason": null
+        },
+        "evidence": {
+          "shape": "trace",
+          "role": "witness",
+          "steps": [
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "propose",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "idle"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            },
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "validate",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "valid"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            },
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "commit",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "valid"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "committed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            }
+          ],
+          "cycle": null,
+          "nodes": null
+        },
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is committed?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "commit",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "committed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      }
+    },
+    "validated-transaction-can-wait-indefinitely": {
+      "found": true,
+      "queryId": "validated-transaction-can-wait-indefinitely",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 8,
+          "reason": null
+        },
+        "evidence": {
+          "shape": "lasso",
+          "role": "witness",
+          "steps": [
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "propose",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "idle"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            },
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "validate",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "valid"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            }
+          ],
+          "cycle": [
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "await_adoption",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "valid"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "valid"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            }
+          ],
+          "nodes": null
+        },
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution that reaches a configuration where transaction-lifecycle.state is valid and can then repeat that configuration forever? (A loop that advances a bounded variable is NOT repeatable; ask 'recurrence' for whether the state is merely re-entered.)",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "evidence": {
+        "shape": "lasso",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          },
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "validate",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "await_adoption",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "valid"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "nodes": null
+      }
+    },
+    "validator-runs-on-some-execution": {
+      "found": true,
+      "queryId": "validator-runs-on-some-execution",
+      "result": {
+        "outcome": "holds",
+        "coverage": {
+          "kind": "exhaustive",
+          "statesExplored": 2,
+          "reason": null
+        },
+        "evidence": {
+          "shape": "trace",
+          "role": "witness",
+          "steps": [
+            {
+              "instances": [
+                "transaction-lifecycle"
+              ],
+              "sync": null,
+              "label": "propose",
+              "from": {
+                "control": {
+                  "transaction-lifecycle": "idle"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              },
+              "to": {
+                "control": {
+                  "transaction-lifecycle": "proposed"
+                },
+                "values": {
+                  "transaction-lifecycle.base_current": true
+                }
+              }
+            }
+          ],
+          "cycle": null,
+          "nodes": null
+        },
+        "refusal": null,
+        "refusalDetail": null,
+        "interpretedAs": "Does there exist an execution reaching a configuration where transaction-lifecycle.state is proposed?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "evidence": {
+        "shape": "trace",
+        "role": "witness",
+        "steps": [
+          {
+            "instances": [
+              "transaction-lifecycle"
+            ],
+            "sync": null,
+            "label": "propose",
+            "from": {
+              "control": {
+                "transaction-lifecycle": "idle"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            },
+            "to": {
+              "control": {
+                "transaction-lifecycle": "proposed"
+              },
+              "values": {
+                "transaction-lifecycle.base_current": true
+              }
+            }
+          }
+        ],
+        "cycle": null,
+        "nodes": null
+      }
+    },
+    "verdict-is-eventually-forced": {
+      "found": false,
+      "queryId": "verdict-is-eventually-forced",
+      "cause": "unlicensed-by-model",
+      "result": {
+        "outcome": "unlicensed",
+        "coverage": {
+          "kind": "not-applicable",
+          "statesExplored": 0,
+          "reason": null
+        },
+        "evidence": null,
+        "refusal": "no declared transition matches machine verdict-deadline, sync deadline_expires. The question is not about this model's vocabulary.",
+        "refusalDetail": {
+          "reason": "unknown-vocabulary",
+          "missing": [
+            "machine verdict-deadline, sync deadline_expires"
+          ],
+          "models": []
+        },
+        "interpretedAs": "Is machine verdict-deadline, sync deadline_expires executable in some reachable configuration?",
+        "compilation": [],
+        "magnitude": null,
+        "systemHash": "fnv1a64:447b0da352b7ed1e"
+      },
+      "savedQuestions": [
+        "base-can-keep-advancing",
+        "candidate-reaches-the-authoritative-store",
+        "commit-without-validating",
+        "committed-base-is-current",
+        "transaction-can-be-refused",
+        "transaction-can-commit",
+        "validated-transaction-can-wait-indefinitely",
+        "validator-runs-on-some-execution",
+        "verdict-is-eventually-forced"
+      ],
+      "prose": "no declared transition matches machine verdict-deadline, sync deadline_expires. The question is not about this model's vocabulary."
+    }
+  },
+  "requirements": {
+    "commit-requires-validation": {
+      "id": "commit-requires-validation",
+      "statement": "No proposed change is committed without passing through Valid.",
+      "expressedAs": "commit-without-validating",
+      "satisfiedWhen": "refuted",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "commit-requires-validation",
+        "verdict": "refuted"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    },
+    "no-stale-base-commit": {
+      "id": "no-stale-base-commit",
+      "statement": "A change never commits against a base that is no longer the one the workspace serves.",
+      "expressedAs": "committed-base-is-current",
+      "satisfiedWhen": "holds",
+      "verification": {
+        "status": "satisfied",
+        "requirement": "no-stale-base-commit",
+        "verdict": "holds"
+      },
+      "meaning": "SATISFIED — the obligation is discharged on evidence that bears the weight",
+      "systemHash": "fnv1a64:447b0da352b7ed1e"
+    }
+  }
+}
