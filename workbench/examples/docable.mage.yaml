@@ -340,15 +340,3 @@ queries:
       relation: owns
       from: api
       to: parser
-
-views:
-
-  overview:
-    label: Overview
-    models: [service-flow]
-    direction: left-to-right
-
-  security:
-    label: Security
-    models: [service-flow, data-classification]
-    show-properties: [classification, accepts]

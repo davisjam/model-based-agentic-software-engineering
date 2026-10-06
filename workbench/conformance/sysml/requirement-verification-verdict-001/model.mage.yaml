@@ -147,10 +147,3 @@ requirements:
       No service may subscribe to an event type carrying data above its permitted sensitivity.
     expressed_as: impermitted-subscription-exists
     satisfied_when: refuted
-
-views:
-
-  policy:
-    label: Data policy
-    models: [data-policy]
-    direction: left-to-right

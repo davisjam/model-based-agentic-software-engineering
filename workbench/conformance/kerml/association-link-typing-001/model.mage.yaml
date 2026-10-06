@@ -108,10 +108,3 @@ queries:
       relation: conveys
       from: alpha
       to: beta
-
-views:
-
-  chain:
-    label: Chain
-    models: [handoff]
-    direction: left-to-right

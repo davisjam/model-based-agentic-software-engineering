@@ -336,34 +336,6 @@
           }
         }
       }
-    },
-
-    "views": {
-      "description": "Visual reductions. A view is itself a purposeful reduction; it carries NO semantic model data.",
-      "type": "object",
-      "propertyNames": { "$ref": "#/$defs/id" },
-      "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "label": { "type": "string" },
-          "models": { "type": "array", "items": { "$ref": "#/$defs/id" } },
-          "machines": { "type": "array", "items": { "$ref": "#/$defs/id" } },
-          "hide": { "type": "array", "items": { "type": "string" } },
-          "show-properties": { "type": "array", "items": { "type": "string" } },
-          "direction": { "enum": ["left-to-right", "top-to-bottom"] },
-          "layout": {
-            "description": "Optional position HINTS for incremental layout stability. Never semantic.",
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": ["x", "y"],
-              "additionalProperties": false,
-              "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
-            }
-          }
-        }
-      }
     }
   },
 

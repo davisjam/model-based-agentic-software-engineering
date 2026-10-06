@@ -110,10 +110,3 @@ queries:
       form: reach
       target:
         gate.state: armed
-
-views:
-
-  gate:
-    label: Gate
-    machines: [gate]
-    direction: top-to-bottom

@@ -154,7 +154,6 @@ const DECLINED: Readonly<Record<string, string>> = {
     "stayed silent for a day until the examples authored one. That is the gap this classification " +
     "closes, and it is the same gap in miniature that the migration closed: a construct nothing " +
     "authors is invisible to the governance over it, not merely unused",
-  views: "presentation — which machines and models a diagram draws, asserting nothing about the model",
   "entity-types": "the declared KIND vocabulary (SEMANTICS.md §3.3) — a type-level vocabulary that " +
     "entity `type:` strings and relation-type `domain:`/`range:` declarations resolve against, " +
     "domains' reasoning verbatim: it declares no model element and corresponds no two purposeful " +

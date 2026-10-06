@@ -355,11 +355,8 @@ test("delete-model refuses while the model still asserts a relation, and names e
     "delete-model has no cascade, so its refusal must not suggest one");
 });
 
-test("delete-model succeeds once the claims are gone, and prunes the views that listed it", () => {
+test("delete-model succeeds once the claims are gone", () => {
   const e = engine();
-  const beforeViews = e.toText().includes("models: [service-flow]");
-  assert.ok(beforeViews, "the fixture must have a view naming the model, or this proves nothing");
-
   commits(e,
     { op: "delete-relation", model: "service-flow", id: "api-remediation" },
     { op: "delete-relation", model: "service-flow", id: "remediation-gateway" },
@@ -373,10 +370,7 @@ test("delete-model succeeds once the claims are gone, and prunes the views that 
   for (const id of ["api", "remediation", "gateway", "parser", "repair-engine"]) {
     assert.ok(s.entities.has(id), `deleting a model took entity '${id}' with it`);
   }
-  // A view is presentation, outside the IR and outside the hash, so a stale mention is pruned
-  // rather than refused -- there is no op to edit `views`, and refusing would be a dead end.
-  assert.ok(!e.toText().includes("service-flow"), `a dangling view reference survived:\n${e.toText()}`);
-  assert.ok(e.toText().includes("models: [data-classification]"), "the sibling view entry was damaged");
+  assert.ok(!e.toText().includes("service-flow"), `a dangling reference survived:\n${e.toText()}`);
 });
 
 test("delete-model on a model that is not there says so", () => {
