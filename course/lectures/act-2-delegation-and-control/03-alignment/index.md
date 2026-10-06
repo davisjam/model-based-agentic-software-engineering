@@ -38,7 +38,7 @@ materials:
 
 **Premise.** *Guidance shapes behavior; enforcement determines what the environment accepts.*
 
-Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. Informed control includes evaluating evidence for consequential properties, recognizing when assumptions fail, and intervening when necessary.
+Alignment connects the epistemology of Validation to the control problem of Delegation. Validation asked what evidence justifies engineering action. Delegation asked what consequences a capable but fallible agent should be authorized to produce. Alignment connects these questions: when an engineering obligation matters, how should evidence about that obligation govern what the engineered environment permits or accepts?
 
 Software engineers already build this kind of control into their environments. A linter checks some properties while code is being written. A pre-commit hook can reject a change before it becomes a commit; a pre-push hook, before the work leaves the developer's machine. Continuous integration can evaluate the assembled change before merge. A deployment gate can inspect a release candidate before production accepts it. Runtime controls can restrict what the deployed system is permitted to do. These mechanisms operate at different boundaries because they can see different things: a linter may decide a property from one source file, an integration test may require the assembled system, and some properties become visible only after the system is running.
 
@@ -94,30 +94,6 @@ The first engineering preference is prevention: if an invalid state can be exclu
 
 Generative implementation makes one Alignment problem visible: an agent can invent implementation paths its designers did not anticipate. Suppose all document color mutations must derive from a canonical color model. Banning every known bypass works while the forbidden surface stays small and recognizable, but future implementations may combine otherwise legitimate operations into a bypass no blacklist anticipated. Sometimes the allowed path is easier to characterize: the sanctioned abstraction attaches provenance ordinary callers cannot create, and the mutation boundary requires that provenance before accepting the operation. The rule of thumb: when forbidden paths are enumerable, ban them; when the allowed path is easier to characterize than all possible bypasses, make admission depend on evidence of the allowed path.
 
-## What was missing?
-
-No engineering environment begins with every future obligation represented and enforced. Some controls are designed before failure: engineers already know an endpoint must require authentication. Other controls begin with surprise.
-
-Consider a merge automation that processes a backlog of agent-produced changes. Most changes rebase cleanly. Some conflict, and a convenience option resolves those conflicts automatically by choosing one side. Eventually, overlapping edits cause that behavior to silently discard content. The interesting part: the environment already had an audit that observed the conflict and correctly judged the automatic resolution unsafe. Then it emitted a warning and proceeded anyway.
-
-What was missing? Not evidence — the condition had been observed. Not evaluation — the audit reached the correct judgment. The missing piece was enforcement, and the durable repair was not a louder warning: the unsafe capability was removed, and ambiguous conflicts were escalated instead.
-
-The question generalizes into a diagnostic. Do not immediately add another test or another gate; ask what was missing. A recurring failure may expose several gaps:
-
-- **Missing representation** — the relevant state or semantics were never modeled.
-- **Missing obligation** — no stated invariant, policy, bound, or permitted set.
-- **Missing evidence** — no sensor or trace observes the condition.
-- **Missing evaluation** — evidence exists, but no validator judges it.
-- **Missing enforcement** — the verdict exists and controls nothing.
-
-One failure can reveal several gaps at once. The categories diagnose where durable engineering structure is missing; they do not prescribe one mechanism for every failure.
-
-## Governance conversion and engineering capital
-
-The ex-post version of this move is governance conversion. A failure or important surprise exposes something future work should not have to rediscover, and engineering converts the lesson into durable structure. The repair fixes this instance. Governance conversion changes what future work inherits. The result may be a model rather than a gate: a failure may reveal knowledge never represented, or state the system cannot observe. This is why Modeling and Alignment form a feedback loop: Modeling makes engineering knowledge explicit, Alignment connects selected obligations to mechanisms that can act on them, and failure exposes weaknesses in either side.
-
-When future work benefits from this durable structure, it becomes engineering capital. Technical debt makes future work pay again for an expedient decision made today; engineering capital lets future work inherit engineering performed earlier. The important quantity is not the count of artifacts but the future engineering work they save or improve. Capital also depreciates: models drift, sensors become noisy, validators preserve assumptions that no longer hold, and a gate can eventually cost more than the failure it prevents. Accumulation is not the objective. Engineering a governed environment includes maintaining, reconciling, and eventually retiring its machinery.
-
 ## Not everything should be enforced
 
 Alignment is not a march toward making every engineering decision mechanical. An engineering concern can stop in several places:
@@ -129,12 +105,8 @@ Alignment is not a march toward making every engineering decision mechanical. An
 
 These are design choices, not maturity levels. A cost metric may be worth observing without a hard budget. A probabilistic validator may serve triage while remaining too uncertain to block production. Stronger Alignment does not mean more gates; it means the obligations engineering chooses to enforce are enforced dependably at appropriate boundaries.
 
-## The controls become a system
-
-Grown far enough, the control machinery becomes an engineering system in its own right. One mechanism requires commits to be squashed; another rejects broad diffs; each is sensible alone, together incompatible. The conflict lives in the relation between controls. At that point the Modeling unit applies recursively: the machinery through which the environment governs work is itself worth modeling, so that its coverage and its conflicts become visible. The lecture develops that recursion.
-
 ## From engineering knowledge to engineering control
 
 The three units now fit together. Agents asked how engineers delegate realization without delegating responsibility: BOUND → EQUIP → AUTHORIZE → VERIFY. Modeling asked how engineers preserve consequential distinctions while leaving irrelevant choices free, and how those purposeful reductions remain interpretable, connected, and correspondent to the system. Alignment asks what happens when some of that engineering knowledge must do more than inform the next reasoner: state the obligation, check it where it can actually be decided, choose an appropriate mechanism, and determine what happens when the check fails.
 
-And the environment does not remain fixed: failures expose what it does not yet know, see, evaluate, or enforce, and governance conversion turns selected lessons into capital that future work inherits. The objective is not to eliminate engineering judgment. It is to decide where judgment should remain judgment, and where recurring judgment should become durable engineering structure. That is Alignment.
+And the environment does not remain fixed: failures expose what it does not yet know, see, evaluate, or enforce — the next unit asks how the development process converts those lessons into durable structure. The objective is not to eliminate engineering judgment. It is to decide where judgment should remain judgment, and where recurring judgment should become durable engineering structure. That is Alignment.
