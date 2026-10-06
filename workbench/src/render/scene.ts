@@ -67,12 +67,44 @@ function transitionDetail(t: CanonTransition): readonly string[] {
   return out;
 }
 
+/**
+ * Declared quantity literals targeting this entity, as attributes.
+ *
+ * `memory: 20 KB` on a thread's node states two facts the author DECLARED — the dimension and the
+ * magnitude, quoted verbatim from `Magnitude.raw`, never re-rounded or re-united. Only point
+ * literals qualify: a range or an expression is evaluated elsewhere, and the derived figure
+ * belongs to the budget readout, not to a node restating it. The attribute name is the dimension;
+ * when several same-dimension literals target one entity, each falls back to its quantity id — the
+ * author's own disambiguator — rather than painting two identical `memory:` lines.
+ */
+function quantityAttributes(system: CanonicalSystem, entityId: string): readonly AccessibleProperty[] {
+  const mine = [...system.quantities.values()]
+    .flatMap((q) =>
+      q.target.kind === "entity" &&
+      q.target.ref === entityId &&
+      q.dimension !== null &&
+      q.value.kind === "point" &&
+      q.value.magnitude.fault === null
+        ? [{ id: q.id, dimension: q.dimensionRaw, raw: q.value.magnitude.raw }]
+        : [],
+    )
+    .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const perDimension = new Map<string, number>();
+  for (const q of mine) perDimension.set(q.dimension, (perDimension.get(q.dimension) ?? 0) + 1);
+  return mine.map((q) => ({
+    name: (perDimension.get(q.dimension) ?? 0) > 1 ? q.id : q.dimension,
+    value: q.raw,
+    domain: null,
+  }));
+}
+
 function properties(system: CanonicalSystem, entityId: string): readonly AccessibleProperty[] {
   const e = system.entities.get(entityId);
   if (!e) return [];
-  return [...e.properties.entries()]
+  const declared = [...e.properties.entries()]
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
     .map(([name, pv]) => ({ name, value: String(pv.value), domain: pv.domain }));
+  return [...declared, ...quantityAttributes(system, entityId)];
 }
 
 /** In-degree-zero nodes, or — when every node is in a cycle — the lowest id, so ranking has a seed. */

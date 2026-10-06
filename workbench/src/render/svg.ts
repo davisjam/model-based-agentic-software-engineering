@@ -25,7 +25,9 @@ import type { CanonicalSystem } from "../ir/types.ts";
 import { buildAccessibleScene, deriveEvidenceEmphasis } from "./accessible.ts";
 import {
   METRICS,
+  SUBLABEL_PITCH,
   TEXT_SIZES,
+  inNodeLines,
   initialMarkerCentre,
   initialMarkerTarget,
   textExtent,
@@ -304,7 +306,11 @@ function nodeGroup(
   readingIndex: number,
 ): SvgNode {
   const cx = node.rect.x + node.rect.w / 2;
-  const headerY = node.kind === "region" ? node.rect.y + METRICS.regionHeader - 9 : node.rect.y + node.rect.h / 2 + 1;
+  // A leaf's label anchors in the STANDARD-HEIGHT band at the top of its box, not at rect centre:
+  // attribute sub-lines grow the box downward by `SUBLABEL_PITCH` each, and the label staying put
+  // keeps a node with no attributes pixel-identical to what it always was.
+  const headerY =
+    node.kind === "region" ? node.rect.y + METRICS.regionHeader - 9 : node.rect.y + METRICS.nodeHeight / 2 + 1;
   const texts: SvgNode[] = [
     el(
       "text",
@@ -319,7 +325,7 @@ function nodeGroup(
         "text",
         {
           x: cx,
-          y: headerY + 14 + i * 13,
+          y: headerY + SUBLABEL_PITCH + 1 + i * SUBLABEL_PITCH,
           "text-anchor": "middle",
           "dominant-baseline": "middle",
           class: "mage-sublabel",
@@ -517,6 +523,7 @@ export function renderView(
   const layout = engine(scene, {
     ...(req.direction !== undefined ? { direction: req.direction } : {}),
     ...(req.hints !== undefined ? { hints: req.hints } : {}),
+    ...(req.showProperties !== undefined ? { showProperties: req.showProperties } : {}),
   });
 
   const emphasis: EmphasisAssignment[] = [
@@ -538,7 +545,9 @@ export function renderView(
     else list.push(a);
   }
   const readingIndex = new Map(accessible.nodes.map((n) => [n.id, n.readingIndex]));
-  const show = new Set(req.showProperties ?? []);
+  // Null means EVERY declared attribute — the twin always carries them, and the picture defaulting
+  // to the same set is what keeps the two channels from drifting (see `LayoutOptions.showProperties`).
+  const show = req.showProperties === undefined ? null : new Set(req.showProperties);
 
   const keyByChannel = new Map(accessible.key.map((k) => [`${k.channel}:${k.id}`, k]));
   const edgeNodes = layout.edges
@@ -552,9 +561,10 @@ export function renderView(
     return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   });
   const nodeNodes = ordered.map((n) => {
-    const subs = (scene.nodes.find((s) => s.id === n.id)?.properties ?? [])
-      .filter((p) => show.has(p.name))
-      .map((p) => `${p.name}: ${p.value}`);
+    // `inNodeLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
+    // line the box already has height and width for — a leaf grows downward, a region's lines sit
+    // in the band between its header and its children.
+    const subs = inNodeLines(scene.nodes.find((s) => s.id === n.id)?.properties ?? [], show);
     return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0);
   });
 

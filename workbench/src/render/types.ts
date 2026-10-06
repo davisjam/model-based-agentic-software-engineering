@@ -431,6 +431,17 @@ export interface LayoutOptions {
    * comparison is unreadable if one added state re-ranks the world.
    */
   readonly hints?: ReadonlyMap<string, Point> | undefined;
+  /**
+   * Entity property names to surface in the node box, as `name: value` sub-lines. UNDEFINED means
+   * ALL declared attributes — the default, because the accessible twin always carries every
+   * declared property and the picture omitting them was a one-channel gap: a screen-reader user
+   * heard `holds is …` in the node description while a sighted user saw only the label. A list
+   * narrows; an empty list shows none. Values always also appear in the twin regardless.
+   *
+   * Lives on `LayoutOptions` rather than only `SceneRequest` because TEXT PARTICIPATES IN LAYOUT:
+   * the engine must reserve node height and width for the sub-lines it will be asked to paint.
+   */
+  readonly showProperties?: readonly string[] | undefined;
 }
 
 export interface SceneRequest extends LayoutOptions {
@@ -442,6 +453,4 @@ export interface SceneRequest extends LayoutOptions {
   readonly outcome?: Outcome | null | undefined;
   readonly coverage?: Coverage | null | undefined;
   readonly refusal?: string | null | undefined;
-  /** Entity property names to surface. Values always also appear in the twin. */
-  readonly showProperties?: readonly string[] | undefined;
 }

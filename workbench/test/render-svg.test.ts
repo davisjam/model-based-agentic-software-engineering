@@ -10,7 +10,9 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MARKS, PLAIN_MARK, renderView, serialize } from "../src/render/index.ts";
+import { METRICS, MARKS, PLAIN_MARK, SUBLABEL_PITCH, inNodeLines, renderView, serialize, textExtent } from "../src/render/index.ts";
+import { parse } from "yaml";
+import { canonicalize } from "../src/ir/canonicalize.ts";
 import type { EmphasisKind, LayoutEngine, MarkStyle, Point, SvgNode } from "../src/render/index.ts";
 import { BOUNDED, EXHAUSTIVE, docableSystem, publishTrace } from "./render-fixtures.ts";
 
@@ -445,4 +447,116 @@ test("every class the renderer emits has a stylesheet rule, including the new ke
   }
   assert.ok(emitted.has("mage-key"), "the key's text class must actually be emitted");
   assert.ok([...emitted].some((c) => /^mage-rel-[a-d]$/.test(c)), "a relation stroke class must be emitted");
+});
+
+// -------------------------------------------------------------------------------------------
+// Declared attributes reach the picture (the device-memory channel gap)
+// -------------------------------------------------------------------------------------------
+
+/**
+ * The author's case, reproduced: three threads, memory quantities, one qualifying clause too long
+ * for a box. The twin always carried these attributes; the picture used to show bare labels unless
+ * a caller opted in, which made the visual channel the poorer one.
+ */
+const deviceMemorySystem = (): ReturnType<typeof docableSystem> =>
+  canonicalize(
+    parse(`
+mage: 1
+system:
+  name: Device Memory
+entities:
+  thread-a:
+    type: thread
+    label: Thread A
+    properties:
+      holds: { value: held while thread-a-exec.running is active }
+  thread-b:
+    type: thread
+    label: Thread B
+  thread-c:
+    type: thread
+    label: Thread C
+models:
+  device-memory:
+    type: graph
+    label: Device Memory
+    purpose:
+      question: Which thread holds how much memory?
+      represents: [each thread's declared memory]
+      omits: [allocator fragmentation]
+    entities: [thread-a, thread-b, thread-c]
+quantities:
+  thread-a-sram:
+    target: entity:thread-a
+    dimension: memory
+    value: 20 KB
+    residency: resident
+  thread-b-sram:
+    target: entity:thread-b
+    dimension: memory
+    value: 20 KB
+    when: { state: thread-b-exec.running }
+`),
+  );
+
+const deviceMemoryView = () => renderView(deviceMemorySystem(), { subject: { kind: "model", id: "device-memory" } });
+
+test("declared attributes render in the node by default, from the same list the twin carries", () => {
+  const view = deviceMemoryView();
+  const texts = walk(view.tree)
+    .filter((n) => n.tag === "text" && String(n.attrs["class"]) === "mage-sublabel")
+    .map((n) => n.text ?? "");
+  assert.ok(texts.length > 0, "no sub-labels rendered at all — the probe found nothing to measure");
+  // Parity: every rendered line IS a `name: value` from the twin's own property list. The twin is
+  // the source of truth for WHAT to show; a line with no twin fact behind it would be drift.
+  const twinLines = new Set(view.accessible.nodes.flatMap((n) => n.properties.map((p) => `${p.name}: ${p.value}`)));
+  for (const t of texts) assert.ok(twinLines.has(t), `sub-label "${t}" states a fact the twin does not carry`);
+  // The declared quantity literals, verbatim — never re-rounded, never re-united.
+  assert.ok(texts.includes("memory: 20 KB"));
+});
+
+test("a value too long for the box renders nowhere in the picture and stays whole in the twin", () => {
+  const view = deviceMemoryView();
+  const texts = walk(view.tree)
+    .filter((n) => n.tag === "text")
+    .map((n) => n.text ?? "");
+  assert.ok(texts.length > 0, "no text rendered at all — the probe found nothing to measure");
+  // Never an ellipsis, never a prefix: the qualifying clause is absent from the picture entirely…
+  for (const t of texts) assert.equal(t.includes("held while"), false, `clause leaked into the picture as "${t}"`);
+  // …and whole in the accessible description, where it keeps its meaning.
+  const a = view.accessible.nodes.find((n) => n.id === "thread-a");
+  assert.match(a?.description ?? "", /holds is held while thread-a-exec\.running is active/);
+  // The rule is the substrate's own fit test, not a hand-copied character count.
+  const line = "holds: held while thread-a-exec.running is active";
+  assert.ok(
+    2 * METRICS.padX + textExtent(line, "mage-sublabel").w > METRICS.nodeMaxWidth,
+    "fixture rot: the long clause now fits a node, so this test no longer exercises the rule",
+  );
+  assert.deepEqual(inNodeLines([{ name: "holds", value: "held while thread-a-exec.running is active" }], null), []);
+});
+
+test("an entity declaring nothing renders exactly as today, and the box grows only under its lines", () => {
+  const view = deviceMemoryView();
+  const bare = view.layout.nodes.get("thread-c");
+  assert.ok(bare !== undefined, "thread-c missing from the layout — the probe found nothing to measure");
+  assert.equal(bare.rect.h, METRICS.nodeHeight);
+  const annotated = view.layout.nodes.get("thread-a");
+  assert.ok(annotated !== undefined);
+  // thread-a's long `holds` clause reserves nothing; only the one line that RENDERS adds height.
+  assert.equal(annotated.rect.h, METRICS.nodeHeight + SUBLABEL_PITCH);
+});
+
+test("the key names the attribute lines when they render, and stays quiet when they do not", () => {
+  const annotated = deviceMemoryView();
+  const entityRow = annotated.accessible.key.find((k) => k.channel === "shape" && k.id === "entity");
+  assert.match(entityRow?.meaning ?? "", /small text inside lists its declared attributes/);
+  // Narrowed to nothing, the channel is absent and the key must not promise it.
+  const quiet = renderView(deviceMemorySystem(), {
+    subject: { kind: "model", id: "device-memory" },
+    showProperties: [],
+  });
+  const quietRow = quiet.accessible.key.find((k) => k.channel === "shape" && k.id === "entity");
+  assert.equal(quietRow?.meaning.includes("small text"), false);
+  const quietSubs = walk(quiet.tree).filter((n) => n.tag === "text" && String(n.attrs["class"]) === "mage-sublabel");
+  assert.deepEqual(quietSubs, []);
 });
