@@ -27,7 +27,7 @@
 import type { CanonVariable, CanonicalSystem, Configuration, GuardOp, MachineInstance, Scalar } from "../ir/types.ts";
 import { parseDerived } from "./expr.ts";
 import { omissionCovering, omissionProse } from "./omission.ts";
-import { fail, ok, ORDER_OPS, type Atom, type Res } from "./types.ts";
+import { detail, fail, ok, ORDER_OPS, type Atom, type Res } from "./types.ts";
 
 export type Ref =
   | { readonly kind: "control"; readonly instance: string; readonly machine: string }
@@ -147,10 +147,21 @@ export function resolveRef(scope: RefScope, raw: string): Res<Ref> {
   const need = text === "" ? raw : text;
   const omitted = omissionCovering(scope.system, need);
   const absence = `'${raw}' names nothing in this system`;
-  if (omitted !== null) return fail(omissionProse(absence, omitted).prose);
+  if (omitted !== null) {
+    // The TYPED half rides with the sentence, exactly as `undeclared()` next door builds it. This
+    // line used to pass the prose alone, so the one refusal that reached an agent through this
+    // path — the capstone's charge-remaining question — said `missing-distinction` in its sentence
+    // and `unknown-vocabulary` with empty `missing`/`models` in its data: an agent branching on
+    // `refusalDetail`, as its own description advises, got strictly less than the human reader
+    // (261006 lab-solver run, guess 7). `test/refusal-detail-parity.test.ts` holds the
+    // prose/data relationship over every refusal the corpus produces.
+    const said = omissionProse(absence, omitted);
+    return fail(said.prose, detail("missing-distinction", said.missing, said.models));
+  }
   return fail(
     `${absence}. References address a control state ` +
-    `('<machine>.state'), a variable, or a derived value.`);
+    `('<machine>.state'), a variable, or a derived value.`,
+    detail("unknown-vocabulary"));
 }
 
 // --------------------------------------------------------------------------------------------

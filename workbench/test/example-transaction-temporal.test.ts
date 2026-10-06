@@ -46,8 +46,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { systemHash } from "../src/ir/hash.ts";
-import type { CanonicalSystem, Evidence, Note, Outcome, Step } from "../src/ir/types.ts";
-import { configKey } from "../src/ir/types.ts";
+import type { CanonicalSystem, Evidence, EvidenceStep, Note, Outcome } from "../src/ir/types.ts";
+import { stepConfigKey } from "../src/ir/types.ts";
 import { runLtlProperty, isStutterStep } from "../src/engine/ltl-product.ts";
 import {
   alwaysOf, eventuallyOf, impliesOf, notOf, proposition, type ParsedFormula,
@@ -154,7 +154,7 @@ test("§10 Q1 and Q2 — both outcomes are admitted, each with a witness a stude
     assert.equal(answer.outcome, "holds", `§10 ${question}: ${id} answers ${answer.outcome}`);
     assert.equal(answer.evidence?.shape, "trace", `§10 ${question}: a reachability witness is a trace`);
     assert.equal(answer.evidence?.role, "witness");
-    assert.equal(answer.evidence?.steps.at(-1)?.to.control.get("transaction-lifecycle"), finalState,
+    assert.equal(answer.evidence?.steps.at(-1)?.to.control["transaction-lifecycle"], finalState,
       `§10 ${question}: the witness must END in ${finalState}, or it is evidence for another claim`);
   }
 });
@@ -226,7 +226,7 @@ const cycleLabels = (evidence: Evidence | null): readonly string[] =>
  * Four things make the repeating portion identifiable, and the fourth is the one that stops a halt
  * being dressed as a loop.
  */
-function assertReadableLasso(answer: Answer, where: string): readonly Step[] {
+function assertReadableLasso(answer: Answer, where: string): readonly EvidenceStep[] {
   const evidence = answer.evidence;
   assert.ok(evidence !== null, `${where}: a refutation must carry the execution that breaks it`);
   assert.equal(evidence.shape, "lasso",
@@ -240,11 +240,11 @@ function assertReadableLasso(answer: Answer, where: string): readonly Step[] {
   const first = cycle[0];
   const last = cycle[cycle.length - 1];
   assert.ok(first !== undefined && last !== undefined);
-  assert.equal(configKey(first.from), configKey(last.to),
+  assert.equal(stepConfigKey(first.from), stepConfigKey(last.to),
     `${where}: the cycle does not return to the configuration it left, so the repeating portion ` +
     `is not identifiable and the lasso is a fiction`);
-  assert.equal(configKey(evidence.steps[evidence.steps.length - 1]?.to ?? first.from),
-    configKey(first.from),
+  assert.equal(stepConfigKey(evidence.steps[evidence.steps.length - 1]?.to ?? first.from),
+    stepConfigKey(first.from),
     `${where}: the prefix does not end where the cycle begins, so a reader cannot see where the ` +
     `repetition starts`);
   return cycle;
@@ -408,7 +408,7 @@ test("§10.4 — reachability holds constant across all three stages while liven
 
   // The counterexample moved windows: validation rather than adoption. Asserted on the final
   // configuration of the prefix rather than on its length, because the length is not the lesson.
-  assert.equal(afterLinger.evidence?.cycle?.[0]?.from.control.get("transaction-lifecycle"), "proposed",
+  assert.equal(afterLinger.evidence?.cycle?.[0]?.from.control["transaction-lifecycle"], "proposed",
     "§10.4's counterexample must loop in the validating state, which is where the student put the edge");
 });
 
@@ -477,7 +477,7 @@ test("§10.5 — a retry edge refutes TWO existing properties, and neither red i
   assert.ok(cycle.every(isStutterStep),
     "Q4's counterexample loops on a declared transition, so this machine has gained an edge out of " +
     "`committed` and the reading below is wrong");
-  assert.equal(cycle[0]?.from.control.get("transaction-lifecycle"), "committed",
+  assert.equal(cycle[0]?.from.control["transaction-lifecycle"], "committed",
     "the halt the counterexample repeats must be the commitment it was refuted by");
   assert.equal(counterexampleViolates(ex.workspace.state.system, Q4, answer.evidence), null,
     "§10.5: the counterexample does not hold up under independent re-decision");

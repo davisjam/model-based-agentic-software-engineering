@@ -31,6 +31,9 @@
 // registry still loads in a node test with no DOM. `DESIGN-shell-261002.md` §9a settled this —
 // declaring the union here and the SURFACES table there would split one fact across two files.
 import type { NavSurface } from "../ui/shell/surfaces.ts";
+// Type-only, for `AuthoringCoverage.ops`: a declaration naming an op the transaction parser does
+// not implement fails to compile, which is the compiler-held half of the authoring-scope join.
+import type { OpName } from "../transaction/types.ts";
 
 /** Every public semantic capability. The list is closed; adding one is a deliberate act. */
 export type CapabilityId =
@@ -434,10 +437,107 @@ export const ESCAPE_HATCHES: readonly EscapeHatch[] = [
     reason:
       "raw SPARQL over the RDF projection, for debugging the projection and the licensing seam. "
       + "Outside the semantic interface because a syntactically valid SPARQL query can ask "
-      + "questions the RDF representation permits and the MAGE metamodel does not license.",
+      + "questions the RDF representation permits and the MAGE metamodel does not license. "
+      + "Takes (text, budget?); an evaluation that spends its step budget answers `exhausted` "
+      + "and carries the `escalation` handle `window.mage.analysis.resolveExhausted` takes — "
+      + "the handle's only producer.",
     fencedBy: "DECISIONS-RULED-model-query-261002.md",
   },
 ];
+
+// ----------------------------------------------------------------------------------------------
+// Authoring scope — what the transaction op vocabulary reaches, DECLARED
+// ----------------------------------------------------------------------------------------------
+
+/**
+ * How far the op vocabulary reaches one authored construct of the model document.
+ *
+ * `ops` is typed against the transaction parser's own `OpName`, so a declaration naming an op the
+ * parser does not implement fails to COMPILE — the highest rung available for this join. The
+ * `construct` strings are the model schema's top-level property names, and
+ * `test/authoring-scope-declared.test.ts` holds that this list and the schema's keys partition
+ * each other exactly, so a construct added to the schema cannot ship unclassified.
+ */
+export type AuthoringCoverage =
+  /** Fully authorable through transaction ops. */
+  | { readonly construct: string; readonly coverage: "ops"; readonly ops: readonly OpName[] }
+  /** Some acts are ops; the rest is whole-document. `note` says which is which. */
+  | {
+    readonly construct: string; readonly coverage: "partial";
+    readonly ops: readonly OpName[]; readonly note: string;
+  }
+  /** No op reaches it; the whole-document route is the only author. */
+  | { readonly construct: string; readonly coverage: "document"; readonly note: string };
+
+/**
+ * The declared boundary of transactional authoring, published by `describe().authoring`.
+ *
+ * The 261006 lab-solver run paid for this being implicit: the op vocabulary cannot author
+ * machines, events, variables, domains, relation types, entity-type declarations, quantities or
+ * requirements, the only route is whole-document export → edit → load, and the agent INFERRED
+ * that rather than being told — while `affordanceGaps` (a DERIVED list of UX-I1 violations, zero
+ * by gate) read as "no gaps anywhere". One refusal even recommended "delete and re-declare the
+ * quantity", an act no op performs. The gaps are deliberate scope; deliberate scope gets
+ * DECLARED, in data, where an agent reads the rest of the surface.
+ */
+export const AUTHORING_SCOPE: {
+  /** The supported path for everything `coverage: "document"`/`"partial"` leaves beyond the ops. */
+  readonly sanctionedRoute: string;
+  readonly constructs: readonly AuthoringCoverage[];
+  /**
+   * Declared machine/human asymmetries that are deliberate scope — the DECLARED complement of the
+   * derived `affordanceGaps`, which only ever reports violations of the parity invariant.
+   */
+  readonly gaps: readonly string[];
+} = {
+  sanctionedRoute:
+    "window.mage.export() -> edit the YAML -> window.mage.load(text). Whole-document authoring is "
+    + "the SUPPORTED route for every construct the op vocabulary does not reach; load() runs the "
+    + "full validation a transaction runs, so nothing about the route is second-class.",
+  constructs: [
+    { construct: "mage", coverage: "document", note: "the format version header" },
+    { construct: "system", coverage: "document", note: "the system id and name header" },
+    { construct: "domains", coverage: "document", note: "ordered-enum vocabulary declarations" },
+    {
+      construct: "entity-types", coverage: "document",
+      note: "the entity-type vocabulary itself; set-entity-type TYPES an entity, it does not "
+        + "declare a vocabulary entry",
+    },
+    { construct: "relation-types", coverage: "document", note: "relation-type declarations, including composition and absence clauses" },
+    {
+      construct: "entities", coverage: "ops",
+      ops: ["add-entity", "delete-entity", "set-label", "set-property", "set-entity-type", "add-note"],
+    },
+    { construct: "events", coverage: "document", note: "synchronized-event declarations and their participant lists" },
+    {
+      construct: "machines", coverage: "partial",
+      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "add-note"],
+      note: "states and transitions of an EXISTING machine are op-editable; creating or deleting a "
+        + "machine, declaring instances, variables or derived values is whole-document only",
+    },
+    {
+      construct: "models", coverage: "ops",
+      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "add-note"],
+    },
+    {
+      construct: "quantities", coverage: "partial",
+      ops: ["set-quantity-value"],
+      note: "set-quantity-value edits a declared POINT value; adding or deleting a quantity, or "
+        + "declaring a range or expression, is whole-document only",
+    },
+    { construct: "accounting", coverage: "document", note: "charge-basis declarations the quantity layer reads" },
+    { construct: "queries", coverage: "ops", ops: ["save-query", "delete-query"] },
+    { construct: "requirements", coverage: "document", note: "obligations (statement / expressed_as / satisfied_when)" },
+  ],
+  gaps: [
+    "requirement verification statuses (satisfied / violated / inconclusive / error) are "
+      + "machine-readable via window.mage.requirements() and no human surface renders them yet; "
+      + "the property list's requirement rows show a saved query's expectation standing, which is "
+      + "a different construct",
+    "saved-query DEFINITIONS have no read-path of their own: savedQueries() returns results, and "
+      + "a definition is read from the whole document via window.mage.export()",
+  ],
+};
 
 /** A machine affordance: a callable on `window.mage`, which has no element to bind. */
 const wired = (at: string, parameters: readonly MachineParameter[]): Affordance =>
@@ -770,9 +870,22 @@ export const CAPABILITIES: readonly Capability[] = [
     machine: [
       wired("window.mage.query", [QUERY_DOCUMENT]), wired("window.mage.ask", [QUERY_DOCUMENT]),
       wired("window.mage.analysis.resolveExhausted", [
+      // The producer is POINTED AT, because the 261006 lab-solver run proved the bare phrase "off
+      // an exhausted answer" is not followable: the agent tried ask-with-limit, query, and
+      // explore-with-tiny-limit — all of which answer `inconclusive` and carry no handle — and
+      // concluded the escalation path was unreachable from the published surface. The pointer goes
+      // THROUGH `describe().outsideSemanticInterface` rather than naming the console's site here,
+      // because MQ-I4 fences the semantic interface from advertising a hatch site anywhere but
+      // that one field — so the hatch's own entry carries the producing condition, and this
+      // summary says where to look. `test/exhausted-escalation-reachable.test.ts` holds both
+      // halves of the join and that the route actually yields a handle this call accepts.
       param("escalation", "object", true,
-        "the escalation handle off an exhausted answer, passed back unchanged -- it is obtainable "
-          + "nowhere else"),
+        "the `escalation` handle off an `exhausted` answer, passed back unchanged -- it is "
+          + "obtainable nowhere else. Its ONLY producer is the fenced surface declared under "
+          + "`describe().outsideSemanticInterface`; that entry says how an exhausted answer "
+          + "arises and that the handle rides beside it. A behavioural or graph query that hits "
+          + "its `limit` answers `inconclusive` and carries NO escalation -- raise `limit` or use "
+          + "`analysis.explore` for those"),
       param("budget", "number", false, "step budget for the re-run; defaults to the Worker's larger bound"),
     ]),
       wired("window.mage.model.related", [
@@ -837,11 +950,25 @@ export const CAPABILITIES: readonly Capability[] = [
     // edit to see which claims moved. `window.mage.properties` is the machine twin of that same
     // read -- the verdict with the models and evidence it derives from (UX-I5), which satisfies
     // UX-I2 for a surface whose whole content is a semantic result.
+    //
+    // `window.mage.requirements` is a third spelling of this row's one capability, by the row test
+    // the `query` row states: a second ROW must report a capability the product GAINED, and this
+    // reports none -- it reads the SAME `runSavedQueries` re-run and joins it against the authored
+    // `requirements:` declarations through the engine's one verification join. What it adds is the
+    // interpreted obligation (satisfied / violated / inconclusive-with-cause / error) an agent
+    // previously derived by hand from a saved query's outcome plus `satisfied_when` read out of
+    // export YAML (261006 lab-solver run, guess 3). The human half of that interpretation is the
+    // property list's requirement rows; the DECLARED remainder -- no human surface yet renders the
+    // four verification status words for authored requirements -- is published as data in
+    // `describe().authoring.gaps` rather than left for a reader to discover by failing.
     human: [
       header("header.run-all", "run", "loaded"),
       readout("properties-section.list", "question-list", "nav-properties"),
     ],
-    machine: [wired("window.mage.savedQueries", []), wired("window.mage.properties", [])],
+    machine: [
+      wired("window.mage.savedQueries", []), wired("window.mage.properties", []),
+      wired("window.mage.requirements", []),
+    ],
     producesEvidence: true,
   },
   {

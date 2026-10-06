@@ -93,8 +93,8 @@ test("a model where the consequent CAN occur unprecedented is refuted, with a co
   assert.equal(answer.result.outcome, "refuted");
   assert.equal(answer.result.evidence?.role, "counterexample");
   const last = (answer.result.evidence?.steps ?? []).at(-1);
-  assert.equal(last?.to.control.get("document"), "published");
-  assert.equal(last?.to.values.get("document.seen_reviewed"), false);
+  assert.equal(last?.to.control["document"], "published");
+  assert.equal(last?.to.values["document.seen_reviewed"], false);
 });
 
 test("the result carries the ORIGINAL system's hash, not the rewritten one's", () => {

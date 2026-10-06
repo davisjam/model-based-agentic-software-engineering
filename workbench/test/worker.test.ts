@@ -275,10 +275,12 @@ test("a real round trip: the worker derives the SAME hash, so the reply is not s
   }
 });
 
-test("a behavioural witness survives the crossing, Maps and all", async () => {
-  // The protocol's note used to claim a Map cannot be cloned. It can -- structured clone carries
-  // Map -- and a behavioural witness proves it: every `Step` holds two `Configuration`s, each a pair
-  // of Maps. Nothing had ever checked, because nothing had ever crossed.
+test("a behavioural witness survives the crossing, configurations and all", async () => {
+  // Evidence steps carry `StepConfiguration` — plain records, not the walk's Maps — because
+  // evidence is a published artifact and `JSON.stringify` drops a Map silently (`{}`). Structured
+  // clone would have carried a Map across this boundary fine; the page's own `JSON.stringify`
+  // would not, and the agent seam is the reader that matters. So the pin is on the serializable
+  // form arriving WITH its contents: a witness whose states are empty is no witness.
   const thread = onThread();
   try {
     const system = docableSystem();
@@ -292,9 +294,12 @@ test("a behavioural witness survives the crossing, Maps and all", async () => {
     assert.ok(evidence.steps.length > 0, "a trace with no steps is not a witness");
     const first = evidence.steps[0];
     assert.ok(first !== undefined);
-    assert.ok(first.from.control instanceof Map,
-      "a Configuration arrived with its control Map intact, so Map survives structured clone");
-    assert.ok(first.from.control.size > 0, "and with its contents, not merely its type");
+    assert.ok(!(first.from.control instanceof Map) && typeof first.from.control === "object",
+      "a step's configuration arrives as a plain record, the published wire shape");
+    assert.ok(Object.keys(first.from.control).length > 0,
+      "and with its contents — JSON.stringify of this step must say which state the system was in");
+    assert.deepEqual(JSON.parse(JSON.stringify(first)), first,
+      "the step survives a JSON round-trip unchanged, which is what an in-page reader does to it");
   } finally {
     thread.stop();
   }

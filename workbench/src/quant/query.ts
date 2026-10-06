@@ -19,7 +19,7 @@ import { systemHash } from "../ir/hash.ts";
 import type {
   CanonicalSystem, Dimension, Evidence, QuantityScope,
 } from "../ir/types.ts";
-import { ACCOUNTED_METRICS, AGGREGATE_TARGET_KIND, DIMENSIONS } from "../ir/types.ts";
+import { ACCOUNTED_METRICS, AGGREGATE_TARGET_KIND, DIMENSIONS, evidenceSteps } from "../ir/types.ts";
 import { buildScope } from "../engine/refs.ts";
 import { compilePredicate, describePredicate, satisfiability } from "../engine/predicate.ts";
 import { compileSystem, DEFAULT_STATE_LIMIT } from "../engine/explore.ts";
@@ -277,7 +277,7 @@ function measurePath(
     // The Q5 witness, in measurement clothes: the repeatable cycle IS the answer, and no finite
     // magnitude could stand in for it — so `magnitude` stays null and the lasso carries the claim.
     const evidence: Evidence = {
-      shape: "lasso", role: "witness", steps: max.value.prefix, cycle: max.value.cycle, nodes: null,
+      shape: "lasso", role: "witness", steps: evidenceSteps(max.value.prefix), cycle: evidenceSteps(max.value.cycle), nodes: null,
     };
     return asVerdict({
       result: result({
@@ -292,7 +292,7 @@ function measurePath(
   }
 
   const { total, trace, coverage, notes } = max.value;
-  const evidence: Evidence = { shape: "trace", role: "witness", steps: trace, cycle: null, nodes: null };
+  const evidence: Evidence = { shape: "trace", role: "witness", steps: evidenceSteps(trace), cycle: null, nodes: null };
   const bounded = coverage.kind === "bounded";
   return asVerdict({
     result: result({
@@ -339,7 +339,7 @@ function measurePeak(
 
   const { peak: value, trace, coverage, notes } = peak.value;
   const premise = residentPremiseNote(system);
-  const evidence: Evidence = { shape: "trace", role: "witness", steps: trace, cycle: null, nodes: null };
+  const evidence: Evidence = { shape: "trace", role: "witness", steps: evidenceSteps(trace), cycle: null, nodes: null };
   const bounded = coverage.kind === "bounded";
   return asVerdict({
     result: result({

@@ -53,6 +53,7 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import type { CanonicalSystem, Configuration, Evidence, Outcome } from "../src/ir/types.ts";
+import { liftStep } from "../src/ir/types.ts";
 import { compileSystem, defaultOptions, exploreSpace } from "../src/engine/explore.ts";
 import { runBehaviorQuery } from "../src/engine/behavior.ts";
 import { compilePredicate } from "../src/engine/predicate.ts";
@@ -134,7 +135,7 @@ const ltl = (subject: Subject, formula: ParsedFormula): LtlAnswer => {
 /** Every configuration the lasso visits, prefix and cycle together. */
 const configurationsOn = (evidence: Evidence | null): readonly Configuration[] => {
   if (evidence === null) return [];
-  const steps = [...evidence.steps, ...(evidence.cycle ?? [])];
+  const steps = [...evidence.steps, ...(evidence.cycle ?? [])].map(liftStep);
   return [...steps.map((s) => s.from), ...(steps.length > 0 ? [steps[steps.length - 1]?.to] : [])]
     .filter((c): c is Configuration => c !== undefined);
 };

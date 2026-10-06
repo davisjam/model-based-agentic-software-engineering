@@ -22,7 +22,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { systemHash } from "../src/ir/hash.ts";
 import type { CanonicalSystem, Evidence } from "../src/ir/types.ts";
-import { configKey } from "../src/ir/types.ts";
+import { liftConfiguration, stepConfigKey } from "../src/ir/types.ts";
 import {
   compileSystem, DEFAULT_STATE_LIMIT, defaultOptions, exploreSpace, successorsOf,
 } from "../src/engine/explore.ts";
@@ -271,13 +271,13 @@ test("the counterexample's cycle at a halt is the stutter, and it is not a decla
   assert.deepEqual([...step.instances], [], "a stutter moves no instance");
   assert.equal(step.label, null, "a stutter claims no label a student could look for");
   assert.equal(step.sync, null, "a stutter fires no event");
-  assert.equal(configKey(step.from), configKey(step.to), "a stutter is a self-loop");
+  assert.equal(stepConfigKey(step.from), stepConfigKey(step.to), "a stutter is a self-loop");
 
   // And the model really declares no such transition -- the stutter is the checker's, not the
   // author's. Asked of the step relation itself, which is the only thing that could have one.
   const compiled = compileSystem(sys);
   assert.ok(compiled.ok);
-  assert.equal(successorsOf(compiled.value, step.from).steps.length, 0,
+  assert.equal(successorsOf(compiled.value, liftConfiguration(step.from)).steps.length, 0,
     "the configuration the stutter loops on must have NO enabled step in the model");
 });
 

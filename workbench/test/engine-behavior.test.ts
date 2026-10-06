@@ -27,8 +27,8 @@ test("reach: without the avoid clause the same target is reached, with a trace",
   const steps = answer.result.evidence?.steps ?? [];
   assert.ok(steps.length > 0);
   // A trace starts at the initial configuration and ends in the target.
-  assert.equal(steps[0]?.from.control.get("document"), "waiting");
-  assert.equal(steps[steps.length - 1]?.to.control.get("document"), "published");
+  assert.equal(steps[0]?.from.control["document"], "waiting");
+  assert.equal(steps[steps.length - 1]?.to.control["document"], "published");
 });
 
 test("invariant: a violated universal yields a COUNTEREXAMPLE, not an absence", () => {
@@ -40,8 +40,8 @@ test("invariant: a violated universal yields a COUNTEREXAMPLE, not an absence", 
   assert.equal(answer.result.evidence?.role, "counterexample");
   assert.equal(answer.result.evidence?.shape, "trace");
   const last = (answer.result.evidence?.steps ?? []).at(-1);
-  assert.equal(last?.to.control.get("document"), "processing");
-  assert.equal(last?.to.control.get("worker"), "idle");
+  assert.equal(last?.to.control["document"], "processing");
+  assert.equal(last?.to.control["worker"], "idle");
 });
 
 test("invariant: a universal that holds is established by exhaustive satisfaction", () => {
@@ -139,8 +139,8 @@ test("transition-live: a named transition is witnessed by a trace ending in it",
   assert.equal(answer.result.outcome, "holds");
   const last = (answer.result.evidence?.steps ?? []).at(-1);
   assert.deepEqual(last?.instances, ["document"]);
-  assert.equal(last?.from.control.get("document"), "failed");
-  assert.equal(last?.to.control.get("document"), "waiting");
+  assert.equal(last?.from.control["document"], "failed");
+  assert.equal(last?.to.control["document"], "waiting");
 });
 
 test("transition-live: a selector matching no declared transition is UNLICENSED, not refuted", () => {
@@ -269,9 +269,9 @@ test("derived values are usable in a predicate and are never part of state ident
   assert.equal(answer.result.outcome, "holds");
   // `exhausted` is `retry_count == 3`, so the witness ends with the counter at its ceiling.
   const last = (answer.result.evidence?.steps ?? []).at(-1);
-  assert.equal(last?.to.values.get("document.retry_count"), 3);
+  assert.equal(last?.to.values["document.retry_count"], 3);
   // And it is NOT in the vector: only retry_count is.
-  assert.deepEqual([...(last?.to.values.keys() ?? [])], ["document.retry_count"]);
+  assert.deepEqual(Object.keys(last?.to.values ?? {}), ["document.retry_count"]);
 });
 
 test("every behavioral result names its system and the question it evaluated", () => {

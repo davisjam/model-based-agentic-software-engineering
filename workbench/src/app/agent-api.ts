@@ -22,7 +22,7 @@
 import type { Evidence, Finding, QueryResult } from "../ir/types.ts";
 import type { PendingResult } from "./ports.ts";
 import type { ExhaustedEscalation } from "../sparql/index.ts";
-import type { SparqlAnswer, Workspace } from "./services.ts";
+import type { RequirementReading, SparqlAnswer, Workspace } from "./services.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
 import { countElements, selectElements } from "../engine/elements.ts";
 import type { ElementCount, ElementSelection } from "../engine/elements.ts";
@@ -35,7 +35,7 @@ import type { TypeExplanation } from "../validator/typing.ts";
 import type { ExampleCatalog, ExampleDescription } from "./examples.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import type { EvaluatedProperty } from "./properties.ts";
-import { CAPABILITIES, ESCAPE_HATCHES, checkAffordanceParity } from "./capabilities.ts";
+import { AUTHORING_SCOPE, CAPABILITIES, ESCAPE_HATCHES, checkAffordanceParity } from "./capabilities.ts";
 import type { MachineParameter } from "./capabilities.ts";
 
 /**
@@ -168,6 +168,20 @@ export interface MageAgentApi {
    * Recomputed per call. There is no cached verdict here any more than there is one in the IR.
    */
   properties(): readonly EvaluatedProperty[];
+  /**
+   * Every authored requirement with its verification derived NOW — the §13 construct, readable at
+   * last.
+   *
+   * The model schema always said verification is "derived per read and stored nowhere", and no
+   * call here derived it: an agent judging an obligation had to join the deciding query's outcome
+   * against `satisfied_when` read out of `export()` YAML, by hand, every time (261006 lab-solver
+   * run, guess 3). This is that join, performed by the one implementation that owns it: the
+   * declaration beside the four-valued verification — satisfied / violated / inconclusive-with-
+   * cause / error — plus `meaning`, the engine's own sentence for what the status word does and
+   * does not say. Keyed by the authored requirement id. Recomputed per call, like `properties()`,
+   * over the SAME saved-query re-run the property list reads.
+   */
+  requirements(): Record<string, RequirementReading>;
   /**
    * Read one saved question's witness, counterexample or lasso — recomputed, and never nullable.
    *
@@ -570,8 +584,20 @@ export interface ApiDescription {
   /**
    * UX-I1 violations as of this build. Present so an agent can see where the two interfaces do NOT
    * converge, rather than discovering it by making a change no human can see or reverse.
+   *
+   * DERIVED, and zero by gate — which is why it reads `[]` and must keep doing so. Deliberate
+   * scope boundaries are not violations and do not appear here; they are DECLARED under
+   * `authoring` below. The 261006 lab-solver run read this empty list beside an op vocabulary
+   * that cannot author half the document and reasonably called it under-declared — the fix is
+   * the declared field, not entries here that the parity gate would then have to excuse.
    */
   readonly affordanceGaps: readonly string[];
+  /**
+   * The declared boundary of transactional authoring: which constructs the op vocabulary reaches,
+   * which only whole-document authoring reaches, the sanctioned route for the latter, and the
+   * deliberate machine/human asymmetries. See `AUTHORING_SCOPE` for why this is published.
+   */
+  readonly authoring: typeof AUTHORING_SCOPE;
   /**
    * The surfaces that exist but are NOT part of the semantic interface, each with its reason and
    * the ruling that fenced it.
@@ -961,6 +987,8 @@ export function createAgentApi(
       // capabilities it cannot currently reach a human affordance for -- an agent that edits a model
       // nobody can edit by hand has created a divergence the user cannot inspect or undo.
       affordanceGaps: checkAffordanceParity().map((v) => `${v.capability}: ${v.problem}`),
+      // DECLARED, not derived — the deliberate-scope complement of the derived list above.
+      authoring: AUTHORING_SCOPE,
       // DERIVED from `ESCAPE_HATCHES`, for the reason `operations` is derived from `CAPABILITIES`:
       // a hand-listed copy here would be a second declaration of the fence, free to say the
       // console is outside the interface while the registry had put it back inside.
@@ -1070,6 +1098,11 @@ export function createAgentApi(
     savedQueries: () => Object.fromEntries(workspace.runSavedQueries()),
 
     properties: () => workspace.properties(),
+
+    // Straight through, like `properties` — the facade holds the system, the declarations and the
+    // one verification join, so there is nothing here to decide. `Object.fromEntries` because the
+    // wire is JSON: a Map serializes to {} silently, the exact defect the evidence seam just paid for.
+    requirements: () => Object.fromEntries(workspace.requirements()),
 
     evidence: readEvidence,
 

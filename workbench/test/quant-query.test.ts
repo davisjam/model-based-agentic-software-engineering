@@ -97,8 +97,8 @@ test("a target selects WHICH executions — never how they aggregate", () => {
   assert.deepEqual(res.magnitude, { value: 225, dimension: "duration", unit: DIMENSIONS.duration.base });
   // The witness must END at the selected configuration, or the figure is about something else.
   const last = res.evidence?.steps.at(-1);
-  assert.equal(last?.to.control.get("document"), "published");
-  assert.equal(last?.to.values.get("document.retry_count"), 0);
+  assert.equal(last?.to.control["document"], "published");
+  assert.equal(last?.to.values["document.retry_count"], 0);
 });
 
 test("a selection nothing reaches is REFUTED under exhaustive absence, with no magnitude", () => {
@@ -117,7 +117,7 @@ test("peak_memory measures memory(c)'s reachable maximum: resident floor plus th
   assert.equal(res.coverage.kind, "exhaustive");
   assert.deepEqual(res.magnitude, { value: 384, dimension: "memory", unit: DIMENSIONS.memory.base });
   // The witness is the configuration that attains the peak, reached by a real execution.
-  assert.equal(res.evidence?.steps.at(-1)?.to.control.get("document"), "remediate");
+  assert.equal(res.evidence?.steps.at(-1)?.to.control["document"], "remediate");
 });
 
 test("a bounded exploration's peak reports BOUNDED coverage and inconclusive, never a quiet claim", () => {

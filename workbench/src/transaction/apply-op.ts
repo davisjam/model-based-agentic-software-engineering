@@ -387,10 +387,15 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       // because an absence here would otherwise write a value onto something the IR does not carry.
       if (quantity === undefined) return fail(where, `set-quantity-value: quantity '${op.id}' did not canonicalize.`);
       if (quantity.value.kind !== "point" && quantity.value.kind !== "absent") {
+        // The remedy names the SANCTIONED route, not an op that does not exist: no transaction op
+        // deletes or declares a quantity, so the old "delete and re-declare the quantity" sent a
+        // caller to the op vocabulary for an act only whole-document authoring performs (261006
+        // lab-solver run, guess 6). A refusal that recommends the unreachable is a map to a wall.
         return fail(where,
           `set-quantity-value: quantity '${op.id}' declares a ${quantity.value.kind}, and this op sets a ` +
           `single value. Overwriting it would discard a declaration the author made — edit the ` +
-          `${quantity.value.kind} in the source, or delete and re-declare the quantity.`);
+          `${quantity.value.kind} in the source via the whole-document route: export(), edit the ` +
+          `YAML, load(). No transaction op authors or deletes a quantity declaration.`);
       }
       if (quantity.dimension === null) {
         return fail(where,

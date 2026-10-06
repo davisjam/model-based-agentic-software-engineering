@@ -313,18 +313,31 @@
     },
 
     "step": {
+      "description": "One step of a behavioural trace. `from` and `to` are COMPLETE configurations, not deltas: `control` has an entry for every machine instance and `values` one for every `<instance>.<variable>`, so a reader can say which state the system was in at every step without replaying labels. Held against the live engine by test/evidence-configurations.test.ts. This definition previously promised a flat scalar map under a `machines` key while the product shipped `instances` and (worse) empty `{}` configurations -- both halves of that disagreement are fixed, and the test pins them.",
       "type": "object",
       "additionalProperties": false,
+      "required": ["instances", "from", "to"],
       "properties": {
-        "machines": {
-          "description": "Instances that moved. More than one means a declared synchronized event fired.",
+        "instances": {
+          "description": "Instances that moved. More than one means a declared synchronized event fired; NONE means the checker's stutter step at a dead end (a device of the trace domain, not a transition anybody wrote).",
           "type": "array",
           "items": { "$ref": "#/$defs/id" }
         },
-        "sync": { "$ref": "#/$defs/id" },
-        "from": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } },
-        "to": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } },
-        "label": { "type": "string" }
+        "sync": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "from": { "$ref": "#/$defs/stepConfiguration" },
+        "to": { "$ref": "#/$defs/stepConfiguration" },
+        "label": { "type": ["string", "null"] }
+      }
+    },
+
+    "stepConfiguration": {
+      "description": "One point in the state space, as evidence publishes it: every instance's control state under `control` (instance id -> state id), every variable's value under `values` (`<instance>.<variable>` -> value). Quantities, properties and derived values are deliberately NOT here -- a configuration is control plus variables and nothing else (section 6).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control", "values"],
+      "properties": {
+        "control": { "type": "object", "additionalProperties": { "type": "string" } },
+        "values": { "type": "object", "additionalProperties": { "type": ["string", "boolean", "integer"] } }
       }
     },
 
