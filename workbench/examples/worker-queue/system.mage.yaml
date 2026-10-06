@@ -21,15 +21,16 @@
 # "can it reach X" is in scope, "will it eventually reach X" is not. The saved queries and
 # expected-results.yaml say so in those terms, and so should any prose that cites them.
 #
-# ## Two known divergences, both reported rather than worked around
-#
-# `notes:` and the IR-shaped `provenance:` are absent from mage-model.schema.json, so
-# `python3 validate.py` reports SCHEMA findings for this file while the TypeScript loader accepts it
-# and validates it clean. Same gap as message-bus; see that file's header.
+# ## One known divergence, reported rather than worked around
 #
 # A machine carries no annotation at all: `CanonMachine` has no `annotation` field, so `notes:` on a
 # machine would load as nothing. Both machines declare `entity: job`, so the per-model rationale
 # section 8 asks for lives on that entity instead. An annotation slot on the machine is the fix.
+#
+# A second divergence used to live here and has closed: `notes:` and the IR-shaped `provenance:`
+# were absent from mage-model.schema.json, so `python3 validate.py` reported SCHEMA findings on a
+# file the TypeScript loader validated clean. The schema carries both keys now and both tools
+# report this file clean.
 
 mage: 1
 
@@ -120,6 +121,11 @@ events:
       lease is still free. Both lease targets are offered, so the choice of worker is explored as
       nondeterminism rather than resolved.
 
+      That atomicity carries `processing-implies-custody`. Every route into `processing` passes
+      through `claimed`, and this event is the only way in, so the lease has already left `free` by
+      the time the job can begin. The guard on `claimed -> processing` says the same thing a second
+      time and never has work to do until something adds a route around this event.
+
   release:
     participants: [job-lifecycle, job-lease]
     description: >
@@ -171,9 +177,23 @@ machines:
         to: claimed
         sync: claim
 
-      # A GUARD, not synchronization: the job reads the lease's state and moves alone. This is the
-      # transition section 6.7 asks you to break and then repair -- an unguarded path into
-      # processing is what makes the safety counterexample appear.
+      # A GUARD, not synchronization: the job reads the lease's state and moves alone.
+      #
+      # The guard is REDUNDANT at this revision, and that is measured rather than assumed. Delete
+      # the `requires:` below and all eight saved queries answer exactly as they do now. `claimed`
+      # is reachable only through `queued -> claimed`, whose `claim` synchronization steps the lease
+      # out of `free` in the same system transition, so no reachable configuration sits in `claimed`
+      # over a free lease and the guard never meets one to reject. The `claim` synchronization is
+      # what carries `processing-implies-custody` here; this guard restates it.
+      #
+      # Redundant is not decorative. Add any sync-free path into `claimed` and the guard becomes the
+      # only thing holding the invariant: with it the property still holds, without it the engine
+      # returns a counterexample.
+      #
+      # So do not BREAK this transition for section 6.7 -- nothing moves, and a student who tries it
+      # learns the wrong lesson. Section 6.7 asks you to ADD an unguarded path, and
+      # expected-results.yaml ships exactly that: `begin-processing-without-the-lease` adds
+      # `queued -> processing`, which skips `claim` and so skips the custody handover.
       - from: claimed
         to: processing
         label: begin

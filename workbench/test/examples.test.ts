@@ -672,6 +672,61 @@ test("V24 for machines: a machine's omissions do not name its own vocabulary", (
   assert.deepEqual(offenders, [], offenders.join("\n  "));
 });
 
+test("worker-queue: `claim` carries the custody invariant and the guard is its redundant second line", () => {
+  // The claim this example's prose makes, held as a measurement rather than left as a comment.
+  //
+  // The comment on `claimed -> processing` used to call itself the transition section 6.7 asks a
+  // student to break, and that was false in the expensive direction: deleting the guard moves NO
+  // answer, so a student who did the exercise as written saw nothing change and concluded either
+  // that the engine was broken or that guards do not matter. The transition 6.7 adds is an
+  // unguarded `queued -> processing`, which skips `claim` entirely.
+  //
+  // Three arms, because the honest statement needs all three. The guard is redundant (arm 1); the
+  // `claim` synchronization is what carries the property (arm 2 breaks it by routing around the
+  // event); and the guard is redundant rather than inert, since it holds the property on its own
+  // once that route exists (arm 3). Driven through `openHypothesis`, the seam a student drives.
+  const SAFETY = "lease-held-while-processing";
+  const answers = (ws: Workspace): Map<string, string> => {
+    const out = new Map<string, string>();
+    for (const [id, saved] of ws.state.system.queries) out.set(id, ws.query(saved.raw).outcome);
+    return out;
+  };
+  // A sync-free way into `claimed`: the lease is still free when the job gets there, which is the
+  // only world in which the guard has a configuration to reject.
+  const backdoorIntoClaimed = { op: "add-transition", machine: "job-lifecycle", from: "queued", to: "claimed", label: "sneak" };
+  const unguardBegin = [
+    { op: "delete-transition", machine: "job-lifecycle", from: "claimed", to: "processing" },
+    { op: "add-transition", machine: "job-lifecycle", from: "claimed", to: "processing", label: "begin" },
+  ];
+  const open = (ws: Workspace, label: string, operations: readonly unknown[]): void => {
+    const opened = ws.openHypothesis(label, {
+      transaction: { base: ws.state.hash, rationale: `pin: ${label}`, operations },
+    });
+    assert.ok(opened.ok, `${label}: refused -- ${opened.findings.map((f) => f.message).join("; ")}`);
+  };
+
+  const base = answers(loadExample("worker-queue").workspace);
+  assert.equal(base.get(SAFETY), "holds", "the example must ship the safety property holding");
+
+  const noGuard = loadExample("worker-queue").workspace;
+  open(noGuard, "unguard begin", unguardBegin);
+  assert.deepEqual([...answers(noGuard)], [...base],
+    "deleting the guard on `claimed -> processing` must move NO saved answer. If this fails the " +
+    "guard has become live and the comment on that transition is now wrong the other way -- " +
+    "rewrite it rather than relaxing this assertion.");
+
+  const noGuardBackdoor = loadExample("worker-queue").workspace;
+  open(noGuardBackdoor, "unguard begin, then route around claim", [...unguardBegin, backdoorIntoClaimed]);
+  assert.equal(answers(noGuardBackdoor).get(SAFETY), "refuted",
+    "a route into `claimed` that skips `claim`, with no guard, must refute the custody invariant");
+
+  const guardBackdoor = loadExample("worker-queue").workspace;
+  open(guardBackdoor, "route around claim, guard intact", [backdoorIntoClaimed]);
+  assert.equal(answers(guardBackdoor).get(SAFETY), "holds",
+    "the same route WITH the guard must leave the invariant standing -- this is the arm that " +
+    "earns the guard its place, and it is what 'redundant, not decorative' means");
+});
+
 test("message-bus: the declared `carries` aggregate equals the maximum over the fields", () => {
   // `carries` on an event type is written down because v0.1 aggregates nothing over a relation, and
   // the cross-model safety query needs the value on the endpoint of a `subscribes` edge. Two

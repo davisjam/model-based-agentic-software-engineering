@@ -161,6 +161,16 @@ queries:
       and a counterexample refutes it. Held non-vacuously: both conjuncts are individually
       reachable, and the modification below produces the counterexample on demand.
 
+      What CARRIES it is the `claim` synchronization, not the guard on `claimed -> processing`.
+      `claim` steps the job into `claimed` and the lease out of `free` in one system transition, and
+      it is the only route into `claimed`, so every route into `processing` passes a held lease. The
+      guard restates that and is redundant at this revision -- delete it and all eight answers above
+      stay put. Say so plainly, because the opposite reading sends a student to break a transition
+      that cannot move an answer.
+
+      Which is why the modification below ADDS a route that skips `claim` rather than unguarding
+      this one, and why its repair guards the new transition instead of restoring the old guard.
+
   - id: two-workers-own-one-job
     label: Two workers can simultaneously own the same job
     suggested: false
@@ -203,8 +213,8 @@ modifications:
     label: Let processing begin before the lease is acquired
     rationale: >
       Section 6.7. An unguarded `queued -> processing` transition is the fault a real queue has when
-      a worker short-circuits the claim. One step is enough to refute the invariant, and the
-      counterexample names the step.
+      a worker short-circuits the claim. It bypasses the `claim` event, so the lease never leaves
+      `free`. One step is enough to refute the invariant, and the counterexample names the step.
     transaction:
       operations:
         - op: add-transition
