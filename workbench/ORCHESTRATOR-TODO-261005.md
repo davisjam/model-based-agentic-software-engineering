@@ -290,3 +290,17 @@ concurrent runs are now safe.
 **Standing lesson:** five incidents, two hours, two failed pushes and a `--no-verify` release came
 from one positional call. The orchestrator's repeated "it's contention" readings were built on an
 artifact — when an intermittent failure's evidence keeps shifting, suspect the MEASUREMENT.
+
+## 261006 — state at the compaction boundary
+
+- `origin/main` = **e9b1def99**; local main has **4 more commits** (harness fix + its merge + banks)
+  being pushed WITH the hook enabled — the first real test that the gate works again.
+- **A foreground `timeout` of 10 min will kill the push gate**, which takes ~15 min. That is an
+  orchestrator error, not a wedge: run the push under `run_in_background`, never a capped
+  foreground window. It cost one false "the gate is broken again" reading.
+- IN FLIGHT: `wb-solver-findings-261006` (agent-citizenship fixes from the lab run).
+- QUEUED, briefs already written: the three-lab re-run **with `export()` artifacts**
+  (`/tmp/brief-lab-rerun.md`), and the CI parallel split (measured: 15 min serial in one job →
+  ~7 min across four, fanning into `deploy`).
+- Prod deploy from the earlier push was still blocked by the 23-min browser step when last checked;
+  the harness fix is what unblocks it, so RE-CHECK the Actions run after this push lands.
