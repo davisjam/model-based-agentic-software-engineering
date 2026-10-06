@@ -29,8 +29,11 @@ import { parseGraphQuery } from "../../engine/index.ts";
 import type {
   AccessibleEdge, AccessibleNode, AccessibleScene, Point, RenderedView, SceneSubject,
 } from "../../render/types.ts";
-import { paintBudget, paintDiagram, paintPrincipal, fillSelect } from "../render-dom.ts";
+import { paintBudget, paintDiagram, paintPrincipal, fillSelect, svgElement } from "../render-dom.ts";
 import { budgetViews } from "../../app/budget.ts";
+import { bindingWords } from "../../app/services.ts";
+import type { ComposedCrossModelView, ComposedPropertyView } from "../../app/services.ts";
+import type { ComposedFocus } from "../../app/agent-api.ts";
 import {
   resolveSelection, resolveSelections, resolveSubject, sceneNodeIdFor, selectionValue, subjectValue,
 } from "../view-model.ts";
@@ -343,6 +346,181 @@ function paintContents(
 }
 
 // --------------------------------------------------------------------------------------------
+// The composed view — composition made perceptible (§23)
+// --------------------------------------------------------------------------------------------
+
+/**
+ * What the workspace paints when composition is the thing being looked at: a cross-model property
+ * over the models that state it, or one binding over the two subjects it corresponds.
+ *
+ * Normal browsing keeps the clean one-model view; this branch exists for exactly the moments where
+ * hiding the composition would conceal the inference — a claim like the Worker Queue's lease
+ * invariant draws `processing` from one machine and `free` from another, and a workspace that
+ * showed either machine alone would present a verdict whose vocabulary is not on screen.
+ *
+ * Everything semantic on this surface is QUOTED: the registry's `interpretation`, `licensing` and
+ * `witness` sentences arrive through `bindingWords`, the constraint's reading is the engine's own
+ * `describePredicate` sentence, and the panels are the per-type renderers' own views composed by
+ * `src/app/cross-model.ts`. This module decides placement and disclosure, never wording.
+ */
+type ComposedPaint =
+  | { readonly kind: "property"; readonly view: ComposedPropertyView }
+  | {
+      readonly kind: "element";
+      readonly element: string;
+      readonly focus: string | null;
+      readonly view: ComposedCrossModelView;
+    };
+
+/** The derived composed views, as subject-chooser choices. The value a choice carries. */
+export const composedChoiceValue = (element: string): string => `composed:${element}`;
+
+/**
+ * Resolve the composed focus against the live frame, or null when it no longer resolves — the
+ * property was retracted, a subject deleted, or the claim stopped being cross-model after an edit.
+ * Null falls back to the one-model paint; the focus itself is left for the next navigation act to
+ * clear, the same posture `witnessFocus` takes toward a retracted question.
+ */
+function resolveComposed(
+  ctx: ShellContext, focus: ComposedFocus | null | undefined,
+): ComposedPaint | null {
+  if (focus === null || focus === undefined) return null;
+  if (focus.kind === "property") {
+    const view = ctx.workspace.composePropertyView(focus.id);
+    return view === null || view.base.panels.length < 2 ? null : { kind: "property", view };
+  }
+  const derived = ctx.workspace.derivedComposedViews()
+    .find((d) => d.elements.includes(focus.id));
+  if (derived === undefined) return null;
+  const panels = derived.subjects.map((s) => ({
+    type: s.kind === "machine" ? ("state-machine" as const) : ("structural-graph" as const),
+    id: s.id,
+  }));
+  if (panels.length < 2) return null;
+  const view = ctx.workspace.composeCrossModelView({ panels, selection: [...derived.elements] });
+  // The canonical element keys the subject-chooser option, so the chooser reflects the view even
+  // when it was reached through a sibling element of the same subject set.
+  return {
+    kind: "element", element: derived.elements[0] ?? focus.id,
+    focus: focus.focus ?? null, view,
+  };
+}
+
+/** One registry row's reading, as a disclosure. The words are `bindingWords`' quotations. */
+function bindingDisclosure(
+  view: ComposedCrossModelView, name: string, openByDefault: boolean,
+): HTMLElement | null {
+  const members = view.connections.filter((c) => c.relation.entry.name === name);
+  const first = members[0];
+  if (first === undefined) return null;
+  const words = bindingWords(first.relation);
+  const details = el("details");
+  details.dataset["binding"] = name;
+  if (openByDefault) details.open = true;
+  const pairs = members.map((c) => `${c.from.label} and ${c.to.label}`).join("; ");
+  details.append(el("summary", `${words.label} — ${pairs}`));
+  const body = el("div");
+  body.append(el("p", words.interpretation, "purpose"));
+  body.append(el("p", words.licensing));
+  body.append(el("p", words.witness));
+  if (words.byConstruction) {
+    // The honest answer for `appears-in`: nothing declares it, and SAYING SO is the lesson. No
+    // link is offered, because there is no declaration to land on.
+    body.append(el("p",
+      "There is no declaration to navigate to: the correspondence follows from the construction "
+      + "above, not from anything an author wrote.", "caveat"));
+  } else {
+    for (const c of members) {
+      // The declaration lives on the SOURCE side of the correspondence — the machine whose
+      // authored `entity:` key, or the entity whose authored property, establishes it. The link
+      // draws that subject alone, where the Inspector shows the authored key.
+      const link = document.createElement("a");
+      link.href = "#workspace";
+      link.dataset["composedDraw"] = c.from.panel;
+      link.textContent = `See the declaration on ${c.from.label}`;
+      const p = el("p");
+      p.append(link);
+      body.append(p);
+    }
+  }
+  details.append(body);
+  return details;
+}
+
+/** The composed reading: panels, bindings, the constraint, and what was not drawn. */
+function paintComposedContents(paint: ComposedPaint, root: HTMLElement): void {
+  root.replaceChildren();
+  const view = paint.kind === "property" ? paint.view.base : paint.view;
+
+  root.append(el("p", "The models shown together", "sublabel"));
+  const panelList = el("ul", undefined, "notes");
+  for (const panel of view.panels) {
+    const li = el("li");
+    const link = document.createElement("a");
+    link.href = "#workspace";
+    link.dataset["composedDraw"] = panel.key;
+    link.textContent = panel.view.accessible.title;
+    li.append(link, el("p", `${panel.type.label} — shown in its own boundary; activate to view it `
+      + "alone.", "purpose"));
+    panelList.append(li);
+  }
+  root.append(panelList);
+
+  root.append(el("p", "Where their meanings meet", "sublabel"));
+  const names = [...new Set(view.connections.map((c) => c.relation.entry.name))];
+  if (names.length === 0) {
+    root.append(el("p",
+      "The kernel declares no correspondence these panels witness, so no line is drawn between "
+      + "them.", "caveat"));
+  }
+  const bindingList = el("ul", undefined, "notes");
+  for (const name of names) {
+    const disclosure = bindingDisclosure(
+      view, name, paint.kind === "element" && paint.focus === name);
+    if (disclosure === null) continue;
+    const li = el("li");
+    li.append(disclosure);
+    bindingList.append(li);
+  }
+  root.append(bindingList);
+
+  if (paint.kind === "property") {
+    root.append(el("p", "The constraint being checked", "sublabel"));
+    const constraint = paint.view.accessible.constraint;
+    const block = el("div");
+    block.dataset["constraint"] = paint.view.accessible.property.id;
+    block.append(el("p", constraint.text));
+    block.append(el("p", constraint.drawn
+      ? "Drawn as the dotted line beside the machines — the property's own obligation, not a "
+        + "binding."
+      : constraint.why ?? "", constraint.drawn ? "purpose" : "caveat"));
+    if (constraint.ends.length > 0) {
+      block.append(el("p", "It constrains "
+        + constraint.ends.map((e) => `${e.state} (in ${e.machine})`).join(" and ") + ".", "purpose"));
+    }
+    root.append(block);
+  }
+
+  if (view.undrawn.length > 0) {
+    const undrawn = el("details");
+    undrawn.append(el("summary",
+      `Registered correspondences not drawn here — ${view.undrawn.length}`));
+    const ul = el("ul", undefined, "notes");
+    for (const u of view.accessible.undrawn) {
+      const li = el("li");
+      li.append(el("span", u.label, "state"), document.createTextNode(` ${u.why}`));
+      ul.append(li);
+    }
+    undrawn.append(ul);
+    root.append(undrawn);
+  }
+
+  for (const refusal of view.accessible.refusals) {
+    root.append(el("p", refusal, "caveat"));
+  }
+}
+
+// --------------------------------------------------------------------------------------------
 // The canvas as an input surface (G4)
 // --------------------------------------------------------------------------------------------
 
@@ -386,6 +564,9 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   /** The scene of the last paint, so a pointer event can resolve what it hit without re-rendering. */
   let painted: { scene: AccessibleScene; system: CanonicalSystem } | null = null;
 
+  /** Whether the last paint drew a composition — the canvas click dispatches on it. */
+  let composedActive = false;
+
   const closeMenu = (): void => { canvasMenu.hidden = true; canvasMenu.replaceChildren(); };
 
   const select = (ref: SelectionRef): void => {
@@ -397,12 +578,48 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   };
 
   subjectChoice.addEventListener("change", () => {
-    ctx.viewState.target = subjectChoice.value;
+    const value = subjectChoice.value;
+    if (value.startsWith("composed:")) {
+      // A derived composed view, offered in the same list as the one-model subjects (author
+      // ruling, 261006): choosing it draws the composition the model itself encodes. The
+      // one-model target is untouched, so choosing a model again returns to it.
+      ctx.viewState.composed = { kind: "element", id: value.slice("composed:".length) };
+    } else {
+      ctx.viewState.target = value;
+      // Choosing a subject is asking for the one-model view of it, so a standing composition ends.
+      ctx.viewState.composed = null;
+    }
     // Drop the hints: they describe the previous subject's layout, and a state id that happens to
     // match an entity id would pin an unrelated node to a position from a different picture.
     positionHints = new Map();
     closeMenu();
     ctx.repaint();
+  });
+
+  /**
+   * The composed view's own navigation, delegated to the region so the links the paint rebuilds
+   * carry only data. Two acts: leave the composition, or draw one of its panels alone — both
+   * plain navigations, which is why they are anchors and not buttons.
+   */
+  region.addEventListener("click", (event) => {
+    const from = event.target;
+    if (!(from instanceof Element)) return;
+    if (from.closest("a[data-composed-exit]") !== null) {
+      ctx.viewState.composed = null;
+      ctx.announce("Back to the one-model view.");
+      ctx.repaint();
+      return;
+    }
+    const draw = from.closest<HTMLAnchorElement>("a[data-composed-draw]");
+    if (draw !== null) {
+      const arg = draw.dataset["composedDraw"];
+      if (arg === undefined) return;
+      ctx.viewState.composed = null;
+      ctx.viewState.target = arg;
+      ctx.announce(`Workspace now draws ${draw.textContent ?? arg} alone. The Inspector shows `
+        + "the selected object's declarations.");
+      ctx.repaint();
+    }
   });
 
   /** The selection value for whatever the pointer hit, or null for blank canvas. */
@@ -419,9 +636,44 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
 
   // A left click selects. Nothing else: G4 forecloses drag-to-connect, and a click that also
   // navigated would steal the target the user chose in the rail (SH-I6's spirit, one level down).
+  //
+  // On a COMPOSED canvas the click's object is a binding line or the constraint, and the act is
+  // disclosure rather than selection: the pointer reaches the same reading the keyboard reaches
+  // through "The composition in words" — §3.4's rule, a pointer surface whose keyboard analogue
+  // is the structured reading.
   canvas.addEventListener("click", (event) => {
-    const value = hitSelection(event.target);
     closeMenu();
+    if (composedActive) {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const reading = byId<HTMLDetailsElement>("model-reading");
+      const name = target.closest("[data-xmodel]")?.getAttribute("data-xmodel")
+        ?? target.closest("[data-xmodel-label]")?.getAttribute("data-xmodel-label");
+      if (name !== undefined && name !== null) {
+        reading.open = true;
+        const details = modelContents.querySelector<HTMLDetailsElement>(
+          `details[data-binding="${name}"]`);
+        if (details !== null) {
+          details.open = true;
+          details.querySelector<HTMLElement>("summary")?.focus();
+        }
+        ctx.announce(`Binding ${name}. The composition reading states what it asserts and why `
+          + "it is licensed.");
+        return;
+      }
+      if (target.closest('[data-layer="property-constraint"]') !== null) {
+        reading.open = true;
+        const block = modelContents.querySelector<HTMLElement>("[data-constraint]");
+        if (block !== null) {
+          block.tabIndex = -1;
+          block.focus();
+        }
+        ctx.announce("The property's own constraint — not a binding. The reading states it in "
+          + "words.");
+      }
+      return;
+    }
+    const value = hitSelection(event.target);
     if (value !== null) select(value);
   });
 
@@ -480,15 +732,102 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
     if (event.key === "Escape" && !canvasMenu.hidden) closeMenu();
   });
 
+  /** The composed paint: the three central hosts carry the composition instead of one model. */
+  const paintComposedFrame = (composed: ComposedPaint, frame: ShellFrame): void => {
+    const view = composed.kind === "property" ? composed.view.base : composed.view;
+
+    principalPurpose.replaceChildren();
+    const head = el("p");
+    if (composed.kind === "property") {
+      const facts = composed.view.accessible.property;
+      head.append(el("strong", facts.statement));
+      principalPurpose.append(head);
+      const row = frame.vm.properties.find((p) => p.id === facts.id);
+      if (row !== undefined) {
+        const state = el("p");
+        state.append(el("span", row.kind, "state"), document.createTextNode(" "),
+          el("span", row.status, "state"));
+        principalPurpose.append(state);
+      }
+      principalPurpose.append(el("p",
+        "A cross-model claim: no single model states it. The workspace shows the models its "
+        + "vocabulary spans, the bindings that establish they concern the same element, and the "
+        + "constraint being checked.", "purpose"));
+    } else {
+      head.append(el("strong",
+        `${view.accessible.panels.map((p) => p.scene.title).join(" + ")} — bound on `
+        + composed.element));
+      principalPurpose.append(head);
+      principalPurpose.append(el("p",
+        "A composed view the model itself encodes: these reductions all name "
+        + `${composed.element}, and the registered bindings between them are drawn. Each model `
+        + "remains its own reduction; the reading below quotes what each binding asserts and why "
+        + "it is licensed.", "purpose"));
+    }
+    const back = document.createElement("a");
+    back.href = "#workspace";
+    back.dataset["composedExit"] = "";
+    back.textContent = "Back to the one-model view";
+    const backRow = el("p");
+    backRow.append(back);
+    principalPurpose.append(backRow);
+
+    modelDetail.replaceChildren();
+    modelBudget.replaceChildren();
+    paintComposedContents(composed, modelContents);
+
+    diagramText.replaceChildren();
+    diagramText.append(el("p", view.accessible.summary, "intro"));
+    if (composed.kind === "property") {
+      diagramText.append(el("p", composed.view.accessible.constraint.text));
+    }
+
+    canvas.replaceChildren(
+      svgElement(composed.kind === "property" ? composed.view.tree : composed.view.tree));
+  };
+
   return {
     paint: (frame: ShellFrame) => {
       // SH-I1's other half. Read from the same field Start reads, so the two regions cannot both
       // claim the page.
       mountIf(region, frame.state.loaded);
 
-      fillSelect(subjectChoice, frame.vm.subjects);
+      // The subject list offers the one-model views AND the composed views the model's bindings
+      // license — "it just shows what the underlying model already encodes as modeled". The
+      // composed choices are derived per paint, so an edit that severs a binding withdraws its
+      // view from the list on the next frame.
+      const derivedViews = frame.state.loaded ? ctx.workspace.derivedComposedViews() : [];
+      fillSelect(subjectChoice, [
+        ...frame.vm.subjects,
+        ...derivedViews.map((d) => ({
+          value: composedChoiceValue(d.elements[0] ?? ""),
+          label: `${d.subjects.map((s) => s.id).join(" + ")} — bound on `
+            + (d.elements.length <= 2
+              ? d.elements.join(", ")
+              : `${d.elements.length} shared elements`),
+        })),
+      ]);
       const subject = resolveSubject(frame.state.system, ctx.viewState.target);
       if (subject !== null) subjectChoice.value = subjectValue(subject);
+
+      // Composition first: when a composed view or a cross-model property is the thing being
+      // looked at, the composed canvas replaces the one-model view — and every act that
+      // re-targets the one-model view clears it, so normal browsing never meets this branch.
+      const composed = frame.state.loaded
+        ? resolveComposed(ctx, ctx.viewState.composed)
+        : null;
+      composedActive = composed !== null;
+      byId("model-reading-summary").textContent = composedActive
+        ? "The composition in words"
+        : "The model in words";
+      if (composed !== null) {
+        if (composed.kind === "element") {
+          subjectChoice.value = composedChoiceValue(composed.element);
+        }
+        paintComposedFrame(composed, frame);
+        painted = null;
+        return;
+      }
 
       // One subject at a time, chosen by the user or by `window.mage.view.focus`.
       //

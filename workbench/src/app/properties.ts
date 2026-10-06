@@ -50,8 +50,11 @@
  * Nothing else is mapped there. Inventing a condition the engine did not report would be the
  * fabrication this project refuses, and an unused status word is cheaper than a wrong one.
  */
-import { checkExpectation, parseBehaviorQuery, parseGraphQuery } from "../engine/index.ts";
+import {
+  checkExpectation, describePredicate, parseBehaviorQuery, parseGraphQuery,
+} from "../engine/index.ts";
 import type { ExpectationVerdict, Predicate } from "../engine/index.ts";
+import type { Atom } from "../engine/types.ts";
 import { modelsDeclaring } from "../engine/graph.ts";
 import type { CanonicalSystem, Coverage, Evidence, QueryResult } from "../ir/types.ts";
 import { evaluationOf } from "../ir/types.ts";
@@ -144,6 +147,13 @@ export interface EvaluatedProperty {
   /** Disclosed rewrites (V23). Non-empty is what makes a conclusive outcome CONDITIONAL. */
   readonly compilation: readonly string[];
   readonly grounds: readonly Ground[];
+  /**
+   * The machines the statement's own constraint vocabulary spans (`constraintSpan`). Two or more
+   * means the property is CROSS-MODEL — no single purposeful model can state it — which is the
+   * fact the composed workspace view keys on. Distinct from `grounds`, which also cites the models
+   * a verdict merely derives from.
+   */
+  readonly constraintMachines: readonly string[];
   readonly expectation: Expectation | null;
   /** The revision the status describes. §9.3's "last evaluation revision". */
   readonly evaluatedAt: string | null;
@@ -488,6 +498,109 @@ export function groundsFor(
 }
 
 // --------------------------------------------------------------------------------------------
+// The constraint's span — which machines one statement's vocabulary reaches
+// --------------------------------------------------------------------------------------------
+
+/**
+ * One place a statement's vocabulary touches a machine: the reference, and — when the reference is
+ * the machine's control state compared to a state the machine declares — the state itself.
+ *
+ * `state` is null for a variable reference (`worker.retry_count`) and for a state comparison whose
+ * value names no declared state; both still put the MACHINE in the span. The state is what a
+ * composed view can anchor a drawing on, so it is resolved here, against the machine's own `states`
+ * list, rather than guessed downstream from the ref's spelling.
+ */
+export interface ConstraintSite {
+  readonly machine: string;
+  readonly state: string | null;
+  readonly ref: string;
+  readonly value: string;
+}
+
+/**
+ * Where one saved statement's constraint vocabulary reaches (§23's "some questions cross models").
+ *
+ * `machines` spanning two or more is what MAKES a property cross-model: the statement's own atoms
+ * name the state spaces of distinct machines, so no single purposeful model can state it — the
+ * Worker Queue's lease invariant is the canonical case, `job-lifecycle.state: processing` beside
+ * `job-lease.state: free`. This is deliberately NARROWER than `groundsFor`: grounds cite every
+ * model a verdict derives from (including the models that merely contain a machine's entity),
+ * while the span is the vocabulary of the statement itself. A one-machine property with a
+ * structural ground is not cross-model; a reader shown a composed view for it would be shown a
+ * composition the statement never makes.
+ *
+ * `prose` is `describePredicate`'s own sentence — the engine's plain-language reading, quoted so a
+ * surface rendering the constraint cannot drift from the evaluator's reading of it.
+ */
+export interface ConstraintSpan {
+  readonly machines: readonly string[];
+  readonly sites: readonly ConstraintSite[];
+  /** The behaviour form, or null for a non-behaviour question. */
+  readonly form: string | null;
+  readonly prose: string | null;
+}
+
+const EMPTY_SPAN: ConstraintSpan = { machines: [], sites: [], form: null, prose: null };
+
+const collectAtoms = (p: Predicate | null, out: Atom[] = []): readonly Atom[] => {
+  if (p === null) return out;
+  if (p.kind === "atoms") { out.push(...p.atoms); return out; }
+  if (p.kind === "not") return collectAtoms(p.operand, out);
+  for (const operand of p.operands) collectAtoms(operand, out);
+  return out;
+};
+
+export function constraintSpan(system: CanonicalSystem, raw: unknown): ConstraintSpan {
+  const q = typeof raw === "object" && raw !== null && !Array.isArray(raw)
+    ? (raw as Record<string, unknown>)
+    : {};
+  if (q["kind"] !== "behavior") return EMPTY_SPAN;
+  const parsed = parseBehaviorQuery(q["behavior"]);
+  if (!parsed.ok) return EMPTY_SPAN;
+  const b = parsed.value;
+
+  const machines: string[] = [];
+  const sites: ConstraintSite[] = [];
+  const seen = new Set<string>();
+  for (const atom of [
+    ...collectAtoms(b.target), ...collectAtoms(b.predicate), ...collectAtoms(b.avoid),
+  ]) {
+    const machine = machineOfRef(system, atom.ref);
+    if (machine === null) continue;
+    if (!machines.includes(machine)) machines.push(machine);
+    const declared = system.machines.get(machine);
+    const value = String(atom.value);
+    // The control-state site: the ref addresses the machine's `state` and the compared value is a
+    // state the machine declares. Anything else contributes the machine and no anchor.
+    const state = declared !== undefined
+      && atom.ref.split("[")[0] === `${machine}.state`
+      && declared.states.includes(value)
+      ? value
+      : null;
+    const key = `${machine}|${state ?? ""}|${atom.ref}|${value}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    sites.push({ machine, state, ref: atom.ref, value });
+  }
+  if (b.transition?.machine !== null && b.transition?.machine !== undefined
+      && !machines.includes(b.transition.machine)) {
+    machines.push(b.transition.machine);
+  }
+
+  // The engine's own sentence for the constraint. An invariant's content is its `predicate`; the
+  // reach-class forms carry a `target`; `avoid` qualifies either. Joined in words rather than
+  // re-phrased, so the overlay and the evaluator read one predicate the same way.
+  const main = b.predicate ?? b.target;
+  const avoidProse = b.avoid === null ? "" : `, avoiding ${describePredicate(b.avoid)}`;
+  return {
+    machines,
+    sites,
+    form: b.form,
+    prose: main === null ? null : `${describePredicate(main)}${avoidProse}`,
+  };
+}
+
+// --------------------------------------------------------------------------------------------
 // Evaluation
 // --------------------------------------------------------------------------------------------
 
@@ -605,6 +718,7 @@ export function evaluateOne(
     refusal: result?.refusal ?? null,
     compilation: (result?.compilation ?? []).map((c) => c.explanation),
     grounds: groundsFor(system, raw, result),
+    constraintMachines: constraintSpan(system, raw).machines,
     expectation,
     evaluatedAt: result?.systemHash ?? null,
     currentRevision,

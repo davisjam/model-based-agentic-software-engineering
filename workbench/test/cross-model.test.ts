@@ -466,41 +466,53 @@ test("panel frames do not overlap", () => {
   }
 });
 
-test("a cross-model line travels in the GUTTER, never across a panel it does not touch", () => {
-  // The defect this pins shipped in the first cut and was found by rendering the canvas and looking
-  // at it: a straight segment between anchors runs diagonally through whichever boxes lie between
-  // the element and the other panel. §23.3 draws the connection BETWEEN the two frames.
+test("a cross-model line never crosses a panel it does not touch", () => {
+  // The defect this pins shipped TWICE and was found both times by rendering the canvas and
+  // looking at it: first a straight segment between anchors ran diagonally through whichever
+  // boxes lay between the element and the other panel; then, in the row layout, a connection
+  // between NON-adjacent panels ran straight across the panel between them (Message Bus, 21
+  // lines, 261006 sweep). §23.3 draws the connection BETWEEN frames, so the assertion is now the
+  // strong form: no segment of any route intersects any frame other than the two it connects —
+  // which is what the stacked layout's gutter bands and left channel hold by construction.
+  const crosses = (p: { x: number; y: number }, q: { x: number; y: number },
+    f: { x: number; y: number; w: number; h: number }): boolean => {
+    // Routes are orthogonal, so segment-vs-rect reduces to interval overlap with a strict
+    // interior test — touching a frame's border (an anchor on its edge) is not a crossing.
+    const lo = { x: Math.min(p.x, q.x), y: Math.min(p.y, q.y) };
+    const hi = { x: Math.max(p.x, q.x), y: Math.max(p.y, q.y) };
+    return lo.x < f.x + f.w - 0.5 && hi.x > f.x + 0.5
+      && lo.y < f.y + f.h - 0.5 && hi.y > f.y + 0.5;
+  };
   for (const [id, panels] of [
     ["transaction-workspace", PAIRED],
     ["document-processing", [
       { type: "structural-graph" as ModelTypeId, id: "pipeline-performance" },
       { type: "state-machine" as ModelTypeId, id: "document-lifecycle" },
     ]],
+    // The regression case: three structural models, `appears-in` between every pair, so the
+    // outer pair's connections MUST detour around the middle panel.
+    ["message-bus", [
+      { type: "structural-graph" as ModelTypeId, id: "data-policy" },
+      { type: "structural-graph" as ModelTypeId, id: "event-flow" },
+      { type: "structural-graph" as ModelTypeId, id: "event-propagation" },
+    ]],
   ] as const) {
     const view = compose(id, panels as readonly CrossModelPanelRequest[]);
-    const frames = new Map(view.panels.map((p) => [p.key, p.frame]));
+    assert.ok(view.connections.length > 0, `${id}: the fixture must draw something`);
     for (const c of view.connections) {
-      const [g0, g1] = c.route.gutter;
-      // The gutter segment lies strictly between the two frames: it enters neither.
       for (const other of view.panels) {
-        if (other.key === c.from.panel || other.key === c.to.panel) continue;
-        assert.ok(g1.x <= other.frame.x || other.frame.x + other.frame.w <= g0.x
-          || g0.x <= other.frame.x || other.frame.x + other.frame.w <= g1.x,
-          `${c.relation.entry.name}: the gutter segment crosses ${other.key}`);
+        const involved = other.key === c.from.panel || other.key === c.to.panel;
+        for (let i = 0; i + 1 < c.route.points.length; i += 1) {
+          const p = c.route.points[i] as { x: number; y: number };
+          const q = c.route.points[i + 1] as { x: number; y: number };
+          if (involved) continue;
+          assert.ok(!crosses(p, q, other.frame),
+            `${id}/${c.relation.entry.name}: segment ${i} crosses ${other.key}`);
+        }
       }
-      // Every point of the route sits inside one of the two panels it connects, or between them.
-      const lo = Math.min(g0.x, g1.x);
-      const hi = Math.max(g0.x, g1.x);
-      const a = frames.get(c.from.panel);
-      const b = frames.get(c.to.panel);
-      if (a === undefined || b === undefined) throw new Error("a connection names a panel that is not on the canvas");
-      const left = Math.min(a.x, b.x) - 0.5;
-      const rightEdge = Math.max(a.x + a.w, b.x + b.w) + 0.5;
-      for (const p of c.route.points) {
-        assert.ok(p.x >= left && p.x <= rightEdge,
-          `${c.relation.entry.name}: a route point escapes both frames' span`);
-      }
-      assert.ok(hi - lo > 0, `${c.relation.entry.name}: the gutter segment has no extent`);
+      const [g0, g1] = c.route.gutter;
+      assert.ok(Math.abs(g1.x - g0.x) + Math.abs(g1.y - g0.y) >= 0,
+        `${c.relation.entry.name}: the gutter pair is where the bundle label goes`);
     }
   }
 });

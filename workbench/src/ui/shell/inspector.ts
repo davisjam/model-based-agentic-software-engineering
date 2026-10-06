@@ -707,6 +707,8 @@ export function mountInspector(ctx: ShellContext): ShellRegion {
     const name = link.textContent ?? arg;
     if (link.dataset["action"] === "target") {
       ctx.viewState.target = arg;
+      // Re-targeting the one-model view is leaving the composition, same as the rail's draw.
+      ctx.viewState.composed = null;
       ctx.announce(`Workspace now shows ${name}.`);
     } else {
       ctx.viewState.selection = [arg];

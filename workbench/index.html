@@ -357,6 +357,13 @@
     border: 1px solid var(--rule); border-radius: var(--mage-radius-chip);
   }
   #canvas svg { display: block; width: 100%; max-width: 100%; height: auto; max-height: 80vh; }
+  /*
+    The composed canvas is exempt from the height cap: its panels STACK, so capping height is what
+    scaling-to-illegibility looks like there — the layout spends growth on the axis the page
+    scrolls natively, and each panel stays at its one-model width (≈ 1:1 in this column). Measured
+    in the 261006 layout sweep; see src/app/cross-model.ts, the layout constants' header.
+  */
+  #canvas svg.mage-xmodel-canvas { max-height: none; }
 
   /* A tree row is a row, not a chip: full width, left-aligned, the selected one marked by a word. */
   #model-contents ul { list-style: none; padding-inline-start: .6rem; }

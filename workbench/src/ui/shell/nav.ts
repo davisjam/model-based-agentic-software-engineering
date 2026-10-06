@@ -42,6 +42,7 @@
 import type { CapabilityId } from "../../app/capabilities.ts";
 import { CAPABILITIES } from "../../app/capabilities.ts";
 import type { PropertyStatus } from "../../app/properties.ts";
+import type { CompositionEdge } from "../../app/services.ts";
 import type { CanonicalSystem } from "../../ir/types.ts";
 import { propertyBlock } from "../render-dom.ts";
 import { purposeBlock, resolveSubject, subjectValue } from "../view-model.ts";
@@ -92,14 +93,41 @@ export interface PropertyRailRow {
    * to nowhere would be the unverifiable navigation §2.1 refuses.
    */
   readonly explains: string | null;
+  /**
+   * The claim's id when it is CROSS-MODEL, so activating it opens the COMPOSED workspace view
+   * instead of drawing one ground. A claim no single model states must not navigate to a single
+   * model — that is the reading the composed view exists to correct.
+   */
+  readonly composes: string | null;
   /** The full reading, disclosed. The same row the binder renders in full. */
   readonly full: PropertyRow;
+}
+
+/**
+ * One place two models' meanings meet, as the rail reads it: the two subjects, the shared
+ * element, and the registered binding — `Worker Pool — job — Job Lifecycle, bound by:
+ * machine-of-entity`. Activating it composes the two subjects in the workspace with that
+ * binding's reading open.
+ */
+export interface MeetingRow {
+  /** `<element>|<binding>` — the click handler opens the element's composed view, that binding's
+   * reading first. */
+  readonly value: string;
+  readonly text: string;
+  /** §23.2's kind line, from the registry's own name. */
+  readonly label: string;
 }
 
 export interface NavRails {
   readonly models: readonly ModelRailRow[];
   /** What to say instead, when there is nothing to list. Null when the list is non-empty. */
   readonly modelsEmpty: string | null;
+  /**
+   * The model-composition topology under the model list — where the reductions' meanings meet,
+   * derived from the binding registry. Empty for a system whose models share nothing, and then
+   * nothing is rendered: a one-model system's rail stays a list.
+   */
+  readonly meetings: readonly MeetingRow[];
   readonly properties: readonly PropertyRailRow[];
   readonly propertiesEmpty: string | null;
 }
@@ -155,6 +183,7 @@ const markOf = (row: PropertyRow): RailMark => row.stale
  */
 export function navRails(
   vm: ViewModel, system: CanonicalSystem, target: string | null,
+  topology: readonly CompositionEdge[] = [],
 ): NavRails {
   const principal = resolveSubject(system, target);
   const current = principal === null ? null : subjectValue(principal);
@@ -188,11 +217,21 @@ export function navRails(
     claim: row.statement,
     kind: row.kind,
     explains: row.groundSubjects[0] ?? null,
+    composes: row.composes,
     full: row,
+  }));
+
+  const subjectLabel = (s: { kind: string; id: string }): string =>
+    s.kind === "model" ? system.models.get(s.id)?.label ?? s.id : s.id;
+  const meetings: MeetingRow[] = topology.map((edge) => ({
+    value: `${edge.element}|${edge.binding.name}`,
+    text: `${subjectLabel(edge.a)} — ${edge.element} — ${subjectLabel(edge.b)}`,
+    label: `bound by: ${edge.binding.name}`,
   }));
 
   return {
     models,
+    meetings,
     modelsEmpty: models.length > 0
       ? null
       : "No purposeful model yet. Add one, and state the engineering question it answers.",
@@ -260,7 +299,7 @@ const el = <K extends keyof HTMLElementTagNameMap>(
  * and is a separate action only so the announcement can say which of the two just happened.
  * `invoke` goes to a control rather than a region, so it carries its own destination id.
  */
-type RailAction = "draw" | "explain" | "invoke";
+type RailAction = "draw" | "explain" | "invoke" | "compose" | "binding";
 
 /** Resolved through the table, so the workspace's element id is not written here as well. */
 function workspaceHref(): string {
@@ -312,7 +351,14 @@ function propertyNode(row: PropertyRailRow): HTMLLIElement {
   head.append(glyph, document.createTextNode(" "), el("span", row.mark.word, "state"));
   head.append(document.createTextNode(" "), el("span", row.kind, "state"), document.createTextNode(" "));
 
-  if (row.explains === null) {
+  if (row.composes !== null) {
+    // A cross-model claim composes: no single model states it, so the link opens the composed
+    // workspace view — the models its vocabulary spans, the binding between them, and the
+    // constraint — instead of navigating to one ground as though one ground could explain it.
+    const link = railLink("compose", row.composes, workspaceHref());
+    link.textContent = row.claim;
+    head.append(link, document.createTextNode(" "), el("span", "crosses models", "state"));
+  } else if (row.explains === null) {
     head.append(el("span", row.claim));
   } else {
     const link = railLink("explain", row.explains, workspaceHref());
@@ -389,7 +435,26 @@ export function mountNav(ctx: ShellContext): ShellRegion {
         ctx.announce(`Focus moved to ${control.textContent?.trim() ?? arg}.`);
         return;
       }
+      if (action === "compose") {
+        // The composed view for a cross-model claim (§23). The one-model target is untouched, so
+        // leaving the composition returns to whatever was being drawn.
+        ctx.viewState.composed = { kind: "property", id: arg };
+        ctx.announce("Workspace shows the composed view for this claim: the models it spans, the "
+          + "binding between them, and the constraint being checked.");
+        ctx.repaint();
+        return;
+      }
+      if (action === "binding") {
+        const [element, name] = arg.split("|");
+        if (element === undefined || name === undefined) return;
+        ctx.viewState.composed = { kind: "element", id: element, focus: name };
+        ctx.announce(`Workspace shows the composed view bound on ${element}, with the `
+          + `${name} binding's reading open.`);
+        ctx.repaint();
+        return;
+      }
       ctx.viewState.target = arg;
+      ctx.viewState.composed = null;
       ctx.announce(action === "explain"
         ? `Workspace now shows a model this claim derives from: ${arg}.`
         : `Workspace now draws ${link.querySelector("strong")?.textContent ?? arg}.`);
@@ -417,7 +482,8 @@ export function mountNav(ctx: ShellContext): ShellRegion {
       mountIf(rail, frame.state.loaded);
       if (!frame.state.loaded) { rendered = null; return; }
 
-      const reading = navRails(frame.vm, frame.state.system, ctx.viewState.target);
+      const reading = navRails(
+        frame.vm, frame.state.system, ctx.viewState.target, ctx.workspace.modelCompositionGraph());
       const addModel = operationHref("create-model");
       const addProperty = operationHref("save-property");
       const signature = JSON.stringify([reading, addModel, addProperty]);
@@ -432,6 +498,24 @@ export function mountNav(ctx: ShellContext): ShellRegion {
         "Adding a model has no control on this page right now.",
       ));
       models.replaceChildren(modelList);
+
+      // The topology reading, under the list: the rail as a flat list says the models are peers,
+      // and for a system whose meanings meet that reading is wrong. One row per registered
+      // meeting — subject, shared element, subject — activating the correspondence in the
+      // workspace. Derived from the binding registry; absent entirely when nothing meets.
+      if (reading.meetings.length > 0) {
+        models.append(el("p", "Where models meet", "sublabel"));
+        const meetingList = el("ul", undefined, "rail");
+        for (const row of reading.meetings) {
+          const li = el("li");
+          const link = railLink("binding", row.value, workspaceHref());
+          link.append(el("strong", row.text));
+          link.append(el("p", row.label, "purpose"));
+          li.append(link);
+          meetingList.append(li);
+        }
+        models.append(meetingList);
+      }
 
       const propertyList = el("ul", undefined, "rail");
       if (reading.propertiesEmpty !== null) {

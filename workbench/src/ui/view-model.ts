@@ -239,6 +239,13 @@ export interface PropertyRow {
   readonly groundSubjects: readonly string[];
   /** Stated, not omitted, when nothing could be cited — an empty block reads as "no dependence". */
   readonly groundsMissing: string | null;
+  /**
+   * The claim's own id when the claim is CROSS-MODEL — its constraint vocabulary spans more than
+   * one machine, so no single purposeful model can state it — and null otherwise. A navigating
+   * surface offers the COMPOSED workspace view for exactly these: a one-model view of a claim no
+   * one model states would conceal the composition that licenses the inference.
+   */
+  readonly composes: string | null;
   readonly evidence: readonly string[];
   readonly refusal: string | null;
   /** Disclosed rewrites, e.g. an added history variable (V23). */
@@ -1064,6 +1071,7 @@ export function propertyRow(p: EvaluatedProperty): PropertyRow {
     coverage: coverageText(p.coverage),
     grounds: p.grounds.map(groundText),
     groundSubjects: p.grounds.map((g) => subjectValue({ kind: g.kind, id: g.id })),
+    composes: p.constraintMachines.length >= 2 ? p.id : null,
     // UX-I5's honest-empty cases, and they are two different facts. For a REFUSAL, citing nothing is
     // the answer: no model declares what the statement names, which is exactly why it cannot be
     // decided. For a CONCLUSION it is a finding about the result, and saying so is the difference

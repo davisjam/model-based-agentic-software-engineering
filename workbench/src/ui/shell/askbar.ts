@@ -684,6 +684,8 @@ export function mountAskBar(ctx: ShellContext, submitEdit: SubmitEdit): ShellReg
     }
     ctx.viewState.target = `model:${shown.focus.subject.id}`;
     ctx.viewState.witness = state.item.savedId;
+    // Drawing a witness is a one-model act, so a standing composed view ends with it.
+    ctx.viewState.composed = null;
     ctx.announce(`Drawing the ${shown.focus.result.evidence?.role ?? "answer"} for `
       + `"${state.item.label}" over the '${shown.focus.subject.id}' model. The diagram's text view `
       + "lists the same steps, numbered.");

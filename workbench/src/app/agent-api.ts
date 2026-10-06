@@ -781,11 +781,35 @@ export interface ViewApi {
  * absent focus as no focus. Made required instead, this field would have edited ten construction
  * sites to add the same `null`.
  */
+/**
+ * Which COMPOSED view the workspace draws, when composition is the thing being looked at.
+ *
+ * A composed view is not an ephemeral mode: it shows what the model already encodes — the
+ * bindings its surfaces declare — and is OFFERED in the same subject list as the one-model views
+ * (author ruling, 261006). Two arms, one per way a reader reaches one: an ELEMENT view (the
+ * shared element and every purposeful model whose meaning meets on it, derived from the binding
+ * registry; `focus` optionally names the binding whose reading opens first), or a CROSS-MODEL
+ * PROPERTY (the same composition, plus the property's own constraint drawn over it). Every act
+ * that re-targets the one-model view clears this, so normal browsing keeps the clean single
+ * subject.
+ */
+export type ComposedFocus =
+  | { readonly kind: "property"; readonly id: string }
+  | {
+      readonly kind: "element";
+      /** The shared element — the entity the bindings correspond on. */
+      readonly id: string;
+      /** A binding name (`machine-of-entity`, …) whose reading should open first, if any. */
+      readonly focus?: string;
+    };
+
 export interface ViewState {
   target: string | null;
   selection: string[];
   /** A saved query id whose evidence the diagram emphasises, or absent/null for no focus. */
   witness?: string | null;
+  /** The composition the workspace shows instead of one model, or absent/null for none. */
+  composed?: ComposedFocus | null;
 }
 
 export function createAgentApi(
@@ -977,7 +1001,9 @@ export function createAgentApi(
     view: {
       select: (ids) => { viewState.selection = [...ids]; onViewChange(); },
       selection: () => [...viewState.selection],
-      focus: (target) => { viewState.target = target; onViewChange(); },
+      // Focusing a subject is asking for the one-model view of it, so a standing composition is
+      // cleared — the same rule every human re-targeting act follows.
+      focus: (target) => { viewState.target = target; viewState.composed = null; onViewChange(); },
       target: () => viewState.target,
       // Accepted even for a question this revision does not save, and the asymmetry is deliberate:
       // an agent may retract a question between focusing it and the next paint, and the paint

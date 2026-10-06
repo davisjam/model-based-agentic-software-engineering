@@ -355,7 +355,7 @@ test("create-hypothesis's human affordance moved to a control that exists and is
 function property(id: string, status: PropertyStatus): EvaluatedProperty {
   return {
     id, statement: id, kind: "property", status, outcome: null, coverage: null, evidence: null,
-    refusal: null, compilation: [], grounds: [], expectation: null,
+    refusal: null, compilation: [], grounds: [], constraintMachines: [], expectation: null,
     evaluatedAt: "r1", currentRevision: "r1", stale: false,
   };
 }
