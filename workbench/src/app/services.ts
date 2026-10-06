@@ -27,6 +27,7 @@ import type { ValidationResult } from "../validator/result.ts";
 import { checkQuery } from "../engine/check.ts";
 import type { QueryCheckResult } from "../engine/check.ts";
 import { TransactionEngine } from "../transaction/engine.ts";
+import type { RejectionKind } from "../transaction/types.ts";
 import { collectProvenance } from "./provenance.ts";
 import type { ProvenanceRecord } from "./provenance.ts";
 import { evaluateOne, evaluateProperties } from "./properties.ts";
@@ -155,6 +156,19 @@ function sparqlCoverage(answer: Answer): string {
     case "routed":
       return `no answer from this interface: ${answer.route.prose}`;
   }
+}
+
+/**
+ * What opening a hypothesis reports.
+ *
+ * `cause` is the engine's own `RejectionKind`, carried so a caller does not recover it from the
+ * findings. Null on success and on the two refusals the facade itself decides (a hypothesis already
+ * open, text that does not parse) -- neither is a verdict about the edit's semantics.
+ */
+export interface HypothesisOutcome {
+  readonly ok: boolean;
+  readonly cause: RejectionKind | null;
+  readonly findings: readonly Finding[];
 }
 
 export class Workspace {
@@ -298,24 +312,33 @@ export class Workspace {
    * mutate or change the identity of the authoritative model. Discarding restores the parked engine
    * untouched rather than attempting to invert anything.
    */
-  openHypothesis(label: string, transaction: unknown): { readonly ok: boolean; readonly findings: readonly Finding[] } {
+  openHypothesis(label: string, transaction: unknown): HypothesisOutcome {
     if (this.#hypothesis !== null) {
-      return { ok: false, findings: [{
+      return { ok: false, cause: null, findings: [{
         rule: "HYPOTHESIS", where: label,
         message: `hypothesis '${this.#hypothesis}' is already open; apply or discard it first.`,
       }] };
     }
     const branch = TransactionEngine.load(this.#engine.toText());
-    if (branch.engine === null) return { ok: false, findings: branch.findings };
+    if (branch.engine === null) return { ok: false, cause: null, findings: branch.findings };
     const result = branch.engine.apply(transaction);
     if (result.outcome !== "committed") {
-      return { ok: false, findings: result.rejection?.findings ?? [] };
+      return {
+        ok: false,
+        // The CAUSE, carried rather than inferred. A caller that must tell "this edit is malformed"
+        // from "this edit would break the model" was reading rule ids out of the findings to guess,
+        // and the engine already decided it (`RejectionKind`). The perturbation runner needs the
+        // distinction: an operation that could not apply measures nothing, while a rejection on
+        // semantic grounds IS the measurement -- the declaration cannot be removed.
+        cause: result.rejection?.kind ?? null,
+        findings: result.rejection?.findings ?? [],
+      };
     }
     this.#authoritative = this.#engine;
     this.#engine = branch.engine;
     this.#hypothesis = label;
     this.#emit();
-    return { ok: true, findings: [] };
+    return { ok: true, cause: null, findings: [] };
   }
 
   /** Accept the hypothesis as authoritative. It already passed validation when it opened. */

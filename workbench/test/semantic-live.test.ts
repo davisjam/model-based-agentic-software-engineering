@@ -122,7 +122,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  guardSubject, HELD_BY, isLive, perturbationsOf, propertySubject, relationSubject, sweep,
+  guardSubject, HELD_BY, isLive, isRequired, perturbationsOf, propertySubject, relationSubject, sweep,
   type Measured,
 } from "./perturbation.ts";
 import { EXAMPLE_IDS, loadExample, type FixtureDeclaration } from "../scripts/gen-example-coverage.ts";
@@ -136,17 +136,25 @@ interface Family {
   readonly subject: string;
   readonly live: number;
   readonly inert: number;
+  /** Members the engine refuses to delete (V-rules). Consequential, and not answer-liveness. */
+  readonly required: number;
   readonly instances: readonly string[];
   readonly isGuard: boolean;
 }
 
 function families(measured: readonly Measured[]): readonly Family[] {
-  const by = new Map<string, { live: number; inert: number; instances: string[]; isGuard: boolean }>();
+  const by = new Map<string, {
+    live: number; inert: number; required: number; instances: string[]; isGuard: boolean;
+  }>();
   for (const m of measured) {
     if (m.refusal !== null) continue;
     const cur = by.get(m.subject)
-      ?? { live: 0, inert: 0, instances: [], isGuard: m.subject.startsWith("guard:") };
-    if (isLive(m)) cur.live += 1; else cur.inert += 1;
+      ?? { live: 0, inert: 0, required: 0, instances: [], isGuard: m.subject.startsWith("guard:") };
+    // Three-way, because a declaration the engine refuses to delete is neither a moved answer nor a
+    // layer nobody reads. Folding it into `inert` would invent the gate's own headline finding.
+    if (isRequired(m)) cur.required += 1;
+    else if (isLive(m)) cur.live += 1;
+    else cur.inert += 1;
     cur.instances.push(m.instance);
     by.set(m.subject, cur);
   }
@@ -164,7 +172,8 @@ function families(measured: readonly Measured[]): readonly Family[] {
  * deleted as one unit, the family would still be a family of one, and if guards were ever keyed by
  * machine the family clause alone would stop naming individual transitions.
  */
-const mandatory = (fs: readonly Family[]): readonly Family[] => fs.filter((f) => f.live === 0);
+const mandatory = (fs: readonly Family[]): readonly Family[] =>
+  fs.filter((f) => f.live === 0 && f.required === 0);
 
 /** A reason floor, for the cause `test/gate-reachability.test.ts` states: a thin reason is a note. */
 const MIN_REASON = 60;
@@ -175,30 +184,29 @@ const MIN_REASON = 60;
 // ----------------------------------------------------------------------------------------------
 
 /**
- * The red alerts the release audit found by hand, which this gate reproduces.
+ * The red alerts the release audit found by hand, which this gate reproduces. **Now empty.**
  *
  * EXACT-SET, not a ceiling. A new inert mandatory family fails the gate; so does one of these being
- * corrected, and the fix then is to delete its entry. Each carries the prose that makes it a defect
- * rather than a fact, so the entry says what has to change and not merely that something is pending.
+ * corrected, and the fix then is to delete its entry. Each carried the prose that made it a defect
+ * rather than a fact, so an entry said what had to change and not merely that something was pending.
  *
- * Expiry is not a date, it is a condition: when the sibling correction wave lands, this map empties
- * and the `mandatory` rule above becomes unconditionally blocking with nothing left to quarantine.
+ * Expiry was never a date, it was a condition — and the condition arrived on 261005, which is why
+ * this map is empty rather than deleted. Both entries discharged, and by different routes, which is
+ * the part worth keeping:
+ *
+ *   - `worker-queue/guard:job-lifecycle/claimed->processing` stayed INERT. The defect was the prose,
+ *     and the prose was corrected, so the honest home is a `declarations:` row — which is what the
+ *     pin's own finding text told its reader to write. The row is
+ *     `begin-guard-restates-the-claim-synchronization`.
+ *   - `message-bus/relation:data-policy/carries_field` became REQUIRED. Not live: no answer reads
+ *     the field layer even now. The aggregation declared on `carries_field` makes the engine refuse
+ *     to delete the edge, which is consequential at the validation layer, so the pin went.
+ *
+ * Kept as an empty map rather than removed because the `mandatory` rule reads it and the next
+ * hand-found red alert needs a home that already has a shape. The gate below is unconditionally
+ * blocking with nothing quarantined, which is what empty MEANS here.
  */
-const KNOWN_INERT_CLAIMS: Readonly<Record<string, string>> = {
-  "worker-queue/guard:job-lifecycle/claimed->processing":
-    "`system.mage.yaml` calls it \"A GUARD, not synchronization\" and the repair modification's "
-    + "rationale says the guard \"-- not the absence of the transition -- is what carries the "
-    + "invariant\". `claimed` is entered only through the `claim` event, which moves the lease out "
-    + "of `free` in the same system transition, so no reachable step ever consults the guard. The "
-    + "correction is to the PROSE: the synchronization carries the invariant and the guard restates "
-    + "it.",
-  "message-bus/relation:data-policy/carries_field":
-    "The `restricted-data-reaches-impermitted-subscriber` note explains the counterexample by "
-    + "naming shipping-address \"which the data-policy model represents as a `carries_field` edge\". "
-    + "The verdict reads `carries` on the event type and never traverses the layer. The field "
-    + "breakdown is held in sync by the parity control in `test/examples.test.ts`, so it is real "
-    + "content with a real holder — it is simply not what decided this answer.",
-};
+const KNOWN_INERT_CLAIMS: Readonly<Record<string, string>> = {};
 
 /** The key a finding and a pin entry share. */
 const findingKey = (exampleId: string, subject: string): string => `${exampleId}/${subject}`;
@@ -249,6 +257,17 @@ function auditExample(
         + `outlives its subject. Subjects the sweep found: ${fs.map((f) => f.subject).join(", ")}`);
       continue;
     }
+    // A row over a family the ENGINE refuses to delete. The row is not lying about answers -- no
+    // answer reads it -- but `held_by` points at whatever held the declaration INSTEAD of the
+    // engine, and now the engine holds it. No new `HELD_BY` member for this: a declaration the
+    // validator refuses to drop needs no ledger row at all, so the honest edit is deletion.
+    if (family.required > 0) {
+      issues.push(`${exampleId}/\`${row.id}\` labels \`${row.subject}\` INERT and held by `
+        + `\`${row.heldBy}\`, but the engine now REFUSES to delete `
+        + `${family.required} of its ${family.live + family.inert + family.required} member(s). A `
+        + `declaration the validator holds needs no ledger row -- the row named a weaker holder and `
+        + `is now the stale one. Delete it.`);
+    }
     if (!HELD_BY.has(row.heldBy)) {
       issues.push(`${exampleId}/\`${row.id}\` is held by \`${row.heldBy}\`, which is not one of `
         + `${[...HELD_BY].join(", ")}. The vocabulary is closed so the pointer stays a pointer: free `
@@ -293,6 +312,14 @@ function auditExample(
     if (family === undefined) {
       issues.push(`${exampleId}: \`${subject}\` is pinned in KNOWN_INERT_CLAIMS and resolves to no `
         + `declaration. The defect's subject is gone; delete the pin.`);
+      continue;
+    }
+    if (family.required > 0) {
+      issues.push(`${exampleId}: \`${subject}\` is pinned in KNOWN_INERT_CLAIMS and the engine now `
+        + `REFUSES to delete ${family.required} of its `
+        + `${family.live + family.inert + family.required} member(s). The declaration became `
+        + `consequential at the VALIDATION layer rather than the answer layer, which is still a `
+        + `correction -- delete the pin.`);
       continue;
     }
     if (family.live > 0) {
@@ -376,10 +403,14 @@ test("every declaration the corpus presents as causal moves an answer, or says i
   assert.deepEqual(issues, [], `semantic liveness:\n  ${issues.join("\n  ")}\n`);
 });
 
-test("the two red alerts are still exactly the pinned set, and the pins still describe them", () => {
+test("the quarantine is exactly the pinned set, and every pin still describes a finding", () => {
   // The quarantine, audited as its own claim. `auditExample` reports a pin whose subject moved or
   // vanished; this reports the opposite drift -- a pin that stopped being a finding because the rule
   // changed around it, which would leave a defect named in a comment and policed by nothing.
+  //
+  // The pinned set is EMPTY since 261005, so this now asserts the stronger thing: running the rule
+  // with nothing quarantined produces nothing at all. The assertion shape is unchanged, which is
+  // deliberate -- it keeps working the moment someone pins the next hand-found alert.
   for (const [key, prose] of Object.entries(KNOWN_INERT_CLAIMS)) {
     assert.ok(prose.trim().length >= MIN_REASON * 2,
       `the pin for ${key} must state the prose that makes it a defect, not just the subject`);
@@ -433,11 +464,14 @@ test("the audit fires on each defect it exists to catch -- negative control", ()
   // A control nobody has watched fail is a control nobody knows works, and the defect this file is
   // about was found by a human reading prose, not by anything running.
   const live = (subject: string, instance: string): Measured => ({
-    subject, instance, operations: [], refusal: null,
+    subject, instance, operations: [], refusal: null, requiredBy: null,
     moved: [{ key: "query:q", query: "q", before: "holds", after: "refuted" }],
   });
   const inert = (subject: string, instance: string): Measured =>
-    ({ subject, instance, operations: [], moved: [], refusal: null });
+    ({ subject, instance, operations: [], moved: [], refusal: null, requiredBy: null });
+  /** The engine refuses the deletion: consequential, and not answer-liveness. */
+  const required = (subject: string, instance: string): Measured =>
+    ({ subject, instance, operations: [], moved: [], refusal: null, requiredBy: ["V46"] });
   const row = (over: Partial<FixtureDeclaration>): FixtureDeclaration => ({
     id: "a-row", subject: "guard:m/a->b", inert: true, heldBy: "the-reader",
     reason: "x".repeat(MIN_REASON) + " documentation on purpose", ...over,
@@ -499,7 +533,7 @@ test("the audit fires on each defect it exists to catch -- negative control", ()
 
   // A refused probe is neither live nor inert, and must never be read as either.
   const refused: Measured = { subject: "guard:m/a->b", instance: "v",
-    operations: [], moved: [], refusal: "the transaction was refused" };
+    operations: [], moved: [], refusal: "the transaction was refused", requiredBy: null };
   const blocked = auditExample("ex", [refused], [], {});
   assert.ok(blocked.some((m) => /was REFUSED/.test(m)), `a refused probe must be reported: ${blocked.join("; ")}`);
 
@@ -516,4 +550,34 @@ test("the audit fires on each defect it exists to catch -- negative control", ()
   const both = auditExample("ex", [inert("guard:m/a->b", "v")], [row({})], pin);
   assert.ok(both.some((m) => /Two homes for one decision/.test(m)),
     `a subject both pinned and declared must be reported: ${both.join("; ")}`);
+
+  // ------------------------------------------------------------------------------------------
+  // The REQUIRED state, added 261005 when the aggregation gate made six message-bus probes
+  // unmeasurable through this seam. Each arm below is a way the two-state reading got it wrong.
+  // ------------------------------------------------------------------------------------------
+
+  // A required family owes NO ledger row: the validator holds it, which is stronger than anything
+  // `held_by` can name. Under the two-state reading this was a REFUSED finding on every run.
+  assert.deepEqual(auditExample("ex", [required("relation:dp/carries_field", "a -> b")], [], {}), [],
+    "a family the engine refuses to delete must not be reported as inert, refused, or undeclared");
+
+  // And it must not be read as LIVE either, or a prose defect crediting it with deciding an answer
+  // would stop being catchable -- the distinction the third state exists to keep.
+  const requiredFamily = families([required("relation:dp/t", "a -> b")])[0];
+  assert.equal(requiredFamily?.live, 0, "required is not live: no answer was measured to move");
+  assert.equal(requiredFamily?.inert, 0, "required is not inert either");
+  assert.equal(requiredFamily?.required, 1, "required is counted in its own tally");
+
+  // A row that still claims a weaker holder over a now-required family is the stale one.
+  const outranked = auditExample("ex", [required("property:classification", "f1")],
+    [row({ subject: "property:classification", heldBy: "parity-control" })], {});
+  assert.ok(outranked.some((m) => /needs no ledger row/.test(m)),
+    `a row outranked by the validator must be reported: ${outranked.join("; ")}`);
+
+  // A pin over a now-required family is a landed correction, and must say so rather than sit quiet.
+  const byValidation = { "ex/relation:dp/t": "x".repeat(MIN_REASON * 2) };
+  const promoted = auditExample("ex", [required("relation:dp/t", "a -> b")], [], byValidation);
+  assert.ok(promoted.some((m) => /REFUSES to delete/.test(m)),
+    `a pin whose subject became validation-required must be reported: ${promoted.join("; ")}`);
+  assert.ok(promoted.some((m) => /delete the pin/.test(m)), "and must name the edit that clears it");
 });

@@ -32,6 +32,25 @@
 //   3. A REFUSED transaction is reported as refused. It is neither live nor inert: reading it as
 //      inert invents a finding and reading it as live hides one.
 //
+// ## Three states, not two — and the third was forced by a landed change
+//
+// `validation-failed` and `operation-failed` are different answers wearing one costume, and lumping
+// them cost a gate its verdict within a day of landing. An op that could not APPLY measures nothing.
+// A rejection on SEMANTIC grounds is itself the measurement: the engine is saying the declaration
+// cannot be removed, which is the strongest form of consequential there is.
+//
+// So a validation-rejected perturbation reads REQUIRED, and `required` is deliberately NOT folded
+// into `isLive`. The gates ask whether a saved ANSWER reads a declaration, because that is the
+// question prose gets wrong; "deleting it is invalid" is a different claim, and a family that is
+// required-but-answer-inert must stay distinguishable or a prose defect about it goes uncaught.
+//
+// The cost, stated because it is real and not recoverable here: once a declaration is required, its
+// ANSWER-liveness is no longer measurable through this seam. Measured on message-bus after the
+// aggregation gate landed, `property:carries` moves the breach query from holds to refuted when
+// deleted — the probe can no longer see that, because the edit is refused first. Recovering it would
+// mean a validation-free apply path, which is production surgery for a test's benefit, so the fact
+// is pinned in `test/examples.test.ts` instead and `required` records that the axis went dark.
+//
 // ## What an ANSWER is
 //
 // Every saved query's outcome, coverage kind and reason, refusal, magnitude and presented evidence
@@ -216,14 +235,34 @@ const diff = (before: Answers, after: Answers): readonly AnswerDelta[] => {
 // The runner
 // ----------------------------------------------------------------------------------------------
 
-/** One measured perturbation. `refusal` non-null means nothing was measured, which is a finding. */
+/**
+ * One measured perturbation, in exactly one of three states.
+ *
+ *   `refusal !== null`   the op could not apply. Nothing was measured, which is a finding.
+ *   `requiredBy !== null` deleting it would make the model invalid. The declaration is required;
+ *                        its answer-liveness is unmeasurable through this seam.
+ *   both null            measured. `moved` carries the per-answer delta, possibly empty.
+ *
+ * The two non-null fields are mutually exclusive by construction in `perturb`.
+ */
 export interface Measured extends Perturbation {
   readonly moved: readonly AnswerDelta[];
   readonly refusal: string | null;
+  /** The rule ids that refused the deletion, for a message that names what holds the declaration. */
+  readonly requiredBy: readonly string[] | null;
 }
 
 /** True when some recorded answer moved. `moved.length > 0`, named so a caller reads intent. */
-export const isLive = (m: Measured): boolean => m.refusal === null && m.moved.length > 0;
+export const isLive = (m: Measured): boolean =>
+  m.refusal === null && m.requiredBy === null && m.moved.length > 0;
+
+/**
+ * True when the model refuses the deletion on semantic grounds.
+ *
+ * Consequential, and deliberately not `isLive`: the gates' question is whether a saved ANSWER reads
+ * the declaration, and this answers a different one.
+ */
+export const isRequired = (m: Measured): boolean => m.requiredBy !== null;
 
 /**
  * Apply one perturbation as a hypothesis, diff the recorded answers, discard and verify restored.
@@ -240,12 +279,21 @@ export function perturb(
     transaction: { base: before, operations: p.operations },
   });
   if (!opened.ok) {
-    return { ...p, moved: [], refusal: opened.findings.map((f) => f.message).join("; ") };
+    // The engine's own cause decides which of the two negative states this is, rather than a guess
+    // read back out of the finding text.
+    if (opened.cause === "validation-failed") {
+      const rules = [...new Set(opened.findings.map((f) => f.rule))].sort();
+      return { ...p, moved: [], refusal: null, requiredBy: rules };
+    }
+    return {
+      ...p, moved: [], requiredBy: null,
+      refusal: opened.findings.map((f) => f.message).join("; "),
+    };
   }
   const moved = diff(baseline, answersOf(ws, ws.state.system));
   assert.ok(ws.discardHypothesis(), `${p.subject}: the probe must restore the model`);
   assert.equal(ws.state.hash, before, `${p.subject}: discarding must restore the exact identity`);
-  return { ...p, moved, refusal: null };
+  return { ...p, moved, refusal: null, requiredBy: null };
 }
 
 /**

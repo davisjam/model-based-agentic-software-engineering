@@ -284,6 +284,20 @@ modifications:
 
 declarations:
 
+  - id: begin-guard-restates-the-claim-synchronization
+    subject: guard:job-lifecycle/claimed->processing
+    inert: true
+    held_by: stronger-declaration
+    reason: >
+      `job-lease.state ne free` restates what the `claim` synchronization already establishes.
+      `claimed` is entered only through `claim`, which moves the lease out of `free` in the same
+      system transition, so the guard meets no reachable configuration to reject and deleting it
+      moves none of the eight saved answers. Kept because it is the other half of a JOINTLY held
+      invariant rather than decoration: add any sync-free route into `claimed` and this guard alone
+      holds `processing-implies-custody`, which is measured in test/examples.test.ts. The prose used
+      to call it the transition section 6.7 asks you to break, and that was the defect -- 6.7 ADDS an
+      unguarded `queued -> processing`, and breaking this guard moves nothing.
+
   - id: retry-guard-restates-the-declared-domain
     subject: guard:job-lifecycle/failed->queued
     inert: true
