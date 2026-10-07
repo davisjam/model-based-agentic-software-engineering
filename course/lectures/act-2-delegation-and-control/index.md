@@ -21,9 +21,11 @@ The rest of the Act develops a model of what happens inside that delegation. For
 
 > **p(T, M, R, H)**
 
-That probability hides several different engineering problems. Did the representation correctly encode what mattered? Did the reasoner correctly interpret it? Did the resulting implementation correctly realize it?
+That probability hides several different engineering problems. Did the representation correctly encode what mattered? Did the reasoner correctly interpret it? Did the resulting implementation correctly realize it? One useful factorization is:
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
+
+We will call this the Master Equation for Act II. It is a conceptual decomposition, not a claim that these probabilities can generally be measured precisely or manipulated as independent quantities. Nor does the subscript claim that only the representation matters: the factorization holds the task, model, and harness fixed and conditions each factor on the one representation under study, so *T*, *M*, and *H* stand behind every term rather than vanishing from it. Its purpose is to separate places where reliable realization can fail, and therefore places where engineering can intervene. The factors are conditional because the stages interact: what can be realized depends on what was interpreted, and what counts as acceptable depends on the task, representation, and surrounding engineering environment. Master Equation is shorthand for this decomposition throughout the rest of the Act.
 
 Act II works through this system. Modeling asks what should be represented, what distinctions the representation must preserve, and what freedom it should leave to realization. Alignment asks which obligations should be enforced independently of whether the producing reasoner gets them right. Failure-Aware Engineering asks how the engineering environment should change when reality reveals that its models, controls, or assumptions were inadequate.
 
