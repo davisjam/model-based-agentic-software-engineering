@@ -17,6 +17,7 @@
 //     rather than from an array written here;
 //   - the short status word is compared to the LONG one, which is the pin that keeps the rail's
 //     derivation from drifting out of the sentence it abbreviates.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -45,7 +46,7 @@ const ports: Ports = {
   render: { render: (system, request) => renderView(system, request) },
 };
 
-const source = (id: string): string => readFileSync(`examples/${id}/system.mage.yaml`, "utf8");
+const source = (id: string): string => readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8");
 const parsed = (id: string): CanonicalSystem => canonicalize(parse(source(id)));
 
 /**

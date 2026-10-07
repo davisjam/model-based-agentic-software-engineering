@@ -15,6 +15,7 @@
 //
 // Every expectation is a lookup against the registry, the engine, or the shipped examples — the
 // derived-values control polices this file like any other.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -41,7 +42,7 @@ import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
 const loadSystems = (): LoadedSystems => {
   const systems = new Map<ShippedExampleId, CanonicalSystem>();
   for (const id of SHIPPED_EXAMPLE_IDS) {
-    systems.set(id, Workspace.canonicalizeOnly(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+    systems.set(id, Workspace.canonicalizeOnly(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return systems;
 };

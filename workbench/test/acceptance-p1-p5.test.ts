@@ -58,7 +58,7 @@
 //   reachable configurations, no dead end. It is the only one of the two that can express P4, because
 //   it is the only one with a hypothesis branch.
 //
-//   `examples/transaction-workspace/system.mage.yaml` -- the behavior flagship, whose machine is
+//   `test/fixtures/examples/transaction-workspace/system.mage.yaml` -- the behavior flagship, whose machine is
 //   §6's sketch with three additions each supplied by the specification itself: `reject` because
 //   §30's P2 needs `refused` reachable and §6 has no edge into it, `refuse_stale` because P3 needs
 //   staleness representable, and `await_adoption` because §27's counterexample needs a repeatable
@@ -102,7 +102,7 @@ import { configurationsOn, counterexampleViolates } from "./ltl-evidence.ts";
 // ----------------------------------------------------------------------------------------------
 
 const LIFECYCLE = "models/workbench-lifecycle.mage.yaml";
-const WORKSPACE = "examples/transaction-workspace/system.mage.yaml";
+const WORKSPACE = "test/fixtures/examples/transaction-workspace/system.mage.yaml";
 
 const source = (path: string): string => readFileSync(path, "utf8");
 const systemOf = (text: string): CanonicalSystem => canonicalize(parse(text));
@@ -255,7 +255,7 @@ const anyOf = (...operands: readonly Predicate[]): Predicate => ({ kind: "any-of
 const allOf = (...operands: readonly Predicate[]): Predicate => ({ kind: "all-of", operands });
 const not = (operand: Predicate): Predicate => ({ kind: "not", operand });
 
-/** `examples/transaction-workspace` -- the §6 machine. */
+/** `test/fixtures/examples/transaction-workspace` -- the §6 machine. */
 const W = {
   state: "transaction-lifecycle.state",
   idle: eq("transaction-lifecycle.state", "idle"),

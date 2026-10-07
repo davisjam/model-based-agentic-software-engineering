@@ -1,6 +1,6 @@
 // The capstone's cross-form claims, pinned — the ones its fixture cannot carry.
 //
-// `examples/autonomous-delivery` exists to show that structure, behavior and quantity supply each
+// `test/fixtures/examples/autonomous-delivery` exists to show that structure, behavior and quantity supply each
 // other PREMISES rather than sitting beside each other. Its central claim is a number that changes
 // sign: the autonomy payload's peak RAM is 1,984 MB with no behavior model and 1,088 MB with one, so
 // the same ceiling query reads `refuted` in the first case and `holds` in the second.
@@ -54,7 +54,7 @@ function baseMagnitude(system: CanonicalSystem, id: string): number {
   return base;
 }
 
-const EXAMPLE = "examples/autonomous-delivery/system.mage.yaml";
+const EXAMPLE = "test/fixtures/examples/autonomous-delivery/system.mage.yaml";
 const source = (): string => readFileSync(EXAMPLE, "utf8");
 
 /** The three `when:` clauses, as authored. Declared once so a rewrite cannot silently miss one. */

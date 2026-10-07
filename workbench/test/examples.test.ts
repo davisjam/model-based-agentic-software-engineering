@@ -34,7 +34,7 @@ import {
   checkExpectation, parseRequirement, runSavedQueries, verify, verifySystemRequirements,
 } from "../src/engine/index.ts";
 import type { Requirement } from "../src/engine/index.ts";
-import { ExampleCatalog } from "../src/app/examples.ts";
+import { ExampleCatalog, SHIPPED_EXAMPLES } from "../src/app/examples.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import type {
@@ -42,12 +42,16 @@ import type {
 } from "../src/ir/types.ts";
 import { DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
 import {
-  CAPABILITY_ROWS, EXAMPLE_IDS, deriveCoverage, exampleText, generateExampleCoverageModel,
+  CAPABILITY_ROWS, EXAMPLE_IDS, SHIPPED_EXAMPLE_IDS, deriveCoverage, exampleText,
+  generateExampleCoverageModel,
   loadExample, machineVocabulary, purposefulModels, realPorts, sharedIdentities,
   type EvidenceExpectation, type LoadedExample, type QuantitativeExpectation, type QueryExpectation,
 } from "../scripts/gen-example-coverage.ts";
 
 const examples = (): readonly LoadedExample[] => EXAMPLE_IDS.map(loadExample);
+/** The shipped library alone — the coverage model's subject (a fixture is not a shipped example). */
+const shippedExamples = (): readonly LoadedExample[] =>
+  SHIPPED_EXAMPLE_IDS.map((id) => loadExample(id));
 
 // The agent API now holds the example catalogue, because `examples()` and `loadExample()` must be
 // the same object the human menu calls. In a test the catalogue reads the shipped files directly;
@@ -192,10 +196,33 @@ test("EX-I1: no validator, engine, kernel or renderer source names an example", 
 test("EX-I2: two or more purposeful models, a shared identity, and a question needing both", () => {
   // Mechanically checkable, and its job is to stop a later "simplification" of an example into one
   // giant graph. A test is how the invariant does that job.
+  //
+  // ONE exemption, by the author's 261006 spec rather than by anyone's convenience: the shipped
+  // SIMPLE tier is one model on purpose — "one system, one model, one engineering question" — so
+  // the multi-model obligations do not apply to it. The exemption is keyed to the declared tier,
+  // not to the observed model count, so any OTHER example collapsing to one model still fails.
+  const simple = new Set<string>(SHIPPED_EXAMPLES.filter((e) => e.tier === "simple").map((e) => e.id));
+  const medium = new Set<string>(SHIPPED_EXAMPLES.filter((e) => e.tier === "medium").map((e) => e.id));
   for (const ex of examples()) {
     const system = ex.workspace.state.system;
     const models = purposefulModels(system);
+    if (simple.has(ex.id)) {
+      assert.equal(models.length, 1,
+        `${ex.id}: the Simple tier is specified as exactly one model; found ${models.length}`);
+      for (const m of models) {
+        assert.ok(m.question !== null && m.question.length > 0,
+          `${ex.id}: model '${m.id}' declares no engineering question, so it is not purposeful`);
+        assert.ok(m.represents.length > 0, `${ex.id}: model '${m.id}' represents nothing`);
+        assert.ok(m.omits.length > 0, `${ex.id}: model '${m.id}' omits nothing`);
+      }
+      continue;
+    }
     assert.ok(models.length >= 2, `${ex.id}: ${models.length} purposeful model(s), EX-I2 needs 2`);
+    // The MEDIUM tier's lesson is two models answering two different CLASSES of question — the
+    // 261006 spec forbids forcing a cross-model property on it ("Do not force a cross-model
+    // property merely to demonstrate composition"), so the shared-identity and composing-question
+    // obligations apply to every multi-model example EXCEPT the declared medium tier.
+    const compositionExempt = medium.has(ex.id);
     for (const m of models) {
       assert.ok(m.question !== null && m.question.length > 0,
         `${ex.id}: model '${m.id}' declares no engineering question, so it is not purposeful`);
@@ -204,12 +231,16 @@ test("EX-I2: two or more purposeful models, a shared identity, and a question ne
     }
 
     const shared = sharedIdentities(system);
-    assert.ok(shared.length > 0,
-      `${ex.id}: no identity is named by two purposeful models, so these are unrelated diagrams`);
+    if (!compositionExempt) {
+      assert.ok(shared.length > 0,
+        `${ex.id}: no identity is named by two purposeful models, so these are unrelated diagrams`);
+    }
 
     const composing = ex.fixture.queries.filter((q) => q.models.length >= 2);
-    assert.ok(composing.length > 0,
-      `${ex.id}: no supplied question needs more than one model`);
+    if (!compositionExempt) {
+      assert.ok(composing.length > 0,
+        `${ex.id}: no supplied question needs more than one model`);
+    }
     // And the models a composing question names must be real, or the claim is decoration.
     const known = new Set(models.map((m) => m.id));
     for (const q of composing) {
@@ -1298,7 +1329,7 @@ test("EX-I3: the coverage model reports the gaps rather than omitting them", () 
   // shipping Document Processing exercised it outright. A snapshot of today's statuses fails on
   // every real advance, so what is asserted here is the INVARIANT -- every row present, every
   // `unavailable` row naming its blocker, and the matrix still reporting at least one gap.
-  const report = deriveCoverage(examples());
+  const report = deriveCoverage(shippedExamples());
 
   for (const row of CAPABILITY_ROWS) {
     const status = report.status.get(row.id);
@@ -1323,10 +1354,18 @@ test("EX-I3: the coverage model reports the gaps rather than omitting them", () 
   // performance reasoning -- is satisfied for the first time, and this assertion is the flip.
   assert.equal(report.status.get("performance"), "exercised",
     "performance regressed to unavailable/unexercised -- EX-I3 was satisfied and must stay so");
-  for (const id of ["quantitative-annotations", "declared-accounting",
-    "path-quantity-accounting", "configuration-memory-accounting"]) {
-    assert.equal(report.status.get(id), "exercised",
-      `${id} is what Document Processing was built to demonstrate`);
+  assert.equal(report.status.get("quantitative-annotations"), "exercised",
+    "Medium's Processing Resources declares quantities; losing this row means it stopped");
+  // The latency-accounting rows are UNEXERCISED by the 261006 library ON PURPOSE, and pinned so:
+  // the spec's Medium models memory only ("deliberately boring numbers", no latency pipeline), so
+  // the trace-accounting machinery's exercise moved to the fixture corpus with the former
+  // Document Processing. The capability is still available — the construct probe says so above —
+  // and the coverage model REPORTS the gap rather than hiding it, which is EX-I3's actual claim.
+  for (const id of ["declared-accounting", "path-quantity-accounting",
+    "configuration-memory-accounting"]) {
+    assert.equal(report.status.get(id), "unexercised",
+      `${id}: expected a REPORTED gap under the 261006 library; if a shipped example now exercises `
+      + "it, update this pin to 'exercised' — the direction of change is an authored decision");
   }
 
   // The negative control for the whole model: a matrix where every row is green is a matrix nobody

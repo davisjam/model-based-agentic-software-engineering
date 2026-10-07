@@ -16,6 +16,7 @@
 // No count, no label and no form name is pinned as a literal: the relation types come from
 // `system.relationTypes`, the licensing from each type's own `pathComposition`, the shapes from
 // `GRAPH_FORMS`, and the expected answers from a second pass through `runQuery`.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -38,7 +39,7 @@ import {
 } from "../src/ui/shell/askbar.ts";
 
 const load = (id: string): CanonicalSystem =>
-  canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+  canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
 
 /** The query an item submits, built by the same planner the surface uses. */
 function queryOf(system: CanonicalSystem, item: AskItem): unknown {

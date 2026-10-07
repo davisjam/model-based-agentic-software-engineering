@@ -33,7 +33,7 @@ import type {
 const load = (path: string): CanonicalSystem => canonicalize(parse(readFileSync(path, "utf8")));
 
 /** The example whose whole lesson is that relations have semantics. */
-const messageBus = (): CanonicalSystem => load("examples/message-bus/system.mage.yaml");
+const messageBus = (): CanonicalSystem => load("test/fixtures/examples/message-bus/system.mage.yaml");
 
 /** Every shipped system, from the id list the application owns rather than a list typed here. */
 const everySystem = (): readonly CanonicalSystem[] =>

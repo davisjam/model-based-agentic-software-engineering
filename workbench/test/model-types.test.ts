@@ -18,6 +18,7 @@
 //
 // Every expectation is a lookup against the registry or the sources it cites, never a snapshot
 // copy (the derived-values control polices this file like any other).
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
@@ -548,7 +549,7 @@ test("every declared USE is a registered type underneath, with a real shipped ex
     const [example, model] = u.exemplar.split("/");
     assert.ok(example !== undefined && model !== undefined, `${u.id}: exemplar is not <example>/<model>`);
     const system = canonicalize(
-      parse(readFileSync(`examples/${example}/system.mage.yaml`, "utf8")));
+      parse(readFileSync(`${exampleDir(example)}/system.mage.yaml`, "utf8")));
     assert.ok(system.models.has(model),
       `${u.id}: exemplar model '${model}' is not declared by examples/${example}`);
   }

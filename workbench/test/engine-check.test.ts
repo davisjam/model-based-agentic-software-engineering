@@ -49,13 +49,16 @@ function examplePaths(): readonly string[] {
     }
   };
   walk("examples");
-  assert.ok(out.length >= 3, `found ${out.length} shipped examples; the walk is wrong, not the tree`);
+  // The fixture corpus keeps its engine pins (author ruling 261006: test cases are kept, just not
+  // exposed to students), so the sweep covers both populations.
+  walk("test/fixtures/examples");
+  assert.ok(out.length >= 3, `found ${out.length} examples; the walk is wrong, not the tree`);
   return out.sort();
 }
 
 const DOCABLE = "examples/docable.mage.yaml";
 /** Three structural models, no machines, no quantities — the substrate-absence cases need it. */
-const MESSAGE_BUS = "examples/message-bus/system.mage.yaml";
+const MESSAGE_BUS = "test/fixtures/examples/message-bus/system.mage.yaml";
 
 // ----------------------------------------------------------------------------------------------
 // MQ-I1 — the evaluator's answer for a refused question IS the admission's verdict

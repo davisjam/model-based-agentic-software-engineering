@@ -23,6 +23,7 @@
 //
 // So the second test below compares the ANSWERS, over every model in the repo, and the model list
 // is derived from the app's shipped-example declaration rather than written here again.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -181,7 +182,7 @@ function assertParity(label: string, yamlText: string): void {
  * a string. The two non-example models stay literal because nothing else declares them.
  */
 const repoModels = (): readonly { label: string; text: string }[] => [
-  ...EXAMPLE_IDS.map((id) => ({ label: `examples/${id}/system.mage.yaml`, text: exampleText(id) })),
+  ...EXAMPLE_IDS.map((id) => ({ label: `${exampleDir(id)}/system.mage.yaml`, text: exampleText(id) })),
   ...["examples/docable.mage.yaml", "models/workbench-components.mage.yaml"]
     .map((label) => ({ label, text: readFileSync(label, "utf8") })),
 ];

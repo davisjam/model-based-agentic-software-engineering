@@ -9,6 +9,7 @@
 // before-and-after property readings come from a real `Workspace` running real saved queries over a
 // real transaction, so a test here fails when the DECISION would change, not when a sentence is
 // reworded.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -27,7 +28,7 @@ import {
 } from "../src/ui/shell/review.ts";
 
 const load = (path: string): CanonicalSystem => canonicalize(parse(readFileSync(path, "utf8")));
-const messageBus = (): CanonicalSystem => load("examples/message-bus/system.mage.yaml");
+const messageBus = (): CanonicalSystem => load("test/fixtures/examples/message-bus/system.mage.yaml");
 const html = (): string => readFileSync("index.html", "utf8");
 
 /**
@@ -301,7 +302,7 @@ test("no shipped example declares a requirement, so the interposition is latent 
   // callers there are an agent's hypothesis and a what-if the user armed on purpose. The moment an
   // example gains an `expect:`, this test fails and the interposition starts firing for it.
   const declared = SHIPPED_EXAMPLE_IDS.flatMap((id) => {
-    const ws = workspace(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"));
+    const ws = workspace(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"));
     return requirements(ws.properties()).map((p) => `${id}:${p.id}`);
   });
   assert.deepEqual(declared, []);

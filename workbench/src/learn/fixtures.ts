@@ -39,7 +39,8 @@
  * loud failure at derivation time rather than an empty table.
  */
 import { parse } from "yaml";
-import { ExampleMetadataError, type ShippedExampleId } from "../app/examples.ts";
+import { ExampleMetadataError } from "../app/examples.ts";
+import { exampleDir, type ExampleId } from "../app/example-corpus.ts";
 
 /** One requirement, as its fixture states it. Field names are the fixture's, camel-cased. */
 export interface FixtureRequirement {
@@ -95,15 +96,15 @@ export interface FixtureModification {
 }
 
 export interface ExampleFixture {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly requirements: readonly FixtureRequirement[];
   readonly modifications: readonly FixtureModification[];
 }
 
 /** Every shipped example's fixture, keyed by id. The page loads these beside the systems. */
-export type LoadedFixtures = ReadonlyMap<ShippedExampleId, ExampleFixture>;
+export type LoadedFixtures = ReadonlyMap<ExampleId, ExampleFixture>;
 
-export const fixturePathFor = (id: string): string => `examples/${id}/expected-results.yaml`;
+export const fixturePathFor = (id: string): string => `${exampleDir(id)}/expected-results.yaml`;
 
 const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null && !Array.isArray(v);
@@ -184,7 +185,7 @@ function readModification(raw: unknown, where: string): FixtureModification {
  * `expected-results.yaml`'s own comment cites "section 2: at least one requirement". Accepting an
  * empty block here would let a Learn section render blank against fixtures a gate calls complete.
  */
-export function readFixture(example: ShippedExampleId, source: string): ExampleFixture {
+export function readFixture(example: ExampleId, source: string): ExampleFixture {
   const where = fixturePathFor(example);
   const doc: unknown = parse(source);
   if (!isObject(doc)) throw new ExampleMetadataError(`${where}: expected a mapping`);

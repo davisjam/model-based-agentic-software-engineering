@@ -34,6 +34,7 @@
 // What this file deliberately does NOT do: assert any outcome word as a literal. `refuted` appears
 // below only as a value read back out of a fixture or an engine result. A test that hardcoded
 // `refuted` for the latency requirement would pass on the day the engine stopped computing it.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -61,7 +62,7 @@ const systems: LoadedSystems = (() => {
   const map = new Map<ShippedExampleId, CanonicalSystem>();
   for (const id of SHIPPED_EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
-      parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+      parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return map;
 })();

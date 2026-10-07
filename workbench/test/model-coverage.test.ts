@@ -91,7 +91,7 @@ import { Workspace } from "../src/app/services.ts";
 import { checkExpectation } from "../src/engine/index.ts";
 import type { ExpectationVerdict } from "../src/engine/index.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
-import { realPorts } from "../scripts/gen-example-coverage.ts";
+import { FIXTURE_EXAMPLE_IDS, exampleDir, realPorts } from "../scripts/gen-example-coverage.ts";
 
 /**
  * A reason floor, the same one `test/gate-reachability.test.ts` and
@@ -163,8 +163,14 @@ interface Exclusion {
  * is the only place a verdict can live for it, and it is the structural exemplar readers copy.
  */
 const EXCLUDED: Readonly<Record<string, Exclusion>> = Object.fromEntries(
-  SHIPPED_EXAMPLE_IDS.map((id) => [`examples/${id}/system.mage.yaml`, {
-    evidenceIn: `examples/${id}/system.mage.yaml`,
+  // The fixture corpus is excluded for the SAME reason by the SAME mechanism: each former example
+  // keeps its expected-results.yaml beside it under test/fixtures/examples/, and
+  // test/examples.test.ts still drives every pinned query through the facade and compares. The
+  // corpus is derived from FIXTURE_EXAMPLE_IDS — the author's 261006 "keep test cases but not
+  // expose them to students" ruling made structural — so a fixture is excluded by membership, not
+  // by someone remembering.
+  [...SHIPPED_EXAMPLE_IDS, ...FIXTURE_EXAMPLE_IDS].map((id) => [`${exampleDir(id)}/system.mage.yaml`, {
+    evidenceIn: `${exampleDir(id)}/system.mage.yaml`,
     evidence: "Expected outcomes live in expected-results.yaml",
     reason: "A shipped example system. Its outcomes live in expected-results.yaml beside the "
       + "coverage kind and the evidence shape each query must produce — a richer pin than `expect` "

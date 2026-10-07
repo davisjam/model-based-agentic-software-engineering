@@ -30,6 +30,7 @@
  *     runs, independence from authoring order, byte-stable serialization. A per-example version
  *     would re-assert it N times over a corpus that cannot vary it.
  */
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -42,14 +43,14 @@ import {
 import type { LayoutEngine, SceneEdge, SceneGraph, SceneNode } from "../src/render/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { runQuery } from "../src/engine/index.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../src/app/example-corpus.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 
-const systemOf = (id: ShippedExampleId): CanonicalSystem =>
-  canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+const systemOf = (id: ExampleId): CanonicalSystem =>
+  canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
 
-const SYSTEMS: ReadonlyMap<ShippedExampleId, CanonicalSystem> =
-  new Map(SHIPPED_EXAMPLE_IDS.map((id) => [id, systemOf(id)]));
+const SYSTEMS: ReadonlyMap<ExampleId, CanonicalSystem> =
+  new Map(EXAMPLE_IDS.map((id) => [id, systemOf(id)]));
 
 /** Every scene the shipped corpus can produce — all models and all machines of all examples. */
 function everyShippedScene(): readonly { readonly where: string; readonly scene: SceneGraph }[] {
@@ -150,7 +151,7 @@ test("§D-1 every element of every SHIPPED scene resolves, and the corpus reache
   const reached = new Set<string>();
   let elements = 0;
   for (const { where, scene } of everyShippedScene()) {
-    const system = SYSTEMS.get(where.split("/")[0] as ShippedExampleId);
+    const system = SYSTEMS.get(where.split("/")[0] as ExampleId);
     assert.ok(system !== undefined);
     for (const node of scene.nodes) {
       const verdict = classifyNode(system, scene, node);

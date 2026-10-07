@@ -44,10 +44,10 @@ import {
   anchorForType, anchorForUse, deriveLearnEntries, MODEL_TYPE_USES, presentTypes,
   type LearnEntry, type ModelTypeUse,
 } from "../app/learn.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../app/example-corpus.ts";
 
 /** Every shipped example's canonical system, keyed by id. The page loads these once. */
-export type LoadedSystems = ReadonlyMap<ShippedExampleId, CanonicalSystem>;
+export type LoadedSystems = ReadonlyMap<ExampleId, CanonicalSystem>;
 
 /**
  * What a type's exemplar visual is a picture OF — the app layer's `PictureRequest`, under the name
@@ -61,7 +61,7 @@ export type LoadedSystems = ReadonlyMap<ShippedExampleId, CanonicalSystem>;
 export type ExemplarPicture = PictureRequest;
 
 export interface ExemplarVisual {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly picture: ExemplarPicture;
 }
 
@@ -104,7 +104,7 @@ export interface LearnTypeSection {
   /** The refusal the kernel produces when this type is absent — the NOT ANSWERABLE sentence. */
   readonly refusalProse: string;
   /** Shipped examples declaring BOTH this type and its composition partner. */
-  readonly combinedIn: readonly ShippedExampleId[];
+  readonly combinedIn: readonly ExampleId[];
 }
 
 export interface LearnUseSection {
@@ -271,7 +271,7 @@ export function quantityRows(system: CanonicalSystem): readonly QuantityRow[] {
  * (`ModelType.renderStrategy`), dispatched in one place.
  */
 export function exemplarFor(typeId: ModelTypeId, systems: LoadedSystems): ExemplarVisual | null {
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined || !presentTypes(system).includes(typeId)) continue;
     const picture = pictureRequestFor(typeId, system);
@@ -303,8 +303,8 @@ export function purposeOfPicture(system: CanonicalSystem, picture: ExemplarPictu
 }
 
 /** Shipped examples declaring both types of a pairing — where the composition can actually be asked. */
-export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystems): readonly ShippedExampleId[] {
-  return SHIPPED_EXAMPLE_IDS.filter((id) => {
+export function groundedIn(a: ModelTypeId, b: ModelTypeId, systems: LoadedSystems): readonly ExampleId[] {
+  return EXAMPLE_IDS.filter((id) => {
     const system = systems.get(id);
     if (system === undefined) return false;
     const present = presentTypes(system);
@@ -419,7 +419,7 @@ export function buildTypeSections(systems: LoadedSystems): readonly LearnTypeSec
 export function buildUseSections(systems: LoadedSystems): readonly LearnUseSection[] {
   return MODEL_TYPE_USES.map((use) => {
     const [example, modelId] = use.exemplar.split("/");
-    const shipped = SHIPPED_EXAMPLE_IDS.find((id) => id === example);
+    const shipped = EXAMPLE_IDS.find((id) => id === example);
     if (shipped === undefined || modelId === undefined) {
       throw new Error(`use '${use.id}' names exemplar '${use.exemplar}', which is not <shipped-example>/<model>`);
     }

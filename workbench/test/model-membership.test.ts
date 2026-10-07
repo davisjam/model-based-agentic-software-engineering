@@ -40,7 +40,7 @@ import type { Operation, TransactionResult } from "../src/transaction/types.ts";
 
 // message-bus rather than docable, because this is the example §9.4 Q5 is written against and its
 // `event-flow` model is the one whose membership the activity extends.
-const EXAMPLE = "examples/message-bus/system.mage.yaml";
+const EXAMPLE = "test/fixtures/examples/message-bus/system.mage.yaml";
 const MODEL = "event-flow";
 const NEW_ENTITY = "debug-service";
 /** `payment-completed` carries the restricted payload, which is what makes Q5's question bite. */

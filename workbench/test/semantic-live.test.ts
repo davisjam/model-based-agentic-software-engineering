@@ -118,6 +118,7 @@
 // to delete the entry here. That is not the baseline-ratchet this repo bans in
 // `test/gate-reachability.test.ts` — a ratchet accepts "no worse than N" and drifts; an exact set
 // with named members goes red in both directions and names what must change.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -303,7 +304,9 @@ function auditExample(
     // did print the draft, and the first author to follow the suggestion met the rejection.
     issues.push(`${exampleId}: \`${family.subject}\` (${family.instances.join(", ")}) is INERT -- `
       + `deleting it moves no saved answer and no requirement verdict. ${why} Add to `
-      + `examples/${exampleId}/expected-results.yaml:\n`
+      // Resolved tolerantly: the negative control audits a synthetic id the corpus resolver
+      // rightly refuses, and this string is a human-facing hint rather than a file access.
+      + `${((): string => { try { return exampleDir(exampleId); } catch { return `examples/${exampleId}`; } })()}/expected-results.yaml:\n`
       + `      declarations:\n        - id: <a-name>\n          subject: ${family.subject}\n`
       + `          inert: true\n          held_by: <one of: ${[...HELD_BY].join(", ")}>\n`
       + `          reason: >\n            <why it is here>`);
@@ -441,7 +444,7 @@ test("the INERT label has ONE home and ONE spelling across the whole corpus", ()
   // the whole failure.
   const offenders: string[] = [];
   for (const id of EXAMPLE_IDS) {
-    const path = `examples/${id}/expected-results.yaml`;
+    const path = `${exampleDir(id)}/expected-results.yaml`;
     const text = readFileSync(path, "utf8").replace(/#.*$/gm, " ");
     if (/^\s*claims:/m.test(text) && /\binert\s*:/.test(text)) {
       offenders.push(`${path} carries a \`claims:\` block AND an \`inert:\` field. If the label has `

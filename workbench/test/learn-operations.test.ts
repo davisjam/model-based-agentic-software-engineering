@@ -29,6 +29,7 @@
 //
 // Nothing here pins a string the builder produced. Every expectation is a second derivation from
 // the registry, the engine, or the shipped examples, compared against the first.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -40,7 +41,7 @@ import {
 } from "../src/engine/elements.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../src/app/example-corpus.ts";
 import {
   anchorForType, anchorForUse, deriveLearnEntries, MODEL_TYPE_USES,
 } from "../src/app/learn.ts";
@@ -53,17 +54,17 @@ import {
 } from "../src/learn/questions.ts";
 
 const systems: LoadedSystems = (() => {
-  const map = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
-      parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+      parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return map;
 })();
 
 const fixtures: LoadedFixtures = (() => {
-  const map = new Map<ShippedExampleId, ReturnType<typeof readFixture>>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, ReturnType<typeof readFixture>>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, readFixture(id, readFileSync(fixturePathFor(id), "utf8")));
   }
   return map;
@@ -104,7 +105,7 @@ function readout(built: BuiltQuestionSection, startsWith: string): (term: string
  * that the page agrees with itself.
  */
 function expectedSubject(): {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly system: CanonicalSystem;
   readonly selector: { readonly type: string };
 } {

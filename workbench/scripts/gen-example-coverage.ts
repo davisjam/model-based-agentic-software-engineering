@@ -40,6 +40,8 @@ import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { Workspace } from "../src/app/services.ts";
 import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+export { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+export type { ShippedExampleId } from "../src/app/examples.ts";
 import type { Ports } from "../src/app/services.ts";
 import { ACCOUNTABLE_TARGET_KINDS } from "../src/ir/types.ts";
 import type { CanonMachine, CanonicalSystem, Outcome, Scalar } from "../src/ir/types.ts";
@@ -408,7 +410,7 @@ export function readFixture(exampleId: string): Fixture {
 }
 
 function readFixtureFields(exampleId: string): Fixture {
-  const path = `examples/${exampleId}/expected-results.yaml`;
+  const path = `${exampleDir(exampleId)}/expected-results.yaml`;
   const doc = obj(parse(readFileSync(path, "utf8")), path);
 
   const models = arr(doc["models"], `${path}.models`).map((m, i) => {
@@ -576,11 +578,16 @@ function readFixtureFields(exampleId: string): Fixture {
 // Loading an example the way a user does
 // ----------------------------------------------------------------------------------------------
 
-// RE-EXPORTED, not redeclared. This script briefly kept its own copy of the shipped-example list and
-// the two drifted within the hour -- see the note on SHIPPED_EXAMPLE_IDS. The app layer owns what
-// ships; a generator consumes it.
-export { SHIPPED_EXAMPLE_IDS as EXAMPLE_IDS } from "../src/app/examples.ts";
-export type { ShippedExampleId as ExampleId } from "../src/app/examples.ts";
+// RE-EXPORTED from the shared corpus declaration, not redeclared. This script briefly kept its own
+// copy of the shipped-example list and the two drifted within the hour -- see the note on
+// SHIPPED_EXAMPLE_IDS. The corpus module (`src/app/example-corpus.ts`) owns the fixture half and
+// the shipped/fixture path split (the author's 261006 "keep test cases but not expose them to
+// students" ruling made structural); every corpus reader in the suite goes through it.
+export {
+  EXAMPLE_IDS, FIXTURE_EXAMPLE_IDS, exampleDir,
+} from "../src/app/example-corpus.ts";
+export type { ExampleId, FixtureExampleId } from "../src/app/example-corpus.ts";
+import { exampleDir } from "../src/app/example-corpus.ts";
 
 /**
  * The real ports. A test or a generator that reached `canonicalize()` and `runGraphQuery()` directly
@@ -601,7 +608,7 @@ export const realPorts: Ports = {
 };
 
 export const exampleText = (id: string): string =>
-  readFileSync(`examples/${id}/system.mage.yaml`, "utf8");
+  readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8");
 
 export interface LoadedExample {
   readonly id: string;
@@ -1041,8 +1048,13 @@ export const CAPABILITY_ROWS: readonly CapabilityRow[] = [
       "over the executions a behavioral model supplies, and a result that carries the number.",
     matrixRow: "Performance",
     requires: ["model.quantities", "query.path-aggregation"],
+    // Two arms, one claim: the requirement is DECIDED by the product. The `decided_by` arm is the
+    // hand-derived-oracle route; the second arm is the authored route a 261005+ example uses — a
+    // requirement whose deciding saved query is the `kind: quantity` form, so the product computes
+    // the figure and compares it to the declared ceiling itself.
     detect: (ctx) => ctx.fixture.requirements.some(
-      (r) => r.decidedBy !== null && r.status !== "pending-evaluator"),
+      (r) => (r.decidedBy !== null && r.status !== "pending-evaluator")
+        || (r.expressedAs !== null && queryKind(ctx.system, r.expressedAs) === "quantity")),
   },
   {
     id: "requirements",
@@ -1134,29 +1146,12 @@ export function generateExampleCoverageModel(
     "# How many examples ship is the `example.*` rows below and is deliberately not restated here;",
     "# the sentence that used to count them went stale the day a fourth landed.",
     "#",
-    "# Document Processing declares quantities, declares their accounting, and states both",
-    "# performance numbers -- and the Performance row is exercised: the `kind: quantity` query form",
-    "# aggregates each metric (the aggregation derived from the dimension's scope), decides the",
-    "# declared ceilings, and reports the figure on the result's magnitude field, which the schema",
-    "# probe finds. Requirements reads EXERCISED since 261005, and the row's two-step history is the",
-    "# reason the detection is worth reading: `unavailable` while no `requirements:` key existed,",
-    "# `unexercised` once the construct landed and no model authored one, `exercised` now that every",
-    "# shipped example authors its obligations. The row detects off the AUTHORED model and not off",
-    "# the fixture, which is what kept the middle step honest -- a fixture reading would have flipped",
-    "# the row the moment the construct landed, on evidence from a file that is not the model.",
-    "#",
-    "# Document Processing keeps one requirement in its fixture, on the `decided_by` route, and that",
-    "# costs this row nothing: the row detects an AUTHORED `requirements:` block and that example",
-    "# authors one. The requirement that stays is its 750 ms latency obligation, held back on",
-    "# pedagogical grounds rather than expressive ones — a saved question over that ceiling would put",
-    "# a second latency ceiling in front of a student beside the 2-second one. Its memory sibling had",
-    "# no such cost and moved to the authored route on 261005.",
-    "#",
-    "# Transaction Workspace adds no row, and that is worth reading rather than skipping: every",
-    "# capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR",
-    "# flagship (DESIGN-v02-semantics-261004.md §31 example B) and as the example whose `omits` lists",
-    "# make a binding visibly not a merge, and this matrix measures neither of those. A coverage",
-    "# model is not a quality model.",
+    "# The library is the author's 261006 three-example progression -- Simple (one model), Medium",
+    "# (two models), Complex (three models, with the one deliberately failing cross-model policy",
+    "# property). Capabilities the former seven-example set exercised and this library does not are",
+    "# reported `unexercised` below rather than hidden: the former examples survive as test fixtures",
+    "# under test/fixtures/examples/, where their pins still run, but a fixture is not a shipped",
+    "# example and earns no row here.",
     "",
     "mage: 1",
     "",

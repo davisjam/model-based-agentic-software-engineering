@@ -27,7 +27,7 @@ import { renderView } from "../render/index.ts";
 import type { AccessibleNode } from "../render/types.ts";
 import { Workspace, type Ports } from "../app/services.ts";
 import { CAPABILITIES } from "../app/capabilities.ts";
-import type { ShippedExampleId } from "../app/examples.ts";
+import type { ExampleId } from "../app/example-corpus.ts";
 import { declaredUnitOf, quantityRows, savedStatements, type LoadedSystems } from "./content.ts";
 import type { LoadedFixtures, FixtureModification } from "./fixtures.ts";
 import { magnitudeText, runSaved } from "./questions.ts";
@@ -43,7 +43,7 @@ import {
 export interface WalkthroughDeps {
   readonly systems: LoadedSystems;
   /** Raw YAML text per example — what a what-if step loads into its own Workspace. */
-  readonly texts: ReadonlyMap<ShippedExampleId, string>;
+  readonly texts: ReadonlyMap<ExampleId, string>;
   readonly fixtures: LoadedFixtures;
 }
 
@@ -56,7 +56,7 @@ const must = <T>(value: T | undefined | null, what: string): T => {
   return value;
 };
 
-const systemOf = (deps: WalkthroughDeps, id: ShippedExampleId): CanonicalSystem =>
+const systemOf = (deps: WalkthroughDeps, id: ExampleId): CanonicalSystem =>
   must(deps.systems.get(id), `example '${id}' is not loaded`);
 
 /** A purpose's question, read defensively: the IR admits a model that states none. */
@@ -123,7 +123,7 @@ function learnWorkspace(text: string): Workspace {
 }
 
 const modificationOf = (
-  deps: WalkthroughDeps, example: ShippedExampleId, id: string,
+  deps: WalkthroughDeps, example: ExampleId, id: string,
 ): FixtureModification =>
   must(
     deps.fixtures.get(example)?.modifications.find((m) => m.id === id),
@@ -318,10 +318,10 @@ const groundingMachine = (step: WalkStep): string =>
     `step '${step.anchor}' grounds no machine`,
   ).machine;
 
-const groundingQueries = (step: WalkStep): readonly { example: ShippedExampleId; query: string }[] =>
+const groundingQueries = (step: WalkStep): readonly { example: ExampleId; query: string }[] =>
   step.grounding.flatMap((g) => (g.kind === "query" ? [{ example: g.example, query: g.query }] : []));
 
-const groundingModification = (step: WalkStep): { example: ShippedExampleId; modification: string } =>
+const groundingModification = (step: WalkStep): { example: ExampleId; modification: string } =>
   must(
     step.grounding.flatMap((g) => (g.kind === "modification" ? [g] : []))[0],
     `step '${step.anchor}' grounds no modification`,

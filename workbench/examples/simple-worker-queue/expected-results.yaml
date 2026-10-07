@@ -1,0 +1,137 @@
+# Expected results for the simple-worker-queue example. Read by test/examples.test.ts, which drives
+# the real application seams and compares.
+#
+# Fixture discipline per section 10: semantic outcomes only. For a behavioral trace that means the
+# outcome, the coverage KIND, the final configuration, and label counts that carry the bound --
+# never the exact step count and never the number of configurations explored.
+
+example: simple-worker-queue
+system: system.mage.yaml
+title: Simple – Worker Queue
+summary: >
+  One bounded queue, one model, one engineering question: can the number of waiting jobs ever
+  exceed the capacity the queue declares?
+
+# One purposeful model, which is the Simple tier's point: a student meets the vocabulary -- a model
+# preserves selected facts so a property becomes answerable -- before meeting composition.
+models:
+  - id: queue-capacity
+    kind: machine
+
+requirements:
+
+  - id: capacity-is-respected
+    statement: >
+      Queue occupancy never exceeds the declared capacity of four jobs.
+    expressed_as: queue-never-exceeds-capacity
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      Established by exhaustive exploration of a finite transition system: every reachable
+      configuration was enumerated and none carries more than four jobs. The bound is carried by
+      the ARRIVAL GUARD, not by the variable's domain -- the domain deliberately admits 5, so the
+      invariant is a property the design maintains rather than a fact the representation cannot
+      state the violation of. A vacuously-held bound would be the engine's own disclosure, and this
+      example exists to show the earned kind.
+
+  - id: occupancy-is-nonnegative
+    statement: >
+      Queue occupancy never falls below zero.
+    expressed_as: occupancy-never-negative
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      The mirror-image bound, held the same way: the PROCESSING GUARD stops removal at zero while
+      the domain deliberately admits -1, so this too is earned by exploration rather than decided
+      by the state vector. Shipped as a second requirement so the first green checkmark is not a
+      singleton -- two invariants over one variable, each decided mechanically.
+
+queries:
+
+  - id: queue-never-exceeds-capacity
+    label: Queue occupancy never exceeds 4 jobs
+    suggested: true
+    models: [queue-capacity]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The first thing a novice should see: a property stated over the model and mechanically
+      evaluated. Universal, so exhaustive satisfaction establishes it and there is no witness to
+      show -- a universal that holds has no single configuration to point at. Held non-vacuously:
+      occupancy 4 is reachable (two arrivals from the initial two jobs), so the bound is doing work
+      at a configuration the walk actually visited.
+
+  - id: occupancy-never-negative
+    label: Queue occupancy is always at least 0 jobs
+    suggested: true
+    models: [queue-capacity]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The companion invariant at the other end of the domain. Occupancy 0 is reachable (two
+      processing steps), so this too is checked at the boundary rather than holding at a distance.
+      Together the pair says the representation keeps occupancy inside [0, 4] everywhere, which is
+      what "the model supports checking the invariant" means in practice.
+
+  - id: another-arrival-is-possible
+    label: Another job can arrive from the initial state
+    suggested: true
+    models: [queue-capacity]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 1
+        labels_at_least:
+          arrival: 1
+        final:
+          queue-capacity.state: ready
+          queue-capacity.occupancy: 3
+    note: >
+      The difference between an invariant and a possibility question, without new machinery. This
+      one is existential, so the answer IS a witness: one arrival step from the initial two jobs to
+      three, inside capacity. The two invariants above answered with no evidence at all -- same
+      model, different kind of claim, different kind of answer.
+
+# ---------------------------------------------------------------------------
+# Useful modifications (section 2). Each is a real transaction driven through
+# openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.
+#
+# `base` is omitted: it must equal the live system hash, which the test fills in.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: remove-the-arrival
+    label: Remove the arrival transition
+    rationale: >
+      What if jobs stopped arriving? Deleting the arrival leaves occupancy able only to fall, so
+      "another job can arrive" flips from holds to refuted while both capacity invariants stand.
+      The deletion is addressed BY INDEX (0): the two self-loops share their endpoints, so from/to
+      cannot pick one -- which is itself a small lesson in how transitions are identified.
+
+      Note what this modification does NOT do: deleting the whole arrival transition cannot break
+      the capacity invariant, because occupancy can then only fall. The edit that WOULD break it is
+      narrower -- removing the arrival's guard alone -- which is where a student learns that the
+      invariant is earned by the guard, not by the representation.
+    transaction:
+      operations:
+        - op: delete-transition
+          machine: queue-capacity
+          index: 0
+    changes:
+      - query: another-arrival-is-possible
+        from: holds
+        to: refuted
+
+# ---------------------------------------------------------------------------
+# No declarations: every guard in this example is LIVE -- the semantic-live gate's deletion sweep
+# moves an answer for each (the domain deliberately leaves headroom, so each bound rests on its
+# guard). An empty ledger here is a measurement, not an opt-out; the gate derives its own
+# denominator.
+# ---------------------------------------------------------------------------

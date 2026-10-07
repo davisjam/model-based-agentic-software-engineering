@@ -46,7 +46,7 @@ import { savedProperties, witnessShowState } from "../src/ui/shell/askbar.ts";
 /** The example under test, loaded through the same seam the page and the agent use. */
 function messageBus(): CanonicalSystem {
   const ws = new Workspace(realPorts);
-  const loaded = ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  const loaded = ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   assert.ok(loaded.ok, "the example must load");
   assert.deepEqual(loaded.findings, [], "the example must validate clean");
   return ws.state.system;
@@ -55,7 +55,7 @@ function messageBus(): CanonicalSystem {
 /** Run a SAVED question by its id — the student's route, not a query written here. */
 function answer(system: CanonicalSystem, id: string): QueryResult {
   const ws = new Workspace(realPorts);
-  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   const saved = system.queries.get(id);
   assert.ok(saved !== undefined, `${id} must be a saved question of the example`);
   return ws.query(saved.raw);
@@ -211,7 +211,7 @@ test("Q5's direction: repair, then add an impermitted subscriber, and the witnes
   // answers `holds` before and after, because one impermitted subscriber was replaced by another.
   // Only the witness moves, so a reader watching the verdict alone would conclude nothing happened.
   const ws = new Workspace(realPorts);
-  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   const breach = (): QueryResult => ws.query(ws.state.system.queries.get(
     "restricted-data-reaches-impermitted-subscriber")?.raw);
 
@@ -302,7 +302,7 @@ test("Q5's direction: repair, then add an impermitted subscriber, and the witnes
 test("the focus derives its model from the question, and the model is one that declares it", () => {
   const system = messageBus();
   const ws = new Workspace(realPorts);
-  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   const run = (raw: unknown): QueryResult => ws.query(raw);
 
   for (const [id, saved] of system.queries) {
@@ -327,7 +327,7 @@ test("the focus derives its model from the question, and the model is one that d
 test("a focus on a question nobody saved resolves to nothing, rather than to a guess", () => {
   const system = messageBus();
   const ws = new Workspace(realPorts);
-  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   const run = (raw: unknown): QueryResult => ws.query(raw);
 
   // The agent-side race this is for: `view.witness(id)` accepts any id, because a question can be
@@ -341,7 +341,7 @@ test("a focus on a question nobody saved resolves to nothing, rather than to a g
 test("the offer explains itself, and an unkept question is told where to go", () => {
   const system = messageBus();
   const ws = new Workspace(realPorts);
-  ws.load(readFileSync("examples/message-bus/system.mage.yaml", "utf8"));
+  ws.load(readFileSync("test/fixtures/examples/message-bus/system.mage.yaml", "utf8"));
   const run = (raw: unknown): QueryResult => ws.query(raw);
 
   const saved = savedProperties(system);

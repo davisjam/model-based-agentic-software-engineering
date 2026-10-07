@@ -10,7 +10,7 @@
 // vocabulary since 261004, and `mage-model.schema.json` had twelve top-level keys, none of them
 // `requirements` — so the engine knew what a requirement MEANS and no document could contain one.
 // The example corpus said so in its own file, in a header that is now gone: *"MAGE v0.1 has NO
-// requirement construct ... A requirement is therefore carried here"* (`examples/message-bus/
+// requirement construct ... A requirement is therefore carried here"* (`test/fixtures/examples/message-bus/
 // expected-results.yaml`, at 5ed8975a). Quoted from history, not from the tree — the migration on
 // 261005 moved every shipped example's declaration into its model, so the corpus no longer says it.
 //

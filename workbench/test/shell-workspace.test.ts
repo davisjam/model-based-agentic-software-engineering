@@ -13,6 +13,7 @@
 // nodes and edges, and every selection value a row offers is handed to `selectionKind` — the one
 // function the inspector, the action bar and the palette all branch on — rather than to a list of
 // expected prefixes written here.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -27,7 +28,7 @@ import type { CanonicalSystem } from "../src/ir/types.ts";
 import type { AccessibleScene, SceneSubject } from "../src/render/types.ts";
 
 const parsed = (id: string): CanonicalSystem =>
-  canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+  canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
 
 const html = (): string => readFileSync("index.html", "utf8");
 

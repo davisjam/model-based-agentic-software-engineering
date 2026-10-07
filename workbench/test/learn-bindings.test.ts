@@ -35,6 +35,7 @@
 //
 // Nothing below pins a string the builder produced, and no outcome word appears as a literal:
 // every expectation is a second derivation from the registry, the engine or the shipped examples.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -63,7 +64,7 @@ const systems: LoadedSystems = (() => {
   const map = new Map<ShippedExampleId, CanonicalSystem>();
   for (const id of SHIPPED_EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
-      parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+      parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return map;
 })();

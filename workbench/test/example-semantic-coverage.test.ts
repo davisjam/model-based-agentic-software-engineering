@@ -93,8 +93,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parse, stringify } from "yaml";
-import { SHIPPED_EXAMPLE_IDS, ExampleCatalog } from "../src/app/examples.ts";
-import type { PresentedQuestion, ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, exampleDir, type ExampleId } from "../src/app/example-corpus.ts";
 import { Workspace } from "../src/app/services.ts";
 import { DIMENSIONS, UNIT_DIMENSIONS, evaluationOf } from "../src/ir/types.ts";
 import type {
@@ -163,7 +162,7 @@ type Raw = Record<string, unknown>;
 const isObj = (v: unknown): v is Raw => typeof v === "object" && v !== null && !Array.isArray(v);
 
 interface Example {
-  readonly id: ShippedExampleId;
+  readonly id: ExampleId;
   /** The authored model document, as written. */
   readonly raw: Raw;
   readonly system: CanonicalSystem;
@@ -177,8 +176,8 @@ interface Example {
    * this set without anyone editing this file. The disposition table below rests on it.
    */
   readonly askedFor: ReadonlySet<string>;
-  /** The questions a student is PRESENTED, through the application's own catalogue. */
-  readonly presented: readonly PresentedQuestion[];
+  /** The suggested rows — what remains of presentation now the Try-asking surface is retired. */
+  readonly presented: readonly Fixture["queries"][number][];
   readonly workspace: Workspace;
 }
 
@@ -188,25 +187,23 @@ let cached: Corpus | null = null;
 
 async function corpus(): Promise<Corpus> {
   if (cached !== null) return cached;
-  const read = (path: string): Promise<string> => Promise.resolve(readFileSync(path, "utf8"));
   const built: Example[] = [];
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     const loaded = loadExample(id);
     const raw = parse(exampleText(id)) as unknown;
     assert.ok(isObj(raw), `${id}: the model document is not a mapping`);
     const fixtureRaw = parse(readFileSync(fixturePath(id), "utf8")) as unknown;
     assert.ok(isObj(fixtureRaw), `${id}: the fixture document is not a mapping`);
-    // Through the APPLICATION's catalogue, not through `readFixture`. The presented set is the thing
-    // a student reads, and a gate that derived it from the same reader it checks could not notice
-    // the presentation surface drifting away from the corpus.
-    const catalogue = new ExampleCatalog(new Workspace(realPorts), read);
-    const described = await catalogue.describe(id);
     built.push({
       id, raw, fixtureRaw,
       askedFor: consumedKeyPaths(id),
       system: loaded.workspace.state.system,
       fixture: loaded.fixture,
-      presented: described.tryAsking,
+      // The PRESENTED set is the fixture's own `suggested` rows. The "Try asking" catalogue
+      // surface retired with the case envelope (author spec, 261006); `suggested` is what remains
+      // of presentation, and the registration joins below still hold each suggested row to a saved
+      // query whose `name` is the row's label.
+      presented: loaded.fixture.queries.filter((q) => q.suggested),
       workspace: loaded.workspace,
     });
   }
@@ -214,7 +211,7 @@ async function corpus(): Promise<Corpus> {
   return built;
 }
 
-const fixturePath = (id: string): string => `examples/${id}/expected-results.yaml`;
+const fixturePath = (id: string): string => `${exampleDir(id)}/expected-results.yaml`;
 
 /**
  * The reader's raw `where` spellings, folded into the key paths the authored walk produces.
@@ -320,24 +317,8 @@ function auditQuestionRegistration(c: Corpus): Audit {
   const subjects: string[] = [];
   const findings: string[] = [];
   for (const ex of c) {
-    const byId = new Map(ex.fixture.queries.map((q) => [q.id, q] as const));
-    for (const q of ex.presented) {
-      subjects.push(`${ex.id}/${q.query}`);
-      const row = byId.get(q.query);
-      if (row === undefined) {
-        findings.push(
-          `${ex.id}: the catalogue presents '${q.ask}' for query '${q.query}' and no fixture row `
-          + `carries that id, so the question a student reads is attached to nothing`);
-        continue;
-      }
-      // The presented STATEMENT must be the row's own label — the ask is the case's interrogative,
-      // and the statement beside it is what the Properties rail will show for the same id, so a
-      // drifted copy here is two claims wearing one question.
-      if (q.statement.trim() !== row.label.trim()) {
-        findings.push(
-          `${ex.id}/${row.id}: the catalogue carries statement '${q.statement.trim()}' and the fixture `
-          + `labels the row '${row.label.trim()}' — two statements of one question`);
-      }
+    for (const row of ex.presented) {
+      subjects.push(`${ex.id}/${row.id}`);
       const saved = ex.system.queries.get(row.id);
       if (saved === undefined) {
         findings.push(
@@ -364,19 +345,9 @@ function auditQuestionRegistration(c: Corpus): Audit {
           + `proposition the verdict is about`);
       }
     }
-    // Both directions: a suggested row the catalogue does not present is a question the corpus
-    // believes it ships and the application does not.
-    const presented = new Set(ex.presented.map((q) => q.query));
-    for (const q of ex.fixture.queries) {
-      if (q.suggested && !presented.has(q.id)) {
-        findings.push(
-          `${ex.id}/${q.id}: marked suggested and the catalogue does not present it, so the corpus and `
-          + `the application disagree about what a student is offered`);
-      }
-    }
   }
-  return audit(subjects, "the presented set comes from `ExampleCatalog.describe`, which refuses an "
-    + "example that suggests nothing; the registered set comes from `canonicalize`", findings);
+  return audit(subjects, "the presented set is the fixture's own suggested rows; the registered "
+    + "set comes from `canonicalize`", findings);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -572,7 +543,7 @@ function auditClaimFields(c: Corpus): Audit {
     // requiring it to be the bytes the loader loads, so no filename is written here.
     const named = taking(ex.fixtureRaw, "system", consumed);
     assert.equal(typeof named, "string", `${ex.id}: the fixture names no system document`);
-    const text = readFileSync(`examples/${ex.id}/${String(named)}`, "utf8");
+    const text = readFileSync(`${exampleDir(ex.id)}/${String(named)}`, "utf8");
     if (text !== exampleText(ex.id)) {
       findings.push(
         `${ex.id}: the fixture says it describes '${String(named)}' and that file is not the one the `
@@ -1292,7 +1263,7 @@ const LTL_IN_PROSE = /\b([GFX])\(/;
 /** The formula-shaped strings the corpus writes, with the file and line each sits on. */
 function proseFormulas(id: string): readonly (readonly [string, string])[] {
   const out: (readonly [string, string])[] = [];
-  for (const file of [`examples/${id}/system.mage.yaml`, fixturePath(id)]) {
+  for (const file of [`${exampleDir(id)}/system.mage.yaml`, fixturePath(id)]) {
     const lines = readFileSync(file, "utf8").split("\n");
     for (const [i, line] of lines.entries()) {
       if (!LTL_IN_PROSE.test(line)) continue;
@@ -1868,7 +1839,7 @@ test("the prose-question surface the ruling hands a reviewer is non-empty and de
  * control failing rather than as the control being wrongly built. So a control replaces, and the rest
  * of the corpus stays where it is.
  */
-async function replacing(id: ShippedExampleId, patch: (ex: Example) => Example): Promise<Corpus> {
+async function replacing(id: ExampleId, patch: (ex: Example) => Example): Promise<Corpus> {
   const base = await corpus();
   const found = base.find((ex) => ex.id === id);
   assert.ok(found !== undefined, `${id} is not a shipped example`);
@@ -1876,7 +1847,7 @@ async function replacing(id: ShippedExampleId, patch: (ex: Example) => Example):
 }
 
 /** The corpus with one example's MODEL BYTES mutated and reloaded through the production seam. */
-function mutated(id: ShippedExampleId, change: (doc: Raw) => void): Promise<Corpus> {
+function mutated(id: ExampleId, change: (doc: Raw) => void): Promise<Corpus> {
   return replacing(id, (ex) => {
     const doc = parse(exampleText(id)) as unknown;
     assert.ok(isObj(doc));
@@ -1889,7 +1860,7 @@ function mutated(id: ShippedExampleId, change: (doc: Raw) => void): Promise<Corp
 }
 
 /** The corpus with one example's FIXTURE BYTES mutated. */
-function mutatedFixture(id: ShippedExampleId, change: (doc: Raw) => void): Promise<Corpus> {
+function mutatedFixture(id: ExampleId, change: (doc: Raw) => void): Promise<Corpus> {
   return replacing(id, (ex) => {
     const doc = parse(readFileSync(fixturePath(id), "utf8")) as unknown;
     assert.ok(isObj(doc));
@@ -1901,29 +1872,21 @@ function mutatedFixture(id: ShippedExampleId, change: (doc: Raw) => void): Promi
 /** Findings from one audit over a mutated corpus, as a single string the controls match against. */
 const findingsOf = (result: Audit): string => result.findings.join("\n");
 
-test("control: a presented label that is not its query's statement is caught", async () => {
+test("control: a suggested row naming no saved query is caught", async () => {
   const drifted = await replacing("message-bus", (ex) => ({
     ...ex,
-    presented: [{ query: "a-query-nobody-saved", ask: "A question nobody saved?", statement: "A question nobody saved" }],
+    presented: [{ ...ex.presented[0]!, id: "a-query-nobody-saved" }],
   }));
-  assert.match(findingsOf(auditQuestionRegistration(drifted)), /carries that id/,
-    "a presented question attached to no fixture row must be caught");
+  assert.match(findingsOf(auditQuestionRegistration(drifted)), /no saved query by that id/,
+    "a suggested question attached to no saved query must be caught");
 
   const relabelled = await replacing("message-bus", (ex) => {
-    // A SUGGESTED row, derived: only those reach `presented`, so relabelling an unsuggested one
-    // would leave the audit with nothing to compare and the control would pass on an absence.
     const first = ex.fixture.queries.find((q) => q.suggested);
     assert.ok(first !== undefined, "message-bus must suggest a query for this control");
-    assert.ok(ex.presented.some((p) => p.query === first.id), "and the catalogue must present it");
     return {
       ...ex,
-      fixture: {
-        ...ex.fixture,
-        queries: ex.fixture.queries.map(
-          (q) => (q.id === first.id ? { ...q, label: "A narrower claim" } : q)),
-      },
       presented: ex.presented.map(
-        (p) => (p.query === first.id ? { ...p, statement: "A narrower claim" } : p)),
+        (p) => (p.id === first.id ? { ...p, label: "A narrower claim" } : p)),
     };
   });
   assert.match(findingsOf(auditQuestionRegistration(relabelled)), /Two statements of one question/,
