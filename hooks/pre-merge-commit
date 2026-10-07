@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+"""pre-merge-commit: run the STAGED-DECK VALIDITY GATE on merge commits too.
+
+## Why this file exists separately from pre-commit
+
+Git does not run `pre-commit` for a merge commit. Since git 2.24 it runs `pre-merge-commit`
+instead, and when that hook is absent NOTHING runs — so every gate hosted in `pre-commit` is
+silently skipped for the one commit shape most likely to introduce content nobody reviewed
+file-by-file.
+
+For the regen-drift gate that hole is deliberate and documented in `pre-commit` (its verdict is
+a property of a COMMIT, so it lives in `catalog_tests.py` at pre-push, where the tree is clean
+and HEAD is the thing under test). For the staged-deck validity gate it was an oversight, and it
+cost real work on 261007: a merge brought in a `2-3-Alignment.pptx` carrying 49 OOXML schema
+findings (`a:spcBef` appended after `a:buNone`, violating the `CT_TextParagraphProperties`
+sequence). An ordinary commit of that same blob was correctly BLOCKED moments later — the merge
+of it was not. PowerPoint would have reported the deck as needing repair.
+
+## What this does and does not protect
+
+The committed-deck twin in `catalog_tests.py` ("course: committed pptx OOXML schema validity")
+already runs at pre-push and in CI's `--full`, so a corrupt deck could never reach origin. This
+hook is therefore not a shipping-risk fix; it moves the failure from late and confusing (a push
+gate rejecting a merge you made ten commits ago) to immediate and local (the merge itself
+refuses). That is the whole value, and it is worth one file.
+
+Deliberately NOT a copy of pre-commit: the regeneration jobs must not run here. A merge commit's
+tree is the merge result, and regenerating + force-staging into it would mutate the merge beyond
+what either parent said. Only the validity gate — which reads, and never writes — belongs.
+"""
+
+from __future__ import annotations
+
+import os
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _hook_root  # noqa: E402
+
+ROOT = _hook_root.committing_toplevel()
+
+# Same invocation as pre-commit's step 0, against the merge's staged tree.
+_deck_gate = subprocess.run(
+    [sys.executable, os.path.join("tools", "pptx_validate.py"), "--staged"], cwd=ROOT
+)
+if _deck_gate.returncode:
+    print(
+        "pre-merge-commit: staged .pptx BLOCKED — OOXML/OPC validity findings above "
+        "(tools/pptx_validate.py; PowerPoint would report the deck as needing repair)."
+    )
+    sys.exit(1)
