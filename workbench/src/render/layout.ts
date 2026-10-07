@@ -161,15 +161,64 @@ export function transitionSubLabel(guard: string | null, effect: string | null):
 }
 
 /**
- * The degradation rule for the notation line, stated rather than left to overflow: the whole
- * `[guard] / effect` line renders when it fits twice a node's maximum width; a longer predicate
- * renders NOWHERE in the picture — never an ellipsis — and stays whole in the hover title, the
- * twin's edge description, and the inspector. Same whole-line-or-nowhere posture as `inNodeLines`.
+ * The width a notation line WRAPS at, and the ceiling on how many lines one transition may claim.
+ *
+ * The Mermaid pilot's one visual win over this renderer was multi-line edge labels: its edge text
+ * wraps inside a 200 px box, so `processing [occupancy > 0] / occupancy := occupancy - 1` reads as
+ * a compact block between two states instead of a line wider than the states themselves. 200 here
+ * matches that demonstrated bar. The line cap replaces the old single-line width cap as the stated
+ * degradation rule: a notation line that would need MORE than `EDGE_SUBLABEL_MAX_LINES` lines at
+ * the wrap width renders NOWHERE in the picture — never an ellipsis, never unbounded growth that
+ * swallows the canvas — and stays whole in the hover title, the twin's edge description, and the
+ * inspector. Same whole-line-or-nowhere posture as `inNodeLines`. Three lines of 200 px carry the
+ * same text budget the old one-line 560 px rule did.
  */
-export const EDGE_SUBLABEL_MAX_W = 2 * METRICS.nodeMaxWidth;
+export const EDGE_SUBLABEL_WRAP_W = 200;
+export const EDGE_SUBLABEL_MAX_LINES = 3;
 
-export const subLabelFits = (line: string): boolean =>
-  textExtent(line, "mage-edge-sublabel").w <= EDGE_SUBLABEL_MAX_W;
+/** Greedy word-wrap: tokens never split, so a break can never land inside an identifier. */
+function wrapTokens(tokens: readonly string[], maxW: number): readonly string[] {
+  const lines: string[] = [];
+  let current = "";
+  for (const t of tokens) {
+    const joined = current === "" ? t : `${current} ${t}`;
+    if (current !== "" && textExtent(joined, "mage-edge-sublabel").w > maxW) {
+      lines.push(current);
+      current = t;
+    } else {
+      current = joined;
+    }
+  }
+  if (current !== "") lines.push(current);
+  return lines;
+}
+
+/**
+ * The notation line as the PAINTED lines, wrapped. One composer, three readers — the dagre engine
+ * reserves a label box sized to these exact lines, `bounds` accounts for each line's ink, and the
+ * painter paints them verbatim — so a wrapped label is space the layout already reserved, not text
+ * overflowing onto whatever sits beneath it.
+ *
+ * Wrapping is a VISUAL affordance only: the twin, the hover title and the inspector always carry
+ * the one-phrase `transitionSubLabel` form, so a screen reader hears one clause, not fragments.
+ *
+ * The break rule follows the notation's own structure: when the whole line does not fit the wrap
+ * width, the first break lands at the `[guard]` / `/ effect` seam, and only a part still too wide
+ * for one line wraps further — greedily, on spaces, never inside a token. Returns `[]` when the
+ * transition declares nothing, and `[]` when the wrapped form would exceed the line cap (the
+ * whole-or-nowhere rule above).
+ */
+export function transitionSubLabelLines(guard: string | null, effect: string | null): readonly string[] {
+  const whole = transitionSubLabel(guard, effect);
+  if (whole === null) return [];
+  if (textExtent(whole, "mage-edge-sublabel").w <= EDGE_SUBLABEL_WRAP_W) return [whole];
+  const parts = [
+    ...(guard === null ? [] : [`[${guard}]`]),
+    ...(effect === null ? [] : [`/ ${effect}`]),
+  ];
+  const lines = parts.flatMap((p) => wrapTokens(p.split(" "), EDGE_SUBLABEL_WRAP_W));
+  return lines.length > EDGE_SUBLABEL_MAX_LINES ? [] : lines;
+}
 
 /**
  * Which of a node's declared attributes render INSIDE the node box, as `name: value` sub-lines.
@@ -499,16 +548,17 @@ export function bounds(nodes: Iterable<LayoutNode>, edges: readonly LayoutEdge[]
   for (const e of edges) {
     for (const p of e.points) see(p.x, p.y);
     // (c) Edge text, at the spot the engine reserved for it — the event name, and the UML
-    //     `[guard] / effect` line one sublabel pitch below it when one renders.
+    //     `[guard] / effect` lines stacked one sublabel pitch apart below it when they render.
     if (e.labelPoint !== null && e.label !== null) {
       const ext = textExtent(e.label, "mage-edge-label");
       see(e.labelPoint.x - ext.w / 2, e.labelPoint.y - ext.h);
       see(e.labelPoint.x + ext.w / 2, e.labelPoint.y + ext.h);
-      if (e.subLabel !== null && subLabelFits(e.subLabel)) {
-        const sub = textExtent(e.subLabel, "mage-edge-sublabel");
-        see(e.labelPoint.x - sub.w / 2, e.labelPoint.y + SUBLABEL_PITCH - sub.h);
-        see(e.labelPoint.x + sub.w / 2, e.labelPoint.y + SUBLABEL_PITCH + sub.h);
-      }
+      const lp = e.labelPoint;
+      e.subLabelLines.forEach((line, i) => {
+        const sub = textExtent(line, "mage-edge-sublabel");
+        see(lp.x - sub.w / 2, lp.y + (i + 1) * SUBLABEL_PITCH - sub.h);
+        see(lp.x + sub.w / 2, lp.y + (i + 1) * SUBLABEL_PITCH + sub.h);
+      });
     }
   }
 
