@@ -63,6 +63,7 @@
         { "$ref": "#/$defs/opAddRelation" },
         { "$ref": "#/$defs/opDeleteRelation" },
         { "$ref": "#/$defs/opSetPurpose" },
+        { "$ref": "#/$defs/opSetDescription" },
         { "$ref": "#/$defs/opAddModel" },
         { "$ref": "#/$defs/opAddModelEntity" },
         { "$ref": "#/$defs/opDeleteModel" },
@@ -236,6 +237,18 @@
           "type": "array",
           "items": { "type": "string" }
         }
+      }
+    },
+    "opSetDescription": {
+      "description": "Write or revise a model's 'Model in words' -- the stored, deliberately-authored natural-language description beside the formal representation. NOT purpose: question/represents/omits are semantic and hashed; the description is prose with the epistemic status of a code comment, excluded from the canonical hash, so writing it commits without advancing the semantic revision. The human surface renders it verbatim and never generates one: absent means absent. An empty value retracts the field.",
+      "type": "object",
+      "required": ["op", "scope", "id", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "op": { "const": "set-description" },
+        "scope": { "enum": ["model", "machine"] },
+        "id": { "$ref": "#/$defs/id" },
+        "value": { "type": "string" }
       }
     },
     "opAddModel": {

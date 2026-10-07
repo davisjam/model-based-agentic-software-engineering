@@ -12,7 +12,7 @@
 //   - the models rail's member set is compared to `vm.subjects`, the one list of drawable purposeful
 //     models — which includes MACHINES, because a machine carries its own purpose and a rail built
 //     from `system.models` alone reports worker-queue as having one model and is wrong;
-//   - each row's question is compared to `purposeBlock` of that object's own purpose;
+//   - each row's words are compared to that object's own STORED description;
 //   - the mark is compared to the status vocabulary, whose members come from `STATUS_TEXT`'s keys
 //     rather than from an array written here;
 //   - the short status word is compared to the LONG one, which is the pin that keeps the rail's
@@ -31,7 +31,7 @@ import { STATUS_TEXT } from "../src/app/properties.ts";
 import type { PropertyStatus } from "../src/app/properties.ts";
 import { CAPABILITIES } from "../src/app/capabilities.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
-import { buildViewModel, purposeBlock, resolveSubject, subjectValue } from "../src/ui/view-model.ts";
+import { buildViewModel, resolveSubject, subjectValue } from "../src/ui/view-model.ts";
 import type { ViewModel } from "../src/ui/view-model.ts";
 import { navRails, statusWord } from "../src/ui/shell/nav.ts";
 import type { NavRails } from "../src/ui/shell/nav.ts";
@@ -110,25 +110,28 @@ test("a machine reaches the rail, because a machine is a purposeful model too", 
   }
 });
 
-test("every rail row carries the model's own question, and says so when there is none", () => {
+test("every rail row carries the model's own STORED words, verbatim or not at all", () => {
+  // Author ruling (261006): the purpose question left the default surface; the rail's sub-line is
+  // the stored "Model in words", and a model whose author wrote none shows none — a synthesized
+  // stand-in is the exact failure the doctrine forbids. Precondition: the shipped corpus must
+  // exercise the non-null arm, or this pin is vacuous.
+  let withWords = 0;
   for (const id of SHIPPED_EXAMPLE_IDS) {
     const system = parsed(id);
     const { rails } = railsOf(id);
     for (const row of rails.models) {
       const subject = resolveSubject(system, row.subject);
       assert.ok(subject, `${id}: the rail offers ${row.subject}, which resolves to no subject`);
-      const purpose = subject.kind === "model"
-        ? system.models.get(subject.id)?.purpose
-        : system.machines.get(subject.id)?.purpose;
-      assert.ok(purpose !== undefined, `${id}: ${row.subject} has no purpose to read`);
-      const block = purposeBlock(purpose);
-      assert.equal(row.question, block.question,
-        `${id}: ${row.subject}'s rail question is not the purpose block's — two wordings of one fact`);
-      assert.equal(row.unstated, block.unstated, `${id}: ${row.subject}'s stated-ness disagrees with its purpose`);
-      assert.notEqual(row.question.trim(), "",
-        `${id}: ${row.subject} shows an empty question, which reads as a rendering bug rather than as a fact`);
+      const stored = (subject.kind === "model"
+        ? system.models.get(subject.id)?.description
+        : system.machines.get(subject.id)?.description) ?? null;
+      assert.equal(row.words, stored,
+        `${id}: ${row.subject}'s rail words are not the stored description — the rail must quote, never author`);
+      if (stored !== null) withWords += 1;
     }
   }
+  assert.ok(withWords > 0,
+    "no shipped model stores a description; the verbatim arm of this pin never ran");
 });
 
 test("exactly one row is the one being viewed, and it is the subject the workspace resolves", () => {

@@ -32,7 +32,7 @@ import type {
 } from "../../render/types.ts";
 import type { EvaluatedProperty } from "../../app/properties.ts";
 import { constraintSpan, statusMark } from "../../app/properties.ts";
-import { paintBudget, paintDiagram, paintPrincipal, fillSelect, svgElement } from "../render-dom.ts";
+import { paintBudget, paintDiagram, paintModelScope, paintPrincipal, fillSelect, svgElement } from "../render-dom.ts";
 import { budgetViews } from "../../app/budget.ts";
 import { bindingWords } from "../../app/services.ts";
 import type { ComposedCrossModelView, ComposedPropertyView } from "../../app/services.ts";
@@ -374,9 +374,14 @@ function treeRow(
     li.append(button);
   }
   if (detail !== "") {
-    const d = el("details");
-    d.append(el("summary", "What this says"), el("p", detail));
-    li.append(d);
+    // The twin's derived description, SCREEN-READER ONLY (UX doctrine §3 + the accessible-twin
+    // caveat). This row serves two jobs and they split here: visually, the row is navigation — the
+    // label selects, and the facts it would restate are already drawn in the picture (node boxes
+    // render declared attributes from this same twin). For a screen-reader user the description is
+    // not a restatement of anything; it IS the diagram, so it stays in the reading. The old
+    // rendering was a visible "What this says" disclosure, which duplicated the drawing for
+    // sighted users one details-click deep — exactly the enumeration the doctrine deletes.
+    li.append(el("span", ` ${detail}`, "sr-only"));
   }
   return li;
 }
@@ -617,7 +622,6 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   const region = regionHost("workspace");
   const subjectChoice = sel("diagram-subject");
   const principalPurpose = byId("principal-purpose");
-  const modelDetail = byId("model-detail");
   const modelContents = byId("model-contents");
   const diagramText = byId("diagram-text");
   const modelBudget = byId("model-budget");
@@ -858,8 +862,8 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
     backRow.append(back);
     principalPurpose.append(backRow);
 
-    modelDetail.replaceChildren();
     modelBudget.replaceChildren();
+    byId("model-scope").replaceChildren();
     paintComposedContents(composed, modelContents);
 
     diagramText.replaceChildren();
@@ -903,9 +907,11 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
         ? resolveComposed(ctx, ctx.viewState.composed)
         : null;
       composedActive = composed !== null;
+      // "…as structured text", not "…in words": "Model in words" now names the stored authored
+      // description (UX doctrine §1), and the twin's disclosure must not claim that phrase.
       byId("model-reading-summary").textContent = composedActive
-        ? "The composition in words"
-        : "The model in words";
+        ? "The composition, as structured text"
+        : "The diagram, as structured text";
       if (composed !== null) {
         if (composed.kind === "element") {
           subjectChoice.value = composedChoiceValue(composed.element);
@@ -967,8 +973,9 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
       }
       painted = view === null ? null : { scene: view.accessible, system: frame.state.system };
       // §5.1: the model being viewed states its purpose beside the picture, above the picture, in
-      // text. Correction 2 puts the represents/omits grounds one disclosure deeper, in `#model-detail`.
-      paintPrincipal(frame.vm.principal, principalPurpose, modelDetail);
+      // text — question, represents and omits flat, as labelled authored data (doctrine §2/§12).
+      paintPrincipal(frame.vm.principal, principalPurpose);
+      paintModelScope(frame.vm.principal, byId("model-scope"));
       // ONE `RenderedView`, THREE projections. The renderer's contract makes the SVG unobtainable
       // without its structured twin, and this call site is the reason that matters: the picture, the
       // reading and the contents tree come from one return value, so they cannot describe different

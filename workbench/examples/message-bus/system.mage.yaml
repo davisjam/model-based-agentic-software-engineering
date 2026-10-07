@@ -251,6 +251,10 @@ models:
   event-flow:
     type: graph
     label: Event Flow
+    description: >
+      Models which services may publish and subscribe to each event type, and which may
+      synchronously invoke one another. Edges are permissions, not observed traffic: an absent
+      edge is a prohibition, and the delivery guarantee is deliberately out of scope.
     purpose:
       # "publish or subscribe", in the model's own vocabulary -- the relation is `subscribes`, and
       # the author's copyedit (261005) is explicit: don't translate the model vocabulary away.
@@ -329,6 +333,9 @@ models:
         type: calls
 
   event-propagation:
+    description: >
+      Models where an event originating at one service can eventually reach, by composing the
+      permitted publish and subscribe edges.
     type: graph
     label: Event Propagation
     purpose:
@@ -396,6 +403,9 @@ models:
         type: may_propagate_to
 
   data-policy:
+    description: >
+      Models what data each event type carries and what sensitivity of data each service is
+      cleared to process.
     type: graph
     label: Data Policy
     purpose:

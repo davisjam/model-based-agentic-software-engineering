@@ -73,8 +73,11 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
         "Navigate lists the models the system declares and the properties it asserts. Both are "
           + "navigation: choosing a model puts it in the Workspace, and choosing a property shows "
           + "the claim, its verdict and the models that established it.",
-        "The Workspace holds one model at a time. It states the engineering question that model "
-          + "answers, reads the model's contents in words, and draws it.",
+        "The Workspace holds one model at a time: its name, its kind, its Description — stored "
+          + "prose its author wrote, like a code comment; the Workbench never writes one for you "
+          + "— the drawing, and beneath it the Model scope: what the model declares it Includes "
+          + "and Omits. The drawing is the principal representation; a structured text reading of "
+          + "the same diagram sits behind one disclosure for keyboard and screen-reader use.",
         "The Inspector holds one selected object. It shows what the object is, what it carries, the "
           + "models it appears in, and what its absence would mean.",
         "Ask about the model system — behind the Advanced toggle — takes a question and answers "

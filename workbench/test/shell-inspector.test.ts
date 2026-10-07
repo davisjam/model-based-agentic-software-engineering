@@ -350,22 +350,25 @@ test("Notes and Provenance are the disclosed blocks, and the semantic lines are 
   for (const selection of [[...system.entities.keys()][0] as string, relationSelection(r)]) {
     const i = object(inspectSelection(system, resolveSelection(system, selection)));
     const disclosed = i.blocks.filter((b) => b.disclosed).map((b) => b.label);
-    assert.deepEqual(disclosed, ["Notes", "Provenance"],
-      "only the human-context blocks are collapsed; the declared semantics stay open");
+    assert.deepEqual(disclosed, ["Notes"],
+      "only the authored-note block is collapsed; the declared semantics stay open");
   }
 });
 
-test("provenance renders on the selected object — correction 9's new home for it", () => {
-  // The §7 ledger records the old page-length Provenance section as superseded: discoverability is
-  // answered by placement, one disclosure from the object, not by prominence. So the records have to
-  // actually arrive here.
+test("provenance does NOT render in the inspector — the doctrine's cut, held", () => {
+  // UX doctrine (261006): the inspector is a factual read-only projection of the selected object,
+  // and an origin ledger is not part of "what exactly did I click?". The records stay reachable
+  // through window.mage.provenance(); this pins the CUT, so a later wave re-adding the block is a
+  // decision made on purpose rather than a drift. The fixture precondition keeps the pin honest:
+  // an object that records provenance must exist, or the pin is vacuous and must say so.
   const system = messageBus();
   const withProvenance = [...system.models.values()].find((m) => m.annotation.provenance !== null)
     ?? [...system.entities.values()].find((e) => e.annotation.provenance !== null);
-  assert.ok(withProvenance, "the shipped fixture records provenance on at least one object");
+  assert.ok(withProvenance, "fixture drift: no shipped object records provenance; the pin is vacuous");
   const selection = system.models.has(withProvenance.id) ? `model:${withProvenance.id}` : withProvenance.id;
-  const provenance = blockNamed(object(inspectSelection(system, resolveSelection(system, selection))), "Provenance");
-  assert.ok(provenance.lines.length > 0, "the object records an origin and the pane shows none");
+  const i = object(inspectSelection(system, resolveSelection(system, selection)));
+  assert.ok(!i.blocks.some((b) => b.label === "Provenance"),
+    "the inspector renders a Provenance block; the doctrine cut it from the default surface");
 });
 
 test("an assumption note carries the A1 boundary in the one wording the tables use", () => {

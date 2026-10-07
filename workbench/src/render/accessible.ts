@@ -488,6 +488,7 @@ export function buildAccessibleScene(
   const summary = [
     `${subjectWord} ${quote(scene.title)}: ${nodes.length} node${nodes.length === 1 ? "" : "s"}, ${edges.length} relation${edges.length === 1 ? "" : "s"}.`,
     scene.question === null ? null : `Question: ${scene.question}`,
+    scene.includes.length === 0 ? null : `Includes: ${scene.includes.join(", ")}.`,
     scene.omits.length === 0 ? null : `Deliberately omits: ${scene.omits.join(", ")}.`,
     outcomeSentence(req.outcome, req.coverage, req.refusal),
     coverageSentence(req.coverage),
@@ -500,6 +501,9 @@ export function buildAccessibleScene(
   return {
     title: scene.title,
     summary,
+    question: scene.question,
+    includes: scene.includes,
+    omits: scene.omits,
     subject: scene.subject,
     systemHash: systemHash(system),
     direction: layout.direction,

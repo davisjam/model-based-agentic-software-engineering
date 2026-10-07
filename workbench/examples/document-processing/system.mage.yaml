@@ -373,6 +373,10 @@ machines:
   document-lifecycle:
     label: Document Lifecycle
     entity: document
+    description: >
+      Tracks a document from intake through validation and processing to publication, with the
+      review step that must occur before a document may publish. States are the stages a
+      document can be observed in; the pipeline's costs live in the companion models.
     purpose:
       question: What states can a document enter, and what must occur before publication?
       represents:
@@ -453,6 +457,10 @@ models:
   pipeline-performance:
     type: graph
     label: Pipeline Performance
+    description: >
+      Models the processing pipeline as ordered stages with declared latency and memory costs,
+      so the latency and memory requirements can be decided against authored quantities rather
+      than measurements this model does not contain.
     purpose:
       question: Does document processing satisfy the modeled latency and memory requirements?
       represents:

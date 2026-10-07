@@ -305,6 +305,7 @@ function nodeGroup(
   r: Resolved,
   subLabels: readonly string[],
   readingIndex: number,
+  declaration: string,
 ): SvgNode {
   const cx = node.rect.x + node.rect.w / 2;
   // A leaf's label anchors in the STANDARD-HEIGHT band at the top of its box, not at rect centre:
@@ -359,7 +360,18 @@ function nodeGroup(
       "data-pinned": node.pinned ? "true" : null,
       "data-emphasis": r.kind,
     },
-    [...initialMarker(node, layout), nodeShape(node, r), ...texts],
+    [
+      // The precise declaration, as the browser's own hover tooltip (`<svg:title>`): name, type,
+      // every declared attribute — `OrderCreated : event-type / carries = restricted`. The box
+      // carries only what is needed to READ the diagram; hover exposes the declaration; selection
+      // reaches the same facts in the Inspector, which is the keyboard and screen-reader path (the
+      // canvas is aria-hidden by design, so a focus-triggered tooltip here would require focusable
+      // content inside an aria-hidden subtree — the SH-I4 violation). Never the ONLY route.
+      el("title", {}, [], declaration),
+      ...initialMarker(node, layout),
+      nodeShape(node, r),
+      ...texts,
+    ],
   );
 }
 
@@ -567,9 +579,13 @@ export function renderView(
     // `nodeBoxLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
     // line the box already has height and width for — a leaf grows downward, a region's lines sit
     // in the band between its header and its children. Claim lines ride behind attribute lines.
-    const subs = nodeBoxLines(
-      scene.nodes.find((s) => s.id === n.id)?.properties ?? [], show, claims.get(n.id) ?? []);
-    return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0);
+    const sceneNode = scene.nodes.find((s) => s.id === n.id);
+    const subs = nodeBoxLines(sceneNode?.properties ?? [], show, claims.get(n.id) ?? []);
+    const declaration = [
+      `${n.label} : ${sceneNode?.entityType ?? (sceneNode?.role === "state" ? "state" : n.kind)}`,
+      ...(sceneNode?.properties ?? []).map((p) => `${p.name} = ${p.value}`),
+    ].join("\n");
+    return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0, declaration);
   });
 
   // --- the strips below the diagram, and the viewBox that must contain all of it ---------------

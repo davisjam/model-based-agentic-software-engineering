@@ -117,6 +117,8 @@ models:
   # `sample` each appear in a team model AND in the boundary model (shared identity, EX-I2), and
   # the delivery question composes all three.
   instrumentation:
+    description: >
+      Models what the sensor emits, and as what signal.
     type: graph
     label: Instrumentation
     purpose:
@@ -143,6 +145,8 @@ models:
           and omitting it is honest reduction, not sloppiness.
 
   control:
+    description: >
+      Models what the controller consumes and where it comes from.
     type: graph
     label: Control
     purpose:
@@ -169,6 +173,9 @@ models:
           namespace but nothing yet asserts they are the same KIND of thing.
 
   signal-path:
+    description: >
+      Models the delivery of the sensor output to the controller input, so the loop wiring can
+      be checked end to end.
     type: graph
     label: Signal Path
     purpose:

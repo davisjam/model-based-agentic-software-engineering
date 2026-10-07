@@ -146,6 +146,14 @@ export interface Purpose {
 export interface CanonModel {
   readonly id: string;
   readonly label: string;
+  /**
+   * "Model in words" — deliberately-authored natural language beside the formal representation,
+   * written by the author or the agent and STORED in the model artifact. Epistemic status: a code
+   * comment — intentionally authored and reviewable, never formally enforced and never generated
+   * at render time. Null means absent, and absent is shown as nothing: no surface may synthesize
+   * one. Prose, so it stays out of the canonical hash the way a label does.
+   */
+  readonly description: string | null;
   readonly purpose: Purpose;
   readonly entities: readonly string[];  readonly annotation: Annotated;
 }
@@ -275,6 +283,8 @@ export interface CanonMachine {
    * every selector and transaction still names the machine by `id`.
    */
   readonly label: string;
+  /** "Model in words" for the state-machine model type — same contract as `CanonModel.description`. */
+  readonly description: string | null;
   readonly entity: string | null;
   readonly instances: number;
   readonly purpose: Purpose;

@@ -378,6 +378,15 @@ export interface KeyEntry {
 export interface AccessibleScene {
   readonly title: string;
   readonly summary: string;
+  /**
+   * The subject's engineering question and deliberate omissions, as STRUCTURE. The summary already
+   * interpolates both into prose; these carry the same facts as fields so a parity check (UX-I11)
+   * can join against them rather than parsing the sentence — the checkModelPlurality lesson.
+   */
+  readonly question: string | null;
+  /** "Includes" — the distinctions the model intentionally represents, as structure like `omits`. */
+  readonly includes: readonly string[];
+  readonly omits: readonly string[];
   readonly subject: { readonly kind: SceneSubjectKind; readonly id: string };
   /**
    * The canonical hash of the system this view depicts. A view outliving its model is the same

@@ -1,7 +1,7 @@
 /**
- * UX-I4 and UX-I7, as functions over the view model.
+ * The UX invariants, as functions over the view model (UX-I4 repointed 261006, UX-I7, UX-I11).
  *
- * These two had no implementation of any kind — not a test, not a comment, not a check — while
+ * These originally had no implementation of any kind — not a test, not a comment, not a check — while
  * UX-I1, -I2, -I3 and -I6 all had one. An invariant that exists only in prose is a sentence
  * somebody will read as satisfied, and §21 is a list of SHALLs. So they are encoded here and walked
  * by `test/view-model.test.ts`, in the style `checkAffordanceParity()` set: return every violation
@@ -14,65 +14,58 @@
  * over the IR would pass on a workbench that showed nothing.
  */
 import type { UxViolation } from "../app/capabilities.ts";
+import type { AccessibleScene } from "../render/types.ts";
 import type { Annotated, CanonicalSystem, Purpose } from "../ir/types.ts";
-import type { PropertyRow, PurposeBlock, ViewModel } from "./view-model.ts";
+import type { PropertyRow, ViewModel } from "./view-model.ts";
 import { CAVEATED_NOTE_KINDS } from "./view-model.ts";
 
-/** A purpose block is a statement either way; an empty one is a gap dressed as a field. */
-function stated(p: PurposeBlock): boolean {
-  return p.question.trim() !== "";
-}
-
 /**
- * UX-I4 — every purposeful model exposes its engineering purpose as a primary part of its human
- * presentation, rather than treating purpose solely as hidden metadata.
+ * UX-I4 — every purposeful model exposes its engineering intent as a primary part of its human
+ * presentation, rather than treating intent solely as hidden metadata. REPOINTED, not retired
+ * (author, 261006: "I'm a fan of demanding it, why retire?").
  *
- * Three things are checked, and the third is §5.1 specifically:
+ * The CLAIM is unchanged from the original UX-I4; what changed is the FIELD that carries the
+ * intent. The author ruled the purpose block (question / represents) out of the default surface —
+ * "we are reducing the UX … sticking with just such descriptions" — so the intent the human reads
+ * is now **Model in words**, the stored authored `description`, with **Out of scope** (`omits`,
+ * V24-validated) beside it. This check therefore demands the description where the old check
+ * demanded the question:
  *
- *   1. Every row in the Models section carries its own `purpose` block. Not a clause of the detail
- *      string — the gap this closed was exactly that: the question was the first fragment of a
- *      ` · `-joined sentence, unlabelled and syntactically identical to `over 4 entities`.
- *   2. Every machine row carries one too. A machine declares `purpose` in the IR, is drawn as its
- *      own subject, and is what a behavioural property grounds in, so it is a purposeful model in
- *      everything but the type name.
- *   3. When a model is the PRINCIPAL model being viewed — the one the diagram is drawing — its
- *      purpose is displayed with it. §5.1 names this case and it was the one actually failing: the
- *      models table stated every purpose, and the one place a model was singled out as the thing
- *      under inspection showed a subject name and a picture.
+ *   1. Every model row and machine row in the browser presents its stored words.
+ *   2. The PRINCIPAL model being viewed presents them beside the picture — the case §5.1 names,
+ *      and the one that was actually failing when the invariant was first written.
  *
- * What is NOT checked: that `represents` and `omits` are on screen at all times. §5.1 explicitly
- * allows them to be inspectable instead, so requiring them here would be stricter than the
- * specification and would fail a legitimate design.
+ * An ABSENT description is a VIOLATION, decided deliberately: the schema keeps the field optional
+ * (a loader must accept a bare model), but a model displayed to a human with no authored words is
+ * intent-as-hidden-metadata — exactly what this invariant exists to refuse. The agent that adds a
+ * model is expected to write its words in the same transaction (`set-description`). The shipped
+ * corpus carries authored text for every model, so a violation here names real rot, not fixture
+ * noise. `omits` is NOT demanded: an empty out-of-scope list is a legitimate authored state,
+ * while empty intent is not.
  */
-export function checkPurposeVisibility(vm: ViewModel): readonly UxViolation[] {
+export function checkWordsVisibility(vm: ViewModel): readonly UxViolation[] {
   const out: UxViolation[] = [];
   for (const section of vm.sections) {
     if (section.id !== "models" && section.id !== "machines") continue;
     for (const row of section.rows) {
-      // Transitions share the machines section and are not purposeful reductions; a transition with
-      // a purpose block would be the invention, not the omission.
+      // Transitions share the machines section and are not models; a transition with words would
+      // be the invention, not the omission.
       if (section.id === "machines" && !row.kind.startsWith("machine")) continue;
-      if (row.purpose === null) {
+      if (row.words === null || row.words.trim() === "") {
         out.push({
           invariant: "UX-I4", subject: row.id,
-          problem: `${row.kind} '${row.id}' is presented with no purpose block, so its purpose is `
-            + "reachable only as metadata",
-        });
-        continue;
-      }
-      if (!stated(row.purpose)) {
-        out.push({
-          invariant: "UX-I4", subject: row.id,
-          problem: `${row.kind} '${row.id}' has an empty purpose block; an absent question must be `
-            + "stated as absent, not rendered as blank",
+          problem: `${row.kind} '${row.id}' presents no Model in words, so its intent is reachable `
+            + "only as hidden metadata",
         });
       }
     }
   }
-  if (vm.principal !== null && !stated(vm.principal.purpose)) {
+  if (vm.principal !== null
+      && (vm.principal.description === null || vm.principal.description.trim() === "")) {
     out.push({
       invariant: "UX-I4", subject: vm.principal.id,
-      problem: `the principal ${vm.principal.kind} being viewed states no purpose beside it (§5.1)`,
+      problem: `the principal ${vm.principal.kind} being viewed presents no Model in words beside `
+        + "the picture (§5.1)",
     });
   }
   return out;
@@ -226,11 +219,17 @@ export function authoredStrings(system: CanonicalSystem): readonly AuthoredStrin
   for (const e of system.entities.values()) out.push(...annotationStrings(`entity:${e.id}`, e.annotation));
   for (const m of system.models.values()) {
     out.push(...annotationStrings(`model:${m.id}`, m.annotation), ...purposeStrings(`model:${m.id}`, m.purpose));
+    // "Model in words" is the author's prose by definition; a verdict channel quoting it would be
+    // authored explanation wearing the engine's voice.
+    if (m.description !== null) out.push({ home: `model:${m.id}.description`, text: m.description });
   }
   for (const r of system.relations) {
     out.push(...annotationStrings(`relation:${r.model}/${r.from}->${r.to}`, r.annotation));
   }
-  for (const m of system.machines.values()) out.push(...purposeStrings(`machine:${m.id}`, m.purpose));
+  for (const m of system.machines.values()) {
+    out.push(...purposeStrings(`machine:${m.id}`, m.purpose));
+    if (m.description !== null) out.push({ home: `machine:${m.id}.description`, text: m.description });
+  }
   return out.filter((a) => a.text.trim().length > 0);
 }
 
@@ -296,6 +295,120 @@ export function checkEpistemicBoundary(
             + "caveat on everything is a caveat a reader learns to skip.",
         });
       }
+    }
+  }
+  return out;
+}
+
+// --------------------------------------------------------------------------------------------
+// UX-I11 — twin parity under the viewer doctrine
+// --------------------------------------------------------------------------------------------
+
+/**
+ * UX-I11 — every semantic fact the default surface stops showing visually remains present in the
+ * diagram's accessible twin (FR-A11Y-2's structure). Removing a visible duplicate is sanctioned;
+ * removing the screen-reader path is not, because for that user the twin is not redundant with the
+ * picture — it IS the picture.
+ *
+ * Numbered I11, not I10: UX-I10 appears in `DECISIONS-RULED-shell-261002.md` only as a DECLINED
+ * proposal ("would put two numbers on one claim"), so minting a different claim under that number
+ * would collide with the recorded meaning of the ruling. I11 is the next unclaimed number.
+ *
+ * Why it exists NOW: the viewer doctrine deletes visible prose — the per-row "What this says"
+ * disclosures, the enumerations that restate the drawing — and the deletion is safe only while the
+ * twin still carries what the prose carried. This check is the caveat converted to a control, so
+ * the next deletion pass gets the rule enforced rather than rediscovered.
+ *
+ * It reads the RENDER VIEW MODEL (`AccessibleScene`), not the IR, for UX-I4's reason: the IR
+ * always has the facts; the thing being constrained is whether the presentation layer still hands
+ * them to assistive technology. What is checked, per the facts the visible surface draws:
+ *
+ *   1. Every node carries a non-empty `description` — a node with no sentence is a node a screen
+ *      reader cannot hear.
+ *   2. Every declared attribute the picture renders as an in-box line (`properties`) is named in
+ *      that node's description — name AND value, since the box shows both.
+ *   3. Every claim the picture marks on a node (`claims`) has its statement in the description.
+ *   4. Every edge carries a non-empty `description` naming both endpoint labels — the arrow, as a
+ *      sentence.
+ *   5. The scene summary states the subject's question when one is declared on the scene, and its
+ *      deliberate omissions — the two purpose facts the default header and the Advanced
+ *      disclosures carry visually.
+ *
+ * What is NOT checked: that any of this is visible. That is the point — the doctrine moves the
+ * visible rendering around freely, and this invariant pins the channel that must not move.
+ */
+export function checkTwinParity(scene: AccessibleScene): readonly UxViolation[] {
+  const out: UxViolation[] = [];
+  for (const n of scene.nodes) {
+    if (n.description.trim() === "") {
+      out.push({
+        invariant: "UX-I11", subject: n.id,
+        problem: "the twin gives this node no description; the visible surface no longer restates "
+          + "the diagram in prose, so an empty sentence here silences the node entirely",
+      });
+      continue;
+    }
+    for (const p of n.properties) {
+      if (!n.description.includes(p.name) || !n.description.includes(p.value)) {
+        out.push({
+          invariant: "UX-I11", subject: n.id,
+          problem: `the picture renders declared attribute '${p.name}: ${p.value}' in the node box, `
+            + "but the twin's description does not carry it — the visual and accessible channels "
+            + "have drifted",
+        });
+      }
+    }
+    for (const c of n.claims) {
+      if (!n.description.includes(c.statement)) {
+        out.push({
+          invariant: "UX-I11", subject: n.id,
+          problem: `the picture marks this node with claim "${c.statement}", but the twin's `
+            + "description does not state it",
+        });
+      }
+    }
+  }
+  for (const e of scene.edges) {
+    if (e.description.trim() === "") {
+      out.push({
+        invariant: "UX-I11", subject: e.id,
+        problem: "the twin gives this edge no description; an arrow with no sentence is invisible "
+          + "to a screen reader",
+      });
+      continue;
+    }
+    if (!e.description.includes(e.fromLabel) || !e.description.includes(e.toLabel)) {
+      out.push({
+        invariant: "UX-I11", subject: e.id,
+        problem: "the edge's description does not name both endpoints, so the reader hears a "
+          + "relation without hearing what it relates",
+      });
+    }
+  }
+  if (scene.question !== null && scene.question.trim() !== ""
+      && !scene.summary.includes(scene.question)) {
+    out.push({
+      invariant: "UX-I11", subject: scene.title,
+      problem: "the subject declares an engineering question and the twin's summary does not state "
+        + "it; the default header shows it visually, and the twin must keep pace",
+    });
+  }
+  for (const included of scene.includes) {
+    if (!scene.summary.includes(included)) {
+      out.push({
+        invariant: "UX-I11", subject: scene.title,
+        problem: `the subject declares it includes '${included}' and the twin's summary does not `
+          + "say so; Includes is on the visible Model scope block, and the twin must keep pace",
+      });
+    }
+  }
+  for (const omitted of scene.omits) {
+    if (!scene.summary.includes(omitted)) {
+      out.push({
+        invariant: "UX-I11", subject: scene.title,
+        problem: `the subject deliberately omits '${omitted}' and the twin's summary does not say `
+          + "so; the omission is the half of a purpose a diagram cannot draw",
+      });
     }
   }
   return out;

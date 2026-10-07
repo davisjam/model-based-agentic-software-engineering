@@ -214,6 +214,9 @@ relation-types:
 models:
 
   sensor-firmware:
+    description: >
+      Models the firmware components and their declared SRAM use, so the 256 KiB budget and its
+      margin can be decided from authored quantities.
     type: graph
     label: Sensor Firmware SRAM
     purpose:
@@ -285,6 +288,9 @@ models:
           annotation declaring neither charges nothing anywhere.
 
   sensor-dataflow:
+    description: >
+      Models the path a sample takes from the sensor, through buffering and encoding, to the
+      radio.
     type: graph
     label: Sensor Data Path
     purpose:

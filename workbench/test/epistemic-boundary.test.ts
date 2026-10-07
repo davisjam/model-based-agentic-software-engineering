@@ -128,6 +128,9 @@ const ROW_CHANNELS: Readonly<Record<string, "descriptive" | "structural" | "auth
   label: "descriptive",
   kind: "descriptive",
   detail: "descriptive",
+  // "Model in words" — the stored description, quoted verbatim. The author's own prose by
+  // definition, which is exactly why it must never land in a verdict-bearing channel.
+  words: "authored",
   purpose: "authored",
   assertedBy: "structural",
   states: "descriptive",

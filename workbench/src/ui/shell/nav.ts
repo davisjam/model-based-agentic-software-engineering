@@ -46,7 +46,7 @@ import type { CompositionEdge } from "../../app/services.ts";
 import type { CanonicalSystem } from "../../ir/types.ts";
 import { propertyBlock } from "../render-dom.ts";
 import { witnessFocus } from "./workspace.ts";
-import { purposeBlock, resolveSubject, subjectValue } from "../view-model.ts";
+import { resolveSubject, subjectValue } from "../view-model.ts";
 import type { PropertyRow, ViewModel } from "../view-model.ts";
 import { byId, mountIf } from "./context.ts";
 import type { ShellContext, ShellFrame, ShellRegion } from "./context.ts";
@@ -61,10 +61,13 @@ export interface ModelRailRow {
   /** The `kind:id` subject value — what activating the row assigns to `ViewState.target`. */
   readonly subject: string;
   readonly name: string;
-  /** The purpose question, or the sentence saying the model states none. Never empty. */
-  readonly question: string;
-  /** The model declares no question, so `question` is a statement about that absence. */
-  readonly unstated: boolean;
+  /**
+   * The model's stored "Model in words", or null when its author wrote none. Author ruling
+   * (261006): the purpose question left the default surface with the rest of the purpose block;
+   * the description is the single authored prose the rail may show, and absent means absent —
+   * no sentence is synthesized in its place.
+   */
+  readonly words: string | null;
   readonly current: boolean;
 }
 
@@ -175,14 +178,14 @@ export function navRails(
       ? system.models.get(subject.id)?.purpose
       : system.machines.get(subject.id)?.purpose;
     if (purpose === undefined) return [];
-    const block = purposeBlock(purpose);
     return [{
       subject: choice.value,
       name: subject.kind === "model"
         ? system.models.get(subject.id)?.label ?? subject.id
         : system.machines.get(subject.id)?.label ?? subject.id,
-      question: block.question,
-      unstated: block.unstated,
+      words: (subject.kind === "model"
+        ? system.models.get(subject.id)?.description
+        : system.machines.get(subject.id)?.description) ?? null,
       current: choice.value === current,
     }];
   });
@@ -307,10 +310,11 @@ function modelNode(row: ModelRailRow): HTMLLIElement {
     link.setAttribute("aria-current", "true");
     link.append(document.createTextNode(" "), el("span", "being viewed", "state"));
   }
-  // The question, under the name and inside the link, because the question is what the model IS and
-  // a rail of bare names teaches a reader nothing about why there is more than one. A model that
-  // states none says so, in the `caveat` voice the purpose block already uses for that fact.
-  link.append(el("p", row.question, row.unstated ? "caveat" : "purpose"));
+  // Model in words, under the name and inside the link — the stored authored description, when one
+  // exists. A rail of bare names teaches a reader nothing about why there is more than one model,
+  // and the description is the one authored prose the default surface shows (author ruling,
+  // 261006; the purpose question left the surface with the rest of the purpose block).
+  if (row.words !== null) link.append(el("p", row.words, "purpose"));
   li.append(link);
   return li;
 }

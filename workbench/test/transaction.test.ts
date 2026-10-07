@@ -664,3 +664,48 @@ test("undo does not resurrect a stale result: the hash travels with the system",
   assert.notEqual(r1.systemHash, e.hash());
   assert.equal(r1.systemHash, r1.revision?.hash);
 });
+
+// ------------------------------------------------------------------------------------------------
+// set-description — "Model in words" as STORED model data (UX doctrine §1)
+// ------------------------------------------------------------------------------------------------
+
+test("set-description stores the authored sentence, and export -> load round-trips it", () => {
+  const e = engine();
+  // PRECONDITION of the whole suite: the fixture model must START without a description, or the
+  // "stored, not synthesized" assertions below measure the fixture rather than the op.
+  assert.equal(e.system().models.get("service-flow")?.description, null,
+    "fixture drift: service-flow already carries a description; this suite's baseline is wrong");
+  const words = "Models which services may invoke one another; permission, not observed traffic.";
+  commits(e, { op: "set-description", scope: "model", id: "service-flow", value: words });
+  assert.equal(e.system().models.get("service-flow")?.description, words);
+  // Round-trip: the field is part of the ARTIFACT, so a reload of the exported text preserves it.
+  const reloaded = TransactionEngine.load(e.toText());
+  assert.ok(reloaded.engine, "exported document failed to reload");
+  assert.equal(reloaded.engine.system().models.get("service-flow")?.description, words,
+    "the description did not survive export() -> load(); it is render-state, not model data");
+});
+
+test("a description is prose: writing it does not advance the semantic revision", () => {
+  const e = engine();
+  const before = e.hash();
+  commits(e, { op: "set-description", scope: "model", id: "service-flow", value: "A sentence." });
+  assert.equal(e.hash(), before,
+    "writing 'Model in words' re-identified the system; prose must stay out of the canonical "
+    + "hash the way a label does");
+});
+
+test("set-description reaches a machine, and an empty value retracts the field", () => {
+  const e = engine();
+  const words = "Tracks the document through its processing states.";
+  commits(e, { op: "set-description", scope: "machine", id: "document", value: words });
+  assert.equal(e.system().machines.get("document")?.description, words);
+  commits(e, { op: "set-description", scope: "machine", id: "document", value: "  " });
+  assert.equal(e.system().machines.get("document")?.description, null,
+    "an all-whitespace value must RETRACT the description — absent means absent, never blank");
+});
+
+test("set-description refuses an id that names nothing, atomically", () => {
+  const e = engine();
+  const r = rejects(e, { op: "set-description", scope: "model", id: "no-such-model", value: "x" });
+  assert.match(r.rejection?.message ?? "", /set-description/);
+});

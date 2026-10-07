@@ -560,6 +560,15 @@ export async function reflowAt(page, width, height = 512) {
     // document overflows -- which is also the only time its answer is needed.
     if (horizontalOverflowPx > 0) {
       for (const { el } of uncontained) {
+        // Ink the element itself CLIPS cannot scroll the document, so it is not a 1.4.10 offender
+        // and must not be reported as one. The case that found this: the screen-reader-only clip
+        // pattern (absolute, 1px, overflow hidden, white-space nowrap) lays its text out thousands
+        // of px wide while painting none of it — the ink pass flooded the capped offender list
+        // with invisible text and crowded out the real 1px element offender, failing this probe's
+        // own name-the-offender control. The element walk's containment check is unchanged: only
+        // the text pass has this blind spot, because only text ink escapes a border box.
+        const own = getComputedStyle(el);
+        if (own.overflowX === "hidden" || own.overflowX === "clip") continue;
         for (const node of el.childNodes) {
           if (node.nodeType !== Node.TEXT_NODE || node.textContent.trim() === "") continue;
           const range = document.createRange();

@@ -299,14 +299,14 @@
   */
   #workspace:not([hidden]) {
     display: grid;
-    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wdetail" "wbudget" "wreading";
+    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wscope" "wbudget" "wreading";
   }
   #workspace-h { grid-area: wtitle; }
   #workspace > label.field { grid-area: wtools; }
   #add-menu { grid-area: wmenu; }
   #principal-purpose { grid-area: wpurpose; }
   #canvas { grid-area: wcanvas; }
-  #model-detail { grid-area: wdetail; }
+  #model-scope { grid-area: wscope; }
   #model-budget { grid-area: wbudget; }
   #model-reading { grid-area: wreading; }
 
@@ -444,6 +444,16 @@
     margin: .1rem 0 .4rem; padding-inline-start: .7rem; border-inline-start: var(--mage-border-accent-bar) solid var(--accent);
     max-width: 46rem;
   }
+
+  /*
+    "Model in words" — the stored authored description under the model's name. Plain TEXT at the
+    reading measure: not an input, not behind a disclosure, and styled as body prose rather than as
+    chrome, because it is model DATA the author wrote. The ⓘ provenance disclosure beside it stays
+    small: it reveals last-updated and source, which matter but do not belong on the main view.
+  */
+  p.model-words { margin: .1rem 0 .4rem; max-width: 46rem; }
+  details.model-words-prov { font-size: .8rem; color: var(--muted); margin: 0 0 .4rem; }
+  details.model-words-prov summary { cursor: pointer; width: max-content; }
 
   figure { margin: 0; }
   /*
@@ -869,12 +879,16 @@
       where it was written to apply. Above the picture, in words, so it reaches a reader who never
       sees the canvas.
     -->
-    <div id="principal-purpose"></div>
     <!--
-      Correction 2: the purpose stays visible, the supporting epistemic machinery is one click away.
-      `paintPrincipal` writes the question above and the represents/omits disclosures here.
+      The whole header the doctrine's §2 asks for renders here: name, type, "Model in words" (the
+      stored authored description, when one exists), and the purpose — question, represents, omits.
+      All three purpose fields are AUTHORED, VALIDATED model data (omits is V24-checked against the
+      model's real vocabulary), so they are §12's "semantic facts actually in the model" and stay on
+      the default surface — re-presented as labelled data lines, not as the old collapsible
+      explanatory blocks ("What this model represents…"), whose editorial framing made authored
+      facts read as generated commentary.
     -->
-    <div id="model-detail"></div>
+    <div id="principal-purpose"></div>
     <!--
       The structured reading, correction 10's "accessible and inspectable counterpart".
 
@@ -902,9 +916,22 @@
       model a positional rule picked -- the generic fallback section 22.4 forbids. A budget's facts
       are extent and a threshold; its marks are a length and a line.
     -->
+    <!--
+      MODEL SCOPE — Includes / Omits, the model's two authored scope declarations, below the
+      visualization per the author's display spec (261006). `paintModelScope` writes it; empty
+      when the model declares neither.
+    -->
+    <div id="model-scope"></div>
     <div id="model-budget"></div>
+    <!--
+      Renamed from "The model in words" when that phrase became the LABEL of the stored authored
+      description (UX doctrine §1). This disclosure is a different thing: the renderer's structured
+      twin of the DIAGRAM — the accessible counterpart a screen-reader user reads INSTEAD of the
+      picture, and the keyboard surface whose rows select. It is not generated commentary and it
+      does not leave: for that user it is not redundant with anything; it IS the diagram.
+    -->
     <details id="model-reading">
-      <summary id="model-reading-summary">The model in words</summary>
+      <summary id="model-reading-summary">The diagram, as structured text</summary>
       <!--
         The model contents tree (DESIGN-shell-261002.md §3.2): a keyboard-navigable reading of the
         principal model's entities, relations, machines, states and transitions, rendered from the

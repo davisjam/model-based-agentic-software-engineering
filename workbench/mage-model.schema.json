@@ -201,6 +201,10 @@
             "description": "Display name, defaulting to the id. Display only: it never addresses the machine (transactions and selectors use the id) and never enters the transaction base.",
             "type": "string"
           },
+          "description": {
+            "description": "'Model in words' -- optional, deliberately-authored natural language beside the formal representation. Stored model data with the epistemic status of a code comment: the author or the agent writes it, the human surface renders it verbatim, and no surface generates one when it is absent. Prose, so it stays out of the canonical hash like a label.",
+            "type": "string"
+          },
           "entity": {
             "description": "Optional correspondence to a system entity (V6).",
             "$ref": "#/$defs/id"
@@ -262,6 +266,10 @@
         "properties": {
           "type": { "const": "graph" },
           "label": { "type": "string" },
+          "description": {
+            "description": "'Model in words' -- optional, deliberately-authored natural language beside the formal representation. Stored model data with the epistemic status of a code comment: the author or the agent writes it, the human surface renders it verbatim, and no surface generates one when it is absent. Prose, so it stays out of the canonical hash like a label.",
+            "type": "string"
+          },
           "purpose": { "$ref": "#/$defs/purpose" },
           "entities": {
             "description": "Ids of system-level entities this model includes. Models reference; they never redeclare (V3).",

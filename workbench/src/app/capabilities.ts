@@ -533,13 +533,13 @@ export const AUTHORING_SCOPE: {
     { construct: "events", coverage: "document", note: "synchronized-event declarations and their participant lists" },
     {
       construct: "machines", coverage: "partial",
-      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "add-note"],
+      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "set-description", "add-note"],
       note: "states and transitions of an EXISTING machine are op-editable; creating or deleting a "
         + "machine, declaring instances, variables or derived values is whole-document only",
     },
     {
       construct: "models", coverage: "ops",
-      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "add-note"],
+      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "set-description", "add-note"],
     },
     {
       construct: "quantities", coverage: "partial",
@@ -1358,13 +1358,13 @@ export interface ParityViolation {
  * is the one thing UX-I1's whole closure check is for.
  *
  * The checkers live with the thing they check: `checkPropertyGrounding` in `properties.ts` (UX-I5
- * reads an evaluated property), `checkPurposeVisibility` and `checkModelPlurality` in
+ * reads an evaluated property), `checkWordsVisibility`, `checkModelPlurality` and `checkTwinParity` in
  * `ui/invariants.ts` (UX-I4 and UX-I7 read the human presentation, which is what they constrain).
  * Only the shape is shared, and it is shared from here because this is where "the invariants, as
  * functions" already lives.
  */
 export interface UxViolation {
-  readonly invariant: "UX-I4" | "UX-I5" | "UX-I7";
+  readonly invariant: "UX-I4" | "UX-I5" | "UX-I7" | "UX-I11";
   readonly subject: string;
   readonly problem: string;
 }

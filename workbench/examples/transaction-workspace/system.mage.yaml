@@ -271,6 +271,9 @@ machines:
   # every proposal eventually reach a verdict?).
   # -------------------------------------------------------------------------
   transaction-lifecycle:
+    description: >
+      Tracks one proposed change from submission through validation to commit or rejection —
+      the states a change passes through on the way to a verdict.
     label: Transaction Lifecycle
     entity: transaction-engine
     purpose:
@@ -401,6 +404,9 @@ machines:
 models:
 
   change-pipeline:
+    description: >
+      Models the components that take part in applying a change, and which of them may modify
+      the authoritative workspace.
     type: graph
     label: Change Pipeline
     purpose:
