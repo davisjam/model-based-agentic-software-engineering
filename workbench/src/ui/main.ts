@@ -303,6 +303,43 @@ if (stored !== null) {
   }
 }
 
+// -- viewer / advanced mode -------------------------------------------------------------------
+//
+// The default surface is a VIEWER: the human inspects models, properties and evidence; the agent
+// mutates (Human <-> Agent <-> Model/Workbench). Every authoring surface carries
+// class="advanced-only" in the markup and body[data-mode="viewer"] hides the set — markup-first,
+// so the page is a viewer before this module evaluates. The toggle is the one way a human opts
+// back into the editing surfaces, and it is VIEW state: persisted per-tab in sessionStorage,
+// never in the model, never hashed. window.mage is untouched either way — removing the Ask box
+// removes the HUMAN's mutation path, not the agent's.
+const MODE_KEY = "wb-mode";
+const advancedToggle = byId<HTMLButtonElement>("advanced-toggle");
+const applyMode = (advanced: boolean): void => {
+  document.body.dataset["mode"] = advanced ? "advanced" : "viewer";
+  advancedToggle.setAttribute("aria-pressed", advanced ? "true" : "false");
+};
+let advancedMode = false;
+try {
+  advancedMode = sessionStorage.getItem(MODE_KEY) === "advanced";
+} catch {
+  // Deliberate swallow: storage being unavailable means the mode simply does not persist.
+}
+applyMode(advancedMode);
+advancedToggle.addEventListener("click", () => {
+  advancedMode = !advancedMode;
+  try {
+    sessionStorage.setItem(MODE_KEY, advancedMode ? "advanced" : "viewer");
+  } catch {
+    // Deliberate swallow: same as above — the toggle still works for this page.
+  }
+  applyMode(advancedMode);
+  announcer.action(advancedMode
+    ? "Advanced mode. The editing surfaces are shown: the ask and query forms, the edit forms, "
+      + "the Add menu, the Inspector's actions, what-ifs, and the System Browser."
+    : "Viewer mode. The editing surfaces are hidden; the workbench shows models, properties and "
+      + "evidence. Tell your agent to make changes, then Refresh here.");
+});
+
 // RESET: the only wipe. Clears the session AND returns to the base state — the example chooser,
 // with the shipped examples — rather than leaving the just-cleared model on screen, which would
 // read as "Reset did nothing".

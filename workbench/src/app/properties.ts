@@ -85,6 +85,43 @@ export const STATUS_TEXT: Readonly<Record<PropertyStatus, string>> = {
 };
 
 /**
+ * The three-valued glyph the author drew as `✓ / ✗ / ?`, per status, exhaustively.
+ *
+ * A `Record<PropertyStatus, …>` rather than a switch with a default: adding a status to the
+ * vocabulary then fails to compile here. `conditional` takes `?` and not `✓` — it holds of a
+ * REWRITTEN form of the statement, so a tick would claim the statement as written was established.
+ *
+ * Lives here, beside `STATUS_TEXT`, so the rail rows and the in-diagram claim lines read the SAME
+ * mark for the same status — one table, two surfaces.
+ */
+export const STATUS_GLYPH: Readonly<Record<PropertyStatus, string>> = {
+  established: "✓",
+  refuted: "✗",
+  conditional: "?",
+  "not-answerable": "?",
+  inconclusive: "?",
+  "not-evaluated": "?",
+};
+
+/** The status as a short word, DERIVED from the status key rather than written again. */
+export const statusWord = (status: PropertyStatus): string =>
+  status.replace(/-/g, " ").toUpperCase();
+
+/** A glyph and a word together: the glance summary and the truth it abbreviates. */
+export interface StatusMark {
+  readonly glyph: string;
+  readonly word: string;
+}
+
+/**
+ * The mark for one verdict. A stale verdict is `?` whatever the verdict was: it describes a
+ * revision the system has moved past, so neither `✓` nor `✗` would be a claim about what is loaded.
+ */
+export const statusMark = (status: PropertyStatus, stale: boolean): StatusMark => stale
+  ? { glyph: "?", word: "NOT CURRENT" }
+  : { glyph: STATUS_GLYPH[status], word: statusWord(status) };
+
+/**
  * One model or machine the status derives from, and WHY it is cited (UX-I5).
  *
  * `why` is the field that makes this an answer rather than a list. §9.2 prints bare model names;

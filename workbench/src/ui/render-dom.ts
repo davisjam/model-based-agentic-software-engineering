@@ -117,30 +117,6 @@ function purposeGrounds(p: PurposeBlock): HTMLElement | null {
   return dl;
 }
 
-/**
- * The grounds, one disclosure deep — correction 2's "▸ What this model represents / ▸ omits".
- *
- * `details`/`summary`, which is SH-I2's one spelling: the control is in the tab order and announces
- * its own expanded state with no ARIA, so a sighted user and a keyboard user open the same thing by
- * the same act. Two disclosures rather than one, because the author numbered them separately and
- * because "what it omits" is the half that licenses a refusal — a reader hunting that sentence
- * should not have to open a block named after its opposite.
- */
-export function purposeDisclosures(p: PurposeBlock): DocumentFragment {
-  const frag = document.createDocumentFragment();
-  const block = (label: string, items: readonly string[]): HTMLElement => {
-    const d = el("details");
-    d.append(el("summary", label));
-    const ul = el("ul", undefined, "notes");
-    for (const item of items) ul.append(el("li", item));
-    d.append(ul);
-    return d;
-  };
-  if (p.represents.length > 0) frag.append(block("What this model represents", p.represents));
-  if (p.omits.length > 0) frag.append(block("What this model deliberately omits", p.omits));
-  return frag;
-}
-
 function purposeDisplay(p: PurposeBlock): DocumentFragment {
   const frag = purposeQuestion(p);
   const grounds = purposeGrounds(p);
@@ -158,6 +134,10 @@ function rowCells(row: Row): HTMLTableRowElement {
     label.append(stateChips(row.states));
   }
   const detail = el("td", row.detail);
+  if (row.words !== null) {
+    detail.append(el("p", "Model in words", "sublabel"));
+    detail.append(el("p", row.words, "model-words"));
+  }
   if (row.purpose !== null) detail.append(purposeDisplay(row.purpose));
   detail.append(annotationBlock(row));
   tr.append(idCell, label, el("td", row.kind), detail);
@@ -170,11 +150,8 @@ function rowCells(row: Row): HTMLTableRowElement {
  * Plain DOM rather than a live region: it changes when the user changes the drawn subject, which is
  * a navigation and not a consequence, and `#live` already announces the things that are.
  */
-export function paintPrincipal(
-  principal: PrincipalModel | null, root: HTMLElement, detail?: HTMLElement,
-): void {
+export function paintPrincipal(principal: PrincipalModel | null, root: HTMLElement): void {
   root.replaceChildren();
-  detail?.replaceChildren();
   if (principal === null) {
     // CONCRETE, and corrected. The old sentence read "No model is loaded, so no model is being
     // viewed", which is false in the one state that reaches it: `resolveSubject` falls back to the
@@ -193,15 +170,57 @@ export function paintPrincipal(
   const typeLabel = modelTypeOf(principal.kind === "machine" ? "state-machine" : "structural-graph").label;
   root.append(el("h3", `${principal.label} — the ${typeLabel} being viewed`));
   root.append(el("p", `${typeLabel} ${principal.id}`, "id"));
-  // With a `detail` root the grounds go there, behind disclosures; without one they stay flat
-  // beneath the question. ONE module still decides how a purpose reads — the caller chooses the
-  // depth, not the wording — which is the arrangement wave 1a settled on for a property row.
-  if (detail === undefined) {
-    root.append(purposeDisplay(principal.purpose));
-    return;
+  // "Model in words" — the STORED authored description, rendered as TEXT under its own label
+  // (UX doctrine §1-§2, §4). Only when present: absent means absent, and this renderer must not
+  // synthesize a stand-in — a generated sentence styled like an authored one is the confusion the
+  // field exists to prevent. Not a textarea and not an Edit button: the intended interaction is
+  // telling the agent, which writes the field through window.mage, and the page refreshing.
+  if (principal.description !== null) {
+    // "Description" per the author's display spec (261006): one of the model's three authored
+    // metadata fields (Description / Includes / Omits) — stored model content, rendered verbatim,
+    // never synthesized when absent.
+    root.append(el("p", "Description", "sublabel"));
+    root.append(el("p", principal.description, "model-words"));
+    // Provenance without clutter (§5): the description is model data, so last-touched matters,
+    // but it earns one small disclosure rather than a line on the main view.
+    if (principal.provenance !== null) {
+      const d = el("details", undefined, "model-words-prov");
+      d.append(el("summary", "ⓘ"));
+      const parts = [
+        principal.provenance.actor !== null ? `source: ${principal.provenance.actor}` : null,
+        principal.provenance.at !== null ? `last updated: ${principal.provenance.at}` : null,
+      ].filter((s): s is string => s !== null);
+      d.append(el("p", parts.join(" · "), "coverage"));
+      root.append(d);
+    }
   }
-  root.append(purposeQuestion(principal.purpose));
-  detail.append(purposeDisclosures(principal.purpose));
+}
+
+/**
+ * The MODEL SCOPE block — Includes and Omits, below the visualization (author's display spec,
+ * 261006). Both are AUTHORED model data: `represents` (displayed as Includes) and the
+ * V24-validated `omits`. The block label is what fixes the old defect: "What this model
+ * represents / deliberately omits" was editorial framing that made authored facts read as
+ * generated commentary; "Model scope — Includes / Omits" names them as the stored declarations
+ * they are. The question stays off the surface (its content seeds the description); the data all
+ * remains in the artifact — refusals still quote omits, and the twin's summary reads both lists
+ * aloud (UX-I11 holds that channel).
+ */
+export function paintModelScope(principal: PrincipalModel | null, root: HTMLElement): void {
+  root.replaceChildren();
+  if (principal === null) return;
+  const { represents, omits } = principal.purpose;
+  if (represents.length === 0 && omits.length === 0) return;
+  root.append(el("h3", "Model scope"));
+  const half = (label: string, items: readonly string[]): void => {
+    if (items.length === 0) return;
+    root.append(el("p", label, "sublabel"));
+    const ul = el("ul", undefined, "notes");
+    for (const item of items) ul.append(el("li", item));
+    root.append(ul);
+  };
+  half("Includes", represents);
+  half("Omits", omits);
 }
 
 function sectionTable(section: Section): HTMLElement {
@@ -595,9 +614,9 @@ export function paintProvenance(records: readonly ProvenanceRecord[], root: HTML
  * after loading. The fixture's own `summary` is not rendered here — it is the dataset-style
  * one-liner the case envelope replaced.
  *
- * `Try asking` prints the case's ASK, not the saved query's statement: the card invites an
- * inquiry, and the rail after loading shows the declarative claim the same id resolves to. The
- * join between the two is enforced where the description is built (`joinCaseQuestions`).
+ * The card no longer prints `Try asking` (author spec, 261006): the viewer surface leaves asking
+ * to the agent, so an invitation list taught a retired interaction. The case's asks survive as
+ * data (`tryAsking`) for the case panel and the fixtures.
  */
 export function paintExampleDescription(
   description: ExampleDescription | null, root: HTMLElement,
@@ -623,10 +642,9 @@ export function paintExampleDescription(
   }
   root.append(models);
 
-  root.append(el("p", "Try asking", "sublabel"));
-  const asking = el("ul", undefined, "notes");
-  for (const q of description.tryAsking) asking.append(el("li", q.ask));
-  root.append(asking);
+  // "Try asking" REMOVED from the start card (author spec, 261006): the default surface leaves
+  // asking to the agent, and a list of invitations to ask was teaching the retired interaction.
+  // The case data (`tryAsking`) remains — the case panel, Learn and the fixtures still read it.
 }
 
 /** The example chooser's own failure report. A fetch that fails must say so, not render nothing. */

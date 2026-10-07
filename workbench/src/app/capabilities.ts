@@ -285,6 +285,21 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
       + "missing a parity here -- an agent reads the same case from window.mage.examples()",
   },
   {
+    id: "refresh",
+    why: "re-reads the current state and re-renders every surface, mutating nothing — the taught "
+      + "loop's 'inspect what the agent just changed' as one header act. The paint it triggers is "
+      + "the same one every observation makes; no agent operation needs parity with a repaint, "
+      + "and the acknowledgement it announces is presentation, not model state",
+  },
+  {
+    id: "advanced-toggle",
+    why: "switches the page between the viewer default and Advanced mode by flipping "
+      + "body[data-mode] — pure presentation of which surfaces a human is OFFERED. It reaches no "
+      + "model state and no agent operation needs parity with it: window.mage sees the same "
+      + "workspace in both modes, which is the point of the split (the browser is the inspection "
+      + "surface; the agent is the mutation surface)",
+  },
+  {
     id: "ask-witness-show",
     why: "draws the answered question's witness over the model that carried it; it writes the "
       + "view's `witness`, which is outside semantic state exactly as `target` and `selection` are "
@@ -319,6 +334,13 @@ export const CHROME_HOSTS: readonly { readonly selector: string; readonly why: s
     selector: "#model-contents button",
     why: "the model contents tree's rows: one per drawn element, activating one sets the view's "
       + "selection and mutates no model state (DESIGN-shell-261002.md section 4, ruling 1)",
+  },
+  {
+    selector: "#question-list button[data-rail=\"witness\"]",
+    why: "the property rail's 'Show on model' rows: one per tracked claim, activating one writes "
+      + "the view's `witness` and `target` — the same pure view movement `ask-witness-show` is "
+      + "exempted for above, offered where the claim lives so the viewer surface can explain a "
+      + "verdict on the diagram; no model state is reached",
   },
   {
     selector: "#edit-dialog-type-rows button",
@@ -511,13 +533,13 @@ export const AUTHORING_SCOPE: {
     { construct: "events", coverage: "document", note: "synchronized-event declarations and their participant lists" },
     {
       construct: "machines", coverage: "partial",
-      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "add-note"],
+      ops: ["add-state", "delete-state", "add-transition", "delete-transition", "set-purpose", "set-description", "add-note"],
       note: "states and transitions of an EXISTING machine are op-editable; creating or deleting a "
         + "machine, declaring instances, variables or derived values is whole-document only",
     },
     {
       construct: "models", coverage: "ops",
-      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "add-note"],
+      ops: ["add-model", "delete-model", "add-model-entity", "add-relation", "delete-relation", "set-purpose", "set-description", "add-note"],
     },
     {
       construct: "quantities", coverage: "partial",
@@ -1336,13 +1358,13 @@ export interface ParityViolation {
  * is the one thing UX-I1's whole closure check is for.
  *
  * The checkers live with the thing they check: `checkPropertyGrounding` in `properties.ts` (UX-I5
- * reads an evaluated property), `checkPurposeVisibility` and `checkModelPlurality` in
+ * reads an evaluated property), `checkWordsVisibility`, `checkModelPlurality` and `checkTwinParity` in
  * `ui/invariants.ts` (UX-I4 and UX-I7 read the human presentation, which is what they constrain).
  * Only the shape is shared, and it is shared from here because this is where "the invariants, as
  * functions" already lives.
  */
 export interface UxViolation {
-  readonly invariant: "UX-I4" | "UX-I5" | "UX-I7";
+  readonly invariant: "UX-I4" | "UX-I5" | "UX-I7" | "UX-I11";
   readonly subject: string;
   readonly problem: string;
 }

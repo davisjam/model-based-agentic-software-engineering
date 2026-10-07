@@ -91,6 +91,14 @@ export type Operation =
       readonly question?: string | undefined; readonly represents?: readonly string[] | undefined;
       readonly omits?: readonly string[] | undefined;
     }
+  /**
+   * Write or revise a model's "Model in words" — the stored, deliberately-authored description
+   * beside the formal representation. NOT purpose: a purpose is semantic (question/represents/omits,
+   * hashed, consulted by refusals); a description is prose with the epistemic status of a code
+   * comment, excluded from the canonical hash like a note. An empty value removes the field, so an
+   * agent can retract a description it no longer stands behind.
+   */
+  | { readonly op: "set-description"; readonly scope: "model" | "machine"; readonly id: string; readonly value: string }
   | {
       readonly op: "add-model"; readonly id: string; readonly label?: string | undefined;
       readonly entities?: readonly string[] | undefined;

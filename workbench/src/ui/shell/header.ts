@@ -62,6 +62,7 @@ export function mountHeader(ctx: ShellContext): ShellRegion {
   const redo = byId<HTMLButtonElement>("redo");
   const exportButton = byId<HTMLButtonElement>("export");
   const run = byId<HTMLButtonElement>("run");
+  const refresh = byId<HTMLButtonElement>("refresh");
 
   byId("file").addEventListener("change", (event) => {
     const picker = event.target as HTMLInputElement;
@@ -95,6 +96,31 @@ export function mountHeader(ctx: ShellContext): ShellRegion {
     ctx.announce("Exported.");
   });
 
+  /**
+   * The revision the user last refreshed AT, so the acknowledgement can say whether anything
+   * changed since. View state in a closure — never the model, never hashed, reset per page load.
+   * Null until the first refresh; the first acknowledgement states the current revision's facts
+   * without a comparison nobody made.
+   */
+  let lastRefreshHash: string | null = null;
+
+  // ↻ Refresh: re-read, re-render, mutate nothing. The paint below re-evaluates every tracked
+  // claim against the current revision (`workspace.properties()` recomputes per observation), so
+  // this is the sanctioned way to pick up what an external agent just changed — and it ALWAYS
+  // acknowledges, because a silent control reads as a broken one.
+  refresh.addEventListener("click", () => {
+    const hash = ctx.workspace.state.hash;
+    const n = ctx.workspace.state.system.queries.size;
+    const claims = `${n} tracked claim${n === 1 ? "" : "s"}`;
+    ctx.repaint();
+    ctx.announce(lastRefreshHash !== null && lastRefreshHash === hash
+      ? `Refreshed. Nothing has changed since your last refresh — the diagram and the ${claims} `
+        + "already show the current revision."
+      : `Refreshed. The workbench shows the current revision, with the ${claims} re-evaluated `
+        + "against it.");
+    lastRefreshHash = hash;
+  });
+
   run.addEventListener("click", () => {
     ctx.repaint();
     const n = ctx.workspace.state.system.queries.size;
@@ -120,6 +146,9 @@ export function mountHeader(ctx: ShellContext): ShellRegion {
       // before reaching the one that could (`BASELINE-a11y-261002.md` §6, F-2).
       exportButton.disabled = !frame.state.loaded;
       run.disabled = !frame.state.loaded;
+      // Refresh takes the same treatment: with nothing loaded there is nothing to re-read, and a
+      // disabled control is not a tab stop — the pristine walk does not grow.
+      refresh.disabled = !frame.state.loaded;
       // And Learn is NOT in that list, which is the whole of what the requirement asks for. Checked
       // rather than merely omitted: the failure this entry exists to close was a surface nobody
       // could reach, and an omission is invisible while a check is not.

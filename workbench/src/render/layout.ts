@@ -25,7 +25,9 @@
  * The estimate is deliberately generous; a too-wide box is a cosmetic flaw, a too-narrow one clips.
  */
 import type { SceneEdge, SceneGraph, SceneNode } from "./scene.ts";
-import type { Direction, Layout, LayoutEdge, LayoutNode, LayoutOptions, Point, Rect } from "./types.ts";
+import type {
+  Direction, Layout, LayoutEdge, LayoutNode, LayoutOptions, NodeClaim, Point, Rect,
+} from "./types.ts";
 
 /**
  * Geometry constants. Exported so tests assert against the substrate value rather than a
@@ -168,6 +170,41 @@ export function inNodeLines(
     .filter((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w <= METRICS.nodeMaxWidth);
 }
 
+/** Caller-supplied claims grouped by target node id. The grouping every box-line site reads. */
+export function claimsByTarget(
+  claims: readonly NodeClaim[] | undefined,
+): ReadonlyMap<string, readonly NodeClaim[]> {
+  const out = new Map<string, NodeClaim[]>();
+  for (const c of claims ?? []) {
+    const list = out.get(c.target);
+    if (list === undefined) out.set(c.target, [c]);
+    else list.push(c);
+  }
+  return out;
+}
+
+/** No claims, as a shared constant, so default parameters compare against one object. */
+export const NO_CLAIMS: ReadonlyMap<string, readonly NodeClaim[]> = new Map();
+
+/**
+ * Every sub-line one node's box carries: attribute lines first, then claim lines — each claim as
+ * `glyph statement`, under the SAME fit rule attribute lines obey (whole line or nowhere; the
+ * accessible twin always carries the full claim either way). One function, so the sizer, the
+ * region-band offset and the painter cannot disagree about what a box holds.
+ */
+export function nodeBoxLines(
+  properties: readonly { readonly name: string; readonly value: string }[],
+  show: ReadonlySet<string> | null,
+  claims: readonly NodeClaim[],
+): readonly string[] {
+  return [
+    ...inNodeLines(properties, show),
+    ...claims
+      .map((c) => `${c.glyph} ${c.statement}`)
+      .filter((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w <= METRICS.nodeMaxWidth),
+  ];
+}
+
 /**
  * Leaf sizes first, then regions, which must be large enough to enclose their children.
  *
@@ -175,10 +212,14 @@ export function inNodeLines(
  * width for its widest line. A region's lines sit in a band between its header and its children,
  * so its height reserves that band too — `place` offsets the children by the same amount.
  */
-export function sizes(scene: SceneGraph, show: ReadonlySet<string> | null = null): Map<string, Size> {
+export function sizes(
+  scene: SceneGraph,
+  show: ReadonlySet<string> | null = null,
+  claims: ReadonlyMap<string, readonly NodeClaim[]> = NO_CLAIMS,
+): Map<string, Size> {
   const out = new Map<string, Size>();
   for (const n of scene.nodes) {
-    const lines = inNodeLines(n.properties, show);
+    const lines = nodeBoxLines(n.properties, show, claims.get(n.id) ?? []);
     const w = Math.max(
       labelWidth(n.label),
       ...lines.map((line) => 2 * METRICS.padX + textExtent(line, "mage-sublabel").w),
@@ -187,7 +228,7 @@ export function sizes(scene: SceneGraph, show: ReadonlySet<string> | null = null
   }
   for (const n of scene.nodes) {
     if (n.contains.length === 0) continue;
-    const lines = inNodeLines(n.properties, show);
+    const lines = nodeBoxLines(n.properties, show, claims.get(n.id) ?? []);
     let row = 2 * METRICS.regionPadX;
     let tallest: number = METRICS.nodeHeight;
     n.contains.forEach((c, i) => {
@@ -288,6 +329,7 @@ export function place(
   d: Direction,
   hints: ReadonlyMap<string, Point> | undefined,
   show: ReadonlySet<string> | null = null,
+  claims: ReadonlyMap<string, readonly NodeClaim[]> = NO_CLAIMS,
 ): Placement {
   const ext = (id: string): Size => size.get(id) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
   const outer = scene.nodes.filter((n) => n.parent === null).map((n) => n.id);
@@ -366,7 +408,9 @@ export function place(
     if (box === undefined) continue;
     let x = box.x + METRICS.regionPadX;
     const y =
-      box.y + METRICS.regionHeader + inNodeLines(n.properties, show).length * SUBLABEL_PITCH + METRICS.regionPadY;
+      box.y + METRICS.regionHeader
+      + nodeBoxLines(n.properties, show, claims.get(n.id) ?? []).length * SUBLABEL_PITCH
+      + METRICS.regionPadY;
     for (const c of n.contains) {
       const s = ext(c);
       rects.set(c, { x, y, w: s.w, h: s.h });

@@ -38,7 +38,9 @@
  */
 import dagre from "@dagrejs/dagre";
 import type { SceneGraph } from "./scene.ts";
-import { METRICS, assembleLayout, liftToOuter, place, sizes, textExtent } from "./layout.ts";
+import {
+  METRICS, assembleLayout, claimsByTarget, liftToOuter, place, sizes, textExtent,
+} from "./layout.ts";
 import type { LayoutEngine, LiftedEdge, Size } from "./layout.ts";
 import type { Direction, LayoutEdge, LayoutOptions, Point, Rect } from "./types.ts";
 
@@ -141,7 +143,8 @@ function denseRanks(raw: ReadonlyMap<string, number>): ReadonlyMap<string, numbe
 export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutOptions = {}) => {
   const d = opts.direction ?? "left-to-right";
   const show = opts.showProperties === undefined ? null : new Set(opts.showProperties);
-  const size = sizes(scene, show);
+  const claims = claimsByTarget(opts.claims);
+  const size = sizes(scene, show, claims);
   const ext = (id: string): Size => size.get(id) ?? { w: METRICS.nodeMinWidth, h: METRICS.nodeHeight };
   const { outer, lifted } = liftToOuter(scene);
 
@@ -230,7 +233,7 @@ export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutO
   }
 
   // --- hints win, and edge geometry follows the boxes -----------------------------------------
-  const { rects, pinned, shift } = place(scene, size, fresh, d, opts.hints, show);
+  const { rects, pinned, shift } = place(scene, size, fresh, d, opts.hints, show, claims);
 
   const byId = new Map(lifted.map((l) => [l.edge.id, l]));
   const edges: LayoutEdge[] = scene.edges.map((e): LayoutEdge => {

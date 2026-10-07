@@ -85,6 +85,11 @@ function semanticProjection(s: CanonicalSystem): unknown {
     [...s.relations]
       .map((r) => [r.type, r.from, r.to, r.model])
       .sort((a, b) => a.join(" ").localeCompare(b.join(" "))),
+    // `m.description` ("Model in words") is DELIBERATELY ABSENT from both projections below: it is
+    // prose, so it stays out under the machine-label ruling ("display only: it must never reach the
+    // canonical hash"). Writing or revising a description therefore commits without advancing the
+    // semantic revision — the same posture a note takes, and the right one for a field whose
+    // epistemic status is a code comment.
     sorted(s.models, (m) => [m.label, m.purpose.question, m.purpose.represents, m.purpose.omits, [...m.entities].sort()]),
     // `m.label` is DELIBERATELY ABSENT, and the asymmetry with the model row below is recorded
     // rather than hidden: `CanonModel.label` has hashed since the first projection, and removing it

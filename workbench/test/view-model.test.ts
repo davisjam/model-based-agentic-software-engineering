@@ -18,8 +18,9 @@ import { Workspace } from "../src/app/services.ts";
 import type { Ports } from "../src/app/services.ts";
 import { annotationTargetValue, buildViewModel, elementValue, parseAnnotationTarget, parseElementValue, parseRelationValue, planAsk, planEdit, propertyRow, relationValue, resolveSelections, resolveSubject, subjectValue } from "../src/ui/view-model.ts";
 import type { AskRequest, EditRequest } from "../src/ui/view-model.ts";
-import { checkModelPlurality, checkPurposeVisibility } from "../src/ui/invariants.ts";
+import { checkModelPlurality, checkTwinParity, checkWordsVisibility } from "../src/ui/invariants.ts";
 import { SURFACES, builtSurfaces, surfaceElement } from "../src/ui/shell/surfaces.ts";
+import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
 import type { NavSurface } from "../src/ui/shell/surfaces.ts";
 import { checkPropertyGrounding, evaluateProperties } from "../src/app/properties.ts";
 import type { QueryResult } from "../src/ir/types.ts";
@@ -183,93 +184,74 @@ test("a machine states its question too", () => {
 });
 
 // --------------------------------------------------------------------------------------------
-// UX-I4 — purpose visibility (section 21)
+// UX-I4 — intent visibility, repointed to Model in words (author ruling, 261006)
 // --------------------------------------------------------------------------------------------
+//
+// The claim is the original UX-I4's — intent as a primary part of the presentation, never only
+// metadata — but the field carrying it is now the stored `description`, with Out of scope
+// (`omits`) beside it; question and represents left the default surface. The purpose DATA
+// survives for Advanced, the twin and the refusal engine, and the pins below hold both halves.
 
-test("UX-I4: every model and machine presents its purpose as its own labelled field", () => {
-  // The gap this closed. The question WAS visible -- as the first fragment of a ` · `-joined detail
-  // string, unlabelled and syntactically identical to `over 4 entities`. That is "visible" and not
-  // "a primary part of its human presentation", which is the distinction UX-I4 and §3.2 both draw.
-  assert.deepEqual(checkPurposeVisibility(vm()), []);
+test("UX-I4: every shipped model presents its Model in words, in the rows and beside the picture", () => {
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const system = canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+    const subjects = [
+      ...[...system.models.keys()].map((m) => ({ kind: "model" as const, id: m })),
+      ...[...system.machines.keys()].map((m) => ({ kind: "machine" as const, id: m })),
+    ];
+    assert.ok(subjects.length > 0, `${id}: no subjects — the walk is broken, not the UI`);
+    for (const principal of subjects) {
+      const m = buildViewModel(system, [], [], { hypothesis: null, selection: [], principal });
+      assert.deepEqual(checkWordsVisibility(m), [],
+        `${id}/${principal.id}: a shipped model hides its intent`);
+      assert.equal(m.principal?.description, principal.kind === "model"
+        ? system.models.get(principal.id)?.description
+        : system.machines.get(principal.id)?.description,
+        `${id}/${principal.id}: the principal's words are not the stored sentence verbatim`);
+    }
+  }
+});
 
+test("UX-I4 fires when a model's words are dropped — negative controls, both named cases", () => {
+  const system = canonicalize(parse(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")));
+  const m = buildViewModel(system, [], [], {
+    hypothesis: null, selection: [], principal: { kind: "model", id: "worker-pool" },
+  });
+  assert.deepEqual(checkWordsVisibility(m), [], "the unmodified view must be clean first");
+  const rowless = {
+    ...m,
+    sections: m.sections.map((s) => s.id !== "models"
+      ? s
+      : { ...s, rows: s.rows.map((r) => ({ ...r, words: null })) }),
+  };
+  assert.ok(checkWordsVisibility(rowless).some((v) => v.invariant === "UX-I4"
+      && /hidden metadata/.test(v.problem)),
+    "a model row that stops presenting its words must be named");
+  assert.ok(m.principal);
+  const headless = { ...m, principal: { ...m.principal, description: null } };
+  assert.ok(checkWordsVisibility(headless).some((v) => /beside the picture/.test(v.problem)),
+    "the principal case must fire on its own — it is the case the invariant was written about");
+});
+
+
+test("purpose remains in the view model for Advanced and the twin, though the default UX hides it", () => {
   const models = vm().sections.find((s) => s.id === "models");
   const flow = models?.rows.find((r) => r.id === "service-flow");
-  assert.ok(flow?.purpose, "a purposeful model must carry a purpose block, not only a detail clause");
+  assert.ok(flow?.purpose, "the System Browser row lost its purpose block; Advanced reads from it");
   assert.equal(flow.purpose.question, "Which services may invoke which other services?");
-  assert.equal(flow.purpose.unstated, false);
-  assert.ok(flow.purpose.omits.length > 0, "§5.1 asks for omits to be inspectable beside the model");
+  assert.ok(flow.purpose.omits.length > 0, "omits must stay inspectable in Advanced");
 
-  // A machine is a purposeful reduction too: own `purpose` block, own subject, and what a
-  // behavioural property grounds in.
   const document = vm().sections.find((s) => s.id === "machines")?.rows.find((r) => r.id === "document");
   assert.ok(document?.purpose);
   assert.match(document.purpose.question, /without being reviewed/);
 });
 
-test("UX-I4: a model with no stated question SAYS so, rather than rendering blank", () => {
-  // An empty line beside a model name reads as a rendering bug. The absence is the thing V24 and
-  // every refusal message depend on, so it is stated.
+test("a model with no stated question still SAYS so where Advanced renders it", () => {
   const s = canonicalize(parse(["mage: 1", "system: { id: p }", "models:", "  bare: { type: graph }"].join("\n")));
   const m = buildViewModel(s, [], [], { hypothesis: null, selection: [] });
   const bare = m.sections.find((x) => x.id === "models")?.rows.find((r) => r.id === "bare");
   assert.equal(bare?.purpose?.unstated, true);
   assert.match(bare?.purpose?.question ?? "", /States no engineering question/);
-  // And an unstated question is NOT a UX-I4 violation: the invariant is about presenting purpose,
-  // not about every model having one. A model with no question is the validator's business.
-  assert.deepEqual(checkPurposeVisibility(m), []);
-});
-
-test("UX-I4 fires when a purpose block is dropped — negative control", () => {
-  const m = vm();
-  const models = m.sections.find((s) => s.id === "models");
-  assert.ok(models);
-  const broken = {
-    ...m,
-    sections: m.sections.map((s) => s.id !== "models"
-      ? s
-      : { ...s, rows: s.rows.map((r) => ({ ...r, purpose: null })) }),
-  };
-  const violations = checkPurposeVisibility(broken);
-  assert.equal(violations.length, models.rows.length,
-    "every model that stops presenting its purpose must be named");
-  assert.ok(violations.every((v) => v.invariant === "UX-I4"));
-  assert.match(violations[0]?.problem ?? "", /reachable only as metadata/);
-});
-
-test("UX-I4 section 5.1: the PRINCIPAL model states its purpose beside the picture", () => {
-  // The case §5.1 actually names, and the one that was failing: the models table stated every
-  // purpose, and the one place a single model is singled out as the thing under inspection showed
-  // a subject name and an SVG.
-  const s = sys();
-  const m = buildViewModel(s, [], [], {
-    hypothesis: null, selection: [], principal: { kind: "model", id: "data-classification" },
-  });
-  assert.ok(m.principal, "the drawn subject is the principal model and must come with its purpose");
-  assert.equal(m.principal.id, "data-classification");
-  assert.equal(m.principal.label, "Data Classification");
-  assert.match(m.principal.purpose.question, /Where can restricted document content travel\?/);
-  assert.deepEqual(checkPurposeVisibility(m), []);
-
-  // A machine can be the principal subject too, and carries its own question.
-  const machine = buildViewModel(s, [], [], {
-    hypothesis: null, selection: [], principal: { kind: "machine", id: "worker" },
-  });
-  assert.equal(machine.principal?.kind, "machine");
-  assert.ok(machine.principal?.purpose);
-});
-
-test("UX-I4 fires when the principal model is shown without its purpose — negative control", () => {
-  const m = buildViewModel(sys(), [], [], {
-    hypothesis: null, selection: [], principal: { kind: "model", id: "service-flow" },
-  });
-  assert.ok(m.principal);
-  const broken = {
-    ...m,
-    principal: { ...m.principal, purpose: { ...m.principal.purpose, question: "" } },
-  };
-  const v = checkPurposeVisibility(broken);
-  assert.equal(v.length, 1);
-  assert.match(v[0]?.problem ?? "", /states no purpose beside it/);
 });
 
 // --------------------------------------------------------------------------------------------
@@ -1590,4 +1572,105 @@ test("every control added for editing is labelled and keyboard-operable", () => 
     assert.ok(text.length > 2, "a button needs an accessible name, and its text is the cheapest one");
   }
   assert.ok(!/<div[^>]*onclick/i.test(html), "a clickable div is not keyboard-operable");
+});
+
+// --------------------------------------------------------------------------------------------
+// "Model in words" — stored, never synthesized (UX doctrine §1, §4)
+// --------------------------------------------------------------------------------------------
+
+test("the principal's 'Model in words' is the STORED sentence, verbatim", () => {
+  // The fixture carries no description on service-flow; splice one into the SOURCE and reload, so
+  // the value the view model hands the renderer provably came through loader -> IR -> view model
+  // rather than from any surface's own phrasing.
+  const words = "Models which services may invoke which others. Permission, not traffic.";
+  const source = readFileSync("examples/docable.mage.yaml", "utf8");
+  const anchor = "  service-flow:\n    type: graph\n    label: Service Flow\n";
+  assert.ok(source.includes(anchor), "fixture drift: the service-flow stanza moved; fix the splice anchor");
+  const spliced = source.replace(anchor, `${anchor}    description: ${JSON.stringify(words)}\n`);
+  const s = canonicalize(parse(spliced));
+  assert.equal(s.models.get("service-flow")?.description, words, "the loader dropped the description");
+  const m = buildViewModel(s, [], [], {
+    hypothesis: null, selection: [], principal: { kind: "model", id: "service-flow" },
+  });
+  assert.equal(m.principal?.description, words,
+    "the view model must carry the stored sentence verbatim — never a paraphrase");
+});
+
+test("an absent 'Model in words' is ABSENT: null in the view model, nothing synthesized", () => {
+  const s = sys();
+  // Precondition: the fixture genuinely has no description, or this test measures nothing.
+  assert.equal(s.models.get("service-flow")?.description, null,
+    "fixture drift: service-flow gained a description; this test needs a model without one");
+  const m = buildViewModel(s, [], [], {
+    hypothesis: null, selection: [], principal: { kind: "model", id: "service-flow" },
+  });
+  assert.equal(m.principal?.description, null,
+    "a model with no stored description must present NO description — a generated stand-in is "
+    + "the exact failure the doctrine forbids");
+});
+
+// --------------------------------------------------------------------------------------------
+// UX-I11 — twin parity under the viewer doctrine
+// --------------------------------------------------------------------------------------------
+
+test("UX-I11: every shipped scene keeps the accessible twin at parity with the picture", () => {
+  // The doctrine deletes visible prose (per-row "What this says", purpose disclosures in the
+  // default header); the deletion is licensed only while the twin still carries those facts for a
+  // screen-reader user, for whom the twin IS the diagram. Walk every drawable subject of every
+  // shipped example through the REAL renderer and hold the parity check at zero.
+  const scenes: { id: string; scene: ReturnType<typeof renderView>["accessible"] }[] = [];
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const system = canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+    for (const subject of [
+      ...[...system.models.keys()].map((m) => ({ kind: "model", id: m }) as const),
+      ...[...system.machines.keys()].map((m) => ({ kind: "machine", id: m }) as const),
+    ]) {
+      scenes.push({ id: `${id}/${subject.id}`, scene: renderView(system, { subject }).accessible });
+    }
+  }
+  // PRECONDITIONS, so an empty walk cannot report success over nothing: the corpus must exercise
+  // every channel the invariant checks — nodes, in-box attributes, questions, declared omissions.
+  assert.ok(scenes.length > 3, `only ${scenes.length} scene(s); the fixture walk is broken, not the UI`);
+  assert.ok(scenes.some(({ scene }) => scene.nodes.some((n) => n.properties.length > 0)),
+    "no scene carries a declared attribute; the parity check's property arm would be vacuous");
+  assert.ok(scenes.some(({ scene }) => scene.question !== null),
+    "no scene carries a question; the parity check's question arm would be vacuous");
+  assert.ok(scenes.some(({ scene }) => scene.omits.length > 0),
+    "no scene carries a declared omission; the parity check's omits arm would be vacuous");
+  for (const { id, scene } of scenes) {
+    assert.deepEqual(checkTwinParity(scene), [], `${id}: the twin lost facts the picture carries`);
+  }
+});
+
+test("UX-I11 fires when the twin loses what the picture shows — negative controls", () => {
+  const system = canonicalize(parse(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")));
+  const scene = renderView(system, { subject: { kind: "model", id: "worker-pool" } }).accessible;
+  assert.deepEqual(checkTwinParity(scene), [], "the unmodified scene must be clean first");
+
+  // A node silenced entirely.
+  const silenced = {
+    ...scene,
+    nodes: scene.nodes.map((n, i) => (i === 0 ? { ...n, description: "" } : n)),
+  };
+  assert.ok(checkTwinParity(silenced).some((v) => /no description/.test(v.problem)),
+    "an empty node sentence must fire");
+
+  // An in-box attribute the description stops mentioning.
+  const withProp = scene.nodes.findIndex((n) => n.properties.length > 0);
+  assert.ok(withProp >= 0, "fixture drift: no node with a declared attribute; pick another subject");
+  const drifted = {
+    ...scene,
+    nodes: scene.nodes.map((n, i) =>
+      i === withProp
+        ? { ...n, description: n.description.replace(n.properties[0]!.value, "censored") }
+        : n),
+  };
+  assert.ok(checkTwinParity(drifted).some((v) => /channels have drifted/.test(v.problem)),
+    "a dropped attribute mention must fire");
+
+  // The summary stops stating a declared omission.
+  assert.ok(scene.omits.length > 0, "fixture drift: worker-pool declares no omissions");
+  const muted = { ...scene, summary: scene.summary.replace(scene.omits[0]!, "nothing") };
+  assert.ok(checkTwinParity(muted).some((v) => /deliberately omits/.test(v.problem)),
+    "a muted omission must fire");
 });

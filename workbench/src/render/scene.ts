@@ -46,6 +46,8 @@ export interface SceneGraph {
   /** Ranking seeds: a machine's initial state, or the entities nothing points at. */
   readonly roots: readonly string[];
   readonly question: string | null;
+  /** The distinctions the model intentionally represents — displayed as "Includes". */
+  readonly includes: readonly string[];
   /** What the model deliberately does not represent (V24). Belongs in the twin's summary. */
   readonly omits: readonly string[];
 }
@@ -196,6 +198,7 @@ export function buildGraphScene(system: CanonicalSystem, modelId: string): Scene
     edges,
     roots: sourceRoots(outer, edges.filter((e) => outer.includes(e.from) && outer.includes(e.to))),
     question: model?.purpose.question ?? null,
+    includes: model?.purpose.represents ?? [],
     omits: model?.purpose.omits ?? [],
   };
 }
@@ -254,6 +257,7 @@ export function buildMachineScene(system: CanonicalSystem, machineId: string): S
     edges,
     roots: ids.includes(initial) ? [initial] : sourceRoots(ids, edges),
     question: m?.purpose.question ?? null,
+    includes: m?.purpose.represents ?? [],
     omits: m?.purpose.omits ?? [],
   };
 }

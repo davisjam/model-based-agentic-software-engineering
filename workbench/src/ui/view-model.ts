@@ -100,6 +100,12 @@ export interface Row {
   readonly kind: string;
   readonly detail: string;
   /**
+   * "Model in words" — the stored authored description, for a row that IS a model (structural or
+   * machine); null for every other row and for a model whose author wrote none. UX-I4 (repointed,
+   * 261006) demands this as a primary part of a model's presentation.
+   */
+  readonly words: string | null;
+  /**
    * The engineering purpose, as its OWN labelled block rather than a clause of `detail` (UX-I4).
    *
    * It used to be the first fragment of the ` · `-joined detail string, which satisfied "visible"
@@ -198,6 +204,19 @@ export interface PrincipalModel {
   readonly kind: string;
   readonly id: string;
   readonly label: string;
+  /**
+   * "Model in words" — the STORED authored description, verbatim from the model artifact, or null
+   * when the author wrote none. The renderer shows the labelled block only when this is present;
+   * it never synthesizes a stand-in, because a generated sentence styled like an authored one is
+   * the exact confusion the field exists to prevent.
+   */
+  readonly description: string | null;
+  /**
+   * Provenance for the ⓘ disclosure beside the description: who last touched this model and when,
+   * read from the model's own stored provenance. Null when the artifact records none — the
+   * disclosure then simply does not render.
+   */
+  readonly provenance: { readonly actor: string | null; readonly at: string | null } | null;
   readonly purpose: PurposeBlock;
 }
 
@@ -982,6 +1001,22 @@ const UNANNOTATED: Pick<Row, "notes" | "provenance" | "notesCaveat"> =
  * because that absence is the thing V24 and every refusal message depend on, and an empty line
  * beside a model name reads as a rendering bug rather than as a fact about the model.
  */
+/**
+ * The last recorded touch of a model, for the ⓘ disclosure beside "Model in words" — the newest
+ * history entry when one exists, else the creation record, else null. Reads the STORED provenance
+ * only; a model whose artifact records nothing gets no disclosure rather than a guessed one.
+ */
+function principalProvenance(
+  a: Annotated | null,
+): { readonly actor: string | null; readonly at: string | null } | null {
+  const p = a?.provenance ?? null;
+  if (p === null) return null;
+  const last = p.history.length > 0 ? p.history[p.history.length - 1] : undefined;
+  const actor = last?.actor ?? p.createdBy;
+  const at = last?.at ?? p.createdAt;
+  return actor === null && at === null ? null : { actor, at };
+}
+
 export function purposeBlock(p: Purpose): PurposeBlock {
   const stated = p.question !== null && p.question.trim() !== "";
   return {
@@ -1180,6 +1215,7 @@ export function buildViewModel(
         where.length > 0 ? `appears in ${where.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · ") || "no further detail",
       states: selectedEntities.has(e.id) ? ["selected"] : [],
+      words: null,
       // An entity is not a purposeful reduction; the models it appears in are, and `detail` names
       // them. Giving it a purpose block would be inventing one.
       purpose: null,
@@ -1210,6 +1246,7 @@ export function buildViewModel(
         m.purpose.omits.length > 0 ? `deliberately omits ${m.purpose.omits.join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · "),
       states: selectedMachines.has(m.id) ? ["selected"] : [],
+      words: m.description,
       // A machine is a purposeful reduction too: it carries its own `purpose` block, it is drawn as
       // its own subject, and a behavioural property grounds in it. UX-I4 covers it.
       purpose: purposeBlock(m.purpose),
@@ -1227,6 +1264,7 @@ export function buildViewModel(
         t.effects.length > 0 ? `sets ${t.effects.map((e) => `${e.variable} := ${e.expression}`).join(", ")}` : null,
       ].filter((s): s is string => s !== null).join(" · ") || "unconditional",
       states: t.from === m.initial ? ["from initial state"] : [],
+      words: null,
       purpose: null,
       // A transition belongs to its machine, which is a subject of its own rather than a model
       // asserting a fact about shared entities.
@@ -1254,6 +1292,7 @@ export function buildViewModel(
         `in model ${r.model}`,
       ].filter((s): s is string => s !== null).join(" · "),
       states: [],
+      words: null,
       purpose: null,
       assertedBy: r.model,
       ...annotated(r.annotation),
@@ -1272,6 +1311,7 @@ export function buildViewModel(
       `over ${plural(m.entities.length, "entity", "entities")}`,
     ].filter((s): s is string => s !== null).join(" · "),
     states: selectedModels.has(m.id) ? ["selected"] : [],
+    words: m.description,
     purpose: purposeBlock(m.purpose),
     // The row IS the model; a model does not assert itself.
     assertedBy: null,
@@ -1346,6 +1386,14 @@ export function buildViewModel(
           label: subject.kind === "model"
             ? system.models.get(subject.id)?.label ?? subject.id
             : system.machines.get(subject.id)?.label ?? subject.id,
+          // Verbatim from the artifact, or null. Never derived from the purpose, the entities, or
+          // anything else: "Model in words" is authored data, and absent means absent.
+          description: subject.kind === "model"
+            ? system.models.get(subject.id)?.description ?? null
+            : system.machines.get(subject.id)?.description ?? null,
+          provenance: subject.kind === "model"
+            ? principalProvenance(system.models.get(subject.id)?.annotation ?? null)
+            : null,
           purpose: purposeBlock(principalPurpose),
         },
   };

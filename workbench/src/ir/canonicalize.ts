@@ -218,6 +218,9 @@ function models(raw: unknown): { models: Map<string, CanonModel>; relations: Can
     out.set(id, {
       id,
       label: asStr(s["label"], id),
+      // "Model in words": stored prose or nothing. A non-string loads as absent rather than being
+      // coerced — a description is authored, and an authored field is never manufactured.
+      description: typeof s["description"] === "string" ? s["description"] : null,
       purpose: purpose(s["purpose"]),
       entities: strArr(s["entities"]),
       annotation: annotation(s),
@@ -311,6 +314,7 @@ function machines(raw: unknown, declared: Map<string, CanonDomain>): Map<string,
     out.set(id, {
       id,
       label: asStr(s["label"], id),
+      description: typeof s["description"] === "string" ? s["description"] : null,
       entity: typeof s["entity"] === "string" ? s["entity"] : null,
       instances: Math.max(1, Math.trunc(asNum(s["instances"], 1))),
       purpose: purpose(s["purpose"]),

@@ -73,13 +73,24 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
         "Navigate lists the models the system declares and the properties it asserts. Both are "
           + "navigation: choosing a model puts it in the Workspace, and choosing a property shows "
           + "the claim, its verdict and the models that established it.",
-        "The Workspace holds one model at a time. It states the engineering question that model "
-          + "answers, reads the model's contents in words, and draws it.",
+        "The Workspace holds one model at a time: its name, its kind, its Description — stored "
+          + "prose its author wrote, like a code comment; the Workbench never writes one for you "
+          + "— the drawing, and beneath it the Model scope: what the model declares it Includes "
+          + "and Omits. The drawing is the principal representation; a structured text reading of "
+          + "the same diagram sits behind one disclosure for keyboard and screen-reader use.",
         "The Inspector holds one selected object. It shows what the object is, what it carries, the "
           + "models it appears in, and what its absence would mean.",
-        "Ask about the model system takes a question and answers it against the current revision.",
+        "Ask about the model system — behind the Advanced toggle — takes a question and answers "
+          + "it against the current revision. The default surface leaves asking to your agent: "
+          + "tell it what you want to know, Refresh, and read the claim and its verdict in "
+          + "Navigate.",
       ]),
-      prose("Operations live where their object is. The additive ones — an entity, a state, a "
+      prose("The default surface is a viewer: clicking changes what you see, never the model. "
+        + "The loop is — instruct your agent; refresh the workbench and inspect the model; "
+        + "inspect the properties and their evidence; discuss with your agent; revise. The "
+        + "editing surfaces below are all still here, behind the Advanced toggle in the header."),
+      prose("In Advanced mode, operations live where their object is. The additive ones — an "
+        + "entity, a state, a "
         + "relation, a model, a note — are under + Add in the Workspace, because none of them needs "
         + "anything selected. Renaming, setting a property, connecting and deleting are actions on "
         + "the thing they concern, so they are in the Inspector, on the object itself."),
@@ -134,8 +145,9 @@ export const WORKBENCH_GUIDE: readonly GuideSection[] = [
   {
     anchor: "guide-how-asking-works",
     heading: "How asking works",
-    intro: "The ask line filters a catalogue of askable questions. Free text is not interpreted "
-      + "as English.",
+    intro: "You tell your agent what must hold; it formalizes the question and the claim lands in "
+      + "Navigate with its verdict. The Advanced ask line, behind the toggle, filters a catalogue "
+      + "of askable questions. Free text is not interpreted as English.",
     blocks: [
       prose("The catalogue offers only questions the loaded models license, so a question the "
         + "system cannot answer is one the list does not contain. Typing filters that list."),

@@ -261,6 +261,17 @@ const OP_PARSERS: Readonly<Record<OpName, (o: Obj, s: Shape) => Operation | null
     };
   },
 
+  "set-description": (o, s) => {
+    const id = s.id(o, "id");
+    const scope = o["scope"];
+    if (scope !== "model" && scope !== "machine") {
+      s.bad("'scope' must be 'model' or 'machine' — the two model types that carry a description.", ".scope");
+      return null;
+    }
+    const value = s.str(o, "value");
+    return id === null || value === null ? null : { op: "set-description", scope, id, value };
+  },
+
   "add-model": (o, s) => {
     const id = s.id(o, "id");
     return id === null ? null : {

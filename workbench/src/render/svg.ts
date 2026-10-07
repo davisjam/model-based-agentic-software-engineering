@@ -27,9 +27,10 @@ import {
   METRICS,
   SUBLABEL_PITCH,
   TEXT_SIZES,
-  inNodeLines,
+  claimsByTarget,
   initialMarkerCentre,
   initialMarkerTarget,
+  nodeBoxLines,
   textExtent,
 } from "./layout.ts";
 import type { LayoutEngine } from "./layout.ts";
@@ -304,6 +305,7 @@ function nodeGroup(
   r: Resolved,
   subLabels: readonly string[],
   readingIndex: number,
+  declaration: string,
 ): SvgNode {
   const cx = node.rect.x + node.rect.w / 2;
   // A leaf's label anchors in the STANDARD-HEIGHT band at the top of its box, not at rect centre:
@@ -358,7 +360,18 @@ function nodeGroup(
       "data-pinned": node.pinned ? "true" : null,
       "data-emphasis": r.kind,
     },
-    [...initialMarker(node, layout), nodeShape(node, r), ...texts],
+    [
+      // The precise declaration, as the browser's own hover tooltip (`<svg:title>`): name, type,
+      // every declared attribute — `OrderCreated : event-type / carries = restricted`. The box
+      // carries only what is needed to READ the diagram; hover exposes the declaration; selection
+      // reaches the same facts in the Inspector, which is the keyboard and screen-reader path (the
+      // canvas is aria-hidden by design, so a focus-triggered tooltip here would require focusable
+      // content inside an aria-hidden subtree — the SH-I4 violation). Never the ONLY route.
+      el("title", {}, [], declaration),
+      ...initialMarker(node, layout),
+      nodeShape(node, r),
+      ...texts,
+    ],
   );
 }
 
@@ -524,6 +537,7 @@ export function renderView(
     ...(req.direction !== undefined ? { direction: req.direction } : {}),
     ...(req.hints !== undefined ? { hints: req.hints } : {}),
     ...(req.showProperties !== undefined ? { showProperties: req.showProperties } : {}),
+    ...(req.claims !== undefined ? { claims: req.claims } : {}),
   });
 
   const emphasis: EmphasisAssignment[] = [
@@ -560,12 +574,18 @@ export function renderView(
     if (b.kind === "region" && a.kind !== "region") return 1;
     return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   });
+  const claims = claimsByTarget(req.claims);
   const nodeNodes = ordered.map((n) => {
-    // `inNodeLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
+    // `nodeBoxLines` is the SAME rule `sizes` reserved room from, so a line the painter draws is a
     // line the box already has height and width for — a leaf grows downward, a region's lines sit
-    // in the band between its header and its children.
-    const subs = inNodeLines(scene.nodes.find((s) => s.id === n.id)?.properties ?? [], show);
-    return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0);
+    // in the band between its header and its children. Claim lines ride behind attribute lines.
+    const sceneNode = scene.nodes.find((s) => s.id === n.id);
+    const subs = nodeBoxLines(sceneNode?.properties ?? [], show, claims.get(n.id) ?? []);
+    const declaration = [
+      `${n.label} : ${sceneNode?.entityType ?? (sceneNode?.role === "state" ? "state" : n.kind)}`,
+      ...(sceneNode?.properties ?? []).map((p) => `${p.name} = ${p.value}`),
+    ].join("\n");
+    return nodeGroup(n, layout, resolve(byTarget.get(n.id) ?? []), subs, readingIndex.get(n.id) ?? 0, declaration);
   });
 
   // --- the strips below the diagram, and the viewBox that must contain all of it ---------------

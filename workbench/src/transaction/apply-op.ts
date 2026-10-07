@@ -307,6 +307,17 @@ export function applyOperation(doc: MageDocument, op: Operation, index: number):
       return null;
     }
 
+    case "set-description": {
+      const ns = op.scope === "model" ? "models" : "machines";
+      if (!doc.has([ns, op.id])) return fail(where, `set-description: no ${op.scope} '${op.id}'.`);
+      // An empty (or all-whitespace) value RETRACTS the description rather than storing a blank
+      // string: the field is optional, and the UI's contract is "absent means absent — show
+      // nothing", so a blank would render an empty labelled block.
+      if (op.value.trim() === "") doc.deleteIn([ns, op.id, "description"]);
+      else doc.setScalar([ns, op.id, "description"], op.value);
+      return null;
+    }
+
     case "add-model": {
       if (doc.has(["models", op.id])) {
         return fail(where, `add-model: '${op.id}' already exists; ids are immutable (V2).`);

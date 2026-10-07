@@ -332,6 +332,9 @@ events:
 machines:
 
   mission:
+    description: >
+      Tracks one delivery from dispatch to completion, including the recovery states a failed
+      attempt passes through.
     label: Mission
     entity: rover
     purpose:
@@ -422,6 +425,8 @@ machines:
           recovery_count: 3
 
   motion-interlock:
+    description: >
+      Tracks whether the drive system is currently permitted to move.
     label: Motion Interlock
     entity: rover
     purpose:
@@ -458,6 +463,9 @@ machines:
 models:
 
   control-authority:
+    description: >
+      Models which subsystem may command which. The safety monitor sits between the planner and
+      the drive system; the edges show whether any command path goes around it.
     type: graph
     label: Control Authority
     purpose:
@@ -510,6 +518,9 @@ models:
         type: may_command
 
   compute-platform:
+    description: >
+      Models which subsystem owns which RAM buffer on the compute module, and what the autonomy
+      payload adds up to against it.
     type: graph
     label: Compute Platform RAM
     purpose:
@@ -584,6 +595,8 @@ models:
           licenses discarding it.
 
   mission-endurance:
+    description: >
+      Models what the battery powers and the declared energy cost of one mission.
     type: graph
     label: Mission Endurance
     purpose:

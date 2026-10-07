@@ -40,10 +40,11 @@ import type {
   KeyEntry,
   Layout,
   LegendEntry,
+  NodeClaim,
   SceneRequest,
 } from "./types.ts";
 import { ARROW_FORMS, MARKS, MARK_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS } from "./types.ts";
-import { inNodeLines } from "./layout.ts";
+import { claimsByTarget, inNodeLines } from "./layout.ts";
 
 const quote = (s: string): string => `"${s}"`;
 
@@ -271,13 +272,22 @@ const humanize = (id: string): string => id.replace(/[_-]+/g, " ").trim();
  * Relation types are sorted, so the form/class assignment is a function of the model rather than of
  * the order the author happened to declare its relations in.
  */
-function keyFor(scene: SceneGraph, show: ReadonlySet<string> | null): readonly KeyEntry[] {
+function keyFor(
+  scene: SceneGraph,
+  show: ReadonlySet<string> | null,
+  claims: ReadonlyMap<string, readonly NodeClaim[]> = new Map(),
+): readonly KeyEntry[] {
   const out: KeyEntry[] = [];
   // When any leaf box carries attribute sub-lines, the key row for its shape SAYS so — small text
   // inside a box that no key names would be a private convention, which is the legend ruling's
   // whole complaint. Stated per shape kind, because entities and states can both carry attributes.
   const annotated = new Set(
     scene.nodes.filter((n) => inNodeLines(n.properties, show).length > 0).map((n) => n.kind),
+  );
+  // And the same disclosure for claim sub-lines: a verdict glyph inside a box is a convention the
+  // key must name, per shape kind that carries one.
+  const claimed = new Set(
+    scene.nodes.filter((n) => (claims.get(n.id) ?? []).length > 0).map((n) => n.kind),
   );
 
   const types = [
@@ -299,10 +309,15 @@ function keyFor(scene: SceneGraph, show: ReadonlySet<string> | null): readonly K
 
   const kinds = [...new Set(scene.nodes.map((n) => n.kind))].sort();
   for (const kind of kinds) {
-    const meaning = annotated.has(kind)
-      ? `${SHAPE_MEANINGS[kind]}; small text inside lists its declared attributes`
-      : SHAPE_MEANINGS[kind];
-    out.push({ channel: "shape", id: kind, form: kind, className: `mage-shape-${kind}`, meaning });
+    const clauses = [
+      SHAPE_MEANINGS[kind],
+      ...(annotated.has(kind) ? ["small text inside lists its declared attributes"] : []),
+      ...(claimed.has(kind) ? ["marked lines inside name tracked claims it participates in"] : []),
+    ];
+    out.push({
+      channel: "shape", id: kind, form: kind, className: `mage-shape-${kind}`,
+      meaning: clauses.join("; "),
+    });
   }
   return out;
 }
@@ -361,6 +376,9 @@ function nodeDescription(
   if (n.parent !== null) parts.push(`contained in ${quote(n.parent)}`);
   if (n.contains.length > 0) parts.push(`contains ${n.contains.map(quote).join(", ")}`);
   for (const p of n.properties) parts.push(`${p.name} is ${p.value}`);
+  // The claims this node participates in, verdicts included — every one, whether or not the
+  // picture had room for its sub-line. The glyph is decoration; the WORD carries the status here.
+  for (const c of n.claims) parts.push(`participates in claim ${quote(c.statement)} — ${c.word}`);
   if (incoming.length > 0) {
     parts.push(`entered from ${incoming.map((e) => `${quote(e.from)}${e.label === null ? "" : ` via ${e.label}`}`).join(", ")}`);
   }
@@ -437,6 +455,7 @@ export function buildAccessibleScene(
     return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   });
 
+  const claims = claimsByTarget(req.claims);
   const nodes: AccessibleNode[] = readingOrder.map((n, i) => {
     const partial: AccessibleNode = {
       id: n.id,
@@ -447,6 +466,7 @@ export function buildAccessibleScene(
       parent: n.parent,
       contains: n.contains,
       properties: n.properties,
+      claims: claims.get(n.id) ?? [],
       initial: n.initial,
       emphasis: byTarget.get(n.id) ?? [],
       readingIndex: i + 1,
@@ -468,6 +488,7 @@ export function buildAccessibleScene(
   const summary = [
     `${subjectWord} ${quote(scene.title)}: ${nodes.length} node${nodes.length === 1 ? "" : "s"}, ${edges.length} relation${edges.length === 1 ? "" : "s"}.`,
     scene.question === null ? null : `Question: ${scene.question}`,
+    scene.includes.length === 0 ? null : `Includes: ${scene.includes.join(", ")}.`,
     scene.omits.length === 0 ? null : `Deliberately omits: ${scene.omits.join(", ")}.`,
     outcomeSentence(req.outcome, req.coverage, req.refusal),
     coverageSentence(req.coverage),
@@ -480,6 +501,9 @@ export function buildAccessibleScene(
   return {
     title: scene.title,
     summary,
+    question: scene.question,
+    includes: scene.includes,
+    omits: scene.omits,
     subject: scene.subject,
     systemHash: systemHash(system),
     direction: layout.direction,
@@ -490,6 +514,6 @@ export function buildAccessibleScene(
     coverage: req.coverage ?? null,
     refusal: req.refusal ?? null,
     legend: legendFor(used),
-    key: keyFor(scene, req.showProperties === undefined ? null : new Set(req.showProperties)),
+    key: keyFor(scene, req.showProperties === undefined ? null : new Set(req.showProperties), claims),
   };
 }

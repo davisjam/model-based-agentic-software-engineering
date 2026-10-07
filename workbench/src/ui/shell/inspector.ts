@@ -47,7 +47,6 @@ import type { Query } from "../../engine/types.ts";
 import {
   LEARN_PAGE, MODEL_TYPE_USES, anchorForUse, deriveLearnEntries, learnHrefForType,
 } from "../../app/learn.ts";
-import { provenanceFields } from "../../app/provenance.ts";
 import { licensesTraversal } from "../../sparql/licensing.ts";
 import { unlicensedByModel } from "../../sparql/refusal.ts";
 import type { Annotated, CanonRelation, CanonTransition, CanonicalSystem } from "../../ir/types.ts";
@@ -235,7 +234,7 @@ const refOf = (r: CanonRelation): RelationRef =>
     ? { kind: "id", model: r.model, id: r.id }
     : { kind: "ends", model: r.model, from: r.from, to: r.to, type: r.type };
 
-/** Notes and Provenance, disclosed. The one derivation both blocks come from. */
+/** Notes, disclosed (SH-I2). Authored model content, kept apart from the declared semantics. */
 function annotationBlocks(a: Annotated): readonly InspectorBlock[] {
   const notes: InspectorLine[] = a.notes.map((n) =>
     line(`${n.kind}: ${n.text}${n.author === null ? "" : ` — ${n.author}`}`));
@@ -247,27 +246,16 @@ function annotationBlocks(a: Annotated): readonly InspectorBlock[] {
   const caveat = notesCaveatFor(a.notes);
   if (caveat !== null) notes.push(line(caveat));
 
-  const provenance: InspectorLine[] = [];
-  if (a.provenance !== null) {
-    const p = provenanceFields(a.provenance);
-    // "Records an origin in a spelling we cannot read" is a different fact from "records nothing",
-    // and dropping the block would report the first as the second.
-    if (p.unreadable) {
-      provenance.push(line("The source records provenance, but none of its fields could be read."));
-    }
-    for (const f of p.fields) provenance.push(line(`${f.label}: ${f.value}`));
-  }
-
+  // Provenance is CUT from the default inspector (UX doctrine, 261006): the pane is a factual
+  // read-only projection of the selected semantic object — "what exactly did I click?" — and an
+  // origin ledger is not part of that answer. Notes stay: a note is authored model content (the
+  // IR's Note, written through add-note). The records themselves remain reachable where machines
+  // and audits read them — window.mage.provenance() — and the principal's "Model in words" carries
+  // its own small ⓘ disclosure.
   return [
     block("Notes", notes, {
       disclosed: true,
       empty: "No notes are attached to this object.",
-    }),
-    block("Provenance", provenance, {
-      disclosed: true,
-      // Said rather than omitted: with agent-authored models, whether an object records where it
-      // came from is itself what a reader came to find out.
-      empty: "No origin is recorded for this object.",
     }),
   ];
 }

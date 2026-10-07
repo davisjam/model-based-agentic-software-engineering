@@ -139,6 +139,10 @@ machines:
   job-lifecycle:
     label: Job Lifecycle
     entity: job
+    description: >
+      Tracks one job from acceptance to a terminal outcome: queued, claimed into processing,
+      and on failure either retried through a bounded counter or sent to dead_letter. Written
+      so the retry-bound question can be asked against an explicit, finite loop.
     purpose:
       question: Can every accepted job reach a terminal state under the modeled retry policy?
       represents:
@@ -242,6 +246,10 @@ machines:
   job-lease:
     label: Job Lease
     entity: job
+    description: >
+      Models custody of the job as an explicit lease: free, or held by one of the two workers.
+      Lease acquisition and release synchronize with the lifecycle's claim and release events,
+      which is what makes the cross-model custody question answerable.
     purpose:
       question: Which worker, if any, holds this job?
       represents:
@@ -277,6 +285,10 @@ models:
   worker-pool:
     type: graph
     label: Worker Pool
+    description: >
+      Models which workers are permitted to claim this job, as explicit may_claim edges. It says
+      nothing about which permitted worker the scheduler actually picks, or whether it picks
+      fairly -- those are deliberate omissions, declared below.
     purpose:
       question: Which workers are permitted to claim this job?
       represents:

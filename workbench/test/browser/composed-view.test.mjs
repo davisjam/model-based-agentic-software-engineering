@@ -145,7 +145,7 @@ test("leaving the composition returns to the one-model view", async () => {
     && document.querySelector("#canvas svg") !== null);
   const summaryText = await page.evaluate(() =>
     document.getElementById("model-reading-summary")?.textContent ?? "");
-  assert.equal(summaryText, "The model in words",
+  assert.equal(summaryText, "The diagram, as structured text",
     "the reading's summary names the one-model view again");
 });
 
