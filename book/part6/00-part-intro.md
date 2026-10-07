@@ -30,15 +30,17 @@ properties a domain must have for the account to transfer at all.
 <!-- box-family: canonical -->
 > ### The synthesis
 >
-> Agentic capacity does not by itself produce useful progress. It acts through the environment
-> surrounding the work. In engineering, Modeling changes the representations used for consequential
-> reasoning and Alignment enforces selected obligations independently of the producing reasoner.
+> The Master Equation describes the reliability of one act of delegated realization. Engineering,
+> however, does not consist of one attempt. Real systems are changed repeatedly, failures have
+> consequences, and each episode can change the environment inherited by the next.
 >
-> Together, these structures shape how much autonomous capacity becomes durable progress, how much failure
-> escapes, and how much human judgment the work still requires.
+> This chapter widens the unit of analysis. It begins with the Master Equation, adds the cost of
+> repeated realization and independent assurance, and then makes the engineered environment itself
+> dynamic. The result is a theory of how Modeling, Alignment, process, and accumulated engineering
+> structure shape the conversion of agentic capacity into durable progress.
 
 **Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
 Engineering Environment · Engineering capital · Probabilistic surface
 
-**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
+**New here:** Master Equation · Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
 Testable predictions · Research agenda
