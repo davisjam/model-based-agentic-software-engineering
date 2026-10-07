@@ -49,8 +49,6 @@ MAGE calls this broader practice Alignment: connecting engineering obligations t
 
 Consider the familiar progression: edit → commit → push → merge → deploy → runtime. Different checks attach to different points. Why not run every check as early as possible? Because some properties do not yet exist in a form that can be decided.
 
-Suppose a deployed web application must correctly render data emitted by a backend service. No source-file check can establish that property: the source may compile, unit tests may pass, the emitted data may be individually valid, and the question becomes answerable only when the pieces compose in the served system. The same problem appears within a single task: when a change must end with the code and its architectural model in agreement, disagreement during intermediate commits may be perfectly legitimate. Rejecting each intermediate commit would enforce the right obligation at the wrong boundary.
-
 This gives us a placement rule: **check an obligation at the earliest boundary where you can actually decide it.** Earlier checks usually make failures cheaper to repair, but moving a check earlier than its evidence permits does not make the control stronger. It makes the check incapable of deciding the property it claims to enforce. The boundary follows the property.
 
 ## Guidance is not enforcement
@@ -59,17 +57,7 @@ Suppose an agent receives the instruction: *do not merge unless the security tes
 
 Both are useful, and Alignment is not an argument against instructions, documentation, review, or expert judgment. It asks which engineering obligations matter enough, and are sufficiently evaluable, that satisfying them should not depend solely on each future producer remembering and interpreting them correctly.
 
-## An obligation the work can be wrong against
-
-Before mechanizing an obligation, distinguish three questions that software engineering often mixes together:
-
-- **Correspondence** — do two representations agree? Does an architectural model match the dependency graph extracted from the implementation?
-- **Conformance** — does an artifact satisfy an independent obligation? Does this PDF satisfy the relevant standard?
-- **Acceptance** — will the receiving environment take the result? Will CI admit the change?
-
-Evidence for one does not establish the others, and agreement is not correctness. A representation derived from code may perfectly describe an unauthenticated endpoint: the representation and the implementation agree, and the security obligation is still violated. Alignment therefore needs an obligation against which the work can actually be wrong — a requirement, invariant, policy, tolerance, permission, schema, or model. What matters is not whether the representation was hand-written or derived; it is whether the mechanism has an independent engineering condition against which to judge the work.
-
-## Four roles, and a preference for prevention
+## Four roles
 
 Once the obligation and its boundary are known, we can ask what the environment should do. Four roles are useful:
 
@@ -77,25 +65,6 @@ Once the obligation and its boundary are known, we can ask what the environment 
 - **Sensor** — observes what happened and produces evidence.
 - **Validator** — evaluates evidence against an obligation.
 - **Gate** — controls whether work may cross a boundary.
-
-These are roles, not four separate tools or four sequential stages. A CI test can sense behavior, validate the result, and gate the build; a narrow interface can constrain available actions while also producing evidence about their use.
-
-The first engineering preference is prevention: if an invalid state can be excluded cheaply and reliably, prefer excluding it to repeatedly detecting it later. A closed enumeration can make an illegal value unrepresentable; a permission can prevent an agent from invoking a consequential action at all. Not every property can be held structurally — some appear only across sequences of individually legal actions, or only in the assembled artifact or at runtime. Those need evidence: observe, validate against the obligation, and decide whether the verdict controls admission. The mechanism follows the property — a type, an architectural check, a model checker, human review, and a deployment test are not stronger and weaker forms of Alignment; each answers a different engineering question.
-
-## From blacklists to sanctioned paths
-
-Generative implementation makes one Alignment problem visible: an agent can invent implementation paths its designers did not anticipate. Suppose all document color mutations must derive from a canonical color model. Banning every known bypass works while the forbidden surface stays small and recognizable, but future implementations may combine otherwise legitimate operations into a bypass no blacklist anticipated. Sometimes the allowed path is easier to characterize: the sanctioned abstraction attaches provenance ordinary callers cannot create, and the mutation boundary requires that provenance before accepting the operation. The rule of thumb: when forbidden paths are enumerable, ban them; when the allowed path is easier to characterize than all possible bypasses, make admission depend on evidence of the allowed path.
-
-## Not everything should be enforced
-
-Alignment is not a march toward making every engineering decision mechanical. An engineering concern can stop in several places:
-
-- **Residual** — the concern is not represented adequately; an engineer or agent must reconstruct the relevant meaning.
-- **Judgment required** — the obligation is explicit, but no available evaluator can decide it adequately.
-- **Evaluated only** — evidence is produced and evaluated, but the result does not control admission.
-- **Governed** — the environment constrains the action or makes admission depend on the verdict.
-
-These are design choices, not maturity levels. A cost metric may be worth observing without a hard budget. A probabilistic validator may serve triage while remaining too uncertain to block production. Stronger Alignment does not mean more gates; it means the obligations engineering chooses to enforce are enforced dependably at appropriate boundaries.
 
 ## When failures become controls
 
