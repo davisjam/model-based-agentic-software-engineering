@@ -53,20 +53,21 @@ Both are useful. Alignment asks which obligations matter enough, and can be eval
 
 ## The Master Equation
 
-The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+The Master Equation separates places where reliable delegated realization can fail.
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-Alignment begins from a consequential fact: none of its factors is generally one. It asks which obligations should therefore be backed by mechanisms outside the producing reasoner's judgment.
+Modeling improves the conditions under which delegated realization succeeds. Alignment begins from the complementary fact that no factor in the Master Equation is generally one: which obligations should remain governed when realization fails?
 
 | Factor | The Alignment question |
 |---|---|
-| *P(E \| R)* | Is the obligation itself encoded somewhere a mechanism can evaluate it, rather than only where a reasoner can read it? |
-| *P(I \| E, R)* | Which obligations matter enough that satisfying them should not depend on each producer interpreting them correctly? |
-| *P(L \| I, E, R)* | What evidence would show that a realization satisfies the obligation, and at what boundary does that evidence exist? |
-| *H* | Which mechanisms — constraints, sensors, validators, gates — should the environment attach to the obligation, and with what consequence? |
+| *P(E \| R)* | Is the obligation encoded clearly enough to evaluate? |
+| *P(I \| E, R)* | Which obligations should not depend solely on the producer interpreting them correctly? |
+| *P(L \| I, E, R)* | What evidence distinguishes an acceptable realization from an unacceptable one? |
 
-Each factor can be improved; none can be driven to one. Alignment therefore does not try to perfect the chain. It selects obligations that must hold even when a link fails, and backs them with mechanisms that do not depend on the producing reasoner getting them right: an independent check does not raise the probability that an attempt succeeds, it governs what an unacceptable attempt may cause. The engineering question is which obligations merit that treatment and where the evidence needed to decide them exists.
+Alignment adds a surrounding engineering question: what should the harness *H* do with that evidence? Constraints, sensors, validators, and gates can prevent, observe, evaluate, or control consequences.
+
+Each factor can be improved; none can be driven to one. Alignment therefore does not try to perfect the chain. It selects obligations that must hold even when a link fails, and backs them with mechanisms that do not depend on the producing reasoner getting them right. Modeling can improve the probability of satisfactory realization. Alignment asks what an unacceptable realization is allowed to cause. The engineering question is which obligations merit that treatment and where the evidence needed to decide them exists.
 
 ## Check it where it can be decided
 
@@ -105,4 +106,4 @@ The three units now fit together. Agents asked how engineers delegate realizatio
 
 Failures reveal what the environment does not yet know, see, evaluate, or enforce, and recurring judgments can sometimes be converted into durable control. The next unit, Failure-Aware Engineering, asks how to make that learning systematic.
 
-The questions to carry forward are practical ones: How can the delegated work fail? What must be true? What evidence bears on it? Where can it be decided? How will it be evaluated? Should failure control what happens next? Together, these questions turn engineering obligations into a designed control system without assuming that every judgment should become an automated gate.
+Carry forward three decisions: what must be true, where can it be decided, and what should happen when it is false? Together they turn engineering obligations into a designed control system without assuming that every judgment belongs in an automated gate.
