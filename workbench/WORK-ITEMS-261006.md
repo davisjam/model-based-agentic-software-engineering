@@ -127,3 +127,29 @@ set is what surfaced the failure locally. Reproduce the STEP, not the test.
 **Fable quota was exhausted mid-afternoon** (now uncapped again); two copyedit agents died before
 writing anything and were re-dispatched on Opus. A third died one step before committing with verified
 work in the tree — recovered by running the gates and committing on its behalf. That is twice today.
+
+### 261007 late — four surgical lander copyedits (committed, branch `landers-surgical-261007`)
+
+Author's final pass on the Act II landers. Each keeps a factor to its own link in the chain:
+
+1. Delegation — "two parts of this system" named three units; now "examine this system from three
+   directions."
+2. Modeling P(L | I,E,R) — asked whether the REPRESENTATION preserves enough structure, but by that
+   stage the representation's work is done through encoding and interpretation. Now asks whether
+   enough consequential structure has been preserved.
+3. Alignment P(E | R) — "clearly enough to evaluate" borrowed evaluation from the surrounding control
+   system before it exists. Now "represented clearly enough to be encoded as intended."
+4. Failure-Aware close — "giving selected obligations authority beyond the producer's judgment" →
+   "backing selected obligations with controls outside the producer's judgment", which is Alignment's
+   own concrete vocabulary.
+
+The recurring cue ("The Master Equation separates places where reliable delegated realization can
+fail.") verified identical in all four landers after the edits.
+
+**Committed in a WORKTREE, not on main, deliberately**: a push was mid-gate, and committing to main
+while a push transfers stranded a commit earlier today. Merge after the push lands.
+
+**Standing worktree gotcha, seen three times today:** `catalog_tests.py --tier1` reports 2 failures
+in any fresh worktree — `html: link + anchor resolution` and `book: emitted web tree == expected page
+slugs` — both from `book/web/docs/` being empty. That tree is gitignored and only exists in the main
+checkout. Not a regression; do not chase it.
