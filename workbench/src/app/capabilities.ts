@@ -278,13 +278,6 @@ export const CHROME_CONTROLS: readonly { readonly id: string; readonly why: stri
       + "does not have, so declaring a capability would advertise a parity that is not meaningful",
   },
   {
-    id: "case-collapse",
-    why: "collapses the case panel's disclosure ('Start investigating') and moves focus to its "
-      + "summary, which is the way back. Pure view movement: the case is context, not a "
-      + "constraint, so showing or hiding it reaches no model state and no agent operation is "
-      + "missing a parity here -- an agent reads the same case from window.mage.examples()",
-  },
-  {
     id: "refresh",
     why: "re-reads the current state and re-renders every surface, mutating nothing — the taught "
       + "loop's 'inspect what the agent just changed' as one header act. The paint it triggers is "

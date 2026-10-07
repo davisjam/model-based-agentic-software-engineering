@@ -1,0 +1,287 @@
+# Expected results for the complex-transaction-workspace example. Read by the strict fixture
+# reader (scripts/gen-example-coverage.ts), which drives the real application seams --
+# Workspace.load, Workspace.query, openHypothesis -- and compares.
+#
+# ## Fixture discipline (section 10)
+#
+# Semantic pins only: the outcome, the coverage KIND, and the evidence a reader cares about. No
+# exact step counts, no configurations-explored figures, no rendering coordinates. `path` pins an
+# ORDERED node sequence where the sequence IS the answer; `no_evidence` pins that a refutation or
+# a universal satisfaction arrives bare.
+#
+# ## The property mix is the spec's own
+#
+# Eight saved properties, P1-P8 of the three-example library specification, and exactly one is the
+# library's intentional failure: P5, the Event Flow + Data Policy join. Simple and Medium teach a
+# student to read one representation; this example demonstrates that composition can reveal a
+# system-level problem invisible in either model alone.
+
+example: complex-transaction-workspace
+system: system.mage.yaml
+title: Complex – Transaction Workspace
+summary: >
+  An event-driven order system -- Checkout, Inventory, Billing, Fulfillment, Analytics -- modeled
+  three ways: event topology, data policy, and the lifecycle of one order. The data-policy join
+  exposes a subscription the policy forbids.
+
+# Purposeful models, for the EX-I2 check. A machine carries a `purpose` exactly as a graph model
+# does, so all three count.
+models:
+  - id: event-flow
+    kind: graph
+  - id: data-policy
+    kind: graph
+  - id: transaction-lifecycle
+    kind: machine
+
+# ---------------------------------------------------------------------------
+# Requirements. The DECLARATIONS live in system.mage.yaml; what this block adds is `status` -- the
+# verdict the shipped system actually derives -- which has no authored home because a verification
+# is derived per read and stored nowhere. The gate holds the two copies equal.
+#
+# One violated on purpose, two satisfied: the spec puts the library's single ✕ here, and only here.
+# ---------------------------------------------------------------------------
+requirements:
+
+  - id: every-order-created-subscriber-may-process-its-payload
+    statement: >
+      Every service subscribed to OrderCreated must be permitted to process every data class
+      OrderCreated carries.
+    expressed_as: restricted-data-reaches-an-order-created-subscriber
+    satisfied_when: refuted
+    status: violated
+    note: >
+      Violated on purpose -- the library's one intentional failure. Analytics permits internal
+      data and subscribes to OrderCreated, which carries the restricted shipping-address and
+      customer-id fields. Shipping the violation is what makes the breach query return a real
+      counterexample instead of a vacuous holds, and the declared modification repairs it.
+
+  - id: fulfillment-requires-payment
+    statement: >
+      No order may be fulfilled without previously reaching Paid.
+    expressed_as: fulfilled-without-previously-paid
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Satisfied by the transition structure: begin-fulfillment is the only edge into
+      FulfillmentPending and it leaves from Paid, so every execution reaching Fulfilled passed
+      through Paid.
+
+  - id: fulfilled-orders-are-never-cancelled
+    statement: >
+      An order that has been fulfilled must never subsequently be cancelled.
+    expressed_as: no-cancellation-after-fulfillment
+    satisfied_when: holds
+    status: satisfied
+    note: >
+      Satisfied, and not vacuously: Cancelled is reachable (order-can-be-cancelled) and
+      fulfilled_once: true is reachable (every completing trace), so the forbidden conjunction is
+      satisfiable in the state vector and the transition structure is what rules it out --
+      cancellation leaves only Created and PaymentPending, where fulfilled_once is still false,
+      and Fulfilled has no outgoing transition.
+
+queries:
+
+  # P1 -- deliberately elementary: direct structural membership, the first thing a novice reads.
+  - id: checkout-publishes-order-created
+    label: Checkout may publish OrderCreated
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [checkout, order-created]
+    note: >
+      Single-model and one hop by construction, so the forbidden path composition on `publishes`
+      does not gate it. The ordered two-node witness IS the edge the model declares.
+
+  # P2 -- the same topology asked through the reachability form, of the relation that licenses it.
+  - id: order-created-reaches-billing
+    label: OrderCreated can reach Billing
+    suggested: false
+    models: [event-flow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [order-created, billing]
+    note: >
+      Reachability rather than edge inspection: the engine searches, and the one-hop witness is
+      what the search found. Asked over `subscribes` the same question would come back unlicensed
+      (V7) -- `may_propagate_to` licenses composition because it dropped the
+      publish-vs-subscribe distinction, which is the price of a composable relation.
+
+  # P3 -- the multi-hop question, and the reason the propagation edges exist.
+  - id: checkout-event-reaches-fulfillment
+    label: An event originating at Checkout can eventually reach Fulfillment
+    suggested: true
+    models: [event-flow]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [checkout, order-created, billing, payment-completed, fulfillment]
+    note: >
+      The ordered four-hop witness is pinned because the hop count is the evidence: a one-node
+      witness would mean the endpoints had not resolved and the search took a degenerate early
+      return. The route reads as a sentence -- Checkout publishes OrderCreated, Billing receives
+      it and publishes PaymentCompleted, Fulfillment receives that.
+
+  # P4 -- Inventory's clean bill, as the existential dual MAGE v0.1 can state.
+  - id: inventory-receives-data-above-its-permission
+    label: An event carrying data above Inventory's permission reaches Inventory
+    suggested: false
+    models: [event-flow, data-policy]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The ✓ for "Inventory may process the data it receives", stated as its breach dual and
+      exhaustively refuted. Read the refutation exactly: Inventory subscribes to no event type at
+      all -- its only represented intake is Checkout's synchronous call, and call payloads are
+      outside the data policy's scope -- so no subscription edge exists for the comparison to
+      breach. A subscriber-shaped repair that routed an event to Inventory would re-ask this
+      question with content.
+
+  # P5 -- THE cross-model question, and the library's single intentional failure. MAGE v0.1 has no
+  # universal graph form, so the property is expressed as its existential dual: the query states
+  # the breach, HOLDS as a witness of it, and the requirement above is discharged only when it is
+  # refuted.
+  - id: restricted-data-reaches-an-order-created-subscriber
+    label: OrderCreated reaches a subscriber not permitted to process what it carries
+    suggested: true
+    models: [event-flow, data-policy]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: path
+        role: witness
+        path: [analytics, order-created]
+    note: >
+      The question neither model answers alone. event-flow contributes the `subscribes` edge and
+      declares no sensitivities; data-policy contributes `permits` on the service and `carries` on
+      the event type and declares no edge. Shared entity identity permits the join, and the
+      ordered sensitivity domain is what makes `permits < carries` typecheck (V20).
+
+      `holds` IS the safety breach. The witness names the semantic chain: Analytics subscribes to
+      OrderCreated; OrderCreated carries shipping-address (and customer-id); shipping-address is
+      restricted; Analytics permits internal. Be exact about which value the engine reads: the
+      form compares `source.permits` against `target.carries`, so the breach rides on the event
+      type's AUTHORED carries-aggregate -- the restricted fields are why that aggregate says
+      restricted, an authoring fact held to the field layer by the aggregation declared on
+      `carries_field` (V46), not a term the query evaluates.
+
+      Scoped `to: order-created` because that is P5's claim -- every subscriber to ORDERCREATED
+      may process ORDERCREATED's payload. The scope hides nothing a reader is owed: the shipped
+      data also carries a latent Analytics-PaymentCompleted breach (payment-status is restricted),
+      named in the model file's header, and an unscoped version of this query would find both.
+
+  # P6 -- the behavioral safety question, asked as reachability with avoid.
+  - id: fulfilled-without-previously-paid
+    label: An order can be fulfilled without ever being Paid
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      Fulfillment requires successful payment. Coverage is exhaustive over the pruned space --
+      `avoid` is part of the question, not a search budget -- so the sound statement is "no
+      execution avoiding Paid reaches Fulfilled", which is exactly what was asked.
+      begin-fulfillment is the only edge into FulfillmentPending and it leaves from Paid.
+
+  # P7 -- once fulfilled, never cancelled: a past-time claim, carried by the explicit history
+  # variable and asked as a universal invariant.
+  - id: no-cancellation-after-fulfillment
+    label: An order, once fulfilled, is never cancelled
+    suggested: false
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      Universal, so exhaustive satisfaction establishes it and arrives bare. The shipped forms
+      have no past-time operator, so the machine models the history explicitly -- fulfilled_once
+      is set by the completing transition and never cleared -- and "later" becomes a claim over
+      reachable configurations. Held non-vacuously (see the requirement's note), and held by the
+      transition structure: cancellation leaves only the two pre-payment states, and Paid ->
+      Cancelled is deliberately absent, which is also what keeps this claim crisp.
+
+  # P8 -- deliberately a possibility claim, so the behavioral trio is not all safety.
+  - id: order-can-be-cancelled
+    label: An order can be cancelled before fulfillment begins
+    suggested: true
+    models: [transaction-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 1
+        labels_at_least:
+          cancel: 1
+        final:
+          transaction-lifecycle.state: cancelled
+          transaction-lifecycle.fulfilled_once: false
+    note: >
+      The possibility half of the cancellation story: P7 says cancellation never follows
+      fulfillment, this says it genuinely precedes it. The pinned final configuration carries the
+      claim -- the order is Cancelled and fulfilled_once is still false, so the witness cancelled
+      an order that was never fulfilled, not merely reached a state with the right name.
+
+# ---------------------------------------------------------------------------
+# Useful modifications. Each is a real transaction driven through openHypothesis /
+# discardHypothesis, and each must CHANGE a recorded answer and then change back. `base` is
+# omitted: it must equal the live system hash, which the test fills in.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: drop-the-analytics-subscription
+    label: Remove Analytics from OrderCreated
+    rationale: >
+      The repair of the library's one intentional failure. Both edges go in ONE transaction:
+      event-flow's propagation edge is the image of the subscription, so removing one and not the
+      other would leave the model disagreeing with itself about the same fact. After the repair
+      Billing is OrderCreated's only subscriber, Billing permits restricted data, and the breach
+      query answers refuted -- which is what discharges the requirement.
+    transaction:
+      operations:
+        - op: delete-relation
+          model: event-flow
+          id: analytics-subscribes-order-created
+        - op: delete-relation
+          model: event-flow
+          id: propagate-order-created-analytics
+    changes:
+      - query: restricted-data-reaches-an-order-created-subscriber
+        from: holds
+        to: refuted
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts). A row is a CLAIM
+# the gate measures in both directions.
+# ---------------------------------------------------------------------------
+declarations:
+
+  - id: calls-edge-carries-the-relation-types-absence-clause
+    subject: relation:event-flow/calls
+    inert: true
+    held_by: the-reader
+    reason: >
+      One synchronous-invocation edge, checkout -> inventory, the spec's own topology. No saved
+      question asks over `calls`, so deleting the edge moves no recorded answer. It is here so the
+      relation type's absence clause has something to be about, and because P4's clean bill reads
+      differently beside it: Inventory's represented intake is this call, not a subscription, and
+      the data policy deliberately does not model call payloads.

@@ -115,7 +115,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parse } from "yaml";
-import { caseOf, flagshipRealisedBy, scenarioLead } from "../../src/app/examples.ts";
+import { SHIPPED_EXAMPLES } from "../../src/app/examples.ts";
 import { evaluationOf } from "../../src/ir/types.ts";
 import { STATUS_WORD } from "../../src/ui/shell/review.ts";
 import { statusWord } from "../../src/ui/shell/nav.ts";
@@ -125,20 +125,21 @@ import {
 } from "./harness.mjs";
 
 /**
- * The subject: the §21 slot, resolved to whichever example `SHIPPED_EXAMPLES` declares realises it.
+ * The subject: the richest example the library ships, resolved through `SHIPPED_EXAMPLES` rather
+ * than typed here.
  *
- * §8 of the design names the flagship, and `src/app/examples.ts` owns which example that is. Reading
- * the id through `flagshipRealisedBy` rather than typing it means a re-slotted flagship moves this
- * journey instead of leaving it pointed at a demoted example.
+ * The 261006 cut replaced the named flagship slot with a declared difficulty tier, so the journey
+ * follows whichever example claims `complex` instead of pointing at an id that can be demoted or
+ * retired out from under it. Deriving the subject is the point: the test moves with the library.
  */
-const FLAGSHIP_SLOT = "Secure Message Bus";
-const EXAMPLE = flagshipRealisedBy(FLAGSHIP_SLOT);
+const FLAGSHIP_TIER = "complex";
+const EXAMPLE = SHIPPED_EXAMPLES.find((e) => e.tier === FLAGSHIP_TIER)?.id ?? "";
 
 // Asserted here rather than in `before`, because the manifest read below would otherwise fail on a
 // path containing "null" and report a missing file instead of an unrealised flagship slot.
 assert.ok(typeof EXAMPLE === "string" && EXAMPLE !== "",
-  `no shipped example declares that it realises the §21 flagship '${FLAGSHIP_SLOT}', so this `
-  + "journey has no subject");
+    `no shipped example declares the '${FLAGSHIP_TIER}' tier, so this journey has `
+    + "no subject");
 
 const fixture = parse(await readFile(
   join(WORKBENCH_DIR, "examples", EXAMPLE, "expected-results.yaml"), "utf8"));
@@ -458,11 +459,14 @@ describe(`rung 1 — ${EXAMPLE} opens through the picker and the page says which
       + `title '${fixture.title}', so the menu names the example something its manifest does not`);
     assert.match(opened.beforeLoad.description, new RegExp(escapeForRegExp(fixture.title)),
       "the Start region's description does not name the example");
-    // The card leads with the CASE, abbreviated — the author's "on the Start card in abbreviated
-    // form" — looked up through the same derivation the card paints, never retyped here.
-    const lead = scenarioLead(caseOf(EXAMPLE).scenario).replace(/\s+/g, " ").trim();
+    // The card leads with the example's own AUTHORED summary, read from the manifest and never
+    // retyped here. The retired case panel used to supply this prose; the 261006 cut made the
+    // manifest summary itself the authored scenario, so the REQUIREMENT is unchanged and only its
+    // source moved — a student choosing an example must read what it is ABOUT, not a count of
+    // its parts.
+    const lead = String(fixture.summary).replace(/\s+/g, " ").trim();
     assert.match(opened.beforeLoad.description, new RegExp(escapeForRegExp(lead)),
-      "the Start description does not lead with the example's case scenario, so a student "
+      "the Start description does not lead with the example's authored summary, so a student "
       + "choosing this example still reads the dataset-style fixture summary");
   });
 

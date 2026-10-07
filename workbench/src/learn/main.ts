@@ -43,7 +43,7 @@
  */
 import { parse } from "yaml";
 import { Workspace } from "../app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
+import { EXAMPLE_IDS, exampleDir, type ExampleId } from "../app/example-corpus.ts";
 import { learnHrefForType, type LearnEntry } from "../app/learn.ts";
 import type { CanonicalSystem } from "../ir/types.ts";
 import type { SchemaAuthority } from "../engine/model-types.ts";
@@ -138,7 +138,7 @@ const PART = {
  */
 const headingCase = (label: string): string => label.charAt(0).toUpperCase() + label.slice(1);
 
-function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId, CanonicalSystem>): HTMLElement {
+function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ExampleId, CanonicalSystem>): HTMLElement {
   const section = el("section");
   section.id = s.anchor;
   // The heading names the thing; the registry's engineering question sits directly under it. Both
@@ -260,7 +260,7 @@ function typeSection(s: LearnTypeSection, systems: ReadonlyMap<ShippedExampleId,
   return section;
 }
 
-function useSection(s: LearnUseSection, systems: ReadonlyMap<ShippedExampleId, CanonicalSystem>): HTMLElement {
+function useSection(s: LearnUseSection, systems: ReadonlyMap<ExampleId, CanonicalSystem>): HTMLElement {
   const section = el("section");
   section.id = s.anchor;
   const h = el("h2", s.use.label);
@@ -381,20 +381,20 @@ async function boot(): Promise<void> {
   const main = document.getElementById("learn-main");
   if (main === null) throw new Error("learn.html did not provide #learn-main");
 
-  const systems = new Map<ShippedExampleId, CanonicalSystem>();
+  const systems = new Map<ExampleId, CanonicalSystem>();
   // The source texts ride along with the systems: the walkthrough's what-if steps load one into a
   // real Workspace, so the branch they open is over the same bytes the page parsed.
-  const texts = new Map<ShippedExampleId, string>();
+  const texts = new Map<ExampleId, string>();
   // And the fixtures — same directory, same fetch wave. The question sections and the walkthrough
   // read the requirement statements and the declared modifications out of them; see `fixtures.ts`
   // for why that is a derivation rather than a copy.
-  const fixtures = new Map<ShippedExampleId, ExampleFixture>();
-  await Promise.all(SHIPPED_EXAMPLE_IDS.map(async (id) => {
+  const fixtures = new Map<ExampleId, ExampleFixture>();
+  await Promise.all(EXAMPLE_IDS.map(async (id) => {
     const [system, fixture] = await Promise.all([
-      fetch(`examples/${id}/system.mage.yaml`),
+      fetch(`${exampleDir(id)}/system.mage.yaml`),
       fetch(fixturePathFor(id)),
     ]);
-    if (!system.ok) throw new Error(`examples/${id}/system.mage.yaml: HTTP ${system.status}`);
+    if (!system.ok) throw new Error(`${exampleDir(id)}/system.mage.yaml: HTTP ${system.status}`);
     if (!fixture.ok) throw new Error(`${fixturePathFor(id)}: HTTP ${fixture.status}`);
     const text = await system.text();
     texts.set(id, text);

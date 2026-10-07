@@ -96,8 +96,9 @@ import { countElements, selectElements, type Cardinality } from "../engine/eleme
 import { runQuery } from "../engine/index.ts";
 import type { CanonicalSystem, Evidence, Purpose, QueryResult } from "../ir/types.ts";
 import { DIMENSIONS, UNIT_DIMENSIONS } from "../ir/types.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../app/example-corpus.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
+import { presentTypes } from "../app/learn.ts";
 import {
   ceilingQuestions, composedQuantityQuery, declaredUnitOf, exemplarFor, quantityRows,
   savedStatements,
@@ -301,7 +302,7 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
           + "cannot go stale",
       },
       {
-        file: "examples/message-bus/expected-results.yaml", symbol: "modifications:",
+        file: "test/fixtures/examples/message-bus/expected-results.yaml", symbol: "modifications:",
         role: "the declared modifications and the answers each one changes; `test/examples.test.ts` "
           + "drives every one through the real hypothesis seam and asserts both outcomes",
       },
@@ -319,7 +320,7 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
           + "outcome differs, the requirement is violated",
       },
       {
-        file: "examples/message-bus/expected-results.yaml", symbol: "requirements:",
+        file: "test/fixtures/examples/message-bus/expected-results.yaml", symbol: "requirements:",
         role: "the shipped requirements, each joined to the question that decides it by the outcome "
           + "that would satisfy it",
       },
@@ -362,7 +363,7 @@ export const QUESTION_SECTIONS: readonly QuestionSection[] = [
           + "names long and has no shortcut",
       },
       {
-        file: "examples/embedded-sensor-node/system.mage.yaml", symbol: "sram-budget:",
+        file: "test/fixtures/examples/embedded-sensor-node/system.mage.yaml", symbol: "sram-budget:",
         role: "the worked example, and the author's own account of the separation: a budget is "
           + "declared as a quantity because it is a number, and the obligation that cites it is a "
           + "separate declaration naming the query rather than restating the figure",
@@ -453,7 +454,7 @@ export const QUESTION_ANCHORS: readonly string[] = QUESTION_SECTIONS.map((s) => 
 // ---------------------------------------------------------------------------------------------
 
 /** How a system names itself, for a row that must say which example a figure came from. */
-const nameOf = (systems: LoadedSystems, id: ShippedExampleId): string =>
+const nameOf = (systems: LoadedSystems, id: ExampleId): string =>
   systems.get(id)?.name ?? id;
 
 /**
@@ -535,7 +536,7 @@ function statementOf(system: CanonicalSystem, id: string): string {
 
 /** Every shipped saved question, run once — the corpus three sections read. */
 interface RanQuestion {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly id: string;
   readonly statement: string;
   readonly result: QueryResult;
@@ -543,7 +544,7 @@ interface RanQuestion {
 
 function runEveryShippedQuestion(systems: LoadedSystems): readonly RanQuestion[] {
   const out: RanQuestion[] = [];
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined) continue;
     for (const id of system.queries.keys()) {
@@ -582,7 +583,7 @@ const verdictOf = (answer: object): string =>
 
 /** One shipped model, READ: which entities of one declared type it has, and how many. */
 interface SelectionReading {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   /** The engine's own sentence for the selector, from `interpretElementSelector`. */
   readonly question: string;
   readonly declaredTypes: readonly string[];
@@ -617,7 +618,16 @@ interface SelectionReading {
 function selectionReading(systems: LoadedSystems): SelectionReading | null {
   const visual = exemplarFor(STRUCTURAL, systems);
   if (visual === null) return null;
-  const system = systems.get(visual.example);
+  // The section closes on a deciding question of the SAME model, so prefer the first structural
+  // example that also SAVES one — medium-document-processing declares a graph model but saves no
+  // graph question, while complex-transaction-workspace carries both. Fall back to the bare
+  // structural exemplar so the reading itself never disappears with the contrast.
+  const example = EXAMPLE_IDS.find((id) => {
+    const sys = systems.get(id);
+    return sys !== undefined && presentTypes(sys).includes(STRUCTURAL)
+      && decidingQuestion(systems, id) !== null;
+  }) ?? visual.example;
+  const system = systems.get(example);
   if (system === undefined) return null;
   let chosen: { readonly type: string; readonly count: Cardinality } | null = null;
   for (const type of countElements(system, {}).declaredTypes) {
@@ -633,7 +643,7 @@ function selectionReading(systems: LoadedSystems): SelectionReading | null {
   const counted = countElements(system, selector);
   if (!selection.selected || !counted.counted) return null;
   return {
-    example: visual.example,
+    example,
     question: selection.interpretedAs,
     declaredTypes: selection.declaredTypes,
     ids: selection.ids,
@@ -656,7 +666,7 @@ function selectionReading(systems: LoadedSystems): SelectionReading | null {
  * illustration here, exactly as a refusal is.
  */
 function decidingQuestion(
-  systems: LoadedSystems, example: ShippedExampleId,
+  systems: LoadedSystems, example: ExampleId,
 ): { readonly statement: string; readonly result: QueryResult } | null {
   const system = systems.get(example);
   if (system === undefined) return null;
@@ -682,7 +692,7 @@ function decidingQuestion(
  * system's own `model:`-targeted quantity, so nothing here authors a question shape.
  */
 function shippedCounterexample(systems: LoadedSystems): {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly metric: string;
   readonly ceiling: string;
   /** The unit the chosen ceiling declares, so the figure deciding it reads in the same unit. */
@@ -691,7 +701,7 @@ function shippedCounterexample(systems: LoadedSystems): {
 } | null {
   const quantitative = MODEL_TYPES.find((t) => t.id === "quantitative-model");
   if (quantitative === undefined) return null;
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined) continue;
     const composed = composedQuantityQuery(system, quantitative.query.forms);
@@ -963,7 +973,7 @@ function evidenceBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
 
 function propertyBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readonly QuestionBlock[] {
   const rows: string[][] = [];
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     const fixture = fixtures.get(example);
     if (system === undefined || fixture === undefined) continue;
@@ -1039,7 +1049,7 @@ function decideRequirement(
 function requirementBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): readonly QuestionBlock[] {
   const declared: string[][] = [];
   const polarity = new Map<string, string[]>();
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     const fixture = fixtures.get(example);
     if (system === undefined || fixture === undefined) continue;
@@ -1112,7 +1122,7 @@ function requirementBlocks(systems: LoadedSystems, fixtures: LoadedFixtures): re
 
 /** One requirement whose deciding question cites a declared ceiling, with every link resolved. */
 interface CeilingChain {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly requirementId: string;
   readonly statement: string;
   readonly satisfiedWhen: string;
@@ -1131,7 +1141,7 @@ interface CeilingChain {
  */
 function ceilingChains(systems: LoadedSystems, fixtures: LoadedFixtures): readonly CeilingChain[] {
   const out: CeilingChain[] = [];
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     const fixture = fixtures.get(example);
     if (system === undefined || fixture === undefined) continue;
@@ -1637,7 +1647,7 @@ function bindingCorpusRows(systems: LoadedSystems): readonly BindingCorpusRow[] 
     let count = 0;
     let instance: string | null = null;
     let unwalkable: string | null = null;
-    for (const example of SHIPPED_EXAMPLE_IDS) {
+    for (const example of EXAMPLE_IDS) {
       const system = systems.get(example);
       if (system === undefined) continue;
       const found = witnessedBy(binding, system);
@@ -1678,7 +1688,7 @@ function boundPair(systems: LoadedSystems): BoundPair | null {
   const binding = BINDINGS.find(
     (b) => b.correspondence.source === "machine" && b.correspondence.target === "entity");
   if (binding === undefined) return null;
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined) continue;
     for (const [machineId, machine] of system.machines) {
@@ -1877,7 +1887,7 @@ function composedReading(systems: LoadedSystems): ComposedReading | null {
     (c) => c.from === behavioral.id && c.to === quantitative.id);
   if (composition === undefined) return null;
 
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     if (system === undefined) continue;
     const selection = stateSelections(system)[0];

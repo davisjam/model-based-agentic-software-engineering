@@ -38,7 +38,6 @@ import { surfaceElement } from "./shell/surfaces.ts";
 import { Announcer } from "./shell/announcer.ts";
 import { mountHeader } from "./shell/header.ts";
 import { mountStart } from "./shell/start.ts";
-import { mountCase } from "./shell/case.ts";
 import { mountNav } from "./shell/nav.ts";
 import { mountWorkspace } from "./shell/workspace.ts";
 import { mountInspector } from "./shell/inspector.ts";
@@ -166,9 +165,6 @@ const editDialogs = mountEditDialogs(ctx, editForms.submitEdit);
 const regions: readonly ShellRegion[] = [
   mountHeader(ctx),
   mountStart(ctx),
-  // The case panel, between Start and the nav band in the regions list as in the document: it is
-  // mounted iff a loaded system's import came from a shipped example (ExampleCatalog.currentCase).
-  mountCase(ctx),
   mountNav(ctx),
   // `open` again, because the canvas context menu dispatches into the same dialogs the palette and
   // the `+ Add` menu do: one catalogue of operations, one way to open one of them.

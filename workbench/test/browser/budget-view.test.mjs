@@ -30,6 +30,7 @@ import { join } from "node:path";
 import {
   startServerOnFreePort, launchBrowser, shutdown, openWorkbench, advanceVirtualTime, WORKBENCH_DIR,
 } from "./harness.mjs";
+import { exampleDir } from "../../src/app/example-corpus.ts";
 
 let server;
 let browser;
@@ -40,7 +41,9 @@ let page;
 let origin;
 
 const loadSystem = async (example) => {
-  const yaml = await readFile(join(WORKBENCH_DIR, "examples", example, "system.mage.yaml"), "utf8");
+  // Resolves both populations: shipped ids under examples/, the 261006 split's fixture corpus
+  // under test/fixtures/examples/ — the same resolver the application and the suite share.
+  const yaml = await readFile(join(WORKBENCH_DIR, exampleDir(example), "system.mage.yaml"), "utf8");
   await page.evaluate((text) => window.mage.load(text), yaml);
   await advanceVirtualTime(page, 1500);
 };

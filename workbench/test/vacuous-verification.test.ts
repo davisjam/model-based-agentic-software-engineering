@@ -35,7 +35,7 @@ import { runSavedQueries, verifySystemRequirements } from "../src/engine/index.t
 import { verify, type Verification } from "../src/engine/verification.ts";
 import { evaluationOf } from "../src/ir/types.ts";
 import { exampleText } from "../scripts/gen-example-coverage.ts";
-import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import { EXAMPLE_IDS } from "../src/app/example-corpus.ts";
 
 type Obj = Record<string, unknown>;
 type Block = Record<string, Obj>;
@@ -63,7 +63,7 @@ const row = (block: Block, key: string, what: string): Obj => {
  * against a corpus the project keeps growing is the defect this helper exists to remove.
  */
 const authoredRequirements = (): readonly string[] =>
-  SHIPPED_EXAMPLE_IDS.flatMap((id) =>
+  EXAMPLE_IDS.flatMap((id) =>
     Object.keys(requirementsOf(doc(id)) ?? {}).map((req) => `${id}/${req}`));
 
 /**
@@ -72,7 +72,10 @@ const authoredRequirements = (): readonly string[] =>
  * way whether the engine answers it or not.
  */
 const authoredQuantityDecided = (): readonly string[] =>
-  SHIPPED_EXAMPLE_IDS.flatMap((id) => {
+  // Both tracked populations: the pinned chains below live in the FIXTURE corpus (the 261006
+  // split kept the former examples as test fixtures), and the derivation must see what `doc`
+  // can read or a sound pin reads as a stale one.
+  EXAMPLE_IDS.flatMap((id) => {
     const d = doc(id);
     const queries = queriesOf(d) ?? {};
     return Object.entries(requirementsOf(d) ?? {})
@@ -370,7 +373,7 @@ test("no shipped requirement moves — every authored obligation enumerated, zer
   // gaining another.
   const found: string[] = [];
   const enumerated: string[] = [];
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     for (const [req, v] of verifySystemRequirements(canonicalize(doc(id)))) {
       enumerated.push(`${id}/${req}`);
       if (v.status === "inconclusive" && v.because.kind === "vacuous") found.push(`${id}/${req}`);
@@ -391,7 +394,7 @@ test("no shipped requirement moves — every authored obligation enumerated, zer
   // requirement over a vacuous query whose polarity is ALSO inverted reads `error` by the precedence
   // rule at the bottom of this file — §4 returns before `verify` is reached, so `found` would stay
   // empty while a shipped obligation rested on a contradiction.
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     const d = doc(id);
     const vacuous = new Set([...runSavedQueries(canonicalize(d))]
       .filter(([, a]) => a.result.compilation.some((c) => c.kind === "vacuous"))

@@ -29,6 +29,7 @@
 //
 // Nothing here pins a string the builder produced. Every expectation is a second derivation from
 // the registry, the engine, or the shipped examples, compared against the first.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -40,7 +41,7 @@ import {
 } from "../src/engine/elements.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../src/app/example-corpus.ts";
 import {
   anchorForType, anchorForUse, deriveLearnEntries, MODEL_TYPE_USES,
 } from "../src/app/learn.ts";
@@ -53,17 +54,17 @@ import {
 } from "../src/learn/questions.ts";
 
 const systems: LoadedSystems = (() => {
-  const map = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
-      parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+      parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return map;
 })();
 
 const fixtures: LoadedFixtures = (() => {
-  const map = new Map<ShippedExampleId, ReturnType<typeof readFixture>>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, ReturnType<typeof readFixture>>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, readFixture(id, readFileSync(fixturePathFor(id), "utf8")));
   }
   return map;
@@ -104,7 +105,7 @@ function readout(built: BuiltQuestionSection, startsWith: string): (term: string
  * that the page agrees with itself.
  */
 function expectedSubject(): {
-  readonly example: ShippedExampleId;
+  readonly example: ExampleId;
   readonly system: CanonicalSystem;
   readonly selector: { readonly type: string };
 } {
@@ -112,7 +113,17 @@ function expectedSubject(): {
   assert.ok(structural !== undefined, "no registered type answers the graph dialect");
   const visual = exemplarFor(structural.id, systems);
   assert.ok(visual !== null, `${structural.id}: no shipped example instantiates the type`);
-  const system = systems.get(visual.example);
+  // The section's stated rule since the three-example split: the first structural example that
+  // also SAVES a graph question, because the section closes on a deciding question of the SAME
+  // model — medium-document-processing declares a graph model and saves none. Fall back to the
+  // bare structural exemplar, exactly as the page does.
+  const example = EXAMPLE_IDS.find((id) => {
+    const sys = systems.get(id);
+    if (sys === undefined) return false;
+    const declares = sys.models.size > 0;
+    return declares && savedStatements(sys, "graph").length > 0;
+  }) ?? visual.example;
+  const system = systems.get(example);
   assert.ok(system !== undefined);
   let best: { readonly type: string; readonly value: number } | null = null;
   for (const type of countElements(system, {}).declaredTypes) {
@@ -123,7 +134,7 @@ function expectedSubject(): {
     }
   }
   assert.ok(best !== null, "the structural exemplar declares no countable entity type");
-  return { example: visual.example, system, selector: { type: best.type } };
+  return { example, system, selector: { type: best.type } };
 }
 
 // ---------------------------------------------------------------------------------------------

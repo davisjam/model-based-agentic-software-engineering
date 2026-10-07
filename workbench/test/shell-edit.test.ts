@@ -27,7 +27,7 @@ import {
 } from "../src/ui/shell/palette.ts";
 
 const load = (path: string): CanonicalSystem => canonicalize(parse(readFileSync(path, "utf8")));
-const messageBus = (): CanonicalSystem => load("examples/message-bus/system.mage.yaml");
+const messageBus = (): CanonicalSystem => load("test/fixtures/examples/message-bus/system.mage.yaml");
 const everySystem = (): readonly CanonicalSystem[] =>
   SHIPPED_EXAMPLE_IDS.map((id) => load(`examples/${id}/system.mage.yaml`));
 

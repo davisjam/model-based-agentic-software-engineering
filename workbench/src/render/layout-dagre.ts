@@ -62,8 +62,14 @@ const rankdirOf = (d: Direction): "LR" | "TB" => (d === "left-to-right" ? "LR" :
 
 const centreOf = (r: Rect): Point => ({ x: r.x + r.w / 2, y: r.y + r.h / 2 });
 
-const strictlyInside = (r: Rect, p: Point): boolean =>
-  p.x > r.x && p.x < r.x + r.w && p.y > r.y && p.y < r.y + r.h;
+/**
+ * On the border counts as in: dagre's own endpoint anchors sit exactly ON the source and target
+ * borders, and an anchor that survives the interior filter stays in the polyline after the
+ * re-anchor replaces it — the edge then still rides dagre's face choice (measured: a top-face
+ * anchor at the corner-cutting diagonal this module's rank-face snap exists to remove).
+ */
+const insideOrOn = (r: Rect, p: Point): boolean =>
+  p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
 
 /**
  * The point on `r`'s border on the way out toward `p`. Used to re-anchor an edge's endpoints after
@@ -79,6 +85,30 @@ function faceToward(r: Rect, p: Point): Point {
   const ty = dy === 0 ? Number.POSITIVE_INFINITY : r.h / 2 / Math.abs(dy);
   const t = Math.min(tx, ty, 1);
   return { x: c.x + dx * t, y: c.y + dy * t };
+}
+
+const clampTo = (v: number, lo: number, hi: number): number => Math.min(Math.max(v, lo), hi);
+
+/**
+ * Keep an edge anchor off the faces that look into the box's own rank. `faceToward` aims at the
+ * first channel point, which for a labelled edge is the label dummy sitting between ranks — and an
+ * anchor that lands on a rank-perpendicular face (the top or bottom face under left-to-right) sends
+ * the first segment diagonally across the corner of the neighbour stacked beside the box. Measured
+ * on the three-example corpus: data-policy's order-created → shipping-address exited the top face
+ * and cut `inventory`. When the other endpoint's box lies strictly beyond along the rank axis, the
+ * anchor belongs on the rank-facing face; the segment then starts clear of the whole column.
+ */
+function snapToRankFace(r: Rect, other: Rect, p: Point, aim: Point, horizontal: boolean): Point {
+  if (horizontal) {
+    if (p.y !== r.y && p.y !== r.y + r.h) return p;
+    if (other.x >= r.x + r.w) return { x: r.x + r.w, y: clampTo(aim.y, r.y, r.y + r.h) };
+    if (other.x + other.w <= r.x) return { x: r.x, y: clampTo(aim.y, r.y, r.y + r.h) };
+    return p;
+  }
+  if (p.x !== r.x && p.x !== r.x + r.w) return p;
+  if (other.y >= r.y + r.h) return { x: clampTo(aim.x, r.x, r.x + r.w), y: r.y + r.h };
+  if (other.y + other.h <= r.y) return { x: clampTo(aim.x, r.x, r.x + r.w), y: r.y };
+  return p;
 }
 
 /**
@@ -274,10 +304,13 @@ export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutO
       };
     }
 
-    const interior = moved.filter((p) => !strictlyInside(src, p) && !strictlyInside(tgt, p));
+    const interior = moved.filter((p) => !insideOrOn(src, p) && !insideOrOn(tgt, p));
     const head = interior[0] ?? centreOf(tgt);
     const tail = interior[interior.length - 1] ?? centreOf(src);
-    const points = dedupe([faceToward(src, head), ...interior, faceToward(tgt, tail)]);
+    const horizontal = d === "left-to-right";
+    const a = snapToRankFace(src, tgt, faceToward(src, head), head, horizontal);
+    const b = snapToRankFace(tgt, src, faceToward(tgt, tail), tail, horizontal);
+    const points = dedupe([a, ...interior, b]);
     return { ...base, backedge: reversed.has(e.id), selfLoop: false, points, labelPoint };
   });
 

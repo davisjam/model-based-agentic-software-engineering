@@ -1,0 +1,435 @@
+# Medium – Document Processing -- MAGE default example 2 of 3.
+#
+# Central lesson: one system can need TWO different models because engineers ask different kinds of
+# questions. Want to know whether Completed can return to Processing? Look at the lifecycle. Want
+# to know whether two concurrent tasks fit in memory? Look at the resource model. Neither model
+# subsumes the other, and no cross-model property is forced merely to demonstrate composition --
+# two models answering two different classes of questions is already the lesson.
+#
+# Two purposeful models over one identity namespace:
+#
+#   document-lifecycle    a state machine. What states can a submitted document enter, can a
+#                         completed one be processed again, and is the retry policy bounded?
+#   processing-resources  a graph. What does concurrent processing demand of the worker's memory,
+#                         and does the configured envelope fit?
+#
+# They join where the accounting needs them to: each task slot's 384 MB charge carries
+# `when: { state: document-lifecycle.processing }`, so the resource model's peak is decided over
+# the configurations the behavioral model can actually reach.
+#
+# ## The history variable, declared rather than smuggled
+#
+# "Completed documents cannot return to Processing" is a PAST-TIME claim -- processing after
+# completion -- and the saved-query surface has no past-time form. SEMANTICS.md section 7.3 gives
+# the standard compilation: a Boolean `seen_<state>` flag set on entry to the state, plus an
+# ordinary safety question over the flag. The engine performs that rewrite itself for natural-
+# language past-time questions (V23, disclosed); a SAVED query cannot trigger it, so this model
+# AUTHORS the same variable -- `seen_completed`, set by the `complete` transition -- and asks the
+# reachability question directly. The variable is model content a reader can see, not machinery
+# hidden in the checker, and the declared `resume-after-completion` modification is what shows the
+# question is genuinely checked rather than holding by accident.
+#
+# ## Units, spelled in the engine's vocabulary
+#
+# The quantity grammar's memory units are KB / MB / GB with BINARY factors (GB = 1,024 MB), so
+# `1 GB` below IS the gibibyte the prose means and `384 MB` the mebibyte. The spec's GiB/MiB
+# spellings are not in the unit table; the figures are identical.
+#
+# ## Known divergence, inherited rather than new
+#
+# A machine carries no annotation at all -- `CanonMachine` has no `annotation` field -- so the
+# machine's rationale lives on the `document` entity it names, the same honest workaround the other
+# examples use. The intended home is an annotation slot on the machine.
+
+mage: 1
+
+system:
+  id: medium-document-processing
+  name: Document Processing Service
+  description: >
+    A document-processing service accepts documents, queues them, processes them using a worker,
+    and either completes or fails them; a failed document retries a bounded number of times.
+    Processing consumes bounded working memory. Modeled twice: as the lifecycle a document passes
+    through, and as the memory demand processing places on its worker.
+
+relation-types:
+
+  runs_on:
+    description: The processing task slot executes on this worker.
+    absence: >
+      The slot is not modeled as executing on that worker. Absence says nothing about deployment
+      elsewhere -- this model declares one worker, and scheduling among several is a declared
+      omission, not a fact.
+    composition:
+      # A worker runs on nothing, so a chain of runs_on edges asserts nothing. Multi-hop questions
+      # over this type come back unlicensed rather than false.
+      path: forbidden
+    properties:
+      symmetric: false
+      acyclic: true
+
+entities:
+
+  document:
+    type: document
+    label: Document
+    notes:
+      # The machine's rationale lives here. `CanonMachine` has no `annotation` field, so `notes:`
+      # on a machine would load as nothing.
+      - id: document-lifecycle-rationale
+        kind: rationale
+        text: >
+          The document-lifecycle machine represents the states a submitted document passes through
+          and the bounded retry policy governing re-queueing after a failure. Because retry_count
+          has a finite declared domain and every retry strictly advances it, exhaustive exploration
+          can establish that the retry loop is bounded. The machine deliberately represents no
+          memory, no duration and no worker deployment, so no question about cost or capacity has a
+          reading here -- that is what the resource model is for.
+      - id: history-variable-rationale
+        kind: rationale
+        text: >
+          seen_completed is the section 7.3 history-variable compilation, authored as model
+          content: a Boolean set on entry to completed, never reset. It exists so the past-time
+          claim "processing after completion" is expressible as an ordinary reachability question
+          over the state vector. The saved-query surface has no past-time form, and the engine's
+          own V23 rewrite serves natural-language questions only, so the flag is declared where a
+          reader can see it rather than synthesized where they cannot.
+      - id: shared-identity
+        kind: comment
+        text: >
+          The lifecycle names this entity, and the resource model's task-slot charges name the
+          lifecycle's processing state in their when: clauses. The two models are reductions of one
+          service rather than unrelated diagrams -- which is exactly as far as the coupling goes.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model a document-processing service twice -- as a bounded-retry lifecycle and as a
+        working-memory envelope over the same identities -- so that lifecycle questions and
+        capacity questions are separately expressible and separately checkable.
+      rationale: MAGE-provided example, medium-document-processing, version 1.
+
+  worker:
+    type: worker
+    label: Worker
+    description: The one worker this model deploys. Its available memory is the declared ceiling.
+
+  task-slot-0:
+    type: task-slot
+    label: Task slot 0
+    description: One of the worker's two concurrent processing slots.
+
+  task-slot-1:
+    type: task-slot
+    label: Task slot 1
+    description: The other concurrent slot. Two slots IS the maximum modeled concurrency.
+
+# ---------------------------------------------------------------------------
+# Quantities (annotations OVER the model, never part of the behavioral state vector).
+#
+# Three annotations, one declaration pattern, one exemption:
+#
+#   two `memory` with `when:`   each task slot's demand, charged exactly while the lifecycle's
+#                               processing state is active
+#   one `model:` total          the worker's memory, the declared ceiling a requirement is
+#                               compared against, charged by no basis
+#
+# Both slot charges name the SAME state, so their sum is exact rather than an upper bound: there is
+# no joint-reachability question to ask, because they are active in precisely the same
+# configurations. Deliberately boring numbers -- 2 x 384 MB = 768 MB against 1,024 MB leaves
+# visible margin.
+# ---------------------------------------------------------------------------
+quantities:
+
+  task-slot-0-memory:
+    target: entity:task-slot-0
+    dimension: memory
+    value: 384 MB
+    # Charged exactly while a document is processing. Residency is never inferred: the slot holds
+    # working memory while the stage runs and releases it after, and the annotation names the
+    # behavioral state whose activation licenses the charge.
+    when:
+      state: document-lifecycle.processing
+    description: One processing task's working memory, held while a document is processing.
+
+  task-slot-1-memory:
+    target: entity:task-slot-1
+    dimension: memory
+    value: 384 MB
+    when:
+      state: document-lifecycle.processing
+    description: The second slot's working memory -- same demand, same activation.
+
+  worker-memory-capacity:
+    target: model:processing-resources
+    dimension: memory
+    # The engine's memory units are binary: 1 GB here is 1,024 MB -- the GiB the prose means.
+    value: 1 GB
+    description: >
+      The memory available to the worker, as a declared ceiling. A model:-targeted total is exempt
+      from every accounting basis -- nothing charges it per occurrence, because a requirement is
+      compared against a computed total rather than summed into it.
+
+machines:
+
+  document-lifecycle:
+    label: Document Lifecycle
+    entity: document
+    description: >
+      Models the lifecycle of a submitted document from acceptance through processing to completion
+      or failure.
+    purpose:
+      question: Can a completed document ever be processed again, and is the retry policy bounded?
+      represents:
+        - document lifecycle states
+        - permitted state transitions
+        - successful completion
+        - processing failure
+        - retry from a failed attempt
+      omits:
+        - document contents
+        - processing implementation
+        - memory consumption
+        - processing duration
+        - worker deployment
+        - number of available workers
+    initial: submitted
+    states:
+      submitted:
+        label: Submitted
+      queued:
+        label: Queued
+      processing:
+        label: Processing
+      completed:
+        label: Completed
+        description: Terminal. No transition leaves this state, and seen_completed records entry.
+      failed:
+        label: Failed
+    variables:
+      retry_count:
+        type: integer
+        # A finite domain is mandatory (V17), and it is what makes the retry-bound claim decidable:
+        # a loop whose bounded variable strictly advances cannot repeat a configuration. The high
+        # end IS the spec's max_retries = 2, written as the domain bound and the guard literal
+        # rather than as a constant variable the state vector would carry for no reason.
+        range: [0, 2]
+        initial: 0
+      seen_completed:
+        type: boolean
+        initial: false
+        description: >
+          History variable (SEMANTICS.md 7.3): true once the document has ever reached completed.
+          Set by the complete transition, never reset. It is what makes "processing after
+          completion" an ordinary reachability question.
+    transitions:
+
+      - from: submitted
+        to: queued
+        label: enqueue
+
+      - from: queued
+        to: processing
+        label: start
+
+      # The only edge into completed, and the only writer of seen_completed. The declared
+      # resume-after-completion modification adds an edge OUT of completed, and the saved
+      # processing-after-completion answer flips -- which is what shows the terminality claim is
+      # genuinely checked.
+      - from: processing
+        to: completed
+        label: complete
+        effects:
+          seen_completed: "true"
+
+      # Nondeterminism is required, not tolerated: processing offers both outcomes and exhaustive
+      # analysis explores both.
+      - from: processing
+        to: failed
+        label: fail
+
+      - from: failed
+        to: queued
+        label: retry
+        requires:
+          retry_count: { lt: 2 }
+        effects:
+          retry_count: retry_count + 1
+
+models:
+
+  processing-resources:
+    type: graph
+    label: Processing Resources
+    description: >
+      Models the working-memory demand of document processing against the memory available to the
+      worker.
+    purpose:
+      question: Does the maximum concurrent processing demand fit in the worker's memory?
+      represents:
+        - available worker memory
+        - memory required by a processing task
+        - maximum modeled concurrency
+        - aggregate working-memory demand
+      omits:
+        - document lifecycle
+        - retry behavior
+        - processing order
+        - processing duration
+        - document contents
+        - failure causes
+    entities: [worker, task-slot-0, task-slot-1]
+    notes:
+      - id: processing-resources-rationale
+        kind: rationale
+        text: >
+          This model represents cost and holds no lifecycle. Concurrency is structural rather than
+          numeric: two task slots are declared, each charged 384 MB while processing is active, so
+          the maximum concurrent demand -- 768 MB -- is the sum the engine computes over reachable
+          configurations rather than an authored product. Enumerating the slots is the same move
+          the worker-queue example makes with its lease states: the bound becomes model structure,
+          not a comment.
+      - id: memory-is-a-configuration-property
+        kind: comment
+        text: >
+          memory(c) = the sum of resident charges plus the sum of charges whose named state is
+          active in c. Nothing here is resident; both slot charges name the lifecycle's processing
+          state, so the reading is 768 MB while a document processes and 0 MB otherwise. The
+          worker's own footprint is deliberately unmodeled -- the ceiling is the memory AVAILABLE
+          to processing, and a baseline would be a different model.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Declare the worker, its two concurrent task slots and their 384 MB working-memory demand,
+        and the 1 GB ceiling the peak demand is decided against.
+      rationale: MAGE-provided example, medium-document-processing, version 1.
+    relations:
+      - id: slot-0-runs-on-worker
+        from: task-slot-0
+        to: worker
+        type: runs_on
+      - id: slot-1-runs-on-worker
+        from: task-slot-1
+        to: worker
+        type: runs_on
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the models each question needs and the evidence it must produce.
+# ---------------------------------------------------------------------------
+queries:
+
+  # The P1 question, in its existential dual: CAN processing recur after completion? seen_completed
+  # supplies "after completion" as state-vector content, so this is an ordinary reach question.
+  # `refuted` under exhaustive coverage establishes the prohibition, and it is non-vacuous: both
+  # conjuncts are individually reachable, so the transition structure -- completed has no exit --
+  # is what rules the conjunction out.
+  processing-after-completion:
+    name: A document can be processed again after completing
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        all-of:
+          - document-lifecycle.state: processing
+          - document-lifecycle.seen_completed: true
+
+  # Not every saved property is a safety invariant: the model admits failure on purpose, and this
+  # possibility claim says so with a witness.
+  processing-can-fail:
+    name: A document can fail in processing
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: failed
+
+  # The retry bound, asked in the only form that denotes it. `repeatable-cycle` asks for a
+  # genuinely repeated CONFIGURATION; `refuted` under exhaustive coverage says no reachable
+  # execution loops in retry forever, because retry_count strictly advances within a finite domain.
+  # That is an exhaustive statement about a finite transition system, not temporal liveness.
+  document-can-retry-forever:
+    name: A document can stay in the retry loop indefinitely
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: repeatable-cycle
+      target:
+        document-lifecycle.state: queued
+
+  # The honest companion: the document CAN return to queued -- that is re-entry, and the evidence
+  # is a lasso. It cannot do so forever. The pair is why the engine has two forms.
+  document-returns-to-queued:
+    name: A document can return to queued after failing
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: recurrence
+      target:
+        document-lifecycle.state: queued
+
+  # The happy path, witnessed -- and the witness's final configuration shows seen_completed doing
+  # its job. Also the query that keeps processing-after-completion honest: completed is reachable,
+  # so the refutation above is not green for want of a path to its first conjunct.
+  document-can-complete:
+    name: A document can reach completed
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: completed
+
+  # Whether the 384 MB charges are ever incurred. Cross-model by construction: the quantities are
+  # the resource model's and the state they name is the lifecycle's.
+  processing-memory-is-charged:
+    name: The 384 MB task-slot charges are incurred on some reachable execution
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        document-lifecycle.state: processing
+
+  # The P4 question: the ceiling claim as its own sentence. `forall` is forced by `within:` -- a
+  # ceiling claim is universal over reachable configurations, and one configuration over the
+  # ceiling would refute it. The computed figure travels on result.magnitude.
+  processing-fits-in-worker-memory:
+    name: Peak concurrent processing demand stays within the worker's memory
+    kind: quantity
+    quantifier: forall
+    quantity:
+      metric: peak_memory
+      within: worker-memory-capacity
+
+# Each obligation names the saved query that decides it. The first two are prohibitions stated as
+# their existential duals, so `refuted` discharges them; the third states its ceiling claim
+# directly, so `holds` does.
+#
+# P5 -- "three concurrent tasks would exceed the envelope" -- is deliberately NOT here, and not a
+# query either. It is a hypothetical about a THIRD slot, and the transaction vocabulary has no
+# add-quantity op, so no clean configuration-space machinery exists to pose it; the spec says omit
+# it rather than fake it. The margin the shipped numbers leave (768 of 1,024 MB) is the same
+# lesson's visible half: one more 384 MB slot would not fit, and a reader can do that arithmetic
+# from the declarations alone.
+requirements:
+
+  completed-documents-stay-completed:
+    statement: >
+      A document that reaches Completed is never processed again.
+    expressed_as: processing-after-completion
+    satisfied_when: refuted
+
+  retry-is-bounded:
+    statement: >
+      A document cannot be retried more than two times; no reachable execution stays in the retry
+      loop forever.
+    expressed_as: document-can-retry-forever
+    satisfied_when: refuted
+
+  processing-fits-in-memory:
+    statement: >
+      Maximum concurrent processing demand does not exceed the memory available to the worker.
+    expressed_as: processing-fits-in-worker-memory
+    satisfied_when: holds

@@ -251,18 +251,24 @@ function exampleFiles(): readonly string[] {
 
 function corpus(): readonly Case[] {
   const out: Case[] = [];
-  for (const file of exampleFiles()) {
+  const files = exampleFiles();
+  // A floor on how much this reads: a glob that silently matches nothing would make every
+  // property below pass vacuously, which is the failure mode a corpus-driven test invites. The
+  // floor is per FILE rather than a corpus-wide count, so it survives the library shrinking to
+  // three examples without ever accepting an example that draws nothing.
+  assert.ok(files.length >= 4,
+    `expected the three shipped examples plus docable, got ${files.length}: ${files.join(", ")}`);
+  for (const file of files) {
     const system = canonicalize(parse(readFileSync(file, "utf8")) as Record<string, unknown>);
+    const before = out.length;
     for (const id of [...system.models.keys()].sort()) {
       out.push({ name: `${file} model:${id}`, system, subject: { kind: "model", id } });
     }
     for (const id of [...system.machines.keys()].sort()) {
       out.push({ name: `${file} machine:${id}`, system, subject: { kind: "machine", id } });
     }
+    assert.ok(out.length > before, `${file} yields no drawable model or machine — the corpus is not reading it`);
   }
-  // A floor on how much this reads: a glob that silently matches nothing would make every
-  // property below pass vacuously, which is the failure mode a corpus-driven test invites.
-  assert.ok(out.length >= 12, `expected the shipped examples to yield a real corpus, got ${out.length}`);
   return out;
 }
 

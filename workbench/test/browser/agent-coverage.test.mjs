@@ -232,7 +232,7 @@ before(async () => {
   ({ server, origin } = await startServerOnFreePort());
   browser = await launchBrowser();
   ({ page, diagnostics } = await openWorkbench(browser, origin));
-  flagshipYaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+  flagshipYaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
   assert.ok(await installRecorder(), "the invocation recorder did not install");
   advertisedOperations = await page.evaluate(() => window.mage.describe().operations.map((o) => o.name));
 }, { timeout: 180_000 });

@@ -26,6 +26,7 @@
  * `test/bindings-census.test.ts` names for a binding's prose, and these tests must not be read as
  * covering it.
  */
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -35,17 +36,17 @@ import { MODEL_TYPES, type RenderConstruct } from "../src/engine/model-types.ts"
 import {
   CONSTRUCT_SCENES, EXEMPLAR_SELECTION, pictureRequestFor, renderStrategyFor, sceneConstructFor,
 } from "../src/app/render-strategy.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../src/app/example-corpus.ts";
 import { renderBudgetView } from "../src/app/budget.ts";
 import { renderView } from "../src/render/index.ts";
 import { presentTypes } from "../src/app/learn.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 
-const systemOf = (id: ShippedExampleId): CanonicalSystem =>
-  canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+const systemOf = (id: ExampleId): CanonicalSystem =>
+  canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
 
-const SYSTEMS: ReadonlyMap<ShippedExampleId, CanonicalSystem> =
-  new Map(SHIPPED_EXAMPLE_IDS.map((id) => [id, systemOf(id)]));
+const SYSTEMS: ReadonlyMap<ExampleId, CanonicalSystem> =
+  new Map(EXAMPLE_IDS.map((id) => [id, systemOf(id)]));
 
 // ---------------------------------------------------------------------------------------------
 // Rung 2 — the content owes a real claim

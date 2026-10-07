@@ -469,7 +469,7 @@ test("with a frequency declared, expectation still refuses — composition is de
  * wrong, which is exactly what the hand derivation exists to detect.
  */
 const documentProcessing = (): CanonicalSystem =>
-  canonicalize(parse(readFileSync("examples/document-processing/system.mage.yaml", "utf8")));
+  canonicalize(parse(readFileSync("test/fixtures/examples/document-processing/system.mage.yaml", "utf8")));
 
 test("oracle: maximum publishing latency is 2,750 ms — 1×50 + 4×100 + 4×500 + 4×75", () => {
   // expected-results.yaml `max-publishing-latency`. Four remediation passes (the first plus one

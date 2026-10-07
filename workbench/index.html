@@ -766,32 +766,6 @@
     </fieldset>
   </section>
 
-  <!--
-    The CASE panel: the pedagogical envelope of a shipped example, and the half of the author's
-    261005 ruling that outranks the card copy -- "the case must remain visible after loading. The
-    workspace should not erase the pedagogical context."
-
-    Mounted iff a system is loaded AND the import came from a shipped example (the catalogue's
-    `currentCase()`, pinned per-import by the workspace's load nonce). A file a user opened gets no
-    case, and an example followed by a file open loses it -- the panel never narrates a document it
-    does not describe. EX-I1 is untouched: the workspace below this panel is ordinary and editable,
-    and the case is CONTEXT, NOT A CONSTRAINT -- the same boundary a note declares. Nothing in here
-    is engine input, enters a hash, or moves a verdict (`src/app/examples.ts`, `ExampleCase`).
-
-    A native `details`/`summary`, open by default, for the add-menu's reason: the summary is in the
-    tab order and announces its own expanded state with no ARIA (SH-I2). "Start investigating"
-    collapses it -- the author's affordance for "put me in the workspace" -- and the summary itself
-    is the recoverable way back. The button is chrome (it moves only the view), so it is exempted
-    in CHROME_CONTROLS rather than declared a capability.
-  -->
-  <section id="case" aria-labelledby="case-h" hidden>
-    <h2 id="case-h">Case</h2>
-    <details id="case-details" open>
-      <summary id="case-summary">About this example</summary>
-      <div id="case-body"></div>
-      <button id="case-collapse" type="button">Start investigating</button>
-    </details>
-  </section>
 
   <!--
     The three-pane band: navigation, the model under inspection, the selected object. Grid areas,

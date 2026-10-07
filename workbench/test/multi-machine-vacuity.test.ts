@@ -26,7 +26,7 @@ import type { BehaviorQuery, Predicate } from "../src/engine/types.ts";
 import type { CanonicalSystem, Compilation, QueryResult } from "../src/ir/types.ts";
 
 const workerQueue = (): CanonicalSystem =>
-  canonicalize(parse(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")));
+  canonicalize(parse(readFileSync("test/fixtures/examples/worker-queue/system.mage.yaml", "utf8")));
 
 const compiled = (system: CanonicalSystem): CompiledSystem => {
   const c = compileSystem(system);

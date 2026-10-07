@@ -13,7 +13,6 @@ import type { AccessibleScene, SvgNode } from "../render/types.ts";
 import type { BudgetView } from "../render/budget.ts";
 import { MARK_MEANINGS } from "../render/types.ts";
 import type { ExampleDescription } from "../app/examples.ts";
-import { scenarioLead } from "../app/examples.ts";
 // The display vocabulary for the kinds of model, quoted from the registry (one source of these
 // words; no surface authors a parallel spelling).
 import { modelTypeOf } from "../engine/model-types.ts";
@@ -603,27 +602,21 @@ export function paintProvenance(records: readonly ProvenanceRecord[], root: HTML
 }
 
 /**
- * An example's description, shown before it loads (section 3).
+ * An example's description, shown before it loads.
  *
- * Every string here comes from the example's own files or its case envelope — the authored
- * invitation to a question the fixture pins. Nothing is phrased in this function except the two
- * sub-headings, which is what keeps the panel honest about the thing it describes.
- *
- * The card LEADS WITH THE CASE: `scenarioLead` abbreviates the authored scenario, per the ruling
- * that the case appears "on the Start card in abbreviated form" and in full in the case panel
- * after loading. The fixture's own `summary` is not rendered here — it is the dataset-style
- * one-liner the case envelope replaced.
- *
- * The card no longer prints `Try asking` (author spec, 261006): the viewer surface leaves asking
- * to the agent, so an invitation list taught a retired interaction. The case's asks survive as
- * data (`tryAsking`) for the case panel and the fixtures.
+ * The author's 261006 spec: "Selecting one should show a very short stored description of the
+ * system, followed by its model names and perhaps model types. Remove TRY ASKING." Every string
+ * here comes from the example's own files — the fixture's `summary`, the models' labels — so the
+ * panel describes the thing itself. Nothing is phrased in this function except the one
+ * sub-heading. The case envelope (scenario / investigate / Try-asking) left with the seven-example
+ * library it belonged to.
  */
 export function paintExampleDescription(
   description: ExampleDescription | null, root: HTMLElement,
 ): void {
   root.replaceChildren();
   if (description === null) return;
-  root.append(el("h3", description.title), el("p", scenarioLead(description.scenario), "intro"));
+  root.append(el("h3", description.title), el("p", description.summary, "intro"));
 
   root.append(el("p", "Models", "sublabel"));
   const models = el("ul", undefined, "notes");
@@ -635,16 +628,9 @@ export function paintExampleDescription(
     // `type: graph` maps to the registry's `structural-graph`), not a word for a student.
     const kindLabel = modelTypeOf(m.kind === "machine" ? "state-machine" : "structural-graph").label;
     li.append(el("span", kindLabel, "state"), document.createTextNode(" "), el("strong", m.label));
-    // The question comes with the model because it is what the model is FOR -- and because a list of
-    // model names teaches a reader nothing about why there is more than one.
-    if (m.question !== null) li.append(document.createTextNode(` — ${m.question}`));
     models.append(li);
   }
   root.append(models);
-
-  // "Try asking" REMOVED from the start card (author spec, 261006): the default surface leaves
-  // asking to the agent, and a list of invitations to ask was teaching the retired interaction.
-  // The case data (`tryAsking`) remains — the case panel, Learn and the fixtures still read it.
 }
 
 /** The example chooser's own failure report. A fetch that fails must say so, not render nothing. */

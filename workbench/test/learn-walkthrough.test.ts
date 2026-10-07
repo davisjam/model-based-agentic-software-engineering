@@ -12,6 +12,7 @@
 // expected outcome below is read back out of a fixture (`satisfied_when`, a modification's
 // `from`/`to`) or out of the engine, so the suite cannot go on claiming a verdict the corpus
 // stopped declaring.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -20,7 +21,7 @@ import type { CanonicalSystem } from "../src/ir/types.ts";
 import { MODEL_TYPES } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace, type Ports } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, type ExampleId } from "../src/app/example-corpus.ts";
 import { CAPABILITIES } from "../src/app/capabilities.ts";
 import { anchorForType, anchorForUse, MODEL_TYPE_USES } from "../src/app/learn.ts";
 import type { LoadedSystems } from "../src/learn/content.ts";
@@ -34,23 +35,23 @@ import {
 } from "../src/learn/walkthrough.ts";
 
 const systems: LoadedSystems = (() => {
-  const map = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
-      parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+      parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return map;
 })();
 
 const fixtures: LoadedFixtures = (() => {
-  const map = new Map<ShippedExampleId, ReturnType<typeof readFixture>>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, ReturnType<typeof readFixture>>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, readFixture(id, readFileSync(fixturePathFor(id), "utf8")));
   }
   return map;
 })();
 
-const systemOf = (id: ShippedExampleId): CanonicalSystem => {
+const systemOf = (id: ExampleId): CanonicalSystem => {
   const system = systems.get(id);
   assert.ok(system !== undefined, `example '${id}' did not load`);
   return system;
@@ -271,7 +272,7 @@ test("the composition step: both saved questions return magnitudes over the pipe
  * the fixture's declared operations as a hypothesis, each recorded change's `from` and `to`
  * asserted around it, and the discard asserted to restore the original verdicts.
  */
-function driveModification(example: ShippedExampleId, modificationId: string): void {
+function driveModification(example: ExampleId, modificationId: string): void {
   const noAnalysis = (): never => { throw new Error("no analysis in this drive"); };
   const ports: Ports = {
     engine: {
@@ -283,7 +284,7 @@ function driveModification(example: ShippedExampleId, modificationId: string): v
     render: { render: () => { throw new Error("no rendering in this drive"); } },
   };
   const ws = new Workspace(ports);
-  assert.ok(ws.load(readFileSync(`examples/${example}/system.mage.yaml`, "utf8")).ok);
+  assert.ok(ws.load(readFileSync(`${exampleDir(example)}/system.mage.yaml`, "utf8")).ok);
   const fixture = fixtures.get(example);
   const mod = fixture?.modifications.find((m) => m.id === modificationId);
   assert.ok(mod !== undefined, `no modification '${modificationId}' in '${example}'`);

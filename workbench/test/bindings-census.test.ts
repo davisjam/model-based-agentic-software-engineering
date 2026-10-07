@@ -189,6 +189,15 @@ const MODEL_LOCAL_SPELLINGS: Readonly<Record<string, { binding: string; why: str
       "the kernel resolves nothing from it — `test/examples.test.ts` checks that every non-free " +
       "lease state is claimed by exactly one worker, which is the suite holding the reference",
   },
+  label: {
+    binding: "machine-of-entity",
+    why: "complex-transaction-workspace spells the machine→entity correspondence on a TRANSITION: " +
+      "the edge into `paid` carries the `payment-completed` event-type entity's id as its label — " +
+      "the exact spelling, which the model's header declares as the shared identity v0.1's " +
+      "`events:` schema cannot hold (minItems 2 participants, one machine). Labels carry no " +
+      "semantics (V1), so the kernel resolves nothing from it; the example's fixture holds the " +
+      "lifecycle behaviour the correspondence promises",
+  },
 };
 
 /** Every tracked `*.mage.yaml`, package-relative. Fails loud: there is no empty-is-fine path. */

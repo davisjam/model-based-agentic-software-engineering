@@ -1,0 +1,322 @@
+# Expected results for the medium-document-processing example. Read by test/examples.test.ts,
+# which drives the real application seams -- Workspace.load, Workspace.query -- and compares.
+#
+# Fixture discipline per section 10: semantic outcomes only. No step counts, no configuration
+# counts, no generated ids -- the outcome, the coverage KIND, label-count floors and the final
+# configuration, which is what a reader is actually shown.
+#
+# The quantitative expectation below is HAND-DERIVED, with the arithmetic written out, and is the
+# ORACLE the engine's peak_memory figure is compared against rather than a copy of its output.
+
+example: medium-document-processing
+system: system.mage.yaml
+title: Medium – Document Processing
+summary: >
+  Explore one document service through two deliberately different models -- a bounded-retry
+  lifecycle and a working-memory envelope -- and see why neither kind of question fits the other
+  model.
+
+# Purposeful models, for the EX-I2 check. A machine carries a `purpose` exactly as a graph model
+# does, so both count.
+models:
+  - id: document-lifecycle
+    kind: machine
+  - id: processing-resources
+    kind: graph
+
+requirements:
+
+  - id: completed-documents-stay-completed
+    statement: >
+      A document that reaches Completed is never processed again.
+    expressed_as: processing-after-completion
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Satisfied, and not vacuously: processing is reachable and seen_completed becomes true on the
+      happy path, so the conjunction is satisfiable in the state vector and the transition
+      structure -- completed has no exit -- is what rules it out. The resume-after-completion
+      modification adds that exit and the answer flips, which is what distinguishes a property
+      that holds from one that is never tested.
+
+  - id: retry-is-bounded
+    statement: >
+      A document cannot be retried more than two times; no reachable execution stays in the retry
+      loop forever.
+    expressed_as: document-can-retry-forever
+    satisfied_when: refuted
+    status: satisfied
+    note: >
+      Stated carefully. The engine refuted the existence of a repeatable configuration across an
+      exhaustively explored finite space, because retry_count strictly advances inside a declared
+      finite domain. That is NOT temporal liveness verification -- MAGE declares no fairness
+      assumptions and has no infinite-trace operators. The companion question
+      document-returns-to-queued holds, and the pair is the honest answer: a failed document can
+      come back, and it cannot come back forever.
+
+  - id: processing-fits-in-memory
+    statement: >
+      Maximum concurrent processing demand does not exceed the memory available to the worker.
+    expressed_as: processing-fits-in-worker-memory
+    satisfied_when: holds
+    declared_as: worker-memory-capacity
+    status: satisfied
+    note: >
+      Satisfied -- derived, not recorded: the saved question states the ceiling claim directly
+      (within: worker-memory-capacity), so holds discharges the obligation and the 1 GB figure
+      exists once, in the model. 768 MB on the result's magnitude against the 1,024 MB ceiling,
+      256 MB of headroom. The configuration that decides it is any one where a document is
+      processing: both 384 MB slot charges name that state, and outside it nothing is charged.
+      Both models are needed and neither is decorative -- the lifecycle decides which
+      configurations are reachable, and the resource model decides what memory each holds.
+
+# ---------------------------------------------------------------------------
+# Hand-derived quantitative expectations: the oracle the evaluator is checked against. Each entry
+# states every premise it rests on, so a disagreement between this file and the engine localizes to
+# one premise rather than to "the answer is different". Values are in BASE UNITS (MB), plainly --
+# a unit-bearing string here would need a second magnitude parser in the fixture reader.
+# ---------------------------------------------------------------------------
+quantitative_expectations:
+
+  - id: peak-processing-memory
+    metric: memory
+    label: What is the peak modeled memory demand over reachable configurations?
+    hand_derived: true
+    # memory(c) = the resident sum plus the sum of charges whose named state is active in c. This
+    # entry needs reachability for the when-charged state, and that is a behavioral question the
+    # engine answers.
+    reachability_from: processing-memory-is-charged
+    when_charged_mb:
+      task-slot-0-memory: 384
+      task-slot-1-memory: 384
+    arithmetic: >
+      active 384 (task slot 0) + active 384 (task slot 1), both charged while
+      document-lifecycle.processing is active = 768 during processing; 0 in every other
+      configuration
+    expected_mb: 768
+    baseline_mb: 0
+    note: >
+      Two when-charged quantities, and the sum is still exact rather than an upper bound because
+      both name the SAME state: they are active in precisely the same configurations, so no joint
+      reachability question arises. Nothing here is resident -- the baseline outside processing is
+      0 MB, deliberately: the ceiling governs the memory available TO processing, and a worker
+      baseline would be a different model's content. 768 against the declared 1,024 MB ceiling is
+      the visible-margin arithmetic the example is built on; a hypothetical third slot would reach
+      1,152 MB and not fit, which is the omitted P5 lesson a reader can do by hand.
+
+queries:
+
+  - id: processing-after-completion
+    label: A document can be processed again after completing
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      The P1 question in its existential dual, made expressible by the authored seen_completed
+      history variable (SEMANTICS.md 7.3): "after completing" is state-vector content, so this is
+      an ordinary reach question. Refuted under exhaustive coverage, non-vacuously -- processing is
+      reachable and seen_completed: true is reachable, so the walk consulted the transition
+      structure and found completed has no exit. The resume-after-completion modification below
+      produces the counterexample on demand.
+
+  - id: processing-can-fail
+    label: A document can fail in processing
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 3
+        labels_at_least:
+          fail: 1
+        final:
+          document-lifecycle.state: failed
+    note: >
+      Not every saved property is a safety invariant. Failure is reachable because the model admits
+      it intentionally -- processing offers both outcomes as nondeterminism and exhaustive analysis
+      explores both. The witness is the three-step path to the first failure; what happens next is
+      the retry pair's business.
+
+  - id: document-can-retry-forever
+    label: A document can stay in the retry loop indefinitely
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: refuted
+      coverage: exhaustive
+      no_evidence: true
+    note: >
+      `repeatable-cycle` asks for a genuinely repeated CONFIGURATION. There is none, because every
+      pass through the retry loop advances retry_count inside its declared [0, 2] domain -- the
+      spec's max_retries, as structure. Refuted under exhaustive coverage, which is an exhaustive
+      statement about a finite space and nothing stronger.
+
+  - id: document-returns-to-queued
+    label: A document can return to queued after failing
+    suggested: false
+    models: [document-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: lasso
+        role: witness
+        cycle_min_steps: 3
+        labels_at_least:
+          retry: 1
+    note: >
+      The honest companion to the question above, and the reason the engine has two forms. The
+      document CAN re-enter queued, and the evidence is a lasso whose cycle -- queued to processing
+      to failed and back -- carries the retry transition. It cannot do so forever: retry_count is
+      one higher at the end of the cycle than at the start, which is exactly why the same loop is
+      not repeatable. The remove-the-retry modification deletes the loop's closing edge and this
+      answer flips.
+
+  - id: document-can-complete
+    label: A document can reach completed
+    suggested: true
+    models: [document-lifecycle]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 3
+        labels_at_least:
+          complete: 1
+        final:
+          document-lifecycle.state: completed
+          document-lifecycle.retry_count: 0
+          document-lifecycle.seen_completed: true
+    note: >
+      The happy path, pinned on its final configuration: retry_count 0 identifies the never-failed
+      execution, and seen_completed true shows the history variable set at the moment of
+      completion -- the fact the P1 refutation reads. This witness is also what keeps that
+      refutation honest: completed is reachable, so processing-after-completion is not green for
+      want of a path to its first conjunct.
+
+  - id: processing-memory-is-charged
+    label: The 384 MB task-slot charges are incurred on some reachable execution
+    suggested: false
+    models: [document-lifecycle, processing-resources]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      evidence:
+        shape: trace
+        role: witness
+        min_steps: 2
+        final:
+          document-lifecycle.state: processing
+    note: >
+      Cross-model by construction: the quantities belong to the resource model and the state they
+      name belongs to the lifecycle. A when-charged quantity whose state were unreachable would
+      enter memory(c) in no configuration, so this is the question that decides whether the 768 MB
+      summand is real -- and the reachability half is the part the engine already answers.
+
+  - id: processing-fits-in-worker-memory
+    label: Peak concurrent processing demand stays within the worker's memory
+    suggested: true
+    models: [document-lifecycle, processing-resources]
+    expected:
+      outcome: holds
+      coverage: exhaustive
+      # A ceiling decision that holds reports the figure and no witness: the claim is universal
+      # over the reachable configurations, and a universal that holds has no single one to point
+      # at. The counterexample appears only on refutation.
+      no_evidence: true
+    note: >
+      The P4 question, and the one that needs both models: the lifecycle decides which
+      configurations are reachable, the resource model decides what each holds, and the quantifier
+      is FORCED to forall by within: -- a ceiling claim is universal, so one configuration over
+      1,024 MB would refute it. Holds with 768 MB on the result's magnitude, the hand-derived
+      oracle above re-derives the same figure from its premises, and the two are compared rather
+      than copied.
+
+# ---------------------------------------------------------------------------
+# Useful modifications (section 2). Each is a real transaction driven through
+# openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.
+#
+# `base` is omitted: it must equal the live system hash, which the test fills in.
+# ---------------------------------------------------------------------------
+modifications:
+
+  - id: resume-after-completion
+    label: Let a completed document be processed again
+    rationale: >
+      The terminality claim, broken on demand. Adding one resume edge out of completed gives the
+      P1 question its counterexample: the document completes, seen_completed is true, and the new
+      edge carries it back into processing with the flag still set. One modification, one flipped
+      answer -- which is what distinguishes "completed documents cannot return to processing" as a
+      checked property from the same sentence as caption.
+    transaction:
+      operations:
+        - op: add-transition
+          machine: document-lifecycle
+          from: completed
+          to: processing
+          label: resume
+    changes:
+      - query: processing-after-completion
+        from: refuted
+        to: holds
+
+  - id: remove-the-retry
+    label: Remove the retry transition
+    rationale: >
+      The inverse experiment on the retry pair. Deleting failed-to-queued makes failed terminal:
+      queued is entered once and never re-entered, so the recurrence companion flips to refuted
+      while the repeatable-cycle question stays refuted -- it never depended on the retry edge,
+      only on the bounded counter. A student who predicted both answers would move has just
+      learned what each form actually asks.
+    transaction:
+      operations:
+        # Selected by endpoint rather than by index: failed -> queued is unique.
+        - op: delete-transition
+          machine: document-lifecycle
+          from: failed
+          to: queued
+    changes:
+      - query: document-returns-to-queued
+        from: holds
+        to: refuted
+
+# ---------------------------------------------------------------------------
+# Declarations that are DOCUMENTATION on purpose (test/semantic-live.test.ts).
+#
+# That gate deletes every guard, relation type and property here, re-runs every saved question and
+# every requirement, and asks whether an answer moved. Inert is fine; prose calling an inert
+# declaration causal is the defect. Each row is a CLAIM the gate measures both ways.
+# ---------------------------------------------------------------------------
+declarations:
+
+  - id: retry-guard-restates-the-declared-domain
+    subject: guard:document-lifecycle/failed->queued
+    inert: true
+    held_by: stronger-declaration
+    reason: >
+      `retry_count < 2` restates the bound `range: [0, 2]` already carries. The transition's effect
+      is `retry_count + 1`, and a step whose effect would leave a variable's declared finite domain
+      is SKIPPED rather than clamped, so the domain stops the third retry on its own and the guard
+      decides no reachable step. Kept because it states the retry policy where a reader of the
+      transition looks; the claim that the loop is bounded rests on the finite domain, which is how
+      the requirement's note words it.
+
+  - id: runs-on-is-topology-not-accounting
+    subject: relation:processing-resources/runs_on
+    inert: true
+    held_by: the-reader
+    reason: >
+      Which worker the task slots execute on. No saved question reads these edges: the memory
+      question resolves charges through the quantities' own when: clauses and the ceiling through
+      within:, so the peak is the same with the edges gone. They are here so the resource model
+      says where its slots run -- which is what its stated purpose covers -- rather than only the
+      declarations a shipped query traverses. An edge set that decided the verdict would make
+      topology look like accounting.

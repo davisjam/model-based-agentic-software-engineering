@@ -119,7 +119,7 @@ const PAGES = [
         name: "loaded",
         floor: 30,
         drive: async (page) => {
-          const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+          const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
           await page.evaluate((text) => window.mage.load(text), yaml);
           await page.waitForFunction(() => document.querySelectorAll("#sections table").length > 0, { timeout: 30_000 });
         },

@@ -15,6 +15,7 @@
 //
 // Every expectation is a lookup against the registry, the engine, or the shipped examples — the
 // derived-values control polices this file like any other.
+import { EXAMPLE_IDS, exampleDir, type ExampleId } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -25,7 +26,7 @@ import { runQuery } from "../src/engine/index.ts";
 import { renderView } from "../src/render/index.ts";
 import { renderBudgetView } from "../src/app/budget.ts";
 import { Workspace } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+
 import {
   anchorForType, deriveLearnEntries, learnHrefForType, learnLinkForRefusal, MODEL_TYPE_USES,
   presentTypes,
@@ -39,9 +40,9 @@ import {
 import { REQUIREMENT_METRICS } from "../src/quant/requirement.ts";
 
 const loadSystems = (): LoadedSystems => {
-  const systems = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
-    systems.set(id, Workspace.canonicalizeOnly(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8"))));
+  const systems = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
+    systems.set(id, Workspace.canonicalizeOnly(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
   return systems;
 };
@@ -209,13 +210,20 @@ test("a missing-model-type refusal resolves to the Learn section the page builds
   // Ask each type's question of a shipped system that lacks the type, using another shipped
   // example's own saved query of that kind — nothing in this test authors a query shape.
   for (const t of MODEL_TYPES) {
-    const lacking = SHIPPED_EXAMPLE_IDS
+    const lacking = EXAMPLE_IDS
       .map((id) => systems.get(id))
       .find((sys): sys is CanonicalSystem => sys !== undefined && !t.presentIn(sys));
     if (lacking === undefined) continue; // every shipped example declares it; nothing to refuse
-    const donor = SHIPPED_EXAMPLE_IDS
+    // Prefer a donor that SAVES a question of the type's own kind: a donor that merely declares
+    // the type falls back to the composed quantity query, whose refusal names quantitative-model
+    // rather than `t` (medium-document-processing declares a graph model and saves no graph query).
+    const donor = EXAMPLE_IDS
       .map((id) => systems.get(id))
-      .find((sys): sys is CanonicalSystem => sys !== undefined && t.presentIn(sys));
+      .find((sys): sys is CanonicalSystem =>
+        sys !== undefined && t.presentIn(sys) && savedStatements(sys, t.queryKind).length > 0)
+      ?? EXAMPLE_IDS
+        .map((id) => systems.get(id))
+        .find((sys): sys is CanonicalSystem => sys !== undefined && t.presentIn(sys));
     assert.ok(donor !== undefined, `${t.id}: no shipped example declares the type at all`);
     const savedDonor = savedStatements(donor, t.queryKind)[0];
     const question: unknown = savedDonor !== undefined

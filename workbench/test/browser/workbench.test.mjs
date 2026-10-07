@@ -628,7 +628,7 @@ describe("FR-A11Y-3: a change the AGENT makes is announced, not only one that mo
   };
 
   it("window.mage.load announces what loaded, by name and by size", async () => {
-    const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+    const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
     await watchLive();
     await agentPage.evaluate((text) => window.mage.load(text), yaml);
     const live = await liveWrites();
@@ -956,7 +956,7 @@ describe("SH-I1: Start and the workspace are never both mounted", () => {
   });
 
   it("loading a model unmounts Start and mounts the workspace", async () => {
-    const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+    const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
     await freshPage.evaluate((text) => window.mage.load(text), yaml);
     await freshPage.waitForFunction(() => document.getElementById("start")?.hidden === true, { timeout: 30_000 });
 

@@ -60,7 +60,7 @@ import {
  * from a run that still prints success -- see `startServerOnFreePort`.
  */
 let ORIGIN;
-const FLAGSHIP = join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml");
+const FLAGSHIP = join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml");
 
 let server;
 let browser;

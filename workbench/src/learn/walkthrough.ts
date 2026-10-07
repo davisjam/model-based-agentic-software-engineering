@@ -27,7 +27,7 @@
  * modification turns the suite red instead of leaving a step that quietly renders nothing.
  */
 import type { Dimension } from "../ir/types.ts";
-import type { ShippedExampleId } from "../app/examples.ts";
+import type { ExampleId } from "../app/example-corpus.ts";
 
 // --------------------------------------------------------------------------------------------
 // The lesson
@@ -65,26 +65,26 @@ export const LESSON = {
 // --------------------------------------------------------------------------------------------
 
 /** The examples the walkthrough runs on, named once and type-checked against the shipped set. */
-export const WALK_TW: ShippedExampleId = "transaction-workspace";
-export const WALK_ESN: ShippedExampleId = "embedded-sensor-node";
-export const WALK_DP: ShippedExampleId = "document-processing";
-export const WALK_MB: ShippedExampleId = "message-bus";
-export const WALK_CL: ShippedExampleId = "calibration-loop";
+export const WALK_TW: ExampleId = "transaction-workspace";
+export const WALK_ESN: ExampleId = "embedded-sensor-node";
+export const WALK_DP: ExampleId = "document-processing";
+export const WALK_MB: ExampleId = "message-bus";
+export const WALK_CL: ExampleId = "calibration-loop";
 
 /**
  * What a step runs on, in the corpus's own spellings. One shape per kind of artifact, so the
  * conformance test can resolve each against the shipped corpus without knowing the step's DOM.
  */
 export type StepGrounding =
-  | { readonly kind: "model"; readonly example: ShippedExampleId; readonly model: string }
-  | { readonly kind: "machine"; readonly example: ShippedExampleId; readonly machine: string }
-  | { readonly kind: "query"; readonly example: ShippedExampleId; readonly query: string }
+  | { readonly kind: "model"; readonly example: ExampleId; readonly model: string }
+  | { readonly kind: "machine"; readonly example: ExampleId; readonly machine: string }
+  | { readonly kind: "query"; readonly example: ExampleId; readonly query: string }
   | {
-    readonly kind: "modification"; readonly example: ShippedExampleId;
+    readonly kind: "modification"; readonly example: ExampleId;
     readonly modification: string;
   }
-  | { readonly kind: "budget"; readonly example: ShippedExampleId; readonly dimension: Dimension }
-  | { readonly kind: "system"; readonly example: ShippedExampleId }
+  | { readonly kind: "budget"; readonly example: ExampleId; readonly dimension: Dimension }
+  | { readonly kind: "system"; readonly example: ExampleId }
   | { readonly kind: "capability"; readonly service: string };
 
 /**
@@ -99,7 +99,7 @@ export interface ModelCard {
   /** What this model form represents. One line, declared furniture. */
   readonly represents: string;
   /** The characteristic question, named in the corpus's spelling. */
-  readonly ask: { readonly example: ShippedExampleId; readonly query: string };
+  readonly ask: { readonly example: ExampleId; readonly query: string };
 }
 
 export interface WalkStep {

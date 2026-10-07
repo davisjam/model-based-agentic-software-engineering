@@ -24,7 +24,7 @@ import { DIMENSIONS } from "../src/ir/types.ts";
 import type { CanonicalSystem } from "../src/ir/types.ts";
 import type { SvgNode } from "../src/render/types.ts";
 
-const SENSOR_NODE = "examples/embedded-sensor-node/system.mage.yaml";
+const SENSOR_NODE = "test/fixtures/examples/embedded-sensor-node/system.mage.yaml";
 
 const load = (src: string): CanonicalSystem => canonicalize(parse(src));
 const sensorSource = (): string => readFileSync(SENSOR_NODE, "utf8");

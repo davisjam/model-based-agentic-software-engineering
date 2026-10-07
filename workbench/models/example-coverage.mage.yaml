@@ -10,29 +10,12 @@
 # How many examples ship is the `example.*` rows below and is deliberately not restated here;
 # the sentence that used to count them went stale the day a fourth landed.
 #
-# Document Processing declares quantities, declares their accounting, and states both
-# performance numbers -- and the Performance row is exercised: the `kind: quantity` query form
-# aggregates each metric (the aggregation derived from the dimension's scope), decides the
-# declared ceilings, and reports the figure on the result's magnitude field, which the schema
-# probe finds. Requirements reads EXERCISED since 261005, and the row's two-step history is the
-# reason the detection is worth reading: `unavailable` while no `requirements:` key existed,
-# `unexercised` once the construct landed and no model authored one, `exercised` now that every
-# shipped example authors its obligations. The row detects off the AUTHORED model and not off
-# the fixture, which is what kept the middle step honest -- a fixture reading would have flipped
-# the row the moment the construct landed, on evidence from a file that is not the model.
-#
-# Document Processing keeps one requirement in its fixture, on the `decided_by` route, and that
-# costs this row nothing: the row detects an AUTHORED `requirements:` block and that example
-# authors one. The requirement that stays is its 750 ms latency obligation, held back on
-# pedagogical grounds rather than expressive ones — a saved question over that ceiling would put
-# a second latency ceiling in front of a student beside the 2-second one. Its memory sibling had
-# no such cost and moved to the authored route on 261005.
-#
-# Transaction Workspace adds no row, and that is worth reading rather than skipping: every
-# capability it exercises was already exercised elsewhere. It earns its place as the BEHAVIOR
-# flagship (DESIGN-v02-semantics-261004.md §31 example B) and as the example whose `omits` lists
-# make a binding visibly not a merge, and this matrix measures neither of those. A coverage
-# model is not a quality model.
+# The library is the author's 261006 three-example progression -- Simple (one model), Medium
+# (two models), Complex (three models, with the one deliberately failing cross-model policy
+# property). Capabilities the former seven-example set exercised and this library does not are
+# reported `unexercised` below rather than hidden: the former examples survive as test fixtures
+# under test/fixtures/examples/, where their pins still run, but a fixture is not a shipped
+# example and earns no row here.
 
 mage: 1
 
@@ -77,61 +60,29 @@ relation-types:
 
 entities:
 
-  example.message-bus:
+  example.simple-worker-queue:
     type: default-example
-    label: "Message Bus"
+    label: "Simple – Worker Queue"
     properties:
-      purposeful_models: 3
+      purposeful_models: 1
+      supplied_queries: 4
+      suggested_queries: 4
+
+  example.medium-document-processing:
+    type: default-example
+    label: "Medium – Document Processing"
+    properties:
+      purposeful_models: 2
       supplied_queries: 7
       suggested_queries: 5
 
-  example.transaction-workspace:
+  example.complex-transaction-workspace:
     type: default-example
-    label: "Transaction Workspace"
-    properties:
-      purposeful_models: 2
-      supplied_queries: 9
-      suggested_queries: 5
-
-  example.document-processing:
-    type: default-example
-    label: "Document Processing"
-    properties:
-      purposeful_models: 2
-      supplied_queries: 14
-      suggested_queries: 5
-
-  example.worker-queue:
-    type: default-example
-    label: "Worker Queue"
+    label: "Complex – Transaction Workspace"
     properties:
       purposeful_models: 3
       supplied_queries: 8
       suggested_queries: 5
-
-  example.embedded-sensor-node:
-    type: default-example
-    label: "Embedded Sensor Node"
-    properties:
-      purposeful_models: 2
-      supplied_queries: 6
-      suggested_queries: 5
-
-  example.autonomous-delivery:
-    type: default-example
-    label: "Autonomous Delivery Rover"
-    properties:
-      purposeful_models: 5
-      supplied_queries: 14
-      suggested_queries: 5
-
-  example.calibration-loop:
-    type: default-example
-    label: "Calibration Loop"
-    properties:
-      purposeful_models: 3
-      supplied_queries: 4
-      suggested_queries: 4
 
   capability.structural-models:
     type: semantic-capability
@@ -159,7 +110,7 @@ entities:
     label: "A declared event stepping two machines atomically, with no observable intermediate state."
     properties:
       matrix_row: "State machine"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.cross-model-identity:
     type: semantic-capability
@@ -229,7 +180,7 @@ entities:
     label: "A counterexample returned with a refuted universal claim, naming the step that breaks it."
     properties:
       matrix_row: "Safety"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.purposeful-non-answerability:
     type: semantic-capability
@@ -243,7 +194,7 @@ entities:
     label: "A search truncated by its state limit, reported as inconclusive under bounded coverage (V22)."
     properties:
       matrix_row: "Not-answerable"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.containment-hierarchy:
     type: semantic-capability
@@ -264,21 +215,21 @@ entities:
     label: "The accounting DECLARED rather than inferred: a path-aggregated metric naming one basis, and every configuration-scoped quantity naming whether it is resident or charged while a state is active (V35-V37)."
     properties:
       matrix_row: "Quantities"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.path-quantity-accounting:
     type: semantic-capability
     label: "An execution's latency accounted per OCCURRENCE of an accounted entity along a behavioral trace: the occurrence counts read off the engine's witness, the per-occurrence charges off the model, and a retry charged twice because the trace visits twice."
     properties:
       matrix_row: "Performance"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.configuration-memory-accounting:
     type: semantic-capability
     label: "memory(c) as the resident sum plus the charges whose named state is active in c, with a peak over the reachable configurations."
     properties:
       matrix_row: "Performance"
-      status: { value: exercised, domain: coverage-status }
+      status: { value: unexercised, domain: coverage-status }
 
   capability.performance:
     type: semantic-capability
@@ -309,13 +260,9 @@ models:
         - capabilities internal to the engine and not reachable from a model file
         - the order in which a reader should work through the examples
     entities:
-      - example.message-bus
-      - example.transaction-workspace
-      - example.document-processing
-      - example.worker-queue
-      - example.embedded-sensor-node
-      - example.autonomous-delivery
-      - example.calibration-loop
+      - example.simple-worker-queue
+      - example.medium-document-processing
+      - example.complex-transaction-workspace
       - capability.structural-models
       - capability.typed-relationships
       - capability.state-machines
@@ -340,96 +287,33 @@ models:
       - capability.performance
       - capability.requirements
     relations:
-      - { from: example.message-bus, to: capability.structural-models, type: exercises }
-      - { from: example.transaction-workspace, to: capability.structural-models, type: exercises }
-      - { from: example.document-processing, to: capability.structural-models, type: exercises }
-      - { from: example.worker-queue, to: capability.structural-models, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.structural-models, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.structural-models, type: exercises }
-      - { from: example.calibration-loop, to: capability.structural-models, type: exercises }
-      - { from: example.message-bus, to: capability.typed-relationships, type: exercises }
-      - { from: example.transaction-workspace, to: capability.typed-relationships, type: exercises }
-      - { from: example.document-processing, to: capability.typed-relationships, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.typed-relationships, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.typed-relationships, type: exercises }
-      - { from: example.calibration-loop, to: capability.typed-relationships, type: exercises }
-      - { from: example.transaction-workspace, to: capability.state-machines, type: exercises }
-      - { from: example.document-processing, to: capability.state-machines, type: exercises }
-      - { from: example.worker-queue, to: capability.state-machines, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.state-machines, type: exercises }
-      - { from: example.worker-queue, to: capability.synchronized-events, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.synchronized-events, type: exercises }
-      - { from: example.message-bus, to: capability.cross-model-identity, type: exercises }
-      - { from: example.transaction-workspace, to: capability.cross-model-identity, type: exercises }
-      - { from: example.document-processing, to: capability.cross-model-identity, type: exercises }
-      - { from: example.worker-queue, to: capability.cross-model-identity, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.cross-model-identity, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.cross-model-identity, type: exercises }
-      - { from: example.calibration-loop, to: capability.cross-model-identity, type: exercises }
-      - { from: example.message-bus, to: capability.model-composition, type: exercises }
-      - { from: example.transaction-workspace, to: capability.model-composition, type: exercises }
-      - { from: example.document-processing, to: capability.model-composition, type: exercises }
-      - { from: example.worker-queue, to: capability.model-composition, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.model-composition, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.model-composition, type: exercises }
-      - { from: example.calibration-loop, to: capability.model-composition, type: exercises }
-      - { from: example.message-bus, to: capability.graph-reachability, type: exercises }
-      - { from: example.transaction-workspace, to: capability.graph-reachability, type: exercises }
-      - { from: example.document-processing, to: capability.graph-reachability, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.graph-reachability, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.graph-reachability, type: exercises }
-      - { from: example.transaction-workspace, to: capability.safety, type: exercises }
-      - { from: example.worker-queue, to: capability.safety, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.safety, type: exercises }
-      - { from: example.message-bus, to: capability.safety-as-existential-dual, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.safety-as-existential-dual, type: exercises }
-      - { from: example.transaction-workspace, to: capability.reachability, type: exercises }
-      - { from: example.document-processing, to: capability.reachability, type: exercises }
-      - { from: example.worker-queue, to: capability.reachability, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.reachability, type: exercises }
-      - { from: example.transaction-workspace, to: capability.bounded-progress, type: exercises }
-      - { from: example.document-processing, to: capability.bounded-progress, type: exercises }
-      - { from: example.worker-queue, to: capability.bounded-progress, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.bounded-progress, type: exercises }
-      - { from: example.document-processing, to: capability.bounded-cycles, type: exercises }
-      - { from: example.worker-queue, to: capability.bounded-cycles, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.bounded-cycles, type: exercises }
-      - { from: example.message-bus, to: capability.witnesses, type: exercises }
-      - { from: example.transaction-workspace, to: capability.witnesses, type: exercises }
-      - { from: example.document-processing, to: capability.witnesses, type: exercises }
-      - { from: example.worker-queue, to: capability.witnesses, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.witnesses, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.witnesses, type: exercises }
-      - { from: example.calibration-loop, to: capability.witnesses, type: exercises }
-      - { from: example.transaction-workspace, to: capability.counterexamples, type: exercises }
-      - { from: example.document-processing, to: capability.counterexamples, type: exercises }
-      - { from: example.worker-queue, to: capability.counterexamples, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.counterexamples, type: exercises }
-      - { from: example.message-bus, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.transaction-workspace, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.document-processing, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.worker-queue, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.calibration-loop, to: capability.purposeful-non-answerability, type: exercises }
-      - { from: example.worker-queue, to: capability.bounded-coverage-reporting, type: exercises }
-      - { from: example.document-processing, to: capability.quantitative-annotations, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.quantitative-annotations, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.quantitative-annotations, type: exercises }
-      - { from: example.document-processing, to: capability.declared-accounting, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.declared-accounting, type: exercises }
-      - { from: example.document-processing, to: capability.path-quantity-accounting, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.path-quantity-accounting, type: exercises }
-      - { from: example.document-processing, to: capability.configuration-memory-accounting, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.configuration-memory-accounting, type: exercises }
-      - { from: example.document-processing, to: capability.performance, type: exercises }
-      - { from: example.message-bus, to: capability.requirements, type: exercises }
-      - { from: example.transaction-workspace, to: capability.requirements, type: exercises }
-      - { from: example.document-processing, to: capability.requirements, type: exercises }
-      - { from: example.worker-queue, to: capability.requirements, type: exercises }
-      - { from: example.embedded-sensor-node, to: capability.requirements, type: exercises }
-      - { from: example.autonomous-delivery, to: capability.requirements, type: exercises }
-      - { from: example.calibration-loop, to: capability.requirements, type: exercises }
+      - { from: example.medium-document-processing, to: capability.structural-models, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.structural-models, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.typed-relationships, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.state-machines, type: exercises }
+      - { from: example.medium-document-processing, to: capability.state-machines, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.state-machines, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.cross-model-identity, type: exercises }
+      - { from: example.medium-document-processing, to: capability.model-composition, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.model-composition, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.graph-reachability, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.safety, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.safety, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.safety-as-existential-dual, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.reachability, type: exercises }
+      - { from: example.medium-document-processing, to: capability.reachability, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.reachability, type: exercises }
+      - { from: example.medium-document-processing, to: capability.bounded-progress, type: exercises }
+      - { from: example.medium-document-processing, to: capability.bounded-cycles, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.witnesses, type: exercises }
+      - { from: example.medium-document-processing, to: capability.witnesses, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.witnesses, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.purposeful-non-answerability, type: exercises }
+      - { from: example.medium-document-processing, to: capability.quantitative-annotations, type: exercises }
+      - { from: example.medium-document-processing, to: capability.performance, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.requirements, type: exercises }
+      - { from: example.medium-document-processing, to: capability.requirements, type: exercises }
+      - { from: example.complex-transaction-workspace, to: capability.requirements, type: exercises }
 
 # One assertion per capability. `expect` makes a saved query a CI gate: re-running them
 # re-derives the matrix, so the answer to the model's question is executable rather than read off
@@ -470,7 +354,7 @@ queries:
     name: "Some shipped example exercises state machine -- synchronized-events"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises
@@ -570,7 +454,7 @@ queries:
     name: "Some shipped example exercises safety -- counterexamples"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises
@@ -590,7 +474,7 @@ queries:
     name: "Some shipped example exercises not-answerable -- bounded-coverage-reporting"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises
@@ -620,7 +504,7 @@ queries:
     name: "Some shipped example exercises quantities -- declared-accounting"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises
@@ -630,7 +514,7 @@ queries:
     name: "Some shipped example exercises performance -- path-quantity-accounting"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises
@@ -640,7 +524,7 @@ queries:
     name: "Some shipped example exercises performance -- configuration-memory-accounting"
     kind: graph
     quantifier: exists
-    expect: holds
+    expect: refuted
     graph:
       form: predecessors
       relation: exercises

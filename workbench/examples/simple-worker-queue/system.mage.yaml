@@ -1,0 +1,214 @@
+# Simple – Worker Queue -- MAGE default example 1 of 3.
+#
+# The "I have never seen MAGE before" example: one system, one model, one engineering question. A
+# student should understand the whole thing in roughly thirty seconds, and the vocabulary it
+# establishes is the library's central sentence:
+#
+#   A model preserves selected facts so that a property becomes answerable.
+#
+# One purposeful model:
+#
+#   queue-capacity   a state machine. How many jobs are waiting, and can that number ever exceed
+#                    the queue's declared capacity?
+#
+# The representation is deliberately the simplest construct that makes the properties executable: a
+# single control state and one bounded integer variable, with an arrival and a processing step as
+# labeled self-transitions. The capacity invariant is CHECKED over every reachable configuration
+# rather than merely displayed as `capacity = 4`.
+#
+# ## Why the domain is [-1, 5] when the policy is [0, 4]
+#
+# The guards carry the policy; the domain only bounds what is representable. If the domain were
+# [0, 4], "occupancy never exceeds 4" would hold VACUOUSLY -- no configuration the state vector
+# admits could violate it, so no transition structure would be consulted, and the engine's
+# verification layer (V44) derives `inconclusive` for a requirement decided that way rather than
+# calling it a property the design earns. One step of headroom beyond each policy bound makes both
+# invariants genuine safety properties: delete the arrival's guard and occupancy 5 becomes
+# reachable; delete the processing step's guard and -1 does. The semantic-live gate performs
+# exactly that deletion sweep and measures both guards live; the declared modification in
+# expected-results.yaml deletes the whole arrival instead, which flips the possibility question
+# while leaving both invariants standing -- its rationale says why that asymmetry is the lesson.
+#
+# No cross-model joins, no synchronized events, no retry policy -- those arrive in the Medium and
+# Complex examples. The declared omissions below say so in the model's own voice.
+#
+# ## One known divergence, inherited rather than new
+#
+# A machine carries no annotation at all: `CanonMachine` has no `annotation` field, so `notes:` on a
+# machine would load as nothing. The machine declares `entity: queue`, and the rationale lives on
+# that entity instead -- the same honest workaround worker-queue and document-processing use. The
+# intended home is an annotation slot on the machine.
+
+mage: 1
+
+system:
+  id: simple-worker-queue
+  name: Bounded Worker Queue
+  description: >
+    A service receives jobs into a bounded queue and a worker processes them. The queue can hold at
+    most four jobs; two are waiting initially. One model, one engineering question.
+
+entities:
+
+  queue:
+    type: queue
+    label: Queue
+    notes:
+      # The machine's rationale lives here. `CanonMachine` has no `annotation` field, so `notes:` on
+      # a machine would load as nothing -- the honest workaround the other examples use.
+      - id: queue-capacity-rationale
+        kind: rationale
+        text: >
+          The queue-capacity machine represents the number of jobs waiting in the queue and nothing
+          else: one control state, one bounded integer. An arrival adds a job and is forbidden at
+          capacity; processing removes a job and is forbidden when the queue is empty. Because the
+          variable's domain is declared finite, exhaustive exploration can establish the capacity
+          invariant rather than restate it. The model deliberately preserves no job identity and no
+          timing, so no question about a particular job, or about how long anything takes, has a
+          reading here.
+    provenance:
+      created_by: mage-example
+      prompt: >
+        Model the occupancy of a bounded four-job queue so that the capacity invariant can be
+        checked mechanically rather than displayed as a number.
+      rationale: MAGE-provided example, simple-worker-queue, version 1.
+
+machines:
+
+  queue-capacity:
+    label: Queue Capacity
+    entity: queue
+    description: >
+      Models the number of jobs waiting in a bounded worker queue so that queue-capacity properties
+      can be checked.
+    purpose:
+      question: Can the number of waiting jobs ever exceed the queue's capacity of four?
+      represents:
+        - queue capacity
+        - current queue occupancy
+        - job arrival
+        - job removal by processing
+        - the relationship between occupancy and capacity
+      omits:
+        - job contents
+        - job identity
+        - processing duration
+        - worker failures
+        - retry behavior
+        - scheduling among multiple workers
+        - arrival timing
+    initial: ready
+    states:
+      # One control state, on purpose. The queue's interesting state is the occupancy count, so the
+      # arrival and processing steps are self-transitions that move the variable rather than the
+      # control state. A state machine is more than a picture even at one node: the guards and
+      # effects are what make the capacity question checkable.
+      ready:
+        label: Ready
+        description: The queue is in service. Occupancy is the state that changes.
+    variables:
+      occupancy:
+        type: integer
+        # A finite domain is mandatory (V17) -- and it is deliberately ONE NOTCH WIDER than the
+        # design's intended [0, 4]. A bound the state vector cannot even represent violating would
+        # hold VACUOUSLY (the engine says so in its disclosure), so the domain leaves headroom at
+        # both ends and each bound is EARNED by the guard on its transition: the arrival guard is
+        # what forbids a fifth job, the processing guard is what stops removal at empty. Delete
+        # either guard and the corresponding invariant is refuted -- which is exactly what makes
+        # them properties the design maintains rather than facts of the representation.
+        range: [-1, 5]
+        initial: 2
+        description: Jobs currently waiting. Two initially; capacity 4 is held by the arrival guard.
+    transitions:
+
+      # Index 0 -- the arrival. The declared modification in expected-results.yaml deletes this
+      # transition BY INDEX (two self-loops share endpoints, so from/to cannot pick one); keep it
+      # first in this list.
+      - from: ready
+        to: ready
+        label: arrival
+        requires:
+          occupancy: { lt: 4 }
+        effects:
+          occupancy: occupancy + 1
+
+      # Index 1 -- processing removes one job.
+      - from: ready
+        to: ready
+        label: processing
+        requires:
+          occupancy: { gt: 0 }
+        effects:
+          occupancy: occupancy - 1
+
+# ---------------------------------------------------------------------------
+# Saved queries. Expected outcomes live in expected-results.yaml -- one source of truth, because the
+# fixture also carries the evidence each answer must produce.
+#
+# The first two are invariants; the third is a possibility claim. The pair of kinds is the lesson:
+# "nothing bad ever happens" and "something is possible from here" are different questions, decided
+# by different quantifiers, and neither is a rendering of the other.
+# ---------------------------------------------------------------------------
+queries:
+
+  queue-never-exceeds-capacity:
+    name: Queue occupancy never exceeds 4 jobs
+    kind: behavior
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        queue-capacity.occupancy: { le: 4 }
+
+  occupancy-never-negative:
+    name: Queue occupancy is always at least 0 jobs
+    kind: behavior
+    quantifier: forall
+    behavior:
+      form: invariant
+      predicate:
+        queue-capacity.occupancy: { ge: 0 }
+
+  # The possibility claim, from the initial state: two jobs are waiting, so one more arrival fits
+  # without exceeding capacity. A witness trace answers it; the invariants above have no witness to
+  # show, because a universal that holds has no single configuration to point at.
+  another-arrival-is-possible:
+    name: Another job can arrive from the initial state
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: reach
+      target:
+        queue-capacity.occupancy: 3
+
+  # Purposeful omission, made executable. Fairness needs a scheduler and a dispatch step, and this
+  # system declares neither -- "scheduling among multiple workers" sits in the declared omits list
+  # above. The engine refuses and names the missing vocabulary rather than answering from a model
+  # that does not hold the distinction; the refusal is the honest answer, and showing one is part
+  # of this example's lesson about what a model's edge means.
+  is-the-scheduler-fair:
+    name: The scheduler gives every worker a turn
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: transition-live
+      transition:
+        machine: scheduler
+        sync: dispatch
+
+# Both obligations are established by exhaustive exploration of a finite transition system. The
+# possibility claim is deliberately NOT a requirement: it demonstrates a different kind of question,
+# not an obligation the design is judged against.
+requirements:
+
+  capacity-is-respected:
+    statement: >
+      Queue occupancy never exceeds the declared capacity of four jobs.
+    expressed_as: queue-never-exceeds-capacity
+    satisfied_when: holds
+
+  occupancy-is-nonnegative:
+    statement: >
+      Queue occupancy never falls below zero.
+    expressed_as: occupancy-never-negative
+    satisfied_when: holds

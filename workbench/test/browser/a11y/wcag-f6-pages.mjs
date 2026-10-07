@@ -28,7 +28,7 @@ export const PAGES = [
      * texts are the ones the dark theme broke.
      */
     drive: async (page) => {
-      const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+      const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
       await page.evaluate((text) => window.mage.load(text), yaml);
       await page.waitForFunction(() => document.querySelectorAll("#sections table").length > 0, { timeout: 30_000 });
       await page.evaluate(() => window.mage.view.select(["analytics", "order-created"]));

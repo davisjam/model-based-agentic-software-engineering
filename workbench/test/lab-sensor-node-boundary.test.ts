@@ -28,7 +28,10 @@ import { Workspace } from "../src/app/services.ts";
 import { realPorts } from "../scripts/gen-example-coverage.ts";
 
 const HERE = import.meta.dirname;
-const text = readFileSync(join(HERE, "..", "examples", "embedded-sensor-node", "system.mage.yaml"), "utf8");
+// The sensor example moved to the fixture corpus in the 261006 three-example split; the lab and
+// this seam pin teach and hold the same engine behaviour over the tracked fixture.
+const text = readFileSync(
+  join(HERE, "fixtures", "examples", "embedded-sensor-node", "system.mage.yaml"), "utf8");
 
 /** 232 KB, 264 KB, 196 KB — in the memory dimension's base unit (MB, binary table: KB = 1/1024). */
 const KB = (n: number): number => n / 1024;

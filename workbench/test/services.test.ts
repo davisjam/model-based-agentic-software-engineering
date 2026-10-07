@@ -3,6 +3,7 @@
 // These pin the thing that was previously impossible: a transaction actually committing through the
 // single seam. Before this, `transactions.apply` could only refuse, because the facade held an IR
 // and a transaction needs the DOCUMENT -- which is where the comments live.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -13,7 +14,7 @@ import type { Ports, SparqlAnswer } from "../src/app/services.ts";
 import {
   CAPABILITIES, ESCAPE_HATCHES, SPARQL_HATCH_RENAME, checkAffordanceParity,
 } from "../src/app/capabilities.ts";
-import { ExampleCatalog, UnknownExampleError, scenarioLead } from "../src/app/examples.ts";
+import { ExampleCatalog, SHIPPED_EXAMPLE_IDS, UnknownExampleError } from "../src/app/examples.ts";
 // The configuration-space readout, imported for its WORDS. The module touches the DOM only inside
 // `mountSystemBrowser`, so the two describers are reachable from a node tier with no browser.
 import { describeExploreResult, describeSpaceSummary } from "../src/ui/shell/browser.ts";
@@ -21,7 +22,7 @@ import type { Space } from "../src/ui/shell/browser.ts";
 import type { AssetReader } from "../src/app/examples.ts";
 import { createAgentApi } from "../src/app/agent-api.ts";
 import { checkPropertyGrounding } from "../src/app/properties.ts";
-import { EXAMPLE_IDS, readFixture } from "../scripts/gen-example-coverage.ts";
+import { readFixture } from "../scripts/gen-example-coverage.ts";
 import { admit } from "../src/sparql/index.ts";
 import type { ExhaustedEscalation, SeamQuestion } from "../src/sparql/index.ts";
 import { entityIri, modelGraphIri, relationTypeIri } from "../src/rdf/iri.ts";
@@ -367,7 +368,7 @@ test("the catalogue offers exactly the examples that ship", () => {
   // landing there must reach the menu -- and a menu that drifted from the shipped set would offer
   // an entry whose files do not exist.
   const { catalog } = catalogue();
-  assert.deepEqual([...catalog.ids()].sort(), [...EXAMPLE_IDS].sort(),
+  assert.deepEqual([...catalog.ids()].sort(), [...SHIPPED_EXAMPLE_IDS].sort(),
     "the menu and the shipped example set must be the same list");
 });
 
@@ -392,8 +393,11 @@ test("all three specified examples are offered, and each one loads", async () =>
   // The `derived-values:allow` that used to sit here is gone with the reason for it: the list is no
   // longer the member set of SHIPPED_EXAMPLE_IDS, so the member-list rule no longer reads it and a
   // suppression would be claiming a check ran.
-  for (const id of ["message-bus", "document-processing", "worker-queue"] as const) {
-    assert.ok(first.catalog.ids().includes(id), `section 1 specifies ${id} and the menu omits it`);
+  // The author's 261006 spec names the three: Simple, Medium, Complex — asserted by PRESENCE.
+  for (const id of
+    // derived-values:allow the 261006 spec's own naming of the three, asserted by presence; writing SHIPPED_EXAMPLE_IDS here would make the assertion a tautology
+    ["simple-worker-queue", "medium-document-processing", "complex-transaction-workspace"] as const) {
+    assert.ok(first.catalog.ids().includes(id), `the 261006 spec names ${id} and the menu omits it`);
   }
   for (const id of first.catalog.ids()) {
     // A fresh workspace per id: loading into a reused one would pass even if a later load silently
@@ -419,45 +423,21 @@ test("a description is read from the example, never written beside it", async ()
   // description could be authored here, it could disagree with the example it describes, and
   // nothing would notice.
   const { catalog } = catalogue();
-  for (const id of EXAMPLE_IDS) {
+  for (const id of SHIPPED_EXAMPLE_IDS) {
     const d = await catalog.describe(id);
     const fixture = readFixture(id);
     assert.equal(d.title, fixture.title.trim(), `${id}: the title must be the example's own`);
     assert.equal(d.summary, fixture.summary.trim(), `${id}: the summary must be the example's own`);
 
-    // The presented questions are the fixture's `suggested` set, joined by query id to the case
-    // envelope's interrogatives: the STATEMENT is the fixture row's own label, the ASK is the
-    // case's phrasing of the same question, and the order is the fixture's.
-    assert.deepEqual(d.tryAsking.map((q) => ({ query: q.query, statement: q.statement })),
-      fixture.queries.filter((q) => q.suggested).map((q) => ({ query: q.id, statement: q.label })),
-      `${id}: the presented questions must be the ones the example marks suggested`);
-    for (const q of d.tryAsking) {
-      assert.notEqual(q.ask.trim(), "", `${id}/${q.query}: the case presents an empty ask`);
-    }
-    assert.ok(d.tryAsking.length >= 3 && d.tryAsking.length <= 5,
-      `${id}: ${d.tryAsking.length} presented questions, section 2 asks for 3 to 5`);
-    // The case prose itself: non-empty, and never fed to the engine — the loaded system's bytes
-    // are the example file alone, which the load test above already holds.
-    assert.notEqual(d.scenario.trim(), "", `${id}: the case states no scenario`);
-    assert.notEqual(d.investigate.trim(), "", `${id}: the case states nothing to investigate`);
-
-    // The Start card's abbreviation of that scenario: derived, never authored. A PREFIX of the
-    // authored prose (so the abbreviation cannot say anything the scenario does not), non-empty,
-    // and a whole statement rather than a cut-off clause.
-    const lead = scenarioLead(d.scenario);
-    assert.notEqual(lead.trim(), "", `${id}: the scenario abbreviates to nothing`);
-    assert.ok(d.scenario.startsWith(lead),
-      `${id}: the abbreviated case is not a prefix of the authored scenario`);
-    assert.match(lead, /[.?!]$/, `${id}: the abbreviated case ends mid-sentence: "${lead}"`);
-
-    // And the models, with their questions, from the system itself -- machines included, because a
-    // machine carries a purpose exactly as a graph model does.
+    // And the models, from the system itself -- machines included, because a machine carries a
+    // purpose exactly as a graph model does. The 261006 spec's start surface is the stored
+    // description followed by model names and kinds; the case envelope and Try-asking retired
+    // with the seven-example library.
     assert.deepEqual([...d.models].map((m) => `${m.kind}:${m.id}`).sort(),
       fixture.models.map((m) => `${m.kind}:${m.id}`).sort(),
       `${id}: the described models must be the example's purposeful models`);
     for (const m of d.models) {
-      assert.ok(m.question !== null && m.question.length > 0,
-        `${id}: model '${m.id}' is described without the question it answers`);
+      assert.notEqual(m.label.trim(), "", `${id}: model '${m.id}' is described without a label`);
     }
   }
 });
@@ -465,7 +445,7 @@ test("a description is read from the example, never written beside it", async ()
 test("loading an example gives an ordinary workspace: the shipped counts, and no findings", async () => {
   // The brief's acceptance check, through the catalogue rather than around it. Expected counts are
   // LOOKED UP from the fixture's declared models, so a snapshot in this file cannot go stale.
-  for (const id of EXAMPLE_IDS) {
+  for (const id of SHIPPED_EXAMPLE_IDS) {
     const { ws, catalog } = catalogue();
     const r = await catalog.load(id);
     assert.ok(r.ok, `${id}: did not load`);
@@ -482,7 +462,9 @@ test("loading an example gives an ordinary workspace: the shipped counts, and no
     // Ordinary means editable. A rename commits and advances the revision, exactly as it would on an
     // imported file -- which is EX-I1 asserted on the workspace rather than on the loader.
     const before = ws.state.hash;
-    const first = [...ws.state.system.models.keys(), ...ws.state.system.machines.keys()][0];
+    // An ENTITY label: entity labels are in the canonical hash, while a machine's label is display
+    // only (src/ir/hash.ts), so a machine-first example would commit without advancing the revision.
+    const first = [...ws.state.system.entities.keys()][0];
     assert.ok(first !== undefined);
     const edit = ws.transact({ transaction: { base: before,
       operations: [{ op: "set-label", id: first, value: "Edited by hand" }] } });
@@ -494,12 +476,12 @@ test("loading an example gives an ordinary workspace: the shipped counts, and no
 test("EX-I1: the catalogue's load and a plain import produce the SAME system", async () => {
   // The structural half. If the two hashes agree, nothing in the example path preprocessed,
   // patched or marked the system -- there is no privileged import.
-  for (const id of EXAMPLE_IDS) {
+  for (const id of SHIPPED_EXAMPLE_IDS) {
     const { ws, catalog } = catalogue();
     await catalog.load(id);
 
     const imported = new Workspace(ports);
-    assert.ok(imported.load(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")).ok);
+    assert.ok(imported.load(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")).ok);
     assert.equal(ws.state.hash, imported.state.hash,
       `${id}: loading an example must be indistinguishable from importing its file`);
   }
@@ -523,11 +505,11 @@ test("creating a new model system loads an empty, editable, clean workspace", ()
 
 test("provenance reaches the one service, prompt separated from the metadata", async () => {
   const { ws, catalog } = catalogue();
-  await catalog.load("message-bus");
+  await catalog.load("medium-document-processing");
   const records = ws.provenance();
   assert.ok(records.length > 0, "the shipped examples record provenance (section 8)");
 
-  const flow = records.find((p) => p.object === "model:event-flow");
+  const flow = records.find((p) => p.object === "model:processing-resources");
   assert.ok(flow !== undefined, "a model that records its origin must appear");
   assert.ok(flow.prompt !== null, "the prompt is the field that earns the feature");
   assert.ok(!flow.fields.some((f) => f.label === "Asked for"),
@@ -539,21 +521,21 @@ test("provenance reaches the one service, prompt separated from the metadata", a
 
 test("UX-I6: reading provenance cannot move the model, and a note does not advance the revision", async () => {
   const { ws, catalog } = catalogue();
-  await catalog.load("message-bus");
+  await catalog.load("medium-document-processing");
   const before = ws.state.hash;
-  const answer = ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome;
+  const answer = ws.runSavedQueries().get("processing-after-completion")?.outcome;
 
   // Reading, repeatedly. The service returns records and no writer, so this cannot do anything --
   // which is the assertion.
   for (let i = 0; i < 3; i += 1) assert.ok(ws.provenance().length > 0);
   assert.equal(ws.state.hash, before, "inspecting provenance must not change the system's identity");
-  assert.equal(ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome,
+  assert.equal(ws.runSavedQueries().get("processing-after-completion")?.outcome,
     answer, "inspecting provenance must not change an answer");
 
   // And the writing side of the same invariant, on the capability next door: a note commits and
   // leaves the semantic revision exactly where it was.
   const noted = ws.transact({ transaction: { base: before, operations: [{
-    op: "add-note", scope: "model", id: "event-flow",
+    op: "add-note", scope: "model", id: "processing-resources",
     note: { kind: "comment", text: "Annotation is outside the semantic projection." },
   }] } });
   assert.ok(noted.ok, `the note must commit: ${noted.findings.map((f) => f.message).join("; ")}`);
@@ -583,7 +565,7 @@ test("an agent reads the same provenance and the same examples the person does",
   assert.deepEqual(described.map((d) => d.id), [...catalog.ids()]);
   assert.deepEqual(described, await catalog.describeAll());
 
-  const context = await api.loadExample("worker-queue");
+  const context = await api.loadExample("medium-document-processing");
   assert.equal(context.hash, ws.state.hash, "the agent's context must describe the loaded system");
   assert.equal(context.counts["models"], ws.state.system.models.size);
   assert.deepEqual(context.findings, [], "a shipped example must load clean for an agent too");
@@ -593,7 +575,7 @@ test("an agent reads the same provenance and the same examples the person does",
   // methods an imported file gets, and there is no example-specific surface (EX-I1).
   assert.ok(api.inspect().models.length > 0);
   const edited = api.transact({ transaction: { base: context.hash,
-    operations: [{ op: "set-label", id: "worker-pool", value: "Pool" }] } });
+    operations: [{ op: "set-label", id: "worker", value: "Pool" }] } });
   assert.ok(edited.ok, `an example must be editable through window.mage: ${edited.findings.map((f) => f.message).join("; ")}`);
 });
 
@@ -1112,7 +1094,7 @@ test("over a system that HAS machines, the readout a person sees is a real walk'
   const thread = onThread();
   try {
     const ws = new Workspace({ ...ports, analysis: thread.client });
-    assert.ok(ws.load(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")).ok,
+    assert.ok(ws.load(readFileSync("test/fixtures/examples/worker-queue/system.mage.yaml", "utf8")).ok,
       "the worker-queue example must load — it is the one with state machines");
     const out = await ws.explore();
     assert.equal(out.status, "ok-space",

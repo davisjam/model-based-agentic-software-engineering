@@ -5,6 +5,7 @@
 // renders a typed structure of labels, roles and textual states, a test can assert that every
 // status word is present as TEXT -- an assertion about the product, not about a stylesheet. A
 // canvas-first design cannot be checked this way, which is a large part of why it fails in practice.
+import { exampleDir } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
@@ -194,7 +195,7 @@ test("a machine states its question too", () => {
 
 test("UX-I4: every shipped model presents its Model in words, in the rows and beside the picture", () => {
   for (const id of SHIPPED_EXAMPLE_IDS) {
-    const system = canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+    const system = canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
     const subjects = [
       ...[...system.models.keys()].map((m) => ({ kind: "model" as const, id: m })),
       ...[...system.machines.keys()].map((m) => ({ kind: "machine" as const, id: m })),
@@ -213,7 +214,7 @@ test("UX-I4: every shipped model presents its Model in words, in the rows and be
 });
 
 test("UX-I4 fires when a model's words are dropped — negative controls, both named cases", () => {
-  const system = canonicalize(parse(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")));
+  const system = canonicalize(parse(readFileSync("test/fixtures/examples/worker-queue/system.mage.yaml", "utf8")));
   const m = buildViewModel(system, [], [], {
     hypothesis: null, selection: [], principal: { kind: "model", id: "worker-pool" },
   });
@@ -1464,9 +1465,6 @@ test("the surfaces table covers the closed vocabulary exactly once", () => {
   const vocabulary: readonly NavSurface[] = [
     "header", "start", "nav-models", "nav-properties", "workspace", "inspector",
     "askbar", "statusbar", "palette", "review", "system-browser", "advanced-query",
-    // `case` joined with the persistent case panel (261005): a shipped example's pedagogical
-    // envelope, mounted iff the current import came from an example.
-    "case",
     // `edit` joined in wave 1d. The ten pinned editing fieldsets are wired affordance sites a
     // person really walks to, and until the vocabulary had a member for their region their only
     // declarable path was the empty one — which would have claimed they are reachable with nothing
@@ -1620,7 +1618,7 @@ test("UX-I11: every shipped scene keeps the accessible twin at parity with the p
   // shipped example through the REAL renderer and hold the parity check at zero.
   const scenes: { id: string; scene: ReturnType<typeof renderView>["accessible"] }[] = [];
   for (const id of SHIPPED_EXAMPLE_IDS) {
-    const system = canonicalize(parse(readFileSync(`examples/${id}/system.mage.yaml`, "utf8")));
+    const system = canonicalize(parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8")));
     for (const subject of [
       ...[...system.models.keys()].map((m) => ({ kind: "model", id: m }) as const),
       ...[...system.machines.keys()].map((m) => ({ kind: "machine", id: m }) as const),
@@ -1643,7 +1641,7 @@ test("UX-I11: every shipped scene keeps the accessible twin at parity with the p
 });
 
 test("UX-I11 fires when the twin loses what the picture shows — negative controls", () => {
-  const system = canonicalize(parse(readFileSync("examples/worker-queue/system.mage.yaml", "utf8")));
+  const system = canonicalize(parse(readFileSync("test/fixtures/examples/worker-queue/system.mage.yaml", "utf8")));
   const scene = renderView(system, { subject: { kind: "model", id: "worker-pool" } }).accessible;
   assert.deepEqual(checkTwinParity(scene), [], "the unmodified scene must be clean first");
 

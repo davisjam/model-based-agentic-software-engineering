@@ -135,7 +135,7 @@ describe("FR-AGENT-1: the agent attaches over CDP, to a browser nothing in this 
 
 describe("FR-AGENT-1: an attached agent's edit lands in the student's live state", () => {
   it("a load through the agent client is the state the student client reads", async () => {
-    const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+    const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
     const agentView = await agentPage.evaluate((text) => window.mage.load(text), yaml);
     assert.equal(agentView.systemId, "message-bus");
     // Read through the OTHER client. A second model copy behind the agent API would show up here
