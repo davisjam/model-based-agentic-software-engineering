@@ -15,6 +15,8 @@ and verified, not when an agent reports success.
 
 ## Pending — need a decision or a slot
 
+*(Items 7-9 RESOLVED 261007 by author ruling — see 'Curriculum canon' below.)*
+
 | # | Item | Blocked on |
 |---|------|-----------|
 | ~~5~~ | ~~Workspace shows the system Scenario~~ | **LANDED** with item 4. Verified on the live page. |
@@ -49,3 +51,23 @@ improve either: `layout-dagre.ts` is the same Sugiyama engine Mermaid's own stat
 
 Record: `workbench/DECISIONS-RULED-renderer-genre-261006.md`. A dedicated A/B pilot across all three
 examples is still running as an independent check on that disqualifying finding.
+
+## Curriculum canon — RULED 261007
+
+The author's rulings, and what each cost to apply:
+
+- **Alignment is ONE lecture.** The unit now OMITS `sessions:` entirely — the parity gate taught
+  that, rejecting a one-item list with *"a single-session module omits the key"*. Week 8 of
+  `reference-course/calendar.md` carries Failure-Aware Engineering alone. `materials:` points at
+  `2-3-Alignment.pptx`, which exists, instead of promising it as forthcoming.
+- **Modeling canon: *Purposeful Reduction* and *Degrees of Semantic Commitment*.** The mirror, the
+  act index and `README.md`'s worked example had been advertising *Representation & Implementation*
+  and *Engineering with Models*, which named no deck and no declared session.
+- **Filenames carry the canon, so those are the right decks.** `2-2-Modeling-2-Systems-of-Models`
+  (241 KB, 30 September, referenced only from a scratchpad note) is `git rm`'d and recoverable from
+  history; the untracked Finder duplicate of Purposeful-Reduction is gone.
+
+**The consequence neither of us named:** declaring one session re-measured the lander against a
+tighter prose band. `03-alignment/index.md` was **1625 words against a 750–1000 one-session band** —
+it had been written to carry two sessions. Trimming it is the last open piece. The schema caught a
+downstream effect of a scheduling decision, which is the governance working as designed.
