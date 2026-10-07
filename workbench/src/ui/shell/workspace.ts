@@ -622,6 +622,7 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
   const region = regionHost("workspace");
   const subjectChoice = sel("diagram-subject");
   const principalPurpose = byId("principal-purpose");
+  const systemScenario = byId("system-scenario");
   const modelContents = byId("model-contents");
   const diagramText = byId("diagram-text");
   const modelBudget = byId("model-budget");
@@ -881,6 +882,12 @@ export function mountWorkspace(ctx: ShellContext, openDialog?: OpenDialog): Shel
       // SH-I1's other half. Read from the same field Start reads, so the two regions cannot both
       // claim the page.
       mountIf(region, frame.state.loaded);
+
+      // The scenario — the system-level statement, kept visible after Start unmounts. Painted
+      // BEFORE the composed-view early return, so the one-model and composed workspaces both
+      // carry it; a model's purpose only makes sense against the system it reduces.
+      systemScenario.textContent = frame.vm.scenario ?? "";
+      systemScenario.hidden = frame.vm.scenario === null;
 
       // The subject list offers the one-model views AND the composed views the model's bindings
       // license — "it just shows what the underlying model already encodes as modeled". The

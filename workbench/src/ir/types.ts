@@ -734,6 +734,12 @@ export interface SavedRequirement {
 export interface CanonicalSystem {
   readonly systemId: string;
   readonly name: string;
+  /**
+   * The system-level statement — the SCENARIO a reader needs before any one model's purpose makes
+   * sense. Prose, excluded from the canonical hash like every other authored description; null
+   * when the author wrote none, never manufactured.
+   */
+  readonly description: string | null;
   readonly domains: ReadonlyMap<string, CanonDomain>;
   readonly entities: ReadonlyMap<string, CanonEntity>;
   readonly relationTypes: ReadonlyMap<string, CanonRelationType>;
