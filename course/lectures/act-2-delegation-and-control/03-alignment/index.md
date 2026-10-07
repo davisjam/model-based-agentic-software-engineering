@@ -33,7 +33,7 @@ materials:
     src: 2-3-Alignment.pptx
 ---
 
-Alignment governs delegated work against the engineer's obligations.
+**Premise.** *Alignment governs delegated work against the engineer's obligations.*
 
 The previous units established two parts of this problem. Validation asked what evidence justifies an engineering judgment. Delegation asked what work and authority an engineer gives to another actor. Alignment asks how engineering obligations govern that delegated work: what the actor may do, what evidence the environment should collect, how that evidence should be evaluated, and what consequences should follow.
 
@@ -67,10 +67,10 @@ Alignment requires an obligation against which the work can be wrong. Correspond
 
 Once the obligation and its boundary are known, we can ask what the environment should do. Four roles are useful:
 
-- Constraint — narrows what may happen.
-- Sensor — observes what happened and produces evidence.
-- Validator — evaluates evidence against an obligation.
-- Gate — controls whether work may cross a boundary.
+- **Constraint** — narrows what may happen.
+- **Sensor** — observes what happened and produces evidence.
+- **Validator** — evaluates evidence against an obligation.
+- **Gate** — controls whether work may cross a boundary.
 
 These are roles, not four separate tools or four sequential stages. A CI test can sense behavior, validate the result, and gate the build; a narrow interface can constrain available actions while also producing evidence about their use.
 
