@@ -446,6 +446,26 @@ re-deriving these, so they live here:**
     fix, check for it before dispatching a second agent to produce one — two agents converging on
     one defect is pure waste, and the one that rebased first usually wins on merit.
 
+- **A stale branch over a BINARY artifact is a revert by default. Diff the file's history on main
+  before merging it.** Decks, `.docx`, `.xlsx`, images and rendered PDFs take the whole blob on
+  merge: no conflict markers stop you, there is no partial credit, and the loss stays invisible
+  until somebody opens the file. Before landing any such branch:
+
+      B=$(git merge-base main <branch>)
+      git log --oneline "$B"..main -- <path-to-binary>     # any output = merging REVERTS it
+
+  Measured 261006: a 24-hour-old branch subject *"deck 2-2-2: the two tables become TABLES"* looked
+  exactly like unlanded work worth recovering. Main had moved **5 commits** on that deck — including
+  `5777381fe`, *the same task redone on the author's current version*, plus two new demonstration
+  slides and the author's own final save. Merging would have discarded all five silently.
+  - **Be suspicious when the subject line agrees with you.** The stale branch and the landed commit
+    had near-identical subjects *because they were the same task done twice*; the subject is what
+    makes the superseded branch look like the missing piece.
+  - The text reflex is the opposite and still correct: recover stranded TEXT branches. When one will
+    not merge because surrounding content moved, check whether the target strings survived and apply
+    the edits directly to current main rather than resolving unrelated conflicts — that worked the
+    same day for a Learn copyedit (5 strings intact, applied by hand, 1521 pass / 0 fail).
+
 - **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
   `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
   fails the instinct is to read the log. You cannot: `/actions/jobs/<id>/logs` and
