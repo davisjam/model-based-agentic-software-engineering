@@ -65,8 +65,8 @@ entities:
     label: "Simple – Worker Queue"
     properties:
       purposeful_models: 1
-      supplied_queries: 3
-      suggested_queries: 3
+      supplied_queries: 4
+      suggested_queries: 4
 
   example.medium-document-processing:
     type: default-example
@@ -187,7 +187,7 @@ entities:
     label: "A question REFUSED, with the cause named, rather than answered from a model that does not hold the distinction."
     properties:
       matrix_row: "Not-answerable"
-      status: { value: unexercised, domain: coverage-status }
+      status: { value: exercised, domain: coverage-status }
 
   capability.bounded-coverage-reporting:
     type: semantic-capability
@@ -308,6 +308,7 @@ models:
       - { from: example.simple-worker-queue, to: capability.witnesses, type: exercises }
       - { from: example.medium-document-processing, to: capability.witnesses, type: exercises }
       - { from: example.complex-transaction-workspace, to: capability.witnesses, type: exercises }
+      - { from: example.simple-worker-queue, to: capability.purposeful-non-answerability, type: exercises }
       - { from: example.medium-document-processing, to: capability.quantitative-annotations, type: exercises }
       - { from: example.medium-document-processing, to: capability.performance, type: exercises }
       - { from: example.simple-worker-queue, to: capability.requirements, type: exercises }
@@ -463,7 +464,7 @@ queries:
     name: "Some shipped example exercises not-answerable -- purposeful-non-answerability"
     kind: graph
     quantifier: exists
-    expect: refuted
+    expect: holds
     graph:
       form: predecessors
       relation: exercises

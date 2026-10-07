@@ -181,6 +181,21 @@ queries:
       target:
         queue-capacity.occupancy: 3
 
+  # Purposeful omission, made executable. Fairness needs a scheduler and a dispatch step, and this
+  # system declares neither -- "scheduling among multiple workers" sits in the declared omits list
+  # above. The engine refuses and names the missing vocabulary rather than answering from a model
+  # that does not hold the distinction; the refusal is the honest answer, and showing one is part
+  # of this example's lesson about what a model's edge means.
+  is-the-scheduler-fair:
+    name: The scheduler gives every worker a turn
+    kind: behavior
+    quantifier: exists
+    behavior:
+      form: transition-live
+      transition:
+        machine: scheduler
+        sync: dispatch
+
 # Both obligations are established by exhaustive exploration of a finite transition system. The
 # possibility claim is deliberately NOT a requirement: it demonstrates a different kind of question,
 # not an obligation the design is judged against.

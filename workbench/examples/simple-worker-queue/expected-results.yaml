@@ -99,6 +99,22 @@ queries:
       three, inside capacity. The two invariants above answered with no evidence at all -- same
       model, different kind of claim, different kind of answer.
 
+  - id: is-the-scheduler-fair
+    label: The scheduler gives every worker a turn
+    suggested: true
+    models: [queue-capacity]
+    expected:
+      outcome: unlicensed
+      coverage: not-applicable
+      refusal_contains: "not about this model's vocabulary"
+      no_evidence: true
+    note: >
+      The declared omission, made executable. The purpose block omits "scheduling among multiple
+      workers", and this question asks exactly that -- so the engine refuses and names the missing
+      vocabulary instead of answering from a model that does not hold the distinction. A refusal
+      that cites nothing is the one property status allowed to carry no grounds, and the simplest
+      example is where a student should first meet it.
+
 # ---------------------------------------------------------------------------
 # Useful modifications (section 2). Each is a real transaction driven through
 # openHypothesis / discardHypothesis, and each must CHANGE a recorded answer and then change back.

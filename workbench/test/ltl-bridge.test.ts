@@ -51,7 +51,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { parse } from "yaml";
 import { canonicalize } from "../src/ir/canonicalize.ts";
 import { systemHash } from "../src/ir/hash.ts";
-import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import { EXAMPLE_IDS, exampleDir } from "../src/app/example-corpus.ts";
 import type { CanonicalSystem, Configuration, Evidence, Outcome } from "../src/ir/types.ts";
 import { liftStep } from "../src/ir/types.ts";
 import { compileSystem, defaultOptions, exploreSpace } from "../src/engine/explore.ts";
@@ -85,7 +85,9 @@ function subjects(): readonly Subject[] {
     ...readdirSync("models")
       .filter((f) => f.endsWith(".mage.yaml"))
       .map((f) => [`models/${f}`, `models/${f}`] as const),
-    ...SHIPPED_EXAMPLE_IDS.map((id) => [id, `examples/${id}/system.mage.yaml`] as const),
+    // Both tracked populations: the bridge is a property of the ENGINE, and the fixture corpus
+    // (the seven former examples) is where the cycle and refusal rows keep their coverage.
+    ...EXAMPLE_IDS.map((id) => [id, `${exampleDir(id)}/system.mage.yaml`] as const),
     ...readdirSync("examples")
       .filter((f) => f.endsWith(".mage.yaml"))
       .map((f) => [`examples/${f}`, `examples/${f}`] as const),
