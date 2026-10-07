@@ -803,7 +803,7 @@ test("the not-attributed list names every construct no standard backs — the ru
 });
 
 test("the census is counted from the registry, not written down", () => {
-  const cell = readoutLabelled(sectionAt("question-foundations"), "The attribution, counted now");
+  const cell = readoutLabelled(sectionAt("question-foundations"), "Standards attribution");
   const primitives = MODEL_TYPES.flatMap((t) => t.query.primitives);
   const forms = (kind: SemanticBasis["kind"]): number =>
     primitives.filter((p) => p.semanticBasis.kind === kind).length;
@@ -829,7 +829,7 @@ test("rung 3 is stated as asserted, in that word, and no gate is claimed", () =>
   // half. So the page's own word for what a borrowed correspondence is worth must be a kind the
   // published schema admits, and must not be one of the three that would imply a mechanism.
   const section = sectionAt("question-foundations");
-  const cell = readoutLabelled(section, "The attribution, counted now");
+  const cell = readoutLabelled(section, "Standards attribution");
   const worth = cell("What a borrowed correspondence is worth today");
 
   const schema = JSON.parse(readFileSync("mage-model.schema.json", "utf8")) as {

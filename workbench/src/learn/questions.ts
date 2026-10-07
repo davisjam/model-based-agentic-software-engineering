@@ -1392,7 +1392,7 @@ function foundationBlocks(): readonly QuestionBlock[] {
   blocks.push({
     kind: "pairs",
     provenance: true,
-    label: "The attribution, counted now",
+    label: "Standards attribution",
     pairs: [
       ["Model-form substrates borrowed from a standard",
         `${borrowed.length} of ${MODEL_TYPES.length}`],
@@ -1955,7 +1955,7 @@ function compositionBlocks(systems: LoadedSystems): readonly QuestionBlock[] {
     ]),
   }, {
     kind: "rows",
-    label: "Where each one is grounded",
+    label: "What licenses each composition",
     columns: ["Composition", "What licenses it", "Result type", "Semantic basis"],
     rows: COMPOSITIONS.map((c) => [
       c.name,

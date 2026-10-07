@@ -1276,7 +1276,7 @@ export const MODEL_TYPES: readonly ModelType[] = [
         {
           noun: "quantity",
           selector: "by-id",
-          means: "A declared magnitude with its dimension and unit",
+          means: "A declared magnitude, including its target, dimension and unit",
           declaredBy: {
             file: "src/ir/types.ts",
             symbol: "CanonQuantity",
@@ -1287,7 +1287,7 @@ export const MODEL_TYPES: readonly ModelType[] = [
           noun: "execution",
           selector: "predicate",
           means:
-            "An execution of the system, selected by a behavioural predicate",
+            "The executions to measure, selected by a behavioral predicate",
           declaredBy: {
             file: "src/engine/types.ts",
             symbol: "QuantityQuery",
@@ -1300,7 +1300,7 @@ export const MODEL_TYPES: readonly ModelType[] = [
         {
           noun: "ceiling",
           selector: "by-id",
-          means: "A declared limit a computed figure is compared against",
+          means: "A declared quantity against which the computed result is compared",
           declaredBy: {
             file: "src/engine/types.ts",
             symbol: "QuantityQuery",

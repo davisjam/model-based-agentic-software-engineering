@@ -245,7 +245,7 @@ test("the compositions section lists every composition, with the result type CIT
   const table = rowsLabelled(section, "Every cross-domain composition");
   assert.deepEqual(table.rows.map((r) => r[0]), COMPOSITIONS.map((c) => c.name),
     "the section's composition table is not COMPOSITIONS, in its order");
-  const grounding = rowsLabelled(section, "Where each one is grounded");
+  const grounding = rowsLabelled(section, "What licenses each composition");
   assert.deepEqual(grounding.rows.map((r) => r[0]), COMPOSITIONS.map((c) => c.name));
   for (const [i, c] of COMPOSITIONS.entries()) {
     const row = table.rows[i];
