@@ -98,6 +98,7 @@ import type { CanonicalSystem, Evidence, Purpose, QueryResult } from "../ir/type
 import { DIMENSIONS, UNIT_DIMENSIONS } from "../ir/types.ts";
 import { EXAMPLE_IDS, type ExampleId } from "../app/example-corpus.ts";
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../app/capabilities.ts";
+import { presentTypes } from "../app/learn.ts";
 import {
   ceilingQuestions, composedQuantityQuery, declaredUnitOf, exemplarFor, quantityRows,
   savedStatements,
@@ -617,7 +618,16 @@ interface SelectionReading {
 function selectionReading(systems: LoadedSystems): SelectionReading | null {
   const visual = exemplarFor(STRUCTURAL, systems);
   if (visual === null) return null;
-  const system = systems.get(visual.example);
+  // The section closes on a deciding question of the SAME model, so prefer the first structural
+  // example that also SAVES one — medium-document-processing declares a graph model but saves no
+  // graph question, while complex-transaction-workspace carries both. Fall back to the bare
+  // structural exemplar so the reading itself never disappears with the contrast.
+  const example = EXAMPLE_IDS.find((id) => {
+    const sys = systems.get(id);
+    return sys !== undefined && presentTypes(sys).includes(STRUCTURAL)
+      && decidingQuestion(systems, id) !== null;
+  }) ?? visual.example;
+  const system = systems.get(example);
   if (system === undefined) return null;
   let chosen: { readonly type: string; readonly count: Cardinality } | null = null;
   for (const type of countElements(system, {}).declaredTypes) {
@@ -633,7 +643,7 @@ function selectionReading(systems: LoadedSystems): SelectionReading | null {
   const counted = countElements(system, selector);
   if (!selection.selected || !counted.counted) return null;
   return {
-    example: visual.example,
+    example,
     question: selection.interpretedAs,
     declaredTypes: selection.declaredTypes,
     ids: selection.ids,

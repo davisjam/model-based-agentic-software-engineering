@@ -34,7 +34,7 @@
 // What this file deliberately does NOT do: assert any outcome word as a literal. `refuted` appears
 // below only as a value read back out of a fixture or an engine result. A test that hardcoded
 // `refuted` for the latency requirement would pass on the day the engine stopped computing it.
-import { exampleDir } from "../src/app/example-corpus.ts";
+import { EXAMPLE_IDS, exampleDir, type ExampleId } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -45,7 +45,7 @@ import { MODEL_TYPES, type SemanticBasis } from "../src/engine/model-types.ts";
 import { QUANTIFIERS, QUANTIFIER_EVIDENCE } from "../src/engine/types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+
 import { affordanceParityGate, CAPABILITIES, ESCAPE_HATCHES } from "../src/app/capabilities.ts";
 import { anchorForType, anchorForUse, MODEL_TYPE_USES } from "../src/app/learn.ts";
 import {
@@ -59,8 +59,8 @@ import {
 import { GUIDE_ANCHORS } from "../src/learn/workbench-guide.ts";
 
 const systems: LoadedSystems = (() => {
-  const map = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
       parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
@@ -68,8 +68,8 @@ const systems: LoadedSystems = (() => {
 })();
 
 const fixtures: LoadedFixtures = (() => {
-  const map = new Map<ShippedExampleId, ReturnType<typeof readFixture>>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, ReturnType<typeof readFixture>>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, readFixture(id, readFileSync(fixturePathFor(id), "utf8")));
   }
   return map;
@@ -183,7 +183,7 @@ test("every evidence shape the section lists is one a shipped question actually 
 
   // Re-derive the (role, shape) set from the shipped systems, independently of the builder.
   const produced = new Set<string>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     const system = systems.get(id);
     assert.ok(system !== undefined);
     for (const qid of system.queries.keys()) {
@@ -215,7 +215,7 @@ test("the counterexample readout is re-derived by running the query it describes
   const quantitative = MODEL_TYPES.find((t) => t.id === "quantitative-model");
   assert.ok(quantitative !== undefined);
   const named = cell("Asked of");
-  const example = SHIPPED_EXAMPLE_IDS.find((id) => systems.get(id)?.name === named);
+  const example = EXAMPLE_IDS.find((id) => systems.get(id)?.name === named);
   assert.ok(example !== undefined, `the readout names example '${named}', which is not shipped`);
   const system = systems.get(example);
   assert.ok(system !== undefined);
@@ -249,7 +249,7 @@ test("every change row's 'now' is the live outcome and its 'after' is the fixtur
 
   // Re-derive every expected row from the fixtures and the live engine.
   const expected: string[][] = [];
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     const system = systems.get(id);
     const fixture = fixtures.get(id);
     assert.ok(system !== undefined && fixture !== undefined);
@@ -363,12 +363,12 @@ test("BOTH polarities ship, which is what makes the section teach a rule", () =>
 
 /** The obligation-to-ceiling chains the CORPUS licenses, derived here independently of the page. */
 const corpusChains = (): readonly {
-  example: ShippedExampleId; requirement: string; question: string; ceiling: string; status: string;
+  example: ExampleId; requirement: string; question: string; ceiling: string; status: string;
 }[] => {
   const out: {
-    example: ShippedExampleId; requirement: string; question: string; ceiling: string; status: string;
+    example: ExampleId; requirement: string; question: string; ceiling: string; status: string;
   }[] = [];
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     const fixture = fixtures.get(example);
     if (system === undefined || fixture === undefined) continue;
@@ -873,7 +873,7 @@ test("every refusal shown is one a shipped question earns, with the engine's own
 
   // Re-derive the refusal corpus: the exact prose, keyed by the authored statement.
   const earned = new Map<string, string>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     const system = systems.get(id);
     assert.ok(system !== undefined);
     for (const qid of system.queries.keys()) {

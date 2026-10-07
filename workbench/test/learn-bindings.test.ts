@@ -35,7 +35,7 @@
 //
 // Nothing below pins a string the builder produced, and no outcome word appears as a literal:
 // every expectation is a second derivation from the registry, the engine or the shipped examples.
-import { exampleDir } from "../src/app/example-corpus.ts";
+import { EXAMPLE_IDS, exampleDir, type ExampleId } from "../src/app/example-corpus.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -46,7 +46,7 @@ import {
 } from "../src/engine/model-types.ts";
 import { runQuery } from "../src/engine/index.ts";
 import { Workspace } from "../src/app/services.ts";
-import { SHIPPED_EXAMPLE_IDS, type ShippedExampleId } from "../src/app/examples.ts";
+
 import {
   anchorForType, anchorForUse, bindingsBetween, compositionsBetween, deriveLearnEntries,
   MODEL_TYPE_USES,
@@ -61,8 +61,8 @@ import {
 } from "../src/learn/questions.ts";
 
 const systems: LoadedSystems = (() => {
-  const map = new Map<ShippedExampleId, CanonicalSystem>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, CanonicalSystem>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, Workspace.canonicalizeOnly(
       parse(readFileSync(`${exampleDir(id)}/system.mage.yaml`, "utf8"))));
   }
@@ -70,8 +70,8 @@ const systems: LoadedSystems = (() => {
 })();
 
 const fixtures: LoadedFixtures = (() => {
-  const map = new Map<ShippedExampleId, ReturnType<typeof readFixture>>();
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  const map = new Map<ExampleId, ReturnType<typeof readFixture>>();
+  for (const id of EXAMPLE_IDS) {
     map.set(id, readFixture(id, readFileSync(fixturePathFor(id), "utf8")));
   }
   return map;
@@ -379,7 +379,7 @@ test("the corpus table's counts, examples and instance are a second walk over th
     let count = 0;
     let first: string | null = null;
     let unreadable = false;
-    for (const example of SHIPPED_EXAMPLE_IDS) {
+    for (const example of EXAMPLE_IDS) {
       const system = systems.get(example);
       assert.ok(system !== undefined);
       const found = walk(binding.name, system);
@@ -423,7 +423,7 @@ test("the bound-pair readout is the two models' OWN purposes, and the binding me
   let pair: {
     system: CanonicalSystem; machineId: string; entityId: string; modelId: string;
   } | null = null;
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     assert.ok(system !== undefined);
     for (const [machineId, machine] of system.machines) {
@@ -523,7 +523,7 @@ function expectedComposition(): {
   assert.ok(composition !== undefined,
     "no composition runs from the behavioural dialect to the quantitative one — §4.3 requires "
     + "executions-selected-by-behaviour");
-  for (const example of SHIPPED_EXAMPLE_IDS) {
+  for (const example of EXAMPLE_IDS) {
     const system = systems.get(example);
     assert.ok(system !== undefined);
     for (const id of system.queries.keys()) {
@@ -544,6 +544,16 @@ function expectedComposition(): {
       const machine = [...system.machines].find(([, m]) => m.states.includes(value));
       if (machine === undefined) continue;
       if (composedQuantityQuery(system, quantitative.query.forms) === null) continue;
+      // Mirror the page's rule: the section shows the first example the engine actually ANSWERS.
+      // A configuration-scoped metric (memory) refuses an execution selection as a category
+      // error — medium-document-processing's peak_memory does exactly that — and the page walks
+      // on, so this derivation must too or the two disagree about which system is shown.
+      const composedProbe = composedQuantityQuery(
+        system, quantitative.query.forms, undefined, { [ref]: value });
+      const plainProbe = composedQuantityQuery(system, quantitative.query.forms);
+      if (composedProbe === null || plainProbe === null) continue;
+      if (runQuery(system, composedProbe.query).result.refusal !== null) continue;
+      if (runQuery(system, plainProbe.query).result.refusal !== null) continue;
       const name = record["name"];
       return {
         system,

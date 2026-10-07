@@ -113,7 +113,17 @@ function expectedSubject(): {
   assert.ok(structural !== undefined, "no registered type answers the graph dialect");
   const visual = exemplarFor(structural.id, systems);
   assert.ok(visual !== null, `${structural.id}: no shipped example instantiates the type`);
-  const system = systems.get(visual.example);
+  // The section's stated rule since the three-example split: the first structural example that
+  // also SAVES a graph question, because the section closes on a deciding question of the SAME
+  // model — medium-document-processing declares a graph model and saves none. Fall back to the
+  // bare structural exemplar, exactly as the page does.
+  const example = EXAMPLE_IDS.find((id) => {
+    const sys = systems.get(id);
+    if (sys === undefined) return false;
+    const declares = sys.models.size > 0;
+    return declares && savedStatements(sys, "graph").length > 0;
+  }) ?? visual.example;
+  const system = systems.get(example);
   assert.ok(system !== undefined);
   let best: { readonly type: string; readonly value: number } | null = null;
   for (const type of countElements(system, {}).declaredTypes) {
@@ -124,7 +134,7 @@ function expectedSubject(): {
     }
   }
   assert.ok(best !== null, "the structural exemplar declares no countable entity type");
-  return { example: visual.example, system, selector: { type: best.type } };
+  return { example, system, selector: { type: best.type } };
 }
 
 // ---------------------------------------------------------------------------------------------
