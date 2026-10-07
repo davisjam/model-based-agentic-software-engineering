@@ -10,14 +10,13 @@ produce durable progress or merely accelerate churn depending on the representat
 constraints, and controls through which it acts. Engineering pressure exposes mismatches. Engineers can
 diagnose them and turn what they learn into structure that later work inherits.
 
-We state the theory and its main predictions first, deliberately in general form. Only afterward do we
-ask where those predictions should be expected to hold. MAGE costs something to build, maintain,
-coordinate, and govern, and not every engineering judgment can or should become durable machinery. The
-scope conditions therefore bound the theory rather than precede it.
+We first state the theory and its predictions, then bound them with explicit scope conditions. MAGE
+costs something to build, maintain, coordinate, and govern, and not every engineering judgment can or
+should become durable machinery.
 
-The chapter then turns from claims to inquiry. Its final section turns the theory, predictions, and scope
-conditions into a research agenda: what to measure, what comparisons could distinguish the proposed
-mechanisms, which quantities remain unknown, and what evidence would strengthen—or weaken—the account.
+The final section turns the theory, predictions, and scope conditions into a research agenda: what to
+measure, which comparisons could distinguish the proposed mechanisms, which quantities remain unknown,
+and what evidence would strengthen or weaken the account.
 
 The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
 generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
@@ -37,10 +36,10 @@ properties a domain must have for the account to transfer at all.
 > This chapter widens the unit of analysis. It begins with the Master Equation, adds the cost of
 > repeated realization and independent assurance, and then makes the engineered environment itself
 > dynamic. The result is a theory of how Modeling, Alignment, process, and accumulated engineering
-> structure shape the conversion of agentic capacity into durable progress.
+> structure convert agentic capacity into durable progress.
 
 **Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed
-Engineering Environment · Engineering capital · Probabilistic surface
+Engineering Environment · Engineering capital · Probabilistic surface · Master Equation
 
-**New here:** Master Equation · Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
+**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions ·
 Testable predictions · Research agenda
