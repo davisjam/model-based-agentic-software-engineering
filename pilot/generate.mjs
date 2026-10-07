@@ -509,14 +509,28 @@ function namespaceIds(markup, prefix) {
 
 function panel(title, body) {
   panelSeq += 1;
-  return `<div class="panel"><h3>${title}</h3>${namespaceIds(body, `p${panelSeq}`)}</div>`;
+  // `tabindex="0"` + a label: the panel scrolls horizontally (`overflow-x: auto`), and a scrollable
+  // region that cannot be reached or scrolled by keyboard is an axe `scrollable-region-focusable`
+  // violation -- a real one, not a lint artifact: a keyboard user otherwise cannot see the right-hand
+  // side of a wide diagram. `role="group"` + the heading as its accessible name also gives the
+  // content an enclosing landmark-ish container, which is what `region` was complaining about.
+  // A DIV with role="group", not a <section>: a named <section> is a `region` LANDMARK, and the
+  // multi-model pages draw each model both ways, so two panels legitimately share a title ("A --
+  // Shipped painter" appears once per model). Two landmarks with the same role and name is axe's
+  // `landmark-unique`. A group is the honest role anyway -- these are related controls, not page
+  // regions -- and the enclosing <main> is what satisfies `region` for the content inside.
+  //
+  // `tabindex="0"` stays: the panel scrolls horizontally, and a scrollable region a keyboard user
+  // cannot reach or scroll hides the right-hand side of every wide diagram from them.
+  return `<div class="panel" role="group" aria-labelledby="h${panelSeq}" tabindex="0">`
+    + `<h3 id="h${panelSeq}">${title}</h3>${namespaceIds(body, `p${panelSeq}`)}</div>`;
 }
 
 function page(title, body) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title><style>${CSS}</style></head>
-<body><h1>${title}</h1>${body}</body></html>`;
+<body><main><h1>${title}</h1>${body}</main></body></html>`;
 }
 
 // --------------------------------------------------------------------------------------------
