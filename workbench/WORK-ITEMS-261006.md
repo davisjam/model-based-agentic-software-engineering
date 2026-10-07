@@ -8,9 +8,9 @@ and verified, not when an agent reports success.
 
 | # | Item | Branch | Notes |
 |---|------|--------|-------|
-| 1 | **Mermaid vs dagre A/B pilot** | `wb-mermaid-pilot-261006` | All three examples drawn both ways, HTML record pages, a recommendation. Both sides get real effort — a weak dagre rendering would rig the comparison. Author's bias is toward Mermaid; an evidenced negative result is still a win. |
+| ~~1~~ | ~~Mermaid vs dagre A/B pilot~~ | **LANDED** — see 'Settled' below. Pages at `pilot/index.html` + three `pilot/ab-*.html`. Follow-up taken: multi-line edge-label wrapping, `wb-edge-wrap-261006`. |
 | 2 | **Rebuild 2-3-Alignment.pptx** | `deck-2-3-rebuild-261006` | New causal spine: do the work → doubt the result → structure the delegation → model its failures → design controls → place them where knowledge exists → exploit explicit models → synthesize. ~33 slides, 5 sections, no Section 0. Roughly half the existing slides survive. |
-| 3 | **Learn: conceptual opening** | `wb-learn-opening-261006` | A front-of-page contract before the lesson: what the Workbench is and is not, what it can model, what questions those models license, why little syntax is needed, where to graduate to. 500–700 words, cards not bullet lists. |
+| ~~3~~ | ~~Learn: conceptual opening~~ | **LANDED**. Verified rendered, not from source: all five sections present, **587 words** (target 500–700), SysML and Clafer once each, no equivalence claims. Gates 1525/180/115. |
 | ~~4~~ | ~~Richer state-machine notation~~ | **LANDED** `cabf0fe96` | UML `[guard] / effect` on transitions, variables compartment, key + twin parity. Verified live: guard, effect, both self-loops, `occupancy : integer [-1..5] = 2` all render. Gates 1521/180/115, all green. |
 
 ## Pending — need a decision or a slot
