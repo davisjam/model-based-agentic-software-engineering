@@ -159,6 +159,30 @@
 
   .learn-combine { border: 1px solid var(--rule); border-radius: 6px; padding: .8rem 1rem; background: var(--panel); }
 
+  /* The opening's concept cards: the gallery's grid without the link — these name the modeling
+     constructs and the question families, they do not navigate. Cards, not more bullet lists. */
+  ul.concept-cards {
+    list-style: none; margin: 1rem 0 0; padding: 0;
+    display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+  .concept-card {
+    padding: 1rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel);
+  }
+  .concept-card-term { display: block; font-weight: 700; margin-block-end: .4rem; }
+  .concept-card-text { display: block; font-size: .95rem; }
+  .opening-lead { font-size: 1.1rem; font-weight: 700; margin-block: .5rem; }
+  .opening-closing { color: var(--muted); margin-block-start: 1rem; }
+  /* The two callouts: the walkthrough's outcome bar, promoted to a section. Their h2 drops the
+     section rule — the box already bounds them. */
+  section.callout {
+    border: 1px solid var(--rule); border-inline-start: 3px solid var(--accent);
+    border-radius: 6px; background: var(--panel); padding: .4rem 1rem .8rem;
+  }
+  section.callout h2 { border-block-end: none; margin-block-end: .2rem; }
+  ul.opening-sayings { margin: .5rem 0; padding-inline-start: 1.1rem; font-style: italic; }
+  ul.opening-sayings li { margin-block: .25rem; }
+  .opening-maxim { margin-block-end: .2rem; }
+
   /* The lesson's one graphic: how a question becomes a checked answer. Plain text in styled
      spans, so assistive technology reads the same four terms in the same order. */
   .lesson-flow {
@@ -219,9 +243,9 @@
 
 <main id="learn-main" aria-labelledby="learn-title">
   <h1 id="learn-title">Learn MAGE models</h1>
-  <p class="intro">A short lesson on what a model is, then a clickable walkthrough that introduces
-  each modeling construct over the shipped examples. Reference material on every construct follows
-  the walkthrough.</p>
+  <p class="intro">Learn how to represent engineering knowledge explicitly, ask questions of it,
+  and use the answers to reason about a system. This page first explains the Workbench's small
+  modeling system, then walks through its constructs using the shipped examples.</p>
 </main>
 
 <script type="module" src="./dist/learn.js"></script>
