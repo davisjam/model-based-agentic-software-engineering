@@ -466,6 +466,21 @@ re-deriving these, so they live here:**
     the edits directly to current main rather than resolving unrelated conflicts — that worked the
     same day for a Learn copyedit (5 strings intact, applied by hand, 1521 pass / 0 fail).
 
+- **`fatal: Unable to write index` means a stale `index.lock` — and in THIS repo it is not where you
+  will look.** gc is a submodule: `governance-catalog/.git` is a FILE, not a directory, so `ls
+  .git/index.lock` reports *"Not a directory"* and sends you hunting a permissions or disk problem
+  that does not exist. Resolve the real gitdir first:
+
+      G=$(git rev-parse --git-dir)        # → ada-tool/.git/modules/talks-and-notes/governance-catalog
+      ls -la "$G"/*.lock
+
+  Measured 261006: a merge died mid-write when the session outage killed its git process, leaving a
+  **zero-byte** `index.lock`. Every subsequent `git merge` failed identically, and `df` showed
+  104 GB free — the disk-full hypothesis the message suggests was wrong twice before the lock was
+  found. **Prove it is orphaned before removing it** — `lsof "$G/index.lock"` returning no holders,
+  no `git merge|commit|stash` in `ps`, a stale mtime, and 0 bytes meaning it was never written. A
+  lock a LIVE process holds is doing its job; deleting that one corrupts a real operation.
+
 - **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
   `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
   fails the instinct is to read the log. You cannot: `/actions/jobs/<id>/logs` and
