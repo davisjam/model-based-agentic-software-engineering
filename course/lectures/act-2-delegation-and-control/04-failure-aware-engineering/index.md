@@ -42,9 +42,26 @@ Experience alone does not produce it: engineers must connect what they expected 
 
 Success feeds that repertoire ambiguously: a system may succeed because its architecture is robust, or because a latent weakness has not yet been exercised. Failure gives a sharper signal, but it does not explain itself.
 
+## The Master Equation
+
+The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+
+> **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
+
+Failure-Aware Engineering runs the model backward: when reality contradicts expectation, what does the evidence tell us about which part of our engineering should change?
+
+| Link | The diagnostic question |
+|---|---|
+| *R → E* | Was the consequential intent ever encoded, or did the obligation live only in someone's head? |
+| *E → I* | Was the encoded intent interpreted as we meant it? |
+| *I → L* | Did the realization preserve what was correctly understood? |
+| *H* | Did the surrounding harness and process surface evidence of the discrepancy before reality did? |
+
+This unit runs the model backwards. A delivered failure rarely announces which link gave way: the same defect can mean intent was never encoded, encoded intent was misread, understood intent was realized wrongly, or the surrounding process produced no evidence until reality supplied it. The question is not merely *what broke?* but *which part of our engineering model should change?* — and each diagnosis changes a different thing. Reflection is the work of locating what the evidence should change.
+
 ## What failed — and why didn't we know?
 
-An observed software failure is not necessarily an implementation failure. The engineering activities from this course pose a sequence of progressively broader questions about what the incident revealed:
+Running the model backwards begins with diagnosis. An observed software failure is not necessarily an implementation failure. The engineering activities from this course pose a sequence of progressively broader questions about what the incident revealed:
 
 - **Implementation.** *Did the realized software depart from an otherwise adequate design?*
 - **Design.** *Did a selected mechanism have consequences inconsistent with its obligations?*
@@ -54,29 +71,31 @@ An observed software failure is not necessarily an implementation failure. The e
 
 One incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
-A delivered failure invites a second analysis. Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
+A delivered failure invites a second analysis. The Master Equation includes the harness, and a failure that reached delivery is evidence about the harness as much as about the work: it passed through everything meant to catch it. Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
 
 *Why did the system behave this way?* concerns the artifact. *Why did we build and trust a system that could behave this way?* concerns the engineering, and is not an accusation.
 
 ## What should change?
 
-Learning from failure occurs at three interacting levels.
+Diagnosis identifies what our previous understanding got wrong. Learning asks where the correction should live. There are three interacting answers.
 
-- **System.** A regression test preserves the observed example, often enough for an implementation defect. A more general lesson belongs in an interface, an architecture, a specification, a validation rule, or an automated control. Future failures rhyme without repeating, so ask what class of conditions this one exposed.
-- **Team.** The lesson must reach people who did not live it. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
+- **System.** A regression test preserves the observed example — often enough for an implementation defect. A more general lesson belongs in an interface, an architecture, a specification, a validation rule, or an automated control. Future failures rhyme without repeating; ask what class of conditions this one exposed.
+- **Team.** The lesson must reach people who did not live it, and the artifacts they will meet it in: the representations *R* the team reasons through, the harness *H* that governs future work, and the obligations *L* future work is judged against. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
 - **Engineer.** Reflection identifies which relationships in an experience explain its consequence, so a later situation can be recognized as an old problem.
 
 **Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
 
 ## Measurement for decision-making
 
-Every unit of this course asked what an engineer could observe to test the model it developed, and chose that observation while there was still time to deliberate. Failure runs the loop the other way: the observation arrives unselected, at a time nobody chose, and it already disagrees. We made decisions using models. We measured reality to inform them. Reality contradicted one of our expectations. *Which model should change?*
+Every unit of this course asked what an engineer could observe to test the model it developed, and chose that observation while there was still time to deliberate. Failure runs the loop the other way: the observation arrives unselected, at a time nobody chose, and it already disagrees. The diagnostic question is the one posed by the Master Equation: what should change?
 
 The candidates include our metrics. Failure frequency, recovery time, corrective-action completion, and recurrence make the learning system observable, but each is a metric and therefore a model, and each distorts once it becomes a target. Recovery time measures operational response, not learning. A dashboard that stayed green through an outage is evidence about the dashboard. Judgment itself resists measurement: whether an engineer noticed a hazard in one case is evidence about judgment, not a quantity of it.
 
 ## Failure as part of engineering
 
-Two further questions belong to this course: which lesson should become an enforceable obligation, and where should the new knowledge live? The goal is not zero failure; finite evidence makes that impossible. It is to spend consequential experience well: repair the system, understand what the failure revealed, preserve the lessons worth keeping, and let new evidence improve the decisions that follow. Failure is inevitable. Recurring failure is not.
+Act II began by handing consequential work to a recipient that cannot bear responsibility for it. Everything since has been the engineering of that arrangement: deciding what to delegate and on what terms, representing what the work must preserve, giving selected obligations authority beyond the producer's judgment, and — when reality contradicts expectation anyway — treating the contradiction as evidence about the arrangement itself.
+
+A failure examined this way does not merely cost something; it reveals something. The distinction no representation preserved, the obligation no mechanism governed, the assumption nobody thought to check: each was invisible until reality disclosed it, and each names the next piece of engineering. Two questions therefore belong to this course rather than to incident response: which lesson should become an enforceable obligation, and where should the new knowledge live? The goal is not zero failure; finite evidence makes that impossible. It is to spend consequential experience well — repair the system, locate what the evidence should change, and let the correction outlive the incident that taught it. Failure is inevitable. Recurring failure is not.
 
 ---
 
