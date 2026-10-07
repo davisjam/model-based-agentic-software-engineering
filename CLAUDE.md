@@ -126,6 +126,16 @@ re-deriving these, so they live here:**
     but expected <older>` — printing `push=1` that reads like a gate failure when the gate had in fact
     passed 82/86. Read the log's TAIL to tell them apart, and `merge-base --is-ancestor` before
     retrying: if local descends from `origin`, the retry is a plain fast-forward and nothing was lost.
+  - **Your own WAIT can kill the push. Wait with `run_in_background`, never with a foreground poll
+    loop.** Measured 261007: a push backgrounded with `nohup ... &` was launched, then polled from a
+    foreground `Bash` call that hit the 10-minute tool timeout; the timeout took the process group
+    with it and the push died **mid-gate**, its log ending at `catalog_tests.py --tier1 …` with no
+    error. That reads exactly like a gate hang and invites the wrong fix. It happened TWICE in one
+    hour before the cause was clear. `nohup` alone does not save it, and **`setsid` does not exist on
+    macOS** — the attempted detach failed with `command not found` and the push never started at all,
+    which the poll loop then reported as "still 2 ahead." Launch the push itself under
+    `run_in_background: true` so the harness owns its lifetime, and poll in SHORT calls or an
+    until-loop that is also backgrounded.
   - **Cause, diagnosed rather than guessed:** git opens the SSH connection first, the hook then runs
     for minutes, and GitHub closes the idle session — in the measured case at line 240 of a
     1077-line push log, with the hook still working for another 800 lines. `git ls-remote` succeeded
