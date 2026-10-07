@@ -99,10 +99,18 @@ export interface LayoutEdge {
    * The UML `[guard] / effect` line under a transition's event name — the semantics that decide a
    * property, which the picture used to withhold while the twin carried them. Composed by
    * `transitionSubLabel` from DECLARED guards and effects only; null for relations, containment,
-   * and unguarded transitions without effects. The engine reserves label-box room for it when it
-   * fits (`subLabelFits`); the full text always reaches the hover title and the twin.
+   * and unguarded transitions without effects. The ONE-PHRASE form: the hover title and the twin
+   * always carry it whole, however the picture breaks it.
    */
   readonly subLabel: string | null;
+  /**
+   * The same notation as the PAINTED lines, wrapped by `transitionSubLabelLines` at the structural
+   * seams of the notation. The engine reserved a label box sized to exactly these lines, so the
+   * painter paints them without measuring anything. Empty when nothing is declared, and empty when
+   * the wrapped form would exceed the line cap — the text then reaches only the hover title and
+   * the twin (whole-or-nowhere; never an ellipsis).
+   */
+  readonly subLabelLines: readonly string[];
 }
 
 export interface Layout {

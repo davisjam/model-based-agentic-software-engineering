@@ -48,7 +48,7 @@ import type {
 import {
   ARROW_FORMS, MARKS, MARK_MEANINGS, NOTATION_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS,
 } from "./types.ts";
-import { claimsByTarget, inNodeLines, subLabelFits, transitionSubLabel } from "./layout.ts";
+import { claimsByTarget, inNodeLines, transitionSubLabelLines } from "./layout.ts";
 
 const quote = (s: string): string => `"${s}"`;
 
@@ -326,12 +326,11 @@ function keyFor(
 
   // The UML statechart notation rows — present exactly when the mark is in the picture, like the
   // attribute and claim disclosures above. A guard or effect is "in the picture" when its
-  // transition's `[guard] / effect` line actually renders (the whole-line-or-nowhere fit rule);
+  // transition's `[guard] / effect` notation actually renders (the wrapped whole-or-nowhere rule);
   // the variables compartment, whenever the machine declares a variable.
-  const rendered = scene.edges.filter((e) => {
-    const line = transitionSubLabel(e.guard, e.effect);
-    return line !== null && subLabelFits(line);
-  });
+  const rendered = scene.edges.filter(
+    (e) => transitionSubLabelLines(e.guard, e.effect).length > 0,
+  );
   if (rendered.some((e) => e.guard !== null)) {
     out.push({
       channel: "notation", id: "guard", form: "guard",

@@ -31,7 +31,6 @@ import {
   initialMarkerCentre,
   initialMarkerTarget,
   nodeBoxLines,
-  subLabelFits,
   textExtent,
 } from "./layout.ts";
 import type { LayoutEngine } from "./layout.ts";
@@ -417,25 +416,27 @@ function edgeGroup(edge: LayoutEdge, r: Resolved, key: ReadonlyMap<string, KeyEn
       el("text", { x: anchor.x, y: anchor.y + 4, "text-anchor": "middle", class: "mage-edge-label" }, [], edge.label),
     );
   }
-  // The UML `[guard] / effect` line, under the event name — the semantics the property check
-  // actually consults, drawn where the engine reserved room (labelBox sized both lines). The
-  // whole-line-or-nowhere rule (`subLabelFits`) governs; the full text is in the hover title.
-  const paintedSub = edge.subLabel !== null && subLabelFits(edge.subLabel);
-  if (paintedSub) {
+  // The UML `[guard] / effect` notation, under the event name — the semantics the property check
+  // actually consults, drawn where the engine reserved room. `transitionSubLabelLines` wrapped it
+  // and `labelBox` sized the reservation from those exact lines, so a wrapped label occupies space
+  // dagre already cleared rather than text painted over whatever sat beneath it. The
+  // whole-or-nowhere rule governs (empty `subLabelLines` for an over-cap line); the full one-phrase
+  // text is in the hover title.
+  edge.subLabelLines.forEach((line, i) => {
     children.push(
       el(
         "text",
-        { x: anchor.x, y: anchor.y + 4 + SUBLABEL_PITCH, "text-anchor": "middle", class: "mage-edge-sublabel" },
+        { x: anchor.x, y: anchor.y + 4 + (i + 1) * SUBLABEL_PITCH, "text-anchor": "middle", class: "mage-edge-sublabel" },
         [],
-        edge.subLabel,
+        line,
       ),
     );
-  }
+  });
   if (r.glyph !== null) {
     children.push(
       el(
         "text",
-        { x: anchor.x, y: anchor.y + 17 + (paintedSub ? SUBLABEL_PITCH : 0), "text-anchor": "middle", class: "mage-glyph" },
+        { x: anchor.x, y: anchor.y + 17 + edge.subLabelLines.length * SUBLABEL_PITCH, "text-anchor": "middle", class: "mage-glyph" },
         [],
         r.glyph,
       ),
