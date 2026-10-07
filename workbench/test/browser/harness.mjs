@@ -475,6 +475,68 @@ export async function shutdown(resources = {}, ...extra) {
  * assert, repeat). Granting on a page that other suites will drive with real-time waits would
  * freeze exactly the timers they wait on.
  */
+/**
+ * Fail loudly when a probe's own subject is absent, naming every selector that matched nothing.
+ *
+ * The failure this exists to prevent is not a bug in the page -- it is a probe that measures an
+ * EMPTY SET and reports success, which reads as evidence that working code is broken, or that
+ * broken code works. Measured on 261006, in one session: a focus-ring probe whose clip followed a
+ * scrolled rail reported a painted ring as invisible; a reflow probe blind to text ink reported a
+ * clean page; `journeys.test.mjs` stopped parsing and contributed ZERO tests rather than failing,
+ * so the browser tier read 166 where it should have read 181; and four orchestrator probes in a row
+ * -- a `tspan` count against a renderer that emits sibling `<text>` nodes, a word count against
+ * HTML for prose injected at runtime, a `caseOf` symbol grep for an API that had been renamed, a
+ * `[id*='ask']` match that hit `ask-track-claim` -- each reported working code as broken.
+ *
+ * The rule those incidents produced: a probe asserts its own preconditions. Reach for this first,
+ * and for `dumpShape` when you do not yet know what the markup looks like -- guessing the shape and
+ * asserting against the guess is the specific move that cost the most time.
+ */
+export async function assertFound(page, selectors, context = "") {
+  const list = Array.isArray(selectors) ? selectors : [selectors];
+  if (list.length === 0) throw new Error("assertFound called with no selectors");
+  const counts = await page.evaluate(
+    (sels) => Object.fromEntries(sels.map((s) => {
+      try { return [s, document.querySelectorAll(s).length]; }
+      catch { return [s, -1]; }
+    })),
+    list,
+  );
+  const bad = list.filter((s) => counts[s] <= 0);
+  if (bad.length > 0) {
+    const detail = bad.map((s) => `${s} -> ${counts[s] === -1 ? "INVALID SELECTOR" : "0 matches"}`);
+    throw new Error(
+      `PRECONDITION FAILED${context ? ` (${context})` : ""}: this probe's subject is absent, so any `
+      + `verdict it reports would be about an empty set -- ${detail.join("; ")}`,
+    );
+  }
+  return counts;
+}
+
+/**
+ * Report what is ACTUALLY in the markup under a selector, so an assertion can be written against
+ * the real shape instead of a guessed one. Throws when nothing matches: a dump of nothing is the
+ * same empty-set lie `assertFound` exists to stop.
+ */
+export async function dumpShape(page, selector, limit = 12) {
+  const found = await page.evaluate((sel, n) => {
+    const els = [...document.querySelectorAll(sel)];
+    return els.slice(0, n).map((e) => ({
+      tag: e.tagName.toLowerCase(),
+      id: e.id || null,
+      cls: (e.getAttribute("class") || "") || null,
+      children: [...e.children].map((c) => c.tagName.toLowerCase()).slice(0, 6),
+      text: (e.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+      total: els.length,
+    }));
+  }, selector, limit);
+  if (found.length === 0) {
+    throw new Error(`PRECONDITION FAILED: dumpShape("${selector}") matched nothing -- there is no `
+      + "shape to describe, so do not write an assertion against one");
+  }
+  return found;
+}
+
 export async function advanceVirtualTime(page, budgetMs) {
   const client = await page.createCDPSession();
   try {
