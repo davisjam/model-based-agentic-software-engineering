@@ -234,3 +234,38 @@ test("the reading sits behind a disclosure control, not behind CSS", () => {
   assert.ok(!/#model-reading[^{]*\{[^}]*display:\s*none/.test(html()),
     "#model-reading is display:none in the stylesheet, which no disclosure control can reopen");
 });
+
+// ------------------------------------------------------------------------------------------
+// Finding B (261006): the workspace keeps the SYSTEM-level scenario after Start unmounts, and
+// the rail's two navigation objects are each reachable from its top.
+// ------------------------------------------------------------------------------------------
+
+test("the loaded workspace shows the system scenario, above the principal model's purpose", () => {
+  const page = html();
+  // Markup order IS the reading order: scenario before the model's purpose, inside the workspace.
+  const workspace = page.slice(page.indexOf('<section id="workspace"'));
+  const scenarioAt = workspace.indexOf('id="system-scenario"');
+  const purposeAt = workspace.indexOf('id="principal-purpose"');
+  assert.ok(scenarioAt > 0, "probe precondition: #system-scenario is not in the workspace region");
+  assert.ok(purposeAt > 0, "probe precondition: #principal-purpose is not in the workspace region");
+  assert.ok(scenarioAt < purposeAt,
+    "the system scenario must precede the model's purpose — the system frames its reductions");
+
+  // Every shipped example authors a system description, and the view model carries it verbatim —
+  // the fact the Start card's summary used to take with it when SH-I1 unmounted Start.
+  for (const id of SHIPPED_EXAMPLE_IDS) {
+    const system = parsed(id);
+    assert.ok(system.description !== null && system.description.length > 0,
+      `probe precondition: ${id} no longer authors a system description`);
+  }
+});
+
+test("the rail's jump links target the two navigation objects' real headings", () => {
+  const page = html();
+  for (const target of ["#nav-models-h", "#question-list-h"]) {
+    assert.ok(page.includes(`href="${target}"`),
+      `the rail jump link to ${target} is gone — eight properties sat 1300px below an 800px fold`);
+    assert.ok(page.includes(`id="${target.slice(1)}"`),
+      `probe precondition: ${target} does not exist in the page, the link would be a dead anchor`);
+  }
+});

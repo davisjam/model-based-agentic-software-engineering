@@ -51,6 +51,14 @@ export interface ViewModel {
    */
   readonly loaded: boolean;
   readonly summary: string;
+  /**
+   * The system's own authored description — the SCENARIO. The Start card shows the example's
+   * stored summary and then unmounts (SH-I1), which used to take the system-level statement with
+   * it: a loaded workspace showed the chosen MODEL's purpose and nothing about the SYSTEM. This is
+   * the model's own `system.description`, so it survives for uploaded files too, not just shipped
+   * examples. Null when the author wrote none.
+   */
+  readonly scenario: string | null;
   /** The hypothesis label, repeated out of the banner so the document title can carry it too. */
   readonly hypothesis: string | null;
   readonly banner: Banner | null;
@@ -1347,6 +1355,7 @@ export function buildViewModel(
   return {
     title: system.name,
     loaded: options.loaded ?? true,
+    scenario: system.description,
     // Counts grouped by TYPE, in the registry's own words: "3 models, 2 machines" read as though
     // the machines were not models. The quantitative model is counted only when declared — for the
     // many systems declaring none, "0 quantitative models" would be noise, not information.

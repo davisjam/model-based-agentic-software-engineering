@@ -31,11 +31,13 @@ import {
   initialMarkerCentre,
   initialMarkerTarget,
   nodeBoxLines,
+  subLabelFits,
   textExtent,
 } from "./layout.ts";
 import type { LayoutEngine } from "./layout.ts";
 import { defaultLayoutEngine } from "./layout-dagre.ts";
-import { buildScene } from "./scene.ts";
+import { buildScene, variableLine } from "./scene.ts";
+import type { SceneVariable } from "./scene.ts";
 import type {
   ArrowForm,
   EmphasisAssignment,
@@ -169,6 +171,10 @@ const STYLE = `
 .mage-sublabel { font-size: ${METRICS.fontSize - 2}px; fill: #434b5a; }
 .mage-edge { fill: none; stroke: #2a3242; }
 .mage-edge-label { font-size: ${METRICS.fontSize - 2}px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-edge-sublabel { font-size: ${METRICS.fontSize - 2}px; fill: #434b5a; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-varbox { fill: #f7f8fb; stroke: #5a6478; }
+.mage-var { font-size: ${METRICS.fontSize - 2}px; fill: #11151c; }
+.mage-var-title { font-size: ${METRICS.fontSize - 2}px; fill: #434b5a; font-weight: 700; }
 .mage-glyph { font-size: ${METRICS.fontSize}px; font-weight: 700; fill: #11151c; }
 .mage-initial { fill: #11151c; stroke: #11151c; }
 .mage-legend { font-size: ${METRICS.fontSize - 2}px; fill: #11151c; }
@@ -411,8 +417,34 @@ function edgeGroup(edge: LayoutEdge, r: Resolved, key: ReadonlyMap<string, KeyEn
       el("text", { x: anchor.x, y: anchor.y + 4, "text-anchor": "middle", class: "mage-edge-label" }, [], edge.label),
     );
   }
+  // The UML `[guard] / effect` line, under the event name — the semantics the property check
+  // actually consults, drawn where the engine reserved room (labelBox sized both lines). The
+  // whole-line-or-nowhere rule (`subLabelFits`) governs; the full text is in the hover title.
+  const paintedSub = edge.subLabel !== null && subLabelFits(edge.subLabel);
+  if (paintedSub) {
+    children.push(
+      el(
+        "text",
+        { x: anchor.x, y: anchor.y + 4 + SUBLABEL_PITCH, "text-anchor": "middle", class: "mage-edge-sublabel" },
+        [],
+        edge.subLabel,
+      ),
+    );
+  }
   if (r.glyph !== null) {
-    children.push(el("text", { x: anchor.x, y: anchor.y + 17, "text-anchor": "middle", class: "mage-glyph" }, [], r.glyph));
+    children.push(
+      el(
+        "text",
+        { x: anchor.x, y: anchor.y + 17 + (paintedSub ? SUBLABEL_PITCH : 0), "text-anchor": "middle", class: "mage-glyph" },
+        [],
+        r.glyph,
+      ),
+    );
+  }
+  // The transition's full declaration as the browser's hover tooltip, matching the node boxes'
+  // affordance — and the only in-picture route to a `[guard] / effect` line too long to paint.
+  if (edge.kind === "transition" && edge.subLabel !== null) {
+    children.unshift(el("title", {}, [], `${edge.label ?? ""} ${edge.subLabel}`.trim()));
   }
   return el(
     "g",
@@ -461,6 +493,51 @@ const ROW_PITCH = 18;
 /** Where a key row's meaning text starts, measured from the strip's left edge. */
 const KEY_TEXT_X = 48;
 
+/** Inner padding of the variables compartment, and its title row height. */
+const VAR_PAD = 10;
+const VAR_TITLE_H = ROW_PITCH;
+
+interface VariablesPanel {
+  readonly nodes: readonly SvgNode[];
+  readonly w: number;
+  readonly h: number;
+}
+
+/**
+ * The machine's variables compartment: a bordered box titled `variables`, one row per declared
+ * variable in sorted order. UML keeps a state machine's data on its context classifier; a
+ * workbench diagram has no classifier box on canvas, so the compartment stands alone beside the
+ * states — the stated deviation. It is machine CONTENT, not vocabulary, which is why it is a
+ * compartment above the key strip rather than a key row; the key's `variables` notation row is
+ * what decodes it.
+ */
+function variablesPanel(vars: readonly SceneVariable[], x: number, y: number): VariablesPanel {
+  if (vars.length === 0) return { nodes: [], w: 0, h: 0 };
+  const lines = vars.map(variableLine);
+  const w = 2 * VAR_PAD + Math.max(
+    textExtent("variables", "mage-var-title").w,
+    ...lines.map((line) => textExtent(line, "mage-var").w),
+  );
+  const h = VAR_PAD + VAR_TITLE_H + lines.length * ROW_PITCH + VAR_PAD / 2;
+  const rows = lines.map((line, i) =>
+    el(
+      "text",
+      { x: x + VAR_PAD, y: y + VAR_PAD + VAR_TITLE_H + i * ROW_PITCH, class: "mage-var" },
+      [],
+      line,
+    ),
+  );
+  return {
+    nodes: [
+      el("rect", { x, y, width: w, height: h, rx: 4, class: "mage-varbox", "stroke-width": 1.5 }),
+      el("text", { x: x + VAR_PAD, y: y + VAR_PAD + 4, class: "mage-var-title" }, [], "variables"),
+      ...rows,
+    ],
+    w,
+    h,
+  };
+}
+
 /**
  * The VOCABULARY key: one row per relation type, one per node shape.
  *
@@ -476,6 +553,24 @@ const KEY_TEXT_X = 48;
 function keyStrip(entries: readonly KeyEntry[], x: number, y: number): readonly SvgNode[] {
   return entries.map((entry, i) => {
     const row = y + i * ROW_PITCH;
+    // A notation row's sample IS the written mark: brackets for a guard, the slash form for an
+    // effect, a miniature of the compartment for variables — shown beside the words, like every
+    // other key row, so the mapping is learned from the key rather than guessed from the picture.
+    if (entry.channel === "notation") {
+      const sample =
+        entry.form === "variables"
+          ? el("rect", { x, y: row - 6, width: 30, height: 12, rx: 2, class: "mage-varbox", "stroke-width": 1.5 })
+          : el(
+              "text",
+              { x, y: row + 4, class: "mage-edge-sublabel" },
+              [],
+              entry.form === "guard" ? "[c]" : "/ x := e",
+            );
+      return el("g", { "data-key-channel": entry.channel, "data-key-id": entry.id, "data-key-form": entry.form }, [
+        sample,
+        el("text", { x: x + KEY_TEXT_X, y: row + 4, class: "mage-key" }, [], entry.meaning),
+      ]);
+    }
     const sample =
       entry.channel === "relation"
         ? el("line", {
@@ -597,7 +692,11 @@ export function renderView(
   const legendKinds = accessible.legend.map((l) => l.kind);
   const keyEntries = accessible.key;
   const stripX = layout.bounds.x + METRICS.margin;
-  const keyTop = layout.bounds.y + layout.bounds.h + ROW_PITCH;
+  // The variables compartment sits between the states and the key: it is machine CONTENT, read
+  // with the diagram, where the key below it is vocabulary about the diagram.
+  const varsTop = layout.bounds.y + layout.bounds.h + ROW_PITCH / 2;
+  const panel = variablesPanel(scene.variables, stripX, varsTop);
+  const keyTop = varsTop + (panel.h === 0 ? ROW_PITCH / 2 : panel.h + ROW_PITCH);
   const keyRows = keyEntries.length === 0 ? [] : keyStrip(keyEntries, stripX, keyTop);
   const legendTop = keyTop + (keyEntries.length === 0 ? 0 : keyEntries.length * ROW_PITCH + ROW_PITCH);
   const legendRows = legendKinds.length === 0 ? [] : legendStrip(legendKinds, stripX, legendTop);
@@ -607,6 +706,7 @@ export function renderView(
   // canvas on the right — a small thing that nonetheless shrinks the picture inside a fixed frame.
   const stripRight = Math.max(
     0,
+    stripX + panel.w,
     ...keyEntries.map((e) => stripX + KEY_TEXT_X + textExtent(e.meaning, "mage-key").w),
     ...legendKinds.map((k) => stripX + 72 + textExtent(MARK_MEANINGS[k], "mage-legend").w),
   );
@@ -615,7 +715,9 @@ export function renderView(
       ? legendTop + (legendKinds.length - 1) * ROW_PITCH + TEXT_SIZES["mage-legend"]
       : keyEntries.length > 0
         ? keyTop + (keyEntries.length - 1) * ROW_PITCH + TEXT_SIZES["mage-key"]
-        : 0;
+        : panel.h > 0
+          ? varsTop + panel.h
+          : 0;
 
   const view = {
     x: layout.bounds.x,
@@ -651,6 +753,7 @@ export function renderView(
       defs(),
       el("g", { "data-layer": "edges" }, edgeNodes),
       el("g", { "data-layer": "nodes" }, nodeNodes),
+      ...(panel.nodes.length === 0 ? [] : [el("g", { "data-layer": "variables" }, panel.nodes)]),
       ...(keyRows.length === 0 ? [] : [el("g", { "data-layer": "key" }, keyRows)]),
       ...(legendRows.length === 0 ? [] : [el("g", { "data-layer": "legend" }, legendRows)]),
     ],

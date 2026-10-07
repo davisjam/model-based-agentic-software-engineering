@@ -299,11 +299,12 @@
   */
   #workspace:not([hidden]) {
     display: grid;
-    grid-template-areas: "wtitle" "wtools" "wmenu" "wpurpose" "wcanvas" "wscope" "wbudget" "wreading";
+    grid-template-areas: "wtitle" "wtools" "wmenu" "wscenario" "wpurpose" "wcanvas" "wscope" "wbudget" "wreading";
   }
   #workspace-h { grid-area: wtitle; }
   #workspace > label.field { grid-area: wtools; }
   #add-menu { grid-area: wmenu; }
+  #system-scenario { grid-area: wscenario; }
   #principal-purpose { grid-area: wpurpose; }
   #canvas { grid-area: wcanvas; }
   #model-scope { grid-area: wscope; }
@@ -775,6 +776,14 @@
   -->
   <section id="nav" aria-labelledby="nav-h" hidden>
     <h2 id="nav-h">Navigate</h2>
+    <!--
+      In-rail jump links, measured in (261006): on the complex example the models list plus
+      "Where models meet" ran 1085px tall, which put the Properties heading at y=1333 in an
+      800px viewport — eight saved properties present, reachable only by scrolling past every
+      model and join entry. Static anchors (no JS, real in-page destinations), so the two
+      navigation objects the hierarchy names are each one activation from the rail's top.
+    -->
+    <p class="hint" id="nav-jump"><a href="#nav-models-h">Models</a> · <a href="#question-list-h">Properties</a></p>
     <h3 id="nav-models-h">Models</h3>
     <!--
       A <nav>, not a <section>. The System Browser already presents a region named "Models" (its
@@ -862,6 +871,13 @@
       explanatory blocks ("What this model represents…"), whose editorial framing made authored
       facts read as generated commentary.
     -->
+    <!--
+      The SCENARIO: the system's own authored description, above the principal model's purpose.
+      The Start card's summary unmounts with Start (SH-I1); this is the system-level statement a
+      loaded workspace keeps, read from the model itself so an uploaded file gets it too. Hidden
+      (not empty) when the author wrote none, so the grid row collapses.
+    -->
+    <p id="system-scenario" class="purpose" hidden></p>
     <div id="principal-purpose"></div>
     <!--
       The structured reading, correction 10's "accessible and inspectable counterpart".

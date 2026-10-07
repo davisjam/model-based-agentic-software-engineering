@@ -670,6 +670,7 @@ export function canonicalize(doc: unknown): CanonicalSystem {
   return {
     systemId: asStr(sys["id"], "unnamed"),
     name: asStr(sys["name"], asStr(sys["id"], "unnamed")),
+    description: typeof sys["description"] === "string" ? sys["description"].trim() : null,
     domains: dom,
     entities: entities(d["entities"]),
     relationTypes: relationTypes(d["relation-types"]),

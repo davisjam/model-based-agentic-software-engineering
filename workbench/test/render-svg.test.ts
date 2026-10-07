@@ -358,6 +358,7 @@ test("edge text is placed where the engine reserved room for it, not at a polyli
         selfLoop: false,
         points: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 200, y: 0 }],
         labelPoint: away,
+        subLabel: null,
       })),
     bounds: { x: 0, y: 0, w: 5000, h: 3000 },
     ranks: scene.nodes.map((n) => [n.id]),
