@@ -584,7 +584,7 @@ export const FLAGSHIP_COUNTS = Object.freeze({
 });
 
 export async function loadFlagshipExample(page) {
-  const yaml = await readFile(join(WORKBENCH_DIR, "examples", "message-bus", "system.mage.yaml"), "utf8");
+  const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", "message-bus", "system.mage.yaml"), "utf8");
   const before = await page.evaluate(() => document.getElementById("summary")?.textContent ?? "");
   const context = await page.evaluate((text) => window.mage.load(text), yaml);
   await page.waitForFunction(

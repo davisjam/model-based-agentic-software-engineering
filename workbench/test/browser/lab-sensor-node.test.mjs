@@ -17,8 +17,10 @@
  */
 import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import {
-  startServerOnFreePort, launchBrowser, shutdown, openWorkbench,
+  startServerOnFreePort, launchBrowser, shutdown, openWorkbench, WORKBENCH_DIR,
 } from "./harness.mjs";
 
 let server;
@@ -42,12 +44,13 @@ before(async () => {
   ({ page, diagnostics } = await openWorkbench(browser, started.origin));
   await page.waitForFunction(
     () => (document.getElementById("example-choice")?.options.length ?? 0) > 0, { timeout: 30_000 });
-  await page.evaluate((id) => {
-    const choice = document.getElementById("example-choice");
-    choice.value = id;
-    choice.dispatchEvent(new Event("change", { bubbles: true }));
-    document.getElementById("example-load").click();
-  }, EXAMPLE);
+  // The sensor example moved to the fixture corpus in the 261006 three-example split: the picker
+  // no longer offers it, so the lab mounts it the way a student's own file arrives — imported
+  // through window.mage.load over the same bytes the fixture tracks.
+  {
+    const yaml = await readFile(join(WORKBENCH_DIR, "test", "fixtures", "examples", EXAMPLE, "system.mage.yaml"), "utf8");
+    await page.evaluate((text) => window.mage.load(text), yaml);
+  }
   await page.waitForFunction(
     () => document.getElementById("workspace")?.hasAttribute("hidden") === false, { timeout: 30_000 });
 }, { timeout: 180_000 });

@@ -25,6 +25,7 @@ import { parse } from "yaml";
 import {
   WORKBENCH_DIR, startServerOnFreePort, launchBrowser, shutdown, openWorkbench, openServedPage,
 } from "./harness.mjs";
+import { exampleDir } from "../../src/app/example-corpus.ts";
 
 // The registries and the canonicalizer, from source. A list compared against literals passes while
 // the registry drifts, and a drifting model-type surface is what UX-I9 forbids.
@@ -57,7 +58,7 @@ after(async () => { await shutdown({ browser, server }); });
  * missing — and only the second is what this file is about.
  */
 async function loadExample(page, id) {
-  const yaml = await readFile(join(WORKBENCH_DIR, "examples", id, "system.mage.yaml"), "utf8");
+  const yaml = await readFile(join(WORKBENCH_DIR, exampleDir(id), "system.mage.yaml"), "utf8");
   const before = await page.evaluate(() => document.getElementById("summary")?.textContent ?? "");
   await page.evaluate((text) => window.mage.load(text), yaml);
   await page.waitForFunction(

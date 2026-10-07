@@ -39,7 +39,7 @@ before(async () => {
   browser = await launchBrowser();
   ({ page, diagnostics } = await openWorkbench(browser, started.origin));
   const text = await readFile(
-    join(WORKBENCH_DIR, "examples", "worker-queue", "system.mage.yaml"), "utf8");
+    join(WORKBENCH_DIR, "test", "fixtures", "examples", "worker-queue", "system.mage.yaml"), "utf8");
   await page.evaluate((source) => { window.mage.load(source); }, text);
   await page.waitForSelector("#question-list [data-property]");
 });
