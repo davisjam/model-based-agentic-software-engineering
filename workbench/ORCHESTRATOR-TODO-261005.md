@@ -443,3 +443,38 @@ gate") is the POLICY; a shared manifest the three read would be the MECHANISM.
 NOT extracted now, deliberately: the workflow was restructured hours ago, `land.py` is a day old,
 and the UX redesign owns the fleet. Extract on the next touch of any of the three — the join is
 already the second-site trigger, so the next edit is the one to pay for it.
+
+## 261006 evening — the UX redesign is ON MAIN, unpushed, awaiting the author's eyes
+
+**Landed via `tools/land.py` (merge + verify as one command):** main 2cd0c31ca -> 7bb5ad882, five
+gates in 181s — node **1521/1521** (+14), browser **182 pass / 0 fail** (+9), a11y **115/115**,
+tsc + build clean. **NOT PUSHED** — the author ruled "we aren't shipping the updated UX until I've
+eyeballed." Preview served from landed main at **http://127.0.0.1:8791/workbench/index.html**.
+
+**What the redesign is.** Author's doctrine: *"The default human surface presents authored model
+intent, semantic model content, and derived results. It does not generate prose pretending to
+explain the model."* Product definition: *"The agent changes the model. The Workbench shows the
+human what was modeled and what follows from it."* Ask removed, mutation controls behind Advanced,
+three panes, Refresh, `Model in words` as STORED model data, `MODEL SCOPE` (Includes / Omits).
+
+**Two reversals the author made mid-flight, both caught before damage:**
+1. `represents` was ordered dropped, then REINSTATED as **Includes** by the kiss.md spec. The agent
+   was mid-removal; the correction reached it in time. Final: Description + Includes + Omits, all
+   authored, all displayed.
+2. I proposed RETIRING UX-I4 (it demands every model display its purpose). Author: *"I'm a fan of
+   demanding it, why retire?"* — correct, and my proposal was wrong. It is REPOINTED at
+   `description` instead, and the source now quotes that line. Consequence: an empty Description is
+   a GATE FAILURE, which is what keeps the 17 rewritten descriptions written.
+
+**New control: UX-I11** — every semantic fact the default surface stops showing VISUALLY remains in
+the accessible twin (joined to FR-A11Y-2). Converted from a caveat in a brief into an invariant
+walked by the test suite, so the NEXT deletion pass gets it enforced rather than rediscovering it.
+
+**In flight:** `wb-examples-3-261006` — the library goes 7 -> 3 (Simple Worker Queue / Medium
+Document Processing / Complex Transaction Workspace; one model -> two -> three). Author ruling:
+*"You can keep test cases but not expose them to students"* — the four leaving are NOT deleted, they
+become fixtures, which preserves ~107 references and every pin (incl. `charge-remaining-at-delivery`,
+broken this morning, fixed this afternoon). Spec: `/tmp/kiss-spec-261006.md`.
+
+**Pushed earlier and live:** CI fan-out, sub-pixel fix, land.py + its node fix, gate note. Verified
+none touched `src/ui`/`src/render`/`index.html` before pushing.
