@@ -71,6 +71,23 @@ The unit turns that decision into a discipline. For every model, ask four questi
 - **Property** — what claim should become expressible over that model?
 - **Quality** — is the reduction adequate for the question, and does its representation make the intended interpretation sufficiently likely?
 
+## The Master Equation
+
+The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+
+> **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
+
+Modeling asks what *R* must preserve, what it should leave free, and how reliably its intended engineering meaning can be recovered.
+
+| Factor | The Modeling question |
+|---|---|
+| *R* | What purposeful reduction makes the engineering question tractable, and how much of its meaning does the representation itself carry? |
+| *P(E \| R)* | Does the representation help the engineer encode the consequential intent correctly — did we manage to say it? |
+| *P(I \| E, R)* | Does the representation make the intended interpretation sufficiently likely — did the agent recover what we meant? |
+| *P(L \| I, E, R)* | Does the model preserve the distinctions needed to tell an acceptable realization from an unacceptable one, while leaving the rest free? |
+
+This unit acts first on *R*, the term every factor conditions on. But those choices propagate through the whole chain: purposeful reduction decides what the representation preserves, which bounds what any reasoner can later recover from it, and semantic commitment decides how much of that meaning the representation itself carries, which determines how much interpretation is reading rather than reconstruction. Neither choice makes any factor one, and the engineering objective is to preserve the distinctions needed for consequential reasoning while leaving irrelevant realization choices free.
+
 ## Use the engineering repertoire
 
 The reduction rarely needs to be invented. Software engineering and its neighboring disciplines have accumulated model forms for recurring questions: dependency graphs for structural questions, state machines for behavioral ones, quantitative models for capacity and cost. Do not invent a representation merely because you can. Start from the repertoire and select for the question.
@@ -128,9 +145,9 @@ A diagram is a representation, not a synonym for a model. The distinction lets u
 
 The forms are not interchangeable in engineering quality. A state machine may make a lifecycle constraint easier to recover than several paragraphs of prose. A typed, machine-readable relation may be interpreted more consistently by an agent than an informal convention. Two representations can express the same intended model and still differ in what a reader actually recovers.
 
-We can state the idea probabilistically. For an intended engineering claim *c* and a representation *r*, consider *P*(agent correctly interprets *c* given *r*). Modeling does not make this probability one. Ambiguous names, overloaded arrows, missing semantics, and poorly chosen reductions all produce misinterpretation. Representation is an engineering choice partly because it changes the probability that the consequential claim is recovered correctly.
+The Master Equation names this problem P(I | E, R): given the representation, how likely is the reasoner to recover the engineering meaning we intended? Modeling does not make this probability one. Ambiguous names, overloaded arrows, missing semantics, and poorly chosen reductions all produce misinterpretation. Representation is an engineering choice partly because it changes the probability that consequential meaning is recovered correctly.
 
-The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: *does the representation make the consequential interpretation sufficiently likely?* Good Modeling reduces freedom of interpretation where meaning matters while preserving freedom of realization where it does not. Later units use this probabilistic view systematically; for now, the seed is enough.
+The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: *does the representation make the consequential interpretation sufficiently likely?* Good Modeling reduces freedom of interpretation where meaning matters while preserving freedom of realization where it does not. Alignment and Failure-Aware Engineering return to the same chain.
 
 ## Representations carry different amounts of meaning
 
@@ -159,7 +176,7 @@ Semantic commitment matters especially in agentic engineering. A human teammate 
 
 One model makes one engineering question tractable; a production system needs many, built for different questions and maintained in different places. Once model elements have explicit types, relationships, and identities, a model becomes more than a picture to inspect. Tools can ask questions of it.
 
-**Meaning** is what makes that possible. Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims — and the semantics diverge hardest at the absent edge: in a structural model an absent edge represents nothing, while in a decision model it may state a prohibition. The probability seed returns as diagnosis: an unlabeled, overloaded arrow can leave correct interpretation unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
+**Meaning** is what makes that possible. Consider the simplest architectural diagram: an arrow from A to B. As a structural claim it says *A calls B*. As a decision claim it says *A may call B*. As an observation it says *A was observed calling B*. Same nodes, same arrow, different engineering claims — and the semantics diverge hardest at the absent edge: in a structural model an absent edge represents nothing, while in a decision model it may state a prohibition. The probability of correct interpretation returns as diagnosis: an unlabeled, overloaded arrow can leave it unlikely even though the diagram looks tidy. The fix is not more detail but better semantics; a compact typed edge can be interpreted more reliably than a longer ambiguous description.
 
 With sufficient semantics, model operations follow. A component can be identified as the same component across several views. A relationship can mean *contains*, *depends on*, or *allocates to* rather than merely appearing as an arrow. A constraint can be evaluated over model properties. Several purposeful reductions can be joined through shared identities to answer questions that none answers alone.
 
