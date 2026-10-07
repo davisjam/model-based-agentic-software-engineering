@@ -70,6 +70,23 @@ The rest of this unit develops the engineering levers available for answering th
 
 *Capability is designed across model, harness, and environment. Authority and evidence determine which consequences that capability may produce.*
 
+## The Master Equation
+
+The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+
+> **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
+
+Delegation asks how the engineer should design the whole system around that realization: the work, capability, authority, and evidence.
+
+| Delegation decision | Effect on the Master Equation |
+|---|---|
+| **Bound** | Determines *T*: the work being delegated and the degrees of freedom the recipient may resolve |
+| **Equip** | Changes *M*, *R*, and *H*: the reasoning capability, information, representations, tools, and environment available for producing *E* and *I* |
+| **Authorize** | Limits the consequences the process may produce even when its reasoning or realization is wrong |
+| **Verify** | Produces evidence about whether *I* satisfies the obligations represented by *L* before the engineer accepts its consequences |
+
+The equation is not a recipe for calculating a number. It is a model of where reliability comes from. A stronger reasoning model can improve the system without repairing a bad representation; a better representation cannot compensate for missing means; and high capability does not justify unlimited authority. Delegation means designing the whole system around the reasoner.
+
 ## Where does capability live?
 
 An agent's capability emerges from three layers:
