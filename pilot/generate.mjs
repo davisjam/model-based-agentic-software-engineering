@@ -460,8 +460,56 @@ const CSS = `
   .note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: .75rem 1rem; max-width: 60rem; }
 `;
 
+let panelSeq = 0;
+
+/**
+ * Namespace every id inside one panel's markup, and the references that point at them.
+ *
+ * Each panel embeds an INDEPENDENTLY generated rendering, so two panels on a page mint the same
+ * ids -- `mage-node-failed`, `mage-arrow-triangle`, the model id itself. Duplicate ids in one
+ * document is invalid HTML, breaks `aria-labelledby`/`url(#...)` resolution to whichever node the
+ * browser picks first, and the repo's own gate catches it (T1 "no duplicate element ids"). The
+ * three A/B pages carried 74, 38 and 22 collisions before this.
+ *
+ * References are rewritten alongside the definitions -- `href`/`xlink:href`, `url(#id)` in style
+ * and presentation attributes, and the ARIA id-list attributes -- because a prefixed `<marker>`
+ * whose `marker-end` still points at the bare id renders no arrowheads at all.
+ */
+function namespaceIds(markup, prefix) {
+  // Mermaid's own output repeats ids WITHIN one SVG -- `edge0`, `ready-ready----note-3` each appear
+  // twice in the simple-worker-queue state diagram. Prefixing per panel cannot fix that, because
+  // both copies live in the same panel. Later occurrences get an occurrence suffix so the document
+  // is valid; references keep resolving to the first, which is what a browser already did. Recorded
+  // as a finding: a renderer emitting duplicate ids is emitting invalid HTML.
+  {
+    const seen = new Map();
+    markup = markup.replace(/\bid="([^"]+)"/g, (whole, id) => {
+      const n = (seen.get(id) ?? 0) + 1;
+      seen.set(id, n);
+      return n === 1 ? whole : `id="${id}--dup${n}"`;
+    });
+  }
+  const ids = new Set();
+  for (const m of markup.matchAll(/\bid="([^"]+)"/g)) ids.add(m[1]);
+  if (ids.size === 0) return markup;
+  let out = markup;
+  for (const id of ids) {
+    const q = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(new RegExp(`\\bid="${q}"`, "g"), `id="${prefix}-${id}"`);
+    out = out.replace(new RegExp(`(\\b(?:xlink:)?href=")#${q}"`, "g"), `$1#${prefix}-${id}"`);
+    out = out.replace(new RegExp(`url\\(#${q}\\)`, "g"), `url(#${prefix}-${id})`);
+    for (const attr of ["aria-labelledby", "aria-describedby", "aria-details"]) {
+      out = out.replace(new RegExp(`(${attr}=")([^"]*)"`, "g"),
+        (_, head, list) => `${head}${list.split(/\s+/).filter(Boolean)
+          .map((t) => (t === id ? `${prefix}-${id}` : t)).join(" ")}"`);
+    }
+  }
+  return out;
+}
+
 function panel(title, body) {
-  return `<div class="panel"><h3>${title}</h3>${body}</div>`;
+  panelSeq += 1;
+  return `<div class="panel"><h3>${title}</h3>${namespaceIds(body, `p${panelSeq}`)}</div>`;
 }
 
 function page(title, body) {
