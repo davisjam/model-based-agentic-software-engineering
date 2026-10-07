@@ -44,20 +44,20 @@ Success feeds that repertoire ambiguously: a system may succeed because its arch
 
 ## The Master Equation
 
-The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+The Master Equation separates places where reliable delegated realization can fail.
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-Failure-Aware Engineering runs the model backward: when reality contradicts expectation, what does the evidence tell us about which part of our engineering should change?
+Delegation, Modeling, and Alignment use the Master Equation prospectively. Failure-Aware Engineering runs it backward: when reality contradicts expectation, what does the evidence tell us to change?
 
-| Link | The diagnostic question |
+| Where failure may have entered | The diagnostic question |
 |---|---|
 | *R → E* | Was the consequential intent ever encoded, or did the obligation live only in someone's head? |
 | *E → I* | Was the encoded intent interpreted as we meant it? |
 | *I → L* | Did the realization preserve what was correctly understood? |
-| *H* | Did the surrounding harness and process surface evidence of the discrepancy before reality did? |
+| Surrounding process *H* | Why did our evidence and controls not expose the discrepancy before reality did? |
 
-This unit runs the model backwards. A delivered failure rarely announces which link gave way: the same defect can mean intent was never encoded, encoded intent was misread, understood intent was realized wrongly, or the surrounding process produced no evidence until reality supplied it. The question is not merely *what broke?* but *which part of our engineering model should change?* — and each diagnosis changes a different thing. Reflection is the work of locating what the evidence should change.
+A delivered failure rarely announces which link gave way. The same defect can mean that intent was never encoded, encoded intent was misread, understood intent was realized incorrectly, or the surrounding process produced no evidence until reality supplied it. The question is not merely *what broke?* but *what should this evidence change?* Reflection is the work of locating what the evidence should change.
 
 ## What failed — and why didn't we know?
 
@@ -71,7 +71,7 @@ Running the model backwards begins with diagnosis. An observed software failure 
 
 One incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
-A delivered failure invites a second analysis. The Master Equation includes the harness, and a failure that reached delivery is evidence about the harness as much as about the work: it passed through everything meant to catch it. Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
+A delivered failure invites a second analysis. The broader realization model also includes the harness, so a failure that reached delivery is evidence about the surrounding engineering process as well as the artifact: it passed through everything intended to catch it. Turn the Validation model around — **claim → scope → mechanism → strategy → evidence strength → judgment** — and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
 
 *Why did the system behave this way?* concerns the artifact. *Why did we build and trust a system that could behave this way?* concerns the engineering, and is not an accusation.
 
@@ -80,7 +80,7 @@ A delivered failure invites a second analysis. The Master Equation includes the 
 Diagnosis identifies what our previous understanding got wrong. Learning asks where the correction should live. There are three interacting answers.
 
 - **System.** A regression test preserves the observed example — often enough for an implementation defect. A more general lesson belongs in an interface, an architecture, a specification, a validation rule, or an automated control. Future failures rhyme without repeating; ask what class of conditions this one exposed.
-- **Team.** The lesson must reach people who did not live it, and the artifacts they will meet it in: the representations *R* the team reasons through, the harness *H* that governs future work, and the obligations *L* future work is judged against. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
+- **Team.** The lesson must reach people who did not live it, and the artifacts they will meet it in: the representations *R* the team reasons through, the harness *H* that governs future work, and the obligations against which future realizations are judged. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
 - **Engineer.** Reflection identifies which relationships in an experience explain its consequence, so a later situation can be recognized as an old problem.
 
 **Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.

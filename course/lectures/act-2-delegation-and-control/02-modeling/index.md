@@ -73,20 +73,20 @@ The unit turns that decision into a discipline. For every model, ask four questi
 
 ## The Master Equation
 
-The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+The Master Equation separates places where reliable delegated realization can fail.
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-Modeling asks what *R* must preserve, what it should leave free, and how reliably its intended engineering meaning can be recovered.
+The previous unit used the Master Equation to locate the engineering choices surrounding delegation. Modeling acts directly on its representation *R*: what must it preserve, what may it leave free, and how reliably can its intended meaning be encoded and recovered?
 
 | Factor | The Modeling question |
 |---|---|
-| *R* | What purposeful reduction makes the engineering question tractable, and how much of its meaning does the representation itself carry? |
-| *P(E \| R)* | Does the representation help the engineer encode the consequential intent correctly — did we manage to say it? |
-| *P(I \| E, R)* | Does the representation make the intended interpretation sufficiently likely — did the agent recover what we meant? |
-| *P(L \| I, E, R)* | Does the model preserve the distinctions needed to tell an acceptable realization from an unacceptable one, while leaving the rest free? |
+| *R* | What purposeful reduction makes the engineering question tractable? |
+| *P(E \| R)* | Does the representation help us state the consequential intent correctly? |
+| *P(I \| E, R)* | Does it make the intended meaning sufficiently likely to be recovered? |
+| *P(L \| I, E, R)* | Given correct understanding, does the representation preserve enough structure to support satisfactory realization while leaving irrelevant choices free? |
 
-This unit acts first on *R*, the term every factor conditions on. But those choices propagate through the whole chain: purposeful reduction decides what the representation preserves, which bounds what any reasoner can later recover from it, and semantic commitment decides how much of that meaning the representation itself carries, which determines how much interpretation is reading rather than reconstruction. Neither choice makes any factor one, and the engineering objective is to preserve the distinctions needed for consequential reasoning while leaving irrelevant realization choices free.
+Modeling acts first on *R*, the term every factor conditions on. Purposeful reduction determines what the representation preserves; semantic commitment determines how much of its meaning must be reconstructed by the interpreter. Those choices propagate through the chain. The objective is not to make every factor one, but to preserve the distinctions needed for consequential reasoning while leaving irrelevant realization choices free.
 
 ## Use the engineering repertoire
 
@@ -145,7 +145,7 @@ A diagram is a representation, not a synonym for a model. The distinction lets u
 
 The forms are not interchangeable in engineering quality. A state machine may make a lifecycle constraint easier to recover than several paragraphs of prose. A typed, machine-readable relation may be interpreted more consistently by an agent than an informal convention. Two representations can express the same intended model and still differ in what a reader actually recovers.
 
-The Master Equation names this problem P(I | E, R): given the representation, how likely is the reasoner to recover the engineering meaning we intended? Modeling does not make this probability one. Ambiguous names, overloaded arrows, missing semantics, and poorly chosen reductions all produce misinterpretation. Representation is an engineering choice partly because it changes the probability that consequential meaning is recovered correctly.
+The Master Equation names this problem P(I | E, R): given the representation, how likely is the reasoner to recover the intended engineering meaning? Ambiguous names, overloaded arrows, missing semantics, and poorly chosen reductions all lower that probability.
 
 The representation is part of the interface between engineer and agent, and delegation succeeds only if the agent interprets the model as intended. Parsimony gains a probabilistic reading too: a representation can fail by omitting a necessary distinction or by burying it among irrelevant ones. And the fourth question becomes concrete: *does the representation make the consequential interpretation sufficiently likely?* Good Modeling reduces freedom of interpretation where meaning matters while preserving freedom of realization where it does not. Alignment and Failure-Aware Engineering return to the same chain.
 
@@ -157,7 +157,7 @@ Consider a box labeled *Parser* with an arrow to a box labeled *Renderer*. The d
 
 Engineering representations differ in how much of this meaning they make explicit. An informal architecture sketch may rely heavily on shared human understanding. UML supplies standardized modeling concepts and relationships for recurring software-engineering views. Structured interface and schema languages such as OpenAPI and JSON Schema make selected meanings directly machine-readable. SysML v2 and its semantic foundation, KerML, go further toward treating the model as a semantically defined engineering artifact whose elements and relationships can be interpreted, queried, composed, and analyzed by tools.
 
-Call this difference **semantic commitment**: how much of the intended meaning of a representation is made explicit by the representation and its modeling language rather than supplied by its interpreter.
+**Semantic commitment** is how much of a representation's intended meaning is made explicit by the representation and its modeling language rather than supplied by its interpreter.
 
 More semantic commitment is not automatically better. Precision has costs. A notation that machines can interpret reliably may demand more from its authors and more from human readers. A quick sketch may be exactly right when several engineers need to communicate an architectural idea to one another or to an agent for a prototype. A semantically richer model may earn its cost when a consequential property must be queried, composed across views, checked mechanically, or handed repeatedly between humans and agents. Choose enough semantic commitment for the engineering work the model must support.
 

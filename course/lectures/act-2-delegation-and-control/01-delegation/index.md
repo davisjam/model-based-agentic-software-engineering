@@ -37,11 +37,11 @@ materials:
 
 **Premise.** *Delegation is an engineering decision shaped by the work, the recipient, and the consequences.*
 
-Software agents combine attractive properties of two familiar recipients of delegated work. Like people, they can reason, adapt, and act under circumstances that were not completely specified in advance. Like deterministic automation, however, they cannot assume responsibility for the consequences of their actions. We can delegate work to an agent; we cannot delegate responsibility to it.
+Software agents combine properties of two familiar recipients of delegated work. Like people, they can reason, adapt, and act under circumstances that were not completely specified in advance. Like deterministic automation, however, they cannot assume responsibility for the consequences of their actions. We can delegate work to an agent; we cannot delegate responsibility to it.
 
 Earlier, we defined engineering as the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. That does not require engineers to personally perform every act of realization. It requires them to retain responsibility for the resulting system.
 
-Delegation is not new. Software engineers delegate to colleagues, contractors, libraries, compilers, and other automation. Factories did the same earlier still: engineers delegated fabrication to skilled machinists while drawings, tolerances, gauges, and inspection preserved control over the result. Nursing provides another consequential setting in which work is deliberately assigned according to the capability of the recipient, the consequences of the task, and the supervision available.
+Delegation is not new. Software engineers delegate to colleagues, contractors, libraries, compilers, and other automation. Factories did the same long before software: engineers delegated fabrication to skilled machinists while drawings, tolerances, gauges, and inspection preserved control over the result. Nursing provides another consequential setting in which work is deliberately assigned according to the capability of the recipient, the consequences of the task, and the supervision available.
 
 Across these settings, the recipient changes but the delegation problem persists: what work should be handed over, what does the recipient need, what consequences may it produce, and what evidence justifies accepting the result?
 
@@ -49,7 +49,7 @@ Software agents introduce a new recipient: probabilistic automation capable of r
 
 | | another person | deterministic automation | probabilistic automation |
 |---|---|---|---|
-| **reliability** | depends on skill and care; may fudge, or claim competence not held, and may not recognize that a situation is unfamiliar | exact and repeatable within its specification — and wrong exactly as specified, every time | depends on model strength and context; produces fluent work whether or not it is correct |
+| **reliability** | depends on skill and care; may fudge, or claim competence not held, and may not recognize that a situation is unfamiliar | exact and repeatable within its specification; systematically wrong when the specification is wrong | depends on model strength and context; produces fluent work whether or not it is correct |
 | **unforeseen circumstances** | can adapt, but recognizing novelty itself takes expertise | has no independent judgment for novel circumstances | can reason about novelty, but may fail to recognize or handle it correctly |
 | **what the delegator supplies** | instruction, context, and review | a specification, once | instruction, context, and review — re-supplied each engagement |
 | **memory** | learns durably; knowledge accrues in the person | does not learn, but *is* memory — the check encodes it permanently | carries memory as session state, externalized files, and weights; the durable part is what was externalized by design, and the internal part is not interpretable |
@@ -64,7 +64,7 @@ Delegation is therefore a system-design problem: bound the work, equip the agent
 
 These are not rigid stages. They are four questions an engineer must answer when delegating consequential work. What work should the agent perform? What does it need in order to succeed? What consequences should it be permitted to produce? What evidence will justify accepting the result?
 
-The rest of this unit develops the engineering levers available for answering those questions.
+The rest of this unit develops the engineering levers available for answering those questions. We study contemporary mechanisms — context management, tools, MCP, skills, memory, permissions, and work decomposition — for the engineering purposes they serve, rather than the details of particular products.
 
 ![The four delegation decisions — bound, equip, authorize, verify — each with its question and principal levers.](figures/delegation-model.svg)
 
@@ -72,20 +72,15 @@ The rest of this unit develops the engineering levers available for answering th
 
 ## The Master Equation
 
-The Master Equation separates places where reliable delegated realization can fail. Act II's introduction factored the probability that one attempt produces an acceptable realization into encoding, interpretation, and realization. Each unit of the Act works on that system from a different side.
+The Master Equation separates places where reliable delegated realization can fail.
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-Delegation asks how the engineer should design the whole system around that realization: the work, capability, authority, and evidence.
+The Act II overview shows how all four units use this decomposition. This unit begins with the surrounding delegation problem: how should an engineer design the work, capability, authority, and evidence around a probabilistic realization?
 
-| Delegation decision | Effect on the Master Equation |
-|---|---|
-| **Bound** | Determines *T*: the work being delegated and the degrees of freedom the recipient may resolve |
-| **Equip** | Changes *M*, *R*, and *H*: the reasoning capability, information, representations, tools, and environment available for producing *E* and *I* |
-| **Authorize** | Limits the consequences the process may produce even when its reasoning or realization is wrong |
-| **Verify** | Produces evidence about whether *I* satisfies the obligations represented by *L* before the engineer accepts its consequences |
+The subsequent units go deeper into two parts of this system. Modeling asks how consequential knowledge should be represented so that it can be encoded and interpreted reliably while leaving irrelevant realization choices free. Alignment asks which obligations should be backed by controls outside the producing reasoner's judgment. Failure-Aware Engineering then asks what observed failures reveal about the system we designed.
 
-The equation is not a recipe for calculating a number. It is a model of where reliability comes from. A stronger reasoning model can improve the system without repairing a bad representation; a better representation cannot compensate for missing means; and high capability does not justify unlimited authority. Delegation means designing the whole system around the reasoner.
+The equation is not a recipe for calculating a number. It identifies where reliability comes from. A stronger reasoning model cannot repair missing intent; a better representation cannot supply missing means; and high capability does not justify unlimited authority. Delegation means engineering the whole system around the reasoner.
 
 ## Where does capability live?
 
@@ -142,12 +137,6 @@ The required evidence depends on the claims and consequences of the work, not on
 ## Engineer the whole system
 
 **BOUND → EQUIP → AUTHORIZE → VERIFY.** These decisions interact. Better representations or a more capable model may permit broader delegation; narrower authority or stronger verification may make greater autonomy acceptable. The engineering object is not the agent alone but the system in which delegation occurs.
-
-## Scope
-
-We study contemporary mechanisms such as context management, tools, MCP, skills, memory, permissions, and work decomposition for the engineering purposes they serve, rather than the details of particular products.
-
-Modeling asks how consequential engineering knowledge can be represented so that humans and agents need not continually reconstruct it. Alignment asks when engineering obligations should have consequences for what the environment permits or accepts.
 
 ## What changes as agents improve?
 
