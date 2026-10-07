@@ -395,6 +395,7 @@ test("all three specified examples are offered, and each one loads", async () =>
   // suppression would be claiming a check ran.
   // The author's 261006 spec names the three: Simple, Medium, Complex — asserted by PRESENCE.
   for (const id of
+    // derived-values:allow the 261006 spec's own naming of the three, asserted by presence; writing SHIPPED_EXAMPLE_IDS here would make the assertion a tautology
     ["simple-worker-queue", "medium-document-processing", "complex-transaction-workspace"] as const) {
     assert.ok(first.catalog.ids().includes(id), `the 261006 spec names ${id} and the menu omits it`);
   }
@@ -461,7 +462,9 @@ test("loading an example gives an ordinary workspace: the shipped counts, and no
     // Ordinary means editable. A rename commits and advances the revision, exactly as it would on an
     // imported file -- which is EX-I1 asserted on the workspace rather than on the loader.
     const before = ws.state.hash;
-    const first = [...ws.state.system.models.keys(), ...ws.state.system.machines.keys()][0];
+    // An ENTITY label: entity labels are in the canonical hash, while a machine's label is display
+    // only (src/ir/hash.ts), so a machine-first example would commit without advancing the revision.
+    const first = [...ws.state.system.entities.keys()][0];
     assert.ok(first !== undefined);
     const edit = ws.transact({ transaction: { base: before,
       operations: [{ op: "set-label", id: first, value: "Edited by hand" }] } });
@@ -502,11 +505,11 @@ test("creating a new model system loads an empty, editable, clean workspace", ()
 
 test("provenance reaches the one service, prompt separated from the metadata", async () => {
   const { ws, catalog } = catalogue();
-  await catalog.load("message-bus");
+  await catalog.load("medium-document-processing");
   const records = ws.provenance();
   assert.ok(records.length > 0, "the shipped examples record provenance (section 8)");
 
-  const flow = records.find((p) => p.object === "model:event-flow");
+  const flow = records.find((p) => p.object === "model:processing-resources");
   assert.ok(flow !== undefined, "a model that records its origin must appear");
   assert.ok(flow.prompt !== null, "the prompt is the field that earns the feature");
   assert.ok(!flow.fields.some((f) => f.label === "Asked for"),
@@ -518,21 +521,21 @@ test("provenance reaches the one service, prompt separated from the metadata", a
 
 test("UX-I6: reading provenance cannot move the model, and a note does not advance the revision", async () => {
   const { ws, catalog } = catalogue();
-  await catalog.load("message-bus");
+  await catalog.load("medium-document-processing");
   const before = ws.state.hash;
-  const answer = ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome;
+  const answer = ws.runSavedQueries().get("processing-after-completion")?.outcome;
 
   // Reading, repeatedly. The service returns records and no writer, so this cannot do anything --
   // which is the assertion.
   for (let i = 0; i < 3; i += 1) assert.ok(ws.provenance().length > 0);
   assert.equal(ws.state.hash, before, "inspecting provenance must not change the system's identity");
-  assert.equal(ws.runSavedQueries().get("restricted-data-reaches-impermitted-subscriber")?.outcome,
+  assert.equal(ws.runSavedQueries().get("processing-after-completion")?.outcome,
     answer, "inspecting provenance must not change an answer");
 
   // And the writing side of the same invariant, on the capability next door: a note commits and
   // leaves the semantic revision exactly where it was.
   const noted = ws.transact({ transaction: { base: before, operations: [{
-    op: "add-note", scope: "model", id: "event-flow",
+    op: "add-note", scope: "model", id: "processing-resources",
     note: { kind: "comment", text: "Annotation is outside the semantic projection." },
   }] } });
   assert.ok(noted.ok, `the note must commit: ${noted.findings.map((f) => f.message).join("; ")}`);
@@ -562,7 +565,7 @@ test("an agent reads the same provenance and the same examples the person does",
   assert.deepEqual(described.map((d) => d.id), [...catalog.ids()]);
   assert.deepEqual(described, await catalog.describeAll());
 
-  const context = await api.loadExample("worker-queue");
+  const context = await api.loadExample("medium-document-processing");
   assert.equal(context.hash, ws.state.hash, "the agent's context must describe the loaded system");
   assert.equal(context.counts["models"], ws.state.system.models.size);
   assert.deepEqual(context.findings, [], "a shipped example must load clean for an agent too");
@@ -572,7 +575,7 @@ test("an agent reads the same provenance and the same examples the person does",
   // methods an imported file gets, and there is no example-specific surface (EX-I1).
   assert.ok(api.inspect().models.length > 0);
   const edited = api.transact({ transaction: { base: context.hash,
-    operations: [{ op: "set-label", id: "worker-pool", value: "Pool" }] } });
+    operations: [{ op: "set-label", id: "worker", value: "Pool" }] } });
   assert.ok(edited.ok, `an example must be editable through window.mage: ${edited.findings.map((f) => f.message).join("; ")}`);
 });
 

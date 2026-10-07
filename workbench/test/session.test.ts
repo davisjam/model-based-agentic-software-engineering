@@ -23,8 +23,8 @@ import { Workspace } from "../src/app/services.ts";
 import { realPorts } from "../scripts/gen-example-coverage.ts";
 
 const HERE = import.meta.dirname;
-const SENSOR = join(HERE, "..", "examples", "embedded-sensor-node", "system.mage.yaml");
-const text = (): string => readFileSync(SENSOR, "utf8");
+const MEDIUM = join(HERE, "..", "examples", "medium-document-processing", "system.mage.yaml");
+const text = (): string => readFileSync(MEDIUM, "utf8");
 
 /** A store with the browser's contract and none of its environment. */
 const memoryStore = (): SessionStore & { readonly map: Map<string, string> } => {
@@ -38,7 +38,7 @@ const memoryStore = (): SessionStore & { readonly map: Map<string, string> } => 
 };
 
 const budgetOf = (ws: Workspace): string => {
-  const p = ws.properties().find((x) => /sram|budget|fits/i.test(x.statement ?? x.id));
+  const p = ws.properties().find((x) => x.id === "processing-fits-in-worker-memory");
   return p === undefined ? "none" : `${p.id}=${p.outcome}`;
 };
 
@@ -47,17 +47,17 @@ describe("a reload keeps the student's work", () => {
     const store = memoryStore();
     const first = new Workspace(realPorts);
     assert.ok(first.load(text()).ok);
-    assert.equal(budgetOf(first), "sram-fits-budget=holds", "the shipped model should start green");
+    assert.equal(budgetOf(first), "processing-fits-in-worker-memory=holds", "the shipped model should start green");
 
     // The lab's step 3.
     const tx = first.transact({
       base: first.state.hash,
-      operations: [{ op: "set-quantity-value", id: "telemetry-queue-sram", value: "64 KB" }],
+      operations: [{ op: "set-quantity-value", id: "task-slot-0-memory", value: "1 GB" }],
     });
     assert.ok(tx.ok, "the lab's own modification no longer applies");
-    assert.equal(budgetOf(first), "sram-fits-budget=refuted");
+    assert.equal(budgetOf(first), "processing-fits-in-worker-memory=refuted");
 
-    new Session(store).save("embedded-sensor-node", first.export());
+    new Session(store).save("medium-document-processing", first.export());
 
     // The reload: a brand-new Workspace, as a fresh page would build.
     const stored = new Session(store).restore();
@@ -65,19 +65,19 @@ describe("a reload keeps the student's work", () => {
     const second = new Workspace(realPorts);
     assert.ok(second.load(stored?.text ?? "").ok);
 
-    assert.equal(budgetOf(second), "sram-fits-budget=refuted",
+    assert.equal(budgetOf(second), "processing-fits-in-worker-memory=refuted",
       "the restored session re-read the shipped file instead of the student's edit — which is the "
       + "defect this whole seam exists to prevent");
     assert.equal(second.state.hash, first.state.hash,
       "same content must canonicalize to the same hash");
-    assert.equal(stored?.exampleId, "embedded-sensor-node");
+    assert.equal(stored?.exampleId, "medium-document-processing");
   });
 
   it("comments and key order survive, because the text round-trips", () => {
     const store = memoryStore();
     const ws = new Workspace(realPorts);
     assert.ok(ws.load(text()).ok);
-    new Session(store).save("embedded-sensor-node", ws.export());
+    new Session(store).save("medium-document-processing", ws.export());
     const restored = new Session(store).restore()?.text ?? "";
     assert.ok(restored.includes("#"), "a comment-free restore means the YAML layer stopped round-tripping");
   });
@@ -89,7 +89,7 @@ describe("RESET is the only wipe", () => {
     const ws = new Workspace(realPorts);
     assert.ok(ws.load(text()).ok);
     const session = new Session(store);
-    session.save("embedded-sensor-node", ws.export());
+    session.save("medium-document-processing", ws.export());
     assert.notEqual(session.restore(), null);
 
     session.clear();
@@ -116,7 +116,7 @@ describe("RESET is the only wipe", () => {
     assert.ok(ws.load(text()).ok);
     ws.reset();
     assert.ok(ws.load(text()).ok, "the workbench could not re-open an example after Reset");
-    assert.equal(budgetOf(ws), "sram-fits-budget=holds");
+    assert.equal(budgetOf(ws), "processing-fits-in-worker-memory=holds");
   });
 });
 
