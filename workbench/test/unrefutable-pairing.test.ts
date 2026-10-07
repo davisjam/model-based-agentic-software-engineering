@@ -37,7 +37,7 @@ import { canonicalize } from "../src/ir/canonicalize.ts";
 import { runSavedQueries, verifySystemRequirements } from "../src/engine/index.ts";
 import type { Verification } from "../src/engine/verification.ts";
 import { exampleText } from "../scripts/gen-example-coverage.ts";
-import { SHIPPED_EXAMPLE_IDS } from "../src/app/examples.ts";
+import { EXAMPLE_IDS } from "../src/app/example-corpus.ts";
 
 type Obj = Record<string, unknown>;
 type Block = Record<string, Obj>;
@@ -218,7 +218,7 @@ test("every shipped requirement in the corpus is unaffected — zero findings at
   // — or broke a sound one. Neither is true today, and this pin is what notices when it stops being.
   const errors: string[] = [];
   let counted = 0;
-  for (const id of SHIPPED_EXAMPLE_IDS) {
+  for (const id of EXAMPLE_IDS) {
     for (const [req, v] of verifySystemRequirements(canonicalize(doc(id)))) {
       counted += 1;
       if (v.status === "error") errors.push(`${id}/${req}: ${v.problem}`);
@@ -226,20 +226,13 @@ test("every shipped requirement in the corpus is unaffected — zero findings at
   }
   assert.equal(errors.length, 0, `the arm fires on a shipped requirement:\n${errors.join("\n")}`);
   // A probe that found nothing would carry the assertion above vacuously, so the corpus size is
-  // pinned too. The ruling's §0.2 counted EIGHT; autonomous-delivery added six, two of them
-  // quantity-decided, and `document-processing`'s `peak-memory` migration added the latest — an
-  // obligation that had lived in its fixture on the `decided_by` route and is now authored.
-  //
-  // The re-read §0.2 asks for CONFIRMS the ruling's claim of the wider corpus, and the migration
-  // strengthened rather than strained it: every quantity-decided requirement still declares `within:`
-  // with `satisfied_when: holds`, the newest one included, and the arm still finds nothing. The
-  // migration moved a requirement's ROUTE and changed no verdict — `peak-memory` read satisfied
-  // through its oracle and reads satisfied through the engine.
-  //
-  // Sixteen since 261006: calibration-loop (SEMANTICS §3.3's lab) ships
-  // `reading-reaches-the-controller`, an ordinary `satisfied_when: holds` over a graph query —
-  // violated at ship on purpose, which is the task — and the arm finds nothing in it.
-  assert.equal(counted, 16, "sixteen authored requirements ship; a changed count means re-read §0.2");
+  // pinned too. The 261006 three-example split re-based the census: the shipped LIBRARY is now
+  // simple-worker-queue (2), medium-document-processing (3) and complex-transaction-workspace (3),
+  // and the seven former examples persist as the FIXTURE corpus (`test/fixtures/examples/`), whose
+  // sixteen requirements this arm still sweeps — the sweep runs over EXAMPLE_IDS, both
+  // populations, because a mis-authored declaration is a defect wherever it is tracked.
+  assert.equal(counted, 24,
+    "twenty-four authored requirements are tracked (8 shipped + 16 fixture); a changed count means re-census");
 });
 
 test("SCOPE: satisfied_when: refuted over behavior and graph queries is ordinary, not a defect", () => {
