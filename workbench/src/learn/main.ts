@@ -55,6 +55,7 @@ import {
 import { fixturePathFor, readFixture, type ExampleFixture } from "./fixtures.ts";
 import { buildQuestionSections, type BuiltQuestionSection } from "./questions.ts";
 import { WORKBENCH_GUIDE, type GuideSection } from "./workbench-guide.ts";
+import { OPENING_ANCHORS, renderOpening } from "./opening.ts";
 import { LESSON_ANCHOR, REFERENCE_ANCHOR, WALKTHROUGH_ANCHORS } from "./walkthrough.ts";
 import { renderLesson, renderWalkthroughNav, renderWalkthroughSteps } from "./walkthrough-view.ts";
 
@@ -406,7 +407,9 @@ async function boot(): Promise<void> {
   const useSections = buildUseSections(systems);
   const questionSections = buildQuestionSections(systems, fixtures);
 
-  // The lesson, then the walkthrough: the page's primary path.
+  // The conceptual contract first — what the Workbench is for and what a model licenses — then
+  // the lesson and the walkthrough: the page's primary path.
+  main.append(...renderOpening());
   main.append(renderLesson(), renderWalkthroughNav(),
     ...renderWalkthroughSteps({ systems, texts, fixtures }));
 
@@ -472,6 +475,7 @@ async function boot(): Promise<void> {
   // The browser tier waits on this rather than on network idle: it marks the derivation complete.
   (window as unknown as Record<string, unknown>)["mageLearn"] = {
     ready: true,
+    opening: Object.values(OPENING_ANCHORS),
     lesson: LESSON_ANCHOR,
     walkthrough: [...WALKTHROUGH_ANCHORS],
     types: typeSections.map((s) => s.entry.id),

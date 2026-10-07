@@ -37,6 +37,7 @@ import { SHIPPED_EXAMPLE_IDS } from "../../src/app/examples.ts";
 import { MODEL_TYPES } from "../../src/engine/model-types.ts";
 import { LEARN_PAGE, MODEL_TYPE_USES, anchorForType, anchorForUse } from "../../src/app/learn.ts";
 import { GUIDE_ANCHORS } from "../../src/learn/workbench-guide.ts";
+import { OPENING_ANCHORS } from "../../src/learn/opening.ts";
 import { QUESTION_ANCHORS } from "../../src/learn/questions.ts";
 import { LESSON_ANCHOR, WALKTHROUGH_ANCHORS } from "../../src/learn/walkthrough.ts";
 
@@ -236,11 +237,13 @@ test("learn.html: boots, and the gallery is the model-type registry", async () =
   //                     kernel over the shipped examples, which is why they are not gallery cards:
   //                     they answer "what can I do with a model", not "which model form do I need".
   //
-  // And the page's primary path since the lesson restructure: the LESSON section and the
-  // WALKTHROUGH steps, declared in `src/learn/walkthrough.ts`, whose content is built by running
-  // the kernel, the renderer and a real Workspace over the shipped examples.
+  // And the page's primary path since the lesson restructure: the OPENING — the authored
+  // conceptual contract (`src/learn/opening.ts`), declared like the guide because no kernel knows
+  // the Workbench's pedagogical purpose — then the LESSON section and the WALKTHROUGH steps,
+  // declared in `src/learn/walkthrough.ts`, whose content is built by running the kernel, the
+  // renderer and a real Workspace over the shipped examples.
   const expectedSections = [
-    LESSON_ANCHOR, ...WALKTHROUGH_ANCHORS,
+    ...Object.values(OPENING_ANCHORS), LESSON_ANCHOR, ...WALKTHROUGH_ANCHORS,
     ...galleryAnchors, ...GUIDE_ANCHORS, ...QUESTION_ANCHORS,
   ].sort();
 
