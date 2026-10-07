@@ -41,7 +41,7 @@ Units are published as their teaching materials are completed.
 *How do we delegate realization, govern what is produced, and learn when reality contradicts our expectations?*
 
 - **[Delegating to Software Agents: Old Problem, New Properties](act-2-delegation-and-control/01-delegation/index.md)**
-- **[Modeling: Representation & Implementation](act-2-delegation-and-control/02-modeling/index.md)** (2 lectures)
+- **[Modeling: Purposeful Reduction · Degrees of Semantic Commitment](act-2-delegation-and-control/02-modeling/index.md)** (2 lectures)
 - **[Alignment: From Guidance to Authority](act-2-delegation-and-control/03-alignment/index.md)**
 - **[Failure-Aware Engineering](act-2-delegation-and-control/04-failure-aware-engineering/index.md)**
 

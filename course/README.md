@@ -136,8 +136,8 @@ schema made concrete; the schema is the source of truth. Change a rule there, no
 
   ```yaml
   sessions:
-    - "Modeling: Representation & Implementation"
-    - "Modeling: Engineering with Models"
+    - "Modeling: Purposeful Reduction"
+    - "Modeling: Degrees of Semantic Commitment"
   ```
 
   The session *count* is never written down separately: it is the length of this list, and the test

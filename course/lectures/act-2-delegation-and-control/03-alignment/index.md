@@ -1,8 +1,5 @@
 ---
 title: Alignment
-sessions:
-  - "Alignment: From Guidance to Authority"
-  - "Alignment: Governing Realization"
 readings:
   groups:
     - heading: The alignment principle
@@ -32,8 +29,8 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture 1 slides — From Guidance to Authority (forthcoming)
-  - title: Lecture 2 slides — Governing Realization (forthcoming)
+  - title: "Lecture slides — Alignment: From Guidance to Authority"
+    src: 2-3-Alignment.pptx
 ---
 
 **Premise.** *Guidance shapes behavior; enforcement determines what the environment accepts.*
