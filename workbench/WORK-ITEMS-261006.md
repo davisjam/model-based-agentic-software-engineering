@@ -11,14 +11,14 @@ and verified, not when an agent reports success.
 | 1 | **Mermaid vs dagre A/B pilot** | `wb-mermaid-pilot-261006` | All three examples drawn both ways, HTML record pages, a recommendation. Both sides get real effort — a weak dagre rendering would rig the comparison. Author's bias is toward Mermaid; an evidenced negative result is still a win. |
 | 2 | **Rebuild 2-3-Alignment.pptx** | `deck-2-3-rebuild-261006` | New causal spine: do the work → doubt the result → structure the delegation → model its failures → design controls → place them where knowledge exists → exploit explicit models → synthesize. ~33 slides, 5 sections, no Section 0. Roughly half the existing slides survive. |
 | 3 | **Learn: conceptual opening** | `wb-learn-opening-261006` | A front-of-page contract before the lesson: what the Workbench is and is not, what it can model, what questions those models license, why little syntax is needed, where to graduate to. 500–700 words, cards not bullet lists. |
-| 4 | **Richer state-machine notation** | `wb-machine-visual-261006` | Guards, effects and variables in the visual. The bound in `simple-worker-queue` is held by the arrival guard `occupancy < 4` and the picture shows none of it. Supersedes into item 1's outcome if Mermaid wins. |
+| ~~4~~ | ~~Richer state-machine notation~~ | **LANDED** `cabf0fe96` | UML `[guard] / effect` on transitions, variables compartment, key + twin parity. Verified live: guard, effect, both self-loops, `occupancy : integer [-1..5] = 2` all render. Gates 1521/180/115, all green. |
 
 ## Pending — need a decision or a slot
 
 | # | Item | Blocked on |
 |---|------|-----------|
-| 5 | **Workspace shows the system Scenario** | Nothing. The authored summary appears on the Start card then vanishes once an example loads. Part of item 4's brief. |
-| 6 | **PROPERTIES reachable on the complex example** | Verification. Header counts 8 saved properties; the rail may push them below four join entries. Measure before changing. Part of item 4's brief. |
+| ~~5~~ | ~~Workspace shows the system Scenario~~ | **LANDED** with item 4. Verified on the live page. |
+| ~~6~~ | ~~PROPERTIES reachable on the complex example~~ | **LANDED** with item 4 — Properties reachable from the rail top. |
 | 7 | **Curriculum drift: Alignment is one lecture or two?** | AUTHOR. The mirror now lists one; `03-alignment/index.md` declares two sessions and `reference-course/calendar.md` schedules "Governing Realization" in week 8. Collapsing frees a week-8 slot — a schedule change, not a listing change. |
 | 8 | **Modeling subtitles disagree with the unit** | AUTHOR. Mirror says *Representation & Implementation* / *Engineering with Models*; the unit declares *Purposeful Reduction* / *Degrees of Semantic Commitment*. |
 | 9 | **Three Modeling decks for two declared sessions** | AUTHOR. `Purposeful-Reduction`, `Degrees-of-Semantic-Commitment`, `Systems-of-Models` — the last two both numbered `2-2-Modeling-2-`. Plus a stray `copy.pptx`. |
@@ -36,3 +36,16 @@ and verified, not when an agent reports success.
   ring that was painted, a reflow probe blind to text ink, a sub-pixel assertion encoding a rounding
   rule Chromium lacks, and a test file that stopped running entirely and reported nothing. A probe
   must assert its own preconditions.
+
+## Settled 261006 — the renderer question
+
+**Keep dagre + our painter; adopt UML's notation.** Measured, not argued: the simple-worker-queue
+machine rendered through the vendored Mermaid 11.16.0 **drops one of the two parallel self-loops** —
+`processing` renders, `arrival` is absent entirely, one path emitted where two belong. A renderer
+that silently discards a transition shows a model that is not the model. Mermaid also attaches no
+semantics to the `event [guard] / effect` label (it is a string) and its accessibility surface is a
+bare `role="graphics-document"`, nothing like the twin built from the scene. Layout would not
+improve either: `layout-dagre.ts` is the same Sugiyama engine Mermaid's own state layouts use.
+
+Record: `workbench/DECISIONS-RULED-renderer-genre-261006.md`. A dedicated A/B pilot across all three
+examples is still running as an independent check on that disqualifying finding.
