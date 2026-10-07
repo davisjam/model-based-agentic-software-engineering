@@ -71,3 +71,59 @@ The author's rulings, and what each cost to apply:
 tighter prose band. `03-alignment/index.md` was **1625 words against a 750–1000 one-session band** —
 it had been written to carry two sessions. Trimming it is the last open piece. The schema caught a
 downstream effect of a scheduling decision, which is the governance working as designed.
+
+## 261007 — Act II writing complete; both CI failures were ours
+
+**Landed and published (origin):** the 39-slide 2-3-Alignment deck across five passes (causal spine,
+chapter figures adopted on slides 19/24/33, prune 39→37, copyedit + 37 speaker notes, Master Equation
+bookend back to 39); the Alignment lander at ~953 words defining Alignment independent of its
+mechanisms; the curriculum canon (Alignment = ONE lecture, Modeling canon names, two non-canon decks
+retired); the Master Equation recurring device across the Act II intro + all four unit landers; the
+chapter 6 reopener. **Landed, push in gate:** the chapter 6 copyedit (ch6-9.md, −149/+182 across
+`book/part6/*.md`) and the Act II landers structural copyedit (5 files).
+
+**Artifacts rebuilt + verified:** book PDF **489pp** (was 490 — the ch6 reduction), every BLOCKING
+layout sensor green; book ePub 2.0 MB; handbook PDF + ePub + per-chapter PDFs; stapled landers
+(14 landers, 4 Master Equation headings, 0 "governing" leftovers). All gitignored — CI rebuilds them.
+
+### Both CI failures were self-inflicted, from the SAME decision
+
+CI was red from 00:07 through the afternoon. Both causes traced to the Mermaid A/B pilot pages —
+hand-rolled HTML published into a site whose quality strategy assumes every page comes from a
+renderer template:
+
+- **site-gates** → `html-validate` `prefer-tbody`: `pilot/index.html` had `<tr>` outside `<tbody>`.
+  **This check had NEVER run locally** — it SKIPS when `npx` is off PATH, which it is unless nvm has
+  been sourced, so a local `--full` reported it *skipped* and the summary line read clean.
+- **browser-tiers** → the sub-pixel reflow self-test. It pinned a MEASURED engine constant (document
+  `scrollWidth` flips at +0.75px overhang) and probed 0.15px inside it. The boundary moved to
+  **+0.5px**, so the probe flipped. It now DERIVES the boundary per run and fails loudly if the sweep
+  finds none.
+
+### The reproduction lesson
+
+Local runs passed 115/115 all day. **The CI STEP does three things `npm run test:a11y` does not** —
+sets three receipt paths, clears them, and asserts each is non-empty afterwards. Running with those
+set is what surfaced the failure locally. Reproduce the STEP, not the test.
+
+### Faithfulness gaps found (the author's standing question)
+
+1. `--full` Tier-2 never runs pre-push.
+2. `html-validate` silently SKIPS without nvm-sourced `npx` — a skip reads like a pass at a glance.
+3. mkdocs was declared in `site/requirements.txt` but never installed, so the teach site could not be
+   built locally at all. Installed in a venv (`/tmp/gcvenv`); PEP 668 blocks the system Python.
+4. Workbench gates are conditional on a `workbench/` path in the push, so course-only pushes skip them.
+
+### Open, waiting on the author
+
+- **Chapter 6 redirected a cross-reference** from §7.3 to §6.3 following the guidance; §7.3 is the
+  chapter actually titled *Agentic Engineering Beyond Software*. One-line revert if the guidance slipped.
+- **2-3's table is 3 rows where 2-2's and 2-4's are 4**, breaking the device's row rhyme at Alignment.
+  Agent followed the explicit reason (H is not in the displayed equation); 2-4's "Surrounding process
+  *H*" row would honor both.
+- Chapter 6 reduction is **−3.6%, not the expected 8–12%** — §6.3/§6.4 grew where the guidance added
+  conditions and questions. Hitting the number means cutting §6.2's framing paragraphs.
+
+**Fable quota was exhausted mid-afternoon** (now uncapped again); two copyedit agents died before
+writing anything and were re-dispatched on Opus. A third died one step before committing with verified
+work in the tree — recovered by running the gates and committing on its behalf. That is twice today.

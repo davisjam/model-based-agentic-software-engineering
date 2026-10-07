@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 814,
+    "total_sites": 812,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 476,
+      "book-web": 474,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -117,7 +117,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 31
+            "occ": 28
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -649,7 +649,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -657,10 +657,6 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
             "occ": 1
           },
           {
@@ -689,7 +685,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 33
+            "occ": 32
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -699,7 +695,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 17
+            "occ": 16
           }
         ]
       },
@@ -993,7 +989,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 117
+            "occ": 110
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -1009,7 +1005,7 @@
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
-            "occ": 9
+            "occ": 7
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -1325,7 +1321,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 315
+            "occ": 313
           },
           {
             "file": "book/web/docs/index.md",
@@ -1539,11 +1535,11 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -1887,7 +1883,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 73
+            "occ": 68
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2163,7 +2159,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 376
+            "occ": 374
           },
           {
             "file": "book/web/docs/index.md",
@@ -2915,7 +2911,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2927,11 +2923,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 14
-          },
-          {
-            "file": "book/web/docs/6.5-what-the-theory-claims.md",
-            "occ": 3
+            "occ": 13
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -3029,7 +3021,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 45
           }
         ]
       },
