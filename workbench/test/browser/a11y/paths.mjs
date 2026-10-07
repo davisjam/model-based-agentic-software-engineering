@@ -217,9 +217,14 @@ const ROUTINE = {
    * example id is read off the first option rather than named here.
    */
   loaded: async (page) => {
+    // The LAST option, not the first: the 261006 library orders Simple -> Medium -> Complex, and
+    // the Simple example (one machine, no graph model, no relations) cannot ground the
+    // relation-selection preconditions the inspector and askbar paths declare. The richest
+    // example is the last one the menu offers, and reading it off the menu keeps the id unnamed.
     const first = await page.evaluate(() => {
       const select = document.getElementById("example-choice");
-      return select !== null && select.options.length > 0 ? select.options[0].value : null;
+      return select !== null && select.options.length > 0
+        ? select.options[select.options.length - 1].value : null;
     });
     assert.ok(first !== null && first !== "",
       "#example-choice offers no example, so no keyboard route loads a system");
