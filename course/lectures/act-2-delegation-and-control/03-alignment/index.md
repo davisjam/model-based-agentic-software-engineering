@@ -58,6 +58,8 @@ The Master Equation separates places where reliable delegated realization can fa
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
+Every factor is conditioned on *R*: the equation takes the obligation as given and separates only the failures that follow it. Whether the obligation is adequate at all is a question the equation cannot raise, and it is Leveson's subject.
+
 Modeling improves the conditions under which delegated realization succeeds. Alignment begins from the complementary fact that no factor in the Master Equation is generally one: which obligations should remain governed when realization fails?
 
 | Factor | The Alignment question |
