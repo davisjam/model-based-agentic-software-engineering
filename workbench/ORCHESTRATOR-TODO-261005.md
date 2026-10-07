@@ -478,3 +478,26 @@ broken this morning, fixed this afternoon). Spec: `/tmp/kiss-spec-261006.md`.
 
 **Pushed earlier and live:** CI fan-out, sub-pixel fix, land.py + its node fix, gate note. Verified
 none touched `src/ui`/`src/render`/`index.html` before pushing.
+
+## 261006 LATE — session outage, recovered
+
+An outage killed the session. Recovery findings, verified on disk rather than from the notice:
+
+- **Main was intact.** Both agents the outage flagged had already committed. `7bb5ad882` merged the
+  UX doctrine; `e86a27319` landed node-attribute rendering ("declared attributes render in the node
+  box by default, from the twin's own list"). Nothing lost.
+- **The examples rebuild was the casualty**: 68 files, 2519 insertions, ZERO commits, killed
+  mid-flight. Preserved as `7abf8636b` on `wb-examples-3-261006`, labelled explicitly as interrupted
+  work with no gate passed, so nobody mistakes it for finished.
+- **Gates on the recovered branch:** build OK, tsc OK, `npm test` 1462 pass / **36 fail**. The
+  predecessor authored three new examples (simple-worker-queue, medium-document-processing,
+  complex-transaction-workspace, replacing eight) but did NOT migrate the tree onto them —
+  `message-bus` alone is still referenced in 52 files. Failures group as: dangling example refs /
+  layout quality on the new models / UX-I5 / content gates.
+- `wb-examples-finish-261006` dispatched to finish it, briefed to COMMIT PER GROUP.
+
+**Preview re-stood at http://127.0.0.1:8791/workbench/index.html** (plain `python3 -m http.server`
+from the gc root; agents' own servers die with them).
+
+**The lesson, again:** an agent holding many files uncommitted is the single largest recoverable
+loss in this setup. Brief every long agent to commit per logical group, not at the end.
