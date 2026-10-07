@@ -45,14 +45,15 @@ Informed control requires more than possessing an implementation: an engineer mu
 
 Modeling is therefore an act of purposeful reduction. We decide what a question requires us to preserve, what can remain free, and how to represent what remains. The objective is not to reproduce the system in another notation. It is to preserve enough of the system that consequential questions become cheap to answer.
 
-## Two lectures, one laboratory
+## Structure of this unit
 
-The unit spans two lectures because the problem splits in two:
+The unit comprises two lectures, with the second organized around a modeling laboratory.
 
-- **Lecture 1 — Purposeful Reduction** asks *what must the model preserve?* One model, one question: from engineering question to reduction, repertoire, degrees of freedom and parsimony, representation, and interpretation.
-- **Lecture 2 — Degrees of Semantic Commitment** shows *how models carry different amounts of their own meaning.* We move from informal diagrams through standardized notation to semantically defined models, then use the MAGE Workbench to construct and interrogate a model. The objective is not to learn a modeling language exhaustively. It is to experience what stronger semantic commitment makes possible, and what it costs.
+**Lecture 1: Purposeful Reduction.** What must a model preserve? We move from an engineering question to purposeful reduction, degrees of freedom and parsimony, representation, and interpretation. The Reduce and Interpret activities provide practice choosing what a model should preserve and identifying ambiguity in its representation.
 
-The first lecture uses the Reduce and Interpret activities to practice choosing what a model should preserve and recognizing ambiguity in its representation. The second is primarily a modeling laboratory: students Model → Query → Revise. They construct enough semantics to answer an engineering question, discover a question their model cannot answer, and decide whether strengthening the model is worth the additional commitment.
+**Lecture 2: Degrees of Semantic Commitment.** How much meaning does a model make explicit? We move from informal diagrams through standardized notation to semantically defined models, considering what stronger semantic commitment enables and what it costs.
+
+**Laboratory: Model → Query → Revise.** Using the MAGE Workbench, students construct enough semantics to answer an engineering question, identify a question their model cannot answer, and decide whether strengthening the model is worth the additional commitment.
 
 ## Questions come first
 
