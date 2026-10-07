@@ -84,7 +84,7 @@ The previous unit used the Master Equation to locate the engineering choices sur
 | *R* | What purposeful reduction makes the engineering question tractable? |
 | *P(E \| R)* | Does the representation help us state the consequential intent correctly? |
 | *P(I \| E, R)* | Does it make the intended meaning sufficiently likely to be recovered? |
-| *P(L \| I, E, R)* | Given correct understanding, does the representation preserve enough structure to support satisfactory realization while leaving irrelevant choices free? |
+| *P(L \| I, E, R)* | Given correct understanding, has enough consequential structure been preserved to support satisfactory realization while leaving irrelevant choices free? |
 
 Modeling acts first on *R*, the term every factor conditions on. Purposeful reduction determines what the representation preserves; semantic commitment determines how much of its meaning must be reconstructed by the interpreter. Those choices propagate through the chain. The objective is not to make every factor one, but to preserve the distinctions needed for consequential reasoning while leaving irrelevant realization choices free.
 

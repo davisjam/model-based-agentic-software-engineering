@@ -61,7 +61,7 @@ Modeling improves the conditions under which delegated realization succeeds. Ali
 
 | Factor | The Alignment question |
 |---|---|
-| *P(E \| R)* | Is the obligation encoded clearly enough to evaluate? |
+| *P(E \| R)* | Is the obligation represented clearly enough to be encoded as intended? |
 | *P(I \| E, R)* | Which obligations should not depend solely on the producer interpreting them correctly? |
 | *P(L \| I, E, R)* | What evidence distinguishes an acceptable realization from an unacceptable one? |
 
