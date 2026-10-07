@@ -78,7 +78,7 @@ The Master Equation separates places where reliable delegated realization can fa
 
 The Act II overview shows how all four units use this decomposition. This unit begins with the surrounding delegation problem: how should an engineer design the work, capability, authority, and evidence around a probabilistic realization?
 
-The subsequent units go deeper into two parts of this system. Modeling asks how consequential knowledge should be represented so that it can be encoded and interpreted reliably while leaving irrelevant realization choices free. Alignment asks which obligations should be backed by controls outside the producing reasoner's judgment. Failure-Aware Engineering then asks what observed failures reveal about the system we designed.
+The subsequent units examine this system from three directions. Modeling asks how consequential knowledge should be represented so that it can be encoded and interpreted reliably while leaving irrelevant realization choices free. Alignment asks which obligations should be backed by controls outside the producing reasoner's judgment. Failure-Aware Engineering then asks what observed failures reveal about the system we designed.
 
 The equation is not a recipe for calculating a number. It identifies where reliability comes from. A stronger reasoning model cannot repair missing intent; a better representation cannot supply missing means; and high capability does not justify unlimited authority. Delegation means engineering the whole system around the reasoner.
 

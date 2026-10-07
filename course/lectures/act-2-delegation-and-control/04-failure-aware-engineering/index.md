@@ -93,7 +93,7 @@ The candidates include our metrics. Failure frequency, recovery time, corrective
 
 ## Failure as part of engineering
 
-Act II began by handing consequential work to a recipient that cannot bear responsibility for it. Everything since has been the engineering of that arrangement: deciding what to delegate and on what terms, representing what the work must preserve, giving selected obligations authority beyond the producer's judgment, and — when reality contradicts expectation anyway — treating the contradiction as evidence about the arrangement itself.
+Act II began by handing consequential work to a recipient that cannot bear responsibility for it. Everything since has been the engineering of that arrangement: deciding what to delegate and on what terms, representing what the work must preserve, backing selected obligations with controls outside the producer's judgment, and — when reality contradicts expectation anyway — treating the contradiction as evidence about the arrangement itself.
 
 A failure examined this way does not merely cost something; it reveals something. The distinction no representation preserved, the obligation no mechanism governed, the assumption nobody thought to check: each was invisible until reality disclosed it, and each names the next piece of engineering. Two questions therefore belong to this course rather than to incident response: which lesson should become an enforceable obligation, and where should the new knowledge live? The goal is not zero failure; finite evidence makes that impossible. It is to spend consequential experience well — repair the system, locate what the evidence should change, and let the correction outlive the incident that taught it. Failure is inevitable. Recurring failure is not.
 
