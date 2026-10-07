@@ -1465,9 +1465,6 @@ test("the surfaces table covers the closed vocabulary exactly once", () => {
   const vocabulary: readonly NavSurface[] = [
     "header", "start", "nav-models", "nav-properties", "workspace", "inspector",
     "askbar", "statusbar", "palette", "review", "system-browser", "advanced-query",
-    // `case` joined with the persistent case panel (261005): a shipped example's pedagogical
-    // envelope, mounted iff the current import came from an example.
-    "case",
     // `edit` joined in wave 1d. The ten pinned editing fieldsets are wired affordance sites a
     // person really walks to, and until the vocabulary had a member for their region their only
     // declarable path was the empty one — which would have claimed they are reachable with nothing

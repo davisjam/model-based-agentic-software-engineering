@@ -63,9 +63,9 @@ test("Refresh ships in the header, left of Advanced, disabled until something is
 
 test("the inspection surfaces do NOT carry the advanced-only class", () => {
   // The viewer's own surfaces: navigation, the workspace, the inspector's reading, properties,
-  // status, Start, the case panel, and the header's read-side controls.
+  // status, Start, and the header's read-side controls.
   for (const id of ["nav", "workspace", "inspector", "question-list", "statusbar", "start",
-    "case", "export", "run", "reset", "refresh", "learn"]) {
+    "export", "run", "reset", "refresh", "learn"]) {
     const tag = new RegExp(`<[a-z]+ id="${id}"[^>]*>`).exec(html)?.[0];
     assert.ok(tag !== undefined, `#${id} must exist`);
     assert.doesNotMatch(tag, /advanced-only/, `#${id} is an inspection surface and stays offered`);
