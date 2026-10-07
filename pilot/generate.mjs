@@ -683,7 +683,7 @@ drawn from the same <code>buildScene</code> extraction. Nothing under <code>work
 <h2>The A/B pages</h2>
 <ul>${EXAMPLES.map((e) => `<li><a href="ab-${e}.html">${e}</a></li>`).join("\n")}</ul>
 <h2>Capability probes (measured on the vendored Mermaid 11.16, not read from docs)</h2>
-<table><tr><th>Capability</th><th>Verdict</th><th>Evidence</th></tr>${probeRows}</table>
+<table><thead><tr><th>Capability</th><th>Verdict</th><th>Evidence</th></tr></thead><tbody>${probeRows}</tbody></table>
 <h2>Counterexample-emphasis A/B (simple-worker-queue)</h2>
 <p class="meta">The shipped painter marks evidence on NODES AND EDGES with non-colour channels (MarkStyle: stroke width,
 dash, glyph, step numbers) plus a derived legend, driven by typed <code>EmphasisAssignment</code>s addressed by STABLE
