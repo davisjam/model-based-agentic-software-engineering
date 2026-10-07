@@ -177,17 +177,22 @@ test("no shipped example fixture LABELS a property as a question", () => {
   // a reader exactly as the saved name does.
   const offenders: string[] = [];
   let checked = 0;
-  for (const file of execFileSync("git", ["ls-files", "--", "examples"], { encoding: "utf8" })
-    .split("\n").filter((p) => p.endsWith("expected-results.yaml"))) {
+  const files = execFileSync("git", ["ls-files", "--", "examples"], { encoding: "utf8" })
+    .split("\n").filter((p) => p.endsWith("expected-results.yaml"));
+  // One fixture per shipped example; a per-file floor rather than a corpus-wide count, so the
+  // three-example library is covered and a fixture contributing no labels still fails loudly.
+  assert.ok(files.length >= 3, `the gate must reach the shipped fixtures; it found ${files.length}`);
+  for (const file of files) {
     const doc: unknown = parse(readFileSync(file, "utf8"));
-    if (!isObject(doc) || !Array.isArray(doc["queries"])) continue;
-    for (const raw of doc["queries"]) {
+    assert.ok(isObject(doc) && Array.isArray(doc["queries"]), `${file}: no queries block to read`);
+    const before = checked;
+    for (const raw of doc["queries"] as readonly unknown[]) {
       if (!isObject(raw) || typeof raw["label"] !== "string") continue;
       checked += 1;
       if (asks(raw["label"])) offenders.push(`${file} ${String(raw["id"])}: ${raw["label"]}`);
     }
+    assert.ok(checked > before, `the gate must reach ${file}'s labels; it read none`);
   }
-  assert.ok(checked > 20, `the gate must reach the fixture labels; it read ${checked}`);
   assert.deepEqual(offenders, []);
 });
 
