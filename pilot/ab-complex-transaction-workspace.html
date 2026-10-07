@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A/B: complex-transaction-workspace — dagre painter vs Mermaid</title><style>
+  :root { color-scheme: light; }
+  body { font-family: system-ui, sans-serif; margin: 2rem; background: #fbfcfe; color: #11151c; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.15rem; margin-top: 2.5rem; border-top: 2px solid #d6dbe4; padding-top: 1rem; }
+  .meta { color: #434b5a; max-width: 60rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+  .panel { border: 1px solid #d6dbe4; border-radius: 8px; background: #fff; padding: 1rem; max-width: 100%; overflow-x: auto; }
+  .panel h3 { margin: 0 0 .75rem 0; font-size: .95rem; color: #2a3242; }
+  /* No max-width on the SVGs: a wide diagram must SCROLL inside its panel, not shrink its
+     text below legibility — the judgment this page exists to let the author make. */
+  .panel svg { height: auto; }
+  details { margin-top: .75rem; } pre { background: #f2f4f8; padding: .75rem; border-radius: 6px; overflow-x: auto; font-size: .8rem; }
+  table { border-collapse: collapse; margin-top: 1rem; } td, th { border: 1px solid #d6dbe4; padding: .5rem .75rem; text-align: left; vertical-align: top; }
+  .yes { color: #166534; font-weight: 700; } .no { color: #9a3412; font-weight: 700; } .partial { color: #854d0e; font-weight: 700; }
+  .note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: .75rem 1rem; max-width: 60rem; }
+</style></head>
+<body><h1>A/B: complex-transaction-workspace — dagre painter vs Mermaid</h1><p class="meta">Each model is drawn by BOTH painters from the same <code>buildScene</code> output.
+A is the shipped renderer; A′ is the same renderer with the guard/effect notation written into transition labels
+(the semantics <code>scene.ts</code> already extracts); B is Mermaid 11.16 from <code>book/node_modules</code>.
+<a href="index.html">Back to the pilot index</a>.</p><h2>State machine: <code>transaction-lifecycle</code></h2>
+<p class="meta">What states can an order pass through, and what must happen before it is fulfilled?
+</p>
+
+<div class="row"><div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG), as it renders today</h3><svg aria-labelledby="mage-title-transaction-lifecycle mage-desc-transaction-lifecycle" class="mage-svg" data-direction="left-to-right" data-subject-id="transaction-lifecycle" data-subject-kind="machine" data-system-hash="fnv1a64:29836d5591b9245e" height="240" role="img" viewBox="-31 0 1420.82 240" width="1420.82" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-transaction-lifecycle">transaction-lifecycle</title>
+  <desc id="mage-desc-transaction-lifecycle">state machine &quot;transaction-lifecycle&quot;: 6 nodes, 6 relations. Question: What states can an order pass through, and what must happen before it is fulfilled?
+ Includes: transaction states, events that advance the transaction, permitted transition ordering, terminal fulfilled/cancelled states, any state variables needed by lifecycle properties. Deliberately omits: which service publishes each event, event-routing topology, event payload contents, data sensitivity, processing latency, payment implementation, fulfillment implementation. System: fnv1a64:29836d5591b9245e.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:transaction-lifecycle:0" data-edge-kind="transition" data-from="created" data-to="payment-pending" id="mage-edge-t:transaction-lifecycle:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,101.68 222.05,118 306.1,118" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="222.05" y="122">begin-payment</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:1" data-edge-kind="transition" data-from="created" data-to="cancelled" id="mage-edge-t:transaction-lifecycle:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,70.73 222.05,39.75 377.35,39.75 544.67,39.75 640.73,46.9" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="377.35" y="43.75">cancel</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:2" data-edge-kind="transition" data-from="payment-pending" data-to="paid" id="mage-edge-t:transaction-lifecycle:2">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="448.6,123.96 544.67,132 640.73,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="544.67" y="136">payment-completed</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:3" data-edge-kind="transition" data-from="payment-pending" data-to="cancelled" id="mage-edge-t:transaction-lifecycle:3">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="448.6,100.97 544.67,78 640.73,60.83" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="544.67" y="82">cancel</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:4" data-edge-kind="transition" data-from="paid" data-to="fulfillment-pending" id="mage-edge-t:transaction-lifecycle:4">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="750.73,132 846.8,132 942.86,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="846.8" y="136">begin-fulfillment</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:5" data-edge-kind="transition" data-from="fulfillment-pending" data-to="fulfilled" id="mage-edge-t:transaction-lifecycle:5">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="1113.76,132 1182.79,132 1251.82,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="1182.79" y="136">complete</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="cancelled" data-node-kind="state" data-rank="2" data-reading-index="3" id="mage-node-cancelled">
+      <title>cancelled : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="640.73" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="695.73" y="52">cancelled</text>
+    </g>
+    <g data-initial="true" data-node-id="created" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-created">
+      <title>created : state</title>
+      <circle class="mage-initial" cx="2" cy="91" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="91" y2="91"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="92">created</text>
+    </g>
+    <g data-node-id="fulfilled" data-node-kind="state" data-rank="4" data-reading-index="6" id="mage-node-fulfilled">
+      <title>fulfilled : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="1251.82" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1306.82" y="133">fulfilled</text>
+    </g>
+    <g data-node-id="fulfillment-pending" data-node-kind="state" data-rank="3" data-reading-index="5" id="mage-node-fulfillment-pending">
+      <title>fulfillment-pending : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="170.9" x="942.86" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1028.31" y="133">fulfillment-pending</text>
+    </g>
+    <g data-node-id="paid" data-node-kind="state" data-rank="2" data-reading-index="4" id="mage-node-paid">
+      <title>paid : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="640.73" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="695.73" y="133">paid</text>
+    </g>
+    <g data-node-id="payment-pending" data-node-kind="state" data-rank="1" data-reading-index="2" id="mage-node-payment-pending">
+      <title>payment-pending : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="142.5" x="306.1" y="95"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="377.35" y="119">payment-pending</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-3" y="195"/>
+      <text class="mage-key" x="45" y="205">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>A′ — Shipped painter, guard/effect text on labels (pilot tweak, same painter)</h3><svg aria-labelledby="mage-title-transaction-lifecycle mage-desc-transaction-lifecycle" class="mage-svg" data-direction="left-to-right" data-subject-id="transaction-lifecycle" data-subject-kind="machine" data-system-hash="fnv1a64:86214bf2f6921699" height="240" role="img" viewBox="-31 0 1571.02 240" width="1571.02" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-transaction-lifecycle">transaction-lifecycle</title>
+  <desc id="mage-desc-transaction-lifecycle">state machine &quot;transaction-lifecycle&quot;: 6 nodes, 6 relations. Question: What states can an order pass through, and what must happen before it is fulfilled?
+ Includes: transaction states, events that advance the transaction, permitted transition ordering, terminal fulfilled/cancelled states, any state variables needed by lifecycle properties. Deliberately omits: which service publishes each event, event-routing topology, event payload contents, data sensitivity, processing latency, payment implementation, fulfillment implementation. System: fnv1a64:86214bf2f6921699.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:transaction-lifecycle:0" data-edge-kind="transition" data-from="created" data-to="payment-pending" id="mage-edge-t:transaction-lifecycle:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,101.68 222.05,118 306.1,118" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="222.05" y="122">begin-payment</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:1" data-edge-kind="transition" data-from="created" data-to="cancelled" id="mage-edge-t:transaction-lifecycle:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,70.73 222.05,39.75 377.35,39.75 544.67,39.75 640.73,46.9" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="377.35" y="43.75">cancel</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:2" data-edge-kind="transition" data-from="payment-pending" data-to="paid" id="mage-edge-t:transaction-lifecycle:2">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="448.6,123.96 544.67,132 640.73,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="544.67" y="136">payment-completed</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:3" data-edge-kind="transition" data-from="payment-pending" data-to="cancelled" id="mage-edge-t:transaction-lifecycle:3">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="448.6,100.97 544.67,78 640.73,60.83" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="544.67" y="82">cancel</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:4" data-edge-kind="transition" data-from="paid" data-to="fulfillment-pending" id="mage-edge-t:transaction-lifecycle:4">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="750.73,132 846.8,132 942.86,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="846.8" y="136">begin-fulfillment</text>
+    </g>
+    <g data-edge-id="t:transaction-lifecycle:5" data-edge-kind="transition" data-from="fulfillment-pending" data-to="fulfilled" id="mage-edge-t:transaction-lifecycle:5">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="1113.76,132 1257.89,132 1402.02,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="1257.89" y="136">complete / fulfilled_once := true</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="cancelled" data-node-kind="state" data-rank="2" data-reading-index="3" id="mage-node-cancelled">
+      <title>cancelled : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="640.73" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="695.73" y="52">cancelled</text>
+    </g>
+    <g data-initial="true" data-node-id="created" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-created">
+      <title>created : state</title>
+      <circle class="mage-initial" cx="2" cy="91" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="91" y2="91"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="92">created</text>
+    </g>
+    <g data-node-id="fulfilled" data-node-kind="state" data-rank="4" data-reading-index="6" id="mage-node-fulfilled">
+      <title>fulfilled : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="1402.02" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1457.02" y="133">fulfilled</text>
+    </g>
+    <g data-node-id="fulfillment-pending" data-node-kind="state" data-rank="3" data-reading-index="5" id="mage-node-fulfillment-pending">
+      <title>fulfillment-pending : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="170.9" x="942.86" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1028.31" y="133">fulfillment-pending</text>
+    </g>
+    <g data-node-id="paid" data-node-kind="state" data-rank="2" data-reading-index="4" id="mage-node-paid">
+      <title>paid : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="640.73" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="695.73" y="133">paid</text>
+    </g>
+    <g data-node-id="payment-pending" data-node-kind="state" data-rank="1" data-reading-index="2" id="mage-node-payment-pending">
+      <title>payment-pending : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="142.5" x="306.1" y="95"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="377.35" y="119">payment-pending</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-3" y="195"/>
+      <text class="mage-key" x="45" y="205">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>stateDiagram-v2</code>, one line per transition (honest)</h3><svg id="m5" width="1516.578125" xmlns="http://www.w3.org/2000/svg" class="statediagram" height="336.5" viewBox="0 0 1516.578125 336.5" role="graphics-document document" aria-roledescription="stateDiagram"><style>#m5{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m5 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m5 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m5 .error-icon{fill:#552222;}#m5 .error-text{fill:#552222;stroke:#552222;}#m5 .edge-thickness-normal{stroke-width:1px;}#m5 .edge-thickness-thick{stroke-width:3.5px;}#m5 .edge-pattern-solid{stroke-dasharray:0;}#m5 .edge-thickness-invisible{stroke-width:0;fill:none;}#m5 .edge-pattern-dashed{stroke-dasharray:3;}#m5 .edge-pattern-dotted{stroke-dasharray:2;}#m5 .marker{fill:#666;stroke:#666;}#m5 .marker.cross{stroke:#666;}#m5 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m5 p{margin:0;}#m5 defs [id$="-barbEnd"]{fill:#000;stroke:#000;}#m5 g.stateGroup text{fill:#999;stroke:none;font-size:10px;}#m5 g.stateGroup text{fill:#000000;stroke:none;font-size:10px;}#m5 g.stateGroup .state-title{font-weight:bolder;fill:#111111;}#m5 g.stateGroup rect{fill:#eee;stroke:#999;}#m5 g.stateGroup line{stroke:#666;stroke-width:1;}#m5 .transition{stroke:#000;stroke-width:1;fill:none;}#m5 .stateGroup .composit{fill:#ffffff;border-bottom:1px;}#m5 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#m5 .state-note{stroke:#999;fill:#666;}#m5 .state-note text{fill:#fff;stroke:none;font-size:10px;}#m5 .stateLabel .box{stroke:none;stroke-width:0;fill:#eee;opacity:0.5;}#m5 .edgeLabel .label rect{fill:#eee;opacity:0.5;}#m5 .edgeLabel{background-color:white;text-align:center;}#m5 .edgeLabel p{background-color:white;}#m5 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m5 .edgeLabel .label text{fill:#000000;}#m5 .label div .edgeLabel{color:#000000;}#m5 .stateLabel text{fill:#111111;font-size:10px;font-weight:bold;}#m5 .node circle.state-start{fill:#222;stroke:#222;}#m5 .node .fork-join{fill:#222;stroke:#222;}#m5 .node circle.state-end{fill:hsl(0, 0%, 83.3333333333%);stroke:#ffffff;stroke-width:1.5;}#m5 .end-state-inner{fill:#ffffff;stroke-width:1.5;}#m5 .node rect{fill:#eee;stroke:#000;stroke-width:1px;}#m5 .node polygon{fill:#eee;stroke:#000;stroke-width:1px;}#m5 [id$="-barbEnd"]{fill:#666;}#m5 .statediagram-cluster rect{fill:#eee;stroke:#000;stroke-width:1px;}#m5 .cluster-label,#m5 .nodeLabel{color:#111111;}#m5 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#m5 .statediagram-state .divider{stroke:#000;}#m5 .statediagram-state .title-state{rx:5px;ry:5px;}#m5 .statediagram-cluster.statediagram-cluster .inner{fill:#ffffff;}#m5 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f4f4f4;}#m5 .statediagram-cluster .inner{rx:0;ry:0;}#m5 .statediagram-state rect.basic{rx:5px;ry:5px;}#m5 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f4f4f4;}#m5 .note-edge{stroke-dasharray:5;}#m5 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m5 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m5 .statediagram-note text{fill:#fff;}#m5 .statediagram-note .nodeLabel{color:#fff;}#m5 .statediagram .edgeLabel{color:red;}#m5 [id$="-dependencyStart"],#m5 [id$="-dependencyEnd"]{fill:#666;stroke:#666;stroke-width:1;}#m5 .statediagramTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m5 [data-look="neo"].statediagram-cluster rect{fill:#eee;stroke:url(#m5-gradient);stroke-width:1;}#m5 [data-look="neo"].statediagram-cluster rect.outer{rx:5px;ry:5px;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 .node .neo-node{stroke:#999;}#m5 [data-look="neo"].node rect,#m5 [data-look="neo"].cluster rect,#m5 [data-look="neo"].node polygon{stroke:url(#m5-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 [data-look="neo"].swimlane.cluster rect{filter:none;}#m5 [data-look="neo"].node path{stroke:url(#m5-gradient);stroke-width:1px;}#m5 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m5 [data-look="neo"].node circle{stroke:url(#m5-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 [data-look="neo"].node circle .state-start{fill:#000000;}#m5 [data-look="neo"].icon-shape .icon{fill:url(#m5-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m5-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m5 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><defs><marker id="m5_stateDiagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M 19,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><g class="root"><g class="clusters"><g class="note-cluster" id="m5-state-created----parent-7"><rect x="300.4140625" y="8" width="280" height="148" fill="none"></rect></g></g><g class="edgePaths"><path d="M22,188L26.167,188C30.333,188,38.667,188,47,188C55.333,188,63.667,188,67.833,188L72,188" id="m5-edge0" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge0" data-points="W3sieCI6MjIsInkiOjE4OH0seyJ4Ijo0NywieSI6MTg4fSx7IngiOjcyLCJ5IjoxODh9XQ==" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M131.8,208L146.806,220.417C161.812,232.833,191.824,257.667,219.926,270.083C248.029,282.5,274.221,282.5,298.917,282.5C323.612,282.5,346.81,282.5,358.409,282.5L370.008,282.5" id="m5-edge1" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge1" data-points="W3sieCI6MTMxLjc5OTcwNjUxNDU1MDI4LCJ5IjoyMDh9LHsieCI6MjIxLjgzNTkzNzUsInkiOjI4Mi41fSx7IngiOjMwMC40MTQwNjI1LCJ5IjoyODIuNX0seyJ4IjozNzAuMDA3ODEyNSwieSI6MjgyLjV9XQ==" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M143.258,188L156.354,188C169.451,188,195.643,188,221.836,188C248.029,188,274.221,188,310.651,188C347.081,188,393.747,188,440.414,188C487.081,188,533.747,188,573.273,188C612.799,188,645.185,188,677.57,189.857C709.956,191.713,742.341,195.426,758.534,197.283L774.727,199.139" id="m5-edge2" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge2" data-points="W3sieCI6MTQzLjI1NzgxMjUsInkiOjE4OH0seyJ4IjoyMjEuODM1OTM3NSwieSI6MTg4fSx7IngiOjMwMC40MTQwNjI1LCJ5IjoxODh9LHsieCI6NDQwLjQxNDA2MjUsInkiOjE4OH0seyJ4Ijo1ODAuNDE0MDYyNSwieSI6MTg4fSx7IngiOjY3Ny41NzAzMTI1LCJ5IjoxODh9LHsieCI6Nzc0LjcyNjU2MjUsInkiOjE5OS4xMzkwMDI0MDcyMTA0M31d" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M510.82,293.564L522.419,295.387C534.018,297.209,557.216,300.855,585.008,302.677C612.799,304.5,645.185,304.5,680.737,304.5C716.289,304.5,755.008,304.5,774.367,304.5L793.727,304.5" id="m5-edge3" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge3" data-points="W3sieCI6NTEwLjgyMDMxMjUsInkiOjI5My41NjM4MzkyODU3MTQyN30seyJ4Ijo1ODAuNDE0MDYyNSwieSI6MzA0LjV9LHsieCI6Njc3LjU3MDMxMjUsInkiOjMwNC41fSx7IngiOjc5My43MjY1NjI1LCJ5IjozMDQuNX1d" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M502.636,262.5L515.599,258.333C528.562,254.167,554.488,245.833,583.644,241.667C612.799,237.5,645.185,237.5,677.57,233.613C709.956,229.726,742.341,221.952,758.534,218.065L774.727,214.178" id="m5-edge4" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge4" data-points="W3sieCI6NTAyLjYzNjI4NDcyMjIyMjIzLCJ5IjoyNjIuNX0seyJ4Ijo1ODAuNDE0MDYyNSwieSI6MjM3LjV9LHsieCI6Njc3LjU3MDMxMjUsInkiOjIzNy41fSx7IngiOjc3NC43MjY1NjI1LCJ5IjoyMTQuMTc3NzEzNzA5OTAzMTR9XQ==" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M840.523,304.5L857.96,304.5C875.396,304.5,910.268,304.5,941.974,304.5C973.68,304.5,1002.219,304.5,1016.488,304.5L1030.758,304.5" id="m5-edge5" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge5" data-points="W3sieCI6ODQwLjUyMzQzNzUsInkiOjMwNC41fSx7IngiOjk0NS4xNDA2MjUsInkiOjMwNC41fSx7IngiOjEwMzAuNzU3ODEyNSwieSI6MzA0LjV9XQ==" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M1185.648,304.5L1206.482,304.5C1227.315,304.5,1268.982,304.5,1310.648,304.5C1352.315,304.5,1393.982,304.5,1414.815,304.5L1435.648,304.5" id="m5-edge6" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge6" data-points="W3sieCI6MTE4NS42NDg0Mzc1LCJ5IjozMDQuNX0seyJ4IjoxMzEwLjY0ODQzNzUsInkiOjMwNC41fSx7IngiOjE0MzUuNjQ4NDM3NSwieSI6MzA0LjV9XQ==" data-look="classic" marker-end="url(#m5_stateDiagram-barbEnd)"></path><path d="M129.177,168L144.62,153.667C160.064,139.333,190.95,110.667,219.489,96.333C248.029,82,274.221,82,291.484,82C308.747,82,317.081,82,321.247,82L325.414,82" id="m5-created-created----note-7" class=" edge-thickness-normal edge-pattern-solid transition note-edge" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="created-created----note-7" data-points="W3sieCI6MTI5LjE3NzQwMjcxMjI2NDE1LCJ5IjoxNjh9LHsieCI6MjIxLjgzNTkzNzUsInkiOjgyfSx7IngiOjMwMC40MTQwNjI1LCJ5Ijo4Mn0seyJ4IjozMjUuNDE0MDYyNSwieSI6ODJ9XQ==" data-look="classic"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="edge0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(221.8359375, 282.5)"><g class="label" data-id="edge1" transform="translate(-53.578125, -12)"><foreignObject width="107.15625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>begin-payment</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(440.4140625, 188)"><g class="label" data-id="edge2" transform="translate(-23.21875, -12)"><foreignObject width="46.4375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>cancel</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(677.5703125, 304.5)"><g class="label" data-id="edge3" transform="translate(-72.15625, -12)"><foreignObject width="144.3125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>payment-completed</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(677.5703125, 237.5)"><g class="label" data-id="edge4" transform="translate(-23.21875, -12)"><foreignObject width="46.4375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>cancel</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(945.140625, 304.5)"><g class="label" data-id="edge5" transform="translate(-60.6171875, -12)"><foreignObject width="121.234375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>begin-fulfillment</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1310.6484375, 304.5)"><g class="label" data-id="edge6" transform="translate(-100, -24)"><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel "><p>complete / fulfilled_once := true</p></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="created-created----note-7" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node  statediagram-state " id="m5-state-fulfillment_pending-6" data-look="classic" transform="translate(1108.203125, 304.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-77.4453125" y="-20" width="154.890625" height="40"></rect><g class="label" style="" transform="translate(-69.4453125, -12)"><rect></rect><foreignObject width="138.890625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>fulfillment-pending</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m5-state-payment_pending-4" data-look="classic" transform="translate(440.4140625, 282.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-70.40625" y="-20" width="140.8125" height="40"></rect><g class="label" style="" transform="translate(-62.40625, -12)"><rect></rect><foreignObject width="124.8125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>payment-pending</p></span></div></foreignObject></g></g><g class="node default" id="m5-state-root_start-0" data-look="classic" transform="translate(15, 188)"><circle class="state-start" r="7" width="14" height="14"></circle></g><g class="node  statediagram-state " id="m5-state-created-7" data-look="classic" transform="translate(107.62890625, 188)"><rect class="basic label-container" style="" rx="5" ry="5" x="-35.62890625" y="-20" width="71.2578125" height="40"></rect><g class="label" style="" transform="translate(-27.62890625, -12)"><rect></rect><foreignObject width="55.2578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>created</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m5-state-cancelled-4" data-look="classic" transform="translate(817.125, 204)"><rect class="basic label-container" style="" rx="5" ry="5" x="-42.3984375" y="-20" width="84.796875" height="40"></rect><g class="label" style="" transform="translate(-34.3984375, -12)"><rect></rect><foreignObject width="68.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>cancelled</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m5-state-paid-5" data-look="classic" transform="translate(817.125, 304.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-23.3984375" y="-20" width="46.796875" height="40"></rect><g class="label" style="" transform="translate(-15.3984375, -12)"><rect></rect><foreignObject width="30.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>paid</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m5-state-fulfilled-6" data-look="classic" transform="translate(1472.11328125, 304.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-36.46484375" y="-20" width="72.9296875" height="40"></rect><g class="label" style="" transform="translate(-28.46484375, -12)"><rect></rect><foreignObject width="56.9296875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>fulfilled</p></span></div></foreignObject></g></g><g class="node statediagram-note " id="m5-state-created----note-7" data-look="classic" transform="translate(440.4140625, 82)"><g class="basic label-container outer-path"><path d="M-115 -39 L115 -39 L115 39 L-115 39" stroke="none" stroke-width="0" fill="#666" style=""></path><path d="M-115 -39 C-60.183163615298355 -39, -5.36632723059671 -39, 115 -39 M-115 -39 C-40.20871601187028 -39, 34.58256797625944 -39, 115 -39 M115 -39 C115 -11.119133011455911, 115 16.761733977088177, 115 39 M115 -39 C115 -22.876299819066627, 115 -6.752599638133255, 115 39 M115 39 C58.60356203606539 39, 2.2071240721307817 39, -115 39 M115 39 C39.43634546105817 39, -36.127309077883666 39, -115 39 M-115 39 C-115 14.6035487377487, -115 -9.792902524502601, -115 -39 M-115 39 C-115 13.37632100768786, -115 -12.24735798462428, -115 -39" stroke="#999" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="label noteLabel" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel markdown-node-label"><p>fulfilled_once : boolean {false, true}, initially false</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="m5-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m5-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m5-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>stateDiagram-v2
+  direction LR
+  state "fulfillment-pending" as fulfillment_pending
+  state "payment-pending" as payment_pending
+  [*] --> created
+  created --> payment_pending : begin-payment
+  created --> cancelled : cancel
+  payment_pending --> paid : payment-completed
+  payment_pending --> cancelled : cancel
+  paid --> fulfillment_pending : begin-fulfillment
+  fulfillment_pending --> fulfilled : complete / fulfilled_once := true
+  note right of created
+    fulfilled_once : boolean {false, true}, initially false
+  end note</pre></details></div></div>
+<h2>Structural model: <code>data-policy</code></h2>
+<p class="meta">What data does each transaction event carry, and what sensitivity of data may each service process?
+</p>
+<div class="row">
+<div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG); relation types live in the key strip, not on edges</h3><svg aria-labelledby="mage-title-data-policy mage-desc-data-policy" class="mage-svg" data-direction="left-to-right" data-subject-id="data-policy" data-subject-kind="model" data-system-hash="fnv1a64:29836d5591b9245e" height="887.5" role="img" viewBox="0 0 584.62 887.5" width="584.62" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-data-policy">Data Policy</title>
+  <desc id="mage-desc-data-policy">graph model &quot;Data Policy&quot;: 12 nodes, 5 relations. Question: What data does each transaction event carry, and what sensitivity of data may each service process?
+ Includes: event payload-field identity, data sensitivity classification, service processing permissions, relationships between event types and carried fields. Deliberately omits: event-routing topology, actual runtime delivery, transaction ordering, document/message contents, encryption mechanisms, authentication mechanisms, implementation of access controls. System: fnv1a64:29836d5591b9245e.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-arrow-form="triangle" data-edge-id="order-created-carries-customer-id" data-edge-kind="relation" data-from="order-created" data-to="customer-id" data-via="carries_field" id="mage-edge-order-created-carries-customer-id">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,551.57 223.15,569 268.15,569" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="triangle" data-edge-id="order-created-carries-product-id" data-edge-kind="relation" data-from="order-created" data-to="product-id" data-via="carries_field" id="mage-edge-order-created-carries-product-id">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,493.43 223.15,476 274.15,476" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="triangle" data-edge-id="order-created-carries-shipping-address" data-edge-kind="relation" data-from="order-created" data-to="shipping-address" data-via="carries_field" id="mage-edge-order-created-carries-shipping-address">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,493 223.15,383 268.15,383" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="triangle" data-edge-id="payment-completed-carries-order-id" data-edge-kind="relation" data-from="payment-completed" data-to="order-id" data-via="carries_field" id="mage-edge-payment-completed-carries-order-id">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,737.57 223.15,755 274.15,755" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="triangle" data-edge-id="payment-completed-carries-payment-status" data-edge-kind="relation" data-from="payment-completed" data-to="payment-status" data-via="carries_field" id="mage-edge-payment-completed-carries-payment-status">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,679.43 223.15,662 268.15,662" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="analytics" data-node-kind="entity" data-rank="0" data-reading-index="1" id="mage-node-analytics">
+      <title>Analytics : service
+permits = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="138.13" x="34.01" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="52">Analytics</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="66">permits: internal</text>
+    </g>
+    <g data-node-id="billing" data-node-kind="entity" data-rank="0" data-reading-index="2" id="mage-node-billing">
+      <title>Billing : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="121"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="145">Billing</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="159">permits: restricted</text>
+    </g>
+    <g data-node-id="checkout" data-node-kind="entity" data-rank="0" data-reading-index="3" id="mage-node-checkout">
+      <title>Checkout : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="214"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="238">Checkout</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="252">permits: restricted</text>
+    </g>
+    <g data-node-id="customer-id" data-node-kind="entity" data-rank="1" data-reading-index="10" id="mage-node-customer-id">
+      <title>customer-id : field
+classification = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="192.2" x="268.15" y="539.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="364.25" y="563.5">customer-id</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="364.25" y="577.5">classification: restricted</text>
+    </g>
+    <g data-node-id="fulfillment" data-node-kind="entity" data-rank="0" data-reading-index="4" id="mage-node-fulfillment">
+      <title>Fulfillment : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="307"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="331">Fulfillment</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="345">permits: restricted</text>
+    </g>
+    <g data-node-id="inventory" data-node-kind="entity" data-rank="0" data-reading-index="5" id="mage-node-inventory">
+      <title>Inventory : service
+permits = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="138.13" x="34.01" y="400"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="424">Inventory</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="438">permits: internal</text>
+    </g>
+    <g data-node-id="order-created" data-node-kind="entity" data-rank="0" data-reading-index="6" id="mage-node-order-created">
+      <title>OrderCreated : event-type
+carries = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="493"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="517">OrderCreated</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="531">carries: restricted</text>
+    </g>
+    <g data-node-id="order-id" data-node-kind="entity" data-rank="1" data-reading-index="12" id="mage-node-order-id">
+      <title>order-id : field
+classification = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="180.18" x="274.15" y="725.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="364.25" y="749.5">order-id</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="364.25" y="763.5">classification: internal</text>
+    </g>
+    <g data-node-id="payment-completed" data-node-kind="entity" data-rank="0" data-reading-index="7" id="mage-node-payment-completed">
+      <title>PaymentCompleted : event-type
+carries = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="679"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="703">PaymentCompleted</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="717">carries: restricted</text>
+    </g>
+    <g data-node-id="payment-status" data-node-kind="entity" data-rank="1" data-reading-index="11" id="mage-node-payment-status">
+      <title>payment-status : field
+classification = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="192.2" x="268.15" y="632.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="364.25" y="656.5">payment-status</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="364.25" y="670.5">classification: restricted</text>
+    </g>
+    <g data-node-id="product-id" data-node-kind="entity" data-rank="1" data-reading-index="9" id="mage-node-product-id">
+      <title>product-id : field
+classification = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="180.18" x="274.15" y="446.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="364.25" y="470.5">product-id</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="364.25" y="484.5">classification: internal</text>
+    </g>
+    <g data-node-id="shipping-address" data-node-kind="entity" data-rank="1" data-reading-index="8" id="mage-node-shipping-address">
+      <title>shipping-address : field
+classification = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="192.2" x="268.15" y="353.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="364.25" y="377.5">shipping-address</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="364.25" y="391.5">classification: restricted</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="relation" data-key-form="triangle" data-key-id="carries_field">
+      <line class="mage-edge mage-rel-a" marker-end="url(#mage-arrow-triangle)" stroke-width="2" x1="28" x2="58" y1="830.5" y2="830.5"/>
+      <text class="mage-key" x="76" y="834.5">carries field</text>
+    </g>
+    <g data-key-channel="shape" data-key-form="entity" data-key-id="entity">
+      <rect class="mage-box" height="12" rx="2" stroke-width="1.5" width="30" x="28" y="842.5"/>
+      <text class="mage-key" x="76" y="852.5">entity (a service or component); small text inside lists its declared attributes</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>flowchart</code> (vendored); relation types as edge labels, containment as subgraph</h3><svg id="m6" width="589.8515625" xmlns="http://www.w3.org/2000/svg" class="flowchart" height="1054" viewBox="0 0 589.8515625 1054" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#m6{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m6 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m6 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m6 .error-icon{fill:#552222;}#m6 .error-text{fill:#552222;stroke:#552222;}#m6 .edge-thickness-normal{stroke-width:1px;}#m6 .edge-thickness-thick{stroke-width:3.5px;}#m6 .edge-pattern-solid{stroke-dasharray:0;}#m6 .edge-thickness-invisible{stroke-width:0;fill:none;}#m6 .edge-pattern-dashed{stroke-dasharray:3;}#m6 .edge-pattern-dotted{stroke-dasharray:2;}#m6 .marker{fill:#666;stroke:#666;}#m6 .marker.cross{stroke:#666;}#m6 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m6 p{margin:0;}#m6 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#m6 .cluster-label text{fill:#333;}#m6 .cluster-label span{color:#333;}#m6 .cluster-label span p{background-color:transparent;}#m6 .label text,#m6 span{fill:#000000;color:#000000;}#m6 .node rect,#m6 .node circle,#m6 .node ellipse,#m6 .node polygon,#m6 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#m6 .rough-node .label text,#m6 .node .label text,#m6 .image-shape .label,#m6 .icon-shape .label{text-anchor:middle;}#m6 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#m6 .rough-node .label,#m6 .node .label,#m6 .image-shape .label,#m6 .icon-shape .label{text-align:center;}#m6 .node.clickable{cursor:pointer;}#m6 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#m6 .arrowheadPath{fill:#333333;}#m6 .edgePath .path{stroke:#666;stroke-width:1px;}#m6 .flowchart-link{stroke:#666;fill:none;}#m6 .edgeLabel{background-color:white;text-align:center;}#m6 .edgeLabel p{background-color:white;}#m6 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m6 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#m6 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#m6 .cluster text{fill:#333;}#m6 .cluster span{color:#333;}#m6 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#m6 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m6 rect.text{fill:none;stroke-width:0;}#m6 .icon-shape,#m6 .image-shape{background-color:white;text-align:center;}#m6 .icon-shape p,#m6 .image-shape p{background-color:white;padding:2px;}#m6 .icon-shape .label rect,#m6 .image-shape .label rect{opacity:0.5;background-color:white;fill:white;}#m6 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#m6 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#m6 .node .neo-node{stroke:#999;}#m6 [data-look="neo"].node rect,#m6 [data-look="neo"].cluster rect,#m6 [data-look="neo"].node polygon{stroke:url(#m6-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m6 [data-look="neo"].swimlane.cluster rect{filter:none;}#m6 [data-look="neo"].node path{stroke:url(#m6-gradient);stroke-width:1px;}#m6 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m6 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m6 [data-look="neo"].node circle{stroke:url(#m6-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m6 [data-look="neo"].node circle .state-start{fill:#000000;}#m6 [data-look="neo"].icon-shape .icon{fill:url(#m6-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m6 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m6-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m6 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="m6_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m6_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m6_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="m6_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="m6_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m6_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m6_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m6_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m6_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m6_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m6_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="m6_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M142.112,648L164.63,622.5C187.149,597,232.186,546,265.684,520.5C299.182,495,321.142,495,332.122,495L343.102,495" id="m6-L_order_created_customer_id_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_order_created_customer_id_0" data-points="W3sieCI6MTQyLjExMTg3NzQ0MTQwNjI1LCJ5Ijo2NDh9LHsieCI6Mjc3LjIyMjY1NjI1LCJ5Ijo0OTV9LHsieCI6MzQ3LjEwMTU2MjUsInkiOjQ5NX1d" data-look="classic" marker-end="url(#m6_flowchart-v2-pointEnd)"></path><path d="M202.512,651.201L214.964,646.501C227.415,641.801,252.319,632.4,276.917,627.7C301.514,623,325.806,623,337.952,623L350.098,623" id="m6-L_order_created_product_id_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_order_created_product_id_0" data-points="W3sieCI6MjAyLjUxMTcxODc1LCJ5Ijo2NTEuMjAwOTkwNjY5Mjc3OH0seyJ4IjoyNzcuMjIyNjU2MjUsInkiOjYyM30seyJ4IjozNTQuMDk3NjU2MjUsInkiOjYyM31d" data-look="classic" marker-end="url(#m6_flowchart-v2-pointEnd)"></path><path d="M202.512,722.799L214.964,727.499C227.415,732.199,252.319,741.6,275.751,746.3C299.182,751,321.142,751,332.122,751L343.102,751" id="m6-L_order_created_shipping_address_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_order_created_shipping_address_0" data-points="W3sieCI6MjAyLjUxMTcxODc1LCJ5Ijo3MjIuNzk5MDA5MzMwNzIyMn0seyJ4IjoyNzcuMjIyNjU2MjUsInkiOjc1MX0seyJ4IjozNDcuMTAxNTYyNSwieSI6NzUxfV0=" data-look="classic" marker-end="url(#m6_flowchart-v2-pointEnd)"></path><path d="M207.344,905.377L218.99,900.981C230.637,896.585,253.93,887.792,277.722,883.396C301.514,879,325.806,879,337.952,879L350.098,879" id="m6-L_payment_completed_order_id_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_payment_completed_order_id_0" data-points="W3sieCI6MjA3LjM0Mzc1LCJ5Ijo5MDUuMzc3MDUzMzM0ODY5M30seyJ4IjoyNzcuMjIyNjU2MjUsInkiOjg3OX0seyJ4IjozNTQuMDk3NjU2MjUsInkiOjg3OX1d" data-look="classic" marker-end="url(#m6_flowchart-v2-pointEnd)"></path><path d="M207.344,980.623L218.99,985.019C230.637,989.415,253.93,998.208,276.556,1002.604C299.182,1007,321.142,1007,332.122,1007L343.102,1007" id="m6-L_payment_completed_payment_status_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_payment_completed_payment_status_0" data-points="W3sieCI6MjA3LjM0Mzc1LCJ5Ijo5ODAuNjIyOTQ2NjY1MTMwN30seyJ4IjoyNzcuMjIyNjU2MjUsInkiOjEwMDd9LHsieCI6MzQ3LjEwMTU2MjUsInkiOjEwMDd9XQ==" data-look="classic" marker-end="url(#m6_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(277.22265625, 495)"><g class="label" data-id="L_order_created_customer_id_0" transform="translate(-44.87890625, -12)"><foreignObject width="89.7578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>carries_field</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(277.22265625, 623)"><g class="label" data-id="L_order_created_product_id_0" transform="translate(-44.87890625, -12)"><foreignObject width="89.7578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>carries_field</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(277.22265625, 751)"><g class="label" data-id="L_order_created_shipping_address_0" transform="translate(-44.87890625, -12)"><foreignObject width="89.7578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>carries_field</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(277.22265625, 879)"><g class="label" data-id="L_payment_completed_order_id_0" transform="translate(-44.87890625, -12)"><foreignObject width="89.7578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>carries_field</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(277.22265625, 1007)"><g class="label" data-id="L_payment_completed_payment_status_0" transform="translate(-44.87890625, -12)"><foreignObject width="89.7578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>carries_field</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default  " id="m6-flowchart-analytics-0" data-look="classic" transform="translate(107.671875, 47)"><rect class="basic label-container" style="" x="-90.83984375" y="-39" width="181.6796875" height="78"></rect><g class="label" style="" transform="translate(-60.83984375, -24)"><rect></rect><foreignObject width="121.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Analytics<br/>permits: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-billing-1" data-look="classic" transform="translate(107.671875, 175)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Billing<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-checkout-2" data-look="classic" transform="translate(107.671875, 303)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Checkout<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-customer_id-3" data-look="classic" transform="translate(464.4765625, 495)"><rect class="basic label-container" style="" x="-117.375" y="-39" width="234.75" height="78"></rect><g class="label" style="" transform="translate(-87.375, -24)"><rect></rect><foreignObject width="174.75" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>customer-id<br/>classification: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-fulfillment-4" data-look="classic" transform="translate(107.671875, 431)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Fulfillment<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-inventory-5" data-look="classic" transform="translate(107.671875, 559)"><rect class="basic label-container" style="" x="-90.83984375" y="-39" width="181.6796875" height="78"></rect><g class="label" style="" transform="translate(-60.83984375, -24)"><rect></rect><foreignObject width="121.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Inventory<br/>permits: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-order_created-6" data-look="classic" transform="translate(107.671875, 687)"><rect class="basic label-container" style="" x="-94.83984375" y="-39" width="189.6796875" height="78"></rect><g class="label" style="" transform="translate(-64.83984375, -24)"><rect></rect><foreignObject width="129.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>OrderCreated<br/>carries: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-order_id-7" data-look="classic" transform="translate(464.4765625, 879)"><rect class="basic label-container" style="" x="-110.37890625" y="-39" width="220.7578125" height="78"></rect><g class="label" style="" transform="translate(-80.37890625, -24)"><rect></rect><foreignObject width="160.7578125" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>order-id<br/>classification: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-payment_completed-8" data-look="classic" transform="translate(107.671875, 943)"><rect class="basic label-container" style="" x="-99.671875" y="-39" width="199.34375" height="78"></rect><g class="label" style="" transform="translate(-69.671875, -24)"><rect></rect><foreignObject width="139.34375" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>PaymentCompleted<br/>carries: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-payment_status-9" data-look="classic" transform="translate(464.4765625, 1007)"><rect class="basic label-container" style="" x="-117.375" y="-39" width="234.75" height="78"></rect><g class="label" style="" transform="translate(-87.375, -24)"><rect></rect><foreignObject width="174.75" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>payment-status<br/>classification: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-product_id-10" data-look="classic" transform="translate(464.4765625, 623)"><rect class="basic label-container" style="" x="-110.37890625" y="-39" width="220.7578125" height="78"></rect><g class="label" style="" transform="translate(-80.37890625, -24)"><rect></rect><foreignObject width="160.7578125" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>product-id<br/>classification: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m6-flowchart-shipping_address-11" data-look="classic" transform="translate(464.4765625, 751)"><rect class="basic label-container" style="" x="-117.375" y="-39" width="234.75" height="78"></rect><g class="label" style="" transform="translate(-87.375, -24)"><rect></rect><foreignObject width="174.75" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>shipping-address<br/>classification: restricted</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="m6-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m6-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m6-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>flowchart LR
+  analytics["Analytics&lt;br/>permits: internal"]
+  billing["Billing&lt;br/>permits: restricted"]
+  checkout["Checkout&lt;br/>permits: restricted"]
+  customer_id["customer-id&lt;br/>classification: restricted"]
+  fulfillment["Fulfillment&lt;br/>permits: restricted"]
+  inventory["Inventory&lt;br/>permits: internal"]
+  order_created["OrderCreated&lt;br/>carries: restricted"]
+  order_id["order-id&lt;br/>classification: internal"]
+  payment_completed["PaymentCompleted&lt;br/>carries: restricted"]
+  payment_status["payment-status&lt;br/>classification: restricted"]
+  product_id["product-id&lt;br/>classification: internal"]
+  shipping_address["shipping-address&lt;br/>classification: restricted"]
+  order_created -->|carries_field| customer_id
+  order_created -->|carries_field| product_id
+  order_created -->|carries_field| shipping_address
+  payment_completed -->|carries_field| order_id
+  payment_completed -->|carries_field| payment_status</pre></details></div>
+</div>
+<h2>Structural model: <code>event-flow</code></h2>
+<p class="meta">Which services may publish or subscribe to each event type, which may call one another directly, and where can a published event eventually reach?
+</p>
+<div class="row">
+<div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG); relation types live in the key strip, not on edges</h3><svg aria-labelledby="mage-title-event-flow mage-desc-event-flow" class="mage-svg" data-direction="left-to-right" data-subject-id="event-flow" data-subject-kind="model" data-system-hash="fnv1a64:29836d5591b9245e" height="371" role="img" viewBox="0 0 1166.73 371" width="1166.73" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-event-flow">Event Flow</title>
+  <desc id="mage-desc-event-flow">graph model &quot;Event Flow&quot;: 7 nodes, 13 relations. Question: Which services may publish or subscribe to each event type, which may call one another directly, and where can a published event eventually reach?
+ Includes: service identity, event-type identity, permitted publication, permitted subscription, permitted synchronous invocation, topology required for reachability analysis. Deliberately omits: observed runtime delivery, message latency, message ordering, retries, broker implementation, event payload fields, data sensitivity, transaction state. System: fnv1a64:29836d5591b9245e.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-arrow-form="triangle" data-edge-id="checkout-calls-inventory" data-edge-kind="relation" data-from="checkout" data-to="inventory" data-via="calls" id="mage-edge-checkout-calls-inventory">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="178.15,167.07 223.15,184.5 274.15,184.5" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-edge-id="propagate-billing-payment-completed" data-edge-kind="relation" data-from="billing" data-to="payment-completed" data-via="may_propagate_to" id="mage-edge-propagate-billing-payment-completed">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="658.44,57.5 703.44,57.5 748.44,63.87" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-edge-id="propagate-checkout-order-created" data-edge-kind="relation" data-from="checkout" data-to="order-created" data-via="may_propagate_to" id="mage-edge-propagate-checkout-order-created">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="178.15,108.5 223.15,74.5 268.15,80.87" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-edge-id="propagate-order-created-analytics" data-edge-kind="relation" data-from="order-created" data-to="analytics" data-via="may_propagate_to" id="mage-edge-propagate-order-created-analytics">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="418.29,104.63 463.29,112.5 514.3,128.64" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-edge-id="propagate-order-created-billing" data-edge-kind="relation" data-from="order-created" data-to="billing" data-via="may_propagate_to" id="mage-edge-propagate-order-created-billing">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="418.29,70.24 463.29,57.5 508.29,57.5" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-backedge="true" data-edge-id="propagate-payment-completed-analytics" data-edge-kind="relation" data-from="payment-completed" data-to="analytics" data-via="may_propagate_to" id="mage-edge-propagate-payment-completed-analytics">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="748.44,104 703.44,129.5 652.43,138.42" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="open" data-edge-id="propagate-payment-completed-fulfillment" data-edge-kind="relation" data-from="payment-completed" data-to="fulfillment" data-via="may_propagate_to" id="mage-edge-propagate-payment-completed-fulfillment">
+      <polyline class="mage-edge mage-rel-b mage-plain" fill="none" marker-end="url(#mage-arrow-open)" points="898.58,69.19 943.58,66 988.58,69.19" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="diamond" data-edge-id="billing-publishes-payment-completed" data-edge-kind="relation" data-from="billing" data-to="payment-completed" data-via="publishes" id="mage-edge-billing-publishes-payment-completed">
+      <polyline class="mage-edge mage-rel-c mage-plain" fill="none" marker-end="url(#mage-arrow-diamond)" points="658.44,73.44 703.44,83 748.44,79.81" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="diamond" data-edge-id="checkout-publishes-order-created" data-edge-kind="relation" data-from="checkout" data-to="order-created" data-via="publishes" id="mage-edge-checkout-publishes-order-created">
+      <polyline class="mage-edge mage-rel-c mage-plain" fill="none" marker-end="url(#mage-arrow-diamond)" points="178.15,122.06 223.15,112.5 268.15,104.63" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="square" data-backedge="true" data-edge-id="analytics-subscribes-order-created" data-edge-kind="relation" data-from="analytics" data-to="order-created" data-via="subscribes" id="mage-edge-analytics-subscribes-order-created">
+      <polyline class="mage-edge mage-rel-d mage-plain" fill="none" marker-end="url(#mage-arrow-square)" points="514.3,170.06 463.29,184.5 418.29,121" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="square" data-edge-id="analytics-subscribes-payment-completed" data-edge-kind="relation" data-from="analytics" data-to="payment-completed" data-via="subscribes" id="mage-edge-analytics-subscribes-payment-completed">
+      <polyline class="mage-edge mage-rel-d mage-plain" fill="none" marker-end="url(#mage-arrow-square)" points="652.43,160.28 703.44,167.5 748.44,104" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="square" data-backedge="true" data-edge-id="billing-subscribes-order-created" data-edge-kind="relation" data-from="billing" data-to="order-created" data-via="subscribes" id="mage-edge-billing-subscribes-order-created">
+      <polyline class="mage-edge mage-rel-d mage-plain" fill="none" marker-end="url(#mage-arrow-square)" points="508.29,87 463.29,129.5 418.29,115.26" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="square" data-backedge="true" data-edge-id="fulfillment-subscribes-payment-completed" data-edge-kind="relation" data-from="fulfillment" data-to="payment-completed" data-via="subscribes" id="mage-edge-fulfillment-subscribes-payment-completed">
+      <polyline class="mage-edge mage-rel-d mage-plain" fill="none" marker-end="url(#mage-arrow-square)" points="988.58,79.81 943.58,83 898.58,79.81" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="analytics" data-node-kind="entity" data-rank="2" data-reading-index="5" id="mage-node-analytics">
+      <title>Analytics : service
+permits = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="138.13" x="514.3" y="121"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="583.37" y="145">Analytics</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="583.37" y="159">permits: internal</text>
+    </g>
+    <g data-node-id="billing" data-node-kind="entity" data-rank="2" data-reading-index="4" id="mage-node-billing">
+      <title>Billing : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="508.29" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="583.37" y="52">Billing</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="583.37" y="66">permits: restricted</text>
+    </g>
+    <g data-node-id="checkout" data-node-kind="entity" data-rank="0" data-reading-index="1" id="mage-node-checkout">
+      <title>Checkout : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="28" y="108.5"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="103.07" y="132.5">Checkout</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="103.07" y="146.5">permits: restricted</text>
+    </g>
+    <g data-node-id="fulfillment" data-node-kind="entity" data-rank="4" data-reading-index="7" id="mage-node-fulfillment">
+      <title>Fulfillment : service
+permits = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="988.58" y="45"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1063.66" y="69">Fulfillment</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="1063.66" y="83">permits: restricted</text>
+    </g>
+    <g data-node-id="inventory" data-node-kind="entity" data-rank="1" data-reading-index="3" id="mage-node-inventory">
+      <title>Inventory : service
+permits = internal</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="138.13" x="274.15" y="155"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="343.22" y="179">Inventory</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="343.22" y="193">permits: internal</text>
+    </g>
+    <g data-node-id="order-created" data-node-kind="entity" data-rank="1" data-reading-index="2" id="mage-node-order-created">
+      <title>OrderCreated : event-type
+carries = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="268.15" y="62"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="343.22" y="86">OrderCreated</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="343.22" y="100">carries: restricted</text>
+    </g>
+    <g data-node-id="payment-completed" data-node-kind="entity" data-rank="3" data-reading-index="6" id="mage-node-payment-completed">
+      <title>PaymentCompleted : event-type
+carries = restricted</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="150.15" x="748.44" y="45"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="823.51" y="69">PaymentCompleted</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="823.51" y="83">carries: restricted</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="relation" data-key-form="triangle" data-key-id="calls">
+      <line class="mage-edge mage-rel-a" marker-end="url(#mage-arrow-triangle)" stroke-width="2" x1="28" x2="58" y1="260" y2="260"/>
+      <text class="mage-key" x="76" y="264">calls</text>
+    </g>
+    <g data-key-channel="relation" data-key-form="open" data-key-id="may_propagate_to">
+      <line class="mage-edge mage-rel-b" marker-end="url(#mage-arrow-open)" stroke-width="2" x1="28" x2="58" y1="278" y2="278"/>
+      <text class="mage-key" x="76" y="282">may propagate to</text>
+    </g>
+    <g data-key-channel="relation" data-key-form="diamond" data-key-id="publishes">
+      <line class="mage-edge mage-rel-c" marker-end="url(#mage-arrow-diamond)" stroke-width="2" x1="28" x2="58" y1="296" y2="296"/>
+      <text class="mage-key" x="76" y="300">publishes</text>
+    </g>
+    <g data-key-channel="relation" data-key-form="square" data-key-id="subscribes">
+      <line class="mage-edge mage-rel-d" marker-end="url(#mage-arrow-square)" stroke-width="2" x1="28" x2="58" y1="314" y2="314"/>
+      <text class="mage-key" x="76" y="318">subscribes</text>
+    </g>
+    <g data-key-channel="shape" data-key-form="entity" data-key-id="entity">
+      <rect class="mage-box" height="12" rx="2" stroke-width="1.5" width="30" x="28" y="326"/>
+      <text class="mage-key" x="76" y="336">entity (a service or component); small text inside lists its declared attributes</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>flowchart</code> (vendored); relation types as edge labels, containment as subgraph</h3><svg id="m7" width="1727.3828125" xmlns="http://www.w3.org/2000/svg" class="flowchart" height="339" viewBox="0 0 1727.3828125 339" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#m7{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m7 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m7 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m7 .error-icon{fill:#552222;}#m7 .error-text{fill:#552222;stroke:#552222;}#m7 .edge-thickness-normal{stroke-width:1px;}#m7 .edge-thickness-thick{stroke-width:3.5px;}#m7 .edge-pattern-solid{stroke-dasharray:0;}#m7 .edge-thickness-invisible{stroke-width:0;fill:none;}#m7 .edge-pattern-dashed{stroke-dasharray:3;}#m7 .edge-pattern-dotted{stroke-dasharray:2;}#m7 .marker{fill:#666;stroke:#666;}#m7 .marker.cross{stroke:#666;}#m7 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m7 p{margin:0;}#m7 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#m7 .cluster-label text{fill:#333;}#m7 .cluster-label span{color:#333;}#m7 .cluster-label span p{background-color:transparent;}#m7 .label text,#m7 span{fill:#000000;color:#000000;}#m7 .node rect,#m7 .node circle,#m7 .node ellipse,#m7 .node polygon,#m7 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#m7 .rough-node .label text,#m7 .node .label text,#m7 .image-shape .label,#m7 .icon-shape .label{text-anchor:middle;}#m7 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#m7 .rough-node .label,#m7 .node .label,#m7 .image-shape .label,#m7 .icon-shape .label{text-align:center;}#m7 .node.clickable{cursor:pointer;}#m7 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#m7 .arrowheadPath{fill:#333333;}#m7 .edgePath .path{stroke:#666;stroke-width:1px;}#m7 .flowchart-link{stroke:#666;fill:none;}#m7 .edgeLabel{background-color:white;text-align:center;}#m7 .edgeLabel p{background-color:white;}#m7 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m7 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#m7 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#m7 .cluster text{fill:#333;}#m7 .cluster span{color:#333;}#m7 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#m7 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m7 rect.text{fill:none;stroke-width:0;}#m7 .icon-shape,#m7 .image-shape{background-color:white;text-align:center;}#m7 .icon-shape p,#m7 .image-shape p{background-color:white;padding:2px;}#m7 .icon-shape .label rect,#m7 .image-shape .label rect{opacity:0.5;background-color:white;fill:white;}#m7 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#m7 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#m7 .node .neo-node{stroke:#999;}#m7 [data-look="neo"].node rect,#m7 [data-look="neo"].cluster rect,#m7 [data-look="neo"].node polygon{stroke:url(#m7-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m7 [data-look="neo"].swimlane.cluster rect{filter:none;}#m7 [data-look="neo"].node path{stroke:url(#m7-gradient);stroke-width:1px;}#m7 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m7 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m7 [data-look="neo"].node circle{stroke:url(#m7-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m7 [data-look="neo"].node circle .state-start{fill:#000000;}#m7 [data-look="neo"].icon-shape .icon{fill:url(#m7-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m7 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m7-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m7 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="m7_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m7_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m7_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="m7_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="m7_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m7_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m7_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m7_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m7_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m7_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m7_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="m7_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M203.672,68.798L218.992,65.165C234.311,61.532,264.951,54.266,295.59,50.633C326.229,47,356.868,47,372.188,47L387.508,47" id="m7-L_checkout_inventory_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_checkout_inventory_0" data-points="W3sieCI6MjAzLjY3MTg3NSwieSI6NjguNzk4Mjc5MDIwOTM1ODR9LHsieCI6Mjk1LjU4OTg0Mzc1LCJ5Ijo0N30seyJ4IjozOTEuNTA3ODEyNSwieSI6NDd9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M956.695,166.173L972.015,164.477C987.335,162.782,1017.974,159.391,1049.237,164.436C1080.499,169.481,1112.386,182.962,1128.329,189.702L1144.272,196.442" id="m7-L_billing_payment_completed_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_billing_payment_completed_0" data-points="W3sieCI6OTU2LjY5NTMxMjUsInkiOjE2Ni4xNzI1MzAyMDk3NzAwNn0seyJ4IjoxMDQ4LjYxMzI4MTI1LCJ5IjoxNTZ9LHsieCI6MTE0Ny45NTYxNjMxOTQ0NDQzLCJ5IjoxOTh9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M203.672,101.796L218.992,103.33C234.311,104.864,264.951,107.932,294.961,114.658C324.972,121.384,354.354,131.767,369.045,136.959L383.736,142.151" id="m7-L_checkout_order_created_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_checkout_order_created_0" data-points="W3sieCI6MjAzLjY3MTg3NSwieSI6MTAxLjc5NjI4MjE5MTE2MDQzfSx7IngiOjI5NS41ODk4NDM3NSwieSI6MTExfSx7IngiOjM4Ny41MDc4MTI1LCJ5IjoxNDMuNDgzNzA2MzM3NTg2Mjh9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M387.508,210.516L372.188,215.93C356.868,221.344,326.229,232.172,295.08,240.422C263.931,248.673,232.272,254.345,216.443,257.182L200.613,260.018" id="m7-L_order_created_analytics_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_order_created_analytics_0" data-points="W3sieCI6Mzg3LjUwNzgxMjUsInkiOjIxMC41MTYyOTM2NjI0MTM3Mn0seyJ4IjoyOTUuNTg5ODQzNzUsInkiOjI0M30seyJ4IjoxOTYuNjc1NzgxMjUsInkiOjI2MC43MjMzNjcwMjU1NDcxfV0=" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M577.188,166.336L592.507,164.613C607.827,162.89,638.466,159.445,668.443,159.345C698.42,159.244,727.734,162.488,742.391,164.11L757.048,165.733" id="m7-L_order_created_billing_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_order_created_billing_0" data-points="W3sieCI6NTc3LjE4NzUsInkiOjE2Ni4zMzU3MjQ3NDM3Nzc0Nn0seyJ4Ijo2NjkuMTA1NDY4NzUsInkiOjE1Nn0seyJ4Ijo3NjEuMDIzNDM3NSwieSI6MTY2LjE3MjUzMDIwOTc3MDA2fV0=" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M1149.081,276L1132.336,283.167C1115.592,290.333,1082.103,304.667,1033.732,311.833C985.362,319,922.111,319,858.859,319C795.608,319,732.357,319,669.605,319C606.853,319,544.6,319,482.348,319C420.095,319,357.842,319,310.881,315.495C263.92,311.99,232.251,304.981,216.416,301.476L200.581,297.971" id="m7-L_payment_completed_analytics_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_payment_completed_analytics_0" data-points="W3sieCI6MTE0OS4wODExMjYxNDMyOTI3LCJ5IjoyNzZ9LHsieCI6MTA0OC42MTMyODEyNSwieSI6MzE5fSx7IngiOjg1OC44NTkzNzUsInkiOjMxOX0seyJ4Ijo2NjkuMTA1NDY4NzUsInkiOjMxOX0seyJ4Ijo0ODIuMzQ3NjU2MjUsInkiOjMxOX0seyJ4IjoyOTUuNTg5ODQzNzUsInkiOjMxOX0seyJ4IjoxOTYuNjc1NzgxMjUsInkiOjI5Ny4xMDY0Mjg5Njg0NDE4M31d" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M1339.875,225.555L1355.195,223.796C1370.514,222.037,1401.154,218.518,1431.131,218.459C1461.108,218.399,1490.423,221.798,1505.08,223.497L1519.738,225.196" id="m7-L_payment_completed_fulfillment_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_payment_completed_fulfillment_0" data-points="W3sieCI6MTMzOS44NzUsInkiOjIyNS41NTQ4MTQ3Njk1MDY4fSx7IngiOjE0MzEuNzkyOTY4NzUsInkiOjIxNX0seyJ4IjoxNTIzLjcxMDkzNzUsInkiOjIyNS42NTY5MzY0MTAyMzUzfV0=" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M956.695,188.859L972.015,190.716C987.335,192.572,1017.974,196.286,1047.959,200.975C1077.943,205.664,1107.274,211.329,1121.939,214.161L1136.604,216.993" id="m7-L_billing_payment_completed_2" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_billing_payment_completed_2" data-points="W3sieCI6OTU2LjY5NTMxMjUsInkiOjE4OC44NTg2NTczODkyOTk0NX0seyJ4IjoxMDQ4LjYxMzI4MTI1LCJ5IjoyMDB9LHsieCI6MTE0MC41MzEyNSwieSI6MjE3Ljc1MTI3OTM4NTA3OTZ9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M203.672,124.482L218.992,129.569C234.311,134.655,264.951,144.827,294.928,151.64C324.905,158.453,354.22,161.907,368.878,163.633L383.535,165.36" id="m7-L_checkout_order_created_2" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_checkout_order_created_2" data-points="W3sieCI6MjAzLjY3MTg3NSwieSI6MTI0LjQ4MjQwOTM3MDY4OTgyfSx7IngiOjI5NS41ODk4NDM3NSwieSI6MTU1fSx7IngiOjM4Ny41MDc4MTI1LCJ5IjoxNjUuODI3OTAyMTEyNTI4NzZ9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M196.676,239.659L213.161,232.883C229.647,226.106,262.618,212.553,293.762,204.05C324.905,195.547,354.22,192.093,368.878,190.367L383.535,188.64" id="m7-L_analytics_order_created_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_analytics_order_created_0" data-points="W3sieCI6MTk2LjY3NTc4MTI1LCJ5IjoyMzkuNjU5NDg5MDU4NjA4fSx7IngiOjI5NS41ODk4NDM3NSwieSI6MTk5fSx7IngiOjM4Ny41MDc4MTI1LCJ5IjoxODguMTcyMDk3ODg3NDcxMjR9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M196.676,276.043L213.161,275.869C229.647,275.695,262.618,275.348,310.23,275.174C357.842,275,420.095,275,482.348,275C544.6,275,606.853,275,669.605,275C732.357,275,795.608,275,858.859,275C922.111,275,985.362,275,1031.653,272.091C1077.945,269.182,1107.276,263.365,1121.942,260.456L1136.608,257.547" id="m7-L_analytics_payment_completed_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_analytics_payment_completed_0" data-points="W3sieCI6MTk2LjY3NTc4MTI1LCJ5IjoyNzYuMDQyNTUxMDAxNTAyOH0seyJ4IjoyOTUuNTg5ODQzNzUsInkiOjI3NX0seyJ4Ijo0ODIuMzQ3NjU2MjUsInkiOjI3NX0seyJ4Ijo2NjkuMTA1NDY4NzUsInkiOjI3NX0seyJ4Ijo4NTguODU5Mzc1LCJ5IjoyNzV9LHsieCI6MTA0OC42MTMyODEyNSwieSI6Mjc1fSx7IngiOjExNDAuNTMxMjUsInkiOjI1Ni43Njg5NTYzMDcyMTU1NX1d" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M761.023,197.108L745.704,200.257C730.384,203.405,699.745,209.703,669.758,209.788C639.771,209.874,610.437,203.749,595.77,200.686L581.103,197.623" id="m7-L_billing_order_created_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_billing_order_created_0" data-points="W3sieCI6NzYxLjAyMzQzNzUsInkiOjE5Ny4xMDgxNTgxODE4NTU2fSx7IngiOjY2OS4xMDU0Njg3NSwieSI6MjE2fSx7IngiOjU3Ny4xODc1LCJ5IjoxOTYuODA1MDgyNjE4Njk5MDN9XQ==" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path><path d="M1523.711,248.343L1508.391,250.119C1493.072,251.895,1462.432,255.448,1432.455,255.541C1402.478,255.634,1373.164,252.268,1358.506,250.585L1343.849,248.902" id="m7-L_fulfillment_payment_completed_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_fulfillment_payment_completed_0" data-points="W3sieCI6MTUyMy43MTA5Mzc1LCJ5IjoyNDguMzQzMDYzNTg5NzY0N30seyJ4IjoxNDMxLjc5Mjk2ODc1LCJ5IjoyNTl9LHsieCI6MTMzOS44NzUsInkiOjI0OC40NDUxODUyMzA0OTMyfV0=" data-look="classic" marker-end="url(#m7_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(295.58984375, 47)"><g class="label" data-id="L_checkout_inventory_0" transform="translate(-16.12109375, -12)"><foreignObject width="32.2421875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>calls</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1048.61328125, 156)"><g class="label" data-id="L_billing_payment_completed_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(297.99949, 111.85157)"><g class="label" data-id="L_checkout_order_created_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(294.11318, 243.26459)"><g class="label" data-id="L_order_created_analytics_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(669.09648, 156.00101)"><g class="label" data-id="L_order_created_billing_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(669.10546875, 319)"><g class="label" data-id="L_payment_completed_analytics_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1431.79878, 215.00067)"><g class="label" data-id="L_payment_completed_fulfillment_0" transform="translate(-66.91796875, -12)"><foreignObject width="133.8359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>may_propagate_to</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1049.11679, 200.09724)"><g class="label" data-id="L_billing_payment_completed_2" transform="translate(-33.13671875, -12)"><foreignObject width="66.2734375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>publishes</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(293.55027, 154.32284)"><g class="label" data-id="L_checkout_order_created_2" transform="translate(-33.13671875, -12)"><foreignObject width="66.2734375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>publishes</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(288.93456, 201.73571)"><g class="label" data-id="L_analytics_order_created_0" transform="translate(-36.71484375, -12)"><foreignObject width="73.4296875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>subscribes</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(669.10546875, 275)"><g class="label" data-id="L_analytics_payment_completed_0" transform="translate(-36.71484375, -12)"><foreignObject width="73.4296875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>subscribes</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(669.07538, 215.99372)"><g class="label" data-id="L_billing_order_created_0" transform="translate(-36.71484375, -12)"><foreignObject width="73.4296875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>subscribes</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1431.79296875, 259)"><g class="label" data-id="L_fulfillment_payment_completed_0" transform="translate(-36.71484375, -12)"><foreignObject width="73.4296875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>subscribes</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default  " id="m7-flowchart-analytics-0" data-look="classic" transform="translate(105.8359375, 277)"><rect class="basic label-container" style="" x="-90.83984375" y="-39" width="181.6796875" height="78"></rect><g class="label" style="" transform="translate(-60.83984375, -24)"><rect></rect><foreignObject width="121.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Analytics<br/>permits: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-billing-1" data-look="classic" transform="translate(858.859375, 177)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Billing<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-checkout-2" data-look="classic" transform="translate(105.8359375, 92)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Checkout<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-fulfillment-3" data-look="classic" transform="translate(1621.546875, 237)"><rect class="basic label-container" style="" x="-97.8359375" y="-39" width="195.671875" height="78"></rect><g class="label" style="" transform="translate(-67.8359375, -24)"><rect></rect><foreignObject width="135.671875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Fulfillment<br/>permits: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-inventory-4" data-look="classic" transform="translate(482.34765625, 47)"><rect class="basic label-container" style="" x="-90.83984375" y="-39" width="181.6796875" height="78"></rect><g class="label" style="" transform="translate(-60.83984375, -24)"><rect></rect><foreignObject width="121.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Inventory<br/>permits: internal</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-order_created-5" data-look="classic" transform="translate(482.34765625, 177)"><rect class="basic label-container" style="" x="-94.83984375" y="-39" width="189.6796875" height="78"></rect><g class="label" style="" transform="translate(-64.83984375, -24)"><rect></rect><foreignObject width="129.6796875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>OrderCreated<br/>carries: restricted</p></span></div></foreignObject></g></g><g class="node default  " id="m7-flowchart-payment_completed-6" data-look="classic" transform="translate(1240.203125, 237)"><rect class="basic label-container" style="" x="-99.671875" y="-39" width="199.34375" height="78"></rect><g class="label" style="" transform="translate(-69.671875, -24)"><rect></rect><foreignObject width="139.34375" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>PaymentCompleted<br/>carries: restricted</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="m7-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m7-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m7-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>flowchart LR
+  analytics["Analytics&lt;br/>permits: internal"]
+  billing["Billing&lt;br/>permits: restricted"]
+  checkout["Checkout&lt;br/>permits: restricted"]
+  fulfillment["Fulfillment&lt;br/>permits: restricted"]
+  inventory["Inventory&lt;br/>permits: internal"]
+  order_created["OrderCreated&lt;br/>carries: restricted"]
+  payment_completed["PaymentCompleted&lt;br/>carries: restricted"]
+  checkout -->|calls| inventory
+  billing -->|may_propagate_to| payment_completed
+  checkout -->|may_propagate_to| order_created
+  order_created -->|may_propagate_to| analytics
+  order_created -->|may_propagate_to| billing
+  payment_completed -->|may_propagate_to| analytics
+  payment_completed -->|may_propagate_to| fulfillment
+  billing -->|publishes| payment_completed
+  checkout -->|publishes| order_created
+  analytics -->|subscribes| order_created
+  analytics -->|subscribes| payment_completed
+  billing -->|subscribes| order_created
+  fulfillment -->|subscribes| payment_completed</pre></details></div>
+</div></body></html>

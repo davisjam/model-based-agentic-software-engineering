@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A/B: simple-worker-queue — dagre painter vs Mermaid</title><style>
+  :root { color-scheme: light; }
+  body { font-family: system-ui, sans-serif; margin: 2rem; background: #fbfcfe; color: #11151c; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.15rem; margin-top: 2.5rem; border-top: 2px solid #d6dbe4; padding-top: 1rem; }
+  .meta { color: #434b5a; max-width: 60rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+  .panel { border: 1px solid #d6dbe4; border-radius: 8px; background: #fff; padding: 1rem; max-width: 100%; overflow-x: auto; }
+  .panel h3 { margin: 0 0 .75rem 0; font-size: .95rem; color: #2a3242; }
+  /* No max-width on the SVGs: a wide diagram must SCROLL inside its panel, not shrink its
+     text below legibility — the judgment this page exists to let the author make. */
+  .panel svg { height: auto; }
+  details { margin-top: .75rem; } pre { background: #f2f4f8; padding: .75rem; border-radius: 6px; overflow-x: auto; font-size: .8rem; }
+  table { border-collapse: collapse; margin-top: 1rem; } td, th { border: 1px solid #d6dbe4; padding: .5rem .75rem; text-align: left; vertical-align: top; }
+  .yes { color: #166534; font-weight: 700; } .no { color: #9a3412; font-weight: 700; } .partial { color: #854d0e; font-weight: 700; }
+  .note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: .75rem 1rem; max-width: 60rem; }
+</style></head>
+<body><h1>A/B: simple-worker-queue — dagre painter vs Mermaid</h1><p class="meta">Each model is drawn by BOTH painters from the same <code>buildScene</code> output.
+A is the shipped renderer; A′ is the same renderer with the guard/effect notation written into transition labels
+(the semantics <code>scene.ts</code> already extracts); B is Mermaid 11.16 from <code>book/node_modules</code>.
+<a href="index.html">Back to the pilot index</a>.</p><h2>State machine: <code>queue-capacity</code></h2>
+<p class="meta">Can the number of waiting jobs ever exceed the queue's capacity of four?</p>
+<div class="note"><strong>Measured loss:</strong> Mermaid collapsed duplicate (from, to)
+transitions into one edge — the transition <code>arrival [occupancy &lt; 4] / occupancy := occupancy + 1</code> is NOT drawn below.
+1 duplicate group(s) in this machine. B′ shows the merged-label workaround.</div>
+<div class="row"><div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG), as it renders today</h3><svg aria-labelledby="mage-title-queue-capacity mage-desc-queue-capacity" class="mage-svg" data-direction="left-to-right" data-subject-id="queue-capacity" data-subject-kind="machine" data-system-hash="fnv1a64:8c2986deb2e6a5ce" height="241" role="img" viewBox="-31 0 284.23 241" width="284.23" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-queue-capacity">queue-capacity (queue)</title>
+  <desc id="mage-desc-queue-capacity">state machine &quot;queue-capacity (queue)&quot;: 1 node, 2 relations. Question: Can the number of waiting jobs ever exceed the queue's capacity of four? Includes: queue capacity, current queue occupancy, job arrival, job removal by processing, the relationship between occupancy and capacity. Deliberately omits: job contents, job identity, processing duration, worker failures, retry behavior, scheduling among multiple workers, arrival timing. System: fnv1a64:8c2986deb2e6a5ce.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:queue-capacity:0" data-edge-kind="transition" data-from="ready" data-to="ready" id="mage-edge-t:queue-capacity:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="28,128 83,105 138,82 83,105" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="83" y="109">arrival</text>
+    </g>
+    <g data-edge-id="t:queue-capacity:1" data-edge-kind="transition" data-from="ready" data-to="ready" id="mage-edge-t:queue-capacity:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="28,156 83,133 138,110 83,133" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="83" y="137">processing</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-initial="true" data-node-id="ready" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-ready">
+      <title>ready : state</title>
+      <circle class="mage-initial" cx="2" cy="51" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="51" y2="51"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="52">ready</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-3" y="196"/>
+      <text class="mage-key" x="45" y="206">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>A′ — Shipped painter, guard/effect text on labels (pilot tweak, same painter)</h3><svg aria-labelledby="mage-title-queue-capacity mage-desc-queue-capacity" class="mage-svg" data-direction="left-to-right" data-subject-id="queue-capacity" data-subject-kind="machine" data-system-hash="fnv1a64:6a67425084d02e76" height="241" role="img" viewBox="-110.21 79.2 386.42 241" width="386.42" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-queue-capacity">queue-capacity (queue)</title>
+  <desc id="mage-desc-queue-capacity">state machine &quot;queue-capacity (queue)&quot;: 1 node, 2 relations. Question: Can the number of waiting jobs ever exceed the queue's capacity of four? Includes: queue capacity, current queue occupancy, job arrival, job removal by processing, the relationship between occupancy and capacity. Deliberately omits: job contents, job identity, processing duration, worker failures, retry behavior, scheduling among multiple workers, arrival timing. System: fnv1a64:6a67425084d02e76.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:queue-capacity:0" data-edge-kind="transition" data-from="ready" data-to="ready" id="mage-edge-t:queue-capacity:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="28,207.2 83,184.2 138,161.2 83,184.2" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="83" y="188.2">arrival [occupancy &lt; 4] / occupancy := occupancy + 1</text>
+    </g>
+    <g data-edge-id="t:queue-capacity:1" data-edge-kind="transition" data-from="ready" data-to="ready" id="mage-edge-t:queue-capacity:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="28,235.2 83,212.2 138,189.2 83,212.2" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="83" y="216.2">processing [occupancy &gt; 0] / occupancy := occupancy - 1</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-initial="true" data-node-id="ready" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-ready">
+      <title>ready : state</title>
+      <circle class="mage-initial" cx="2" cy="130.2" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="130.2" y2="130.2"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="107.2"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="131.2">ready</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-82.21" y="275.2"/>
+      <text class="mage-key" x="-34.21" y="285.2">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>stateDiagram-v2</code>, one line per transition (honest)</h3><svg id="m1" width="716.3062133789062" xmlns="http://www.w3.org/2000/svg" class="statediagram" height="235.0500030517578" viewBox="0 0 716.3062133789062 235.0500030517578" role="graphics-document document" aria-roledescription="stateDiagram"><style>#m1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m1 .error-icon{fill:#552222;}#m1 .error-text{fill:#552222;stroke:#552222;}#m1 .edge-thickness-normal{stroke-width:1px;}#m1 .edge-thickness-thick{stroke-width:3.5px;}#m1 .edge-pattern-solid{stroke-dasharray:0;}#m1 .edge-thickness-invisible{stroke-width:0;fill:none;}#m1 .edge-pattern-dashed{stroke-dasharray:3;}#m1 .edge-pattern-dotted{stroke-dasharray:2;}#m1 .marker{fill:#666;stroke:#666;}#m1 .marker.cross{stroke:#666;}#m1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m1 p{margin:0;}#m1 defs [id$="-barbEnd"]{fill:#000;stroke:#000;}#m1 g.stateGroup text{fill:#999;stroke:none;font-size:10px;}#m1 g.stateGroup text{fill:#000000;stroke:none;font-size:10px;}#m1 g.stateGroup .state-title{font-weight:bolder;fill:#111111;}#m1 g.stateGroup rect{fill:#eee;stroke:#999;}#m1 g.stateGroup line{stroke:#666;stroke-width:1;}#m1 .transition{stroke:#000;stroke-width:1;fill:none;}#m1 .stateGroup .composit{fill:#ffffff;border-bottom:1px;}#m1 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#m1 .state-note{stroke:#999;fill:#666;}#m1 .state-note text{fill:#fff;stroke:none;font-size:10px;}#m1 .stateLabel .box{stroke:none;stroke-width:0;fill:#eee;opacity:0.5;}#m1 .edgeLabel .label rect{fill:#eee;opacity:0.5;}#m1 .edgeLabel{background-color:white;text-align:center;}#m1 .edgeLabel p{background-color:white;}#m1 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m1 .edgeLabel .label text{fill:#000000;}#m1 .label div .edgeLabel{color:#000000;}#m1 .stateLabel text{fill:#111111;font-size:10px;font-weight:bold;}#m1 .node circle.state-start{fill:#222;stroke:#222;}#m1 .node .fork-join{fill:#222;stroke:#222;}#m1 .node circle.state-end{fill:hsl(0, 0%, 83.3333333333%);stroke:#ffffff;stroke-width:1.5;}#m1 .end-state-inner{fill:#ffffff;stroke-width:1.5;}#m1 .node rect{fill:#eee;stroke:#000;stroke-width:1px;}#m1 .node polygon{fill:#eee;stroke:#000;stroke-width:1px;}#m1 [id$="-barbEnd"]{fill:#666;}#m1 .statediagram-cluster rect{fill:#eee;stroke:#000;stroke-width:1px;}#m1 .cluster-label,#m1 .nodeLabel{color:#111111;}#m1 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#m1 .statediagram-state .divider{stroke:#000;}#m1 .statediagram-state .title-state{rx:5px;ry:5px;}#m1 .statediagram-cluster.statediagram-cluster .inner{fill:#ffffff;}#m1 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f4f4f4;}#m1 .statediagram-cluster .inner{rx:0;ry:0;}#m1 .statediagram-state rect.basic{rx:5px;ry:5px;}#m1 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f4f4f4;}#m1 .note-edge{stroke-dasharray:5;}#m1 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m1 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m1 .statediagram-note text{fill:#fff;}#m1 .statediagram-note .nodeLabel{color:#fff;}#m1 .statediagram .edgeLabel{color:red;}#m1 [id$="-dependencyStart"],#m1 [id$="-dependencyEnd"]{fill:#666;stroke:#666;stroke-width:1;}#m1 .statediagramTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m1 [data-look="neo"].statediagram-cluster rect{fill:#eee;stroke:url(#m1-gradient);stroke-width:1;}#m1 [data-look="neo"].statediagram-cluster rect.outer{rx:5px;ry:5px;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 .node .neo-node{stroke:#999;}#m1 [data-look="neo"].node rect,#m1 [data-look="neo"].cluster rect,#m1 [data-look="neo"].node polygon{stroke:url(#m1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 [data-look="neo"].swimlane.cluster rect{filter:none;}#m1 [data-look="neo"].node path{stroke:url(#m1-gradient);stroke-width:1px;}#m1 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m1 [data-look="neo"].node circle{stroke:url(#m1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 [data-look="neo"].node circle .state-start{fill:#000000;}#m1 [data-look="neo"].icon-shape .icon{fill:url(#m1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><defs><marker id="m1_stateDiagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M 19,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><g class="root"><g class="clusters"><g class="note-cluster" id="m1-state-ready----parent-3"><rect x="178.15625" y="8" width="280" height="148" fill="none"></rect></g></g><g class="edgePaths"><path d="M22,191.05L26.167,191.05C30.333,191.05,38.667,191.05,47,191.05C55.333,191.05,63.667,191.05,67.833,191.05L72,191.05" id="m1-edge0" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge0" data-points="W3sieCI6MjIsInkiOjE5MS4wNTAwMDAwMDA3NDUwNn0seyJ4Ijo0NywieSI6MTkxLjA1MDAwMDAwMDc0NTA2fSx7IngiOjcyLCJ5IjoxOTEuMDUwMDAwMDAwNzQ1MDZ9XQ==" data-look="classic" marker-end="url(#m1_stateDiagram-barbEnd)"></path><path d="M109.813,171.05L117.037,156.208C124.261,141.367,138.708,111.683,150.099,96.842C161.49,82,169.823,82,178.156,82C186.49,82,194.823,82,198.99,82L203.156,82" id="m1-ready-ready----note-3" class=" edge-thickness-normal edge-pattern-solid transition note-edge" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="ready-ready----note-3" data-points="W3sieCI6MTA5LjgxMjc2NTA3MzI5NDMzLCJ5IjoxNzEuMDUwMDAwMDAwNzQ1MDZ9LHsieCI6MTUzLjE1NjI1LCJ5Ijo4Mn0seyJ4IjoxNzguMTU2MjUsInkiOjgyfSx7IngiOjIwMy4xNTYyNSwieSI6ODJ9XQ==" data-look="classic"></path><path d="M128.156,178.939L132.156,177.214C136.156,175.489,144.156,172.038,148.156,177.8C152.156,183.563,152.156,198.538,148.156,204.3C144.156,210.062,136.156,206.611,132.156,204.886L128.156,203.161" id="m1-edge2" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge2" data-points="W3sieCI6MTI4LjE1NjI1LCJ5IjoxNzguOTM5MjU1MTc2MjYyNn0seyJ4IjoxNTIuMTU2MjUsInkiOjE2OC41ODc1MDAwMDA3NDUwNX0seyJ4IjoxNTIuMTU2MjUsInkiOjIxMy41MTI1MDAwMDA3NDUwNn0seyJ4IjoxMjguMTU2MjUsInkiOjIwMy4xNjA3NDQ4MjUyMjc1fV0=" data-look="classic" marker-end="url(#m1_stateDiagram-barbEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="edge0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(256.15625, 191.05000000074506)"><g class="label" data-id="edge2" transform="translate(-100, -36)"><foreignObject width="200" height="72"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel "><p>processing [occupancy &gt; 0] / occupancy := occupancy - 1</p></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="ready-ready----note-3" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="m1-state-root_start-0" data-look="classic" transform="translate(15, 191.05000000074506)"><circle class="state-start" r="7" width="14" height="14"></circle></g><g class="node  statediagram-state " id="m1-state-ready-3" data-look="classic" transform="translate(100.078125, 191.05000000074506)"><rect class="basic label-container" style="" rx="5" ry="5" x="-28.078125" y="-20" width="56.15625" height="40"></rect><g class="label" style="" transform="translate(-20.078125, -12)"><rect></rect><foreignObject width="40.15625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>ready</p></span></div></foreignObject></g></g><g class="node statediagram-note " id="m1-state-ready----note-3" data-look="classic" transform="translate(318.15625, 82)"><g class="basic label-container outer-path"><path d="M-115 -39 L115 -39 L115 39 L-115 39" stroke="none" stroke-width="0" fill="#666" style=""></path><path d="M-115 -39 C-47.014775727531216 -39, 20.970448544937568 -39, 115 -39 M-115 -39 C-28.69513345671629 -39, 57.60973308656742 -39, 115 -39 M115 -39 C115 -17.166581261629304, 115 4.666837476741392, 115 39 M115 -39 C115 -20.111500092344624, 115 -1.2230001846892478, 115 39 M115 39 C26.422695767515222 39, -62.154608464969556 39, -115 39 M115 39 C30.055950891699226 39, -54.88809821660155 39, -115 39 M-115 39 C-115 8.746218386793199, -115 -21.507563226413602, -115 -39 M-115 39 C-115 20.950705386889936, -115 2.9014107737798724, -115 -39" stroke="#999" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="label noteLabel" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel markdown-node-label"><p>occupancy : integer [-1..5], initially 2</p></span></div></foreignObject></g></g><g class="label edgeLabel" id="ready---ready---1" transform="translate(318.15625, 191.05000000074506)"><rect width="0.1" height="0.1"></rect><g class="label" style="" transform="translate(0, 0)"><rect></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 10px; text-align: center;"><span class="nodeLabel "></span></div></foreignObject></g></g><g class="label edgeLabel" id="ready---ready---2" transform="translate(708.2062500007451, 219.05000000074506)"><rect width="0.1" height="0.1"></rect><g class="label" style="" transform="translate(0, 0)"><rect></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 10px; text-align: center;"><span class="nodeLabel "></span></div></foreignObject></g></g></g></g></g><defs><filter id="m1-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m1-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m1-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>stateDiagram-v2
+  direction LR
+  [*] --> ready
+  ready --> ready : arrival [occupancy &lt; 4] / occupancy := occupancy + 1
+  ready --> ready : processing [occupancy > 0] / occupancy := occupancy - 1
+  note right of ready
+    occupancy : integer [-1..5], initially 2
+  end note</pre></details></div>
+<div class="panel"><h3>B′ — Mermaid, duplicate-endpoint transitions MERGED into one label (workaround; erases transition identity)</h3><svg id="m2" width="716.3062133789062" xmlns="http://www.w3.org/2000/svg" class="statediagram" height="271.04998779296875" viewBox="0 0 716.3062133789062 271.04998779296875" role="graphics-document document" aria-roledescription="stateDiagram"><style>#m2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m2 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m2 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m2 .error-icon{fill:#552222;}#m2 .error-text{fill:#552222;stroke:#552222;}#m2 .edge-thickness-normal{stroke-width:1px;}#m2 .edge-thickness-thick{stroke-width:3.5px;}#m2 .edge-pattern-solid{stroke-dasharray:0;}#m2 .edge-thickness-invisible{stroke-width:0;fill:none;}#m2 .edge-pattern-dashed{stroke-dasharray:3;}#m2 .edge-pattern-dotted{stroke-dasharray:2;}#m2 .marker{fill:#666;stroke:#666;}#m2 .marker.cross{stroke:#666;}#m2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m2 p{margin:0;}#m2 defs [id$="-barbEnd"]{fill:#000;stroke:#000;}#m2 g.stateGroup text{fill:#999;stroke:none;font-size:10px;}#m2 g.stateGroup text{fill:#000000;stroke:none;font-size:10px;}#m2 g.stateGroup .state-title{font-weight:bolder;fill:#111111;}#m2 g.stateGroup rect{fill:#eee;stroke:#999;}#m2 g.stateGroup line{stroke:#666;stroke-width:1;}#m2 .transition{stroke:#000;stroke-width:1;fill:none;}#m2 .stateGroup .composit{fill:#ffffff;border-bottom:1px;}#m2 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#m2 .state-note{stroke:#999;fill:#666;}#m2 .state-note text{fill:#fff;stroke:none;font-size:10px;}#m2 .stateLabel .box{stroke:none;stroke-width:0;fill:#eee;opacity:0.5;}#m2 .edgeLabel .label rect{fill:#eee;opacity:0.5;}#m2 .edgeLabel{background-color:white;text-align:center;}#m2 .edgeLabel p{background-color:white;}#m2 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m2 .edgeLabel .label text{fill:#000000;}#m2 .label div .edgeLabel{color:#000000;}#m2 .stateLabel text{fill:#111111;font-size:10px;font-weight:bold;}#m2 .node circle.state-start{fill:#222;stroke:#222;}#m2 .node .fork-join{fill:#222;stroke:#222;}#m2 .node circle.state-end{fill:hsl(0, 0%, 83.3333333333%);stroke:#ffffff;stroke-width:1.5;}#m2 .end-state-inner{fill:#ffffff;stroke-width:1.5;}#m2 .node rect{fill:#eee;stroke:#000;stroke-width:1px;}#m2 .node polygon{fill:#eee;stroke:#000;stroke-width:1px;}#m2 [id$="-barbEnd"]{fill:#666;}#m2 .statediagram-cluster rect{fill:#eee;stroke:#000;stroke-width:1px;}#m2 .cluster-label,#m2 .nodeLabel{color:#111111;}#m2 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#m2 .statediagram-state .divider{stroke:#000;}#m2 .statediagram-state .title-state{rx:5px;ry:5px;}#m2 .statediagram-cluster.statediagram-cluster .inner{fill:#ffffff;}#m2 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f4f4f4;}#m2 .statediagram-cluster .inner{rx:0;ry:0;}#m2 .statediagram-state rect.basic{rx:5px;ry:5px;}#m2 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f4f4f4;}#m2 .note-edge{stroke-dasharray:5;}#m2 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m2 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m2 .statediagram-note text{fill:#fff;}#m2 .statediagram-note .nodeLabel{color:#fff;}#m2 .statediagram .edgeLabel{color:red;}#m2 [id$="-dependencyStart"],#m2 [id$="-dependencyEnd"]{fill:#666;stroke:#666;stroke-width:1;}#m2 .statediagramTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m2 [data-look="neo"].statediagram-cluster rect{fill:#eee;stroke:url(#m2-gradient);stroke-width:1;}#m2 [data-look="neo"].statediagram-cluster rect.outer{rx:5px;ry:5px;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 .node .neo-node{stroke:#999;}#m2 [data-look="neo"].node rect,#m2 [data-look="neo"].cluster rect,#m2 [data-look="neo"].node polygon{stroke:url(#m2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 [data-look="neo"].swimlane.cluster rect{filter:none;}#m2 [data-look="neo"].node path{stroke:url(#m2-gradient);stroke-width:1px;}#m2 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m2 [data-look="neo"].node circle{stroke:url(#m2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 [data-look="neo"].node circle .state-start{fill:#000000;}#m2 [data-look="neo"].icon-shape .icon{fill:url(#m2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m2-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><defs><marker id="m2_stateDiagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M 19,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><g class="root"><g class="clusters"><g class="note-cluster" id="m2-state-ready----parent-2"><rect x="178.15625" y="8" width="280" height="148" fill="none"></rect></g></g><g class="edgePaths"><path d="M22,191.05L26.167,191.05C30.333,191.05,38.667,191.05,47,191.05C55.333,191.05,63.667,191.05,67.833,191.05L72,191.05" id="m2-edge0" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge0" data-points="W3sieCI6MjIsInkiOjE5MS4wNTAwMDAwMDA3NDUwNn0seyJ4Ijo0NywieSI6MTkxLjA1MDAwMDAwMDc0NTA2fSx7IngiOjcyLCJ5IjoxOTEuMDUwMDAwMDAwNzQ1MDZ9XQ==" data-look="classic" marker-end="url(#m2_stateDiagram-barbEnd)"></path><path d="M109.813,171.05L117.037,156.208C124.261,141.367,138.708,111.683,150.099,96.842C161.49,82,169.823,82,178.156,82C186.49,82,194.823,82,198.99,82L203.156,82" id="m2-ready-ready----note-2" class=" edge-thickness-normal edge-pattern-solid transition note-edge" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="ready-ready----note-2" data-points="W3sieCI6MTA5LjgxMjc2NTA3MzI5NDMzLCJ5IjoxNzEuMDUwMDAwMDAwNzQ1MDZ9LHsieCI6MTUzLjE1NjI1LCJ5Ijo4Mn0seyJ4IjoxNzguMTU2MjUsInkiOjgyfSx7IngiOjIwMy4xNTYyNSwieSI6ODJ9XQ==" data-look="classic"></path><path d="M128.156,178.939L132.156,177.214C136.156,175.489,144.156,172.038,148.156,177.8C152.156,183.563,152.156,198.538,148.156,204.3C144.156,210.062,136.156,206.611,132.156,204.886L128.156,203.161" id="m2-edge1" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge1" data-points="W3sieCI6MTI4LjE1NjI1LCJ5IjoxNzguOTM5MjU1MTc2MjYyNn0seyJ4IjoxNTIuMTU2MjUsInkiOjE2OC41ODc1MDAwMDA3NDUwNX0seyJ4IjoxNTIuMTU2MjUsInkiOjIxMy41MTI1MDAwMDA3NDUwNn0seyJ4IjoxMjguMTU2MjUsInkiOjIwMy4xNjA3NDQ4MjUyMjc1fV0=" data-look="classic" marker-end="url(#m2_stateDiagram-barbEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="edge0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(256.15625, 191.05000000074506)"><g class="label" data-id="edge1" transform="translate(-100, -72)"><foreignObject width="200" height="144"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel "><p>arrival [occupancy &lt; 4] / occupancy := occupancy + 1<br/>processing [occupancy &gt; 0] / occupancy := occupancy - 1</p></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="ready-ready----note-2" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="m2-state-root_start-0" data-look="classic" transform="translate(15, 191.05000000074506)"><circle class="state-start" r="7" width="14" height="14"></circle></g><g class="node  statediagram-state " id="m2-state-ready-2" data-look="classic" transform="translate(100.078125, 191.05000000074506)"><rect class="basic label-container" style="" rx="5" ry="5" x="-28.078125" y="-20" width="56.15625" height="40"></rect><g class="label" style="" transform="translate(-20.078125, -12)"><rect></rect><foreignObject width="40.15625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>ready</p></span></div></foreignObject></g></g><g class="node statediagram-note " id="m2-state-ready----note-2" data-look="classic" transform="translate(318.15625, 82)"><g class="basic label-container outer-path"><path d="M-115 -39 L115 -39 L115 39 L-115 39" stroke="none" stroke-width="0" fill="#666" style=""></path><path d="M-115 -39 C-35.18273925337276 -39, 44.63452149325448 -39, 115 -39 M-115 -39 C-24.871852050333572 -39, 65.25629589933286 -39, 115 -39 M115 -39 C115 -9.984085118226318, 115 19.031829763547364, 115 39 M115 -39 C115 -14.743580386926563, 115 9.512839226146873, 115 39 M115 39 C41.70826678551255 39, -31.5834664289749 39, -115 39 M115 39 C36.79247327307712 39, -41.41505345384576 39, -115 39 M-115 39 C-115 8.99046095251461, -115 -21.01907809497078, -115 -39 M-115 39 C-115 12.622478805968179, -115 -13.755042388063643, -115 -39" stroke="#999" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="label noteLabel" style="" transform="translate(-100, -24)"><rect></rect><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel markdown-node-label"><p>occupancy : integer [-1..5], initially 2</p></span></div></foreignObject></g></g><g class="label edgeLabel" id="ready---ready---1" transform="translate(318.15625, 191.05000000074506)"><rect width="0.1" height="0.1"></rect><g class="label" style="" transform="translate(0, 0)"><rect></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 10px; text-align: center;"><span class="nodeLabel "></span></div></foreignObject></g></g><g class="label edgeLabel" id="ready---ready---2" transform="translate(708.2062500007451, 237.05000000074506)"><rect width="0.1" height="0.1"></rect><g class="label" style="" transform="translate(0, 0)"><rect></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 10px; text-align: center;"><span class="nodeLabel "></span></div></foreignObject></g></g></g></g></g><defs><filter id="m2-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m2-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m2-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>stateDiagram-v2
+  direction LR
+  [*] --> ready
+  ready --> ready : arrival [occupancy &lt; 4] / occupancy := occupancy + 1&lt;br/>processing [occupancy > 0] / occupancy := occupancy - 1
+  note right of ready
+    occupancy : integer [-1..5], initially 2
+  end note</pre></details></div></div></body></html>
