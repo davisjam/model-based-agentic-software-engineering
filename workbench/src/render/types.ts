@@ -95,6 +95,14 @@ export interface LayoutEdge {
    * rather than guesses. Null when the edge carries no label, or when no engine claimed a spot.
    */
   readonly labelPoint: Point | null;
+  /**
+   * The UML `[guard] / effect` line under a transition's event name — the semantics that decide a
+   * property, which the picture used to withhold while the twin carried them. Composed by
+   * `transitionSubLabel` from DECLARED guards and effects only; null for relations, containment,
+   * and unguarded transitions without effects. The engine reserves label-box room for it when it
+   * fits (`subLabelFits`); the full text always reaches the hover title and the twin.
+   */
+  readonly subLabel: string | null;
 }
 
 export interface Layout {
@@ -250,6 +258,24 @@ export interface AccessibleProperty {
 }
 
 /**
+ * One declared machine variable, restated for the twin (FR-A11Y-2). A machine's interesting state
+ * is often the VARIABLE — the worker queue has one control state precisely because occupancy is
+ * the state that matters — so the variable is first-class in the picture (the variables
+ * compartment) and therefore first-class here.
+ */
+export interface AccessibleVariable {
+  readonly id: string;
+  readonly kind: "boolean" | "integer" | "enum";
+  /** The declared domain, as text: `[-1..5]`, or the enumeration. Null for boolean. */
+  readonly domain: string | null;
+  readonly initial: string;
+  /** The compartment's own line, `occupancy : integer [-1..5] = 2`, so the channels agree. */
+  readonly declaration: string;
+  /** One sentence, already assembled, same contract as `AccessibleNode.description`. */
+  readonly description: string;
+}
+
+/**
  * One tracked claim a node participates in, SUPPLIED BY THE CALLER — the renderer never computes a
  * verdict, so these arrive on the request exactly as evidence does. The same pattern as declared
  * attributes (`showProperties`): the picture shows a `glyph statement` sub-line in the node box
@@ -347,6 +373,24 @@ export interface LegendEntry {
 export type ArrowForm = "triangle" | "open" | "diamond" | "square";
 
 /**
+ * The written notation marks a MACHINE diagram can carry, beyond shapes and arrows. UML statechart
+ * convention, adopted rather than invented: `event [guard] / effect` on a transition, and a
+ * variables compartment for the machine's declared data. Closed, like `NodeKind`.
+ */
+export type NotationForm = "guard" | "effect" | "variables";
+
+/**
+ * What each notation mark means — a decode of the CONVENTION, never an interpretation of the
+ * model (the legend ruling). Rendered as key rows AND carried in the twin, exactly as
+ * `SHAPE_MEANINGS` is, and only when the mark is actually in the picture.
+ */
+export const NOTATION_MEANINGS: Readonly<Record<NotationForm, string>> = {
+  guard: "guard: the transition can fire only while the bracketed condition holds",
+  effect: "effect: after the slash, the assignment applied when the transition fires",
+  variables: "the machine's declared variables, as name : type [domain] = initial value",
+};
+
+/**
  * One row of the diagram's VOCABULARY key — what a shape or an arrow means.
  *
  * Deliberately NOT merged into `LegendEntry`. The two keys answer different questions and have
@@ -360,11 +404,11 @@ export type ArrowForm = "triangle" | "open" | "diamond" | "square";
  * diagram is a type label restated six times; one row here says it once.
  */
 export interface KeyEntry {
-  readonly channel: "relation" | "shape";
-  /** The relation type id, or the `NodeKind` whose outline this row explains. */
+  readonly channel: "relation" | "shape" | "notation";
+  /** The relation type id, the `NodeKind` whose outline this row explains, or the notation mark. */
   readonly id: string;
-  /** What a reader sees: the arrowhead form for a relation, the outline for a shape. */
-  readonly form: ArrowForm | NodeKind;
+  /** What a reader sees: the arrowhead form, the outline for a shape, or the written mark. */
+  readonly form: ArrowForm | NodeKind | NotationForm;
   /** Stable class name, so the stylesheet can add hue as a redundant extra channel. */
   readonly className: string;
   readonly meaning: string;
@@ -396,6 +440,8 @@ export interface AccessibleScene {
   readonly direction: Direction;
   readonly nodes: readonly AccessibleNode[];
   readonly edges: readonly AccessibleEdge[];
+  /** The machine's declared variables — what the variables compartment shows. Empty for graphs. */
+  readonly variables: readonly AccessibleVariable[];
   readonly evidence: AccessibleEvidence | null;
   readonly outcome: Outcome | null;
   readonly coverage: Coverage | null;

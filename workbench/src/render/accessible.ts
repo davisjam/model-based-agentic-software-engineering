@@ -28,12 +28,14 @@ import type {
   EvidenceStep,
 } from "../ir/types.ts";
 import type { SceneEdge, SceneGraph } from "./scene.ts";
+import { variableLine } from "./scene.ts";
 import type {
   AccessibleEdge,
   AccessibleEvidence,
   AccessibleNode,
   AccessibleScene,
   AccessibleStep,
+  AccessibleVariable,
   EmphasisAssignment,
   ArrowForm,
   EmphasisKind,
@@ -43,8 +45,10 @@ import type {
   NodeClaim,
   SceneRequest,
 } from "./types.ts";
-import { ARROW_FORMS, MARKS, MARK_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS } from "./types.ts";
-import { claimsByTarget, inNodeLines } from "./layout.ts";
+import {
+  ARROW_FORMS, MARKS, MARK_MEANINGS, NOTATION_MEANINGS, RELATION_CLASSES, SHAPE_MEANINGS,
+} from "./types.ts";
+import { claimsByTarget, inNodeLines, subLabelFits, transitionSubLabel } from "./layout.ts";
 
 const quote = (s: string): string => `"${s}"`;
 
@@ -319,6 +323,33 @@ function keyFor(
       meaning: clauses.join("; "),
     });
   }
+
+  // The UML statechart notation rows — present exactly when the mark is in the picture, like the
+  // attribute and claim disclosures above. A guard or effect is "in the picture" when its
+  // transition's `[guard] / effect` line actually renders (the whole-line-or-nowhere fit rule);
+  // the variables compartment, whenever the machine declares a variable.
+  const rendered = scene.edges.filter((e) => {
+    const line = transitionSubLabel(e.guard, e.effect);
+    return line !== null && subLabelFits(line);
+  });
+  if (rendered.some((e) => e.guard !== null)) {
+    out.push({
+      channel: "notation", id: "guard", form: "guard",
+      className: "mage-edge-sublabel", meaning: NOTATION_MEANINGS.guard,
+    });
+  }
+  if (rendered.some((e) => e.effect !== null)) {
+    out.push({
+      channel: "notation", id: "effect", form: "effect",
+      className: "mage-edge-sublabel", meaning: NOTATION_MEANINGS.effect,
+    });
+  }
+  if (scene.variables.length > 0) {
+    out.push({
+      channel: "notation", id: "variables", form: "variables",
+      className: "mage-varbox", meaning: NOTATION_MEANINGS.variables,
+    });
+  }
   return out;
 }
 
@@ -483,10 +514,24 @@ export function buildAccessibleScene(
       ? null
       : describeEvidence(req.evidence, req.coverage);
 
+  // The variables, restated for the twin with the SAME declaration line the compartment draws —
+  // one composer, so a guard a sighted user reads and a screen-reader user cannot is unreachable.
+  const variables: AccessibleVariable[] = scene.variables.map((v) => ({
+    id: v.id,
+    kind: v.kind,
+    domain: v.domain,
+    initial: v.initial,
+    declaration: variableLine(v),
+    description: `Variable ${quote(v.id)}: ${v.kind}${v.domain === null ? "" : `, domain ${v.domain}`}, initially ${v.initial}.`,
+  }));
+
   const used = new Set<EmphasisKind>(emphasis.map((a) => a.kind));
   const subjectWord = scene.subject.kind === "machine" ? "state machine" : "graph model";
   const summary = [
     `${subjectWord} ${quote(scene.title)}: ${nodes.length} node${nodes.length === 1 ? "" : "s"}, ${edges.length} relation${edges.length === 1 ? "" : "s"}.`,
+    variables.length === 0
+      ? null
+      : `Variables: ${variables.map((v) => v.declaration).join("; ")}.`,
     scene.question === null ? null : `Question: ${scene.question}`,
     scene.includes.length === 0 ? null : `Includes: ${scene.includes.join(", ")}.`,
     scene.omits.length === 0 ? null : `Deliberately omits: ${scene.omits.join(", ")}.`,
@@ -509,6 +554,7 @@ export function buildAccessibleScene(
     direction: layout.direction,
     nodes,
     edges,
+    variables,
     evidence: accessibleEvidence,
     outcome: req.outcome ?? null,
     coverage: req.coverage ?? null,

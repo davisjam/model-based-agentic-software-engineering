@@ -483,6 +483,16 @@ export function paintDiagram(
 
   roots.text.append(el("p", scene.summary, "intro"));
 
+  // The machine's declared variables — what the variables compartment shows (twin parity: the
+  // compartment is new ink, so this block is its non-visual equivalent, declaration for
+  // declaration).
+  if (scene.variables.length > 0) {
+    roots.text.append(el("p", "Variables", "sublabel"));
+    const vars = el("ul", undefined, "notes");
+    for (const v of scene.variables) vars.append(el("li", v.description));
+    roots.text.append(vars);
+  }
+
   const emphasised = [...scene.nodes, ...scene.edges].filter((x) => x.emphasis.length > 0);
   if (emphasised.length > 0) {
     roots.text.append(el("p", "Marked in the picture", "sublabel"));
@@ -507,7 +517,11 @@ export function paintDiagram(
       const how =
         entry.channel === "relation"
           ? `drawn as an arrow with a ${entry.form} head`
-          : `drawn as a ${entry.form === "state" ? "pill" : entry.form === "region" ? "large enclosing frame" : "box"}`;
+          : entry.channel === "notation"
+            ? entry.form === "variables"
+              ? "drawn as a boxed list below the diagram"
+              : "written in the transition's label line"
+            : `drawn as a ${entry.form === "state" ? "pill" : entry.form === "region" ? "large enclosing frame" : "box"}`;
       dl.append(el("dt", entry.id), el("dd", `${entry.meaning} — ${how}`));
     }
     roots.text.append(dl);

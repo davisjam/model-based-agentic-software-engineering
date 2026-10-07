@@ -1262,7 +1262,7 @@ test("every drawn shape carries the class its own stylesheet styles", () => {
   walk(view.tree);
   assert.ok(shapes.length > 4, `expected drawn shapes, found ${shapes.length}`);
   for (const s of shapes) {
-    assert.match(s.cls, /^mage-(box|region|state|edge)\b/,
+    assert.match(s.cls, /^mage-(box|region|state|edge|varbox)\b/,
       `a <${s.tag}> shipped with class '${s.cls}'; with no class SVG fills it black`);
   }
   // And the fill those classes carry must actually be in the document the page mounts.

@@ -120,9 +120,12 @@ export const TEXT_SIZES = {
   "mage-label": METRICS.fontSize,
   "mage-sublabel": METRICS.fontSize - 2,
   "mage-edge-label": METRICS.fontSize - 2,
+  "mage-edge-sublabel": METRICS.fontSize - 2,
   "mage-glyph": METRICS.fontSize,
   "mage-legend": METRICS.fontSize - 2,
   "mage-key": METRICS.fontSize - 2,
+  "mage-var": METRICS.fontSize - 2,
+  "mage-var-title": METRICS.fontSize - 2,
 } as const satisfies Readonly<Record<string, number>>;
 
 export type TextClass = keyof typeof TEXT_SIZES;
@@ -143,6 +146,30 @@ export const textExtent = (text: string, cls: TextClass): Size => ({
 
 /** Vertical pitch between in-node attribute sub-lines; the painter and the sizer share it. */
 export const SUBLABEL_PITCH = TEXT_SIZES["mage-sublabel"] + 2;
+
+/**
+ * UML statechart transition notation: the `[guard] / effect` line drawn under the event name.
+ * One composer, three readers — the engine reserves label-box room from it, the painter paints
+ * it, and `bounds` accounts for its ink — so none of them can disagree about what an edge says.
+ * Composed from DECLARED semantics only; null when the transition declares neither.
+ */
+export function transitionSubLabel(guard: string | null, effect: string | null): string | null {
+  if (guard === null && effect === null) return null;
+  const g = guard === null ? null : `[${guard}]`;
+  const e = effect === null ? null : `/ ${effect}`;
+  return [g, e].filter((s): s is string => s !== null).join(" ");
+}
+
+/**
+ * The degradation rule for the notation line, stated rather than left to overflow: the whole
+ * `[guard] / effect` line renders when it fits twice a node's maximum width; a longer predicate
+ * renders NOWHERE in the picture — never an ellipsis — and stays whole in the hover title, the
+ * twin's edge description, and the inspector. Same whole-line-or-nowhere posture as `inNodeLines`.
+ */
+export const EDGE_SUBLABEL_MAX_W = 2 * METRICS.nodeMaxWidth;
+
+export const subLabelFits = (line: string): boolean =>
+  textExtent(line, "mage-edge-sublabel").w <= EDGE_SUBLABEL_MAX_W;
 
 /**
  * Which of a node's declared attributes render INSIDE the node box, as `name: value` sub-lines.
@@ -471,11 +498,17 @@ export function bounds(nodes: Iterable<LayoutNode>, edges: readonly LayoutEdge[]
 
   for (const e of edges) {
     for (const p of e.points) see(p.x, p.y);
-    // (c) Edge text, at the spot the engine reserved for it.
+    // (c) Edge text, at the spot the engine reserved for it — the event name, and the UML
+    //     `[guard] / effect` line one sublabel pitch below it when one renders.
     if (e.labelPoint !== null && e.label !== null) {
       const ext = textExtent(e.label, "mage-edge-label");
       see(e.labelPoint.x - ext.w / 2, e.labelPoint.y - ext.h);
       see(e.labelPoint.x + ext.w / 2, e.labelPoint.y + ext.h);
+      if (e.subLabel !== null && subLabelFits(e.subLabel)) {
+        const sub = textExtent(e.subLabel, "mage-edge-sublabel");
+        see(e.labelPoint.x - sub.w / 2, e.labelPoint.y + SUBLABEL_PITCH - sub.h);
+        see(e.labelPoint.x + sub.w / 2, e.labelPoint.y + SUBLABEL_PITCH + sub.h);
+      }
     }
   }
 

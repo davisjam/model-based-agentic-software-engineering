@@ -39,7 +39,8 @@
 import dagre from "@dagrejs/dagre";
 import type { SceneGraph } from "./scene.ts";
 import {
-  METRICS, assembleLayout, claimsByTarget, liftToOuter, place, sizes, textExtent,
+  METRICS, SUBLABEL_PITCH, assembleLayout, claimsByTarget, liftToOuter, place, sizes,
+  subLabelFits, textExtent, transitionSubLabel,
 } from "./layout.ts";
 import type { LayoutEngine, LiftedEdge, Size } from "./layout.ts";
 import type { Direction, LayoutEdge, LayoutOptions, Point, Rect } from "./types.ts";
@@ -120,10 +121,17 @@ function snapToRankFace(r: Rect, other: Rect, p: Point, aim: Point, horizontal: 
  * straight back. An empty object here is the correct spelling for "this edge carries no text";
  * a misspelled size is the same thing by accident.
  */
-const labelBox = (text: string | null): Readonly<Record<string, unknown>> => {
-  if (text === null) return {};
-  const ext = textExtent(text, "mage-edge-label");
-  return { width: ext.w, height: ext.h, labelpos: "c", labeloffset: 0 };
+const labelBox = (text: string | null, subLabel: string | null): Readonly<Record<string, unknown>> => {
+  const sub = subLabel !== null && subLabelFits(subLabel) ? subLabel : null;
+  if (text === null && sub === null) return {};
+  const ext = text === null ? { w: 0, h: 0 } : textExtent(text, "mage-edge-label");
+  const subExt = sub === null ? { w: 0, h: 0 } : textExtent(sub, "mage-edge-sublabel");
+  return {
+    width: Math.max(ext.w, subExt.w),
+    height: ext.h + (sub === null ? 0 : SUBLABEL_PITCH + subExt.h),
+    labelpos: "c",
+    labeloffset: 0,
+  };
 };
 
 /**
@@ -220,13 +228,14 @@ export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutO
   for (const l of [...ranked].sort((a, b) => (a.edge.id < b.edge.id ? -1 : 1))) {
     const isBack = back.has(`${l.from} -> ${l.to}`);
     if (isBack) reversed.add(l.edge.id);
-    // An edge's label is a SIZED BOX dagre must find room for, not decoration painted afterward.
-    const label = labelBox(l.edge.label);
+    // An edge's label is a SIZED BOX dagre must find room for, not decoration painted afterward —
+    // including the UML `[guard] / effect` line, which is text like any other.
+    const label = labelBox(l.edge.label, transitionSubLabel(l.edge.guard, l.edge.effect));
     const [v, w] = isBack ? [l.to, l.from] : [l.from, l.to];
     g.setEdge(key(v), key(w), { ...label }, l.edge.id);
   }
   for (const l of selfLoops) {
-    const label = labelBox(l.edge.label);
+    const label = labelBox(l.edge.label, transitionSubLabel(l.edge.guard, l.edge.effect));
     g.setEdge(key(l.from), key(l.from), { ...label }, l.edge.id);
   }
 
@@ -267,7 +276,10 @@ export const dagreLayoutEngine: LayoutEngine = (scene: SceneGraph, opts: LayoutO
 
   const byId = new Map(lifted.map((l) => [l.edge.id, l]));
   const edges: LayoutEdge[] = scene.edges.map((e): LayoutEdge => {
-    const base = { id: e.id, kind: e.kind, from: e.from, to: e.to, label: e.label, via: e.via };
+    const base = {
+      id: e.id, kind: e.kind, from: e.from, to: e.to, label: e.label, via: e.via,
+      subLabel: transitionSubLabel(e.guard, e.effect),
+    };
     const src = rects.get(e.from);
     const tgt = rects.get(e.to);
     const l = byId.get(e.id);
