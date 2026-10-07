@@ -21,13 +21,24 @@ The rest of the Act develops a model of what happens inside that delegation. For
 
 > **p(T, M, R, H)**
 
-That probability hides several different engineering problems. Did the representation correctly encode what mattered? Did the reasoner correctly interpret it? Did the resulting implementation correctly realize it? One useful factorization is:
+That probability hides several different engineering problems. One useful factorization is:
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-We will call this the Master Equation for Act II. It is a conceptual decomposition, not a claim that these probabilities can generally be measured precisely or manipulated as independent quantities. Nor does the subscript claim that only the representation matters: the factorization holds the task, model, and harness fixed and conditions each factor on the one representation under study, so *T*, *M*, and *H* stand behind every term rather than vanishing from it. Its purpose is to separate places where reliable realization can fail, and therefore places where engineering can intervene. The factors are conditional because the stages interact: what can be realized depends on what was interpreted, and what counts as acceptable depends on the task, representation, and surrounding engineering environment. Master Equation is shorthand for this decomposition throughout the rest of the Act.
+We will call this the Master Equation for Act II. It separates reliable realization into three questions: was the consequential intent encoded correctly, was it interpreted correctly, and was that interpretation realized successfully? The task *T*, reasoning model *M*, and harness *H* describe the surrounding conditions under which this realization occurs.
 
-Act II works through this system. Modeling asks what should be represented, what distinctions the representation must preserve, and what freedom it should leave to realization. Alignment asks which obligations should be enforced independently of whether the producing reasoner gets them right. Failure-Aware Engineering asks how the engineering environment should change when reality reveals that its models, controls, or assumptions were inadequate.
+Act II uses this decomposition to organize four engineering problems:
+
+| Unit | Engineering problem |
+|---|---|
+| **Delegation** | Design the work, capability, authority, and evidence around delegated realization |
+| **Modeling** | Represent consequential knowledge so that it can be encoded and interpreted while leaving irrelevant realization choices free |
+| **Alignment** | Give selected obligations authority independent of whether the producing reasoner gets them right |
+| **Failure-Aware Engineering** | Use failures as evidence about what the engineering environment should change |
+
+The progression is deliberate. Delegation defines the realization problem. Modeling improves the conditions under which realization occurs. Alignment governs selected consequences when realization is unacceptable. Failure-Aware Engineering uses the resulting evidence to change the models, controls, or assumptions that future work inherits.
+
+The Master Equation is a conceptual model, not a claim that these probabilities can generally be measured precisely. Its factors are conditional rather than independent. In plain terms, success at each stage depends on what happened at the stages before it. As a result, what can be realized depends on what was interpreted, and what can be interpreted depends on what was encoded. The equation gives us a vocabulary for locating where reliable realization can fail and where engineering can intervene.
 
 - **[Delegating to Software Agents: Old Problem, New Properties](01-delegation/index.md)** — how contemporary agentic systems work, and how to bound, equip, authorize, and verify delegated realization.
 - **[Modeling: Purposeful Reduction · Degrees of Semantic Commitment](02-modeling/index.md)** (2 lectures) — how engineering knowledge is represented; what a representation must preserve; how models constrain realization without determining it; and how implementations and models correspond.
