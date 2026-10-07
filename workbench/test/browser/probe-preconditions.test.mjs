@@ -11,13 +11,17 @@ import assert from "node:assert/strict";
 import { startServerOnFreePort, launchBrowser, shutdown, assertFound, dumpShape } from "./harness.mjs";
 
 describe("a probe asserts its own preconditions", () => {
-  let server, browser, page;
+  let server, origin, browser, page;
 
   before(async () => {
-    server = await startServerOnFreePort();
+    // Destructured, NOT assigned whole: `startServerOnFreePort` returns `{ server, origin }`, and
+    // `shutdown` wants the raw http server. Assigning the wrapper here is the same shape-guess this
+    // file exists to prevent, and it cost a push: the bodies passed, the `after` hook threw
+    // `server.close is not a function`, and only the full tier surfaced it.
+    ({ server, origin } = await startServerOnFreePort());
     browser = await launchBrowser();
     page = await browser.newPage();
-    await page.goto(`${server.origin}/workbench/index.html`, { waitUntil: "networkidle0" });
+    await page.goto(`${origin}/workbench/index.html`, { waitUntil: "networkidle0" });
   });
 
   after(async () => { await shutdown({ browser, server }); });
