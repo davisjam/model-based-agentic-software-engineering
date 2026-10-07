@@ -153,3 +153,35 @@ while a push transfers stranded a commit earlier today. Merge after the push lan
 in any fresh worktree — `html: link + anchor resolution` and `book: emitted web tree == expected page
 slugs` — both from `book/web/docs/` being empty. That tree is gitignored and only exists in the main
 checkout. Not a regression; do not chase it.
+
+### 261007 evening — Leveson reading + 2-3 structural revision dispatched
+
+**Leveson reading LANDED** on `landers-surgical-261007` (2 commits): the Alignment lander's
+"Control as an engineering tradition" placeholder is now Leveson, Daouk, Dulac and Marais, *Applying
+STAMP in Accident Analysis* (IRIA 2003). Course copy hosted at
+`03-alignment/readings/leveson-stamp-accident-analysis-2003.pdf`, `@inproceedings{leveson2003stamp}`
+added to `book/references.bib`, `citations.json` regenerated, and the "still being selected" note
+retired. The annotation frames STAMP as Alignment's argument arrived at decades earlier: an accident
+is the failure of a CONTROL STRUCTURE, not a chain of component faults.
+
+**Two traps hit, both worth remembering:**
+- Adding a bib entry stales `citations.json` → the **CITE-FRESH (BIB-6)** gate fires. Run
+  `python3 book/render_citations.py` in the same change.
+- The hosted PDF was left **UNTRACKED** by a `git add` glob and needed `git add -f`. It is not
+  gitignored — the glob simply missed it. A lander linking at an untracked PDF passes every local
+  check and 404s for the student. Sibling units (02-software-process, 05-specification) track theirs;
+  compare against them.
+
+**2-3-Alignment structural revision DISPATCHED** (`deck-2-3-structural-261007`, Fable). Six parts:
+a hard 20pt floor (slides 17/18/24/32/33/36 are at 9.5–10pt and need redesign, not scaling);
+Section 1 becomes the taxonomy *bound the task / bound the process*; Section 2 collapses four sibling
+failures into *wrong result / wrong process*; "A failure model suggests controls" is promoted to its
+own SECTION 3; the compressed production-vs-Alignment aphorism is expanded; and — the largest change —
+the Modeling section becomes **Models as validation surfaces**, reusing the TWO LAB MODELS instead of
+the invented document-processing example.
+
+**The lab models, located for the brief:** `_drafts/modeling-lab-261006/` —
+`lab-making-a-property-provable.md` plus `exercise1-twomodel.mage.yaml`. A **sensor node**:
+sense/analyze/transmit threads + scheduler with working-memory quantities (structural → STATIC
+validation) and thread-lifecycle machines asleep/awake (behavioural → DYNAMIC validation). Note the
+continuity nobody had flagged: the deck's activity is an embedded controller, the same domain.
