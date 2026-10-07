@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A/B: medium-document-processing — dagre painter vs Mermaid</title><style>
+  :root { color-scheme: light; }
+  body { font-family: system-ui, sans-serif; margin: 2rem; background: #fbfcfe; color: #11151c; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.15rem; margin-top: 2.5rem; border-top: 2px solid #d6dbe4; padding-top: 1rem; }
+  .meta { color: #434b5a; max-width: 60rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+  .panel { border: 1px solid #d6dbe4; border-radius: 8px; background: #fff; padding: 1rem; max-width: 100%; overflow-x: auto; }
+  .panel h3 { margin: 0 0 .75rem 0; font-size: .95rem; color: #2a3242; }
+  .panel svg { max-width: 100%; height: auto; }
+  details { margin-top: .75rem; } pre { background: #f2f4f8; padding: .75rem; border-radius: 6px; overflow-x: auto; font-size: .8rem; }
+  table { border-collapse: collapse; margin-top: 1rem; } td, th { border: 1px solid #d6dbe4; padding: .5rem .75rem; text-align: left; vertical-align: top; }
+  .yes { color: #166534; font-weight: 700; } .no { color: #9a3412; font-weight: 700; } .partial { color: #854d0e; font-weight: 700; }
+  .note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; padding: .75rem 1rem; max-width: 60rem; }
+</style></head>
+<body><h1>A/B: medium-document-processing — dagre painter vs Mermaid</h1><p class="meta">Each model is drawn by BOTH painters from the same <code>buildScene</code> output.
+A is the shipped renderer; A′ is the same renderer with the guard/effect notation written into transition labels
+(the semantics <code>scene.ts</code> already extracts); B is Mermaid 11.16 from <code>book/node_modules</code>.
+<a href="index.html">Back to the pilot index</a>.</p><h2>State machine: <code>document-lifecycle</code></h2>
+<p class="meta">Can a completed document ever be processed again, and is the retry policy bounded?</p>
+
+<div class="row"><div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG), as it renders today</h3><svg aria-labelledby="mage-title-document-lifecycle mage-desc-document-lifecycle" class="mage-svg" data-direction="left-to-right" data-subject-id="document-lifecycle" data-subject-kind="machine" data-system-hash="fnv1a64:51d2678fd91404be" height="240" role="img" viewBox="-31 0 917.15 240" width="917.15" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-document-lifecycle">document-lifecycle (document)</title>
+  <desc id="mage-desc-document-lifecycle">state machine &quot;document-lifecycle (document)&quot;: 5 nodes, 5 relations. Question: Can a completed document ever be processed again, and is the retry policy bounded? Includes: document lifecycle states, permitted state transitions, successful completion, processing failure, retry from a failed attempt. Deliberately omits: document contents, processing implementation, memory consumption, processing duration, worker deployment, number of available workers. System: fnv1a64:51d2678fd91404be.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:document-lifecycle:0" data-edge-kind="transition" data-from="submitted" data-to="queued" id="mage-edge-t:document-lifecycle:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,91 204.03,91 270.05,91" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="204.03" y="95">enqueue</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:1" data-edge-kind="transition" data-from="queued" data-to="processing" id="mage-edge-t:document-lifecycle:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="380.05,103.91 440.07,118 500.09,118" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="440.07" y="122">start</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:2" data-edge-kind="transition" data-from="processing" data-to="completed" id="mage-edge-t:document-lifecycle:2">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="610.09,124.21 679.12,132 748.15,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="679.12" y="136">complete</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:3" data-edge-kind="transition" data-from="processing" data-to="failed" id="mage-edge-t:document-lifecycle:3">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="610.09,100.26 679.12,78 748.15,62.97" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="679.12" y="82">fail</text>
+    </g>
+    <g data-backedge="true" data-edge-id="t:document-lifecycle:4" data-edge-kind="transition" data-from="failed" data-to="queued" id="mage-edge-t:document-lifecycle:4">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="748.15,46.01 679.12,39.75 555.09,39.75 440.07,39.75 380.05,68" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="555.09" y="43.75">retry</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="completed" data-node-kind="state" data-rank="3" data-reading-index="5" id="mage-node-completed">
+      <title>completed : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="748.15" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="803.15" y="133">completed</text>
+    </g>
+    <g data-node-id="failed" data-node-kind="state" data-rank="3" data-reading-index="4" id="mage-node-failed">
+      <title>failed : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="748.15" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="803.15" y="52">failed</text>
+    </g>
+    <g data-node-id="processing" data-node-kind="state" data-rank="2" data-reading-index="3" id="mage-node-processing">
+      <title>processing : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="500.09" y="95"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="555.09" y="119">processing</text>
+    </g>
+    <g data-node-id="queued" data-node-kind="state" data-rank="1" data-reading-index="2" id="mage-node-queued">
+      <title>queued : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="270.05" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="325.05" y="92">queued</text>
+    </g>
+    <g data-initial="true" data-node-id="submitted" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-submitted">
+      <title>submitted : state</title>
+      <circle class="mage-initial" cx="2" cy="91" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="91" y2="91"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="92">submitted</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-3" y="195"/>
+      <text class="mage-key" x="45" y="205">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>A′ — Shipped painter, guard/effect text on labels (pilot tweak, same painter)</h3><svg aria-labelledby="mage-title-document-lifecycle mage-desc-document-lifecycle" class="mage-svg" data-direction="left-to-right" data-subject-id="document-lifecycle" data-subject-kind="machine" data-system-hash="fnv1a64:5a7b86ea13029519" height="240" role="img" viewBox="-31 0 1293.78 240" width="1293.78" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-document-lifecycle">document-lifecycle (document)</title>
+  <desc id="mage-desc-document-lifecycle">state machine &quot;document-lifecycle (document)&quot;: 5 nodes, 5 relations. Question: Can a completed document ever be processed again, and is the retry policy bounded? Includes: document lifecycle states, permitted state transitions, successful completion, processing failure, retry from a failed attempt. Deliberately omits: document contents, processing implementation, memory consumption, processing duration, worker deployment, number of available workers. System: fnv1a64:5a7b86ea13029519.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-edge-id="t:document-lifecycle:0" data-edge-kind="transition" data-from="submitted" data-to="queued" id="mage-edge-t:document-lifecycle:0">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="138,91 204.03,91 270.05,91" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="204.03" y="95">enqueue</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:1" data-edge-kind="transition" data-from="queued" data-to="processing" id="mage-edge-t:document-lifecycle:1">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="380.05,103.91 440.07,118 613.31,118" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="440.07" y="122">start</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:2" data-edge-kind="transition" data-from="processing" data-to="completed" id="mage-edge-t:document-lifecycle:2">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="723.31,120.47 980.65,132 1124.78,132" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="980.65" y="136">complete / seen_completed := true</text>
+    </g>
+    <g data-edge-id="t:document-lifecycle:3" data-edge-kind="transition" data-from="processing" data-to="failed" id="mage-edge-t:document-lifecycle:3">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="723.31,110.96 980.65,78 1124.78,58.46" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="980.65" y="82">fail</text>
+    </g>
+    <g data-backedge="true" data-edge-id="t:document-lifecycle:4" data-edge-kind="transition" data-from="failed" data-to="queued" id="mage-edge-t:document-lifecycle:4">
+      <polyline class="mage-edge mage-plain" fill="none" marker-end="url(#mage-arrow)" points="1124.78,47.89 980.65,39.75 668.31,39.75 440.07,39.75 380.05,68" stroke-width="1.5"/>
+      <text class="mage-edge-label" text-anchor="middle" x="668.31" y="43.75">retry [retry_count &lt; 2] / retry_count := retry_count + 1</text>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="completed" data-node-kind="state" data-rank="3" data-reading-index="5" id="mage-node-completed">
+      <title>completed : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="1124.78" y="109"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1179.78" y="133">completed</text>
+    </g>
+    <g data-node-id="failed" data-node-kind="state" data-rank="3" data-reading-index="4" id="mage-node-failed">
+      <title>failed : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="1124.78" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="1179.78" y="52">failed</text>
+    </g>
+    <g data-node-id="processing" data-node-kind="state" data-rank="2" data-reading-index="3" id="mage-node-processing">
+      <title>processing : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="613.31" y="95"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="668.31" y="119">processing</text>
+    </g>
+    <g data-node-id="queued" data-node-kind="state" data-rank="1" data-reading-index="2" id="mage-node-queued">
+      <title>queued : state</title>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="270.05" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="325.05" y="92">queued</text>
+    </g>
+    <g data-initial="true" data-node-id="submitted" data-node-kind="state" data-rank="0" data-reading-index="1" id="mage-node-submitted">
+      <title>submitted : state</title>
+      <circle class="mage-initial" cx="2" cy="91" r="5"/>
+      <line class="mage-edge" marker-end="url(#mage-arrow)" stroke-width="1.5" x1="2" x2="28" y1="91" y2="91"/>
+      <rect class="mage-state mage-plain" height="46" rx="23" stroke-width="1.5" width="110" x="28" y="68"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="83" y="92">submitted</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="shape" data-key-form="state" data-key-id="state">
+      <rect class="mage-state" height="12" rx="6" stroke-width="1.5" width="30" x="-3" y="195"/>
+      <text class="mage-key" x="45" y="205">one control state of a machine</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>stateDiagram-v2</code>, one line per transition (honest)</h3><svg id="m3" width="100%" xmlns="http://www.w3.org/2000/svg" class="statediagram" style="max-width: 1185.546875px;" viewBox="0 0 1185.546875 392" role="graphics-document document" aria-roledescription="stateDiagram"><style>#m3{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m3 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m3 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m3 .error-icon{fill:#552222;}#m3 .error-text{fill:#552222;stroke:#552222;}#m3 .edge-thickness-normal{stroke-width:1px;}#m3 .edge-thickness-thick{stroke-width:3.5px;}#m3 .edge-pattern-solid{stroke-dasharray:0;}#m3 .edge-thickness-invisible{stroke-width:0;fill:none;}#m3 .edge-pattern-dashed{stroke-dasharray:3;}#m3 .edge-pattern-dotted{stroke-dasharray:2;}#m3 .marker{fill:#666;stroke:#666;}#m3 .marker.cross{stroke:#666;}#m3 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m3 p{margin:0;}#m3 defs [id$="-barbEnd"]{fill:#000;stroke:#000;}#m3 g.stateGroup text{fill:#999;stroke:none;font-size:10px;}#m3 g.stateGroup text{fill:#000000;stroke:none;font-size:10px;}#m3 g.stateGroup .state-title{font-weight:bolder;fill:#111111;}#m3 g.stateGroup rect{fill:#eee;stroke:#999;}#m3 g.stateGroup line{stroke:#666;stroke-width:1;}#m3 .transition{stroke:#000;stroke-width:1;fill:none;}#m3 .stateGroup .composit{fill:#ffffff;border-bottom:1px;}#m3 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#m3 .state-note{stroke:#999;fill:#666;}#m3 .state-note text{fill:#fff;stroke:none;font-size:10px;}#m3 .stateLabel .box{stroke:none;stroke-width:0;fill:#eee;opacity:0.5;}#m3 .edgeLabel .label rect{fill:#eee;opacity:0.5;}#m3 .edgeLabel{background-color:white;text-align:center;}#m3 .edgeLabel p{background-color:white;}#m3 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m3 .edgeLabel .label text{fill:#000000;}#m3 .label div .edgeLabel{color:#000000;}#m3 .stateLabel text{fill:#111111;font-size:10px;font-weight:bold;}#m3 .node circle.state-start{fill:#222;stroke:#222;}#m3 .node .fork-join{fill:#222;stroke:#222;}#m3 .node circle.state-end{fill:hsl(0, 0%, 83.3333333333%);stroke:#ffffff;stroke-width:1.5;}#m3 .end-state-inner{fill:#ffffff;stroke-width:1.5;}#m3 .node rect{fill:#eee;stroke:#000;stroke-width:1px;}#m3 .node polygon{fill:#eee;stroke:#000;stroke-width:1px;}#m3 [id$="-barbEnd"]{fill:#666;}#m3 .statediagram-cluster rect{fill:#eee;stroke:#000;stroke-width:1px;}#m3 .cluster-label,#m3 .nodeLabel{color:#111111;}#m3 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#m3 .statediagram-state .divider{stroke:#000;}#m3 .statediagram-state .title-state{rx:5px;ry:5px;}#m3 .statediagram-cluster.statediagram-cluster .inner{fill:#ffffff;}#m3 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f4f4f4;}#m3 .statediagram-cluster .inner{rx:0;ry:0;}#m3 .statediagram-state rect.basic{rx:5px;ry:5px;}#m3 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f4f4f4;}#m3 .note-edge{stroke-dasharray:5;}#m3 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m3 .statediagram-note rect{fill:#666;stroke:#999;stroke-width:1px;rx:0;ry:0;}#m3 .statediagram-note text{fill:#fff;}#m3 .statediagram-note .nodeLabel{color:#fff;}#m3 .statediagram .edgeLabel{color:red;}#m3 [id$="-dependencyStart"],#m3 [id$="-dependencyEnd"]{fill:#666;stroke:#666;stroke-width:1;}#m3 .statediagramTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m3 [data-look="neo"].statediagram-cluster rect{fill:#eee;stroke:url(#m3-gradient);stroke-width:1;}#m3 [data-look="neo"].statediagram-cluster rect.outer{rx:5px;ry:5px;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 .node .neo-node{stroke:#999;}#m3 [data-look="neo"].node rect,#m3 [data-look="neo"].cluster rect,#m3 [data-look="neo"].node polygon{stroke:url(#m3-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 [data-look="neo"].swimlane.cluster rect{filter:none;}#m3 [data-look="neo"].node path{stroke:url(#m3-gradient);stroke-width:1px;}#m3 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m3 [data-look="neo"].node circle{stroke:url(#m3-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 [data-look="neo"].node circle .state-start{fill:#000000;}#m3 [data-look="neo"].icon-shape .icon{fill:url(#m3-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m3-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m3 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><defs><marker id="m3_stateDiagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M 19,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><g class="root"><g class="clusters"><g class="note-cluster" id="m3-state-submitted----parent-6"><rect x="271.625" y="8" width="280" height="196" fill="none"></rect></g></g><g class="edgePaths"><path d="M22,210.5L26.167,210.5C30.333,210.5,38.667,210.5,47,210.5C55.333,210.5,63.667,210.5,67.833,210.5L72,210.5" id="m3-edge0" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge0" data-points="W3sieCI6MjIsInkiOjIxMC41fSx7IngiOjQ3LCJ5IjoyMTAuNX0seyJ4Ijo3MiwieSI6MjEwLjV9XQ==" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M142.247,230.5L154.533,239.917C166.82,249.333,191.392,268.167,212.955,277.583C234.518,287,253.072,287,279.951,287C306.831,287,342.036,287,359.639,287L377.242,287" id="m3-edge1" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge1" data-points="W3sieCI6MTQyLjI0NzExNDk5MTgzMDA3LCJ5IjoyMzAuNX0seyJ4IjoyMTUuOTY0ODQzNzUsInkiOjI4N30seyJ4IjoyNzEuNjI1LCJ5IjoyODd9LHsieCI6Mzc3LjI0MjE4NzUsInkiOjI4N31d" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M446.008,275.826L463.611,270.105C481.214,264.384,516.419,252.942,541.005,247.221C565.59,241.5,579.555,241.5,602.632,241.5C625.708,241.5,657.897,241.5,673.992,241.5L690.086,241.5" id="m3-edge2" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge2" data-points="W3sieCI6NDQ2LjAwNzgxMjUsInkiOjI3NS44MjU1ODU5Mzc1fSx7IngiOjU1MS42MjUsInkiOjI0MS41fSx7IngiOjU5My41MTk1MzEyNSwieSI6MjQxLjV9LHsieCI6NjkwLjA4NTkzNzUsInkiOjI0MS41fV0=" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M780.742,235.859L810.688,232.133C840.633,228.406,900.523,220.953,951.302,217.227C1002.081,213.5,1043.747,213.5,1064.581,213.5L1085.414,213.5" id="m3-edge3" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge3" data-points="W3sieCI6NzgwLjc0MjE4NzUsInkiOjIzNS44NTkxNjY2NjY2NjY2OH0seyJ4Ijo5NjAuNDE0MDYyNSwieSI6MjEzLjV9LHsieCI6MTA4NS40MTQwNjI1LCJ5IjoyMTMuNX1d" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M780.742,250.566L810.688,256.555C840.633,262.544,900.523,274.522,954.21,286.826C1007.896,299.129,1055.378,311.758,1079.118,318.073L1102.859,324.387" id="m3-edge4" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge4" data-points="W3sieCI6NzgwLjc0MjE4NzUsInkiOjI1MC41NjU2MjV9LHsieCI6OTYwLjQxNDA2MjUsInkiOjI4Ni41fSx7IngiOjExMDIuODU5Mzc1LCJ5IjozMjQuMzg3NDAyMDk2MjI1NH1d" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M1102.859,334.677L1079.118,336.897C1055.378,339.118,1007.896,343.559,946.655,345.779C885.414,348,810.414,348,749.265,348C688.116,348,640.818,348,610.186,348C579.555,348,565.59,348,541.005,340.33C516.419,332.66,481.214,317.321,463.611,309.651L446.008,301.981" id="m3-edge5" class=" edge-thickness-normal edge-pattern-solid transition" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="edge5" data-points="W3sieCI6MTEwMi44NTkzNzUsInkiOjMzNC42NzY5NTc1MDQ2MjR9LHsieCI6OTYwLjQxNDA2MjUsInkiOjM0OH0seyJ4Ijo3MzUuNDE0MDYyNSwieSI6MzQ4fSx7IngiOjU5My41MTk1MzEyNSwieSI6MzQ4fSx7IngiOjU1MS42MjUsInkiOjM0OH0seyJ4Ijo0NDYuMDA3ODEyNSwieSI6MzAxLjk4MTA4MjU4OTI4NTczfV0=" data-look="classic" marker-end="url(#m3_stateDiagram-barbEnd)"></path><path d="M135.255,190.5L148.707,176.417C162.158,162.333,189.062,134.167,211.79,120.083C234.518,106,253.072,106,266.515,106C279.958,106,288.292,106,292.458,106L296.625,106" id="m3-submitted-submitted----note-6" class=" edge-thickness-normal edge-pattern-solid transition note-edge" style="fill:none;;;fill:none" data-edge="true" data-et="edge" data-id="submitted-submitted----note-6" data-points="W3sieCI6MTM1LjI1NTIxNDU2MzM5NzEyLCJ5IjoxOTAuNX0seyJ4IjoyMTUuOTY0ODQzNzUsInkiOjEwNn0seyJ4IjoyNzEuNjI1LCJ5IjoxMDZ9LHsieCI6Mjk2LjYyNSwieSI6MTA2fV0=" data-look="classic"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="edge0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(215.96484375, 287)"><g class="label" data-id="edge1" transform="translate(-30.66015625, -12)"><foreignObject width="61.3203125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>enqueue</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(593.51953125, 241.5)"><g class="label" data-id="edge2" transform="translate(-16.89453125, -12)"><foreignObject width="33.7890625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>start</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(960.4140625, 213.5)"><g class="label" data-id="edge3" transform="translate(-100, -24)"><foreignObject width="200" height="48"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel "><p>complete / seen_completed := true</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(960.4140625, 286.5)"><g class="label" data-id="edge4" transform="translate(-11.80078125, -12)"><foreignObject width="23.6015625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>fail</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(735.4140625, 348)"><g class="label" data-id="edge5" transform="translate(-100, -36)"><foreignObject width="200" height="72"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel "><p>retry [retry_count &lt; 2] / retry_count := retry_count + 1</p></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="submitted-submitted----note-6" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="m3-state-root_start-0" data-look="classic" transform="translate(15, 210.5)"><circle class="state-start" r="7" width="14" height="14"></circle></g><g class="node  statediagram-state " id="m3-state-submitted-6" data-look="classic" transform="translate(116.15234375, 210.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-44.15234375" y="-20" width="88.3046875" height="40"></rect><g class="label" style="" transform="translate(-36.15234375, -12)"><rect></rect><foreignObject width="72.3046875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>submitted</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m3-state-queued-5" data-look="classic" transform="translate(411.625, 287)"><rect class="basic label-container" style="" rx="5" ry="5" x="-34.3828125" y="-20" width="68.765625" height="40"></rect><g class="label" style="" transform="translate(-26.3828125, -12)"><rect></rect><foreignObject width="52.765625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>queued</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m3-state-processing-4" data-look="classic" transform="translate(735.4140625, 241.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-45.328125" y="-20" width="90.65625" height="40"></rect><g class="label" style="" transform="translate(-37.328125, -12)"><rect></rect><foreignObject width="74.65625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>processing</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m3-state-completed-3" data-look="classic" transform="translate(1131.48046875, 213.5)"><rect class="basic label-container" style="" rx="5" ry="5" x="-46.06640625" y="-20" width="92.1328125" height="40"></rect><g class="label" style="" transform="translate(-38.06640625, -12)"><rect></rect><foreignObject width="76.1328125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>completed</p></span></div></foreignObject></g></g><g class="node  statediagram-state " id="m3-state-failed-5" data-look="classic" transform="translate(1131.48046875, 332)"><rect class="basic label-container" style="" rx="5" ry="5" x="-28.62109375" y="-20" width="57.2421875" height="40"></rect><g class="label" style="" transform="translate(-20.62109375, -12)"><rect></rect><foreignObject width="41.2421875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel markdown-node-label"><p>failed</p></span></div></foreignObject></g></g><g class="node statediagram-note " id="m3-state-submitted----note-6" data-look="classic" transform="translate(411.625, 106)"><g class="basic label-container outer-path"><path d="M-115 -63 L115 -63 L115 63 L-115 63" stroke="none" stroke-width="0" fill="#666" style=""></path><path d="M-115 -63 C-24.755028384734587 -63, 65.48994323053083 -63, 115 -63 M-115 -63 C-49.580089906338074 -63, 15.839820187323852 -63, 115 -63 M115 -63 C115 -17.324722244858506, 115 28.350555510282987, 115 63 M115 -63 C115 -33.09906677093723, 115 -3.198133541874448, 115 63 M115 63 C47.93853243207606 63, -19.122935135847882 63, -115 63 M115 63 C45.24797497523454 63, -24.504050049530917 63, -115 63 M-115 63 C-115 23.33152690120633, -115 -16.336946197587338, -115 -63 M-115 63 C-115 37.32637153175441, -115 11.652743063508822, -115 -63" stroke="#999" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="label noteLabel" style="" transform="translate(-100, -48)"><rect></rect><foreignObject width="200" height="96"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="nodeLabel markdown-node-label"><p>retry_count : integer [0..2], initially 0<br/>seen_completed : boolean {false, true}, initially false</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="m3-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m3-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m3-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>stateDiagram-v2
+  direction LR
+  [*] --> submitted
+  submitted --> queued : enqueue
+  queued --> processing : start
+  processing --> completed : complete / seen_completed := true
+  processing --> failed : fail
+  failed --> queued : retry [retry_count &lt; 2] / retry_count := retry_count + 1
+  note right of submitted
+    retry_count : integer [0..2], initially 0
+    seen_completed : boolean {false, true}, initially false
+  end note</pre></details></div></div>
+<h2>Structural model: <code>processing-resources</code></h2>
+<p class="meta">Does the maximum concurrent processing demand fit in the worker's memory?</p>
+<div class="row">
+<div class="panel"><h3>A — Shipped painter (dagre + bespoke SVG); relation types live in the key strip, not on edges</h3><svg aria-labelledby="mage-title-processing-resources mage-desc-processing-resources" class="mage-svg" data-direction="left-to-right" data-subject-id="processing-resources" data-subject-kind="model" data-system-hash="fnv1a64:51d2678fd91404be" height="283" role="img" viewBox="0 0 584.62 283" width="584.62" xmlns="http://www.w3.org/2000/svg">
+  <title id="mage-title-processing-resources">Processing Resources</title>
+  <desc id="mage-desc-processing-resources">graph model &quot;Processing Resources&quot;: 3 nodes, 2 relations. Question: Does the maximum concurrent processing demand fit in the worker's memory? Includes: available worker memory, memory required by a processing task, maximum modeled concurrency, aggregate working-memory demand. Deliberately omits: document lifecycle, retry behavior, processing order, processing duration, document contents, failure causes. System: fnv1a64:51d2678fd91404be.</desc>
+  <defs>
+    <style type="text/css">.mage-svg { font-family: system-ui, sans-serif; }
+.mage-box { fill: #fbfcfe; stroke: #2a3242; }
+.mage-region { fill: #f2f4f8; stroke: #5a6478; }
+.mage-state { fill: #fbfcfe; stroke: #2a3242; }
+.mage-label { font-size: 13px; fill: #11151c; }
+.mage-sublabel { font-size: 11px; fill: #434b5a; }
+.mage-edge { fill: none; stroke: #2a3242; }
+.mage-edge-label { font-size: 11px; fill: #11151c; paint-order: stroke; stroke: #fbfcfe; stroke-width: 3px; }
+.mage-glyph { font-size: 13px; font-weight: 700; fill: #11151c; }
+.mage-initial { fill: #11151c; stroke: #11151c; }
+.mage-legend { font-size: 11px; fill: #11151c; }
+.mage-key { font-size: 11px; fill: #11151c; }
+.mage-key-title { font-size: 11px; fill: #434b5a; font-weight: 700; }
+.mage-arrowhead path { fill: #2a3242; }
+/* RELATION TYPE: hue plus arrowhead form, which the key strip states. The Okabe-Ito subset that
+   clears 3:1 against the figure ground -- 5.19, 3.87, 3.42 and 3.06 to one on #ffffff. The three
+   Okabe-Ito entries that fail that floor (#E69F00 at 2.25, #56B4E9 at 2.31, #F0E442 at 1.32) are
+   deliberately absent, which is also why there are four forms and not eight. */
+.mage-rel-a { stroke: #0072B2; }
+.mage-rel-b { stroke: #D55E00; }
+.mage-rel-c { stroke: #009E73; }
+.mage-rel-d { stroke: #CC79A7; }
+.mage-rel-a-head path { fill: #0072B2; }
+.mage-rel-b-head path { fill: #D55E00; }
+.mage-rel-c-head path { fill: #009E73; }
+.mage-rel-d-head path { fill: #CC79A7; }
+/* The EMPHASIS underlay. Emphasis used to own the stroke hue, which left nothing for relation type
+   to use; it is now a wide translucent band BEHIND the edge, so the two channels coexist and
+   neither depends on the other being legible. */
+.mage-underlay { fill: none; opacity: 0.3; stroke-linecap: round; }
+/* Hue is a REDUNDANT channel. Every rule below repeats information already carried by stroke
+   weight, dash pattern, opacity or the ASCII glyph in MARKS. */
+.mage-selected { stroke: #0b4f9e; }
+.mage-evidence { stroke: #0b6b3a; }
+.mage-evidence-inconclusive { stroke: #7a5a00; }
+.mage-violation { stroke: #9e1b0b; }
+.mage-added { stroke: #0b6b3a; }
+.mage-removed { stroke: #6a6a6a; }
+.mage-changed { stroke: #7a3d9e; }
+.mage-deemphasized { stroke: #8a8a8a; }
+@media (prefers-contrast: more) { .mage-box, .mage-state, .mage-edge { stroke: #000; } }</style>
+    <marker class="mage-arrowhead mage-rel-a-head" id="mage-arrow-triangle" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-b-head" id="mage-arrow-open" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 L3,4 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-c-head" id="mage-arrow-diamond" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,4 L5,0 L10,4 L5,8 z"/>
+    </marker>
+    <marker class="mage-arrowhead mage-rel-d-head" id="mage-arrow-square" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M1,1 L9,1 L9,7 L1,7 z"/>
+    </marker>
+    <marker id="mage-arrow" markerHeight="8" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto-start-reverse" refX="9" refY="4">
+      <path d="M0,0 L10,4 L0,8 z" fill="#2a3242"/>
+    </marker>
+  </defs>
+  <g data-layer="edges">
+    <g data-arrow-form="triangle" data-edge-id="slot-0-runs-on-worker" data-edge-kind="relation" data-from="task-slot-0" data-to="worker" data-via="runs_on" id="mage-edge-slot-0-runs-on-worker">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="148.11,150.5 193.11,150.5 238.11,127" stroke-width="1.5"/>
+    </g>
+    <g data-arrow-form="triangle" data-edge-id="slot-1-runs-on-worker" data-edge-kind="relation" data-from="task-slot-1" data-to="worker" data-via="runs_on" id="mage-edge-slot-1-runs-on-worker">
+      <polyline class="mage-edge mage-rel-a mage-plain" fill="none" marker-end="url(#mage-arrow-triangle)" points="148.11,57.5 193.11,57.5 238.11,81" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g data-layer="nodes">
+    <g data-node-id="task-slot-0" data-node-kind="entity" data-rank="0" data-reading-index="2" id="mage-node-task-slot-0">
+      <title>Task slot 0 : task-slot
+memory = 384 MB</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="120.11" x="28" y="121"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="88.05" y="145">Task slot 0</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="88.05" y="159">memory: 384 MB</text>
+    </g>
+    <g data-node-id="task-slot-1" data-node-kind="entity" data-rank="0" data-reading-index="1" id="mage-node-task-slot-1">
+      <title>Task slot 1 : task-slot
+memory = 384 MB</title>
+      <rect class="mage-box mage-plain" height="59" rx="6" stroke-width="1.5" width="120.11" x="28" y="28"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="88.05" y="52">Task slot 1</text>
+      <text class="mage-sublabel" dominant-baseline="middle" text-anchor="middle" x="88.05" y="66">memory: 384 MB</text>
+    </g>
+    <g data-node-id="worker" data-node-kind="entity" data-rank="1" data-reading-index="3" id="mage-node-worker">
+      <title>Worker : worker</title>
+      <rect class="mage-box mage-plain" height="46" rx="6" stroke-width="1.5" width="110" x="238.11" y="81"/>
+      <text class="mage-label" dominant-baseline="middle" text-anchor="middle" x="293.11" y="105">Worker</text>
+    </g>
+  </g>
+  <g data-layer="key">
+    <g data-key-channel="relation" data-key-form="triangle" data-key-id="runs_on">
+      <line class="mage-edge mage-rel-a" marker-end="url(#mage-arrow-triangle)" stroke-width="2" x1="28" x2="58" y1="226" y2="226"/>
+      <text class="mage-key" x="76" y="230">runs on</text>
+    </g>
+    <g data-key-channel="shape" data-key-form="entity" data-key-id="entity">
+      <rect class="mage-box" height="12" rx="2" stroke-width="1.5" width="30" x="28" y="238"/>
+      <text class="mage-key" x="76" y="248">entity (a service or component); small text inside lists its declared attributes</text>
+    </g>
+  </g>
+</svg></div>
+<div class="panel"><h3>B — Mermaid 11.16 <code>flowchart</code> (vendored); relation types as edge labels, containment as subgraph</h3><svg id="m4" width="100%" xmlns="http://www.w3.org/2000/svg" class="flowchart" style="max-width: 411.6953125px;" viewBox="0 0 411.6953125 222" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#m4{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#m4 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#m4 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#m4 .error-icon{fill:#552222;}#m4 .error-text{fill:#552222;stroke:#552222;}#m4 .edge-thickness-normal{stroke-width:1px;}#m4 .edge-thickness-thick{stroke-width:3.5px;}#m4 .edge-pattern-solid{stroke-dasharray:0;}#m4 .edge-thickness-invisible{stroke-width:0;fill:none;}#m4 .edge-pattern-dashed{stroke-dasharray:3;}#m4 .edge-pattern-dotted{stroke-dasharray:2;}#m4 .marker{fill:#666;stroke:#666;}#m4 .marker.cross{stroke:#666;}#m4 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#m4 p{margin:0;}#m4 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#m4 .cluster-label text{fill:#333;}#m4 .cluster-label span{color:#333;}#m4 .cluster-label span p{background-color:transparent;}#m4 .label text,#m4 span{fill:#000000;color:#000000;}#m4 .node rect,#m4 .node circle,#m4 .node ellipse,#m4 .node polygon,#m4 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#m4 .rough-node .label text,#m4 .node .label text,#m4 .image-shape .label,#m4 .icon-shape .label{text-anchor:middle;}#m4 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#m4 .rough-node .label,#m4 .node .label,#m4 .image-shape .label,#m4 .icon-shape .label{text-align:center;}#m4 .node.clickable{cursor:pointer;}#m4 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#m4 .arrowheadPath{fill:#333333;}#m4 .edgePath .path{stroke:#666;stroke-width:1px;}#m4 .flowchart-link{stroke:#666;fill:none;}#m4 .edgeLabel{background-color:white;text-align:center;}#m4 .edgeLabel p{background-color:white;}#m4 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#m4 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#m4 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#m4 .cluster text{fill:#333;}#m4 .cluster span{color:#333;}#m4 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#m4 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#m4 rect.text{fill:none;stroke-width:0;}#m4 .icon-shape,#m4 .image-shape{background-color:white;text-align:center;}#m4 .icon-shape p,#m4 .image-shape p{background-color:white;padding:2px;}#m4 .icon-shape .label rect,#m4 .image-shape .label rect{opacity:0.5;background-color:white;fill:white;}#m4 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#m4 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#m4 .node .neo-node{stroke:#999;}#m4 [data-look="neo"].node rect,#m4 [data-look="neo"].cluster rect,#m4 [data-look="neo"].node polygon{stroke:url(#m4-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m4 [data-look="neo"].swimlane.cluster rect{filter:none;}#m4 [data-look="neo"].node path{stroke:url(#m4-gradient);stroke-width:1px;}#m4 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m4 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#m4 [data-look="neo"].node circle{stroke:url(#m4-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m4 [data-look="neo"].node circle .state-start{fill:#000000;}#m4 [data-look="neo"].icon-shape .icon{fill:url(#m4-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m4 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#m4-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#m4 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="m4_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m4_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="m4_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="m4_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="m4_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m4_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="m4_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m4_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="m4_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m4_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="m4_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="m4_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M187.078,47L195.903,47C204.728,47,222.378,47,241.065,52.828C259.751,58.655,279.475,70.31,289.338,76.138L299.2,81.965" id="m4-L_task_slot_0_worker_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_task_slot_0_worker_0" data-points="W3sieCI6MTg3LjA3ODEyNSwieSI6NDd9LHsieCI6MjQwLjAyNzM0Mzc1LCJ5Ijo0N30seyJ4IjozMDIuNjQzMjQ5NTExNzE4NzUsInkiOjg0fV0=" data-look="classic" marker-end="url(#m4_flowchart-v2-pointEnd)"></path><path d="M187.078,175L195.903,175C204.728,175,222.378,175,241.065,169.172C259.751,163.345,279.475,151.69,289.338,145.862L299.2,140.035" id="m4-L_task_slot_1_worker_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_task_slot_1_worker_0" data-points="W3sieCI6MTg3LjA3ODEyNSwieSI6MTc1fSx7IngiOjI0MC4wMjczNDM3NSwieSI6MTc1fSx7IngiOjMwMi42NDMyNDk1MTE3MTg3NSwieSI6MTM4fV0=" data-look="classic" marker-end="url(#m4_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(240.02734375, 47)"><g class="label" data-id="L_task_slot_0_worker_0" transform="translate(-27.94921875, -12)"><foreignObject width="55.8984375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>runs_on</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(240.02734375, 175)"><g class="label" data-id="L_task_slot_1_worker_0" transform="translate(-27.94921875, -12)"><foreignObject width="55.8984375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "><p>runs_on</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default  " id="m4-flowchart-task_slot_0-0" data-look="classic" transform="translate(97.5390625, 47)"><rect class="basic label-container" style="" x="-89.5390625" y="-39" width="179.078125" height="78"></rect><g class="label" style="" transform="translate(-59.5390625, -24)"><rect></rect><foreignObject width="119.078125" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Task slot 0<br/>memory: 384 MB</p></span></div></foreignObject></g></g><g class="node default  " id="m4-flowchart-task_slot_1-1" data-look="classic" transform="translate(97.5390625, 175)"><rect class="basic label-container" style="" x="-89.5390625" y="-39" width="179.078125" height="78"></rect><g class="label" style="" transform="translate(-59.5390625, -24)"><rect></rect><foreignObject width="119.078125" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Task slot 1<br/>memory: 384 MB</p></span></div></foreignObject></g></g><g class="node default  " id="m4-flowchart-worker-2" data-look="classic" transform="translate(348.3359375, 111)"><rect class="basic label-container" style="" x="-55.359375" y="-27" width="110.71875" height="54"></rect><g class="label" style="" transform="translate(-25.359375, -12)"><rect></rect><foreignObject width="50.71875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Worker</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="m4-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="m4-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="m4-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg><details><summary>Mermaid source</summary><pre>flowchart LR
+  task_slot_0["Task slot 0&lt;br/>memory: 384 MB"]
+  task_slot_1["Task slot 1&lt;br/>memory: 384 MB"]
+  worker["Worker"]
+  task_slot_0 -->|runs_on| worker
+  task_slot_1 -->|runs_on| worker</pre></details></div>
+</div>
+<h2>Quantitative model</h2>
+<div class="note">This example declares 3 quantities (a budget, checked against a cap).
+<strong>Mermaid has no construct for this</strong> — a budget table is not a graph; pie has no cap line,
+xychart-beta plots series. The shipped budget projection (<code>render/budget.ts</code>) stays bespoke
+under any adoption of Mermaid as the graph painter.</div></body></html>
