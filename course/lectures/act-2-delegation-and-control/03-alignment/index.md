@@ -13,8 +13,9 @@ readings:
           annotation: 'Saltzer, Reed, and Clark, ["End-to-End Arguments in System Design"](https://doi.org/10.1145/357401.357402) (1984). Chapter 3 acknowledges the connection explicitly. This classic systems argument — place a function where the semantics needed to decide it exist, not merely as early or as low as possible — is the placement rule in an older register. Read it asking which of the paper''s communication-system examples transfer to engineering checks, and what plays the role of the "ends" when the system is an engineering environment rather than a network.'
     - heading: Control as an engineering tradition
       items:
-        - 'Works by Nancy Leveson, TODO.'
-      note: 'The systems-safety and control tradition establishes that constraints plus evidence, and feedback plus intervention, are serious pre-agent engineering ideas rather than vocabulary invented for AI. The specific work and portion to assign are still being selected.'
+        - cite: leveson2003stamp
+          annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](readings/leveson-stamp-accident-analysis-2003.pdf) (2003). STAMP treats an accident as the failure of a control structure rather than a chain of component faults: safety constraints are enforced by controllers that hold a model of the process they govern, and accidents follow when that control structure is inadequate or the controller''s model drifts from the system it governs. Read it for the shape of the argument -- constraints and evidence, feedback and intervention -- which is the shape Alignment gives to delegated work, arrived at decades before agents.'
+      note: 'The systems-safety and control tradition establishes that constraints plus evidence, and feedback plus intervention, are serious pre-agent engineering ideas rather than vocabulary invented for AI.'
     - heading: The organizational precedent
       items:
         - cite: simons1995control
