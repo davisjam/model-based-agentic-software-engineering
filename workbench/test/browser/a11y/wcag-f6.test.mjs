@@ -662,34 +662,90 @@ describe("1.4.10 and D-2: reflow, and focus order against visual order", () => {
         `1px of overflow and the offender is not named: ${JSON.stringify(onePx.offenders)}`);
       await remove();
 
-      // (b) Sub-pixel, in two halves around a boundary that was MEASURED rather than assumed.
-      // This control first shipped asserting that a 320.6px box rounds to 1px of overflow, from
-      // the premise that Chromium rounds scrollWidth to the nearest integer. It does not: swept
-      // in 1/32px steps on the pinned Chromium (blank page and this page, flag on and off, same
-      // at 320 / 576 / 1025), the document's rounded scrollWidth moves at an overhang of exactly
-      // +0.75px -- 320.734375 leaves it at 320, 320.75 makes it 321. So a 320.6px box scrolls
-      // nothing: there is no 1.4.10 failure there to attribute, and the assertion -- born red on
-      // its own branch -- was wrong about the engine, not the probe about the page.
+      // (b) Sub-pixel, in two halves around a boundary that is DERIVED here rather than written
+      // down. This control first shipped asserting that a 320.6px box rounds to 1px of overflow,
+      // from the premise that Chromium rounds scrollWidth to the nearest integer. The pinned
+      // engine of the day moved at an overhang of exactly +0.75px, so the premise became a
+      // hardcoded +0.75 -- and a later Chromium moved the flip to +0.5, which turned the constant
+      // into a knife-edge: 320.6 sat 0.15px inside the old boundary and 0.1px outside the new
+      // one, red on every CI run and flaky here. Re-hardcoding the new number would re-arm the
+      // same trap, so no number is written down. The sweep below re-derives the flip on THIS
+      // engine, on this page at this viewport, in the same 1/32px steps as the original
+      // measurement, and the two assertions that follow probe either side of whatever it finds,
+      // with margin. The test measures the probe, not a renderer constant -- and the measured
+      // boundary stays in every failure message, so an engine change still names what moved.
+      const STEP = 1 / 32;
+      const sweep = await page.evaluate((step) => {
+        const doc = document.scrollingElement;
+        const base = doc.clientWidth;
+        const el = document.createElement("div");
+        el.style.cssText = "position:absolute; left:0; top:0; height:4px;";
+        document.body.append(el);
+        const rows = [];
+        for (let k = 1; k <= 32; k += 1) {
+          el.style.width = `${base + k * step}px`;
+          // Reading scrollWidth forces a synchronous layout, so each row measures its own width.
+          rows.push({ overhang: k * step, overflow: Math.max(0, doc.scrollWidth - doc.clientWidth) });
+        }
+        el.remove();
+        return { base, rows };
+      }, STEP);
+      // The sweep asserts its own preconditions: a sweep that measured nothing must FAIL, never
+      // feed an empty result forward as a passing verdict (the empty-set trap `assertFound` in
+      // the harness exists for; this sweep's subject is a width, not a selector, so the guard is
+      // spelled out here instead).
+      assert.equal(sweep.rows.length, 32,
+        `the boundary sweep returned ${sweep.rows.length} of 32 rows, so any boundary taken from `
+        + "it would be a measurement of a partial sweep");
+      const flip = sweep.rows.find((r) => r.overflow >= 1);
+      assert.ok(flip !== undefined,
+        "the boundary sweep found NO overhang up to a full pixel at which this engine's "
+        + "scrollWidth moves -- a box crossing the viewport by a whole CSS pixel must scroll the "
+        + `document, so the sweep measured an empty set, not an engine: ${JSON.stringify(sweep)}`);
+      const boundary = flip.overhang;
+      // Probe points with real margin on either side of the flip. The margin shrinks only when
+      // the boundary crowds 0 or a whole pixel; under two sweep steps of margin the points would
+      // sit close enough to the flip for a rounding difference to change the verdict -- the
+      // knife-edge this derivation exists to remove -- so that too fails loudly, naming the
+      // measured boundary.
+      const margin = Math.min(0.25, boundary / 2, (1 - boundary) / 2);
+      assert.ok(margin >= 2 * STEP,
+        `the measured scrollWidth boundary of +${boundary}px sits too close to 0 or to a whole `
+        + `pixel to probe both sides with margin (would be ${margin}px) -- the engine's rounding `
+        + `has changed shape; re-examine the sweep: ${JSON.stringify(sweep.rows.slice(0, 6))}`);
+      // The probe forgives edges within 0.4px of the viewport (SUBPIXEL_SLACK in `reflowAt`),
+      // on the premise that no such edge can move this engine's scrollWidth. The sweep just
+      // measured that premise, so assert it: a boundary at or under the slack means the probe
+      // can forgive an edge that scrolls the document, and the probe -- not this test -- needs
+      // the fix.
+      assert.ok(boundary > 0.4,
+        `the measured scrollWidth boundary of +${boundary}px sits at or under the probe's 0.4px `
+        + "sub-pixel slack (SUBPIXEL_SLACK in wcag-f6.mjs reflowAt), so the probe can now forgive "
+        + "an edge capable of scrolling the document -- lower the slack before trusting this probe");
+      const belowPx = sweep.base + boundary - margin;
+      const abovePx = sweep.base + boundary + margin;
       // First the near side: the probe must not INVENT an overflow from a sub-boundary edge.
-      // This pins the engine's measured boundary; if a Chromium bump moves it, this line names
-      // what actually changed -- re-measure before touching the probe.
-      await inject("position:absolute; left:0; top:0; width:320.6px; height:4px;");
+      await inject(`position:absolute; left:0; top:0; width:${belowPx}px; height:4px;`);
       const below = await reflowAt(page, 320);
       assert.equal(below.horizontalOverflowPx, 0,
-        `a 320.6px box sits below the +0.75px overhang at which this engine's scrollWidth moves, `
-        + `so the document must not scroll, got ${below.horizontalOverflowPx}px -- the rounding `
-        + `boundary has moved; re-measure it before touching the probe`);
+        `a ${belowPx}px box sits ${margin}px below the +${boundary}px overhang at which this `
+        + `engine's scrollWidth was just measured to move, so the document must not scroll, got `
+        + `${below.horizontalOverflowPx}px -- the engine changed between the sweep and this probe, `
+        + "which is a finding about the measurement, not about the page");
       await remove();
       // Then the far side: an overhang past the boundary and still under one pixel. Rounding
       // turns it into a 1px overflow, no border box crosses by a whole pixel, and the retired
       // whole-pixel slack (right <= viewport + 1) would have forgiven it -- the attribution has
       // to survive the rounding rather than reporting nothing.
-      await inject("position:absolute; left:0; top:0; width:320.9px; height:4px;");
+      await inject(`position:absolute; left:0; top:0; width:${abovePx}px; height:4px;`);
       const subPx = await reflowAt(page, 320);
       assert.equal(subPx.horizontalOverflowPx, 1,
-        `a 320.9px box should round to 1px of overflow, got ${subPx.horizontalOverflowPx}`);
-      assert.ok(subPx.offenders.some((o) => o.path === "#reflow-minimal"),
-        `sub-pixel overflow and the offender is not named: ${JSON.stringify(subPx.offenders)}`);
+        `a ${abovePx}px box sits ${margin}px past the measured +${boundary}px boundary and under `
+        + `a whole pixel, so it should round to exactly 1px of overflow, got ${subPx.horizontalOverflowPx}`);
+      assert.ok(subPx.offenders.some((o) => o.kind === "element" && o.path === "#reflow-minimal"),
+        "sub-pixel overflow and the element walk does not name the offender -- if only a "
+        + `"nearest" entry names it, the probe's sub-pixel slack no longer sits under this `
+        + `engine's measured +${boundary}px boundary: ${JSON.stringify(subPx.offenders)}`);
       await remove();
 
       // (c) Ink: an unbreakable token wider than the viewport in a block whose own border box
