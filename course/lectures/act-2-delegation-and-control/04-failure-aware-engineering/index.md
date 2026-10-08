@@ -41,29 +41,28 @@ materials:
 
 **Premise.** *Failure is a predictable engineering outcome. Engineering judgment develops when engineers connect decisions to their consequences and allow experience to change future decisions.*
 
-Engineering is practiced with incomplete knowledge, imperfect models, fallible people, and finite evidence. Failure produces new evidence: something engineers expected to hold did not. The task is therefore not only to repair the problem, but to determine what the discrepancy reveals and what should change.
+Engineering is practiced with incomplete knowledge, imperfect models, fallible people, and finite evidence. Failure therefore produces new evidence: something engineers expected to hold did not. But a failure is only an observation. It does not tell us why the expectation was wrong or what should change.
 
-## Failure is evidence, not explanation
-
-A failure is an observation. Reality reports that something engineers expected to hold did not; it does not report why, or what should change. Between the observation and corrective action stands a chain of engineering judgment: a causal account interprets the observation, a lesson is a claim derived from that interpretation, and a corrective action embodies the lesson. Each step can be wrong, and a bad failure analysis can harden the wrong lesson into an organization.
+Between observation and corrective action stands a chain of engineering judgment. Engineers construct a causal account of what happened, derive lessons from that account, and decide what to change. Each step can be wrong. A bad failure analysis can preserve the wrong lesson just as effectively as a good one can preserve the right lesson.
 
 This unit treats that chain as engineering. Failure analysis is an established discipline with competing models of what a failure is. The course's conceptual machinery adds precision to that discipline; it does not replace it.
 
-## Failure analysis depends on a model of causality
+## Models of failure
 
-A failure does not explain itself. Engineers interpret an incident through some model of how failures arise, and that model determines what they look for and what interventions become visible.
+Failure analysis offers several ways to explain why a system failed. Different models preserve different parts of the causal structure:
 
-Early accident models often emphasized a failed component or human action: identify the error and correct it. Later models widened the analysis. Reason's defense-in-depth account asks how weaknesses in several defenses aligned to permit an accident; organizational models ask how management decisions and working conditions shaped the actions visible at the point of failure; systems-theoretic approaches such as STAMP represent accidents as failures of control and feedback across a socio-technical system. These models form a landscape, not a ladder. Each makes different causes visible and therefore suggests different interventions. An operator-error account suggests retraining or replacing the operator. A failed defense suggests strengthening the defense. A systemic account may instead reveal an architectural relationship, a missing feedback path, or an organizational condition.
+- **Component and human-error models** look for the component, action, or decision that failed. The resulting intervention may be to repair the component, change a procedure, or retrain an operator.
+- **Defense-in-depth models**, such as Reason's, ask how weaknesses in several defenses aligned to permit the failure. The intervention may be to strengthen or add a defense.
+- **Organizational models** ask how management decisions, incentives, resources, and working conditions shaped what happened at the point of failure. The effective site of intervention may therefore be far from the visible error.
+- **Systems-theoretic models**, such as STAMP, represent accidents as failures of control and feedback across a socio-technical system. They may expose missing feedback paths, unsafe interactions, or inadequate constraints that are difficult to see by examining individual components.
 
-The broader view is powerful. An engineer's behavior may be shaped by interfaces, procedures, staffing, incentives, organizational decisions, regulation, and other constraints originating far from the immediate incident. A sufficiently broad model can represent all of these influences. But breadth creates its own engineering problem: a model that includes every possible influence becomes difficult to use, and more boxes and relationships may make the account more realistic while making the resulting intervention less clear.
+These models form a landscape, not a ladder. Each preserves different causal structure and therefore makes different sites for effective intervention visible.
 
 **A useful failure model should extend at least to the locus of control.** The appropriate boundary depends partly on the decisions the analyst can affect. An engineer may reason about requirements, interfaces, tests, observability, deployment controls, and human interaction; a manager may additionally consider staffing, ownership, training, schedules, and operating policies; an executive may consider organizational structure, investment, incentives, and external relationships. A cause outside the analyst's authority still belongs in the account: escalate it to someone who can act, compensate for it, or identify it as the reason the problem cannot be solved locally.
 
-Broader models are not better simply because they are broader. This is the Modeling unit's parsimony applied to failure analysis: preserve the causal structure needed for the decisions that follow. Ask: *what causal structure must we preserve to understand this failure well enough to act within our locus of control?*
+Wider causal boundaries can reveal explanations that narrower models miss, but broader is not automatically better. Recall the desire for simplicity from the Modeling unit: preserve the minimum structure needed to answer the engineering question. We should apply the same reasoning to failure analysis. *What causal structure must we preserve to understand this failure well enough to act within our locus of control?*
 
-## What failed?
-
-An observed software failure is not necessarily an implementation failure. The engineering activities of this course supply another causal model: a sequence of progressively broader hypotheses about where engineering understanding was inadequate.
+This course has described software engineering as a sequence of activities. That sequence gives us another causal model for software failures. We can ask what it would mean to attribute a failure to inadequate understanding or judgment at each activity.
 
 - **Implementation.** *Did the realized software depart from an otherwise adequate design?*
 - **Design.** *Did a selected mechanism have consequences inconsistent with its obligations?*
@@ -71,15 +70,19 @@ An observed software failure is not necessarily an implementation failure. The e
 - **Specification.** *Did we misrepresent what the machine or its environment must provide?*
 - **Requirements.** *Did we promise the wrong outcome, or omit an important obligation?*
 
-These are not bins for defects. Each asks whether the inadequacy lies deeper than the one before, and one incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
+Each asks whether the inadequacy lies deeper than the one before, and one incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
 **Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
 
 ## Why didn't we know?
 
-A delivered failure invites a second analysis. The failure passed through everything intended to catch it, so it is evidence about the surrounding engineering process as well as the artifact. Traverse the Validation model retrospectively (**claim → scope → mechanism → strategy → evidence strength → judgment**) and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
+Having identified causal factors, the next question is why the engineering process allowed them to produce a delivered failure. *Why did we build and trust a system that could behave this way?*
 
-*Why did the system behave this way?* concerns the artifact. *Why did we build and trust a system that could behave this way?* concerns the engineering, and is not an accusation.
+This question moves the analysis from the failed artifact to the evidence and controls around it. Was the relevant assumption ever made explicit? What evidence supported it? Which validation activity should have challenged it? Did evidence exist but fail to reach the decision maker? Was a known obligation left unenforced?
+
+Traverse the Validation model retrospectively (**claim → scope → mechanism → strategy → evidence strength → judgment**) and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
+
+Failure also gives us evidence about the measurements we chose before it occurred. If an important property failed while its indicators remained healthy, then the measurement system failed to expose something consequential. Conversely, measures such as failure frequency, recovery time, recurrence, and corrective-action completion answer different questions; none measures "learning" or "engineering judgment" directly. Treat the metrics themselves as hypotheses. After a failure, ask whether they made the consequential state of the system visible soon enough to act.
 
 ## What should change?
 
@@ -88,12 +91,6 @@ Diagnosis identifies what our previous understanding got wrong. Learning asks wh
 - **System.** A regression test preserves the observed example, which may be sufficient for a local implementation defect. A more general lesson may belong in an interface, architecture, specification, model, validation rule, or automated control. Future failures rhyme without repeating; ask what class of conditions this failure exposed. When a consequential lesson can reliably govern future work, preserving it as engineering structure is stronger than asking future engineers to remember it.
 - **Team.** The lesson must reach people who did not live it and the artifacts through which future engineers will encounter it. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
 - **Engineer.** Reflection identifies which relationships in an experience explain its consequence, so a later situation can be recognized as an old problem.
-
-## Measurement for decision-making
-
-Every unit of this course asked what an engineer could observe to test the model it developed, and chose that observation while there was still time to deliberate. Failure runs the loop the other way: the observation arrives unselected, at a time nobody chose, and it already disagrees. The diagnostic question remains *what should change?*
-
-The candidates include our metrics. Failure frequency, recovery time, corrective-action completion, and recurrence make parts of the learning system observable, but each answers a different question and can distort behavior once it becomes a target. Recovery time measures operational response, not learning. A dashboard that stayed green through an outage is evidence about the dashboard. Judgment itself resists measurement: whether an engineer noticed a hazard in one case is evidence about judgment, not a quantity of it.
 
 ## How does experience become judgment?
 
@@ -107,29 +104,24 @@ Success feeds that repertoire ambiguously: a system may succeed because its arch
 
 ## The Master Equation
 
-Delegation, Modeling, and Alignment used the Master Equation prospectively:
+Delegated work offers one additional lens. The Master Equation describes the probability that delegation succeeds:
 
 > **p<sub>R</sub> = P(E | R) · P(I | E, R) · P(L | I, E, R)**
 
-Read retrospectively, it provides another diagnostic model, specific to delegated work: when reality contradicts expectation, ask whether consequential intent was encoded, interpreted, realized, or adequately checked.
+In the event of a failure, the outcome has apparently resolved to unsuccessful. If agents participated in the work, we can use the equation retrospectively: was consequential intent encoded poorly, interpreted incorrectly, or realized incorrectly? Or did the surrounding engineering process fail to detect the discrepancy?
 
-| Where failure may have entered | The diagnostic question |
-|---|---|
-| *R → E* | Was the consequential intent ever encoded, or did the obligation live only in someone's head? |
-| *E → I* | Was the encoded intent interpreted as we meant it? |
-| *I → L* | Did the realization preserve what was correctly understood? |
-| Surrounding process *H* | Why did our evidence and controls not expose the discrepancy before reality did? |
-
-A delivered failure rarely announces which link gave way. The same defect can mean that intent was never encoded, encoded intent was misread, understood intent was realized incorrectly, or the surrounding process produced no evidence until reality supplied it. The Master Equation does not replace the broader causal models; it joins the repertoire as one more lens, fitted to the failures of delegated realization.
+This is not a general theory of failure. It is a diagnostic model for failures involving delegated realization.
 
 ## When should a lesson become a control?
 
-Some lessons from failure should remain part of an engineer's repertoire. Others should not have to be remembered and reconsidered by every future engineer. If an incident reveals a consequential, recurring, and representable obligation, the organization can change the environment in which future engineering occurs. The lesson might become a requirement or specification, an architectural constraint, a model, a validator, or a release gate. MAGE calls this **governance conversion**: moving recurring engineering judgment into the environment around realization so that future work inherits the lesson.
+A lesson matters only if it changes future decisions. Some lessons remain judgment carried by engineers; recurring or consequential lessons may instead justify changing a model, procedure, or mechanism. MAGE calls this move **governance conversion**.
 
-**Failure → Evidence → Interpretation → Lesson**, and the lesson then takes one of two paths:
+**Failure → Causal account → Lesson → What should change?**
+
+The lesson then takes one of two paths:
 
 - **Engineer's repertoire.** The lesson sharpens future recognition and judgment.
-- **Governance conversion.** A recurring, consequential, representable lesson becomes a model, validator, constraint, or gate that governs future engineering.
+- **Governance conversion.** A recurring, consequential, representable lesson becomes a requirement or specification, an architectural constraint, a model, a validator, or a release gate that governs future engineering.
 
 This does not mean automating every lesson. Failure evidence can be ambiguous, lessons can be overgeneralized, and controls impose costs and can themselves encode incorrect assumptions. Conversion therefore requires judgment: What does the failure actually support? How broadly does the lesson generalize? Is the obligation consequential enough to preserve? Can it be represented and checked reliably?
 
