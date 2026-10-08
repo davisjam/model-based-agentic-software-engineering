@@ -2,28 +2,27 @@
 title: Alignment
 readings:
   groups:
-    - heading: The alignment principle
+    - heading: The Alignment principle
       items:
         - cite: davis2026mage
           locator: 'chap. 3 introduction, §§3.1–3.3.3, and §3.4'
-          annotation: '{mage:3.1} and {mage:3.4} Davis, 2026. The chapter opening and §§3.1–3.3.3 establish the core Alignment argument: guidance versus enforcement, correspondence / conformance / acceptance, the earliest decidable boundary, the four control roles, and matching mechanisms to properties. §3.4 then shows how the governed environment changes through experience: failures expose missing controls, recurring judgments can undergo governance conversion, and accumulated controls become engineering capital. Read these sections before class so that the session can use the vocabulary to reason about concrete engineering situations rather than spending the session introducing it.'
+          annotation: '{mage:3.1} and {mage:3.4} Davis, 2026. Read the chapter 3 introduction, §§3.1–3.3.3, and §3.4. The opening sections establish the core Alignment account: obligations become enforceable through checks and controls placed where they can be decided; §3.4 shows the governed environment accumulating controls through experience.'
     - heading: Place the check where the semantics exist
       items:
         - cite: saltzerreedclark1984e2e
-          annotation: 'Saltzer, Reed, and Clark, ["End-to-End Arguments in System Design"](https://doi.org/10.1145/357401.357402) (1984). Chapter 3 acknowledges the connection explicitly. This classic systems argument — place a function where the semantics needed to decide it exist, not merely as early or as low as possible — is the placement rule in an older register. Read it asking which of the paper''s communication-system examples transfer to engineering checks, and what plays the role of the "ends" when the system is an engineering environment rather than a network.'
+          annotation: 'Saltzer, Reed, and Clark, ["End-to-End Arguments in System Design"](https://doi.org/10.1145/357401.357402) (1984). The placement rule in an older register: place a function where the semantics needed to decide it exist, not merely as early or as low as possible. Ask what plays the role of the "ends" when the system is an engineering environment rather than a network.'
     - heading: Control as an engineering tradition
       items:
         - cite: leveson2003stamp
-          annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](readings/leveson-stamp-accident-analysis-2003.pdf) (2003). STAMP treats an accident as the failure of a control structure rather than a chain of component faults: safety constraints are enforced by controllers that hold a model of the process they govern, and accidents follow when that control structure is inadequate or the controller''s model drifts from the system it governs. Read it for the shape of the argument -- constraints and evidence, feedback and intervention -- which is the shape Alignment gives to delegated work, arrived at decades before agents.'
-      note: 'The systems-safety and control tradition establishes that constraints plus evidence, and feedback plus intervention, are serious pre-agent engineering ideas rather than vocabulary invented for AI.'
+          annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](readings/leveson-stamp-accident-analysis-2003.pdf) (2003). STAMP treats an accident as the failure of a control structure, not a chain of component faults. Read it for the shape of the argument: control structures enforcing constraints, with feedback and intervention, a pre-agent engineering tradition that Alignment applies to delegated work.'
     - heading: The organizational precedent
       items:
         - cite: simons1995control
-          annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). The organizational precedent. Management faced the delegation problem long before software agents existed: how to grant people real autonomy while keeping the organization''s consequential obligations intact. Simons'' answer is a designed system of controls, not more instruction — empowerment and control engineered together, the same pairing this unit makes of capability and authority. The reading also guards against a misreading: Alignment is not a distinctively AI-era invention.'
+          annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). Management faced the delegation problem before software agents existed: grant people real autonomy while keeping the organization''s consequential obligations intact. Simons'' answer is a designed system of controls, with responsibility retained by the organization.'
   optional:
     - cite: davis2026mage
       locator: '§§3.3.4–3.3.7 and §3.5'
-      annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. The later §3.3 sections elaborate mechanisms that land better after the walk from linter to CI to constraints to sanctioned paths — provenance-carried admission in particular is taught in class rather than required beforehand. §3.5 answers what happens after a hundred controls accumulate: the natural extension for an interested student, not required preparation.'
+      annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. Optional: the later control mechanisms, and what happens when accumulated controls become a system.'
 instructor_materials: []
 student_materials: []
 assignments: []
