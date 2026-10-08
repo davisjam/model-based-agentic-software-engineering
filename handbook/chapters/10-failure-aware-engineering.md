@@ -637,24 +637,21 @@ A failure that has occurred before deserves particular attention. Recurrence can
 earlier experience changed too little, changed the wrong thing, or produced a lesson that did not
 reach the engineering decision in which it was later needed.
 
-The study of failure learning at the national space research center provides examples of this
-problem [@anandayuvaraj2026failures]. Engineers described recurring failures while knowledge
-remained distributed through individual experience, informal communication, and inconsistent
-documentation. The organization contained people who had learned relevant lessons, yet those
-lessons did not necessarily become available across projects or persist through time.
+The study of failure learning at the national space research center illustrates this problem
+[@anandayuvaraj2026failures]. Engineers described recurring failures even when relevant lessons
+existed within the organization, because those lessons did not reliably become available across
+projects or persist through time.
 
-Recurrence can arise for several reasons. Engineers may repair the observed manifestation without
-changing the condition that produced it. A team may understand the broader lesson but fail to
-preserve or communicate it. The lesson may be available, but engineers may not recognize that it
-applies to a superficially different situation. A structural intervention may prove weaker than
-expected. The organization may also understand the failure correctly and deliberately tolerate some
-probability of recurrence because eliminating it would cost more than the expected consequence
-justifies.
+Recurrence can arise for different reasons. Engineers may repair the observed manifestation
+without changing the condition that produced it; a broader lesson may not be preserved or
+communicated; engineers may fail to recognize that it applies to a superficially different
+situation; or a structural intervention may prove weaker than expected. An organization may also
+deliberately tolerate some probability of recurrence because eliminating it would cost more than
+the expected consequence justifies. Recurrence therefore requires interpretation: incidents that
+look alike may have different causes, while incidents that look different may expose the same
+engineering weakness.
 
-The observation requires interpretation. Two incidents that appear similar may have different
-causes, while two incidents that look different may expose the same engineering weakness. Counting
-recurring incidents is therefore not itself a complete measure of organizational learning. At
-scale, engineers can search incident records and postmortems for earlier failures that share the
+At scale, engineers can search incident records and postmortems for earlier failures that share the
 same engineering relationship rather than the same literal symptoms. Language models can help
 identify candidate relationships across large collections of incident reports, although engineers
 must still judge whether two incidents genuinely express the same underlying lesson.
