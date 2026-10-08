@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DECK-LOCAL variant of book/assets/active-passive-alignment.svg for lecture 2-3 slide
+     "Alignment can change the realization". Drastically simplified to the active loop only,
+     turned vertical: the book figure's two stacked panels (active + passive + handoff) become
+     one convergence column — M and S feed compare, the detected gap drives modify, the changed
+     realization S-prime is evaluated, and the loop repeats until correspondence. The passive
+     side lives in the slide's ACTIVE/PASSIVE comparison table, not in this figure.
+     Do NOT fold this simplification back into the book figure; the book caption depends on
+     both panels and the handoff arrow.
+     Regenerate the sibling PNG with:
+       rsvg-convert -w 1680 active-passive-alignment-deck.svg -o active-passive-alignment-deck.png
+     Grammar (inherited from the book figure): green #1f7a4d = models and the aligned result;
+     blue #2f5169 = agents acting; rust #9a3f12 = evaluation; gray #57534e = not-yet-aligned. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 648" width="560" height="648"
+     role="group" aria-labelledby="aadTitle aadDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="aadTitle">Active alignment: change the realization until it corresponds with the model</title>
+  <desc id="aadDesc">A vertical loop. The model M and the realization S both feed compare, which
+    detects gaps. The gap drives modify, performed with agents, producing the changed realization
+    S-prime. Evaluate asks whether S-prime corresponds with M; the loop returns to compare and
+    repeats until the answer is yes.</desc>
+
+  <defs>
+    <marker id="aad-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="aad-loop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <text x="280" y="38" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Active alignment</text>
+  <text x="280" y="62" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">use the model to change the system until it satisfies it</text>
+
+  <!-- the model M -->
+  <rect x="62" y="92" width="140" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="132" y="117" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">M</text>
+  <text x="132" y="139" text-anchor="middle" font-size="16.5" fill="#1c1917">model</text>
+
+  <!-- the realization S, not yet aligned -->
+  <rect x="338" y="92" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="418" y="117" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">S</text>
+  <text x="418" y="139" text-anchor="middle" font-size="16.5" fill="#1c1917">realization</text>
+
+  <!-- both feed compare -->
+  <line x1="138" y1="152" x2="236" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+  <line x1="412" y1="152" x2="324" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+
+  <rect x="180" y="196" width="200" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="280" y="221" text-anchor="middle" font-size="19" fill="#1c1917">compare</text>
+  <text x="280" y="242" text-anchor="middle" font-size="16" fill="#1c1917">detect gaps</text>
+
+  <line x1="280" y1="254" x2="280" y2="286" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+
+  <rect x="230" y="290" width="100" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
+  <text x="280" y="317" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">gap</text>
+
+  <line x1="280" y1="334" x2="280" y2="366" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+
+  <rect x="180" y="370" width="200" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="280" y="395" text-anchor="middle" font-size="19" fill="#1c1917">modify</text>
+  <text x="280" y="416" text-anchor="middle" font-size="16" fill="#1c1917">with agents</text>
+
+  <line x1="280" y1="428" x2="280" y2="460" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+
+  <!-- the changed realization -->
+  <rect x="200" y="464" width="160" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="280" y="488" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">S&#8242;</text>
+  <text x="280" y="510" text-anchor="middle" font-size="16.5" fill="#1c1917">changed realization</text>
+
+  <line x1="280" y1="522" x2="280" y2="554" stroke="#1c1917" stroke-width="2" marker-end="url(#aad-ah)"/>
+
+  <rect x="180" y="558" width="200" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="280" y="583" text-anchor="middle" font-size="19" fill="#1c1917">evaluate</text>
+  <text x="280" y="604" text-anchor="middle" font-size="16" fill="#1c1917">corresponds?</text>
+
+  <!-- loop back to compare until correspondence -->
+  <polyline points="380,587 470,587 470,225 388,225" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#aad-loop)"/>
+  <text x="424" y="396" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">&#8634; until</text>
+  <text x="424" y="416" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">yes</text>
+</svg>
