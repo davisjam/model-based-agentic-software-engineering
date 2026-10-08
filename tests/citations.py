@@ -316,12 +316,14 @@ def check_cite_symbology():
 
 def check_cite_parity():
     """BIB-5 (BLOCKING). The two surfaces render the SAME reference data. It holds by construction — the
-    HTML reads citations.json, which render_citations.py produced from references.bib via Typst, and the
-    PDF renders the SAME references.bib natively through the SAME Typst engine, so the PDF's strings equal
-    the JSON strings (which CITE-FRESH pins to the .bib). This gate asserts the two structural preconditions
-    of that guarantee: the emitted Typst document (a) cites every corpus key via `#cite(<key>)`, and (b)
-    draws its bibliography from the same references.bib. A key cited in prose but absent from the Typst
-    projection — or a Typst bibliography pointed at a different file — would break parity."""
+    HTML reads citations.json, which render_citations.py produced via Typst from the derived source pair
+    (rest-bib + re-typed Hayagriva YAML, split from the canonical references.bib by
+    `render_citations.derived_sources`), and the PDF renders the SAME derived pair natively through the
+    SAME Typst engine (in its own deliberate style — nature — so the strings differ in FORM, never in
+    data; CITE-FRESH pins the JSON to the .bib). This gate asserts the two structural preconditions of
+    that guarantee: the emitted Typst document (a) cites every corpus key via `#cite(<key>)`, and (b)
+    draws its bibliography from both files of the derived pair. A key cited in prose but absent from the
+    Typst projection — or a Typst bibliography pointed at different sources — would break parity."""
     corpus_keys = sorted({k for f in _all_book_md_files()
                           for k in bb.iter_cite_keys(open(f, encoding="utf-8").read())})
     if not corpus_keys:
@@ -340,9 +342,12 @@ def check_cite_parity():
         if f"#cite(<{k}>)" not in typ and f"#cite(<{k}>," not in typ:
             issues.append(f"key {k!r} is cited in prose but the Typst (PDF) projection has no #cite(<{k}>) "
                           f"— the surfaces would diverge")
-    if "references.bib" not in typ:
-        issues.append("the Typst projection cites works but its #bibliography does not draw from "
-                      "references.bib — the PDF would render from a different source than the web book")
+    for name in (rc.DERIVED_BIB_NAME, rc.DERIVED_YAML_NAME):
+        if name not in typ:
+            issues.append(f"the Typst projection cites works but its #bibliography does not draw from "
+                          f"{name} (the derived pair render_citations.derived_sources splits from "
+                          f"references.bib) — the PDF would render from a different source than the web "
+                          f"book")
     return (FAIL if issues else PASS), issues
 
 
@@ -367,6 +372,51 @@ def check_cite_nonempty():
                               f"would see a bare number; give the references.bib entry renderable "
                               f"fields (or fix render_citations.py's never-empty fallback) and re-run "
                               f"`python3 book/render_citations.py`")
+    return (FAIL if issues else PASS), issues
+
+
+# An italicised container repeated — `<em>T</em>, <em>T</em>`, with at most a `vol. N,` between (the
+# observed `<em>T</em>, vol. 1, <em>T</em>` variant) — the shape Hayagriva's anthos-in-anthology
+# mis-read of @incollection produced (the container emitted twice). Never a legitimate Chicago form.
+_DOUBLED_EM_RE = re.compile(r"<em>(?P<t>[^<]+)</em>,?(?:\s*vol\.\s*\d+,)?\s*<em>(?P=t)</em>")
+
+
+def check_cite_wellformed():
+    """BIB-14 (BLOCKING; 0 findings at landing). Every rendered citation string in citations.json is
+    WELL-FORMED, in both the note and bibliography forms: (a) no form repeats its own italicised
+    container back-to-back (`<em>Book</em>, <em>Book</em>` — the @incollection doubling), and (b) no
+    form presents a source as a journal "special issue" unless the references.bib entry itself carries
+    that phrase (the @inproceedings mis-typing; no entry in this bib is a genuine special issue, so a
+    bib-side occurrence is the only sanctioned source of the words). The failure this pins shipped
+    silently: Hayagriva's BibTeX reader mis-typed 42 of 317 entries — every @inproceedings rendered as
+    a special-issue journal article with the venue both quoted and italicised, every @incollection
+    with its container doubled — and no gate asserted the rendered output's SHAPE, so the strings
+    sailed through CITE-FRESH/CITE-NONEMPTY (fresh and non-empty, just wrong). The fix routes both
+    surfaces through the derived source pair (`render_citations.derived_sources`); this gate holds the
+    shape so a Typst/Hayagriva behavior change or a mapping regression fails loud."""
+    if not os.path.isfile(_CITATIONS_JSON):
+        return PASS, ["no citations.json — nothing to check (CITE-FRESH owns the missing-file case)"]
+    import json
+    payload = json.load(open(_CITATIONS_JSON, encoding="utf-8"))
+    genuinely_special: set[str] = set()
+    if os.path.isfile(_REFERENCES_BIB):
+        for e in rc.parse_bib(open(_REFERENCES_BIB, encoding="utf-8").read()):
+            if any("special issue" in v.lower() for v in e["fields"].values()):
+                genuinely_special.add(e["key"])
+    issues: list[str] = []
+    for key, entry in sorted(payload.get("citations", {}).items()):
+        for form in ("note_html", "bib_html"):
+            s = entry.get(form, "")
+            m = _DOUBLED_EM_RE.search(s)
+            if m:
+                issues.append(f"citations.json entry {key!r} {form} repeats its container back-to-back "
+                              f"({m.group('t')[:60]!r}) — the @incollection-doubling shape; check the "
+                              f"derived_sources mapping and re-run `python3 book/render_citations.py`")
+            if "special issue" in s.lower() and key not in genuinely_special:
+                issues.append(f"citations.json entry {key!r} {form} renders as a journal 'special "
+                              f"issue' but the references.bib entry says no such thing — the "
+                              f"@inproceedings mis-typing shape; check the derived_sources mapping "
+                              f"and re-run `python3 book/render_citations.py`")
     return (FAIL if issues else PASS), issues
 
 
