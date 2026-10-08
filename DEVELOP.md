@@ -96,6 +96,47 @@ aborts the deploy / fails CI. Tier-2 checks (axe, `claude plugin validate`) auto
 is absent — so a browser-less CI enforces the Tier-1 stdlib checks and skips axe, while a local deploy
 (with Node + a browser) enforces axe too.
 
+## Editing the course decks
+
+The `.pptx` lecture decks under `course/lectures/` are edited programmatically with
+`python-pptx`. Four hazards have each cost real rework; a brief that dispatches deck work
+should carry all four, and an agent editing a deck by hand should check them before committing.
+
+**1. `a:pPr` child order.** `python-pptx`'s `get_or_add_pPr()` plus `etree.SubElement`
+**appends**, which silently produces invalid child order. `CT_TextParagraphProperties` requires
+the sequence
+
+    lnSpc, spcBef, spcAft, buClr*, buSz*, buFont*, buNone|buAutoNum|buChar, tabLst, defRPr
+
+Appending `a:spcBef` after `a:buNone` is schema-invalid and makes PowerPoint report the deck as
+needing repair. This put 49 findings on `main` on 261007. Insert in the correct position, then
+verify:
+
+    python3 tools/pptx_validate.py <deck.pptx>      # expect 0 OPC / 0 schema
+
+Both the pre-commit and the pre-merge-commit hooks block on this.
+
+**2. The 20pt font floor.** Decks carry no text run under 20pt; it took three passes to win on
+2-3. If content does not fit, cut content or resize the container — never shrink the type.
+
+**3. Slide-number caches.** Each slide carries a dynamic `<a:fld type="slidenum">` with a
+cached `<a:t>`. PowerPoint re-renders the field, but a LibreOffice PDF export can show the
+stale cache. After any change to slide count or order, walk slides in presentation order and
+set each cached value to its 1-based index — as the *last* content step. Skipping this also
+causes avoidable binary merge conflicts, because the author's own save refreshes these caches.
+
+**4. Render-check in LibreOffice, not just in the XML.** Several defects (label wrap, touching
+cards, descender collisions, footer bands grazing the number region) only appear in the export
+path the course site uses:
+
+    soffice --headless --convert-to pdf --outdir /tmp/deckqa <deck.pptx>
+    pdftoppm -r 110 -png -f N -l N /tmp/deckqa/<deck>.pdf /tmp/deckqa/page
+
+Then look at the images. A fix you cannot see in a render is a fix you cannot verify.
+
+Speaker notes are expected on every slide, and `python-pptx` has **no animation API** — a build
+sequence has to be written into the notes for a human to apply.
+
 ## Dependencies
 
 | Layer | Needs | Notes |
