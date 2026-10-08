@@ -2,12 +2,17 @@
 title: Failure-Aware Engineering
 readings:
   groups:
+    - heading: Core reading
+      items:
+        - cite: davis2026sehandbook
+          locator: 'chap. 11'
+          annotation: 'Davis, [*The Software Engineering Handbook*, "Failure-Aware Engineering."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/10-failure-aware-engineering.html) This chapter provides the conceptual framework for the unit. Read for the distinction between repair and learning, failure as evidence about an engineering model, retrospective use of the engineering activities and Validation, and the three places a lesson can live: the system, the team, and the engineer. Pay particular attention to the question that organizes the chapter: after reality contradicts an expectation, what should we now believe?'
     - heading: Earlier reading revisited
       items:
         - cite: leveson2003stamp
           annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](../03-alignment/readings/leveson-stamp-accident-analysis-2003.pdf), previously assigned in Unit 12, Alignment. First read for control structures, constraints, feedback, and intervention; reread it now as a model of accident causation. Instead of asking how a control structure can enforce an obligation, ask what a failure reveals about the control structure that was supposed to do so. How does the explanation change as the causal boundary expands?'
       note: 'If you skipped this reading in Alignment, read it now.'
-    - heading: How experience becomes judgment
+    - heading: How does experience become judgment?
       items:
         - cite: schon1983reflective
           annotation: 'Schön, *The Reflective Practitioner: How Professionals Think in Action* (1983). Focus on reflection-in-action, reflection-on-action, and the repertoire a practitioner accumulates through experience. Read it as an account of how a professional comes to recognize a situation, not as a method to follow.'
@@ -19,11 +24,11 @@ readings:
           annotation: 'Anandayuvaraj et al., "Learning From Software Failures: A Case Study at a National Space Research Center" (ICSE 2026). Empirical evidence about how software practitioners gather, document, share, and apply lessons from failure. Read for what becomes difficult when the learning loop stays informal: lessons may remain tacit or fragmented, depend on individual memory, and fail to travel reliably across projects.'
   optional:
     - cite: norman2013
-      annotation: 'Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
+      annotation: 'Norman, *The Design of Everyday Things* (2013). Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
     - cite: reason1990humanerror
-      annotation: 'Read for its causal account of human failure: fallibility, latent conditions, and defenses, and for the reasoning behind the Swiss-cheese model rather than the familiar diagram itself.'
+      annotation: 'Reason, *Human Error* (1990). Read for its causal account of human failure: fallibility, latent conditions, and defenses, and for the reasoning behind the Swiss-cheese model rather than the familiar diagram itself.'
     - cite: petroski1992
-      annotation: 'Read for failure as a source of engineering knowledge: failed designs expose assumptions and limits that successful operation may leave invisible.'
+      annotation: 'Petroski, *To Engineer Is Human: The Role of Failure in Successful Design* (1992). Read for failure as a source of engineering knowledge: failed designs expose assumptions and limits that successful operation may leave invisible.'
 instructor_materials: []
 student_materials: []
 assignments: []
