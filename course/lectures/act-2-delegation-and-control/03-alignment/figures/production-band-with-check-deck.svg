@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DECK DERIVATIVE — 2-3-Alignment, slide 2 ("The Master Equation: Alignment adds a check").
+     Derived from ../../02-modeling/figures/probability-production-band-deck.svg (do NOT edit that
+     file — Modeling-1 keeps its own version unchanged). What this variant does:
+
+       1. KEEPS the production band coordinate-for-coordinate: the band rect, the four stations
+          (Engineering intent -> Encoded property -> Fabricator -> Realization), the ghost arrows,
+          the divided span bracket, and the three long-form probability terms P(E | R), P(I | E, R),
+          P(L | I, E, R) are all at their inherited x/y/font-size, so the slide reads as the SAME
+          picture the students saw in Modeling-1, extended.
+       2. Crops tighter: viewBox 14 140 972 550 (the parent deck crop was 14 50 972 360). The
+          PROCESS DESIGN page heading falls away; the PRODUCTION PROCESS band label stays. The crop
+          extends DOWNWARD to make room for what Alignment adds.
+       3. Folds ENCODE / INTERPRET / REALIZE into the bracket captions (the Modeling deck carries
+          them as PowerPoint chips above the figure; this slide's density budget puts them under the
+          pipeline instead, which is where the lecture says them anyway).
+       4. Deletes the parent's hidden tolerance half (acceptable region, measurement drop, outcome
+          boxes, dots) — the extended viewport would otherwise expose them — and the two Modeling
+          lever annotations at y=380: the slide's own two annotations carry the message here.
+       5. ADDS the Alignment structure, all in the governance rust (#9a3f12), so it reads as the NEW
+          layer over the unchanged grey band:
+            Encoded property drops to MODEL (the encoded obligation IS the model);
+            Realization drops to CHECK (the candidate is what gets checked);
+            an arrow runs backward from CHECK to MODEL (the check consults the obligation);
+            CHECK -> PASS / DO NOT PASS;
+            beneath, the quantity Alignment improves: P(L | C), C = the candidate passes the check.
+          NOTHING in the band changed: Alignment does not improve the fabricator; it adds selection
+          on the fabricator's output. The band terms are untouched by design.
+     Edit this file, then re-render the PNG (rsvg-convert -w 3600). -->
+<!-- semantic-families: governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 140 972 560" width="972" height="560"
+     role="img" aria-labelledby="pbcTitle pbcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="pbcTitle">The production path with its three probability terms, extended by the
+    Alignment check: realization and encoded obligation meet at a check that passes or does not pass,
+    improving P of L given C</title>
+  <desc id="pbcDesc">The familiar production band from Modeling: a left-to-right path from
+    engineering intent, through an encoded property drawn in the governance colour, through the
+    fabricator, to a realization, with a bracket dividing the path into three spans scored by
+    P of E given R, P of I given E and R, and P of L given I, E and R, captioned encode, interpret,
+    and realize. New beneath the band: the encoded property drops down to a box labelled MODEL, the
+    realization drops down to a box labelled CHECK, an arrow runs backward from the check to the
+    model, and the check leads down to a box reading PASS slash DO NOT PASS. Under it stands the
+    quantity Alignment improves, P of L given C, where C means the candidate passes the check.
+    Nothing in the production band itself is altered: alignment adds selection on the fabricator's
+    output, it does not improve the fabricator.</desc>
+
+  <defs>
+    <marker id="pbcArrowGhost" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
+            refX="12" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 Z" fill="#a8a29e"/>
+    </marker>
+    <marker id="pbcArrowRust" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
+            refX="12" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 Z" fill="#9a3f12"/>
+    </marker>
+    <marker id="pbcArrowRustFine" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="8"
+            refX="10" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- page ground + the inherited factory frame, unchanged from the parent -->
+  <rect x="0" y="0" width="1000" height="772" fill="#fdfcf9"/>
+  <rect x="26" y="62" width="948" height="682" rx="12" fill="#fdfcf9" stroke="#cfc9bf" stroke-width="1.5"/>
+
+  <!-- the production process band, unchanged -->
+  <rect x="48" y="152" width="904" height="248" rx="10" fill="#f4f0e8" stroke="#c4beb4" stroke-width="1.5"
+        stroke-dasharray="7 5"/>
+
+  <!-- the production path edges, unchanged -->
+  <line x1="244" y1="228" x2="302" y2="228" stroke="#a8a29e" stroke-width="2"
+        marker-end="url(#pbcArrowGhost)"/>
+  <line x1="469" y1="228" x2="526" y2="228" stroke="#a8a29e" stroke-width="2"
+        marker-end="url(#pbcArrowGhost)"/>
+  <line x1="693" y1="228" x2="751" y2="228" stroke="#a8a29e" stroke-width="2"
+        marker-end="url(#pbcArrowGhost)"/>
+
+  <!-- NEW: the two drops that feed the Alignment layer. Drawn before the bracket so the encoded
+       drop passes UNDER it (the white jump erases the drop around y=286; the bracket repaints).
+       The encoded drop runs at x=352 — right of the caption column (flush right at 324) and the
+       P(E | R) term's right edge, left of the bracket tick at 388. The realization drop runs at
+       x=880, outside the bracket's right endpoint at 837, the same corridor the parent reserved
+       for its measurement drop. -->
+  <line x1="352" y1="260" x2="352" y2="442" stroke="#9a3f12" stroke-width="2.5"
+        marker-end="url(#pbcArrowRustFine)"/>
+  <line x1="343" y1="286" x2="361" y2="286" stroke="#fdfcf9" stroke-width="5"/>
+  <line x1="880" y1="260" x2="880" y2="442" stroke="#9a3f12" stroke-width="2.5"
+        marker-end="url(#pbcArrowRustFine)"/>
+
+  <!-- the four stations, unchanged -->
+  <rect id="n-intent" x="77" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+  <rect id="n-encoded" x="302" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#9a3f12"
+        stroke-width="2.5"/>
+  <rect id="n-fabricator" x="526" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+  <rect id="n-realization" x="751" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
+        stroke-width="2"/>
+
+  <!-- the divided span bracket, unchanged -->
+  <g stroke="#1c1917" stroke-width="2" fill="none" stroke-linecap="square">
+    <line x1="163" y1="286" x2="837" y2="286"/>
+    <line x1="163" y1="286" x2="163" y2="272"/>
+    <line x1="388" y1="286" x2="388" y2="272"/>
+    <line x1="612" y1="286" x2="612" y2="272"/>
+    <line x1="837" y1="286" x2="837" y2="272"/>
+  </g>
+
+  <!-- NEW: the Alignment layer. MODEL under the encoded property, CHECK under the realization,
+       the backward consult arrow, the verdict, and the quantity Alignment improves. -->
+  <g>
+    <rect x="265" y="446" width="174" height="52" rx="8" fill="#fdfcf9" stroke="#9a3f12"
+          stroke-width="2.5"/>
+    <rect x="775" y="446" width="174" height="52" rx="8" fill="#9a3f12" fill-opacity="0.08"
+          stroke="#9a3f12" stroke-width="2.5"/>
+    <!-- the check consults the obligation: arrow drawn backward, CHECK to MODEL -->
+    <line x1="771" y1="472" x2="447" y2="472" stroke="#9a3f12" stroke-width="2.5"
+          marker-end="url(#pbcArrowRust)"/>
+    <text x="618" y="464" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">checked against</text>
+    <!-- verdict -->
+    <line x1="862" y1="502" x2="862" y2="536" stroke="#9a3f12" stroke-width="2.5"
+          marker-end="url(#pbcArrowRustFine)"/>
+    <rect x="762" y="540" width="200" height="52" rx="8" fill="#fdfcf9" stroke="#9a3f12"
+          stroke-width="2.5"/>
+    <text x="352" y="479" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">MODEL</text>
+    <text x="862" y="479" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">CHECK</text>
+    <text x="862" y="572" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">PASS / DO NOT PASS</text>
+    <!-- the quantity Alignment improves -->
+    <text x="850" y="625" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12"
+          letter-spacing="1.2">WHAT ALIGNMENT IMPROVES</text>
+    <text x="850" y="658" text-anchor="middle" font-size="34" font-weight="700" fill="#1c1917"><tspan
+          font-style="italic">P</tspan>(<tspan font-style="italic">L</tspan> | <tspan
+          font-style="italic">C</tspan>)</text>
+    <text x="850" y="682" text-anchor="middle" font-size="15" fill="#44403c">C = the candidate passes the check</text>
+  </g>
+
+  <!-- band label + station labels, unchanged -->
+  <text x="70" y="180" font-size="19" font-weight="700" fill="#44403c" letter-spacing="1.2">PRODUCTION PROCESS</text>
+
+  <text x="163" y="220" text-anchor="middle" font-size="22" fill="#1c1917">Engineering</text>
+  <text x="163" y="246" text-anchor="middle" font-size="22" fill="#1c1917">intent</text>
+  <text x="388" y="220" text-anchor="middle" font-size="22" fill="#1c1917">Encoded</text>
+  <text x="388" y="246" text-anchor="middle" font-size="22" fill="#1c1917">property</text>
+  <text x="612" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Fabricator</text>
+  <text x="837" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Realization</text>
+
+  <!-- the three probability terms, unchanged: same x, same y, same font-size as Modeling's figure -->
+  <text x="275" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(<tspan font-style="italic">E</tspan> | <tspan
+        font-style="italic">R</tspan>)</text>
+  <text x="500" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(<tspan font-style="italic">I</tspan> | <tspan
+        font-style="italic">E</tspan>, <tspan font-style="italic">R</tspan>)</text>
+  <text x="724" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(<tspan font-style="italic">L</tspan> | <tspan
+        font-style="italic">I</tspan>, <tspan font-style="italic">E</tspan>, <tspan
+        font-style="italic">R</tspan>)</text>
+
+  <!-- what each term scores: the parent's captions, unchanged. The P(E) column stays flush right
+       at 324 so the encoded drop keeps a clear corridor. -->
+  <text x="324" y="354" text-anchor="end" font-size="16" fill="#1c1917">correctly encode intent</text>
+  <text x="500" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly interpret encoding</text>
+  <text x="724" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly realize interpretation</text>
+
+  <!-- the Modeling chips' verbs, one per span, in the lane the parent's lever annotations used -->
+  <text x="275" y="382" text-anchor="middle" font-size="17" font-weight="700" fill="#44403c"
+        letter-spacing="1.5">ENCODE</text>
+  <text x="500" y="382" text-anchor="middle" font-size="17" font-weight="700" fill="#44403c"
+        letter-spacing="1.5">INTERPRET</text>
+  <text x="724" y="382" text-anchor="middle" font-size="17" font-weight="700" fill="#44403c"
+        letter-spacing="1.5">REALIZE</text>
+</svg>
