@@ -359,6 +359,32 @@ The question is therefore not only who or what made an error. Engineers should a
 conditions permitted the error to propagate and which defenses could economically prevent or
 contain a similar event.
 
+Systemic accounts correct an important weakness in explanations that terminate at the component or
+person closest to the failure. Widening the causal boundary indefinitely creates a different
+problem. Almost any consequential failure can be connected to progressively broader technical,
+organizational, economic, and regulatory conditions. Each may be causally relevant without being
+equally useful to the decision at hand.
+
+A practical failure analysis should therefore consider the locus of control of the people expected
+to act on it. Engineers can change artifacts, interfaces, tests, observability, deployment
+mechanisms, and parts of the immediate engineering process. Managers can additionally change
+staffing, ownership, incentives, schedules, and operating policies. Executives can intervene in
+organizational structures, investments, and relationships that extend beyond an individual
+engineering team.
+
+This is not an argument for ignoring causes outside the analyst's authority. A condition outside
+the analyst's control may explain the failure, or it may require escalation to someone who can act
+on it. An engineer who finds that a regulatory incentive contributed to a failure cannot change
+the regulator, but can escalate the finding, compensate for the condition, or explain why the
+problem cannot be solved locally. Causal breadth and actionable intervention are separate
+concerns.
+
+Engineers should match the causal breadth of an analysis to the decisions it is intended to
+support. A useful causal model is broad enough to explain the relationships that matter and
+focused enough to identify decisions that can change. Choosing that boundary is itself a modeling
+decision: the analyst preserves the parts of the causal structure whose distinctions matter to the
+decisions that follow.
+
 ## How bad was the failure? {#sec-severity}
 
 Failures differ in consequence. A misspelled label and an outage that prevents a safety-critical
@@ -822,7 +848,9 @@ uncertainty.
 
 Human contributions to failure also require interpretation. Slips and mistakes suggest different
 interventions, while systemic models such as Reason's direct attention toward the defenses and
-conditions that permit an error to become consequential. Severity classifications then connect
+conditions that permit an error to become consequential. The breadth of such an analysis remains a
+choice; it should match the decisions the analysis is intended to support and the locus of control
+of those expected to act. Severity classifications then connect
 observed failures to consequences and to the criticality of engineering obligations. These
 classifications are models used to support decisions, not intrinsic properties of defects.
 
