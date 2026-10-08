@@ -2,29 +2,29 @@
 title: "Delegating to Software Agents: Old Problem, New Properties"
 readings:
   groups:
-    - heading: 'Delegation: work, responsibility, and the recipient'
+    - heading: 'Delegation and responsibility'
       items:
         - cite: bainbridge1983
           locator: 'opening and §1 only (pp. 775–76), stopping at §2'
-          annotation: 'Bainbridge, ["Ironies of Automation."](readings/ironies-of-automation-bainbridge-1983.pdf) Read the opening and §1 only (pp. 775–76 of the course copy), stopping at §2. Bainbridge asks what remains for people when routine work is automated: the residue may be poorly designed, the skills needed to perform it may decay through disuse, and human intervention may be required precisely when circumstances become unusual. As you read, ask what work remains with the engineer after routine realization is delegated to an agent, and what capability that remaining work requires.'
+          annotation: 'Bainbridge, ["Ironies of Automation."](readings/ironies-of-automation-bainbridge-1983.pdf) Read the opening and §1 only (pp. 775–76 of the course copy), stopping at §2. The paper asks what remains for people when routine work is automated; the residue may be the work the human is least prepared to do. Ask what remains with the engineer once routine realization is delegated, and what capability it requires.'
         - cite: anancsbn2019delegation
           locator: 'pp. 1–9; special attention to the Five Rights, p. 4'
-          annotation: 'ANA and NCSBN, ["National Guidelines for Nursing Delegation."](https://www.nursingworld.org/globalassets/practiceandpolicy/nursing-excellence/ana-position-statements/nursing-practice/ana-ncsbn-joint-statement-on-delegation.pdf) Read pp. 1–9, with special attention to the Five Rights of Delegation on p. 4. Treat the Five Rights as one profession''s answer to the same delegation problem we face here: what work may be delegated, to whom, under what circumstances and directions, and with what supervision and evaluation. Then consider what changes when the delegatee is a software agent that cannot itself bear professional accountability.'
+          annotation: 'ANA and NCSBN, ["National Guidelines for Nursing Delegation."](https://www.nursingworld.org/globalassets/practiceandpolicy/nursing-excellence/ana-position-statements/nursing-practice/ana-ncsbn-joint-statement-on-delegation.pdf) Read pp. 1–9, with special attention to the Five Rights of Delegation on p. 4: another profession''s solution to bounded delegation with retained accountability. Consider what changes when the delegatee is a software agent that cannot itself be accountable.'
     - heading: Bound and equip the work
       items:
         - cite: polya1957
           locator: 'Part I, §§6–9 and selected dictionary entries'
-          annotation: 'Pólya, *How to Solve It*. Read Part I, §§6–9 (PDF pp. 14–17 of the course scan), together with "Draw a figure," "Working backwards," "Decomposing and recombining," and "Use a problem related to yours." Pólya repeatedly improves problem solving not by changing the reasoner, but by changing the problem presented to the reasoner through representation, decomposition, notation, and related problems. Read these techniques as ways of moving work within a reasoner''s effective reasoning horizon.'
+          annotation: 'Pólya, *How to Solve It*. Read Part I, §§6–9 (PDF pp. 14–17 of the course scan), with "Draw a figure," "Working backwards," "Decomposing and recombining," and "Use a problem related to yours." Pólya improves reasoning by changing the problem presented to the reasoner; read his techniques as ways of moving work within the reasoner''s effective reasoning horizon.'
         - cite: davis2026mage
           locator: '§7.1.2 and §7.1.4'
-          annotation: '{mage:7.1} Davis, 2026. Read §7.1.2, "Agents Entered an Implementation-Centered Discipline," and §7.1.4, "Where Engineering Effort Moves," only. §7.1.2 traces how agent systems have expanded from repository retrieval toward engineered interfaces, tools, and program representations, then asks what changes when we treat those mechanisms as parts of a larger engineering environment. §7.1.4 asks where engineering effort goes once implementation is cheap, and treats explicit representation as one possible destination rather than a settled one; inside that argument it distinguishes supplying a reasoner more information from changing the representation over which reasoning occurs. Read the pair against this unit''s question: where does the capability for delegated work actually live?'
-    - heading: Engineer the environment around the agent
+          annotation: '{mage:7.1} Davis, 2026. Read §7.1.2 and §7.1.4 only. Together they locate agent capability in the larger engineered environment and ask where engineering effort moves as implementation becomes cheap. Read the pair against this unit''s question: where does the capability for delegated work live?'
+    - heading: Engineer the environment
       items:
         - cite: claxton2026sdlc
-          annotation: 'Claxton, ["The AI-Native SDLC Playbook."](https://claude.com/blog/the-ai-native-sdlc-playbook) Read this as a practitioner account, not as evidence: it is published by the maker of the tools it recommends and reports experience rather than controlled measurement. As you read, classify its practices using BOUND → EQUIP → AUTHORIZE → VERIFY: project instructions and skills supply information and means; permissions determine consequences; tests, builds, screenshot comparisons, CI, and independent approval supply evidence. Notice especially where an advisory instruction is backed by a deterministic mechanism.'
+          annotation: 'Claxton, ["The AI-Native SDLC Playbook."](https://claude.com/blog/the-ai-native-sdlc-playbook) A practitioner account, not controlled evidence: it is published by the maker of the tools it recommends. Rather than accepting its prescriptions, classify its practices using BOUND → EQUIP → AUTHORIZE → VERIFY.'
         - cite: davis2026sehandbook
           locator: 'chap. 4'
-          annotation: '[*The Software Engineering Handbook*, Chapter 4, "Engineering Knowledge."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/03-engineering-knowledge.html) Davis, 2026. Read the full chapter. Focus on what an engineering organization should remember and how knowledge moves among people, representations, and mechanisms. For this unit, the central question is what knowledge should live in the engineering environment so that each human or machine reasoner does not have to reconstruct it anew.'
+          annotation: '[*The Software Engineering Handbook*, Chapter 4, "Engineering Knowledge."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/03-engineering-knowledge.html) Davis, 2026. Read the full chapter. It treats engineering knowledge as something the environment can retain, so that each human or machine reasoner need not reconstruct it anew.'
 instructor_materials: []
 student_materials: []
 assignments: []
