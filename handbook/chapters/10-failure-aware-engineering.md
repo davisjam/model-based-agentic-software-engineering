@@ -748,14 +748,10 @@ Failure-aware engineering is ultimately part of developing professional judgment
 begins with models and evidence, acts under uncertainty, observes consequences, and revises future
 reasoning when those consequences reveal something important.
 
-The models in this chapter support different parts of that activity. Schön explains how reflection
-on practice contributes to professional judgment. Norman's distinction between slips and mistakes
-helps engineers distinguish failures of execution from failures of intention or understanding.
-Reason directs attention from a visible error toward the defenses and conditions through which it
-became consequential. Severity classifications model the consequence of violating engineering
-obligations. Validation provides a vocabulary for examining why earlier evidence did not reveal
-what the world eventually did. Postmortems and other engineering records allow lessons to become
-available beyond the people who directly experienced them.
+The models developed in this chapter support different parts of that activity. They help engineers
+reflect on practice, distinguish failures of execution from failures of understanding, trace how
+weaknesses pass through systems of defense, judge consequences, reconsider earlier evidence, and
+preserve lessons beyond the people who directly experienced them.
 
 None provides a mechanical procedure for learning the correct lesson. Reflection itself is an act
 of engineering judgment. Engineers can infer the wrong cause, overgeneralize from one incident,
@@ -763,11 +759,11 @@ preserve irrelevant details, or impose an expensive control whose benefit does n
 cost. Lessons from failure therefore deserve the same skepticism applied to other engineering
 knowledge.
 
-A useful reflective practice begins by reconstructing the expectation and the observation. What did
-you expect? What occurred? Why did the expectation appear credible? Which part of your
-understanding does the observation actually challenge? What alternative explanations remain? How
-broadly does the lesson generalize? What should change in the system, in shared engineering
-knowledge, or in your own future judgment?
+A useful reflective practice begins by reconstructing the expectation and the observation. What
+did you expect, and what occurred? Ask why the expectation appeared credible, which part of your
+understanding the observation actually challenges, and what alternative explanations remain. Then
+ask how broadly the lesson generalizes and what should change in the system, in shared engineering
+knowledge, or in your own future judgment.
 
 Success, near misses, experiments, and other engineers' experiences can contribute similarly when
 they provide evidence across new conditions. The purpose is not to accumulate personal failures,
@@ -783,8 +779,7 @@ book. Deliberate reasoning helps engineers make consequential decisions under un
 Experience and reflection expand the repertoire with which engineers recognize what deserves such
 reasoning in the first place. Each can improve the other over a career. A failure-aware engineer
 treats the discrepancy between expectation and reality as new engineering evidence, determines what
-that evidence supports, and allows consequential lessons to change future work. Failure is
-inevitable. Recurring failure is not.
+that evidence supports, and allows consequential lessons to change future work.
 
 ## Summary
 
