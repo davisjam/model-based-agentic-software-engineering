@@ -13,11 +13,11 @@ readings:
     - heading: The Modeling repertoire
       items:
         - cite: visualparadigm-uml-guide
-          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) Browse, do not memorize. UML is the middle ground in semantic commitment: standardized notation that establishes substantial shared meaning while still relying on human interpretation. For each diagram type, ask what meaning the notation itself carries and what it leaves to the interpreter. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
+          annotation: '["The Complete Guide to UML Diagram Types."](readings/visual-paradigm-uml-diagram-types.pdf) Browse, do not memorize. UML illustrates a middle ground in semantic commitment: standardized notation establishes substantial shared meaning while still relying on human interpretation. For each diagram type, ask what meaning the notation itself carries and what it leaves to the interpreter. (Source: [visual-paradigm.com/guide](https://www.visual-paradigm.com/guide/the-complete-guide-to-uml-diagrams-all-14-types-explained-with-practical-examples).)'
     - heading: Models as engineering artifacts
       items:
         - cite: madni2018mbse
-          annotation: 'Madni and Sievers, ["Model-Based Systems Engineering: Motivation, Current Status, and Research Opportunities"](https://doi.org/10.1002/sys.21438) (2018). Model-based systems engineering is an older tradition in which models are engineering artifacts, not illustrations. Ask what becomes possible when engineering knowledge has explicit structure rather than living across documents, implementations, and people''s heads.'
+          annotation: 'Madni and Sievers, ["Model-Based Systems Engineering: Motivation, Current Status, and Research Opportunities"](https://doi.org/10.1002/sys.21438) (2018). Model-based systems engineering is an older tradition in which models are engineering artifacts, not merely illustrations. Read it for what changes when engineering knowledge has explicit structure: what can engineers analyze, communicate, integrate, or control that would otherwise have to be reconstructed from documents, implementations, and people''s heads?'
     - heading: Earlier readings revisited
       items:
         - cite: kruchten1995

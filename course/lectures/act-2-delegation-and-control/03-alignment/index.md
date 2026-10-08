@@ -14,11 +14,11 @@ readings:
     - heading: Control as an engineering tradition
       items:
         - cite: leveson2003stamp
-          annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](readings/leveson-stamp-accident-analysis-2003.pdf) (2003). STAMP treats an accident as the failure of a control structure, not a chain of component faults. Read it for the shape of the argument: control structures enforcing constraints, with feedback and intervention, a pre-agent engineering tradition that Alignment applies to delegated work.'
+          annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](readings/leveson-stamp-accident-analysis-2003.pdf) (2003). STAMP treats an accident as the failure of a control structure, not a chain of component faults. Read it for the shape of the argument: safety emerges from a control structure that enforces constraints through feedback and intervention. This is a pre-agent engineering tradition for the central idea of Alignment: consequential obligations can be backed by controls outside the actor whose behavior they govern.'
     - heading: The organizational precedent
       items:
         - cite: simons1995control
-          annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). Management faced the delegation problem before software agents existed: grant people real autonomy while keeping the organization''s consequential obligations intact. Simons'' answer is a designed system of controls, with responsibility retained by the organization.'
+          annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). Management faced the delegation problem before software agents existed: how can people receive meaningful autonomy while the organization retains control over consequential obligations? Read Simons for the idea that delegation and control are complements rather than opposites, and ask what transfers when the delegatee is a software agent.'
   optional:
     - cite: davis2026mage
       locator: '§§3.3.4–3.3.7 and §3.5'

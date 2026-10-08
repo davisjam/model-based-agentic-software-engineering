@@ -9,7 +9,7 @@ readings:
           annotation: 'Bainbridge, ["Ironies of Automation."](readings/ironies-of-automation-bainbridge-1983.pdf) Read the opening and §1 only (pp. 775–76 of the course copy), stopping at §2. The paper asks what remains for people when routine work is automated; the residue may be the work the human is least prepared to do. Ask what remains with the engineer once routine realization is delegated, and what capability it requires.'
         - cite: anancsbn2019delegation
           locator: 'pp. 1–9; special attention to the Five Rights, p. 4'
-          annotation: 'ANA and NCSBN, ["National Guidelines for Nursing Delegation."](https://www.nursingworld.org/globalassets/practiceandpolicy/nursing-excellence/ana-position-statements/nursing-practice/ana-ncsbn-joint-statement-on-delegation.pdf) Read pp. 1–9, with special attention to the Five Rights of Delegation on p. 4: another profession''s solution to bounded delegation with retained accountability. Consider what changes when the delegatee is a software agent that cannot itself be accountable.'
+          annotation: 'ANA and NCSBN, ["National Guidelines for Nursing Delegation."](https://www.nursingworld.org/globalassets/practiceandpolicy/nursing-excellence/ana-position-statements/nursing-practice/ana-ncsbn-joint-statement-on-delegation.pdf) Read pp. 1–9, with special attention to the Five Rights of Delegation on p. 4: another profession''s framework for bounded delegation with retained accountability. Consider what changes when the delegatee is a software agent that cannot itself be accountable.'
     - heading: Bound and equip the work
       items:
         - cite: polya1957
@@ -21,7 +21,7 @@ readings:
     - heading: Engineer the environment
       items:
         - cite: claxton2026sdlc
-          annotation: 'Claxton, ["The AI-Native SDLC Playbook."](https://claude.com/blog/the-ai-native-sdlc-playbook) A practitioner account, not controlled evidence: it is published by the maker of the tools it recommends. Rather than accepting its prescriptions, classify its practices using BOUND → EQUIP → AUTHORIZE → VERIFY.'
+          annotation: 'Claxton, ["The AI-Native SDLC Playbook."](https://claude.com/blog/the-ai-native-sdlc-playbook) A contemporary practitioner account of engineering around software agents, published by the maker of the tools it recommends rather than as controlled evidence. Read it as a collection of practices to classify using BOUND → EQUIP → AUTHORIZE → VERIFY, rather than as prescriptions to accept.'
         - cite: davis2026sehandbook
           locator: 'chap. 4'
           annotation: '[*The Software Engineering Handbook*, Chapter 4, "Engineering Knowledge."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/03-engineering-knowledge.html) Davis, 2026. Read the full chapter. It treats engineering knowledge as something the environment can retain, so that each human or machine reasoner need not reconstruct it anew.'

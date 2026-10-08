@@ -11,14 +11,14 @@ readings:
         - cite: lunney2016postmortem
           annotation: 'Lunney, Lueder, and O''Connor, ["Postmortem Culture: Learning from Failure"](https://sre.google/sre-book/postmortem-culture/) (2016). A production-software practice for turning operational failures into shared organizational knowledge. Read for what a postmortem is asked to reconstruct, and for why blamelessness is an engineering stance rather than a courtesy: people acted under particular information, interfaces, and incentives, and those conditions are what an organization can change.'
         - cite: anandayuvaraj2026failures
-          annotation: 'Anandayuvaraj et al., "Learning From Software Failures: A Case Study at a National Space Research Center" (ICSE 2026). Empirical evidence about how software practitioners gather, document, share, and apply lessons from failure. Read for what happens when the learning loop stays informal: lessons remain tacit or fragmented, depend on individual memory, and related problems recur across projects.'
+          annotation: 'Anandayuvaraj et al., "Learning From Software Failures: A Case Study at a National Space Research Center" (ICSE 2026). Empirical evidence about how software practitioners gather, document, share, and apply lessons from failure. Read for what becomes difficult when the learning loop stays informal: lessons may remain tacit or fragmented, depend on individual memory, and fail to travel reliably across projects.'
   optional:
     - cite: norman2013
-      annotation: 'Slips, mistakes, and the relationship between apparent human error and the designed systems through which people act.'
+      annotation: 'Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
     - cite: reason1990humanerror
-      annotation: 'Human fallibility, latent conditions, and defenses — the reasoning behind the Swiss-cheese model, rather than the diagram.'
+      annotation: 'Read for human fallibility, latent conditions, and defenses: the reasoning behind the Swiss-cheese model rather than the familiar diagram itself.'
     - cite: petroski1992
-      annotation: 'Failure as a source of engineering knowledge about the limits of designs and models.'
+      annotation: 'Read for failure as a source of engineering knowledge: failed designs expose assumptions and limits that successful operation may leave invisible.'
 instructor_materials: []
 student_materials: []
 assignments: []
