@@ -675,24 +675,13 @@ Failure-aware engineering creates an understandable desire for measurement. If a
 invests in postmortems, corrective actions, regression tests, and other mechanisms for learning
 from failure, engineers should ask whether those investments are changing what happens afterward.
 
-Some useful observations are straightforward. Teams can measure the frequency and severity of
-incidents, the time required to detect and recover from them, and the fraction of corrective
-actions that are completed. They can identify failures that recur and measure the interval between
-occurrences. They can examine whether similar failures appear in different components or projects.
-They can also measure properties of the learning process itself: how quickly consequential
-incidents are analyzed, whether identified actions are completed, and whether lessons judged
-relevant to other teams are communicated or encoded into shared engineering structures.
-
-These measurements answer different questions. Mean time to recovery describes operational
-response, not learning. Action-item completion measures whether planned work occurred, not whether
-the planned work addressed the important lesson. A declining incident count may indicate
-improvement, but it can also reflect lower usage, changed workloads, or differences in reporting.
-Recurrence can indicate that an earlier lesson was insufficiently generalized or applied, but
-deciding whether two incidents represent the same underlying failure requires an engineering model
-of what they have in common.
-
-A small set of measures can nevertheless make the learning process more observable
-(@tbl-learning-observables).
+Organizations can observe incident frequency and severity, detection and recovery time, completion
+of corrective actions, recurrence within and across projects, and whether lessons become encoded
+into durable engineering structures. These measurements make different parts of the learning
+process visible, but none directly establishes that learning occurred. Mean time to recovery
+measures operational response; action-item completion measures whether planned work occurred;
+recurrence requires a model of what different incidents have in common. @tbl-learning-observables
+summarizes these distinctions.
 
 | Observation | What it can help reveal | What it does not establish |
 |---|---|---|
@@ -706,11 +695,10 @@ A small set of measures can nevertheless make the learning process more observab
 : Observations that make a failure-learning process visible, each paired with the inference it does
 not license. {#tbl-learning-observables}
 
-The final row returns to a problem developed in @ch-engineering-knowledge. A lesson that moves from an
-individual's memory into a test, model, validation rule, architectural constraint, or other shared
-structure has become more durable. Counting such changes can describe one aspect of organizational
-learning. It does not establish that the organization has learned everything the incident could
-teach.
+The final row returns to @ch-engineering-knowledge. A lesson that moves from individual memory
+into a test, model, validation rule, architectural constraint, or other shared structure has
+become more durable. Counting such changes can describe one aspect of organizational learning; it
+does not establish that the right lesson was learned.
 
 ::: {.key-idea #key-judgment-not-measurable title="Judgment is not directly measurable"}
 Engineering judgment itself should not be reduced to a metric. Judgment is the capacity to
@@ -732,10 +720,8 @@ writing postmortems. Counting action items can encourage producing action items.
 incidents can encourage classifying incidents as unrelated. None guarantees that engineers have
 improved the models and recognition they bring to future decisions.
 
-Failure-aware engineering should therefore use metrics to make the learning system more observable
-without pretending to quantify the judgment produced by that system. The important question remains
-whether experience changes future engineering appropriately. Metrics can provide evidence for
-answering that question; they cannot answer it by themselves.
+Use metrics to make the learning system observable, not to pretend that judgment itself has been
+quantified.
 
 ## Measurement for decision-making {#sec-measurement-failure-aware-engineering}
 
