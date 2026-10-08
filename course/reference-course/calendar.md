@@ -22,7 +22,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 |---|---|
 | 1 | {module:Engineering & GenAI} |
 | 2 | {module:Process} · {module:Teamwork} |
-| 3 | {module:Requirements & Specification} |
+| 3 | {module:Requirements} · {module:Specification} |
 | 4 | {module:Architecture} · {module:Design} |
 | 5 | {module:Validation} · {module:Engineering Decision-Making and Metrics} |
 
@@ -33,9 +33,9 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | Week | Topic |
 |---|---|
 | 6 | {module:Delegating to Software Agents: Old Problem, New Properties} · {module:Modeling: Purposeful Reduction} |
-| 7 | {module:Modeling: Degrees of Semantic Commitment} · {module:Alignment: From Guidance to Authority} |
+| 7 | {module:Modeling: Degrees of Semantic Commitment} · {module:Alignment} |
 | 8 | {module:Failure-Aware Engineering} |
-| 9 | Oral Exam / Synthesis |
+| 9 | Oral exam |
 
 ## Act III — Software in the World
 
