@@ -783,47 +783,31 @@ that evidence supports, and allows consequential lessons to change future work.
 
 ## Summary
 
-Engineering judgment develops through the relationship between decisions and their consequences.
-Deliberate reasoning constructs models, compares alternatives, gathers evidence, and supports
-decisions under uncertainty. Experience contributes another form of judgment: recognition of
-situations, assumptions, and hazards that deserve attention. Reflection connects the two by asking
-what an outcome reveals about the understanding that preceded it.
+Engineering judgment develops by connecting decisions to their consequences. Engineers use models
+and evidence to reason deliberately about consequential decisions under uncertainty. Experience
+contributes another form of judgment: recognition of situations, assumptions, and hazards that
+deserve attention. Reflection connects the two by asking what an outcome reveals about the
+engineering understanding that preceded it.
 
-Failure is particularly informative when it contradicts an engineering expectation. The
-contradiction does not interpret itself. Engineers must determine what failed and what the
-observation actually supports. Failures can originate in requirements, specification, architecture,
-design, or implementation, and one incident can expose weaknesses at several levels.
+Failure provides particularly useful evidence because it contradicts an expectation. The
+contradiction does not explain itself. Engineers must determine what failed, why earlier
+engineering did not reveal the problem, and which part of their understanding the new observation
+should change. The answer may lie in requirements, specification, architecture, design,
+implementation, validation, or the models connecting measurements to properties of interest.
+Failure does not imply that an earlier decision was unreasonable; finite evidence always leaves
+residual uncertainty.
 
-A delivered failure also invites examination of validation. Engineers can reconsider the claim they
-evaluated, the scope at which the relevant property existed, the evidence mechanism and search
-strategy they used, the strength of the resulting evidence, and the judgment made from it. Failure
-does not prove that the earlier validation was inadequate; finite evidence always leaves residual
-uncertainty.
+Learning requires more than repairing the immediate problem. A consequential lesson can change the
+system, by becoming a safeguard, constraint, test, model, or other engineering structure; the
+team, by becoming knowledge that remains available beyond the original participants; or the
+engineer, by changing the repertoire through which future situations are recognized and
+interpreted. Recurrence provides additional evidence about whether those changes were sufficient.
 
-Human contributions to failure also require interpretation. Slips and mistakes suggest different
-interventions, while systemic models such as Reason's direct attention toward the defenses and
-conditions that permit an error to become consequential. The breadth of such an analysis remains a
-choice; it should match the decisions the analysis is intended to support and the locus of control
-of those expected to act. Severity classifications then connect
-observed failures to consequences and to the criticality of engineering obligations. These
-classifications are models used to support decisions, not intrinsic properties of defects.
-
-Learning from failure can change the system, the team, and the engineer. Regression tests preserve
-particular examples, while structural changes can encode more general lessons into the engineering
-environment. Postmortems and other representations make failures available for collective
-reflection, especially when they reconstruct both what happened and why the previous engineering
-understanding appeared adequate. Individual reflection contributes patterns and relationships to
-the engineer's repertoire for future recognition.
-
-Recurrence provides additional evidence. It can indicate that an earlier repair was too narrow, a
-lesson was not preserved or communicated, engineers failed to recognize its applicability, or an
-accepted tradeoff deserves reconsideration. Metrics can make a learning process observable, but
-they cannot measure the judgment that process is meant to produce.
-
-Failure-aware engineering does not promise the elimination of failure. Engineering is performed
-with incomplete models, finite evidence, and residual uncertainty. Its obligation is instead to use
-consequential experience well: repair what failed, understand what the failure revealed, preserve
-lessons worth retaining, and allow new evidence to improve the decisions that follow.
+Failure-aware engineering therefore turns the handbook around. Before a decision, engineers ask:
+Given what we know, what should we do? After an outcome, they ask: Given what happened, what
+should we now believe? The goal is not to eliminate uncertainty or failure. It is to use
+consequential experience well: determine what the evidence supports, preserve lessons worth
+retaining, and allow them to improve the engineering decisions that follow.
 
 ::: read_further
 [@schon1983reflective] How professional judgment develops through reflection on practice. Read for
