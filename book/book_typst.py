@@ -47,6 +47,7 @@ import re
 import build_book as bb
 import bookmath  # LaTeX-subset → Typst math (print twin of the MathML web projection)
 import book_ir as ir
+import render_citations as rc  # the derived bibliography source pair (CITE-PARITY / BIB-5)
 import design_tokens as _dtokens  # bb already put book-models on sys.path — the design-token projector
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -174,10 +175,11 @@ def _inline(s: str, stash: list[str]) -> str:
     #     spaces is DISPLAY/block, `$x$` is inline). The print twin of the web inline MathML. Held so the
     #     escaping below leaves the math markup untouched.
     s = re.sub(r"\\\((.+?)\\\)", lambda m: _hold(f"${bookmath.to_typst(m.group(1))}$"), s)
-    # 1b. Citations `[cite: key(, loc); key2]` → Typst `#cite(<key>)` (chicago-notes → a numbered footnote
-    #     citation). Multiple keys emit multiple #cite; a locator becomes the citation supplement. The
-    #     #bibliography emit_document appends renders these — Typst's own engine, the SAME references.bib
-    #     that generated citations.json, so the PDF's reference strings equal the web book's (BIB-5 parity).
+    # 1b. Citations `[cite: key(, loc); key2]` → Typst `#cite(<key>)` (a numbered superscript citation).
+    #     Multiple keys emit multiple #cite; a locator becomes the citation supplement. The #bibliography
+    #     emit_document appends renders these — Typst's own engine, the SAME derived source pair
+    #     (render_citations.derived_sources) that generated citations.json, so the PDF's reference data
+    #     equals the web book's (BIB-5 parity; the styles differ deliberately: nature here, chicago there).
     def _cite(m: "re.Match[str]") -> str:
         frags = []
         for key, loc in bb.parse_cite_spec(m.group(1)):
@@ -3296,16 +3298,27 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         idx_typ, idx_required = _book_index_typst(records)
         parts.append("#pagebreak()")
         parts.append(idx_typ)
-    # End-of-book Bibliography — Chicago notes, rendered by Typst from the SAME references.bib that
-    # generated citations.json, so the PDF's reference strings equal the web book's by construction
-    # (CITE-PARITY / BIB-5). Emitted only when the book actually cites something (an empty #bibliography is
-    # a bare heading). Path is Typst-root-absolute (`/book/references.bib`), resolved against `--root ..`.
+    # End-of-book Bibliography — rendered by Typst from the SAME derived source pair that generated
+    # citations.json (rest-bib + re-typed Hayagriva YAML, split from the canonical references.bib by
+    # render_citations.derived_sources — Hayagriva's BibTeX reader mis-types @inproceedings/@incollection),
+    # so the two surfaces cannot diverge on reference DATA (CITE-PARITY / BIB-5); the styles differ
+    # deliberately (chicago-notes strings in citations.json, nature superscript-numbered entries here).
+    # The pair is derived fresh on every emit into the gitignored _typst/ build dir — never committed, so
+    # it cannot go stale against the hand-edited .bib. Emitted only when the book actually cites something
+    # (an empty #bibliography is a bare heading). Paths are Typst-root-absolute, resolved against `--root`.
     if _any_cites(doc):
-        bib_rel = _root_rel(bb.HERE / "references.bib", root)
+        typ_dir = bb.HERE / "_typst"
+        typ_dir.mkdir(exist_ok=True)
+        rest_bib, hay_yaml = rc.derived_sources(
+            (bb.HERE / "references.bib").read_text(encoding="utf-8"))
+        (typ_dir / rc.DERIVED_BIB_NAME).write_text(rest_bib, encoding="utf-8")
+        (typ_dir / rc.DERIVED_YAML_NAME).write_text(hay_yaml, encoding="utf-8")
+        srcs = ", ".join(_typst_str(_root_rel(typ_dir / name, root))
+                         for name in (rc.DERIVED_BIB_NAME, rc.DERIVED_YAML_NAME))
         parts.append("#pagebreak()")
         if with_frontmatter:
             parts.append(_toc_marker("part", "Bibliography"))  # a part-level Contents entry, on the bib page
-        parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "nature", title: "Bibliography")')
+        parts.append(f'#bibliography(({srcs}), style: "nature", title: "Bibliography")')
     result = "\n\n".join(parts) + "\n"
     # Fail-loud Index integrity: every metadata marker an Index locator resolves through must be in the
     # emitted document, at least as many times as the web model expects — a renderer change that silently

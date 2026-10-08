@@ -87,6 +87,7 @@ from tests.citations import (
     check_cite_parity,
     check_cite_placement,
     check_cite_resolve,
+    check_cite_wellformed,
     check_cite_symbology,
     check_handbook_reading_citations,
     check_scholar_meta,
@@ -412,6 +413,12 @@ CHECKS = [
           lambda strict: check_cite_nonempty()),
     Check("book: CITE-PLACEMENT — [cite:] markers follow punctuation, no space before (BIB-11)", 1,
           lambda strict: check_cite_placement()),
+    # BLOCKING (drained to 0 at landing — the 261008 derived-pair fix): a rendered citation string must
+    # be WELL-FORMED, not merely fresh and non-empty. Hayagriva's BibTeX reader mis-typed 42 of 317
+    # entries (every @inproceedings as a special-issue journal article, every @incollection with its
+    # container doubled) and the strings shipped on both surfaces because nothing asserted their shape.
+    Check("book: CITE-WELLFORMED — no doubled container, no bogus 'special issue' in rendered strings "
+          "(BIB-14)", 1, lambda strict: check_cite_wellformed()),
     # AUDIT-ONLY (rule #55): the OUTLINE view-model drift + invariants (book-models/outline.json vs a fresh
     # derivation; O2 topic-sentence, O3 unique id, O4 nesting). The book's own "4+1 view held equal to the
     # source" discipline dogfooded on the book. Seeds 2 real O2 findings today, so it lands audit-only and
