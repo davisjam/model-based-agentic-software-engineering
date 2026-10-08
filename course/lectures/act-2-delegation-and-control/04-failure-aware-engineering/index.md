@@ -25,7 +25,8 @@ assignments: []
 instructor_notes: ""
 status: ready
 materials:
-  - title: Lecture slides — Failure-Aware Engineering (forthcoming)
+  - title: "Lecture slides — Failure-Aware Engineering"
+    src: 2-4-Failure-Aware-Engineering.pptx
 ---
 
 **Premise.** *Failure is a predictable engineering outcome; engineering judgment develops when engineers connect decisions to their consequences and allow experience to change future decisions.*
