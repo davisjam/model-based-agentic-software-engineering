@@ -68,6 +68,8 @@ An observed software failure is not necessarily an implementation failure. The e
 
 These are not bins for defects. Each asks whether the inadequacy lies deeper than the one before, and one incident can expose several levels. Suppose a critical function and an ordinary workload share a queue nobody drew on the architecture diagram: an implementation defect floods it, but the reason the flood mattered is architectural.
 
+**Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
+
 ## Why didn't we know?
 
 A delivered failure invites a second analysis. The failure passed through everything intended to catch it, so it is evidence about the surrounding engineering process as well as the artifact. Traverse the Validation model retrospectively (**claim → scope → mechanism → strategy → evidence strength → judgment**) and ask where it gave way: perhaps we validated the wrong claim, or examined components when the property existed only at system scope. Sometimes nothing gave way, because competent validation leaves residual uncertainty and a failure can realize an uncertainty engineers knowingly accepted.
@@ -81,8 +83,6 @@ Diagnosis identifies what our previous understanding got wrong. Learning asks wh
 - **System.** A regression test preserves the observed example, which may be sufficient for a local implementation defect. A more general lesson may belong in an interface, architecture, specification, model, validation rule, or automated control. Future failures rhyme without repeating; ask what class of conditions this failure exposed. When a consequential lesson can reliably govern future work, preserving it as engineering structure is stronger than asking future engineers to remember it.
 - **Team.** The lesson must reach people who did not live it and the artifacts through which future engineers will encounter it. A reflective postmortem reconstructs the understanding that preceded the incident: *What did we believe? Why? What did reality reveal that our model did not?*
 - **Engineer.** Reflection identifies which relationships in an experience explain its consequence, so a later situation can be recognized as an old problem.
-
-**Severity is a model of the consequence of violating an engineering obligation**, not a property of a defect: the same bounds error is minor in a disposable tool and critical in a network-facing component. A specification can therefore mark some obligations as more critical, and validation can demand stronger evidence for them.
 
 ## Measurement for decision-making
 
