@@ -37,13 +37,22 @@ single representation ahead. That is the point. Each model keeps only the relati
 The DocAble specifics ahead — models, mechanisms, and counts — describe the repository revision examined
 at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
 
-<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each worked section begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, enforcement — with enforcement reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
-Each worked section begins with a familiar engineering representation, the properties it makes expressible,
-and the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
-throughout the chapter. A **property** is a claim that can be expressed over a model. An **invariant** is a
-property required to hold over a declared domain. An **analysis** or check produces evidence about a
-property. Whether the engineered environment enforces the resulting obligation is a separate question of
-**enforcement**, taken up in {{chapter:alignment}}.
+Consider a document-processing job in DocAble. We might want to know whether a job can have two workers
+modifying it at the same time. A model of job ownership lets us express that question precisely. We can
+then require that each job have at most one worker responsible for modifying it at any moment. This
+requirement must hold for every job, throughout its lifetime, not merely for the jobs we happen to
+inspect. We can analyze the model to look for situations that violate the requirement. Whether the
+implementation actually prevents those situations is a further question.
+
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | A worked example establishes four terms that stay distinct — property, invariant, analysis, enforcement — before each section names them; an invariant is a property required to hold throughout a scope, and enforcement is reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
+Each worked section begins with a familiar engineering representation, explains what we can express and
+analyze using it, and then applies it to DocAble. The example above illustrates four terms used throughout
+the chapter. A **property** is a claim about a system that we can express using a model, such as whether
+two workers can modify the same job concurrently. An **invariant** is a property that must always hold
+within a specified scope: in this case, every job must have at most one modifying worker at any moment. An
+**analysis** or check produces evidence about whether the property holds. **Enforcement** goes further by
+preventing violations in the running system or development process. {{chapter:alignment}} examines
+enforcement.
 
 <!-- box-family: inset -->
 > #### Four questions for every model
