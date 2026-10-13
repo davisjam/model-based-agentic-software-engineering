@@ -271,6 +271,44 @@ additions, and it is the only one where the existing guard was present and still
 
 ---
 
+## In-flight state at time of writing (for whoever picks this up)
+
+**Landed and pushed, CI-green:** chapters 4 (`1083651c1`), 6 (`9b4c88751`), 5 (`a44037bcc`). Each went
+audit → diff → author review → corrections → merged-tree gate → push.
+
+**Landed locally, push in progress:** chapter 3 rounds 1–3 (`bddc48cdf`) plus the §3.1 canon-shape
+repair (`b5d5073d3`) and the two decision-doc commits. The pre-push gate passed 84/0; the transfer was
+still running when this was written. Verify with `git log --oneline origin/main..HEAD` returning empty —
+never the exit code.
+
+**Branch awaiting a land, not a review:** `ch15-requirements` at `b8a6427ab` — chapters 1 and 5
+(requirements relocation, format breadth, engineer's decision anatomies, 250 MB callback) plus the
+author's five review edits, all applied and gated. The author approved it. It is blocked only on the
+chapter-3 push finishing, because merging onto `main` mid-push can strand a commit here.
+
+**Agents in flight:** `ch2-audit` and `ch6-audit`, each producing an audit report *and* a diff in one
+run, in worktrees on disjoint parts. Chapter 2 had never been audited or edited; chapter 6 was edited
+today but never audited, so its structural problems are already fixed and the audit is looking for what
+a density pass finds that a structural edit did not.
+
+**Next, and explicitly gated:** the author asked for a chapter-7 audit + diff **after** chapter 1/5
+lands, because chapter 7's case-grounded theory should draw on the settled chapter-5 text. Do not
+dispatch it before that merge.
+
+**Two recurring substrate frictions worth knowing before touching `main`:**
+
+1. **A pathspec commit on `main` orphans the pre-commit hook's own regeneration.** The hook rebuilds
+   and force-stages `book-models/*`; a pathspec commit excludes anything it does not name, leaving
+   `MM` entries whose worktree already matches HEAD. `land.py` then refuses on a dirty tree. This bit
+   three times in one session. Habit: `git status` after every pathspec commit, unstage the stale
+   index entries (`git reset -- book-models/`), and commit any genuine regen delta separately.
+2. **`land.py`'s gate set does not include `catalog_tests.py --tier1`.** A chapter-3 round passed all
+   five land gates while carrying a canon-pin regression, and only the pre-push gate caught it. If a
+   copyedit touches a chapter that carries a canon shape — a bold-lead thesis plus an "In other words"
+   restatement — run `--tier1` before landing, not after.
+
+---
+
 ## Also open, tracked elsewhere
 
 - **Chapter 7** — deferred by your decision pending review of the settled chapter-5 account. The SEET
