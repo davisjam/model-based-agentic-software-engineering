@@ -34,3 +34,32 @@ would swap the arbitration substrate while keeping the declare-and-mediate patte
 about arbitrating contention, (b) our `flock` implementation is the single-host instantiation of it, and
 (c) their substrate (ZooKeeper / k8s / etc.) is a drop-in for the arbitration layer. `catalog.py validate`
 stays at 0 issues.
+
+---
+
+## [FIX] Node-pin resolution lives in two places — decide whether to unify or declare the split
+
+**State.** Two copies of "read `.nvmrc`, resolve that major's nvm bin directory" now ship:
+`tools/land.py:_node_bin()` (raises `SystemExit` and refuses to guess) and
+`tests/common.py:pinned_node_env()` (returns `None` and preserves the caller's SKIP posture).
+A third, different `.nvmrc` reader exists at `book/build_book.py:_MERMAID_NODE_PIN`, which pins a
+major for mermaid rather than resolving a bin — related concept, not the same logic.
+
+**Why the second copy landed anyway (261013).** The repo rule is extract on the second site, and
+this is the second site. It was not extracted because `tools/land.py` is the lander: it must run
+when the test package is broken, which is exactly when someone reaches for it, so it stays
+stdlib-only and free of repo imports. Importing `tests.common` would couple recovery to the thing
+being recovered. The two also differ in failure posture by design — the lander must refuse, a
+Tier-2 check must degrade to SKIP — so a shared helper needs both behaviours parameterised.
+
+**The decision to make.** Either (a) accept the split and hold it with a comment in each site naming
+the other (done today) plus a note here, or (b) extract to a tiny stdlib-only module both import —
+which costs `land.py` its import-freedom, and should only happen if a third true consumer appears.
+
+**Do not let it drift silently.** The failure this prevents is real: on 261013 PATH held node v20.17
+against a pinned v24, `fs.globSync` does not exist before v22, and html-validate died — the check
+reported SKIP, so the HTML validator had quietly stopped validating locally while CI stayed green.
+A divergence between these two resolvers would reintroduce exactly that class on one surface only.
+
+**Acceptance.** Either this item is closed with a recorded decision for (a), or (b) lands with both
+call sites migrated and no delegating shim.
