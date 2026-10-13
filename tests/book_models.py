@@ -42,7 +42,7 @@ import os
 import re
 import sys
 
-from tests.common import FAIL, PASS, ROOT, rel
+from tests.common import FAIL, PASS, ROOT, SKIP, rel
 
 _BOOK_MODELS = os.path.join(ROOT, "book-models")
 if _BOOK_MODELS not in sys.path:
@@ -1113,3 +1113,82 @@ def check_canon_pins():
                     f"not state the pinned 3-line method verbatim — reuse canon_cycle_declared.json wording")
 
     return (FAIL if issues else PASS), issues
+
+
+def check_bookmath_typst_mappings():
+    """Every declared LaTeX->Typst math mapping must COMPILE under the pinned Typst, not merely exist.
+
+    The translator's whitelist answers "is this construct supported?" — it does not answer "is the Typst
+    it emits valid?". Those came apart once: `\\cap` was in the supported set and mapped to `sect`, a
+    symbol Typst removed at >=0.13. The mapping passed the build gate and `catalog.py validate`, and the
+    math would not have rendered; only compiling the chapter caught it. This check closes that class by
+    compiling every mapping's Typst name under the pinned renderer, including constructs the manuscript
+    does not currently use — an unused mapping is a latent break waiting for its first use.
+
+    Keyed off `book/bookmath.py`'s declared tables, read from source so no import path is required.
+    SKIPs when the `typst` binary is unavailable (CI installs the pinned version; see pages.yml).
+    """
+    import ast
+    import pathlib
+    import shutil
+    import subprocess
+    import tempfile
+
+    src = pathlib.Path(ROOT) / "book" / "bookmath.py"
+    tree = ast.parse(src.read_text())
+    mappings: dict[str, str] = {}          # latex name -> typst name
+    tables: list[str] = []
+    for node in ast.walk(tree):
+        target = None
+        if isinstance(node, ast.AnnAssign):
+            target = getattr(node.target, "id", "")
+        elif isinstance(node, ast.Assign) and node.targets:
+            target = getattr(node.targets[0], "id", "")
+        if not target or not isinstance(getattr(node, "value", None), ast.Dict):
+            continue
+        try:
+            table = ast.literal_eval(node.value)
+        except Exception:                   # noqa: BLE001 — a non-literal dict is simply not a table
+            continue
+        pairs = {k: v[1] for k, v in table.items()
+                 if isinstance(v, tuple) and len(v) == 2 and isinstance(v[1], str) and v[1]}
+        if pairs:
+            tables.append(f"{target}({len(pairs)})")
+            mappings.update(pairs)
+
+    # Precondition: a probe that silently found nothing would report a clean bill of health forever.
+    if not mappings:
+        return FAIL, [f"{rel(src)}: parsed no (unicode, typst) mapping tables — the probe is broken, "
+                      f"not the mappings; check whether the tables were renamed or restructured"]
+
+    typst = shutil.which("typst")
+    if not typst:
+        return SKIP, [f"typst binary not on PATH — cannot verify {len(mappings)} mapping(s) render; "
+                      f"CI installs the pinned version"]
+
+    def compiles(names: list[str]) -> tuple[bool, str]:
+        body = " ".join(names)
+        with tempfile.TemporaryDirectory() as td:
+            doc = os.path.join(td, "probe.typ")
+            with open(doc, "w", encoding="utf-8") as fh:
+                fh.write(f"#set page(width: 200pt, height: 200pt)\n$ {body} $\n")
+            done = subprocess.run((typst, "compile", doc, os.path.join(td, "probe.pdf")),
+                                  capture_output=True, text=True, timeout=120)
+            return done.returncode == 0, (done.stderr or done.stdout).strip()
+
+    ok, _ = compiles(sorted(set(mappings.values())))
+    if ok:
+        return PASS, []
+
+    # The batch failed; compile each mapping alone so the finding names the culprit rather than the batch.
+    issues: list[str] = []
+    for latex, name in sorted(mappings.items()):
+        good, err = compiles([name])
+        if not good:
+            first = err.splitlines()[0] if err else "(no stderr)"
+            issues.append(f"{rel(src)}: \\{latex} -> `{name}` does not compile under the pinned Typst "
+                          f"({first}) — the construct is whitelisted but its emitted Typst is invalid")
+    if not issues:
+        issues.append(f"{rel(src)}: the combined probe failed but every mapping compiles alone — the "
+                      f"failure is in how they COMBINE; inspect the batch document")
+    return FAIL, issues

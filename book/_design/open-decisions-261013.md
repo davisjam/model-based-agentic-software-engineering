@@ -1,5 +1,61 @@
 # Open decisions — MAGE book, as of 2026-10-13
 
+> ## RULED by the author, 2026-10-13 — all four decided
+>
+> **D1 — standardise on `enforcement`.** The distinction is substantive: enforcement is the mechanism
+> that prevents a prohibited transition; consequence is what happens when a violation occurs. The five
+> branches name missing engineering *capabilities*, and the figure already maps enforcement to a
+> constraint or gate, consistent with the MAGE vocabulary. **Action:** change `consequence` →
+> `enforcement` at `4.4:36`; preserve the figure and caption as they are.
+> **Caveat to honour in prose:** enforcement need not mean absolute prevention. A gate can refuse an
+> operation while other controls detect and respond. The surrounding prose must not imply every
+> enforcement mechanism makes violations impossible.
+>
+> **D2 — SUPERSEDED, then re-ruled. Snapshots now; unification is a TODO.** The author's first
+> instinct was labelling; on reflection: *"the right call is to go collect data so it's all up to
+> date"* — **but not yet.** So: describe each figure as a dated snapshot with an identifiable
+> observation window, and carry an explicit TODO to re-measure and unify later. Two standing
+> requirements meanwhile: (1) every measurement states its observation window; (2) windows are never
+> compared as though they measured the same activity. **One gap to close first:** the 32,039 figure
+> needs its *actual cutoff* established, not a generic reference to "a history-mining pass."
+> The build-versus-operation distinction stays — it is useful to chapter 5's argument that the factory
+> does not stop working once the first operational version exists.
+>
+> **D3 — NARROWED. Three responsibilities, not seven checklist items.** The findings are legitimate but
+> seven independent obligations would make the audit cumbersome. Consolidate:
+> | Responsibility | Covers | Action |
+> |---|---|---|
+> | Terminological & semantic consistency | #1 synonym churn, #2 wrong-domain verbs | extend an existing pass |
+> | Reader comprehension & exposition | #3 description-not-instruction, #4 caption duplication, #5 unintroduced referents | **add one book-prose interpretability pass** |
+> | Mechanical consistency | #6 point-directive drift, #7 numeral aliases | add targeted checks |
+>
+> #5 is the genuine structural deficiency: a manuscript can have individually comprehensible sentences
+> while assuming knowledge the reader was never given. The new pass should also ask whether the reader
+> has enough context to understand a subsection's *purpose*, not merely whether its terms were
+> introduced. **Keep it focused — no elaborate new taxonomy of prose defects.**
+>
+> **D4 — implement the render probe.** The whitelist verifies a construct is supported by the
+> translator, not that its Typst translation is *valid* — which is exactly how an in-subset mapping
+> shipped a latent break. The test compiles a minimal document containing **every** supported
+> construct under the **pinned** renderer, including constructs the manuscript does not currently use;
+> tests combinations only where translation is context-dependent; and runs in CI and whenever the
+> pinned Typst version changes. The author: *"no reason to rely on human inspection when the relevant
+> property is mechanically checkable."*
+>
+> **D5 — new, from the author's review of this memo: fix `land.py`'s gate omission.**
+> `land.py` does not run `catalog_tests.py --tier1`, which is how the chapter-3 canon-pin regression
+> passed the landing gates and was caught only at pre-push. **Correct the omission rather than
+> continuing to rely on special-case instructions in briefs.**
+>
+> **Priority:** D1 and D4 immediate · D5 immediate (process defect) · D2 next chapter-5 cleanup ·
+> D3 before the remaining chapter audits.
+>
+> **Standing caution from the author:** *"prioritize finishing the manuscript over further expanding
+> its editing infrastructure… there is a danger that the process of improving the editing process
+> becomes self-perpetuating."* D1/D2/D4/D5 have narrow objective completion criteria; D3 must stay
+> bounded.
+
+
 **Repo:** `talks-and-notes/governance-catalog` · **State:** `origin/main = a44037bcc`, tree clean,
 0 unpushed. Chapters 4, 6, and 5 landed today through audit → diff → author review → corrections →
 merged-tree gate → push, each CI-green.

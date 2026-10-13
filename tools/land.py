@@ -32,6 +32,12 @@ ROOT = Path(__file__).resolve().parent.parent
 GATES: tuple[tuple[str, tuple[str, ...], str, int], ...] = (
     ("build", ("npm", "run", "build"), "workbench", 300),
     ("tsc", ("npx", "tsc", "--noEmit"), "workbench", 300),
+    # tier1 sits ahead of the four slow npm tiers on purpose. It is the only gate here that reads
+    # CONTENT — canon pins, census parity, view drift — and a prose edit breaks content while leaving
+    # tsc and the test tiers green. A chapter-3 copyedit collapsed a two-part canon shape (bold-lead
+    # thesis + "In other words" restatement) into the restatement alone; this merge passed all five
+    # npm gates and the regression surfaced only at pre-push, because land.py did not run tier1 at all.
+    ("tier1", ("python3", "catalog_tests.py", "--tier1"), ".", 900),
     ("node", ("npm", "test"), "workbench", 900),
     ("browser", ("npm", "run", "test:browser"), "workbench", 900),
     ("a11y", ("npm", "run", "test:a11y"), "workbench", 900),
