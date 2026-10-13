@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 812,
+    "total_sites": 813,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 474,
+      "book-web": 475,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -78,6 +78,10 @@
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
             "occ": 2
+          },
+          {
+            "file": "book/web/docs/3.5-when-guardrails-collide.md",
+            "occ": 3
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -249,7 +253,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 84
+            "occ": 85
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -263,7 +267,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 60
+            "occ": 61
           }
         ]
       },
@@ -929,7 +933,7 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
@@ -937,7 +941,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 26
+            "occ": 28
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -945,7 +949,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 9
+            "occ": 11
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1831,7 +1835,7 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
@@ -1847,7 +1851,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 9
+            "occ": 20
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -2159,7 +2163,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 374
+            "occ": 377
           },
           {
             "file": "book/web/docs/index.md",
