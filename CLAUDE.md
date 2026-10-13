@@ -595,6 +595,18 @@ re-deriving these, so they live here:**
     then confirm one binary resolves through each (`.bin/tsc`, and that Puppeteer's entry file exists).
     Verify they are SYMLINKS afterwards: a real directory there means someone ran the banned install,
     and the lockfiles are the place to check for damage.
+  - **Seed the GITIGNORED build assets too, in the same step as the symlinks.** Two cover thumbs are
+    gitignored (`.gitignore:79-80` — `book/assets/cover-thumb.png`, `book/assets/handbook-cover-thumb.png`),
+    so `git worktree add` never produces them and the link-resolution gate goes red on a tree whose
+    content is fine:
+    `for a in cover-thumb.png handbook-cover-thumb.png; do cp <main>/book/assets/$a <worktree>/book/assets/$a; done`
+    **The red names the wrong culprit, which is the expensive part.** Measured 261013: a chapter-7
+    prose review came back `80 passed, 1 failed` with `index.html -> book/assets/handbook-cover-thumb.png
+    (missing target)`. Three sibling worktrees had been seeded and this one had not, so the editor's
+    diff was reported upward as carrying a regression it had nothing to do with — and the gate that
+    caught it was the content gate added that morning, which made the false attribution more credible,
+    not less. A failing check that names an ASSET, not a claim, is the tell: check the worktree for the
+    file before reading the diff.
 - **The `pre-commit` hook stages MAIN-CHECKOUT files into a worktree agent's commit.** `core.hooksPath`
   points at the main checkout, so the hook runs with that `cwd` and its `git add` of regenerated `*.html`
   + `book-models/*` inherits `GIT_INDEX_FILE` — the files ride into the agent's commit snapshot even
