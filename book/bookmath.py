@@ -58,7 +58,9 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "mid": ("∣", "|"),
     "approx": ("≈", "approx"),
     "cup": ("∪", "union"),
-    "cap": ("∩", "sect"),
+    "cap": ("∩", "inter"),  # typst ≥0.13 removed `sect`; `inter` is the ∩ symbol under the pinned v0.15.1
+    "setminus": ("∖", "without"),
+    "varnothing": ("∅", "nothing"),
     "subset": ("⊂", "subset"),
     "subseteq": ("⊆", "subset.eq"),
     "varepsilon": ("ε", "epsilon.alt"),
