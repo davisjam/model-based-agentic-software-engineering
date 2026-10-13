@@ -17,7 +17,8 @@ import threading
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
-from tests.common import _NON_SITE_DIRS, FAIL, PASS, ROOT, SKILL, SKIP, free_port, html_files, run
+from tests.common import (_NON_SITE_DIRS, FAIL, PASS, ROOT, SKILL, SKIP, free_port, html_files,
+                          pinned_node_env, run)
 
 
 class _SiteHandler(SimpleHTTPRequestHandler):
@@ -222,8 +223,11 @@ def check_html_valid(strict: bool):
     pages = sorted(os.path.relpath(p, ROOT) for p in html_files())
     if not pages:
         return (FAIL if strict else SKIP), ["no built pages to validate (run `catalog.py build` first)"]
+    # Run under the node `.nvmrc` pins, not PATH's. html-validate needs `fs.globSync` (node >= 22);
+    # on a PATH-default v20 it throws and this check returns SKIP, which reads as "tool absent" in
+    # the summary while the validator silently stops validating. See `pinned_node_env`.
     try:
-        r = run(["npx", "--no-install", "html-validate", *pages], timeout=300)
+        r = run(["npx", "--no-install", "html-validate", *pages], timeout=300, env=pinned_node_env())
     except (subprocess.TimeoutExpired, FileNotFoundError, OSError) as ex:
         return (FAIL if strict else SKIP), [f"html-validate could not run ({type(ex).__name__}) — treating as skip"]
     if r.returncode == 0:

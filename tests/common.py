@@ -43,8 +43,49 @@ def slug(heading: str) -> str:
     return re.sub(r"\s+", "-", s)
 
 
-def run(cmd: list[str], timeout: int | None = None) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+def run(cmd: list[str], timeout: int | None = None,
+        env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
+
+
+def pinned_node_env() -> dict[str, str] | None:
+    """An env whose PATH leads with the node major `.nvmrc` pins, or None if that node is absent.
+
+    WHY: a node-backed check invoked through a bare `npx` runs on whatever node is first on PATH, so
+    it reports the ENVIRONMENT's age as a verdict about the repo. Measured 261013: PATH held v20.17
+    against a pinned v24, `fs.globSync` does not exist before v22, and html-validate therefore died
+    with `TypeError: fs.globSync is not a function`. The check reads that as "tool could not run"
+    and returns SKIP — so the HTML validator had quietly stopped validating, locally, while CI
+    (which installs the pinned node) kept passing. A gate that skips is indistinguishable from a
+    gate that passes in a summary line, which is what made it survive.
+
+    Returning None rather than raising keeps the caller's SKIP posture intact for a machine that
+    genuinely lacks the pinned node; the point is to stop MISREPORTING a resolvable mismatch as an
+    absent tool. `tools/land.py` resolves the same pin for the same reason and deliberately keeps
+    its own copy: the lander has to work when this package is broken, so it stays stdlib-only and
+    repo-import-free.
+    """
+    nvmrc = os.path.join(ROOT, ".nvmrc")
+    if not os.path.isfile(nvmrc):
+        return None
+    with open(nvmrc) as fh:
+        want = fh.read().strip().lstrip("v")
+    if not want:
+        return None
+    nvm_dir = os.environ.get("NVM_DIR") or os.path.join(os.path.expanduser("~"), ".nvm")
+    base = os.path.join(nvm_dir, "versions", "node")
+    if not os.path.isdir(base):
+        return None
+    major = want.split(".")[0]
+    cands = sorted(d for d in os.listdir(base) if d.lstrip("v").split(".")[0] == major)
+    if not cands:
+        return None
+    bin_dir = os.path.join(base, cands[-1], "bin")
+    if not os.path.isfile(os.path.join(bin_dir, "node")):
+        return None
+    env = dict(os.environ)
+    env["PATH"] = bin_dir + os.pathsep + env.get("PATH", "")
+    return env
 
 
 def changed_vs_origin() -> frozenset[str] | None:
