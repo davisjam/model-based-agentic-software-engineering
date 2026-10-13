@@ -1153,17 +1153,17 @@
       "location": "part2",
       "rationale": "four-panel comparison for the entitlement case — the author's recast caption reads it as one distinction lost by the scalar reduction and preserved by its successor; supporting length by ruling"
     },
-    "mage-by-example::The DocAble requirements": {
+    "mage-by-example::Four kinds of obligation": {
       "tier": "C",
       "kind": "requirements-index",
       "location": "part1",
-      "rationale": "compact R1-R8 index of what DocAble had to accomplish; the factories chapter returns to them as engineering constraints"
+      "rationale": "compact grouping of what DocAble had to accomplish into four kinds of obligation; establishes the nature of the problem — the factories chapter states the complete requirements"
     },
-    "inside-docables-software-factory::The DocAble requirements, repeated": {
+    "inside-docables-software-factory::The DocAble requirements": {
       "tier": "C",
       "kind": "requirements-index",
       "location": "part5",
-      "rationale": "deliberate repeat of the Chapter 1 R1-R8 index at the point the factory has to satisfy them; the caption's job is to name it as the same table, not to re-teach the rows"
+      "rationale": "the authoritative R1-R8 statement, placed where the factory has to satisfy them; the problem chapter introduced the obligations by kind"
     },
     "inside-docables-software-factory::The factory's observed construction and operating cost": {
       "tier": "B",
