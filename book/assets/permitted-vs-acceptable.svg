@@ -3,7 +3,7 @@
      The Alignment companion to realization-space.svg (part 2): that figure draws the obligations bounding
      an acceptable region; this one adds the region the CONTROLS permit and names the two mismatches —
      underconstraint (permitted minus acceptable: unacceptable yet permitted, a correctness risk, rust) and
-     overconstraint (acceptable minus permitted: acceptable yet excluded, freedom needlessly lost).
+     overconstraint (acceptable minus permitted: acceptable alternatives excluded).
      Grammar follows the ancestor figure: #9a3f12 = the obligations' acceptable region; ink #1c1917
      dashed = the controls' permitted region; rust #b23b3b = the correctness risk. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
@@ -13,8 +13,8 @@
   <desc id="pvaDesc">A bounding panel holds the software realization space. Inside it, two overlapping
     rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a
     dashed one for the realizations the controls permit. Their overlap is the preserved freedom —
-    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable, yet
-    excluded, so freedom is needlessly lost. The permitted-only region at right is underconstraint:
+    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable
+    alternatives excluded. The permitted-only region at right is underconstraint:
     unacceptable, yet permitted — a correctness risk.</desc>
 
   <!-- page ground + the bounding realization space (matches the part-2 ancestor figure) -->
@@ -42,9 +42,8 @@
 
   <!-- overconstraint zone (acceptable only) -->
   <text x="240" y="258" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">overconstraint</text>
-  <text x="240" y="290" text-anchor="middle" font-size="20" fill="#9a3f12">acceptable,</text>
+  <text x="240" y="290" text-anchor="middle" font-size="20" fill="#9a3f12">acceptable alternatives,</text>
   <text x="240" y="315" text-anchor="middle" font-size="20" fill="#9a3f12">yet excluded</text>
-  <text x="240" y="347" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">freedom lost</text>
 
   <!-- preserved freedom (the overlap) -->
   <text x="500" y="258" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">preserved</text>
