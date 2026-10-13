@@ -55,6 +55,25 @@ The mechanical pass. Count things; a count over threshold is a finding.
 - **Ornament burying the argument.** **Detect:** a paragraph so dense with figures that the point is hard
   to extract on one read. **Fix:** state the point plainly first, then add back *one* figure where it
   sharpens the sentence.
+- **Synonym churn on a technical term.** **Detect:** one defined thing called three names across a
+  passage — *mechanism* / *control* / *apparatus* / *machinery* used interchangeably; *gate* and *check*
+  and *guard* for the same artifact. Elegant variation is a prose virtue and a technical-writing defect:
+  a reader who meets a second word assumes a second thing. **Fix:** fix the term and repeat it. Reach for
+  a synonym only where the referent genuinely widens, and where the vocabulary is *settled* (see
+  `lexicon.md`) the settled word wins. Repetition of a defined term is not a style problem.
+
+**Mechanical joins (book prose only).** Two greps, both cheap, both catching a class a careful read
+misses because the defect is in the *agreement between* two places:
+
+- **Point-directive drift.** Every `<!-- point: <slug> | <summary> -->` asserts a claim the prose beneath
+  it is supposed to make. An edit that rewrites the prose and leaves the summary alone silently moves
+  them apart. **Detect:** for each directive in the file, read its summary against the paragraph that
+  follows and confirm the claim is still there. **Fix:** rewrite the summary. **Keep the slug** — it is a
+  join key the derived models index on; retiring it is a separate, declared change.
+- **Numeral aliases.** A figure reconciled in digits can survive in words three paragraphs later. A
+  digit-grep cannot see "about thirty-two thousand". **Detect:** for every number the pass touches, grep
+  its spelled-out form too — in prose, point summaries, and captions. **Fix:** update every form, or
+  state why one deliberately differs.
 
 ## Pass 2 — Voice match (vs `voice.md`)
 
@@ -122,6 +141,14 @@ describe-don't-sell). Each item below is a named rule in that discipline.
   [`voice.md`](voice.md) §"Economy — less is more".
 - **Reflex labels.** **Detect:** "load-bearing" and similar filler labels used by habit. **Fix:** the
   precise term — *central*, *authoritative*, *the weak point*, *essential*.
+- **Verb borrowed from the wrong domain.** The house rule says name the actor and pick the verb that says
+  what it *does*; the failure mode is picking a vivid verb from a neighbouring field whose connotations
+  the engineering claim cannot support. **Detect:** biological or agentive verbs for mechanical processes
+  (*governance* that *emerges*, drift that *infects*, a model that *learns* when it is regenerated), or
+  physical-force verbs for logical relations (a lint that *crushes* a class, a gate that *fights* drift).
+  Enforcement is the recurring one: a gate that *refuses* is accurate, a gate that *prevents* claims more
+  than any single control delivers. **Fix:** the mechanical verb — *refuses*, *admits*, *records*,
+  *re-derives*, *accumulates*. Keep a metaphor you can defend literally, and cut the rest.
 - **Selling / crowning.** **Detect:** "the best", "the highest-leverage", "every project should adopt
   this", or the prose commenting on its own novelty or thinness. **Fix:** state the mechanism and the
   failure it kills. Let the reader judge value.
@@ -210,10 +237,12 @@ diagram — not only catalogue entries.
   diagram's *content* and takeaway; switch an interactive SVG to `role="group"`. Test by reading the alt
   text alone with the picture hidden — if it doesn't convey the point, the diagram is decoration.
 
-## Pass 6 — Interpretability (catalogue entries only)
+## Pass 6 — Interpretability (catalogue entries and book prose)
 
-Skip this pass for agent-facing docs. Run it only on catalogue entries, against the
-**interpretability principle** — an entry must stand alone to an agent with no access to the parent repo.
+Skip this pass for agent-facing docs. Run it on catalogue entries and on book prose, against the
+**interpretability principle** — the text must stand alone to a reader with no access to the parent repo.
+The two surfaces share the principle and fail it differently, so the entry rules come first and the
+book-prose rules follow.
 
 - **Dangling paths into unshipped trees.** **Detect:** a path into `services/…`, `deploy/…`, `docs/…`,
   `talks-and-notes/…`, or a `` `filename.py` `` this repo doesn't ship. **Fix:** describe the artifact by
@@ -224,6 +253,23 @@ Skip this pass for agent-facing docs. Run it only on catalogue entries, against 
 - **Artifact-by-unshipped-filename instead of by role.** **Detect:** the mechanism explained *through* a
   concrete file the reader can't see. **Fix:** state the conceptual mechanism; name a real artifact at
   most once, for grounding, in a way that stays understandable without it.
+
+**Book prose.** A chapter has a reader who started at page one, so its interpretability failures are about
+what that reader has been *given* rather than about shipped paths. The three above still apply; these are
+the ones a chapter fails on its own:
+
+- **An unintroduced referent.** **Detect:** an acronym, a named artifact, a role name, or a numbered
+  entity used before the chapter defines it — including one defined in a *later* chapter. Check earliest
+  occurrence against definition site; captions and point summaries count as occurrences. **Fix:** define
+  at first use, or demote to a description. A forward reference is legitimate only when it is marked as
+  one.
+- **A measurement without its window.** **Detect:** a count, cost, or rate given without the observation
+  period that produced it, or a series figure whose cutoff the prose never states. **Fix:** name the
+  window where the number first appears. A figure from a dated mining pass is a snapshot — say so, and say
+  when.
+- **Precision beyond provenance.** **Detect:** four or more significant figures beside a hedge
+  ("about 32,039"), or a derived ratio quoted tighter than its inputs. **Fix:** carry the hedge or the
+  digits, not both.
 
 ## Pass 7 — Reality-claim registration (book Discussion / Future prose)
 
