@@ -195,6 +195,34 @@ Replacing it everywhere with 29 would erase the distinction between *constructin
 already adequate, `5.2:974` should name its window, and the prose at `5.2:12` / `5.2:281` already
 got a bridging clause today explaining the 20-versus-29 pair. The work is small and well-specified.
 
+### Applied, and what establishing the window turned up
+
+The window is **project weeks 1–29, 2026-03-09 through 2026-09-21**, mined 2026-09-25
+(`delegation_weekly.csv` sums to exactly 32,039 `commits_all`; the residual sums to 1,763). It is now
+stated once, in the methodology note at `5.2:312`, so it serves every figure from that pass rather
+than being repeated per figure; the passage 700 lines later points at it instead of restating it.
+
+**The measurement also found a defect the labelling task did not anticipate.** The pass ran
+mid-week, so the final week covers **4.4 of 7 days** — and three figures plot a per-week *count*,
+which makes their last bar short for a reason no reader can see:
+
+| Figure | Series | Final bar reads as | Actually |
+|---|---|---|---|
+| f19 delegation | `commits_all` | throughput −39% vs W38 | 110/day vs 114/day — flat |
+| f24 GenAI cost | `genai_deploy_cost_usd` | $2.60 → $1.30, a halving | 63% of a week elapsed |
+| f13 mature flow | `merge_train_complete` | completions 288 → 179 | same artifact |
+
+f7 (control growth) and f21b (model forms) plot cumulative columns and are immune. f5/f6 read a
+fraction and are immune.
+
+**Open for you, because it changes published figures:** (a) drop W39 from the three count-plots —
+cleanest, and discards only a partial observation; (b) keep the bar and hatch/annotate it as
+partial; or (c) leave the figures alone and rely on the prose disclosure now at `5.2:312`. I applied
+(c) only, since it is the subset that changes no figure and is removable if you prefer (a) or (b).
+
+**The standing TODO to unify vintages is unchanged** — this is a disclosure fix, not the
+unification.
+
 ---
 
 ## D3 — Seven proposed additions to the prose-audit playbook
