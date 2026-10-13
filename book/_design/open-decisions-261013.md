@@ -212,6 +212,65 @@ reviewing rather than applying silently.
 
 ---
 
+## D4 — The math subset's Typst mappings are not verified against the pinned renderer
+
+**Status:** a real latent break, found at the end of the 261013 session. Needs a decision on whether
+to add a guard; the instance itself is already fixed on a pending branch.
+
+### What happened
+
+Chapter 3 round 2 added set-difference and intersection notation. The gates went green —
+`build_book.py` and `catalog.py validate` both passed — and round 2 was reported as clean. The math
+**would not have rendered.**
+
+`book/bookmath.py` holds a whitelist of supported constructs; anything *outside* it raises `MathError`
+so a typo fails the build loudly. That guard works. The failure was one level in: `cap` was *inside*
+the subset but mapped to the Typst symbol `sect`, which **Typst removed in ≥0.13**. The pinned renderer
+is v0.15.1. So the build emitted plausible-looking Typst that the pinned version rejects.
+
+Only compiling a chapter and looking at the output caught it — which happened because the author
+asked for a rendered-figure inspection, a step rounds 1 and 2 had not performed.
+
+### Current state — `main` is still carrying it
+
+```
+git show main:book/bookmath.py | grep '"cap"'          # → ("∩", "sect")   ← broken
+git show ch3-copyedit:book/bookmath.py | grep '"cap"'  # → ("∩", "inter")  ← fixed
+```
+
+`main` has the stale mapping today. `setminus` and `varnothing` do not exist on `main` at all — round 2
+added them. So the fix and the two new constructs all arrive together when `ch3-copyedit` lands; until
+then, any `\cap` in book prose on `main` is a silent render failure waiting.
+
+### Why the gates cannot see it
+
+A wrong-but-well-formed mapping is indistinguishable from a right one until a renderer refuses it. The
+whitelist checks *membership*, not *correspondence*. And the correspondence can rot without anyone
+touching the book: a Typst upgrade renames a symbol and every mapping to the old name goes stale
+silently. `sect → inter` is exactly that, already in the past.
+
+### Options
+
+1. **A render-probe test over the whole subset.** For each entry, emit a minimal document using it and
+   compile with the pinned Typst; fail on any rejection. Catches this class completely, including
+   future renames, and costs one short compile. Natural home is alongside the existing book gates.
+2. **Pin-aware review only** — add a comment at the mapping table saying mappings must be re-checked on
+   any Typst version bump, and rely on that. Free, and depends on nobody forgetting.
+3. **Nothing.** Accept that new math constructs are validated by whoever first renders a chapter that
+   uses them.
+
+### Recommendation
+
+**Option 1.** This is the audit-to-lint move the repo already applies elsewhere: the failure was found
+by inspection, it is mechanically detectable, and the detection is cheap. It also generalises past this
+instance — the whole subset gets checked against whatever Typst is pinned, so the next rename fails at
+the gate rather than in a chapter nobody rendered.
+
+Worth noting for the D3 decision: this is a *fourth* kind of gap alongside the seven audit-pass
+additions, and it is the only one where the existing guard was present and still insufficient.
+
+---
+
 ## Also open, tracked elsewhere
 
 - **Chapter 7** — deferred by your decision pending review of the settled chapter-5 account. The SEET
