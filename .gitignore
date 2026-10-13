@@ -150,3 +150,9 @@ tools/pptx-validate-harness/obj/
 # The MIT Press contract for the MAGE book. Executed legal document: kept
 # beside the book for convenience, never in git history.
 book/_contract/
+
+# Orchestration scratchpad — agent briefs, audit reports, review diffs. In-repo so it
+# survives a session crash (the session-local scratchpad did not, twice on 261013);
+# gitignored so working notes never enter history. Durable PROCESS knowledge goes in
+# book/_design/ and is committed; this is for in-flight artifacts only.
+.scratch/
