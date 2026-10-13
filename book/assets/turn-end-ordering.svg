@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 3.5 "Three turn-end hooks and one shared slot" (turn-end-ordering.svg).
+     Three automations fire at the same turn-ending event and write the same logical resource — the turn's
+     closing message. In the typed governance graph these are the only three conflict edges among
+     twenty-five modeled mechanisms: ordering conflicts on one shared resource, resolved by a declared
+     order (the pairwise edges compose to the total order shown left to right). Grammar: blue #2f5169 =
+     the governance mechanisms; ink #1c1917 = the shared resource (territory acted on); rust #b23b3b =
+     the modeled order resolving the conflicts. The order is computed from the model; no runtime driver
+     enforces it today (the caption carries that distinction). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" height="580"
+     role="img" aria-labelledby="teoTitle teoDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="teoTitle">Three turn-end hooks write one shared slot; the model resolves the conflicts with a declared order</title>
+  <desc id="teoDesc">Three governance mechanisms, all firing when an agent ends a turn: one discourages
+    premature stops, one prompts reflection on failures, one checks for stranded work. Rust arrows between
+    them show the modeled order, left to right. All three write the same shared resource below — the
+    turn's closing message. An annotation notes that the typed governance graph holds twenty-five
+    mechanisms, that these three edges are its only conflicts, and that the order is computed by
+    topological sort, with a cycle reported as an error.</desc>
+
+  <defs>
+    <marker id="teo-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="teo-ah-order" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    </marker>
+  </defs>
+
+  <!-- modeled order, left to right (the ordering-conflict resolution) -->
+  <!-- edge: hook-premature -> hook-reflect -->
+  <line x1="300" y1="118" x2="350" y2="118" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#teo-ah-order)"/>
+  <!-- edge: hook-reflect -> hook-stranded -->
+  <line x1="610" y1="118" x2="660" y2="118" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#teo-ah-order)"/>
+  <text x="480" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#b23b3b">modeled order — first to last</text>
+
+  <!-- hooks write the shared slot -->
+  <!-- edge: hook-premature -> closing-message -->
+  <line x1="170" y1="180" x2="170" y2="297" stroke="#1c1917" stroke-width="2" marker-end="url(#teo-ah)"/>
+  <text x="188" y="250" font-size="19.2" font-style="italic" fill="#57534e">writes</text>
+  <!-- edge: hook-reflect -> closing-message -->
+  <line x1="480" y1="180" x2="480" y2="297" stroke="#1c1917" stroke-width="2" marker-end="url(#teo-ah)"/>
+  <text x="498" y="250" font-size="19.2" font-style="italic" fill="#57534e">writes</text>
+  <!-- edge: hook-stranded -> closing-message -->
+  <line x1="790" y1="180" x2="790" y2="297" stroke="#1c1917" stroke-width="2" marker-end="url(#teo-ah)"/>
+  <text x="808" y="250" font-size="19.2" font-style="italic" fill="#57534e">writes</text>
+
+  <!-- the three turn-end hooks, placed in the computed total order -->
+  <rect id="hook-premature" x="40" y="80" width="260" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="170" y="110" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">turn-end hook</text>
+  <text x="170" y="138" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">discourages</text>
+  <text x="170" y="162" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">premature stops</text>
+
+  <rect id="hook-reflect" x="350" y="80" width="260" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="480" y="110" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">turn-end hook</text>
+  <text x="480" y="138" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">prompts reflection</text>
+  <text x="480" y="162" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">on failures</text>
+
+  <rect id="hook-stranded" x="660" y="80" width="260" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="790" y="110" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">turn-end hook</text>
+  <text x="790" y="138" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">checks for</text>
+  <text x="790" y="162" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">stranded work</text>
+
+  <!-- the shared resource, one slot beneath all three hooks -->
+  <rect id="closing-message" x="40" y="300" width="880" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="480" y="336" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">one shared slot</text>
+  <text x="480" y="366" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">the turn's closing message</text>
+
+  <!-- what the model holds -->
+  <rect x="40" y="450" width="880" height="106" rx="8" fill="#f3f1ee" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <text x="480" y="484" text-anchor="middle" font-size="19.2" fill="#57534e">the typed governance graph holds 25 mechanisms;</text>
+  <text x="480" y="510" text-anchor="middle" font-size="19.2" fill="#57534e">these three edges are its only conflicts — all ordering, one shared resource;</text>
+  <text x="480" y="536" text-anchor="middle" font-size="19.2" fill="#57534e">the order is computed by topological sort, and a cycle is an error</text>
+</svg>

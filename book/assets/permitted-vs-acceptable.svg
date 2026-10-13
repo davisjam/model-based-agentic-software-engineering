@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 3.3 "Obligations and permitted realizations" (permitted-vs-acceptable.svg).
+     The Alignment companion to realization-space.svg (part 2): that figure draws the obligations bounding
+     an acceptable region; this one adds the region the CONTROLS permit and names the two mismatches —
+     underconstraint (permitted minus acceptable: unacceptable yet permitted, a correctness risk, rust) and
+     overconstraint (acceptable minus permitted: acceptable yet excluded, freedom needlessly lost).
+     Grammar follows the ancestor figure: #9a3f12 = the obligations' acceptable region; ink #1c1917
+     dashed = the controls' permitted region; rust #b23b3b = the correctness risk. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
+     role="img" aria-labelledby="pvaTitle pvaDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="pvaTitle">Obligations and permitted realizations — underconstraint and overconstraint as the two mismatches</title>
+  <desc id="pvaDesc">A bounding panel holds the software realization space. Inside it, two overlapping
+    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a
+    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —
+    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable, yet
+    excluded, so freedom is needlessly lost. The permitted-only region at right is underconstraint:
+    unacceptable, yet permitted — a correctness risk.</desc>
+
+  <!-- page ground + the bounding realization space (matches the part-2 ancestor figure) -->
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+  <rect x="40" y="70" width="920" height="440" rx="12" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="500" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e"
+        letter-spacing="1.5">SOFTWARE REALIZATION SPACE</text>
+
+  <!-- zone fills (the overlap deepens, as in the ancestor figure) -->
+  <rect x="100" y="150" width="280" height="290" fill="#9a3f12" fill-opacity="0.08"/>
+  <rect x="380" y="150" width="240" height="290" fill="#9a3f12" fill-opacity="0.16"/>
+  <rect x="620" y="150" width="280" height="290" fill="#b23b3b" fill-opacity="0.08"/>
+
+  <!-- the acceptable region (obligations) -->
+  <rect id="acceptable-region" x="100" y="150" width="520" height="290" rx="10"
+        fill="none" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="110" y="134" font-size="21" font-weight="700" fill="#9a3f12">acceptable</text>
+  <text x="232" y="134" font-size="20" fill="#57534e">— satisfies every obligation</text>
+
+  <!-- the permitted region (controls) -->
+  <rect id="permitted-region" x="380" y="150" width="520" height="290" rx="10"
+        fill="none" stroke="#1c1917" stroke-width="2.5" stroke-dasharray="9 7"/>
+  <text x="890" y="134" text-anchor="end" font-size="20" fill="#57534e">— what the controls allow</text>
+  <text x="648" y="134" text-anchor="end" font-size="21" font-weight="700" fill="#1c1917">permitted</text>
+
+  <!-- overconstraint zone (acceptable only) -->
+  <text x="240" y="258" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">overconstraint</text>
+  <text x="240" y="290" text-anchor="middle" font-size="20" fill="#9a3f12">acceptable,</text>
+  <text x="240" y="315" text-anchor="middle" font-size="20" fill="#9a3f12">yet excluded</text>
+  <text x="240" y="347" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">freedom lost</text>
+
+  <!-- preserved freedom (the overlap) -->
+  <text x="500" y="258" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">preserved</text>
+  <text x="500" y="284" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">freedom</text>
+  <text x="500" y="315" text-anchor="middle" font-size="20" fill="#1c1917">acceptable</text>
+  <text x="500" y="340" text-anchor="middle" font-size="20" fill="#1c1917">and permitted</text>
+
+  <!-- underconstraint zone (permitted only) -->
+  <text x="760" y="258" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">underconstraint</text>
+  <text x="760" y="290" text-anchor="middle" font-size="20" fill="#b23b3b">unacceptable,</text>
+  <text x="760" y="315" text-anchor="middle" font-size="20" fill="#b23b3b">yet permitted</text>
+  <text x="760" y="347" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a correctness risk</text>
+</svg>

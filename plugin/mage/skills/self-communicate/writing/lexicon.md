@@ -220,14 +220,17 @@ Shared with the sibling *self-governance* skill — name these the same way acro
 
 ### Mechanism kinds
 
-A **governance mechanism** governs the fleet's work in one of two ways — it is a *constraint* or a
-*sensor* (and a real one often bundles both: see *governance package*). This retires the older umbrella
-word **control**, which did two jobs and blurred both — it named the whole category *and*, loosely, the
-detecting kind. Say **mechanism** for the umbrella, **constraint** or **sensor** for the kind.
+A **governance mechanism** is an engineered mechanism that constrains behavior, produces evidence,
+evaluates evidence, or controls admission (a real one often bundles several: see *governance package*).
+A **control** is a governance mechanism considered in relation to the obligation or risk it addresses.
+Both terms are current, with distinct meanings: say **mechanism** (or the kind — **constraint**,
+**sensor**) when naming the artifact itself; say **control** when relating it to what it governs —
+coverage, interactions, conflicts, the portfolio questions.
 
 | Term | When to use it / what it means | Reference |
 |---|---|---|
-| **Governance mechanism** | The umbrella: a discrete named artifact that keeps the fleet's work aligned by *preventing* or *detecting* drift. Say "mechanism," not the ambiguous "control." | [Safety engineering](https://en.wikipedia.org/wiki/Safety_engineering) |
+| **Governance mechanism** | The umbrella: a discrete named artifact that keeps the fleet's work aligned by *preventing* or *detecting* drift. Names the artifact itself. | [Safety engineering](https://en.wikipedia.org/wiki/Safety_engineering) |
+| **Control** | A governance mechanism considered in relation to the obligation or risk it addresses. The term for portfolio questions — coverage, interactions, conflicts. | [Security controls](https://en.wikipedia.org/wiki/Security_controls) |
 | **Constraint** | The *preventing* kind — scopes the agent's action space *within* a loop iteration so the wrong move is unavailable (a typed enum instead of a string; one sole seam). The prevented mistake costs no failed iteration. Usually hard; sometimes a soft aim (a typed model the agent reasons through). | [Software architecture](https://en.wikipedia.org/wiki/Software_architecture) |
 | **Sensor** | The *detecting* kind — catches drift *after* the move, usually failing the loop iteration so the agent must re-iterate to fix it (a lint, a test, a parity gate). Costs iterations. | [Runtime verification](https://en.wikipedia.org/wiki/Runtime_verification) |
 | **Governance package** | A mechanism that bundles several — a soft constraint (a typed model that aims the agent), hard constraints (enums), and sensors (a lint, a drift-parity gate). Name the package and tag its *primary* move; don't force it into one bin. | — |

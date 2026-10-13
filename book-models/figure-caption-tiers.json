@@ -1230,6 +1230,18 @@
       "kind": "conceptual-table",
       "location": "part2",
       "rationale": "the semantic-commitment spectrum in four named artifacts (sketch, UML 2.5.1 state machines, OpenAPI/JSON Schema, SysML v2 + KerML); supporting caption carrying the takeaway that commitment is not completeness and the rows are not maturity levels"
+    },
+    "assets/permitted-vs-acceptable.svg": {
+      "tier": "B",
+      "kind": "set-diagram",
+      "location": "part3",
+      "rationale": "Alignment companion to the part-2 realization-space Venn: the acceptable region (obligations) against the permitted region (controls), naming the two mismatches — underconstraint and overconstraint — and the preserved freedom in their overlap"
+    },
+    "assets/turn-end-ordering.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "three turn-end hooks writing one shared slot — the governance graph's only three conflict edges among twenty-five mechanisms, ordering conflicts resolved by a modeled (not yet runtime-enforced) total order"
     }
   }
 }
