@@ -3,10 +3,10 @@
 Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeling from Alignment so that
 each mechanism could be examined clearly. Engineering does not usually present them that way. As work
 proceeds, new evidence changes what engineers understand about the problem; one representation exposes the
-need for another; implementation tests assumptions; and analysis changes the design. This chapter runs the
-two principles together as a method: it asks what should be made explicit, places enforcement where stable
-obligations become legible and enforceable, and converts recurring judgment into durable engineering
-structure.
+need for another; implementation tests assumptions; and analysis changes the design. This chapter brings the
+two principles together as an engineering method: making consequential properties explicit, placing
+enforcement where obligations can be checked, and converting recurring judgment into durable
+engineering structure.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
