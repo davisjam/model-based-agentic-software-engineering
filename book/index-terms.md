@@ -40,8 +40,7 @@ chapter (filled as chapters settle; the generator still scans all chapters for s
 - model drift @ch04
 - the semantic gap @ch04
 - right level of enforcement @ch04
-- ex-ante governance @ch05
-- ex-post governance @ch05
+- up-front governance @ch05
 - specification-driven development @ch05
 - constraints and sensors @ch05
 - constraint (prevents drift) @ch05
@@ -233,8 +232,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: measure-one-level-deeper | Measure one level deeper
 - concept: governed-environment | The governed environment
 - concept: governed-engineering-environment | Governed Engineering Environment (GEE)
-- concept: ex-ante-governance | Ex-ante governance
-- concept: ex-post-governance | Ex-post governance
+- concept: up-front-governance | Up-front governance
 - concept: governance-conversion | Governance conversion
 - concept: compounding | Compounding
 - concept: constraints-and-sensors | Constraints and sensors
