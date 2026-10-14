@@ -16,8 +16,8 @@ should become durable machinery.
 
 The final section turns the theory, predictions, and scope conditions into a research agenda.
 
-The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
-generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
+The objective is to develop a theory of MAGE with testable predictions and explicit scope conditions,
+rather than claim that it is a universal law of software engineering—or of agentic work more generally. The evidence behind the theory comes
 from software engineering. The mechanisms are stated more generally because representation, enforcement,
 inherited structure, and the interaction between agentic capacity and its environment do not themselves
 require software. {{sec:scope-conditions}} therefore asks not only when MAGE should work within software engineering, but what

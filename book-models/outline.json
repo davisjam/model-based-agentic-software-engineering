@@ -156,7 +156,7 @@
         {
           "section_id": "whose-fault-is-it",
           "level": 2,
-          "heading_text": "Suspect the Setup First",
+          "heading_text": "Examine the Environment First",
           "topic_sentence": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
           "id_source": "explicit",
           "block_index": 36,
@@ -2997,7 +2997,7 @@
             },
             {
               "slug": "the-rest-was-engineering",
-              "text": "Generative AI supplied the missing semantic reasoning; the rest was engineering.",
+              "text": "The probe established that generative AI could supply the semantic reasoning remediation needed; building a reliable production system around it remained an engineering problem.",
               "block_index": 43
             },
             {
@@ -3621,7 +3621,7 @@
           "section_id": "liability",
           "level": 2,
           "heading_text": "Liability",
-          "topic_sentence": "Keeping the case honest requires the other ledger column, because everything this section has praised also has a failure mode.",
+          "topic_sentence": "The factory also introduced substantial maintenance costs and new failure modes.",
           "id_source": "derived",
           "block_index": 292,
           "points": [
@@ -4920,7 +4920,7 @@
         },
         {
           "slug": "the-equations-are-enlargements-not-rivals",
-          "text": "The chapter's equations are enlargements, not rivals: each adds something the previous one deliberately omitted, widening the unit of analysis step by step.",
+          "text": "Each successive equation extends the previous model, adding something the previous one deliberately omitted and widening the unit of analysis step by step.",
           "block_index": 14
         },
         {
