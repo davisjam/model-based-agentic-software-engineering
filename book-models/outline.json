@@ -7,7 +7,7 @@
     "derived_ids": 207,
     "missing_topic_sentence": 4,
     "sections_drained": 159,
-    "paragraph_points": 835
+    "paragraph_points": 834
   },
   "chapters": [
     {
@@ -157,13 +157,13 @@
           "section_id": "whose-fault-is-it",
           "level": 2,
           "heading_text": "Suspect the Setup First",
-          "topic_sentence": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
+          "topic_sentence": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
           "id_source": "explicit",
           "block_index": 36,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
-              "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
+              "text": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
               "block_index": 38
             },
             {
@@ -313,11 +313,6 @@
               "slug": "no-single-model-of-docable",
               "text": "The system has not changed between these questions; the representation has. No single model is best for all of them — each is a purposeful reduction that preserves the facts one question needs and suppresses detail it does not.",
               "block_index": 34
-            },
-            {
-              "slug": "the-central-modeling-move",
-              "text": "That is the modeling move Chapter 2 develops.",
-              "block_index": 36
             }
           ]
         },
@@ -327,22 +322,22 @@
           "heading_text": "Following One Job",
           "topic_sentence": "Before Chapters 2 and 3 examine particular properties of DocAble, [ref:one-docable-job] follows one ordinary job through the system.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 36,
           "points": [
             {
               "slug": "enough-common-territory-to-locate-the-models",
               "text": "Before Chapters 2 and 3 examine particular properties of DocAble, one ordinary job through the system shows what those properties concern.",
-              "block_index": 40
+              "block_index": 38
             },
             {
               "slug": "the-territory-vocabulary",
               "text": "A job tracks one document's trip; a chunk is a portion of that work processed independently; workers claim chunks, calling specialized services; queues coordinate handoffs; the outputs are the remediated document and its evidence.",
-              "block_index": 49
+              "block_index": 47
             },
             {
               "slug": "one-worker-several-models",
               "text": "The same worker appears differently in later models — a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements; not competing descriptions, but different properties of the same system.",
-              "block_index": 51
+              "block_index": 49
             }
           ]
         },
@@ -352,27 +347,27 @@
           "heading_text": "How the Book Uses DocAble",
           "topic_sentence": "DocAble is the book's deepest worked example because the system can be examined at the resolution the method requires.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 51,
           "points": [
             {
               "slug": "docable-shown-at-method-resolution",
               "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Chapter 2 asks which representations make properties tractable, Chapter 3 how intent comes to bind the work.",
-              "block_index": 55
+              "block_index": 53
             },
             {
               "slug": "motion-then-the-production-system",
-              "text": "Chapter 4 puts those mechanisms in motion, following engineering problems through successive models, decisions, implementation, and governance conversion; Chapter 5 then examines the production system itself — what failed, what those failures revealed, and how recurring judgments became durable engineering structure.",
-              "block_index": 57
+              "text": "Chapter 4 examines how those mechanisms are used during development, following engineering problems through successive models, decisions, implementation, and governance conversion; Chapter 5 then examines the production system itself — what failed, what those failures revealed, and how recurring judgments became durable engineering structure.",
+              "block_index": 55
             },
             {
               "slug": "docable-is-depth-not-the-whole-evidence",
-              "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation.",
-              "block_index": 59
+              "text": "DocAble is the primary case study, supplemented by examples from other engineering organizations, which reappear to show where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation.",
+              "block_index": 57
             },
             {
               "slug": "bridge-to-the-substrate",
               "text": "We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it.",
-              "block_index": 61
+              "block_index": 59
             }
           ]
         }
@@ -483,7 +478,7 @@
           "section_id": "enforcement-outside-the-producing-run",
           "level": 2,
           "heading_text": "Enforcement Outside the Producing Run",
-          "topic_sentence": "Software engineering offers another move.",
+          "topic_sentence": "Software engineering already provides mechanisms for independent enforcement.",
           "id_source": "derived",
           "block_index": 55,
           "points": [
