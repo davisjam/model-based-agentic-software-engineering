@@ -5884,7 +5884,7 @@
           "heading_text": "What Must Transfer",
           "topic_sentence": "The first requirement is representability.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 14,
           "points": []
         },
         {
@@ -5893,7 +5893,7 @@
           "heading_text": "Model-Based Engineering",
           "topic_sentence": "Conventional engineering is the nearest transfer because the shape of the outcome changes least.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 25,
           "points": []
         },
         {
@@ -5902,27 +5902,27 @@
           "heading_text": "Professional Knowledge Work",
           "topic_sentence": "Other engineering disciplines are therefore the easiest place to see the transfer: the outcome is often still an artifact, and much of the representational machinery already exists.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 36,
           "points": [
             {
               "slug": "zenseact-is-an-observed-instance-of-the-generalization",
               "text": "One industrial case is an instance rather than a prospect: an automotive company's agents do engineering knowledge work and no software realization, domain teams author each agent as two text files, and admission runs per tool call instead of per change.",
-              "block_index": 45
+              "block_index": 41
             },
             {
               "slug": "accounting-environment-already-engineered",
               "text": "Accounting's environment is already engineered: double-entry is an old enforcement mechanism, and the profession's controls give obligations independent paths to consequence.",
-              "block_index": 53
+              "block_index": 49
             },
             {
               "slug": "law-representation-without-determinization",
               "text": "Legal analysis has abundant representations, but its consequential judgments are semantic and contested — representation does not imply determinization.",
-              "block_index": 56
+              "block_index": 52
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
               "text": "The unit of transfer is the surface, not the profession — and the question is not simply how much work an agent can perform, but how much useful freedom the environment can grant it while retaining adequate means of evaluation and control.",
-              "block_index": 59
+              "block_index": 55
             }
           ]
         },
@@ -5932,12 +5932,12 @@
           "heading_text": "Science as the Harder Case",
           "topic_sentence": "Scientific work is worth examining because it tests the theory rather than flattering it.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 57,
           "points": [
             {
               "slug": "science-tests-the-theory",
               "text": "Science is the deliberately hard case: inquiry's conduct is governable, its conclusions are not.",
-              "block_index": 62
+              "block_index": 58
             }
           ]
         },
@@ -5947,12 +5947,12 @@
           "heading_text": "Where the Generalization Fails",
           "topic_sentence": "The transfer conditions predict their own failures, and the failures deserve naming rather than a passing caveat.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 62,
           "points": [
             {
               "slug": "failure-traits-named",
               "text": "The transfer conditions predict their own failures; the traits deserve naming rather than a caveat.",
-              "block_index": 67
+              "block_index": 63
             }
           ]
         },
@@ -5962,7 +5962,7 @@
           "heading_text": "A Research Prediction",
           "topic_sentence": "The broader interpretation produces a testable prediction.",
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 68,
           "points": []
         }
       ],
