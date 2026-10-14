@@ -982,7 +982,7 @@
             },
             {
               "slug": "a-structural-model-selects-both-entities-and-relations-and-the-edge-label-carries-the-meaning",
-              "text": "A structural model selects the entities a question needs and the relations between them; the edge label is where the engineering meaning lives, so a generic \"related-to\" edge discards the distinction the model exists to preserve.",
+              "text": "A structural model selects the entities a question needs and the relations between them; the edge label specifies the relationship being modeled, so a generic \"related-to\" edge discards the distinction the model exists to preserve.",
               "block_index": 5
             },
             {
@@ -1098,7 +1098,7 @@
           "section_id": "docable-recovery-ordering",
           "level": 2,
           "heading_text": "DocAble: Recovery Ordering",
-          "topic_sentence": "DocAble has one behavioral obligation whose violation is quiet and expensive.",
+          "topic_sentence": "DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published.",
           "id_source": "derived",
           "block_index": 10,
           "points": [
@@ -1517,7 +1517,7 @@
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
-              "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, where agreement is distinguished from correctness.",
+              "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, examining why correspondence does not by itself establish correctness.",
               "block_index": 79
             }
           ]
@@ -1772,7 +1772,7 @@
           "section_id": "the-earliest-decidable-boundary",
           "level": 2,
           "heading_text": "The Earliest Decidable Boundary",
-          "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this chapter:",
+          "topic_sentence": "The agent-return check illustrates a general rule for placing enforcement:",
           "id_source": "derived",
           "block_index": 66,
           "points": [
@@ -1788,7 +1788,7 @@
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
-              "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
+              "text": "Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook.",
               "block_index": 82
             },
             {
