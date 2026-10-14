@@ -29,9 +29,9 @@ stopped manufacturing. Inspection has become the throughput constraint. Nor can 
 be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare
 problems become especially difficult to detect as the stream of mostly acceptable output
 grows.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are
-disproportionately missed as their prevalence falls.[cite: wolfe2005rare] Warm, Parasuraman, and
-Matthews synthesize the vigilance literature: sustained monitoring consumes attentional resources,
-imposes substantial workload, and can produce performance decrements and stress.[cite: warm2008vigilance]] In software, agents can now
+disproportionately missed as their prevalence falls.[cite: wolfe2005rare] Sustained monitoring is
+itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades
+detection over a watch.[cite: warm2008vigilance] {{chapter:theory}} returns to this evidence.] In software, agents can now
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
 let later work reuse representations across many acts of implementation; validators and gates can
 likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding
