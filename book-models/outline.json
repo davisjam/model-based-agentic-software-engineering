@@ -7,7 +7,7 @@
     "derived_ids": 207,
     "missing_topic_sentence": 4,
     "sections_drained": 159,
-    "paragraph_points": 834
+    "paragraph_points": 833
   },
   "chapters": [
     {
@@ -6468,14 +6468,9 @@
               "block_index": 26
             },
             {
-              "slug": "the-question-is-what-stays-explicit-not-how-little",
-              "text": "Better agents reduce what must be stated for realization while better representations and assurance change what must be stated for control — the boundary being which consequential properties are worth taking out of probabilistic inference.",
-              "block_index": 28
-            },
-            {
               "slug": "richer-machinery-is-the-opportunity",
               "text": "Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone.",
-              "block_index": 30
+              "block_index": 28
             }
           ]
         },
@@ -6485,22 +6480,22 @@
           "heading_text": "The part that stays yours",
           "topic_sentence": "There is a corresponding question about the engineer.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 30,
           "points": [
             {
               "slug": "no-stable-set-of-human-only-tasks",
               "text": "There is no stable collection of tasks only humans can perform; the boundary moves with capability, and what persists is the need for informed control over consequential work.",
-              "block_index": 33
+              "block_index": 31
             },
             {
               "slug": "responsibility-extends-to-the-structures-that-decide",
               "text": "Responsibility need not mean making every decision personally; MAGE moves suitable decisions and decision-making processes into engineered structures, and the engineer's responsibility extends to designing, governing, and revising them.",
-              "block_index": 36
+              "block_index": 34
             },
             {
               "slug": "not-to-abolish-engineering-but-to-demand-it",
               "text": "The book's last word: commodity intelligence has not come to abolish engineering, but to demand it.",
-              "block_index": 39
+              "block_index": 37
             }
           ]
         }
