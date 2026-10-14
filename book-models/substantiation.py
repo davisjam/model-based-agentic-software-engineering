@@ -4,7 +4,7 @@ for: "where we cite in the text, back those cites in the model (ref, claims-from
 claims, so we can query for under-substantiated-or-situated — and outright SOAPBOX — claims about reality."
 
 THE CLAIM UNIVERSE — spine + theory + discussion. The argument spine is the book's backbone claims; the
-'Toward a Theory of MAGE' chapter adds reality-asserting THEORY nodes (the seven hypotheses H1-H7 + their
+'Toward a Theory of MAGE' chapter adds reality-asserting THEORY nodes (the nine hypotheses H1-H9 + their
 sub-hypotheses, the corollaries, and the research-agenda proposals) that are NOT spine claims; and the
 DISCUSSION-claims ledger adds the reality-asserting sentences that live in the book's Discussion /
 Implications / Future prose and belong to no ordered spine step and no theory node. All three are appended to
@@ -159,7 +159,7 @@ def _spine_claims() -> "list[dict]":
 
 
 def _theory_claims() -> "list[dict]":
-    """The theory chapter's reality-asserting nodes as claim dicts, in a stable order: the seven hypotheses
+    """The theory chapter's reality-asserting nodes as claim dicts, in a stable order: the nine hypotheses
     (each followed by its sub-hypotheses), the named propositions, the corollaries, then the research-agenda
     proposals. Each is a reality-claim; each defaults to frame=offered-for-replication (the chapter's global
     hedge) unless the node carries its own `frame`. Hypotheses + propositions use their JSON id; corollaries +
