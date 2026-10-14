@@ -7,7 +7,7 @@
     "derived_ids": 207,
     "missing_topic_sentence": 4,
     "sections_drained": 159,
-    "paragraph_points": 829
+    "paragraph_points": 830
   },
   "chapters": [
     {
@@ -124,32 +124,32 @@
           "heading_text": "The Engineering Object",
           "topic_sentence": "Agent products and foundation models will continue to change.[note: Engineering predates machine learning in its use of models as purposeful representations of systems.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 20,
           "points": [
             {
               "slug": "the-agent-is-not-the-engineering-object",
               "text": "Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "the-object-of-engineering-expands-beyond-implementation",
               "text": "The object of engineering expands beyond the implementation to the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce.",
-              "block_index": 21
+              "block_index": 23
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure.",
-              "block_index": 23
+              "block_index": 25
             },
             {
               "slug": "modeling-and-alignment-supply-the-instruction-package",
               "text": "Modeling and Alignment supply the printer's missing instruction halves.",
-              "block_index": 25
+              "block_index": 27
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE changes the engineering object: the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 32
+              "block_index": 34
             }
           ]
         },
@@ -159,32 +159,32 @@
           "heading_text": "Suspect the Setup First",
           "topic_sentence": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
           "id_source": "explicit",
-          "block_index": 34,
+          "block_index": 36,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
-              "block_index": 36
+              "block_index": 38
             },
             {
               "slug": "a-failed-part-has-several-diagnoses",
               "text": "A failed part can reveal several different problems.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Inferred completion is not an explicit specification.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 44
+              "block_index": 46
             }
           ]
         }
@@ -211,14 +211,19 @@
           "block_index": 8
         },
         {
+          "slug": "a-simple-specification-leaves-enormous-freedom",
+          "text": "Even a simple software specification leaves enormous freedom — ten lines or ten thousand, a monolith or microservices — so engineers can specify the properties that matter and leave other decisions to the intelligence performing the work; which choices can safely remain open is itself an engineering decision.",
+          "block_index": 12
+        },
+        {
           "slug": "leverage-moves-into-the-environment",
           "text": "As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
-          "block_index": 12
+          "block_index": 14
         },
         {
           "slug": "gee-is-the-engineered-instruction-set",
           "text": "The governed environment is the printer's engineered instruction set.",
-          "block_index": 14
+          "block_index": 16
         }
       ]
     },
@@ -4581,7 +4586,7 @@
             },
             {
               "slug": "the-bound-does-not-argue-for-complete-specification",
-              "text": "The bound does not argue for complete specification — that would recreate the earlier software factories' economics; the new possibility is realization freedom with the smaller set of consequential decisions explicitly preserved.",
+              "text": "The bound does not argue for complete specification — sometimes the appropriate choice, but where multiple realizations satisfy the obligations it sacrifices commodity intelligence's ability to explore choices engineers need not make; the economic value of Modeling and Alignment depends partly on how much useful freedom the environment preserves under adequate control.",
               "block_index": 199
             },
             {
@@ -5896,7 +5901,7 @@
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
-              "text": "The unit of transfer is the surface, not the profession — the pair shows the frontier's position is a property of the domain's obligations.",
+              "text": "The unit of transfer is the surface, not the profession — and the question is not simply how much work an agent can perform, but how much useful freedom the environment can grant it while retaining adequate means of evaluation and control.",
               "block_index": 59
             }
           ]
