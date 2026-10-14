@@ -149,6 +149,14 @@ Non-negotiables learned the hard way:
 - **Artifacts go in the repo, never the session scratchpad.** Two crashes destroyed two completed audit
   reports, a calibrated recipe, a shared brief, and one chapter's in-progress diff. Everything
   committed survived; everything in the scratchpad is gone.
+  - **But `.scratch/` is PER-WORKTREE, so a brief must name the deliverable's ABSOLUTE path.** The
+    in-repo scratchpad fixed crash survival and introduced a second problem the same day: an agent
+    told to "write to `.scratch/`" writes to *its own worktree's* `.scratch/`, which is a different
+    directory from the one the orchestrator is watching. The ch6-progression pass delivered correctly
+    and its files read as missing — the orchestrator had already told the author a path that held
+    nothing. Nothing was lost, but the next instance looks exactly like an agent that produced
+    nothing, which is the costly direction of error. So: give the deliverable path as
+    `<main-checkout>/.scratch/<name>` explicitly, and keep only in-progress drafts worktree-local.
 - **An agent commits as its LAST action.** Work only in a working tree is banked nothing.
 - **Read the report body, never the final message.** A finished agent re-emits its previous frame —
   several returned "no action taken" having done the whole job.
