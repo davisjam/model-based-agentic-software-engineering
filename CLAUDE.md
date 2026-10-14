@@ -513,6 +513,30 @@ re-deriving these, so they live here:**
   no `git merge|commit|stash` in `ps`, a stale mtime, and 0 bytes meaning it was never written. A
   lock a LIVE process holds is doing its job; deleting that one corrupts a real operation.
 
+- **A push refused by the PDF gate is usually the BLANK-PAGE RATCHET, and it fires on ordinary
+  end-of-division pages. Measured TWICE in one session, 261014.** The pre-push hook runs
+  `book/build_book.py --pdf`, and its content-integrity gate is **the only check in the repo that
+  renders the PDF** — `tools/land.py` does not, and neither does a hand-rolled
+  validate/build/tier1 chain. So a pagination regression is invisible until the push, and the push
+  is refused, not warned.
+  - **Both trips were a division's LAST page, which is normal typography, not a defect.** A Preface
+    rewrite left p23 at 62% blank with *List of Figures and Tables* opening next; a one-paragraph
+    addition to §4.4 — Chapter 4's final section — left p182 at 56% blank with the Chapter 5 opener
+    next. A chapter does not end at a page bottom, and the next division must start fresh. **Read
+    the page before deciding**: `pdftotext -f N -l N book/mage-book.pdf -` and compare its character
+    count against its neighbour's (1,393 vs 2,713 for the p182 pair). A short *final* page of a
+    section is accepted; a short page in the MIDDLE of running prose is a real finding.
+  - **`--write-baseline` REPLACES the whole fingerprint set; it does not append.** Running
+    `python3 book/check_blank_pages.py book/mage-book.pdf --write-baseline` records every
+    currently-detected blank page, so a stale entry silently disappears — the first 261014 re-baseline
+    dropped a "Figure 2.1-1" fingerprint that no longer qualified and the accepted count stayed at 1.
+    Check `count` and the fingerprints afterwards; do not assume the number only grows.
+  - Fingerprints key on the **NEXT page's opening text**, so they are stable against page-number
+    drift and cannot silently absorb an unrelated future blank. Reverse any entry by re-running
+    `--write-baseline` once the prose fills the page again.
+  - **The control has an asymmetry worth knowing:** chapter OPENER pages are sparse by design and are
+    not flagged, while chapter CLOSER pages are. Expect this gate to re-fire on any edit that shifts
+    a division boundary, and budget a re-baseline into such an edit rather than treating it as a red.
 - **A failed Pages run: read the STEP NAME from the API, then reproduce locally — the logs are 403.**
   `catalog.py deploy github` and a plain `git push` both hand off to GitHub Actions, and when that
   fails the instinct is to read the log. You cannot: `/actions/jobs/<id>/logs` and
