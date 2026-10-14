@@ -3581,7 +3581,7 @@
           "section_id": "break-even-marginal-cost-and-replication",
           "level": 3,
           "heading_text": "Break-Even, Marginal Cost, and Replication",
-          "topic_sentence": "What must the changed production function deliver before the investment is recovered?",
+          "topic_sentence": "How much manual remediation would equal the investment in constructing the factory?",
           "id_source": "derived",
           "block_index": 274,
           "points": [
@@ -4812,12 +4812,12 @@
           "heading_text": "Two margins, not one",
           "topic_sentence": "Software adds a distinction manufacturing does not have, and it should be stated explicitly: there are two margins here, not one.",
           "id_source": "derived",
-          "block_index": 299,
+          "block_index": 300,
           "points": [
             {
               "slug": "software-has-two-margins",
               "text": "Software has two distinct margins, a major difference from manufacturing: the production margin (the next acceptable change) and the replication margin (serving that change's benefit to the next user).",
-              "block_index": 300
+              "block_index": 301
             }
           ]
         },
@@ -4827,12 +4827,12 @@
           "heading_text": "The idle factory still depreciates",
           "topic_sentence": "Carrying cost also divides, and the division is where the physical analogy breaks most instructively.",
           "id_source": "derived",
-          "block_index": 302,
+          "block_index": 303,
           "points": [
             {
               "slug": "carrying-cost-splits-into-operational-and-capital",
               "text": "Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to leave physically idle while its engineering capital continues to depreciate.",
-              "block_index": 303
+              "block_index": 304
             }
           ]
         },
@@ -4842,17 +4842,17 @@
           "heading_text": "What the changes are worth",
           "topic_sentence": "Against these costs stands what the stream of changes is worth, and that side of the comparison cannot be specified universally.",
           "id_source": "derived",
-          "block_index": 307,
+          "block_index": 308,
           "points": [
             {
               "slug": "what-a-change-is-worth-is-a-model-of-value",
               "text": "What the stream of changes is worth cannot be specified universally: each factory's outcome quantities are themselves models of value chosen for a particular engineering or organizational decision.",
-              "block_index": 308
+              "block_index": 309
             },
             {
               "slug": "mage-concerns-the-first-arrow",
               "text": "The economic chain runs factory → software capability → use → value, and MAGE primarily concerns the first arrow; the organization's business model determines how capability becomes value.",
-              "block_index": 310
+              "block_index": 311
             }
           ]
         },
@@ -4860,34 +4860,34 @@
           "section_id": "correctness-is-not-the-factory-s-objective",
           "level": 3,
           "heading_text": "Correctness is not the factory's objective",
-          "topic_sentence": "Correctness, however, is still not the factory's final objective.",
+          "topic_sentence": "The lifecycle expression above prices a factory as a startup investment plus a stream of change costs, a carrying cost, and an expected failure loss.",
           "id_source": "derived",
-          "block_index": 314,
+          "block_index": 315,
           "points": [
             {
               "slug": "the-probability-model-explains-the-factory-economics",
               "text": "The probability model explains the terms of the lifecycle factory economics: higher p_R raises durable throughput and lowers the cost of a change; Alignment exchanges validation cost for reduced escape risk; models preserve reasoning as engineering capital.",
-              "block_index": 315
+              "block_index": 316
             },
             {
               "slug": "correctness-alone-does-not-establish-value",
               "text": "Correctness alone does not establish value: a factory can reliably and efficiently produce software that nobody needs.",
-              "block_index": 317
+              "block_index": 318
             },
             {
               "slug": "the-economic-interpretation-of-modeling-and-alignment",
               "text": "The economic interpretation of Modeling and Alignment: valuable where the cost of externalizing, preserving, and enforcing consequential knowledge is lower than the expected cost of repeatedly reconstructing it, incorrectly realizing it, or allowing its violation to escape.",
-              "block_index": 319
+              "block_index": 320
             },
             {
               "slug": "the-problem-moves-as-fabrication-approaches-perfection",
               "text": "Commodity intelligence changes the terms of the comparison — several quantities move at once: the engineering problem does not disappear as fabrication approaches perfection, it moves toward deciding what must be preserved, inferred, established before admission, and what the capability is worth.",
-              "block_index": 321
+              "block_index": 322
             },
             {
               "slug": "part-v-evidence-is-depth-and-variation-not-effect-sizes",
               "text": "Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it.",
-              "block_index": 323
+              "block_index": 324
             }
           ]
         }
@@ -5137,18 +5137,18 @@
             },
             {
               "slug": "two-ways-an-investment-fails",
-              "text": "Stated as failure modes, the criteria give the two ways a MAGE investment fails: the asset never earns a return, or the important property cannot be governed adequately.",
+              "text": "Stated as failure modes, the criteria give three ways a MAGE investment fails: the asset never earns a return, the important property cannot be governed adequately, or the engineer lacks authority to change the shared environment.",
               "block_index": 18
             },
             {
               "slug": "most-systems-mix-surfaces-which-deserve-enforcement",
               "text": "Most systems mix surfaces; the question is which properties deserve durable representation or enforcement, not whether a project uses MAGE.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "scope-conditions-are-theoretical-not-population-estimates",
               "text": "These scope conditions are theoretical, informed by the evidence chapter, not population estimates.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         },
@@ -5158,67 +5158,67 @@
           "heading_text": "The Expanding Frontier of Explicit Engineering",
           "topic_sentence": "MAGE's scope is not fixed.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 25,
           "points": [
             {
               "slug": "scope-not-fixed-two-interacting-questions",
               "text": "MAGE's scope is not fixed: explicit engineering is becoming cheaper and sometimes more feasible, and the return and governability questions interact without determining each other.",
-              "block_index": 25
+              "block_index": 26
             },
             {
               "slug": "consequence-does-not-imply-governability",
               "text": "Consequence does not imply governability: some consequential obligations remain substantially qualitative however carefully evaluated.",
-              "block_index": 27
+              "block_index": 28
             },
             {
               "slug": "part-iv-shows-the-boundary-moving-both-ways",
               "text": "Chapter 4 showed the boundary both ways: a broad judgment can stay probabilistic while narrower obligations within it become enforceable, and the residency model became a quantitative invariant.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "full-formalization-is-a-region-not-a-ladder-endpoint",
               "text": "Full formalization is an important region of the design space, not the endpoint of a ladder.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "consequence-can-justify-investment-without-governability",
               "text": "Where governability is limited, added consequence can justify more investment without making complete formalization feasible.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "value-and-governability-are-two-dimensions-of-investment",
               "text": "Value of explicit engineering and feasible governability are two dimensions; high value need not imply high governability.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "ci-lowers-the-cost-of-explicit-structure",
               "text": "Commodity intelligence first lowers the cost of explicit structure, so assets repay at lower recurrence or consequence.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "ci-can-increase-governability",
               "text": "Commodity intelligence can also increase governability, turning expert judgment into narrower evaluable or decidable properties.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "movements-need-not-end-in-formalization",
               "text": "These movements need not end in formalization; explicit engineering still pays when it makes judgment better informed and repeatable.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "mage-concerns-the-whole-design-space",
               "text": "MAGE concerns the whole design space, not progress toward ever greater formalization; the objective is an economical division of work.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "mage-applies-across-engineering-scales",
               "text": "MAGE applies across scales — engineer, team, product, organization — with explicit correspondence keeping the scales distinct yet connected.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "scale-and-assurance-strength-are-separate-choices",
               "text": "Scale and assurance strength are separate choices; organization-wide adoption does not imply maximal formalization.",
-              "block_index": 51
+              "block_index": 52
             }
           ]
         },
@@ -5228,32 +5228,32 @@
           "heading_text": "The frontier is not a destination",
           "topic_sentence": "Neither change should be mistaken for a destination for software engineering as a whole.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 55,
           "points": [
             {
               "slug": "the-frontier-is-not-a-destination-evolution-is-an-outer-loop",
               "text": "The frontier is not a destination: many questions stay open because the system's shape is still being discovered, so evolution remains an outer loop.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "premature-closure-explicit-does-not-mean-correct",
               "text": "The failure mode is premature closure: a small probabilistic surface can mean the environment determinized the wrong problem.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "capital-can-enlarge-what-is-delegable-to-search",
               "text": "Engineering capital can move the frontier within a system, enlarging the region of work later delegable to search.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "mage-predicts-a-moving-boundary-not-convergence",
               "text": "MAGE predicts a moving economic boundary, not convergence toward complete specification; where it moves is empirical.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "scope-judged-surface-by-surface",
               "text": "Scope should be judged surface by surface — recurrence, consequence, representability, carrying cost — not assigned to a whole project.",
-              "block_index": 63
+              "block_index": 64
             }
           ]
         },
@@ -5263,22 +5263,22 @@
           "heading_text": "Typical Profiles",
           "topic_sentence": "The two dimensions produce different profiles even within one organization or artifact.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 66,
           "points": [
             {
               "slug": "two-dimensions-produce-profiles-not-maturity-levels",
               "text": "The two dimensions produce different profiles within one system; these are not maturity levels toward the upper right.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "the-pattern-is-economic-not-categorical",
               "text": "The pattern is economic, not categorical: longevity and consequence justify investment, and mixed domains divide by surface.",
-              "block_index": 69
+              "block_index": 70
             },
             {
               "slug": "do-not-govern-non-recurring-low-consequence-work",
               "text": "Do not govern work whose reasoning will not recur and whose consequence does not justify it; use the cheapest adequate mechanism.",
-              "block_index": 71
+              "block_index": 72
             }
           ]
         },
@@ -5288,7 +5288,7 @@
           "heading_text": "Scope Beyond Software",
           "topic_sentence": "What must be true of a domain for the theory to transfer beyond software engineering?",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 74,
           "points": []
         }
       ],

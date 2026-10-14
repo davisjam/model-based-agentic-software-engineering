@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 814,
+    "total_sites": 815,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 476,
+      "book-web": 477,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -1001,7 +1001,7 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 41
+            "occ": 42
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -2894,6 +2894,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
             "occ": 3
           },
@@ -3025,7 +3029,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 45
+            "occ": 46
           }
         ]
       },
