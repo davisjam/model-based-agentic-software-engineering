@@ -558,6 +558,19 @@ re-deriving these, so they live here:**
     not existence: `ps -o pid,etime,time,pcpu` — a process with large ELAPSED and near-zero TIME is
     stuck, and one at 20-35% is working. Checking only `pgrep`/process-count tells you nothing, and
     counting `grep` matches will count YOUR OWN probe shell and report a dead agent as healthy.
+  - **But apply that discriminator to the process TREE, not the process — a parent that forks per
+    unit of work is near-zero TIME BY DESIGN.** The rule above, read literally, says a healthy
+    orchestrating parent is stuck. It misled the orchestrator THREE times on 261013, each time
+    toward declaring a working gate wedged: `git push` and its `pre-push` hook both at 0.0% while
+    `build_visual_aids.py` ran underneath at 46.9%; a `catalog_tests.py --tier1` parent at 0.26s of
+    CPU over 3:26 with a live child at 24.7%; and two tier1 parents reported at 0.0% when a fuller
+    listing showed one of them at 60.3%. `catalog_tests.py`, `catalog.py`, the pre-push hook and
+    `land.py` all spawn a fresh subprocess per check, so the parent's own CPU measures nothing but
+    its waiting.
+    So: resolve the children before judging — `ps -eo pid,ppid,etime,time,pcpu` and look for a
+    descendant doing work, or scan for ANY python/node above ~8% before concluding a tree is idle.
+    A single `ps` line is also an instantaneous sample: a parent can read 0.0% between work units
+    and 60% a second later. Wedged means **no process in the tree** is accumulating CPU.
   - **The fix is the flag, not more vigilance.** A bounded run fails loudly and the agent carries
     on; an unbounded one silently costs the wall-clock of everything waiting on it. **This is an
     ORCHESTRATOR defect before it is an agent one** — the 261006 incident happened because all three

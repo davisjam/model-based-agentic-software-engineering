@@ -111,3 +111,62 @@ audit playbook's mechanical pre-pass should stay framed that way — worth a wor
 - **§6.1's size is not a defect**, and §6.1.6's length is not a reason to compress the
   determinization frontier.
 - **Mathematical repetition is not prose repetition** — the Master Equation's repeat appearances stay.
+
+---
+
+## [SCHEDULED] The degrees-of-freedom thread — a joined multi-chapter edit
+
+Author brief captured verbatim at `book/_design/degrees-of-freedom-thread-261013.md` (261013).
+**Scheduled, not started: it edits §6.1.6 and §7.3.2/§7.3.3, which have unlanded branches in
+review.** Start only after `ch6-topicseq` and `ch7-stageb` land, or it will conflict with both.
+
+The thread's claim: MAGE's economic argument has two distinct sources of leverage — **amortization**
+(a structure avoids repeated reconstruction across realizations) and **delegated exploration** (a
+purposeful reduction leaves an acceptable region commodity intelligence can search). An elaborate
+specification can deliver the first while sacrificing the second. *"The purpose of engineering
+structure is not to eliminate freedom. It is to make consequential freedom governable."*
+
+Six edits, in the author's intended reading order:
+
+1. **Preface, after the not-ceding-authority paragraph** — engineering does not run out of work.
+   Use the REVISED wording (the brief's §1), which replaces an earlier draft: engineering
+   *reorganizes* and engineers move to new levels of abstraction. The author's note: *"engineers will
+   be doing OTHER things — turtles all the way down."* The superseded draft implied engineers become
+   custodians; do not use it.
+2. **Preface, "Why MAGE? Why Models?"** — extend the existing paragraph beginning "The purpose of
+   this indirection is not to specify every implementation decision" rather than adding a new one.
+   Lands the falsifiable claim: if the models and controls merely reproduce the whole implementation,
+   the indirection has accomplished little.
+3. **Chapter 1, near the first Modeling/Alignment explanation** — make the freedom tangible and
+   concrete (ten lines or ten thousand; monolith or microservices; different algorithms, data
+   structures, architectures). Then the qualifier that stops it reading as indiscriminate delegation:
+   *"Which choices can safely remain open is itself an engineering decision."*
+4. **Chapter 6 §6.1.6, near the representation economics** — the qualification the author moved here
+   from Chapter 7: complete specification is sometimes the right engineering choice, but where
+   multiple realizations satisfy the obligations, specifying every decision sacrifices the delegation
+   advantage. **Refine an existing paragraph; do not create a subsection.**
+5. **Chapter 7 §7.3.2, before "The software case was therefore a fortuitous place"** — the SHORT
+   analytical callback (brief §2), not the longer §4 draft it supersedes. Software is favorable
+   because it combines realization freedom with controlled-change machinery; other domains may have
+   equally rich representations but fewer delegable, independently evaluable choices.
+6. **Chapter 7 §7.3.3** — one sentence tying the accounting/law contrast to delegable freedom under
+   adequate evaluation.
+
+Also **check** (not necessarily edit): does Chapter 6's theory recognize the *value of preserving*
+degrees of freedom, or does it treat Modeling and Alignment solely as error- and cost-reduction? The
+author flagged this as the thread's deepest implication.
+
+Constraints the author set: **no new named principle, no new terminology, no new figure or equation**
+(the book already has degrees of freedom, purposeful reduction, tolerances, engineering economics);
+no mathematical construct in Chapter 7 — the economics belong in Chapter 6; leave §7.3.5 alone; do
+not claim a complete specification means MAGE failed; do not say legal work reduces to prompting.
+Chapter 7's callback must advance the idea, not repeat Chapter 1's examples.
+
+## [FIX] Conclusion heading: rename to match its first-person body
+
+`## The question we asked` now sits above "In the Preface, **I** asked" after the first-person pass.
+**Author ruled: rename.** Verified safe — `the-question-we-asked` has **no authored references**
+(no `{{sec:}}`, `[ref:]`, or prose mention); it appears only in three DERIVED files
+(`reverse_index.json`, `outline.json`, `models-view.html`), which regenerate through their
+generators. So: edit the heading, re-derive, commit together. Do it on the `conclusion-rewrite`
+branch once its gate clears.

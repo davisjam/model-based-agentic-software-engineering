@@ -167,6 +167,14 @@ Non-negotiables learned the hard way:
 
 ### The mechanical pre-pass (cheap, run before reading prose)
 
+**Every check below is a DETECTOR, not a definition of good prose.** A count over threshold locates a
+passage to read; the reading decides. The author's standing caution, recorded after the chapter-1 and
+chapter-2 reviews: do not turn corrective-figure counts or duplicate-n-gram hits into hard stylistic
+rules. Both reviews protected repetition that a threshold would have flagged — a principle restated
+across a long technical chapter, and a five-item vocabulary repeated across two sections precisely to
+establish a correspondence. *"This is precisely the kind of repetition that a mechanical style pass
+might remove incorrectly."*
+
 1. Em-dash density per file; flag > 1 per 50 words.
 2. Corrective-figure census — *"X is not A. It is B."* and *"not merely/simply"*. More than ~3 per
    chapter is a finding, and the grep hits are the fix list.

@@ -30,7 +30,13 @@ apply) and the FIX. Collect findings as you go; rank and format them at the end.
 
 ## Pass 1 — LLM-tells / density scan
 
-The mechanical pass. Count things; a count over threshold is a finding.
+The mechanical pass. Count things — but a count over threshold is a **candidate to read, not a
+verdict**. These thresholds are detectors; they are not definitions of good prose, and a passage does
+not become defective by crossing one. Every count below has survived a case where the prose was right
+and the number was high: a corrective figure that genuinely corrects a likely misreading, a repeated
+n-gram that establishes a correspondence the reader needs, a dense dash passage carrying a real
+aside. **Open the hit, read the passage, and let the reading decide.** Treating these as rules is how
+a mechanical pass removes the repetition that was doing work — the author's standing caution.
 
 - **Em-dash density.** Count em-dashes (`—`) per 100 words, and flag any single sentence with two or more.
   **Detect:** more than ~1 dash per 40–50 words, or a passage that uses the dash for *every* aside,
