@@ -15,7 +15,8 @@ readings:
     - heading: How does experience become judgment?
       items:
         - cite: schon1983reflective
-          annotation: 'Schön, *The Reflective Practitioner: How Professionals Think in Action* (1983). Focus on reflection-in-action, reflection-on-action, and the repertoire a practitioner accumulates through experience. Read it as an account of how a professional comes to recognize a situation, not as a method to follow.'
+          locator: 'pp. 49–69 and 76–79'
+          annotation: 'Schön, *The Reflective Practitioner: How Professionals Think in Action* (1983). These pages describe the challenges of articulating what one knows, together with a concise summary of design as modeling. Focus on reflection-in-action, reflection-on-action, and the repertoire a practitioner accumulates through experience. Read it as an account of how a professional comes to recognize a situation, not as a method to follow.'
     - heading: How does an organization learn from failure?
       items:
         - cite: lunney2016postmortem
