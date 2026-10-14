@@ -436,11 +436,11 @@
       "primary_unit": "part-3",
       "secondary_units": [],
       "verb": "construct",
-      "obj": "the governed environment — its layers, its ex-ante and ex-post mechanisms, its lifecycles, and its metrics",
-      "statement": "After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper.",
+      "obj": "the governed environment — its layers, its up-front and learned mechanisms, its lifecycles, and its metrics",
+      "statement": "After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, separate up-front obligations from what the work teaches, write lifecycles and runbooks, and measure one level deeper.",
       "bloom": "create",
       "provenance": "declared",
-      "anchor": "Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (ex-ante/ex-post) -> lifecycles/runbooks -> metrics -> when-guardrails-collide.",
+      "anchor": "Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (up-front / governance conversion) -> lifecycles/runbooks -> metrics -> when-guardrails-collide.",
       "gap_note": null
     },
     {
@@ -566,18 +566,18 @@
       "gap_note": null
     },
     {
-      "outcome_id": "governance-conversion::distinguish-ex-ante-obligations-from-ex-post-ones-an",
+      "outcome_id": "governance-conversion::distinguish-obligations-known-up-front-from-those-th",
       "granularity": "chapter",
       "primary_unit": "governance-conversion",
       "secondary_units": [
         "when-guardrails-collide"
       ],
       "verb": "distinguish",
-      "obj": "ex-ante obligations from ex-post ones and convert a recurring failure into the durable structure it was missing as engineering capital",
-      "statement": "After this chapter, the reader can split ex-ante obligations from ex-post ones, convert a recurring failure into the durable structure it was missing — a model, invariant, sensor, validator, or authority — as engineering capital, and place any obligation among residual, judgment-required, observed-only, or governed.",
+      "obj": "obligations known up front from those the work teaches, and convert a recurring failure into the durable structure it was missing as engineering capital",
+      "statement": "After this chapter, the reader can separate obligations known up front from those the work teaches, convert a recurring failure into the durable structure it was missing — a model, invariant, sensor, validator, or authority — as engineering capital, and place any obligation among residual, judgment-required, observed-only, or governed.",
       "bloom": "understand",
       "provenance": "derived",
-      "anchor": "point: a-governed-environment-grows-ex-ante-and-ex-post-with-conversion-the-hinge / the-conversion-lands-in-one-of-five-places / governance-conversion-forms-engineering-capital-the-positive-stock / where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
+      "anchor": "point: a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches / the-conversion-lands-in-one-of-five-places / governance-conversion-forms-engineering-capital-the-positive-stock / where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
       "gap_note": null
     },
     {
@@ -613,10 +613,10 @@
       "secondary_units": [],
       "verb": "trace",
       "obj": "how engineering failures leave behind several FORMS of durable capital — representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement — some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
-      "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the ex-post and ex-ante paths, and state what a single longitudinal case can and cannot establish.",
+      "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the two routes to durable structure, and state what a single longitudinal case can and cannot establish.",
       "bloom": "analyze",
       "provenance": "declared",
-      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the ex-ante confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'.",
+      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the up-front confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'.",
       "gap_note": null
     },
     {

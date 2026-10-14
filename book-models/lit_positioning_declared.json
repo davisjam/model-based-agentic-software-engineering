@@ -232,7 +232,7 @@
       "title": "Incident learning / governance conversion",
       "x": "Mature engineering converts failures into durable controls — resilience engineering, blameless postmortems, poka-yoke (Hollnagel/Woods/Leveson; Google SRE Ch.15; Shingo).",
       "y": "Agentic velocity surfaces novel, unforeseeable failures faster than any playbook anticipates.",
-      "z": "MAGE names the promotion rule: ex-post failure -> human classification -> recurring obligation -> ex-ante environmental control.",
+      "z": "MAGE names the promotion rule: a failure in use -> human classification -> recurring obligation -> up-front environmental control.",
       "target_locations": [
         "governance-conversion"
       ],
@@ -267,7 +267,7 @@
       ],
       "status": "landed",
       "fold_target": "",
-      "notes": "SMALL standalone wave — LANDED (LPP-PROSE) in 2.3-the-governed-environment, the ex-post governance-conversion beat: a one-paragraph lineage (manufacturing / resilience engineering / SRE blameless postmortems / Shingo poka-yoke) placed between the failure-seen-twice sentence and the 'either way, a mechanism takes one of two forms' transition, then MAGE's promotion rule and the velocity ingredient. Anchors the manuscript's existing Toyota/poka-yoke/jidoka/SRE mentions to primary sources (Shingo for poka-yoke, not a secondary summary). All three VERIFIED-ESTAB (ISBN). target_locations trimmed to 2.3 (the actual landing). illustrates_pattern=self-governance on all three (§8 prior-art double-duty: convert-a-recurring-failure-into-a-control)."
+      "notes": "SMALL standalone wave — LANDED (LPP-PROSE) in 2.3-the-governed-environment, the governance-conversion beat: a one-paragraph lineage (manufacturing / resilience engineering / SRE blameless postmortems / Shingo poka-yoke) placed between the failure-seen-twice sentence and the 'either way, a mechanism takes one of two forms' transition, then MAGE's promotion rule and the velocity ingredient. Anchors the manuscript's existing Toyota/poka-yoke/jidoka/SRE mentions to primary sources (Shingo for poka-yoke, not a secondary summary). All three VERIFIED-ESTAB (ISBN). target_locations trimmed to 2.3 (the actual landing). illustrates_pattern=self-governance on all three (§8 prior-art double-duty: convert-a-recurring-failure-into-a-control)."
     },
     {
       "id": "fallible-oracles-swebench",
@@ -466,7 +466,7 @@
       ],
       "status": "landed",
       "fold_target": "",
-      "notes": "AUTHOR-SUPPLIED (coordinator, 260803) — LANDED (LPP-PROSE) in 2.3-the-governed-environment, right after the chapter intro's 'two forms every governance mechanism finally takes', before the ex-ante section. A light 2-3-sentence convergent-evidence note: the field is beginning to formalize governance of agentic SE (Ait et al.'s policy DSL for human-agent collaboration, ASE 2025 NIER); MAGE develops a full governed environment well beyond a single policy language. Respectful, non-dismissive per the author's steer. relation=convergent-evidence (they independently converge on governing agentic SE, NOT 'establish'). ait2025governance (arXiv 2510.14465) added to references.bib."
+      "notes": "AUTHOR-SUPPLIED (coordinator, 260803) — LANDED (LPP-PROSE) in 2.3-the-governed-environment, right after the chapter intro's 'two forms every governance mechanism finally takes', before the up-front section. A light 2-3-sentence convergent-evidence note: the field is beginning to formalize governance of agentic SE (Ait et al.'s policy DSL for human-agent collaboration, ASE 2025 NIER); MAGE develops a full governed environment well beyond a single policy language. Respectful, non-dismissive per the author's steer. relation=convergent-evidence (they independently converge on governing agentic SE, NOT 'establish'). ait2025governance (arXiv 2510.14465) added to references.bib."
     },
     {
       "id": "empirical-measurement-regime",

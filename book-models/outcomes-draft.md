@@ -59,7 +59,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 3 — Alignment
 
-- **[DECLARED]** (create) After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (ex-ante/ex-post) -> lifecycles/runbooks -> metrics -> when-guardrails-collide._
+- **[DECLARED]** (create) After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, separate up-front obligations from what the work teaches, write lifecycles and runbooks, and measure one level deeper. — _anchor: Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (up-front / governance conversion) -> lifecycles/runbooks -> metrics -> when-guardrails-collide._
 - _elaborates (owned by the program):_ (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head.
 - _elaborates (owned by models-and-the-semantic-gap):_ (understand) After this chapter, the reader can explain why agreement is not correctness — authority needs an obligation independent of the work being judged — and place a mechanism at the earliest boundary where that obligation is legible and enforceable.
 

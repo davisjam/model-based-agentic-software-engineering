@@ -9,7 +9,7 @@ mechanical blocking lint). Colored by enforcement (deterministic/blocking vs
 probabilistic/advisory vs measurement).
 
 Standalone: reads ../../data/factory-archaeology-260925/governance_conversions.csv. matplotlib only.
-Small N (book episodes). Confirmations (ex-ante, not conversions) shown
+Small N (book episodes). Confirmations (designed up front, not conversions) shown
 separately and NOT mixed in.
 """
 from __future__ import annotations
@@ -100,7 +100,7 @@ def main():
     for i, c in enumerate(counts):
         ax.text(c + 0.02, i, str(c), va="center", fontsize=9)
     ax.set_title("F10 — What experience became: governance-conversion episodes by control category\n"
-                 "(12 book conversion episodes; 3 ex-ante confirmations excluded; bar colour = enforcement class)")
+                 "(12 book conversion episodes; 3 up-front confirmations excluded; bar colour = enforcement class)")
     ax.set_xlabel("number of conversion episodes")
     ax.set_xlim(0, max(counts) + 1)
     handles = [Patch(color=ENF_COLOR[k]) for k in ENF_COLOR]

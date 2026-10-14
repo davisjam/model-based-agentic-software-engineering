@@ -4,7 +4,7 @@
 Standalone: reads ../../data/factory-archaeology-260925/governance_conversion_series.csv. matplotlib only.
 
 SMALL N: these are the book's ~12 narrative governance-conversion episodes
-(plus 3 ex-ante confirmations), NOT a mechanical census of every control.
+(plus 3 up-front confirmations), NOT a mechanical census of every control.
 Dates are approximate (book narrative + git anchors). Read as a documented,
 named discipline, not a measured rate. See ../../data/factory-archaeology-260925/provenance/C_governance_conversion.md.
 """

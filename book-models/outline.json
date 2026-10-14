@@ -2120,42 +2120,42 @@
       "part": 3,
       "sections": [
         {
-          "section_id": "ex-ante-encode-what-you-already-know",
+          "section_id": "up-front-encode-what-you-already-know",
           "level": 2,
-          "heading_text": "Ex Ante: Encode What You Already Know",
+          "heading_text": "Up Front: Encode What You Already Know",
           "topic_sentence": "Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable.",
           "id_source": "derived",
           "block_index": 8,
           "points": [
             {
-              "slug": "ex-ante-encode-obligations-you-can-state-before-the-work-begins",
-              "text": "Ex ante: encode the obligations you can state up front, and stop paying judgment for them.",
+              "slug": "up-front-encode-obligations-you-can-state-before-the-work-begins",
+              "text": "Up front: encode the obligations you can state before the work begins, and stop paying judgment for them.",
               "block_index": 10
             }
           ]
         },
         {
-          "section_id": "ex-post-convert-what-the-work-teaches",
+          "section_id": "as-you-learn-convert-what-the-work-teaches",
           "level": 2,
-          "heading_text": "Ex Post: Convert What the Work Teaches",
+          "heading_text": "As You Learn: Convert What the Work Teaches",
           "topic_sentence": "The harder half begins when the system surprises you.",
           "id_source": "derived",
           "block_index": 15,
           "points": [
             {
-              "slug": "ex-post-diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate",
-              "text": "Ex post: diagnose what was missing; not every failure calls for another gate.",
+              "slug": "diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate",
+              "text": "Diagnose what was missing; not every failure calls for another gate.",
               "block_index": 17
             },
             {
               "slug": "the-conversion-lands-in-one-of-five-places",
               "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement.",
-              "block_index": 20
+              "block_index": 19
             },
             {
               "slug": "modeling-and-alignment-form-a-feedback-loop",
               "text": "Alignment failures expose tacit knowledge or obligations that Modeling can externalize.",
-              "block_index": 25
+              "block_index": 24
             }
           ]
         },
@@ -2165,12 +2165,12 @@
           "heading_text": "Correct Judgment Without Enforcement",
           "topic_sentence": "A merge automation drained a backlog of agent worktrees into the mainline each tick.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 27,
           "points": [
             {
               "slug": "judgment-without-consequence-governance-conversion-can-delete-a-capability",
               "text": "Governance conversion can add a mechanism; it can also delete a capability the environment should never have offered.",
-              "block_index": 30
+              "block_index": 29
             }
           ]
         },
@@ -2180,42 +2180,42 @@
           "heading_text": "Engineering Capital",
           "topic_sentence": "Governance conversion motivates a useful accounting concept: **engineering capital**.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 34,
           "points": [
             {
               "slug": "governance-conversion-forms-engineering-capital-the-positive-stock",
               "text": "Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for.",
-              "block_index": 37
+              "block_index": 36
             },
             {
               "slug": "the-asset-is-something-you-can-point-at",
               "text": "The capital must be something future work can actually inherit — a concrete asset you can point at.",
-              "block_index": 40
+              "block_index": 39
             },
             {
               "slug": "capital-earns-a-return-lower-marginal-engineering-cost",
               "text": "Capital earns a return: lower marginal engineering cost. Conversion is capital formation.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "engineering-capital-can-transfer-between-projects",
               "text": "Engineering capital can transfer between projects in two forms: process automation reused or adapted directly, and principles applied to establish and enforce a new architecture.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "inherited-capital-improves-starting-conditions-without-supplying-every-control",
               "text": "Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs.",
-              "block_index": 45
+              "block_index": 44
             },
             {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 47
+              "block_index": 46
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 50
+              "block_index": 49
             }
           ]
         },
@@ -2225,60 +2225,60 @@
           "heading_text": "Where Enforcement Stops",
           "topic_sentence": "Not every quality goal should end in enforcement.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 51,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 54
+              "block_index": 53
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 60
+              "block_index": 59
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
-              "block_index": 62
+              "block_index": 61
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision.",
-              "block_index": 64
+              "block_index": 63
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineering chose, not a narrower acceptable set.",
-              "block_index": 66
+              "block_index": 65
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 68
+              "block_index": 67
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
               "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration.",
-              "block_index": 70
+              "block_index": 69
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 72
+              "block_index": 71
             }
           ]
         }
       ],
       "preamble_points": [
         {
-          "slug": "a-governed-environment-grows-ex-ante-and-ex-post-with-conversion-the-hinge",
-          "text": "A governed environment grows ex ante and ex post; governance conversion is the ex post route.",
+          "slug": "a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches",
+          "text": "A governed environment grows from obligations already known and from what the work teaches; governance conversion is the second route.",
           "block_index": 0
         }
       ]
@@ -2436,7 +2436,7 @@
         },
         {
           "slug": "successful-environments-accumulate-machinery-so-the-estate-is-a-portfolio-to-manage",
-          "text": "Governance conversion and ex ante design accumulate control machinery; that machinery becomes an engineering object to maintain, reconcile, and sometimes retire.",
+          "text": "Governance conversion and up-front design accumulate control machinery; that machinery becomes an engineering object to maintain, reconcile, and sometimes retire.",
           "block_index": 3
         },
         {
@@ -3426,7 +3426,7 @@
               "block_index": 207
             },
             {
-              "slug": "the-case-contains-both-ex-post-and-ex-ante-paths",
+              "slug": "the-case-contains-both-routes-to-durable-structure",
               "text": "Not every structure was forced by failure: the reactive backend, the closed edit vocabulary, and the unified rule engine were designed from known obligations and simply held.",
               "block_index": 209
             }
@@ -4180,7 +4180,7 @@
               "block_index": 29
             },
             {
-              "slug": "two-routes-ex-ante-and-ex-post",
+              "slug": "two-routes-to-durable-structure",
               "text": "Durable structure has two routes: before failure from known obligations, after experience from use (governance conversion).",
               "block_index": 31
             },
