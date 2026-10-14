@@ -142,7 +142,7 @@ question: what should persist.
 **Trigger:** "harden this repo," "what guardrails am I missing," "review my governance
 posture," a periodic review.
 
-AUDIT is governance conversion run in bulk, ex-post: instead of converting one fresh
+AUDIT is governance conversion run in bulk, after the fact: instead of converting one fresh
 failure, walk the failures the repo has *already* seen and ask which never converted.
 
 1. **Learn the repo and gauge its scale first.** What agents run, how many at once, what
@@ -168,7 +168,7 @@ failure, walk the failures the repo has *already* seen and ask which never conve
    definition). Those stay human review; naming them is what makes the mechanized coverage
    credible. Authoring the missing spec is the one shrink move.
 
-The **design-time trait scan** — the ex-ante half of the old AUDIT — is *situation
+The **design-time trait scan** — the up-front half of the old AUDIT — is *situation
 recognition*, so it lives in [`practice/situations.md`](../practice/situations.md) with its
 YAGNI gate ("name the near-certain failure or no row"). AUDIT runs it over a *proposed*
 design, then routes each named trait back through this menu.

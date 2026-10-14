@@ -206,7 +206,7 @@ Two cases matter as much as the ten above, because reaching for machinery here *
 
 ---
 
-## Design-time smells (ex-ante recognition)
+## Design-time smells (up-front recognition)
 
 The ten situations above are mostly recognized *after* a symptom appears. A few structural traits make
 a failure class near-certain *before* anyone has felt it, so recognizing them while a design is still
