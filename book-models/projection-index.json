@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 815,
+    "total_sites": 821,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 477,
+      "book-web": 483,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -228,6 +228,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 5
+          },
+          {
             "file": "book/web/docs/appendix-j-experimental-substrate.md",
             "occ": 1
           },
@@ -245,7 +249,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 20
+            "occ": 22
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -267,7 +271,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 61
+            "occ": 62
           }
         ]
       },
@@ -1276,6 +1280,10 @@
             "occ": 9
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 18
+          },
+          {
             "file": "book/web/docs/appendix-j-experimental-substrate.md",
             "occ": 15
           },
@@ -1313,7 +1321,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 114
+            "occ": 118
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1367,7 +1375,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 125
+            "occ": 126
           }
         ]
       },
@@ -1626,6 +1634,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/appendix-j-experimental-substrate.md",
             "occ": 1
           },
@@ -1669,7 +1681,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 47
           }
         ]
       },
@@ -2126,6 +2138,10 @@
             "occ": 4
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 3
+          },
+          {
             "file": "book/web/docs/appendix-j-experimental-substrate.md",
             "occ": 6
           },
@@ -2159,7 +2175,7 @@
           },
           {
             "file": "book/web/docs/colophon.md",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/web/docs/figures.md",
@@ -2205,7 +2221,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 106
+            "occ": 107
           }
         ]
       },
@@ -2978,6 +2994,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 6
+          },
+          {
             "file": "book/web/docs/appendix-j-experimental-substrate.md",
             "occ": 8
           },
@@ -2987,7 +3007,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 34
+            "occ": 37
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3029,7 +3049,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 47
           }
         ]
       },
@@ -3500,6 +3520,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-j-development-completeness.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/figures.md",
             "occ": 10
           }
@@ -3507,7 +3531,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 11
           }
         ]
       },

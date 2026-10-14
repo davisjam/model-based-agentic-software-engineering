@@ -3564,6 +3564,11 @@ _APPENDIX_CRAZY_IDEAS_OPENING_SLUG = "appendix-crazy-ideas"
 _CRAZY_IDEAS_PAGES: list[tuple[str, str]] = [
     ("experimental-substrate", "Commodity Intelligence as an Experimental Instrument for Software Engineering"),
     ("model-induction",        "Model Induction from Realized Work"),
+    # I.3 — recovered 261014 from the removed §6.2.x "Development completeness" (added 549aca37e,
+    # deleted 65645cfe7 when the Part VI renumber removed the whole host file). Parked here rather than
+    # re-homed in Part VI or VII: it proposes a new measurement axis and argues the field should adopt
+    # it, which is a position-paper move, not a claim the book needs. NIER-paper material.
+    ("development-completeness", "Development Completeness as a Second Axis of Openness"),
 ]
 
 

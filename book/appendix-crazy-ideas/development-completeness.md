@@ -1,0 +1,96 @@
+The book has made the governed engineering environment the primary engineering asset. One consequence
+lands on open source, and it wants stating carefully, because the reflex is to overclaim. Software firms
+have long shipped source while withholding what makes source easy to change — an absent design manual,
+internal build tooling, the operational know-how that never left the building. Agentic engineering does
+not invent that gap between having the code and being able to evolve it. It enlarges it. As more of an
+organization's effective development capability moves into models, skills, validators, policies, and
+context machinery, a larger fraction of what lets the originating team change the system quickly and
+safely comes to sit outside the production source tree.
+
+The open-weights debate is the near analogy. Model weights without the training data, recipe, and
+evaluation regime are inspectable and modifiable, and still do not hand you the originating lab's
+capacity to produce the next version. Source without the governed environment is the software echo:
+forkable code that does not by itself reproduce the loop through which the upstream fleet reliably
+modifies it.
+
+The literature already knows this shape, one layer at a time. The Open Source Definition ties openness
+to the "preferred form in which a programmer would modify the program" and rejects deliberately
+obfuscated source [cite:osiOpenSourceDefinition] — openness has never meant "whatever artifact happens
+to be human-readable." Reproducible-build research makes the next move downstream: source availability
+does not by itself establish that a distributed binary corresponds to that source, so trustworthy
+reconstruction depends on the build environment and instructions too [cite:lamb2021reproducible]
+[cite:fourne2023reproducible], tooling exists to hunt the discrepancy between published sources and the
+packages actually shipped [cite:vu2021lastpymile], and rebuild studies at scale confirm that
+reproducibility hinges on controlling environmental detail, not on the source alone
+[cite:courtes2023guix] [cite:malka2025nix] [cite:sharma2025canonicalization]. A separate strand shows that
+legally open code can still be hard to extend when the surrounding knowledge is missing — documentation
+and newcomer barriers impede contribution [cite:steinmacher2015barriers], and feature knowledge is often
+scattered through prose with rare explicit links back to the code [cite:puhlfurss2022documentation]. The
+Open Source AI Definition then met the same question one field over, extending "preferred form for
+modification" past weights to the data and process information a skilled person needs to rebuild a
+substantially equivalent system [cite:osiOpenSourceAIDefinition]. MAGE suggests the analogous next step
+for agentic software: as environment artifacts become part of the effective means by which a project is
+modified, practical modifiability may increasingly depend on whether those artifacts are shared too.
+
+> **Inset — the right-to-repair analogy.** A machine can be owned outright and still be hard to repair
+> without the maker's diagnostic tools and manuals. In July 2026 the FTC and five states settled with
+> Deere & Company, requiring it to give farmers and independent shops the repair resources authorized
+> dealers already held: diagnostic and fault-code tools, component reprogramming, restart capability, and
+> technical documentation [cite:ftc2026deere]. The owner already had the tractor; what was withheld was
+> the capability to diagnose and restore it. Read as an engineering principle, not legal precedent, it
+> names the distinction this note draws — possessing the artifact is not possessing the means to evolve
+> it. The progression runs continuously: OSI ties openness to the form used for modification; reproducible
+> builds show source alone may not rebuild the artifact; right-to-repair shows owning the artifact may not
+> supply the tools to maintain it; MAGE suggests source alone may increasingly fail to reproduce the
+> capacity to evolve a system safely at scale. So the open-software question becomes not only whether the
+> source is available, but how much of the effective development environment is shared with it.
+
+This does not redefine open source, and it should not. OSI openness concerns licenses and rights, and
+OSI itself treats reproducibility as a requirement layered on top of openness rather than identical to
+it. The cleaner move is a second axis. Source openness asks whether outsiders hold the legal and
+technical artifact they may modify. **Development completeness** asks how much of the originating team's
+capacity to modify it has been shared as well. That axis admits degrees:
+
+- source available → build reproducible → tests reproducible → engineering-knowledge available →
+  governance reproducible → agentic-development-environment reproducible.
+
+A project can be fully open at the first rung and progressively less complete at the later ones. The
+progression measures; it does not indict. Where a project stops describes it, and no rung is owed.
+
+The supply-chain reading is the sharper half. Conventional supply-chain thinking already counts build
+tools, compilers, and CI systems: components that shape an artifact without shipping inside it. The
+extension is that judgment-bearing artifacts now join that chain. Third-party skills, MCP and tool
+servers, agent profiles, policy bundles, context providers, and validators can causally change what code
+an agent produces even though none of them ship in the product. This connects straight to the governance
+graph the book drew. An imported skill can collide with a local one; a vendor validator can carry
+assumptions the project's model rejects. Those are supply-chain composition problems inside the
+environment, not the artifact. Industry is beginning to treat them that way. A major vendor now runs
+third-party skills through a multi-stage supply chain of review, scanning, evaluation, signing, and
+provenance [cite:nvidia2026verifiedskills], and a study of policy-as-code adoption finds governance and
+configuration concerns already externalized into machine-readable project artifacts across hundreds of
+repositories [cite:foalem2026policyascode]. Portions of the environment are becoming source-like
+artifacts in ordinary open source.
+
+The commercial angle follows without sensation. Firms have long opened code while keeping operational
+expertise, internal infrastructure, and tooling; a proprietary governed environment is the agentic-era
+extension of that old asymmetry, with the moat sitting in accumulated engineering capital rather than in
+hidden source. A security-of-sharing corollary rides along: an organization may be able to publish
+larger, more consequential systems if the safety-critical engineering capability stays encoded in an
+environment it does not distribute. The flip side is equally real. If downstream users must then maintain
+the release without that environment, withholding it can make the release less sustainable rather than
+more secure — a recent treatment of the open-weights problem points the same direction, arguing that
+reconstructing an AI system may need code, data, weights, toolchain, and hardware configuration, not
+source alone [cite:hatta2026reproducibility].
+
+Where the analogy stops is where the novelty sits, and it is narrow. Environment artifacts may constitute
+a new layer of a project's effective development form and its supply chain precisely because they encode
+the judgment through which autonomous agents modify the source. The source tree tells you what the system
+is; the governed engineering environment increasingly decides how fast and how safely it can become
+something else. **Candidate research questions.**
+
+* What constitutes development completeness in an agentic open-source project?
+* Which environment artifacts should be counted part of the software supply chain?
+* Can commercial open source hold a durable advantage by opening the artifact while retaining parts of
+  the engineering environment?
+* Behind all three: what does it mean to share *enough* of a governed engineering environment for an
+  outsider to reproduce not merely the artifact, but the originating project's capacity to evolve it?
