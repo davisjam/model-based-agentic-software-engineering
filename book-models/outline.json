@@ -94,9 +94,9 @@
           "points": []
         },
         {
-          "section_id": "what-the-method-turned-out-to-be",
+          "section_id": "the-mage-method",
           "level": 2,
-          "heading_text": "What the method turned out to be",
+          "heading_text": "The MAGE Method",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
           "block_index": 46,
@@ -106,7 +106,7 @@
           "section_id": "who-this-book-is-for",
           "level": 2,
           "heading_text": "Who this book is for",
-          "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
+          "topic_sentence": "This book is for software engineers seeking to understand how autonomous agents change engineering practice.",
           "id_source": "derived",
           "block_index": 53,
           "points": []
@@ -5654,7 +5654,7 @@
           "section_id": "the-old-dream-with-a-new-substrate",
           "level": 2,
           "heading_text": "The Old Dream, with a New Substrate",
-          "topic_sentence": "The ambition is older than the present substrate.",
+          "topic_sentence": "The ambition predates today's coding agents.",
           "id_source": "derived",
           "block_index": 21,
           "points": [
@@ -5969,7 +5969,7 @@
       "preamble_points": [
         {
           "slug": "the-factorys-boundary-is-not-the-problems-boundary",
-          "text": "Zenseact's platform fell outside this book's definition of an agentic software factory and still presented the same engineering problem, so the boundary of the software factory is not the boundary of the underlying problem.",
+          "text": "Zenseact's platform fell outside this book's definition of an agentic software factory and still presented the same engineering problem, showing that the engineering problem is not confined to systems that produce software changes themselves.",
           "block_index": 4
         }
       ]
@@ -6469,7 +6469,7 @@
             },
             {
               "slug": "the-question-is-what-stays-explicit-not-how-little",
-              "text": "The open question is what engineering knowledge should remain explicit, in what representation, and for what purpose — the boundary being which consequential properties are worth taking out of probabilistic inference.",
+              "text": "Better agents reduce what must be stated for realization while better representations and assurance change what must be stated for control — the boundary being which consequential properties are worth taking out of probabilistic inference.",
               "block_index": 28
             },
             {
