@@ -14,9 +14,7 @@ We first state the theory and its predictions, then bound them with explicit sco
 costs something to build, maintain, coordinate, and govern, and not every engineering judgment can or
 should become durable machinery.
 
-The final section turns the theory, predictions, and scope conditions into a research agenda: what to
-measure, which comparisons could distinguish the proposed mechanisms, which quantities remain unknown,
-and what evidence would strengthen or weaken the account.
+The final section turns the theory, predictions, and scope conditions into a research agenda.
 
 The objective is not to declare MAGE a universal law of software engineering—or of agentic work more
 generally. It is to make the explanation precise enough to be wrong. The evidence behind the theory comes
