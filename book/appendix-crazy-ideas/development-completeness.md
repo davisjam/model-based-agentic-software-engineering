@@ -15,20 +15,18 @@ modifies it.
 
 The literature already knows this shape, one layer at a time. The Open Source Definition ties openness
 to the "preferred form in which a programmer would modify the program" and rejects deliberately
-obfuscated source [cite:osiOpenSourceDefinition] — openness has never meant "whatever artifact happens
+obfuscated source[cite: osiOpenSourceDefinition] — openness has never meant "whatever artifact happens
 to be human-readable." Reproducible-build research makes the next move downstream: source availability
 does not by itself establish that a distributed binary corresponds to that source, so trustworthy
-reconstruction depends on the build environment and instructions too [cite:lamb2021reproducible]
-[cite:fourne2023reproducible], tooling exists to hunt the discrepancy between published sources and the
-packages actually shipped [cite:vu2021lastpymile], and rebuild studies at scale confirm that
-reproducibility hinges on controlling environmental detail, not on the source alone
-[cite:courtes2023guix] [cite:malka2025nix] [cite:sharma2025canonicalization]. A separate strand shows that
+reconstruction depends on the build environment and instructions too,[cite: lamb2021reproducible][cite: fourne2023reproducible] tooling exists to hunt the discrepancy between published sources and the
+packages actually shipped,[cite: vu2021lastpymile] and rebuild studies at scale confirm that
+reproducibility hinges on controlling environmental detail, not on the source alone.[cite: courtes2023guix][cite: malka2025nix][cite: sharma2025canonicalization] A separate strand shows that
 legally open code can still be hard to extend when the surrounding knowledge is missing — documentation
-and newcomer barriers impede contribution [cite:steinmacher2015barriers], and feature knowledge is often
-scattered through prose with rare explicit links back to the code [cite:puhlfurss2022documentation]. The
+and newcomer barriers impede contribution,[cite: steinmacher2015barriers] and feature knowledge is often
+scattered through prose with rare explicit links back to the code.[cite: puhlfurss2022documentation] The
 Open Source AI Definition then met the same question one field over, extending "preferred form for
 modification" past weights to the data and process information a skilled person needs to rebuild a
-substantially equivalent system [cite:osiOpenSourceAIDefinition]. MAGE suggests the analogous next step
+substantially equivalent system.[cite: osiOpenSourceAIDefinition] MAGE suggests the analogous next step
 for agentic software: as environment artifacts become part of the effective means by which a project is
 modified, practical modifiability may increasingly depend on whether those artifacts are shared too.
 
@@ -36,7 +34,7 @@ modified, practical modifiability may increasingly depend on whether those artif
 > without the maker's diagnostic tools and manuals. In July 2026 the FTC and five states settled with
 > Deere & Company, requiring it to give farmers and independent shops the repair resources authorized
 > dealers already held: diagnostic and fault-code tools, component reprogramming, restart capability, and
-> technical documentation [cite:ftc2026deere]. The owner already had the tractor; what was withheld was
+> technical documentation.[cite: ftc2026deere] The owner already had the tractor; what was withheld was
 > the capability to diagnose and restore it. Read as an engineering principle, not legal precedent, it
 > names the distinction this note draws — possessing the artifact is not possessing the means to evolve
 > it. The progression runs continuously: OSI ties openness to the form used for modification; reproducible
@@ -66,9 +64,9 @@ graph the book drew. An imported skill can collide with a local one; a vendor va
 assumptions the project's model rejects. Those are supply-chain composition problems inside the
 environment, not the artifact. Industry is beginning to treat them that way. A major vendor now runs
 third-party skills through a multi-stage supply chain of review, scanning, evaluation, signing, and
-provenance [cite:nvidia2026verifiedskills], and a study of policy-as-code adoption finds governance and
+provenance,[cite: nvidia2026verifiedskills] and a study of policy-as-code adoption finds governance and
 configuration concerns already externalized into machine-readable project artifacts across hundreds of
-repositories [cite:foalem2026policyascode]. Portions of the environment are becoming source-like
+repositories.[cite: foalem2026policyascode] Portions of the environment are becoming source-like
 artifacts in ordinary open source.
 
 The commercial angle follows without sensation. Firms have long opened code while keeping operational
@@ -80,7 +78,7 @@ environment it does not distribute. The flip side is equally real. If downstream
 the release without that environment, withholding it can make the release less sustainable rather than
 more secure — a recent treatment of the open-weights problem points the same direction, arguing that
 reconstructing an AI system may need code, data, weights, toolchain, and hardware configuration, not
-source alone [cite:hatta2026reproducibility].
+source alone.[cite: hatta2026reproducibility]
 
 Where the analogy stops is where the novelty sits, and it is narrow. Environment artifacts may constitute
 a new layer of a project's effective development form and its supply chain precisely because they encode
