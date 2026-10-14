@@ -7,7 +7,7 @@
     "derived_ids": 207,
     "missing_topic_sentence": 4,
     "sections_drained": 159,
-    "paragraph_points": 830
+    "paragraph_points": 835
   },
   "chapters": [
     {
@@ -148,7 +148,7 @@
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
-              "text": "External representation, memory, and tools have long improved machine reasoning; MAGE changes the engineering object: the engineered environment through which autonomous work proceeds over time.",
+              "text": "External representation, memory, and tools have long improved machine reasoning; MAGE shifts the primary engineering focus to the engineered environment through which autonomous work proceeds over time.",
               "block_index": 34
             }
           ]
@@ -489,7 +489,7 @@
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
-              "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run — represent an architectural restriction and reject changes that violate it — so the judgment that established the obligation is reused across later implementation.",
+              "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run: it can represent an architectural boundary, a dependency rule, or a safety condition and reject changes that violate it, so the judgment that established the obligation is reused across later implementation.",
               "block_index": 56
             },
             {
@@ -2198,14 +2198,24 @@
               "block_index": 41
             },
             {
+              "slug": "engineering-capital-can-transfer-between-projects",
+              "text": "Engineering capital can transfer between projects in two forms: process automation reused or adapted directly, and principles applied to establish and enforce a new architecture.",
+              "block_index": 43
+            },
+            {
+              "slug": "inherited-capital-improves-starting-conditions-without-supplying-every-control",
+              "text": "Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs.",
+              "block_index": 45
+            },
+            {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 43
+              "block_index": 47
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 46
+              "block_index": 50
             }
           ]
         },
@@ -2215,52 +2225,52 @@
           "heading_text": "Where Enforcement Stops",
           "topic_sentence": "Not every quality goal should end in enforcement.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 52,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 50
+              "block_index": 54
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 53
+              "block_index": 57
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 56
+              "block_index": 60
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
-              "block_index": 58
+              "block_index": 62
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision.",
-              "block_index": 60
+              "block_index": 64
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineering chose, not a narrower acceptable set.",
-              "block_index": 62
+              "block_index": 66
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 64
+              "block_index": 68
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
               "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration.",
-              "block_index": 66
+              "block_index": 70
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 68
+              "block_index": 72
             }
           ]
         }
@@ -5003,19 +5013,29 @@
               "block_index": 27
             },
             {
+              "slug": "managers-can-distinguish-two-sources-of-governance-investment",
+              "text": "A governed environment requires continuing investment from two sources: ex-ante governance for obligations already understood, and ex-post governance for what implementation reveals.",
+              "block_index": 29
+            },
+            {
+              "slug": "planning-must-account-for-construction-and-adaptation",
+              "text": "Initial investment improves the environment inherited by subsequent work, including other projects, but cannot remove the need to revise it as product, dependencies, and agent capabilities change.",
+              "block_index": 31
+            },
+            {
               "slug": "h5-mechanized-assurance",
               "text": "H5: repeatable independent mechanisms reduce defect escape at matched throughput, excluding covered failure regardless of producer reliability.",
-              "block_index": 29
+              "block_index": 33
             },
             {
               "slug": "h6-governance-conversion",
               "text": "H6: structural interventions reduce recurrence of a failure class net of carrying cost, non-monotonically once controls over-accumulate.",
-              "block_index": 31
+              "block_index": 35
             },
             {
               "slug": "h7-learning-propagation",
               "text": "H7: lessons reach later work faster and survive personnel turnover better when diagnosis connects to shared machine-actionable structure.",
-              "block_index": 33
+              "block_index": 37
             }
           ]
         },
@@ -5025,47 +5045,47 @@
           "heading_text": "Engineering Economics",
           "topic_sentence": "The economic predictions are the least settled of the three families.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 39,
           "points": [
             {
               "slug": "economic-predictions-least-settled-need-a-counterfactual",
               "text": "The economic predictions are least settled: estimating return needs a counterfactual amid moving capability and prices.",
-              "block_index": 36
+              "block_index": 40
             },
             {
               "slug": "strongest-economic-claim-hard-to-price-may-not-decompose",
               "text": "Durable structure can make later work cheaper or safer, but its return may not divide cleanly among individual artifacts.",
-              "block_index": 38
+              "block_index": 42
             },
             {
               "slug": "the-quantities-that-matter-are-returns-and-carrying-costs",
               "text": "The quantities that matter are returns and carrying costs, and how they change as the asset depreciates.",
-              "block_index": 40
+              "block_index": 44
             },
             {
               "slug": "capability-may-belong-to-the-environment-not-only-the-model",
               "text": "Effective capability may belong partly to the environment: a weaker model over a rich environment can outperform a stronger one.",
-              "block_index": 42
+              "block_index": 46
             },
             {
               "slug": "operationalize-capital-fix-the-agent-vary-the-environment",
               "text": "Measure capital by fixing the agent and task, varying the environment, and measuring the capability it contributes.",
-              "block_index": 44
+              "block_index": 48
             },
             {
               "slug": "h8-environment-fit",
               "text": "H8: added capacity yields throughput and lower attention where the environment fits, and churn where it fits poorly.",
-              "block_index": 46
+              "block_index": 50
             },
             {
               "slug": "outer-loop-corollary-governance-extends-the-realization-loop",
               "text": "Outer-loop corollary: stronger environments let intelligence assume more of the realization loop without proportionate attention growth.",
-              "block_index": 48
+              "block_index": 52
             },
             {
               "slug": "h9-capital-return-and-reciprocal-capacity",
               "text": "H9: durable structures return when cost reductions exceed construction and carrying costs; returns decline as fit is lost and reconciling beats accumulating; rising agentic capacity lowers construction and maintenance costs, moving the investment threshold.",
-              "block_index": 50
+              "block_index": 54
             }
           ]
         }
@@ -5615,18 +5635,23 @@
             },
             {
               "slug": "repocoder-sweagent-autocoderover-share-an-orientation",
-              "text": "RepoCoder, SWE-agent, and AutoCodeRover differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact.",
+              "text": "Retrieval, purpose-built interfaces, program analysis, and specification inference differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact.",
               "block_index": 13
+            },
+            {
+              "slug": "agent-governance-research-is-another-antecedent",
+              "text": "Agent-governance research translates obligations into controls across design-time, runtime, and assurance layers, evaluates actions against path-dependent policies, and integrates enforcement into an agent's operating environment; MAGE's governance-conversion process adds how implementation reveals missing obligations.",
+              "block_index": 15
             },
             {
               "slug": "mage-accepts-machinery-and-changes-the-object",
               "text": "MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation.",
-              "block_index": 15
+              "block_index": 17
             },
             {
               "slug": "the-difference-is-level-not-opposition",
               "text": "Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent.",
-              "block_index": 17
+              "block_index": 19
             }
           ]
         },
@@ -5636,12 +5661,12 @@
           "heading_text": "The Old Dream, with a New Substrate",
           "topic_sentence": "The ambition is older than the present substrate.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 21,
           "points": [
             {
               "slug": "the-old-dream-with-a-new-substrate",
               "text": "The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible.",
-              "block_index": 20
+              "block_index": 22
             }
           ]
         },
@@ -5651,72 +5676,72 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "As implementation becomes cheaper, the allocation of engineering work changes even if the eventual organization of that work remains uncertain.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 28,
           "points": [
             {
               "slug": "allocation-changes-even-where-the-eventual-organization-is-uncertain",
               "text": "As implementation becomes cheaper the allocation of engineering work changes, even though the eventual organization of that work stays uncertain: delegation expands, responsibility does not move with it, and scarce human effort concentrates where responsibility sits.",
-              "block_index": 27
+              "block_index": 29
             },
             {
               "slug": "the-figure-shows-redistribution-not-the-eventual-form",
               "text": "The figure identifies a redistribution of work, not the eventual form of software engineering: its governed environment holds several kinds of machinery, so nothing in it says that displaced engineering effort becomes modeling.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "where-displaced-effort-settles-depends-on-what-becomes-cheaper",
               "text": "Where displaced effort settles depends on which parts of the production system become cheaper and more reliable, and the theory of Chapter 6 names the quantities those improvements act on.",
-              "block_index": 33
+              "block_index": 35
             },
             {
               "slug": "four-trajectories-are-the-independent-variables-behind-the-uncertainty",
               "text": "Technological progress can move those terms independently: reasoners, representation machinery, realization machinery, and governance machinery can each improve at their own rate, and they are the independent variables that prevent a single confident forecast.",
-              "block_index": 35
+              "block_index": 37
             },
             {
               "slug": "better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them",
               "text": "Because the trajectories need not proceed together, commodity intelligence does not fix a single destination: better reasoners let engineering leave more freedom unresolved, but the perfect-reasoner limit bounds the gain, since stronger reasoning cannot recover intent the representation never encoded.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical",
               "text": "If explicit representations become cheap to construct, maintain, and reconcile, engineering can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "representation-engineering-broader-than-context-engineering",
               "text": "Retrieval asks which existing information to place before a reasoner; representation engineering asks whether the question should be expressed in a different form — only the latter changes the object of subsequent reasoning.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "cheap-reliable-realization-moves-effort-upstream",
               "text": "If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented.",
-              "block_index": 46
+              "block_index": 50
             },
             {
               "slug": "cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority",
               "text": "If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk.",
-              "block_index": 48
+              "block_index": 52
             },
             {
               "slug": "combinations-land-differently-for-different-properties-of-one-system",
               "text": "Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology.",
-              "block_index": 50
+              "block_index": 54
             },
             {
               "slug": "cabot-is-one-plausible-equilibrium-not-the-prediction",
               "text": "Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive.",
-              "block_index": 53
+              "block_index": 57
             },
             {
               "slug": "more-modeling-need-not-mean-more-permanently-maintained-models",
               "text": "More modeling need not mean more permanently maintained models: cheap machine reasoning lowers the recurrence threshold at which building a purposeful reduction pays, so a model can matter because reasoning passes through it rather than because an organization preserves it.",
-              "block_index": 56
+              "block_index": 60
             },
             {
               "slug": "recurring-judgment-becomes-engineering-capital-under-any-trajectory",
               "text": "Whichever trajectory dominates, recurring engineering judgment creates an opportunity for durable improvement: governance conversion turns an instance-solving review into a model, control, or procedure that later work inherits.",
-              "block_index": 58
+              "block_index": 62
             }
           ]
         },
@@ -5726,7 +5751,7 @@
           "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 65,
           "points": []
         },
         {
@@ -5735,22 +5760,22 @@
           "heading_text": "Engineering the Production System",
           "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 76,
           "points": [
             {
               "slug": "two-places-engineering-attention-can-go",
               "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
-              "block_index": 73
+              "block_index": 77
             },
             {
               "slug": "both-futures-contain-capable-agents-and-differ-in-where-judgment-goes",
               "text": "The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work.",
-              "block_index": 75
+              "block_index": 79
             },
             {
               "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
               "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
-              "block_index": 78
+              "block_index": 82
             }
           ]
         }
