@@ -5014,7 +5014,7 @@
             },
             {
               "slug": "managers-can-distinguish-two-sources-of-governance-investment",
-              "text": "A governed environment requires continuing investment from two sources: ex-ante governance for obligations already understood, and ex-post governance for what implementation reveals.",
+              "text": "A governed environment requires continuing investment from two sources: up-front governance for obligations already understood, and ongoing governance changes responding to what engineering experience reveals.",
               "block_index": 29
             },
             {
@@ -5867,12 +5867,12 @@
           "heading_text": "What MAGE Claims Is New",
           "topic_sentence": "The components of MAGE have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 41,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
               "text": "The components of MAGE have deep precedents; its claim concerns their architectural and disciplinary composition — redesign the environment when autonomous implementation becomes a primary productive substrate.",
-              "block_index": 43
+              "block_index": 42
             }
           ]
         }
