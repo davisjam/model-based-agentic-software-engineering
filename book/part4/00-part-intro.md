@@ -30,5 +30,4 @@ work inherits. Useful durable structure becomes engineering capital — capital 
 and cost more to maintain than it returns, so the chapter covers operation and retirement as well as
 accumulation.
 
-DocAble provides the principal case study, supplemented by examples from other organizations. The question here is
-practical: **what should you do next?**
+The question here is practical: **what should you do next?**
