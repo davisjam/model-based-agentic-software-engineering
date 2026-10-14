@@ -267,6 +267,28 @@ re-deriving these, so they live here:**
     hold still everything but the single property under measurement — and its control test must
     show the measurement still goes RED when the property is genuinely removed, or the fix is
     indistinguishable from a weakened probe.
+  - **The guessed-shape error has an ENVIRONMENT flavour, and the bullet above does not catch it —
+    THREE instances in one session on 261014.** The rule above says *dump the shape before asserting
+    on it*, which aims at an API object. The same error aims at the RUNTIME and the SERVING PATH,
+    where there is no object to dump: (a) a gate runner invoked `npm` through `subprocess` and died
+    instantly on **Node 20**, never having inherited nvm's pinned v24 — the same version skew that
+    had silently stopped `html-validate` validating earlier that day; (b) a CI poller returned five
+    empty reads because GitHub's single-run payload carries a raw control character and `json.load`
+    is **strict by default**, so the failure described the parser and read as "CI is telling me
+    nothing"; (c) a post-publish check fetched `book/part7/<file>.html` and got three identical
+    **404s at 9,378 bytes** — the published shape is `book/mage-book/<file>.html`. Taken literally,
+    (c) reports a broken publish of work that was in fact live, the expensive direction again.
+    **So: a probe must pin its own environment and derive its own paths, then assert both.** Prepend
+    the pinned toolchain and assert the version before the first real call (`node -v` against the
+    `.nvmrc` pin); parse third-party JSON with `strict=False` plus an assert on the key you need;
+    and resolve a URL from the artifact that LINKS to it (`grep href= index.html`), never from how
+    the repo lays sources out on disk — a built site routinely publishes under a different shape
+    than it stores. Identical byte counts across "different" responses mean you are reading one
+    error page, not three results.
+    A fourth instance, same session, in the EDIT path rather than a probe: this very bullet failed to
+    land twice because its anchor was quoted from memory (`show that the measurement` for the file's
+    `show the measurement`, then a guessed indent). Anchors are shapes too — `python3 -c` the exact
+    `repr()` of the lines before editing a file you have only seen quoted in context.
   - **A brief's `file:line` facts are claims, and the orchestrator is the worst-placed person to
     trust them.** The same failure recurred SIX times on 261004, always by the same mechanism: a
     `file:line` asserted into a brief from a grep hit, without reading enough around it.
