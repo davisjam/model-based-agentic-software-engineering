@@ -165,6 +165,25 @@ Non-negotiables learned the hard way:
 - **One writer on `main`; every agent gets a worktree.** Pathspec-commit, and expect the pre-commit
   hook's regenerated `book-models/*` to be orphaned by it — check `git status` before the next land.
 
+### Never paste a MEASURED number into a brief — name the command instead
+
+A brief may carry placements, prose, rulings, and constraints. It must not carry a measurement the
+orchestrator took by hand, because the agent can take it correctly and the orchestrator's copy only
+creates false confidence plus a conflicting instruction.
+
+Measured 261013-261014, three briefs, same failure: the orchestrator pasted paragraph-run headroom
+figures so agents would know which sections could take a new paragraph. The numbers were wrong twice
+and incomplete once — §7.3.2 was given as "~6, some headroom" and measures **10/10, zero**; §0.5.1
+and §1.1.1 were omitted from the table entirely and both measure **10/10**. Followed literally, three
+of the six edits in that thread would each have produced the blocking red the brief itself warned
+about. Both agents caught it because the brief ALSO said "measure before and after and report both
+numbers" — the instruction that survives contact is the one that tells the agent to measure.
+
+So: give the command (`python3 book-models/lint_paragraph_runs.py`), require before/after numbers in
+the report, and state the THRESHOLD and what to do when it is reached (fold into an adjacent
+paragraph). State the rule, not the reading. The same holds for word counts, finding counts, and any
+figure that a tool will emit — the orchestrator's transcription is one more place for it to go stale.
+
 ### The mechanical pre-pass (cheap, run before reading prose)
 
 **Every check below is a DETECTOR, not a definition of good prose.** A count over threshold locates a
