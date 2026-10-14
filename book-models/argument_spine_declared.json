@@ -125,7 +125,8 @@
         "claims": [
           "double-win",
           "ssot-not-snapshot",
-          "direction-agnostic"
+          "direction-agnostic",
+          "model-earns-keep-via-invariants"
         ],
         "big_ideas": [
           "modeling-principle"
@@ -142,7 +143,7 @@
     {
       "id": "alignment-principle",
       "order": 8,
-      "statement": "Make engineering obligations enforceable through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
+      "statement": "Make engineering obligations enforceable through mechanisms embedded in the environment: constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the properties those mechanisms state and check.",
       "seeds": [
         5
       ],
@@ -156,7 +157,7 @@
           "alignment-principle"
         ]
       },
-      "reviewed_hash": "5a24063f0dc6",
+      "reviewed_hash": "30be3be33d58",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation"
@@ -164,7 +165,7 @@
     {
       "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
+      "statement": "The principles are distinct: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every Alignment mechanism rests on some conception of acceptable realization (tacit, locally encoded, or externalized), which MAGE externalizes when consequential.",
       "seeds": [
         4,
         5
@@ -175,14 +176,14 @@
         ],
         "big_ideas": []
       },
-      "reviewed_hash": "218601e7dcb9",
+      "reviewed_hash": "9aa703578bb7",
       "quantifiable": false,
       "reality_claim": false
     },
     {
       "id": "failures-become-machinery",
       "order": 10,
-      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
+      "statement": "Velocity surfaces the unforeseeable failure; the recurring task is to convert selected recurrences into durable engineering capital: machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
       "seeds": [
         6,
         7
@@ -195,7 +196,7 @@
           "convert-failures"
         ]
       },
-      "reviewed_hash": "820575f71f58",
+      "reviewed_hash": "8842cfb8846b",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "recurrences converted to durable controls; real bugs caught by the model and lint loop"
@@ -317,7 +318,8 @@
     "education-research-open-problems": "discussion",
     "scope-conditions": "discussion",
     "mage-in-the-wild": "discussion",
-    "conclusion": "conclusion"
+    "conclusion": "conclusion",
+    "agentic-engineering-beyond-software": "discussion"
   },
   "chapter_advances": {
     "preface": [
@@ -440,6 +442,39 @@
       "govern-the-environment",
       "alignment-principle",
       "failures-become-machinery"
+    ],
+    "the-dynamics-of-mage": [
+      "alignment-principle",
+      "govern-the-environment",
+      "conversions-compound"
+    ],
+    "interlude-one-problem-many-models": [
+      "modeling-principle",
+      "failures-become-machinery",
+      "grounded-in-one-case"
+    ],
+    "the-software-factory": [
+      "abundant-implementation",
+      "govern-the-environment"
+    ],
+    "engineers-in-the-software-factory": [
+      "govern-the-environment",
+      "seat-moves"
+    ],
+    "what-the-theory-predicts": [
+      "grounded-in-one-case",
+      "conversions-compound"
+    ],
+    "research-agenda": [
+      "grounded-in-one-case"
+    ],
+    "software-rejoins-engineering": [
+      "sync-cost-reduced",
+      "mage-becomes-practical",
+      "conversions-compound"
+    ],
+    "agentic-engineering-beyond-software": [
+      "grounded-in-one-case"
     ]
   }
 }

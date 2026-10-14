@@ -3,22 +3,22 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 23,
-    "chapters_exempt": 10,
-    "advancement_edges": 72,
+    "chapters_labeled": 31,
+    "chapters_exempt": 11,
+    "advancement_edges": 89,
     "feeds_edges": 1,
-    "reconciled_claims": 20,
+    "reconciled_claims": 21,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 7,
+    "zero_claim_suspects": 0,
     "over_cap_unfocused": 2,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
-    "overmapped_claims": 1,
+    "overmapped_claims": 2,
     "claims_exempt": 5,
-    "claims_stale": 3,
+    "claims_stale": 0,
     "quantifiable_claims": 9,
     "reality_claims": 10,
-    "max_statement_words": 44
+    "max_statement_words": 32
   },
   "taxonomy": {
     "word_cap": 32,
@@ -70,9 +70,10 @@
         "0.5-preface",
         "1.1-the-printer",
         "1.2-mage-by-example",
+        "5.1-software-factory",
         "5.2-inside-docables-software-factory"
       ],
-      "body_depth": 1,
+      "body_depth": 2,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -229,14 +230,17 @@
         "3.3-constraints-sensors-validators-gates",
         "3.4-governance-conversion",
         "3.5-when-guardrails-collide",
+        "4.1-the-dynamics-of-mage",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
+        "5.1-software-factory",
         "5.2-inside-docables-software-factory",
+        "5.4-two-problems-of-factory-engineering",
         "7.1-reorganization-of-se"
       ],
-      "body_depth": 8,
+      "body_depth": 11,
       "front_loaded": false,
-      "overmapped": false,
+      "overmapped": true,
       "fresh": true
     },
     {
@@ -249,7 +253,8 @@
       "reconciles_claims": [
         "double-win",
         "ssot-not-snapshot",
-        "direction-agnostic"
+        "direction-agnostic",
+        "model-earns-keep-via-invariants"
       ],
       "reconciles_big_ideas": [
         "modeling-principle"
@@ -272,15 +277,16 @@
         "2.1-context-is-the-first-modeling-problem",
         "2.2-structural",
         "2.3-behavioral",
-        "2.5-decision",
-        "2.8-system-knowledge",
+        "2.4-decision",
+        "2.5-system-knowledge",
         "3.2-models-and-the-semantic-gap",
         "3.5-when-guardrails-collide",
+        "4.2-one-problem-many-models",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
         "5.2-inside-docables-software-factory"
       ],
-      "body_depth": 10,
+      "body_depth": 11,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
@@ -288,7 +294,7 @@
     {
       "id": "alignment-principle",
       "order": 8,
-      "statement": "Make engineering obligations enforceable through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
+      "statement": "Make engineering obligations enforceable through mechanisms embedded in the environment: constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the properties those mechanisms state and check.",
       "seeds": [
         5
       ],
@@ -303,12 +309,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": null,
-      "reviewed_hash": "5a24063f0dc6",
+      "reviewed_hash": "30be3be33d58",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation",
-      "word_count": 36,
-      "statement_hash": "5b8188bba2fd",
+      "word_count": 32,
+      "statement_hash": "30be3be33d58",
       "advanced_by": [
         "0.5-preface",
         "1.3-the-agentic-substrate",
@@ -317,18 +323,19 @@
         "3.2-models-and-the-semantic-gap",
         "3.3-constraints-sensors-validators-gates",
         "3.4-governance-conversion",
+        "4.1-the-dynamics-of-mage",
         "4.4-engineering-the-environment",
         "5.2-inside-docables-software-factory"
       ],
-      "body_depth": 6,
+      "body_depth": 7,
       "front_loaded": false,
       "overmapped": false,
-      "fresh": false
+      "fresh": true
     },
     {
       "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
+      "statement": "The principles are distinct: Modeling makes consequential knowledge explicit; Alignment enforces obligations. Every Alignment mechanism rests on some conception of acceptable realization (tacit, locally encoded, or externalized), which MAGE externalizes when consequential.",
       "seeds": [
         4,
         5
@@ -340,12 +347,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": "bridge",
-      "reviewed_hash": "218601e7dcb9",
+      "reviewed_hash": "9aa703578bb7",
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 44,
-      "statement_hash": "34ec5613519e",
+      "word_count": 32,
+      "statement_hash": "9aa703578bb7",
       "advanced_by": [
         "0.5-preface",
         "1.4-the-new-engineering-problem"
@@ -353,12 +360,12 @@
       "body_depth": 0,
       "front_loaded": true,
       "overmapped": false,
-      "fresh": false
+      "fresh": true
     },
     {
       "id": "failures-become-machinery",
       "order": 10,
-      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
+      "statement": "Velocity surfaces the unforeseeable failure; the recurring task is to convert selected recurrences into durable engineering capital: machinery where enforcement is justified, a model, decision rule, or measurement where it is not.",
       "seeds": [
         6,
         7
@@ -372,24 +379,25 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": null,
-      "reviewed_hash": "820575f71f58",
+      "reviewed_hash": "8842cfb8846b",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "recurrences converted to durable controls; real bugs caught by the model and lint loop",
-      "word_count": 34,
-      "statement_hash": "9298034220ff",
+      "word_count": 32,
+      "statement_hash": "8842cfb8846b",
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
         "3.4-governance-conversion",
+        "4.2-one-problem-many-models",
         "4.3-brownfield-engineering",
         "4.4-engineering-the-environment",
         "5.2-inside-docables-software-factory"
       ],
-      "body_depth": 4,
+      "body_depth": 5,
       "front_loaded": false,
       "overmapped": false,
-      "fresh": false
+      "fresh": true
     },
     {
       "id": "sync-cost-reduced",
@@ -412,9 +420,10 @@
       "word_count": 16,
       "statement_hash": "681d832a8c6d",
       "advanced_by": [
-        "3.2-models-and-the-semantic-gap"
+        "3.2-models-and-the-semantic-gap",
+        "7.2-software-rejoins-engineering"
       ],
-      "body_depth": 1,
+      "body_depth": 2,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -443,12 +452,13 @@
       "statement_hash": "09abeb08db9f",
       "advanced_by": [
         "0.5-preface",
-        "2.8-system-knowledge",
+        "2.5-system-knowledge",
         "7.1-reorganization-of-se",
+        "7.2-software-rejoins-engineering",
         "7.4-the-engineer",
         "9.1-the-part-that-stays-yours"
       ],
-      "body_depth": 4,
+      "body_depth": 5,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -475,10 +485,11 @@
       "statement_hash": "6e678662a007",
       "advanced_by": [
         "5.2-inside-docables-software-factory",
+        "5.4-two-problems-of-factory-engineering",
         "7.1-reorganization-of-se",
         "9.1-the-part-that-stays-yours"
       ],
-      "body_depth": 3,
+      "body_depth": 4,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -507,11 +518,15 @@
       "advanced_by": [
         "0.5-preface",
         "1.2-mage-by-example",
+        "4.2-one-problem-many-models",
         "5.2-inside-docables-software-factory",
+        "6.2-what-the-theory-predicts",
         "6.3-scope-conditions",
+        "6.4-research-agenda",
+        "7.3-agentic-engineering-beyond-software",
         "7.4-the-engineer"
       ],
-      "body_depth": 3,
+      "body_depth": 7,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -541,11 +556,14 @@
       "word_count": 30,
       "statement_hash": "3d5cdcd1963c",
       "advanced_by": [
+        "4.1-the-dynamics-of-mage",
         "6.1-toward-a-theory-of-mage",
+        "6.2-what-the-theory-predicts",
         "7.1-reorganization-of-se",
+        "7.2-software-rejoins-engineering",
         "9.1-the-part-that-stays-yours"
       ],
-      "body_depth": 3,
+      "body_depth": 6,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -634,14 +652,14 @@
       "exempt": null
     },
     {
-      "slug": "2.5-decision",
+      "slug": "2.4-decision",
       "advances": [
         "modeling-principle"
       ],
       "exempt": null
     },
     {
-      "slug": "2.8-system-knowledge",
+      "slug": "2.5-system-knowledge",
       "advances": [
         "modeling-principle",
         "mage-becomes-practical"
@@ -692,12 +710,20 @@
     },
     {
       "slug": "4.1-the-dynamics-of-mage",
-      "advances": [],
+      "advances": [
+        "alignment-principle",
+        "govern-the-environment",
+        "conversions-compound"
+      ],
       "exempt": null
     },
     {
       "slug": "4.2-one-problem-many-models",
-      "advances": [],
+      "advances": [
+        "modeling-principle",
+        "failures-become-machinery",
+        "grounded-in-one-case"
+      ],
       "exempt": null
     },
     {
@@ -721,7 +747,10 @@
     },
     {
       "slug": "5.1-software-factory",
-      "advances": [],
+      "advances": [
+        "abundant-implementation",
+        "govern-the-environment"
+      ],
       "exempt": null
     },
     {
@@ -745,6 +774,14 @@
       "exempt": "discussion"
     },
     {
+      "slug": "5.4-two-problems-of-factory-engineering",
+      "advances": [
+        "govern-the-environment",
+        "seat-moves"
+      ],
+      "exempt": null
+    },
+    {
       "slug": "6.1-toward-a-theory-of-mage",
       "advances": [
         "conversions-compound"
@@ -753,7 +790,10 @@
     },
     {
       "slug": "6.2-what-the-theory-predicts",
-      "advances": [],
+      "advances": [
+        "grounded-in-one-case",
+        "conversions-compound"
+      ],
       "exempt": null
     },
     {
@@ -765,7 +805,9 @@
     },
     {
       "slug": "6.4-research-agenda",
-      "advances": [],
+      "advances": [
+        "grounded-in-one-case"
+      ],
       "exempt": null
     },
     {
@@ -781,13 +823,19 @@
     },
     {
       "slug": "7.2-software-rejoins-engineering",
-      "advances": [],
+      "advances": [
+        "sync-cost-reduced",
+        "mage-becomes-practical",
+        "conversions-compound"
+      ],
       "exempt": null
     },
     {
       "slug": "7.3-agentic-engineering-beyond-software",
-      "advances": [],
-      "exempt": null
+      "advances": [
+        "grounded-in-one-case"
+      ],
+      "exempt": "discussion"
     },
     {
       "slug": "7.4-the-engineer",
@@ -814,36 +862,7 @@
     }
   ],
   "flags": {
-    "zero_claim_suspects": [
-      {
-        "chapter": "4.1-the-dynamics-of-mage",
-        "advances": 0
-      },
-      {
-        "chapter": "4.2-one-problem-many-models",
-        "advances": 0
-      },
-      {
-        "chapter": "5.1-software-factory",
-        "advances": 0
-      },
-      {
-        "chapter": "6.2-what-the-theory-predicts",
-        "advances": 0
-      },
-      {
-        "chapter": "6.4-research-agenda",
-        "advances": 0
-      },
-      {
-        "chapter": "7.2-software-rejoins-engineering",
-        "advances": 0
-      },
-      {
-        "chapter": "7.3-agentic-engineering-beyond-software",
-        "advances": 0
-      }
-    ],
+    "zero_claim_suspects": [],
     "over_cap_unfocused": [
       {
         "chapter": "4.4-engineering-the-environment",
@@ -875,8 +894,27 @@
     "thin_claims_front_loaded": [],
     "overmapped_claims": [
       {
-        "claim": "modeling-principle",
+        "claim": "govern-the-environment",
         "advanced_by": 13,
+        "chapters": [
+          "0.5-preface",
+          "1.2-mage-by-example",
+          "3.1-where-obligations-can-be-enforced",
+          "3.3-constraints-sensors-validators-gates",
+          "3.4-governance-conversion",
+          "3.5-when-guardrails-collide",
+          "4.1-the-dynamics-of-mage",
+          "4.3-brownfield-engineering",
+          "4.4-engineering-the-environment",
+          "5.1-software-factory",
+          "5.2-inside-docables-software-factory",
+          "5.4-two-problems-of-factory-engineering",
+          "7.1-reorganization-of-se"
+        ]
+      },
+      {
+        "claim": "modeling-principle",
+        "advanced_by": 14,
         "chapters": [
           "0.5-preface",
           "1.3-the-agentic-substrate",
@@ -884,10 +922,11 @@
           "2.1-context-is-the-first-modeling-problem",
           "2.2-structural",
           "2.3-behavioral",
-          "2.5-decision",
-          "2.8-system-knowledge",
+          "2.4-decision",
+          "2.5-system-knowledge",
           "3.2-models-and-the-semantic-gap",
           "3.5-when-guardrails-collide",
+          "4.2-one-problem-many-models",
           "4.3-brownfield-engineering",
           "4.4-engineering-the-environment",
           "5.2-inside-docables-software-factory"
