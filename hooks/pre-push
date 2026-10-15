@@ -62,6 +62,11 @@ a gate's inputs.** A wrong guess therefore costs time, never correctness. Specif
   - `catalog.py build` ALWAYS runs. It is the render gate, and nearly every tree feeds the site.
   - The book PDF runs iff a path under `book/` or `book-models/` moved.
   - The handbook PDF runs iff a path under `handbook/` moved.
+  - The landers staple runs iff a path under `course/` moved AND `handbook/` did not (the handbook
+    PDF target emits the staple itself, so scoping it on course/ alone would double the work).
+    Added 261015: the staple is derived from course landers but had been policed by the handbook
+    scope only, so a lander-only push left it stale and nothing noticed. A derived artifact must be
+    scoped on the tree its INPUTS live in, not on the tree whose build happens to emit it.
   - The workbench gates run iff a path under `workbench/` moved — ALL of them, including the three
     browser-facing tiers. The scope guard is per-TREE and not per-tier on purpose: `workbench/dist/`
     is bundled from the whole of `workbench/src/`, so any source change can move what a browser
@@ -89,6 +94,11 @@ SCOPES = {
     "book": ("book/", "book-models/"),
     "handbook": ("handbook/",),
     "workbench": ("workbench/",),
+    # The landers staple is DERIVED from course/lectures/**/index.md, but until 261015 its only
+    # refresh path was a side effect of `handbook/scripts/build.py pdf` under the handbook scope.
+    # A lander-only push therefore left dist/course-landers-stapled.md stale with no gate noticing
+    # — and the staple is what a human reads. The join is now held where its inputs live.
+    "course": ("course/",),
 }
 
 ZERO = "0" * 40
@@ -177,6 +187,19 @@ if _touches(changed, SCOPES["handbook"]):
               "The handbook PDF does not render; fix the error above ")
 else:
     print("pre-push: handbook PDF SKIPPED — no handbook/ path in this push", file=sys.stderr)
+
+# The staple's inputs are course landers, so it is scoped on course/ — NOT on handbook/, which is
+# where its only refresh used to hide. When handbook/ moved, the `pdf` target above already emitted
+# it, so skip the duplicate work; the gate is cheap either way (no chapter build).
+if _touches(changed, SCOPES["course"]) and not _touches(changed, SCOPES["handbook"]):
+    print("pre-push: handbook/scripts/build.py staple (landers staple — course/ moved) …", file=sys.stderr)
+    if _run("handbook/scripts/build.py", "staple"):
+        _fail("\npre-push: handbook/scripts/build.py staple FAILED — push refused.\n"
+              "The course-landers staple does not emit; fix the error above ")
+elif _touches(changed, SCOPES["course"]):
+    print("pre-push: landers staple already refreshed by the handbook PDF target", file=sys.stderr)
+else:
+    print("pre-push: landers staple SKIPPED — no course/ path in this push", file=sys.stderr)
 
 if _touches(changed, SCOPES["workbench"]):
     # The TypeScript gates run FIRST and are the cheap ones: a type error or a failing unit test is
