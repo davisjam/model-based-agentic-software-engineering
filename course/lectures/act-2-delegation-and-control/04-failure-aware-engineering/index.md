@@ -12,6 +12,16 @@ readings:
         - cite: leveson2003stamp
           annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](../03-alignment/readings/leveson-stamp-accident-analysis-2003.pdf), previously assigned in Unit 12, Alignment. First read for control structures, constraints, feedback, and intervention; reread it now as a model of accident causation. Instead of asking how a control structure can enforce an obligation, ask what a failure reveals about the control structure that was supposed to do so. How does the explanation change as the causal boundary expands?'
       note: 'If you skipped this reading in Alignment, read it now.'
+    - heading: Why is failure intrinsic to engineering?
+      items:
+        - cite: petroski1992
+          locator: 'preface, chap. 1, and chap. 15'
+          annotation: 'Petroski, *To Engineer Is Human: The Role of Failure in Successful Design* (1992). The book that argues failure is not an interruption of engineering but a condition of it: designs are built on incomplete knowledge, and the limits of that knowledge become visible mainly when something breaks. Read for failure as a source of engineering knowledge — failed designs expose assumptions and margins that successful operation leaves invisible — and for why a discipline that never failed would also never learn where its limits are. Written about bridges and buildings; the argument transfers to software without modification.'
+    - heading: What kind of thing is an error?
+      items:
+        - cite: reason1990humanerror
+          locator: 'chap. 1'
+          annotation: 'Reason, *Human Error* (1990). Read for what an error *is* before asking whose it was: the distinctions among slips, lapses, and mistakes, and the argument that error is a by-product of the same cognitive processes that make skilled performance possible — not a separate defective mode a better person would avoid. The defense-in-depth account the lecture uses comes later in the book; this chapter supplies the theory of fallibility it rests on.'
     - heading: How does experience become judgment?
       items:
         - cite: schon1983reflective
@@ -26,10 +36,6 @@ readings:
   optional:
     - cite: norman2013
       annotation: 'Norman, *The Design of Everyday Things* (2013). Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
-    - cite: reason1990humanerror
-      annotation: 'Reason, *Human Error* (1990). Read for its causal account of human failure: fallibility, latent conditions, and defenses, and for the reasoning behind the Swiss-cheese model rather than the familiar diagram itself.'
-    - cite: petroski1992
-      annotation: 'Petroski, *To Engineer Is Human: The Role of Failure in Successful Design* (1992). Read for failure as a source of engineering knowledge: failed designs expose assumptions and limits that successful operation may leave invisible.'
 instructor_materials: []
 student_materials: []
 assignments: []
