@@ -7,6 +7,10 @@ readings:
         - cite: davis2026sehandbook
           locator: 'chap. 11'
           annotation: 'Davis, [*The Software Engineering Handbook*, "Failure-Aware Engineering."](https://davisjam.github.io/model-based-agentic-software-engineering/book/se-handbook/10-failure-aware-engineering.html) This chapter provides the conceptual framework for the unit. Read for the distinction between repair and learning, failure as evidence about an engineering model, retrospective use of the engineering activities and Validation, and the three places a lesson can live: the system, the team, and the engineer. Pay particular attention to the question that organizes the chapter: after reality contradicts an expectation, what should we now believe?'
+    - heading: The incident
+      items:
+        - cite: crowdstrike2024rca
+          annotation: 'CrowdStrike, [*External Technical Root Cause Analysis — Channel File 291 Incident*](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) (2024). The official technical postmortem for the July 19, 2024 Falcon outage. As you read, distinguish the technical cause from the weaknesses in the engineering process, and consider which questions require examining the larger system.'
     - heading: Earlier reading revisited
       items:
         - cite: leveson2003stamp
@@ -52,16 +56,31 @@ Engineering is practiced with incomplete knowledge, imperfect models, fallible p
 
 Between observation and corrective action stands a chain of engineering judgment. Engineers construct a causal account of what happened, derive lessons from that account, and decide what to change. Each step can be wrong. A bad failure analysis can preserve the wrong lesson just as effectively as a good one can preserve the right lesson.
 
+## Investigating the CrowdStrike outage
+
+On July 19, 2024, a defective CrowdStrike Falcon content update caused widespread crashes of Windows systems. The consequences extended beyond individual computers: airlines, hospitals, financial institutions, and other organizations experienced substantial disruption. Microsoft estimated that approximately 8.5 million Windows devices were affected — under one percent of all Windows machines.
+
+The immediate technical explanation concerns the interaction between the content update and the software responsible for interpreting it. A mismatch between their assumptions resulted in an unsafe memory access and a system crash. At this scope, the engineering question is relatively narrow: What mechanism failed, and how could we correct it?
+
+But correcting the mechanism does not explain why the update reached production. CrowdStrike's subsequent investigation identified weaknesses in the validation and release arrangements surrounding the content. Reason's Swiss cheese model offers a useful representation: failures can pass through several defenses when their weaknesses align. The engineering question becomes which defenses should have detected or contained the failure, and why did they not?
+
+The incident raises a third question. Why could one vendor's defective update disrupt essential services across many otherwise independent organizations? The affected systems shared a consequential software dependency. This is a common-cause failure: components or organizations that appear independent can fail together because they depend on the same underlying mechanism.
+
+Leveson's STAMP provides a way to investigate the larger system. It treats safety as a control problem involving constraints, controllers, controlled processes, and feedback. CrowdStrike controlled aspects of its software and update distribution; customer organizations controlled aspects of their operating environments and continuity arrangements; platform vendors and sector authorities possessed other forms of influence and authority. No single actor necessarily controlled the entire system.
+
+This broader analysis exposes additional candidate interventions. Critical services might require independent fallback systems, stronger isolation from endpoint failures, more controlled update deployment, or diversity among security products. These alternatives have different costs and address different failure classes. The outage demonstrates widespread common-cause exposure; it does not establish that mandatory vendor diversity is the uniquely appropriate remedy.
+
+The case illustrates the central judgment of failure analysis: What causal structure must we preserve to identify an effective intervention? A local defect may justify a local correction. A failure of engineering defenses may justify changes to validation or deployment. A systemic vulnerability may require changes to architecture, organizational responsibilities, or requirements imposed by another authority. Broader analysis is useful when the engineering decision requires it, not merely because it is broader.
+
 This unit treats that chain as engineering. Failure analysis is an established discipline with competing models of what a failure is. The course's conceptual machinery adds precision to that discipline; it does not replace it.
 
 ## Models of failure
 
 Failure analysis offers several ways to explain why a system failed. Different models preserve different parts of the causal structure:
 
-- **Component and human-error models** look for the component, action, or decision that failed. The resulting intervention may be to repair the component, change a procedure, or retrain an operator.
-- **Defense-in-depth models**, such as Reason's, ask how weaknesses in several defenses aligned to permit the failure. The intervention may be to strengthen or add a defense.
-- **Organizational models** ask how management decisions, incentives, resources, and working conditions shaped what happened at the point of failure. The effective site of intervention may therefore be far from the visible error.
-- **Systems-theoretic models**, such as STAMP, represent accidents as failures of control and feedback across a socio-technical system. They may expose missing feedback paths, unsafe interactions, or inadequate constraints that are difficult to see by examining individual components.
+- **Component-level causal models** trace the failure to a component, interaction, or chain of events, asking what mechanism produced the failure. Human error is one possible explanation within such an account — alongside incorrect assumptions, design defects, and implementation errors — not its definition. The resulting intervention is typically to repair the component or correct the interface. In the CrowdStrike case, this scope explains the crash: content and interpreter disagreed about the structure of the data crossing their interface.
+- **Defense-in-depth models**, such as Reason's, ask how weaknesses in several defenses aligned to permit the failure. The intervention may be to strengthen or add a defense — and the diagnosis matters: a defense that was absent calls for a different response than one that ran and checked the wrong property.
+- **Systems-theoretic models**, such as STAMP, represent accidents as failures of control and feedback across a socio-technical system. They may expose missing feedback paths, unsafe interactions, or inadequate constraints that are difficult to see by examining individual components — including constraints that no single organization can enforce alone.
 
 These models form a landscape, not a ladder. Each preserves different causal structure and therefore makes different sites for effective intervention visible.
 
@@ -126,6 +145,12 @@ The response is not to make every model more detailed. Failure supplies new evid
 **Model selectively → realize → encounter reality → learn what the model missed → decide what now matters → strengthen the model or control → realize again**
 
 Not every failure should make the model larger. That would eventually reproduce reality rather than model it. Failure-aware engineering asks which newly visible distinctions have earned their place.
+
+## Applying the method
+
+The lecture concludes with Cloudflare's July 2019 outage, in which a Web Application Firewall rule containing a regular expression caused excessive CPU consumption and disrupted services. Students apply the same causal models to identify the immediate mechanism, investigate the defenses that permitted deployment, and consider what control structures could have limited the consequences.
+
+The exercise asks students to select an intervention, identify the failure class it addresses, and explain what evidence would establish its effectiveness. The objective is not to choose the broadest causal model, but to choose one adequate for the engineering decision.
 
 ## Failure as part of engineering
 
