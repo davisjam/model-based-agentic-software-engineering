@@ -93,6 +93,8 @@ The equation describes the probability that delegation succeeds. A failure tells
 
 Diagnosis identifies what our previous understanding got wrong. Learning asks what should be different next time. A lesson can change the engineer, the engineering environment, or both.
 
+A causal account explains how a failure occurred; it does not determine which future failures should be prevented or how. Engineers must decide what class of conditions the incident represents. A correction confined to the observed execution may leave the same mechanism available elsewhere, while an overly broad rule may constrain unrelated behavior. Having identified the consequential class, engineers return to specification, architecture, and design: what alternatives could prevent, detect, or contain it, and which intervention is justified by its consequences and cost?
+
 **Reflection changes the engineer.** Experienced engineers develop **recognition**: a situation recalls an earlier failure, a harmless-looking assumption deserves investigation, or two apparently different problems reveal the same structure. Experience alone does not produce this capability. Engineers must connect what they expected with what occurred and decide what the difference means.
 
 Schön's account of reflective practice gives the model:

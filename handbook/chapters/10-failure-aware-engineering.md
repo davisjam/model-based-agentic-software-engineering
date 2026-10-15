@@ -480,6 +480,15 @@ the appropriate response remains a regression test. In other cases the lesson be
 interface, architecture, specification, shared mechanism, static check, deployment control,
 monitoring rule, or another part of the engineering environment.
 
+Identifying that class changes the engineering problem. Diagnosis works backward from an observed
+consequence to the conditions that produced it. Corrective design works forward from possible
+interventions to the consequences they would produce. An incident involving two workers that both
+believe they own the same job, for example, might motivate changes to timeout handling, lease
+ownership, fencing, or the idempotency of job operations. These alternatives do not prevent the same
+failures, and they impose different costs and constraints. Engineers must determine which class of
+failures warrants intervention, then compare the available mechanisms against that obligation. The
+causal account informs the design decision; it does not make it.
+
 This is the same movement of knowledge discussed in @ch-engineering-knowledge. A lesson can begin
 as one engineer's experience, become an explicit representation, and eventually become part of the
 structure within which future engineering occurs. When a consequential and sufficiently stable
