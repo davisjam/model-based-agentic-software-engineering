@@ -169,6 +169,24 @@ closing question ("How should this incident change the FMEA for future WAF
 releases?"); slide 30 is the unchanged closer. TIMING re-balanced: slides 21–25
 compressed 11 → 5 minutes to fund the 6 FMEA minutes; the deck still sums to 75.
 
+### Final conservative pass (261015, `phase_conservative.py`) — eight author items
+
+No new slides, frameworks, or facts; every claim already traces to §A/§B above. On-slide:
+slide 23's left heading became "WHAT MIGHT WE CHANGE?" with the diagnostic-alternatives
+sentence added and the footer now carrying the absent-vs-inadequate distinction; slide 26
+gained the four-step FMEA procedure (2×2 grid) above the worked table; slide 29's visible
+task now reads "choose ONE model …"; slide 28 labels the two causal roles (TRIGGER — the
+pathological regex; AMPLIFIER — unstaged global deployment); slide 22's duplicate opening
+sentence was deleted (the Schön line beneath the diagram is the one kept). Notes: slide 8
+qualifies "weaknesses ALIGN" (per-trajectory, not all defenses); slide 26 stages the
+procedure-then-table reveal and adds the simplified-FMEA caveat (RPN stays notes-only);
+slide 28 explains what the step counts measure and presents 23-vs-555 as illustration,
+not proof of exponential complexity. TIMING re-balanced within the 75-minute sum:
+slides 5 (2→1), 9 (3→2), and 17 (3→2) fund slides 23, 24, 25 (1→2 each); slide 6 (4 min),
+slide 18 (4 min), the slide-27 exercise, and the slide-29 diagnosis are untouched.
+The no-leak invariant (no Cloudflare incident detail on any slide before 28) is asserted
+mechanically at the end of the phase script.
+
 **Method references (author-supplied in the FMEA brief; instructor references in
 speaker notes only — no student reading assigned):** IEC 60812:2018, *Failure modes
 and effects analysis*; AIAG & VDA FMEA Handbook, 1st ed. (2019), which replaces the
