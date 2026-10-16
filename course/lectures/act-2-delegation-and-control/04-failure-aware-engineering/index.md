@@ -148,7 +148,7 @@ Not every failure should make the model larger. That would eventually reproduce 
 
 ## Applying the method
 
-The lecture concludes with Cloudflare's July 2019 outage, in which a Web Application Firewall rule containing a regular expression caused excessive CPU consumption and disrupted services. Students apply the same causal models to identify the immediate mechanism, investigate the defenses that permitted deployment, and consider what control structures could have limited the consequences.
+The lecture concludes with a transfer exercise built on Cloudflare's July 2019 outage, in which a Web Application Firewall rule containing a regular expression caused excessive CPU consumption and disrupted services. Before learning what happened, students apply failure mode and effects analysis (FMEA) — a structured search for potential failures, not a fourth causal model — first to the CrowdStrike system they now know, then to Cloudflare's WAF architecture alone, predicting failure modes under the incomplete information engineers actually have. Only then is the incident revealed, and students compare the failure modes they anticipated with those they missed. They then apply the same causal models to identify the immediate mechanism, investigate the defenses that permitted deployment, and consider what control structures could have limited the consequences.
 
 The exercise asks students to select an intervention, identify the failure class it addresses, and explain what evidence would establish its effectiveness. The objective is not to choose the broadest causal model, but to choose one adequate for the engineering decision.
 
