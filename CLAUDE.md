@@ -147,6 +147,18 @@ re-deriving these, so they live here:**
     minutes the gate runs before git transfers. Keepalives address the SOCKET, not an aging agent
     key. On the same day, mode 1 (idle timeout) was ALSO hit with the keepalive config already in
     place — which is the evidence that config is necessary and not sufficient.
+  - **A FOURTH mode, 261016 — it dies BEFORE the hook, and its error text is identical to mode 3.**
+    The push failed with `Could not read from remote repository` / *"make sure you have the correct
+    access rights"* — the mode-3 wording — and was diagnosed as credential aging on that basis. It
+    was not: the log's FIRST line was `Connection to 140.82.113.4 port 22 timed out`, and the log
+    contained **no `gate checks:` line at all**, so the pre-push hook never ran. git opens the SSH
+    connection BEFORE invoking the hook, so a connect-time network failure produces mode 3's message
+    without any of mode 3's causes. **The discriminator is the log's HEAD plus the absence of a gate
+    verdict, never the tail** — which is the same lesson as every other costume of reading a fragment:
+    the tail of a push log describes the ending, not the cause. Two consequences: the keepalive config
+    and the pre-warm are both irrelevant here (nothing had started), and the retry must run the gate
+    FRESH — so budget the full window rather than expecting a warm minute or two. Recovery is
+    unchanged and cheap: `merge-base --is-ancestor origin/main HEAD`, then push again.
   - **The mitigation that actually worked, and the one to reach for first:** run
     `python3 catalog_tests.py --tier1` to completion FIRST, then push backgrounded. The in-push gate
     then runs cache-warm and the transfer window shrinks from ~20 minutes to a minute or two. On
