@@ -135,6 +135,7 @@ from tests.course import (
     check_course_module_schema,
     check_course_nav_titles,
     check_course_reading_citations,
+    check_course_reveal_not_leaked,
     check_course_sessions_calendar_parity,
 )
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
@@ -271,6 +272,11 @@ CHECKS = [
     # OOXML schema validator (OpenXmlValidator, needs .NET) runs skip-if-absent via pre_push — the
     # html-validate promotion posture. Two shipped PowerPoint needs-repair corruptions motivated this;
     # see tests/pptx_validity.py.
+    # A predict-then-reveal exercise's outcome must not appear before its reveal slide. No OOXML
+    # validity check can see this — the package is well-formed either way — and the cost of a leak is
+    # paid once, in a classroom, with no way to take it back. 10.6 ms over the declared decks.
+    Check("course: predict-then-reveal deck outcome not leaked before its reveal slide", 1,
+          lambda strict: check_course_reveal_not_leaked()),
     Check("course: committed pptx OPC part coverage (stdlib twin)", 1, check_pptx_opc,
           needs_run=_pptx_changed),
     Check("course: committed pptx OOXML schema validity (OpenXmlValidator)", 2, check_pptx_schema,

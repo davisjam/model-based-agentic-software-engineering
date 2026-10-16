@@ -496,3 +496,95 @@ def check_course_mage_tokens_resolve():
                       "readings moved or the token grammar changed; the gate would silently pass "
                       "otherwise"]
     return (FAIL if issues else PASS), issues
+
+
+#: Predict-then-reveal deck exercises, declared as DATA. A slide asks students to anticipate a system's
+#: failures; a LATER slide reveals what actually happened. The exercise tests TRANSFER — reasoning from a
+#: method to an unfamiliar system — and leaking the outcome onto any earlier slide silently converts it
+#: into RECALL. Nothing about the OOXML is wrong when that happens, so no validity check sees it, and the
+#: damage is invisible until a room full of students has already read the answer.
+#: Each entry: deck path -> (reveal-slide title prefix, outcome-detail phrases). The phrases are
+#: OUTCOME detail only — never the system's description (the worksheet needs that) and never a lesson the
+#: deck teaches earlier from a different incident.
+_REVEAL_EXERCISES = {
+    "course/lectures/act-2-delegation-and-control/04-failure-aware-engineering/"
+    "2-4-Failure-Aware-Engineering.pptx": (
+        "What actually happened?",
+        # Deliberately NOT "no staged rollout": the deck establishes that lesson from CrowdStrike on
+        # slide 7, six slides before Cloudflare is named. The first draft of this declaration included
+        # it and the check refused the deck — the control correcting the declaration, which is the
+        # order it should happen in.
+        ("backtracking", "13:42", "14:07", "cpu exhaustion", "555 steps", "23 steps", "27 minutes"),
+    ),
+}
+
+_A_NS = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
+_P_NS = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
+_R_NS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+
+
+def _deck_slide_texts(fs_path: str) -> "list[str]":
+    """Each slide's visible text in PRESENTATION order, one joined string per slide.
+
+    Stdlib only (zipfile + ElementTree) — the suite runs on a fresh checkout. Two OOXML facts drive the
+    shape: zip entry `slideN.xml` is a PART number, not a position, so order comes from presentation.xml's
+    `<p:sldIdLst>` through the rels; and PowerPoint splits one sentence across arbitrarily many `<a:t>`
+    runs, re-splitting them on every save, so runs are joined within each `<a:p>` before any comparison.
+    A phrase straddling a run boundary is invisible to a per-run scan."""
+    import xml.etree.ElementTree as ET
+    import zipfile
+
+    with zipfile.ZipFile(fs_path) as z:
+        rels = ET.fromstring(z.read("ppt/_rels/presentation.xml.rels"))
+        target = {r.get("Id"): r.get("Target") for r in rels}
+        order = [target[e.get(f"{_R_NS}id")]
+                 for e in ET.fromstring(z.read("ppt/presentation.xml")).iter(f"{_P_NS}sldId")]
+        texts = []
+        for t in order:
+            part = "ppt/" + t.replace("../", "")
+            paras = [
+                "".join(n.text or "" for n in p.iter(f"{_A_NS}t"))
+                for p in ET.fromstring(z.read(part)).iter(f"{_A_NS}p")
+            ]
+            texts.append(" ".join(x for x in paras if x.strip()))
+    return texts
+
+
+def check_course_reveal_not_leaked():
+    """REVEAL-LEAK (BLOCKING; 0 findings at landing). For each declared predict-then-reveal deck
+    exercise, no outcome-detail phrase appears on any slide BEFORE the reveal slide.
+
+    Three preconditions fail loudly rather than returning a clean verdict, because each of them, left
+    unasserted, makes the check pass over a deck it is no longer reading: the deck must exist at the
+    declared path; the reveal title must match exactly one slide; and every declared phrase must appear
+    ON that reveal slide. The last is the anti-vacuity assert — a phrase the deck has since reworded
+    protects nothing, and silent decay is the failure mode a pedagogical invariant is most prone to,
+    since no reader of the OOXML can tell a retired phrase from a working one."""
+    issues: list[str] = []
+    for disp, (title, phrases) in sorted(_REVEAL_EXERCISES.items()):
+        fs_path = os.path.join(ROOT, disp)
+        if not os.path.exists(fs_path):
+            issues.append(f"reveal-leak: {disp} is declared but absent — repoint the declaration or "
+                          f"drop it; the gate would silently pass otherwise")
+            continue
+        slides = _deck_slide_texts(fs_path)
+        at = [i for i, s in enumerate(slides) if s.lstrip().startswith(title)]
+        if len(at) != 1:
+            issues.append(f"reveal-leak: {disp}: reveal title {title!r} matches {len(at)} slides "
+                          f"(need exactly 1) — the deck was retitled; re-anchor the declaration")
+            continue
+        reveal = at[0]
+        body = slides[reveal].lower()
+        for ph in phrases:
+            if ph not in body:
+                issues.append(f"reveal-leak: {disp}: declared phrase {ph!r} is absent from the reveal "
+                              f"slide {reveal + 1} — it was reworded, so it now guards nothing; "
+                              f"update the declaration to the deck's current wording")
+        for i in range(reveal):
+            early = slides[i].lower()
+            for ph in phrases:
+                if ph in early:
+                    issues.append(f"reveal-leak: {disp}: slide {i + 1} states {ph!r}, revealed on "
+                                  f"slide {reveal + 1} — students read the outcome before predicting "
+                                  f"it, which turns a transfer exercise into recall")
+    return (FAIL if issues else PASS), issues
