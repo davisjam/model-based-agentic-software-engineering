@@ -133,11 +133,12 @@ Cloudflare exercise is an application of the method rather than a second war sto
 
 ## D. Build state
 
-**COMPLETE.** The rebuilt 28-slide deck (6 + 6 + 8 + 5 + 3) is installed at
+**COMPLETE.** The rebuilt 30-slide deck (6 + 6 + 8 + 5 + 5) is installed at
 `course/lectures/.../2-4-Failure-Aware-Engineering.pptx`; the working copy
 `2-4-redux-WIP.pptx` is byte-identical to it. Build scripts are in `scripts/`
 (`phase_m2.py`, `phase_m3.py`, `phase_m45.py`, `phase_final.py`, `phase_fixes.py`,
-shared `buildlib.py`); each phase ends with the package-integrity assert set below.
+`phase_fmea.py`, shared `buildlib.py`); each phase ends with the package-integrity
+assert set below.
 All 33 superseded slides (Dieselgate/VW, Instagram, the old theory section) were
 deleted in the final pass with `sldId` + relationship both dropped.
 
@@ -147,12 +148,32 @@ deleted in the final pass with `sldId` + relationship both dropped.
 | 2 — The defenses | 7–12 | **built** |
 | 3 — The system | 13–20 | **built** |
 | 4 — Learning | 21–25 (merged per edit 4) | **built** |
-| 5 — Transfer | 26–28 | **built** |
+| 5 — Transfer | 26–30 (FMEA pass: predict → reveal → diagnose) | **built** |
 
 Every slide carries 150–270-word speaker notes with the six required elements. No
 animations were authored: the author's own Movement 1 slides carry none (python-pptx
 does not author timing XML), so progressive reveals are staged in the notes instead
 ("ANIMATION-IN-SPEECH", cover-then-reveal).
+
+### FMEA pass (261015) — the deck's new ending
+
+Slides 26–30 now run predict-then-grade (net +2 slides, 28 → 30): slide 26 works FMEA
+on the CrowdStrike case students already know; slide 27 gives Cloudflare's
+ARCHITECTURE ONLY (all four facts drawn from §B: a WAF inspects incoming web
+requests; new detection rules deploy without a software release; some rules are
+regular expressions; rule changes propagate globally within seconds) plus a blank
+worksheet — the 2019 incident is NOT revealed there; slide 28 is the former incident
+slide moved from position 26 and reframed as the reveal ("Which failure modes did we
+anticipate — and which did we miss?"); slide 29 is the diagnosis exercise plus one
+closing question ("How should this incident change the FMEA for future WAF
+releases?"); slide 30 is the unchanged closer. TIMING re-balanced: slides 21–25
+compressed 11 → 5 minutes to fund the 6 FMEA minutes; the deck still sums to 75.
+
+**Method references (author-supplied in the FMEA brief; instructor references in
+speaker notes only — no student reading assigned):** IEC 60812:2018, *Failure modes
+and effects analysis*; AIAG & VDA FMEA Handbook, 1st ed. (2019), which replaces the
+Risk Priority Number with Action Priority. These are method citations, not incident
+facts; the pass added no new CrowdStrike or Cloudflare claims beyond this file.
 
 ### Operative instruction set
 
