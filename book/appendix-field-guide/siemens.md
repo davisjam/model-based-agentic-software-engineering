@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/siemens.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ### Siemens
 
 *Industrial and model-based engineering · persistent models as development surfaces*
@@ -11,7 +13,6 @@ SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures
 **Boundary of the evidence.** The sources examined here do not establish a general admission mechanism that rejects changes when declared model↔implementation correspondence is violated. As throughout this appendix, source silence does not imply organizational absence.[cite: siemens2026a3e]
 
 **Portable lesson.** Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
-
 
 #### Recto — MAGE Interpretation
 

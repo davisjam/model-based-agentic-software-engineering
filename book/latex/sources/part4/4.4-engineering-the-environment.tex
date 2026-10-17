@@ -1,0 +1,255 @@
+% mage-auto-heading: the-gee-as-a-distributed-cognitive-system
+% mage-auto-heading: validate-the-change-not-the-producers-story
+% mage-auto-heading: operate-the-environment
+% mage-auto-heading: engineering-capital-depreciates
+% mage-auto-heading: package-recurring-judgment
+% mage-auto-heading: portable-moves
+% mage-auto-heading: carrying-knowledge-forward
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: Engineering the Environment -->
+
+\chapter{Engineering the Environment}
+
+The engineering environment accumulates representations, controls, and evidence as work proceeds. What should that environment itself know, do, check, and preserve?
+
+\section{The GEE as a Distributed Cognitive System}\label{heading:the-gee-as-a-distributed-cognitive-system}
+
+Not every important judgment should become deterministic. There are two complementary ways to improve recurring engineering work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to enforce selected obligations in the environment so that satisfying them does not depend entirely on the reasoner choosing correctly.
+
+Both effects can come from the same artifact. A model can guide an agent and state properties consumed by a validator. A runbook can brief a reasoner and trigger a gate. Evidence can inform a decision or feed an admission gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.
+
+The obligation determines what must be represented; the representation determines which judgments are feasible. Start with the obligation and ask what representation makes it tractable, then use the cheapest judge adequate to the representation and the decision at hand. Representation can change that allocation: a judgment that initially requires expensive interpretation may become mechanically decidable once the relevant states, relations, or invariants are explicit. The converse failure also exists. A cheap judge can be perfectly reliable over an inadequate representation and still answer the wrong engineering question. In DocAble, pixel variance was easy to measure but could not decide whether a low-variance image carried semantic content; the representation had discarded the distinction the obligation required. Tightening the pixel-variance threshold would not recover the missing semantic distinction. DocAble instead routed that question to a judge capable of evaluating semantic content.
+
+\textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement. Adequacy of judgment and whether the judgment should be enforced are separate engineering decisions.
+
+There is an older frame for the system this composition produces: distributed cognition, which studies reasoning performed by systems of people, representations, procedures, and artifacts rather than locating all cognition inside one individual.\citep{hutchins1995cognition} The inset develops the frame. A Governed Engineering Environment has that systems character, with one engineering concern distributed cognition does not by itself supply: selected obligations can be enforced by mechanisms outside the immediate reasoner.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: COGNITIVE SCIENCE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{The GEE as a Distributed Cognitive System}
+\label{inset-distributed-cognitive-system}
+Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it.\citep{hutchins1995cognition}
+
+The same perspective is useful for agentic engineering. A coding agent need not carry the whole engineering problem inside its context window. Models preserve selected facts about the system; skills preserve procedures; tools perform operations that need not be approximated through language-model reasoning; evidence records what occurred; people or agents supply judgments that remain difficult to evaluate mechanically. The capability of the resulting engineering system is therefore not simply the capability of its foundation model.
+
+External representations matter for more than storage. Work on distributed cognitive tasks shows that the form of an external representation can change the operations required to solve a problem.\citep{zhang1994representations} A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
+
+A GEE adds another step. Its surrounding machinery can sometimes act on the represented property. A dependency model may help an agent understand the architecture, but a validator can also compare an observed dependency with an architectural obligation, and a gate can refuse the change. The environment therefore does not merely distribute cognition across reasoners and artifacts. For selected obligations, it can enforce what those representations express.
+\end{bookbox}
+
+This perspective explains why replacing one foundation model with a more capable one does not make the surrounding engineering environment irrelevant. The environment carries system-specific knowledge, procedures, evidence, and controls that no general-purpose reasoner should have to reconstruct for every task. Better reasoners change what that environment needs to supply. They do not eliminate the value of putting durable engineering knowledge in the system around them.
+
+The kernel of \magevalue{sec:the-dynamics-of-mage}, the model family of \magevalue{sec:interlude-one-problem-many-models}, and the recovered structure of \magevalue{sec:brownfield-engineering} are working parts of one such distributed cognitive system, together with the engineers and agents reasoning within it---with the additional MAGE property that, for selected obligations, the environment enforces what those parts express.
+
+The boundary between the two effects is not fixed. A judgment that initially resists enforcement may become better understood through repeated use, failure, and refinement. Its obligations may become clearer, suitable evidence may become available, or a qualitative distinction may become evaluable with sufficient reliability. At that point, some of what previously depended on judgment can be enforced by the environment; other portions may properly remain probabilistic. \autoref{environment-recurring-work} shows the recurring cycle. The return path is the governance conversion developed in \magevalue{sec:governance-conversion}: when an outcome or failure exposes missing representation, obligation, evidence, evaluation, or enforcement, the organization can encode that missing structure so that future work inherits it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/engineering-recurring-work-3d44c2dcd1.pdf}
+\caption{\emph{Engineering recurring work.} A governed engineering environment combines support for probabilistic reasoning with enforcement of selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to enforce. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, that encoding is governance conversion (\{\{sec:governance-conversion\}\}).}
+\label{environment-recurring-work}
+\end{figure}
+
+The idea that an organization should learn by changing the structures that govern later action also predates MAGE. Organizational-learning research distinguishes correcting an observed error from changing the governing assumptions, rules, or norms that repeatedly produce action.\citep{argyris1978organizational} Governance conversion makes a narrower engineering move. When experience exposes a recurring gap --- a merge rule nobody wrote down, a bound nobody enforces --- the lesson can become durable structure that later work inherits: a model, a skill, a validator, a permission. The organization has then changed not only the failed instance but the environment in which the next instance will be produced.
+
+A nearer line of work automates part of that move. Execution traces can be analyzed to distil reusable lessons into an agent\textquotesingle s skills,\citep{ni2026trace2skill} to diagnose and repair flaws in its harness,\citep{chen2026harnessfix} and to evolve that harness from observability data.\citep{lin2026agentic} Those changes improve the agent and the machinery immediately around it. Governance conversion changes the environment that governs later work, whichever agent performs it.
+
+MAGE does not assume that engineering knowledge should eventually become deterministic, or even enforced. Some judgments remain qualitative because the underlying objective is contextual, plural, or difficult to observe independently. Others contain narrower obligations that can be enforced even while the larger judgment remains open. The relevant unit is therefore the obligation, not the task.
+
+\section{Validate the Change, Not the Producer\textquotesingle s Story}\label{heading:validate-the-change-not-the-producers-story}
+
+Every engineering process eventually asks the same question: \textbf{what evidence is sufficient to accept this change?} Code review, testing, static analysis, operational measurement, and expert judgment answered that question long before coding agents arrived. Commodity implementation does not make those techniques obsolete. It makes them more important, because changes can now arrive faster than human inspection can scale. The question here is how a proposed change encounters the engineered environment.
+
+Validation begins with an obligation. If the obligation is settled, evidence can test whether the change satisfies it. If the obligation is still a hypothesis --- whether users want the feature, which workflow they prefer, which tradeoff is acceptable --- no test suite can manufacture the missing product knowledge. In that regime the evidence is experimental. MAGE can govern the experiment and preserve known constraints; it cannot turn an open question into a mechanical truth.
+
+For a settled obligation, the producer\textquotesingle s own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated independently of the judgment seeking admission. \textbf{For consequential changes, prefer evidence that can challenge the producer\textquotesingle s own claim rather than relying on self-report alone. Where the consequence warrants it, place admission control outside the producer\textquotesingle s ability to redefine success.}
+
+That evidence can come from several sources, and no single kind of representation monopolizes validation. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
+
+% <!-- index-def: oracle -->
+
+An \textbf{oracle} is whatever supplies the judgment against which the observed result is evaluated. An oracle is stronger when its judgment is sufficiently independent of the implementation being judged and explicit enough that its verdict has a stable meaning. Sometimes that oracle is a simple property: the output is an ordered permutation of the input. Sometimes it is a type or schema. Sometimes it is a reference implementation, and sometimes a human rubric.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{The oracle problem}
+\label{inset-oracle-asymmetry}
+Software testing has a longstanding asymmetry: executing a program can be much easier than deciding whether the result is correct. Testing research calls this the oracle problem.\citep{barr2015oracle} An expected output supplies an easy oracle for some cases; complex behavior may instead require properties, reference implementations, metamorphic relations, models, runtime evidence, or human judgment.
+
+Commodity implementation widens the asymmetry. Agents can cheaply produce implementations, variants, and test inputs, but producing more candidates does not supply an independent basis for judging them. As generation becomes cheaper, the engineering bottleneck moves toward stating what must hold and constructing evidence capable of distinguishing acceptable realizations from unacceptable ones.
+\end{bookbox}
+
+Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior. Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.
+
+% <!-- index-def: property-test-models-the-output -->
+
+% <!-- index-def: generative-validation -->
+
+Generative validation extends the oracle from a point to a space. An example test pins one case: given \emph{this} input, expect \emph{that} output. A property states a law over a domain and lets a generator search for a counterexample. The orientation is falsification: build the evidence to break the claim, not to confirm it. This matters because a failing example invites a local repair --- patch the branch that makes \emph{that} input pass and the example goes green --- while a broader property keeps drawing neighbours that still exercise the law, so a repair that satisfied one input fails the next. When the defect exposes a general law, preserve the law rather than only the example that revealed it. And before treating a quiet run as evidence, ask whether the search actually reached the semantic region the claim covers: whether the generator exercised the input space\textquotesingle s distinct shapes and drove the model\textquotesingle s declared claims, not merely how many lines happened to execute.
+
+The same separation appears at the organizational scale, and one industrial team converged on it independently. Docker\textquotesingle s autonomous coding fleet builds the producer--grader separation into its architecture: the agent that writes a change never grades it. An independent reviewer with its own model invocation, a determinized test suite, and a human gate stand between every pull request and main. The fleet may open a pull request; it may not merge one.\citep{delapena2026fleet} A practitioner writing elsewhere on the same engineering blog named what collapsing the two roles costs. He had let an agent migrate his blog and approved the result by its outcomes without reading the changes: reviewing outcomes while skipping changes "is not a security model. It\textquotesingle s a prayer."\citep{mikhalev2026untrusted}
+
+Evidence also ages. \magevalue{chapter:alignment} gave the placement rule: evaluate an obligation at the earliest boundary where it becomes legible and enforceable, so a defect is caught close to its cause. Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse. The two rules answer different questions --- when can this property first be decided honestly, and what is the last point at which stale or invalid evidence can still be caught?\mageaside{The security analogy is time-of-check to time-of-use (TOCTOU): a property established at one instant may no longer hold when the protected action occurs because relevant state changed in between. The problem here is broader than the classical TOCTOU race, but the engineering instinct is the same.} \autoref{evidence-two-boundaries} draws the span between them.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+\caption[Two evidence boundaries --- earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]{\emph{Two evidence boundaries.} Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.}
+\label{evidence-two-boundaries}
+\end{figure}
+
+The second check need not repeat every earlier check; re-establish only the evidence whose freshness matters to admission. A test result recorded hours ago describes the revision that produced it. A review verdict describes the change that was reviewed. If relevant state can change before admission, the evidence can cease to describe the artifact now crossing the boundary. \textbf{Done is a claim, not a stored fact.} At a consequential boundary, ensure that the evidence still justifies the consequence; where freshness cannot otherwise be established cheaply, re-derive the relevant evidence rather than trusting a stale green checkmark. The gain compounds with velocity: the more often a system ships, the more a cheap re-check at the last safe boundary is worth.
+
+\section{Operate the Environment}\label{heading:operate-the-environment}
+
+The governed engineering environment is itself a consequential system. Models drift. Controls become noisy. Assumptions expire. Evidence pipelines break. Gates preserve obsolete policy. Skills encode procedures that are no longer appropriate. The machinery this chapter has accumulated therefore requires the same observation, maintenance, reconciliation, and retirement it provides to the system it governs.
+
+A method also has to survive ordinary days, not only successful changes --- full disks, conflicted branches, vanished agents, stalled queues, flaking tests. Engineers often know how to recover, but that knowledge may live only in someone\textquotesingle s head, where an autonomous agent cannot reliably reach it. MAGE therefore brings Modeling and Alignment into operation. Lifecycle models represent healthy progress and important failure states. Events make consequential transitions observable. Runbooks preserve sanctioned reactions, including where judgment remains. Metrics expose the quantities needed to judge whether the loop is healthy. Together they support an operating loop: recognize the state, surface the right reaction, take the appropriate action, and observe what happened next.
+
+None of these structures is binding merely by existing. Constraints, validators, and gates give selected operational obligations consequence where the required state is legible and the evidence adequate. Keeping representation, evidence, procedure, and enforcement separate lets the operating environment grow without collapsing them into one mechanism.
+
+% <!-- index-def: lifecycle -->
+
+A lifecycle model starts with the healthy path of a recurring activity --- how a bug moves from reported to fixed, how an agent moves from dispatched to landed --- then names the failure states that matter and the sanctioned recovery from each. Pair prohibitions with recovery paths. "Never use this destructive merge command" leaves a stuck agent with a prohibition and no exit; "when this state occurs, do not use X; use Y because it preserves the already-applied work" supplies the missing path. DocAble learned this when agents used a destructive Git escape during stuck merges: the durable rule named both the forbidden action and the recovery that preserved already-applied work.
+
+% <!-- index-def: deterministic-firing -->
+
+Operation improves further when an important transition can make the right procedure arrive at the right moment. Do not rely on an actor to remember to inspect the lifecycle, notice that a transition happened, retrieve the right procedure, and invoke it. Where a recurring event is mechanically observable and a standard response is useful, bind the reaction to the event. A mechanical trigger does not require a mechanical response: \textbf{the firing can be deterministic while the payload still contains judgment.} An agent reaches a context threshold, and a hook deterministically requests a handoff the agent must still compose. A deployment fails a health check, and the event opens a recovery path an engineer must still judge. Automate the arrival of the decision procedure, not every decision.
+
+% <!-- index-def: runbook -->
+
+% <!-- index-def: deterministic-vs-judgment-split -->
+
+Runbooks preserve how an experienced engineer reasons through a recurring situation, and not every step in one has the same decision structure. Type each step: \textbf{Execute} when the outcome is mechanically determined and can become an executable operation; \textbf{Delegate} when the step requires bounded judgment, supplying the relevant state, choices, criteria, and required output; \textbf{Escalate} when the decision remains irreducibly human, preparing the evidence and surfacing the decision explicitly. Where possible, surround a judgment-laden step with deterministic work: prepare the data mechanically before the decision, execute and measure mechanically after it, and preserve the rationale separately from the trace. That does not make the judgment deterministic; it bounds where judgment occurs while leaving the surrounding work replayable and checkable. Runbooks can drift, so their procedures need the same maintenance discipline as other engineering models.
+
+% <!-- index-def: measure-one-level-deeper -->
+
+Operational measurement should expose the state the decision actually depends on. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. Ousterhout\textquotesingle s rule from \magevalue{sec:interlude-one-problem-many-models} applies to operations unchanged:\citep{ousterhout2018} \textbf{measure one level deeper}. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
+
+The operating loop will still stall. When it does, resist the reflex to add another mechanism, and first diagnose what kind of problem you have.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: PRACTICE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{When work stalls, diagnose before adding machinery}
+\label{inset-diagnose-before-machinery}
+Repeated failure does not always call for another control. Before you build one, ask which part of the loop is limiting the work.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+What may be limiting
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+If that is the gap
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Searcher} & Can the available intelligence find a good candidate? & Change the model, tools, decomposition, or search strategy. \\
+\textbf{Model} & Is consequential structure missing from the representation? & Make it explicit. \\
+\textbf{Oracle} & Can the environment tell good candidates from bad? & Strengthen the evidence, validation, or simulation. \\
+\textbf{Target} & Do we know what "good" even means? & Stop building and learn. \\
+\end{longtable}
+}
+
+A stronger reasoner does not settle an unknown requirement; another validator does not supply a missing abstraction; more modeling cannot answer a product question whose answer must come from users or deployment.
+\end{bookbox}
+
+\subsection{Engineering capital depreciates}\label{heading:engineering-capital-depreciates}
+
+Engineering capital depreciates. A model can stop being authoritative while remaining in the repository. A control can outlive the failure class it was built to catch. Evidence can go stale while its green marker persists. An asset that once eliminated a recurring cost can eventually become a recurring cost itself.
+
+So the operating rhythm includes a standing audit of the environment\textquotesingle s own holdings. For each model, mechanism, procedure, and evidence pipeline, ask:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Is this model still authoritative?} Does it still correspond to the system it claims to describe?
+\item
+  \textbf{Does anything consume it?} A representation nothing queries, checks, or generates from is prose with a schema.
+\item
+  \textbf{Does its consumer still enforce a consequential obligation?} The chain from model to mechanism to consequence can break at any link.
+\item
+  \textbf{Is the evidence still fresh?} A recorded verdict describes the past, and the ground churns under it.
+\item
+  \textbf{Has the assumption changed?} Controls preserve the assumptions of the episode that created them.
+\item
+  \textbf{Is the control producing more friction than protection?} Three symptoms say the return has gone negative: upkeep crowds out product work; the checks cry wolf, flagging more than they catch; or the guarded failure is both cheap and rare.
+\item
+  \textbf{Can the artifact be retired?}
+\end{itemize}
+
+Retirement is not failure. \magevalue{sec:brownfield-engineering} priced construction and upkeep together: build the smallest asset that retires the recurring cost, and retire it when the return disappears. A governed environment that only accumulates eventually governs against its own past. The discipline that converts lessons into structure must be paired with the discipline that removes structure whose lesson no longer applies.
+
+\section{Package Recurring Judgment}\label{heading:package-recurring-judgment}
+
+One kind of engineering capital remains. Models preserve recurring knowledge about the system. Controls preserve recurring obligations. \textbf{Skills preserve recurring procedures and judgment.} Some recurring engineering knowledge should be enforced by the environment; other knowledge properly remains available to the reasoner. That knowledge can still become engineering capital: package the representations, examples, heuristics, decision procedures, and tools that improve recurring judgment so that later work inherits them rather than reconstructing them from general knowledge every time.
+
+A skill is one such package. It can range from a compact procedure resembling a disciplined prompt to a substantial body of explicit domain knowledge with structured representations, examples, correctness conditions, retrieval, and executable tools. What the package lets a fresh agent inherit matters more than how elaborate it is. A useful skill gives the agent some of the abstractions, distinctions, evidence, and practices that an experienced practitioner would otherwise have to reconstruct or supply interactively. Concretely, a reusable skill needs three things: the representations needed to reason about the work, the recurring decisions that matter within it, and a procedure for making those decisions. The point is not the particular file format or vocabulary. It is to turn tacit practice into a bounded reasoning environment that a fresh agent can enter repeatedly.
+
+Packaging does not itself enforce anything. Prose, examples, models, and decision procedures can make a satisfactory decision substantially more likely while leaving the decision probabilistic. The same skill can also invoke enforcing mechanisms or carry the models and correctness conditions those mechanisms consume. Where an obligation should not depend on the agent\textquotesingle s reasoning, the environment still needs a constraint, validator, gate, permission, or other mechanism that can act on that obligation independently. A skill is therefore not confined to one side of the improve-judgment / enforce-obligations division: its direct instructions may support a reasoner\textquotesingle s judgment, but it can also carry or invoke the machinery through which selected obligations are enforced.
+
+% <!-- index-def: standing-context -->
+
+Delivering the packaged knowledge is its own engineering problem. Loading everything all the time is the obvious solution, and often a bad one: every rule, model, example, and failure lesson competes for attention, so a larger context can make navigation harder rather than easier. Separate the small standing context that must remain continuously salient from the richer slices retrieved when the task makes them relevant, and treat the delivery as an intervention whose effect can be measured. \textbf{Context delivery changes what the reasoner can see; by itself, it does not change what the environment permits.} A richer slice of the right rules makes a good action easier to find; only a constraint, validator, or gate makes a bad action unavailable.
+
+The pattern is appearing across the industry, and \magevalue{chapter:software-factories} examines several such systems side by side. Two previews suffice here. Shopify\textquotesingle s public account describes agent sessions made visible and searchable, with repeated judgment mined into shared skills and defaults, so the environment gets incrementally smarter with each pass instead of every session starting cold. Zenseact\textquotesingle s describes the organizational variant: a centrally owned runtime and safety envelope, with domain teams contributing agents as little more than a directory holding a config and a skill --- the organization centralizes the mechanism and decentralizes the judgment.
+
+Skills are another component of the distributed cognitive system surrounding the immediate reasoner: one more place where durable engineering knowledge lives outside any single context window, alongside the models that carry facts, the evidence that records what occurred, and the controls that enforce what must hold.
+
+\section{Portable Moves}\label{heading:portable-moves}
+
+Strip away DocAble, the companion repository, and the current generation of agent harnesses, and a small set of moves remains from this chapter\textquotesingle s dynamics and practice.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Leave a degree of freedom open while variation is producing useful information; govern it when the choice becomes consequential and sufficiently understood.}
+\item
+  \textbf{Establish an alignment kernel before transformations that could damage properties already known to matter.}
+\item
+  \textbf{Use implementation as an instrument of inquiry, not as a substitute for explicit knowledge.}
+\item
+  \textbf{In a brownfield system, recover latent structure before inventing replacement structure.}
+\item
+  \textbf{Audit → Drain → Promote when turning an existing obligation into blocking enforcement.}
+\item
+  \textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.}
+\item
+  \textbf{Prefer independent evidence capable of challenging the producer\textquotesingle s claim.}
+\item
+  \textbf{Retain engineering structure only while the questions or failures it addresses justify its cost.}
+\end{itemize}
+
+{[}appendix: appendix-operators-reference{]} collects these moves as bench procedures. The method itself can also become the kind of asset this section described: {[}appendix: appendix-skill-recipe{]} shows MAGE\textquotesingle s recurring distinctions and procedures packaged as a self-governance skill an agent can inherit rather than reconstruct.
+
+\section{Carrying Knowledge Forward}\label{heading:carrying-knowledge-forward}
+
+Realization amplification compressed exploration, and connection amplification compressed experience. Engineers could try more while a question remained live, and could encounter related consequences close enough together to recognize their connection. Governance conversion turned selected lessons from that experience into durable engineering structure.
+
+Ratcheteering describes what happened next. The resulting structures remained open to evidence and correction, but the consequential concerns they governed did not silently return to implementation detail. \textbf{The memory episode illustrates ratcheteering: the model changed repeatedly, but memory never returned to being somebody else\textquotesingle s problem.}
+
+These mechanisms make the engineering environment progressively capable of carrying consequential knowledge forward --- not progressively complete. Models can be revised or retired; controls can change; new evidence can reopen an old question. The gain is that consequential properties do not silently fall back from engineering knowledge into assumptions that each engineer or agent must reconstruct.
+
+\magevalue{chapter:software-factories} changes the unit of analysis. It treats agents, models, controls, evidence, and the surrounding engineering environment as parts of a production system, and asks what kind of software factory emerges when capable realization becomes cheap.

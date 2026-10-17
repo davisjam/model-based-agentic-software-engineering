@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/one-product-several-surfaces.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 [ref:fig-h-lifecycle] places the product amid the engineering activities that shape it.
 
 <!-- label: fig-h-lifecycle -->
@@ -5,14 +7,22 @@
 
 The representations differ along five dimensions.
 
-1. **Purpose.** Each representation preserves what a particular engineering question needs. A product hypothesis helps decide what to build; an architectural model exposes system structure; an incident timeline reconstructs what happened. They need not share a form merely because they concern the same product.
+1.  **Purpose.** Each representation preserves what a particular engineering question needs. A product hypothesis helps decide what to build; an architectural model exposes system structure; an incident timeline reconstructs what happened. They need not share a form merely because they concern the same product.
 
-2. **Lifetime.** A model may be episode-scoped, change-scoped, system-lived, or organizational. An experiment may last for one investigation; a ticket may govern one change; an architectural boundary may survive hundreds of changes; a regulatory policy may govern several products.
+<!-- -->
 
-3. **Claimed correspondence.** Age alone does not establish model drift. A 2022 ticket can remain a faithful representation of the intent governing a 2022 change without describing the product in 2026. MAGE rejects “keep the model equal to the code” as a universal synchronization rule because different models claim different relations to the realized system.
+1.  **Lifetime.** A model may be episode-scoped, change-scoped, system-lived, or organizational. An experiment may last for one investigation; a ticket may govern one change; an architectural boundary may survive hundreds of changes; a regulatory policy may govern several products.
 
-4. **Enforcement.** Representation does not imply enforcement. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.
+<!-- -->
 
-5. **Reasoning posture.** Some representations support semantic or situational judgment; others expose stable properties that can become deterministic procedures or predicates. The appropriate mix depends on cost and consequence.
+1.  **Claimed correspondence.** Age alone does not establish model drift. A 2022 ticket can remain a faithful representation of the intent governing a 2022 change without describing the product in 2026. MAGE rejects “keep the model equal to the code” as a universal synchronization rule because different models claim different relations to the realized system.
+
+<!-- -->
+
+1.  **Enforcement.** Representation does not imply enforcement. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.
+
+<!-- -->
+
+1.  **Reasoning posture.** Some representations support semantic or situational judgment; others expose stable properties that can become deterministic procedures or predicates. The appropriate mix depends on cost and consequence.
 
 The five surfaces configure these dimensions differently. The sections that follow examine each in turn.

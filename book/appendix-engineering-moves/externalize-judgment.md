@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/externalize-judgment.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** Operational work remains expensive when each incident requires an operator to reconstruct the same judgment: what healthy state looks like, what a symptom means, which procedure applies, and what evidence confirms recovery.
 
 **Move.** Make recurring operational judgment explicit. Generate or execute what can be mechanized; provide guidance where judgment remains necessary; and keep both tied to the system they describe.

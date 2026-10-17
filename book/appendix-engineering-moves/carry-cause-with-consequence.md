@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/carry-cause-with-consequence.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** After work propagates through commits, generated artifacts, and transformations, the final state may preserve what changed while losing why it changed. Reconstructing causation afterward is expensive and often ambiguous.
 
 **Move.** Capture provenance at the causal event and carry it forward with the resulting change. Where possible, check it for completeness so missing links are detected.

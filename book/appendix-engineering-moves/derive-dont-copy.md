@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/derive-dont-copy.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** An authoritative source loses authority when consumers copy its values into independently maintained snapshots. The model may remain nominally authoritative while engineering decisions operate on stale copies.
 
 **Move.** Consume authoritative representations by query or derivation rather than creating a second editable copy.

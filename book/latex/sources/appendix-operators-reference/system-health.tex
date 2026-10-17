@@ -1,0 +1,37 @@
+% mage-auto-heading: three-readings
+% mage-auto-heading: read-churn-as-motion-not-health
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Is the environment operating correctly right now?}
+
+Begin with outcomes. Check whether accepted work is landing, governed obligations are holding, validators and gates are checking what they are supposed to check, and human intervention or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only to diagnose changes in those outcomes.
+
+\subsection{Three readings}\label{heading:three-readings}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Durable throughput.} Accepted work remains accepted without reopening, rollback, or repeated repair.
+\item
+  \textbf{Defect and policy escape.} Incorrect or policy-violating work passes the boundary intended to prevent it.
+\item
+  \textbf{Intervention burden.} Humans get pulled back into repeated reconstruction, review, or emergency repair.
+\end{itemize}
+
+Use churn, validator coverage, correspondence failures, and queue pressure only when they explain movement in the primary readings.
+
+% mage-code-language: text
+\begin{verbatim}
+  SYSTEM HEALTH               "Is the environment healthy right now?"
+  ───────────────────────────────────────────────────────────────────
+  Durable throughput       accepted work survives
+  Defect / policy escape   governed obligations hold
+  Human intervention       repeated attention is bounded
+  ───────────────────────────────────────────────────────────────────
+  Diagnose with:
+  churn · correspondence · validator reach · resource pressure
+\end{verbatim}
+
+\subsection{Read churn as motion, not health}\label{heading:read-churn-as-motion-not-health}
+
+Churn measures code motion, not system health. A migration or architectural rewrite can produce high churn in a healthy environment, while a quiet repository can still contain stale representations or repeated human adjudication. Appendix H records the churn observed in DocAble.

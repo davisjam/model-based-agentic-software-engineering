@@ -1,0 +1,105 @@
+% mage-auto-heading: software-engineering-vocabulary
+% mage-auto-heading: software-agents
+% mage-auto-heading: the-governed-engineering-environment
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Orientation and Reference -->
+
+% <!-- chapter-title: Glossary -->
+
+% <!-- noqa: book-section-cap — glossary; each group is an intentional scannable list of terms under one heading -->
+
+\chapter{Glossary}
+
+Agentic software engineering is moving quickly, and its vocabulary has not settled. This glossary is a reference to the vocabulary used throughout the book. Definitions are collected here for lookup; the main text introduces and motivates the important concepts in context. It has three parts: software engineering vocabulary, software agents, and the governed engineering environment.
+
+\section{Software engineering vocabulary}\label{heading:software-engineering-vocabulary}
+
+\textbf{Engineering.} The discipline of exercising informed \emph{control} over consequential systems and accepting \emph{responsibility} for their outcomes. \emph{Control} means retaining sufficient command of a system to understand and direct it, evaluate the evidence for its consequential properties, recognize when its assumptions fail, and intervene when necessary. \emph{Responsibility} means remaining answerable for the consequential decisions made under one\textquotesingle s authority and for the resulting system. Engineering does not require personally performing every act of implementation, and work may be delegated to other humans or to machine intelligence. Also, note that the term "engineering" is used here \emph{functionally rather than institutionally}: engineering is defined by the kind of control, evidence, expertise, and responsibility being exercised, not by whether the work belongs to a conventionally named engineering discipline. Software engineering applies this discipline to software systems.
+
+\textbf{Software engineering.} The engineering discipline of controlled change in software systems: it creates and evolves software while preserving sufficient control over the properties and consequences that matter. The definition is shared with the companion \emph{Software Engineering Handbook}, which develops it fully.\citep{davis2026sehandbook}
+
+\textbf{Agentic engineering.} The deliberate engineering of the environments through which autonomous agents perform consequential engineering work---the broader engineering problem of which this book\textquotesingle s subject is one instance. It does not mean engineering performed by agents. Model-Based Agentic Engineering (MAGE) is the account developed here for addressing it; software engineering is this book\textquotesingle s worked domain.
+
+\textbf{Engineering obligation.} A requirement or engineering decision that the responsible engineering authority has determined an implementation or other engineering result must satisfy. Obligations may arise externally---from users, regulations, standards, contracts, or operating environments---or internally from engineering decisions about architecture, behavior, quality, or process. An obligation is enforceable when the engineered environment can check it, and enforced when a mechanism holds work to it. Durable mechanisms enforce selected obligations by constraining actions or determining whether work is accepted. For example, if a service must respond within 200 milliseconds, a performance gate enforces that obligation by rejecting implementations that exceed the limit.
+
+\textbf{Model.} A purposeful reduction of a system that preserves the information needed to answer an engineering question while suppressing detail the question does not need. Models make engineering knowledge and intent explicit so engineers and agents can reason about selected system properties without rebuilding that knowledge from lower-level artifacts each time.
+
+% <!-- index-def: model-classes -->
+
+\textbf{Model classes.} MAGE uses six recurring classes of models, organized by the engineering questions they help answer (\autoref{gloss-model-classes}). The list is not exhaustive, and one representation may serve more than one class.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-classes-eb951f4c70.pdf}
+\caption{The six model classes, organized by the engineering questions they answer.}
+\label{gloss-model-classes}
+\end{figure}
+
+\textbf{Modeling Principle.} Make engineering knowledge and intent explicit in purposeful models so humans and agents can reason about larger questions without reconstructing the needed facts from lower-level detail.
+
+% <!-- index-def: tolerance -->
+
+% <!-- index-def: degrees-of-freedom -->
+
+\textbf{Tolerance and degree of freedom.} Engineering obligations need not determine a single acceptable implementation. A tolerance bounds the variation that an obligation permits; a degree of freedom is a choice that engineering leaves open within the applicable obligations. The term borrows its usual mathematical sense: constraints reduce the number of quantities that may vary independently. MAGE applies the same idea to engineering choices. As obligations constrain an implementation, some choices cease to be free while others remain open to realization. If a service must respond within 200 milliseconds, for example, implementations may vary in response time within that bound, while choices such as programming language may remain degrees of freedom if they do not affect any consequential obligation. An unmodeled choice is simply a choice that the current engineering representations do not make explicit; it is not necessarily free. If some alternatives would be rejected because they violate an engineering obligation, the choice is constrained even if the model does not say so.
+
+\textbf{Governance.} Deciding what autonomous work must know, what it may do, what evidence it must produce, and what mechanisms will hold those decisions over time.
+
+\textbf{Authority.} Who is entitled to exercise engineering judgment: to decide what a system must do, permit or refuse an action, and answer for the result. Authority is a matter of decision rights and responsibility, held by a person or institution and delegated deliberately, not a property of a mechanism. It is distinct from \emph{enforcement}---the mechanisms through which the environment holds work to an obligation---and from an \emph{authoritative source}, the canonical origin of a fact. \magevalue{chapter:profession} treats professional authority as first-class.
+
+\textbf{Alignment Principle.} Enforce important engineering obligations on autonomous work. Encode them in mechanisms that constrain actions, produce evidence, evaluate evidence against obligations, or control admission. Some obligations can be enforced directly on actions or artifacts; explicit models let the environment state and check richer properties, including acceptable bounds on variation.
+
+\textbf{Governance conversion.} When a recurring failure, repeated judgment, or observed gap reveals something future work should inherit, encode the lesson in durable structure: a model, packaged procedure, or mechanism that enforces an obligation.
+
+% <!-- index-def: compounding -->
+
+\textbf{Engineering capital.} Durable engineering structure---models, packaged procedures, mechanisms, canonical documentation, and other reusable assets---that makes later work cheaper or less uncertain. Governance conversion creates such structure; it becomes capital when later work benefits from it, and depreciates when it no longer fits the system or costs more to maintain than it returns.
+
+% <!-- index-def: commodity-intelligence -->
+
+\textbf{Commodity intelligence.} General-purpose machine intelligence available cheaply and at enough scale that implementation becomes less scarce relative to engineering judgment. The term describes an economic change, not a claim that intelligence is free, unlimited, or itself sufficient for engineering.
+
+\section{Software agents}\label{heading:software-agents}
+
+% <!-- noqa: book-float-ref — glossary section-map, orientation reference chrome not a numbered cross-ref float -->
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/gloss-agent-vocab-077dc29ef2.pdf}
+\caption{The agent stack and a characteristic failure mode. When a task\textquotesingle s reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.}
+\end{figure}
+
+\textbf{Agent.} An AI system that pursues an open-ended or underspecified task through multiple steps, exercising judgment about what to do next and using tools in response to intermediate results. In this book, agent means a coding or engineering agent operating over software artifacts, tools, and an execution environment.
+
+\textbf{Churn.} Work spent rediscovering context, undoing recent changes, repairing regressions, or reconciling inconsistencies instead of advancing the system.
+
+\textbf{Foundation model.} The trained model at the bottom of the agent stack. Its capabilities and context capacity set important limits that the harness and engineered environment must work within.
+
+\textbf{Agentic harness.} The runtime wrapped around the foundation model --- Claude Code, OpenCode, and their kin --- that feeds it prompts, manages the context window, and provides hooks, skills, and tools.
+
+\textbf{Skills and tools.} Capabilities exposed through an agentic harness that extend what an agent can do. A skill provides reusable guidance for a recurring class of work; a tool provides a deterministic capability the agent can invoke rather than approximate through reasoning.
+
+\textbf{Fleet.} The set of coding agents working on a shared codebase or engineering system.
+
+\textbf{Reasoning horizon.} The amount of intermediate reasoning state that must remain available at once to carry a task to a correct result. It is a property of the task, not of who reasons --- human, agent, or a later architecture. A \emph{long-horizon task} needs more reasoning state than the available working memory can hold, forcing some state to be compressed and later reconstructed. Agent harnesses call this compaction; today, the context window is one important source of the limit.
+
+\section{The Governed Engineering Environment}\label{heading:the-governed-engineering-environment}
+
+% <!-- noqa: book-float-ref — glossary section-map, orientation reference chrome not a numbered cross-ref float -->
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/gloss-gee-7f15b69a80.pdf}
+\caption{The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.}
+\end{figure}
+
+\textbf{Governed Engineering Environment.} An engineered environment where selected engineering obligations are enforced by durable mechanisms instead of relying mainly on people to remember or inspect them. Explicit models let those mechanisms govern properties that would otherwise require a person to reconstruct or judge them.
+
+\textbf{Governance mechanism.} A repeatable structure that enforces an engineering obligation in the environment. A mechanism can play four roles: constraints restrict permissible actions; sensors produce evidence; validators check evidence against an obligation; and gates decide whether work may cross a workflow boundary. One mechanism may play more than one role.
+
+\textbf{Semantic gap.} The distance between where an engineering obligation arises and where the environment has enough meaning and evidence to decide whether the obligation is satisfied. The gap explains why some checks must wait until a later boundary, when enough of the system has been assembled to make the obligation decidable.
+
+\textbf{Model drift.} A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.
+
+\textbf{Traceability.} Explicit, machine-readable links from model elements to the artifacts, evidence, obligations, or other model elements they represent, constrain, or correspond to.

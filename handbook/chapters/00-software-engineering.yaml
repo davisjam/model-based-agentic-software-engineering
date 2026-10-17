@@ -1,0 +1,13 @@
+id: software-engineering
+title: "Software Engineering: The Engineering Discipline of Controlled Change"
+short_title: Software Engineering
+order: 0
+status: draft
+description: >
+  Software is an unusually changeable expressive medium. Software engineering exploits that
+  changeability while keeping consequential change under control, deciding what may change, what must
+  remain true, and what evidence justifies confidence in the result.
+objectives:
+  - Define engineering as informed control over consequential systems and responsibility for outcomes.
+  - Explain the properties that make software an unusual expressive medium.
+  - Explain why changeability creates both leverage and risk, and what "controlled change" means.

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/derive-the-obligation-set.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** Measures of existing evidence—tests written, lines covered, checks passing—cannot reveal obligations that were never encoded. Before measuring coverage, establish what evidence should exist.
 
 **Move.** Derive what must be assured from the engineering model, then compare that required set with the evidence that exists.

@@ -1,0 +1,15 @@
+id: architecture
+title: Architecture
+short_title: Architecture
+order: 6
+status: draft
+description: >
+  Architecture organizes one acceptable realization so that its obligations can coexist. Its
+  decisions are consequential: they allocate coupling and coordination, and they are defended by
+  eliminating invalid and dominated candidates, naming the remaining tradeoffs, and buying evidence
+  when it could change the choice.
+objectives:
+  - Explain what an architectural decision accomplishes that a specification leaves open.
+  - Evaluate a proposed boundary by the coupling and coordination it allocates.
+  - Defend an architectural choice by eliminating invalid and dominated candidates, naming the remaining tradeoff, and buying evidence when worthwhile.
+  - Treat architectural patterns as candidate organizations with expected consequences, not answers.

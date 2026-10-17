@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/context-delivery-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **Put relevant engineering knowledge and obligations into the actor's context before the decision they must inform.**
@@ -7,10 +9,8 @@
 Reach for it when:
 
 - **An actor must reason from engineering knowledge it does not carry** — models, rules, prior decisions.
-- **The whole environment will not fit** in the actor's working state, and dumping all of it into context merely relocates
-  the navigation problem.
-- **Some obligations are critical and decidable**, and leaning on the actor to remember them is not good
-  enough.
+- **The whole environment will not fit** in the actor's working state, and dumping all of it into context merely relocates the navigation problem.
+- **Some obligations are critical and decidable**, and leaning on the actor to remember them is not good enough.
 
 ## The Composition
 
@@ -19,6 +19,8 @@ Reach for it when:
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **STANDING** | Supply compact policy that applies broadly. |

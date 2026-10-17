@@ -106,5 +106,60 @@ def _source_findings() -> list[str]:
 
 def check_hook_operates_on_committing_tree():
     """The pre-commit hook resolves its root from the committing tree and stages only under that root."""
-    issues = _resolution_findings() + _source_findings()
+    issues = _resolution_findings() + _source_findings() + _latex_scope_findings() + _projection_findings()
     return (FAIL if issues else PASS), issues
+
+
+def _latex_scope_findings() -> list[str]:
+    """Exercise the actual pre-push scope selector without executing a push or its gates."""
+    path = os.path.join(ROOT, "hooks", "pre-push")
+    with open(path, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read(), filename=path)
+    selected = [n for n in tree.body
+                if (isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "SCOPES"
+                                                      for t in n.targets))
+                or (isinstance(n, ast.FunctionDef) and n.name == "_touches")]
+    namespace = {}
+    exec(compile(ast.Module(body=selected, type_ignores=[]), path, "exec"), namespace)
+    scopes, touches = namespace["SCOPES"], namespace["_touches"]
+    issues = []
+    cases = {
+        "latex/magebook.sty": {"book", "handbook"},
+        "tools/latex_build.py": {"book", "handbook"},
+        "tools/pdf_structure.py": {"book", "handbook"},
+        "tools/install_texlive_ci.sh": {"book", "handbook"},
+        "tools/mage_latex.py": {"book"},
+        "tools/mage_cover.py": {"book"},
+        "tools/mage_assets.py": {"book"},
+        "tools/cover_assets.py": {"book", "handbook"},
+        "book/fonts/SourceSerif4/SourceSerif4-Regular.ttf": {"book", "handbook"},
+        "book/references.bib": {"book", "handbook"},
+        "handbook/scripts/latex_source.py": {"handbook"},
+        ".github/workflows/pages.yml": {"book", "handbook"},
+        "hooks/pre-push": {"book", "handbook"},
+        "workbench/src/main.ts": set(),
+    }
+    for changed, expected in cases.items():
+        actual = {gate for gate in ("book", "handbook") if touches({changed}, scopes[gate])}
+        if actual != expected:
+            issues.append(f"pre-push {changed}: PDF scopes {actual}, expected {expected}")
+    for gate in ("book", "handbook"):
+        if not touches(None, scopes[gate]):
+            issues.append(f"pre-push unknown scope must run {gate}")
+    return issues
+
+
+def _projection_findings() -> list[str]:
+    """Only source adapters implement sync; cover and PDF check tools do not."""
+    expected = {"tools/mage_latex.py", "handbook/scripts/latex_source.py"}
+    findings = []
+    for hook in ("pre-commit", "pre-merge-commit", "pre-push"):
+        path = os.path.join(ROOT, "hooks", hook)
+        with open(path, encoding="utf-8") as source:
+            tree = ast.parse(source.read(), filename=path)
+        loops = [node for node in tree.body if isinstance(node, ast.For)
+                 and isinstance(node.target, ast.Name) and node.target.id == "_source_tool"]
+        actual = set(ast.literal_eval(loops[0].iter)) if len(loops) == 1 else set()
+        if actual != expected:
+            findings.append(f"{hook}: sync adapter set {actual}, expected {expected}")
+    return findings

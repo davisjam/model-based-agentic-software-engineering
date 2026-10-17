@@ -42,7 +42,7 @@ checkout. Three reasons, in descending order of how much they constrain the choi
 
   - **The generators do not run in a worktree.** `catalog.py build` aborts there: the book build needs
     `book/assets/cover-thumb.png`, which is gitignored and produced by `tools/cover_assets.py regen`
-    (typst + Pillow). Verified 261002 in a worktree sitting on a landed main commit — rc=1, "page body
+    (LuaLaTeX + poppler + Pillow). Verified 261002 in a worktree sitting on a landed main commit — rc=1, "page body
     references missing asset …/cover-thumb.png". Pointing the root at the committing tree WITHOUT this
     split would have blocked every worktree commit outright.
   - **The derived artifacts belong to the publisher.** GitHub Pages serves main's committed HTML. A
@@ -99,6 +99,28 @@ if _deck_gate.returncode:
     print("pre-commit: staged .pptx BLOCKED — OOXML/OPC validity findings above "
           "(tools/pptx_validate.py; PowerPoint would report the deck as needing repair).")
     sys.exit(1)
+
+# LaTeX is authoritative. Check its tracked Markdown compatibility projections before any
+# consumer reads them. Never regenerate/stage manuscript files implicitly: the author runs
+# `sync`, reviews the projection diff, and stages the intended files with the LaTeX edit.
+for _source_tool in ("tools/mage_latex.py", "handbook/scripts/latex_source.py"):
+    _projection = subprocess.run([sys.executable, _source_tool, "sync", "--check"], cwd=ROOT)
+    if _projection.returncode:
+        print(f"pre-commit: LaTeX projection check FAILED. Run `python3 {_source_tool} sync`, "
+              "review and stage the generated Markdown with its LaTeX source, then retry.")
+        sys.exit(_projection.returncode)
+
+for _regression_tool in ("handbook/scripts/test_latex_source.py",
+                         "tools/test_latex_build.py", "tools/test_pdf_structure.py"):
+    _bridge_tests = subprocess.run([sys.executable, _regression_tool], cwd=ROOT)
+    if _bridge_tests.returncode:
+        print(f"pre-commit: native LaTeX regression check FAILED: {_regression_tool}")
+        sys.exit(_bridge_tests.returncode)
+
+_boundaries = subprocess.run([sys.executable, "-m", "unittest",
+                              "tests.test_native_site_boundaries"], cwd=ROOT)
+if _boundaries.returncode:
+    sys.exit(_boundaries.returncode)
 
 _catalog("validate")   # refuse to build/commit an invalid schema
 

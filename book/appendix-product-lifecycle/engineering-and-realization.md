@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/engineering-and-realization.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Engineering question.** How should the product or requested change be realized while satisfying its obligations?
 
 Engineering & Realization is the surface treated throughout Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}}. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system. The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.

@@ -3,9 +3,40 @@
 *Architecture, Validation, and Control for Agentic Software Engineering.* The book renders to a
 small static HTML site by `build_book.py` (wired into `catalog.py build`).
 
+## Authoring and publishing
+
+The authoritative authored manuscript is native LaTeX in `latex/sources/`. Edit those
+`.tex` files, then run `python3 tools/mage_latex.py sync` from the repository root.
+The corresponding Markdown files are generated compatibility projections for the
+existing website, cross-reference registry, and book-model checks. Do not edit the
+projections directly. `latex/native-sources.json` enumerates all 129 authored sources;
+catalogue-derived appendices continue to derive from the catalogue's own sources.
+
+The shared PDF layout is `latex/house.sty` at the repository root. The native PDF
+build requires LuaLaTeX and BibTeX (the pinned TeX Live toolchain), Pandoc, and
+`rsvg-convert`, Poppler, `qpdf`, and `book/requirements-pdf.txt`. Build with `python3 book/build_book.py --pdf`; build the web edition
+with the existing `catalog.py build`. `tools/mage_latex.py sync --check` rejects stale
+projections. The compiler rejects errors, unresolved references/citations, missing
+glyphs, overfull boxes, and other warnings; underfull boxes are explicitly tolerated.
+
+Ordinary LaTeX headings, prose, lists, tables, equations, and citations are native.
+`\citep{key}` keeps bibliography identities in `references.bib`; `\autoref{label}`
+keeps figure/table references. The small `\magevalue{...}`, `\mageaside{...}`, and
+`\magefootnote{key}{...}` vocabulary preserves generated metrics/chapter references
+and keyed editorial notes. Metadata comments retain model anchors and annotations.
+The compatibility adapter rejects unsupported raw LaTeX rather than silently losing
+it. Each figure's `.assets.json` sidecar preserves its original web SVG identity.
+
+The resolved publication driver and chapters in `latex/build/` are generated. They
+combine authored manuscript projections with catalogue/model output, resolving
+metrics and identities before native PDF compilation. They are not authoring sources.
+Section PDFs have separate generated directories so they cannot overwrite the full
+book’s source bundle. References outside an excerpt use the full book’s resolved
+numbers; references within it remain linked. Build the full book before excerpts.
+
 ## Part/Chapter filesystem hierarchy
 
-The source tree **encodes the hierarchy**: a chapter lives at `part<N>/<N>.<M>-<slug>.md`, so the
+The generated compatibility tree **encodes the hierarchy**: a chapter lives at `part<N>/<N>.<M>-<slug>.md`, so the
 part number and chapter number are explicit in the path. `build_book.py` walks the tree,
 derives PART.CHAPTER from the path, and reads the `<!-- part-title --> <!-- chapter-title -->`
 metadata from each file. It emits one flat `<slug>.html` per chapter plus `index.html`, and appends
@@ -72,3 +103,9 @@ over the book pages too). Never hand-edit the `.html`.
 The book's appendix references catalogue-root figures. Run `catalog.py build` (regenerates
 `catalogue-views.html`) before or alongside `build_book.py`, and commit both, so any deployed
 cross-references resolve.
+
+Native section excerpts use separate assembly directories under `latex/build/`, so
+an excerpt cannot overwrite the full manuscript's generated chapters. Build the
+full PDF first: references to figures outside an excerpt are resolved to their
+verified full-book number from that build's auxiliary file; references inside the
+excerpt remain live LaTeX references. Missing external identities fail the build.

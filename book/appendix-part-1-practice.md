@@ -1,8 +1,9 @@
+<!-- GENERATED from book/latex/sources/appendix-part-1-practice.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 This part turns from the argument to its use. The appendices that follow provide working references, methods, and extensions for applying MAGE in different engineering settings. They are meant to be consulted as needed, not read in sequence.
 
 <!-- label: where-to-look-practice -->
 <!-- table: The practice appendices — each beside the question that sends you to it. [short: The practice appendices and the questions they answer] -->
-
 | If you are asking… | Go to |
 |---|---|
 | How do several mechanisms compose into a useful engineering capability? | [appendix: appendix-stacks] — Engineering Stacks |

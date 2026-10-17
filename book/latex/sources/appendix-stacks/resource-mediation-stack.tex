@@ -1,0 +1,65 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Prevent actor timing from becoming accidental concurrency policy for a shared resource.} When actors contend for a scarce resource, move admission policy out of their timing and into an explicit control.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Actors contend for a scarce resource} --- a test runner, a build host, a rate-limited API --- and their arrival order decides who wins.
+\item
+  \textbf{Availability has become an emergent property} of when jobs happen to start, rather than a stated policy.
+\item
+  \textbf{Capacity should flex under live pressure}, but only once a fixed policy and a single admission point already exist.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/resource-mediation-stack-7443deee0a.pdf}
+\caption{The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N\textgreater1 are settings of the same mediator, not separate stacks. Solid path: the required path. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{resource-mediation-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{DECLARE} & State which resource is scarce and what capacity is acceptable. \\
+\textbf{MEDIATE} & Route access through one admission point. \\
+\textbf{ADAPT} & \emph{(strengthens)} Modify effective capacity from live pressure where justified. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Unmediated contention makes resource availability an emergent property of actor timing---whoever starts first wins, and the policy is an accident. A mediator replaces that accident with explicit policy: one admission point and a declared capacity. The engineering move is not the semaphore; it is moving contention policy out of individual actors and into one shared control. Whether that control admits one actor or many is a setting, not a different mechanism.
+
+Adaptive control can improve utilization, but only after a fixed policy and common admission point exist. Capacity cannot be tuned coherently when no single control owns it.
+
+\textbf{Mechanisms:} exclusive mediator · bounded mediator · pressure-responsive admission

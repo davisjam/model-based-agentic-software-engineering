@@ -1,0 +1,72 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{State the engineering obligations, identify the population they apply to, and produce evidence strong enough for each property.}
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when the important question shifts from
+
+% <!-- inline-quote -->
+
+\begin{quote}
+Did the tests pass?
+\end{quote}
+
+to
+
+% <!-- inline-quote -->
+
+\begin{quote}
+Have we named the relevant obligations, discharged each one appropriately, and shown the population is covered?
+\end{quote}
+
+That shift arrives whenever a property has to hold across a whole class of things --- every mutator, every config field, every seam --- and a green suite on a handful of examples no longer settles it.
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/assurance-stack-0fad62ad9e.pdf}
+\caption{The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves --- TEST for examples, LINT for structure, PROVE for semantics --- and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine.}
+\label{assurance-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{SPEC} & State the obligation. \\
+\textbf{CENSUS} & Establish the population to which it applies. \\
+\textbf{DISCHARGE} & Apply tests, lints, proofs, or other evidence appropriate to the property. \\
+\textbf{COVER} & Join obligations back to evidence so omissions become visible. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+A checker establishes a property only for what it checks. A proof says nothing about obligations left out of its population; a census with no evidence attached merely enumerates debt. Assurance therefore requires both evidence for each obligation and confidence that the relevant population is covered. Use evidence suited to the property---an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it---and map that evidence back to the full population so omissions remain visible.
+
+One rule runs throughout: check an obligation at the semantic level where the property becomes legible. A property about a document\textquotesingle s structure belongs in a check that reads structure, not one that scans bytes for it. This determines where the check belongs; it is not another mechanism in the stack.
+
+\textbf{Mechanisms:} census-derived obligations · semantic validator · bounded proof · coverage gate

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-crazy-ideas/experimental-substrate.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 Commodity intelligence may create an unusual empirical opportunity for software-engineering research. Studies of human engineering practice contend with substantial variation in experience, familiarity, reasoning style, and local practice. Agentic systems remain stochastic and evolve across releases, but more of the reasoning substrate can be held approximately fixed: model version, repository state, tool surface, prompt, sampling procedure, task family, and engineered environment.
 
 Repeated trials can therefore estimate stochastic variation while one representation, mechanism, or admission policy changes. Some system-scale questions become more directly interventional: not only *do teams using practice X report better outcomes?*, but *what changes when representation A is replaced by representation B, or admission policy A by policy B, under otherwise matched conditions?*[^ci-productivity]
@@ -20,11 +22,11 @@ The design also creates threats that should be made explicit. Foundation models 
 
 **Candidate research questions.**
 
-* How much productive capability is attributable to the engineered environment rather than the reasoning engine?
-* When do environment quality and model capability substitute for one another, and when are they complementary?
-* Which environmental interventions persist as durable gains rather than moving effort downstream?
-* How do representation fidelity, enforcement, and evidence independently affect agentic performance?
-* What experimental controls are sufficient for causal claims when the reasoner itself remains stochastic and versioned?
+- How much productive capability is attributable to the engineered environment rather than the reasoning engine?
+- When do environment quality and model capability substitute for one another, and when are they complementary?
+- Which environmental interventions persist as durable gains rather than moving effort downstream?
+- How do representation fidelity, enforcement, and evidence independently affect agentic performance?
+- What experimental controls are sufficient for causal claims when the reasoner itself remains stochastic and versioned?
 
 **Possible paper seed:** *Software Engineering With a Standardized Reasoner: Commodity Intelligence as an Experimental Instrument.*
 

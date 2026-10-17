@@ -1,0 +1,18 @@
+id: failure-aware-engineering
+title: Failure-Aware Engineering
+short_title: Failure-Aware Engineering
+order: 10
+status: draft
+description: >
+  Failure is a predictable outcome of engineering under incomplete knowledge, and it produces
+  evidence. This chapter turns the book around and applies it retrospectively: locate what an
+  incident revealed among the engineering activities, reconstruct why the earlier evidence did not
+  expose it, treat severity as a model of consequence rather than a property of a defect, and
+  decide whether the lesson belongs in the system, the team, or the engineer.
+objectives:
+  - Distinguish repair, which restores the system, from reflection, which changes the understanding used in future engineering.
+  - Locate what an incident revealed among requirements, specification, architecture, design, and implementation rather than assuming an implementation defect.
+  - Reconstruct why previous evidence did not expose the problem, without concluding that every failure demonstrates inadequate validation.
+  - Judge severity as a model of the consequence of violating an engineering obligation, operationally defined rather than intrinsic to a defect.
+  - Decide where a lesson belongs — in the engineered system, in shared team knowledge, or in an engineer's repertoire — and interpret recurrence as evidence about how an organization learns.
+  - Use metrics to make a learning process observable while recognizing that engineering judgment itself is not directly measurable.

@@ -1,6 +1,8 @@
+# Manuscript authority: each listed .md is a generated projection of its sibling
+# .tex and .yaml. These stable paths remain for catalogue/web compatibility.
 # Global book metadata — the single source of truth for information that belongs to the whole book
 # rather than to any one chapter. The PDF front matter and the web site configuration both derive
-# from this file; do not repeat these facts in the Typst template or in mkdocs.yml.
+# from this file; do not repeat these facts in the print template or in mkdocs.yml.
 title: The Software Engineering Handbook
 subtitle: A Judgment and Decision-Making Approach
 author: James C. Davis

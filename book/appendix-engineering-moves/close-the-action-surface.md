@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/close-the-action-surface.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** When a consequential operation can occur through arbitrary routes, governance must account for an open-ended set of ways to change the system. Validators, provenance, and policy cannot cover paths they cannot enumerate.
 
 **Move.** Route consequential actions through a bounded, named interface. A closed action surface exposes a finite set of operations, each of which can carry policy, provenance, and validation.

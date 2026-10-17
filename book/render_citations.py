@@ -1,27 +1,14 @@
 #!/usr/bin/env python3
-"""Render every reference in `book/references.bib` to Chicago strings ONCE, through Typst's own
-bibliography engine (Hayagriva), and write `book/data/citations.json`.
+"""Render canonical references.bib to Chicago notes and bibliography through Pandoc citeproc.
 
-WHY ONE ENGINE.  The bib is the single source of truth; the residual risk is *formatting drift* across
-the two surfaces (HTML web book + Typst PDF). If each surface ran its own CSL processor, the same data +
-same style name could render two different strings. So Chicago is rendered exactly once here — through
-Typst — and the HTML build reads the one artifact this writes with stdlib `json`. The PDF build renders
-natively through the same Typst engine from the SAME derived source pair this module produces
-(`derived_sources` below — the .bib split that works around Hayagriva's @inproceedings/@incollection
-mis-typing), in its own deliberately different style (nature). Same engine, same data; only the style
-differs. See `book/_design/bibliography-subsystem-260801.md` §2-§3.
+The web book, course reading lists and metadata consume the same committed citations.json.
+Native LaTeX PDFs use the same bibliography data with their own print citation style.
+Pandoc reads the original BibTeX directly; no Hayagriva remapping participates in rendering.
+The legacy derived_sources API remains for archived Typst consumers only.
 
-ROUTE (Phase-1 verdict, 2026-08-01).  `typst compile --features html` of a per-key bibliography-only
-document. The Hayagriva CLI (the design's primary candidate) ships no prebuilt binary — installing it
-would add a Rust toolchain to CI — whereas this route reuses the Typst binary already pinned in the Pages
-workflow, so the clone-and-run / no-new-dependency promise holds. Typst flags HTML export experimental,
-but the input is a tiny author-controlled reference list and the output is byte-checked into the two
-surfaces by the CITE-PARITY gate.
-
-CLONE-AND-RUN.  This is a dev/CI-time tool, NOT on `catalog.py`'s path. It needs the Typst binary (a
-download, like the mermaid CLI), never a pip package. `catalog.py` only ever reads the committed JSON.
-
-Exit codes (subprocess convention): 0 = success, 1 = runtime error, 2 = missing dependency (Typst).
+The vendored official Chicago 18 CSL is licensed CC BY-SA 3.0; see latex/CSL-SOURCE.txt.
+This dev/CI tool requires Pandoc; catalog.py only reads the committed JSON.
+Exit codes: 0 success, 1 rendering/data error, 2 missing Pandoc.
 """
 from __future__ import annotations
 
@@ -40,7 +27,8 @@ from html.parser import HTMLParser
 HERE = pathlib.Path(__file__).resolve().parent
 BIB_PATH = HERE / "references.bib"
 OUT_PATH = HERE / "data" / "citations.json"
-STYLE = "chicago-notes"
+STYLE = "chicago-notes-bibliography"
+CSL_PATH = HERE / "latex" / f"{STYLE}.csl"
 
 
 # ─────────────────────────── BibTeX parsing (stdlib) ───────────────────────────
@@ -144,7 +132,8 @@ def parse_bib(text: str) -> list[dict]:
     return entries
 
 
-# ─────────────────────────── Derived bibliography sources (the two-file split) ───────────────────────────
+# ─────────────────────────── Legacy derived bibliography API (archived Typst only) ───────────────────────────
+# Kept for old callers and archival tests; current Pandoc/LaTeX rendering never uses this split.
 #
 # Hayagriva's BibTeX reader mis-types two entry classes, and no .bib field shape avoids it (verified
 # 261008 against typst 0.15.1): @inproceedings becomes an article inside a `proceedings` parent, which
@@ -249,10 +238,11 @@ def derived_sources(bib_text: str) -> tuple[str, str]:
 # ─────────────────────────── HTML fragment normalization ───────────────────────────
 
 class _FragmentCleaner(HTMLParser):
-    """Normalize a Typst-emitted reference fragment: drop the leading `<sup role="doc-backlink">…</sup>`
-    (the endnote's back-arrow), and UNWRAP every internal anchor (`href="#loc-N"` — a Typst-doc-local link
-    meaningless outside that doc), keeping any EXTERNAL anchor (`href="http…"`) intact. Everything else
-    (text, <em>) passes through. So the note/bib body renders identically on both surfaces."""
+    """Keep portable phrasing markup and external links, dropping local note backlinks.
+
+    Works with current Pandoc citeproc and legacy Typst fragments. Document wrappers
+    and internal fragment links are removed because JSON values are embedded inline.
+    """
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -265,7 +255,7 @@ class _FragmentCleaner(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list) -> None:
         a = dict(attrs)
-        if tag == "sup" and a.get("role") == "doc-backlink":
+        if a.get("role") == "doc-backlink":
             self._skip_depth += 1
             self._sup_depth = 1
             return
@@ -280,7 +270,12 @@ class _FragmentCleaner(HTMLParser):
             self._anchor_stack.append(True)
             self.parts.append(f'<a href="{_html.escape(href, quote=True)}">')
             return
-        # keep phrasing tags (em, i, b, strong, span, sub, sup non-backlink)
+        if tag in ("p", "div"):
+            return  # projection values are phrasing-only HTML fragments
+        if tag == "span" and a.get("class") == "smallcaps":
+            self.parts.append('<span class="smallcaps">')
+            return
+        # Keep semantic emphasis, scripts and spans; document-local ids are omitted.
         self.parts.append(f"<{tag}>")
 
     def handle_endtag(self, tag: str) -> None:
@@ -292,6 +287,9 @@ class _FragmentCleaner(HTMLParser):
         if tag == "a":
             if self._anchor_stack and self._anchor_stack.pop():
                 self.parts.append("</a>")
+            return
+        if tag in ("p", "div"):
+            self.parts.append(" ")
             return
         self.parts.append(f"</{tag}>")
 
@@ -310,39 +308,102 @@ def _clean_fragment(frag: str) -> str:
     return re.sub(r"\s+", " ", "".join(p.parts)).strip()
 
 
-# ─────────────────────────── Typst render ───────────────────────────
+# ─────────────────────────── Pandoc citeproc render ───────────────────────────
+
+def _protect_title_case(bib_text: str) -> str:
+    """Add BibTeX case-protection to titles in ephemeral citeproc input, preserving their text.
+
+    Pandoc's BibTeX reader sentence-cases unprotected titles before CSL formatting,
+    which otherwise turns U.S. into u.s. The extra brace layer translates to CSL's
+    nocase markup. Only syntax is added; canonical .bib bytes are never rewritten.
+    """
+    replacements = []
+    for entry in _ENTRY_RE.finditer(bib_text):
+        body, consumed = entry.group(3), 0
+        for field in _FIELD_RE.finditer(body):
+            if field.start() < consumed:
+                continue
+            start = field.end()
+            while start < len(body) and body[start].isspace():
+                start += 1
+            if start == len(body):
+                break
+            cursor = start
+            if body[start] == "{":
+                depth = 0
+                while cursor < len(body):
+                    if body[cursor] == "\\":
+                        cursor += 2
+                        continue
+                    if body[cursor] == "{":
+                        depth += 1
+                    elif body[cursor] == "}":
+                        depth -= 1
+                        if depth == 0:
+                            cursor += 1
+                            break
+                    cursor += 1
+                else:
+                    raise ValueError(f"unbalanced BibTeX field in {entry.group(2)}")
+            elif body[start] == '"':
+                cursor += 1
+                while cursor < len(body):
+                    if body[cursor] == "\\":
+                        cursor += 2
+                    elif body[cursor] == '"':
+                        cursor += 1
+                        break
+                    else:
+                        cursor += 1
+            else:
+                cursor = body.find(",", start)
+                if cursor < 0:
+                    cursor = len(body)
+            consumed = cursor
+            if field.group(1).lower() not in {"title", "booktitle", "journal", "series"}:
+                continue
+            raw = body[start:cursor]
+            if raw.startswith("{") or raw.startswith('"'):
+                protected = "{{" + raw[1:-1] + "}}"
+            else:
+                # Bare BibTeX macros must retain their expansion semantics.
+                raise ValueError(f"title field in {entry.group(2)} must be braced or quoted")
+            replacements.append((entry.start(3) + start, entry.start(3) + cursor, protected))
+    for start, end, replacement in reversed(replacements):
+        bib_text = bib_text[:start] + replacement + bib_text[end:]
+    return bib_text
+
+
+def _extract_rendered(html: str, key: str) -> tuple[str, str]:
+    """Extract the one full note and bibliography entry, preserving phrasing semantics."""
+    bib_m = re.search(r'<div\b[^>]*\bid="ref-' + re.escape(_html.escape(key, quote=True))
+                      + r'"[^>]*>(.*?)</div>', html, re.S)
+    note_m = re.search(r'<section\b[^>]*role="doc-endnotes"[^>]*>.*?<li\b[^>]*>(.*?)</li>',
+                       html, re.S)
+    if not note_m:
+        raise RuntimeError(f"could not extract Chicago note for key {key!r} — Pandoc output shape changed")
+    # Chicago permits notes-only entries; main applies the existing non-empty fallback.
+    return _clean_fragment(note_m.group(1)), _clean_fragment(bib_m.group(1)) if bib_m else ""
+
 
 def _render_one(key: str, workdir: pathlib.Path) -> tuple[str, str]:
-    """Render one key → (note_html, bib_html). Cites the key once and lays out a chicago-notes
-    bibliography; harvests the endnote body (note form) and the bibliography-entry body (works-cited /
-    bibliography form) from the two `role=` sections Typst emits."""
-    typ = workdir / "one.typ"
-    out = workdir / "one.html"
-    typ.write_text(
-        "#set page(width: auto, height: auto)\n"
-        f"X #cite(<{key}>).\n"
-        f'#bibliography(("{DERIVED_BIB_NAME}", "{DERIVED_YAML_NAME}"), style: "{STYLE}")\n',
-        encoding="utf-8",
-    )
+    """Render each key in isolation, ensuring a full first note rather than ibid/short notes."""
     r = subprocess.run(
-        ["typst", "compile", "--features", "html", str(typ), str(out)],
-        capture_output=True, text=True, cwd=str(workdir),
+        ["pandoc", "--from=markdown", "--to=html5", "--citeproc", "--wrap=none",
+         "--metadata=lang:en-US", f"--bibliography={workdir / 'references.bib'}",
+         f"--csl={CSL_PATH}"],
+        input=f"[@{key}]\n", capture_output=True, text=True, cwd=str(workdir),
     )
-    if r.returncode != 0 or not out.exists():
-        raise RuntimeError(f"typst failed for key {key!r} (rc={r.returncode}):\n{r.stderr}")
-    html = out.read_text(encoding="utf-8")
-    bib_m = re.search(r'role="doc-bibliography".*?<li[^>]*>(.*?)</li>', html, re.S)
-    note_m = re.search(r'role="doc-endnotes".*?<li[^>]*>(.*?)</li>', html, re.S)
-    if not bib_m or not note_m:
-        raise RuntimeError(f"could not extract Chicago strings for key {key!r} — Typst output shape changed")
-    return _clean_fragment(note_m.group(1)), _clean_fragment(bib_m.group(1))
+    if r.returncode or "[WARNING]" in r.stderr:
+        raise RuntimeError(f"Pandoc citeproc failed for key {key!r} (rc={r.returncode}):\n{r.stderr}")
+    return _extract_rendered(r.stdout, key)
 
 
 # ─────────────────────────── Freshness stamp ───────────────────────────
 
 def bib_hash(text: str) -> str:
-    """The freshness key: sha256 of references.bib. The rendered Chicago strings depend only on the .bib,
-    so this hash is exactly what determines whether citations.json is stale. The CITE-FRESH gate compares
+    """The freshness key: sha256 of references.bib. The CSL style is stamped separately;
+    this hash checks whether the reference data behind citations.json is stale. The CITE-FRESH gate compares
     this stored hash against the current file (the mermaid-cache / tracked-HTML freshness discipline). The
     set of `[cite:]` markers is validated separately by CITE-RESOLVE — it does not change the strings, so
     it is not part of the freshness key (a marker edit never forces a spurious re-render)."""
@@ -374,9 +435,8 @@ def main() -> int:
     if not BIB_PATH.is_file():
         print(f"ERROR: {BIB_PATH} not found", file=sys.stderr)
         return 1
-    if shutil.which("typst") is None:
-        print("ERROR: typst not found on PATH — the citation renderer needs the pinned Typst binary "
-              "(a download, like the mermaid CLI). Install Typst 0.15.1 and re-run.", file=sys.stderr)
+    if shutil.which("pandoc") is None:
+        print("ERROR: pandoc not found on PATH — install Pandoc 3.9.0.2 and re-run.", file=sys.stderr)
         return 2
 
     bib_text = BIB_PATH.read_text(encoding="utf-8")
@@ -386,26 +446,19 @@ def main() -> int:
     # Planned-actions preamble (tool-reporting discipline: say what will run before running it).
     print("== render_citations.py — plan ==")
     print(f"  bib:     {BIB_PATH.relative_to(HERE.parent)}  ({len(entries)} entries)")
-    print(f"  engine:  Typst {STYLE} via `typst compile --features html` (per-key)")
+    print(f"  engine:  Pandoc citeproc, official Chicago 18 {STYLE} (per-key)")
     print(f"  out:     {OUT_PATH.relative_to(HERE.parent)}")
     print(f"  bib_sha: {new_hash[:16]}…  (stored: {(load_stamp() or 'none')[:16]}…)")
 
     citations: dict[str, dict] = {}
     with tempfile.TemporaryDirectory() as td:
         wd = pathlib.Path(td)
-        rest_bib, hay_yaml = derived_sources(bib_text)
-        (wd / DERIVED_BIB_NAME).write_text(rest_bib, encoding="utf-8")
-        (wd / DERIVED_YAML_NAME).write_text(hay_yaml, encoding="utf-8")
+        (wd / "references.bib").write_text(_protect_title_case(bib_text), encoding="utf-8")
         for e in entries:
             key = e["key"]
             note_html, bib_html = _render_one(key, wd)
-            # NEVER-EMPTY GUARANTEE. Hayagriva's chicago-notes style treats a source with no locator —
-            # in this bib, every @misc carrying neither `url` nor `doi` — as notes-only and emits an
-            # EMPTY bibliography <li> (the note form stays complete). Our Works Cited is a NUMBERED list
-            # mirrored to the superscripts (BIB-4), so an entry cannot be omitted or blank: fall back to
-            # the engine's own note-form string, which for a notes-only source IS the full Chicago
-            # citation. Still one engine — no second CSL processor. Both forms empty = a real data
-            # defect; fail loud.
+            # Numbered works-cited entries must never be blank. Chicago notes-only sources
+            # use the full note text; missing text in both forms is a data/rendering error.
             if not bib_html:
                 if not note_html:
                     raise RuntimeError(f"entry {key!r} rendered EMPTY in both note and bibliography "
@@ -420,7 +473,8 @@ def main() -> int:
 
     stamp = {
         "bib_sha256": new_hash,
-        "engine": f"typst-{STYLE}-html-export",
+        "engine": f"pandoc-citeproc-{STYLE}",
+        "csl_sha256": hashlib.sha256(CSL_PATH.read_bytes()).hexdigest(),
         "generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "note": "GENERATED by book/render_citations.py from book/references.bib — DO NOT EDIT BY HAND. "
                 "Re-run `python3 book/render_citations.py` after editing references.bib.",
@@ -437,6 +491,7 @@ def main() -> int:
             existing.get("citations") == citations
             and existing_stamp.get("bib_sha256") == stamp["bib_sha256"]
             and existing_stamp.get("engine") == stamp["engine"]
+            and existing_stamp.get("csl_sha256") == stamp["csl_sha256"]
             and existing_stamp.get("note") == stamp["note"]
         )
         if unchanged:

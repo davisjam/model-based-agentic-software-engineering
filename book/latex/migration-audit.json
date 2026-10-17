@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "5049ff75ef9c20b182f656d9c55658d346517343",
+  "pandoc_version": "3.9.0.2",
+  "authored_sources": 129,
+  "projection_semantic_differences": 0,
+  "comparison": "Ordered Pandoc AST prose, punctuation, code, math, link targets and table cell tokens against original authored Markdown; metadata/model integrity separately validated by catalog.py validate.",
+  "model_validation_issues": 0,
+  "unsupported_native_macro_mutations": "Rejected in ordinary prose and inside bookbox.",
+  "authority": "Native LaTeX sources enumerated by native-sources.json; Markdown compatibility files are generated.",
+  "missing_or_changed_source_metadata": 0,
+  "metadata_comparison": "All original HTML annotations, figure/table labels, and caption semantic tokens retained; Pandoc adds empty list-separator comments in two files."
+}

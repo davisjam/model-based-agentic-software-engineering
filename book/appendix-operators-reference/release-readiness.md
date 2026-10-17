@@ -1,19 +1,16 @@
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/release-readiness.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 *Can I trust this release?*
 
-A release is ready when every obligation assigned a blocking gate has current supporting evidence and
-every blocking gate passes. The checklist gathers those obligations at release time; it does not create new
-ones.
+A release is ready when every obligation assigned a blocking gate has current supporting evidence and every blocking gate passes. The checklist gathers those obligations at release time; it does not create new ones.
 
-The specific checks depend on the system. A model-based obligation requires current correspondence only when
-the release relies on that model; a locally enforced property may require no system model. The general rule
-is obligation → evidence → enforcement.
+The specific checks depend on the system. A model-based obligation requires current correspondence only when the release relies on that model; a locally enforced property may require no system model. The general rule is obligation → evidence → enforcement.
 
 ### The preflight
 
-Instantiate the checklist for each release. List the obligations carrying blocking enforcement, confirm that
-each has current evidence, and confirm that every blocking gate passes.
+Instantiate the checklist for each release. List the obligations carrying blocking enforcement, confirm that each has current evidence, and confirm that every blocking gate passes.
 
-```
+``` text
   RELEASE READINESS  ·  PREFLIGHT              "Can I trust this release?"
   ═══════════════════════════════════════════════════════════════════════
   [ ]  Blocking obligations identified and current
@@ -30,6 +27,4 @@ each has current evidence, and confirm that every blocking gate passes.
 
 ### The override note
 
-Treat an override as an engineering event. Record who accepted it, the available evidence, the bypassed
-obligation, and whether the exception reveals a recurring class that warrants later review. Do not carry the
-exception into future releases implicitly.
+Treat an override as an engineering event. Record who accepted it, the available evidence, the bypassed obligation, and whether the exception reveals a recurring class that warrants later review. Do not carry the exception into future releases implicitly.

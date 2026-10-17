@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """build.py — render the Handbook from its one semantic source.
 
-    chapters/*.md  →  Pandoc AST  →  Handbook Lua filters  →  ┬─ Typst  →  PDF
+    chapters/*.tex → generated Markdown → Pandoc AST → semantic filters → LuaLaTeX → PDF
                                                               ├─ Pandoc ePub3  →  EPUB
                                                               └─ MkDocs Markdown  →  HTML
 
@@ -84,6 +84,9 @@ def _bib_markdown(html_str: str) -> str:
             return f"*{m.group(3)}*"
         raise SystemExit(f"build.py: unexpected tag {m.group(4)!r} in a rendered citation — "
                          "book/render_citations.py changed its output shape; widen _bib_markdown")
+    # Pandoc emits an unstyled span for BibTeX case protection. Its text is
+    # already correctly cased; it has no remaining display semantics.
+    html_str = html_str.replace("<span>", "").replace("</span>", "")
     return _CITE_HTML_RE.sub(repl, html_str).replace("&amp;", "&")
 
 
@@ -319,6 +322,11 @@ def _frontmatter_units(book: dict, chdir_args: list[str]) -> list[tuple[C.pathli
 
 
 def build_pdf(book: dict) -> None:
+    from latex_pdf import build_pdf as render_latex
+    render_latex(book)
+
+
+def build_pdf_typst_legacy(book: dict) -> None:
     _gate()
     GEN_TYPST.mkdir(parents=True, exist_ok=True)
     C.DIST.mkdir(parents=True, exist_ok=True)

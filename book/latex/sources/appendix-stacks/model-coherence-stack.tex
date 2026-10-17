@@ -1,0 +1,70 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Keep explicit engineering models connected to both their consumers and the implementation they describe.} A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engineers or agents rely on explicit system models} to reason about the substrate.
+\item
+  \textbf{Several consumers need the same engineering fact}, making copied facts sources of drift.
+\item
+  \textbf{Implementation can diverge from authored intent} with nothing to catch the split.
+\item
+  \textbf{Downstream artifacts can be generated} rather than hand-maintained in parallel.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-coherence-stack-a10f44da75.pdf}
+\caption{The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check --- model against world --- which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{model-coherence-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MODEL} & Put the engineering fact in an explicit representation. \\
+\textbf{CONSUME} & Read the authoritative representation instead of copying its facts. \\
+\textbf{CORRESPOND} & Compare model and implementation wherever an independent join exists. \\
+\textbf{DERIVE} & Compute correspondence from stable identities where possible. \\
+\textbf{EMIT} & Generate downstream artifacts when the model can own the fact. \\
+\textbf{GATE} & Reject disagreement where the modeled property warrants enforcement. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+A model nobody consumes is documentation. A model whose consumers copy its facts becomes another source of drift. A model consumed but never checked against reality can go confidently wrong---trusted precisely while it lies.
+
+Direct consumption avoids copied sources of truth; correspondence checks expose divergence between model and implementation; generation eliminates duplicate sources of truth where the model can own a fact outright; and gates make consequential disagreements blocking. Not every model needs every mechanism: a descriptive model may remain advisory. Add stronger mechanisms only when the representation warrants stronger enforcement.
+
+\textbf{Mechanisms:} executable source-of-truth model · meta-model consumption · drift/parity gate · derived traceability · model-derived generation

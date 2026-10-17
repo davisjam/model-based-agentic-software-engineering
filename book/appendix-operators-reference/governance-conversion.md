@@ -1,24 +1,18 @@
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/governance-conversion.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 *What should the environment learn from this recurrence?*
 
-When the same kind of failure recurs, ask whether the environment should change. First classify what keeps
-going wrong: missing knowledge, a weak representation, an implicit obligation, late evidence, misplaced
-enforcement, a failed mechanism, an architectural weakness, or an obsolete control. Then decide whether the
-lesson is worth making durable.
+When the same kind of failure recurs, ask whether the environment should change. First classify what keeps going wrong: missing knowledge, a weak representation, an implicit obligation, late evidence, misplaced enforcement, a failed mechanism, an architectural weakness, or an obsolete control. Then decide whether the lesson is worth making durable.
 
-Engineering Capital asks whether existing structure still earns its keep; Governance Conversion asks whether
-a recurring lesson should change that structure.
+Engineering Capital asks whether existing structure still earns its keep; Governance Conversion asks whether a recurring lesson should change that structure.
 
 The conversion decision has three stages:
 
-- **Classify the gap.** Identify the recurring problem rather than its latest symptom: missing knowledge,
-  representation, obligation, evidence, enforcement, mechanism, architecture, or an obsolete control.
-- **Choose the durable response.** Possible responses include a representation, constraint, sensor,
-  validator, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention
-  of human judgment.
-- **Price the investment.** Build the response only when expected recurrence cost and consequence justify
-  both construction and carrying cost.
+- **Classify the gap.** Identify the recurring problem rather than its latest symptom: missing knowledge, representation, obligation, evidence, enforcement, mechanism, architecture, or an obsolete control.
+- **Choose the durable response.** Possible responses include a representation, constraint, sensor, validator, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention of human judgment.
+- **Price the investment.** Build the response only when expected recurrence cost and consequence justify both construction and carrying cost.
 
-```
+``` text
 GOVERNANCE CONVERSION
 "What should the environment learn?"
 Recurring event

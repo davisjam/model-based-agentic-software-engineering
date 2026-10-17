@@ -11,20 +11,21 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{amsmath,amssymb}
+\RequirePackage{unicode-math}
 \RequirePackage{booktabs,longtable,array,calc}
 \RequirePackage{etoolbox}
 \RequirePackage{enumitem}
 \RequirePackage{fancyvrb}
-\RequirePackage{titlesec}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{caption}
 \RequirePackage{microtype}
+\RequirePackage{xurl}
 \RequirePackage{hyperref}
 \RequirePackage{bookmark}
-\newfontfamily\bookserif[Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
-\newfontfamily\booksans[Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
-\setmainfont[Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
-\setsansfont[Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
+\newfontfamily\bookserif[Ligatures=TeX,Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
+\newfontfamily\booksans[Ligatures=TeX,Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
+\setmainfont[Ligatures=TeX,Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
+\setsansfont[Ligatures=TeX,Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
 \setmonofont[Path=book/fonts/IBMPlexMono/,UprightFont=IBMPlexMono-Regular.ttf,BoldFont=IBMPlexMono-Regular.ttf,ItalicFont=IBMPlexMono-Regular.ttf,BoldItalicFont=IBMPlexMono-Regular.ttf,Scale=0.85]{IBMPlexMono}
 \definecolor{bookink}{HTML}{1C1917}
 \definecolor{bookpaper}{HTML}{FDFCF9}
@@ -49,26 +50,53 @@
 \fi
 \linespread{1.17}
 \raggedbottom
+\pagestyle{plain}
+% Pandoc marks uncaptioned longtables with this counter to avoid numbering them.
+\newcounter{none}
 \setcounter{secnumdepth}{0}
-\titleformat{\chapter}[display]{\bookheadingfont\bfseries\color{bookink}}{\booksans\fontsize{9}{11}\selectfont\color{bookaccent}\MakeUppercase{\chaptername}\ \thechapter}{7pt}{\fontsize{26}{31}\selectfont}[\vspace{4pt}{\color{bookrule}\titlerule[0.8pt]}]
-\titlespacing*{\chapter}{0pt}{0pt}{18pt}
-\titleformat{\section}{\bookheadingfont\bfseries\fontsize{15}{19}\selectfont}{\thesection}{0pt}{}
-\titleformat{\subsection}{\bookheadingfont\bfseries\color{bookmuted}\fontsize{12}{16}\selectfont}{\thesubsection}{0pt}{}
-\titlespacing*{\section}{0pt}{1.3em}{0.5em}
-\titlespacing*{\subsection}{0pt}{1em}{0.4em}
+% Preserve the standard sectioning machinery and its LaTeX tagging hooks.
+\makeatletter
+\renewcommand\@makechapterhead[1]{%
+  {\parindent\z@\raggedright\normalfont
+   \ifnum\c@secnumdepth>\m@ne
+     \if@mainmatter{\booksans\fontsize{9}{11}\selectfont\color{bookaccent}\MakeUppercase{\chaptername}\ \thechapter\par}\nobreak\vskip7pt\fi
+   \fi
+   {\bookheadingfont\bfseries\color{bookink}\fontsize{26}{31}\selectfont #1\par}\nobreak
+   \vskip4pt{\color{bookrule}\hrule height .8pt}\vskip18pt}}
+\renewcommand\@makeschapterhead[1]{%
+  {\parindent\z@\raggedright\normalfont
+   {\bookheadingfont\bfseries\color{bookink}\fontsize{26}{31}\selectfont #1\par}\nobreak
+   \vskip4pt{\color{bookrule}\hrule height .8pt}\vskip18pt}}
+\renewcommand\section{\@startsection{section}{1}{\z@}{-1.3em}{0.5em}{\bookheadingfont\bfseries\fontsize{15}{19}\selectfont}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-1em}{0.4em}{\bookheadingfont\bfseries\color{bookmuted}\fontsize{12}{16}\selectfont}}
+\makeatother
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
 \setlist{topsep=0.4em,itemsep=0.15em,parsep=0pt,leftmargin=1.5em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% The colored frame is an artifact; the box content remains tagged paragraphs in a Div.
+\newcommand{\bookboxtagbegin}{\ifdefined\tagstructbegin\par\tagpdfparaOff\tagstructbegin{tag=Div}\fi}
+\newcommand{\bookboxtagtext}{\ifdefined\tagpdfparaOn\tagpdfparaOn\fi}
+\newcommand{\bookboxtagpause}{\ifdefined\tagpdfparaOff\par\tagpdfparaOff\fi}
+\newcommand{\bookboxtagend}{\ifdefined\tagstructend\tagstructend\tagpdfparaOn\fi}
 \newenvironment{bookbox}[2]{%
+  \bookboxtagbegin
   \begingroup
   \def\bookboxtitle{#2}%
   \ifstrequal{#1}{decision}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
   \ifstrequal{#1}{tradeoff}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
   \ifstrequal{#1}{inset}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
   \ifstrequal{#1}{note}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F6F4EF}}{}%
-  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt]
+  \ifstrequal{#1}{read further}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F6F4EF}}{}%
+  \ifstrequal{#1}{quotation}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F6F4EF}}{}%
+  \ifstrequal{#1}{code-example}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F3EFE7}}{}%
+  \ifstrequal{#1}{key-idea}{\definecolor{boxrule}{HTML}{15803D}\definecolor{boxfill}{HTML}{EEF7EE}}{}%
+  \ifstrequal{#1}{example}{\definecolor{boxrule}{HTML}{15803D}\definecolor{boxfill}{HTML}{EEF7EE}}{}%
+  \ifstrequal{#1}{case-study}{\definecolor{boxrule}{HTML}{2F5169}\definecolor{boxfill}{HTML}{E7EDF3}}{}%
+  \ifstrequal{#1}{warning}{\definecolor{boxrule}{HTML}{B23B3B}\definecolor{boxfill}{HTML}{FBEAEA}}{}%
+  \ifstrequal{#1}{exercise}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
+  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\setlength{\parskip}{0.45em}\setlength{\parindent}{1.2em}}]
   \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
-}{\end{tcolorbox}\endgroup}
+}{\end{tcolorbox}\endgroup\bookboxtagend}
 \newcommand{\pandocbounded}[1]{#1}
 \newenvironment{CSLReferences}[2]{\begin{list}{}{\setlength{\leftmargin}{1.5em}\setlength{\itemindent}{-1.5em}\setlength{\itemsep}{0.5em}}\item[]}{\end{list}}
 \newcommand{\CSLBlock}[1]{#1\par}

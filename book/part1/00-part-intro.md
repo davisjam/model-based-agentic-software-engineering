@@ -1,41 +1,17 @@
+<!-- GENERATED from book/latex/sources/part1/00-part-intro.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
-Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains.[cite: amdahl1967] Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another.[cite: goldratt1984] The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power.
-Integrated circuits did the same for computation. Coding agents are now reducing the cost of software
-implementation. Humans and agents can both implement software, but capable agents can do in minutes
-or hours work that would have consumed days or weeks of skilled human effort. As implementation
-becomes abundant, the next-scarcest factors constrain
-output, so they draw investment and attention. Implementation was never the only scarce input to
-software engineering, but for most of the field's history it consumed enough expert effort to
-limit what teams could attempt and how quickly they could change a system. As its marginal cost
-falls, other constraints become more visible: deciding what to build, representing a large system
-well enough to reason about it, producing evidence that a change is acceptable, and
-enforcing consequential engineering decisions across many changes.
+
+Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains.[cite: amdahl1967] Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another.[cite: goldratt1984] The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power. Integrated circuits did the same for computation. Coding agents are now reducing the cost of software implementation. Humans and agents can both implement software, but capable agents can do in minutes or hours work that would have consumed days or weeks of skilled human effort. As implementation becomes abundant, the next-scarcest factors constrain output, so they draw investment and attention. Implementation was never the only scarce input to software engineering, but for most of the field's history it consumed enough expert effort to limit what teams could attempt and how quickly they could change a system. As its marginal cost falls, other constraints become more visible: deciding what to build, representing a large system well enough to reason about it, producing evidence that a change is acceptable, and enforcing consequential engineering decisions across many changes.
 
 <!-- principlebox -->
+
 <!-- box-family: canonical -->
+
 > ### Founding premise
 >
 > Commodity intelligence makes implementation abundant relative to engineering judgment.
 >
-> Engineering effort concentrates around what limits reliable production. As implementation
-> capacity becomes cheaper and more abundant, judgment, representation, evidence, and enforcement
-> become relatively scarcer. Engineers can delegate more realization work, but remain responsible
-> for retaining sufficient control over the resulting system. Engineering effort moves with the
-> constraint.
+> Engineering effort concentrates around what limits reliable production. As implementation capacity becomes cheaper and more abundant, judgment, representation, evidence, and enforcement become relatively scarcer. Engineers can delegate more realization work, but remain responsible for retaining sufficient control over the resulting system. Engineering effort moves with the constraint.
 
-Abundance does not make implementation unimportant; it changes where additional engineering effort
-earns the greatest return. A factory with unlimited machine capacity and one inspector has not
-stopped manufacturing. Inspection has become the throughput constraint. Nor can inspection capacity
-be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare
-problems become especially difficult to detect as the stream of mostly acceptable output
-grows.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are
-disproportionately missed as their prevalence falls.[cite: wolfe2005rare] Sustained monitoring is
-itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades
-detection over a watch.[cite: warm2008vigilance] {{chapter:theory}} returns to this evidence.] In software, agents can now
-produce changes faster than engineers can specify, understand, validate, and govern them. Models
-let later work reuse representations across many acts of implementation; validators and gates can
-likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding
-what to represent, what evidence to require, which obligations to enforce, and how the surrounding
-environment should preserve those decisions across later work. This chapter asks what follows from that
-shift: what remains hard, which properties of the new substrate matter, and what engineering
-problems they leave us to solve.
+Abundance does not make implementation unimportant; it changes where additional engineering effort earns the greatest return. A factory with unlimited machine capacity and one inspector has not stopped manufacturing. Inspection has become the throughput constraint. Nor can inspection capacity be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare problems become especially difficult to detect as the stream of mostly acceptable output grows.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are disproportionately missed as their prevalence falls.[cite: wolfe2005rare] Sustained monitoring is itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades detection over a watch.[cite: warm2008vigilance] {{chapter:theory}} returns to this evidence.] In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models let later work reuse representations across many acts of implementation; validators and gates can likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding what to represent, what evidence to require, which obligations to enforce, and how the surrounding environment should preserve those decisions across later work. This chapter asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.

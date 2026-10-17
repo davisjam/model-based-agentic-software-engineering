@@ -1,5 +1,14 @@
 # AGENTS.md
 
+## Manuscript source format
+
+Edit `chapters/*.tex` and `frontmatter/*.tex`; their adjacent `.yaml` files hold
+editorial metadata. Sibling Markdown files are generated compatibility projections.
+Run `python3 handbook/scripts/latex_source.py sync` from the catalogue root after
+source edits. Preserve native citation keys, labels, and semantic `bookbox` metadata.
+Do not edit the generated Markdown projections. PDF builds use LuaLaTeX and the shared
+`latex/house.sty`; final warnings fail except underfull boxes. See `handbook/README.md`.
+
 # The Software Engineering Handbook
 ## Instructions for authoring agents
 

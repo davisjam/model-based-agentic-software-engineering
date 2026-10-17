@@ -1,6 +1,7 @@
 """Shared helpers for the Handbook build and lint scripts.
 
-The canonical manuscript is semantic Pandoc-flavored Markdown. Every chapter is parsed once by
+The canonical manuscript is LaTeX with adjacent editorial YAML metadata.
+The Markdown paths below are generated compatibility projections. Every chapter is parsed once by
 Pandoc into its JSON AST — the typed intermediate representation both the linter and the renderers
 work against. This module centralizes paths, metadata loading, and the Pandoc invocation so build.py
 and lint.py cannot drift on how a chapter is read.
@@ -70,6 +71,9 @@ def die(msg: str) -> None:
 
 
 def load_book() -> dict:
+    # TeX is authoritative; legacy consumers receive a deterministic projection.
+    import latex_source
+    latex_source.sync_all()
     with open(HANDBOOK / "book.yaml", encoding="utf-8") as fh:
         return yaml.safe_load(fh)
 
@@ -109,6 +113,9 @@ def frontmatter_files(book: dict) -> list[pathlib.Path]:
 def pandoc_ast(md_path: pathlib.Path) -> dict:
     """Parse a chapter to its Pandoc JSON AST — no filters, no citeproc. This is the source-level
     structure the linter inspects."""
+    if md_path.with_suffix(".tex").exists():
+        import latex_source
+        return latex_source.read_ast(md_path.with_suffix(".tex"))
     out = subprocess.run(
         ["pandoc", str(md_path), "-f", PANDOC_FROM, "-t", "json"],
         capture_output=True, text=True, check=False,

@@ -6403,8 +6403,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     # bedded in clean across all six openers, now promoted to contribute to the exit code — a regressed opener
     # (missing orientation, an overflowing verso, a stripped nav apparatus) fails the build instead of only
     # printing.
-    import book_typst as _bt  # for OUTPUT_TYPE — the facing-parity leg is print-only (the shipped PDF is screen)
-    _facing = _bt.OUTPUT_TYPE == "print"
+    _facing = False  # The shared screen/print review edition uses open-any chapter starts.
     spread_results = _pdf_part_opener_spread(pdf_path, _PART_TITLES, _norm, _facing)
     spread_fails = [r for r in spread_results if not r["ok"]]
     for r in spread_results:
@@ -6437,7 +6436,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     _toc_pages = _pdf_per_page_text(pdf_path)
     _toc_idx = next((i for i, t in enumerate(_toc_pages, 1) if "THE BOOK" in t and "APPENDICES" in t), None)
     if _toc_idx is None:
-        print("PDF CONTENTS ONE-PAGE SENSOR: SKIP — no Contents page (section-split / front-matter-less build).")
+        problems.append("full book has no identifiable Contents page (THE BOOK / APPENDICES)")
     elif "Bibliography" in _toc_pages[_toc_idx - 1]:
         print(f"PDF CONTENTS ONE-PAGE SENSOR: BLOCKING PASS — Contents fits one page (p{_toc_idx}).")
     else:
@@ -6446,49 +6445,16 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
               "Contents-page margin in book_typst so it fits one page.", file=sys.stderr)
         problems.append("Contents table of contents spilled past one page")
 
-    # INSET-WRAP sensor: every reading-weight ASIDE must actually wrap body text down its outside strip.
-    # The wrap-it splitter can silently fall back to a blank strip (a #cite inside the wrapped prose
-    # destabilizing Typst's measurement was one cause) — no schema / console / text gate sees this; only
-    # page GEOMETRY does. BLOCKING. Implemented in book/check_inset_wrap.py (rasterizes the aside pages via
-    # pdftoppm + PIL/numpy and measures left-strip prose coverage). The --pdf path already depends on Typst +
-    # poppler; pillow + numpy are declared in book/requirements-pdf.txt and installed in the CI PDF step.
-    try:
-        import check_inset_wrap as _ciw
-        _wrap_fails = _ciw.check(str(pdf_path))
-    except ImportError as _e:
-        print(f"PDF INSET-WRAP SENSOR: BLOCKING FAIL — sensor unavailable ({_e}); the --pdf gate needs "
-              f"pillow + numpy (book/requirements-pdf.txt). Install them to run this gate.", file=sys.stderr)
-        problems.append("inset-wrap sensor unavailable — pillow/numpy not installed (book/requirements-pdf.txt)")
+    # Native insets occupy the full text measure in normal flow. Preserve inset
+    # presence and the one-inset-per-page rule; the independent margin and blank
+    # page sensors hold overflow and whitespace. A right-float outside strip no
+    # longer exists in this layout, so measuring it would be a vacuous pass.
+    import check_native_insets
+    inset_findings = check_native_insets.check(pdf_path)
+    if inset_findings:
+        problems.extend("native inset: " + finding for finding in inset_findings)
     else:
-        if _wrap_fails:
-            listing = ", ".join(f"p{f['page']} {f['title'][:28]!r} ({f['coverage']:.0%})" for f in _wrap_fails[:8])
-            print(f"PDF INSET-WRAP SENSOR: BLOCKING FAIL — {len(_wrap_fails)} aside(s) render a blank outside "
-                  f"strip instead of wrapping prose: {listing}.", file=sys.stderr)
-            problems.append(f"inset-wrap: {len(_wrap_fails)} aside(s) not wrapping alongside their box — {listing}")
-        else:
-            print("PDF INSET-WRAP SENSOR: BLOCKING PASS — every reading-weight aside wraps prose alongside it.")
-
-    # SOLO-INSET sensor: no body page may carry TWO inset boxes (author rule 260909 — two wrapped asides
-    # stacked on one page). The emitter half is `book_typst._space_inset_blocks` (deterministic source-word
-    # spacing — it cannot see page geometry); this sensor is the page-level guarantee. Detects both two box
-    # TITLES on one page and two distinct tall right-floated fill bands (a split box's continuation plus a
-    # second box opening). BLOCKING. Same pillow/numpy + poppler posture as the inset-wrap sensor above.
-    try:
-        import check_inset_wrap as _ciw2
-        _solo_fails = _ciw2.check_solo(str(pdf_path))
-    except ImportError as _e:
-        print(f"PDF SOLO-INSET SENSOR: BLOCKING FAIL — sensor unavailable ({_e}); the --pdf gate needs "
-              f"pillow + numpy (book/requirements-pdf.txt). Install them to run this gate.", file=sys.stderr)
-        problems.append("solo-inset sensor unavailable — pillow/numpy not installed (book/requirements-pdf.txt)")
-    else:
-        if _solo_fails:
-            listing = ", ".join(f"p{f['page']} ({f['count']} boxes via {f['how']}: "
-                                f"{'; '.join(t[:24] for t in f['titles'])})" for f in _solo_fails[:6])
-            print(f"PDF SOLO-INSET SENSOR: BLOCKING FAIL — {len(_solo_fails)} page(s) carry more than one "
-                  f"inset box: {listing}.", file=sys.stderr)
-            problems.append(f"solo-inset: {len(_solo_fails)} page(s) with 2+ inset boxes — {listing}")
-        else:
-            print("PDF SOLO-INSET SENSOR: BLOCKING PASS — no body page carries more than one inset box.")
+        print("PDF NATIVE-INSET SENSOR: PASS — all inset titles present; at most one per page.")
 
     # BLANK-PAGE RATCHET: no page may be left mostly blank by a NEW pagination failure (a forced break
     # abandoning a page, or an unbreakable downstream object dragging its whole block over). The sensor
@@ -6647,125 +6613,39 @@ def _emit_book_staple(doc) -> None:
 
 
 def build_pdf() -> int:
-    """`--pdf`: render the production print edition to `book/mage-book.pdf` via the print-native Typst
-    path — emit the WHOLE-BOOK Typst source from the typed book IR, then `typst compile` it to PDF. Gates
-    the result on the same content-integrity band (page floor/ceiling, every chapter + part title present,
-    no raw mermaid, density) so a truncated or runaway render fails instead of shipping. Fast, opt-in —
-    NOT part of `build()` (the web build is untouched).
-
-    Typst lays out the whole book with one native binary in ~2 s and emits a small (~5 MB), tagged PDF —
-    no headless browser in the loop. Its output is already compact, so there is no post-compression pass;
-    the tag tree is asserted directly on the compiled file."""
-    import shutil
-    import subprocess
-
-    # Regenerate the writing-stack export alongside the PDF (the web build does the same in `build()`), so
-    # `build_book.py --pdf` refreshes book/mage-writing-style.md — a gitignored artifact like the PDF.
-    _emit_writing_style_export()
-
-    # book_typst imports build_book at module scope; import it here (function-local, matching this
-    # function's existing shutil/subprocess pattern) so importing build_book as a library never pulls
-    # the emitter and its transitive book_ir graph.
-    import book_typst
+    """Compile the native LaTeX whole book, then run the production PDF gates."""
     import book_ir
+    sys.path.insert(0, str(ROOT / "tools"))
+    import mage_latex
+    from pdf_structure import check_pdf
 
-    typst = shutil.which("typst")
-    if not typst:
-        print("ERROR: `typst` not found on PATH — install it (brew install typst / download the pinned "
-              "release binary in CI).", file=sys.stderr)
-        return 2
-
-    pdf_out = HERE / _PDF_FILENAME
-    # Emit into _typst/ (gitignored, multi-file + binary — never committed).
-    typ_dir = HERE / "_typst"
-    typ_dir.mkdir(exist_ok=True)
-    typ_src = typ_dir / "mage-book.typ"
-
-    # Emit the WHOLE book (front matter → parts → back matter → appendices) as one Typst document from the
-    # typed IR — the same IR the web build walks, so the print edition cannot diverge from the web book. This
-    # is the PRINT projection (`for_print=True`), so the slug list matches what emit_document renders (e.g.
-    # Appendix E collapses to its front-door pointer, dropping the recipe content page from the PDF).
-    doc = book_ir.parse_book(include_appendices=True, for_print=True)
-    # The local review staple walks this exact `doc` — the same IR object the Typst emitter below
-    # renders — so its chapter set and order are the PDF's by construction. No-op in CI.
-    _emit_book_staple(doc)
-    slugs = [c.slug for c in doc.chapters]
-    typ = book_typst.emit_document(slugs, root=ROOT, with_frontmatter=True)
-    typ_src.write_text(typ, encoding="utf-8")
-    print(f"Typst source: {typ_src} ({len(typ):,} bytes, {len(slugs)} chapters)")
-
-    # Compile. `--root ..` so leading-`/` image paths (figure SVGs, cached mermaid SVGs) resolve against
-    # the repo root. `--font-path` points Typst at the bundled OFL statics (book/fonts/) — Source Serif 4 /
-    # Source Sans 3 / IBM Plex Mono are not installed on the host or the CI runner, so without this flag
-    # Typst silently substitutes a default serif and the PDF diverges from the web book, which loads the
-    # real faces via Google Fonts. Typst fails loud on any unresolved reference / bad image / math error.
-    # `--input last_modified=…` feeds the cover footer the book's last content-commit date (Typst has no
-    # clock, and CI has no wall-clock intent — the date must be computed here and passed in).
-    last_modified = _book_last_modified()
-    cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
-           "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]
-    print("PDF compile plan:\n  " + " ".join(f'"{a}"' if " " in a else a for a in cmd))
-    r = subprocess.run(cmd, capture_output=True, text=True, env=_typst_repro_env(last_modified))
-    if r.stdout.strip():
-        print(r.stdout.strip())
-    if r.returncode != 0 or not pdf_out.is_file():
-        print(f"ERROR: Typst compile failed (rc={r.returncode}).\n{r.stderr}", file=sys.stderr)
+    _emit_writing_style_export()
+    try:
+        pdf_out = mage_latex.build_pdf()
+        # Lossless object-stream packing retains vector artwork and the tag tree.
+        packed = pdf_out.with_suffix('.packed.pdf')
+        result = subprocess.run(['qpdf', '--object-streams=generate',
+                                 '--stream-data=compress', '--compression-level=9',
+                                 '--remove-unreferenced-resources=yes', str(pdf_out), str(packed)],
+                                capture_output=True, text=True)
+        if result.returncode:
+            packed.unlink(missing_ok=True)
+            raise RuntimeError('qpdf packing failed: ' + result.stderr.strip())
+        packed.replace(pdf_out)
+        doc = book_ir.parse_book(include_appendices=True, for_print=True)
+        _emit_book_staple(doc)
+        driver = ROOT / "book/latex/build/mage-book.tex"
+        driver_text, chapters, _ = mage_latex.pdf_sources(driver)
+        source = driver_text + "\n" + "\n".join(chapters)
+        check_pdf(pdf_out, headings=len(re.findall(r"\\chapter\*?\{", source)),
+                  sections=len(re.findall(r"\\section\*?\{", source)),
+                  tables=source.count(r"\begin{longtable}"),
+                  figures=source.count(r"\begin{figure}"))
+        assert_pdf_size(pdf_out)
+        return verify_pdf(pdf_out)
+    except (RuntimeError, ValueError, OSError) as error:
+        print(f"ERROR: native LaTeX PDF build failed: {error}", file=sys.stderr)
         return 1
-    if r.stderr.strip():
-        # Typst prints warnings to stderr on success; surface them (foreign-object warnings, etc.).
-        print(r.stderr.strip(), file=sys.stderr)
-
-    final_size = pdf_out.stat().st_size
-    print(f"PDF: {pdf_out} ({final_size / 1_048_576:.1f} MB via typst)")
-
-    # Post-compression repack — Typst emits every object as an uncompressed indirect object with NO object
-    # streams (~20K individual objects, dominated by the accessibility struct tree's thousands of small
-    # StructElem objects). qpdf's lossless repack packs those into compressed object streams and recompresses
-    # the content streams, cutting the whole-book PDF by ~35% (≈ 6.7 MB → 4.3 MB) with the tag tree fully
-    # preserved. Object streams are PDF-spec-standard and PDF/UA-safe. The tag assertion + content-integrity
-    # gate below run on the REPACKED file, so what ships is what we validate (the verify helpers read via
-    # pdfinfo/pdftotext, which see through object streams). If qpdf is absent (fresh checkout without it), the
-    # uncompressed PDF still ships — larger — so clone-and-run never hard-fails on a missing optimizer.
-    qpdf = shutil.which("qpdf")
-    if qpdf:
-        opt_tmp = pdf_out.with_suffix(".opt.pdf")
-        qr = subprocess.run(
-            # --deterministic-id: derive the trailer /ID from file CONTENT, not wall-clock+random —
-            # with Typst's creation date pinned via SOURCE_DATE_EPOCH this makes two clean builds of
-            # the same source byte-identical (the reproducibility gate).
-            [qpdf, "--object-streams=generate", "--compress-streams=y", "--recompress-flate",
-             "--compression-level=9", "--deterministic-id", str(pdf_out), str(opt_tmp)],
-            capture_output=True, text=True)
-        # qpdf exit 0 = clean, 3 = warnings (still wrote a valid file); accept both.
-        if qr.returncode in (0, 3) and opt_tmp.is_file():
-            opt_tmp.replace(pdf_out)
-            new_size = pdf_out.stat().st_size
-            print(f"PDF: qpdf object-stream repack {final_size / 1_048_576:.1f} MB "
-                  f"-> {new_size / 1_048_576:.1f} MB")
-            final_size = new_size
-        else:
-            opt_tmp.unlink(missing_ok=True)
-            print(f"WARNING: qpdf repack failed (rc={qr.returncode}); shipping uncompressed PDF.\n"
-                  f"{qr.stderr}", file=sys.stderr)
-    else:
-        print("WARNING: qpdf not found on PATH — shipping the uncompressed (larger) PDF. Install qpdf "
-              "to enable the lossless object-stream repack.", file=sys.stderr)
-
-    # Tag-preservation assertion — Typst emits a tagged PDF; assert it (on the repacked file) so a future
-    # template/flag change — or an optimizer that strips structure — cannot silently drop the struct tree.
-    if not _pdf_is_tagged(pdf_out):
-        print("ERROR: Typst PDF has no struct tree — tags lost (a11y regression). "
-              "Check the Typst document settings before shipping.", file=sys.stderr)
-        return 1
-    print("Tag preservation: struct tree present in PDF.")
-
-    # Shipped-size gate — measured on the REPACKED file (what actually ships), so it fails loud on a
-    # bloated PDF (e.g. a full-bleed rasterized cover) that content-integrity alone would pass. Raises
-    # SystemExit on breach; prints its PASS line adjacent to the content-integrity gate below.
-    assert_pdf_size(pdf_out)
-
-    # Content-integrity gate — the whole book must be in the compiled PDF.
-    return verify_pdf(pdf_out)
 
 
 # ─────────────────────── Per-section split PDFs (review aid; additive to `--pdf`) ────────────────────────
@@ -6840,77 +6720,38 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
 
 
 def build_pdf_split() -> int:
-    """Emit one PDF per logical book section (front matter, Parts 1-7, back matter, appendices) alongside the
-    full `mage-book.pdf`. Each section PDF is projected from the SAME typed IR and Typst emitter the whole
-    book uses (`book_typst.emit_document(..., split_section=True)`), so a section PDF cannot diverge from its
-    slice of the whole book. A `[ref:]` cross-reference whose target float sits in another section renders as
-    descriptive text ("Figure B.24-1"), not a live `@label` (which would be absent here and fail the compile).
-    Each section PDF is verified only to COMPILE and be non-empty — the whole-book content-integrity gate stays
-    on `mage-book.pdf` alone. Returns 0 when every section compiled non-empty, 1 otherwise."""
-    import shutil
-    import subprocess
-
-    import book_typst
+    """Compile each review section through the same native LaTeX assembly."""
     import book_ir
-
-    typst = shutil.which("typst")
-    if not typst:
-        print("ERROR: `typst` not found on PATH — cannot render the per-section split PDFs.", file=sys.stderr)
-        return 2
+    sys.path.insert(0, str(ROOT / "tools"))
+    import mage_latex
+    from latex_build import compile_tex
+    from pdf_structure import check_pdf
 
     doc = book_ir.parse_book(include_appendices=True, for_print=True)
     sections = _pdf_split_sections(doc)
-    typ_dir = HERE / "_typst"
-    typ_dir.mkdir(exist_ok=True)
-    last_modified = _book_last_modified()
-    base = _PDF_FILENAME[:-4] if _PDF_FILENAME.endswith(".pdf") else _PDF_FILENAME  # "mage-book"
-
-    # CLEAN BEFORE WRITE: the slice filename carries the chapter/appendix NUMBER, so a renumber mints a
-    # new filename set and leaves the previous generation on disk — a stale slice is indistinguishable
-    # from a current one in a folder listing (a reader once opened a ChapterN.pdf that corresponded to
-    # nothing). Remove every prior `<base>-NN-*` slice (PDF + its `_typst/` source) before emitting the
-    # current set; the glob's two-digit-dash shape cannot match the whole-book `mage-book.pdf` or a
-    # dated snapshot like `mage-book-09062026.pdf`.
-    stale = sorted(HERE.glob(f"{base}-[0-9][0-9]-*.pdf")) + sorted(typ_dir.glob(f"{base}-[0-9][0-9]-*.typ"))
-    for old in stale:
+    base = pathlib.Path(_PDF_FILENAME).stem
+    for old in HERE.glob(f"{base}-[0-9][0-9]-*.pdf"):
         old.unlink()
-    if stale:
-        print(f"cleaned {len(stale)} previous per-section slice file(s) before writing the current set")
-
-    print(f"\n== Per-section split PDFs ({len(sections)} sections; review aid, no whole-book gate) ==")
-    produced: "list[tuple[str, int]]" = []
-    failures: "list[str]" = []
-    # `sections` is already in whole-book reading order (front matter → Parts → Conclusion →
-    # appendices). Stamp each filename with a zero-padded reading-order index so an alphabetical
-    # filesystem sort (macOS Finder, `ls`) reproduces the book's order: mage-book-00-FrontMatter.pdf,
-    # …-04-Chapter4.pdf, …-05-Chapter5.pdf, … . Two digits cover the ~20 sections without a width overflow.
-    for idx, (suffix, slugs) in enumerate(sections):
-        pdf_out = HERE / f"{base}-{idx:02d}-{suffix}.pdf"
+    failures = []
+    for index, (suffix, slugs) in enumerate(sections):
         if not slugs:
-            print(f"WARNING: section {suffix} has no chapters — skipping (no PDF emitted).", file=sys.stderr)
-            continue
-        typ = book_typst.emit_document(slugs, root=ROOT, with_frontmatter=True, split_section=True)
-        typ_src = typ_dir / f"{base}-{idx:02d}-{suffix}.typ"
-        typ_src.write_text(typ, encoding="utf-8")
-        cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
-               "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]
-        r = subprocess.run(cmd, capture_output=True, text=True, env=_typst_repro_env(last_modified))
-        if r.returncode != 0 or not pdf_out.is_file():
-            print(f"ERROR: section {suffix} Typst compile failed (rc={r.returncode}).\n{r.stderr}",
-                  file=sys.stderr)
             failures.append(suffix)
             continue
-        pages = _pdf_page_count(pdf_out)
-        if pages < 1:
-            print(f"ERROR: section {suffix} produced an empty PDF (0 pages).", file=sys.stderr)
+        try:
+            name = f"{base}-{index:02d}-{suffix}"
+            driver = mage_latex.prepare_pdf(slugs=slugs, name=name)
+            pdf = compile_tex(driver)
+            driver_text, chapter_texts, _ = mage_latex.pdf_sources(driver)
+            source = driver_text + "\n" + "\n".join(chapter_texts)
+            check_pdf(pdf, headings=len(re.findall(r"\\chapter\*?\{", source)),
+                      sections=len(re.findall(r"\\section\*?\{", source)))
+            destination = HERE / (name + ".pdf")
+            shutil.copy2(pdf, destination)
+            print(f"Section PDF: {destination.name} ({_pdf_page_count(destination)} pages)")
+        except (RuntimeError, ValueError, OSError) as error:
+            print(f"ERROR: section {suffix}: {error}", file=sys.stderr)
             failures.append(suffix)
-            continue
-        size_kib = pdf_out.stat().st_size / 1024
-        produced.append((suffix, pages))
-        print(f"  {pdf_out.name:<28} {pages:>3} pages  {size_kib:>6.0f} KiB")
-
-    print(f"Per-section split: {len(produced)}/{len(sections)} section PDFs produced"
-          + (f"; FAILED: {', '.join(failures)}" if failures else " (all compiled non-empty)"))
+    print(f"Native section PDFs: {len(sections) - len(failures)}/{len(sections)} passed")
     return 1 if failures else 0
 
 
@@ -7216,7 +7057,7 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    # `--pdf` is the opt-in print edition (the print-native Typst render); default is the WEB build —
+    # `--pdf` is the opt-in print edition (the native LaTeX render); default is the WEB build —
     # which, since the C3 publish swap, IS the MkDocs emission: build_pages() renders every page body
     # and book/book_mkdocs.py projects the tree (the blockquote-placement gate runs there, over the
     # emitted bodies). A local `--pdf` ALSO emits the per-section review PDFs by default (additive);

@@ -11,13 +11,13 @@ Four gates, in order, so a change that would fail CI cannot leave the machine:
      to CI's "Render markdown -> HTML" step. Now the render runs at pre-push, on `main`, where mmdc is
      installed. (260729 RCA: a mid-block `index-def` aborted CI's build while `--tier1` stayed green.)
 
-  2. `book/build_book.py --pdf` — the print-native Typst render + whole-book content-integrity gate
+  2. `book/build_book.py --pdf` — the print-native LaTeX render + whole-book content-integrity gate
      (page floor/ceiling, title + chapter/part titles present, tail present, part-opener spread sensor).
-     This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a Typst compile error
+     This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a LaTeX compile error
      or a content-integrity regression is caught on the machine, not three minutes into CI — and the
      gitignored /book/mage-book.pdf refreshes on every push instead of going stale between renders.
 
-  3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's Typst PDF
+  3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's LaTeX PDF
      render (parity with the book PDF). CI renders + publishes it on every push and asserts it
      fatal-if-missing, so a handbook render failure would fail CI; catch it here instead. This also
      refreshes the gitignored local review artifacts (the handbook PDF + the landers staple the pdf
@@ -51,7 +51,7 @@ and forgotten here fails a test instead of a push.
 
 ## Scope selection — why some gates are skipped
 
-The two Typst renders dominate wall-clock, and a push that touches only `workbench/` or `.github/`
+The two LaTeX renders dominate wall-clock, and a push that touches only `workbench/`
 cannot change either PDF. So the hook reads the pushed commit range and runs the expensive renders
 only when their own inputs moved.
 
@@ -60,8 +60,8 @@ a gate's inputs.** A wrong guess therefore costs time, never correctness. Specif
 
   - The deterministic floor (gate 4) ALWAYS runs. It is seconds, and it is the net.
   - `catalog.py build` ALWAYS runs. It is the render gate, and nearly every tree feeds the site.
-  - The book PDF runs iff a path under `book/` or `book-models/` moved.
-  - The handbook PDF runs iff a path under `handbook/` moved.
+  - The book PDF runs when book, model, shared LaTeX, or gate configuration inputs moved.
+  - The handbook PDF runs when handbook, shared LaTeX, bibliography/font, or gate inputs moved.
   - The landers staple runs iff a path under `course/` moved AND `handbook/` did not (the handbook
     PDF target emits the staple itself, so scoping it on course/ alone would double the work).
     Added 261015: the staple is derived from course landers but had been policed by the handbook
@@ -86,13 +86,19 @@ import os
 import subprocess
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _hook_root import committing_toplevel
+
+ROOT = committing_toplevel()
 
 # Prefix -> the gate whose inputs live under it. A path matching none of these affects only the
 # site, which gate 1 and gate 4 already cover unconditionally.
 SCOPES = {
-    "book": ("book/", "book-models/"),
-    "handbook": ("handbook/",),
+    "book": ("book/", "book-models/", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
+             "tools/mage_latex.py", "tools/mage_assets.py", "tools/mage_cover.py", "tools/cover_assets.py", "tools/install_texlive_ci.sh", "hooks/", ".github/workflows/pages.yml"),
+    "handbook": ("handbook/", "tools/cover_assets.py", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
+                 "tools/install_texlive_ci.sh", "book/references.bib", "book/fonts/", "book/typst/fonts/",
+                 "hooks/", ".github/workflows/pages.yml"),
     "workbench": ("workbench/",),
     # The landers staple is DERIVED from course/lectures/**/index.md, but until 261015 its only
     # refresh path was a side effect of `handbook/scripts/build.py pdf` under the handbook scope.
@@ -167,26 +173,36 @@ else:
     active = [name for name, pres in SCOPES.items() if _touches(changed, pres)] or ["site-only"]
     print(f"pre-push: {len(changed)} changed path(s); scope: {', '.join(active)}", file=sys.stderr)
 
+# LaTeX is authoritative. Check its tracked Markdown compatibility projections before any
+# consumer reads them. Never regenerate/stage manuscript files implicitly: the author runs
+# `sync`, reviews the projection diff, and stages the intended files with the LaTeX edit.
+for _source_tool in ("tools/mage_latex.py", "handbook/scripts/latex_source.py"):
+    _projection = subprocess.run([sys.executable, _source_tool, "sync", "--check"], cwd=ROOT)
+    if _projection.returncode:
+        print(f"pre-push: LaTeX projection check FAILED. Run `python3 {_source_tool} sync`, "
+              "review and stage the generated Markdown with its LaTeX source, then retry.")
+        sys.exit(_projection.returncode)
+
 print("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …", file=sys.stderr)
 if _run("catalog.py", "build"):
     _fail("\npre-push: catalog.py build FAILED — push refused.\n"
           "The site does not render; fix the build error above ")
 
 if _touches(changed, SCOPES["book"]):
-    print("pre-push: book/build_book.py --pdf (Typst PDF render + content-integrity gate CI runs) …", file=sys.stderr)
+    print("pre-push: book/build_book.py --pdf (LaTeX PDF + strict final-log warnings + content-integrity gate) …", file=sys.stderr)
     if _run("book/build_book.py", "--pdf"):
         _fail("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
               "The PDF does not render or fails the content-integrity gate; fix the error above ")
 else:
-    print("pre-push: book PDF SKIPPED — no book/ or book-models/ path in this push", file=sys.stderr)
+    print("pre-push: book PDF SKIPPED — no book or shared LaTeX input in this push", file=sys.stderr)
 
 if _touches(changed, SCOPES["handbook"]):
-    print("pre-push: handbook/scripts/build.py pdf (handbook Typst PDF render — parity with the book PDF) …", file=sys.stderr)
+    print("pre-push: handbook/scripts/build.py pdf (handbook LaTeX PDF + strict final-log warnings) …", file=sys.stderr)
     if _run("handbook/scripts/build.py", "pdf"):
         _fail("\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
               "The handbook PDF does not render; fix the error above ")
 else:
-    print("pre-push: handbook PDF SKIPPED — no handbook/ path in this push", file=sys.stderr)
+    print("pre-push: handbook PDF SKIPPED — no handbook or shared LaTeX input in this push", file=sys.stderr)
 
 # The staple's inputs are course landers, so it is scoped on course/ — NOT on handbook/, which is
 # where its only refresh used to hide. When handbook/ moved, the `pdf` target above already emitted

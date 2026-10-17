@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/part3/00-part-intro.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 <!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
 
 Engineering systems differ in how they carry their obligations. Some remain in human expertise, documentation, or practice and must be interpreted when the relevant decision arises. Others are encoded into the engineered environment so that compliance can be evaluated or required mechanically. Software architecture provides one example: an architecture can state permitted dependencies and interactions, while conformance checks determine whether an implementation respects them.[cite: murphy1995reflexion][cite: sangal2005dependency][cite: passos2010conformance] System-safety engineering provides a broader precedent, identifying hazards and constraints over the larger system and designing controls, feedback, and operating processes to keep those constraints satisfied.[cite: leveson2011] Software engineering uses mechanisms ranging from types and access controls to validators and deployment gates for the same purpose.
@@ -9,12 +11,14 @@ Commodity intelligence makes this longstanding problem newly important. A genera
 Selected obligations can instead be encoded into the engineered environment. Some can be enforced directly through interfaces, permissions, types, or other constraints; others require evidence produced as work proceeds and evaluated before the result is accepted. The appropriate mechanism depends on the obligation and on where the evidence needed to evaluate it becomes available.
 
 <!-- principlebox -->
+
 <!-- box-family: canonical -->
+
 <!-- index-def: alignment-principle -->
+
 > ### Alignment principle
 >
-> Make engineering obligations enforceable by encoding them into mechanisms that
-> constrain actions, produce evidence, evaluate that evidence, and control admission.
+> Make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.
 
 Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. {{chapter:modeling}}'s tolerances and degrees of freedom also distinguish obligations from variation that engineering deliberately leaves open. The sections ahead develop how to choose among these possibilities.
 

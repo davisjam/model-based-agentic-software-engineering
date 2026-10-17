@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/put-authority-where-legible.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** An obligation can be checked too early, before the relevant property is observable, or too late, after avoidable cost or consequence has occurred. Later changes can also make earlier evidence stale.
 
 **Move.** Enforce at the earliest boundary where the property is decidable. If later work can invalidate that evidence, re-establish it at the last safe boundary before consequence.[^toctou]

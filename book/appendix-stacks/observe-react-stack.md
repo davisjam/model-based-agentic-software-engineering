@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/observe-react-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **Detect when the running system diverges from its operating model and trigger a bounded response.**
@@ -8,8 +10,7 @@ Reach for it when:
 
 - **The system runs live**, and a divergence between expected and observed state has real cost.
 - **Detection and response have drifted apart** — a dashboard nobody acts on, or a runbook nobody triggers.
-- **Continuing can be more dangerous than stopping**, so an unsafe state needs a mechanism empowered to halt
-  progress, not just a note in a log.
+- **Continuing can be more dangerous than stopping**, so an unsafe state needs a mechanism empowered to halt progress, not just a note in a log.
 
 ## The Composition
 
@@ -18,6 +19,8 @@ Reach for it when:
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **WATCH** | Read runtime state against the operating model, so divergence surfaces as a signal. |
@@ -27,8 +30,7 @@ Reach for it when:
 
 ## Why These Travel Together
 
-Observation without response is a dashboard. Response without observation is a runbook waiting for someone to
-notice the fault.
+Observation without response is a dashboard. Response without observation is a runbook waiting for someone to notice the fault.
 
 WATCH and RESPOND form the core loop: observe divergence from the expected state, then trigger a bounded response. Add a heartbeat when silence must be distinguished from slow progress; add a blocking mechanism when continuing is more dangerous than stopping.
 

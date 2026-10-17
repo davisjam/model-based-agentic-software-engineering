@@ -1,13 +1,12 @@
-Measurement models represent quantitative properties of the running system and the bounds against
-which they are evaluated. In review, they expose what is measured, what bound applies, and what
-evidence supports that bound.
+<!-- GENERATED from book/latex/sources/appendix-models/measurement.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-**Engineering question.** What quantity matters, how is it measured, what bound has been declared,
-and what should happen when the bound is exceeded?
+Measurement models represent quantitative properties of the running system and the bounds against which they are evaluated. In review, they expose what is measured, what bound applies, and what evidence supports that bound.
+
+**Engineering question.** What quantity matters, how is it measured, what bound has been declared, and what should happen when the bound is exceeded?
 
 **Representation.**
 
-```
+``` text
 Measure
     id
     quantity
@@ -23,21 +22,13 @@ Disposition
     mode        # report | warn | gate
 ```
 
-The disposition stays separate from the measured bound; its mode records whether a bound is
-report-only, warning-producing, or admission-blocking. Measurability alone does not justify
-enforcement.
+The disposition stays separate from the measured bound; its mode records whether a bound is report-only, warning-producing, or admission-blocking. Measurability alone does not justify enforcement.
 
-[ref:fig-g5-measurement-authority] separates the measurement from the enforcement that may or may not
-attach to it.
+[ref:fig-g5-measurement-authority] separates the measurement from the enforcement that may or may not attach to it.
 
 <!-- label: fig-g5-measurement-authority -->
 <!-- figure: assets/appendix-g-5-measurement-authority.svg | *Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or an admission gate. -->
 
-**Property.** A measurement model can state that request latency remains below a declared bound for
-a defined request class, queue depth below a declared ceiling, or processing cost within a specified
-envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them
-is underspecified.
+**Property.** A measurement model can state that request latency remains below a declared bound for a defined request class, queue depth below a declared ceiling, or processing cost within a specified envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them is underspecified.
 
-**Enforcement and correspondence.** Sensors supply observations; the model supplies their scope,
-interpretation, and declared bounds. Measurements remain observations unless the evidence warrants
-a warning or a gate.
+**Enforcement and correspondence.** Sensors supply observations; the model supplies their scope, interpretation, and declared bounds. Measurements remain observations unless the evidence warrants a warning or a gate.

@@ -1,0 +1,427 @@
+% mage-auto-heading: one-document-one-worker
+% mage-auto-heading: pages-as-the-unit-of-scale
+% mage-auto-heading: a-new-class-of-input
+% mage-auto-heading: remove-media-from-the-working-set
+% mage-auto-heading: why-one-level-deeper-matters
+% mage-auto-heading: memory-did-not-stop-mattering
+% mage-auto-heading: why-are-we-still-chunking
+% mage-auto-heading: analyze-before-you-build
+% mage-auto-heading: dependencies-can-be-redesigned
+% mage-auto-heading: the-second-resource-model
+% mage-auto-heading: predicting-latency
+% mage-auto-heading: predicting-the-cost-of-a-design-change
+% mage-auto-heading: use-prediction-error-as-evidence
+% mage-auto-heading: what-carries-forward
+% mage-auto-heading: models-get-falsified-the-obligation-survives
+% mage-auto-heading: what-a-score-does-not-carry
+% mage-auto-heading: the-resulting-model-family
+% mage-auto-heading: from-examples-to-a-bound
+% mage-auto-heading: three-days
+% mage-auto-heading: from-a-story-to-a-method
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: One Problem, Many Models -->
+
+\chapter{One Problem, Many Models}
+
+The engineering techniques in this section may be familiar. An experienced engineer might recognize several immediately: reduce a working set, separate structure from payload, represent dependencies explicitly, analyze a critical path, bound concurrency, and measure the result. MAGE does not claim these techniques as new, nor does it replace the experience that helps an engineer recognize when to use them.
+
+The interest here is how those techniques enter a MAGE process when the engineer does not know the final model or architecture in advance. The DocAble case begins with an observation---a file that exceeds the system\textquotesingle s operating regime---and follows the resulting engineering process from a memory problem through successive changes in representation and architecture. Each step makes some consequential relation explicit, changes or analyzes the realization, and supplies evidence for what should be modeled next.
+
+Large documents created both memory and execution-time problems, and the two did not have equal priority. An out-of-memory failure prevents a document from being processed at all. Inefficient execution raises latency and cost while still producing a result. Reliability therefore came first. DocAble had to establish that documents inside its intended operating regime could be processed within the available memory envelope before execution time could become the dominant resource problem.
+
+The sizing model that later governed how much memory each service received states the asymmetry in its own rationale: exhausting memory kills the process outright, while over-provisioning costs money. A one-sided safety margin follows from that asymmetry, and the margin lives in the model rather than being chosen service by service.
+
+The priority is also domain-dependent. Reliability before cost governs this episode; it is not a general law of engineering. Another system might put safety, latency, confidentiality, or numerical accuracy first. What transfers is the obligation to settle the order deliberately and to record the reason.
+
+The sequence also runs from outcomes to explanations. "Reduce peak memory" states an objective. It does not explain why memory grows, which parts of the current realization are essential, or which changes should generalize to the next large document.
+
+\section{One Document, One Worker}\label{heading:one-document-one-worker}
+
+DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces how that execution unit later changed.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-execution-unit-3ac64b0b5d.pdf}
+\caption{\emph{Two execution units for document remediation.} (a) Whole-document execution keeps the artifact\textquotesingle s working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.}
+\label{interlude-execution-unit}
+\end{figure}
+
+The document therefore served as both the user\textquotesingle s artifact and the worker\textquotesingle s in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the model as needed.
+
+For the small presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.
+
+Real use eventually expanded the workload. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
+
+\section{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}
+
+DocAble\textquotesingle s response was ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b).
+
+The new representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.
+
+Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.
+
+Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.
+
+This architecture accommodated the inputs encountered so far. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed. A roughly 250 MB media-heavy presentation eventually exceeded that operating regime.
+
+Page boundaries were not the smallest possible partition. A sufficiently large slide could itself be divided into regions, shapes, media objects, or individual remediation operations. That would reduce the working set further. But finer partitions also impose costs: more coordination, more reconstruction, and less surrounding context available to each operation. Eventually the partition begins to cut across the semantic relationships needed to reason about the artifact.
+
+This is the reasoning-horizon problem from \magevalue{chapter:problem} in architectural form. An agent can reason only over the information made available to it. Shrinking an execution unit may reduce its resource requirements while simultaneously shrinking the semantic context within which a judgment is made. Page chunking therefore had no hard scaling wall. It had an increasingly unattractive tradeoff: continue subdividing the artifact and pay both systems overhead and semantic loss, or reconsider why so much of the artifact had to reside in the worker at all.
+
+The 250 MB presentation made the second question worth asking.
+
+\section{A New Class of Input}\label{heading:a-new-class-of-input}
+
+A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.
+
+Modern Office documents use Office Open XML (OOXML). A \texttt{.pptx}, \texttt{.docx}, or \texttt{.xlsx} file is a package containing many parts. Much of its semantic structure is XML: text, slides, relationships, identifiers, and references among objects. Large binary assets such as images and other media live alongside those XML parts inside the package.
+
+The file therefore holds two broad kinds of information. One kind describes document structure: slides, shapes, text, relationships, identifiers, and references. The other is media payload: images, animated GIFs, movies, and other embedded binaries.
+
+The structural portion is comparatively small. It is largely text, and even an unusually large Office document may require only low megabytes to represent its semantic skeleton. The media payload can be hundreds of megabytes. Most remediation operations need only the structural portion; they may reach into the media, but not every media byte need be resident at once.
+
+Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required reconsidering the arrangement itself.
+
+The existing representation coupled the two, and \autoref{interlude-storage-vs-reasoning} contrasts that arrangement with the one that replaced it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-storage-vs-reasoning-65a384adac.pdf}
+\caption{\emph{Chunked residency versus skeletonized residency.} (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker\textquotesingle s resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.}
+\label{interlude-storage-vs-reasoning}
+\end{figure}
+
+So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Finer chunking could continue reducing how much of the document met this relation at one time, but it could not remove the relation itself---and increasingly fine partitions would introduce coordination costs and erode the semantic context available to remediation. On the observed workload that made no difference; the new file made it decisive.
+
+A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
+
+The 250 MB requirement had therefore exposed a relationship worth changing: the storage representation was also determining the worker\textquotesingle s memory representation.
+
+\section{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}
+
+The memory problem came from coupling document structure to media residency: total media size increased the worker\textquotesingle s persistent working set even though most remediation operations needed only the document\textquotesingle s structural skeleton. Skeletonization removes that coupling. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.
+
+Remediation then operates on the skeleton. If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document\textquotesingle s complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.
+
+The corresponding memory invariant states the property directly:
+
+% mage-code-language: text
+\begin{verbatim}
+peak worker RSS <= C
+\end{verbatim}
+
+where, within the declared operating envelope,
+
+% mage-code-language: text
+\begin{verbatim}
+C =
+    rolling stream buffer
+  + structural skeleton
+  + handles
+  + remediation working set
+\end{verbatim}
+
+and C does not grow with total media size.
+
+The claim is stronger than the empirical claim available from chunking. Chunking had accumulated evidence that increasingly large documents worked, but those observations could not establish behavior for every larger media payload. Skeletonization supports a structural argument instead: within the declared operating envelope, peak worker memory is bounded independently of total media size.
+
+No stage in the modeled path retains the complete media payload. OOXML media moves through bounded streaming buffers, the structural skeleton stays small relative to the media it references, and a media consumer holds bounded active state rather than accumulating the document\textquotesingle s media. The guarantee depends on those assumptions; in particular, the write path must stream too. A supposedly streaming architecture that buffers the complete payload before writing it has only moved the memory spike.
+
+The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.
+
+None of this proves that arbitrary documents can never exhaust memory. A document could expose another scaling dimension: pathological structure, an individual object beyond the supported bound, excessive concurrency, or something not yet modeled. It closes a narrower class: within the modeled envelope, total media size no longer determines worker memory.
+
+While this architecture was being developed, agents sometimes proposed removing operations or state that looked expensive but were essential to correct remediation. The fixtures available at the time would not necessarily have exposed every resulting semantic failure. The engineering model supplied a distinction the surface objective did not: which relationships the system depends on, and which resource costs follow from the current realization. Agents could use that structure to correct their account of the system before changing it.
+
+The same structure helped me stay in control of a realization that was changing quickly. I could evaluate a proposed change against an explicit account of why the system should work and of what the optimization was allowed to touch. The model therefore participated in delegation itself. It preserved the understanding that mattered while the implementation changed faster than I could have re-derived that understanding from code and tests.
+
+In the terminology introduced in \magevalue{sec:the-dynamics-of-mage}, this is active alignment. The residency model does not merely describe the desired architecture; it states the property toward which the realization is being changed. Once the new architecture satisfies that property, the model and its invariants remain in the GEE as passive alignment. Later changes should not be allowed to reintroduce dependence between total media size and persistent worker memory.
+
+The outcome of the episode is therefore not that memory improved. The environment acquired a durable memory obligation. Later work on this pipeline inherits it, and a change that reintroduces the dependence has to answer for itself. That obligation became the first layer of the alignment kernel inside which everything later in this section operates.
+
+\section{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}
+
+An end-to-end measurement says whether the outcome moved. It does not say why it moved. Peak worker memory is the outcome; media residency is the mechanism that produces it. A model of the mechanism answers the further question: which relationship generated the improvement, and whether that explanation is compatible with the work the system must still perform.
+
+This is not an argument that metrics are inferior to models. Measurement is indispensable here, and the residency model would be untestable without it --- the bound is a claim about numbers that some later sweep may contradict, and one eventually did. The claim is narrower: the model is what makes the measurement explanatory and predictive. A peak-memory figure from one sweep reports what happened on those inputs. The residency model says which inputs would change the answer, and that is the form an engineer needs before the next unfamiliar document arrives.
+
+Ousterhout puts the same instruction compactly: measure one level deeper.\citep{ousterhout2018} One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
+
+\section{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}
+
+Bringing memory under governance did not make memory disappear. It changed the conditions under which later performance work could proceed. The next questions increasingly concerned latency, throughput, and compute cost, but proposed answers remained subject to the memory relationships already made explicit. A faster design that exceeded the deployment\textquotesingle s memory budget was not an improvement.
+
+That coupling became explicit in the engineering machinery. Concurrency models delegated memory feasibility to the memory model of record rather than doing memory arithmetic of their own. Fan-out width was represented as a peak-memory multiplier, so a throughput author had to size the width against a memory budget. Some throughput changes carried fail-loud guards that refused to run a fan-out whose estimated memory exceeded its budget. A batched-rendering design was chosen over a concurrent one partly because the concurrent alternative measured past the service\textquotesingle s memory ceiling. And in one latency campaign a memory sweep blocked the production deploy altogether. The earlier resource model had become part of the environment within which the later one operated.
+
+\section{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}
+
+Page chunking had served two roles at once: it partitioned execution and bounded each worker\textquotesingle s memory. Skeletonization largely removed the memory requirement. That left a separate question: what should determine the unit of execution?
+
+A page tells us where content occurs, not which computations depend on which others. DocAble already represented remediation as a dependency graph. Consider alt-text generation as a concrete example. Each page can first be analyzed independently. Those analyses feed an operation that builds shared document context. Once that context exists, the GenAI queries that generate alt text for individual images become ready to execute independently. The actions and their information dependencies form a remediation graph; the currently executable actions form its frontier.
+
+The same graph admits different execution policies. \autoref{interlude-graph-two-partitions} shows the distinction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-graph-two-partitions-8ab535d9c3.pdf}
+\caption{\emph{Two execution policies over the same remediation graph.} The graph contains actions---page analysis, construction of document context, and GenAI queries---and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes --- so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.}
+\label{interlude-graph-two-partitions}
+\end{figure}
+
+The graph explains the ordering. Independent work can run together; a consumer waits only for information it actually needs from upstream. Pages do not create those dependencies. Information does. Expressed as a directed acyclic graph, the work currently ready to execute forms a frontier: the nodes with no unmet dependencies. A worker executes that frontier, materializes its outputs, and thereby exposes the next frontier.\magefootnote{topo-dag}{This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.}
+
+This reframes ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.
+
+Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so page identity no longer needs to determine execution. It can survive as metadata on graph nodes---useful for locality, debugging, rate limiting, or failure isolation---without remaining the fundamental unit of executable remediation.
+
+For the present problem, the architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. The graph/executor seam preserves the degree of freedom without spending it. In the realized architecture, that execution-driving representation remains distinct from richer analytical projections built over the same computation identities. The distinction matters later: a model may govern realization while another view of the same structure serves analysis.
+
+Notice the ordering. The memory property was established before the execution structure was reconsidered. Frontier execution could therefore be explored inside an already constrained region: a new scheduling model was free to change how work executed, but not to restore the scaling relation that skeletonization had removed. The earlier model had become part of the alignment kernel for the later change.
+
+\section{Analyze Before You Build}\label{heading:analyze-before-you-build}
+
+Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor --- or a proposed architectural change --- is implemented. \autoref{interlude-analysis-before-build} shows three such analyses.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-analysis-before-build-1d6121ea6a.pdf}
+\caption{\emph{Analysis before implementation.} (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.}
+\label{interlude-analysis-before-build}
+\end{figure}
+
+Given the weighted graph in panel (a), the model reports which operations may run concurrently, which must wait, and that adding workers cannot shorten a dependency edge; the heaviest chain from start to finish is the critical path. If one node dominates that path, the model has found an optimization target, and the next question is structural: must it be one node? If its semantics permit decomposition, splitting it can expose parallelism and shorten the path (panel b), discoverable from the model with no implementation of the split. The graph cannot promise the optimization will pay off, since smaller operations may add coordination cost, lose batching efficiency, or contend for another resource; but it names the candidate and the quantities that decide whether it helps.
+
+\subsection{Dependencies can be redesigned}\label{heading:dependencies-can-be-redesigned}
+
+The same analysis exposed a problem in contextual image description (panel c). If each image description consumed the description generated for the preceding image, the operations formed a serial chain: for N images the dependency depth approaches N, so if each GenAI call takes roughly t, the serial floor grows as about N·t, and more workers cannot remove it. But the requirement --- which the analysis itself clarified --- is not to generate alt text serially; it is to give each image enough surrounding context to produce an adequate description. Rendering the surrounding pages up front and treating those thumbnails as a shared visual intermediate representation supplies that context: each image then consumes bounded neighboring visual context instead of a sibling\textquotesingle s generated alt text, the payload grows but the dependency disappears, and the operations stay independently parallel. That context can itself be represented and reused, just as textual document context already is. The model changed the proposed implementation before that implementation existed.
+
+\subsection{The second resource model}\label{heading:the-second-resource-model}
+
+The critical-path model explained which dependencies could determine latency. A second model captured a different source of cost: repeated whole-document work. Let \emph{R} be the number of remediation rounds, \emph{F} the cost of producing the whole document once, and \emph{G} the remaining GenAI work. The model represented execution without page chunks as
+
+\[
+T = (R+1)\,F + G
+\]
+
+For example, suppose a document requires four remediation rounds, whole-document production takes 10 seconds, and the remaining GenAI work takes 20 seconds. The model predicts \emph{T} = (4+1)(10) + 20 = 70 seconds. Fifty of those seconds come from producing the document five times: once for each remediation round and once more to apply the accumulated changes. Cutting the GenAI work in half would save 10 seconds; eliminating two production rounds would save 20. The model therefore identifies repeated whole-document production as a quantity worth attacking.
+
+The equation exposed a scaling relationship that elapsed time alone did not. At real document sizes repeated production could dominate the total even when the number of GenAI calls was reasonable. The cost driver was the round multiplier, not the GenAI calls that the design had originally set out to economize.
+
+The model was also falsifiable. Its calibration procedure inverted observed execution times to recover its components, and it rejected any fit whose inferred costs came out negative. Measurement could therefore disagree with the engineering account rather than merely supplying another number to optimize against.
+
+\subsection{Predicting latency}\label{heading:predicting-latency}
+
+The same graph supports a first-order latency model. For the representative workload used during this analysis, the relevant GenAI chain had three dependent levels whose per-call times add to an irreducible floor (\autoref{interlude-latency-floor}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-latency-floor-818a3f4133.pdf}
+\caption{\emph{The GenAI dependency chain and its latency floor.} A section summary feeds a document summary feeds alt text; because each level waits for the one before it, their per-call times add to an irreducible floor of about 7.7 s. The vision value is measured; the text-summary value is estimated.}
+\label{interlude-latency-floor}
+\end{figure}
+
+The current in-process design had local concurrency of six, so a 37-image alt-text frontier required seven waves, for a predicted total of about 33 s. A distributed frontier executor with modeled cloud concurrency of 64 could execute the 37-wide level in a single wave, but would pay cold-start and round-trip taxes for each graph round --- about 11.5 s under the current estimated parameters.
+
+The local concurrency limit of six was not merely a scheduler setting. In the ChunkWorker architecture, each concurrent worker opened and manipulated its own format-native document state, including associated media objects. Increasing concurrency therefore multiplied pressure on CPU and, especially, the machine\textquotesingle s working memory. The concurrency cap kept that aggregate resource demand within the practical operating envelope of the host.
+
+Skeletonization changes that constraint as well. Once workers retain the structural skeleton while media streams on demand, concurrency no longer multiplies the same large resident media state. The frontier executor can therefore exploit graph width without requiring every concurrent operation to carry a page chunk\textquotesingle s format-native working set.
+
+The model therefore predicted roughly a 2.9× advantage for frontier execution on that workload: the existing design pays about 24.6 seconds in width serialization, while the distributed design trades that for about 3.3 seconds of modeled round overhead. Several cells remain estimated and need staging measurements before any production cutover, but the number is useful before it is perfectly calibrated. It says why the candidate should win, and it says what to measure next.
+
+\subsection{Predicting the cost of a design change}\label{heading:predicting-the-cost-of-a-design-change}
+
+Models can also answer questions about designs that do not exist yet. Suppose an engineer proposes another intermediate representation. Adding that IR creates a new fact and perhaps another dependency edge; the critical-path model can insert the proposed node into the DAG and recompute:
+
+\begin{itemize}
+\tightlist
+\item
+  Δ critical-path floor
+\item
+  Δ above-floor latency
+\item
+  Δ execution rounds
+\item
+  Δ peak width
+\item
+  whether the proposed node lands on the critical path
+\end{itemize}
+
+An IR off the critical path may add no serial latency; one that deepens the critical chain adds its call time to the floor and may add another distributed round. The model therefore supports an explicit marginal-cost query for a proposed representation --- again, before any implementation. This is ordinary engineering analysis, applied before code exists.
+
+\subsection{Use prediction error as evidence}\label{heading:use-prediction-error-as-evidence}
+
+Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast. A residual --- the gap between prediction and observation --- turns into an engineering question, and it drives a loop that runs both before and after implementation (\autoref{interlude-prediction-residual}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-prediction-residual-358697131d.pdf}
+\caption{\emph{Using prediction error as evidence.} (a) The gap between a model\textquotesingle s prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.}
+\label{interlude-prediction-residual}
+\end{figure}
+
+The possibilities are concrete. The queue overhead may have been underestimated. Two apparently independent nodes may share a serialized resource. Media loading may add a cost the latency model omitted, or the graph itself may be missing a real dependency. A prediction that matches observation provides evidence that the model captures the dominant mechanisms; a miss identifies where the model or system deserves investigation. Modeling thus contributes both before and after implementation: before, it compares designs and exposes optimization targets; after, disagreement between prediction and observation helps find what the model missed.
+
+\section{What Carries Forward}\label{heading:what-carries-forward}
+
+DocAble did not turn observed wall-clock time into the durable control. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Each is counted deterministically on a fixed fixture. A change may lower these quantities freely; raising one requires a named justification recorded beside the baseline. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
+
+A fifth quantity, the number of GenAI hops, was observed without blocking while its behavior was still being characterized. The distinction is worth keeping: a counter that gates and a counter that only reports are different mechanisms, and a new one usually begins as the second.
+
+\subsection{Models get falsified; the obligation survives}\label{heading:models-get-falsified-the-obligation-survives}
+
+A ratchet does not make the current model true forever. Several memory hypotheses in this episode were later falsified. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
+
+The measurements carried their own provenance. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it, because a local process measure under-counts what the container actually holds. That labelling belongs to the same discipline. A model whose inputs are marked can be corrected; a model whose inputs are anonymous cannot.
+
+Nor was the memory work finished before the execution-time work began. A memory front was still open while the time models were being built. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The ratchet preserves the engineering question and the obligation to answer it, even when the answer changes.
+
+% <!-- index-def: ratcheteering -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Engineering technique --- Ratcheteering}\label{heading:technique-ratcheteering}
+
+Ratcheteering is the practice of converting a consequential engineering concern into explicit models, evidence, and controls that subsequent work must inherit, while keeping those structures open to falsification and revision.
+
+The ratchet preserves the obligation, not necessarily the current answer. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control. The engineering environment should permit those corrections. What later work cannot do silently is return the consequential property to an unexamined implementation detail.
+
+A typical ratchet runs: observe → model → change → test → govern → continue. Later engineering proceeds under the resulting obligation. When new evidence disagrees, revise the model and ratchet again.
+\end{quote}
+
+Governance conversion and ratcheteering do different jobs. Governance conversion is the move that turns a recurring failure or judgment into durable structure. Ratcheteering is the practice by which such structures accumulate across episodes while staying correctable.
+
+\subsection{What a score does not carry}\label{heading:what-a-score-does-not-carry}
+
+A black-box optimization loop could target peak memory or elapsed time directly, and for some tasks that is the economical choice. A disposable script, a one-off batch job, an artifact nobody will have to modify under pressure: optimize the number and move on. The cost appears when the resulting implementation has to stay understandable enough to govern the next consequential change. A better score does not say which relationship produced the improvement, which essential work survived it, or which assumption the next optimization must preserve.
+
+\section{The Resulting Model Family}\label{heading:the-resulting-model-family}
+
+The large-file requirement did not produce one model. It produced a connected family, each member answering a different question. \autoref{interlude-model-family} collects them.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption{}\label{interlude-model-family}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Media residency & What must reside in worker memory? How should memory scale with media size? \\
+Batch execution & How do batch size and concurrency affect latency, cost, and truncation risk? \\
+Critical path & What sets the latency floor? Which nodes are optimization targets? \\
+Distribution & Where should ready work execute? What coordination costs does that introduce? \\
+Remediation graph & What work exists, and what depends on what? \\
+Fact / IR catalogue & Which derived facts feed later computations? How deep is the information-dependency chain? \\
+Image fidelity & What representation of media is required, and what does rendering it cost? \\
+\end{longtable}
+}
+
+These models take different forms because they answer different questions. Some are typed graphs, some quantitative functions, some declarations of entities and invariants. They stay separate and compose through shared identities and explicit relationships. The remediation graph and fact catalogue supply the static dependency structure, and the batch model supplies per-call cost; the critical-path model combines the two into latency. The distribution model supplies the execution topology the coordination taxes are charged against. The media-residency model supplies the independent memory bound that makes the execution design affordable.
+
+Together they answer questions that would otherwise invite implementation experiments:
+
+\begin{itemize}
+\tightlist
+\item
+  What happens if another intermediate representation is added?
+\item
+  Where does the critical path lie?
+\item
+  Does splitting a node expose useful parallelism?
+\item
+  At what frontier width does distributed execution beat local execution?
+\item
+  How does peak memory change as media grows?
+\item
+  Which assumption would a measurement have to violate for a prediction to be wrong?
+\end{itemize}
+
+Some answers are structural and some require calibrated measurement; a good model says which is which.
+
+\subsection{From examples to a bound}\label{heading:from-examples-to-a-bound}
+
+The memory story shows the progression clearly:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  "My simple decks work."
+\item
+  "My real decks work."
+\item
+  "Hundreds of documents from several universities work."
+\item
+  "The 250 MB media-heavy deck does not."
+\item
+  Model the relationship that failed.
+\item
+  Remove total media size from the worker-memory equation.
+\item
+  Enforce the assumptions that the bound requires.
+\end{enumerate}
+
+Steps 1--3 accumulate empirical evidence; step 4 exposes the boundary of that evidence. Steps 5--7 do something different: they seek a property over a declared class of inputs. The resulting guarantee is deliberately narrow --- within the modeled envelope, total media size does not determine peak worker memory. Other unknowns remain possible; a future artifact may expose another structural dimension or another resource limit, and MAGE offers no reason to pretend otherwise. But if the next 250 MB deck arrives because it carries more media, the architecture should not have to learn this lesson again.
+
+\subsection{Three days}\label{heading:three-days}
+
+Laid out this way, the sequence looks like a substantial architecture project. It included the large-file requirement, skeletonization and streaming, typed-patch work, the reconsideration of ChunkWorker, remediation and fact graphs, quantitative analysis, and the chunkless execution design. It also included implementation and corrections when assumptions proved wrong. The elapsed engineering time was about three days, working inside the existing governed engineering environment.
+
+These are not unusually difficult techniques, and an experienced engineer could have reached the same conclusions. The number matters because the models were cheap enough to participate in the engineering loop rather than follow behind it. Dependency graphs, performance models, data-flow models, invariants, and intermediate representations are established software-engineering tools. Their cost limits how aggressively engineers use them: a model that takes a week to build may describe code that changes the next day, so the rational response is often to model less, implement the candidate, and measure.
+
+Agentic implementation changes that calculation---but only if engineering reasoning can move with it. In this example, models and implementation evolved together. The residency model stated the memory property the implementation had to preserve. The remediation graph showed that page chunking was one scheduling policy rather than the structure of remediation itself. The critical-path model rejected a serial dependency chain before anyone built it and identified a wide node as an optimization target. When implementation disagreed with a prediction, the discrepancy became another engineering question rather than an invitation to keep patching until the tests passed.
+
+None of those models needed to describe the whole system. Each needed to make one consequential question cheap enough to answer before implementation answered it by default.
+
+Three days matters because, at that timescale, modeling and analysis can remain inside the implementation loop. A black-box optimization process might have reached a faster or smaller implementation sooner. But its immediate advantage could come at the cost of weaker knowledge about why the system behaved as it did, what the optimization depended on, and what subsequent changes had to preserve. Today\textquotesingle s successful optimization would become tomorrow\textquotesingle s less-explained starting point.
+
+Keeping the models inside the loop preserved another outcome: control. The engineer could delegate much of the realization while retaining an explicit account of the consequential structure, evaluate proposed changes against that account, and revise the account when measurement disagreed with it.
+
+\subsection{From a story to a method}\label{heading:from-a-story-to-a-method}
+
+Nobody began this work with a plan to construct seven models. The whole-document architecture worked until larger workloads made memory consequential. Page chunking solved that problem across the workload then observed, but a media-heavy document exposed a remaining scaling relationship. Modeling residency led to skeletonization; skeletonization removed the memory rationale for page partitioning; the remediation graph then exposed causal structure; and critical-path analysis exposed latency limits and optimization opportunities.
+
+The sequence was discovered, not prescribed. Each representation emerged because the preceding one made a consequential relation visible but left another unexplained. Some questions concerned structure: what depends on what? Some concerned bounds: what determines peak memory? Others concerned prediction: where is the latency floor, and would another worker help? The form followed the question.
+
+Once a property had been brought under control, it constrained the next transformation.
+
+The interaction shown earlier in the chapter does not happen once. It repeats as engineering changes what is known. Models carry consequential knowledge into delegated work; implementation and measurement produce evidence; and that evidence may change the realization, the model, or what the engineer considers consequential enough to represent. The sequence is therefore not design → implement → document. The model participates in the engineering work. A problem motivates a representation; the representation permits analysis; analysis informs a prediction or design; implementation tests that reasoning against the system; and measurement supplies evidence for refining the model. \autoref{interlude-modeling-cycle} summarizes the resulting cycle.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-modeling-cycle-9d6747c7c6.pdf}
+\caption{\emph{Modeling as a loop.} (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.}
+\label{interlude-modeling-cycle}
+\end{figure}
+
+A model need not describe the whole system, nor need every model survive forever. It needs to make some consequential property easier to reason about than the implementation itself does. Some models become durable engineering capital because later decisions keep depending on them; others settle one question and disappear. Keep a model while the questions it answers justify its cost.
+
+The danger is that cheap implementation makes the other half of the loop easy to skip: try something, see whether it works, and try something else. That approach produced the first three steps of the memory story---more examples of success---but it could not produce the bound. Exploration had been useful; eventually the relevant degree of freedom needed to collapse into an explicit model and an enforceable property.
+
+The techniques themselves are established software engineering. MAGE organizes their use in an engineering process where implementation is cheap enough to support continuous inquiry.
+
+Realization amplification made alternatives cheap enough to inspect; connection amplification put the resulting failures, measurements, and design consequences close enough together to expose relationships among apparently separate problems. Modeling represented those relationships; Alignment enforced selected obligations; governance conversion allowed later work to inherit what had been learned.
+
+The result was faster implementation and an accumulating account of the system that the engineer and agents could reason through together. That combination matters. Implementation capacity without a corresponding growth in engineering knowledge can simply accelerate change. Here, rapid realization helped produce the models that kept rapid realization under control.
+
+This case followed one problem forward as its necessary representations emerged. Brownfield engineering often presents the inverse problem: the consequential structure already exists somewhere in the system, but nobody has made it explicit enough to reason about or govern.

@@ -1,0 +1,40 @@
+Citation renderer migration — 2026-10-17
+
+Canonical source: book/references.bib (unchanged by this migration).
+Runtime: Pandoc citeproc replaces Typst/Hayagriva.
+Style: official Chicago Manual of Style 18th edition, notes and bibliography.
+See CSL-SOURCE.txt for attribution and license.
+
+Comparison against the previous committed JSON:
+- 324 citation keys before and after; no keys added or removed.
+- All csl metadata records remain equal to the previous artifact and canonical parse.
+- 323 note_html strings changed.
+- 323 bib_html strings changed (works_cited_html remains the same string).
+- All three rendered forms are nonempty for every key.
+- No doubled italicized containers or spurious journal special-issue descriptions.
+- Re-rendering is idempotent, including the generated timestamp.
+
+Expected differences: citeproc's smart punctuation and inline spans; Chicago 18
+full-note formatting; direct BibTeX interpretation of conference containers,
+publication places, page ranges and generic/miscellaneous works. The old derived
+Hayagriva chapter-in-book workaround no longer participates in rendering.
+Pandoc title case normalization is disabled by adding a protective brace layer
+in ephemeral citeproc input for title, booktitle, journal and series. Pandoc maps
+this to CSL nocase spans. Original capitalization (including U.S., DOJ and API)
+and all other bibliography field values are preserved. Canonical references.bib
+is never rewritten. A full parse comparison verifies that the temporary input
+has identical data for all 324 entries.
+
+Examples:
+
+winters2020
+OLD: Winters, Titus, Tom Manshreck, and Hyrum Wright. <em>Software Engineering at Google: Lessons Learned from Programming over Time</em>. O'Reilly Media, 2020.
+NEW: Winters, Titus, Tom Manshreck, and Hyrum Wright. <em><span>Software Engineering at Google: Lessons Learned from Programming Over Time</span></em>. O’Reilly Media, 2020.
+
+graycheriton1989
+OLD: Gray, Cary G., and David R. Cheriton. “Leases: An Efficient Fault-Tolerant Mechanism for Distributed File Cache Consistency.” In <em>Proceedings of the Twelfth ACM Symposium on Operating Systems Principles</em>. ACM, 1989. <a href="https://doi.org/10.1145/74850.74870">https://doi.org/10.1145/74850.74870</a>.
+NEW: Gray, Cary G., and David R. Cheriton. <span>“<span>Leases: An Efficient Fault-Tolerant Mechanism for Distributed File Cache Consistency</span>.”</span> <em><span>Proceedings of the Twelfth ACM Symposium on Operating Systems Principles</span></em> (New York), 1989, 202–10. <a href="https://doi.org/10.1145/74850.74870">https://doi.org/10.1145/74850.74870</a>.
+
+doj-vw-liang
+OLD: U.S. Department of Justice, Office of Public Affairs, “Volkswagen Engineer Pleads Guilty (2016) and Is Sentenced to 40 Months in Prison (2017) for His Role in the Conspiracy to Cheat U.S. Emissions Tests,” 2017.
+NEW: U.S. Department of Justice, Office of Public Affairs. <em><span>Volkswagen Engineer Pleads Guilty (2016) and Is Sentenced to 40 Months in Prison (2017) for His Role in the Conspiracy to Cheat U.S. Emissions Tests</span></em>. U.S. Department of Justice press releases, 2017.

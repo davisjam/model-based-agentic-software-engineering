@@ -1,0 +1,31 @@
+MAGE native PDF bibliography style
+
+mageplainnat.bst is a renamed derivative of plainnat.bst version 0.99b,
+2007-11-26, from the natbib distribution, copyright 1993-2007 Patrick W Daly.
+It is distributed under the LaTeX Project Public License, version 1 or later;
+the original license notice is retained in the style file.
+Upstream: https://ctan.org/pkg/natbib
+License: https://www.latex-project.org/lppl/
+
+This is a natbib author-date style, not a Chicago style. The web edition uses
+Chicago notes and bibliography via CSL; medium-specific formatting differs.
+The canonical references.bib remains authoritative and unmodified.
+
+Changes made 2026-10-17:
+* Preserve title capitalization, including acronyms.
+* Render missing ordinary years as n.d. Native online entries may be dateless,
+  matching the legal sources' explicit canonical metadata instructions.
+* Render absent required publishers as [publisher not identified]. This does
+  not assert that the work is unpublished.
+* Retain both volume and number for proceedings volumes.
+* Support native online entries with publisher, organization, DOI, URL, access
+  date and note, without converting their canonical entry type to misc.
+* Retain both author and editor for an authored book with an editor.
+* Sort title-only references by title when neither author nor key is present.
+
+These are explicit rendering rules for legitimate bibliography records, not
+warning suppression. The warning primitives and missing-field checks remain.
+Validation: all 324 canonical references emitted by BibTeX 0.99d (TeX Live
+2025), zero diagnostics; a deliberately missing article title still warns.
+Use \bibliographystyle{book/latex/mageplainnat}. The compiler must include the
+repository root in BSTINPUTS, and source bundles must include this .bst file.

@@ -1,0 +1,29 @@
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Execution and placement require two related views: where components run and connect, and how a host schedules their work. Keeping those views separate lets review distinguish changes to topology from changes to execution policy.
+
+\textbf{Engineering question.} Where does work run, and which scheduling decisions may change with the host it runs on?
+
+\textbf{Representation.} Use separate views for topology and host policy.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Deployment topology} represents where components run and how they connect: web → queue → worker → storage.
+\item
+  \textbf{Host execution policy} maps each host profile to a scheduling policy: elastic fan-out, bounded fan-out, or serialized execution.
+\end{itemize}
+
+\autoref{fig-g4-execution-placement} shows the stable graph with the policy as a separate layer beneath it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-4-host-execution-policy-c72a07bdc9.pdf}
+\caption{\emph{Stable topology, variable execution policy.} Deployment topology remains stable while host profiles select different scheduling behavior.}
+\label{fig-g4-execution-placement}
+\end{figure}
+
+\textbf{Property.} A host\textquotesingle s concurrency ceiling belongs to scheduling policy, not to the deployment graph.
+
+\textbf{Enforcement and correspondence.} Deployment configuration reconciles against the topology; scheduler behavior reconciles against the host execution policy. Either finding may remain advisory or feed a deployment or scheduler gate.

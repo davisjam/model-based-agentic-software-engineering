@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-skill-recipe/_opening.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Modeling a domain for an agent**
 
 Skills can play three broad roles. A *tool-skill* teaches an agent how to use a particular capability or interface. A *process-skill* packages a recurring procedure so that the agent can carry it out consistently rather than reconstructing the workflow each time. A *mastery-skill* packages reusable expertise for work that continues to require substantial judgment.

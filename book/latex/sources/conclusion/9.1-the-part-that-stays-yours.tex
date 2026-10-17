@@ -1,0 +1,115 @@
+% mage-auto-heading: the-question-i-asked
+% mage-auto-heading: the-core-of-mage
+% mage-auto-heading: what-changes-next
+% mage-auto-heading: how-much-specification-and-of-what-kind
+% mage-auto-heading: the-part-that-stays-yours
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Conclusion -->
+
+% <!-- chapter-title: Conclusion -->
+
+\chapter{Conclusion}
+
+% <!-- epigraph -->
+
+\begin{quote}
+Though much is taken, much abides.
+
+--- Alfred, Lord Tennyson, \emph{Ulysses}
+\end{quote}
+
+\section{The question I asked}\label{heading:the-question-i-asked}
+
+In the Preface, I asked:
+
+% <!-- inline-quote -->
+
+\begin{quote}
+How do we safely grant autonomy to commodity intelligence?
+\end{quote}
+
+Software engineering provided a concrete setting for the question: if an agent can perform consequential work at extraordinary speed, what must the surrounding environment provide before we can safely grant that capability useful autonomy?
+
+The seven chapters developed an answer at different levels. \textbf{\magevalue{chapter:modeling|link:Modeling}} provides representations for reasoning. \textbf{\magevalue{chapter:alignment|link:Alignment}} turns selected intent into obligations on what the engineering process may admit. \textbf{\magevalue{chapter:one-problem-many-models|link:MAGE in Motion}} shows how experience can become reusable engineering structure through governance conversion and ratcheteering. In \textbf{\magevalue{chapter:software-factories|link:Agentic Software Factories}}, we ask what engineering becomes when commodity intelligence can perform realization at industrial scale. \textbf{\magevalue{chapter:theory|link:The Theory}} formalizes these mechanisms and predicts how they should shape engineering outcomes. \textbf{\magevalue{chapter:profession|link:The Profession}} locates these changes within the engineer\textquotesingle s continuing responsibility for the resulting system. I developed this answer through software engineering because that is where my engineering expertise lies, but the answer is broader than software and perhaps broader than the conventional engineering disciplines.
+
+\section{The core of MAGE}\label{heading:the-core-of-mage}
+
+MAGE makes three engineering moves.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Work at the right representation.} Choose the reduction that makes the engineering question answerable without carrying unnecessary detail. A purposeful model can expose properties that humans and agents would otherwise have to reconstruct from implementation, making them available for analysis, review, and evidence. Build the model when those benefits repay its cost, and maintain the correspondences on which its use depends.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Put enforcement where the obligation can be represented and decided adequately.} Guidance influences behavior; enforcement determines which actions or results the environment will accept. Some obligations can be enforced directly through types, permissions, tests, validators, or gates. Others become decidable only after a suitable representation exposes the relevant semantics. Leave consequential decisions to human judgment when the environment lacks the meaning or evidence needed to decide them adequately.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Make useful judgment reusable.} When a recurring or consequential engineering decision is worth carrying forward, convert it into a model, mechanism, architecture, procedure, or body of evidence that later work can inherit. Such structures become engineering capital when they improve later engineering work. Ratcheteering preserves the consequential concern while allowing the particular structure that carries it to be corrected, replaced, or retired.
+\end{enumerate}
+
+% <!-- index-def: governance-as-design-patterns -->
+
+Together, these moves produce the \textbf{governed engineering environment}. Models represent consequential knowledge; controls constrain actions or evaluate results; evidence supports engineering judgments; and people remain responsible for the resulting system. In software, the representations include requirements, architectures, behavioral models, dependencies, provenance, and measurements; the mechanisms include types, validators, permissions, tests, and admission gates. Other domains will supply different representations and different means of evidence and control.
+
+That is Model-Based Agentic Engineering.
+
+\section{What changes next}\label{heading:what-changes-next}
+
+Commodity intelligence changes the economics of engineering by making realization dramatically cheaper. If a software factory can produce changes faster than engineers can specify consequential intent, evaluate evidence, or maintain control over the resulting system, then improving realization further does not remove those constraints. Engineering attention moves to them.
+
+The probability analysis in \magevalue{chapter:theory} makes one part of this shift precise. Successful realization depends on the engineer encoding consequential intent correctly, the agent interpreting that representation correctly, and the realization preserving that interpretation. Better agents can improve the latter probabilities, but greater realization reliability does not establish that the intent encoded upstream was correct.
+
+% <!-- point: the-encoding-limit-has-two-implications | The encoding limit implies two things: the engineer must find representations that carry consequential intent economically, and producing acceptable work remains a different problem from establishing its acceptability. -->
+
+This limitation has two implications. First, the engineer must find representations that communicate consequential intent adequately without making the cost of representation greater than its benefit. Second, producing acceptable work and establishing its acceptability remain different engineering problems. Better agents can improve production reliability, but independent assurance requires suitable evidence and mechanisms for evaluating it. Modeling and Alignment address these related problems from different directions.
+
+% <!-- point: neither-problem-has-a-fixed-solution | Neither problem has a fixed solution: as agents improve they can help build the environment that governs them, so the question is how to allocate work among reasoner, environment, and human judgment as capabilities and costs change. -->
+
+Neither problem has a fixed solution. As agents improve, they can help engineers discover representations, maintain correspondences, construct controls, and evaluate evidence. The engineering environment can become more capable alongside the agents it governs. The relevant question is how to allocate work among the reasoner, the environment, and human judgment as their respective capabilities and costs change.
+
+\section{How much specification, and of what kind?}\label{heading:how-much-specification-and-of-what-kind}
+
+% <!-- point: two-open-questions-how-much-and-in-what-form | Two questions stay open — how much consequential intent must be explicit, and in what representation; the answers differ for realization and for assurance. | terms: specification-frontier -->
+
+This leaves two related questions open: how much consequential intent must engineers make explicit, and in what form? There may be different answers for realization and assurance. As agents become better at recovering familiar intent, engineers may need to say less to obtain a useful realization. But consequential properties still need suitable representation wherever the engineering environment must determine whether they hold rather than trust that the agent probably inferred them correctly. The specification frontier therefore depends not only on what an agent can infer, but on what the engineer must be able to establish---and on which representations make that establishment economical.
+
+% <!-- point: commodity-intelligence-moves-the-frontier | Capable agents already carry familiar work on sparse instruction; novelty pushes more intent back into explicit form, and future agents may infer far more. | terms: specification-frontier -->
+
+As commodity intelligence improves, that frontier moves. For familiar work, capable agents already bring substantial prior knowledge: sparse instructions may be enough to compute Fibonacci numbers, connect an application to a database, or implement a familiar protocol. As the intended system departs from familiar patterns, more consequential intent must be supplied explicitly. Future agents may infer intent from conversation, artifacts, organizational history, observation, and interaction so well that engineers explicitly specify very little.
+
+% <!-- point: richer-machinery-is-the-opportunity | Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone. -->
+
+Increasingly capable agents can help maintain richer representations, analyze them continuously, gather evidence, and enforce obligations at scales that human engineers could not economically sustain. The opportunity is not merely to realize systems more cheaply, but to build better engineering machinery because agents can use it.
+
+\section{The part that stays yours}\label{heading:the-part-that-stays-yours}
+
+% <!-- point: no-stable-set-of-human-only-tasks | There is no stable collection of tasks only humans can perform; the boundary moves with capability, and what persists is the need for informed control over consequential work. -->
+
+There is a corresponding question about the engineer. If agents can increasingly perform implementation, specification, analysis, verification, and even the construction of the engineering environment, what remains for the person responsible for the work?
+
+There is no reason to expect a stable collection of tasks that only humans can perform. The boundary will move as capabilities improve. Engineering competence will change with it, as it has changed with earlier technologies. What persists is the need for informed control over consequential work: understanding what the engineering arrangement can establish, recognizing where its evidence is insufficient, and accepting responsibility for the decisions made under its authority.
+
+% <!-- point: responsibility-extends-to-the-structures-that-decide | Responsibility need not mean making every decision personally; MAGE moves suitable decisions and decision-making processes into engineered structures, and the engineer's responsibility extends to designing, governing, and revising them. -->
+
+That responsibility need not mean personally making every decision. Indeed, MAGE is an argument for moving suitable decisions and decision-making processes into engineered structures so that they can operate more reliably, consistently, and economically. The engineer\textquotesingle s responsibility extends to the design and governance of those structures, including the judgment to revise them when their assumptions no longer hold.
+
+The question from the Preface was how to grant autonomy safely. The answer is to engineer the conditions under which autonomy can be exercised, evaluated, and governed. As commodity intelligence grows more capable, those conditions may become richer and more automated. The responsibility for establishing them remains an engineering responsibility.
+
+% <!-- point: not-to-abolish-engineering-but-to-demand-it | The book's last word: commodity intelligence has not come to abolish engineering, but to demand it. -->
+
+\magerule{}
+
+Commodity intelligence has not come to abolish engineering, but to demand it.

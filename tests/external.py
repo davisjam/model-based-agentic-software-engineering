@@ -9,6 +9,7 @@ check" pattern the suite uses elsewhere)."""
 from __future__ import annotations
 
 import os
+import catalog
 import random
 import re
 import shutil
@@ -28,7 +29,7 @@ class _SiteHandler(SimpleHTTPRequestHandler):
 
     def send_head(self):
         rel = self.path.lstrip("/").split("?", 1)[0].split("#", 1)[0]
-        if any(seg in _NON_SITE_DIRS or seg.startswith(".") for seg in rel.split("/") if seg):
+        if catalog.is_native_build_path(rel) or any(seg in _NON_SITE_DIRS or seg.startswith(".") for seg in rel.split("/") if seg):
             self.send_error(404)
             return None
         return super().send_head()

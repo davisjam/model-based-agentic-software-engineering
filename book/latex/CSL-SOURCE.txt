@@ -1,0 +1,14 @@
+Chicago Manual of Style 18th edition (notes and bibliography)
+Official Citation Style Language style by Andrew Dunning and contributors.
+
+Source: https://github.com/citation-style-language/styles/blob/1aaf551f864d50e875a617b4faf2bf5da30f3f15/chicago-notes-bibliography.csl
+Fetched from the official repository on 2026-10-17; vendored without modifications.
+Style's internal updated date: 2025-02-09.
+License: Creative Commons Attribution-ShareAlike 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+The copyright, attribution and license declaration remain in the CSL <info> block.
+
+book/render_citations.py uses Pandoc citeproc with this local style, so builds do
+not download styles or depend on an implicit/default citation style. The JSON
+stamp records the CSL SHA-256; updating the style requires regenerating citations.
+Print LaTeX uses the same canonical references.bib with its own bibliography style.

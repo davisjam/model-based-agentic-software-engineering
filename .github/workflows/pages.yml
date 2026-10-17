@@ -287,6 +287,29 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.x"
+      - name: Restore frozen TeX Live 2025
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
+      - name: Install native LaTeX and SVG toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils qpdf
+          bash tools/install_texlive_ci.sh
+          rsvg-convert --version
+      - name: Install Pandoc (pinned release; LaTeX compatibility projections)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
+      - name: Verify LaTeX compatibility projections before consumers
+        run: |
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_latex.py sync --check
+          python3 handbook/scripts/latex_source.py sync --check
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -309,15 +332,6 @@ jobs:
         run: |
           npm ci
           npm ci --prefix book
-      - name: Install Typst (pinned release; renders citations + the cover thumbs)
-        run: |
-          TYPST_VERSION=v0.15.1
-          # --retry + --retry-all-errors: the release-asset CDN occasionally returns a transient 5xx
-          # (e.g. a 504 Gateway Timeout); retry so one flake does not fail the whole run.
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
-          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
-          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
-          typst --version
       # Render the Chicago citation strings from references.bib (the SSOT) before the build that
       # reads them; derive the landing cover thumbnails (gitignored, build-derived) before the
       # console gate that fetches them as a subresource.
@@ -348,14 +362,9 @@ jobs:
         run: python3 catalog.py check-console
 
   # ── Book print + ePub editions (PRODUCER) ───────────────────────────────────────────────────
-  # The book PDF is a CI-generated, Pages-published artifact (not committed). `--pdf` projects the
-  # typed book IR to a Typst document and runs `typst compile` to book/mage-book.pdf. It runs the
-  # content-integrity gate internally — page floor/ceiling, every chapter + part title present,
-  # no-raw-mermaid, density, and a tag-tree assertion — and exits non-zero (failing the build) if
-  # the render is truncated / collapsed / runaway / ships raw diagram source / drops the a11y tag
-  # tree. poppler (pdftotext / pdfinfo) backs those gates. qpdf runs a lossless object-stream
-  # repack after `typst compile` (Typst emits ~20K uncompressed indirect objects; the repack cuts
-  # the whole-book PDF by ~35% with the tag tree preserved).
+  # The book PDF compiles authoritative LaTeX with LuaLaTeX + BibTeX. The shared
+  # tools/latex_build.py gate rejects final-pass warnings/errors except underfull h/v boxes.
+  # Existing content-integrity checks remain in the book build; poppler backs PDF inspection.
   #
   # `--no-split`: the published site ships only the whole-book mage-book.pdf. `--pdf` is
   # default-on-split LOCALLY (per-section review PDFs); `--no-split` states full-only explicitly at
@@ -363,8 +372,8 @@ jobs:
   #
   # The ePub (book_epub.py — the 4th IR projection, EPUB3) reuses build_pages()' rendered bodies
   # (no re-render), packs the EPUB3 container, and renders the TITLED cover from the print
-  # edition's own Typst cover page — so it runs after the Typst + requirements-pdf installs
-  # (Typst compiles the cover; Pillow recompresses it).
+  # edition's own LaTeX cover page — so it runs after the LaTeX + requirements-pdf installs
+  # (LuaLaTeX compiles the cover; Pillow recompresses it).
   book-editions:
     runs-on: ubuntu-latest
     permissions:
@@ -374,6 +383,29 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.x"
+      - name: Restore frozen TeX Live 2025
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
+      - name: Install native LaTeX and SVG toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils qpdf
+          bash tools/install_texlive_ci.sh
+          rsvg-convert --version
+      - name: Install Pandoc (pinned release; LaTeX compatibility projections)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
+      - name: Verify LaTeX compatibility projections before consumers
+        run: |
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_latex.py sync --check
+          python3 handbook/scripts/latex_source.py sync --check
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -393,19 +425,11 @@ jobs:
       - name: Install book node tooling (mermaid-cli for build-time SVG, from book/ lockfile)
         working-directory: book
         run: npm ci
-      - name: Install Typst (pinned release; renders citations + the print-native book PDF)
-        run: |
-          TYPST_VERSION=v0.15.1
-          # Same transient-5xx hardening as every pinned-release download in this workflow.
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
-          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
-          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
-          typst --version
-      - name: Install poppler + qpdf (pdftotext / pdfinfo back the content-integrity + tag-tree gates; qpdf does the lossless object-stream repack)
-        run: sudo apt-get update && sudo apt-get install -y poppler-utils qpdf
-      - name: Render citations (references.bib -> citations.json via Typst, chicago-notes)
+      - name: Render citations (references.bib -> citations.json via Pandoc citeproc, Chicago 18)
         run: python3 book/render_citations.py
-      - name: Render book PDF (print-native Typst) + content-integrity gate
+      - name: Check PDF structure gate negative controls
+        run: python3 tools/test_pdf_structure.py
+      - name: Render book PDF (native LaTeX; strict warnings) + content-integrity gate
         run: |
           # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is
           # already installed above. catalog.py itself stays stdlib-only — these deps are for the
@@ -428,7 +452,7 @@ jobs:
   # ── Supplementary Software Engineering Handbook: PDF + ePub + web site (PRODUCER) ────────────
   # CI-generated, Pages-published artifacts (not committed). `make book` LINTS the manuscript
   # first and aborts on any error (never degrades silently), then renders
-  # handbook/dist/software-engineering-handbook.pdf via the Pandoc→AST→Typst pipeline AND the
+  # handbook/dist/software-engineering-handbook.pdf from authoritative LaTeX AND the
   # reflowable .epub from the same chapter source, plus the standalone per-chapter PDFs
   # (handbook/dist/chapters/<stem>.pdf). `build.py web` then renders the self-contained MkDocs
   # site (handbook/dist/site). `assemble` downloads handbook/dist and places everything at its
@@ -443,24 +467,36 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.x"
-      - name: Install Typst (pinned release; the handbook PDF's layout engine)
+      - name: Restore frozen TeX Live 2025
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
+      - name: Install native LaTeX and SVG toolchain
         run: |
-          TYPST_VERSION=v0.15.1
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
-          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
-          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
-          typst --version
-      # Pandoc reads + AST-transforms + citeproc's the handbook manuscript, then projects to Typst.
-      # The pinned release, clone-and-run-safe — NOT an unpinned `apt-get install pandoc`, whose
-      # version floats and can silently change the AST the Lua filters see.
-      - name: Install Pandoc (pinned release; backs the handbook render)
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils qpdf
+          bash tools/install_texlive_ci.sh
+          rsvg-convert --version
+      - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
           curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
           mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
           sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
           pandoc --version
-      - name: Render handbook PDF + ePub + per-chapter PDFs (Pandoc → Typst / ePub3)
+      - name: Verify LaTeX compatibility projections before consumers
+        run: |
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_latex.py sync --check
+          python3 handbook/scripts/latex_source.py sync --check
+      - name: Check native LaTeX source bridge regressions
+        run: |
+          python3 handbook/scripts/test_latex_source.py
+          python3 tools/test_latex_build.py
+          python3 tools/test_pdf_structure.py
+          python3 -m unittest tests.test_native_site_boundaries
+      - name: Render handbook PDF + ePub + per-chapter PDFs (LaTeX / ePub3)
         run: |
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party
           # Python dep on the PDF path); Pillow (requirements-pdf) backs the cover derivation.
@@ -500,6 +536,29 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.x"
+      - name: Restore frozen TeX Live 2025
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
+      - name: Install native LaTeX and SVG toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils qpdf
+          bash tools/install_texlive_ci.sh
+          rsvg-convert --version
+      - name: Install Pandoc (pinned release; LaTeX compatibility projections)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
+      - name: Verify LaTeX compatibility projections before consumers
+        run: |
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_latex.py sync --check
+          python3 handbook/scripts/latex_source.py sync --check
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -519,13 +578,6 @@ jobs:
       - name: Install book node tooling (mermaid-cli for build_pages' SVG render, from book/ lockfile)
         working-directory: book
         run: npm ci
-      - name: Install Typst (pinned release; renders citations + the cover thumbs)
-        run: |
-          TYPST_VERSION=v0.15.1
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
-          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
-          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
-          typst --version
       - name: Render citations + derive cover thumbnails (build_pages + the asset copy consume them)
         run: |
           python3 -m pip install -r book/requirements-pdf.txt
@@ -578,6 +630,29 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.x"
+      - name: Restore frozen TeX Live 2025
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
+      - name: Install native LaTeX and SVG toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils qpdf
+          bash tools/install_texlive_ci.sh
+          rsvg-convert --version
+      - name: Install Pandoc (pinned release; LaTeX compatibility projections)
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz" -o /tmp/pandoc.tar.gz
+          mkdir -p /tmp/pandoc && tar -xzf /tmp/pandoc.tar.gz -C /tmp/pandoc --strip-components=1
+          sudo install -m 0755 /tmp/pandoc/bin/pandoc /usr/local/bin/pandoc
+          pandoc --version
+      - name: Verify LaTeX compatibility projections before consumers
+        run: |
+          python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_latex.py sync --check
+          python3 handbook/scripts/latex_source.py sync --check
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -597,13 +672,6 @@ jobs:
       - name: Install book node tooling (mermaid-cli for the authoritative HTML render)
         working-directory: book
         run: npm ci
-      - name: Install Typst (pinned release; renders citations + the cover thumbs)
-        run: |
-          TYPST_VERSION=v0.15.1
-          curl -fsSL --retry 5 --retry-delay 3 --retry-all-errors "https://github.com/typst/typst/releases/download/${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz" -o /tmp/typst.tar.xz
-          mkdir -p /tmp/typst && tar -xJf /tmp/typst.tar.xz -C /tmp/typst --strip-components=1
-          sudo install -m 0755 /tmp/typst/typst /usr/local/bin/typst
-          typst --version
       - name: Render citations + derive cover thumbnails (the landing + the thumb hard-gates consume them)
         run: |
           python3 -m pip install -r book/requirements-pdf.txt
@@ -663,7 +731,8 @@ jobs:
           # under `plugin/` ships AGENTS.md files that are CONTENT and must keep publishing.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' --exclude='book/dist' --exclude='book/web' \
+                --exclude='book/_typst' --exclude='book/_latex' --exclude='book/latex' \
+                --exclude='latex' --exclude='book/dist' --exclude='book/web' \
                 --exclude='course' --exclude='site' --exclude='handbook' \
                 --exclude='/AGENTS.md' --exclude='/book/AGENTS.md' ./ _site/
           # Hard-gate the exclusion (same discipline as the presence asserts below — an exclusion that

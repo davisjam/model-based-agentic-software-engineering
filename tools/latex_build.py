@@ -42,11 +42,14 @@ def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
         raise RuntimeError("LuaLaTeX is required (TeX Live 2025 or newer).")
     env = os.environ.copy()
     env["TEXINPUTS"] = str(ROOT / "latex") + os.pathsep + env.get("TEXINPUTS", "")
-    # Keep Lua font caches inside the build tree, including in restricted environments.
-    env["TEXMFVAR"] = str(output_dir / ".texmf-var")
-    env["TEXMFCACHE"] = str(output_dir / ".texmf-var")
+    # Reuse one local cache across whole books, excerpts and covers. Rebuilding the
+    # system font database in every output directory dominates cold compile time.
+    cache = ROOT / "latex" / "build" / ".texmf-var"
+    cache.mkdir(parents=True, exist_ok=True)
+    env["TEXMFVAR"] = str(cache)
+    env["TEXMFCACHE"] = str(cache)
     cmd = [engine, "-interaction=nonstopmode", "-halt-on-error", "-file-line-error",
-           "-no-shell-escape", f"-output-directory={output_dir}", str(source)]
+           "-no-shell-escape", "-recorder", f"-output-directory={output_dir}", str(source)]
     previous = None
     bibliography_state = None
     for attempt in range(1, 6):
@@ -64,6 +67,7 @@ def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
                 raise RuntimeError("BibTeX is required for this manuscript.")
             bib_env = env.copy()
             bib_env["BIBINPUTS"] = str(ROOT) + os.pathsep + str(ROOT / "book") + os.pathsep
+            bib_env["BSTINPUTS"] = str(ROOT) + os.pathsep + env.get("BSTINPUTS", "")
             bib = subprocess.run([bibtex, source.stem], cwd=output_dir, env=bib_env,
                                  capture_output=True, text=True)
             if bib.returncode or re.search(r"Warning--|I couldn't|error message", bib.stdout + bib.stderr):
@@ -75,6 +79,10 @@ def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
         state = tuple((output_dir / f"{source.stem}.{suffix}").read_bytes()
                       if (output_dir / f"{source.stem}.{suffix}").exists() else b""
                       for suffix in ("aux", "toc", "out", "lof", "lot"))
+        # LuaMML generates associations for the next pass; the final PDF must
+        # embed math from the current source rather than a prior partial run.
+        mathml = output_dir / f"{source.stem}-luamml-mathml.html"
+        state += (mathml.read_bytes() if mathml.exists() else b"",)
         if state == previous:
             break
         previous = state

@@ -1,0 +1,16 @@
+id: conclusion
+title: Conclusion
+short_title: Conclusion
+order: 99
+status: draft
+kind: conclusion
+description: >
+  The book's closing: engineers master their medium, so the properties of software created the
+  decision landscape; a recurring decision procedure — what is required, what do I need to know,
+  what might I be missing, how should I find out, then decide — is the judgment the apprenticeship
+  cultivates; and that judgment is what makes it possible to delegate realization without
+  delegating engineering.
+objectives:
+  - Recover the book's progression as one recurring habit of engineering judgment.
+  - Apply the decision procedure — requirements, information, gaps, evidence, decision — to a new engineering problem.
+  - Explain why engineering judgment is shaped by its medium, and how that judgment makes responsible delegation possible.

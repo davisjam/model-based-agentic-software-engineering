@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/cloudflare.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ### Cloudflare
 
 *Internet infrastructure · policy-first governance at organizational scale*
@@ -11,7 +13,6 @@ The important move is not AI review itself, but turning policy into an artifact 
 **Boundary of the evidence.** The public account is much stronger on representation and enforcement of obligations than on explicit executable models of the software being governed. Nor does it show repeated failures being converted into new environmental structure over time. The evidence establishes policy → representation → mechanism, but not failure → diagnosis → environmental adaptation.
 
 **Portable lesson.** A policy decision gains multiplicative reach when the environment can apply it without requiring another person to reconstruct it.
-
 
 #### Recto — MAGE Interpretation
 

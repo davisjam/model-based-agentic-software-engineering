@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/assurance-and-compliance.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Engineering question.** What must we be able to demonstrate about the product?
 
 Assurance and compliance organize work around claims that must be established, not merely implementations that must be produced. Some claims are naturally evaluated over models; others concern the realized system; many require evidence connecting the two.

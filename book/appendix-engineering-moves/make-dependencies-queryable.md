@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/make-dependencies-queryable.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** Cross-cutting mechanisms depend on assumptions about the substrate they inspect. When those dependencies remain implicit, a substrate change can either break many controls at once or silently invalidate part of their coverage.
 
 **Move.** Represent consequential dependencies explicitly so the impact of a proposed change can be queried before it lands.

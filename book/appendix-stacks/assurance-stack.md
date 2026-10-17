@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/assurance-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **State the engineering obligations, identify the population they apply to, and produce evidence strong enough for each property.**
@@ -7,16 +9,16 @@
 Reach for it when the important question shifts from
 
 <!-- inline-quote -->
+
 > Did the tests pass?
 
 to
 
 <!-- inline-quote -->
-> Have we named the relevant obligations, discharged each one appropriately, and shown the population is
-> covered?
 
-That shift arrives whenever a property has to hold across a whole class of things — every mutator, every
-config field, every seam — and a green suite on a handful of examples no longer settles it.
+> Have we named the relevant obligations, discharged each one appropriately, and shown the population is covered?
+
+That shift arrives whenever a property has to hold across a whole class of things — every mutator, every config field, every seam — and a green suite on a handful of examples no longer settles it.
 
 ## The Composition
 
@@ -25,6 +27,8 @@ config field, every seam — and a green suite on a handful of examples no longe
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **SPEC** | State the obligation. |

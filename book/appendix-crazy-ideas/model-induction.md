@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-crazy-ideas/model-induction.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 Explicit models need not always precede realization. Repeated structure in realized work may supply evidence from which useful engineering concepts can be induced. The central move is not clustering for its own sake. Weak detectors or retrieval surface candidate regularities; comparison establishes whether instances share more than superficial form; engineering judgment decides whether the recurring shape denotes a concept worth naming; and the resulting vocabulary becomes available to future reasoning.
 
 DocAble supplies a grounded software instance. Primitive-density analysis exposed repeated low-level structures. Most were legitimate implementation detail. Some recurring patterns across related components expressed concepts the system was using without naming, and those concepts became explicit types and relations.
@@ -18,12 +20,12 @@ Human judgment is not merely a fallback stage in this process; it supplies the i
 
 **Candidate research questions.**
 
-* Which forms of repetition predict a reusable engineering abstraction rather than accidental implementation similarity?
-* How should agents propose relations, invariants, and boundaries once a candidate concept has been identified?
-* What evidence should accompany an induced abstraction so an engineer can judge whether it deserves adoption?
-* How can induced models be evaluated prospectively on later work rather than retrospectively against their training artifacts?
-* When does introducing a model reduce degrees of freedom productively, and when does it prematurely freeze an ontology?
-* How should an induced model evolve, split, merge, or retire as realized work changes?
+- Which forms of repetition predict a reusable engineering abstraction rather than accidental implementation similarity?
+- How should agents propose relations, invariants, and boundaries once a candidate concept has been identified?
+- What evidence should accompany an induced abstraction so an engineer can judge whether it deserves adoption?
+- How can induced models be evaluated prospectively on later work rather than retrospectively against their training artifacts?
+- When does introducing a model reduce degrees of freedom productively, and when does it prematurely freeze an ontology?
+- How should an induced model evolve, split, merge, or retire as realized work changes?
 
 [ref:model-induction-general] traces that general move, from realized work to a named model, and instantiates it three ways. Its software, knowledge-work, and mechanical-CAD columns are what make this a research direction rather than a claim the book establishes.
 

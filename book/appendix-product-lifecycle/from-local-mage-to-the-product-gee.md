@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/from-local-mage-to-the-product-gee.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 When useful local representations connect across lifecycle surfaces, they can form a product-wide Governed Engineering Environment: product intent, system knowledge, operational experience, and assurance obligations become available across the life of the product. The product GEE emerges from connections among representations that remain suited to their own engineering purposes.
 
 Each surface should retain representations suited to its own questions. What they can share is identity, relationships, provenance, temporal scope, and obligations. A requirement can concern a feature; a ticket can authorize a change to a component; a deployed service can realize that component; an incident can expose a violated assumption; the resulting invariant can constrain later engineering and support an assurance claim. [ref:fig-h-product-gee] shows those connections.

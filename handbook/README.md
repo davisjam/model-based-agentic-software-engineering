@@ -1,251 +1,157 @@
-# The Software Engineering Handbook — build system
+# The Software Engineering Handbook
 
 *A Judgment and Decision-Making Approach.* James C. Davis.
 
-This is a **vertical-slice prototype**. It proves that one semantically rich manuscript can drive
-two high-quality outputs — a typeset PDF and a responsive web edition — without either output format
-contaminating the source. One chapter (Architecture) is implemented end to end; the schema is kept
-small on purpose so it can change after seeing the first chapter render.
+The editable manuscript is LaTeX: `chapters/*.tex` and `frontmatter/*.tex`.
+Adjacent `.yaml` files hold editorial metadata. The Handbook and MAGE Book share
+`../latex/house.sty`; the Handbook retains its Source Serif typography, umber
+palette, cover artwork, and semantic callouts.
 
-The Handbook is a **separate book** from the MAGE book in this repository. It reuses that book's
-visual language (the Umber-Monograph palette and the Source Serif 4 / Source Sans 3 / IBM Plex Mono
-faces) and its GitHub Pages hosting, but it has its own source tree, its own build pipeline, and its
-own Typst template. It does **not** touch `catalog.py`, the catalogue's pre-commit hook, or the
-catalogue's CI.
+## One manuscript, three editions
 
-## Architecture: one source, two renderers
+Pandoc reads the native LaTeX into its semantic document tree. The print builder
+assembles a LuaLaTeX document using the shared house style. Existing semantic
+filters produce the responsive MkDocs web edition and reflowable ePub.
 
-There is exactly one editable manuscript — semantic Markdown under `chapters/`. Everything else is a
-generated artifact.
+Sibling `.md` files are deterministic compatibility projections consumed by the
+catalogue and existing web infrastructure. They are checked in so those consumers
+have stable paths, but must not be edited. After changing `.tex` or `.yaml`, run:
 
-```
-                       chapters/*.md            ← the one canonical manuscript
-                            │
-                            ▼
-                    Pandoc  (markdown)
-                            │
-                            ▼
-                     Pandoc JSON AST            ← the typed intermediate representation
-                            │
-              ┌─────────────┴──────────────┐
-   crossrefs.lua → citeproc → figures.lua → handbook-components.lua
-              │                            │
-       (FORMAT == typst)            (FORMAT == gfm)
-              │                            │
-        typst.lua                      web.lua
-              ▼                            ▼
-   generated/typst/*.typ         generated/web/*.md
-              │                            │
-     typst compile                mkdocs build
-      + typst/*.typ               + web/mkdocs.yml
-              ▼                            ▼
-  dist/software-engineering       dist/site/  (HTML)
-        -handbook.pdf
+```sh
+python3 scripts/latex_source.py sync
+python3 scripts/latex_source.py sync --check
 ```
 
-- **The Pandoc AST is the typed intermediate representation.** Authors never edit it; the linter and
-  the renderers read it. The Lua filters branch on Pandoc's `FORMAT` global, so one filter set serves
-  both targets.
-- **Numbering belongs to the renderer, never to the prose.** Figures carry stable IDs; a
-  cross-reference is written `@fig-x` / `@sec-x`. Typst numbers figures natively for the PDF; the web
-  filter computes "Figure N" and links to the ID. Section references render by section title in both
-  outputs. The book tolerates reordering without renumbering prose.
-- **Generated Typst and Markdown are kept on disk** (`generated/`) for inspection — you can read
-  exactly what each renderer received — but they are gitignored and never hand-edited, as is
-  `dist/`. This mirrors how the MAGE book gitignores its rendered PDF.
+Run these commands from `handbook/`, or prefix their paths with `handbook/` from
+the catalogue root. Builds synchronize projections before semantic validation.
+Commit source and updated projections together. `--check` detects stale projections
+without rewriting them.
 
-## Supported semantic constructs
+The bridge supports the prose, lists, mathematics, tables, links, and semantic
+components used in this manuscript. Unsupported raw LaTeX fails explicitly rather
+than disappearing from the web edition. Adding a new macro or environment requires
+teaching the bridge how to represent its meaning in all editions.
 
-The manuscript names **meaning**, not presentation. The vocabulary is deliberately small; add a
-construct only when its type carries distinct rendering, cross-referencing, validation, or
-navigation value.
+## Authoring conventions
 
-| Construct | Authoring form | PDF | Web |
-|---|---|---|---|
-| `definition` | `::: {.definition #id title="…"}` | ruled, titled callout | admonition |
-| `decision` | `::: {.decision #id title="…"}` | ruled, titled callout (umber) | admonition |
-| `tradeoff` | `::: {.tradeoff #id title="…"}` | ruled, titled callout (violet) | admonition |
-| `example`, `case-study`, `key-idea`, `note`, `warning`, `exercise`, `code-example`, `quotation` | `::: {.<kind> #id title="…"}` | ruled callout | admonition |
-| `read_further` | `::: read_further` + 2–4 entry paragraphs | quiet box labelled "READ FURTHER", hanging-indent entries | quiet admonition |
-| `figure` | `::: {.figure #fig-… alt="…"}` + image + caption paragraph | `#figure(...)`, numbered, tagged-PDF `alt` | semantic `<figure>`/`<figcaption>` |
-| citation | `[@key]` (Pandoc + CSL) | Chicago author-date | Chicago author-date |
-| cross-reference | `@fig-…`, `@sec-…` | native Typst ref / titled link | "Figure N" link / titled link |
-| escape hatch | `::: {.raw-typst}` / `::: {.raw-html}` | passed to PDF only | passed to web only |
+Chapter titles come from the adjacent YAML metadata. Source `\subsection{...}`
+represents a chapter's main section (the original document's H2);
+`\subsubsection{...}` represents its subsection. The print assembly shifts these
+to the appropriate book-level section commands. Preserve stable labels and IDs;
+numbering belongs to the renderer, not prose.
 
-Chapter metadata (YAML front matter, validated): `id`, `title`, `short_title`, `order`,
-`status` (`outline`/`draft`/`review`/`stable`), `description`. Global metadata lives in
-`book.yaml`.
+Editorial metadata requires `id`, `title`, `short_title`, `order`, `status`
+(`outline`, `draft`, `review`, or `stable`), and `description`. Global metadata and
+chapter order live in `book.yaml`. Its `.md` paths deliberately name the generated
+compatibility projections.
 
-Figures keep alt text and caption structurally distinct: `alt` is the accessibility text (set on the
-`<img>` and on the Typst `image(alt: …)` for tagged-PDF output), the caption paragraph is the visible
-label.
+Semantic callouts use a native environment:
 
-**Figure text legibility (style primitive).** The book is print-intended, so every semantically
-meaningful text run in a figure SVG — labels, annotations, arrows' captions — must stay comfortably
-readable at printed size **in grayscale**. Concretely: figure text uses only the sanctioned inks
-(`#1c1917` body ink, `#57534e` subordinate gray, `#9a3f12` accent) — never a lighter gray and never
-opacity tricks — and must print at ≥ 6 pt *effective* size (font-size scaled by the SVG viewBox
-against the figure's rendered width). Light gray (`#e4e0d8`) is reserved for genuinely decorative
-structure — separator rules, panel fills — whose loss would not impair comprehension.
-`scripts/lint.py` enforces both halves mechanically (`check_figure_legibility`), so shrinking a
-figure (or wrapping it, below) without re-sizing its text fails the build rather than surfacing in
-print.
-
-**Wrapped floats (PDF only).** A figure Div — or a `.table` Div wrapping one captioned table — may
-carry `wrap="right"` plus an optional `wrap-width="2.05in"`: the print edition renders the float as
-a narrow right-hand column with the following prose paragraphs flowing beside it, via the book
-family's single side-float engine (`/book/typst/side-float.typ`, shared with the MAGE book;
-`#hb-wrapped` in `typst/components.typ` is the handbook's caller). Use it for a tall, narrow float
-that would otherwise cost a full-width band of its page. The reflowable web and ePub editions
-ignore the attribute. Never shrink a float's text to make a wrap fit — the legibility primitive
-above still applies at the wrapped width.
-
-**Table captions sit above.** A reader needs to know what a table represents before scanning its
-columns, so every **table** caption renders above its table in all three editions (the Typst rule in
-`typst/handbook.typ`, `caption-side: top` in `web/css/handbook.css` and `epub/epub.css`). **Figure**
-captions stay below. In the PDF the caption+table figure is unbreakable, so a caption can never
-strand at a page bottom with its table overleaf.
-
-### Chapter-ending convention
-
-Every substantive chapter ends the same way, so the structure is checkable rather than stylistic:
-
-1. **`## Summary`** — an ordinary H2 section in the author's voice. It is prose, *not* a colored box,
-   and it appears in the table of contents exactly as any other H2 does.
-2. **A single `read_further` box** — the curated reader-facing end matter, rendered immediately after
-   the Summary. It holds 2–4 entries, each a normal bibliographic citation plus one short sentence on
-   why it is worth reading. Chicago style: books and reports in italics, articles in quotes, venue in
-   italics — matching the rest of the manuscript. The web edition links a title or DOI when a canonical
-   destination exists; the PDF typesets the title rather than a raw URL. There are no numbered `[1]`
-   citations; the box is deliberately quiet.
-
-Authoring form:
-
-```
-## Summary
-
-…one or two paragraphs of ordinary prose…
-
-::: read_further
-Bass, Clements & Kazman, *Software Architecture in Practice*. The standard treatment of how
-quality attributes drive structural decisions.
-
-Fairbanks, *Just Enough Software Architecture*. A risk-driven method for spending modeling
-effort only where uncertainty could change a decision.
-:::
+```latex
+\begin{bookbox}{definition}{Software architecture} % handbook-attrs: ["def-architecture", ["definition"], []]
+The definition's prose belongs here.
+\end{bookbox}
 ```
 
-**Citation policy.** Inline `@`-citations stay — they render as Chicago author-date, backed by
-`bibliography/references.bib`. A chapter never dumps a per-chapter "References"/"Bibliography" section
-at its end; the READ FURTHER box is the curated end matter, not the citation-metadata store. (A
-book-level bibliography, if wanted later, is a separate build-time assembly, not a per-chapter one.)
+The two native arguments determine the kind and visible title. The JSON comment
+preserves the stable identifier, additional classes, and ancillary web attributes;
+keep it with the opening environment. Do not duplicate prose or titles in metadata.
 
-Front matter, interludes, and appendices are **exempt** from this convention — flag them with a
-chapter-metadata `kind:` other than `chapter` (e.g. `kind: front-matter`), or simply keep them out of
-`book.yaml`'s `chapters:` list. The drift lint below enforces the convention on everything else.
+Supported kinds include `definition`, `decision`, `tradeoff`, `example`,
+`case-study`, `key-idea`, `note`, `warning`, `exercise`, `code-example`, `quotation`,
+`mage-moment`, and `read_further`. Figure and table groups also use `bookbox`
+wrappers with kind `figure` or `table`; the renderer gives them figure/table
+semantics instead of a callout border. Use existing chapters as examples of native
+images and longtables inside those wrappers.
 
-## Validation
+Use `\citep{key}` and `\citet{key}` for citations. The one shared bibliography is
+`../book/references.bib`; the Handbook's author-date style is
+`bibliography/chicago-author-date.csl`. Cross-references retain stable IDs, such as
+`\citep{fig-architecture-tradeoff}` and `\citep{sec-architecture}`; the existing
+cross-reference filter distinguishes those IDs from bibliographic keys and resolves
+them to numbered figures or section titles. Do not type figure or chapter numbers
+into prose.
 
-`scripts/lint.py` reads each chapter's AST and fails (exit 1) on any of: missing/invalid chapter
-metadata, invalid chapter ordering, unknown or malformed semantic blocks, figures without alt text or
-caption, duplicate IDs, unresolved cross-references, citation keys absent from the bibliography,
-broken image paths, hard-coded figure/table/section/chapter numbers in prose, raw HTML/Typst used for
-presentation outside a marked escape hatch, malformed heading hierarchy, and figure-text legibility
-(sanctioned inks + the effective printed-size floor — see the style primitive above). The build runs the
-linter first and aborts on any error — it never degrades silently.
+Figures keep accessibility text separate from their visible caption. Store `alt`
+in the figure wrapper's ancillary attributes and keep the visible caption as prose
+after the image. Table captions appear above their tables; figure captions appear
+below. Existing wrap attributes remain available to the web compatibility bridge;
+the LaTeX renderer currently lays these figures out in the normal text flow.
 
-It also runs the **chapter-ending drift check** described above: every non-exempt chapter must end
-with a `## Summary` (H2) whose prose is immediately followed by exactly one `read_further` block, and
-must carry no bare `References`/`Bibliography` heading. This check is currently **AUDIT-ONLY** — it
-reports non-compliant chapters to stderr but does not fail `make lint`, so chapters can adopt the
-convention incrementally. A later step promotes it to a hard error once every chapter complies.
+Figure labels must remain readable in grayscale at their printed size. SVG text
+uses only `#1c1917`, `#57534e`, or `#9a3f12` and must remain at least 6 pt after
+scaling. Reserve `#e4e0d8` for decorative rules and fills. Semantic lint checks ink
+and effective size, including figures with width metadata.
 
-## Build commands
+### Chapter endings
 
-```
-make lint      # validate manuscript semantics (no rendering)
-make book      # → dist/software-engineering-handbook.{pdf,epub}
-make epub      # → dist/software-engineering-handbook.epub only
-make web       # → dist/site/ (MkDocs)
-make all       # lint + book + web
-make serve      # build the web edition and serve it locally
-make clean      # remove all generated artifacts
-```
+Substantive chapters end with an ordinary `\subsection{Summary}`, followed by one
+`read_further` box containing two to four bibliographic entries and a short reason
+to read each. Keep inline author-date citations throughout the chapter; do not add
+per-chapter References or Bibliography dumps. Front matter, interludes, and
+appendices may declare a metadata `kind` other than `chapter` to be exempt.
+The chapter-ending drift check remains audit-only while chapters adopt the
+convention; all other semantic errors fail the build.
 
-Equivalent scripts: `python3 scripts/lint.py`, `python3 scripts/build.py {pdf|epub|web|all}`.
+## Building and checking
 
-### Local preview of BOTH books, under their published subfolders
+From `handbook/`:
 
-The deployed Pages site publishes each book under its own named subfolder — the MAGE book PDF at
-`/mage-book/mage-book.pdf` and this handbook at `/se-handbook/software-engineering-handbook.pdf`. To
-mirror that layout locally (render both books and see each where the site serves it), run the
-repo-root script:
-
-```
-python3 scripts/render-books-local.py     # from the catalogue repo root
-```
-
-It renders the MAGE book via `book/build_book.py --pdf` and this handbook via `make -C handbook book`,
-then copies each PDF into a gitignored preview tree:
-
-```
-_local-books/mage-book/mage-book.pdf
-_local-books/se-handbook/software-engineering-handbook.pdf
+```sh
+make lint      # validate manuscript semantics
+make book      # full PDF, individual PDFs, and ePub
+make epub      # ePub only
+make web       # strict MkDocs build into dist/site/
+make all       # lint, PDF/ePub, and web
+make serve     # build and serve the web edition locally
+make clean     # remove generated renderer inputs and outputs
 ```
 
-The script is stdlib-only and shells out to each book's own toolchain — it does not import the
-handbook or catalogue build machinery. It needs this handbook's toolchain (Pandoc + Typst + PyYAML,
-above) plus the MAGE book's `--pdf` deps on PATH.
+Equivalent scripts are `python3 scripts/lint.py` and
+`python3 scripts/build.py {pdf|epub|web|all}`. Source bridge regression tests run with
+`python3 -m unittest discover -s scripts -p test_latex_source.py`.
 
-## Reproducibility — pinned toolchain
+The shared compiler (`../tools/latex_build.py`) reruns LuaLaTeX until references
+converge and rejects final errors and warnings. Only underfull horizontal or
+vertical boxes are tolerated. Overfull boxes, missing glyphs, unresolved references,
+font substitutions, and tagging warnings fail. PDF documents include language,
+heading, paragraph, figure, and table tagging. The current TeX Live table-tagging
+module requires native table rules, so the print assembly translates Pandoc's
+booktabs rules to native rules without changing table contents.
 
-The build is developed and verified against these exact versions:
+Semantic validation also checks metadata, order, components, figure alt text and
+captions, duplicate IDs, unresolved references, citation keys, asset paths, heading
+hierarchy, hard-coded numbering, and figure legibility. Generated projections must
+stay synchronized for repository hooks and CI.
 
-| Tool | Version | Notes |
-|---|---|---|
-| Pandoc | **3.9.0.2** (`+lua`, Lua 5.4) | reader + AST + Lua filters + citeproc |
-| Typst | **0.15.1** | PDF renderer |
-| MkDocs | **1.6.1** | web framework — the interpreter at `../site/.venv` |
-| Material for MkDocs | **9.7.7** | web theme |
-| PyMdown Extensions | **11.0.2** | admonitions / superfences |
-| Python | 3.x with **PyYAML 6** | build/lint scripts (`book.yaml`) |
+The toolchain needs Python with PyYAML and the existing site requirements, Pandoc
+3, LuaLaTeX with the TeX Live 2025 packages (including latex-lab/tagpdf and
+unicode-math), and `rsvg-convert`. Fonts are bundled under `../book/fonts`.
+Use the shared `../site/.venv` Python for web builds if MkDocs is not available in
+your default Python environment. The established web stack is MkDocs 1.6.1,
+Material 9.7.7, and PyMdown Extensions 11.0.2.
 
-The MkDocs toolchain is the project's shared virtualenv at `../site/.venv`; `make web` and `make
-serve` invoke it directly. Fonts are the self-hosted faces under `../book/fonts` (passed to Typst via
-`--font-path`). Citation keys are shared with the MAGE book's bibliography; the needed entries are
-copied into `bibliography/references.bib`, formatted through `bibliography/chicago-author-date.csl`.
+To preview both published PDF paths locally, run
+`python3 scripts/render-books-local.py` from the catalogue root. It writes
+`_local-books/mage-book/mage-book.pdf` and
+`_local-books/se-handbook/software-engineering-handbook.pdf`.
 
-## Layout
+## Files and outputs
 
-```
-handbook/
-  book.yaml                 global metadata + chapter order (single source of truth)
-  chapters/                 the canonical manuscript (semantic Markdown)
-  figures/                  figure assets (SVG)
-  bibliography/             references.bib + chicago-author-date.csl
-  filters/                  Pandoc Lua filters (crossrefs, figures, handbook-components, typst, web)
-  typst/                    the Handbook's own Typst template (handbook, components, typography)
-  web/                      mkdocs.yml + css (web presentation)
-  scripts/                  build.py + lint.py (+ _common.py)
-  generated/                inspectable renderer inputs — gitignored
-  dist/                     the PDF + the site — gitignored
-```
+| Path | Purpose |
+|---|---|
+| `chapters/`, `frontmatter/` | Authoritative `.tex`, metadata `.yaml`, generated `.md` |
+| `book.yaml` | Book metadata and chapter order |
+| `figures/`, `assets/` | Figure and cover artwork |
+| `scripts/latex_source.py` | Native source reader and projection synchronization |
+| `scripts/latex_pdf.py` | Print assembly and fresh cover-only rendering |
+| `filters/` | Shared semantic cross-reference, citation, web, and ePub transforms |
+| `web/`, `epub/` | Web and ePub presentation |
+| `generated/latex/` | Inspectable print drivers, converted images, and compiler logs |
+| `generated/web/`, `generated/epub/` | Inspectable web and ePub inputs |
+| `dist/` | Full PDF/ePub, individual PDFs, and site |
 
-## What to revisit after this first render
-
-- **Figure numbering scheme.** The web edition numbers figures "Figure N" per chapter; Typst uses its
-  own native counter. A book usually wants "Figure 5.1". Decide the chapter-prefixed scheme once and
-  make both renderers agree.
-- **Section cross-references render by title.** That reads well and never hard-codes a number, but a
-  print edition may want "see §5.3". Enabling Typst heading numbering plus a matching web scheme is a
-  later call.
-- **`use_directory_urls: false`.** Chosen so raw-HTML `<figure>` image paths resolve without per-page
-  depth math. Revisit if the web edition is deployed under a subpath — either switch figures to a
-  MkDocs-rewritten Markdown image (via `md_in_html`) or compute the base path.
-- **No per-chapter reference dump.** Inline `@`-cites resolve to Chicago author-date, but citeproc's
-  per-chapter reference list is suppressed; the curated READ FURTHER box is the end matter. A single
-  book-level bibliography, if wanted later, is a book-assembly change in `build.py`, not a schema change.
-
-Follow-up phases (do not fold into this slice): migrate remaining chapters into semantic Markdown
-(minimal editorial change), add semantic annotations, refine typography and web presentation, then
-wire linting into CI.
+`generated/` and `dist/` are ignored build artifacts. The old `typst/` templates
+and `build_pdf_typst_legacy` function remain only as migration comparison material;
+normal builds use LaTeX. Author manuscript changes in the native source, and layout
+changes in the shared house style or the appropriate web/ePub presentation files.

@@ -1,0 +1,15 @@
+id: design
+title: Design
+short_title: Design
+order: 7
+status: draft
+description: >
+  Design determines how an architectural part realizes its responsibility within the obligations,
+  affordances, and constraints it inherits. It classifies the remaining degrees of freedom — follow,
+  choose, or escalate — works through the recurring design tradeoffs, and produces evidence about
+  whether the inherited architecture is workable.
+objectives:
+  - Identify what a design inherits from specification, architecture, and the engineering environment.
+  - Classify a remaining degree of freedom as one to follow, choose locally, or escalate.
+  - Reason through recurring design tradeoffs (authority, consistency, timing, indirection, decomposition) by mechanism.
+  - Recognize when detailed design has exposed an architectural gap or a missing shared rule, and route the discovery to where it belongs.

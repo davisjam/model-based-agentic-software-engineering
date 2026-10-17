@@ -1,0 +1,66 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Detect when the running system diverges from its operating model and trigger a bounded response.}
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The system runs live}, and a divergence between expected and observed state has real cost.
+\item
+  \textbf{Detection and response have drifted apart} --- a dashboard nobody acts on, or a runbook nobody triggers.
+\item
+  \textbf{Continuing can be more dangerous than stopping}, so an unsafe state needs a mechanism empowered to halt progress, not just a note in a log.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/observe-react-stack-6f07191f66.pdf}
+\caption{The observe → react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{observe-react-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{WATCH} & Read runtime state against the operating model, so divergence surfaces as a signal. \\
+\textbf{RESPOND} & Connect each signal to a bounded recovery action. \\
+\textbf{BEAT} & \emph{(strengthens)} Emit periodic liveness so a wedged process reads differently from a slow one. \\
+\textbf{BLOCK} & \emph{(strengthens)} Refuse unsafe progress where continuing is worse than stopping. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Observation without response is a dashboard. Response without observation is a runbook waiting for someone to notice the fault.
+
+WATCH and RESPOND form the core loop: observe divergence from the expected state, then trigger a bounded response. Add a heartbeat when silence must be distinguished from slow progress; add a blocking mechanism when continuing is more dangerous than stopping.
+
+\textbf{Mechanisms:} watchdog · heartbeat · bounded recovery · fail-closed gate

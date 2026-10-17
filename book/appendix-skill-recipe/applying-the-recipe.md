@@ -1,52 +1,39 @@
+<!-- GENERATED from book/latex/sources/appendix-skill-recipe/applying-the-recipe.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 <!-- point: two-recipes-applied-to-three-skills-with-different-roles | Two recipes applied to three skills with different roles. | terms: self-communicate, self-governance, self-operate, process-skill -->
-This section applies the two recipes to three skills with different roles. self-communicate and
-self-governance are mastery-skills: their primary value is reusable expertise for work that continues to
-require substantial judgment. self-operate is a process-skill: its primary value is the recurring
-operational lifecycle it preserves. Together they show both why the distinction matters and why it is not
-absolute: mastery can prescribe procedures, and a process can contain judgment.
+
+This section applies the two recipes to three skills with different roles. self-communicate and self-governance are mastery-skills: their primary value is reusable expertise for work that continues to require substantial judgment. self-operate is a process-skill: its primary value is the recurring operational lifecycle it preserves. Together they show both why the distinction matters and why it is not absolute: mastery can prescribe procedures, and a process can contain judgment.
 
 ## self-communicate
 
 ### Problem
 
-The fleet and its operator produce prose and diagrams constantly — control descriptions, design docs,
-mechanism entries, runbooks, handoffs, and the orchestrator's own status reports and tradeoff explanations
-to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor
-figures. The problem is not generating prose but producing it consistently against an engineering standard.
-The skill packages the craft needed to do that.
+The fleet and its operator produce prose and diagrams constantly — control descriptions, design docs, mechanism entries, runbooks, handoffs, and the orchestrator's own status reports and tradeoff explanations to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor figures. The problem is not generating prose but producing it consistently against an engineering standard. The skill packages the craft needed to do that.
 
 ### Fundamental Model
 
-**Rhetoric as craft.** Treat technical writing as a set of named techniques rather than taste alone.
-Document form, lexicon, voice, audit, and visualization then become independent facets of that model.
+**Rhetoric as craft.** Treat technical writing as a set of named techniques rather than taste alone. Document form, lexicon, voice, audit, and visualization then become independent facets of that model.
 
 ### Orthogonal Models
 
 One file per facet.
 
 - **Rhetoric** (`writing/rhetoric.md`) — the device toolkit; sentence shape.
-- **Document form** (`writing/engineering.md`) — the document's Diátaxis mode: tutorial, how-to,
-  reference, or explanation.
+- **Document form** (`writing/engineering.md`) — the document's Diátaxis mode: tutorial, how-to, reference, or explanation.
 - **Lexicon** (`writing/lexicon.md`) — one concept, one word.
 - **Voice** (`writing/voice.md`) — the register and sound.
 - **Audit** (`writing/audit.md`) — the grading procedure.
-- **Visualization** (`drawing/diagrams.md`, Mermaid-first, with `charts.md` and `tables.md` for data
-  figures) — the shapes prose carries poorly.
+- **Visualization** (`drawing/diagrams.md`, Mermaid-first, with `charts.md` and `tables.md` for data figures) — the shapes prose carries poorly.
 
-Each answers a different question about the document: form chooses its structure, lexicon its terms, voice
-its register, rhetoric its sentence-level technique, visualization what should be drawn, and audit how the
-result is checked.
+Each answers a different question about the document: form chooses its structure, lexicon its terms, voice its register, rhetoric its sentence-level technique, visualization what should be drawn, and audit how the result is checked.
 
 ### Governing Principle
 
-The governing principle is that representation should serve rather than distract from the idea. Apply the
-facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use
-canonical terms from the lexicon, draw relationships that prose carries poorly, and audit before shipping.
-One additional rule applies throughout: name the concept once, then use the name.
+The governing principle is that representation should serve rather than distract from the idea. Apply the facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use canonical terms from the lexicon, draw relationships that prose carries poorly, and audit before shipping. One additional rule applies throughout: name the concept once, then use the name.
 
 ### Layout
 
-```
+``` text
 self-communicate/
   SKILL.md
   writing/   rhetoric.md  engineering.md  lexicon.md  voice.md  audit.md
@@ -57,26 +44,15 @@ One directory per concern, one file per facet — the tree *is* the orthogonal-m
 
 ### Lesson
 
-self-communicate is a mastery-skill. Rhetoric-as-craft turns a collection of style rules into a model
-through which the agent can exercise communication judgment. Separate facets can then load independently and
-be reused by other skills. The skill remains soft; where an audit result must block delivery, the audit
-belongs in a gate.
+self-communicate is a mastery-skill. Rhetoric-as-craft turns a collection of style rules into a model through which the agent can exercise communication judgment. Separate facets can then load independently and be reused by other skills. The skill remains soft; where an audit result must block delivery, the audit belongs in a gate.
 
 ## self-governance
 
 ### Problem
 
-An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter,
-queries the repository — and still models the wrong thing, makes binding a fact that should stay
-advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool.
-It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth
-making durable.*
+An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository — and still models the wrong thing, makes binding a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth making durable.*
 
-Self-governance packages that method as a mastery-skill. It teaches the agent to recognize the situation, choose a
-Modeling or Alignment move, act through the governed environment, and decide what should persist. The skill
-carries the method, not the codebase's facts. Concrete system knowledge—what the codebase intends, contains,
-and guarantees—must come from model providers rather than the skill's memory. Mastery of the method and
-knowledge of the engineered object are separate things.
+Self-governance packages that method as a mastery-skill. It teaches the agent to recognize the situation, choose a Modeling or Alignment move, act through the governed environment, and decide what should persist. The skill carries the method, not the codebase's facts. Concrete system knowledge—what the codebase intends, contains, and guarantees—must come from model providers rather than the skill's memory. Mastery of the method and knowledge of the engineered object are separate things.
 
 ### Fundamental Model
 
@@ -92,8 +68,7 @@ Self-governance is not a third MAGE activity; it applies Modeling and Alignment 
 
 ### Orthogonal Models
 
-The loop's questions are independent, so each becomes its own facet. Each of six directories answers one
-question; the router identifies the question and directs the agent to the corresponding facet.
+The loop's questions are independent, so each becomes its own facet. Each of six directories answers one question; the router identifies the question and directs the agent to the corresponding facet.
 
 - **`modeling/`** — Which representation would help, and how should it be improved? Carries the six model families, modeling moves, and a repertoire of established modeling techniques and their tradeoffs.
 - **`practice/`** — What situation is this, and how much intervention is warranted?
@@ -103,39 +78,28 @@ question; the router identifies the question and directs the agent to the corres
 - **`learning/`** — What should persist from this episode? Carries governance conversion and recurring failure analysis.
 
 <!-- index-def: governance-target-agent -->
+
 <!-- index-def: governance-target-models-bridge -->
+
 <!-- index-def: governance-target-product -->
 
-The facets answer independent questions: recognizing the situation does not select the model, choosing a
-move does not determine its enforcement, and knowing the method does not supply system facts. Load only the
-facet the current question requires.
+The facets answer independent questions: recognizing the situation does not select the model, choosing a move does not determine its enforcement, and knowing the method does not supply system facts. Load only the facet the current question requires.
 
 ### Governing Principle
 
-*Apply MAGE to the work itself: model what must be understood, enforce what must hold, and
-convert recurring judgment into durable engineering structure.* Five operating rules follow:
+*Apply MAGE to the work itself: model what must be understood, enforce what must hold, and convert recurring judgment into durable engineering structure.* Five operating rules follow:
 
-- **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from
-  memory or raise confidence by rhetoric.
-- **Ask what should become machinery.** At every failure, ask whether the lesson deserves durable structure—and
-  default to no. Most failures should not become new governance.
-- **Method before tool.** Choose the move the situation calls for, then the capability that performs it,
-  not a capability because it is at hand.
-- **Right-size the fix.** Prefer the smallest sound change that closes the class; propose a larger intervention
-  rather than implementing it reflexively. Prevention by construction beats detection where the action space can
-  honestly close.
-- **Escalate judgment, not difficulty.** Escalate when authority or consequence requires a human decision,
-  not merely because the problem is hard.
+- **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from memory or raise confidence by rhetoric.
+- **Ask what should become machinery.** At every failure, ask whether the lesson deserves durable structure—and default to no. Most failures should not become new governance.
+- **Method before tool.** Choose the move the situation calls for, then the capability that performs it, not a capability because it is at hand.
+- **Right-size the fix.** Prefer the smallest sound change that closes the class; propose a larger intervention rather than implementing it reflexively. Prevention by construction beats detection where the action space can honestly close.
+- **Escalate judgment, not difficulty.** Escalate when authority or consequence requires a human decision, not merely because the problem is hard.
 
-**Self-governance is not self-certification.** The agent may select, model,
-propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill
-guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose,
-scaffold, or invoke constraints, validators, gates, and other mechanisms, but enforcement must come from the
-environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
+**Self-governance is not self-certification.** The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose, scaffold, or invoke constraints, validators, gates, and other mechanisms, but enforcement must come from the environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
 
 ### Layout
 
-```
+``` text
 self-governance/
   SKILL.md            the router — the loop, the routing table, the ambient stance
   principles.md       the portable engineering method (the ambient reflexes)
@@ -149,16 +113,13 @@ self-governance/
                — scaffolds for creating system models, never system-specific truth
 ```
 
-One directory per question, one file per facet. The mechanism census lives under `alignment/`, where
-prevent-versus-detect now sits one level below the loop.
+One directory per question, one file per facet. The mechanism census lives under `alignment/`, where prevent-versus-detect now sits one level below the loop.
 
 ### Lesson
 
 self-governance is a mastery-skill whose subject is the MAGE method itself. Its fundamental model is therefore the engineering loop, not a taxonomy of mechanisms.
 
-The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a
-constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the
-enforcement.
+The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the enforcement.
 
 It also composes with the other skills: self-governance designs models and mechanisms, self-operate runs them, and self-communicate governs how they are represented.
 
@@ -168,44 +129,31 @@ It also composes with the other skills: self-governance designs models and mecha
 
 ### Problem
 
-Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover
-agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron
-health, RCA an ambiguous signal. Without a model, each failure must be diagnosed almost from scratch.
-self-operate packages this recurring work as a process-skill: a lifecycle map routes symptoms to classes,
-and typed runbooks make the corresponding responses repeatable.
+Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron health, RCA an ambiguous signal. Without a model, each failure must be diagnosed almost from scratch. self-operate packages this recurring work as a process-skill: a lifecycle map routes symptoms to classes, and typed runbooks make the corresponding responses repeatable.
 
 ### Fundamental Model
 
-**The engineering lifecycles.** A fleet repo runs the same few: manage-agents, manage-context,
-manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Each operational
-symptom is routed to a lifecycle, so every break meets a *class* instead of being met cold. The lifecycle map gives the
-process its state and routing structure: it turns operational sprawl into a small set of recurring classes.
+**The engineering lifecycles.** A fleet repo runs the same few: manage-agents, manage-context, manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Each operational symptom is routed to a lifecycle, so every break meets a *class* instead of being met cold. The lifecycle map gives the process its state and routing structure: it turns operational sprawl into a small set of recurring classes.
 
 ### Process Structure
 
 Three structures organize the process:
 
 - **Lifecycle map / symptom catalog** — identifies which operational lifecycle owns the problem.
-- **Typed runbooks** (`examples/runbook-*.md`) — specify what to do, distinguishing runnable,
-  judgment-automatable, and judgment-irreducible steps.
+- **Typed runbooks** (`examples/runbook-*.md`) — specify what to do, distinguishing runnable, judgment-automatable, and judgment-irreducible steps.
 - **Hooks** (`hooks/`) — determine when a known reaction should fire automatically.
 
-These answer three different process questions: where am I, what should happen next, and when should that
-response trigger?
+These answer three different process questions: where am I, what should happen next, and when should that response trigger?
 
-Supporting resources include build and handoff templates (`templates/`) for cases where operational work
-crosses into implementation.
+Supporting resources include build and handoff templates (`templates/`) for cases where operational work crosses into implementation.
 
 ### Governing Principle
 
-Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and
-run the corresponding procedure. When diagnosis reveals that a model, mechanism, or obligation should change,
-return that engineering decision to self-governance. Automate deterministic steps; prepare irreducible
-judgments for escalation.
+Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and run the corresponding procedure. When diagnosis reveals that a model, mechanism, or obligation should change, return that engineering decision to self-governance. Automate deterministic steps; prepare irreducible judgments for escalation.
 
 ### Layout
 
-```
+``` text
 self-operations/
   SKILL.md
   principles.md
@@ -217,22 +165,11 @@ self-operations/
 
 ### Lesson
 
-self-operate is a process-skill. Its reusable asset is the operating lifecycle: identify the affected
-lifecycle, select the corresponding runbook, and determine which steps can be executed, delegated, or
-escalated. Typed runbooks distinguish directly runnable steps from those requiring automatable or
-irreducible judgment. The process therefore contains judgment without becoming a mastery-skill; its primary
-purpose is to preserve and run the operating procedure. Self-governance changes models and mechanisms;
-self-operate runs them and returns evidence; self-communicate governs their representations.
+self-operate is a process-skill. Its reusable asset is the operating lifecycle: identify the affected lifecycle, select the corresponding runbook, and determine which steps can be executed, delegated, or escalated. Typed runbooks distinguish directly runnable steps from those requiring automatable or irreducible judgment. The process therefore contains judgment without becoming a mastery-skill; its primary purpose is to preserve and run the operating procedure. Self-governance changes models and mechanisms; self-operate runs them and returns evidence; self-communicate governs their representations.
 
-[ref:fig-skill-composition] shows two kinds of skill acting on one governed engineering environment:
-mastery-skills shape how the fleet reasons about communication and engineering, while a process-skill runs
-the operational lifecycles through which the environment is used.
+[ref:fig-skill-composition] shows two kinds of skill acting on one governed engineering environment: mastery-skills shape how the fleet reasons about communication and engineering, while a process-skill runs the operational lifecycles through which the environment is used.
 
 <!-- label: fig-skill-composition -->
 <!-- figure: assets/figure-composition.svg | *Three complementary skills act around one governed engineering environment.* Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment. -->
 
-The distinction is one of primary role, not isolation. Each skill has one reason to change:
-self-communicate changes when the organization's communication mastery changes; self-governance changes when
-its engineering method changes; self-operate changes when its operating process changes. Explicit interfaces
-connect them. Self-governance produces models and mechanisms that self-operate uses; self-operate returns
-evidence; self-communicate governs their representations.
+The distinction is one of primary role, not isolation. Each skill has one reason to change: self-communicate changes when the organization's communication mastery changes; self-governance changes when its engineering method changes; self-operate changes when its operating process changes. Explicit interfaces connect them. Self-governance produces models and mechanisms that self-operate uses; self-operate returns evidence; self-communicate governs their representations.

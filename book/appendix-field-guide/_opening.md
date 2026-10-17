@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/_opening.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Seven organizations, six kinds**
 
 {{chapter:software-factories}} ({{sec:mage-in-the-wild}}) asks whether engineering structures found in DocAble recur in systems developed independently under different technical and organizational pressures. This appendix presents the evidence behind that comparison.
@@ -16,10 +18,12 @@ Every recto uses a simplified Figure 0.1-1: an observed engineering pressure ent
 
 The overlay uses exactly three epistemic states:
 
-| Mark | Meaning |
-|------|---------|
-| ████ solid | directly supported by the public account |
-| - - - dashed | MAGE interpretation / partial support |
-| ░░░░ pale | part of MAGE, but not established by this source |
+<!-- label:  -->
+<!-- table:  -->
+| Mark          | Meaning                                          |
+|--------------|-------------------------------------------------|
+| ████ solid    | directly supported by the public account         |
+| \- - - dashed | MAGE interpretation / partial support            |
+| ░░░░ pale     | part of MAGE, but not established by this source |
 
 The diagrams are neither MAGE audits nor a maturity ordering. Pale means not established, not absent.

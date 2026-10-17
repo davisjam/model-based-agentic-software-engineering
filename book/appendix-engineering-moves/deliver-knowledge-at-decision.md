@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/deliver-knowledge-at-decision.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** A rule cannot influence a decision if the actor does not encounter it in time. As the knowledge base grows, relying on the actor to search the full corpus becomes increasingly unreliable.
 
 **Move.** Deliver the knowledge needed for the current work where the decision occurs; do not rely on the actor to find it in the full corpus.

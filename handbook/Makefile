@@ -1,6 +1,6 @@
 # The Software Engineering Handbook — build commands.
 #
-# One semantic manuscript (chapters/*.md) drives two renderers. Targets have boring, predictable
+# One native LaTeX manuscript (chapters/*.tex) drives PDF, web, and ePub. Targets have boring, predictable
 # names; each FAILS on a manuscript error rather than degrading silently. See README.md.
 
 PY := python3
@@ -27,4 +27,4 @@ serve: web                    ## build, then serve the web edition locally
 	$(MKDOCS) serve -f web/mkdocs.yml
 
 clean:                        ## remove all generated artifacts
-	rm -rf generated/typst/* generated/web/* dist/*
+	rm -rf generated/latex/* generated/typst/* generated/web/* generated/epub/* dist/*

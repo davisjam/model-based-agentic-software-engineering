@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/check-correspondence.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Problem.** A model becomes dangerous when engineers and agents continue to trust it after it no longer corresponds to the system it represents.
 
 **Move.** Treat correspondence as an invariant. Check both that reality still satisfies modeled claims and that consequential implementation elements have not appeared outside the model's declared scope.

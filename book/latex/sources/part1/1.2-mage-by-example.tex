@@ -1,0 +1,172 @@
+% mage-auto-heading: accessibility-and-the-engineering-experiment
+% mage-auto-heading: what-the-user-sees
+% mage-auto-heading: one-system-several-engineering-questions
+% mage-auto-heading: following-one-job
+% mage-auto-heading: how-the-book-uses-docable
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The New Engineering Problem -->
+
+% <!-- chapter-title: MAGE by Example: Summary of the DocAble Case -->
+
+\chapter{MAGE by Example: Summary of the DocAble Case}
+
+% <!-- point: teaser-grounds-the-abstractions | You will meet DocAble in every section; here is just enough to hold it. | terms: running-example -->
+
+\href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} provides the book\textquotesingle s deepest worked example: a production accessibility system built largely through coding agents. \magevalue{chapter:software-factories} presents the full case study; before examining its models and Alignment mechanisms here, a few facts about the system are in order.
+
+\section{Accessibility and the Engineering Experiment}\label{heading:accessibility-and-the-engineering-experiment}
+
+% <!-- section-terms: document-accessibility, supervised-autonomy -->
+
+% <!-- point: explicit-problem-inaccessible-documents-at-scale | The explicit problem: inaccessible university documents at scale. | terms: document-accessibility, remediation-cost -->
+
+In 2024, the U.S. Department of Justice gave public universities a deadline to make their digital content accessible, measured against the Web Content Accessibility Guidelines (\{\{doj\_technical\_standard\}\}). A typical slide deck can fail the standard in dozens of ways: images without descriptions, missing titles, or a reading order that a screen reader cannot follow. I estimated that remediating one course\textquotesingle s materials by hand would require roughly \magevalue{workweeks_per_course} full work weeks; a university offers thousands of courses. I personally maintain two courses and had no desire to spend a full semester remediating them manually. I could delegate some of that work to other people, but delegation would not make me any less responsible for the result. I was, however, perfectly willing to spend six months attempting to automate the work to my own standard.
+
+% <!-- point: two-birds-one-stone-motive | One project answered both problems: build the production system, and use the engineering work to discover what sustained agentic development demanded. | terms: document-accessibility, running-example -->
+
+In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to know what software engineering would look like if I stopped writing most of the implementation myself, so I used accessibility remediation as a real production problem on which to find out. The system became DocAble; the resulting method became MAGE. MAGE makes the judgment of one engineer capable of governing the implementation capacity of a software team. \magevalue{chapter:software-factories} returns to the build and examines how that capability emerged.
+
+\section{What the User Sees}\label{heading:what-the-user-sees}
+
+% <!-- section-terms: governance-target-product, document-accessibility -->
+
+% <!-- point: upload-in-remediated-file-plus-evidence-out | From the user's view DocAble is simple: an inaccessible document goes in; a remediated document and an evidence record come back. | terms: governance-target-product -->
+
+% <!-- index-def: fidelity-validator -->
+
+% <!-- index-def: provenance-layer -->
+
+From the user\textquotesingle s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and an evidence record. It works across common document formats: Word, PowerPoint, and Excel; their LibreOffice equivalents; PDF; and text-based formats including LaTeX and Typst. Figures are described, reading order is repaired, and structural accessibility is restored where possible.
+
+Why not simply give the entire document to a capable multimodal model and ask it to make the document accessible? I tried that too. For documents within their operating range, capable models can produce impressive results. But the approach is expensive because the model must reconstruct properties already available deterministically in the document (the document\textquotesingle s title may be right there on the page, but represented as large bold text rather than Word\textquotesingle s Title style); large documents can exceed its practical operating range (the model may simply give up before finishing the deck); and support varies across formats (a model that handles PowerPoint may not accept PDF).
+
+More importantly, "the model said it was accessible" is not an adequate compliance case. To trust that result, we would still have to make explicit the obligations against which it should be judged. The governing obligation is not merely to produce a plausible-looking artifact, but to provide students with a substantially equivalent experience. If a result is challenged, the university needs credible evidence of what the system checked (every image was examined for a usable description), what it changed (this image received this alternative text), what it could establish (the repaired reading order matches the intended sequence), and what limitations remain (this element could not be remediated automatically). DocAble therefore treats accessibility remediation as an engineering problem rather than a single act of inference.
+
+% <!-- point: the-figure-stops-at-the-boundary | The glimpse stops at the boundary; before looking inside, we need only know what engineering result the system is supposed to produce. | terms: governance-target-product -->
+
+Before looking inside the system, \autoref{docable-glimpse} shows only the engineering result it is supposed to produce.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-glimpse-d34d027fb5.pdf}
+\caption{\emph{DocAble from the user\textquotesingle s view.} An inaccessible document goes in; a remediated document and evidence of consequential changes come back. Internal structure is omitted because it is not yet relevant.}
+\label{docable-glimpse}
+\end{figure}
+
+% <!-- point: the-interface-hides-a-large-production-system | The simple interface hides a large production system. | terms: governance-target-product -->
+
+That simple interface hides a large production system. At the observation point used in this book, DocAble comprised roughly \magevalue{prod_loc} lines of production code, governed by a support apparatus about \magevalue{support_ratio} times its size (\{\{support\_loc\}\} lines). The examples that follow isolate individual engineering questions from that system. Together they show different places where Modeling and Alignment enter the work.
+
+% <!-- point: four-kinds-of-obligation-state-the-case | What DocAble had to accomplish falls into four kinds of obligation. | terms: governance-target-product -->
+
+\autoref{docable-obligation-kinds} groups what that system had to accomplish into four kinds of obligation.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Four kinds of obligation]{What DocAble had to accomplish, grouped into four kinds of obligation. \magevalue{chapter:software-factories} states the complete requirements this grouping summarizes.}\label{docable-obligation-kinds}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kind of obligation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kind of obligation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Genuine accessibility & Repair problems that require understanding document content, judged against the governing standard (WCAG 2.1 AA) rather than proxy checker scores. \\
+Preservation & Retain the document\textquotesingle s content, appearance, and behavior except where remediation requires a change. \\
+Accountability & Record what motivated each change and what evidence supports the result, keeping consequential changes inspectable and, where appropriate, reversible. \\
+Practical operation at scale & Handle the formats people actually use, at practical sizes, costs, and latency, as a deployed service for thousands of faculty. \\
+\end{longtable}
+}
+
+% <!-- point: two-tensions-make-it-an-engineering-problem | Two tensions among the obligations make DocAble an engineering problem rather than a file-conversion task: accessibility can conflict with preservation, and semantic quality pulls against economical automation. | terms: document-accessibility, governance-target-product -->
+
+Two tensions among these obligations make DocAble an engineering problem rather than a file-conversion task. Accessibility can conflict with preservation: repairing a reading order or describing a figure means changing the document, and the change must not damage the author\textquotesingle s content, appearance, or editability. And semantic quality pulls against economical automation: some repairs need the contextual interpretation foundation models supply, but model output is uncertain and can be expensive, so the system must combine that inference with deterministic processing and validation.
+
+% <!-- point: examples-establish-the-problem-full-requirements-follow | The examples establish the nature of the engineering problem; the factories chapter presents the complete requirements and examines how they shaped the system. | terms: governance-target-product -->
+
+These examples establish the nature of the engineering problem. \magevalue{chapter:software-factories} presents the complete requirements and examines how they shaped the resulting system.
+
+\section{One System, Several Engineering Questions}\label{heading:one-system-several-engineering-questions}
+
+% <!-- section-terms: running-example -->
+
+% <!-- point: building-well-is-several-problems | Building DocAble well is not one engineering problem; different questions require different representations. | terms: running-example -->
+
+Building DocAble well is not one engineering problem. Different questions require different representations.
+
+% <!-- point: five-questions-five-representations | Structure, behavior, decisions, measurement, and provenance are different questions, each wanting its own representation of the same system. | terms: running-example -->
+
+Ask what the system contains and how its parts relate, and you want a structural view. Ask what happens to a document after upload, and you want behavior: the states a job moves through and the transitions that are legal. Ask which component may call another, and you want a model of permitted relationships. Ask whether the system is fast and cheap enough, and you want measurements and their allowable envelopes. Ask whether the evidence returned with a document faithfully describes what happened, and you want provenance.
+
+% <!-- point: no-single-model-of-docable | The system has not changed between these questions; the representation has. No single model is best for all of them — each is a purposeful reduction that preserves the facts one question needs and suppresses detail it does not. | terms: running-example, model-selection -->
+
+The system has not changed between these questions. The representation has. There is no single model of DocAble that is best for all of them. Each model is a purposeful reduction that preserves the facts needed for an engineering question and suppresses detail that question does not need.
+
+\section{Following One Job}\label{heading:following-one-job}
+
+% <!-- section-terms: running-example -->
+
+% <!-- point: enough-common-territory-to-locate-the-models | Before Chapters 2 and 3 examine particular properties of DocAble, one ordinary job through the system shows what those properties concern. | terms: running-example -->
+
+Before Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} examine particular properties of DocAble, \autoref{one-docable-job} follows one ordinary job through the system.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/one-docable-job-bbd94ab765.pdf}
+\caption{\emph{Processing one document in DocAble.} A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.}
+\label{one-docable-job}
+\end{figure}
+
+% <!-- index-def: remediation-job -->
+
+% <!-- index-def: worker -->
+
+% <!-- index-def: chunk -->
+
+% <!-- index-def: remediation-service -->
+
+% <!-- index-def: work-queue -->
+
+% <!-- index-def: evidence-record -->
+
+% <!-- point: the-territory-vocabulary | A job tracks one document's trip; a chunk is a portion of that work processed independently; workers claim chunks, calling specialized services; queues coordinate handoffs; the outputs are the remediated document and its evidence. | terms: running-example -->
+
+A job tracks one document\textquotesingle s trip through the system. A chunk is a portion of that work that can be processed independently. Workers claim and process chunks, calling specialized services for capabilities such as image description, rendering, conversion, or OCR. Queues and other infrastructure coordinate those handoffs. The final outputs are the remediated document and evidence describing consequential changes and remaining findings.
+
+% <!-- point: one-worker-several-models | The same worker appears differently in later models — a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements; not competing descriptions, but different properties of the same system. | terms: running-example, model-selection -->
+
+The same worker will appear differently in later models. It may be a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements. These are not competing descriptions. Each preserves different properties of the same system for a different engineering question: structure, behavior, ownership, decisions, measurements, or provenance.
+
+\section{How the Book Uses DocAble}\label{heading:how-the-book-uses-docable}
+
+% <!-- section-terms: running-example -->
+
+% <!-- point: docable-shown-at-method-resolution | DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Chapter 2 asks which representations make properties tractable, Chapter 3 how intent comes to bind the work. | terms: running-example, modeling-principle, alignment-principle -->
+
+DocAble is the book\textquotesingle s deepest worked example because the system can be examined at the resolution the method requires. Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} use the working system to ask two different kinds of questions. \magevalue{chapter:modeling} asks which representations make important system properties tractable. \magevalue{chapter:alignment} asks how engineering intent comes to bind the work.
+
+% <!-- point: motion-then-the-production-system | Chapter 4 examines how those mechanisms are used during development, following engineering problems through successive models, decisions, implementation, and governance conversion; Chapter 5 then examines the production system itself — what failed, what those failures revealed, and how recurring judgments became durable engineering structure. | terms: running-example -->
+
+\magevalue{chapter:one-problem-many-models} examines how those mechanisms are used during development. It follows engineering problems through successive models, decisions, implementation, and governance conversion, showing how Modeling and Alignment change as the system changes. \magevalue{chapter:software-factories} then examines the production system itself: what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.
+
+% <!-- point: docable-is-depth-not-the-whole-evidence | DocAble is the primary case study; Chapter 5 examines practices at other engineering organizations, identifying where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation. | terms: running-example -->
+
+DocAble is the primary case study. \magevalue{chapter:software-factories} examines practices at other engineering organizations, identifying where related structures recur, where they take different forms, and where the available evidence supports more limited conclusions.
+
+% <!-- point: bridge-to-the-substrate | We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it. | terms: running-example -->
+
+We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it.

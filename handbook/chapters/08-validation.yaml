@@ -1,0 +1,16 @@
+id: validation
+title: Validation
+short_title: Validation
+order: 8
+status: draft
+description: >
+  Validation asks what evidence is sufficient to deliver a software system into the world. Three
+  inputs shape that decision — the consequences at stake, the judgment of stakeholders, and the
+  engineer's independent professional judgment — and none can be substituted for the others. The
+  decision recurs after delivery as operational evidence accumulates.
+objectives:
+  - Distinguish consequence, stakeholder judgment, and professional judgment as separate inputs to the delivery decision, and recognize the two pathologies of a mismatched standard.
+  - Identify the claim a validation activity must support before selecting a technique, then choose an evidence mechanism by the uncertainty it can reduce and a validation strategy by where its oracle comes from.
+  - Evaluate the strength of a body of evidence along explicit dimensions — coverage, detection power, representativeness, scope, independence, assumptions, and residual uncertainty — and identify what model justifies converting additional observations into additional confidence.
+  - Reason about residual uncertainty at delivery through margin, coverage, containment, and reversibility, recognizing that software's discreteness limits what observed behavior implies about unobserved behavior.
+  - Recognize when evidence gathered after delivery has changed the justification for continued delivery.

@@ -143,6 +143,7 @@ def _page_is_divider(pg: _Page, q_label_squish: str) -> bool:
     """A Part-divider orientation page (carries the DO-ladder question label) or an appendix-Part /
     back-matter divider (opens with its display title)."""
     return (q_label_squish in pg.squish
+            or re.match(r"^chapter[1-7]", pg.squish) is not None
             or pg.squish.startswith("part") and re.match(r"^part\d", pg.squish) is not None
             or pg.squish.startswith("appendixpart")
             or pg.squish.startswith("backmatter"))
@@ -156,14 +157,16 @@ def _next_page_excuses(nxt: "_Page | None", opener_squishes: list[str]) -> "str 
         return "next page is a landscape apparatus"
     if not nxt.body_words:
         return "next page carries no body text"
-    if re.match(r"^Part \d", nxt.text) or nxt.squish.startswith("appendixpart") \
+    if re.match(r"^(?:Part|Chapter) [1-7]\b", nxt.text) or nxt.squish.startswith("appendixpart") \
             or nxt.squish.startswith("backmatter"):
         return "next page is a Part divider"
     if _CHAPTER_OPENER_RE.match(nxt.text):
         return "next page opens a part's first section (N.1)"
+    if re.match(r"^List of (?:Figures|Tables)(?:\s|$)", nxt.text):
+        return "next page opens a generated float list"
     if nxt.squish.startswith("bibliography"):
         return "next page opens the Bibliography"
-    if nxt.squish.startswith("indexaterm"):
+    if re.match(r"^Index(?:\s|$)", nxt.text):
         # The generated back-of-book Index ("Index / A term index over …") starts fresh by design,
         # exactly like the Bibliography — the short page before it is not a pagination failure.
         return "next page opens the Index"

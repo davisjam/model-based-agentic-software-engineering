@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/part2/00-part-intro.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 <!-- part-foreshadows: modeling-principle, mage-becomes-practical -->
 
 Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so engineers understand them through purposeful views. A dependency graph exposes relationships among components; a state machine exposes legal behavior; a schema exposes permitted structure; a quantitative model exposes a resource bound. Each representation preserves what an engineering question needs and suppresses what it does not.
@@ -5,16 +7,17 @@ Software engineering has always relied on abstraction. Large systems exceed what
 Explicit models have nevertheless remained secondary in much code-centric software practice because another representation costs work to create, maintain, and reconcile with a changing system. Commodity intelligence changes that economics. Agents can increasingly derive, regenerate, reconcile, and query structured representations cheaply. At the same time, rapid autonomous implementation increases their value: engineering knowledge that once needed to be reconstructed occasionally may otherwise be reconstructed across many tasks and fresh reasoning states.
 
 <!-- principlebox -->
+
 <!-- box-family: canonical -->
+
 > ### Modeling principle
 >
-> Externalize engineering knowledge and intent into explicit, structured models that both engineers
-> and agents can reason through.
+> Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.
 >
-> Appropriate representations make broader engineering questions tractable and make additional properties
-> available for Alignment.
+> Appropriate representations make broader engineering questions tractable and make additional properties available for Alignment.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Chapter 2 asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
+
 MAGE therefore treats Modeling as an engineering activity in its own right:
 
 **What should I model, and what will the model let me know?**
@@ -22,47 +25,29 @@ MAGE therefore treats Modeling as an engineering activity in its own right:
 Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
 
 <!-- point: part-2-moves-through-five-model-classes | Engineering questions recur in several broad forms — structural, behavioral, ownership, decision, measurement, provenance — useful views into the modeling repertoire, not a partition of engineering models; the same worker may appear in several views, and the chapter develops three in detail, then connects models across views. | terms: model-zoo, model-classes -->
-Engineering questions recur in several broad forms. Structural questions ask what exists and what is
-connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision
-questions ask what is allowed; measurement questions ask how much and against what bound; provenance
-questions ask what happened and what evidence records it. These are useful views into the modeling
-repertoire, not a partition of engineering models. The same worker may appear as a component in one
-model, an actor in a lifecycle in another, and the owner of work in a third. This chapter develops three
-of these views in detail, then connects several models to answer questions that cross individual views.
 
-DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document
-enters, remediation is distributed across workers and services, the result is validated, and a corrected
-document returns with a record of what changed. The real system is far more complicated than any
-single representation ahead. That is the point. Each model keeps only the relationships its question needs.
-The DocAble specifics ahead — models, mechanisms, and counts — describe the repository revision examined
-at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
+Engineering questions recur in several broad forms. Structural questions ask what exists and what is connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision questions ask what is allowed; measurement questions ask how much and against what bound; provenance questions ask what happened and what evidence records it. These are useful views into the modeling repertoire, not a partition of engineering models. The same worker may appear as a component in one model, an actor in a lifecycle in another, and the owner of work in a third. This chapter develops three of these views in detail, then connects several models to answer questions that cross individual views.
 
-Consider a document-processing job in DocAble. We might want to know whether a job can have two workers
-modifying it at the same time. A model of job ownership lets us express that question precisely. We can
-then require that each job have at most one worker responsible for modifying it at any moment. This
-requirement must hold for every job, throughout its lifetime, not merely for the jobs we happen to
-inspect. We can analyze the model to look for situations that violate the requirement. Whether the
-implementation actually prevents those situations is a further question.
+DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document enters, remediation is distributed across workers and services, the result is validated, and a corrected document returns with a record of what changed. The real system is far more complicated than any single representation ahead. That is the point. Each model keeps only the relationships its question needs. The DocAble specifics ahead — models, mechanisms, and counts — describe the repository revision examined at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
+
+Consider a document-processing job in DocAble. We might want to know whether a job can have two workers modifying it at the same time. A model of job ownership lets us express that question precisely. We can then require that each job have at most one worker responsible for modifying it at any moment. This requirement must hold for every job, throughout its lifetime, not merely for the jobs we happen to inspect. We can analyze the model to look for situations that violate the requirement. Whether the implementation actually prevents those situations is a further question.
 
 <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | A worked example establishes four terms that stay distinct — property, invariant, analysis, enforcement — before each section names them; an invariant is a property required to hold throughout a scope, and enforcement is reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
-Each worked section begins with a familiar engineering representation, explains what we can express and
-analyze using it, and then applies it to DocAble. The example above illustrates four terms used throughout
-the chapter. A **property** is a claim about a system that we can express using a model, such as whether
-two workers can modify the same job concurrently. An **invariant** is a property that must always hold
-within a specified scope: in this case, every job must have at most one modifying worker at any moment. An
-**analysis** or check produces evidence about whether the property holds. **Enforcement** goes further by
-preventing violations in the running system or development process. {{chapter:alignment}} examines
-enforcement.
+
+Each worked section begins with a familiar engineering representation, explains what we can express and analyze using it, and then applies it to DocAble. The example above illustrates four terms used throughout the chapter. A **property** is a claim about a system that we can express using a model, such as whether two workers can modify the same job concurrently. An **invariant** is a property that must always hold within a specified scope: in this case, every job must have at most one modifying worker at any moment. An **analysis** or check produces evidence about whether the property holds. **Enforcement** goes further by preventing violations in the running system or development process. {{chapter:alignment}} examines enforcement.
 
 <!-- box-family: inset -->
+
 > #### Four questions for every model
 >
 > Every model section ahead opens on the same four lines:
 >
 > - **Engineering question** — what am I trying to know or decide?
+>
 > - **Model** — what representation makes the question tractable?
+>
 > - **Property** — what can I now state precisely?
+>
 > - **Quality attribute** — what engineering concern does that property serve?
 
-{{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties
-explicit; Alignment makes selected obligations enforceable.
+{{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties explicit; Alignment makes selected obligations enforceable.

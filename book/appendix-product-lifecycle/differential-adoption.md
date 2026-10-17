@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/differential-adoption.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 The five surfaces need not mature together. A startup may use stronger MAGE machinery only around payments or customer data; a service organization may have sophisticated operational models while leaving discovery informal; a regulated product may begin with assurance and traceability. These are not incomplete implementations awaiting product-wide rollout. They are rational local configurations when the investment pays.
 
 The relevant question is what knowledge or obligations are consequential or expensive enough to deserve durable representation or enforcement. That answer changes over a product's life: repeated reconstruction may eventually justify an architectural model, a frequently used runbook may become deterministic automation, or an incident may expose an obligation previously left tacit. Different surfaces legitimately preserve different mixtures of explicit representation, autonomous judgment, and machinery.

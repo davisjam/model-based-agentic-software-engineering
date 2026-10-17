@@ -1,0 +1,13 @@
+id: process
+title: Process
+short_title: Process
+order: 1
+status: draft
+description: >
+  A software process orders the activities of building software. The right ordering is not universal;
+  it is an engineering choice shaped by how much can be known in advance, how expensive change is, and
+  whether partial systems can deliver value.
+objectives:
+  - Explain why no ordering of engineering activities is universally correct.
+  - Reason about a process choice along the dimensions of foreknowledge, cost of change, and incremental value.
+  - Relate the economics of process to the engineered medium.

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/zenseact.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ### Zenseact
 
 *Autonomous-driving software · centralized substrate, distributed domain ownership*
@@ -11,7 +13,6 @@ Zenseact also illustrates *selective context*. Routing machinery selects task-re
 **Boundary of the evidence.** The sources show how Zenseact divides the platform, routes context, delegates work, and assigns ownership. They do not establish the resulting productivity, safety, or returns on engineering capital.
 
 **Portable lesson.** Build the common substrate once; distribute the engineering judgment to the teams that possess the knowledge it requires.
-
 
 #### Recto — MAGE Interpretation
 

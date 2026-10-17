@@ -49,6 +49,7 @@ from tests.book import (
     run_book_audit,
 )
 from tests.book_models import (
+    check_bookmath_native_mappings,
     check_argument_spine,
     check_canon_pins,
     check_capability_ladder,
@@ -738,6 +739,8 @@ CHECKS = [
     # publish scans, even on a browser-less runner where the axe pass itself SKIPs. See tests/external.py.
     Check("a11y: axe coverage set is sound (deterministic, one-per-template-family, derived)", 1,
           lambda strict: check_axe_coverage_set(strict)),
+    Check("book: native math vocabulary compiles and preserves web MathML", 2,
+          lambda strict: check_bookmath_native_mappings()),
     Check("html: validity (html-validate)", 2, check_html_valid, needs_run=_html_changed, pre_push=True),
     Check("external: Duality Lab logo URL returns 200 (davisjam.github.io/images/logo.svg)", 2, check_lab_logo_url),
     Check("html: axe-core accessibility", 2, check_axe, needs_run=_html_changed),

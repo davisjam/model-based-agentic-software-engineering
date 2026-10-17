@@ -1,0 +1,193 @@
+% mage-auto-heading: up-front-encode-what-you-already-know
+% mage-auto-heading: as-you-learn-convert-what-the-work-teaches
+% mage-auto-heading: correct-judgment-without-enforcement
+% mage-auto-heading: engineering-capital
+% mage-auto-heading: where-enforcement-stops
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Growing the Governed Environment -->
+
+\chapter{Growing the Governed Environment}
+
+% <!-- point: a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches | A governed environment grows from obligations already known and from what the work teaches; governance conversion is the second route. | terms: up-front-governance, governance-conversion -->
+
+% <!-- index-def: governed-environment -->
+
+No engineered environment begins with every future obligation already represented and mechanized. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, a format mutation must cross a particular seam. Others become visible only when the work exposes a failure nobody represented or controlled. A governed environment acquires durable structure in two ways: \textbf{up front, from obligations already known, and in response to failures and surprises.}
+
+% <!-- index-def: governance-conversion -->
+
+The second route is \textbf{governance conversion}. A failure exposes a recurring class, engineering identifies what was missing, and the environment encodes the lesson as durable structure. Later work inherits the result. The repair fixes this instance. Conversion changes the environment.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Failure Modes Before and After Failure}
+\label{inset-failure-modes}
+Engineering need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) work up front: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted. Known obligations can therefore produce durable engineering structure before experience forces the issue.
+
+Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineering identifies the failure mode behind the instance and asks what durable structure should address the class: a model, obligation, sensor, validator, constraint, gate, or other mechanism.
+
+The distinction is about how the need became known, not about the resulting mechanism. Up-front analysis and learning from experience may lead to the same control. Governance conversion names the second route; it does not imply that engineers should wait for failures they can reasonably anticipate.
+\end{bookbox}
+
+\section{Up Front: Encode What You Already Know}\label{heading:up-front-encode-what-you-already-know}
+
+% <!-- section-terms: up-front-governance, specification-driven-development -->
+
+% <!-- point: up-front-encode-obligations-you-can-state-before-the-work-begins | Up front: encode the obligations you can state before the work begins, and stop paying judgment for them. | terms: up-front-governance, specification-driven-development -->
+
+% <!-- index-def: up-front-governance -->
+
+% <!-- index-def: specification-driven-development -->
+
+Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. Encode recurring obligations when the environment can carry them more cheaply and reliably than repeated judgment.
+
+\magevalue{chapter:one-problem-many-models} turns this into a method for starting and migrating systems; here the distinction is simply that these obligations are known before failure forces the issue.
+
+\section{As You Learn: Convert What the Work Teaches}\label{heading:as-you-learn-convert-what-the-work-teaches}
+
+% <!-- section-terms: governance-conversion, constraints-and-sensors -->
+
+% <!-- point: diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate | Diagnose what was missing; not every failure calls for another gate. | terms: governance-conversion -->
+
+The harder half begins when the system surprises you. \textbf{Do not assume every failure calls for another gate. Diagnose what was missing.}
+
+% <!-- point: the-conversion-lands-in-one-of-five-places | The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement. | terms: governance-conversion, constraints-and-sensors -->
+
+The conversion can land in one of five places:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Missing representation / semantics → improve the model.} Make the fact or relation durable at the abstraction where the question becomes answerable.
+\item
+  \textbf{Missing obligation or tolerance → state the governing boundary.} A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.
+\item
+  \textbf{Missing evidence → add a sensor or trace.} Make the relevant state observable.
+\item
+  \textbf{Missing evaluation → strengthen the validator.} Turn evidence into a repeatable judgment.
+\item
+  \textbf{Missing enforcement → add or strengthen a constraint or gate.} Make the verdict control the relevant action or admission.
+\end{enumerate}
+
+These diagnoses are not mutually exclusive. In practice, one failure often exposes several missing pieces at once. A property that was never represented may also lack an explicit invariant and the sensor needed to observe it. The durable repair can therefore add a model, an obligation, and evidence together. The categories identify where engineering structure was missing; they do not require the repair to land in only one place.
+
+Viewed from \magevalue{chapter:problem}, these interventions do different things to the probabilistic surface. Better representation can make a satisfactory realization cheaper to find by reducing reconstruction or exposing the property more directly. Better evidence can make the realized state more legible. A repeatable validator can carry an evaluation independently of the producer, and a constraint or gate can enforce that verdict. Governance conversion is therefore not simply the accumulation of checks. The goal is not to eliminate judgment; it is to spend human judgment where the choice is consequential and let machinery hold decisions that have already been made. Conversion is the process by which more of those settled decisions become structure that later work inherits.
+
+% <!-- point: modeling-and-alignment-form-a-feedback-loop | Alignment failures expose tacit knowledge or obligations that Modeling can externalize. | terms: modeling-principle, alignment-principle, governance-conversion -->
+
+This is why Modeling and Alignment form a feedback loop in practice. A failure can expose knowledge that remained implicit, or reveal that a choice treated as a degree of freedom actually carried a tacit obligation or tolerance. Modeling can make that distinction explicit; Alignment can then give the resulting obligation appropriate evidence and enforcement. The environment improves when recurring reconstruction or judgment moves into durable structure that later work can inherit. \autoref{governance-conversion-fig} draws the diagnosis.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-conversion-dbc51d550d.pdf}
+\caption{\emph{Governance conversion.} When a failure exposes a recurring failure mode rooted in missing representation, obligation, evidence, evaluation, or enforcement, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when that durable structure continues to lower future cost or uncertainty.}
+\label{governance-conversion-fig}
+\end{figure}
+
+\section{Correct Judgment Without Enforcement}\label{heading:correct-judgment-without-enforcement}
+
+% <!-- section-terms: governance-conversion -->
+
+% <!-- point: judgment-without-consequence-governance-conversion-can-delete-a-capability | Governance conversion can add a mechanism; it can also delete a capability the environment should never have offered. | terms: governance-conversion -->
+
+A merge automation drained a backlog of agent worktrees into the mainline each tick. Most rebased cleanly; a fraction conflicted, and a single convenience option resolved those conflicts by taking one side automatically. On overlapping edits it silently dropped content. An audit already understood the danger: a guard detected when a conflict touched substrate-class files, judged the resolution unsafe, and logged it correctly, as a warning only. The operation proceeded, and the tree lost content. \autoref{judgment-without-consequence} traces the cascade.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
+\caption{\emph{Correct judgment without enforcement.} The system observed the dangerous condition and evaluated it correctly, but no enforcing mechanism acted on the verdict. The durable repair removed the unsafe capability rather than making the warning louder.}
+\label{judgment-without-consequence}
+\end{figure}
+
+The failure was not missing evidence. The system had evidence. Nor was evaluation missing: the audit correctly identified the danger. What it lacked was enforcement. The warning described a condition the environment still permitted.
+
+The durable repair did not make the warning louder. It removed the dangerous auto-resolution fallback and escalated ambiguous merges to a human instead. \textbf{Governance conversion can add a mechanism. It can also delete a capability the environment should never have offered.} Where a warning marks a known-dangerous condition intended to become enforced, its temporary status should be explicit, with an owner and resolution condition.
+
+\section{Engineering Capital}\label{heading:engineering-capital}
+
+% <!-- section-terms: engineering-capital, governance-conversion, modeling-principle, alignment-principle -->
+
+% <!-- point: governance-conversion-forms-engineering-capital-the-positive-stock | Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for. | terms: engineering-capital, governance-conversion -->
+
+% <!-- index-def: engineering-capital -->
+
+Governance conversion motivates a useful accounting concept: \textbf{engineering capital}. The field has a mature metaphor for the opposite condition. Technical debt is a liability carried forward: an expedient decision today imposes costs on future change. Engineering capital is durable engineering structure that lowers the future cost or uncertainty of change.
+
+% <!-- point: the-asset-is-something-you-can-point-at | The capital must be something future work can actually inherit — a concrete asset you can point at. | terms: engineering-capital, constraints-and-sensors -->
+
+% <!-- point: capital-earns-a-return-lower-marginal-engineering-cost | Capital earns a return: lower marginal engineering cost. Conversion is capital formation. | terms: engineering-capital, governance-conversion -->
+
+The capital must be something future work can actually inherit. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a validator can make repeated evaluation mechanical; a gate can enforce that evaluation; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
+
+% <!-- point: engineering-capital-can-transfer-between-projects | Engineering capital can transfer between projects in two forms: process automation reused or adapted directly, and principles applied to establish and enforce a new architecture. | terms: engineering-capital, modeling-principle, alignment-principle -->
+
+Engineering capital can also transfer between projects. After developing DocAble, I carried parts of its engineering environment into two subsequent projects, approximately 50,000 and 36,000 lines of code. First, I reused process automation directly, including Claude hooks and Git hooks, and adapted existing runbooks with relatively little effort. Second, I applied MAGE\textquotesingle s Modeling and Alignment principles to establish a more structured architecture and enforce its obligations from the beginning. These investments appeared to accelerate initial development, although I did not conduct a controlled productivity comparison.
+
+% <!-- point: inherited-capital-improves-starting-conditions-without-supplying-every-control | Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs. | terms: engineering-capital, governance-conversion -->
+
+Both projects nevertheless exposed new failure modes requiring further engineering. Reusable automation and established principles improved the starting conditions, but each project still required its own engineering. Engineering capital can therefore travel between projects without making their environments interchangeable.
+
+% <!-- point: capital-depreciates-so-accumulation-cannot-be-the-objective | Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective. | terms: engineering-capital, governed-environment -->
+
+The engineered environment evolves with the system it governs.\magefootnote{lehman}{Lehman\textquotesingle s work on software evolution made the analogous observation about software itself: software used in a changing real-world environment must continually adapt, and its complexity tends to increase unless effort is spent maintaining or reducing it. MAGE extends that caution to the engineered environment surrounding the software. Models, validators, constraints, and procedures evolve too --- and can become liabilities when they no longer fit what they govern. See Lehman \& Ramil 2003.\citep{lehman2003evolution}} Capital also \textbf{depreciates}. A model can drift from the system it represents. A validator can encode an assumption the architecture has outgrown. A sensor can become noisy; a gate can impose more delay than the failure it prevents; a once-important control can survive long after its obligation disappears. Maintenance preserves useful capital; reconciliation repairs assets that no longer match the system; retirement removes assets whose carrying cost now exceeds their return. This is why accumulation cannot be the objective. A governed environment with more mechanisms is not necessarily richer than one with fewer. What matters is the future engineering value those mechanisms continue to produce.
+
+% <!-- point: debt-and-capital-are-symmetric-stocks-that-compound | Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound. | terms: engineering-capital -->
+
+Debt makes future work pay again for today\textquotesingle s expedience; capital lets future work inherit today\textquotesingle s judgment. Governance conversion turns lessons from individual engineering efforts into structure that subsequent work can reuse.
+
+\section{Where Enforcement Stops}\label{heading:where-enforcement-stops}
+
+% <!-- section-terms: residual, constraints-and-sensors -->
+
+% <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
+
+Not every quality goal should end in enforcement. A consequential concern may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. \autoref{honest-gaps} shows the four possible stopping points.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/residual-decision-tree-478c6933ab.pdf}
+\caption{\emph{Where enforcement stops.} A concern may remain unrepresented, require judgment, be evaluated without enforcement, or be governed. These are design choices; different obligations should stop at different points.}
+\label{honest-gaps}
+\end{figure}
+
+% <!-- point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use | The residual is an obligation nobody made explicit enough for the environment to use. | terms: residual, judgment-is-the-scarce-resource -->
+
+% <!-- index-def: residual -->
+
+\textbf{Residual.} The obligation is not explicit enough for the environment to use, so an engineer or agent must reconstruct the missing meaning.
+
+% <!-- point: an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation | An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. Architecture may be represented while a design trade-off still requires expert judgment.
+
+% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Evaluated only.} The environment can produce and evaluate relevant evidence, but does not enforce the resulting judgment.
+
+% <!-- point: a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk | A governed obligation is enforced in a form appropriate to the engineering decision. | terms: residual, constraints-and-sensors -->
+
+\textbf{Governed.} The environment enforces the obligation in a form appropriate to the engineering decision: an action may be constrained, a violation refused, or admission made dependent on the verdict.
+
+% <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineering chose, not a narrower acceptable set. | terms: residual, tolerance -->
+
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not imply that the environment should tighten it, or even enforce it mechanically. A broad tolerance may be the correct engineering decision, and variation inside it remains legitimate realization freedom. Stronger Alignment means more dependable enforcement of the obligation engineering actually chose, not progressively narrowing the acceptable realization space.
+
+% <!-- point: three-different-reasons-non-enforcement-is-sometimes-the-engineered-result | An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result. | terms: residual, governance-conversion -->
+
+DocAble contains examples of each non-governed stopping point, each for a different reason. Some cost controls are deliberately not enforced because imposing a hard daily budget remains a policy choice. DocAble measures governance conversion but does not target a required rate, because doing so would invite gaming. Some accessibility judgments remain outside deterministic enforcement because the available representation does not contain enough semantics to evaluate them reliably. \textbf{Non-enforcement is sometimes the engineered result.}
+
+% <!-- point: the-mechanism-that-discovers-need-not-carry-the-enforcement | The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration. | terms: sensor, governance-conversion -->
+
+The mechanism that discovers an obligation need not be the mechanism that ultimately enforces it. DocAble\textquotesingle s primitive-density lint remained an audit signal because high density was only a smell. The migration it provoked produced more specific types, boundaries, and drift controls whose predicates could justify stronger enforcement. \magevalue{chapter:one-problem-many-models} follows that migration in detail.
+
+% <!-- point: the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why | The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern. | terms: governance-conversion, residual, governed-environment -->
+
+Different obligations should stop in different places. Governance conversion closes recurring gaps when doing so is worth the cost. It also creates the next problem: the environment now contains an expanding portfolio of controls, and those controls can themselves become inconsistent, redundant, or orphaned.

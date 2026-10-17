@@ -1,0 +1,61 @@
+% mage-auto-heading: the-two-problems-in-software
+% mage-auto-heading: the-problem-is-larger-than-software
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The New Engineering Problem -->
+
+% <!-- chapter-title: Two Problems the Method Must Solve -->
+
+\chapter{Two Problems the Method Must Solve}
+
+\section{The Two Problems in Software}\label{heading:the-two-problems-in-software}
+
+% <!-- point: substrate-leaves-two-problems | The properties of agentic machinery leave two engineering problems: a finite reasoner needs representations that keep relevant state tractable, and fallible autonomous work needs enforcement outside the producing run. | terms: engineering-substrate, foundation-model, agentic-harness -->
+
+The properties of agentic machinery leave two engineering problems. A finite reasoner needs representations that keep relevant system state tractable as systems and tasks grow. Fallible autonomous work needs enforcement outside the producing run so that important obligations do not depend on the producer resolving every consequential judgment correctly.
+
+% <!-- point: the-two-problems-representation-and-enforcement | The two problems, related but distinct: the Representation Problem (how to represent a large system so relevant properties are reasoned about without reconstruction) answered by Modeling in Chapter 2, and the Enforcement Problem (how intent comes to bind autonomous work so satisfying obligations does not depend on the producer self-certifying) answered by Alignment in Chapter 3. | terms: engineering-substrate, modeling-principle, alignment-principle, reasoning-horizon, injection-point -->
+
+These problems are related but distinct:
+
+% <!-- index-def: representation-problem -->
+
+% <!-- index-def: enforcement-problem -->
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{The Representation Problem.} Large systems contain far more detail than any one engineering question needs, while the active state available to a reasoner is finite. How should a large, evolving system be represented so that the properties relevant to an engineering question can be reasoned about without continually reconstructing them from implementation? \magevalue{chapter:modeling} develops MAGE\textquotesingle s answer: Modeling.
+\item
+  \textbf{The Enforcement Problem.} Autonomous work can be constrained and checked at the interfaces through which it acts, but the producing run cannot be the final check on its own consequential judgments. How should engineering intent be enforced over autonomous work, so that satisfying important obligations does not depend on the producing agent remembering, agreeing, or self-certifying each time? \magevalue{chapter:alignment} develops MAGE\textquotesingle s answer: Alignment.
+\end{enumerate}
+
+% <!-- point: modeling-and-alignment-complement-one-another | Modeling makes selected properties explicit enough to reason about; Alignment enforces selected obligations over realization; neither requires the other in every case, but together they let engineering knowledge and judgment persist outside any one producing run. | terms: modeling-principle, alignment-principle -->
+
+The two activities complement one another. Modeling makes selected system properties explicit enough to reason about; Alignment enforces selected obligations over realization. Neither requires the other in every case: useful representations need not become constraints, and some local controls can act without a rich system model. Together, however, they let engineering knowledge and judgment persist outside any one producing run. \autoref{substrate-to-method} traces that derivation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/substrate-to-method-7fa75819e3.pdf}
+\caption{\emph{From substrate to method.} Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE\textquotesingle s corresponding answers: Modeling and Alignment.}
+\label{substrate-to-method}
+\end{figure}
+
+\section{The Problem Is Larger than Software}\label{heading:the-problem-is-larger-than-software}
+
+% <!-- point: the-problem-is-larger-than-software | Software makes the governing problem visible; it does not create it. -->
+
+Software makes the problem unusually visible, but does not create it.
+
+Suppose an agent is asked to perform consequential work in some other domain. It may analyze a contract, develop an engineering design, reconcile a set of accounts, or synthesize evidence for a scientific question. The artifacts differ, but two problems remain. First, the knowledge needed to do the work may exceed what the agent can reliably reconstruct and reason over in one episode. Second, some judgments matter enough that whether the work takes effect should not depend only on the producing agent having made those judgments correctly.
+
+Those are the same two problems this chapter named the Representation Problem and the Enforcement Problem. Modeling addresses the first by making consequential knowledge available in representations suited to the questions being asked. Alignment addresses the second by giving selected obligations evidence and enforcement outside the producing reasoner. Neither move fundamentally requires source code.
+
+What changes across domains is the engineering material. Software has requirements, architectures, dependency graphs, types, tests, admission gates, permissions, telemetry, and executable artifacts. Mechanical engineering has geometry, tolerances, load models, simulations, and physical tests. Accounting has ledgers, classifications, reconciliations, controls, and audit evidence. Legal work has authorities, claims, elements, facts, procedural rules, and approval structures. The useful representations differ, as do the obligations that can responsibly be enforced.
+
+MAGE is an approach to governing agentic engineering work by engineering what the agent and its environment can know, decide, check, and enforce. This book develops that approach through software engineering because software is where we have exercised it deeply enough to study the mechanisms. The broader claim is theoretical and predictive. If the account is right, similar leverage should appear elsewhere when consequential knowledge can be represented, important obligations can be evaluated with adequate evidence, and the resulting structure is economical to maintain.
+
+The balance between inference, explicit representation, and enforcement will change as agents improve. MAGE does not prescribe that balance in advance; it asks engineers to establish it for the systems and obligations they face.
+
+The following chapters develop the software-engineering mechanisms in detail. \magevalue{chapter:theory} abstracts those mechanisms into a theory. \magevalue{chapter:profession} then asks what remains when the software-specific assumptions are relaxed.

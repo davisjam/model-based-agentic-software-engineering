@@ -1,25 +1,19 @@
-Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}} introduce only the model detail needed for the engineering argument. This appendix
-collects the principal schemas, invariants, derivation directions, and correspondence machinery
-for those models.
+<!-- GENERATED from book/latex/sources/appendix-models/_opening.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-Each model begins with an engineering question and uses the smallest representation that makes the
-relevant property explicit. The forms here are reference patterns, not a required inventory.
+Chapters {{chapter:modeling|num}}–{{chapter:one-problem-many-models|num}} introduce only the model detail needed for the engineering argument. This appendix collects the principal schemas, invariants, derivation directions, and correspondence machinery for those models.
 
-The appendix serves as both a reference and a pattern book: the representations are specific enough
-to expose their engineering properties but general enough to adapt to other systems. Each section
-also separates what the model represents from the machinery that may later enforce selected declarations.
+Each model begins with an engineering question and uses the smallest representation that makes the relevant property explicit. The forms here are reference patterns, not a required inventory.
+
+The appendix serves as both a reference and a pattern book: the representations are specific enough to expose their engineering properties but general enough to adapt to other systems. Each section also separates what the model represents from the machinery that may later enforce selected declarations.
 
 **Each section answers the same four questions:**
 
 - **Engineering question** — what must the engineer be able to know?
 - **Representation** — what entities and relations make that question answerable?
 - **Property** — what can now be stated precisely?
-- **Enforcement and correspondence** — which facts are authored, which are observed or derived, and
-  how is disagreement detected?
+- **Enforcement and correspondence** — which facts are authored, which are observed or derived, and how is disagreement detected?
 
-Correspondence alone does not establish correctness. A descriptive model can accurately describe an
-undesirable system; a normative model supplies authored intent against which the implementation can
-be checked. {{chapter:alignment}} supplies the mechanisms that can enforce selected declarations.
+Correspondence alone does not establish correctness. A descriptive model can accurately describe an undesirable system; a normative model supplies authored intent against which the implementation can be checked. {{chapter:alignment}} supplies the mechanisms that can enforce selected declarations.
 
 [ref:fig-g1-executable-model] establishes the pattern specialized by the later figures.
 

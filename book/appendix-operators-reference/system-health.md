@@ -1,23 +1,18 @@
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/system-health.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 *Is the environment operating correctly right now?*
 
-Begin with outcomes. Check whether accepted work is landing, governed obligations are
-holding, validators and gates are checking what they are supposed to check, and human intervention
-or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only
-to diagnose changes in those outcomes.
+Begin with outcomes. Check whether accepted work is landing, governed obligations are holding, validators and gates are checking what they are supposed to check, and human intervention or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only to diagnose changes in those outcomes.
 
 ### Three readings
 
-- **Durable throughput.** Accepted work remains accepted without reopening, rollback, or
-  repeated repair.
-- **Defect and policy escape.** Incorrect or policy-violating work passes the boundary
-  intended to prevent it.
-- **Intervention burden.** Humans get pulled back into repeated reconstruction, review, or
-  emergency repair.
+- **Durable throughput.** Accepted work remains accepted without reopening, rollback, or repeated repair.
+- **Defect and policy escape.** Incorrect or policy-violating work passes the boundary intended to prevent it.
+- **Intervention burden.** Humans get pulled back into repeated reconstruction, review, or emergency repair.
 
-Use churn, validator coverage, correspondence failures, and queue pressure only when they
-explain movement in the primary readings.
+Use churn, validator coverage, correspondence failures, and queue pressure only when they explain movement in the primary readings.
 
-```
+``` text
   SYSTEM HEALTH               "Is the environment healthy right now?"
   ───────────────────────────────────────────────────────────────────
   Durable throughput       accepted work survives
@@ -30,7 +25,4 @@ explain movement in the primary readings.
 
 ### Read churn as motion, not health
 
-Churn measures code motion, not system health. A migration or architectural rewrite can
-produce high churn in a healthy environment, while a quiet repository can still contain stale
-representations or repeated human adjudication. Appendix H records the churn observed in
-DocAble.
+Churn measures code motion, not system health. A migration or architectural rewrite can produce high churn in a healthy environment, while a quiet repository can still contain stale representations or repeated human adjudication. Appendix H records the churn observed in DocAble.

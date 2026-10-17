@@ -1,0 +1,69 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Make consequential transformations reconstructable and detect silent loss.} Record who changed what, then verify that the transformed artifact retained the required semantics.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it where:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Multiple actors or agents mutate important artifacts}, making attribution and transformation history consequential.
+\item
+  \textbf{Partial or bypassed instrumentation is plausible}, so "we log our writes" is not proof every write was logged.
+\item
+  \textbf{Transformation can silently lose product semantics} --- the output looks fine and is not.
+\item
+  \textbf{Incident reconstruction requires both facts at once}: who changed what, and whether the result remained faithful.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/auditable-transformation-stack-240085c450.pdf}
+\caption{The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the core path, every step required.}
+\label{auditable-transformation-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MARK} & Attach identity and context to the mutation. \\
+\textbf{EMIT} & Persist a structured record. \\
+\textbf{COVER} & Detect mutations that escaped attribution. \\
+\textbf{READ} & Reconstruct the transformation history. \\
+\textbf{FIDELITY} & Check that the transformed artifact retained its required semantics. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Attribution without completeness produces a persuasive but partial history---convincing exactly where it is silent. Completeness without readable provenance proves only that records exist. And provenance alone cannot establish that a transformation preserved the product.
+
+The stack must therefore establish both causal history and product fidelity: How did this artifact reach its current state, and did the transformation preserve its required semantics?
+
+\textbf{Mechanisms:} provenance stamping · attribution coverage · fidelity gate

@@ -1,4 +1,7 @@
+<!-- GENERATED from book/latex/sources/backmatter/colophon.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 <!-- part-title: Back Matter -->
+
 <!-- chapter-title: Colophon — Dogfooding MAGE -->
 
 # Colophon — Dogfooding MAGE

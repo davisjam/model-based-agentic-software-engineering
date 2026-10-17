@@ -1,9 +1,8 @@
-An engineering question may span several models without requiring one larger stored model. Keep
-question-specific representations separate and join them through stable identities when a cross-model
-property must be evaluated.
+<!-- GENERATED from book/latex/sources/appendix-models/joining-views.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-**Engineering question.** Does an important user journey exercise its declared endpoints, receive the
-required test coverage and placement, and execute under the correct host policy?
+An engineering question may span several models without requiring one larger stored model. Keep question-specific representations separate and join them through stable identities when a cross-model property must be evaluated.
+
+**Engineering question.** Does an important user journey exercise its declared endpoints, receive the required test coverage and placement, and execute under the correct host policy?
 
 [ref:fig-g7-joined-scenario] traces the join.
 
@@ -18,6 +17,4 @@ required test coverage and placement, and execute under the correct host policy?
 - **Test placement reflects journey criticality.**
 - **Execution respects the selected host policy.**
 
-**The reusable pattern.** State the engineering question, select the relevant views, join them on
-stable identities, and evaluate the cross-view property. The scenario is a traversal across
-representations, not an additional stored model.
+**The reusable pattern.** State the engineering question, select the relevant views, join them on stable identities, and evaluate the cross-view property. The scenario is a traversal across representations, not an additional stored model.

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/operations-and-incidents.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Engineering question.** What is the system doing, why is it doing it, and what should we learn from failure?
 
 Operations works against the realized system. Its characteristic representations include deployment topology, service dependencies, runtime configuration, telemetry, resource relationships, runbooks, incident timelines, and operational policies. These models answer questions that source code alone often answers poorly: what is running where, which services depend on which others, what resources are shared, what happened before a failure, and what operators should do next. Because these models describe the running system, many require strong correspondence. A topology presented as current must describe the deployed system closely enough to support operational reasoning; telemetry must refer to identifiable entities and states; and a runbook intended to govern response must remain applicable to the system operators actually face.

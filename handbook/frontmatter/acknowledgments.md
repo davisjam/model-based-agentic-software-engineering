@@ -1,10 +1,12 @@
 ---
+# GENERATED from acknowledgments.tex and acknowledgments.yaml; DO NOT EDIT this Markdown projection.
+description: |
+  Named thanks to the people whose contributions, conversations, and
+  help shaped this handbook.
 id: acknowledgments
-title: Acknowledgments
 kind: frontmatter
 status: draft
-description: >
-  Named thanks to the people whose contributions, conversations, and help shaped this handbook.
+title: Acknowledgments
 ---
 
 I thank B. Shinnamon for his input on parts of this handbook.

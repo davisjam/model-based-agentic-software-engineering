@@ -25,6 +25,7 @@ keeps the source clean, so on a clean tree it reports nothing and can gate block
 from __future__ import annotations
 
 import os
+import json
 import re
 import sys
 
@@ -88,10 +89,36 @@ def _lead_token(inner: str) -> str:
     return m.group(0).lower() if m else ""
 
 
+def _source_headers() -> dict[str, str]:
+    """Exact bridge provenance for each declared compatibility projection."""
+    manifest = os.path.join(_ROOT, "book", "latex", "native-sources.json")
+    if not os.path.isfile(manifest):
+        return {}
+    with open(manifest, encoding="utf-8") as stream:
+        entries = json.load(stream)["sources"]
+    return {entry["projection"]: "GENERATED from " + entry["source"]
+            + "; edit the LaTeX source, then run tools/mage_latex.py sync."
+            for entry in entries}
+
+
+def _is_source_header(inner: str, rel: str, offset: int, headers: dict[str, str]) -> bool:
+    # Only the first comment of its declared projection can be bridge metadata.
+    # Arbitrary GENERATED notes and a correct notice copied into the body still fail.
+    return offset == 0 and inner == headers.get(rel)
+
+
+def _is_generated_list_separator(comment: str, raw: str, rel: str, headers: dict[str, str]) -> bool:
+    """Pandoc's exact adjacent-list separator, only in a verified projection."""
+    header = headers.get(rel)
+    return (comment == "<!-- -->" and header is not None
+            and raw.startswith("<!-- " + header + " -->\n"))
+
+
 def findings() -> "list[str]":
     """Every stray comment in the book source: a `<!-- … -->` whose leading token is not a recognized
     decorator. Reports `file:line — <token>: <preview>` so the author can act on the exact site."""
     out: "list[str]" = []
+    headers = _source_headers()
     for path in _content_files():
         with open(path, encoding="utf-8") as fh:
             raw = fh.read()
@@ -100,7 +127,8 @@ def findings() -> "list[str]":
         for m in _COMMENT_RE.finditer(scan):
             inner = m.group(1).strip()
             token = _lead_token(inner)
-            if token in RECOGNIZED:
+            if (token in RECOGNIZED or _is_source_header(inner, rel, m.start(), headers)
+                    or _is_generated_list_separator(m.group(0), raw, rel, headers)):
                 continue
             line = scan.count("\n", 0, m.start()) + 1
             preview = " ".join(inner.split())[:70]

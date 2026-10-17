@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/operators-dashboard.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 The dashboard asks whether autonomous work is producing durable, trustworthy progress. Read the outcomes first; use diagnostics to explain why they changed.
 
 Track five primary readings: durable throughput, defect escape, human-attention burden, representation health, and engineering-capital return. The first three measure outcomes; the last two ask whether the environment can sustain them. Churn, model coverage, support ratio, control count, grammar coverage, and navigation cost are diagnostics, not objectives.

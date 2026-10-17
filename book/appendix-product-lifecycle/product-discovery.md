@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/product-discovery.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Engineering question.** What should we build, and why?
 
 Product discovery operates where uncertainty is often legitimate. Customer needs clash, features begin as hypotheses, requirements are negotiated, and experiments exist because important questions remain unsettled.

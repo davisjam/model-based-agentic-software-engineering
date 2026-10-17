@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/governance-conversion-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **Turn recurring failures and judgments into durable engineering structure while keeping the control machinery legible.** Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
@@ -6,11 +8,9 @@
 
 Reach for it when:
 
-- **The controls have grown their own complexity** — they overlap, depend on one another, go stale, and
-  carry blast radius nobody has mapped.
+- **The controls have grown their own complexity** — they overlap, depend on one another, go stale, and carry blast radius nobody has mapped.
 - **The same failure keeps recurring**, and each fix is a one-off patch rather than a durable control.
-- **Lessons live in institutional memory** instead of in the environment, so they leave when the person who
-  learned them does.
+- **Lessons live in institutional memory** instead of in the environment, so they leave when the person who learned them does.
 
 ## The Composition
 
@@ -19,6 +19,8 @@ Reach for it when:
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MODEL** | Make the control machinery explicit — rules, gates, models, sensors. |

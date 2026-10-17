@@ -151,6 +151,19 @@ NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__
 _WORKBENCH_PAGE = "workbench/index.html"
 
 
+# Native manuscript sources and compiler intermediates are not served web pages.
+# Match repository-relative roots, never broad names such as "build" or "generated".
+_NATIVE_SOURCE_ROOTS = ("latex", "book/latex", "book/_latex", "handbook/generated")
+
+
+def is_native_build_path(path: str) -> bool:
+    """Whether an absolute or repository-relative path belongs to a native build tree."""
+    relative = os.path.relpath(path, ROOT) if os.path.isabs(path) else os.path.normpath(path)
+    relative = relative.replace(os.sep, "/")
+    return any(relative == root or relative.startswith(root + "/")
+               for root in _NATIVE_SOURCE_ROOTS)
+
+
 def gitignored_top_dirs() -> frozenset[str]:
     """Top-level directory names under ROOT that git ignores. Used to prune the site walks so a
     gitignored scratch tree (absent from a fresh CI checkout) can't perturb a local build/test. Empty
@@ -4626,7 +4639,8 @@ def check_leaked_markers() -> list[str]:
     prune = site_prune_dirs()
     paths: list[str] = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not is_native_build_path(os.path.join(dirpath, d))]
         paths.extend(os.path.join(dirpath, fn) for fn in sorted(filenames) if fn.endswith(".html"))
     # The book's served surface is the emitted body tree (book/web/docs/*.md — raw rendered HTML),
     # pruned from the walk above by name; scan it explicitly so book coverage survives the C3 swap.
@@ -4736,7 +4750,8 @@ def check_orphan_pages() -> list[str]:
     pages: list[str] = []
     prune = site_prune_dirs()
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not is_native_build_path(os.path.join(dirpath, d))]
         for fn in filenames:
             if fn.endswith(".html"):
                 pages.append(os.path.join(dirpath, fn))
@@ -5725,7 +5740,7 @@ def _is_publishable(path: str) -> bool:
     publishable ext) slip into a `deploy: rebuild site` commit — the exact incident this guard
     kills. A legit new figure belongs under a content root OUTSIDE `_design/` (e.g.
     `book/assets/`), where it still publishes."""
-    if "_design" in path.split("/"):
+    if "_design" in path.split("/") or is_native_build_path(path):
         return False
     # The retired hand-rolled flat book pages (`book/<slug>.html`, pre-C3): gitignored AND rejected
     # here as defense in depth — the tracked-HTML discipline ended at the publish swap, so a stray
@@ -6002,7 +6017,8 @@ def _served_html_pages() -> list[str]:
     prune = site_prune_dirs()
     out: list[str] = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not is_native_build_path(os.path.join(dirpath, d))]
         out.extend(os.path.abspath(os.path.join(dirpath, fn))
                    for fn in filenames if fn.endswith(".html"))
     return sorted(out)

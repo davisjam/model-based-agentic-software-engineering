@@ -1,18 +1,14 @@
-Most organizations already possess fragments of a Governed Engineering Environment: documentation, tests,
-review rules, CI checks, ownership files, runbooks, deployment policy, and expert knowledge. Brownfield
-migration asks three questions: Which engineering knowledge needs stronger representation? Which obligations
-are already effectively enforced? Where do gaps still force people to reconstruct what the environment
-should know?
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/from-drifted-wiki-to-trusted-model.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-When a wiki carries important system knowledge, link its claims to the implementation and evidence they
-concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose
-future use justifies the cost. [{{sec:brownfield-engineering}}](4.3-brownfield-engineering.html) gives the full treatment.
+Most organizations already possess fragments of a Governed Engineering Environment: documentation, tests, review rules, CI checks, ownership files, runbooks, deployment policy, and expert knowledge. Brownfield migration asks three questions: Which engineering knowledge needs stronger representation? Which obligations are already effectively enforced? Where do gaps still force people to reconstruct what the environment should know?
+
+When a wiki carries important system knowledge, link its claims to the implementation and evidence they concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose future use justifies the cost. [{{sec:brownfield-engineering}}](4.3-brownfield-engineering.html) gives the full treatment.
 
 ### Joining the wiki to the code
 
-Four additions can make a wiki a more trustworthy engineering entry point. Add them only where future use
-justifies the added maintenance burden.
+Four additions can make a wiki a more trustworthy engineering entry point. Add them only where future use justifies the added maintenance burden.
 
+<!-- label:  -->
 <!-- table: Joining wiki knowledge to implementation. Four additions and the behavior each must provide. [short: Joining the wiki to the code] -->
 | Element | Required behavior |
 |---|---|
@@ -21,14 +17,13 @@ justifies the added maintenance burden.
 | **Design templates** | Name the wiki pages the work touches, and record when a missing page has to be created, before implementation begins. |
 | **Definition-of-Done checks** | Before work is accepted, compare affected pages with the current repository rather than relying on the agent's report that they were updated. |
 
-Add metadata only when a defined consumer uses it. Tags, backlinks, ownership fields, and machine-readable
-mirrors should feed an audit, brief, retrieval step, analysis, or gate; otherwise they add another surface
-that can drift.
+Add metadata only when a defined consumer uses it. Tags, backlinks, ownership fields, and machine-readable mirrors should feed an audit, brief, retrieval step, analysis, or gate; otherwise they add another surface that can drift.
 
 ### The migration path
 
 The migration has four stages—Audit, Synchronize, Govern, and Extend—and each has an exit criterion. Advance when the criterion is met, not when enough time has passed.
 
+<!-- label:  -->
 <!-- table: The brownfield migration path. Each stage names its work and exit criterion. [short: Audit, synchronize, govern, extend] -->
 | Stage | Work | Exit criterion |
 |---|---|---|
@@ -41,19 +36,16 @@ The migration has four stages—Audit, Synchronize, Govern, and Extend—and eac
 
 Audit → reconcile → trust → govern → extend selectively.
 
-Do not enforce from an inaccurate representation. Do not require an explicit model where a local control
-already settles the obligation economically. Do not add structured metadata without a defined consumer.
-Add structure only when it is worth the cost: it should reduce repeated reconstruction or bring an important obligation under control.
+Do not enforce from an inaccurate representation. Do not require an explicit model where a local control already settles the obligation economically. Do not add structured metadata without a defined consumer. Add structure only when it is worth the cost: it should reduce repeated reconstruction or bring an important obligation under control.
 
 ### Orphan triage
 
-Classify each unlinked region into one of three states so coverage reflects the intended model grain rather
-than raw implementation count.
+Classify each unlinked region into one of three states so coverage reflects the intended model grain rather than raw implementation count.
 
-1. **Missing representation** — a real subsystem with no explaining page or model; write or propose one.
-2. **Missing anchor** — the representation exists, but the link back from the code is absent; add the join.
-3. **Below the grain** — implementation too fine-grained or generic to warrant its own representation, such
-   as typed-ID aliases, configuration loaders, or enums.
+1.  **Missing representation** — a real subsystem with no explaining page or model; write or propose one.
 
-See [{{sec:brownfield-engineering}}](4.3-brownfield-engineering.html) for recovering latent models,
-reconciling a recovered representation against the territory, and Audit → Drain → Promote.
+2.  **Missing anchor** — the representation exists, but the link back from the code is absent; add the join.
+
+3.  **Below the grain** — implementation too fine-grained or generic to warrant its own representation, such as typed-ID aliases, configuration loaders, or enums.
+
+See [{{sec:brownfield-engineering}}](4.3-brownfield-engineering.html) for recovering latent models, reconciling a recovered representation against the territory, and Audit → Drain → Promote.

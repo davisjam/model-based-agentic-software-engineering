@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-engineering-moves/_opening.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 This appendix shows how the same engineering judgment can produce different mechanisms in different systems.
 
 Each page runs in one direction: **Problem → Move → two realizations.**

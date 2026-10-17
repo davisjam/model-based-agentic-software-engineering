@@ -87,7 +87,8 @@ def served_html_surfaces() -> "list[str]":
     prune = catalog.site_prune_dirs()
     out: "list[str]" = []
     for dirpath, dirnames, filenames in os.walk(_ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not catalog.is_native_build_path(os.path.join(dirpath, d))]
         for fn in filenames:
             if fn.endswith(".html"):
                 out.append(os.path.relpath(os.path.join(dirpath, fn), _ROOT))

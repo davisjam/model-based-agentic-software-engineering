@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/product-management-and-maintenance.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Engineering question.** What change are we asking for, and why?
 
 Many software organizations already possess a lightweight modeling substrate without calling it one: the ticketing system. A structured ticket can preserve desired behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. When it carries enough information to reason about one requested change, it functions as a purposeful change-scoped model. It need not duplicate longer-lived models; it should connect the episode to the product and system knowledge that governs it.

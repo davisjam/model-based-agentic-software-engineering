@@ -1,0 +1,161 @@
+% mage-auto-heading: reasoning-input-action-work-unit-and-artifactruntime
+% mage-auto-heading: placement-and-strength-are-different-decisions
+% mage-auto-heading: return-evidence-at-the-earliest-useful-boundary
+% mage-auto-heading: example-docker
+% mage-auto-heading: example-docable
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Where Obligations Can Be Enforced -->
+
+\chapter{Where Obligations Can Be Enforced}
+
+% <!-- section-terms: intervention-boundary, guidance-vs-enforcement, governed-environment -->
+
+% <!-- point: the-environment-intervenes-between-a-proposed-action-and-its-consequence | The environment intervenes between a proposed action and its consequence. | terms: governed-environment, agentic-harness -->
+
+A foundation model produces probabilistic outputs; a harness turns selected outputs into actions. Once those actions can alter a repository, invoke an API, change infrastructure, or ship an artifact, the engineering question is no longer only how to steer the reasoner. It is where the surrounding environment can intervene between a proposed action and its consequence.
+
+% <!-- point: guidance-influences-behavior-enforcement-constrains-consequences | Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them. | terms: guidance-vs-enforcement, alignment-principle -->
+
+% <!-- index-def: agent -->
+
+Start with the distinction between guidance and enforcement. \textbf{Guidance influences behavior; enforcement determines what the environment will permit or accept.} A prompt, brief, example, or playbook can make one action more likely than another, and that influence can be strong. A permission boundary can forbid an action; a validator and gate can refuse a result. Feedback can then return the evidence or explanation to the reasoner---a failing test, an observed call, a measured latency, or a validator\textquotesingle s explanation---so that subsequent work can respond. MAGE uses all of these mechanisms, but counts an obligation as enforced only when the engineered environment constrains the relevant action or determines whether the resulting work is accepted rather than merely advising the reasoner.
+
+% <!-- point: security-practice-draws-the-same-boundary | Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact. | terms: guidance-vs-enforcement -->
+
+Recent agentic-security guidance draws a similar boundary. Once agents act before commit time, the repository is too late to be the security boundary: the tools, permissions, and execution environment that produce a change join the trusted base, so agentic security must secure the process that creates the artifact, not only the artifact.\citep{snyk2026agenticlifecycle}
+
+% <!-- point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible | An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it. | terms: intervention-boundary -->
+
+An obligation can be enforced at several boundaries in the work. The useful question is not which one is "hardest," but \textbf{where the relevant obligation is visible and a mechanism can enforce it.} Four representative boundaries recur throughout the book --- reasoning input, agent action, the work unit, and the accepted artifact or runtime state. \autoref{intervention-boundaries} puts them on one line.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/intervention-boundaries-1ac2c40a9b.pdf}
+\caption{\emph{Intervention boundaries.} Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.}
+\label{intervention-boundaries}
+\end{figure}
+
+\section{Reasoning Input, Action, Work Unit, and Artifact/Runtime}\label{heading:reasoning-input-action-work-unit-and-artifactruntime}
+
+% <!-- section-terms: intervention-boundary, reasoning-input, action-boundary, work-unit-boundary, artifact-runtime-boundary -->
+
+% <!-- point: the-first-boundary-is-reasoning-input | The first location is reasoning input: ordinarily guidance, not enforcement. | terms: reasoning-input, intervention-boundary -->
+
+% <!-- index-def: reasoning-input -->
+
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do most of their work: a finite reasoner does better when the relevant system knowledge is already externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The model can misread, forget, or disregard what it was shown.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: AI -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Context Engineering: Making the Right Knowledge Available}
+\label{inset-context-engineering}
+Context engineering concerns what information is made available to a reasoner for a particular episode of work. Instructions, examples, retrieved material, prior decisions, and engineering models can all contribute to that working state. The problem is not fitting more information into a context window. It is selecting the right information, at the right abstraction, when the decision is made.
+
+MAGE gives context engineering durable engineering knowledge to draw from. Modeling externalizes engineering knowledge so that each agent does not have to reconstruct it from source code, documentation, and prior conversations. Context engineering can then select the relevant portions of that knowledge for the work at hand. The distinction is useful: Modeling engineers what is known; context engineering engineers what is presently available to reasoning. Retrieval, memory, compaction, skills, and other mechanisms may change how that selection is implemented, but the underlying engineering problem remains.
+
+One realization is dynamic context injection (DCI): the environment observes properties of the work, selects the engineering knowledge relevant to those properties, and places that knowledge into the agent\textquotesingle s reasoning context. The mechanism improves what the agent can see when making a decision; it does not itself enforce what that guidance says. \magevalue{sec:engineering-the-environment} returns to this delivery problem when packaging recurring judgment.
+\end{bookbox}
+
+Guidance can make an acceptable realization more likely. A sound constraint or admission mechanism can instead rule a represented class of unacceptable realizations out of the surface it governs. Guidance improves the producer\textquotesingle s odds; enforcement changes what admission must trust.
+
+\[
+\text{guidance: }p_i \uparrow \qquad \text{enforcement: selected }J_i\text{ need not be trusted for admission}
+\]
+
+% <!-- point: the-second-boundary-is-the-action-one-attempted-side-effect | The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse. | terms: action-boundary, intervention-boundary -->
+
+% <!-- index-def: action-boundary -->
+
+The first of the three \emph{enforcement} boundaries is the \textbf{action boundary} exposed by the harness and its tools. Here, one attempted side effect is in view: a tool call, an API request, a shell command, or a file mutation.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: AGENT HARNESS -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Hooks and Permissions}
+\label{inset-hooks-and-permissions}
+MAGE\textquotesingle s Alignment principle appears in today\textquotesingle s agent harnesses partly through mechanisms that interpose on agent actions. Harnesses may require permission before a tool executes, restrict which tools or resources an agent can access, or invoke hooks when the agent attempts an operation. These mechanisms create places outside the producing model turn where the engineered environment can observe, constrain, or reject what the agent is trying to do.
+
+The mechanisms provide different kinds of control. Permissions and restricted tool surfaces can remove actions from the agent\textquotesingle s available repertoire---for example, allowing a deployment tool to read production state while denying it permission to modify that state. Pre-action hooks can inspect a proposed command or mutation and reject it when an obligation is violated. Post-action hooks can run checks or collect evidence after a change has occurred. Beyond the harness itself, tests, linters, type checkers, CI gates, policy engines, and deployment controls can evaluate larger units of work before they are accepted. What matters is not whether a mechanism is called a hook or a gate, but what obligation it checks and what it does when that obligation is violated.
+
+This is why MAGE describes governance mechanisms and enforcement boundaries rather than treating hooks or permissions as the abstraction. Harness features expose convenient contemporary control points, but the underlying engineering problem is broader: determine which obligations matter, where sufficient evidence exists to evaluate them, and what mechanism constrains or rejects unacceptable realization.
+\end{bookbox}
+
+% <!-- point: the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions | The second enforcement boundary is the work unit, where whole-work obligations become legible. | terms: work-unit-boundary, intervention-boundary -->
+
+% <!-- index-def: work-unit-boundary -->
+
+The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. These boundaries matter because different obligations become legible at different grains of work.
+
+% <!-- point: the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible | The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept. | terms: artifact-runtime-boundary, intervention-boundary, ban-lint -->
+
+% <!-- index-def: artifact-runtime-boundary -->
+
+The third enforcement boundary is the \textbf{artifact or runtime boundary}: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. DocAble\textquotesingle s format seam (the worked example below) is the concrete case: one structured interface for document mutation, with a ban-lint on direct access.
+
+\section{Placement and Strength Are Different Decisions}\label{heading:placement-and-strength-are-different-decisions}
+
+% <!-- section-terms: intervention-boundary, guidance-vs-enforcement -->
+
+% <!-- point: the-four-boundaries-do-not-form-a-monotonic-scale | The four boundaries do not form a monotonic weak-to-strong scale. | terms: intervention-boundary, guidance-vs-enforcement -->
+
+The four boundaries do not form a monotonic scale from weak to strong. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
+
+% <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
+
+Richer models can expand the properties the environment is able to state and govern, but substantial enforcement can exist without them. A bounded execution sandbox, for example, can constrain actions without requiring a rich model of the system it contains.
+
+\section{Return Evidence at the Earliest Useful Boundary}\label{heading:return-evidence-at-the-earliest-useful-boundary}
+
+% <!-- section-terms: intervention-boundary, feedback -->
+
+% <!-- point: every-boundary-determines-where-feedback-can-return | Every boundary also determines where feedback can return; earlier evidence means less to reconstruct. | terms: intervention-boundary, feedback -->
+
+% <!-- index-def: intervention-boundary -->
+
+% <!-- index-def: engineered-agent-loop -->
+
+The boundaries also decide where feedback can return. A harness can preserve durable state before a lossy compaction; an action hook can explain why a call was refused; CI can hand back a failing invariant while the change is still fresh in the window; a deployment validator can report which evidence failed admission. The earlier useful evidence returns, the less work an agent must reconstruct before repairing the miss.
+
+% <!-- point: these-mechanisms-do-not-act-independently-deferred-to-3-5 | These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5. | terms: intervention-boundary -->
+
+Controls within the GEE can also interact or conflict; \magevalue{sec:when-guardrails-collide} treats their growing portfolio as a system in its own right.
+
+% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it. | terms: alignment-principle, intervention-boundary -->
+
+\textbf{The Alignment Principle:} make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission. \emph{In other words:} once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.
+
+% <!-- point: alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it | Enforcement installed at a boundary is easiest to see in systems already using it. | terms: alignment-principle, intervention-boundary -->
+
+\magevalue{chapter:one-problem-many-models} turns these mechanisms into method. For now, their placement is easiest to see in systems already using them.
+
+% <!-- worked-examples: alignment-principle -->
+
+\subsection{Example --- Docker}\label{heading:example-docker}
+
+Docker\textquotesingle s public account places enforcement in the environment, not its instructions: the agent acts only through a constrained tool seam, and the platform --- not the prompt --- decides what that seam permits. A move outside the boundary is refused, not merely discouraged. The permission is enforced at the action boundary: the agent cannot override it through its instructions.
+
+Two industrial fleets place enforcement the same way at coarser grain. Zenseact\textquotesingle s public account describes each domain team\textquotesingle s agent as little more than a config file and a skill, while a central team owns the runtime, permissions, and context routing; an agent\textquotesingle s reach is a property of where it sits in the platform, not of how it was asked. Spotify\textquotesingle s public account describes migration agents operating through a restricted API and a narrow Git interface, with every change clearing a merge gate before it lands. The gate, not the agent\textquotesingle s confidence, admits the work.
+
+\subsection{Example --- DocAble}\label{heading:example-docable}
+
+DocAble distributes its controls across the boundaries: a skill in the harness, an action hook, a pre-commit check, and --- its sharpest --- an application-boundary seam for document mutation. At the application boundary, DocAble represents document mutation through a sanctioned structured seam. Static controls reject ordinary code that bypasses that seam for the raw format library. The model states the architecture; the interface and lint enforce that relation.
+
+% <!-- takeaway -->
+
+Place the enforcing mechanism at a boundary where the obligation is legible and the environment can evaluate or constrain the relevant work. The appropriate boundary depends on the obligation.
+
+% <!-- worked-examples-end -->
+
+% <!-- point: richer-representations-enlarge-the-surface-next-chapter-asks-what-deserves-enforcement | Richer representations enlarge the surface the environment can enforce; the next section asks what must be true before an obligation deserves enforcement. | terms: modeling-principle, alignment-principle, semantic-gap -->
+
+The next section asks what must be true before an obligation deserves enforcement.

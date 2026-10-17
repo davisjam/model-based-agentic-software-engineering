@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-operators-reference/_opening.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 **Operational reference for running a Governed Engineering Environment**
 
 This appendix is an operational reference for a Governed Engineering Environment. Use each card to answer a specific operating question, then return to the work.

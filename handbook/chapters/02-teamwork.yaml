@@ -1,0 +1,14 @@
+id: teamwork
+title: Teamwork
+short_title: Teamwork
+order: 2
+status: draft
+description: >
+  A software team is a system for coordinating engineering capability. Adding people adds capability
+  but also adds coordination cost, so teamwork must be engineered rather than assumed.
+objectives:
+  - Explain why engineering capacity does not scale linearly with team size.
+  - Describe the team-level properties — shared context, trust, and coordination — through which individual capability becomes team capability.
+  - Compare coordination mechanisms by topology, frequency, cost, and reliability.
+  - Describe how coordination can be engineered rather than left implicit.
+  - Explain how engineering management allocates, sustains, and develops capability, and why an assignment changes both the product and the organization.

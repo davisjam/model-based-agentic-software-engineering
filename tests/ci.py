@@ -368,12 +368,22 @@ def check_ci_steps_invoke_gates_rather_than_embedding_them():
         issues.append(f"no step in {WORKFLOW} invokes `npm run` — either the workflow stopped using "
                       f"package scripts or this scan is not reading the blocks")
     issues += _embedded_gate_findings(text)
+    issues += _latex_pipeline_findings(text)
     return (FAIL if issues else PASS), issues
 
 
 def check_ci_embedded_gate_rule_fires():
     """Negative control: the rule reports the inline parity step this repo used to ship."""
     issues: list[str] = []
+
+    # Mutation controls: a forgotten projection gate or missing TeX package must fail.
+    with open(os.path.join(ROOT, WORKFLOW), encoding="utf-8") as fh:
+        live = fh.read()
+    for missing in ("python3 tools/mage_latex.py sync --check",
+                    "python3 handbook/scripts/latex_source.py sync --check",
+                    "bash tools/install_texlive_ci.sh", "librsvg2-bin"):
+        if not _latex_pipeline_findings(live.replace(missing, "")):
+            issues.append(f"removing {missing} must break the LaTeX pipeline gate")
 
     # The step as it actually was, before `npm run check:parity` replaced it. Verbatim shape: an
     # `--input-type=module --eval` importing the registry and deciding the threshold on the spot.
@@ -424,3 +434,35 @@ def check_ci_embedded_gate_rule_fires():
         issues.append("flow style was expected to defeat the block scanner; the guard's premise moved")
 
     return (FAIL if issues else PASS), issues
+
+
+def _latex_pipeline_findings(text: str) -> list[str]:
+    """Every isolated manuscript consumer checks projections before reading them; PDF jobs install TeX."""
+    jobs = dict(re.findall(r"^  ([\w-]+):\n(.*?)(?=^  [\w-]+:|\Z)", text, re.M | re.S))
+    consumers = {
+        "site-gates": "python3 catalog.py validate",
+        "book-editions": "python3 book/build_book.py --pdf",
+        "handbook": "make -C handbook book",
+        "web-editions": "python3 book/book_mkdocs.py",
+        "assemble": "python3 catalog.py validate",
+    }
+    issues = []
+    for job, consumer in consumers.items():
+        body = jobs.get(job, "")
+        at = body.find(consumer)
+        if at < 0:
+            issues.append(f"CI {job}: missing manuscript consumer {consumer}")
+            continue
+        before = body[:at]
+        for command in ("python3 tools/mage_latex.py sync --check",
+                        "python3 handbook/scripts/latex_source.py sync --check"):
+            checked = before.find(command)
+            if checked < 0:
+                issues.append(f"CI {job}: {command} must precede manuscript consumers")
+            elif "pandoc --version" not in before[:checked]:
+                issues.append(f"CI {job}: Pandoc must be installed before source projection checks")
+        if job in ("book-editions", "handbook"):
+            for dependency in ("bash tools/install_texlive_ci.sh", "librsvg2-bin"):
+                if dependency not in before:
+                    issues.append(f"CI {job}: missing {dependency} before PDF compilation")
+    return issues

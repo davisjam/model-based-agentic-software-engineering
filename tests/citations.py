@@ -55,7 +55,7 @@ def _all_book_md_files() -> list[str]:
 # Source trees under book/ that are NOT authored chapter/appendix prose: generated projections (web,
 # dist), design notes and drafts (_design), and the print/pitch scaffolding. The PLACEMENT check scans
 # everything else — any authored markdown a projection may render.
-_NON_SOURCE_DIRS = {"_design", "web", "dist", "_print", "_typst", "_pitch", "assets"}
+_NON_SOURCE_DIRS = {"_design", "web", "dist", "_print", "_typst", "_latex", "latex", "_pitch", "assets"}
 
 
 def _all_cite_source_md_files() -> list[str]:
@@ -129,7 +129,19 @@ def check_cite_fresh():
     if stored != fresh:
         issues.append(f"citations.json is STALE (stamp {str(stored)[:12]}… != references.bib "
                       f"{fresh[:12]}…) — run `python3 book/render_citations.py`")
+    style_hash = hashlib.sha256(rc.CSL_PATH.read_bytes()).hexdigest()
+    if payload.get("_stamp", {}).get("csl_sha256") != style_hash:
+        issues.append("citations.json CSL style stamp is stale — re-run book/render_citations.py")
+    if payload.get("_stamp", {}).get("engine") != f"pandoc-citeproc-{rc.STYLE}":
+        issues.append("citations.json was not rendered with the current Pandoc/Chicago pipeline")
     rendered = set(payload.get("citations", {}))
+    for entry in rc.parse_bib(bib_text):
+        actual = payload.get("citations", {}).get(entry["key"], {}).get("csl")
+        if actual != entry["csl"]:
+            issues.append(f"citation metadata for {entry['key']!r} differs from canonical references.bib")
+    extra = rendered - _bib_keys()
+    if extra:
+        issues.append(f"citations.json contains keys absent from references.bib: {sorted(extra)}")
     missing = _bib_keys() - rendered
     for k in sorted(missing):
         issues.append(f"citations.json is missing rendered strings for {k!r} (partial render — re-run "
@@ -315,56 +327,75 @@ def check_cite_symbology():
 
 
 def check_cite_parity():
-    """BIB-5 (BLOCKING). The two surfaces render the SAME reference data. It holds by construction — the
-    HTML reads citations.json, which render_citations.py produced via Typst from the derived source pair
-    (rest-bib + re-typed Hayagriva YAML, split from the canonical references.bib by
-    `render_citations.derived_sources`), and the PDF renders the SAME derived pair natively through the
-    SAME Typst engine (in its own deliberate style — nature — so the strings differ in FORM, never in
-    data; CITE-FRESH pins the JSON to the .bib). This gate asserts the two structural preconditions of
-    that guarantee: the emitted Typst document (a) cites every corpus key via `#cite(<key>)`, and (b)
-    draws its bibliography from both files of the derived pair. A key cited in prose but absent from the
-    Typst projection — or a Typst bibliography pointed at different sources — would break parity."""
-    corpus_keys = sorted({k for f in _all_book_md_files()
-                          for k in bb.iter_cite_keys(open(f, encoding="utf-8").read())})
-    if not corpus_keys:
-        return PASS, ["no [cite:] markers — parity holds vacuously"]
+    """BIB-5: every web chapter's citation keys survive in its native LaTeX source.
+
+    The manifest binds authoritative TeX to each compatibility projection. CITE-FRESH
+    separately checks citation JSON metadata against canonical references.bib. The PDF
+    build checks actual assembled chapter inputs and bibliography data before compiling.
+    """
+    import json
+    manifest = os.path.join(_BOOK, "latex", "native-sources.json")
     try:
-        import book_typst  # noqa: PLC0415 — heavy import; only needed when the corpus cites
-        # PRINT projection (for_print=True) — the slug list must match what emit_document renders internally
-        # (also the print projection), so an appendix page the print edition drops (e.g. the Appendix E
-        # recipe under the pointer collapse) is not requested as an unknown chapter.
-        doc = book_typst.ir.parse_book(include_appendices=True, for_print=True)
-        typ = book_typst.emit_document([c.slug for c in doc.chapters], with_frontmatter=True)
-    except Exception as e:  # noqa: BLE001 — a Typst-emit failure is itself a parity finding
-        return FAIL, [f"could not emit the Typst projection to check parity: {e}"]
-    issues: list[str] = []
-    for k in corpus_keys:
-        if f"#cite(<{k}>)" not in typ and f"#cite(<{k}>," not in typ:
-            issues.append(f"key {k!r} is cited in prose but the Typst (PDF) projection has no #cite(<{k}>) "
-                          f"— the surfaces would diverge")
-    for name in (rc.DERIVED_BIB_NAME, rc.DERIVED_YAML_NAME):
-        if name not in typ:
-            issues.append(f"the Typst projection cites works but its #bibliography does not draw from "
-                          f"{name} (the derived pair render_citations.derived_sources splits from "
-                          f"references.bib) — the PDF would render from a different source than the web "
-                          f"book")
+        sources = json.load(open(manifest, encoding="utf-8"))["sources"]
+    except (OSError, ValueError, KeyError) as exc:
+        return FAIL, [f"cannot read native source manifest for citation parity: {exc}"]
+    by_projection = {os.path.normpath(os.path.join(ROOT, row["projection"])): row["source"]
+                     for row in sources}
+    issues = []
+    for projection in _all_book_md_files():
+        source = by_projection.get(os.path.normpath(projection))
+        if not source:
+            issues.append(f"{rel(projection)} has no authoritative LaTeX source in the manifest")
+            continue
+        try:
+            native = open(os.path.join(ROOT, source), encoding="utf-8").read()
+        except OSError as exc:
+            issues.append(f"cannot read {source}: {exc}")
+            continue
+        expected = set(bb.iter_cite_keys(open(projection, encoding="utf-8").read()))
+        actual = {key.strip() for group in re.findall(r"\\cite[pt]\{([^}]+)\}", native)
+                  for key in group.split(",")}
+        if actual != expected:
+            issues.append(f"{source}: native/web citation mismatch: missing {sorted(expected-actual)}; "
+                          f"unexpected {sorted(actual-expected)}")
+        unknown = actual - _bib_keys()
+        if unknown:
+            issues.append(f"{source}: native citations absent from canonical bibliography: {sorted(unknown)}")
     return (FAIL if issues else PASS), issues
 
 
+
 def check_cite_nonempty():
-    """BIB-10 (BLOCKING). Every entry in citations.json carries a NON-EMPTY rendered string in all
-    three forms (note_html / works_cited_html / bib_html). The failure this pins: Hayagriva's
-    chicago-notes style treats a source with no locator (a @misc with neither url nor doi) as
-    notes-only and emits an EMPTY bibliography <li>, so a numbered Works-Cited entry rendered as a
-    bare number — silently, with no build error (11 entries shipped that way before the
-    render_citations.py never-empty fallback). Checks the committed JSON, the one artifact BOTH
-    surfaces consume, so any regression — a Typst/Hayagriva behavior change, a new notes-only entry
-    shape the fallback misses — fails loud here."""
+    """BIB-11: every rendered form is nonempty; citeproc extraction retains semantic markup."""
     if not os.path.isfile(_CITATIONS_JSON):
         return PASS, ["no citations.json — nothing to check (CITE-FRESH owns the missing-file case)"]
     import json
     payload = json.load(open(_CITATIONS_JSON, encoding="utf-8"))
     issues: list[str] = []
+    sample = ('<div id="ref-fixture" class="csl-entry">Author. <em>Book</em>. '
+              '<a href="https://example.org/?a=1&amp;b=2">Link</a>.</div>'
+              '<section role="doc-endnotes"><ol><li id="fn1"><p>'
+              'Author, <em>Book</em>, x<sup>2</sup>.'
+              '<a href="#fnref1" role="doc-backlink">↩︎</a></p></li></ol></section>')
+    original = '@book{case,\n title={U.S. and {DOJ}: API},\n author={Doe, Jane},\n year={2026},\n} '
+    protected = rc._protect_title_case(original)
+    if 'title={{U.S. and {DOJ}: API}}' not in protected:
+        issues.append("temporary BibTeX title case-protection was not added")
+    if rc.parse_bib(original) != rc.parse_bib(protected):
+        issues.append("temporary title protection altered bibliography fields")
+    note, bib = rc._extract_rendered(sample, "fixture")
+    if note != 'Author, <em>Book</em>, x<sup>2</sup>.':
+        issues.append(f"citeproc full-note extraction lost markup or kept backlink: {note!r}")
+    if bib != ('Author. <em>Book</em>. '
+               '<a href="https://example.org/?a=1&amp;b=2">Link</a>.'):
+        issues.append(f"citeproc bibliography extraction changed emphasis or external link: {bib!r}")
+    try:
+        rc._extract_rendered('<p>no note</p>', "missing")
+    except RuntimeError:
+        pass
+    else:
+        issues.append("citation extractor accepted a document without an endnote")
+
     for key, entry in sorted(payload.get("citations", {}).items()):
         for form in ("note_html", "works_cited_html", "bib_html"):
             if not entry.get(form, "").strip():

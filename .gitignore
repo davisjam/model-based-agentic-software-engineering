@@ -159,3 +159,6 @@ book/_contract/
 
 # LaTeX compilation products and local font caches; manuscript .tex stays tracked.
 /latex/build/
+/book/latex/build/
+/book/latex/assets/
+/book/latex/pilot/

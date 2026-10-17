@@ -1,0 +1,15 @@
+id: specification
+title: Specification
+short_title: Specification
+order: 5
+status: draft
+description: >
+  Specification makes accepted requirements actionable through three judgments: deciding where
+  specification effort should go, allocating responsibility between the environment and the
+  machine, and deciding how tightly the machine should be constrained.
+objectives:
+  - Prioritize specification effort toward the aspects of accepted requirements that are both consequential and uncertain.
+  - Explain how environmental assumptions connect a machine specification to a requirement about the world, and allocate responsibility across the environment-machine boundary.
+  - Explain how a specification bounds acceptable realizations without prescribing an implementation.
+  - Classify an unconstrained choice as unknown, tacit, or a genuine degree of freedom.
+  - Decide whether to constrain a choice, leave it open, or learn more.

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/uber.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ### Uber
 
 *Ride-hailing and logistics platform · a durable environment around a replaceable reasoner (economics motive)*
@@ -11,7 +13,6 @@
 **Boundary of the evidence.** The account is self-reported operational data, not a controlled comparison. It is strong on context, skills, routing, benchmarks, and cost, and much thinner on behavioral, process, or invariant models serving as the primary reasoning surface — its substrate is a knowledge-and-context graph, not an executable model of the software. GitLab's account is thinner still: a vendor architectural vision rather than a measured deployment.
 
 **Portable lesson.** When code is abundant, the durable engineering object is the environment around the reasoner — the context it reads, the tools it may call, the cost it is measured against — not the reasoner itself.
-
 
 #### Recto — MAGE Interpretation
 

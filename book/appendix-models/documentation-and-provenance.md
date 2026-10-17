@@ -1,12 +1,12 @@
-Provenance models record what happened. Documentation models represent the human-facing claims that
-should remain synchronized with those facts. In review, they expose whether required records exist and
-whether derived documentation still reflects its source.
+<!-- GENERATED from book/latex/sources/appendix-models/documentation-and-provenance.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
+Provenance models record what happened. Documentation models represent the human-facing claims that should remain synchronized with those facts. In review, they expose whether required records exist and whether derived documentation still reflects its source.
 
 **Engineering question.** What happened, and which human-facing account of it must remain true?
 
 **Representation.**
 
-```
+``` text
 Action
     id
     artifact
@@ -20,8 +20,7 @@ DerivedDocumentation
     rendered_claim
 ```
 
-Where documentation can be derived from structured facts, generate it from those facts rather than
-maintaining an independent copy.
+Where documentation can be derived from structured facts, generate it from those facts rather than maintaining an independent copy.
 
 [ref:fig-g6-facts-before-prose] puts the fact before the prose.
 
@@ -34,6 +33,4 @@ maintaining an independent copy.
 - **Generated documentation reflects the current structured facts** from which it is derived.
 - **References in generated documentation resolve to existing identities.**
 
-**Enforcement and correspondence.** Structured provenance can be validated mechanically, and generated
-documentation can be re-derived from its source facts. Free prose generally cannot be checked for
-semantic equivalence by the same machinery and therefore remains subject to human review.
+**Enforcement and correspondence.** Structured provenance can be validated mechanically, and generated documentation can be re-derived from its source facts. Free prose generally cannot be checked for semantic equivalence by the same machinery and therefore remains subject to human review.

@@ -50,3 +50,13 @@ if _deck_gate.returncode:
         "(tools/pptx_validate.py; PowerPoint would report the deck as needing repair)."
     )
     sys.exit(1)
+
+# LaTeX is authoritative. Check its tracked Markdown compatibility projections before any
+# consumer reads them. Never regenerate/stage manuscript files implicitly: the author runs
+# `sync`, reviews the projection diff, and stages the intended files with the LaTeX edit.
+for _source_tool in ("tools/mage_latex.py", "handbook/scripts/latex_source.py"):
+    _projection = subprocess.run([sys.executable, _source_tool, "sync", "--check"], cwd=ROOT)
+    if _projection.returncode:
+        print(f"pre-merge-commit: LaTeX projection check FAILED. Run `python3 {_source_tool} sync`, "
+              "review and stage the generated Markdown with its LaTeX source, then retry.")
+        sys.exit(_projection.returncode)

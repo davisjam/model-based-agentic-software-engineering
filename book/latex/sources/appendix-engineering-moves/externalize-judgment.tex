@@ -1,0 +1,21 @@
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} Operational work remains expensive when each incident requires an operator to reconstruct the same judgment: what healthy state looks like, what a symptom means, which procedure applies, and what evidence confirms recovery.
+
+\textbf{Move.} Make recurring operational judgment explicit. Generate or execute what can be mechanized; provide guidance where judgment remains necessary; and keep both tied to the system they describe.
+
+\autoref{fig-move09} traces the system model into the operational model.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c9-externalize-judgment-b6f7ed5dfa.pdf}
+\caption{\emph{From system model to operational guidance.} Healthy-state predicates, states, and relations feed an operational model that produces generated procedure where possible and reasoning guidance where judgment remains necessary.}
+\label{fig-move09}
+\end{figure}
+
+\textbf{Example --- Generated runbook.} DocAble\textquotesingle s lifecycle model names operational subsystems and their healthy-state predicates. The operator runbook is generated from that representation, keeping procedure aligned with the system model. When a subsystem\textquotesingle s healthy-state predicate changes, the generated runbook changes with it.
+
+\textbf{Example --- Event-bound playbook.} The orchestrator reacts to typed fleet events through per-topic playbooks. The playbook records the trigger and response once, so the orchestrator can execute them when the event recurs rather than reconstructing the procedure each time.
+
+\textbf{Related mechanisms:} Lifecycle model → generated runbook · Operational playbooks · Operator runbook skill · Encoded Operational Judgment · Orchestrator-as-reactor.

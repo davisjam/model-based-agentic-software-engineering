@@ -19,6 +19,13 @@ def check_deploy_publishable():
     accepts a real derived build output under a content root outside `_design/`."""
     # (path, expected) — reject-under-_design cases span multiple extensions and depths.
     cases = [
+        ("latex/build/proof-luamml-mathml.html", False),
+        ("book/latex/build/book-luamml-mathml.html", False),
+        ("book/latex/sources/chapter.tex", False),
+        ("book/_latex/proof.html", False),
+        ("handbook/generated/latex/chapter.html", False),
+        ("product/generated/real-page.html", True),
+        ("product/build/real-page.html", True),
         # The exact deploy-#3 leak, plus siblings at other exts/depths under _design/.
         ("book/_design/drafts/brownfield-260805/figure-wiki-linkage.svg", False),
         ("book/_design/x.html", False),

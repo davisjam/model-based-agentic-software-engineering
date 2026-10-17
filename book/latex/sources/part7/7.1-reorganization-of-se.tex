@@ -1,0 +1,229 @@
+% mage-auto-heading: was-implementation-ever-the-bottleneck
+% mage-auto-heading: agents-entered-an-implementation-centered-discipline
+% mage-auto-heading: the-old-dream-with-a-new-substrate
+% mage-auto-heading: where-engineering-effort-moves
+% mage-auto-heading: review-when-implementation-is-abundant
+% mage-auto-heading: engineering-the-production-system
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Profession -->
+
+% <!-- chapter-title: The Reorganization of Software Work -->
+
+\chapter{The Reorganization of Software Work}
+
+Commodity intelligence does not invalidate software engineering. It changes its cost structure. When implementation consumes less of the engineering budget, the relative value of specification, architecture, modeling, validation, measurement, and governance rises.
+
+\textbf{In software, MAGE is software engineering under changed economics.} Many of its underlying moves are old: externalize intent, hide volatile decisions behind boundaries, test claims against evidence, automate repeatable operations, learn from failure. What changes is how far those moves can be carried when implementation and routine analysis become cheaper while autonomous work makes it increasingly expensive for humans to reconstruct the same knowledge repeatedly.
+
+\section{Was Implementation Ever the Bottleneck?}\label{heading:was-implementation-ever-the-bottleneck}
+
+A reasonable objection begins with a fact: \textbf{software engineers do not spend most of their workweek typing code.} This result predates generative AI. Meyer et al., drawing on 5,971 responses from professional developers, found that software work spans a much broader mixture of development and non-development activities. More recently, Kumar et al. separated the developer workweek into sixteen activities; in their Microsoft sample, coding new features occupied roughly 11 percent of the actual week, alongside debugging, architecture and design, code review, testing, refactoring, environment work, security, communication, and other activities.\mageaside{André N. Meyer et al.;\citep{meyer2021goodday} Sukrit Kumar et al.\citep{kumar2025timewarp} Kumar et al. distinguish sixteen activities and report approximately 12 percent of the actual week in communication and meetings, 11 percent in coding, 9 percent in debugging, 6 percent in architecture and design, and 5 percent in pull-request and code review.}
+
+Butler et al. turn that observation into a critique of contemporary GenAI.\mageaside{These developer-time studies describe how work was allocated before today\textquotesingle s stronger autonomous coding agents; I use them as evidence about work allocation, not as an empirical ceiling on what later bounded agents can perform.} If the technology merely makes the coding slice faster, its whole-job effect has a low ceiling. Even if coding occupies only roughly 10--15 percent of the workweek, doubling performance on it cannot double developer productivity; faster source production can simply move pressure downstream into review, testing, integration, and other work. Their criticism applies well to \textbf{GenAI used as individual code-generation assistance}. It also supports a broader point MAGE shares: lines of generated code are not an engineering outcome, and handing developers a tool does not by itself redesign the system of work around them.\mageaside{Jenna Butler et al.\citep{butler2026eightmyths} The article\textquotesingle s "Writing Code Is the Bottleneck" discussion explicitly frames the problem as GenAI used primarily to accelerate code creation while the surrounding development loop remains unchanged.}
+
+The disagreement begins when that fixed slice is treated as a bound on \textbf{agentic engineering}. Time categories are not independent production stages. Software engineers learn about a design by realizing it: implementation exposes missing abstractions; debugging changes what we believe about behavior; tests expose underspecified obligations; refactoring discovers structure; deployment reveals couplings that static design did not anticipate. This interleaving is not a new observation. Ralph\textquotesingle s Sensemaking--Coevolution--Implementation theory models software development as repeated movement among understanding the context, revising the problem and design together, and constructing, debugging, and deploying the artifact; a later multi-method study using more than 1,300 developers and four longitudinal cases strongly supported that process account.\mageaside{Paul Ralph, the Sensemaking--Coevolution--Implementation theory,\citep{ralph2015sci} and its multi-method follow-through,\citep{ralph2016processtheory} which combined a survey of more than 1,300 developers with four longitudinal case studies and reported strong support for the SCI account. For an older and deliberately stronger version of the "implementation is design" argument, see Jack W. Reeves.\citep{reeves1992whatissoftwaredesign}}
+
+MAGE therefore uses \textbf{implementation capacity} in an economic rather than time-sheet sense. Every design hypothesis that has to be realized before the team can learn from it imposes a cost, even if the eventual keystrokes occupy only a small fraction of the calendar. Reduce that cost sufficiently and more alternatives become affordable, feedback arrives sooner, and intelligence can participate in more of the surrounding loop. Modern coding agents already reach beyond source generation into repository inspection, debugging, test construction, refactoring, tool execution, and multi-step changes. Whether they can safely take on still more of that loop is exactly the engineering question MAGE addresses.
+
+This makes the disagreement empirically testable. \textbf{If agents remain trapped in the IDE, the 15-percent argument largely wins. If governed agents can assume meaningful portions of debugging, testing, refactoring, integration, migration, and operation without proportionate growth in human review, a fixed coding-time slice is no longer the right model of attainable leverage.} MAGE is about crossing that boundary without losing engineering control.
+
+DevOps offers a particularly close precedent. Infrastructure as Code and Policy as Code moved knowledge that once lived in operating practice into executable artifacts. MAGE generalizes the move without insisting on code as the form: an engineering decision might become a type, model, schema, validator, permission, workflow, or documented review obligation. \textbf{Useful engineering knowledge increasingly becomes structure later work can inherit; residual semantic judgment remains with people.}
+
+MAGE inherits the older disciplines rather than replacing them: explicit intent, short feedback, automated delivery, and governed autonomy solve different parts of the engineering problem.
+
+\section{Agents Entered an Implementation-Centered Discipline}\label{heading:agents-entered-an-implementation-centered-discipline}
+
+% <!-- point: agents-inherited-the-implementation-centered-object | The first agentic-SE research inherited the engineering object in front of it — a repository and a task — and asked how to make a stronger reasoner perform it. -->
+
+The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task. The central question was how to make an increasingly capable reasoner perform that task more effectively.
+
+% <!-- point: repocoder-sweagent-autocoderover-share-an-orientation | Retrieval, purpose-built interfaces, program analysis, and specification inference differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact. -->
+
+The progression is instructive. Early agentic software-engineering research improved agents\textquotesingle{} ability to work with existing software artifacts. Repository retrieval made relevant code and documentation available during implementation.\citep{zhang2023repocoder} Purpose-built interfaces improved an agent\textquotesingle s ability to navigate repositories, edit files, and execute tests.\citep{yang2024sweagent} Program analysis helped agents locate and reason about changes by exploiting program structure rather than treating a project as a collection of files.\citep{zhang2024autocoderover} More recent work has also attempted to infer specifications from existing artifacts.\citep{ruan2025specrover} These developments improve how agents understand and modify software, and establish important foundations for autonomous implementation. They share an orientation: improving the machinery an agent uses to act on the software artifact.
+
+% <!-- point: agent-governance-research-is-another-antecedent | Agent-governance research translates obligations into controls across design-time, runtime, and assurance layers, evaluates actions against path-dependent policies, and integrates enforcement into an agent's operating environment; MAGE's governance-conversion process adds how implementation reveals missing obligations. | terms: governance-conversion, alignment-principle -->
+
+Research on agent governance provides another important antecedent. Existing methods translate organizational and regulatory obligations into technical controls and assign those controls across design-time, runtime, and assurance layers.\citep{koch2026governance} Other frameworks evaluate a proposed action against policies that depend on the agent\textquotesingle s execution history.\citep{kaptein2026runtime} Governance-by-construction systems demonstrate how policy enforcement can be integrated into an agent\textquotesingle s operating environment.\citep{shlomov2026construction} These approaches develop architectures and methods for governing agentic systems. MAGE\textquotesingle s governance-conversion process additionally accounts for how failures encountered during implementation reveal missing obligations or controls, and how engineers preserve those lessons for subsequent work.
+
+% <!-- point: mage-accepts-machinery-and-changes-the-object | MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation. -->
+
+MAGE accepts that machinery and enlarges the engineering object. The question is no longer only how an agent should navigate a repository, retrieve context, use tools, or construct a patch. It is what durable environment should be engineered around autonomous implementation: which system properties deserve explicit representation; which obligations deserve enforcement; what evidence work must produce; how representations remain in correspondence with the implementation; and how recurring judgment becomes machinery inherited by later work.
+
+% <!-- point: the-difference-is-level-not-opposition | Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent. -->
+
+The difference is one of level, not opposition. Repository retrieval, structured code search, agent-computer interfaces, tests, and tool use all belong inside a governed engineering environment. MAGE\textquotesingle s claim is that they are pieces of a larger engineered substrate rather than accessories to a coding agent.
+
+\section{The Old Dream, with a New Substrate}\label{heading:the-old-dream-with-a-new-substrate}
+
+% <!-- point: the-old-dream-with-a-new-substrate | The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible. -->
+
+The ambition predates today\textquotesingle s coding agents. In the 1980s, Charles Rich and Richard Waters\textquotesingle s Programmer\textquotesingle s Apprentice envisioned an AI system not merely as a programming tool but as an agent in the software process. The engineer would share programming knowledge with the Apprentice and delegate work across implementation, design, requirements, verification, explanation, and documentation.\citep{rich-waters} Its internal representations made programming concepts explicit so that routine questions could be answered from represented knowledge rather than reconstructed from first principles.
+
+The project realized important pieces of that vision, but under different constraints. Its intelligence depended heavily on programming knowledge deliberately encoded into specialized representations; Rich and Waters themselves observed that the economics failed when too much knowledge had to be supplied for each problem. Commodity intelligence changes that premise. A general-purpose reasoner can now arrive with substantial prior competence, enter an unfamiliar repository, use tools, interpret natural-language intent, and construct substantial implementations without the engineering organization first encoding everything it might need to know.
+
+Old ideas therefore return throughout MAGE. The ambition of an intelligent programming partner is old. Explicit machine-usable engineering knowledge is old. Models, constraints, verification, feedback, and delegated realization are old. What changes is the economics. Earlier systems could demonstrate pieces of the vision; today\textquotesingle s systems realize enough of it to expose the next-order engineering problems: keeping representations trustworthy, deciding which obligations deserve enforcement, producing evidence at agentic velocity, and converting recurring judgment into machinery that later work inherits.
+
+MAGE does not depend on a historically novel ambition. It is an engineering account of what happens when much of that ambition becomes operational at production scale.
+
+This history also shows a broader progression. AI has long engineered external machinery around finite reasoners through memory, structured representations, planners, tools, and world models. Agentic software engineering applies related machinery to work over repositories through retrieval, program-aware search, purpose-built interfaces, tests, and inferred specifications. MAGE moves the engineering boundary outward again: the repository and agent remain part of the system, while purposeful system models, enforced obligations, evidence, controls, and the machinery that maintains them become first-class objects of software engineering.
+
+\section{Where Engineering Effort Moves}\label{heading:where-engineering-effort-moves}
+
+% <!-- point: allocation-changes-even-where-the-eventual-organization-is-uncertain | As implementation becomes cheaper the allocation of engineering work changes, even though the eventual organization of that work stays uncertain: delegation expands, responsibility does not move with it, and scarce human effort concentrates where responsibility sits. -->
+
+% <!-- index-def: engineers-seat -->
+
+As implementation becomes cheaper, the allocation of engineering work changes even if the eventual organization of that work remains uncertain. \textbf{Delegation expands; responsibility remains.} The fleet can assume more of the analysis, transformation, implementation, and routine remediation across the lifecycle; engineers must retain sufficient control to remain responsible for intent, abstraction, evidence, tradeoffs, and acceptance. Scarce human effort concentrates where that responsibility sits. We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it. \autoref{where-effort-moves} shows that movement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/where-effort-moves-ff35e2dbed.pdf}
+\caption{\emph{Where Engineering Effort Moves.} As the fleet assumes work across the lifecycle, the engineer increasingly works through the surrounding engineering environment: specifying intent, choosing consequential abstractions, evaluating evidence, resolving tradeoffs, and adapting the environment itself.}
+\label{where-effort-moves}
+\end{figure}
+
+% <!-- point: the-figure-shows-redistribution-not-the-eventual-form | The figure identifies a redistribution of work, not the eventual form of software engineering: its governed environment holds several kinds of machinery, so nothing in it says that displaced engineering effort becomes modeling. -->
+
+The figure identifies a broad redistribution of work, not the eventual form of software engineering. Its governed environment holds several kinds of machinery: models and context, permissions and constraints, evidence and validators, admission mechanisms, and operational controls. Nothing in the figure says that displaced engineering effort becomes modeling.
+
+% <!-- point: where-displaced-effort-settles-depends-on-what-becomes-cheaper | Where displaced effort settles depends on which parts of the production system become cheaper and more reliable, and the theory of Chapter 6 names the quantities those improvements act on. -->
+
+Where that displaced effort settles depends on which parts of the production system become cheaper and more reliable. \magevalue{chapter:theory} supplies the quantities. Satisfactory realization through a representation \(R\) depends on whether consequential intent is encoded in it (\(P(E \mid R)\)), whether that encoding is interpreted correctly (\(P(I \mid E, R)\)), and whether the interpretation is realized correctly (\(P(L \mid I, E, R)\)). Governance carries a separate term, \(q(T,R,A)\), the probability that an unacceptable candidate escapes the mechanisms governing an obligation. Cost enters through \(c_R\), the cost of a realization attempt, and \(C_{\text{carry}}\), the cost of keeping a representation and its enforcement machinery useful as the software changes. The engineer chooses the representation and the Alignment strategy together against those quantities.
+
+% <!-- point: four-trajectories-are-the-independent-variables-behind-the-uncertainty | Technological progress can move those terms independently: reasoners, representation machinery, realization machinery, and governance machinery can each improve at their own rate, and they are the independent variables that prevent a single confident forecast. -->
+
+Technological progress can move these terms independently. Reasoners can improve. So can the machinery for constructing and maintaining representations, the machinery for realizing them, and the machinery for detecting and refusing unacceptable results. These four are not a taxonomy of tools. They are the independent variables that prevent a single confident forecast. \autoref{effort-trajectories} sketches how each would redirect engineering effort. The correspondence is deliberately not one term per row: an improvement can change several terms at once, and representation machinery changes probabilities and costs alike.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[How technological progress can redirect engineering effort]{\emph{Possible movements of engineering effort.} Improvements in different parts of the production system act on different terms of the \magevalue{chapter:theory} engineering problem. The trajectories can proceed independently and in combination, so the rows describe the pressures each would create rather than a forecast of a single future process.}\label{effort-trajectories}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Technological trajectory and terms affected
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What becomes economical
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering effort moves toward
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Technological trajectory and terms affected
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What becomes economical
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering effort moves toward
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Reasoners improve: \(P(I \mid E, R)\uparrow\), \(P(L \mid I, E, R)\uparrow\) & Reasoning successfully from less complete representations, and leaving more legitimate choices unresolved until realization & Choosing consequential distinctions, bounding degrees of freedom, and judging results rather than specifying every realization choice \\
+Representation machinery improves: \(P(E \mid R)\uparrow\), \(P(I \mid E, R)\uparrow\), \(C_{\text{carry}}(R)\downarrow\) & Constructing, maintaining, reconciling, and querying explicit representations & Choosing abstractions, validating representations, and maintaining correspondence among them and with the system \\
+Realization machinery improves: \(P(L \mid I, E, R)\uparrow\), \(c_R\downarrow\) & Reliably transforming sufficiently complete representations into implementations, potentially deterministically & Specifying and validating what should be realized rather than supervising how it is implemented \\
+Governance machinery improves: \(q(T,R,A)\downarrow\), \(C_{\text{carry}}(A)\downarrow\) & Detecting, rejecting, or preventing unacceptable realizations independently of the producing reasoner & Choosing which obligations require enforcement, placing controls, and judging residual risk \\
+\end{longtable}
+}
+
+% <!-- point: better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them | Because the trajectories need not proceed together, commodity intelligence does not fix a single destination: better reasoners let engineering leave more freedom unresolved, but the perfect-reasoner limit bounds the gain, since stronger reasoning cannot recover intent the representation never encoded. -->
+
+Because these trajectories need not proceed together, commodity intelligence does not fix a single destination for software engineering. Better reasoners let engineering leave more legitimate freedom unresolved. The engineer states the consequential distinctions and lets realization choose among the acceptable possibilities. \magevalue{chapter:theory} bounds how far that can go. In the limit of a perfect reasoner, the probability of satisfactory realization approaches \(P(E \mid R)\). Stronger reasoning cannot recover consequential intent that the representation never encoded. Capability therefore moves effort toward deciding which distinctions are consequential; it does not retire the obligation to encode them.
+
+% <!-- point: cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical | If explicit representations become cheap to construct, maintain, and reconcile, engineering can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system. -->
+
+If explicit representations become cheap to construct, maintain, and reconcile, engineering can profitably externalize more consequential knowledge. That work is choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system. Requirements, architectural views, state machines, dependency graphs, policies, and measurement models answer different engineering questions. The skill is to choose a representation that makes the consequential property easier to reason about than reconstructing it from implementation, then maintain whatever correspondence that representation claims as the system changes.
+
+% <!-- point: representation-engineering-broader-than-context-engineering | Retrieval asks which existing information to place before a reasoner; representation engineering asks whether the question should be expressed in a different form — only the latter changes the object of subsequent reasoning. -->
+
+This is different from context engineering. Retrieval can place more existing information before a reasoner; representation engineering can change the form in which the engineering question is expressed. An agent might retrieve enough source to reconstruct an architectural dependency, or work over a dependency model in which that relation is already explicit. The first improves access to the implementation; the second changes the representation over which reasoning proceeds.
+
+None of this is a new representational or governance tradition. Requirements engineering, architecture, programming languages, formal methods, model-driven and model-based engineering, knowledge representation, safety and assurance engineering, and research on distributed cognition have long moved knowledge, reasoning, evidence, or control into explicit structures outside an individual engineer.
+
+AI research has pursued similar ideas by moving parts of reasoning into external structures. Planning systems can translate natural-language problems into representations that specialized algorithms solve.\citep{liu2023llmp} Other approaches manage information in external memory,\citep{packer2023memgpt} organize intermediate reasoning as graphs,\citep{besta2024got} or maintain an explicit representation of the environment in which an agent operates.\citep{tang2024worldcoder} These approaches show how the choice of representation changes what a reasoning system can accomplish.
+
+A type can exclude an invalid local state;\citep{pierce2002} an intermediate representation can expose the structure a transformation needs;\citep{appel-compilers} a systems model can connect requirements, behavior, architecture, and evidence.\citep{friedenthal-sysml}\citep{brambilla2017} What changes with agentic software engineering is the economic importance of these representations: they can become active surfaces through which autonomous work is informed, scoped, checked, and reviewed.
+
+\magevalue{chapter:modeling} developed the modeling problem in detail: a representation is useful only for the questions its abstractions preserve, and it remains useful only while its claimed relationship to the system stays trustworthy. This trajectory changes the price of that work, not its nature. It does not establish that choosing and maintaining representations must become a larger part of software engineering. It makes that outcome economical.
+
+% <!-- point: cheap-reliable-realization-moves-effort-upstream | If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented. -->
+
+If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream. Little consequential freedom then remains downstream of the representation, and transformation or generation can replace autonomous realization wherever the representation determines the implementation. \magevalue{sec:software-rejoins-engineering} examines the engineering tradition that already works this way.
+
+% <!-- point: cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority | If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk. -->
+
+If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences. Cheap validators, monitors, and admission checks lower \(q(T,R,A)\) without requiring the producing reasoner to be trusted. Effort then moves toward deciding which obligations deserve enforcement, placing the controls that enforce them, and judging the risk that remains. Under this trajectory an organization can become far more governed without becoming more model-driven.
+
+% <!-- point: combinations-land-differently-for-different-properties-of-one-system | Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology. -->
+
+Real engineering environments will combine these trajectories, often differently for different properties of the same system. A system might maintain an authoritative state model where invalid transitions are consequential, allow an agent wide implementation freedom locally, derive architectural views when a question needs them rather than maintain them, and enforce security and dependency obligations at admission.
+
+\textbf{The appropriate unit of analysis is therefore usually the engineering question or obligation, not the development methodology.}
+
+% <!-- point: cabot-is-one-plausible-equilibrium-not-the-prediction | Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive. -->
+
+Model-driven engineering is one plausible destination, reached when improvements in representation and realization machinery reinforce one another. Cabot\textquotesingle s proposal for vibe-driven model-based engineering keeps models as the pillar of development while letting AI assist their construction and, where a model determines the implementation, their realization through deterministic generators.\citep{cabot2026vibe} That is one combination of the trajectories in \autoref{effort-trajectories}: AI lowers the cost of constructing and manipulating explicit models while model-based realization stays attractive. MAGE includes that future. It does not predict it. The opposite combination is equally available. If reasoners become good at reconstructing trustworthy task-specific representations from implementation, carrying separately maintained models may become less attractive for many questions.
+
+\textbf{Commodity intelligence changes the economics of representation and control without determining their eventual form.}
+
+% <!-- point: more-modeling-need-not-mean-more-permanently-maintained-models | More modeling need not mean more permanently maintained models: cheap machine reasoning lowers the recurrence threshold at which building a purposeful reduction pays, so a model can matter because reasoning passes through it rather than because an organization preserves it. -->
+
+More modeling need not mean more permanently maintained models. Agents can make it economical to construct a dependency graph, a state abstraction, a quantitative model, or another purposeful reduction for one consequential question and discard it afterward. Historically the construction cost demanded repeated reuse to justify itself, and cheap machine reasoning moves that threshold. A model can matter because reasoning passes through it today; an organization need not preserve it forever.
+
+% <!-- point: recurring-judgment-becomes-engineering-capital-under-any-trajectory | Whichever trajectory dominates, recurring engineering judgment creates an opportunity for durable improvement: governance conversion turns an instance-solving review into a model, control, or procedure that later work inherits. -->
+
+Whatever technological trajectory dominates, operational experience becomes more valuable under the changed cost structure, because recurring engineering judgment creates an opportunity for durable improvement. A conventional review can solve an instance. Sometimes the same judgment keeps returning: a failure recurs, a relationship becomes apparent, or engineers repeatedly have to make the same decision. \magevalue{chapter:one-problem-many-models} calls the move from that experience to durable engineering structure governance conversion. The resulting model, control, or procedure becomes engineering capital when it allows later work to inherit what earlier work learned. \magevalue{chapter:one-problem-many-models} calls the practice by which such structures accumulate while remaining open to correction ratcheteering: the particular structure can be revised or replaced, but the consequential concern does not silently disappear. The engineering question is whether the judgment belongs in the next reviewer\textquotesingle s head or whether future work should inherit it from the environment.
+
+The answer is not always "mechanize." Guidance remains useful where interpretation is genuinely semantic; human review remains appropriate where consequence or ambiguity warrants it; and every new mechanism adds carrying cost. The goal is to \textbf{mechanize where doing so pays}, not to automate everything. Cheaper implementation settles the direction in which engineering work travels, but not its destination: that is decided by engineering choices made one obligation at a time, under economics that have not finished moving.
+
+\section{Review When Implementation Is Abundant}\label{heading:review-when-implementation-is-abundant}
+
+Code review does not disappear when agents produce the code. Its center of gravity moves.
+
+At low change volume, an experienced engineer can treat the diff itself as the principal reasoning surface. Read the implementation, reconstruct the surrounding architecture, infer the affected behavior, inspect the tests, decide whether the change belongs. That strategy stops scaling as implementation becomes abundant. The scarce resource is no longer the ability to produce another diff. It is the engineer\textquotesingle s ability to determine what the change means.
+
+This pressure predates agents. Long before agentic programming, empirical work at Microsoft found that larger changes were harder to review well: as more files were touched, the proportion of useful reviewer feedback declined, and large changes imposed greater reviewer effort.\citep{bosu2015useful} Agentic generation makes that problem larger; it does not change its basic cognitive shape. The older result establishes that large changes tax human review and reduce useful feedback. It does not establish that explicit models would relieve the strain; models as the remedy are MAGE\textquotesingle s proposal.
+
+Greiler\textquotesingle s more recent SCOPE proposal responds by changing the review operating model: detailed implementation review moves increasingly into the developer--agent loop, and team review becomes risk-proportional assurance over code together with higher-level artifacts and evidence.\citep{greiler2026scope} That proposal already includes agent review, developer attestation, risk-based team assurance, and accountability. SCOPE changes the operating model for review; MAGE additionally changes the surfaces available to the reviewer. When the environment holds explicit models of structure, behavior, ownership, execution, measurement, and provenance, those models become review surfaces in their own right. The engineer need not reconstruct every relevant property from the diff.
+
+Explicit models provide intermediate review surfaces. A change can be projected onto component ownership, permitted dependencies, service edges, lifecycle states, deployment placement, user journeys, measurement obligations, and provenance. Deterministic mechanisms discharge the obligations that are mechanically decidable before scarce human attention is spent. The reviewer then spends attention on the remainder:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Is the intended change desirable} --- the question a diff could never answer on its own.
+\item
+  \textbf{Do the models capture the relevant concern} --- or has the change moved a property no current representation exposes.
+\item
+  \textbf{Is the evidence sufficient} --- do the checks that ran actually bound the risk this change carries.
+\item
+  \textbf{Should the tradeoff be accepted} --- the residual judgment that stays with a person.
+\end{itemize}
+
+None of this removes code from review. It changes when the reviewer must descend to it. Implementation becomes one evidentiary surface among several, rather than the origin from which every system property must be reconstructed. The reviewer still examines implementation details when they are necessary to evaluate the risk. The models supply an index into the engineering significance of a change.
+
+Review moves upstream, from inspecting realization toward evaluating intent, consequence, evidence, and the judgment that remains. Some argue that capable coding agents will eliminate human code review altogether.\citep{monperrus2026end} Even if code review disappears, engineers must still evaluate the models, evidence, and tradeoffs that govern the resulting software.
+
+{[}appendix: appendix-models{]} collects representative forms of these models and shows how their authored and derived facts can be reconciled with the implementation; it develops the review surfaces as reusable model patterns rather than a prescribed catalog. {[}appendix: appendix-evidence-ledger{]} carries the within-case evidence on model coverage and correspondence. Those measurements speak to how much of the exercised system could be related to explicit models; they do not measure review time or review quality.
+
+This shift in review surfaces has a broader implication: effective engineering capability may increasingly be a property of the environment as well as the foundation model. A weaker reasoner operating over accurate representations, well-routed context, strong tools, and independent evidence may outperform a stronger reasoner over an opaque repository. MAGE does not establish that substitution quantitatively; \magevalue{sec:research-agenda} makes its parameterization and eventual use in engineering routing an empirical research question.
+
+\section{Engineering the Production System}\label{heading:engineering-the-production-system}
+
+% <!-- point: two-places-engineering-attention-can-go | Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization. -->
+
+\magevalue{chapter:software-factories} distinguished two places engineering attention can go as realization becomes abundant. Engineers can spend increasing effort operating agentic machinery: supplying work and context, coordinating agents, inspecting output, and resolving exceptions. They can also engineer the production system around that machinery so that selected knowledge, evidence, and controls persist across acts of realization.
+
+% <!-- point: both-futures-contain-capable-agents-and-differ-in-where-judgment-goes | The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work. | terms: degrees-of-freedom -->
+
+The distinction matters professionally because both futures can contain capable agents and very little human implementation. They differ in where scarce engineering judgment goes. MAGE predicts increasing value in the second kind of work: deciding which properties must remain under engineering control, choosing representations adequate to expose them, establishing the evidence required for acceptance, deciding which degrees of freedom can safely be delegated, and changing the engineering environment when experience shows those structures to be inadequate.
+
+\textbf{Making agents easier to operate is not the same as making software easier to engineer.}
+
+% <!-- point: not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it | This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work. -->
+
+This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. The change is that engineers increasingly exercise those responsibilities through the production system in which agents work. \magevalue{sec:software-rejoins-engineering} and \magevalue{sec:education-research-open-problems} ask what engineering traditions and capabilities prepare the profession for that role.

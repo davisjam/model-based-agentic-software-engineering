@@ -1,0 +1,285 @@
+% mage-auto-heading: a-heterogeneous-modeling-substrate
+% mage-auto-heading: what-happened-and-what-evidence-records-it
+% mage-auto-heading: questions-that-span-models
+% mage-auto-heading: maintain-explicit-correspondence
+% mage-auto-heading: derive-when-implementation-owns-the-truth
+% mage-auto-heading: generate-when-the-model-owns-the-truth
+% mage-auto-heading: trace-and-check-where-neither-owns-the-truth
+% mage-auto-heading: some-correspondence-remains-semantic
+% mage-auto-heading: modeling-makes-properties-available-to-engineering
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Modeling -->
+
+% <!-- chapter-title: System Knowledge: Connecting the Models -->
+
+\chapter{System Knowledge: Connecting the Models}
+
+% <!-- point: different-questions-drew-different-models-joined-where-needed | The preceding sections drew different models because they asked different questions; DocAble keeps a family of structured representations connected by shared identity and traceability where engineers repeatedly need to relate views, not one large model. | terms: system-knowledge, modeling-substrate -->
+
+Different questions drew different models of the same product. Together, the models expose structures through which engineers can reason about DocAble: its components and dependencies, permitted behavior, ownership, policy, quantitative bounds, and realized history. The system keeps them as a family of structured representations, each built for an engineering purpose, connected by shared identity and traceability where engineers repeatedly need to relate one view to another. It would be natural to collapse these views into one large model, but DocAble has no such model, and MAGE requires none.
+
+\section{A Heterogeneous Modeling Substrate}\label{heading:a-heterogeneous-modeling-substrate}
+
+% <!-- section-terms: system-knowledge, modeling-substrate -->
+
+% <!-- point: a-heterogeneous-substrate-of-structured-records | DocAble's models differ in shape on purpose: roughly 130 structured model records plus data dialects share identities, derivations, query surfaces, and traceability where useful, are represented as data so map and territory stay separable, and nothing forces them into a single representation. | terms: modeling-substrate, representation-form, map-and-territory -->
+
+% <!-- index-def: modeling-substrate -->
+
+DocAble\textquotesingle s models differ in shape on purpose. Some are registries of components and their relations. Some represent state transitions. Some encode contracts or decisions. Others capture quantitative relationships or realized history. Roughly 130 structured model records plus several data dialects represent component identity and metadata, deployment topology, inter-service edges, data flow, required environment, state machines, and the governance graph itself. They share identities, derivations, query surfaces, and traceability where those relationships are useful, but nothing forces them into a single representation. The models are represented as data rather than importing the implementation they describe, keeping model and territory separable enough for correspondence to be checked. When a model is meant to provide independent evidence of correspondence, keep it distinguishable from the artifact it checks. \magevalue{chapter:software-factories} returns to this modeling substrate as part of the governed engineering environment and shows how it is maintained and used in practice.
+
+% <!-- point: the-unity-that-matters-is-semantic-not-syntactic | Nothing demands that the models share a file format or metamodel; they need only agree on the identities required to connect them — the same service, work item, or operation resolves across representations. | terms: modeling-substrate, join-key -->
+
+The unity that matters is semantic, not syntactic. A service named in a structural registry is the same service a flow model references. A work item in an ownership representation is the same work item whose lifecycle and measurements appear elsewhere. A provenance event identifies the operation whose effect it records. Nothing demands that these models share a file format or metamodel; they need only agree on the identities required to connect them (\autoref{modeling-substrate}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-substrate-e3cfa6ca10.pdf}
+\caption{\emph{Heterogeneous models over shared identities.} DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.}
+\label{modeling-substrate}
+\end{figure}
+
+% <!-- point: derive-and-join-do-not-repeat | Prefer shared identity and derivation over independently maintained copies of the same fact; where duplication is unavoidable, make the correspondence explicit and checkable. | terms: derive-and-join, join-key -->
+
+% <!-- index-def: derive-and-join -->
+
+That agreement follows one discipline: prefer shared identity and derivation over independently maintained copies of the same fact. Where one model needs a fact owned elsewhere, join through a stable identity or derive a projection. For example, the declared edge model is held in exact correspondence with the deployment edge set, and deployment then derives its access policy --- one invocation grant per declared edge --- from those edges rather than maintaining a second endpoint list; a journey model joins to those endpoints by call site rather than copying them. Where duplication is unavoidable, make the correspondence explicit and checkable. This reduces the number of independent truths that must be reconciled by hand.
+
+% <!-- point: join-static-and-runtime-only-when-a-question-pays | Join static and runtime only when a question pays. | terms: derive-and-join, join-key -->
+
+Static and runtime representations need not collapse into one model either. A computation model can identify remediation work and its declared relations while a provenance record identifies the mutations realized during one run. Shared identity allows observations to join the structural model when a question requires it: DocAble associates staged-run latency and cost with computation identities. The per-session edit record remains separate because it answers a different question --- what happened to this artifact --- and is a separate provenance reduction rather than a per-run execution graph over computation nodes.
+
+\subsection{What happened, and what evidence records it}\label{heading:what-happened-and-what-evidence-records-it}
+
+% <!-- point: observable-history-is-not-automatically-useful-a-provenance-model-selects-it | A system may emit millions of events yet leave a consequential question — what changed this artifact, which operation changed it, what evidence supports the account — hard to answer, so a provenance model selects and structures the history that answers it. -->
+
+That realized history deserves its own reduction. A production system may emit millions of events --- logs, traces, metrics, audit records --- while still making a consequential question difficult to answer: what changed this artifact, which operation changed it, and what evidence supports that account? A provenance model selects and structures the history needed to answer such questions. For DocAble, the consequential history is the history of changes to the user\textquotesingle s document, so it records consequential mutations as structured operations: each operation names its target, the mutation made, the remediation pass responsible, and the evidence retained about the change (\autoref{attribution-model}). The record is narrower than a general execution trace and more directly useful for explanation, debugging, and audit.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/attribution-model-7a93d46093.pdf}
+\caption{\emph{Attribution provenance model.} A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.}
+\label{attribution-model}
+\end{figure}
+
+% <!-- point: event-grain-is-part-of-the-provenance-model | Choosing the grain is part of the modeling decision — "document modified" is too coarse, a complete execution trace too fine; DocAble records consequential mutations as typed operations and derives audit, debugging, and changelog views from that history. -->
+
+Choosing the grain is part of the modeling decision. "Document modified" is too coarse to explain a consequential change; a complete execution trace leaves later reasoning to reconstruct which events matter. DocAble instead records consequential mutations as typed operations and derives audit, debugging, and changelog views from that history.
+
+% <!-- point: a-typed-edit-record-replays-deterministically | During a PDF remediation session mutations are recorded as typed edit values in a per-session log, and a replay engine can apply the same sequence deterministically — one representation explains what happened and reproduces the mutations while omitting the reasoning that produced them. -->
+
+During a PDF remediation session, these mutations are recorded as typed edit values in a per-session log, and a replay engine can apply the same sequence deterministically. The representation can therefore explain what happened and reproduce the resulting mutations while omitting the reasoning, analyses, control decisions, and retries that produced them.
+
+% <!-- point: record-and-replay-separate-three-questions | The computation graph asks what may compose, the provenance record says which mutations occurred in this run, and replay asks whether that history can be reproduced. -->
+
+The computation graph asks what computations may compose. The provenance record says which consequential mutations occurred in this run. Replay asks whether that realized history can be reproduced (\autoref{two-reductions-static-realized}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-reductions-static-realized-a3b7edfa06.pdf}
+\caption{\emph{Computation structure versus realized history.} The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.}
+\label{two-reductions-static-realized}
+\end{figure}
+
+% <!-- point: provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps | The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — this chapter models the evidence, Chapter 3 enforces the obligation. | terms: soft-vs-hard-governance -->
+
+A provenance model does not guarantee that every consequential operation actually leaves the required record. DocAble addresses that separately, by requiring typed mutation verbs to emit attribution and checking that obligation structurally. That check is a \textbf{hard} presence guarantee over a \textbf{soft} content claim: it can establish that every mutator leaves an attribution record, but not that the semantic account inside that record is correct --- that remains the author\textquotesingle s. This chapter models the evidence an operation should leave; \magevalue{chapter:alignment} asks what mechanism enforces that obligation.
+
+\subsection{Questions that span models}\label{heading:questions-that-span-models}
+
+% <!-- point: joining-models-makes-cross-representation-properties-available | A model makes selected properties of a system available for reasoning; joining models makes properties that cross those representations available for reasoning. | terms: derive-and-join, join-key, modeling-substrate -->
+
+A model makes selected properties of a system available for reasoning. Joining models makes properties that cross those representations available for reasoning. The structural model can answer a structural question, the deployment model a deployment question, the decision model a permission question --- but some engineering obligations span them.
+
+% <!-- point: the-interservice-edge-is-a-worked-join | One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains. | terms: derive-and-join, join-key -->
+
+DocAble\textquotesingle s sharpest worked case is the interservice call edge. A typed edge records that one service may call another --- but the same edge is joined to deployment configuration to determine the environment variable carrying the callee\textquotesingle s URL, to the runtime identity a deployment executes under to derive the invocation grant the cloud\textquotesingle s access-control configuration must contain, and to the service catalog to check that the documented topology agrees. Twenty-eight modeled call edges produce ten distinct invocation grants once shared runtime identities are accounted for. No single source artifact contains that deployment plan; it is derived by joining models. DocAble modeled the join after living the corresponding failure: service URLs were once wired correctly while the matching invocation grant was absent, and staging went down with authorization errors. The repair did not add another bespoke grant. It made URL wiring and authorization two consequences of the same modeled edge.
+
+% <!-- point: connections-can-create-information | Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist. | terms: derive-and-join, join-key -->
+
+Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
+
+% <!-- point: a-declared-property-can-determine-what-evidence-must-exist | Declared invariant facts derive a verification tier, the tier mandates a checker kind, and a check joins the citation against the checker corpus on disk — so a declared property can determine what kind of evidence must exist. | terms: derive-and-join, drift-gate -->
+
+The same pattern reaches from models to their evidence. Each invariant in DocAble\textquotesingle s composed state-machine model declares its facts: the participant lanes that touch a coordination point, the coordination primitive, and the temporal shape of the property. A derivation over those facts --- never a hand-typed label --- assigns the invariant a verification tier; the tier determines what kind of checker the invariant must cite; and a check joins each citation against the checker corpus on disk, failing when the mandated checker is missing. A declared property can therefore determine what kind of evidence must exist. The join makes the obligation derivable. \magevalue{chapter:alignment} discusses the separate decision of whether such an obligation should block a commit.
+
+% <!-- point: joins-are-also-where-information-is-lost | Each representation can be locally reasonable while their composition fails to preserve a distinction the engineering decision requires — the entitlement failure crossed exactly such a seam. | terms: derive-and-join, model-drift -->
+
+These crossings are also where information is lost. Each representation can be locally reasonable while their composition fails to preserve a distinction the engineering decision requires. The entitlement failure of the decision section is one example: the system possessed the fact that an entitlement was unlimited, but the representation presented to the admission decision had reduced that richer state to a scalar. A join through shared identity does not remove the risk; it gives the crossing a name and a place where the correspondence can be checked.
+
+% <!-- point: an-agent-enters-through-the-object-its-task-names-and-traverses-outward | Semantic unity lets an agent enter the substrate at the entity its task names and follow relations outward, taking only the connected slice the question needs. | terms: modeling-substrate, join-key -->
+
+Shared identity also provides a query entry point. An agent --- or an engineer --- enters the substrate through the object its task names and follows identities outward across models: name a component and ask what it owns, what it depends on, which flow reaches it, what its lifecycle looks like. A canonical query surface makes those relationships traversable rather than rediscovered through repository search. The agent does not need \emph{the whole model} --- only the connected slice that answers the engineering question in front of it. \autoref{substrate-traversal} draws that entry and outward walk.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/substrate-traversal-9c4cec4bf3.pdf}
+\caption{\emph{Task-driven traversal.} A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.}
+\label{substrate-traversal}
+\end{figure}
+
+\section{Maintain Explicit Correspondence}\label{heading:maintain-explicit-correspondence}
+
+% <!-- section-terms: map-and-territory, traceability, drift-gate -->
+
+% <!-- point: a-family-of-models-risks-a-second-system-of-record-that-diverges | A family of models invites an obvious danger — a second system of record that quietly diverges from the first — and the answer is to engineer the relationship between map and territory, not to stop modeling. | terms: map-and-territory, drift-gate -->
+
+% <!-- index-def: map-and-territory -->
+
+Multiple models create a correspondence problem: represented facts can diverge from the system or from one another. Engineer the relationship between map and territory so divergence is caught rather than assumed away. Which machinery you reach for depends on which side is the source of truth.
+
+% <!-- point: name-the-direction-of-derivation-up-front | A model and the code stay equal by derivation, and derivation runs in one of two directions; the machinery that keeps them equal depends on which. | terms: derivation-direction, model-from-code, model-to-code -->
+
+% <!-- index-def: derivation-direction -->
+
+Make the direction of correspondence explicit. Where the implementation is the source of truth, derive the model. Where the model is the source of truth, generate the downstream artifact. Where neither fully determines the other, maintain traceability and check the mechanically decidable correspondences. \autoref{derive-generate-trace} lays the three cases side by side.
+
+% <!-- index-def: model-from-code -->
+
+% <!-- index-def: model-to-code -->
+
+\subsection{Derive when implementation owns the truth}\label{heading:derive-when-implementation-owns-the-truth}
+
+The model is a projection of the code, reconciled at build time. A component-zone registry reads the real directory tree; a journey\textquotesingle s dependency list is induced from its real call sites. The drift check is a \textbf{reconciler} --- it re-derives the model from the code and fails on divergence. This pattern is common when models are introduced into an existing codebase.
+
+\subsection{Generate when the model owns the truth}\label{heading:generate-when-the-model-owns-the-truth}
+
+Code, configuration, or documentation are emitted from the model. The service catalog and the wire-contract types are generated from the service-flow model. The drift check is a \textbf{freshness and provenance check} --- the generated artifact carries a header, and a hand-edit or a stale regeneration is a finding.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/derive-generate-trace-43fdd6c901.pdf}
+\caption{\emph{Three correspondence patterns.} Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.}
+\label{derive-generate-trace}
+\end{figure}
+
+% <!-- point: the-computation-model-is-the-generate-case-execution-follows-it | The remediation subsystem illustrates both directions around one source of truth: its explicit computation model is consumed by execution, so realization follows the model rather than reconstructing composition from node implementations — the generate case. | terms: map-and-territory, derive-and-join -->
+
+DocAble\textquotesingle s remediation subsystem illustrates both directions around one source of truth. Its explicit computation model names remediation work and its composition, and the execution machinery consumes that model to determine dependency order and readiness. The model therefore governs composition operationally: this is the generate case in the consequential sense that realization follows the model rather than reconstructing composition from node implementations.
+
+% <!-- point: a-separate-python-view-projects-the-model-for-analysis | A separate Python remediation-graph view projects that structure for analysis and governance — queryable, joinable, drift-checked — without becoming the runtime scheduler. -->
+
+A separate Python remediation-graph view projects that structure for analysis and governance. For Office formats, its edges derive from the same registry read/write metadata used by scheduling; for PDF, parallel typed declarations are held in correspondence by blocking checks. The view can therefore be queried, joined to other models, and checked for drift without itself becoming the runtime scheduler.
+
+% <!-- point: one-source-of-truth-supports-both-directions | One source of truth supports both directions at once: execution consumes the authoritative model while analytical views derive from it or from parity-bound declarations; the question is which representation owns the fact and which consumers must follow it. -->
+
+One source of truth can thus support both directions at once: execution consumes the authoritative model, while analytical representations derive from it or from parity-bound declarations around it. The important question is which representation owns the fact and which consumers are required to follow it.
+
+% <!-- point: derivation-solves-correspondence-not-architecture-quality | Derivation settles correspondence, not whether the architecture is good. | terms: map-and-territory, alignment-principle -->
+
+The graph is derived, but it remains a view: it suppresses method bodies, internal algorithms, runtime history, timing, and most document state, keeping only the entities and relations its structural questions need. Derivation prevents one kind of drift by construction --- an engineer never authors the edges.
+
+% <!-- point: where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates | Where neither side can be fully derived from the other, maintain traceability between them and check the predicates that are mechanically decidable. | terms: map-and-territory, traceability, drift-gate -->
+
+% <!-- index-def: traceability -->
+
+\subsection{Trace and check where neither owns the truth}\label{heading:trace-and-check-where-neither-owns-the-truth}
+
+Where neither side can be fully derived from the other, the move is \textbf{traceability plus drift checking}. Relate each model element to the implementation that realizes it, then check the correspondences a machine can decide. Keep that relation \emph{live}: resolve the target against current code when the check runs, rather than storing a line number or a symbol name that is itself another snapshot able to drift. A deleted target then surfaces as a finding instead of a stale green edge. In DocAble a traceability gate resolves each model-to-code anchor through a language-aware resolver --- one for each source language --- and reports every anchor that no longer resolves. Before the gate existed, such renames could silently strand model references.
+
+% <!-- point: two-layers-cover-the-relationship-mechanical-and-judgment | Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, unmodeled properties have no model-based coverage, and a recurring miss is a candidate for refining the representation or adding a control. | terms: drift-gate, map-and-territory, model-drift -->
+
+\subsection{Some correspondence remains semantic}\label{heading:some-correspondence-remains-semantic}
+
+Mechanical correspondence has a declared surface. Some claims are decidable: an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Other claims remain semantic and require judgment; unmodeled properties have no model-based coverage. A recurring miss is a candidate for refining the representation or adding a control (\autoref{model-sync-two-layer-net}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-sync-two-layer-net-078b1442b6.pdf}
+\caption{\emph{Coverage of model correspondence.} Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.}
+\label{model-sync-two-layer-net}
+\end{figure}
+
+% <!-- point: an-executable-model-is-its-schema-plus-its-checked-predicates | Operationally, an executable model is its structured schema plus the predicates a machine can check over that schema; a schema without checked predicates is only half the pattern. | terms: drift-gate, modeling-principle -->
+
+For invariant-bearing models, one useful executable pattern is a structured schema plus checked predicates over that schema. The schema defines entities, relations, fields, or states; the predicates state properties that a checker evaluates over the declared domain. Other executable models may instead drive generation, simulation, transformation, or analysis. A schema alone does not establish correspondence to a changing system; checks or derivations are needed where that correspondence matters. \autoref{coherence-triangle} draws that relationship.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/coherence-triangle-f756dafee5.pdf}
+\caption{\emph{Checked predicates over a structured model.} A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.}
+\label{coherence-triangle}
+\end{figure}
+
+% <!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
+
+None of this proves the model \emph{right}. Synchronization does not establish that the model is correct, that the architecture it expresses is good, or that the modeled surface captures every relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
+
+\begin{quote}
+\textbf{For the surface the model claims, check the correspondence that can actually be decided.}
+\end{quote}
+
+% <!-- point: the-narrow-guarantee-is-the-boundary-part-iii-begins-at | The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, examining why correspondence does not by itself establish correctness. | terms: modeling-principle, alignment-principle, map-and-territory -->
+
+\magevalue{chapter:alignment} examines why correspondence between a model and its implementation does not, by itself, establish correctness. Derive where implementation is the source of truth; generate where the model is the source of truth; trace and check where neither fully determines the other.
+
+\section{Modeling Makes Properties Available to Engineering}\label{heading:modeling-makes-properties-available-to-engineering}
+
+% <!-- point: a-model-does-not-govern-by-existing-it-makes-a-property-explicit | A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it. | terms: modeling-principle, alignment-principle -->
+
+A model does not govern the system merely by existing. A structural model can name a forbidden dependency without preventing it; a behavioral model can name an illegal transition without rejecting it; a measurement model can represent a budget without stopping work that exceeds it. Modeling makes these properties explicit. It does not enforce them.
+
+% <!-- point: docable-attaches-no-hard-invariant-to-either-quantity | DocAble's cost-and-capacity model relates usage and pricing to an attributable cost against a budget and concurrency to a capacity demand against an envelope, and attaches no hard invariant to either quantity: the model says cost can be compared against a budget, not that it must not exceed one. | terms: soft-vs-hard-governance -->
+
+DocAble\textquotesingle s quantitative model makes the point concretely. Usage and pricing determine an attributable GenAI cost, read against a declared budget; concurrency determines a capacity demand, read against a capacity envelope. The wording of the property is deliberate: the model says cost \emph{can be compared} against a budget, not that cost \emph{must not exceed} one. DocAble attaches no hard invariant to either quantity --- cost is routed to the administrative pane for observation and accounting, while capacity is controlled through a runtime-tunable limit. In the configuration examined here, these quantities are observations rather than enforced bounds. A cost figure is evidence; whether crossing a budget should block work, raise an alarm, or simply be recorded is a separate question of enforcement.
+
+% <!-- point: measurement-boundary-modeling-and-enforcement-are-separate | The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound. -->
+
+\autoref{modeling-perp-enforcement} draws that separation: the model defines the quantity and the reference; whether a comparison is merely observed, used to adapt behavior, or enforced by a gate is Alignment\textquotesingle s decision. The model that makes spending attributable does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-perp-enforcement-e698f185ed.pdf}
+\caption{\emph{Modeling and enforcement are separate decisions.} The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.}
+\label{modeling-perp-enforcement}
+\end{figure}
+
+% <!-- point: relational-obligations-need-enough-representation | Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance. | terms: modeling-principle, alignment-principle -->
+
+Local syntactic obligations can often be checked with little explicit modeling. Architectural boundaries, temporal obligations, distributed ownership, provenance requirements, and end-to-end policies require enough representation to expose the relevant system relationships. Modeling makes those relationships available to analysis and, where appropriate, to governance.
+
+They are also available to design. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
+
+% <!-- point: alignment-does-not-require-a-separately-represented-model | Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement. | terms: modeling-principle, alignment-principle -->
+
+Alignment does not require every obligation to have a separately represented model. Some properties are already observable at an action or artifact boundary and can be constrained directly. Models extend the range of properties available for analysis and enforcement.
+
+% <!-- point: docable-models-arose-around-expensive-questions | DocAble's models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct; different questions required different reductions, and shared identities connect them where a decision crosses views. | terms: modeling-principle, model-classes -->
+
+DocAble\textquotesingle s models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct: where mutation may occur, how remediation computations compose, who owns in-flight work, which services may communicate, whether a user is entitled to an operation, what bounds apply, and what happened during a run. Different questions required different reductions; shared identities connect them where a decision crosses views.
+
+% <!-- point: part-iii-asks-which-obligations-the-environment-should-hold | Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them. | terms: modeling-principle, alignment-principle -->
+
+\magevalue{chapter:alignment} asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: AI -->
+
+% <!-- inset-size: small -->
+
+% <!-- box-weight: deep-dive -->
+
+% mage-box-prefix:
+
+\begin{bookbox}{inset}{Deep dive --- Beneath commodity intelligence: why structure helps}
+\label{inset-beneath-commodity-intelligence}
+MAGE deliberately treats intelligence as a commodity. The method should not depend on a particular neural architecture, training recipe, or context-window size. Still, the language-model systems available in 2026 offer a useful view one level below that abstraction. They suggest why engineering the structure around an intelligent agent can matter as much as improving the intelligence itself.
+
+Access to state is not the same as reasoning over state. Modern language models can accept large contexts, but their ability to use those contexts depends on the reasoning the task requires. OOLONG, for example, was designed to require semantic processing and aggregation across much of a long input rather than retrieval of a few relevant passages. Frontier models degrade substantially on these tasks even when the input fits within their nominal context windows.\citep{bertsch2025oolong} Recursive Language Models (RLMs) make the distinction especially clear. Instead of placing a long input directly into the model\textquotesingle s context, an RLM keeps it in an external environment that the model can inspect programmatically, decompose, and pass in pieces to recursive model calls. On several long-context tasks, this restructuring substantially improves performance, including on inputs far beyond the underlying model\textquotesingle s context window.\citep{zhang2025rlm}
+
+This belongs to a broader shift from treating a language model as a function that produces an answer toward treating it as a reasoner operating within an environment. ReAct interleaves reasoning with actions that obtain new observations from an external environment;\citep{yao2023react} CodeAct extends this idea by allowing executable code to serve as an expressive action language.\citep{wang2024codeact} RLMs go further by making context management and decomposition themselves part of the interaction with the environment. The common lesson is not that any particular harness is universally correct. It is that the structure through which intelligence encounters a problem changes what that intelligence can effectively do.
+
+Recent work offers a possible explanation in terms of compositional generalization. Zhang, Li, and Khattab hypothesize that frontier models may already be highly capable on many bounded problems while remaining poorly "managed" on long-horizon ones: a larger task succeeds when it can be decomposed into smaller tasks that individual model calls can reliably solve.\citep{zhang2026mismanaged} Zhang and Khattab subsequently argue that a harness can supply some of this structure by transforming complicated external state into observations that remain locally familiar to the underlying model; their RLM experiments suggest that such structure can improve generalization across both task length and domains.\citep{zhang2026harness} These are developing results rather than a settled theory of language models, but they offer a useful substrate-level interpretation of an engineering observation: more intelligence and more context do not remove the need for structure.
+
+MAGE operates one level above this work. A generic agent harness can manage context, call tools, delegate subtasks, and decide how to decompose computation. Software engineering also provides semantic decompositions of the system itself. An architecture model exposes components and boundaries. A data-flow model exposes consequential paths. An automaton exposes legal state transitions. Ownership and obligation models expose ownership and constraints. Bidirectional links among models and implementation let an agent move from code to the relevant model, across related models, and back to the affected code rather than reconstructing all of that structure from a flat collection of source and prose.
+
+This distinction also marks the boundary between Modeling and Alignment. Modeling gives commodity intelligence representations in which consequential engineering relationships are explicit and traversable. Alignment makes selected obligations enforceable through mechanisms in the engineered environment---hooks, validators, tests, gates, runtime checks, and others. Better learned decomposition may improve how agents perform work inside that environment. It does not decide which customer, organizational, safety, or societal obligations the environment should preserve.
+
+The connection is therefore explanatory, not foundational. Future models may reason over much longer contexts, learn better decompositions, and require different harnesses. MAGE should survive those changes. Its engineering claim is more durable: capable reasoning becomes more useful when consequential system structure is made explicit, and consequential obligations become more reliable when the environment enforces them. Most importantly, those structures keep engineers in control of what the system is for, what it must preserve, and which tradeoffs are acceptable, even as increasingly capable machines take on more of the work required to realize those decisions.
+\end{bookbox}
+
+% <!-- point: part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question | Models are useful without enforcement — they preserve decisions, expose relationships, and let engineers and agents reason from shared representations; Alignment adds another use by turning selected modeled properties into obligations. | terms: modeling-principle, alignment-principle -->
+
+Models are useful without enforcement. They preserve decisions, expose relationships, support analysis, and let engineers and agents reason from shared representations rather than reconstructing the same knowledge from prose or code. Alignment adds another use: some modeled properties can become obligations that constrain what the engineering process may admit. We turn to that next. \magevalue{chapter:software-factories} returns to these models as part of the engineering environment surrounding agentic production, and \magevalue{chapter:theory} examines when carrying explicit representations is worth their cost.

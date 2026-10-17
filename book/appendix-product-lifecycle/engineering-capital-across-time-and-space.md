@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-product-lifecycle/engineering-capital-across-time-and-space.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 Engineering capital matters when an investment made in one place changes the economics of work elsewhere. Within a product, that effect is already visible: product decisions constrain later realization, engineering models support maintenance, incidents produce durable controls, and assurance evidence can accumulate rather than be rebuilt. A more conjectural question is whether such capital can also travel across products, teams, and organizations.
 
 [ref:fig-h-capital] depicts the two dimensions. Within each product, engineering structure accumulates selectively across episodes. Across products, some concerns and mechanisms may travel while others remain local. The figure is conceptual, not a quantitative measure of capital.

@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/auditable-transformation-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **Make consequential transformations reconstructable and detect silent loss.** Record who changed what, then verify that the transformed artifact retained the required semantics.
@@ -7,11 +9,9 @@
 Reach for it where:
 
 - **Multiple actors or agents mutate important artifacts**, making attribution and transformation history consequential.
-- **Partial or bypassed instrumentation is plausible**, so "we log our writes" is not proof every write was
-  logged.
+- **Partial or bypassed instrumentation is plausible**, so "we log our writes" is not proof every write was logged.
 - **Transformation can silently lose product semantics** — the output looks fine and is not.
-- **Incident reconstruction requires both facts at once**: who changed what, and whether the result remained
-  faithful.
+- **Incident reconstruction requires both facts at once**: who changed what, and whether the result remained faithful.
 
 ## The Composition
 
@@ -20,6 +20,8 @@ Reach for it where:
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MARK** | Attach identity and context to the mutation. |

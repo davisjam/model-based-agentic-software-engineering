@@ -479,7 +479,8 @@ def check_course_mage_tokens_resolve():
     issues: list[str] = []
     found = 0
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not catalog.is_native_build_path(os.path.join(dirpath, d))]
         for fn in filenames:
             if not fn.endswith(".md"):
                 continue

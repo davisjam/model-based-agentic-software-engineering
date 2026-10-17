@@ -1,0 +1,781 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "source": "book/latex/sources/frontmatter/0.0-acknowledgments.tex",
+      "projection": "book/frontmatter/0.0-acknowledgments.md",
+      "source_hash": "0b286614ed06074d0e7c1977f063d3ba1fbced05bfca93c9e713168bcf3d9c41",
+      "projection_hash": "9527ef841f60b99aa224286e9de1ee5d4a8d5bce61f1f0053a251e8be4c12dd4"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex",
+      "projection": "book/frontmatter/0.1-how-to-read-this-book.md",
+      "source_hash": "389f03601dd20acfcd93bd0b0949ec1a4312fd10242b57625194c020ecdcec51",
+      "projection_hash": "a1e7f6d5262ce6eaf92c9576df604475b13236e34065368301a4b0cf209555bd"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.2-what-this-book-argues.tex",
+      "projection": "book/frontmatter/0.2-what-this-book-argues.md",
+      "source_hash": "3998df15c539a4b938869266d310c7f7e4726afac416bf22de662239d1563d38",
+      "projection_hash": "147e34183809093bf16c52c46f4b17a2f959ae8b6033ea1c26c51e5e52b0d9e6"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.3-the-mage-method-at-a-glance.tex",
+      "projection": "book/frontmatter/0.3-the-mage-method-at-a-glance.md",
+      "source_hash": "5359d0069112ff3472e10d001910d7cc6dbc2be322e6b8117ceb8e30a4867859",
+      "projection_hash": "639c064e8014852f0991c256c8fae920ebe80bb2ec9678143354baffeb97b81a"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
+      "projection": "book/frontmatter/0.4-the-books-language.md",
+      "source_hash": "c9c3c7bb379e9b532c055280b20a4790ee95f71d6db6eb7efe2a892f6a71d969",
+      "projection_hash": "776d6be85bf458810422d291c3d66d7b75efed4c9961fb66fbfa06c7158b3323"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.5-preface.tex",
+      "projection": "book/frontmatter/0.5-preface.md",
+      "source_hash": "ef6a1b9b0f0c0232ee78d08e8a6a979008b248f4313859b31b92bbba0a5fff29",
+      "projection_hash": "63f284badf0177a522485445c78555ce0b0409512634c0f745bd41e2530b2c97"
+    },
+    {
+      "source": "book/latex/sources/part1/00-part-intro.tex",
+      "projection": "book/part1/00-part-intro.md",
+      "source_hash": "b30f0b77442a2833699b40f89fce5dbe11beeb26d46685e9dac6cabe886760bb",
+      "projection_hash": "6cd8475183614cfc93cfe5e548cfe305d0ea6777131f5b1a50167cd611765ad3"
+    },
+    {
+      "source": "book/latex/sources/part1/1.1-the-printer.tex",
+      "projection": "book/part1/1.1-the-printer.md",
+      "source_hash": "85391dc465f7c31cbb10afc89c84a858b16b568e3f6bd6810f1c83f305f364da",
+      "projection_hash": "d9191fff28f591fbe653d3a692372391a0ae8cc55e02d0183ecdc097d880bf23"
+    },
+    {
+      "source": "book/latex/sources/part1/1.2-mage-by-example.tex",
+      "projection": "book/part1/1.2-mage-by-example.md",
+      "source_hash": "981aeedd9b8509816d0dea3c900969a03cfb1d08e7ea62ef1230033bff64b4be",
+      "projection_hash": "a768a5d34cb0ae9418a7b898b32c608021ea6a4b5cea9ca646a800d78cb29ca1"
+    },
+    {
+      "source": "book/latex/sources/part1/1.3-the-agentic-substrate.tex",
+      "projection": "book/part1/1.3-the-agentic-substrate.md",
+      "source_hash": "df0cf29740292684dc3a5f133055f7ceef5e08564b221ed6bb0c0bd98d98ae0b",
+      "projection_hash": "41dda3c4bf5fbb5d4929e793988a636e96be9cf1e361b7500f28b950716b1cb3"
+    },
+    {
+      "source": "book/latex/sources/part1/1.4-the-new-engineering-problem.tex",
+      "projection": "book/part1/1.4-the-new-engineering-problem.md",
+      "source_hash": "89f6d1dacae27c749d8ecf2a393488c93c76f7b2d2c8f183525b8d089bbde78a",
+      "projection_hash": "e3429582b3b09e4359f062a3b29e636007f87bcabd8e24cc7e53e9b0df224540"
+    },
+    {
+      "source": "book/latex/sources/part1/1.5-problem-summary.tex",
+      "projection": "book/part1/1.5-problem-summary.md",
+      "source_hash": "cbc08cd5ecde56552401c53caeb12e9014e08e6301ebb135a577310abe8afc88",
+      "projection_hash": "2498b5dfad63afa60aed0b556581da063ec9dfc07a86ee9346622ecdee3ea439"
+    },
+    {
+      "source": "book/latex/sources/part2/00-part-intro.tex",
+      "projection": "book/part2/00-part-intro.md",
+      "source_hash": "c038553ed35d380a29e80aebcb52bc375275b379242fb10e6ecc33017b513c6d",
+      "projection_hash": "dedad6d3200d14eb2c144247608e8a51257d8af90f572394675ed1685804c8bf"
+    },
+    {
+      "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
+      "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
+      "source_hash": "712c790e552ecf000c26747f0fe362c088bbd9bd27806883fe98c79548aa3a4e",
+      "projection_hash": "c8e119d4b84141cb6ea02ae92d4e0c1f5be64e6f6ecee1d353c4d1eb7508603f"
+    },
+    {
+      "source": "book/latex/sources/part2/2.2-structural.tex",
+      "projection": "book/part2/2.2-structural.md",
+      "source_hash": "ce87f87fdcaf5eb9ae315231ebc1d3fcaa82e72096e30e99b42299bb678478a0",
+      "projection_hash": "9f54d58f7bbf3f14ccd7fb113536deec350bd3c626f5467ee462f68ec95f42e3"
+    },
+    {
+      "source": "book/latex/sources/part2/2.3-behavioral.tex",
+      "projection": "book/part2/2.3-behavioral.md",
+      "source_hash": "5108dc23926c315242060583fa28009869f36e34cd89588baa1fccfbfa3b10f4",
+      "projection_hash": "82e5e6dbe8f6ea7f254c2e011068629cb2fe6788dbf8759f355bc4ce3565887a"
+    },
+    {
+      "source": "book/latex/sources/part2/2.4-decision.tex",
+      "projection": "book/part2/2.4-decision.md",
+      "source_hash": "86871369f7b0997cb1e316f501669b17cf119040d775b815824150816411dfc2",
+      "projection_hash": "73bad8a9600c885b6d0aa8c46a1ce53ff4a9023cadcb281e060917cef51308ce"
+    },
+    {
+      "source": "book/latex/sources/part2/2.5-system-knowledge.tex",
+      "projection": "book/part2/2.5-system-knowledge.md",
+      "source_hash": "d2d0786f12dd0370e47f7f3e361393f16da7387a8259238a9f1ffe58cdb23f71",
+      "projection_hash": "e1dc7898c0756b48d35b4e4ce0141cc43b6f468180db7d6e252b7d021ba4f7c3"
+    },
+    {
+      "source": "book/latex/sources/part2/2.6-modeling-summary.tex",
+      "projection": "book/part2/2.6-modeling-summary.md",
+      "source_hash": "470f9d8a82d03d3c1825e86af481e5fcdbefd6b02ee65157b23ca62c0166154c",
+      "projection_hash": "4cdbaa7c8637c748fca006728c7515d900e5535dd11a57a4efc7db6b5c217bd0"
+    },
+    {
+      "source": "book/latex/sources/part3/00-part-intro.tex",
+      "projection": "book/part3/00-part-intro.md",
+      "source_hash": "a17b17c25c2ec5d65a0cb90ab9aa2c13e58c668ea77dc8ed3b3b351a333d18da",
+      "projection_hash": "a0debdb7ba0d17651c21387036dcc39835df3a855c9edff2b3652f4bf0cfe478"
+    },
+    {
+      "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
+      "projection": "book/part3/3.1-where-obligations-can-be-enforced.md",
+      "source_hash": "1988febe941073d69ec99995582f5d561a56c6bf693c8cee90e52ae4dcb8f561",
+      "projection_hash": "63b55b5ac725ceea4918eb1ab9a50bbd0b7a87342e57f7271dd3b02c0702fd92"
+    },
+    {
+      "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
+      "projection": "book/part3/3.2-models-and-the-semantic-gap.md",
+      "source_hash": "684ad6791ad8bc60bcf5a6777765aef5007595a317ee13f8bab3e8734ea34139",
+      "projection_hash": "914652a5630bb06d6e8ac1135901bd44fa87f7c5f3b08a9ca73ad9fc928e1c74"
+    },
+    {
+      "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
+      "projection": "book/part3/3.3-constraints-sensors-validators-gates.md",
+      "source_hash": "8505894666ccba7a38c8356e4d29c642951228094b67ef7f10a7cb5aaede3f45",
+      "projection_hash": "8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e"
+    },
+    {
+      "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
+      "projection": "book/part3/3.4-governance-conversion.md",
+      "source_hash": "d562f583796cff75b3d046bb1efeadc69f6ba77388ea8298aada033e7a10aa24",
+      "projection_hash": "ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279"
+    },
+    {
+      "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
+      "projection": "book/part3/3.5-when-guardrails-collide.md",
+      "source_hash": "b5f5d367b9a51ed967aeabb912142a0656956216e3dbb2bd5b97bad056e6429f",
+      "projection_hash": "26403c379b193f006cb7e04e3e694b65b4643c93ffe8bcc180b0d05516e33cfe"
+    },
+    {
+      "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
+      "projection": "book/part3/3.6-alignment-summary.md",
+      "source_hash": "a3469802474d8fc5ccb1adbd7cb3cb5265447670d3a9bdf9ba885de5af26b5ac",
+      "projection_hash": "e72bb11fd6f5ea199cebc0edb3d9d0cce86037bf94caf20a8183b61098f6421c"
+    },
+    {
+      "source": "book/latex/sources/part4/00-part-intro.tex",
+      "projection": "book/part4/00-part-intro.md",
+      "source_hash": "77035fad68c4f56c18d1700a5c6c370fca654a839d013bf80e456234ef805871",
+      "projection_hash": "fe854a8722bc8d60bcd941eee1f5a29650e7e3ac63f9b20e097ffd39292d9d0d"
+    },
+    {
+      "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
+      "projection": "book/part4/4.1-the-dynamics-of-mage.md",
+      "source_hash": "0d77b4cb04a2f09d021aa5d01f40f7f72f5c7de996a8293493ef098af829d900",
+      "projection_hash": "922b5b4a0d6987745e7bab8e56aabdc929ea6967d1059bc37f5065e7f6d6e871"
+    },
+    {
+      "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
+      "projection": "book/part4/4.2-one-problem-many-models.md",
+      "source_hash": "7c6db1d7cddeca8f39e14561b5bd05cf3cd6a24bd82c414ff49dac6a30d9a650",
+      "projection_hash": "0301c27d1d026cacad9b561135118b11bc56f34afb152137811cd8eaccf321cd"
+    },
+    {
+      "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
+      "projection": "book/part4/4.3-brownfield-engineering.md",
+      "source_hash": "e37b9f3f23e2b355a7b97804dd7d2981604971fd48de344f52d946f77669865d",
+      "projection_hash": "f8c6970e93bf52ccd42bbcd0cc872e17d80d25f48d6a500e5a9b355ba8679e84"
+    },
+    {
+      "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
+      "projection": "book/part4/4.4-engineering-the-environment.md",
+      "source_hash": "291838c1f952113c7755eeca3bf6edf6518a071be18f01874050bec7e2a00e58",
+      "projection_hash": "dd0760c172da6f26689b9f8edb34c2ae6cb253721432319a178f4e906ab3b2c6"
+    },
+    {
+      "source": "book/latex/sources/part5/00-part-intro.tex",
+      "projection": "book/part5/00-part-intro.md",
+      "source_hash": "4b7cf1808d1a5343f77fd7f363f03cbfce0ce1bbb8185d852abd1104fbb837cf",
+      "projection_hash": "6e5a3e816c8c3523681eeb0c8cceb59e54b021520b8e67dd9a2762b247bfa0d7"
+    },
+    {
+      "source": "book/latex/sources/part5/5.1-software-factory.tex",
+      "projection": "book/part5/5.1-software-factory.md",
+      "source_hash": "58c3d8308e648393a068c9f428bfda3c05ecb93b7709ce3ce3038a69319ce59a",
+      "projection_hash": "0da1983548f266c680177cc3b343f716c143dce2fc67a3e06bafec6c731fda5a"
+    },
+    {
+      "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+      "projection": "book/part5/5.2-inside-docables-software-factory.md",
+      "source_hash": "73bdfbd9a5e1456a74b025044a8ce2333ac138eb95d03f2841528c2a9b4f4a61",
+      "projection_hash": "6d4da70abff2a8db65a01843ee1fcd6d9daf56b91fa68b24e22e2e848c1b4713"
+    },
+    {
+      "source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
+      "projection": "book/part5/5.3-other-agentic-software-factories.md",
+      "source_hash": "009aae5097af5dda5cde52d906ebe24c7f290561fe7edbe525dbfa388652f7f7",
+      "projection_hash": "4542a0a8928e6ba95aee78411a91f275020c4d498e5efac60f9fda0e0ca59155"
+    },
+    {
+      "source": "book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex",
+      "projection": "book/part5/5.4-two-problems-of-factory-engineering.md",
+      "source_hash": "80bd5faf1f6516c5326f44fd5d35c2d610c920a245c0d8a95f5f66f0a6eaa023",
+      "projection_hash": "39f348962d6da73a849d63d12775103dfc1c8025c533aab8b9ddc0f872e17c81"
+    },
+    {
+      "source": "book/latex/sources/part5/5.5-engineering-the-factory.tex",
+      "projection": "book/part5/5.5-engineering-the-factory.md",
+      "source_hash": "d6ec5d6be2c6ba5e8c0917c23c43a15c7646aebd9574776b566f29dec1097b82",
+      "projection_hash": "52c026ffeb54da5ec76ba5f9c8c9497aa1f23fcc8d50e6ecd79b82293a7a8854"
+    },
+    {
+      "source": "book/latex/sources/part6/00-part-intro.tex",
+      "projection": "book/part6/00-part-intro.md",
+      "source_hash": "7910b5a54adb10eeaa531fa1dcf872bc4d3b5624bc38f170f78c2e8a27c92b8e",
+      "projection_hash": "48b4887ed512d634a964e2463b5de59f9054c1af98285b7e49212673f7195790"
+    },
+    {
+      "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+      "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
+      "source_hash": "fec7aebdde2bea0407fd35f3a77a418d73fad0b1c3357cecfa8a7609313d4544",
+      "projection_hash": "7dcf6f35ea2aafc2b67206cfe3041bb675c971ee0e5b5cc0ac3b45da6f01c473"
+    },
+    {
+      "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+      "projection": "book/part6/6.2-what-the-theory-predicts.md",
+      "source_hash": "54b9a9b972043de3ad16b0c7d9cd5caf298689e44d53418fbfc5aaf307ffceb1",
+      "projection_hash": "2e775dfebe6f85efc2db2ba24a6e3590a2405bfe2ed55eadffc7ea4f062aec16"
+    },
+    {
+      "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
+      "projection": "book/part6/6.3-scope-conditions.md",
+      "source_hash": "996d2a31a71facb3c6ecd21b7f50c2906718f2d22138db30726ec997a8687cf9",
+      "projection_hash": "a201836d94c704fe88adfcf69d9095e00436dd51ab062307e610892e06c9d28e"
+    },
+    {
+      "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+      "projection": "book/part6/6.4-research-agenda.md",
+      "source_hash": "91c6a39a7b743a96bb564b4674127eb4be42f958737d615ab97db5746fc30799",
+      "projection_hash": "066e60aee9fd19957e500ed059e7294594b3f159a26f038869ea79f3871e9bbc"
+    },
+    {
+      "source": "book/latex/sources/part6/6.5-what-the-theory-claims.tex",
+      "projection": "book/part6/6.5-what-the-theory-claims.md",
+      "source_hash": "733857f7604a1341f918977d8f947cff7e9b2044b1f8f6c00ae238b01811ce3c",
+      "projection_hash": "38c2ff6e2d28e5c11be11ee3d9172fea2db089f5cf375c0f3d50dea05612bf06"
+    },
+    {
+      "source": "book/latex/sources/part7/00-part-intro.tex",
+      "projection": "book/part7/00-part-intro.md",
+      "source_hash": "a2766572f8af6218e3ca5815ce45aca838617ef18a33e92e45783e4969f36213",
+      "projection_hash": "19fd4ce74b032229f3adeec8ba3f460788469ea2150af0038e2fb2c9562b2262"
+    },
+    {
+      "source": "book/latex/sources/part7/7.1-reorganization-of-se.tex",
+      "projection": "book/part7/7.1-reorganization-of-se.md",
+      "source_hash": "a42defe8fe54c3903992def7b01a9962a86cab55265c2062ab7d298c14440c1c",
+      "projection_hash": "76a26f49d1512f25bf79e9cc85402aa32dd029bc17e3316eabc82c32fff5e9df"
+    },
+    {
+      "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+      "projection": "book/part7/7.2-software-rejoins-engineering.md",
+      "source_hash": "51f34e6e118ced8ce828225a4ec51913f6b112e71dcd4fb57f605c2c2fe93dae",
+      "projection_hash": "cb5a68d84a57aacaa9f1294658dcd3d67800ec74b34a37c3d7279e902087fa60"
+    },
+    {
+      "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",
+      "projection": "book/part7/7.3-agentic-engineering-beyond-software.md",
+      "source_hash": "44e0c3a7da57cc2160a7750689b0836f25ec68ecffb71cf5a5391917cf46c273",
+      "projection_hash": "7595a16a08299ce8c16da9a9515023fdc5c16a7a7bfa9922a69540c5a377beb8"
+    },
+    {
+      "source": "book/latex/sources/part7/7.4-the-engineer.tex",
+      "projection": "book/part7/7.4-the-engineer.md",
+      "source_hash": "640bdb9a899d6cf618c6d7c7bfac2491df09fc7f036a0506f67bddd3be6e14aa",
+      "projection_hash": "a16a448d7b77784a20acd7e56358fdced7819f4a5eccedef0a8e5778040535d8"
+    },
+    {
+      "source": "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex",
+      "projection": "book/part7/7.5-what-cannot-be-delegated.md",
+      "source_hash": "4dd7ac3c9a32c4a9044c3196895344cb8e97b28f5c2559e0f5a06d43020b23c5",
+      "projection_hash": "c13f48738b44827ddf7b7944ac9cc1db594129164a6dc8162bb5f4aa32768bbe"
+    },
+    {
+      "source": "book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex",
+      "projection": "book/conclusion/9.1-the-part-that-stays-yours.md",
+      "source_hash": "c36bd0be257987c8a213f98a7701d2cade75c224fbb86ce47e4f5f217ad29634",
+      "projection_hash": "b1a0623354a3fc93b32392f4203cde2a6820f1f41998d1a6fd60027d55bee271"
+    },
+    {
+      "source": "book/latex/sources/backmatter/about-the-author.tex",
+      "projection": "book/backmatter/about-the-author.md",
+      "source_hash": "39bc9866b30879fcfd1455a790b6dec49b6fbe11245c5a8102e2b46f5fb50be5",
+      "projection_hash": "21da6bdc9f441acbf76631af3ec39dcc8236cbc043b5998025067796de616ec0"
+    },
+    {
+      "source": "book/latex/sources/backmatter/colophon.tex",
+      "projection": "book/backmatter/colophon.md",
+      "source_hash": "481c5d9e155d47af78cc1d6d8d0ad64df7722ab86ed1070fac4b61f691de6041",
+      "projection_hash": "49c04801c50e008d731e65adc312e79012ede62d4ffe2e1dd65117f430a68e63"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/_opening.tex",
+      "projection": "book/appendix-stacks/_opening.md",
+      "source_hash": "b2ff74bda11cbd240bbe0673e6a92f8ae39f13f6e9f86681d2ca61e6a6e332bd",
+      "projection_hash": "7041072c38d66c365d03ebcb729bb7b651888d1acf27d570aff6255a1fcb243d"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/_vendor-note.tex",
+      "projection": "book/appendix-stacks/_vendor-note.md",
+      "source_hash": "f5fe14854911fa2b97d440249d765e7313d81ce55c9a720f74e71a543b00f486",
+      "projection_hash": "083d7cf0ed963263ce9bb7f69c5d6c5b32750e46da8cd329d5d19ba13bcbecd2"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/assurance-stack.tex",
+      "projection": "book/appendix-stacks/assurance-stack.md",
+      "source_hash": "9e6d0ef542ac9fdd6091a214142e2d09b8fbb649dd42571c2c55dd1dcef3ed36",
+      "projection_hash": "18560bd0fceaab3d16797ee28d6b0e4a2db43e3f030a8f4357daec81c8f7819b"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/auditable-transformation-stack.tex",
+      "projection": "book/appendix-stacks/auditable-transformation-stack.md",
+      "source_hash": "7fd0e789fbf1f75f5b8c59bbd91492f3b7e11f6baf81a73001ce0b15dd4f28d1",
+      "projection_hash": "62f8e85fb7110ecadfdc170b824f67cd4b93c512c8fbb8b724c8423832e22abb"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/composing-a-stack.tex",
+      "projection": "book/appendix-stacks/composing-a-stack.md",
+      "source_hash": "d0e4de0080a01e32280e2543e170a8b7c327471260a261e23a6d61b59d331ddb",
+      "projection_hash": "7ea1ee58a55eda4e4f84d9780155bdf35168c5c7c32512066c9f1f815f448bc8"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/context-delivery-stack.tex",
+      "projection": "book/appendix-stacks/context-delivery-stack.md",
+      "source_hash": "d5ca75f040e78cdbf3c8ff9ce3251c2a57afa10c9da3bdc13c523988723ca955",
+      "projection_hash": "b0bebf82713e3699bd4e4a4838519d06597ecacb18891c5871b4f4cfbc98a4e3"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/governance-conversion-stack.tex",
+      "projection": "book/appendix-stacks/governance-conversion-stack.md",
+      "source_hash": "5c832b00b4ff6686b1a8c22203a9f17e2fc4392b4a2ebfe8d2b9f09c7b163dd6",
+      "projection_hash": "89799734c39f6327e1882d91c150fd26d9be9d2a5d1796bbb46a81b5608bc308"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/model-coherence-stack.tex",
+      "projection": "book/appendix-stacks/model-coherence-stack.md",
+      "source_hash": "69bd71519e64ad447923d502dcefd71c80d9da9074432b084354ece252b991cb",
+      "projection_hash": "eb6598b162fdaf40c32eaecc13cda98c9786db1d6ad9aac847fef93f17627a26"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/observe-react-stack.tex",
+      "projection": "book/appendix-stacks/observe-react-stack.md",
+      "source_hash": "b9e41cb42ee4d96adffdcdcc4102a08ccee7d223a326b529808677691de928bb",
+      "projection_hash": "20889b26d9cc68df661763aa3e29bfefcd3e9a589b907e544f2b557a656f3b94"
+    },
+    {
+      "source": "book/latex/sources/appendix-stacks/resource-mediation-stack.tex",
+      "projection": "book/appendix-stacks/resource-mediation-stack.md",
+      "source_hash": "35c0bb6d6e06400d38c1eaa44923912cfd8ceef9385484f172b8b407149af44b",
+      "projection_hash": "2da31a57cb823ddd7de749c22a5bdc0f5503698be64a04b9b2d16be84f353c40"
+    },
+    {
+      "source": "book/latex/sources/appendix-skill-recipe/_opening.tex",
+      "projection": "book/appendix-skill-recipe/_opening.md",
+      "source_hash": "4287253383a6717dcbcdb38c909f17784ac770b5ae5f9b82c7f7e2633d4a9a84",
+      "projection_hash": "939ad39577e9cec0aa233a008ea567cfdf55b8cd24b90cb517c4f57630dc2800"
+    },
+    {
+      "source": "book/latex/sources/appendix-skill-recipe/applying-the-recipe.tex",
+      "projection": "book/appendix-skill-recipe/applying-the-recipe.md",
+      "source_hash": "6497f38bf22c14427c0171eeb7d5403c98769083998fe7035c22d218ac66b970",
+      "projection_hash": "933d51961585860898a7fe1004eabdbdb5a651b692ed3ad9b7f180893448326c"
+    },
+    {
+      "source": "book/latex/sources/appendix-skill-recipe/theory.tex",
+      "projection": "book/appendix-skill-recipe/theory.md",
+      "source_hash": "d7251e5b61b0e9db7ca1e3e367277516137ea435ad5a6af4632b18e1526951e7",
+      "projection_hash": "cb1b6a9929523d067f8faaeeeea562c571dfd7e4dc931ac56c6bfad50dba24f2"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/_opening.tex",
+      "projection": "book/appendix-field-guide/_opening.md",
+      "source_hash": "d948bb788ec5470e52b82cca325e841d456e897fa515bf2bf331c7946cc1edc2",
+      "projection_hash": "4304315b41432aa73b7be42aa2c7054e21ebd180a2663d91d4a673263932b03d"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/cloudflare.tex",
+      "projection": "book/appendix-field-guide/cloudflare.md",
+      "source_hash": "10b45c88bd16c92c5b327157650d31763fd7b23114356b487e21d9e2572c2036",
+      "projection_hash": "eb37d90475a04aef2cf2f272747b00b27efe7faffb8866ff9f01c6d27da4cc3e"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/shopify.tex",
+      "projection": "book/appendix-field-guide/shopify.md",
+      "source_hash": "3d5ac551845f85cac4abeb1b7d6c89ec0549ba6e9f584aaa745aa8f90d784c90",
+      "projection_hash": "ba0b30f165e9c26063389ae2f931db19a0bc08abe2bea15d21cd2e68d03573f1"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/siemens.tex",
+      "projection": "book/appendix-field-guide/siemens.md",
+      "source_hash": "698324c7b4f0c49ef7a21eddbbecd4298a550f51336826a1b0d0b136c5f8a232",
+      "projection_hash": "a7e13728110efa263e96fb6c00a9c87ba9cd79778c9b75fb83c916942ef796a2"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/spotify.tex",
+      "projection": "book/appendix-field-guide/spotify.md",
+      "source_hash": "07c4f1764aeca243c0c7a1a87c7f3eb237fea4c185b31639fe56d7f3d1d04260",
+      "projection_hash": "eebce24d947360a3d496097aa1e03efbc501517a0665abdbe6978c6ca6d9fbe9"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/uber.tex",
+      "projection": "book/appendix-field-guide/uber.md",
+      "source_hash": "19663ef3bc7aa8a9018acdf3651bedf3c9ff91c57d7ba298f8d3f38b6678f26e",
+      "projection_hash": "33dd77cc74a8d1e67b32ecd628f6bb329de89041081dbf518eaf092be8d06276"
+    },
+    {
+      "source": "book/latex/sources/appendix-field-guide/zenseact.tex",
+      "projection": "book/appendix-field-guide/zenseact.md",
+      "source_hash": "4690594975815f8d43a6804072dd341d227798447190237b6486367b68c628f6",
+      "projection_hash": "bfac5dd39daafdc29c4b9729a08a61d2b894faf0873664c001a97c368fdc011d"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/_opening.tex",
+      "projection": "book/appendix-models/_opening.md",
+      "source_hash": "fcf8db833381220575d02071203f8292308ca66653cb9e0fecf324f605ea61c9",
+      "projection_hash": "3fe7b6119c08a9f3cd122ed112b1eb8d1058df96404b4b13bfff937163cd43d9"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/behavior-and-ownership.tex",
+      "projection": "book/appendix-models/behavior-and-ownership.md",
+      "source_hash": "bddc2e520f3428f76fefada23a534bec270be24f412ef1e2ee8403215531a695",
+      "projection_hash": "69802e5619e73d4d2d996438a977fc14eadf0af986e0b06efa77161cae29e540"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/documentation-and-provenance.tex",
+      "projection": "book/appendix-models/documentation-and-provenance.md",
+      "source_hash": "4c7ea55d6bc24ec2157db45babe320d153aa3ad24138d86e8c9c50fb90f33699",
+      "projection_hash": "ba903931287369ee4b5405af2d2adf259700d5af4c015aa4625dbf07bc3a36b0"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/execution-and-placement.tex",
+      "projection": "book/appendix-models/execution-and-placement.md",
+      "source_hash": "bde5e9d7eb3d08e1fe54476337e7dc0ba09b9614922d31d72140dc2b182b37fa",
+      "projection_hash": "d236a6e755b8af7f1acf80a39d7ef83d326dd952bd084e5491638817aabe277a"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/joining-views.tex",
+      "projection": "book/appendix-models/joining-views.md",
+      "source_hash": "a1c6903f0e8c5ff505855bf76a6ce953b5541fbf08f56b025df825c3f62cf0f5",
+      "projection_hash": "329f8d9de477ecb98130ab3b086f5396759609da5158c248614b8b0a076d65c3"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/measurement.tex",
+      "projection": "book/appendix-models/measurement.md",
+      "source_hash": "e6c9cc50eae28c9715e6e468fc70924a665c1d7c37ab57721265deca1845ec45",
+      "projection_hash": "f72139d60cca53951221abdc3e7cfb06f5877f6daa76df45c5e878f02c0021c8"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/representation-to-authority.tex",
+      "projection": "book/appendix-models/representation-to-authority.md",
+      "source_hash": "165fdfc6b6d8b96473dfb61b46ad98aca78604465a39163513d2629a7ebacc5b",
+      "projection_hash": "8481d59cce18f9881cebe4838f4203c7e09c8a933faa87487e12b9ec583fd437"
+    },
+    {
+      "source": "book/latex/sources/appendix-models/structure-and-boundaries.tex",
+      "projection": "book/appendix-models/structure-and-boundaries.md",
+      "source_hash": "064e80f44a4379cdbef4b5928830dccfbead725f619f89265a7ee1da1a24e7d9",
+      "projection_hash": "06d88029c4a6850099150f5ee7948451084ddcf203fd02eaacde0adbc258fee5"
+    },
+    {
+      "source": "book/latex/sources/appendix-evidence-ledger/_opening.tex",
+      "projection": "book/appendix-evidence-ledger/_opening.md",
+      "source_hash": "ca148a087a38c6e2f72a3f7083f4a84e95b64209b52d62d3cf6b44579b0cf00a",
+      "projection_hash": "958872c9978a6dd92bfed18c600ee3dedfd6e54c4658d5349f7314893c284506"
+    },
+    {
+      "source": "book/latex/sources/appendix-evidence-ledger/evidence-tables.tex",
+      "projection": "book/appendix-evidence-ledger/evidence-tables.md",
+      "source_hash": "8dd6dbe2e41e79cb6e0444dc983bdc7ac98821182c0b125961e87c73057435da",
+      "projection_hash": "f130159a34b856db111b1b4408cfd4d8700433ed99d1e4f147639fe43d31e95c"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/_opening.tex",
+      "projection": "book/appendix-engineering-moves/_opening.md",
+      "source_hash": "62682e8899d76fbd5cbcd5ffc656e83c7eb0adcca9830665e0d8d8dea36be227",
+      "projection_hash": "08f72ec7a1f0f8d98024590cafeaa74957332c6251f4975eb166b9e469b17270"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/carry-cause-with-consequence.tex",
+      "projection": "book/appendix-engineering-moves/carry-cause-with-consequence.md",
+      "source_hash": "4f10fcc3687cbbda3f3a5bbb4f51dedd9e1a8e51e30248579159658362c104de",
+      "projection_hash": "fa97915d655d29c812b92697ebe868ecc7a5fed19a766995a6825170ecc9633c"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/check-correspondence.tex",
+      "projection": "book/appendix-engineering-moves/check-correspondence.md",
+      "source_hash": "e6973418790759ce8f4ea76ad86cb85a2b151bc779a5566b6a468311684ad455",
+      "projection_hash": "0ca5b29085c46e6559663ad5f49a6d01ff724cbe5527f652c1976ae377b5278c"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/close-the-action-surface.tex",
+      "projection": "book/appendix-engineering-moves/close-the-action-surface.md",
+      "source_hash": "24d90995e79a2681a5e02a9bb4fd2692703a286d530e29b6f2e02918736e9144",
+      "projection_hash": "a51aefb59caec6fde1716da6c68dcd7322538189331ad8db9ccbfa2076a02824"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/deliver-knowledge-at-decision.tex",
+      "projection": "book/appendix-engineering-moves/deliver-knowledge-at-decision.md",
+      "source_hash": "7da5238b19f5fdbc95123cbc1eeaaa20bcc34e2f9528b5044f23198f7436822d",
+      "projection_hash": "3d7dd8ce1c8ed868283d4c20eb91e710625269c635016b7f3b10ef4576e028ff"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/derive-dont-copy.tex",
+      "projection": "book/appendix-engineering-moves/derive-dont-copy.md",
+      "source_hash": "167588d5e8031e9be7a251d59d481e29ac677f7e144a9de158a49f41b301155a",
+      "projection_hash": "58172fea361b3b64a5fcf85be0ec3dbb0af3eb1a53bcbc2122c434d78c5a1f9d"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/derive-the-obligation-set.tex",
+      "projection": "book/appendix-engineering-moves/derive-the-obligation-set.md",
+      "source_hash": "6e01c470389350b23c8daf7910c03e3f4e032c8672b615a3b57091a9b40cd6af",
+      "projection_hash": "d0badd5865b033199cb4d283996760a84dae28f1758b7e16b9a6f2ec5b5ce60d"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/externalize-judgment.tex",
+      "projection": "book/appendix-engineering-moves/externalize-judgment.md",
+      "source_hash": "b6337ee08ce4924480c935d08de3e85c51f82525c2dd437a374e2b6aa8652976",
+      "projection_hash": "db562c9f700f41ba021360820a65e2ca6969b526152759e6499ec804b2de0acb"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/make-dependencies-queryable.tex",
+      "projection": "book/appendix-engineering-moves/make-dependencies-queryable.md",
+      "source_hash": "6d7432ae913a60a361178650b53296a5462f1b1a287279f8c8f3471b7b4bd5db",
+      "projection_hash": "520f365303f55f6bedde42b89bf085a41f1a2e68b3929be1fb337189176025c8"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/make-fact-authoritative.tex",
+      "projection": "book/appendix-engineering-moves/make-fact-authoritative.md",
+      "source_hash": "0a0b56499f6c827f5f274c4fb47bc18985c3813f26346b9b2c68fa4b8d15810f",
+      "projection_hash": "8af5716461ae5461c3fe7978350568a2c4acd553aafe23e286a951c3bda00b7a"
+    },
+    {
+      "source": "book/latex/sources/appendix-engineering-moves/put-authority-where-legible.tex",
+      "projection": "book/appendix-engineering-moves/put-authority-where-legible.md",
+      "source_hash": "5c175e0592758264bb7b469608008c039ca66ecbb7109394853fb3c04f3873f7",
+      "projection_hash": "be86e2c89f1b2813bb6d71a075768420248e1eb2fff26498a206c75d4e49c60d"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/_opening.tex",
+      "projection": "book/appendix-product-lifecycle/_opening.md",
+      "source_hash": "072a10a281752c33ee3ff2717bdee30ffcb07b10e19ce24a07db986291ace0fb",
+      "projection_hash": "b26fe6b85acefe44b66a45009178ea37724dd6811d7ce5c995594d2ca226e4d5"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/assurance-and-compliance.tex",
+      "projection": "book/appendix-product-lifecycle/assurance-and-compliance.md",
+      "source_hash": "0a1a31822158608ea9f3b5942e1e248e24fb58eb2525b9b35aee3a44870f4ebe",
+      "projection_hash": "2f8ff68da3a852dd68db581373d678aa75fa0a967945bba3cef4220b3eb0eb17"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/differential-adoption.tex",
+      "projection": "book/appendix-product-lifecycle/differential-adoption.md",
+      "source_hash": "fc1d44e0075799dfa9839a4ffe99c863b78644c79e14e951bcc23656b9a68396",
+      "projection_hash": "66e1277f62cfc1b96ca803e8477ca040d0546554ce680d405640c280044ad691"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/engineering-and-realization.tex",
+      "projection": "book/appendix-product-lifecycle/engineering-and-realization.md",
+      "source_hash": "5b8d8f306acf907ff948efa6823944ea36fe7258b8a0c44b3191c677ff2d8d8b",
+      "projection_hash": "e2662b6c7757a6d57e5f673c36cbc1905dfeeecbbb92752d655aa383ca71a509"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/engineering-capital-across-time-and-space.tex",
+      "projection": "book/appendix-product-lifecycle/engineering-capital-across-time-and-space.md",
+      "source_hash": "9a9e8e5990ee5033bc42de138952278c668b3b1f5f73f300c29da96a595b3346",
+      "projection_hash": "aefefb434550967f42606615f11b599f4dafeb0da72925a041185416faaf6902"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/from-local-mage-to-the-product-gee.tex",
+      "projection": "book/appendix-product-lifecycle/from-local-mage-to-the-product-gee.md",
+      "source_hash": "4c4c832f68894fa2f00ffd4918c5bb21cb9dc94cf5230b881e45f5af8d58f447",
+      "projection_hash": "0b4f1627345c703b48b52ee0ac4f8830de7982de41c87a79b55b7a0335f6bfe1"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/one-product-several-surfaces.tex",
+      "projection": "book/appendix-product-lifecycle/one-product-several-surfaces.md",
+      "source_hash": "40f5f05cb602b9166ee6aeecf4afa34ec164ec88238047c71e23ce9a83a6aad2",
+      "projection_hash": "5d98cce09e5ea556b205518fab3e42a1a42d199f25fa2e7ad4e9a460e8d25213"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/operations-and-incidents.tex",
+      "projection": "book/appendix-product-lifecycle/operations-and-incidents.md",
+      "source_hash": "1127fc4562d1b0fa2e5a03b05f4f9d3874163e1d6b29a30cf89d13932f323d29",
+      "projection_hash": "60da3d5eb584eed7e43d2124a620539f251b292795dc3971051454c64b365e7f"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/product-discovery.tex",
+      "projection": "book/appendix-product-lifecycle/product-discovery.md",
+      "source_hash": "8fbde125cf53a056e2214840f8b17baaa33bbbac50473eabc087001a110a2858",
+      "projection_hash": "7f8cea80137803ece52831f3a01e6421baba89b76ae65e0a54b3875f0f8193d6"
+    },
+    {
+      "source": "book/latex/sources/appendix-product-lifecycle/product-management-and-maintenance.tex",
+      "projection": "book/appendix-product-lifecycle/product-management-and-maintenance.md",
+      "source_hash": "05a48b9c30935f82b306064847a81f44bdc16ae4832336459f1e56fa1286d3d9",
+      "projection_hash": "8abb412958940b6e7257c1f5f5a2957bb97283e5b976f25a1d9aff9afd2f85c0"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/_opening.tex",
+      "projection": "book/appendix-adopting-genai/_opening.md",
+      "source_hash": "a285970704a9fa8ad5c1146dbc68cea72a506118392faf345aa43de79859cc70",
+      "projection_hash": "5e5d17f262162dedeb2cb503ca9d4b2cb02d09ffa4e614168dfa9f158041772c"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/a-practical-adoption-procedure.tex",
+      "projection": "book/appendix-adopting-genai/a-practical-adoption-procedure.md",
+      "source_hash": "f41af56f87ee8b77d1cd11980b1adca385a8f2e49612553e45bbd211425cb1b9",
+      "projection_hash": "569fa128ced4eb49fd6da594263533271e0fdc7b1f7e79f212d5850212b74b63"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/engineering-the-environment.tex",
+      "projection": "book/appendix-adopting-genai/engineering-the-environment.md",
+      "source_hash": "a04fd3d7446bbc8e64718c4113556d5b7e270371bec221a6d87f9e228dbb5e7d",
+      "projection_hash": "e743ab4103759b9b802391ab7e6b46ae14f2cc4bd40eab9e9a0c6a95057a4e62"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/expanding-delegation.tex",
+      "projection": "book/appendix-adopting-genai/expanding-delegation.md",
+      "source_hash": "bc5a75e0c67d6d59f1fc0efb056aca54b14d1486b3a7390746e0e571c030f4e4",
+      "projection_hash": "845581658deda67952fc22dcea528be2d78fd2e6032de24c780b2a22d02987b6"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/from-assistance-to-delegation.tex",
+      "projection": "book/appendix-adopting-genai/from-assistance-to-delegation.md",
+      "source_hash": "3bbe5062956d775cf08534452c6ee3da8335edcaa4055e298929fa41486d1620",
+      "projection_hash": "8aaf8adec7a7d50c1702f669490f584a6282094656decfb613bd5bcc73ace2c2"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/learning-from-delegated-work.tex",
+      "projection": "book/appendix-adopting-genai/learning-from-delegated-work.md",
+      "source_hash": "66f9137dcdf7289016ad5f2a3c8b2aed4df1d3963008be184e116dc590d46cb8",
+      "projection_hash": "1884951f163fdf3025796918190b8dea468e824cc4fbdddb78586b61bf93d261"
+    },
+    {
+      "source": "book/latex/sources/appendix-adopting-genai/organizational-adoption.tex",
+      "projection": "book/appendix-adopting-genai/organizational-adoption.md",
+      "source_hash": "cb26a2643f9530bc82be1f0fbbadf1332053afe7ea88ed6444ad1b27c2fef7b0",
+      "projection_hash": "87c5077eea0d8c16883912fa65a2f9fe9d35174f80a7b10e65f00d76a20be1ba"
+    },
+    {
+      "source": "book/latex/sources/appendix-crazy-ideas/_opening.tex",
+      "projection": "book/appendix-crazy-ideas/_opening.md",
+      "source_hash": "7f62ad3f8966713e71ab01e297cdd583e463849bd72636be866a3969f445a8c7",
+      "projection_hash": "e4a5342789503d6ffc81b3eb8a5a03f81943e9cbd9c04fe8c6625ee57726dd23"
+    },
+    {
+      "source": "book/latex/sources/appendix-crazy-ideas/development-completeness.tex",
+      "projection": "book/appendix-crazy-ideas/development-completeness.md",
+      "source_hash": "5ae6ee43c87341e8fda495443136c9464391ed83dd63a623c6ef88def19a2688",
+      "projection_hash": "c203574c09ae59f0ee5bb0a30ec1f1d7fd51ae8d18a765ed85bb3b9a70d7a8a4"
+    },
+    {
+      "source": "book/latex/sources/appendix-crazy-ideas/experimental-substrate.tex",
+      "projection": "book/appendix-crazy-ideas/experimental-substrate.md",
+      "source_hash": "f4a10d6769698bb05e6fe78cf687c2b3735cc8b8ac985fcc06fb9152cf9f16df",
+      "projection_hash": "6b0c8fbea6746c10fa6f46c2ca4364106a9c17a5003ebd4d004b9285493eb5bc"
+    },
+    {
+      "source": "book/latex/sources/appendix-crazy-ideas/model-induction.tex",
+      "projection": "book/appendix-crazy-ideas/model-induction.md",
+      "source_hash": "52dcdfa672ee4441c2f16ba2b99e0671268991cff4c8344e8abb9af771551112",
+      "projection_hash": "b001c066f36d8faaab84f12a4bd404342bcfb296968ebc49d1e61f083e856f64"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/_opening.tex",
+      "projection": "book/appendix-operators-reference/_opening.md",
+      "source_hash": "9704c8188fd3f997dc65904ec868269eca2e60ca9d2d46bae60d33df4a3037e5",
+      "projection_hash": "8fdc2910b32d99e6e72d1808c304511aca0a63b3abf3608e9ce1ea23919d5ad4"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/brownfield-progress.tex",
+      "projection": "book/appendix-operators-reference/brownfield-progress.md",
+      "source_hash": "ebe80c174ebac347eddc6c80cd520b2d3a880272e2bb4c6788823990befab896",
+      "projection_hash": "cd08ced0fb206ce45d4925789f34217968f9ae8fd7a8fc8ce4ae26445149f71b"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/daily-review.tex",
+      "projection": "book/appendix-operators-reference/daily-review.md",
+      "source_hash": "5e6995916b8da9dbed02fef421529661370d62b2bdcba6c210c21c38b1598f94",
+      "projection_hash": "d5cbfbd20c9e5d0379fd7b8d786622e058806e722c6a19dc3a6e317c3f8e6e31"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/engineering-capital.tex",
+      "projection": "book/appendix-operators-reference/engineering-capital.md",
+      "source_hash": "ef751940b81657da111cbfbf6be2b28e62d4c2fc1dbac9bbb4f8ed1e428a139b",
+      "projection_hash": "264e188d973721b9741d44b973e6c8d338eb27812b9f9b7b4035b57c147728f5"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/evidence-quality.tex",
+      "projection": "book/appendix-operators-reference/evidence-quality.md",
+      "source_hash": "038c8b3d84a22edeb461a8988ff34214877badde4c0025b15747ea81b1029be9",
+      "projection_hash": "5368ba5807ad618dd0e33032606f7daa90dbacc7f0dfa6ee06a30fae0780cfc5"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/from-drifted-wiki-to-trusted-model.tex",
+      "projection": "book/appendix-operators-reference/from-drifted-wiki-to-trusted-model.md",
+      "source_hash": "969908a0032779903a8d426c68d19fd415960454b5c8facd7ec82d62150db05d",
+      "projection_hash": "c5982ceafb638c4c2c83730c1d27cf6b8868115e5fa87431d35b4c0c29ac54f3"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/governance-conversion.tex",
+      "projection": "book/appendix-operators-reference/governance-conversion.md",
+      "source_hash": "7275de5fbe827b1186980ba259a7fda4cfd6721368587c32a2aa19f3fef54ef8",
+      "projection_hash": "0e335e87c582f271a2b919f5c1913f6fceaa997f86d5898de75f6631e26f4d61"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/human-judgment.tex",
+      "projection": "book/appendix-operators-reference/human-judgment.md",
+      "source_hash": "e269c1e3d3695fc100d7df9ac0ad9229c579a5693a5d4ac3e32d3709601472b7",
+      "projection_hash": "96067fdc398d295ddc403247dad498594d199231462b7a48c0d59b8f6d7c212c"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/model-health.tex",
+      "projection": "book/appendix-operators-reference/model-health.md",
+      "source_hash": "78f5950b8eecd203ad50c33154cb309709de63d29adac33a3a128f46698e894c",
+      "projection_hash": "c6511a0ce6aad2664f00b3e6d4efe307d52becaf711c4eac015ff03c8e201fac"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/operating-doctrine.tex",
+      "projection": "book/appendix-operators-reference/operating-doctrine.md",
+      "source_hash": "5e91429d109e1b1ac91e0b270c9334862bb44afd00d5dda2025121cbf7e26baa",
+      "projection_hash": "be182bd26e817c1a6a928fd85f86b2ad0d1b7aa2a398854e3989bc01bf67644b"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/operators-dashboard.tex",
+      "projection": "book/appendix-operators-reference/operators-dashboard.md",
+      "source_hash": "c70a8ad4ad1ac1036e6afdf1b99286dee3ffa48d98299c9f7124c2a5c5860421",
+      "projection_hash": "1d188f7cd938f1c66236a0221c2b7add591722b9e63bc2b15dc3e1f3afe7c37b"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/release-readiness.tex",
+      "projection": "book/appendix-operators-reference/release-readiness.md",
+      "source_hash": "8e5f3baa1645ad01678baff319d87774b464eae06208b3adc791018be45f383c",
+      "projection_hash": "fcdf944b82ccefe7d66f131ad6c1952e3c314c816d1a78b5f147b1287cb3e741"
+    },
+    {
+      "source": "book/latex/sources/appendix-operators-reference/system-health.tex",
+      "projection": "book/appendix-operators-reference/system-health.md",
+      "source_hash": "05a7fd5f24c0414d4cd9343f45a169e08d3afe5d20ca72bf2d4522e37103b44f",
+      "projection_hash": "7b9ec37a91d476aa7ea311f9285008ca11674f772ad001f46895118b39011e4e"
+    },
+    {
+      "source": "book/latex/sources/appendix-part-1-practice.tex",
+      "projection": "book/appendix-part-1-practice.md",
+      "source_hash": "55a4b783ceaf9cb57424a4d2749f7dabdc03ff21ebac29c2a49b97eae0c1d7c8",
+      "projection_hash": "e6ea349986d57b9ba88ee68513b71eacd9b7be12f88580a317d179e6de01dc0d"
+    },
+    {
+      "source": "book/latex/sources/appendix-part-2-evidence.tex",
+      "projection": "book/appendix-part-2-evidence.md",
+      "source_hash": "89f069d7b140da0cc6d3b1f72b4fddbc1ec8feba5838183c025cb62dc8fbfaa1",
+      "projection_hash": "2c5b259d0e3e5af426178a6746535961663d802a6d6a9c6c4fee348495f40ef2"
+    }
+  ],
+  "engine_hash": "506e374a9faacbceb1d506d34e3b65a6aeaec1e3438beb0a04f22c12a837dfdc",
+  "renderer_version": "pandoc 3.9.0.2"
+}

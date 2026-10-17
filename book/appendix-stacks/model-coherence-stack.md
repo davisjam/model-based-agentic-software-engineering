@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/model-coherence-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ## The Capability
 
 **Keep explicit engineering models connected to both their consumers and the implementation they describe.** A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
@@ -18,6 +20,8 @@ Reach for it when:
 
 ## Constituent Moves
 
+<!-- label:  -->
+<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MODEL** | Put the engineering fact in an explicit representation. |

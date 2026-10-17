@@ -122,7 +122,8 @@ def html_files() -> list[str]:
     prune = catalog.site_prune_dirs()
     out: list[str] = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in prune]
+        dirnames[:] = [d for d in dirnames if d not in prune
+                        and not catalog.is_native_build_path(os.path.join(dirpath, d))]
         out.extend(os.path.join(dirpath, fn) for fn in filenames if fn.endswith(".html"))
     return out
 

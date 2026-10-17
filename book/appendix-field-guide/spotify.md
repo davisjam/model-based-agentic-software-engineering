@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-field-guide/spotify.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 ### Spotify
 
 *Audio streaming · fleet-scale autonomous migration*
@@ -12,9 +14,6 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 
 **Portable lesson.** Scale implementation; concentrate human judgment on what to change and where.
 
-[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the {{sec:mage-in-the-wild}} reconstruction (service identities, ownership, dependencies, endpoints, lineage).
-[^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
-
 #### Recto — MAGE Interpretation
 
 <!-- label: field-guide-spotify -->
@@ -23,3 +22,7 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 **MAGE reading.** Spotify shows the model and governed environment working together. A model of the service estate helps determine where work belongs; verification and admission machinery determine whether generated changes can proceed; fleet execution makes one engineer's upstream decisions consequential across many repositories.
 
 **Interpretive boundary.** The evidence does not show that every Spotify migration is model-driven or automatically admitted; the reading applies only to the mechanisms described publicly.
+
+[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the {{sec:mage-in-the-wild}} reconstruction (service identities, ownership, dependencies, endpoints, lineage).
+
+[^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.

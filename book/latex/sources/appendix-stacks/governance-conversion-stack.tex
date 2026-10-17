@@ -1,0 +1,66 @@
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Turn recurring failures and judgments into durable engineering structure while keeping the control machinery legible.} Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The controls have grown their own complexity} --- they overlap, depend on one another, go stale, and carry blast radius nobody has mapped.
+\item
+  \textbf{The same failure keeps recurring}, and each fix is a one-off patch rather than a durable control.
+\item
+  \textbf{Lessons live in institutional memory} instead of in the environment, so they leave when the person who learned them does.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-conversion-stack-2759b05e9a.pdf}
+\caption{The governance-conversion composition, a loop. The CONTROL MACHINERY --- rules, gates, models, sensors --- is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.}
+\label{governance-conversion-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MODEL} & Make the control machinery explicit --- rules, gates, models, sensors. \\
+\textbf{EXPOSE} & Query the machinery for gaps, staleness, and coupling. \\
+\textbf{CONVERT} & Interpret a recurring failure class into a new or strengthened control. \\
+\textbf{UPDATE} & Fold the control back into the machinery; the model changes with it. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control machinery itself becomes difficult to reason about. When that happens, model it explicitly.
+
+Once the machinery is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the machinery model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.
+
+\textbf{Mechanisms:} control census · control-dependency graph · governance conversion

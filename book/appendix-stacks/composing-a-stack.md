@@ -1,3 +1,5 @@
+<!-- GENERATED from book/latex/sources/appendix-stacks/composing-a-stack.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
 The seven preceding stacks are examples. The reusable method is how to compose one. Start from the capability, not the mechanisms.
 
 ## 1. Name the Capability
@@ -5,15 +7,16 @@ The seven preceding stacks are examples. The reusable method is how to compose o
 Prefer
 
 <!-- inline-quote -->
+
 > Every consequential mutation is reconstructable.
 
 over
 
 <!-- inline-quote -->
+
 > We need provenance logging.
 
-The first states the engineering result. The second has already chosen a mechanism, before you know whether
-it is the right one or the only one.
+The first states the engineering result. The second has already chosen a mechanism, before you know whether it is the right one or the only one.
 
 ## 2. Enumerate the Failure Classes
 
@@ -31,22 +34,25 @@ Those failures determine what the composition must cover.
 
 Map each way the claim can break to the guarantee that closes it.
 
-| Failure | Guarantee |
-|---|---|
-| actor unknown | attribution |
-| record missing | emission |
-| bypass exists | coverage |
+<!-- label:  -->
+<!-- table:  -->
+| Failure            | Guarantee              |
+|-------------------|-----------------------|
+| actor unknown      | attribution            |
+| record missing     | emission               |
+| bypass exists      | coverage               |
 | history fragmented | stable identity / join |
-| semantic loss | fidelity check |
+| semantic loss      | fidelity check         |
 
-Do not add a mechanism because the case you are copying from used it. Add it because a failure class needs
-its guarantee.
+Do not add a mechanism because the case you are copying from used it. Add it because a failure class needs its guarantee.
 
 ## 4. Find the Dependency Among Guarantees
 
 Some guarantees only become meaningful once another exists.
 
-    MARK  →  EMIT  →  COVER  →  READ
+``` text
+MARK  →  EMIT  →  COVER  →  READ
+```
 
 A completeness check is meaningful only after the population to be accounted for has been defined. A list of mechanisms becomes a stack when their guarantees depend on one another.
 
@@ -55,15 +61,14 @@ A completeness check is meaningful only after the population to be accounted for
 For each mechanism, ask:
 
 <!-- inline-quote -->
+
 > If I remove this, is the capability claim still valid?
 
 If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.
 
 ## 6. Match the Substrate
 
-Do not reproduce a reference stack mechanically. A database, an embedded controller, a
-compiler, a SaaS application, and a research codebase each expose different observable facts and different
-deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.
+Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.
 
 ## 7. Stop
 
