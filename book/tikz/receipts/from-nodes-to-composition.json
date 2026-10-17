@@ -3,73 +3,80 @@
   "chapter": "2.2-structural",
   "claim": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.",
   "topology": {
-    "description": "Sparse computation inventory with two seed relations; derived typed relation examples distinguish payload flow, cross-service payload and control.",
-    "relations": [
-      [
-        "seed1",
-        "seed2",
-        "authored seed",
-        "solid"
-      ],
-      [
-        "seed2",
-        "seed3",
-        "authored seed",
-        "solid"
-      ],
-      [
-        "a",
-        "b",
-        "DATA_FLOW ×32",
-        "solid"
-      ],
-      [
-        "b2",
-        "svc",
-        "CROSS_SERVICE ×1",
-        "solid"
-      ],
-      [
-        "a2",
-        "c",
-        "CONTROL_GATE ×24",
-        "dashed"
-      ]
+    "description": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "native_draw_commands": [
+      "\\draw[edge,line width=1pt] (seed1) -- (seed2);",
+      "\\draw[edge,line width=1pt] (seed2) -- (seed3);",
+      "\\draw[edge] (-2.7,-2) -- node[lab,above,text width=1.6cm] {derive +\\\\type} (-1,-2);",
+      "\\draw[edge,line width=1pt] (a) -- node[lab,above=11pt] {DATA\\_FLOW ×32} node[lab,below=11pt] {Produces $\\rightarrow$ Consumes} (b);",
+      "\\draw[edge,line width=.7pt] (b2) -- node[lab,above=11pt] {CROSS\\_SERVICE ×1} node[lab,below=11pt] {Cross-boundary payload} (svc);",
+      "\\draw[edge,dashed,line width=.9pt] (a2) -- node[lab,above=11pt] {CONTROL\\_GATE ×24} node[lab,below=11pt] {ConsumesForControl} (c);",
+      "\\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-3.6) -- (-.65,-.25);",
+      "\\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-6.1) -- (-.65,-5.1);"
     ]
   },
   "required_terms": [
-    "Computations without composition",
-    "Pass A",
-    "Pass B",
-    "Pass C",
-    "Pass D",
-    "Pass E",
-    "125 computations 2 authored relations",
-    "Derive + type the relations",
-    "Payload-bearing: 33 DATA_FLOW: 32 Produces → Consumes CROSS_SERVICE: 1 Cross-boundary payload",
-    "Control: 24 CONTROL_GATE: 24 ConsumesForControl",
-    "2 authored + 55 projected, typed relations = 33 payload + 24 control"
+    "Computations",
+    "without composition Composition made explicit",
+    "125 computations",
+    "2 authored relations",
+    "derive +",
+    "type",
+    "Payload-bearing: 33",
+    "Pass A Pass B",
+    "DATA_FLOW ×32",
+    "Produces → Consumes",
+    "Pass B Service",
+    "CROSS_SER VICE ×1",
+    "Cross-boundary payload",
+    "Control: 24",
+    "Pass A Pass C",
+    "CONTROL_GATE ×24",
+    "ConsumesForControl",
+    "2 authored + 55 projected, typed relations",
+    "= 33 payload + 24 control"
   ],
   "bw_encoding": "Grayscale publication candidate. Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
-  "redesign": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
+  "redesign": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
   "questions": [
     "The source description says 55 projected, while 33 + 24 = 57; diagram preserves explicit SVG equation: 2 authored + 55 projected = 57 total."
   ],
-  "alt": "A sparse inventory of125 computations highlights two authored seed relations. Derivation produces three labeled examples: Pass A to Pass B DATA_FLOW 32, Pass B to Service CROSS_SERVICE 1, and a dashed Pass A to Pass C CONTROL_GATE 24. The first two comprise33 payload-bearing relations; control comprises 24. The total is2 authored plus55 projected relations.",
+  "alt": "Separate static and history frames contrast entities and their composition. Braces distinguish payload from control information; the derivation link connects the two views without merging their roles.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.9515,
-      9.3869
+      13.7879,
+      9.7173
     ]
+  },
+  "fidelity_review": {
+    "stem": "from-nodes-to-composition",
+    "source": "book/assets/from-nodes-to-composition.svg",
+    "status": "corrected",
+    "evidence": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/from-nodes-to-composition.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/from-nodes-to-composition.png",
+    "original_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+    "native_sha256": "c808b79bc5067ff8a9799287bca56a937c80de73bf713b3905578a844b610a4d",
+    "page": 17,
+    "dimensions_cm": [
+      13.7879,
+      9.7173
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

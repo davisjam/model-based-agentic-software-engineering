@@ -4,13 +4,14 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[head,text width=5cm] (h35a) at (-3.5,0) {Negative constraint};
 \node[head,text width=5cm] (h35b) at (3.5,0) {Positive constraint};
 \node[box,text width=4cm] (a) at (-3.5,-1.4) {Ordinary code};
 \node[box,dashed,text width=4cm] (b) at (-3.5,-3.5) {Raw library};
-\draw[dashed] (a) -- node[note,fill=white] {must not call $\times$} (b);
+\draw[dashed] (a)--(b);\draw[line width=1.2pt] (-3.75,-2.2)--(-3.25,-2.7) (-3.25,-2.2)--(-3.75,-2.7);\node[note,anchor=west] at (-3.05,-2.45) {must not call};
 \node[box,text width=4cm] (c) at (3.5,-1.4) {Mutation verb};
-\node[box,text width=4cm,fill=black!28] (d) at (3.5,-3.5) {\textbf{MUST stamp}\\emit attribution evidence};
+\node[box,text width=4cm,fill=black!28] (d) at (3.5,-3.5) {\textbf{MUST stamp}\\emit attribution\\evidence};
 \draw[edge,] (c) -- node[midway,right,note,fill=white] {must call} (d);
 \node[note,text width=12cm] (nt) at (0,-4.8) {Both source-time rules restrict the admissible implementation space.};
 \end{tikzpicture}

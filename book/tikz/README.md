@@ -77,3 +77,20 @@ with gray fills, a dashed connector and a white-backed edge label.
 Glyph boxes approximate ink. Complex clipping, intentional mathematical overlays,
 node ownership and semantic fidelity still require visual/source comparison. A
 clean geometry report does not mean a redraw preserves the original's meaning.
+
+## Visual fidelity review
+
+`fidelity-review.json` records the follow-up source comparison prompted by missing
+expansion guides and document pictograms in Figures 1.1 and 1.2. The earlier
+`grayscale-review.json` is a historical snapshot, not a fidelity certificate.
+
+Compare rendered originals and candidates, not just their extracted words:
+
+- Preserve pictograms, warning/check marks, forbidden-path crosses and gate marks.
+- Preserve arrowless expansion guides, feedback paths, open endpoints and grouping.
+- Keep external annotations outside nodes; distinguish labels from explanations.
+- Check text at its authored print size; enlarge the layout before shrinking text.
+- Retain chart units, qualifications, callouts and legend meanings.
+
+Compiler success and a clean geometry audit cannot establish any of these. The
+review log records source and candidate hashes so subsequent edits are visible.

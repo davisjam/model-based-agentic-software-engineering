@@ -4,7 +4,7 @@
   "topology": "Quantitative axes preserve source values and categories.",
   "required_terms": [],
   "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
-  "redesign": "Dotted stage boundaries retained; provenance encoded by solid, hatch, and white bars.",
+  "redesign": "Dotted stage boundaries retained; provenance encoded by solid, hatch, and white bars. Restored external units and interpretive annotations at 10 pt.",
   "questions": [],
   "alt": "Realization Over Time. Weekly commits landing on main across the project's 29 weeks, split by reconstructed authorship provenance, with dotted build-stage boundaries. The late-era shift from agent-attributed commits to merge-train squashes records a change in landing mechanism, not a slowdown: one squash stands for many underlying agent commits, so the total series is the cross-regime-comparable trace.",
   "data": [

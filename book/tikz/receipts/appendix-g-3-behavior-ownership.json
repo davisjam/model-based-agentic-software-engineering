@@ -12,7 +12,7 @@
     "INVARIANT LEASED \u21d2 exactly one valid owner FREE \u21d2 no active owner"
   ],
   "bw_encoding": "Modeled lifecycle and ownership overlay share shade; actual worker remains white; checked lease/CAS edge stays heavy. All text black; fills are grayscale and redundant with labels, position or border style.",
-  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Raised lease/CAS edge annotation clear of the ownership border.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Raised lease/CAS edge annotation clear of the ownership border. Fidelity pass: Restored explicit crossed no-reentry extension from DONE and double-bar lease/CAS authorization. Invariant panel returned to neutral border; it states a condition, not an admission gate.",
   "questions": [],
   "alt": "Behavior plus ownership \u2014 a lifecycle with an ownership overlay that authorizes the worker"
 }

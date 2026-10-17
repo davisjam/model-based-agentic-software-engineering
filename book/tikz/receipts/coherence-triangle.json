@@ -3,52 +3,72 @@
   "chapter": "2.5-system-knowledge",
   "claim": "*Checked predicates over a structured model.* A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.",
   "topology": {
-    "description": "Structured model supports domain predicates; checker evaluates invariants; dashed feedback refines predicates.",
-    "relations": [
-      [
-        "n0",
-        "n1",
-        "supports",
-        ""
-      ],
-      [
-        "n1",
-        "n2",
-        "evaluated by",
-        ""
-      ],
-      [
-        "n2.south",
-        "n1.south",
-        "Recurring failure → new / refined invariant",
-        "dashed"
-      ]
+    "description": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
+    "native_draw_commands": [
+      "\\draw[edge] (model) -- node[lab,above=46pt] {supports\\\\predicates over} (invariants);",
+      "\\draw[edge] (invariants) -- node[lab,above=46pt] {evaluated by} (checker);",
+      "\\draw[edge,dashed] (checker.south) -- (4.8,-2.2) -- node[lab,below] {Recurring failure → new / refined invariant} (0,-2.2) -- (invariants.south);"
     ]
   },
   "required_terms": [
-    "Structured model Records · edges · states Job: free / leased / done",
-    "Invariants Stable IDs + declared domains leased ⇔ owner exists",
-    "Checker Model check · drift lint · validator",
+    "Structured model",
+    "Records ·",
+    "edges · states",
+    "A job: free /",
+    "leased / done",
+    "Invariants",
+    "Stable IDs",
+    "Declared domains",
+    "leased ⇔",
+    "owner exists",
+    "Checker",
+    "Model check",
+    "· drift lint",
+    "Validator",
+    "supports",
+    "predicates over evaluated by",
+    "Recurring failure → new / refined invariant",
     "One executable-model pattern, not the definition of executability."
   ],
   "bw_encoding": "Grayscale publication candidate. Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
-  "redesign": "Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
+  "redesign": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
   "questions": [],
-  "alt": "Three nodes run left to right: a structured model supports invariants, which are evaluated by a checker. A dashed feedback edge from the checker returns to the invariants, identifying recurring failure as a reason for a new or refined invariant. The lease example states that leased is equivalent to owner exists. This is one executable-model pattern, not the definition of executability. Black lines, white nodes and explicit labels carry the meaning without color. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Three gray boxes form a model-to-invariants-to-checker chain. Invariants contains a separate example box stating that leased is equivalent to owner exists. External labels explain predicate support and evaluation; a dashed recurring-failure feedback path returns from Checker to Invariants.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      13.9764,
-      5.2413
+      13.8852,
+      6.3761
     ]
+  },
+  "fidelity_review": {
+    "stem": "coherence-triangle",
+    "source": "book/assets/coherence-triangle.svg",
+    "status": "corrected",
+    "evidence": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/coherence-triangle.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-30.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/coherence-triangle.png",
+    "original_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+    "native_sha256": "336156b0ee99bee81bf300762966c7735e97bd2b0143227c4eb1d0db988f790b",
+    "page": 34,
+    "dimensions_cm": [
+      13.8852,
+      6.3761
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

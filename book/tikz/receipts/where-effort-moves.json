@@ -14,15 +14,15 @@
     "Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain."
   ],
   "bw_encoding": "Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions. Fidelity pass: Restored within-band placement under lifecycle phases instead of collapsing responsibilities into centered prose lists; implementation receives bold emphasis in its own phase column.",
   "questions": [],
-  "alt": "Across the top, the five lifecycle phases in order — Requirements, Design, Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The human engineering judgment band carries intent, abstractions, tradeoffs, acceptance, and adaptation. The fleet band carries implementation, analysis, transformation, and routine remediation, with IMPLEMENTATION emphasized in capitals. The governed environment band carries models and context, permissions and constraints, evidence and validators, admission, and operational controls across all phases. Implementation shifts disproportionately toward the fleet, and human effort concentrates where consequential judgment and responsibility remain.",
+  "alt": "Across the top, the five lifecycle phases in order — Requirements, Design, Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The human engineering judgment band carries intent, abstractions, tradeoffs, acceptance, and adaptation. The fleet band carries implementation, analysis, transformation, and routine remediation, with implementation emphasized in bold under its lifecycle phase. Responsibilities are placed under their corresponding phase columns. The governed environment band carries models and context, permissions and constraints, evidence and validators, admission, and operational controls across all phases. Implementation shifts disproportionately toward the fleet, and human effort concentrates where consequential judgment and responsibility remain.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 396.381,
-    "height_pt": 260.709,
+    "width_pt": 406.6340026855469,
+    "height_pt": 260.5950012207031,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

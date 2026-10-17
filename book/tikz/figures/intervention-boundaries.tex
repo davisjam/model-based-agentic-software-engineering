@@ -1,17 +1,23 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=2.8cm,fill=black!20] (n0) at (0.0,0) {Reasoning input\\Prompts · briefs\\Models · examples};
-\node[n,text width=2.8cm,fill=black!30] (n1) at (3.65,0) {Action\\Permissions · hooks · tools};
-\node[n,text width=2.8cm,fill=black!30] (n2) at (7.3,0) {Work unit\\Task · PR · build\\Deployment candidate};
-\node[n,text width=2.8cm,fill=black!30] (n3) at (10.95,0) {Artifact / runtime\\Types · API seams\\Admission · runtime policy};
-\begin{scope}[on background layer]\node[draw,fill=black!3,inner sep=7pt,fit=(n0),label={[font=\fontsize{9}{11}\selectfont]above:{GUIDANCE}}] {};\end{scope}
-\begin{scope}[on background layer]\node[draw,fill=black!3,inner sep=7pt,fit=(n1)(n2)(n3),label={[font=\fontsize{9}{11}\selectfont]above:{ENFORCEMENT CAN OCCUR HERE}}] {};\end{scope}
-\node[note,text width=3cm] (cons) at (0,-2) {Enforced only through a consuming mechanism};
-\draw[edge] (-1.3,-3)--(12.4,-3) node[midway,lab]{Increasing semantic grain (not enforcement strength)};
-\node[note,text width=13cm] (rule) at (5.5,-4.1) {Choose the earliest boundary where the obligation is legible and the consequence can be affected.};
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
+
+\foreach \i/\x/\title/\shade in {0/-5.1/{Reasoning\\input}/20,1/-1.7/Action/30,2/1.7/{Work unit}/30,3/5.1/{Artifact / runtime}/30} {
+ \node[n,fill=black!\shade,text width=2.6cm,minimum height=1cm] (n\i) at (\x,0) {\textbf{\title}};}
+\node[note,text width=2.9cm] (a0) at (-5.1,-1.7) {Prompts · briefs\\Models · examples};
+\node[note,text width=2.9cm] (a1) at (-1.7,-1.7) {Permissions\\Hooks · tools};
+\node[note,text width=2.9cm] (a2) at (1.7,-1.7) {Task · PR · build\\Deployment candidate};
+\node[note,text width=2.9cm] (a3) at (5.1,-1.7) {Types · API seams\\Admission · runtime policy};
+\node[note,text width=2.9cm] (only) at (-5.1,-3.2) {Enforced only through\\a consuming mechanism};
+\begin{scope}[on background layer]
+\node[draw,dashed,fill=black!4,fit=(n0)(a0)(only),inner sep=7pt,label={[font=\bfseries\fontsize{10}{12}\selectfont]above:GUIDANCE}] {};
+\node[draw,dashed,fill=black!8,fit=(n1)(n2)(n3)(a1)(a2)(a3),minimum height=4.3cm,inner sep=7pt,label={[font=\bfseries\fontsize{10}{12}\selectfont]above:ENFORCEMENT CAN OCCUR HERE}] {};
+\end{scope}
+\draw[edge] (-6.6,-4.7) -- node[lab,above] {Increasing semantic grain (not enforcement strength)} (6.6,-4.7);
+\node[note,anchor=north west] at (-6.6,-5) {One attempted side effect};
+\node[note,anchor=north east] at (6.6,-5) {The resulting system / state};
+\node[note,text width=13cm] at (0,-6.2) {Choose the earliest boundary where the obligation is legible\\and the consequence can be affected.};
+
 \end{tikzpicture}

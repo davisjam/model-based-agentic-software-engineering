@@ -3,58 +3,65 @@
   "chapter": "2.4-decision",
   "claim": "*Observation and intent answer different questions.* The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.",
   "topology": {
-    "description": "Two peer graphs distinguish observed calls from declared permissions; missing policyedge labeled, not drawn as permitted.",
-    "relations": [
-      [
-        "a0",
-        "b0",
-        "",
-        ""
-      ],
-      [
-        "a0",
-        "c0",
-        "",
-        ""
-      ],
-      [
-        "a1",
-        "b1",
-        "",
-        ""
-      ]
+    "description": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "native_draw_commands": [
+      "\\draw[edge] (a0) -- (b0);",
+      "\\draw[edge] (a0) -- (c0);",
+      "\\draw[edge] (a1) -- node[lab,left] {declared} (b1);",
+      "\\draw[dashed] (a1) -- node[lab] {$\\times$} (c1);"
     ]
   },
   "required_terms": [
-    "Observed system Does A call C?",
+    "Observed system",
+    "Does A call C?",
     "A",
-    "B",
-    "C",
-    "Declared policy May A call C?",
+    "B C",
+    "Declared policy",
+    "May A call C?",
     "A",
-    "B",
-    "C",
-    "× no edge",
+    "B C",
+    "declared × no edge",
     "Agreement establishes correspondence, not correctness."
   ],
   "bw_encoding": "Grayscale publication candidate. Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
-  "redesign": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
+  "redesign": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
   "questions": [],
-  "alt": "Two panels compare observed calls with declared permissions. The implementation has A-to-B and A-to-C calls. The model declares A-to-B but marks A-to-C as absent with a cross. Agreement establishes correspondence, not correctness. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Circular nodes compare observed and declared relationships. The declared A-to-B edge is labeled; a dashed crossed A-to-C path identifies an absent declared relationship.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.8514,
+      13.6015,
       6.4653
     ]
+  },
+  "fidelity_review": {
+    "stem": "observed-vs-declared",
+    "source": "book/assets/observed-vs-declared.svg",
+    "status": "corrected",
+    "evidence": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/observed-vs-declared.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-24.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/observed-vs-declared.png",
+    "original_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+    "native_sha256": "a3697cc8c0067a5d49a6c75908a09644b1a00a0f92d1e20fbb4b2288e61b48e0",
+    "page": 25,
+    "dimensions_cm": [
+      13.6015,
+      6.4653
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

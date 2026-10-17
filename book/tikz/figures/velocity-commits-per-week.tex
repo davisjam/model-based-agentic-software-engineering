@@ -2,4 +2,5 @@
 \begin{tikzpicture}
 \begin{axis}[mage plot,ybar,bar width=13pt,xmin=.5,xmax=19.5,ymin=0,ymax=3600,xtick={1,6,11,16},xticklabels={Mar.12,Apr.16,May21,Jun.25},ytick={1000,2000,3000},yticklabels={1K,2K,3K}]
 \addplot[draw=black,fill=black!40] coordinates {(1,24) (2,0) (3,24) (4,410) (5,682) (6,755) (7,1006) (8,1011) (9,1708) (10,1346) (11,3329) (12,2554) (13,1125) (14,1307) (15,1990) (16,1379) (17,572) (18,1215) (19,1587)};\node[anchor=north west,align=left,fill=white,draw=black!30,rounded corners,inner sep=5pt] at (axis description cs:.03,.97) {Commit size (LOC)\\25th: 28\\Median: 118\\75th: 328};\end{axis}
+\node[anchor=north,align=center,text width=13.5cm,font=\fontsize{10}{12}\selectfont,inner sep=0pt] at ([yshift=-16pt]current bounding box.south) {Commits per week; inset reports commit-size quartiles in lines of code.};
 \end{tikzpicture}

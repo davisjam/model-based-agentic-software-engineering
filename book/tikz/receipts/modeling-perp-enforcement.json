@@ -3,69 +3,64 @@
   "chapter": "2.5-system-knowledge",
   "claim": "*Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.",
   "topology": {
-    "description": "Separate measurement modeling and enforcement decisions over one shared model; four equal choices.",
-    "relations": [
-      [
-        "m",
-        "same",
-        "",
-        ""
-      ],
-      [
-        "same",
-        "c0",
-        "",
-        ""
-      ],
-      [
-        "same",
-        "c1",
-        "",
-        ""
-      ],
-      [
-        "same",
-        "c2",
-        "",
-        ""
-      ],
-      [
-        "same",
-        "c3",
-        "",
-        ""
-      ]
+    "description": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
+    "native_draw_commands": [
+      "\\draw[edge] (qty.east) -- (-3.8,0) |- (cmp.west);",
+      "\\draw[edge] (bound.east) -- (-3.8,-1.7) |- (cmp.west);",
+      "\\draw[edge] (same.south) -- (3.6,-1.2) -| (\\id.north);",
+      "\\draw[black!40] (-.75,1) -- (-.75,-3.3);"
     ]
   },
   "required_terms": [
-    "Chapter 2 · Model",
-    "Quantity + reference bound Comparison",
-    "Chapter 3 · Enforcement decision",
+    "Chapter 2 · Model Chapter 3 · Enforcement decision",
+    "Quantity",
+    "Bound",
+    "Comparison",
     "Same model",
-    "Observe",
-    "Adapt",
-    "Degrade",
-    "Gate",
-    "Model: what quantity and bound matter? Alignment: what enforcement is justified?"
+    "Observe Adapt Degrade Gate",
+    "What quantity and bound matter? What enforcement is justified?",
+    "The model defines the quantity and bound; Alignment",
+    "decides whether to observe, adapt, degrade, or gate."
   ],
   "bw_encoding": "Grayscale publication candidate. Model gray repeated across the handoff. Degrade/gate use stronger gray than observe/adapt to retain consequential-action distinction.",
-  "redesign": "Model gray repeated across the handoff. Degrade/gate use stronger gray than observe/adapt to retain consequential-action distinction.",
+  "redesign": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
   "questions": [],
-  "alt": "A quantity and reference bound are compared in the modeling stage. The enforcement stage uses that same model and branches to four peer choices: observe, adapt, degrade or gate. Modeling names what matters; enforcement chooses its force. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "On the left, separate Quantity and Bound boxes feed Comparison. On the right, Same model branches to Observe, Adapt, Degrade and Gate, with gray fills distinguishing intervention choices. External questions contrast what matters to the model with what enforcement is justified.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Model gray repeated across the handoff. Degrade/gate use stronger gray than observe/adapt to retain consequential-action distinction.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.9869,
-      6.4232
+      14.6683,
+      6.6724
     ]
+  },
+  "fidelity_review": {
+    "stem": "modeling-perp-enforcement",
+    "source": "book/assets/modeling-perp-enforcement.svg",
+    "status": "corrected",
+    "evidence": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/modeling-perp-enforcement.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/modeling-perp-enforcement.png",
+    "original_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+    "native_sha256": "963fc26198c1711561718feb10421b320ed2ed01de215ea0a51bf4f9a95d34c0",
+    "page": 35,
+    "dimensions_cm": [
+      14.6683,
+      6.6724
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

@@ -3,52 +3,66 @@
   "chapter": "1.3-the-agentic-substrate",
   "claim": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
   "topology": {
-    "description": "Foundation model and harness supply an agent contained within the engineered environment.",
-    "relations": [
-      [
-        "f",
-        "a",
-        "supplies",
-        "solid"
-      ],
-      [
-        "h",
-        "a",
-        "supplies",
-        "solid"
-      ]
-    ],
-    "containment": [
-      [
-        "environment",
-        "a"
-      ]
+    "description": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+    "native_draw_commands": [
+      "\\draw[edge] (foundation.south) -- (-3.5,-4.2) -- (-5.5,-4.2) -- (-5.5,-7) -- (agent.west);",
+      "\\draw[edge] (harness.south) -- (3.5,-4.2) -- (5.5,-4.2) -- (5.5,-7) -- (agent.east);"
     ]
   },
   "required_terms": [
-    "Foundation Model Semantic reasoning Probabilistic output Bounded working state Cheap repeated reasoning",
-    "Agentic Harness Tool-mediated action Context management Interposition Parallel execution",
-    "Agent A tool-using reasoner",
-    "Engineered Environment Models · obligations · evidence · controls"
+    "F oundation Model Agentic Harness",
+    "Semantic reasoning",
+    "Probabilistic output",
+    "Bounded working state",
+    "Cheap repeated reasoning",
+    "Tool-mediated action",
+    "Context management",
+    "Interposition",
+    "Parallel execution",
+    "Engineered Environment",
+    "Models · obligations · evidence · controls",
+    "Agent",
+    "A tool-using reasoner"
   ],
   "bw_encoding": "Grayscale publication candidate. Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
-  "redesign": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
+  "redesign": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
   "questions": [],
-  "alt": "Foundation model and agentic harness supply an agent. Their inputs enter an engineered-environment enclosure containing the agent. A medium-gray model contrasts with a light-gray harness and pale-gray environment; labels identify capabilities and the environment’s models, obligations, evidence and controls.",
+  "alt": "Foundation Model and Agentic Harness are parallel gray containers, each containing four capability boxes. Both feed an Agent box enclosed by a larger Engineered Environment panel whose models, obligations, evidence and controls surround the agent.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      11.5764,
-      6.32
+      13.3972,
+      8.7798
     ]
+  },
+  "fidelity_review": {
+    "stem": "agentic-substrate",
+    "source": "book/assets/agentic-substrate.svg",
+    "status": "corrected",
+    "evidence": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/agentic-substrate.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/agentic-substrate.png",
+    "original_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+    "native_sha256": "b9ad6b6e85a590da2cd594224a67b17b03c9e24c98a42a2dc23d2adb50221888",
+    "page": 8,
+    "dimensions_cm": [
+      13.3972,
+      8.7798
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

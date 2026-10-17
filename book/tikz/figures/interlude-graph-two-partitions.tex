@@ -4,6 +4,7 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[head,text width=6cm] (h0) at (-3.7,0) {(a) Page-oriented execution};
 \node[head,text width=6cm] (h1) at (3.7,0) {(b) Frontier execution};
 \draw[fill=black!12,draw=black!50] (-6.9,-1) rectangle (-4.9,-6.4);
@@ -44,4 +45,10 @@
 \begin{scope}[on background layer]
 \fill[black!6] (.4,-2.5) rectangle (7,-1.3);\fill[black!6] (.4,-4.3) rectangle (7,-3.1);\fill[black!6] (.4,-6.3) rectangle (7,-4.5);
 \end{scope}
+\node[note,fill=white,inner sep=1pt] at (-5.9,-.95) {PAGE 1};
+\node[note,fill=white,inner sep=1pt] at (-3.7,-.95) {PAGE 2};
+\node[note,fill=white,inner sep=1pt] at (-1.5,-.95) {PAGE 3};
+\node[note,anchor=west,text width=1.15cm] at (7.05,-1.9) {Ready\\frontier 1};
+\node[note,anchor=west,text width=1.15cm] at (7.05,-3.7) {Ready\\frontier 2};
+\node[note,anchor=west,text width=1.15cm] at (7.05,-5.4) {Ready\\frontier 3};
 \end{tikzpicture}

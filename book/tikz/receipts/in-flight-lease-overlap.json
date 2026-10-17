@@ -3,53 +3,63 @@
   "chapter": "2.3-behavioral",
   "claim": "*Model classes overlap.* The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.",
   "topology": {
-    "description": "Shared represented lease state supports three equal purpose views; no hierarchy of model classes.",
-    "relations": [
-      [
-        "lease",
-        "v0",
-        "",
-        ""
-      ],
-      [
-        "lease",
-        "v1",
-        "",
-        ""
-      ],
-      [
-        "lease",
-        "v2",
-        "",
-        ""
-      ]
+    "description": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
+    "native_draw_commands": [
+      "\\draw[edge] (lease) -- (v0);",
+      "\\draw[edge] (lease) -- (v1);",
+      "\\draw[edge] (lease) -- (v2);"
     ]
   },
   "required_terms": [
-    "Shared lease state owner · epoch · lifetime",
-    "Ownership Who owns?",
-    "Behavior When stale?",
-    "Measurement How many active?",
+    "Shared lease state",
+    "owner · epoch · lifetime",
+    "Ownership",
+    "Who owns?",
+    "Behavior",
+    "When stale?",
+    "Measurement",
+    "How many active?",
     "One represented state, several engineering questions."
   ],
   "bw_encoding": "Grayscale publication candidate. Common gray for three purpose views contrasted with represented lease state; peer status retained.",
-  "redesign": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
+  "redesign": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
   "questions": [],
-  "alt": "A shared lease state containing owner, epoch and lifetime branches to three peer views: ownership asks who owns it, behavior asks when it is stale and measurement asks how many are active. The same represented state supports distinct engineering purposes. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Separate model-purpose headings and italic questions organize ownership and lease-overlap views. State and history information remain distinct, with evidence supporting the overlap analysis.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       13.2764,
       4.9874
     ]
+  },
+  "fidelity_review": {
+    "stem": "in-flight-lease-overlap",
+    "source": "book/assets/in-flight-lease-overlap.svg",
+    "status": "corrected",
+    "evidence": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/in-flight-lease-overlap.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/in-flight-lease-overlap.png",
+    "original_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
+    "native_sha256": "97d545f68c346c447be21dcbd163884b960737aba59883d2730cce2e6916ab04",
+    "page": 22,
+    "dimensions_cm": [
+      13.2764,
+      4.9874
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

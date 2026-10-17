@@ -6,12 +6,12 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[note,text width=2cm] (start) at (0,1.8) {claim};
-\node[state,text width=5cm,fill=black!20] (c) at (0,0) {CLAIMED\\owner · epoch · expires\_at};
+\node[n,text width=5cm,fill=black!20] (c) at (0,0) {CLAIMED\\owner · epoch · expires\_at};
 \draw[edge] (start) -- (c);
-\node[state,text width=4.5cm,fill=black!15] (rel) at (-3.6,-2.7) {RELEASED\\Claim ends cleanly};
-\node[state,text width=4.5cm,fill=black!5] (rec) at (3.6,-2.7) {RECLAIMABLE\\Lease lapsed / stale};
+\node[n,text width=4.5cm,fill=black!15] (rel) at (-3.6,-2.7) {RELEASED\\Claim ends cleanly};
+\node[n,text width=4.5cm,fill=black!5] (rec) at (3.6,-2.7) {RECLAIMABLE\\Lease lapsed / stale};
 \draw[edge] (c) -- node[lab,left] {completion} (rel);
 \draw[edge,dashed] (c) -- node[lab,right] {expiry} (rec);
 \draw[edge,dashed] (rec.east) -- ++(.45,0) |- node[lab,near end,above] {another actor\\may claim} (c.east);
-\node[note,text width=10cm] (n) at (0,-4.5) {A live claim is distinguishable from a stale one.};
+\node[note,text width=10cm] (n) at (0,-4.5) {Completion releases the claim; expiry makes it reclaimable.\\A live claim is distinguishable from a stale one — expiry is a state, not an accident.};
 \end{tikzpicture}

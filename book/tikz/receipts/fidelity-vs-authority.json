@@ -3,48 +3,62 @@
   "chapter": "3.2-models-and-the-semantic-gap",
   "claim": "*Correspondence strength and governing role are independent.* DocAble's execution machinery consumes an explicit computation model to determine remediation composition. A separate analytical graph view projects that structure and is held in correspondence with its upstream declarations. Stronger correspondence makes the view more trustworthy as a representation; it does not make the view govern execution.",
   "topology": {
-    "description": "One governing model has authority edge to execution and correspondence edge to analytical view; no authority edge from view.",
-    "relations": [
-      [
-        "m",
-        "e",
-        "consumed by scheduler",
-        ""
-      ],
-      [
-        "m",
-        "v",
-        "projected / checked",
-        ""
-      ]
+    "description": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
+    "native_draw_commands": [
+      "\\draw[edge] (m) -- node[lab,left] {consumed by scheduler} (e);",
+      "\\draw[edge] (m) -- node[lab,right] {projected / checked} (v);",
+      "\\draw[edge] (v.south) -- (3.5,-3.3);"
     ]
   },
   "required_terms": [
-    "Governing computation model Computations · dependencies · composition",
-    "Execution",
-    "Analytical graph view Analysis · governance",
-    "Governing role",
-    "Correspondence",
-    "Stronger correspondence does not make the view govern execution."
+    "Governing computation model",
+    "Computations · dependencies · composition",
+    "Execution Analytical graph view",
+    "consumed by scheduler projected / checked",
+    "Governing role Correspondence",
+    "Stronger correspondence does not make the view govern execution.",
+    "Analysis · governance",
+    "Computation model → execution Computation model / parity-bounddeclarations → analytical view"
   ],
   "bw_encoding": "Grayscale publication candidate. Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
-  "redesign": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
+  "redesign": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
   "questions": [],
-  "alt": "An authoritative computation model branches into two relations. Authority reaches scheduler execution; correspondence reaches an analytical graph view. Improving the analytical view’s fidelity does not transfer execution authority to that view. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "The model view has an external Analysis/governance annotation and downward arrow. Correspondence and governing mappings are explicitly distinguished from consequence relations.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.5764,
-      6.4874
+      12.9515,
+      7.4874
     ]
+  },
+  "fidelity_review": {
+    "stem": "fidelity-vs-authority",
+    "source": "book/assets/fidelity-vs-authority.svg",
+    "status": "corrected",
+    "evidence": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/fidelity-vs-authority.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/fidelity-vs-authority.png",
+    "original_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
+    "native_sha256": "41c0500c23df3332474cb22ae385ad192806d489d7fadb0eb6089ddfd11b401b",
+    "page": 39,
+    "dimensions_cm": [
+      12.9515,
+      7.4874
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

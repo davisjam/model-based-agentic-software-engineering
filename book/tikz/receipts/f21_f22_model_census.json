@@ -4,7 +4,7 @@
   "topology": "Quantitative axes preserve source values and categories.",
   "required_terms": [],
   "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
-  "redesign": "Uses actual CSV census total130; removes stale129 suptitle from old generator. Two panels remain.",
+  "redesign": "Uses actual CSV census total130; removes stale129 suptitle from old generator. Two panels remain. Restored external units and interpretive annotations at 10 pt.",
   "questions": [],
   "alt": "The Model Census. The 130 declared system models at the examined revision, by declared form (upper panel) and by target (lower panel). The factory represents both the product it produces (78) and the system that produces it (51, plus one model of the execution environment). A snapshot of a live census: regenerate at press time rather than treating 130 as frozen.",
   "data": [

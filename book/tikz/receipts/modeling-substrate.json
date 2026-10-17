@@ -3,81 +3,73 @@
   "chapter": "2.5-system-knowledge",
   "claim": "*Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.",
   "topology": {
-    "description": "Seven representations joined by shared identity; radial peer organization, not hierarchy.",
-    "relations": [
-      [
-        "hub",
-        "r0",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r1",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r2",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r3",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r4",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r5",
-        "",
-        "-"
-      ],
-      [
-        "hub",
-        "r6",
-        "",
-        "-"
-      ]
+    "description": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
+    "native_draw_commands": [
+      "\\draw[edge,-] (hub) -- (r0);",
+      "\\draw[edge,-] (hub) -- (r1);",
+      "\\draw[edge,-] (hub) -- (r2);",
+      "\\draw[edge,-] (hub) -- (r3);",
+      "\\draw[edge,-] (hub) -- (r4);",
+      "\\draw[edge,-] (hub) -- (r5);",
+      "\\draw[edge,-] (hub) -- (r6);"
     ]
   },
   "required_terms": [
-    "Shared system identities",
+    "Shared system",
+    "identities",
     "Service registry",
-    "Deployment topology",
+    "Deployment",
+    "topology",
     "State machines",
-    "Entitlement policy",
-    "Computation graph",
-    "Provenance records",
+    "Entitle-",
+    "ment policy",
+    "Computa-",
+    "tion graph",
+    "Provenance",
+    "records",
     "Measurements",
-    "Traceability · derivation · query surfaces Join representations where an engineering question crosses them."
+    "Traceability · derivation · query surfaces",
+    "Join representations where an engineering question crosses them."
   ],
   "bw_encoding": "Grayscale publication candidate. Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
-  "redesign": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
+  "redesign": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
   "questions": [],
-  "alt": "Seven peer representations surround shared system identities: service registry, deployment topology, state machines, entitlement policy, computation graph, provenance records and measurements. Connections to the hub express shared identity, not hierarchy. A separate footer names traceability, derivation and query surfaces. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "An elliptical central substrate hub connects the surrounding modeling entities and relations. A separate footer explains the role of the shared substrate.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       13.1164,
       10.4856
     ]
+  },
+  "fidelity_review": {
+    "stem": "modeling-substrate",
+    "source": "book/assets/modeling-substrate.svg",
+    "status": "corrected",
+    "evidence": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/modeling-substrate.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-24.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/modeling-substrate.png",
+    "original_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+    "native_sha256": "5a57691aa8512f3f92204c58f96c4e185fc874db4c6f9e49a955a26bb832d8f9",
+    "page": 28,
+    "dimensions_cm": [
+      13.1164,
+      10.4856
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

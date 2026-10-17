@@ -7,10 +7,15 @@ head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[strong,text width=8cm,fill=black!15] (m) at (0,0) {Governing computation model\\Computations · dependencies · composition};
 \node[n,text width=5cm] (e) at (-3.5,-2.8) {Execution};
-\node[n,text width=5cm,fill=black!20] (v) at (3.5,-2.8) {Analytical graph view\\Analysis · governance};
+\node[n,text width=5cm,fill=black!20] (v) at (3.5,-2.8) {Analytical graph view};
 \draw[edge] (m) -- node[lab,left] {consumed by scheduler} (e);
 \draw[edge] (m) -- node[lab,right] {projected / checked} (v);
 \node[head,text width=5cm] (a) at (-3.5,-4.2) {Governing role};
 \node[head,text width=5cm] (c) at (3.5,-4.2) {Correspondence};
-\node[note,text width=12cm] (n) at (0,-5.5) {Stronger correspondence does not make the view govern execution.};
+\node[note,text width=12cm] (n) at (0,-6.5) {Stronger correspondence does not make the view govern execution.};
+\node[note,text width=5cm] at (3.5,-3.6) {Analysis · governance};
+
+\draw[edge] (v.south) -- (3.5,-3.3);
+\node[note,text width=5.6cm] at (-3.5,-5.2) {Computation model $\rightarrow$ execution};
+\node[note,text width=5.6cm] at (3.5,-5.2) {Computation model / parity-bound declarations $\rightarrow$ analytical view};
 \end{tikzpicture}

@@ -4,17 +4,37 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[box,text width=2.2cm] (p0) at (-5.6,0) {Requirements};
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
+\node[box,text width=2.6cm,inner sep=2pt] (p0) at (-5.6,0) {Requirements};
 \node[box,text width=2.2cm] (p1) at (-2.8,0) {Design};
-\node[box,text width=2.2cm] (p2) at (0.0,0) {Implementation};
+\node[box,text width=2.6cm,inner sep=2pt] (p2) at (0.0,0) {Implementation};
 \node[box,text width=2.2cm] (p3) at (2.799999999999999,0) {Validation};
 \node[box,text width=2.2cm] (p4) at (5.6,0) {Operation /\\maintenance};
 \draw[edge,] (p0) -- (p1);
 \draw[edge,] (p1) -- (p2);
 \draw[edge,] (p2) -- (p3);
 \draw[edge,] (p3) -- (p4);
-\node[box,text width=13cm,fill=black!28] (human) at (0,-2.1) {\textbf{Human engineering judgment}\\Intent; abstractions; tradeoffs; acceptance; adaptation};
-\node[box,text width=13cm,fill=black!7] (fleet) at (0,-4.1) {\textbf{Fleet}\\Analysis; transformation; IMPLEMENTATION; routine remediation};
-\node[box,text width=13cm,fill=black!15] (env) at (0,-6.1) {\textbf{Governed environment}\\Models and context; permissions and constraints; evidence and validators; admission; operational controls};
-\node[note,text width=12cm] (nt) at (0,-8) {Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain.};
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-1.55) {Human engineering judgment};
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-3.65) {Fleet};
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-5.75) {Governed environment};
+\node[align=center,text width=2.7cm] at (-5.6,-2.35) {Intent};
+\node[align=center,text width=2.7cm] at (-2.8,-2.35) {Abstractions};
+\node[align=center,text width=2.7cm] at (0,-2.35) {Tradeoffs};
+\node[align=center,text width=2.7cm] at (2.8,-2.35) {Acceptance};
+\node[align=center,text width=2.7cm] at (5.6,-2.35) {Adaptation};
+\node[align=center,text width=2.7cm] at (-5.6,-4.45) {Analysis};
+\node[align=center,text width=2.7cm] at (-2.8,-4.45) {Transformation};
+\node[align=center,text width=2.7cm] at (0,-4.45) {\textbf{Implementation}};
+\node[align=center,text width=2.7cm] at (2.8,-4.45) {Routine\\remediation};
+\node[align=center,text width=2.7cm] at (-5.6,-6.65) {Models / context};
+\node[align=center,text width=2.7cm] at (-2.8,-6.65) {Permissions / constraints};
+\node[align=center,text width=2.7cm] at (0,-6.65) {Evidence / validators};
+\node[align=center,text width=2.7cm] at (2.8,-6.65) {Admission};
+\node[align=center,text width=2.7cm] at (5.6,-6.65) {Operational controls};
+\node[note,text width=12cm] at (0,-8) {Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain.};
+\begin{scope}[on background layer]
+\draw[fill=black!28] (-7,-1.2) rectangle (7,-3);
+\draw[fill=black!7] (-7,-3.3) rectangle (7,-5.1);
+\draw[fill=black!15] (-7,-5.4) rectangle (7,-7.3);
+\end{scope}
 \end{tikzpicture}

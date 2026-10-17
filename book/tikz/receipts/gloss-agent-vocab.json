@@ -3,82 +3,83 @@
   "chapter": "0.4-the-books-language",
   "claim": "The agent stack and a characteristic failure mode. When a task's reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.",
   "topology": {
-    "description": "Two peer vertical chains; dashed undirected correspondence between bounded and available working state.",
-    "relations": [
-      [
-        "l0",
-        "l1",
-        "runs on",
-        ""
-      ],
-      [
-        "r0",
-        "r1",
-        "requires",
-        ""
-      ],
-      [
-        "l1",
-        "l2",
-        "wraps",
-        ""
-      ],
-      [
-        "r1",
-        "r2",
-        "may exceed",
-        ""
-      ],
-      [
-        "l2",
-        "l3",
-        "bounded by",
-        ""
-      ],
-      [
-        "r2",
-        "r3",
-        "contributes to",
-        ""
-      ],
-      [
-        "l3.east",
-        "r2.west",
-        "",
-        "dashed,-"
-      ]
+    "description": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
+    "native_draw_commands": [
+      "\\draw[edge] (app) -- node[lab,right] {runs on} (harness);",
+      "\\draw[edge] (harness) -- node[lab,right] {wraps} (model);",
+      "\\draw[edge] (model) -- node[lab,right] {bounded by} (state);",
+      "\\draw[edge] (task) -- node[lab,right] {requires} (horizon);",
+      "\\draw[edge] (horizon) -- node[lab,right] {may exceed} (available);",
+      "\\draw[edge] (available) -- node[lab,right] {contributes to} (churn);",
+      "\\draw[edge,densely dotted] (state.east) -- (0,-7.2) |- (available.west);"
     ]
   },
   "required_terms": [
-    "Application Your codebase",
+    "The stack A characteristic limit",
+    "Application",
+    "Your codebase",
+    "Agent Harness",
+    "Claude Code, OpenCode",
+    "and their kin",
+    "hosts Skills Tools Hooks",
+    "F oundation Model",
+    "The trained model",
+    "Bounded working state",
+    "What the model holds at once —",
+    "the context window today",
+    "runs on",
+    "wraps",
+    "bounded by",
     "Large engineering task",
-    "Agent Harness Skills · Tools · Hooks",
     "Reasoning Horizon",
-    "Foundation Model The trained model",
-    "Available working state Context window is one present limit",
-    "Bounded working state Context window today",
+    "A vailable working state",
+    "Context window is",
+    "one present limit",
     "Churn",
-    "Same working state",
+    "requires",
+    "may exceed",
+    "contributes to",
     "Fleet: multiple agents working on a shared engineering system."
   ],
   "bw_encoding": "Grayscale publication candidate. Light gray identifies the stack, white identifies the characteristic-limit chain; dashed working-state correspondence retained.",
-  "redesign": "Light gray identifies the stack, white identifies the characteristic-limit chain; dashed working-state correspondence retained.",
+  "redesign": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
   "questions": [],
-  "alt": "Two vertical chains are shown. Application runs on an agent harness, which wraps a foundation model bounded by working state. A large task requires a reasoning horizon that may exceed available working state and contribute to churn. A dashed correspondence connects bounded and available working state, labeled Same working state. A footer defines a fleet as multiple agents on a shared engineering system. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Two parallel vertical sequences contrast the agent stack with a characteristic reasoning limit. The stack contains Application, a Harness with Skills, Tools and Hooks chips, Foundation Model and Bounded working state. A dotted cross-link connects bounded state to Available working state in the task-to-horizon-to-churn sequence. A fleet definition appears below.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Light gray identifies the stack, white identifies the characteristic-limit chain; dashed working-state correspondence retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      11.9764,
-      7.7449
+      12.8352,
+      10.6231
     ]
+  },
+  "fidelity_review": {
+    "stem": "gloss-agent-vocab",
+    "source": "book/assets/gloss-agent-vocab.svg",
+    "status": "corrected",
+    "evidence": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/gloss-agent-vocab.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-0.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/gloss-agent-vocab.png",
+    "original_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
+    "native_sha256": "fbe3cfaa87d75f9f796346adedfcb1103386e51c7a03557c260edbfdc1e5cc87",
+    "page": 4,
+    "dimensions_cm": [
+      12.8352,
+      10.6231
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

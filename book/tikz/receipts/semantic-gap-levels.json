@@ -3,38 +3,59 @@
   "chapter": "3.2-models-and-the-semantic-gap",
   "claim": "*The semantic gap.* A property that spans several events cannot be decided from any event alone. Move the mechanism to the earliest boundary where the evidence required by the obligation is assembled.",
   "topology": {
-    "description": "Low-level events insufficient individually; move mechanism upward to assembled unit-of-work evidence.",
-    "relations": []
+    "description": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+    "native_draw_commands": [
+      "\\draw[line width=.9pt] (-6.4,-3.9) -- (-6.4,-3.55) -- (6.4,-3.55) -- (6.4,-3.9);",
+      "\\draw[edge,line width=.9pt] (0,-3) -- node[lab,right] {Move mechanism} (unit.south);"
+    ]
   },
   "required_terms": [
-    "Obligation legible Completed unit of work",
-    "Move mechanism to the earliest boundary where the needed evidence is assembled",
-    "commit",
-    "commit",
-    "commit",
-    "call",
-    "call",
-    "turn",
-    "Obligation not decidable from any event alone."
+    "Obligation legible",
+    "The completed unit of work",
+    "commit commit commit call call turn",
+    "Obligation not decidable here",
+    "Move mechanism",
+    "Move to the earliest boundary where the obligation’s evidence is assembled."
   ],
   "bw_encoding": "Grayscale publication candidate. Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
-  "redesign": "Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
+  "redesign": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
   "questions": [],
-  "alt": "Low-level events occupy the bottom; no individual event makes the spanning obligation decidable. An upward arrow labeled move mechanism reaches the completed unit of work, where assembled evidence makes the obligation legible. The mechanism belongs at the earliest boundary with sufficient evidence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A bracket groups six local events under the annotation that the obligation is not decidable there. An upward Move mechanism arrow leads to a completed work unit where the obligation becomes meaningful.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.0764,
-      6.2874
+      13.0852,
+      6.6922
     ]
+  },
+  "fidelity_review": {
+    "stem": "semantic-gap-levels",
+    "source": "book/assets/semantic-gap-levels.svg",
+    "status": "corrected",
+    "evidence": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/semantic-gap-levels.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/semantic-gap-levels.png",
+    "original_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+    "native_sha256": "ad97633045ae9f55298d4a5cb50552ac1fc7602c2e44baa73603a9382576d9ed",
+    "page": 40,
+    "dimensions_cm": [
+      13.0852,
+      6.6922
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

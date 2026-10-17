@@ -3,71 +3,68 @@
   "chapter": "2.3-behavioral",
   "claim": "*Behavioral models expose different classes of properties.* A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.",
   "topology": {
-    "description": "One behavioral model forks to three property/checker questions that converge on behavioral evidence.",
-    "relations": [
-      [
-        "model",
-        "p0",
-        "",
-        ""
-      ],
-      [
-        "model",
-        "p1",
-        "",
-        ""
-      ],
-      [
-        "model",
-        "p2",
-        "",
-        ""
-      ],
-      [
-        "p0",
-        "e",
-        "",
-        ""
-      ],
-      [
-        "p1",
-        "e",
-        "",
-        ""
-      ],
-      [
-        "p2",
-        "e",
-        "",
-        ""
-      ]
+    "description": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
+    "native_draw_commands": [
+      "\\draw[edge] (m.south) -- (0,-1.1) -| (p\\i.north);",
+      "\\draw[edge] (q\\i.south) -- (c\\i.north);",
+      "\\draw[edge] (c\\i.south) -- (c\\i.south |- 0,-5.2) -| (e.north);"
     ]
   },
   "required_terms": [
-    "Behavioral model States · transitions · legal sequences",
-    "Local rule Is this edge legal? Transition check",
-    "Reachable-state Can this state occur? State-space search",
-    "Temporal property Will this eventually occur? Temporal model checking",
-    "Evidence about behavior"
+    "Behavioral model",
+    "States · transitions · legal sequences",
+    "Local rule",
+    "Is this edge legal?",
+    "Transition check",
+    "Reachable-state",
+    "Can this state occur?",
+    "State-space search",
+    "T emporal property",
+    "Will this eventually occur?",
+    "Temporal",
+    "model checking",
+    "Evidence about behavior",
+    "Same model family; different property, different checker."
   ],
   "bw_encoding": "Grayscale publication candidate. Model and evidence use distinct gray roles; three peer property/checker questions retained.",
-  "redesign": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
+  "redesign": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
   "questions": [],
-  "alt": "One behavioral model branches to three questions: whether an edge is legal, whether a state is reachable and whether a temporal property holds. Transition checking, state-space search and temporal model checking supply corresponding behavioral evidence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Four property-name boxes have italic questions beneath them, followed by separate checker boxes. The checker branches converge on evidence, distinguishing the behavioral questions from the mechanisms used to answer them.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      13.2764,
-      6.1402
+      13.8515,
+      7.9893
     ]
+  },
+  "fidelity_review": {
+    "stem": "behavioral-property-classes",
+    "source": "book/assets/behavioral-property-classes.svg",
+    "status": "corrected",
+    "evidence": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/behavioral-property-classes.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/behavioral-property-classes.png",
+    "original_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
+    "native_sha256": "d4e91d6f5c8ad895a206c4e74f5aacabb1127f9463f811f0768ebc8d9c78d9fb",
+    "page": 20,
+    "dimensions_cm": [
+      13.8515,
+      7.9893
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

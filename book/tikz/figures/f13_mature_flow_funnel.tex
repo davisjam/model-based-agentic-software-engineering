@@ -2,4 +2,5 @@
 \begin{tikzpicture}
 \begin{axis}[mage plot,xbar,bar width=9pt,width=8cm,height=2.3cm,xmin=0,ymin=-.7,ymax=3.7,ytick={0,1,2,3},yticklabels={{Started},{Landed},{Aborted},{Workspaces retired}},y dir=reverse,xmajorgrids,ymajorgrids=false,nodes near coords,point meta=x,enlarge x limits={upper,value=.12},xtick={0,300,600}]
 \addplot+[draw=black,fill=black!30] coordinates {(592,0) (573,1) (10,2) (192,3)};\end{axis}
+\node[anchor=north,align=center,text width=13.5cm,font=\fontsize{10}{12}\selectfont,inner sep=0pt] at ([yshift=-16pt]current bounding box.south) {Events in week 2026-W35: 592 started; 573 landed (96.8\%); 10 aborted.\\Workspace retirement is a separate lifecycle count.};
 \end{tikzpicture}

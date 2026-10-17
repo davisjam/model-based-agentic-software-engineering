@@ -5,7 +5,7 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,text width=3.2cm] (hub) at (0,0) {Shared system\\identities};
+\node[strong,ellipse,rounded corners=0pt,text width=3.2cm] (hub) at (0,0) {Shared system\\identities};
 \node[n,text width=2.8cm,fill=black!20] (r0) at (0.0,4.0) {Service registry};
 \draw[edge,-] (hub) -- (r0);
 \node[n,text width=2.8cm,fill=black!20] (r1) at (-3.91,2.49) {Deployment topology};

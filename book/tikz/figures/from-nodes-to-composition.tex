@@ -30,4 +30,11 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,fill=black!20,text width=1.6cm] (c) at (4.8,-5.6) {Pass C};
 \draw[edge,dashed,line width=.9pt] (a2) -- node[lab,above=11pt] {CONTROL\_GATE ×24} node[lab,below=11pt] {ConsumesForControl} (c);
 \node[head,text width=12cm] (sum) at (0,-7.3) {2 authored + 55 projected, typed relations\\= 33 payload + 24 control};
+
+\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-3.6) -- (-.65,-.25);
+\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-6.1) -- (-.65,-5.1);
+\begin{scope}[on background layer]
+\node[draw=black!35,rounded corners=3pt,fit=(left)(count)(seed1)(seed3),inner sep=9pt] {};
+\node[draw=black!35,rounded corners=3pt,fit=(right)(a)(b)(b2)(svc)(a2)(c),inner sep=14pt] {};
+\end{scope}
 \end{tikzpicture}

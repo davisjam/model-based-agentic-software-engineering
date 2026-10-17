@@ -4,6 +4,7 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[head,text width=3cm] (h0) at (0,0) {Catalogue};
 \node[head,text width=4cm] (h1) at (4.8,0) {Interaction graph};
 \node[head,text width=4.6cm] (h2) at (10,0) {Coverage};
@@ -15,7 +16,7 @@
 \node[box,text width=2.7cm] (r) at (4.75,-3.6) {Commit set};
 \draw[edge,] (a) -- (r);
 \draw[edge,] (b) -- (r);
-\draw[<->,dashed] (a.east)--node[note,above,yshift=1.05cm] {conflict}(b.west);
+\draw[<->,dashed] (a.north)--(3.5,-1.05)--(6,-1.05)--(b.north);\node[note] at (4.75,-.7) {conflict};
 \node[box,text width=2.7cm,fill=black!10] (cc) at (4.75,-5.2) {[C] lint gate};
 \node[box,text width=2.2cm] (ob0) at (9,-1.3) {Scope-bounded};
 \node[box,text width=1.8cm,fill=black!10] (co0) at (12,-1.3) {[A]};

@@ -3,59 +3,72 @@
   "chapter": "part-3-intro",
   "claim": "*How intent becomes enforceable.* Enforcement begins by placing a mechanism at a boundary where the obligation can be evaluated or constrained. Mechanisms enforce selected obligations; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own.",
   "topology": {
-    "description": "Five equal stations in a directed chapter argument sequence.",
-    "relations": [
-      [
-        "s1",
-        "s2",
-        "chapter sequence",
-        "solid"
-      ],
-      [
-        "s2",
-        "s3",
-        "chapter sequence",
-        "solid"
-      ],
-      [
-        "s3",
-        "s4",
-        "chapter sequence",
-        "solid"
-      ],
-      [
-        "s4",
-        "s5",
-        "chapter sequence",
-        "solid"
-      ]
+    "description": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
+    "native_draw_commands": [
+      "\\draw[edge] (s\\a) -- (s\\b);"
     ]
   },
   "required_terms": [
-    "3.1  LOCATE Where can enforcement occur?",
-    "3.2  JUSTIFY What may it legitimately enforce?",
-    "3.3  MECHANIZE How does a mechanism enforce an obligation?",
-    "3.4  LEARN How does the environment acquire new obligations and controls?",
-    "3.5  GOVERN How are accumulated controls governed as a system?"
+    "3.1",
+    "LOCA TE",
+    "Where can enforcement occur?",
+    "3.1 · Where Obligations Can Be Enforced",
+    "3.2",
+    "JUSTIFY",
+    "What may it legitimately enforce?",
+    "3.2 · From Intent to Obligation",
+    "3.3",
+    "MECHANIZE",
+    "How does a mechanism enforce an obligation?",
+    "3.3 · The Four Mechanism Roles",
+    "3.4",
+    "LEARN",
+    "How does the environment acquire new obligations and controls?",
+    "3.4 · Growing the Governed Environment",
+    "3.5",
+    "GOVERN",
+    "How are accumulated controls governed as a system?",
+    "3.5 · When Controls Become a System"
   ],
   "bw_encoding": "Grayscale publication candidate. Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
-  "redesign": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
+  "redesign": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
   "questions": [],
-  "alt": "Five gray numbered circles descend a spine from 3.1 to 3.5. Adjacent labels read Locate, Justify, Mechanize, Learn and Govern, each with its engineering question. Arrows connect the chapters in argument order.",
+  "alt": "Five numbered stations form a vertical chapter sequence. Each station has a separate title, question and section subtitle, preserving the navigation hierarchy.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      11.7725,
-      8.4393
+      12.7725,
+      10.1842
     ]
+  },
+  "fidelity_review": {
+    "stem": "part3-nav-arc",
+    "source": "book/assets/part3-nav-arc.svg",
+    "status": "corrected",
+    "evidence": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/part3-nav-arc.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/part3-nav-arc.png",
+    "original_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+    "native_sha256": "67cb6f7443adb4630ecf7a9a2c2438f328147d1ea700a1ef518ec71c2c4548c0",
+    "page": 36,
+    "dimensions_cm": [
+      12.7725,
+      10.1842
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

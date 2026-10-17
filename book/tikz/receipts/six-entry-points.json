@@ -38,15 +38,15 @@
     "MAGE supplies the comparison vocabulary; it is not an eighth case. Emphasis is not a maturity ranking."
   ],
   "bw_encoding": "Emphasis badges restored: governance darker, knowledge/modeling light, combined intermediate with double outline; words disambiguate categories. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Plain textual emphasis replaces color badges. The historical filename says six, but all seven current cases are preserved. Grayscale refinement: Emphasis badges restored: governance darker, knowledge/modeling light, combined intermediate with double outline; words disambiguate categories.",
+  "redesign": "Plain textual emphasis replaces color badges. The historical filename says six, but all seven current cases are preserved. Grayscale refinement: Emphasis badges restored: governance darker, knowledge/modeling light, combined intermediate with double outline; words disambiguate categories. Fidelity pass: Raised table body and emphasis labels from 9pt to 10pt; retained smaller 9pt explanatory footer.",
   "questions": [],
   "alt": "A table of seven industrial systems, each entering the agentic engineering design space through a different problem and investing in a different part of the environment. Cloudflare begins from institutional policy and invests in machine-readable requirements and review mechanisms — a governance emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission — a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first engineering and invests in persistent executable engineering representations — a modeling emphasis. Zenseact begins from distributed autonomous work and invests in platform boundaries, context, and delegation — a knowledge emphasis. Uber begins from software-factory economics at scale and invests in benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable layer of context, provenance, verification, and governance around replaceable models and agents — a combined knowledge and governance emphasis. A closing note reads: MAGE is the vocabulary used here to compare the observed structures, not an eighth case. The rightmost column states each emphasis inside grayscale badges: darker governance, lighter knowledge or modeling, and double-outlined combined emphasis. The figure locates emphasis; it does not rank maturity or claim any source implements the complete method.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 412.129,
-    "height_pt": 360.755,
+    "width_pt": 417.5539855957031,
+    "height_pt": 367.10101318359375,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

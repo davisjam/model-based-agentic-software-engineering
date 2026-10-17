@@ -1,18 +1,14 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,text width=10cm,fill=black!20] (unit) at (0,0) {Obligation legible\\Completed unit of work};
-\node[note,text width=9cm] (gap) at (0,-2) {Move mechanism to the earliest boundary\\where the needed evidence is assembled};
-\node[n,text width=1.5cm] (e0) at (-5.0,-4) {commit};
-\node[n,text width=1.5cm] (e1) at (-3.0,-4) {commit};
-\node[n,text width=1.5cm] (e2) at (-1.0,-4) {commit};
-\node[n,text width=1.5cm] (e3) at (1.0,-4) {call};
-\node[n,text width=1.5cm] (e4) at (3.0,-4) {call};
-\node[n,text width=1.5cm] (e5) at (5.0,-4) {turn};
-\draw[edge] (0,-3.2)--(0,-2.6);\draw[edge] (0,-1.4)--(0,-.7);
-\node[note,text width=11cm] (n) at (0,-5.3) {Obligation not decidable from any event alone.};
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
+
+\node[n,fill=black!20,text width=10cm,line width=1pt] (unit) at (0,0) {\textbf{Obligation legible}\\The completed unit of work};
+\foreach \i/\x/\txt in {0/-5.5/commit,1/-3.3/commit,2/-1.1/commit,3/1.1/call,4/3.3/call,5/5.5/turn} {\node[n,text width=1.5cm] (e\i) at (\x,-4.5) {\txt};}
+\draw[line width=.9pt] (-6.4,-3.9) -- (-6.4,-3.55) -- (6.4,-3.55) -- (6.4,-3.9);
+\node[note,fill=white] at (0,-3.55) {Obligation not decidable here};
+\draw[edge,line width=.9pt] (0,-3) -- node[lab,right] {Move mechanism} (unit.south);
+\node[note,text width=12cm] at (0,-5.7) {Move to the earliest boundary where the obligation’s evidence is assembled.};
+
 \end{tikzpicture}

@@ -19,4 +19,6 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw (hub.east) -- ++(.35,0) |- (p4.west);
 \node[gate,text width=9cm] (land) at (0,-5.4) {LANDS ON: Alignment};
 \node[note,text width=12cm] (t20) at (0,-6.7) {One policy governs thousands of later changes.\\ Recurrence loop remains only half-closed / interpretive.};
+\draw (hub.south)--(land.north);
+\draw[dashed] (p4.west)--(0,-3.4)--(0,-1.5);\draw[fill=white] (0,-1.5) circle (1mm);\node[note,text width=.9cm] at (.55,-2.3) {open\\ loop};
 \end{tikzpicture}

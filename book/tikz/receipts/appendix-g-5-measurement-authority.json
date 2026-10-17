@@ -12,7 +12,7 @@
     "A quantity does not earn a gate by being measurable."
   ],
   "bw_encoding": "Measurement and declared bound are representations; checked gate is darker/heavier than report-only branch. All text black; fills are grayscale and redundant with labels, position or border style.",
-  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored double-bar admission-gate glyph on yes branch; report-only alternative remains unguarded.",
   "questions": [],
   "alt": "Measurement does not imply enforcement \u2014 a number earns a gate only when evidence warrants it"
 }

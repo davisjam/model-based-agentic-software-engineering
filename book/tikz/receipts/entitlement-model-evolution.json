@@ -3,56 +3,102 @@
   "chapter": "2.4-decision",
   "claim": "*One distinction, lost and preserved.* The scalar reduction cannot represent unlimited entitlement; the revised model preserves the distinction.",
   "topology": {
-    "description": "Four chronological model states show a stale finite-credit reduction losing unlimited entitlement and repaired decision retaining it.",
-    "relations": [
-      [
-        "p0",
-        "p1",
-        "",
-        ""
-      ],
-      [
-        "p1.south",
-        "p2.north",
-        "",
-        ""
-      ],
-      [
-        "p2",
-        "p3",
-        "",
-        ""
-      ]
+    "description": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+    "native_draw_commands": [
+      "\\draw[edge] (group.south) |- (sum.north);",
+      "\\draw[edge] (sum) -- (cmp);",
+      "\\draw[edge] (g2) -- (fin);",
+      "\\draw[edge] (g2) -- (unlim);",
+      "\\draw[edge] (gs) -- (sf);",
+      "\\draw[edge] (gs.south) -- node[lab,left] {unlimited\\\\user} (zero.north);",
+      "\\draw[edge] (zero) -- (lt);",
+      "\\draw[edge] (lt) -- (reject);",
+      "\\draw[edge] (ent) -- (dec);",
+      "\\draw[edge] (ent) -- node[lab,left] {same user} (admit);",
+      "\\draw[edge] (dec) -- (fields);",
+      "\\draw[edge] (p0.east) -- (p1.west);",
+      "\\draw[edge] (p1.south) -- (3.7,-4.65) -- (-3.7,-4.65) -- (p2.north);",
+      "\\draw[edge] (p2.east) -- (p3.west);"
     ]
   },
   "required_terms": [
-    "1  Original model",
-    "Group: credits integer Σ credits ≥ pages? Adequate while every entitlement is finite",
-    "2  System evolves",
-    "Group entitlement Finite(credits) OR unlimited The domain has grown",
-    "3  Stale admission model",
-    "Groups → Σ finite credits only Unlimited distinction discarded Unlimited user → 0 credits 0 < 38 → REJECT",
-    "4  Revised model",
-    "Group entitlements: finite OR unlimited Admission decision: admit? Authorizing group · ordered plan Same user → admit_unlimited"
+    "1 · Original model",
+    "Every entitlement is finite",
+    "Group — credits: integer",
+    "Σ credits credits ≥ pages?",
+    "An adequate reduction",
+    "— for this domain",
+    "2 · The system evolves",
+    "Unlimited entitlement is introduced",
+    "Group",
+    "finite(credits) unlimited",
+    "The entitlement state space has grown",
+    "3 · Stale admission model",
+    "One representation does not evolve",
+    "groups Σ finite creditsonly",
+    "“Unlimited” has no",
+    "representation —",
+    "the distinction is",
+    "discarded here",
+    "0 credits 0 < 38 REJECT",
+    "unlimited",
+    "user",
+    "The server’s correct admission",
+    "logic is never reached",
+    "4 · Revised model",
+    "The distinction survives the reduction",
+    "Group",
+    "entitlements",
+    "finite | unlimited",
+    "Admission",
+    "decision",
+    "admit_unlimited",
+    "same user",
+    "Admit?",
+    "Authorizing group",
+    "Ordered plan",
+    "The implementation",
+    "now consumes the model"
   ],
   "bw_encoding": "Grayscale publication candidate. Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
-  "redesign": "Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
+  "redesign": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
   "questions": [],
-  "alt": "Four successive panels show finite-credit admission, the introduction of unlimited entitlement, a stale credit-sum model and a revised model. The stale model reduces an unlimited user to zero credits and rejects a thirty-eight-page upload. The revised model retains finite versus unlimited entitlement and records admission with the authorizing group and plan. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Four panels trace a finite-credit model through the introduction of unlimited entitlement, a stale admission model and a revised model. The dashed stale panel shows finite-only summation and an unlimited user reaching 0 less than 38 and REJECT. The strong revised panel preserves finite versus unlimited entitlement and leads to admit_unlimited plus explicit admission fields.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      14.0139,
-      7.7239
+      14.6337,
+      12.4728
     ]
+  },
+  "fidelity_review": {
+    "stem": "entitlement-model-evolution",
+    "source": "book/assets/entitlement-model-evolution.svg",
+    "status": "corrected",
+    "evidence": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/entitlement-model-evolution.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-24.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/entitlement-model-evolution.png",
+    "original_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
+    "native_sha256": "1ceeb044c3edc105945b1601e3c33f18f5cbc57ac2f06a28e086deb6acca24ff",
+    "page": 27,
+    "dimensions_cm": [
+      14.6337,
+      12.4728
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

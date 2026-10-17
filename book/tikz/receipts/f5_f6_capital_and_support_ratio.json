@@ -4,7 +4,7 @@
   "topology": "Quantitative axes preserve source values and categories.",
   "required_terms": [],
   "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
-  "redesign": "Vertical panels increase print legibility. Same seven LoC categories and two ratios; snapshot diamonds and parity preserved.",
+  "redesign": "Vertical panels increase print legibility. Same seven LoC categories and two ratios; snapshot diamonds and parity preserved. Restored external units and interpretive annotations at 10 pt.",
   "questions": [],
   "alt": "Factory Capital and the Support Ratio, Weekly. Source-tree lines of code by category (upper panel) and the support-to-production ratio (lower panel) at each week's last commit \u2014 an independent re-derivation with its own category boundaries, with the two recoverable earlier snapshot ratios overlaid as diamonds. The trajectory matters more than any single value: below parity in the prototype weeks, parity crossed around weeks 5\u20136, a plateau near three-to-one in the mature era.",
   "data": [

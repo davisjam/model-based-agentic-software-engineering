@@ -21,4 +21,9 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (e2) -- (e3);
 \draw[edge,dashed,-] (gate.east) -- node[lab,above] {not joined today} (e1.west);
 \node[note,text width=13cm] (n) at (0,-6) {Static structure and realized history; join by computation identity when a question needs it.};
+
+\begin{scope}[on background layer]
+\node[draw=black!40,rounded corners=3pt,fit=(hl)(a)(gate)(rem),inner sep=10pt] {};
+\node[draw=black!40,rounded corners=3pt,fit=(hr)(e0)(e1)(e2)(e3),inner sep=10pt] {};
+\end{scope}
 \end{tikzpicture}

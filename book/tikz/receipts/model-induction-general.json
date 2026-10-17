@@ -34,7 +34,7 @@
     "Weak detectors / retrieval / clustering \u2192 contextual comparison \u2192 engineering judgment. The agent finds repetition and proposes structure; the engineer adopts and names the concept."
   ],
   "bw_encoding": "Explicit vocabulary row light gray and future reuse row darker; discovery stages white. Solid grounded versus dashed inferred columns retained. All text black; fills are grayscale and redundant with labels, position or border style.",
-  "redesign": "Four parallel lanes retained, with explicit short labels and 1.95 cm row centers. Grounded software versus inferred extensions remains encoded by solid/dashed boundaries. Long examples abbreviated (PdfModel and JobId retained; MutationSpec omitted); CAD interfaces retained in named-feature row. Footer condenses method into detection, contextual comparison, and engineering adoption. No change to six-stage topology.",
+  "redesign": "Four parallel lanes retained, with explicit short labels and 1.95 cm row centers. Grounded software versus inferred extensions remains encoded by solid/dashed boundaries. Long examples abbreviated (PdfModel and JobId retained; MutationSpec omitted); CAD interfaces retained in named-feature row. Footer condenses method into detection, contextual comparison, and engineering adoption. No change to six-stage topology. Fidelity pass: Restored engineering-judgment/adopt-and-name annotation between candidate abstraction and explicit model on the general rail; footer retains weak detectors/contextual comparison.",
   "questions": [],
   "alt": "Models can be induced from the work: the same abstraction move \u2014 repeated form to named model \u2014 runs in software, knowledge work, and CAD"
 }

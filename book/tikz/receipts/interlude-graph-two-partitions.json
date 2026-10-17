@@ -24,15 +24,15 @@
     "Same actions and dependencies; different execution boundary."
   ],
   "bw_encoding": "Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism. Fidelity pass: Restored PAGE 1–3 and READY FRONTIER 1–3 group identifiers; readiness labels sit outside groups to avoid crowding their work nodes.",
   "questions": [],
   "alt": "One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query\n    for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document\n    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page\n    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,\n    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by\n    when they are ready: the three page analyses run together, their results build the document context, and\n    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 400.512,
-    "height_pt": 250.263,
+    "width_pt": 440.5050048828125,
+    "height_pt": 250.26300048828125,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

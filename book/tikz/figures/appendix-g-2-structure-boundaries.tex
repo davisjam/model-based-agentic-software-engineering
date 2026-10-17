@@ -8,7 +8,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=3cm,fill=black!12] (worker) at (3,-2.2) {WORKER};
 \draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {owns} (web);
 \draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {permits} (worker);
-\draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {CHECKED door} (worker);
+\draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {CHECKED door} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);
 \node[box,text width=3cm] (raw) at (-3,-4.5) {RAW FORMAT LIBRARY};
 \node[box,text width=3cm] (tree) at (3,-4.5) {REPOSITORY TREE\\ observed structure};
 \draw[optional] (tree.east)--++(1.5,0) |- (cat.east);

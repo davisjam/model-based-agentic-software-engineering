@@ -3,35 +3,75 @@
   "chapter": "3.1-where-obligations-can-be-enforced",
   "claim": "*Intervention boundaries.* Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.",
   "topology": {
-    "description": "Four ordered semantic-grain boundaries, not increasing enforcement strength; guidance separated from enforceable boundaries.",
-    "relations": []
+    "description": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "native_draw_commands": [
+      "\\draw[edge] (-6.6,-4.7) -- node[lab,above] {Increasing semantic grain (not enforcement strength)} (6.6,-4.7);"
+    ]
   },
   "required_terms": [
-    "Reasoning input Prompts · briefs Models · examples",
-    "Action Permissions · hooks · tools",
-    "Work unit Task · PR · build Deployment candidate",
-    "Artifact / runtime Types · API seams Admission · runtime policy",
-    "Enforced only through a consuming mechanism",
-    "Choose the earliest boundary where the obligation is legible and the consequence can be affected."
+    "GUIDANCE",
+    "ENFORCEMENT CAN OCCUR HERE",
+    "Reasoning",
+    "input Action W ork unit Artifact/ runtime",
+    "Prompts · briefs",
+    "Models · examples",
+    "Permissions",
+    "Hooks · tools",
+    "Task · PR · build",
+    "Deployment",
+    "candidate",
+    "Types ·",
+    "API seams",
+    "Admission ·",
+    "runtime policy",
+    "Enforced",
+    "only through",
+    "a consuming",
+    "mechanism",
+    "Increasing semantic grain (not enforcement strength)",
+    "One attempted side effect The resulting system / state",
+    "Choose the earliest boundary where the obligation is legible",
+    "and the consequence can be affected."
   ],
   "bw_encoding": "Grayscale publication candidate. Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
-  "redesign": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
+  "redesign": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
   "questions": [],
-  "alt": "Four boundaries are ordered by semantic grain: reasoning input, action, work unit and artifact or runtime. Reasoning input is grouped as guidance. The remaining three are grouped where enforcement can occur. Labels give mechanisms at each boundary and state that the order does not rank enforcement strength. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Four boundary-name boxes span reasoning input, action, work unit and artifact or runtime. Their examples sit outside the boxes. Dashed enclosing regions distinguish Guidance from where Enforcement can occur; a horizontal semantic-grain arrow runs from one attempted side effect to the resulting system or state.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      14.8325,
-      6.8513
+      13.9716,
+      8.4979
     ]
+  },
+  "fidelity_review": {
+    "stem": "intervention-boundaries",
+    "source": "book/assets/intervention-boundaries.svg",
+    "status": "corrected",
+    "evidence": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/intervention-boundaries.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/intervention-boundaries.png",
+    "original_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "native_sha256": "8ceb05ee560ff049a048b6287f9779dba3a5175a782fb30b691a559ecd2eee8c",
+    "page": 37,
+    "dimensions_cm": [
+      13.9716,
+      8.4979
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

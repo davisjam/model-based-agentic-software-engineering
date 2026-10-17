@@ -20,31 +20,33 @@
     ]
   },
   "required_terms": [
-    "Inaccessible document Unlabeled images No reading order No tags",
-    "DocAble Production system scholaccess.com",
-    "Accessible document Described images Reading order · tags Evidence: every fix explained",
+    "DocAble",
+    "The production system",
+    "scholaccess.com",
+    "Image — no alt text",
+    "Image — described",
+    "Not accessible",
+    "Evidence record",
+    "Inaccessible document",
+    "Accessible document + evidence",
+    "Unlabeled images · untagged",
+    "No reading order",
+    "Tagged · reading order",
+    "Every fix explained",
     "upload",
-    "remediated file",
-    "What the system does; internal structure is intentionally hidden."
+    "remediated file"
   ],
   "bw_encoding": "Grayscale publication candidate. Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
-  "redesign": "Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
+  "redesign": "Replaced generic text boxes with document pictograms, text bars, folded corners, a warning badge and a native vector checkmark. Dashed undescribed-image area contrasts with solid described-image area. Accessibility labels and explanatory annotations sit below the documents. Main text is 11 pt; status pills and system subtitle are 10.5 pt; headings are 12 pt.",
   "questions": [],
-  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
-  "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
-    "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
-    ],
-    "outcome": "Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
-    "native_dimensions_cm": [
-      13.7764,
-      4.3095
+  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Input and output are page pictograms with warning and check badges; annotations below explain accessibility status, while dashed and solid image panels distinguish undescribed from described images.",
+  "visual_fidelity_review": {
+    "reason": "User identified missing expansion guides, pictograms and external annotations after the grayscale pass.",
+    "changes": "Replaced generic text boxes with document pictograms, text bars, folded corners, a warning badge and a native vector checkmark. Dashed undescribed-image area contrasts with solid described-image area. Accessibility labels and explanatory annotations sit below the documents. Main text is 11 pt; status pills and system subtitle are 10.5 pt; headings are 12 pt.",
+    "reference": "Authored SVG rendered side-by-side with candidate; native-size PDF checked.",
+    "font_pt": [
+      10.5,
+      12
     ]
   }
 }

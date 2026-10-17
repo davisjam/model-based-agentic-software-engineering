@@ -3,59 +3,68 @@
   "chapter": "2.3-behavioral",
   "claim": "*In-flight ownership model.* A current claim records owner, epoch, and lifetime. Completion releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.",
   "topology": {
-    "description": "Claimed lease completes or expires; expired lease can be reclaimed by another actor.",
-    "relations": [
-      [
-        "start",
-        "c",
-        "",
-        ""
-      ],
-      [
-        "c",
-        "rel",
-        "completion",
-        ""
-      ],
-      [
-        "c",
-        "rec",
-        "expiry",
-        "dashed"
-      ],
-      [
-        "rec.east",
-        "c.east",
-        "another actor\nmay claim",
-        "dashed"
-      ]
+    "description": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+    "native_draw_commands": [
+      "\\draw[edge] (start) -- (c);",
+      "\\draw[edge] (c) -- node[lab,left] {completion} (rel);",
+      "\\draw[edge,dashed] (c) -- node[lab,right] {expiry} (rec);",
+      "\\draw[edge,dashed] (rec.east) -- ++(.45,0) |- node[lab,near end,above] {another actor\\\\may claim} (c.east);"
     ]
   },
   "required_terms": [
     "claim",
-    "CLAIMED owner · epoch · expires_at",
-    "RELEASED Claim ends cleanly",
-    "RECLAIMABLE Lease lapsed / stale",
-    "A live claim is distinguishable from a stale one."
+    "CLAIMED",
+    "owner · epoch · expires_at",
+    "RELEASED",
+    "Claim ends cleanly",
+    "RECLAIMABLE",
+    "Lease lapsed / stale",
+    "completion expiry",
+    "another actor",
+    "may claim",
+    "Completion releases the claim; expiry makes it reclaimable.",
+    "A live claim is distinguishable from a stale",
+    "one — expiry is a state, not an accident."
   ],
   "bw_encoding": "Grayscale publication candidate. Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
-  "redesign": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
+  "redesign": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
   "questions": [],
-  "alt": "Claim opens CLAIMED with owner, epoch and expires_at. Completion leads to RELEASED; expiry leads to RECLAIMABLE. A return transition allows another actor to claim again. The state model distinguishes live and stale claims without showing the storage implementation. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Rounded state boxes show ownership progression and recovery. Dashed expiry-related transitions distinguish expiry from ordinary progress; the external conclusion identifies expiry as a state rather than an accidental event.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      14.7456,
-      6.9088
+      12.7361,
+      7.2935
     ]
+  },
+  "fidelity_review": {
+    "stem": "in-flight-ownership-states",
+    "source": "book/assets/in-flight-ownership-states.svg",
+    "status": "corrected",
+    "evidence": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/in-flight-ownership-states.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/in-flight-ownership-states.png",
+    "original_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+    "native_sha256": "0610ec587de6da821f739142b83a177745e3f542c74c45de3229ecdae69a5729",
+    "page": 21,
+    "dimensions_cm": [
+      12.7361,
+      7.2935
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

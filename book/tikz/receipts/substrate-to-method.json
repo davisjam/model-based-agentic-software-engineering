@@ -3,63 +3,70 @@
   "chapter": "1.4-the-new-engineering-problem",
   "claim": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE's corresponding answers: Modeling and Alignment.",
   "topology": {
-    "description": "Two parallel trait→problem→method derivations; Modeling and Alignment are distinct activities.",
-    "relations": [
-      [
-        "n00",
-        "n01",
-        "",
-        ""
-      ],
-      [
-        "n01",
-        "n02",
-        "",
-        ""
-      ],
-      [
-        "n10",
-        "n11",
-        "",
-        ""
-      ],
-      [
-        "n11",
-        "n12",
-        "",
-        ""
-      ]
+    "description": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "native_draw_commands": [
+      "\\draw[edge] (n00) -- (n01);",
+      "\\draw[edge] (n01) -- (n02);",
+      "\\draw[edge] (n10) -- (n11);",
+      "\\draw[edge] (n11) -- (n12);"
     ]
   },
   "required_terms": [
-    "Finite working state",
-    "Representation problem",
-    "Modeling Compact relevant properties",
-    "Probabilistic productive work Observable, interposable seams",
+    "Finite working state Representation problem",
+    "Modeling",
+    "Compact rele-",
+    "vant properties",
+    "Probabilistic pro-",
+    "ductive work",
+    "Observable, inter-",
+    "posable seams",
     "Enforcement problem",
-    "Alignment Enforce selected obligations",
-    "Substrate trait",
-    "Problem",
-    "Method"
+    "Alignment",
+    "Enforce selected",
+    "obligations",
+    "Substrate trait Problem Method",
+    "Chapter 1 derives the two core activities; Chap-",
+    "ter 4 puts them in motion as the MAGE method."
   ],
   "bw_encoding": "Grayscale publication candidate. Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
-  "redesign": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+  "redesign": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
   "questions": [],
-  "alt": "Two parallel left-to-right derivations connect substrate traits to engineering problems and methods. Finite working state creates a representation problem answered by Modeling. Probabilistic productive work with observable, interposable seams creates an enforcement problem answered by Alignment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A grayscale dependency diagram connects the agentic substrate to the MAGE method, keeping representation, evidence and controls distinct. The external footer connects the Chapter 1 substrate discussion with the method developed by Chapter 4.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       13.9869,
-      5.277
+      6.5114
     ]
+  },
+  "fidelity_review": {
+    "stem": "substrate-to-method",
+    "source": "book/assets/substrate-to-method.svg",
+    "status": "corrected",
+    "evidence": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/substrate-to-method.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/substrate-to-method.png",
+    "original_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+    "native_sha256": "6a5032b25ab9c23b378611956ff63d62c0cadb9cab55ec864b2ce5da9b39b59a",
+    "page": 10,
+    "dimensions_cm": [
+      13.9869,
+      6.5114
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

@@ -5,23 +5,24 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm] (s0) at (0,0) {Scale $\times$ finite reasoning\\Large systems exceed one reasoner};
-\node[n,text width=6cm] (s1) at (0,-2) {New engineering imbalance\\Implementation abundant\\Judgment, representation,\\evidence and enforcement scarce};
-\draw[edge] (s0) -- (s1);
-\node[strong,text width=6cm,fill=black!15] (s2) at (0,-4) {Modeling Principle\\Make consequential knowledge\\and intent explicit at useful scales};
+\node[n,text width=6cm] (s0) at (0,0) {Scale $\times$ finite reasoning\\Large systems exceed one reasoner;\\state must be abstracted\\or reconstructed};
+\node[n,text width=6cm] (s1) at (0,-2.3) {New engineering imbalance\\Implementation abundant\\Judgment, representation,\\evidence and enforcement scarce};
+\draw[edge] (s0) -- node[lab,right,inner sep=1pt] {makes judgment scarce at scale} (s1);
+\node[strong,text width=6cm,fill=black!15] (s2) at (0,-4.5) {Modeling Principle\\Make consequential knowledge\\and intent explicit at useful scales};
 \draw[edge] (s1) -- (s2);
-\node[strong,text width=6cm,fill=black!30] (s3) at (0,-6) {Alignment Principle\\Enforce selected obligations\\Constraints · sensors · validators · gates};
-\draw[edge] (s2) -- (s3);
-\node[n,text width=6cm,fill=black!10] (s4) at (0,-8) {Governed Engineering Environment\\Modeling and Alignment\\work together};
+\node[strong,text width=6cm,fill=black!30] (s3) at (0,-6.8) {Alignment Principle\\Enforce selected obligations\\Constraints · sensors · validators · gates};
+\draw[edge] (s2) -- node[lab] {exposes properties for analysis} (s3);
+\node[n,text width=6cm,fill=black!10] (s4) at (0,-9) {Governed Engineering Environment\\Modeling and Alignment\\work together};
 \draw[edge] (s3) -- (s4);
-\node[n,text width=6cm,fill=black!15] (s5) at (0,-10) {Engineering Capital\\Effort compounds: future value > upkeep\\Can depreciate; maintain or retire};
-\draw[edge] (s4) -- (s5);
-\node[n,text width=3cm,fill=black!20] (ci) at (-5.4,-2) {Commodity\\intelligence\\Implementation\\cheap and abundant};
+\node[n,text width=6cm,fill=black!15] (s5) at (0,-11.1) {Engineering Capital\\Effort compounds over time\\Can depreciate; maintain or retire};
+\draw[edge] (s4) -- node[lab] {when future value exceeds upkeep} (s5);
+\node[n,text width=3cm,fill=black!20] (ci) at (-5.4,-2.3) {Commodity\\intelligence\\Implementation\\cheap and abundant};
 \draw[edge] (ci) -- (s1);
-\node[n,text width=3cm,fill=black!30] (churn) at (5.4,-5) {Engineering Churn\\Weak representation: reconstruction\\Weak enforcement: repeated adjudication\\Same work paid again};
+\node[lab] at (-5.4,-.65) {changes the economics};
+\node[n,text width=3cm,fill=black!30] (churn) at (5.4,-5.7) {Engineering Churn\\Weak\\representation:\\reconstruction\\Weak enforcement:\\repeated\\adjudication\\Same work paid again};
 \draw[edge,dashed] (s2.east) -- (churn.north west);
 \draw[edge,dashed] (s3.east) -- (churn.south west);
-\node[n,text width=3cm] (conv) at (-5.4,-8) {Governance conversion\\Recurring failures and judgment adapt models and controls};
+\node[n,text width=3cm] (conv) at (-5.4,-9) {Governance conversion\\Recurring failures and judgment adapt models and controls};
 \draw[edge] (s4.west) -- (conv.east);
 \draw[edge] (conv.north) |- (s2.west);
 \draw[edge,dotted] (s5.west) -- ++(-4,0) |- (s0.west);

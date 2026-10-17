@@ -4,7 +4,7 @@
   "topology": "Quantitative axes preserve source values and categories.",
   "required_terms": [],
   "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
-  "redesign": "Recovers the19 actual bars and quartiles from originalSVG; its description says20weeks but the artwork contains19. Candidate preserves the artwork window; does not manufacture the missing week.",
+  "redesign": "Recovers the19 actual bars and quartiles from originalSVG; its description says20weeks but the artwork contains19. Candidate preserves the artwork window; does not manufacture the missing week. Restored external units and interpretive annotations at 10 pt.",
   "questions": [
     "Original SVG contains 19 bars despite 20-week description. Confirm whether publisher edition should refresh to 20-week or 29-week evidence; current candidate preserves 19 bars."
   ],

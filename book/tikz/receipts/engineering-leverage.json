@@ -45,36 +45,26 @@
   },
   "required_terms": [
     "Engineer",
-    "Implementation Primary engineered object",
-    "Product",
-    "Classical: engineer writes implementation",
-    "Engineer",
-    "Engineered Environment",
-    "Agents",
     "Implementation",
     "Product",
-    "Agentic: agents write implementation",
+    "Engineered Environment",
+    "Agents",
+    "Primary engineered object",
     "Primary engineered lever",
-    "Governed Engineering Environment Models · obligations · evidence · controls · infrastructure"
+    "Governed Engineering Environment",
+    "Models · obligations · evidence · controls · infrastructure"
   ],
   "bw_encoding": "Grayscale publication candidate. Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
-  "redesign": "Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
+  "redesign": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
   "questions": [],
-  "alt": "Two production chains are stacked. Classical engineering runs from engineer to implementation to product. Agentic engineering inserts an engineered environment and agents before implementation. Separate text identifies implementation as the classical engineered object and the environment as the agentic lever. Models, obligations, evidence, controls and infrastructure describe that environment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
-  "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
-    "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
-    ],
-    "outcome": "Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
-    "native_dimensions_cm": [
-      14.9764,
-      7.0466
+  "alt": "Two production chains are stacked. Classical engineering runs from engineer to implementation to product. Agentic engineering inserts an engineered environment and agents before implementation. Separate text identifies implementation as the classical engineered object and the environment as the agentic lever. Models, obligations, evidence, controls and infrastructure describe that environment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Two dotted, arrowless guides expand the environment node into the framed detail box below; primary-role annotations sit outside the nodes.",
+  "visual_fidelity_review": {
+    "reason": "User identified missing expansion guides, pictograms and external annotations after the grayscale pass.",
+    "changes": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
+    "reference": "Authored SVG rendered side-by-side with candidate; native-size PDF checked.",
+    "font_pt": [
+      11,
+      12
     ]
   }
 }

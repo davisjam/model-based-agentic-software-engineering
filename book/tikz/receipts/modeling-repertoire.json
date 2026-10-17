@@ -3,230 +3,160 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
   "topology": {
-    "description": "Nine peer forms. Structural fork, state machine, data-flow chain, exclusive ownership, permission graph, quantitative comparison, entity relations, provenance convergence and call graph retain original edges.",
-    "relations": [
-      [
-        "m00",
-        "m01",
-        "",
-        ""
-      ],
-      [
-        "m01",
-        "m02",
-        "",
-        ""
-      ],
-      [
-        "m01",
-        "m03",
-        "",
-        ""
-      ],
-      [
-        "m10",
-        "m11",
-        "",
-        ""
-      ],
-      [
-        "m11",
-        "m12",
-        "",
-        ""
-      ],
-      [
-        "m11",
-        "m13",
-        "",
-        ""
-      ],
-      [
-        "m20",
-        "m21",
-        "",
-        ""
-      ],
-      [
-        "m21",
-        "m22",
-        "",
-        ""
-      ],
-      [
-        "m22",
-        "m23",
-        "",
-        ""
-      ],
-      [
-        "m30",
-        "m31",
-        "",
-        ""
-      ],
-      [
-        "m32",
-        "m31",
-        "",
-        "dashed"
-      ],
-      [
-        "m40",
-        "m41",
-        "",
-        ""
-      ],
-      [
-        "m40",
-        "m42",
-        "",
-        "dashed"
-      ],
-      [
-        "m50",
-        "m52",
-        "",
-        ""
-      ],
-      [
-        "m51",
-        "m52",
-        "",
-        ""
-      ],
-      [
-        "m52",
-        "m53",
-        "",
-        ""
-      ],
-      [
-        "m60",
-        "m61",
-        "",
-        ""
-      ],
-      [
-        "m60",
-        "m62",
-        "",
-        ""
-      ],
-      [
-        "m70",
-        "m72",
-        "",
-        ""
-      ],
-      [
-        "m71",
-        "m72",
-        "",
-        ""
-      ],
-      [
-        "m80",
-        "m81",
-        "",
-        ""
-      ],
-      [
-        "m81",
-        "m82",
-        "",
-        ""
-      ],
-      [
-        "m81",
-        "m83",
-        "",
-        ""
-      ]
+    "description": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+    "native_draw_commands": [
+      "\\draw[edge] (m00) -- (m01);",
+      "\\draw[edge] (m01) -- (m02);",
+      "\\draw[edge] (m01) -- (m03);",
+      "\\draw[black!25] (2.4,0.3)--(2.4,-4.1);",
+      "\\draw[edge] (m10) -- (m11);",
+      "\\draw[edge] (m11) -- (m12);",
+      "\\draw[edge] (m11) -- (m13);",
+      "\\draw[black!25] (7.199999999999999,0.3)--(7.199999999999999,-4.1);",
+      "\\draw[edge] (m20) -- (m21);",
+      "\\draw[edge] (m21) -- (m22);",
+      "\\draw[edge] (m22) -- (m23);",
+      "\\draw[edge] (m30) -- (m31);",
+      "\\draw[edge,dashed] (m32) -- (m31);",
+      "\\draw[black!25] (2.4,-4.1000000000000005)--(2.4,-8.5);",
+      "\\draw[edge] (m40) -- (m41);",
+      "\\draw[edge,dashed] (m40) -- (m42);",
+      "\\draw[black!25] (7.199999999999999,-4.1000000000000005)--(7.199999999999999,-8.5);",
+      "\\draw[edge] (m50) -- (m52);",
+      "\\draw[edge] (m51.north) -- (m52.south west);",
+      "\\draw[edge] (m52) -- (m53);",
+      "\\draw[edge] (m60) -- (m61);",
+      "\\draw[edge] (m60) -- (m62);",
+      "\\draw[black!25] (2.4,-8.5)--(2.4,-12.9);",
+      "\\draw[edge] (m70) -- (m72);",
+      "\\draw[edge] (m71) -- (m72);",
+      "\\draw[black!25] (7.199999999999999,-8.5)--(7.199999999999999,-12.9);",
+      "\\draw[edge] (m80) -- (m81);",
+      "\\draw[edge] (m81) -- (m82);",
+      "\\draw[edge] (m81) -- (m83);"
     ]
   },
   "required_terms": [
-    "Component / dependency",
+    "Component /",
+    "dependency",
     "UI",
     "API",
-    "DB",
-    "CACHE",
+    "DB CACHE",
     "Depends on; reaches",
-    "Q: What depends on what? P: Reachability, layering, forbidden edges A: Traversal, cycles, paths",
+    "Q: What depends on what?",
+    "P: Reachability, layering,",
+    "forbidden edges",
+    "A: Traversal, cycles, paths",
     "Finite-state",
-    "IDLE",
-    "RUNNING",
-    "DONE",
-    "FAILED",
+    "IDLE RUNNING DONE",
+    "F AILED",
     "May become",
-    "Q: What may happen next? P: Legal states, safety, liveness A: Model checking; search",
+    "Q: What may happen next?",
+    "P: Legal states,",
+    "safety, liveness",
+    "A: Model checking; search",
     "Data-flow",
-    "INPUT",
-    "PARSE",
-    "MODEL",
+    "INPUT PARSE MODEL",
     "OUTPUT",
     "Flows to",
-    "Q: Where does data flow? P: Sources, sinks, paths, transforms A: Flow, taint, dependencies",
+    "Q: Where does data flow?",
+    "P: Sources, sinks,",
+    "paths, transforms",
+    "A: Flow, taint, dependencies",
     "Ownership / resource",
     "Worker A",
     "Job 42",
-    "Worker B",
-    "×",
+    "Worker B ×",
     "Owns; stale claim (dashed)",
-    "Q: Who may control what? P: Exclusivity, transfer, reclaim A: Interleavings; invariants",
+    "Q: Who may control what?",
+    "P: Exclusivity,",
+    "transfer, reclaim",
+    "A: Interleavings; invariants",
     "Decision / policy",
     "WEB",
     "API",
     "DB",
     "×",
     "May call; dashed = prohibited",
-    "Q: What is permitted? P: Consistency, exclusion, implication A: Rules; constraint checks",
+    "Q: What is permitted?",
+    "P: Consistency, exclusion,",
+    "implication",
+    "A: Rules; constraint checks",
     "Quantitative",
     "requests",
     "errors",
-    "error rate",
-    "< 1%",
+    "error rate [ < 1% ]",
     "Compare error rate to bound",
-    "Q: How much / what bound? P: Budget, margin, capacity, rate A: Aggregate / optimize",
+    "Q: How much / what bound?",
+    "P: Budget, margin,",
+    "capacity, rate",
+    "A: Aggregate / optimize",
     "Entity / schema",
     "USER",
     "DOCUMENT",
     "ORG",
     "owns / memberOf",
-    "Q: Entities and relations? P: Keys, cardinality, references A: Joins; schema checking",
+    "Q: Entities and relations?",
+    "P: Keys, cardinality,",
+    "references",
+    "A: Joins; schema checking",
     "Provenance / derivation",
-    "SOURCE",
-    "TRANSFORM",
-    "ARTIFACT",
+    "SOURCE TRANSFORM",
+    "ARTIF ACT",
     "sourceOf / produced",
-    "Q: What produced this? P: Attribution, lineage, evidence A: Lineage / audit traversal",
+    "Q: What produced this?",
+    "P: Attribution,",
+    "lineage, evidence",
+    "A: Lineage / audit traversal",
     "Call / control-flow",
-    "main()",
-    "handle()",
-    "validate()",
+    "main() handle() validate()",
     "persist()",
     "Calls",
-    "Q: What may call what? P: Entry points, reachable calls A: Call-graph traversal",
+    "Q: What may call what?",
+    "P: Entry points,",
+    "reachable calls",
+    "A: Call-graph traversal",
     "Q = question · P = property · A = analysis"
   ],
   "bw_encoding": "Grayscale publication candidate. Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
-  "redesign": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
+  "redesign": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
   "questions": [],
-  "alt": "Nine peer panels show component dependency, finite-state transitions, data flow, ownership, permissions, quantitative bounds, entity relations, provenance, and calls. Each retains its distinct graph and lists its question, property and analysis. Crossed dashed arrows denote a stale ownership claim and a prohibited call; quantitative inputs converge on an error rate compared with a less-than-one-percent bound. Provenance shows source and transform converging on an artifact. Black lines, labels and separators distinguish all panels without color. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Nine miniature graphs in a three-by-three grid show component dependencies, finite states, data flow, ownership, policy decisions, quantitative bounds, entity schemas, provenance and call flow. Every form has its own question, properties and analyses. Dashed crossed edges mark stale or prohibited relations; a bracket marks the quantitative bound.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      14.6264,
+      14.5983,
       13.9749
     ]
+  },
+  "fidelity_review": {
+    "stem": "modeling-repertoire",
+    "source": "book/assets/modeling-repertoire.svg",
+    "status": "corrected",
+    "evidence": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/modeling-repertoire.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-12.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/modeling-repertoire.png",
+    "original_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
+    "native_sha256": "6327b149d746e0c1345b986b161a508bc4843681e1b7566891c0cea38e0f061b",
+    "page": 14,
+    "dimensions_cm": [
+      14.5983,
+      13.9749
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

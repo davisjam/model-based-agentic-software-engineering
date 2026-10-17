@@ -9,15 +9,15 @@
     "Incompatible demands\\ conflict lives in the relation, not either control"
   ],
   "bw_encoding": "Paired controls distinguished from shared resource and dashed conflict region. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Paired controls distinguished from shared resource and dashed conflict region.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Paired controls distinguished from shared resource and dashed conflict region. Fidelity pass: Restored check marks on both individually correct controls; conflict remains on their shared relation.",
   "questions": [],
-  "alt": "Two control nodes — Control A, which requires a squashed commit, and Control B, which rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared resource, the commit set, that they act on. Below the commit set, a dashed-outline box marks the incompatible demands: the conflict belongs to the relation among the two controls and the resource they share, not to either control's own implementation.",
+  "alt": "Two control nodes — Control A, which requires a squashed commit, and Control B, which rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared resource, the commit set, that they act on. Below the commit set, a dashed-outline box marks the incompatible demands: the conflict belongs to the relation among the two controls and the resource they share, not to either control's own implementation. A check mark on each control indicates that each is individually correct.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 362.365,
-    "height_pt": 157.236,
+    "width_pt": 362.364990234375,
+    "height_pt": 156.41900634765625,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

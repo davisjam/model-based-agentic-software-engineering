@@ -4,6 +4,7 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[box,text width=5cm,fill=black!10] (m) at (0,0) {\textbf{Cost / usage model}\\related measured quantities};
 \node[head,text width=5cm,fill=black!28] (p) at (0,-1.4) {Policy attached to the value};
 \draw[edge,] (m) -- (p);
@@ -11,9 +12,10 @@
 \draw[edge,] (p) -- (a0);
 \node[box,text width=3.8cm,fill=black!12] (a1) at (0,-3.1) {\textbf{ADAPT}\\change load};
 \draw[edge,] (p) -- (a1);
-\node[box,text width=3.8cm,fill=black!28] (a2) at (4.5,-3.1) {\textbf{GATE}\\block admission\\dormant unless configured};
+\node[box,text width=3.8cm,fill=black!28] (a2) at (4.5,-3.1) {\textbf{GATE}\\block admission};
 \draw[edge,] (p) -- (a2);
 \node[box,text width=4cm] (soft) at (0,-4.7) {Throttle; soft completion};
 \draw[edge,] (a1) -- (soft);
 \node[note,text width=12cm] (nt) at (0,-5.8) {Response follows the obligation attached to the quantity.};
+\node[note,text width=3.2cm] at (4.7,-4.15) {Dormant unless\\configured};
 \end{tikzpicture}

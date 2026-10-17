@@ -1,16 +1,40 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=3.6cm,fill=black!5] (n0) at (0.0,0) {Inaccessible document\\Unlabeled images\\No reading order\\No tags};
-\node[strong,text width=3.6cm,fill=black!20] (n1) at (4.8,0) {DocAble\\Production system\\scholaccess.com};
-\node[n,text width=3.6cm,fill=black!15] (n2) at (9.6,0) {Accessible document\\Described images\\Reading order · tags\\Evidence: every fix explained};
-\draw[edge] (n0) -- (n1);
-\draw[edge] (n1) -- (n2);
-\node[note,text width=2cm] (upload) at (2.4,-1.7) {upload};
-\node[note,text width=3cm] (file) at (7.2,-1.7) {remediated file};
-\node[note,text width=11cm] (note) at (4.8,-2.7) {What the system does; internal structure is intentionally hidden.};
+% Document pictograms, status badges, and external annotations preserve the source grammar.
+\begin{tikzpicture}[font=\fontsize{11}{13}\selectfont,>=Stealth,
+page/.style={draw,rounded corners=2pt,fill=white,line width=.8pt,minimum width=3.6cm,minimum height=3.3cm},
+annotation/.style={align=center,text width=4.5cm,inner sep=2pt},
+imagearea/.style={draw,align=center,minimum width=3.35cm,minimum height=.75cm,inner sep=2pt,font=\itshape\fontsize{11}{13}\selectfont},
+pill/.style={draw,rounded corners=5pt,fill=black!10,inner sep=3pt,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.8pt}]
+\node[font=\bfseries\fontsize{12}{14}\selectfont] at (5,2.55) {A running glimpse of DocAble};
+\node[font=\itshape] at (5,2.0) {One object in, one object back.};
+\node[page] (input) at (0,0) {};
+\node[page] (output) at (10,0) {};
+% Text bars and folded corners identify documents without exposing system internals.
+\foreach \x/\shade in {0/30,10/65}{
+ \fill[black!\shade,rounded corners=1pt] (\x-1.1,1.1) rectangle ++(1.7,.1);
+ \fill[black!\shade,rounded corners=1pt] (\x-1.1,.8) rectangle ++(2.2,.1);
+ \fill[black!\shade,rounded corners=1pt] (\x-1.1,.5) rectangle ++(1.3,.1);
+ \draw[fill=black!10] (\x+1.4,1.65)--(\x+1.8,1.25)--(\x+1.4,1.25)--cycle;
+}
+\node[imagearea,dashed,fill=black!3] at (0,-.25) {Image — no alt text};
+\node[imagearea,fill=black!10] at (10,-.25) {Image — described};
+\node[pill] at (0,-1.15) {Not accessible};
+\node[pill] at (10,-1.15) {Evidence record};
+% Native paths avoid font-dependent warning/checkmark glyphs.
+\fill[black!75] (1.45,1.35) circle (.24cm);
+\node[text=white,font=\bfseries\fontsize{12}{14}\selectfont,inner sep=0pt] at (1.45,1.35) {!};
+\fill[black!75] (11.45,1.35) circle (.24cm);
+\draw[white,line width=1.3pt,line cap=round,line join=round] (11.31,1.35)--(11.41,1.24)--(11.59,1.46);
+\node[draw,rounded corners=5pt,fill=black!20,line width=1.1pt,text width=3.8cm,align=center,minimum height=1.6cm,inner sep=4pt] (system) at (5,-.35)
+ {};
+\node[font=\bfseries\fontsize{12}{14}\selectfont] at (5,.15) {DocAble};
+\node[font=\itshape\fontsize{10.5}{12.5}\selectfont] at (5,-.35) {The production system};
+\node at (5,-.85) {scholaccess.com};
+\draw[edge] (input.east |- system.west)--node[above=5pt,font=\itshape] {upload} (system.west);
+\draw[edge] (system.east)--node[above=16pt,align=center,font=\itshape\fontsize{10.5}{12.5}\selectfont] {remediated\\file} (output.west |- system.east);
+\node[annotation,anchor=north,font=\bfseries] at (0,-1.9) {Inaccessible document};
+\node[annotation,anchor=north,font=\bfseries] at (10,-1.9) {Accessible document\\+ evidence};
+\node[annotation,anchor=north,font=\itshape] at (0,-2.5) {Unlabeled images · untagged\\No reading order};
+\node[annotation,anchor=north,font=\itshape] at (10,-2.9) {Tagged · reading order\\Every fix explained};
+\node[annotation,text width=12cm] at (5,-4.1) {What the system does; internal structure is intentionally hidden.};
 \end{tikzpicture}

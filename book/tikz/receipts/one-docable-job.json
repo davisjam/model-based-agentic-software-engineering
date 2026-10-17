@@ -3,106 +3,74 @@
   "chapter": "1.2-mage-by-example",
   "claim": "*Processing one document in DocAble.* A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.",
   "topology": {
-    "description": "Processing fork/join; workers call specialist services while repaired pieces rejoin.",
-    "relations": [
-      [
-        "doc",
-        "job",
-        "creates",
-        ""
-      ],
-      [
-        "job",
-        "c0",
-        "",
-        ""
-      ],
-      [
-        "job",
-        "c1",
-        "",
-        ""
-      ],
-      [
-        "job",
-        "c2",
-        "",
-        ""
-      ],
-      [
-        "c0",
-        "worker",
-        "",
-        ""
-      ],
-      [
-        "c1",
-        "worker",
-        "",
-        ""
-      ],
-      [
-        "c2",
-        "worker",
-        "",
-        ""
-      ],
-      [
-        "worker",
-        "services",
-        "call",
-        "<->"
-      ],
-      [
-        "worker",
-        "merge",
-        "",
-        ""
-      ],
-      [
-        "merge",
-        "v",
-        "",
-        ""
-      ],
-      [
-        "v",
-        "out",
-        "",
-        ""
-      ]
+    "description": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
+    "native_draw_commands": [
+      "\\draw[edge] (doc) -- node[lab,right] {creates a job} (job);",
+      "\\draw[edge] (job.south) -- (0,-2.25) -| (c1.north);",
+      "\\draw[edge] (0,-2.25) -| (c3.north);",
+      "\\draw[edge] (job) -- (c2);",
+      "\\draw[edge] (c\\i.south) -- (w.north);",
+      "\\draw[edge] (\\id.north |- 0,-5.2) -- (\\id.north);",
+      "\\draw[edge] (0,-6.9) -- (pieces.north);",
+      "\\draw[edge] (pieces) -- (merge);",
+      "\\draw[edge] (merge) -- (v);",
+      "\\draw[edge] (v.south) -- (0,-10.5) -| (out.north);",
+      "\\draw[edge] (0,-10.5) -| (evidence.north);"
     ]
   },
   "required_terms": [
-    "User uploads document",
-    "Job Tracks processing",
-    "Chunk 1",
-    "Chunk 2",
-    "Chunk 3",
+    "User uploads a document",
+    "Job",
+    "creates a job",
+    "Chunk Chunk Chunk",
+    "split for parallel work",
     "Workers claim work",
-    "Specialized services Generation · render · OCR Document / format machinery",
-    "Merge / reassemble Repaired pieces",
-    "Validate",
-    "Remediated document + evidence"
+    "Generation Render OCR Document /format machinery",
+    "call specialized services",
+    "Repaired pieces",
+    "Merge / reassemble",
+    "V alidate",
+    "Remediated document Evidence"
   ],
   "bw_encoding": "Grayscale publication candidate. Neutral processing nodes contrasted with document input/output; explicit fork/join and specialist-service side call retained.",
-  "redesign": "Neutral processing nodes contrasted with document input/output; explicit fork/join and specialist-service side call retained.",
+  "redesign": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
   "questions": [],
-  "alt": "A submitted document creates a tracked job, which splits into chunks processed by workers. Workers call generation, rendering, OCR and document-format services. Repaired pieces rejoin, are validated and return as a remediated document with evidence of consequential changes. The fork and join distinguish concurrent work from its shared job. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A folded document creates a job that fans out into three chunks and rejoins at workers. Workers call four separate specialist services. Repaired pieces proceed through merge and validation, then branch into a folded remediated-document output and a separate evidence output.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Neutral processing nodes contrasted with document input/output; explicit fork/join and specialist-service side call retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      11.5264,
-      10.1449
+      13.3352,
+      12.2046
     ]
+  },
+  "fidelity_review": {
+    "stem": "one-docable-job",
+    "source": "book/assets/one-docable-job.svg",
+    "status": "corrected",
+    "evidence": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/one-docable-job.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/one-docable-job.png",
+    "original_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "native_sha256": "4f62bd8dc2d9c1ffa631eb175a2878011ef201e2471724250b8addfb3ed02ccf",
+    "page": 7,
+    "dimensions_cm": [
+      13.3352,
+      12.2046
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

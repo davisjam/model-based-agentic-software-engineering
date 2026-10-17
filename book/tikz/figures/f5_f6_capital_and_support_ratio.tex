@@ -14,4 +14,5 @@
 \addplot+[black,dashed,mark=square*,mark size=1pt] coordinates {(1,0) (4,0.1835) (5,0.8442) (6,1.0525) (7,1.1395) (8,1.1474) (9,1.3258) (10,1.569) (11,1.9983) (12,2.3106) (13,2.6735) (14,2.9507) (15,3.5173) (16,3.7629) (17,3.7858) (18,3.7165) (19,3.7695) (20,3.8778) (21,3.9067) (22,3.9436) (23,3.8651) (24,3.7545) (25,3.6693) (26,3.6038) (27,3.5588) (28,3.483) (29,3.4606)};
 \addplot+[only marks,black,mark=diamond*,mark size=3pt] coordinates {(5,0.85) (22,3.0)};
 \draw[dotted] (axis cs:1,1)--(axis cs:29,1);\legend{All support,Excluding docs,Book snapshots}\end{axis}
+\node[anchor=north,align=center,text width=13.5cm,font=\fontsize{10}{12}\selectfont,inner sep=0pt] at ([yshift=-16pt]current bounding box.south) {Upper: lines of code and Markdown, excluding vendor/generated files.\\Lower: support/production ratio; dotted line marks parity (1.0).\\Diamonds: prototype (0.85) and August 3 book snapshot (3.0).};
 \end{tikzpicture}

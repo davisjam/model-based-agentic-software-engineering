@@ -3,106 +3,109 @@
   "chapter": "0.3-the-mage-method-at-a-glance",
   "claim": "The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes consequential engineering properties explicit and available to analysis; Alignment makes selected obligations enforceable. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.",
   "topology": {
-    "description": "Causal spine with lateral economic input, dashed failure paths, conversion feedback and dotted scope feedback.",
-    "relations": [
-      [
-        "s0",
-        "s1",
-        "",
-        ""
-      ],
-      [
-        "s1",
-        "s2",
-        "",
-        ""
-      ],
-      [
-        "s2",
-        "s3",
-        "",
-        ""
-      ],
-      [
-        "s3",
-        "s4",
-        "",
-        ""
-      ],
-      [
-        "s4",
-        "s5",
-        "",
-        ""
-      ],
-      [
-        "ci",
-        "s1",
-        "",
-        ""
-      ],
-      [
-        "s2.east",
-        "churn.north west",
-        "",
-        "dashed"
-      ],
-      [
-        "s3.east",
-        "churn.south west",
-        "",
-        "dashed"
-      ],
-      [
-        "s4.west",
-        "conv.east",
-        "",
-        ""
-      ],
-      [
-        "conv.north",
-        "s2.west",
-        "",
-        ""
-      ],
-      [
-        "s5.west",
-        "s0.west",
-        "",
-        "dotted"
-      ]
+    "description": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
+    "native_draw_commands": [
+      "\\draw[edge] (s0) -- node[lab,right,inner sep=1pt] {makes judgment scarce at scale} (s1);",
+      "\\draw[edge] (s1) -- (s2);",
+      "\\draw[edge] (s2) -- node[lab] {exposes properties for analysis} (s3);",
+      "\\draw[edge] (s3) -- (s4);",
+      "\\draw[edge] (s4) -- node[lab] {when future value exceeds upkeep} (s5);",
+      "\\draw[edge] (ci) -- (s1);",
+      "\\draw[edge,dashed] (s2.east) -- (churn.north west);",
+      "\\draw[edge,dashed] (s3.east) -- (churn.south west);",
+      "\\draw[edge] (s4.west) -- (conv.east);",
+      "\\draw[edge] (conv.north) |- (s2.west);",
+      "\\draw[edge,dotted] (s5.west) -- ++(-4,0) |- (s0.west);"
     ]
   },
   "required_terms": [
-    "Scale × finite reasoning Large systems exceed one reasoner",
-    "New engineering imbalance Implementation abundant Judgment, representation, evidence and enforcement scarce",
-    "Modeling Principle Make consequential knowledge and intent explicit at useful scales",
-    "Alignment Principle Enforce selected obligations Constraints · sensors · validators · gates",
-    "Governed Engineering Environment Modeling and Alignment work together",
-    "Engineering Capital Effort compounds: future value > upkeep Can depreciate; maintain or retire",
-    "Commodity intelligence Implementation cheap and abundant",
-    "Engineering Churn Weak representation: reconstruction Weak enforcement: repeated adjudication Same work paid again",
-    "Governance conversion Recurring failures and judgment adapt models and controls",
-    "Greater scope reopens the reasoning problem"
+    "Scale × finite reasoning",
+    "Large systems exceed one reasoner;",
+    "state must be abstracted",
+    "or reconstructed",
+    "New engineering imbalance",
+    "Implementation abundant",
+    "Judgment, representation,",
+    "evidence and enforcement scarce",
+    "makes judgment scarce at scale",
+    "Modeling Principle",
+    "Make consequential knowledge",
+    "and intent explicit at useful scales",
+    "Alignment Principle",
+    "Enforce selected obligations",
+    "Constraints · sensors",
+    "· validators · gates",
+    "exposes properties for analysis",
+    "Governed Engineering Environment",
+    "Modeling and Alignment",
+    "work together",
+    "Engineering Capital",
+    "Effort compounds over time",
+    "Can depreciate; maintain or retire",
+    "when future value exceeds upkeep",
+    "Commodity",
+    "intelligence",
+    "Implementation",
+    "cheap and",
+    "abundant",
+    "changes the economics",
+    "Engineering Churn",
+    "Weak",
+    "representation:",
+    "reconstruction",
+    "Weak enforcement:",
+    "repeated",
+    "adjudication",
+    "Same work",
+    "paid again",
+    "Governance",
+    "conversion",
+    "Recurring failures",
+    "and judgment",
+    "adapt models",
+    "and controls",
+    "Greater scope reopens",
+    "the reasoning problem"
   ],
   "bw_encoding": "Grayscale publication candidate. Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
-  "redesign": "Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
+  "redesign": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
   "questions": [],
-  "alt": "A downward causal spine links scale and finite reasoning, a new engineering imbalance, Modeling, Alignment, a governed engineering environment and engineering capital. Commodity intelligence enters laterally at the imbalance. Dashed failure paths lead to churn; conversion feedback adapts models and controls. A dotted outer feedback path shows accumulated capital expanding scope and reopening the reasoning problem. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A vertical causal chain runs from scale and finite reasoning through scarce judgment, Modeling, Alignment and the governed engineering environment to engineering capital. Commodity intelligence enters from the left; dashed branches lead to churn on the right. Governance conversion feeds back to Modeling, and a dotted outer loop shows greater scope reopening the reasoning problem.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       14.486,
-      12.4919
+      13.381
     ]
+  },
+  "fidelity_review": {
+    "stem": "mage-method",
+    "source": "book/assets/mage-method.svg",
+    "status": "corrected",
+    "evidence": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/mage-method.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-0.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/mage-method.png",
+    "original_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+    "native_sha256": "be0cc5ae19b4c383419cf2abfa4378f098716599c82c1eb020022d936bea1d06",
+    "page": 2,
+    "dimensions_cm": [
+      14.486,
+      13.381
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

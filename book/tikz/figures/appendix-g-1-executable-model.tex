@@ -18,6 +18,6 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=4cm] (advice) at (-3,-6.5) {advisory · report-only\\ informs the engineer};
 \node[gate,text width=4cm,fill=black!22] (gate) at (3,-6.5) {finding / gate\\ CHECKED where warranted};
 \draw[edge] (n3) -- node[note,fill=white,inner sep=2pt] {no disagreement} (advice);
-\draw[edge] (n3) -- node[note,fill=white,inner sep=2pt] {disagreement} (gate);
+\draw[edge,line width=1pt] (n3) -- node[note,fill=white,inner sep=2pt,pos=.3] {disagreement} node[pos=.72,sloped,font=\fontsize{14}{14}\selectfont] {$\Vert$} (gate);
 \node[note,text width=12cm] (t21) at (0,-8) {Solid: authored relation. Dashed: derived / observed correspondence.\\ Heavy boundary: enforcement can block. A model may stay advisory.};
 \end{tikzpicture}

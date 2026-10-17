@@ -15,15 +15,15 @@
     "New models are admitted under constraints inside them. Active alignment operates within the protected region."
   ],
   "bw_encoding": "Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. Fidelity pass: Restored ellipsis in expanding protection rings, preserving open-ended extension beyond the named models.",
   "questions": [],
   "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 392.672,
-    "height_pt": 238.675,
+    "width_pt": 392.6719970703125,
+    "height_pt": 255.4929962158203,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

@@ -4,7 +4,7 @@
   "topology": "Quantitative axes preserve source values and categories.",
   "required_terms": [],
   "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
-  "redesign": "Same provenance counts; explicit residual is not a measurement of human reading.",
+  "redesign": "Same provenance counts; explicit residual is not a measurement of human reading. Restored external units and interpretive annotations at 10 pt.",
   "questions": [],
   "alt": "Weekly Commit Provenance as a Delegation Proxy. The explicit human-or-unknown residual is about 5.5% of the window's 32,039 main commits \u2014 an upper bound on human-authored realization, since early agent commits predating the attribution convention land in the residual. Commit share is a different quantity from how much the engineer read.",
   "data": [

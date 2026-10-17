@@ -1,0 +1,2812 @@
+{
+  "scope": "All 144 native grayscale TikZ candidates compared with original artwork, including seven navigation maps.",
+  "base_commit": "25ac79978",
+  "checked_count": 144,
+  "refined_count": 70,
+  "limitations": "Visual review records editorial judgment, not a proof of semantic equivalence. Geometry checks cannot detect missing visual meaning. Original color artwork remains immediately before each candidate for author review.",
+  "figures": [
+    {
+      "source": "book/assets/book-map.svg",
+      "candidate": "book/tikz/figures/book-map.tex",
+      "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+      "candidate_sha256": "20726a62abb9c0ec6455539f3ad9502778e9fe7bb4e4ea878c2efd10ce72ddd3",
+      "decision": "refined",
+      "review": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.7806,
+        13.9292
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/mage-method.svg",
+      "candidate": "book/tikz/figures/mage-method.tex",
+      "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+      "candidate_sha256": "be0cc5ae19b4c383419cf2abfa4378f098716599c82c1eb020022d936bea1d06",
+      "decision": "refined",
+      "review": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.486,
+        13.381
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/model-classes.svg",
+      "candidate": "book/tikz/figures/model-classes.tex",
+      "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+      "candidate_sha256": "e5337f8b7cabde3aea4d753581e1a71e14cfad9f501352d2e20cd1908a598d7b",
+      "decision": "retained",
+      "review": "Compared six purpose panels and separate form axis; original purpose-versus-form distinction and examples remain present. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.2764,
+        7.4144
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/gloss-agent-vocab.svg",
+      "candidate": "book/tikz/figures/gloss-agent-vocab.tex",
+      "source_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
+      "candidate_sha256": "fbe3cfaa87d75f9f796346adedfcb1103386e51c7a03557c260edbfdc1e5cc87",
+      "decision": "refined",
+      "review": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.8352,
+        10.6231
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/gloss-gee.svg",
+      "candidate": "book/tikz/figures/gloss-gee.tex",
+      "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+      "candidate_sha256": "a6b00176736e86f1738779359dd7e0b2495639e4ba455a76a0dc94d36c62c584",
+      "decision": "retained",
+      "review": "Compared six ontology entities and all labeled relations against the original raster. Earlier corrected six-node arrangement, gray entity roles and external relation labels remain faithful. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.9275,
+        10.9364
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/research-arc.svg",
+      "candidate": "book/tikz/figures/research-arc.tex",
+      "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
+      "candidate_sha256": "f69b5fbb47d18e42eca5b666fb6ede5dbc44c060bc11aa4f50afafe59e2b2940",
+      "decision": "retained",
+      "review": "Compared theory/evidence modes and depth/breadth research split. Gray classes, dependencies and labels retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        11.2764,
+        12.8201
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/engineering-leverage.svg",
+      "candidate": "book/tikz/figures/engineering-leverage.tex",
+      "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
+      "candidate_sha256": "3f080283bc24c02250bec485bf0c23fd05320d82bcaa92574289f370644a9da4",
+      "decision": "refined",
+      "original_visual_grammar": "Two pipelines are stacked for contrast. In the classical pipeline the engineer builds\n    the implementation directly, so the implementation is the primary engineered object: Engineer, then\n    Implementation, then Product. In the agentic pipeline agents build the implementation inside an\n    engineered environment the engineer constructs, so the environment becomes the primary engineered\n    lever: Engineer, then Engineered Environment, then Agents, then Implementation, then Product. A rust\n    badge marks the primary node in each row; it moves upstream from the implementation to the environment.\n    A footer strip unpacks the environment into models, obligations, evidence, controls, and\n    infrastructure.",
+      "review": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/docable-glimpse.svg",
+      "candidate": "book/tikz/figures/docable-glimpse.tex",
+      "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
+      "candidate_sha256": "86da898f5b67fb517ffad6d3e571333b7884cece0352674fe557e1b418ecfdad",
+      "decision": "refined",
+      "original_visual_grammar": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box — the production system at\n    scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern — what it does, not yet how.",
+      "review": "Replaced generic text boxes with document pictograms, text bars, folded corners, a warning badge and a native vector checkmark. Dashed undescribed-image area contrasts with solid described-image area. Accessibility labels and explanatory annotations sit below the documents. Main text is 11 pt; status pills and system subtitle are 10.5 pt; headings are 12 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/one-docable-job.svg",
+      "candidate": "book/tikz/figures/one-docable-job.tex",
+      "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+      "candidate_sha256": "4f62bd8dc2d9c1ffa631eb175a2878011ef201e2471724250b8addfb3ed02ccf",
+      "decision": "refined",
+      "review": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.3352,
+        12.2046
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "candidate_sha256": "b9ad6b6e85a590da2cd594224a67b17b03c9e24c98a42a2dc23d2adb50221888",
+      "decision": "refined",
+      "review": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.3972,
+        8.7798
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+      "candidate_sha256": "f80edb1b1c4dea34ee79d5a634d81f89d7b1a325583dd971663ac2838c776874",
+      "decision": "refined",
+      "review": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.4852,
+        12.3634
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+      "candidate_sha256": "6a5032b25ab9c23b378611956ff63d62c0cadb9cab55ec864b2ce5da9b39b59a",
+      "decision": "refined",
+      "review": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.9869,
+        6.5114
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/realization-space.svg",
+      "candidate": "book/tikz/figures/realization-space.tex",
+      "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
+      "candidate_sha256": "a205ab520913c9ab2c308828b4341f8f8239961a33b67055ffacee4c41c2ed54",
+      "decision": "retained",
+      "review": "Compared overlapping realization sets, hatched intersection, representative dots and outside labels. Distinct source sets and their shared region remain; dot placement is illustrative rather than quantitative. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.3515,
+        8.7442
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/specified-region.svg",
+      "candidate": "book/tikz/figures/specified-region.tex",
+      "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
+      "candidate_sha256": "d8b371ab6a0bf4397597e84b9c1b1454ac0620c0d2c2e4b637891a369b962891",
+      "decision": "retained",
+      "review": "Compared dashed scope envelope, obligation/scaffolding boundaries and capability arrow. Solid and dashed boundaries retain their distinct roles. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.0014,
+        7.26
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/question-to-consequence-progression.svg",
+      "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+      "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+      "candidate_sha256": "a1847fc7852a9b0a50f2d6567537a8aadf541ec6bd655c3c8a08e9a7de8993f8",
+      "decision": "retained",
+      "review": "Compared question, representation, property, analysis and consequence stages. Representative forms remain within the representation label; branch connections and evidence/consequence distinctions remain. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.9764,
+        10.4597
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/modeling-repertoire.svg",
+      "candidate": "book/tikz/figures/modeling-repertoire.tex",
+      "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
+      "candidate_sha256": "6327b149d746e0c1345b986b161a508bc4843681e1b7566891c0cea38e0f061b",
+      "decision": "refined",
+      "review": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.5983,
+        13.9749
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/canonical-structural.svg",
+      "candidate": "book/tikz/figures/canonical-structural.tex",
+      "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
+      "candidate_sha256": "b9729953b0495f423a3d5cdbd2bba33766d9c35f103f28144123c7de121fd57c",
+      "decision": "retained",
+      "review": "Compared dependency fork and crossed forbidden bypass; both topology and forbidden-edge cue retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        11.3639,
+        6.8138
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/document-mutation-model.svg",
+      "candidate": "book/tikz/figures/document-mutation-model.tex",
+      "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+      "candidate_sha256": "d30b573aa2b49f98eadaa25170282e13e6de0ac4a25dfcdb0abb0f2f970c5a11",
+      "decision": "retained",
+      "review": "Compared format fork, mutation/composition routes and emphasized abstraction seam. Source containment and seam weight retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        11.8764,
+        7.7923
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/from-nodes-to-composition.svg",
+      "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
+      "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+      "candidate_sha256": "c808b79bc5067ff8a9799287bca56a937c80de73bf713b3905578a844b610a4d",
+      "decision": "refined",
+      "review": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.7879,
+        9.7173
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/canonical-behavioral.svg",
+      "candidate": "book/tikz/figures/canonical-behavioral.tex",
+      "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+      "candidate_sha256": "24692487b36cb3851f2c379e302fb6d46924fd2b5aaa11904ad352792826cd5a",
+      "decision": "refined",
+      "review": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.3515,
+        7.9684
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/recovery-ordering-model.svg",
+      "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+      "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+      "candidate_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+      "decision": "refined",
+      "review": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        11.9514,
+        6.5837
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/behavioral-property-classes.svg",
+      "candidate": "book/tikz/figures/behavioral-property-classes.tex",
+      "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
+      "candidate_sha256": "d4e91d6f5c8ad895a206c4e74f5aacabb1127f9463f811f0768ebc8d9c78d9fb",
+      "decision": "refined",
+      "review": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.8515,
+        7.9893
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/in-flight-ownership-states.svg",
+      "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+      "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+      "candidate_sha256": "0610ec587de6da821f739142b83a177745e3f542c74c45de3229ecdae69a5729",
+      "decision": "refined",
+      "review": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.7361,
+        7.2935
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/in-flight-lease-overlap.svg",
+      "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
+      "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
+      "candidate_sha256": "97d545f68c346c447be21dcbd163884b960737aba59883d2730cce2e6916ab04",
+      "decision": "refined",
+      "review": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.2764,
+        4.9874
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/canonical-decision.svg",
+      "candidate": "book/tikz/figures/canonical-decision.tex",
+      "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
+      "candidate_sha256": "e945938c2635a35bdead008fe604352cf950f0043a9603482a4ba27d2c8fc3b8",
+      "decision": "retained",
+      "review": "Compared allowed pair topology and crossed absent edge. Negative permission cue and allowed route retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.2139,
+        5.8458
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/service-flow-model.svg",
+      "candidate": "book/tikz/figures/service-flow-model.tex",
+      "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+      "candidate_sha256": "a1ced7a0da28607be90841ae5eabcb02e34c1ff0f3ac63c45833055be5b4997e",
+      "decision": "retained",
+      "review": "Compared every service node and directed edge against the SVG. Actual service graph retained, including branches and shared services. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.9764,
+        7.5886
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/observed-vs-declared.svg",
+      "candidate": "book/tikz/figures/observed-vs-declared.tex",
+      "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+      "candidate_sha256": "a3697cc8c0067a5d49a6c75908a09644b1a00a0f92d1e20fbb4b2288e61b48e0",
+      "decision": "refined",
+      "review": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.6015,
+        6.4653
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/entitlement-domain.svg",
+      "candidate": "book/tikz/figures/entitlement-domain.tex",
+      "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
+      "candidate_sha256": "273e691e2e90ab8bd0b3c04eac786fea0dccd176bfdde242ef32d385be22af07",
+      "decision": "retained",
+      "review": "Compared finite/unlimited fork and admission decision. Both entitlement modes and their distinct consequences retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.5764,
+        8.1449
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/entitlement-model-evolution.svg",
+      "candidate": "book/tikz/figures/entitlement-model-evolution.tex",
+      "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
+      "candidate_sha256": "1ceeb044c3edc105945b1601e3c33f18f5cbc57ac2f06a28e086deb6acca24ff",
+      "decision": "refined",
+      "review": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.6337,
+        12.4728
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/modeling-substrate.svg",
+      "candidate": "book/tikz/figures/modeling-substrate.tex",
+      "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+      "candidate_sha256": "5a57691aa8512f3f92204c58f96c4e185fc874db4c6f9e49a955a26bb832d8f9",
+      "decision": "refined",
+      "review": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.1164,
+        10.4856
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/attribution-model.svg",
+      "candidate": "book/tikz/figures/attribution-model.tex",
+      "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
+      "candidate_sha256": "55565f2115f9ec643654b6960ec78e6a66093298f270d151da352c44563bac22",
+      "decision": "retained",
+      "review": "Compared record containment, attribution fields and directed evidence relations. Earlier record-container restoration retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.8109,
+        6.6297
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/two-reductions-static-realized.svg",
+      "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
+      "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+      "candidate_sha256": "0d55efb723c442869bb6d02c9a2b5b2c9d1e956321dc18e105b626d3bb1b9d4d",
+      "decision": "refined",
+      "review": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.4909,
+        8.7227
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff",
+      "decision": "retained",
+      "review": "Compared named entity peers and relation traversal graph; all source peers and directed relationships remain. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.5764,
+        9.1837
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/derive-generate-trace.svg",
+      "candidate": "book/tikz/figures/derive-generate-trace.tex",
+      "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+      "candidate_sha256": "d9753cb987434ad85a69cec8b3c03e141fb7bfb4366c324be80063d9afc62641",
+      "decision": "retained",
+      "review": "Compared three ordered tiers and up/down/bidirectional relation semantics. Tier labels and directionality retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.7515,
+        6.3032
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/model-sync-two-layer-net.svg",
+      "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+      "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+      "candidate_sha256": "a45e03f10aefb912214f86454a3110d89fee80322b267ddebae8e92a1a60b27f",
+      "decision": "retained",
+      "review": "Compared modeled-claims enclosures, unmodeled boundary and miss-feedback path. Explicit outside-model region and feedback retained. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.848,
+        5.4594
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/coherence-triangle.svg",
+      "candidate": "book/tikz/figures/coherence-triangle.tex",
+      "source_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+      "candidate_sha256": "336156b0ee99bee81bf300762966c7735e97bd2b0143227c4eb1d0db988f790b",
+      "decision": "refined",
+      "review": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.8852,
+        6.3761
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+      "candidate_sha256": "963fc26198c1711561718feb10421b320ed2ed01de215ea0a51bf4f9a95d34c0",
+      "decision": "refined",
+      "review": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.6683,
+        6.6724
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/part3-nav-arc.svg",
+      "candidate": "book/tikz/figures/part3-nav-arc.tex",
+      "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+      "candidate_sha256": "67cb6f7443adb4630ecf7a9a2c2438f328147d1ea700a1ef518ec71c2c4548c0",
+      "decision": "refined",
+      "review": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.7725,
+        10.1842
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/intervention-boundaries.svg",
+      "candidate": "book/tikz/figures/intervention-boundaries.tex",
+      "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+      "candidate_sha256": "8ceb05ee560ff049a048b6287f9779dba3a5175a782fb30b691a559ecd2eee8c",
+      "decision": "refined",
+      "review": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.9716,
+        8.4979
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/three-relations.svg",
+      "candidate": "book/tikz/figures/three-relations.tex",
+      "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
+      "candidate_sha256": "d9ee2c1fea7af9d595c6e27d05d5229042450572245d59b332e242ee0bbdbd2a",
+      "decision": "retained",
+      "review": "Compared three stacked relation bands and arrow directions. Correspondence, governing and causal roles remain separate. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.3515,
+        8.123
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/fidelity-vs-authority.svg",
+      "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
+      "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
+      "candidate_sha256": "41c0500c23df3332474cb22ae385ad192806d489d7fadb0eb6089ddfd11b401b",
+      "decision": "refined",
+      "review": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.9515,
+        7.4874
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/semantic-gap-levels.svg",
+      "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+      "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+      "candidate_sha256": "ad97633045ae9f55298d4a5cb50552ac1fc7602c2e44baa73603a9382576d9ed",
+      "decision": "refined",
+      "review": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.0852,
+        6.6922
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/constraint-vs-sensor.svg",
+      "candidate": "book/tikz/figures/constraint-vs-sensor.tex",
+      "checks": {
+        "icons_and_symbols": "No special pictograms in source; yes/no labels preserved.",
+        "links_and_groups": "Constraint versus sensor remain equal branches, not sequential stages.",
+        "annotation_placement": "Examples remain within mechanism nodes as in source."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 376.5379943847656,
+      "height_bp": 145.84300231933594,
+      "monochrome": true,
+      "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
+      "candidate_sha256": "5162b7d80b447bb3e4e7b8165b651a300f53832dee36cee74c7be26fdd4f845c",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/match-mechanism-to-property.svg",
+      "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+      "checks": {
+        "icons_and_symbols": "No warning/check icons in source.",
+        "links_and_groups": "Three property alternatives converge on a separate consequence gate.",
+        "annotation_placement": "Explanatory method boxes remain separate from mechanism labels."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 382.2070007324219,
+      "height_bp": 233.21099853515625,
+      "monochrome": true,
+      "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
+      "candidate_sha256": "74456207a18ec427f6d502b84a5cde0dc357f2da11a0efb105c24f6d72f92c1b",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/cost-enforcement-gradient.svg",
+      "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
+      "checks": {
+        "icons_and_symbols": "No omitted icon; observe/adapt/gate modes have distinct fills.",
+        "links_and_groups": "Adapt alone continues to throttling/soft completion.",
+        "annotation_placement": "Dormancy caveat moved outside gate; policy remains separate.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 379.37298583984375,
+      "height_bp": 193.9340057373047,
+      "monochrome": true,
+      "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
+      "candidate_sha256": "909064c5340388be9da15346f5be1d0071dc1fce4624f3624b78f0de09fb2860",
+      "review": "Moved dormant-unless-configured caveat out of gate node into an external annotation, as in original.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/positive-negative-obligation.svg",
+      "candidate": "book/tikz/figures/positive-negative-obligation.tex",
+      "checks": {
+        "icons_and_symbols": "Cross restored on forbidden edge; not merely a multiplication sign in label.",
+        "links_and_groups": "Dashed forbidden path and raw-library outline remain distinct from mandatory arrow.",
+        "annotation_placement": "Must-call/must-not-call annotations sit beside edges.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 356.69500732421875,
+      "height_bp": 159.46499633789062,
+      "monochrome": true,
+      "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
+      "candidate_sha256": "746e4f61d6d5dcef0413a3e980c09214aa1f419500c0db8021a012fbc048486e",
+      "review": "Restored a crossed-out forbidden path rather than an X embedded in prose; kept prohibition annotation beside edge.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/provenance-carried-admission.svg",
+      "candidate": "book/tikz/figures/provenance-carried-admission.tex",
+      "checks": {
+        "icons_and_symbols": "Double-bar admission symbol restored.",
+        "links_and_groups": "Single sanctioned operation path crosses boundary; no invented bypass paths.",
+        "annotation_placement": "Boundary title above, requirement below; provenance-issuance annotation outside abstraction.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 423.3089904785156,
+      "height_bp": 119.74700164794922,
+      "monochrome": true,
+      "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
+      "candidate_sha256": "21923831bbf2dd4f9f302d07ebe375bcbd683e0196539180c44efbe8f33cb91f",
+      "review": "Restored admission as a double vertical boundary, with its name above and evidence requirement below; stopped treating boundary as another process box.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/permitted-vs-acceptable.svg",
+      "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+      "checks": {
+        "icons_and_symbols": "No pictograms; overlap uses hatching.",
+        "links_and_groups": "Solid acceptable and dashed permitted outlines distinguish overlap and exclusions.",
+        "annotation_placement": "Over/underconstraint labels reside in their own regions, without boundary occlusion."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 403.22601318359375,
+      "height_bp": 180.84800720214844,
+      "monochrome": true,
+      "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+      "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/governance-conversion.svg",
+      "candidate": "book/tikz/figures/governance-conversion.tex",
+      "checks": {
+        "icons_and_symbols": "No special icons in source.",
+        "links_and_groups": "Five diagnostic branches converge on durable structure; inheritance/capital chain preserved.",
+        "annotation_placement": "Branch names are outside mechanism boxes; source diagnostic question remains its own node."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 404.8840026855469,
+      "height_bp": 255.66900634765625,
+      "monochrome": true,
+      "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
+      "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/judgment-without-consequence.svg",
+      "candidate": "book/tikz/figures/judgment-without-consequence.tex",
+      "checks": {
+        "icons_and_symbols": "Large missing-enforcement cross and broken-link slashes both restored.",
+        "links_and_groups": "Warning-only branch dashed; operation proceeds despite severed consequence link.",
+        "annotation_placement": "Failure explanation sits to right of cross and repair stays outside chain.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 326.0580139160156,
+      "height_bp": 272.00299072265625,
+      "monochrome": true,
+      "source_sha256": "bc8c83f4b400812bd10cf37f4780ced4bc91703348a5661366c77672825cbc1b",
+      "candidate_sha256": "2600a25ec64fd971656b6e46ceb4df6c3066399989b1cbf4c18af83137ec7634",
+      "review": "Restored the missing large cross at absent enforcement; shifted explanatory prose aside so the cross, warning branch, and continuation remain distinct.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/residual-decision-tree.svg",
+      "candidate": "book/tikz/figures/residual-decision-tree.tex",
+      "checks": {
+        "icons_and_symbols": "No separate pictograms; four outcomes named explicitly.",
+        "links_and_groups": "All three yes/no questions retained with outcome tones; no invented maturity order.",
+        "annotation_placement": "Outcome explanations fit nodes; design-space note is external."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 371.4119873046875,
+      "height_bp": 246.7259979248047,
+      "monochrome": true,
+      "source_sha256": "3212524d4dfa0171bff0d95d11eaef9bd299fd51aa94eac16e4694a304bdbd04",
+      "candidate_sha256": "7076981b5d64352f630986b2bb90a2dd66dcc66f35071699dd7a4d7d00e6e5fd",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/collision-edge.svg",
+      "candidate": "book/tikz/figures/collision-edge.tex",
+      "checks": {
+        "icons_and_symbols": "Both individually correct control check marks restored as native paths.",
+        "links_and_groups": "Shared commit resource and dashed conflict region retained.",
+        "annotation_placement": "Acts-on labels are edge annotations; conflict claim remains in conflict region.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 362.364990234375,
+      "height_bp": 156.41900634765625,
+      "monochrome": true,
+      "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
+      "candidate_sha256": "35242dc769cdeba6eb66c5a64946c3ba30585e973769f8e6a69e35d18f90ee4f",
+      "review": "Restored check marks on both individually correct controls; conflict remains on their shared relation.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/turn-end-ordering.svg",
+      "candidate": "book/tikz/figures/turn-end-ordering.tex",
+      "checks": {
+        "icons_and_symbols": "No special icons.",
+        "links_and_groups": "Modeled-order arrows heavier than writes; all hooks share closing-message slot.",
+        "annotation_placement": "Ordering labels above hooks; runtime caveat remains below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 376.5379943847656,
+      "height_bp": 181.0749969482422,
+      "monochrome": true,
+      "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
+      "candidate_sha256": "b9fe26f57a31a422a8aa3fffc6119559b3fbde99109a5290b3e0b8d272ddb992",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/census-trio.svg",
+      "candidate": "book/tikz/figures/census-trio.tex",
+      "checks": {
+        "icons_and_symbols": "Stable A/B/C identifiers preserved across all views.",
+        "links_and_groups": "Dashed bidirectional conflict edge routed above controls to expose dashes; gap/orphan dashed boxes retained.",
+        "annotation_placement": "Conflict label outside nodes; three panel headings and coverage-gap label separate.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 424.72698974609375,
+      "height_bp": 204.90899658203125,
+      "monochrome": true,
+      "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
+      "candidate_sha256": "6550ecf21f4f9852bf727b2511039343f010cdbab437e6085e227a6c059b657f",
+      "review": "Routed dashed bidirectional conflict edge above controls so the dash pattern is visible instead of collapsing into two touching arrowheads.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/engineer-agent-interaction.svg",
+      "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
+      "checks": {
+        "icons_and_symbols": "No source warning/check symbols.",
+        "links_and_groups": "Communication and evaluation groups have distinct grounds and share one implementation hinge.",
+        "annotation_placement": "Engineer/agent/result remain separate nodes; no moved group explanation inside leaf nodes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 408.49700927734375,
+      "height_bp": 204.5240020751953,
+      "monochrome": true,
+      "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+      "candidate_sha256": "3a2a3d2f17b1a297fb1450c4c178418172d781f59d8976b113594097801056cd",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/active-passive-alignment.svg",
+      "candidate": "book/tikz/figures/active-passive-alignment.tex",
+      "checks": {
+        "icons_and_symbols": "Models are labeled plural; source stacked-card decoration is simplified to labeled model nodes, not a lost dependency.",
+        "links_and_groups": "Active repeat and passive preservation loops plus handoff arrow retained.",
+        "annotation_placement": "Handoff and loop captions remain outside nodes; capital note below panels."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 402.8280029296875,
+      "height_bp": 281.0889892578125,
+      "monochrome": true,
+      "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+      "candidate_sha256": "4f4ddacd1b3037c929a3507c2c3b1fef75e6534658947acd86d7bb400f2ad324",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/alignment-kernel.svg",
+      "candidate": "book/tikz/figures/alignment-kernel.tex",
+      "checks": {
+        "icons_and_symbols": "Restored ellipsis for continuing model layers.",
+        "links_and_groups": "Four concentric protection rings and ordered procedure retained.",
+        "annotation_placement": "Growth and protected-region notes remain outside rings.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 392.6719970703125,
+      "height_bp": 255.4929962158203,
+      "monochrome": true,
+      "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+      "candidate_sha256": "cc42b5964c3b64bbbefb3e8591c4f88d330a76ef094fc741a9cfd129d59360fb",
+      "review": "Restored ellipsis in expanding protection rings, preserving open-ended extension beyond the named models.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/interlude-execution-unit.svg",
+      "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+      "checks": {
+        "icons_and_symbols": "No source status icons.",
+        "links_and_groups": "Single whole-document execution contrasted with three page workers and merge.",
+        "annotation_placement": "Whole-worker residency details intentionally remain inside worker; chunk-memory comparison outside."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 356.69500732421875,
+      "height_bp": 283.89599609375,
+      "monochrome": true,
+      "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+      "candidate_sha256": "0b2f3a1e9657dd39a4ff1f7250955ac20a5516dd46bd4e1821fbd39aa27a9433",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/interlude-storage-vs-reasoning.svg",
+      "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+      "checks": {
+        "icons_and_symbols": "No source status icons; structure/media distinction retained with labeled gray patches.",
+        "links_and_groups": "Media reference dashed; actual streaming arrow solid and external to worker.",
+        "annotation_placement": "Bypass-residency and chunk-residency explanations outside worker nodes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 413.38800048828125,
+      "height_bp": 275.3110046386719,
+      "monochrome": true,
+      "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+      "candidate_sha256": "77ebf8a2fc397fcc0ab0ba7e61147ab30de7a702669319388d0ee305bce33ea0",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/interlude-graph-two-partitions.svg",
+      "candidate": "book/tikz/figures/interlude-graph-two-partitions.tex",
+      "checks": {
+        "icons_and_symbols": "Restored PAGE and READY FRONTIER identifiers.",
+        "links_and_groups": "Three vertical page groups versus three horizontal readiness groups; identical action dependencies.",
+        "annotation_placement": "Ready-frontier labels outside group right edge; captions wrapped separately under panels.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 440.5050048828125,
+      "height_bp": 250.26300048828125,
+      "monochrome": true,
+      "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
+      "candidate_sha256": "fa391083c778fb85993b67c5e8317643aa895a298855bc2fa828fe9d8fdd3585",
+      "review": "Restored PAGE 1–3 and READY FRONTIER 1–3 group identifiers; readiness labels sit outside groups to avoid crowding their work nodes.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/interlude-analysis-before-build.svg",
+      "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+      "checks": {
+        "icons_and_symbols": "Heavy critical path retained; no omitted warning/check icon.",
+        "links_and_groups": "Split B1/B2/B3 parallel paths and independent shared-context fan-out retained.",
+        "annotation_placement": "Before/after explanatory captions external; operation types visually distinguished."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 399.75799560546875,
+      "height_bp": 312.3909912109375,
+      "monochrome": true,
+      "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
+      "candidate_sha256": "b65fda2b2bcb466fca6e6eb375c9e8080e4c398c847b24b518f9fccdd14abe82",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/interlude-latency-floor.svg",
+      "candidate": "book/tikz/figures/interlude-latency-floor.tex",
+      "checks": {
+        "icons_and_symbols": "No icons; numerical estimates/measured label preserved.",
+        "links_and_groups": "Dotted derivation arrow to floor already present; solid arrows denote dependent stages.",
+        "annotation_placement": "Additive-time explanation below chain."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 393.5459899902344,
+      "height_bp": 86.26599884033203,
+      "monochrome": true,
+      "source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
+      "candidate_sha256": "641ef5f756db7284f2790a95bd480502829a938e80ba7741f5af8b30a597e3bc",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/interlude-prediction-residual.svg",
+      "candidate": "book/tikz/figures/interlude-prediction-residual.tex",
+      "checks": {
+        "icons_and_symbols": "No status icons.",
+        "links_and_groups": "Prediction/observation residual branches and model-refinement return preserved.",
+        "annotation_placement": "Illustrative-number caveat external; refine-model annotation beside return path."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 394.9630126953125,
+      "height_bp": 226.28900146484375,
+      "monochrome": true,
+      "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+      "candidate_sha256": "9de1e3da0e3f3c8872c9327dd592f6339ce39063b54ef99a7224ce46ae384b62",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/interlude-modeling-cycle.svg",
+      "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+      "checks": {
+        "icons_and_symbols": "No icons.",
+        "links_and_groups": "After-implementation sequence contrasted with feedback loop; prior acknowledged causality correction remains in questions.",
+        "annotation_placement": "Refine-model caption is outside loop nodes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 396.3800048828125,
+      "height_bp": 227.6280059814453,
+      "monochrome": true,
+      "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+      "candidate_sha256": "cc47c3cb58caa573832a34643d00b379c4aef28203a799770482cf23ea276e19",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/discovering-models-migration.svg",
+      "candidate": "book/tikz/figures/discovering-models-migration.tex",
+      "checks": {
+        "icons_and_symbols": "No icons; latent-concept model branch distinguished by shade.",
+        "links_and_groups": "Three findings classes; typed vocabulary/relations fork; dashed next-pass continuation retained.",
+        "annotation_placement": "Weak-signals caveat outside model/enforcement chain."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 416.2229919433594,
+      "height_bp": 340.9469909667969,
+      "monochrome": true,
+      "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
+      "candidate_sha256": "e0ab785ecfb716675ad8f26d8df72cc31be9e63336a2b1131d768b8b23417035",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/squash-zero-promote.svg",
+      "candidate": "book/tikz/figures/squash-zero-promote.tex",
+      "checks": {
+        "icons_and_symbols": "One-way blocking barrier preserved.",
+        "links_and_groups": "Findings-remediation loop and promotion-at-zero ordering retained.",
+        "annotation_placement": "Land/only-at-zero labels above clear spans; behavior-preserving fixes and re-entry note outside."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 394.0889892578125,
+      "height_bp": 158.78599548339844,
+      "monochrome": true,
+      "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+      "candidate_sha256": "8b138f982485965777b30a3980f4f3e1dd5e42af480db1481a162501db5f39b2",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/engineering-recurring-work.svg",
+      "candidate": "book/tikz/figures/engineering-recurring-work.tex",
+      "checks": {
+        "icons_and_symbols": "No pictograms.",
+        "links_and_groups": "Support/enforce branches join environment; dashed where-feasible link and outcome feedback retained.",
+        "annotation_placement": "Observe/improve feedback description stays on outer return route."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 425.74798583984375,
+      "height_bp": 232.5800018310547,
+      "monochrome": true,
+      "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
+      "candidate_sha256": "68860bb2dc6fd5fddba6925f763af6d7916838136553bd5f4674f804b0875069",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/two-evidence-boundaries.svg",
+      "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+      "checks": {
+        "icons_and_symbols": "Open earliest and filled last-safe diamonds preserved.",
+        "links_and_groups": "Single timeline with separate boundary roles retained.",
+        "annotation_placement": "State-change note above axis; each boundary explanation below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 394.6319885253906,
+      "height_bp": 107.20500183105469,
+      "monochrome": true,
+      "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+      "candidate_sha256": "026fa835792e0d93c62112ae558c33f03cbf9876a9c038ad6abec23a37cbf477",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/process-design-and-tolerance.svg",
+      "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
+      "checks": {
+        "icons_and_symbols": "Four permissible realization dots retained.",
+        "links_and_groups": "Restored full production span bracket; dashed production container distinct from acceptable region.",
+        "annotation_placement": "Process label on group edge; measurement outside region; design dimensions below bracket.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 420.2340087890625,
+      "height_bp": 323.8559875488281,
+      "monochrome": true,
+      "source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+      "candidate_sha256": "e523a639bf2b5a9bfab75685fb40ed2cd01ec33f04dc7a96773fd8db8ed80107",
+      "review": "Restored production-process label and span bracket linking the full process to its design dimensions.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/build-stages-timeline.svg",
+      "candidate": "book/tikz/figures/build-stages-timeline.tex",
+      "checks": {
+        "icons_and_symbols": "Seven timeline markers preserved.",
+        "links_and_groups": "Chronological stage/pressure/consequence columns remain explicit; no expansion edge in source.",
+        "annotation_placement": "Dates remain with stages; retrospective caveat outside table."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 390.25799560546875,
+      "height_bp": 386.22698974609375,
+      "monochrome": true,
+      "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+      "candidate_sha256": "ffaf7d5ab8db6562a47b4f9dc9d803b98d6fa69be1592b5f7899654dcaa2fd68",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/f1_realization_over_time.svg",
+      "candidate": "book/tikz/figures/f1_realization_over_time.tex",
+      "source_sha256": "6b5dd55fcc080f5a1ef47bd0a3b6a4bcfa7efbe6bf8838e447e823a9f7e60d59",
+      "candidate_sha256": "0c9a04d7936acf950b0f9fb95d24cdf6f0f658a4e3448dd44f5d719d7bc9b344",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Dotted stage boundaries retained; provenance encoded by solid, hatch, and white bars. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/f2_work_over_time.svg",
+      "candidate": "book/tikz/figures/f2_work_over_time.tex",
+      "source_sha256": "55cdf124264fb1e3fb8069f05b42b826946b148fc9f72ca8906332b9caf7d187",
+      "candidate_sha256": "a744d713ec144144b4a2ee193f80ba4f4aca5da915378bff9538bafda6ac46b9",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Two vertically aligned panels retain weekly intent and accumulated active estimate. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/f7_controls_accumulate.svg",
+      "candidate": "book/tikz/figures/f7_controls_accumulate.tex",
+      "source_sha256": "7aa3f688c788999ab0b2f2dd7390107b76424824ed67d002d20acb4b1aba84c8",
+      "candidate_sha256": "2b84dfa58eb0e3e20406fcc6bbc2b2b8a73c684d535a34d38b3a5aa373a27a89",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Line patterns and markers distinguish three stock series; missing observations omitted as in source. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/f5_f6_capital_and_support_ratio.svg",
+      "candidate": "book/tikz/figures/f5_f6_capital_and_support_ratio.tex",
+      "source_sha256": "e57ebf2297b3351810a7170cb4eb3a589732cb2f701bd0f88c3f02366e86d2a1",
+      "candidate_sha256": "89de96e937de0e4282cc9215fc1d799cb9e337860db787956b157ecedfea7933",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Vertical panels increase print legibility. Same seven LoC categories and two ratios; snapshot diamonds and parity preserved. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/f21_f22_model_census.svg",
+      "candidate": "book/tikz/figures/f21_f22_model_census.tex",
+      "source_sha256": "d22f2ae12674a2388ebf1577d16922db9509e3af9ac7f6e02f60325950519981",
+      "candidate_sha256": "3d57fe96da072dff4431d3cd0a3baa4d08fe0bbc8a5075237386666c856ce5b4",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Uses actual CSV census total130; removes stale129 suptitle from old generator. Two panels remain. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/modeling-history.svg",
+      "candidate": "book/tikz/figures/modeling-history.tex",
+      "checks": {
+        "icons_and_symbols": "No special symbols in source.",
+        "links_and_groups": "Parallel relation dimensions, later causal chain and dashed residual-freedom box retained.",
+        "annotation_placement": "Captions are intrinsic step descriptions; last-step spacing previously increased and retained."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 356.69500732421875,
+      "height_bp": 412.4590148925781,
+      "monochrome": true,
+      "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
+      "candidate_sha256": "3a5972a7278819d452b68da6a95b10e2235aacc3b26a56781eeaf42ec5d6cec7",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/f13_mature_flow_funnel.svg",
+      "candidate": "book/tikz/figures/f13_mature_flow_funnel.tex",
+      "source_sha256": "bccb59ceea71391f65e813f4ef0b881bb6433965524d9196793f643ecf919ac3",
+      "candidate_sha256": "708dbc9a702dff1bf167f242fc5c8d8ebf5c9c2b152b3f0562419a7637b46f92",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Same maximum-completion week 2026-W35; categorical bars do not imply retirement is a sequential funnel stage. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/f10_what_experience_became.svg",
+      "candidate": "book/tikz/figures/f10_what_experience_became.tex",
+      "source_sha256": "dec528dcc6bd51c2bd4ae7f3cc91d4eb02ed0dddaf726d6a0747d9e91cf33bac",
+      "candidate_sha256": "187ed027de96033fc6eaa00938fa90580de2d16dad01d25f2e6890ad98cf3e83",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Restores the original twelve category bars. Three distinct gray fills preserve enforcement classes: 8 blocking, 2 advisory, 2 measurement. Exact original bucketing; three confirmations excluded. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/measurement-no-gate.svg",
+      "candidate": "book/tikz/figures/measurement-no-gate.tex",
+      "checks": {
+        "icons_and_symbols": "Question mark on deferred enforcement retained.",
+        "links_and_groups": "Dashed report-to-deferred-enforcement link and ghost box preserved.",
+        "annotation_placement": "Historical comments stay in separate side column, not crammed inside nodes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 323.7659912109375,
+      "height_bp": 275.760009765625,
+      "monochrome": true,
+      "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+      "candidate_sha256": "274b7f94c2fd0cb3c3bcf2a183233a368508bcf60ef80b2f0bb3ba72353b9820",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/mage-staircase.svg",
+      "candidate": "book/tikz/figures/mage-staircase.tex",
+      "checks": {
+        "icons_and_symbols": "Qualitative environment-thickening and human-narrowing marks restored in previous pass and retained.",
+        "links_and_groups": "Five ordered staircase stages preserved; residual focus never reaches zero.",
+        "annotation_placement": "Human-focus descriptions remain outside step cards; delegation/environment labels differentiated."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 426.68798828125,
+      "height_bp": 414.8330078125,
+      "monochrome": true,
+      "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+      "candidate_sha256": "9e4240bbc843c011314a1305a44d3becb113934c3d44bbe470a158209ab68d39",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/f19_delegation_over_time.svg",
+      "candidate": "book/tikz/figures/f19_delegation_over_time.tex",
+      "source_sha256": "e8bffb16470c68fd155436714cb1421c0bae03a3e51141d13fe877582dead2f1",
+      "candidate_sha256": "9e98af55c1134369cb1461b4e8b580fac8919b81df90877668ff89e4ba810c1e",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Same provenance counts; explicit residual is not a measurement of human reading. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/six-entry-points.svg",
+      "candidate": "book/tikz/figures/six-entry-points.tex",
+      "checks": {
+        "icons_and_symbols": "Semantic emphasis badges retained, including combined double outline.",
+        "links_and_groups": "Seven cases remain seven rows; no eighth MAGE case introduced.",
+        "annotation_placement": "Body raised to 10pt and headers bold 10pt; explanatory footer 9pt outside rows.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 417.5539855957031,
+      "height_bp": 367.10101318359375,
+      "monochrome": true,
+      "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
+      "candidate_sha256": "90f28bcc879c652d2afa9a2437be4610a3c3f740588d6fd4b9b170813f1e6196",
+      "review": "Raised table body and emphasis labels from 9pt to 10pt; retained smaller 9pt explanatory footer.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/mage-dynamic-model.svg",
+      "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+      "checks": {
+        "icons_and_symbols": "Numbered dynamics and B/R labels retained.",
+        "links_and_groups": "Bootstrap input, balancing adaptation return and reinforcing amplification return remain separate.",
+        "annotation_placement": "Mismatch/gap and dynamics annotations outside nodes; scope limitation below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 426.5150146484375,
+      "height_bp": 400.68701171875,
+      "monochrome": true,
+      "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+      "candidate_sha256": "023428f0eeb7750778b506c84bdbd0bb3bdb2f70d77374b5ab5000bdd5c5f9fb",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/probability-in-the-software-factory.svg",
+      "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+      "checks": {
+        "icons_and_symbols": "Four realization dots retained.",
+        "links_and_groups": "Restored segmented bracket tying three probabilities to transitions; encoding-to-tolerance and measurement routes separate.",
+        "annotation_placement": "Probability terms now 12pt; 9pt explanations below terms; production label on boundary.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 420.2340087890625,
+      "height_bp": 323.8559875488281,
+      "monochrome": true,
+      "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+      "candidate_sha256": "c621776fcd1561b6d875af0252855515d66dc41d88f55399d17f1cc44312ed8d",
+      "review": "Restored production label and segmented bracket associating each probability term with its transition; raised probability terms to 12pt above 9pt explanatory phrases.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/determinization-frontier.svg",
+      "candidate": "book/tikz/figures/determinization-frontier.tex",
+      "checks": {
+        "icons_and_symbols": "No status icons.",
+        "links_and_groups": "Distinct alignment/modeling routes converge on predicate and decision.",
+        "annotation_placement": "Decidability/reconstruction annotations sit on branches; frontier statement below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 373.7030029296875,
+      "height_bp": 250.26800537109375,
+      "monochrome": true,
+      "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+      "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/return-governability.svg",
+      "candidate": "book/tikz/figures/return-governability.tex",
+      "checks": {
+        "icons_and_symbols": "No pictograms.",
+        "links_and_groups": "Two independent axes and four prescribed modes retained with distinct shading.",
+        "annotation_placement": "Quadrant explanations inside their quadrants; axis labels outside chart."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 387.9010009765625,
+      "height_bp": 351.0509948730469,
+      "monochrome": true,
+      "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+      "candidate_sha256": "13b60eae3c043c107c6eef91096e685e0c56f85c6e918dcf2f39dffa8d80585c",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/where-effort-moves.svg",
+      "candidate": "book/tikz/figures/where-effort-moves.tex",
+      "checks": {
+        "icons_and_symbols": "Bold implementation emphasis restored at its own phase position.",
+        "links_and_groups": "Phase arrows unchanged; responsibilities now aligned under phase columns within three bands.",
+        "annotation_placement": "Band headings separated from entries; lifecycle-shift explanation external.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 406.6340026855469,
+      "height_bp": 260.5950012207031,
+      "monochrome": true,
+      "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
+      "candidate_sha256": "212ae8145be70b82875b724f58d8849d5452f0a8b0e3cde6657edede4ab8759a",
+      "review": "Restored within-band placement under lifecycle phases instead of collapsing responsibilities into centered prose lists; implementation receives bold emphasis in its own phase column.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/why-software-modeled.svg",
+      "candidate": "book/tikz/figures/why-software-modeled.tex",
+      "checks": {
+        "icons_and_symbols": "No special symbols.",
+        "links_and_groups": "Three comparison columns converge on economic-ratio claim.",
+        "annotation_placement": "Comparative details remain inside columns as in source; claim below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 407.718994140625,
+      "height_bp": 244.63800048828125,
+      "monochrome": true,
+      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+      "candidate_sha256": "1bb66cd58c94562341a7bbf1c35a7df338324997d752edb75ba1c0a2c1c7dc4d",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/established-traditions-new-composition.svg",
+      "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+      "checks": {
+        "icons_and_symbols": "No status icons; individual source tradition boxes consolidated but bold tradition labels retained.",
+        "links_and_groups": "Engineering/AI families remain separate; MAGE boundary, durable capital, dashed intended outcome preserved.",
+        "annotation_placement": "Conversion/inheritance annotations outside nodes and economics caveat below."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 399.9570007324219,
+      "height_bp": 351.7349853515625,
+      "monochrome": true,
+      "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+      "candidate_sha256": "d76f6006ddb88d4cc7a5ca95640d4b3f2726e2f3be453bb7532c5ac207366027",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/governing-consequential-work.png",
+      "candidate": "book/tikz/figures/governing-consequential-work.tex",
+      "checks": {
+        "icons_and_symbols": "People and document pictograms restored as native vector marks.",
+        "links_and_groups": "Responsibility, governed environment and outcome containers retain distinct gray groups and evidence feedback.",
+        "annotation_placement": "Delegated-work explanation between groups; environment examples outside containers.",
+        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 429.1709899902344,
+      "height_bp": 358.0580139160156,
+      "monochrome": true,
+      "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
+      "candidate_sha256": "f3f72d256a145b061d82cef7248acfe04d446875d4dba274df5897640ce9ba6a",
+      "review": "Restored native vector people and document pictograms beside responsibility and governed-environment headings, with readable labels retained.",
+      "decision": "refined"
+    },
+    {
+      "source": "book/assets/appendix-a-capability-map.svg",
+      "candidate": "book/tikz/figures/appendix-a-capability-map.tex",
+      "checks": {
+        "icons_and_symbols": "No status icons.",
+        "links_and_groups": "Common relations retained; two independent capabilities explicitly detached with no inbound arrows.",
+        "annotation_placement": "Independent-use note sits outside detached boxes."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 362.364990234375,
+      "height_bp": 288.24200439453125,
+      "monochrome": true,
+      "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
+      "candidate_sha256": "d22d8fa9283a164f890f958160f5c6f871dfed006a6ddf64e3c95218b07b7c54",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/model-coherence-stack.svg",
+      "candidate": "book/tikz/figures/model-coherence-stack.tex",
+      "checks": {
+        "icons_and_symbols": "Disagreement diamond retained.",
+        "links_and_groups": "Solid required path versus dashed open-arrow optional EMIT/DERIVE preserved; gate and valid outcomes remain separate.",
+        "annotation_placement": "Required/enhancement legend outside path; no optional branch mislabeled as mandatory."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 361.4909973144531,
+      "height_bp": 280.2430114746094,
+      "monochrome": true,
+      "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+      "candidate_sha256": "952a469ed0a91acbf7b60f7a97614b40ca5f8e183466d14f269ab22495f099f0",
+      "review": "Reviewed and retained.",
+      "decision": "retained"
+    },
+    {
+      "source": "book/assets/assurance-stack.svg",
+      "candidate": "book/tikz/figures/assurance-stack.tex",
+      "source_sha256": "4e853982509c9fac383b3983d5d508b040085f4005cbc62ad9ab439c7f597d44",
+      "candidate_sha256": "993cf7c2c57662cce206f27fc66bea836fb6fcaa9de49b50598eef23848dbb7a",
+      "decision": "retained",
+      "original_visual_grammar": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes — TEST for\n    examples, LINT for structure, PROVE for semantics — applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible — a placement rule folded into prose, not a node.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Coverage is the joined result, distinct from obligation/evidence preparation.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 317.653,
+      "height_pt": 229.167,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/auditable-transformation-stack.svg",
+      "candidate": "book/tikz/figures/auditable-transformation-stack.tex",
+      "source_sha256": "c31fb75c5067f14c52049f3eda0854210a5bf1d1819908f4ff53721979f3e079",
+      "candidate_sha256": "b9186806c2c857449935b2ebb86cb4a0dd30d6ca9bcd04cc1fa3f08295acf406",
+      "decision": "retained",
+      "original_visual_grammar": "A single solid load-bearing chain runs top to bottom. A sanctioned mutation enters. MARK\n    attaches actor and action. EMIT persists a structured record. COVER detects any mutation that escaped\n    attribution. READ reconstructs the transformation history. The FIDELITY GATE checks that the transformed\n    artifact retained its required semantics. Every link is required: attribution without completeness is a\n    partial history, completeness without readable provenance proves only that records exist, and provenance\n    alone cannot show the product survived. No dashed enhancement in this stack.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Fidelity gate differs from neutral mutation and provenance operations.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 291.435,
+      "height_pt": 271.485,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/observe-react-stack.svg",
+      "candidate": "book/tikz/figures/observe-react-stack.tex",
+      "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
+      "candidate_sha256": "197ffc52af59e1f218fcf0212489f4df1900c54f82a189f842fa025fe158ee44",
+      "decision": "retained",
+      "original_visual_grammar": "An operating model states expected state. The solid load-bearing path runs WATCH — which\n    observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model is separated from watch/respond operations; optional attachments retain dashed borders.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 336.078,
+      "height_pt": 207.157,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/resource-mediation-stack.svg",
+      "candidate": "book/tikz/figures/resource-mediation-stack.tex",
+      "source_sha256": "6cf6b465831eb4c9ee298962adf1922b88b5e91434c321bc918dbaaa1c20070b",
+      "candidate_sha256": "122879517490066d45dec0d891666119ec9afba6c36be22fa0029032009b020d",
+      "decision": "refined",
+      "original_visual_grammar": "A solid load-bearing path runs top to bottom. RESOURCE POLICY declares which resource is\n    scarce and what capacity is acceptable. The MEDIATOR routes every access through one admission point,\n    admitting at most N actors. The SHARED RESOURCE sits below it, now governed by explicit policy rather\n    than actor timing. One enhancement attaches as a dashed, open-arrowed feedback: LIVE PRESSURE can tighten\n    or relax the effective capacity when justified, but only after the fixed policy and admission seam exist.\n    N equals one and N greater than one are settings of the same mediator, not separate stacks.",
+      "review": "Restored external DECLARE, MEDIATE and ADAPT annotations rather than folding these roles into resource boxes.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 322.969,
+      "height_pt": 173.443,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/governance-conversion-stack.svg",
+      "candidate": "book/tikz/figures/governance-conversion-stack.tex",
+      "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
+      "candidate_sha256": "00a736ec1293ced905dd17cea09ec7699076a74699e178d59d6f31e39a33761a",
+      "decision": "retained",
+      "original_visual_grammar": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Control machinery and interpretation share a governance shade; updated estate has a lighter result shade.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 307.025,
+      "height_pt": 198.706,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/context-delivery-stack.svg",
+      "candidate": "book/tikz/figures/context-delivery-stack.tex",
+      "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+      "candidate_sha256": "790253494423203c2fc99a361d073ece3db2215273e9e19d471e7aca615a90fe",
+      "decision": "retained",
+      "original_visual_grammar": "Engineering knowledge — models, rules, decisions — feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Knowledge/action endpoints differ from intermediate context delivery; dashed reinforcement remains optional.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 320.134,
+      "height_pt": 228.911,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-a-composing-a-stack.svg",
+      "candidate": "book/tikz/figures/appendix-a-composing-a-stack.tex",
+      "source_sha256": "3e98e21e43701dafaa032467eb24103865eecf3213618978fe1aeb9675177a18",
+      "candidate_sha256": "d660df8b04c4f4ddd3bd2d8a7845c32a6cff56faa8e25f45e553a94d52cd3438",
+      "decision": "retained",
+      "original_visual_grammar": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION — the smallest set\n    that keeps the capability claim honest — which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Capability and resulting stack share a shade; failure diagnosis and composition emphasized; guarantees differ from mechanisms.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 311.984,
+      "height_pt": 306.848,
+      "minimum_prose_font_pt": 10.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/moves-overview-cheatsheet.svg",
+      "candidate": "book/tikz/figures/moves-overview-cheatsheet.tex",
+      "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+      "candidate_sha256": "52c5c3666884b2e3e27fda1e344a3058c23d1f1343f23ee6e63266b458dc75d6",
+      "decision": "retained",
+      "original_visual_grammar": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree — make one authoritative.\n    Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.\n    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement\n    where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't\n    present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry\n    cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have\n    hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Problem and engineering-move columns regain their two distinct visual families.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 368.677,
+      "height_pt": 359.077,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c1-make-fact-authoritative.svg",
+      "candidate": "book/tikz/figures/c1-make-fact-authoritative.tex",
+      "source_sha256": "812b0b9440a2d77fd13f3405930369e895146d7426bea4ed18f4ae4a2e2bfbb5",
+      "candidate_sha256": "9fd6d2ae8fe12578ffb3867edb55d1468fc657616eb042f86ec3eff3cfd52964",
+      "decision": "retained",
+      "original_visual_grammar": "Before: three copies of the same fact each feed a separate consumer, and because each copy can\n    change independently, disagreement between them is an ordinary state. After: one authoritative representation\n    carries the fact, and the three consumers derive or query it from that single source, so disagreement becomes\n    detectable or impossible.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Independent copies share light shade; one authoritative representation is darker and heavier.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 386.749,
+      "height_pt": 171.218,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c2-derive-dont-copy.svg",
+      "candidate": "book/tikz/figures/c2-derive-dont-copy.tex",
+      "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+      "candidate_sha256": "afd5b612a3e79b376dd6ae694e7c911a9e4e712eb488ef703ba2616c1a85de7d",
+      "decision": "retained",
+      "original_visual_grammar": "Two ways a consumer reads an authoritative model. In the bad path, the consumer copies values\n    into a snapshot and checks against the snapshot; when the model changes, the snapshot does not, so the check\n    runs against a stale answer. In the good path, the consumer queries the model directly; when the model changes,\n    the next check sees the change because the consumer is coupled to the model's interface, not to yesterday's\n    answer.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Same model role has same shade in both modes; stale copied snapshot is distinctly darker, with BAD/GOOD labels retained.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 343.165,
+      "height_pt": 181.022,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c3-bidirectional-correspondence.svg",
+      "candidate": "book/tikz/figures/c3-bidirectional-correspondence.tex",
+      "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+      "candidate_sha256": "31c7e09d5b1ad41315b452db5dec2b501d90ad5b7838c56d346caf46d7c7adfc",
+      "decision": "retained",
+      "original_visual_grammar": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it — this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model — this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Claimed model is shaded versus white realized system; both directional checks remain explicit.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 348.128,
+      "height_pt": 186.546,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c4-derive-obligation-set.svg",
+      "candidate": "book/tikz/figures/c4-derive-obligation-set.tex",
+      "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
+      "candidate_sha256": "caa97980ec06722a0919e9b8dabc61ec14cef1e69177c5a40bb9b442ccf1e3ce",
+      "decision": "retained",
+      "original_visual_grammar": "A vertical flow. A model derives the set of things that must be assured — what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model-derived required and covered sets share light shade; gap and resulting finding visibly distinct from evidence.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 280.748,
+      "height_pt": 226.36,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c5-earliest-legible-last-safe.svg",
+      "candidate": "book/tikz/figures/c5-earliest-legible-last-safe.tex",
+      "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+      "candidate_sha256": "f002d431c146984c1484db1f5890f8cb42ee22f6617883496afa282c74bcdf92",
+      "decision": "retained",
+      "original_visual_grammar": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary — the last point before the point of no return. The consequence sits at the end of the line.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Distinct timeline positions and explicit CHECK/RE-CHECK/point-of-no-return labels preserve the modes; marker shapes refined separately.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 379.309,
+      "height_pt": 110.345,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c6-close-action-surface.svg",
+      "candidate": "book/tikz/figures/c6-close-action-surface.tex",
+      "source_sha256": "ba8caab75008adcd9423043d11afe98db78c66edc8efb5fa70e5b90f5e155f5f",
+      "candidate_sha256": "9b07a4574f3faad63d889d3ae5b5509191e74d40a7f016416aae06fa352ea58c",
+      "decision": "retained",
+      "original_visual_grammar": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —\n    a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. One governing seam is emphasized; existing dashed open routes versus solid closed routes already convey mode.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 382.144,
+      "height_pt": 176.923,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c7-knowledge-at-decision.svg",
+      "candidate": "book/tikz/figures/c7-knowledge-at-decision.tex",
+      "source_sha256": "df88d4411203a5feb493daa5314e28605a099fe11abf8a97c413a22fdeba519a",
+      "candidate_sha256": "f9bc5c762dd5634f51a884ba1cefcef3527e9ca543765c620d43f8205292f61d",
+      "decision": "refined",
+      "original_visual_grammar": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid — the roles are legible by shape and weight, not colour.",
+      "review": "Restored narrowing selection/funnel silhouette rather than a generic heavy gate box; selection binds context, not enforcement.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 291.435,
+      "height_pt": 179.561,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c8-cause-travels-with-consequence.svg",
+      "candidate": "book/tikz/figures/c8-cause-travels-with-consequence.tex",
+      "source_sha256": "57f4e8d83fbca07e4b4ed0b1359afc838e9a99ab1d078718545f52d38295cf22",
+      "candidate_sha256": "f69b25dc97e4502ae7c5fede0dab2b23fabe62c446e038400014ffc559d15e89",
+      "decision": "refined",
+      "original_visual_grammar": "A causal event mints an identity, then that identity travels alongside the work. The action\n    produces a change, the change produces an artifact, and the same identity is carried under all three as a\n    provenance rail. Because the identity moved with the work rather than being inferred afterward, the final\n    artifact can reconstruct why it changed, not merely what changed.",
+      "review": "Restored explicit id labels along both dashed provenance-carrying segments; cause and reconstructed WHY remain distinct.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 347.417,
+      "height_pt": 170.785,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c9-externalize-judgment.svg",
+      "candidate": "book/tikz/figures/c9-externalize-judgment.tex",
+      "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
+      "candidate_sha256": "3d8e1887bb2b80b621d1f650d19b37decf0ae38c3e46153dce41ec0f77acf610",
+      "decision": "retained",
+      "original_visual_grammar": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated — a procedure — and what still needs contextual reasoning — guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model family shares light gray; reasoning guidance differs from generated procedure; operator remains a distinct recipient.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 311.984,
+      "height_pt": 235.982,
+      "minimum_prose_font_pt": 10.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/c10-dependencies-queryable.svg",
+      "candidate": "book/tikz/figures/c10-dependencies-queryable.tex",
+      "source_sha256": "ff7cf1a20308694e176f3279afafd9eb3702567c665fd1c1df752803a5a5a2b1",
+      "candidate_sha256": "1c5809eb2088b2fe163723654c22e71337faf524bcb3603c02462b5a96add435",
+      "decision": "retained",
+      "original_visual_grammar": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents — the blast radius — is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Blocking control and affected-set query are darker than deriving model; unaffected control stays white/dashed.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 320.488,
+      "height_pt": 218.983,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-1-executable-model.svg",
+      "candidate": "book/tikz/figures/appendix-g-1-executable-model.tex",
+      "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
+      "candidate_sha256": "3f64d3443eab452c3c6a0850f2b8b602a965e3055fb115f3500c7112cbf2663f",
+      "decision": "refined",
+      "original_visual_grammar": "An engineering question selects a representation. A model box is fed from the left by\n    authored intent along a solid arrow, and from the right by derived facts along a dashed arrow. The model\n    declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are\n    observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether\n    the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a\n    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared\n    legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are\n    derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real\n    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory.",
+      "review": "Restored double-bar checked/admission glyph on the warranted finding branch; authored/derived dashes retained.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 348.128,
+      "height_pt": 255.201,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-2-structure-boundaries.svg",
+      "candidate": "book/tikz/figures/appendix-g-2-structure-boundaries.tex",
+      "source_sha256": "21fea7ba72cfe2d54e657a5e6b11a9156640f15d4fd2b98cb5dfcfd0dd93067f",
+      "candidate_sha256": "225f43d357b9b5f1525dc2acc2fc326618f38e9e679997b93bebd542fc4fa11c",
+      "decision": "refined",
+      "original_visual_grammar": "A component catalog, the authored structure, owns a web zone and permits a seam, both shown\n    along solid arrows. The web zone reaches the worker through a sanctioned seam, a solid arrow crossed by a\n    heavy gate glyph marking the one door a boundary check guards. A second crossing, from the web zone straight\n    to a raw format library, is a forbidden direct access: a dashed arrow struck through by a red X, a crossing\n    with no sanctioned door. Beneath, the observed repository tree is reverse-mapped up into the catalog along a\n    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure C-1;\n    weight, dash, and glyph carry the meaning without colour.",
+      "review": "Restored double-bar checked door on the sanctioned seam; forbidden direct-access X retained.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 323.268,
+      "height_pt": 193.191,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-3-behavior-ownership.svg",
+      "candidate": "book/tikz/figures/appendix-g-3-behavior-ownership.tex",
+      "source_sha256": "bf5090147143a1ee1b761991c5f6aa4275aa304fb643cd8ce18406498fd9e824",
+      "candidate_sha256": "cbbafbd1812f04c7a3bd2e43dcdb3d1548755c2431b3204bc4a0883a78f8a181",
+      "decision": "refined",
+      "original_visual_grammar": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow — the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour.",
+      "review": "Restored explicit crossed no-reentry extension from DONE and double-bar lease/CAS authorization. Invariant panel returned to neutral border; it states a condition, not an admission gate.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 348.481,
+      "height_pt": 190.153,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-4-host-execution-policy.svg",
+      "candidate": "book/tikz/figures/appendix-g-4-host-execution-policy.tex",
+      "source_sha256": "3222d90375057239bc272c30803a77ef99da399bd6ff80713511225f5f889bdf",
+      "candidate_sha256": "c1d8259127d51c33b75d69e023d56c086c11b4b857c61aaf829f24d37411eb09",
+      "decision": "retained",
+      "original_visual_grammar": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. All original boxes belong to one representation family; topology versus policy is already separated by row and dashed derived edge. No extra shade needed.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 343.165,
+      "height_pt": 175.641,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-5-measurement-authority.svg",
+      "candidate": "book/tikz/figures/appendix-g-5-measurement-authority.tex",
+      "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
+      "candidate_sha256": "2ebf4deacaa921e76139fe7082af33a149e34f4e90a2704343a70ba0d66e1b60",
+      "decision": "refined",
+      "original_visual_grammar": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate — the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
+      "review": "Restored double-bar admission-gate glyph on yes branch; report-only alternative remains unguarded.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 298.11,
+      "height_pt": 218.54,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-6-facts-before-prose.svg",
+      "candidate": "book/tikz/figures/appendix-g-6-facts-before-prose.tex",
+      "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+      "candidate_sha256": "99759d2d9fec43e1241c706b19ead05045cf23d01829faa82d024011ec824dbf",
+      "decision": "refined",
+      "original_visual_grammar": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
+      "review": "Restored guarded completion-audit branch glyph, distinct from ordinary generated documentation branch.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 315.118,
+      "height_pt": 212.62,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/appendix-g-7-composition-by-reference.svg",
+      "candidate": "book/tikz/figures/appendix-g-7-composition-by-reference.tex",
+      "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
+      "candidate_sha256": "f25362df25c301a9f841cd330af0b2eee50628450e93671713d7287268c961b9",
+      "decision": "retained",
+      "original_visual_grammar": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears — composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. All nodes are one model family; dashed derived correspondence and heavy joined-view border preserve grouping without invented categories.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 323.322,
+      "height_pt": 244.265,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/brownfield-progress-2x2.svg",
+      "candidate": "book/tikz/figures/brownfield-progress-2x2.tex",
+      "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
+      "candidate_sha256": "cd1f9df71afc48587175c38cd15e27a417897fa786ceced06ec5db3540127d29",
+      "decision": "retained",
+      "original_visual_grammar": "A two-by-two matrix with two independent axes. The columns are enforcement reach —\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary —\n    running thin on the left to strong on the right. The rows are representation reach — how much of the\n    important system can be reasoned about through trustworthy externalized structure — running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Two independent dimensions: rich representation row shaded; strong enforcement column heavy border. Thin row/weak column remain white/thin.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 386.033,
+      "height_pt": 256.447,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/figure-composition.svg",
+      "candidate": "book/tikz/figures/figure-composition.tex",
+      "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+      "candidate_sha256": "81ff591cf6a6b7e897dbbd6bd6cee5250b2835311ef1ed80b1ef01966df1628c",
+      "decision": "retained",
+      "original_visual_grammar": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence — reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Governance, governed environment and operations regain distinct tones; communication/people stay neutral.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 361.236,
+      "height_pt": 202.944,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h1-product-lifecycle.svg",
+      "candidate": "book/tikz/figures/h1-product-lifecycle.tex",
+      "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
+      "candidate_sha256": "ab5fb540e4cf9ceba8f4a33374e8dd9a1ff977354b124302b7c8fb60ea586b13",
+      "decision": "retained",
+      "original_visual_grammar": "Four recurring engineering activities run left to right as a dominant lifecycle flow: Product\n    Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each\n    box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,\n    spanning the row as a cross-cutting activity that feeds up into all four. A wide arrow beneath the lifecycle row\n    shows observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a\n    lifecycle, not a waterfall.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Cross-cutting assurance band differs from ordinary lifecycle phases.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 391.354,
+      "height_pt": 239.625,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h4-change-diagnosis-inheritance.svg",
+      "candidate": "book/tikz/figures/h4-change-diagnosis-inheritance.tex",
+      "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
+      "candidate_sha256": "51b9ce1b20788eecb2ea5814f8c228822ced841abcd8f85a57e1e6abf4bf9183",
+      "decision": "retained",
+      "original_visual_grammar": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space — the choices the governing obligations leave open — within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Diagnosis/evidence share a shade; durable governance inheritance differs from simple history.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 335.372,
+      "height_pt": 363.103,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h5-incident-to-governance.svg",
+      "candidate": "book/tikz/figures/h5-incident-to-governance.tex",
+      "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
+      "candidate_sha256": "23dedac684fa630798cd486d113b256ad51c708036ac14c316015006212bc568",
+      "decision": "retained",
+      "original_visual_grammar": "An incident provides an observation about the realized system. Root-cause analysis traces the\n    failure back to the models and relationships it realizes. Relationships within those models expose the affected\n    instance and other, structurally related instances of the same engineering condition. Repair can then address\n    the class rather than only the observed instance, and governance conversion preserves the lesson as an updated\n    model or a durable mechanism that future work inherits.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Incident observation is light; conversion and its two durable outputs share governance tone, distinct from repair/history.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 297.811,
+      "height_pt": 374.146,
+      "minimum_prose_font_pt": 10.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h6-assurance-models-realization.svg",
+      "candidate": "book/tikz/figures/h6-assurance-models-realization.tex",
+      "source_sha256": "2e586275c1e8854b78c44eb10c679e08c57a466c81592f809398d828a5f6c4a9",
+      "candidate_sha256": "22a5dc3a20a73d7b21b12af4fe28cc41e5ec6a403d882f7e18de1a2d99a5f8b6",
+      "decision": "retained",
+      "original_visual_grammar": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —\n    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model evidence differs from realized evidence; alignment and established claim share governance emphasis.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 297.811,
+      "height_pt": 307.147,
+      "minimum_prose_font_pt": 10.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h8-product-gee.svg",
+      "candidate": "book/tikz/figures/h8-product-gee.tex",
+      "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+      "candidate_sha256": "6300ed106c099548670c95badd03f1306cb50e38cd0b92bf2f1c365e917ffd59",
+      "decision": "retained",
+      "original_visual_grammar": "Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Autonomous reasoning and alignment regain distinct visual modes; resulting governed environment matches alignment.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 389.77,
+      "height_pt": 348.908,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/h9-capital-time-space.svg",
+      "candidate": "book/tikz/figures/h9-capital-time-space.tex",
+      "source_sha256": "03a4f6b9211dfe6d10735faa373eb1f5a739a039976b3af3080390536a25795b",
+      "candidate_sha256": "ff97c0a3eed697a6833c5d13452053652781d99bd1cee6f016948058e155a9c9",
+      "decision": "retained",
+      "original_visual_grammar": "A conceptual snapshot of three products shaped by successive engineering episodes. Each\n    product is a softly bounded gray field holding a partial constellation of lifecycle surfaces around a central\n    engineering-models node. Every relationship runs to the center of a named node so it plugs in cleanly: solid\n    gray lines are established internal relationships, dotted gray lines are emerging or possible ones, and\n    unconnected nodes are local. Three cross-product concerns connect to named nodes: an assurance obligation to\n    Product 1 Assurance, Product 2 Engineering Models, and Product 3 Evidence; a code-quality mechanism to the\n    Engineering Models of Products 1 and 2; and a security posture, dotted, to the Engineering Models of all three.\n    No arrowheads, axes, or scale.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Cross-product concerns share darker fill, distinct from product constellations; solid/dotted established/possible links remain unchanged.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 405.441,
+      "height_pt": 352.679,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/adopting-assistance-to-delegation.svg",
+      "candidate": "book/tikz/figures/adopting-assistance-to-delegation.tex",
+      "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+      "candidate_sha256": "10c4c62e6ee4d4d26bd701b48272c01f5479f323e0cafbce450253a79f848c39",
+      "decision": "retained",
+      "original_visual_grammar": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent — models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results — while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Same agent role shaded equally in both modes; governed environment separately emphasized; expanded dashed authority boundary retained.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 374.729,
+      "height_pt": 253.467,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/adopting-investment-paths.svg",
+      "candidate": "book/tikz/figures/adopting-investment-paths.tex",
+      "source_sha256": "48b0844717206ad7a521ecd97ec246d9a347e9fb6e0873855245e9d9d57175ee",
+      "candidate_sha256": "1fe194a1ab40daead4f3ba56a9da3d9a9e0004809b779e0a68ce641664e5ffa3",
+      "decision": "retained",
+      "original_visual_grammar": "Two columns descend from the repeated engineering costs. On the left, reconstruction is\n    answered by better context, then stronger representation, then an analyzable model. On the right,\n    repeated adjudication is answered by better guidance, then independent evidence, then a validator,\n    constraint, or gate. Both columns converge on less repeated judgment and then on engineering capital that\n    later work inherits. The paths are investment choices, made surface by surface where the expected return\n    justifies construction and upkeep, not maturity levels.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Representation investment lane light; adjudication/evidence lane darker; inherited capital shares representation shade. Labels retain exact choices.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 348.128,
+      "height_pt": 310.205,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/adopting-figures-recap.svg",
+      "candidate": "book/tikz/figures/adopting-figures-recap.tex",
+      "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+      "candidate_sha256": "69114d4b98bd627c11764968ff9014fbe288556f8280ce0770137a30b3776672",
+      "decision": "retained",
+      "original_visual_grammar": "A two-by-two panel of reference cards. Value versus feasible governability, from Section 6.3:\n    choose where to invest, surface by surface. The governance-conversion loop, from Section 3.4: a failure is\n    diagnosed, the missing structure is encoded, and later work inherits it. The support-apparatus ratio, from\n    Chapter 5: the environment used to understand and govern realization becomes a substantial engineering product\n    in its own right. Where engineering effort moves, from Chapter 5: a redistribution toward deciding what must be\n    true and establishing whether it became true, not the disappearance of implementation.",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Four independent topics already occupy four separate cards with explicit titles and home sections; original topic colors introduce no shared group or mode. No decorative fill added.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 360.173,
+      "height_pt": 230.313,
+      "minimum_prose_font_pt": 10.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-cloudflare.svg",
+      "candidate": "book/tikz/figures/field-guide-cloudflare.tex",
+      "source_sha256": "befef9a9f27d94ca26298d01a8e0a25339405f8763bcc71c6398c3f38536dd41",
+      "candidate_sha256": "291dd2c732a4b062ad41fae4874559d4e66f5d1d4f7a101b2b379ebe6be79912",
+      "decision": "refined",
+      "original_visual_grammar": "",
+      "review": "Restored the source central mechanism-to-LANDS ON connection, previously left as an unconnected conclusion box. Restored dashed unfinished recurrence branch and open endpoint.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 354.15,
+      "height_pt": 253.803,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-spotify.svg",
+      "candidate": "book/tikz/figures/field-guide-spotify.tex",
+      "source_sha256": "3eca358ae1fe8b9c41910c41a1e91fa01737ed5000a9afa714f9f39cfc5ec5b1",
+      "candidate_sha256": "0740168a8b61201739378b59740501ccc74324f4449f834319bc640bb2831c3e",
+      "decision": "retained",
+      "original_visual_grammar": "",
+      "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 363.007,
+      "height_pt": 172.797,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-shopify.svg",
+      "candidate": "book/tikz/figures/field-guide-shopify.tex",
+      "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+      "candidate_sha256": "8c35251619f432a535d949d63eee68cb62083a9d1ad33edcd5ba90a60d0f1b55",
+      "decision": "refined",
+      "original_visual_grammar": "",
+      "review": "Restored reusable-skill-to-engineering-environment connection, routed outside the external session-count annotation.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 359.022,
+      "height_pt": 192.595,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-siemens.svg",
+      "candidate": "book/tikz/figures/field-guide-siemens.tex",
+      "source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
+      "candidate_sha256": "48d96d13fc57feff83c139a526ff36612a40ea422cc238928de62ca577751a89",
+      "decision": "refined",
+      "original_visual_grammar": "",
+      "review": "Restored entry-to-modeling-ladder and ladder-to-Modeling destination connections; evidence caveat remains external, dashed missing drift-gate rung preserved.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 356.985,
+      "height_pt": 281.912,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-zenseact.svg",
+      "candidate": "book/tikz/figures/field-guide-zenseact.tex",
+      "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
+      "candidate_sha256": "8a7df05fcc18ed85d7e79126a98167f5c035d91e89d9173384419764e9882865",
+      "decision": "refined",
+      "original_visual_grammar": "",
+      "review": "Restored shared platform-to-governed-environment connection, routing clear of domain labels and the external organizational annotation.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 364.692,
+      "height_pt": 210.769,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/field-guide-uber.svg",
+      "candidate": "book/tikz/figures/field-guide-uber.tex",
+      "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
+      "candidate_sha256": "f23b59ebb681b47449aa71b1ca8f2e1adf35c745b538a6f40d694b69c1f5368b",
+      "decision": "refined",
+      "original_visual_grammar": "",
+      "review": "Restored the source central mechanism-to-LANDS ON connection, previously left as an unconnected conclusion box.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 354.15,
+      "height_pt": 248.234,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/velocity-commits-per-week.svg",
+      "candidate": "book/tikz/figures/velocity-commits-per-week.tex",
+      "source_sha256": "a7fb8082bf40bf5700d374ef0107f9090a0e76a63fc0f6ecd7049ae93b18c7b5",
+      "candidate_sha256": "a094973188e987ce2399ed57b20b5e2d4d634164569c38a745687c14c4ac19ae",
+      "decision": "refined",
+      "original_visual_grammar": "A bar chart of commits per week over the 20-week build. Each bar is one week. The curve rises steeply as the agent fleet acquired capability, peaking through May, then dips during a hardening stretch. An inset panel reports commit size in lines of code. The shape is the argument in miniature: raw velocity is easy to buy, and the dip is where that velocity is spent making the output trustworthy rather than merely fast.",
+      "review": "Recovers the19 actual bars and quartiles from originalSVG; its description says20weeks but the artwork contains19. Candidate preserves the artwork window; does not manufacture the missing week. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/churn-per-path.svg",
+      "candidate": "book/tikz/figures/churn-per-path.tex",
+      "source_sha256": "1d2d8f28de3fea0b6da2c8fb5d40e3b2a62eba200a8b0c4b097d741ea0d0a140",
+      "candidate_sha256": "0e2a170af1a1eea29ccc5991b125c1aa947c9388c966da47f085e54ba0ba906f",
+      "decision": "refined",
+      "original_visual_grammar": "A diverging bar chart of git churn on two code paths across the four\n    study windows. For each window, additions rise above a zero baseline and deletions fall\n    below it, drawn as one bar per path: web/, the Python web service and worker, in blue,\n    and backend/, the C# command-line tool and rule engine, in red. Mechanization is the\n    add-and-delete peak for both paths — backend/ alone adds 941,120 lines and deletes\n    286,378 in that window. After mechanization the deletions collapse: backend/ falls to\n    just 3,767 deleted lines at hardening, and both paths go net-additive in the later\n    windows as the built environment stabilizes the code. Absolute counts include generated\n    and vendored files, so this is a churn signal, not a count of hand-authored source.",
+      "review": "One linear scale above and below zero replaces the original unequal positive/negative scales. All16 exact counts from the native evidence table; fills distinguish paths, sign distinguishes additions/deletions. Restored external units and interpretive annotations at 10 pt.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/model-induction-general.svg",
+      "candidate": "book/tikz/figures/model-induction-general.tex",
+      "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+      "candidate_sha256": "4b0f7f72caba7d8f586f5f836cba191de30388c3e56314ab03d549e8d9cb7db6",
+      "decision": "refined",
+      "original_visual_grammar": "A left rail states the general move as a column of stages joined by the method that\n    carries each step: realized work; then repeated low-level forms; then, by weak detectors, retrieval,\n    and clustering, candidate regularities; then, by contextual comparison, a candidate abstraction; then, by an\n    engineering judgment that adopts and names it, an explicit model or vocabulary; then future work that reasons\n    through the concept directly. Three columns to the right instantiate the same move. In software\n    (grounded in DocAble evidence): realized code, repeated primitive forms, candidate regularities such\n    as primitive density, a candidate abstraction (a repeated semantic shape), a typed vocabulary with relations, and tools and agents\n    that reuse it. In knowledge work (a generalization, inferred): documents and records, repeated terms\n    and relations, candidate synonym clusters, a candidate abstraction (a domain distinction), a canonical term with\n    relations, and a lexicon, ontology, or schema. In mechanical CAD (a generalization, inferred):\n    drawings and assemblies, repeated geometry and constraints, a candidate pattern or component, a candidate\n    abstraction (a design regularity), a named feature or constraint model, and a reusable engineering vocabulary. The\n    agent finds repetition, compares, and proposes structure; the engineer decides which distinctions\n    matter and names the concept.",
+      "review": "Restored engineering-judgment/adopt-and-name annotation between candidate abstraction and explicit model on the general rail; footer retains weak detectors/contextual comparison.",
+      "checks": [
+        "Compared original SVG raster with compiled candidate",
+        "Reviewed dashed/dotted relation meanings and grouping",
+        "Reviewed outside annotations separately from node contents",
+        "Reviewed legibility at native print dimensions"
+      ],
+      "width_pt": 398.441,
+      "height_pt": 383.217,
+      "minimum_prose_font_pt": 9.0,
+      "strict_compile_diagnostics": [],
+      "geometry_audit_findings": []
+    },
+    {
+      "source": "book/assets/nav-subway-p1.svg",
+      "candidate": "book/tikz/figures/nav-subway-p1.tex",
+      "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+      "candidate_sha256": "39d09eb93e967b2fffa3603087fe427be48ce7f5a66ceeaeb779efc856e3ba95",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter1 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p2.svg",
+      "candidate": "book/tikz/figures/nav-subway-p2.tex",
+      "source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+      "candidate_sha256": "f0b95db66eba5586f771d2c05b2282befa0defaffb213f0d65052f5f37ef2129",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter2 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p3.svg",
+      "candidate": "book/tikz/figures/nav-subway-p3.tex",
+      "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+      "candidate_sha256": "1a65dc36b44b8a23e2c9a0da50c41d575d2eb6f5358ead9e075d33bb4bfe66e9",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter3 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p4.svg",
+      "candidate": "book/tikz/figures/nav-subway-p4.tex",
+      "source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+      "candidate_sha256": "e6c58d138a17acd397fe7b900cc44fdb1ae7f49be2d64dac92deaa4397c57a9d",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter4 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p5.svg",
+      "candidate": "book/tikz/figures/nav-subway-p5.tex",
+      "source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+      "candidate_sha256": "4971e6ec165be2ae1b1d89ccb6d6ca2e7f889eee48489ba2eaf74c51d1df7e75",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter5 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p6.svg",
+      "candidate": "book/tikz/figures/nav-subway-p6.tex",
+      "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+      "candidate_sha256": "978ca3c453bcd306cab7ddf5fff383398db659baea56bbbb7f8969957395573f",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter6 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    },
+    {
+      "source": "book/assets/nav-subway-p7.svg",
+      "candidate": "book/tikz/figures/nav-subway-p7.tex",
+      "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+      "candidate_sha256": "16b781576b0f31aa086583386152b4da1fcbe73c05f5ee1847d2677fbe5460e8",
+      "decision": "refined",
+      "original_visual_grammar": "Quantitative chart with labeled axes, legend and source annotations.",
+      "review": "Current chapter7 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
+      "checks": [
+        "Rendered original compared with native TikZ candidate",
+        "Symbols, relationship styles and grouping checked",
+        "External annotations and units checked",
+        "Native print-size legibility checked"
+      ]
+    }
+  ]
+}

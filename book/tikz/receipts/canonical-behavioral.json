@@ -3,66 +3,67 @@
   "chapter": "2.3-behavioral",
   "claim": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits — here the skip from IDLE straight to DONE — is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
   "topology": {
-    "description": "Implementation reduced to legal state transitions; IDLE→DONE directly forbidden.",
-    "relations": [
-      [
-        "impl",
-        "run",
-        "reduce to",
-        ""
-      ],
-      [
-        "idle",
-        "run",
-        "start",
-        ""
-      ],
-      [
-        "run",
-        "done",
-        "finish",
-        ""
-      ],
-      [
-        "run",
-        "fail",
-        "fail",
-        ""
-      ],
-      [
-        "idle.south",
-        "done.south",
-        "no skipping RUNNING",
-        "dashed"
-      ]
+    "description": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "native_draw_commands": [
+      "\\draw[edge] (impl) -- node[lab,right] {reduce to} (run);",
+      "\\draw[edge] (idle) -- node[lab,above=10pt] {start} (run);",
+      "\\draw[edge] (run) -- node[lab,above=10pt] {finish} (done);",
+      "\\draw[edge] (run) -- node[lab,right] {fail} (fail);",
+      "\\draw[edge,dashed] (idle.west) -- (-6,0) -- (-6,-3) -- node[lab] {$\\times$} node[lab,below=5pt] {Forbidden: no skipping RUNNING} (6,-3) -- (6,0) -- (done.east);"
     ]
   },
   "required_terms": [
-    "Implementation Handlers · retries · writes · logging",
-    "IDLE",
-    "RUNNING",
-    "DONE",
-    "FAILED",
-    "Node = legal state; edge = permitted transition; path = admitted execution. Analyze reachability, safety and liveness."
+    "Implementation",
+    "Handlers · retries · writes · logging",
+    "IDLE RUNNING DONE",
+    "F AILED",
+    "reduce to",
+    "start finish",
+    "fail",
+    "×",
+    "Forbidden: no skipping RUNNING",
+    "Node = legal state; edge = permitted transition; path = admitted execution.",
+    "Analyze reachability, safety and liveness."
   ],
   "bw_encoding": "Grayscale publication candidate. State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained.",
-  "redesign": "State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained.",
+  "redesign": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
   "questions": [],
-  "alt": "An implementation reduces to a state model. IDLE starts RUNNING, which finishes at DONE or fails at FAILED. A crossed dashed arrow marks the forbidden direct IDLE-to-DONE transition. Labels distinguish the question, transition semantics and typical analyses. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Rounded state boxes and directed transitions depict the behavioral model. A dashed prohibited transition bears a cross, with its explanation below the path.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       12.3515,
       7.9684
     ]
+  },
+  "fidelity_review": {
+    "stem": "canonical-behavioral",
+    "source": "book/assets/canonical-behavioral.svg",
+    "status": "corrected",
+    "evidence": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/canonical-behavioral.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/canonical-behavioral.png",
+    "original_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+    "native_sha256": "24692487b36cb3851f2c379e302fb6d46924fd2b5aaa11904ad352792826cd5a",
+    "page": 18,
+    "dimensions_cm": [
+      12.3515,
+      7.9684
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

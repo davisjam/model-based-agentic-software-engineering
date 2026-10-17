@@ -1,25 +1,30 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=4.4cm,fill=black!5] (l0) at (0,0.0) {Application\\Your codebase};
-\node[n,text width=4.4cm] (r0) at (7,0.0) {Large engineering task};
-\node[n,text width=4.4cm,fill=black!5] (l1) at (0,-1.8) {Agent Harness\\Skills · Tools · Hooks};
-\node[n,text width=4.4cm] (r1) at (7,-1.8) {Reasoning Horizon};
-\draw[edge] (l0) -- node[lab,right] {runs on} (l1);
-\draw[edge] (r0) -- node[lab,right] {requires} (r1);
-\node[n,text width=4.4cm,fill=black!5] (l2) at (0,-3.6) {Foundation Model\\The trained model};
-\node[n,text width=4.4cm] (r2) at (7,-3.6) {Available working state\\Context window is one present limit};
-\draw[edge] (l1) -- node[lab,right] {wraps} (l2);
-\draw[edge] (r1) -- node[lab,right] {may exceed} (r2);
-\node[n,text width=4.4cm,fill=black!5] (l3) at (0,-5.4) {Bounded working state\\Context window today};
-\node[n,text width=4.4cm] (r3) at (7,-5.4) {Churn};
-\draw[edge] (l2) -- node[lab,right] {bounded by} (l3);
-\draw[edge] (r2) -- node[lab,right] {contributes to} (r3);
-\draw[edge,dashed,-] (l3.east) -- ++(.7,0) |- (r2.west);
-\node[note,fill=white,text width=1.8cm] (same) at (3.5,-4.35) {Same working\\state};
-\node[note,text width=11cm] (fleet) at (3.5,-6.8) {Fleet: multiple agents working on a shared engineering system.};
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
+
+\node[note] at (-3.5,1) {\textit{The stack}};
+\node[note] at (3.5,1) {\textit{A characteristic limit}};
+\node[n,fill=black!5,text width=5.4cm] (app) at (-3.5,0) {\textbf{Application}\\Your codebase};
+\node[n,fill=black!5,text width=5.4cm,minimum height=2.7cm] (harness) at (-3.5,-2.5) {};
+\node[head] at (-3.5,-1.55) {Agent Harness};
+\node[note,text width=5.3cm] at (-3.5,-2.3) {Claude Code, OpenCode\\and their kin};
+\node[note] at (-5.5,-3.2) {hosts};
+\foreach \id/\x/\txt in {skill/-4.4/Skills,tool/-3.1/Tools,hook/-1.8/Hooks} {\node[n,rounded corners=8pt,font=\fontsize{9.5}{11.5}\selectfont,inner sep=3pt,minimum height=.45cm] (\id) at (\x,-3.2) {\txt};}
+\node[n,fill=black!5,text width=5.4cm] (model) at (-3.5,-5.2) {\textbf{Foundation Model}\\The trained model};
+\node[n,fill=black!5,text width=5.4cm] (state) at (-3.5,-7.2) {\textbf{Bounded working state}\\What the model holds at once —\\the context window today};
+\draw[edge] (app) -- node[lab,right] {runs on} (harness);
+\draw[edge] (harness) -- node[lab,right] {wraps} (model);
+\draw[edge] (model) -- node[lab,right] {bounded by} (state);
+\node[n,text width=5.1cm] (task) at (3.5,0) {Large engineering task};
+\node[n,text width=5.1cm] (horizon) at (3.5,-2.5) {\textbf{Reasoning Horizon}};
+\node[n,text width=5.1cm] (available) at (3.5,-5.2) {\textbf{Available working state}\\Context window is one present limit};
+\node[n,text width=5.1cm] (churn) at (3.5,-7.2) {\textbf{Churn}};
+\draw[edge] (task) -- node[lab,right] {requires} (horizon);
+\draw[edge] (horizon) -- node[lab,right] {may exceed} (available);
+\draw[edge] (available) -- node[lab,right] {contributes to} (churn);
+\draw[edge,densely dotted] (state.east) -- (0,-7.2) |- (available.west);
+\node[note,text width=12cm] at (0,-9) {\textbf{Fleet:} multiple agents working on a shared engineering system.};
+
 \end{tikzpicture}

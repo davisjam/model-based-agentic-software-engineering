@@ -23,15 +23,15 @@
     "Stable identities join three views; each answers a different engineering question."
   ],
   "bw_encoding": "Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. Fidelity pass: Routed dashed bidirectional conflict edge above controls so the dash pattern is visible instead of collapsing into two touching arrowheads.",
   "questions": [],
   "alt": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 424.727,
-    "height_pt": 204.909,
+    "width_pt": 424.72698974609375,
+    "height_pt": 204.90899658203125,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
   }
 }

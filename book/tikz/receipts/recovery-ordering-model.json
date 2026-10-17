@@ -3,53 +3,67 @@
   "chapter": "2.3-behavioral",
   "claim": "*Recovery-ordering model.* The decisive fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.",
   "topology": {
-    "description": "Legal recovery sequence; staged artifact cannot skip upload before database update.",
-    "relations": [
-      [
-        "n0",
-        "n1",
-        "upload succeeds",
-        ""
-      ],
-      [
-        "n1",
-        "n2",
-        "durable state updated",
-        ""
-      ],
-      [
-        "n0.west",
-        "n2.west",
-        "",
-        "dashed"
-      ]
+    "description": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+    "native_draw_commands": [
+      "\\draw[edge] (n0) -- node[lab,right] {upload succeeds} (n1);",
+      "\\draw[edge] (n1) -- node[lab,right] {durable state updated} (n2);",
+      "\\draw[edge,dashed] (n0.west) -- ++(-1.3,0) |- (n2.west);"
     ]
   },
   "required_terms": [
-    "FALLBACK_STAGED",
-    "FALLBACK_UPLOADED",
+    "F ALLBACK_STAGED",
+    "F ALLBACK_UPLOADED",
+    "upload succeeds",
     "DB_UPDATED",
-    "Forbidden / absent transition",
-    "Durable state may not name an artifact recovery has not yet published."
+    "durable state updated",
+    "×",
+    "Forbidden /",
+    "absent",
+    "transition",
+    "Not part of",
+    "the model",
+    "Durable state may not name an arti-",
+    "fact recovery has not yet published."
   ],
   "bw_encoding": "Grayscale publication candidate. State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
-  "redesign": "State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
+  "redesign": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
   "questions": [],
-  "alt": "FALLBACK_STAGED leads to FALLBACK_UPLOADED on upload success, then to DB_UPDATED when durable state is updated. A crossed dashed direct edge from staged to database updated is forbidden: durable state must not name an artifact before recovery publishes it. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Rounded state boxes show the required recovery ordering. A separate annotation explicitly marks what is not part of the model.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       11.9514,
-      6.6844
+      6.5837
     ]
+  },
+  "fidelity_review": {
+    "stem": "recovery-ordering-model",
+    "source": "book/assets/recovery-ordering-model.svg",
+    "status": "corrected",
+    "evidence": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/recovery-ordering-model.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/recovery-ordering-model.png",
+    "original_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+    "native_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+    "page": 19,
+    "dimensions_cm": [
+      11.9514,
+      6.5837
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

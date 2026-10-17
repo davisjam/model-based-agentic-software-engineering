@@ -3,76 +3,73 @@
   "chapter": "2.5-system-knowledge",
   "claim": "*Computation structure versus realized history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
   "topology": {
-    "description": "Static computation DAG and realized edit sequence are peers; dashed undirected link marks not joined today.",
-    "relations": [
-      [
-        "a",
-        "rem",
-        "DATA_FLOW",
-        ""
-      ],
-      [
-        "gate",
-        "rem",
-        "CONTROL_GATE",
-        "dashed"
-      ],
-      [
-        "e0",
-        "e1",
-        "",
-        ""
-      ],
-      [
-        "e1",
-        "e2",
-        "",
-        ""
-      ],
-      [
-        "e2",
-        "e3",
-        "",
-        ""
-      ],
-      [
-        "gate.east",
-        "e1.west",
-        "not joined today",
-        "dashed,-"
-      ]
+    "description": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
+    "native_draw_commands": [
+      "\\draw[edge] (a) -- node[lab,left] {DATA\\_FLOW} (rem);",
+      "\\draw[edge,dashed] (gate) -- node[lab,below] {CONTROL\\_GATE} (rem);",
+      "\\draw[edge] (e0) -- (e1);",
+      "\\draw[edge] (e1) -- (e2);",
+      "\\draw[edge] (e2) -- (e3);",
+      "\\draw[edge,dashed,-] (gate.east) -- node[lab,above] {not joined today} (e1.west);"
     ]
   },
   "required_terms": [
-    "Computation graph What may compose",
-    "Edit record What one run did emit",
+    "Computation graph",
+    "What may compose",
+    "Edit record",
+    "What one run did emit",
     "Analyze pass",
     "Route gate",
     "Remediate pass",
+    "DATA_FLOW",
+    "CONTROL_GATE",
     "Session run",
     "PdfEdit · SetAltText",
     "PdfEdit · TagFigure",
     "PdfEdit · SetReadingOrder",
-    "Static structure and realized history; join by computation identity when a question needs it."
+    "not joined today",
+    "Static structure and realized history; join by com-",
+    "putation identity when a question needs it."
   ],
   "bw_encoding": "Grayscale publication candidate. Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
-  "redesign": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
+  "redesign": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
   "questions": [],
-  "alt": "Two peer panels show a static computation graph with typed data and control relations and a realized run with typed PdfEdit operations. A dashed connection states that they are not joined today. Shared computation identity can join them when a question needs that correspondence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Separate framed panels contrast the static system model with realized history. Payload and control relations use distinct line conventions across the reductions.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      14.1254,
-      8.3572
+      14.4909,
+      8.7227
     ]
+  },
+  "fidelity_review": {
+    "stem": "two-reductions-static-realized",
+    "source": "book/assets/two-reductions-static-realized.svg",
+    "status": "corrected",
+    "evidence": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/two-reductions-static-realized.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-30.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/two-reductions-static-realized.png",
+    "original_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+    "native_sha256": "0d55efb723c442869bb6d02c9a2b5b2c9d1e956321dc18e105b626d3bb1b9d4d",
+    "page": 30,
+    "dimensions_cm": [
+      14.4909,
+      8.7227
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

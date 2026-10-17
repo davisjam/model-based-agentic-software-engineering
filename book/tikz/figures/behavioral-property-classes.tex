@@ -1,19 +1,19 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=8cm,fill=black!20] (model) at (0,0) {Behavioral model\\States · transitions · legal sequences};
-\node[n,text width=3.7cm] (p0) at (-4.5,-2.5) {Local rule\\Is this edge legal?\\Transition check};
-\draw[edge] (model) -- (p0);
-\node[n,text width=3.7cm] (p1) at (0.0,-2.5) {Reachable-state\\Can this state occur?\\State-space search};
-\draw[edge] (model) -- (p1);
-\node[n,text width=3.7cm] (p2) at (4.5,-2.5) {Temporal property\\Will this eventually occur?\\Temporal model checking};
-\draw[edge] (model) -- (p2);
-\node[strong,text width=8cm,fill=black!15] (e) at (0,-5) {Evidence about behavior};
-\draw[edge] (p0) -- (e);
-\draw[edge] (p1) -- (e);
-\draw[edge] (p2) -- (e);
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
+
+\node[n,fill=black!20,text width=8cm] (m) at (0,0) {\textbf{Behavioral model}\\States · transitions · legal sequences};
+\foreach \i/\x/\title/\question/\check in {0/-4.7/{Local rule}/{Is this edge legal?}/{Transition check},1/0/{Reachable-state}/{Can this state occur?}/{State-space search},2/4.7/{Temporal property}/{Will this eventually occur?}/{Temporal model checking}} {
+ \node[n,fill=black!5,text width=3.8cm] (p\i) at (\x,-2) {\textbf{\title}};
+ \node[note,text width=4.1cm] (q\i) at (\x,-3) {\textit{\question}};
+ \node[n,fill=black!5,text width=3.8cm] (c\i) at (\x,-4.2) {\check};
+ \draw[edge] (m.south) -- (0,-1.1) -| (p\i.north);
+ \draw[edge] (q\i.south) -- (c\i.north);
+}
+\node[n,fill=black!15,line width=1pt,text width=8cm] (e) at (0,-6) {\textbf{Evidence about behavior}};
+\foreach \i in {0,1,2} {\draw[edge] (c\i.south) -- (c\i.south |- 0,-5.2) -| (e.north);}
+\node[note,text width=12cm] at (0,-7) {Same model family; different property, different checker.};
+
 \end{tikzpicture}

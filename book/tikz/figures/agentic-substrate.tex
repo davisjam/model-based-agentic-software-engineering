@@ -1,18 +1,26 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=5cm,fill=black!20] (f) at (0,0) {Foundation Model\\Semantic reasoning\\Probabilistic output\\Bounded working state\\Cheap repeated reasoning};
-\node[n,text width=5cm,fill=black!5] (h) at (6,0) {Agentic Harness\\Tool-mediated action\\Context management\\Interposition\\Parallel execution};
-\node[n,text width=5cm,fill=black!20] (a) at (3,-4) {Agent\\A tool-using reasoner};
-\draw[edge] (f.south) -- ++(0,-.25) -| (-2,-4) -- (a.west);
-\draw[edge] (h.south) -- ++(0,-.25) -| (8,-4) -- (a.east);
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
-\node[head,text width=9cm] (envlabel) at (3,-2) {Engineered Environment\\Models · obligations · evidence · controls};
+\node[head,text width=5.5cm] (fh) at (-3.5,0) {Foundation Model};
+\node[head,text width=5.5cm] (hh) at (3.5,0) {Agentic Harness};
+\foreach \i/\txt in {0/{Semantic reasoning},1/{Probabilistic output},2/{Bounded working state},3/{Cheap repeated reasoning}} {
+ \node[n,text width=5cm,font=\fontsize{10}{12}\selectfont] (f\i) at (-3.5,-.8-\i*.9) {\txt};}
+\foreach \i/\txt in {0/{Tool-mediated action},1/{Context management},2/{Interposition},3/{Parallel execution}} {
+ \node[n,text width=5cm,font=\fontsize{10}{12}\selectfont] (h\i) at (3.5,-.8-\i*.9) {\txt};}
 \begin{scope}[on background layer]
-\node[draw,line width=1pt,fill=black!10,rounded corners=3pt,fit=(envlabel)(a),inner sep=10pt] (environment) {};
+\node[draw,rounded corners=3pt,fill=black!20,fit=(fh)(f0)(f3),inner sep=7pt] (foundation) {};
+\node[draw,rounded corners=3pt,fill=black!5,fit=(hh)(h0)(h3),inner sep=7pt] (harness) {};
 \end{scope}
+\node[head,text width=9cm] (eh) at (0,-5) {Engineered Environment};
+\node[note,text width=10cm] (detail) at (0,-5.55) {Models · obligations · evidence · controls};
+\node[n,fill=black!20,text width=5.4cm] (agent) at (0,-7) {\textbf{Agent}\\A tool-using reasoner};
+\begin{scope}[on background layer]
+\node[draw,line width=.9pt,rounded corners=3pt,fill=black!10,fit=(eh)(detail)(agent),inner xsep=1.5cm,inner ysep=.5cm] (env) {};
+\end{scope}
+\draw[edge] (foundation.south) -- (-3.5,-4.2) -- (-5.5,-4.2) -- (-5.5,-7) -- (agent.west);
+\draw[edge] (harness.south) -- (3.5,-4.2) -- (5.5,-4.2) -- (5.5,-7) -- (agent.east);
+
 \end{tikzpicture}

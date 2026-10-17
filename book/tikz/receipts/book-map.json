@@ -3,101 +3,91 @@
   "chapter": "0.1-how-to-read-this-book",
   "claim": "*The book's argument.* The Preface and Chapter 1 establish the engineering problem. Chapters 2–5 develop and substantiate MAGE through its software-engineering case study. Chapters 6 and 7 abstract from that case to theory and broader engineering implications, and the Conclusion returns to the opening question through responsibility.",
   "topology": {
-    "description": "Vertical argument sequence; Chapters 2–5 nested as the software-engineering case; dotted undirected appendix branches.",
-    "relations": [
-      [
-        "s0",
-        "s1",
-        "",
-        ""
-      ],
-      [
-        "s1",
-        "s2",
-        "",
-        ""
-      ],
-      [
-        "s2",
-        "s3",
-        "",
-        ""
-      ],
-      [
-        "s3",
-        "s4",
-        "",
-        ""
-      ],
-      [
-        "s4",
-        "s5",
-        "",
-        ""
-      ],
-      [
-        "s5",
-        "s6",
-        "",
-        ""
-      ],
-      [
-        "s6",
-        "s7",
-        "",
-        ""
-      ],
-      [
-        "s7",
-        "s8",
-        "",
-        ""
-      ],
-      [
-        "s4.east",
-        "a4.west",
-        "",
-        "dotted,-"
-      ],
-      [
-        "s5.east",
-        "a5.west",
-        "",
-        "dotted,-"
-      ]
+    "description": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+    "native_draw_commands": [
+      "\\draw[edge] (s0) -- (s1);",
+      "\\draw[edge] (s1) -- (s2);",
+      "\\draw[edge] (s2) -- (s3);",
+      "\\draw[edge] (s3) -- (s4);",
+      "\\draw[edge] (s4) -- (s5);",
+      "\\draw[edge] (s5) -- node[lab,right] {abstract from the factories} (s6);",
+      "\\draw[edge] (s6) -- (s7);",
+      "\\draw[edge] (s7) -- (s8);",
+      "\\draw[edge,dotted,-] (s4.east) -- (a4.west);",
+      "\\draw[edge,dotted,-] (s5.east) -- (a5.west);"
     ]
   },
   "required_terms": [
-    "Preface How do we safely grant autonomy to commodity intelligence?",
-    "1  The New Engineering Problem Changed economics",
-    "2  Modeling Make knowledge and intent explicit",
-    "3  Alignment Enforce selected obligations",
-    "4  MAGE in Motion Model · align · work · convert",
-    "5  Agentic Software Factories Deep case · industrial variation",
-    "6  The Theory Dynamics · economics · predictions · scope",
-    "7  The Profession Software work · broader engineering · responsibility",
-    "Conclusion What cannot be delegated? Responsibility.",
-    "Appendix I · Practice Use and extend",
-    "Appendix II · Evidence Inspect the empirical record"
+    "Preface",
+    "How do we safely grant auton-",
+    "omy to commodity intelligence?",
+    "1 The New Engineering Problem",
+    "Changed economics",
+    "2 Modeling",
+    "Make knowledge and intent explicit",
+    "3 Alignment",
+    "Enforce selected obligations",
+    "4 MAGE in Motion",
+    "Model · align · work · convert",
+    "5 Agentic Software Factories",
+    "Deep case · industrial vari-",
+    "ation · production systems",
+    "6 The Theory",
+    "Dynamics · economics · predictions · scope",
+    "abstract from the factories",
+    "7 The Profession",
+    "Software work · broader en-",
+    "gineering · responsibility",
+    "Conclusion",
+    "What cannot be delegated? Responsibility.",
+    "SOFTW ARE-ENGINEERING CASE",
+    "Appendix I",
+    "· Practice",
+    "Use and extend",
+    "Appendix II",
+    "· Evidence",
+    "Inspect the em-",
+    "pirical record"
   ],
   "bw_encoding": "Grayscale publication candidate. Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
-  "redesign": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
+  "redesign": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
   "questions": [],
-  "alt": "A vertical book argument runs from the Preface through Chapters 1 to 7 to the Conclusion. A pale-gray enclosure groups Chapters 2–5 as the software-engineering case. Dotted branches connect Chapter 4 to Appendix Part I, Practice, and Chapter 5 to Appendix Part II, Evidence; these are related destinations, not argument steps. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A grayscale map of the book connects the opening foundations to two production-system case studies, then to Modeling, Alignment and the later chapters. External annotations show abstraction from the factories; appendix boxes sit below the chapter sequence.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
     ],
-    "outcome": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       12.7806,
-      13.5292
+      13.9292
     ]
+  },
+  "fidelity_review": {
+    "stem": "book-map",
+    "source": "book/assets/book-map.svg",
+    "status": "corrected",
+    "evidence": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/book-map.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-0.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/book-map.png",
+    "original_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+    "native_sha256": "20726a62abb9c0ec6455539f3ad9502778e9fe7bb4e4ea878c2efd10ce72ddd3",
+    "page": 1,
+    "dimensions_cm": [
+      12.7806,
+      13.9292
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   }
 }

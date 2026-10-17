@@ -1,23 +1,20 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
-\foreach [count=\i] \num/\title/\question/\y in {
-3.1/LOCATE/{Where can enforcement occur?}/0,
-3.2/JUSTIFY/{What may it legitimately enforce?}/-1.8,
-3.3/MECHANIZE/{How does a mechanism enforce an obligation?}/-3.6,
-3.4/LEARN/{How does the environment acquire new obligations and controls?}/-5.4,
-3.5/GOVERN/{How are accumulated controls governed as a system?}/-7.2} {
+\foreach [count=\i] \num/\title/\question/\section/\y in {
+3.1/LOCATE/{Where can enforcement occur?}/{Where Obligations Can Be Enforced}/0,
+3.2/JUSTIFY/{What may it legitimately enforce?}/{From Intent to Obligation}/-2.1,
+3.3/MECHANIZE/{How does a mechanism enforce an obligation?}/{The Four Mechanism Roles}/-4.2,
+3.4/LEARN/{How does the environment acquire new obligations and controls?}/{Growing the Governed Environment}/-6.3,
+3.5/GOVERN/{How are accumulated controls governed as a system?}/{When Controls Become a System}/-8.4} {
  \node[circle,draw,line width=.8pt,fill=black!25,minimum size=1cm] (s\i) at (0,\y) {\num};
- \node[head,anchor=west,text width=10cm,align=left] at (.9,\y+.25) {\title};
- \node[note,anchor=west,text width=10cm,align=left] at (.9,\y-.3) {\question};
+ \node[head,anchor=west,text width=11cm,align=left] at (.9,\y+.35) {\title};
+ \node[note,anchor=west,text width=11cm,align=left] at (.9,\y-.2) {\question};
+ \node[note,anchor=west,text width=11cm,align=left,text=black!70] at (.9,\y-.8) {\num\ · \section};
 }
-\draw[edge] (s1) -- (s2);
-\draw[edge] (s2) -- (s3);
-\draw[edge] (s3) -- (s4);
-\draw[edge] (s4) -- (s5);
+\foreach \a/\b in {1/2,2/3,3/4,4/5} {\draw[edge] (s\a) -- (s\b);}
+
 \end{tikzpicture}
