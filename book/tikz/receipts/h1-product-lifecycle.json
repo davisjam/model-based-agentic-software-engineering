@@ -20,10 +20,10 @@
   "alt": "MAGE across the product lifecycle",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
-    "candidate_sha256": "d47f788a6c8d5643a5112042c6bed76913696cad8191b01a2cf77679cc409cba",
+    "candidate_sha256": "ee6e2b6b3890f66e0ad96dc17eebcfb2bbe142ee4d3ad21b227596174447de23",
     "fill": "One light cross-cutting assurance panel distinguishes its scope from individual lifecycle phases.",
     "bold": "Source-derived emphasis includes PRODUCT DISCOVERY. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
@@ -31,10 +31,10 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 120,
-      "width_bp": 391.354,
-      "height_bp": 239.719,
+      "width_bp": 408.362,
+      "height_bp": 235.141,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -47,7 +47,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
-    "candidate_sha256": "d47f788a6c8d5643a5112042c6bed76913696cad8191b01a2cf77679cc409cba",
+    "candidate_sha256": "ee6e2b6b3890f66e0ad96dc17eebcfb2bbe142ee4d3ad21b227596174447de23",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
       {
@@ -147,15 +147,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 120,
-      "width_bp": 391.354,
-      "height_bp": 239.719,
+      "width_bp": 408.362,
+      "height_bp": 235.141,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "semantic_typography_checks": 3,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equalize four lifecycle stages and expand pitch for readable horizontal arrows.",
+    "candidate_sha256": "ee6e2b6b3890f66e0ad96dc17eebcfb2bbe142ee4d3ad21b227596174447de23",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 120,
+      "width_bp": 408.362,
+      "height_bp": 235.141
     }
   }
 }

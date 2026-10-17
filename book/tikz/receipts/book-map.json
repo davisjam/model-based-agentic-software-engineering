@@ -92,10 +92,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "42dc83693b0be13c9750c7ec743b3d55096b66c63e756ae4af9e9c5dce41b283",
+    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
     "fill": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping.",
     "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
@@ -103,10 +103,10 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 1,
-      "width_bp": 362.169,
-      "height_bp": 413.953,
+      "width_bp": 360.015,
+      "height_bp": 416.659,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -129,7 +129,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "42dc83693b0be13c9750c7ec743b3d55096b66c63e756ae4af9e9c5dce41b283",
+    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -588,15 +588,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 1,
-      "width_bp": 362.169,
-      "height_bp": 413.953,
+      "width_bp": 360.015,
+      "height_bp": 416.659,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23
+      "semantic_typography_checks": 23,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Reduced non-text padding and spaced the vertical spine to give arrowheads clear approaches while retaining the full hierarchy. Increased the surrounding case frame padding to clear the arrow entering Chapter 2.",
+    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 1,
+      "width_bp": 360.015,
+      "height_bp": 416.659
     }
   }
 }

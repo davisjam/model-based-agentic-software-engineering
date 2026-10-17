@@ -5,10 +5,10 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=2.8cm,fill=white] (n0) at (0.0,0) {Section summary\\1.777 s (estimated)};
-\node[box,text width=2.8cm,fill=white] (n1) at (3.5,0) {Document summary\\1.777 s (estimated)};
-\node[box,text width=2.8cm,fill=white] (n2) at (7.0,0) {Alt text\\4.1049 s (measured)};
-\node[head,font=\magefigurefont\fontsize{10}{12}\selectfont,text width=2.8cm,fill=black!5] (n3) at (10.5,0) {Latency floor\\\textbf{7.6589 s}};
+\node[box,text width=2.8cm,fill=white,minimum height=1.9cm] (n0) at (0.0,0) {Section summary\\1.777 s (estimated)};
+\node[box,text width=2.8cm,fill=white,minimum height=1.9cm] (n1) at (3.65,0) {Document summary\\1.777 s (estimated)};
+\node[box,text width=2.8cm,fill=white,minimum height=1.9cm] (n2) at (7.3,0) {Alt text\\4.1049 s (measured)};
+\node[head,font=\magefigurefont\fontsize{10}{12}\selectfont,text width=2.8cm,fill=black!5,minimum height=1.9cm] (n3) at (10.95,0) {Latency floor\\\textbf{7.6589 s}};
 \draw[edge,] (n0) -- (n1);
 \draw[edge,] (n1) -- (n2);
 \draw[edge,dotted] (n2) -- (n3);

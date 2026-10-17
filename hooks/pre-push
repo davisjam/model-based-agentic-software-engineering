@@ -189,6 +189,8 @@ if _run("catalog.py", "build"):
           "The site does not render; fix the build error above ")
 
 if _touches(changed, SCOPES["book"]):
+    if _run("-m", "unittest", "tests.test_tikz_audit"):
+        _fail("pre-push: TikZ geometry and reviewed-layout regression failed")
     if _run("tools/test_mage_tikz_links.py"):
         _fail("pre-push: TikZ reference preservation regression failed")
     if _run("tools/test_mage_tikz_typography.py"):

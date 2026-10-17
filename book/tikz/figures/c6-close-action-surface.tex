@@ -17,11 +17,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=1.3cm] (a2) at (1,0) {actor};
 \node[gate,text width=1.4cm] (seam) at (3.3,0) {\textbf{SEAM}};
 \draw[edge] (a2) -- (seam);
-\node[box,text width=1.7cm] (vA) at (5.6,0.0) {\textbf{VERB A}};
-\draw[edge] (seam.east) -- ++(.25,0) |- (vA.west);
-\node[box,text width=1.7cm] (vB) at (5.6,-1.5) {\textbf{VERB B}};
-\draw[edge] (seam.east) -- ++(.25,0) |- (vB.west);
-\node[box,text width=1.7cm] (vC) at (5.6,-3.0) {\textbf{VERB C}};
-\draw[edge] (seam.east) -- ++(.25,0) |- (vC.west);
+\node[box,text width=1.7cm] (vA) at (6.5,0.0) {\textbf{VERB A}};
+\draw[edge] (seam.east) -- ++(.45,0) |- (vA.west);
+\node[box,text width=1.7cm] (vB) at (6.5,-1.5) {\textbf{VERB B}};
+\draw[edge] (seam.east) -- ++(.45,0) |- (vB.west);
+\node[box,text width=1.7cm] (vC) at (6.5,-3.0) {\textbf{VERB C}};
+\draw[edge] (seam.east) -- ++(.45,0) |- (vC.west);
 \node[note,text width=5cm] (t25) at (3.4,-4.2) {stamp · validate\\ constrain · observe};
 \end{tikzpicture}

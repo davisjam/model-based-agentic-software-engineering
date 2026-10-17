@@ -39,10 +39,10 @@
   "alt": "Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
-    "candidate_sha256": "dbdde06448e277bbc0f79c26b7e399fb25eb31e27b270854b3b5796ba8bcb10d",
+    "candidate_sha256": "3d22c22039148f5112974c3c712623b78f9f67df5496eeb8c7c5d98d0162d1d5",
     "fill": "Only the explicit-model/vocabulary row is lightly shaded across all four lanes; future outputs and discovery stages remain white.",
     "bold": "Source-derived emphasis includes realized code; records; constraints. Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
@@ -50,10 +50,10 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 137,
-      "width_bp": 398.441,
-      "height_bp": 383.222,
+      "width_bp": 407.212,
+      "height_bp": 397.01,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -66,7 +66,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
-    "candidate_sha256": "dbdde06448e277bbc0f79c26b7e399fb25eb31e27b270854b3b5796ba8bcb10d",
+    "candidate_sha256": "3d22c22039148f5112974c3c712623b78f9f67df5496eeb8c7c5d98d0162d1d5",
     "reason": "Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
       {
@@ -169,15 +169,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 137,
-      "width_bp": 398.441,
-      "height_bp": 383.222,
+      "width_bp": 407.212,
+      "height_bp": 397.01,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5
+      "semantic_typography_checks": 5,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Align each four-way comparison rank and increase row/column gaps without reducing font size.",
+    "candidate_sha256": "3d22c22039148f5112974c3c712623b78f9f67df5496eeb8c7c5d98d0162d1d5",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 137,
+      "width_bp": 407.212,
+      "height_bp": 397.01
     }
   }
 }

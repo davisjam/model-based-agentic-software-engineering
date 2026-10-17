@@ -1,0 +1,16 @@
+\documentclass{article}
+\newcommand{\DoNotLoadEpstopdf}{}
+\usepackage[paperwidth=22cm,paperheight=22cm,margin=1cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,n/.style={draw,rounded corners=3pt,align=center,text width=3cm,inner sep=5pt},>={Latex}]
+\node[n,minimum height=1cm] (a) at (0,0) {Interpret evidence};
+\node[n,minimum height=2cm] (b) at (-2.3,-3) {Inform design};
+\node[n,minimum height=1cm] (c) at (2.3,-3) {Choose checks};
+\draw[->] (a.south)--(0,-1.85)-|(b.north);
+\draw[->] (a.south)--(0,-1.85)-|(c.north);
+\end{tikzpicture}
+\end{document}

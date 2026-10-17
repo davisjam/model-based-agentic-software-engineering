@@ -6639,7 +6639,7 @@ def build_pdf() -> int:
         source = driver_text + "\n" + "\n".join(chapters)
         check_pdf(pdf_out, headings=len(re.findall(r"\\chapter\*?\{", source)),
                   sections=len(re.findall(r"\\section\*?\{", source)),
-                  tables=source.count(r"\begin{longtable}"),
+                  tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}"),
                   figures=source.count(r"\begin{figure}"))
         assert_pdf_size(pdf_out)
         return verify_pdf(pdf_out)

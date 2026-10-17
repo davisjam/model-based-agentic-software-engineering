@@ -8,8 +8,8 @@
 \node[head,text width=5cm,fill=white] (o) at (0,0) {\textbf{ENGINEERING OBLIGATION}};
 \node[box,text width=6cm] (q) at (0,-1.5) {Can the unwanted state be excluded cleanly?};
 \draw[edge,] (o) -- (q);
-\node[box,text width=5.5cm,fill=white] (c) at (-3.6,-3.6) {\textbf{CONSTRAINT}\\narrows what may happen\\\textit{typed enum; permission;}\\\textit{narrow API}};
-\node[box,text width=5.5cm,fill=white] (s) at (3.6,-3.6) {\textbf{SENSOR}\\produces evidence of what happened\\\textit{metric; trace; call scan; log}};
+\node[box,text width=5.5cm,fill=white,minimum height=2.1cm] (c) at (-3.6,-4.2) {\textbf{CONSTRAINT}\\narrows what may happen\\\textit{typed enum; permission;}\\\textit{narrow API}};
+\node[box,text width=5.5cm,fill=white,minimum height=2.1cm] (s) at (3.6,-4.2) {\textbf{SENSOR}\\produces evidence of what happened\\\textit{metric; trace; call scan; log}};
 \draw[edge,] (q.south) -- (0.000,-2.550) -- node[midway,above,note] {\textbf{YES}} (-3.600,-2.550) -- (c.north);
 \draw[edge,] (q.south) -- (0.000,-2.550) -- node[midway,above,note] {\textbf{NO}} (3.600,-2.550) -- (s.north);
 \end{tikzpicture}

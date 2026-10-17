@@ -11,11 +11,11 @@
 \node[box,text width=3cm] (da) at (-3.7,-1.4) {OOXML document};
 \node[box,text width=3cm] (db) at (3.7,-1.4) {OOXML document};
 \node[box,text width=1.8cm] (w0) at (-6.0,-3.4) {Worker 1\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
-\draw[edge,] (da.south) -- (-3.700,-2.400) -- (-6.000,-2.400) -- (w0.north);
+\draw[edge,] (da.south) -- (-3.700,-2.150) -- (-6.000,-2.150) -- (w0.north);
 \node[box,text width=1.8cm] (w1) at (-3.7,-3.4) {Worker 2\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
 \draw[edge,] (da) -- (w1);
 \node[box,text width=1.8cm] (w2) at (-1.4000000000000004,-3.4) {Worker 3\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
-\draw[edge,] (da.south) -- (-3.700,-2.400) -- (-1.400,-2.400) -- (w2.north);
+\draw[edge,] (da.south) -- (-3.700,-2.150) -- (-1.400,-2.150) -- (w2.north);
 \node[box,text width=3.7cm,fill=white] (wa) at (3.3,-3.3) {Worker\\\fbox{structural skeleton}\\+ \fbox{media references}};
 \node[box,text width=2.2cm,fill=black!5] (media) at (6,-5.3) {External media};
 \node[box,text width=3cm,fill=white] (gen) at (2.5,-7.2) {GenAI service};

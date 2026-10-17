@@ -29,10 +29,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-    "candidate_sha256": "bacf74007f13436e5589d6aa57c450e75021db4da207b01fe2689e545695b4b8",
+    "candidate_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
     "fill": "Only governed-environment container is 5%; outcomes and responsibility stay white.",
     "bold": "Source-derived emphasis includes Representations; Constraints; Enforcement; Evidence; OUTCOME. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -40,10 +40,10 @@
     "visual_review": "People/document icons retained; only governed-environment container shaded; outcome peers equal.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 90,
       "width_bp": 429.171,
-      "height_bp": 358.123,
+      "height_bp": 374.775,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -57,7 +57,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-    "candidate_sha256": "bacf74007f13436e5589d6aa57c450e75021db4da207b01fe2689e545695b4b8",
+    "candidate_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -169,15 +169,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 90,
       "width_bp": 429.171,
-      "height_bp": 358.123,
+      "height_bp": 374.775,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 10
+      "semantic_typography_checks": 10,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equalize environment components and alternative outcome panels; extend containing boundary so larger panels retain breathing room. Raised the outcome-container border so it no longer crowds the two incoming arrowheads. Raised the governed-environment frame boundary and moved the incoming annotation clear of it.",
+    "candidate_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 90,
+      "width_bp": 429.171,
+      "height_bp": 374.775
     }
   }
 }

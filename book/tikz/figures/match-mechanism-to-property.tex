@@ -6,27 +6,27 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=5cm,fill=white] (o) at (0,0) {\textbf{ENGINEERING OBLIGATION}};
-\node[box,text width=3.7cm] (p0) at (-4.6,-1.6) {\textbf{Can exclude invalid state?}};
-\node[head,text width=3.7cm] (m0) at (-4.6,-3) {\textbf{CONSTRAINT}};
-\node[box,text width=3.7cm] (d0) at (-4.6,-4.5) {Structural prevention\\DB compare-and-set; closed transition};
+\node[box,text width=3.7cm,minimum height=1.2cm] (p0) at (-4.6,-2.0) {\textbf{Can exclude invalid state?}};
+\node[head,text width=3.7cm] (m0) at (-4.6,-3.6) {\textbf{CONSTRAINT}};
+\node[box,text width=3.7cm,minimum height=1.7cm] (d0) at (-4.6,-5.4) {Structural prevention\\DB compare-and-set; closed transition};
 \draw[edge,] (o.south) -- (0.000,-0.800) -- (-4.600,-0.800) -- (p0.north);
 \draw[edge,] (p0) -- (m0);
 \draw[edge,] (m0) -- (d0);
-\node[box,text width=3.7cm] (p1) at (0,-1.6) {\textbf{Reachable bad state / trace?}};
-\node[head,text width=3.7cm] (m1) at (0,-3) {\textbf{VALIDATOR}};
-\node[box,text width=3.7cm] (d1) at (0,-4.5) {State-space search\\bounded exploration};
+\node[box,text width=3.7cm,minimum height=1.2cm] (p1) at (0,-2.0) {\textbf{Reachable bad state / trace?}};
+\node[head,text width=3.7cm] (m1) at (0,-3.6) {\textbf{VALIDATOR}};
+\node[box,text width=3.7cm,minimum height=1.7cm] (d1) at (0,-5.4) {State-space search\\bounded exploration};
 \draw[edge,] (o) -- (p1);
 \draw[edge,] (p1) -- (m1);
 \draw[edge,] (m1) -- (d1);
-\node[box,text width=3.7cm] (p2) at (4.6,-1.6) {\textbf{Eventuality / fairness?}};
-\node[head,text width=3.7cm] (m2) at (4.6,-3) {\textbf{VALIDATOR}};
-\node[box,text width=3.7cm] (d2) at (4.6,-4.5) {Temporal model checking\\TLA+ / TLC};
+\node[box,text width=3.7cm,minimum height=1.2cm] (p2) at (4.6,-2.0) {\textbf{Eventuality / fairness?}};
+\node[head,text width=3.7cm] (m2) at (4.6,-3.6) {\textbf{VALIDATOR}};
+\node[box,text width=3.7cm,minimum height=1.7cm] (d2) at (4.6,-5.4) {Temporal model checking\\TLA+ / TLC};
 \draw[edge,] (o.south) -- (0.000,-0.800) -- (4.600,-0.800) -- (p2.north);
 \draw[edge,] (p2) -- (m2);
 \draw[edge,] (m2) -- (d2);
-\node[head,text width=7cm,fill=white] (g) at (0,-6.3) {Separate \textbf{GATE}, if the verdict should control admission};
-\draw[edge,] (d0.south) -- (-4.600,-5.400) -- (0.000,-5.400) -- (g.north);
+\node[head,text width=7cm,fill=white] (g) at (0,-7.7) {Separate \textbf{GATE}, if the verdict should control admission};
+\draw[edge,] (d0.south) -- (-4.600,-6.6) -- (0.000,-6.6) -- (g.north);
 \draw[edge,] (d1) -- (g);
-\draw[edge,] (d2.south) -- (4.600,-5.400) -- (0.000,-5.400) -- (g.north);
-\node[note,text width=12cm] (note) at (0,-7.4) {Alternatives selected by the property, not stages on a maturity ladder.};
+\draw[edge,] (d2.south) -- (4.600,-6.6) -- (0.000,-6.6) -- (g.north);
+\node[note,text width=12cm] (note) at (0,-8.9) {Alternatives selected by the property, not stages on a maturity ladder.};
 \end{tikzpicture}

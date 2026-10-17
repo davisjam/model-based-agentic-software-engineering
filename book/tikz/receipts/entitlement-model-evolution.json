@@ -103,10 +103,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-    "candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
+    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
     "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
     "bold": "Source-derived emphasis includes unlimited; 0 credits; REJECT; admit_unlimited. Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
     "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
@@ -114,10 +114,10 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 29,
       "width_bp": 414.814,
-      "height_bp": 353.559,
+      "height_bp": 353.747,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -130,7 +130,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-    "candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
+    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
     "reason": "Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
     "evidence": [
       {
@@ -287,15 +287,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 29,
       "width_bp": 414.814,
-      "height_bp": 353.559,
+      "height_bp": 353.747,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "semantic_typography_checks": 9,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Raised entitlement split rails and reduced only surplus inline decision padding to restore readable arrow shafts.",
+    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 29,
+      "width_bp": 414.814,
+      "height_bp": 353.747
     }
   }
 }

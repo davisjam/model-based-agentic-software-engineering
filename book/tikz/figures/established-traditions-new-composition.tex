@@ -16,14 +16,14 @@
 \node[box,text width=9cm,fill=white] (g) at (0,-6.2) {\textbf{Governed engineering environment}\\Representations; evidence; constraints; controls};
 \draw[edge,] (m.south) -- (g.north -| m.south);
 \draw[edge,] (al.south) -- (g.north -| al.south);
-\draw[black,line width=.8pt] (-6,-3.7) rectangle (6,-7);
-\node[head,text width=1.4cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (tag) at (0,-3.7) {MAGE};
+\draw[black,line width=.8pt] (-6,-3.45) rectangle (6,-7);
+\node[head,text width=1.4cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (tag) at (0,-3.45) {MAGE};
 \node[box,text width=8cm,fill=white] (cap) at (0,-8.5) {\textbf{Engineering capital}\\recurring judgment made durable};
 \draw[edge,] (g) -- node[midway,right,note,fill=white] {governance conversion} (cap);
 \node[box,dashed,text width=6cm] (t) at (0,-10.1) {\textbf{Trustworthy autonomy}\\intended outcome};
 \draw[edge,] (cap) -- node[midway,right,note,fill=white] {inherited by subsequent work} (t);
 \node[note,text width=13cm] (nt) at (0,-11.6) {New economics drive a new composition; the provenance of the parts is old.};
 \begin{scope}[on background layer]
-\fill[black!5] (-6,-3.7) rectangle (6,-7);
+\fill[black!5] (-6,-3.45) rectangle (6,-7);
 \end{scope}
 \end{tikzpicture}

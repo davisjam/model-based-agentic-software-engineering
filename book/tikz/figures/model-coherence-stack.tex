@@ -16,9 +16,9 @@
 \draw[edge,dashed,-{Latex[open]}] (de) -- (co);
 \node[box,diamond,aspect=3,text width=2.8cm,fill=white] (q) at (-2,-5.4) {\textbf{Disagreement?}};
 \draw[edge,] (co) -- (q);
-\node[box,text width=3.5cm,fill=white] (g) at (-4.5,-7.5) {\textbf{GATE}\\reject disagreement};
-\node[box,text width=3cm,fill=white] (v) at (1,-7.5) {\textbf{Valid}};
-\draw[edge,] (q.south) -- (-2.000,-6.300) -- node[midway,below,note] {yes} (-4.500,-6.300) -- (g.north);
-\draw[edge,] (q.south) -- (-2.000,-6.300) -- node[midway,below,note] {no} (1.000,-6.300) -- (v.north);
-\node[note,text width=12cm] (nt) at (0,-9) {Solid: required composition. Dashed: useful enhancement, not required for the capability.};
+\node[box,text width=3.5cm,fill=white,minimum height=1.15cm] (g) at (-4.5,-8.0) {\textbf{GATE}\\reject disagreement};
+\node[box,text width=3cm,fill=white,minimum height=1.15cm] (v) at (1,-8.0) {\textbf{Valid}};
+\draw[edge,] (q.south) -- (-2.000,-6.8) -- node[midway,below,note] {yes} (-4.500,-6.8) -- (g.north);
+\draw[edge,] (q.south) -- (-2.000,-6.8) -- node[midway,below,note] {no} (1.000,-6.8) -- (v.north);
+\node[note,text width=12cm] (nt) at (0,-9.7) {Solid: required composition. Dashed: useful enhancement, not required for the capability.};
 \end{tikzpicture}

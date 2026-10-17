@@ -1,6 +1,6 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,inner ysep=1.5pt,minimum height=.65cm},
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
@@ -10,8 +10,8 @@
 \node[box,text width=12cm,fill=white] (s2) at (0,-2.6) {\textbf{Composition becomes consequential}\\\textit{Locally reasonable choices accumulate global cost}};
 \draw[edge,] (s0) -- (s1);
 \draw[edge,] (s1) -- (s2);
-\node[box,text width=4.7cm,fill=white] (d) at (-3,-4.5) {\textbf{Dependency semantics}\\DATA\_FLOW\\CONTROL\_GATE\\CROSS\_SERVICE};
-\node[box,text width=4.7cm,fill=white] (ef) at (3,-4.5) {\textbf{Effect boundedness}\\TypedPatchProducer\\DirectEditor\\ReadOnly};
+\node[box,text width=4.7cm,minimum height=1.8cm,fill=white] (d) at (-3,-4.5) {\textbf{Dependency semantics}\\DATA\_FLOW\\CONTROL\_GATE\\CROSS\_SERVICE};
+\node[box,text width=4.7cm,minimum height=1.8cm,fill=white] (ef) at (3,-4.5) {\textbf{Effect boundedness}\\TypedPatchProducer\\DirectEditor\\ReadOnly};
 \draw[edge,] (s2.south -| d.north) -- (d.north);
 \draw[edge,] (s2.south -| ef.north) -- (ef.north);
 \node[box,text width=12cm,fill=white] (td) at (0,-6.2) {\textbf{Typed declarations}: each pass declares its dependencies and effect kind};

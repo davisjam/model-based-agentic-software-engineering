@@ -8,11 +8,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[optional] (n0) -- (n1);
 \node[box,text width=4.5cm] (n2) at (0,-3.2) {\textbf{DECLARED BOUND}\\ threshold · scope · statistic};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=4cm] (report) at (-3,-5.5) {\textbf{REPORT ONLY}\\ \textit{surfaced, not enforced}};
-\node[gate,text width=4cm,fill=black!8] (gate) at (3,-5.5) {\textbf{WARNING / ADMISSION GATE}\\ \textbf{CHECKED}};
+\node[box,text width=4cm,minimum height=1.5cm] (report) at (-3,-5.9) {\textbf{REPORT ONLY}\\ \textit{surfaced, not enforced}};
+\node[gate,text width=4cm,fill=black!8,minimum height=1.5cm] (gate) at (3,-5.9) {\textbf{WARNING / ADMISSION GATE}\\ \textbf{CHECKED}};
 \draw[edge] (n2.south)--(0,-4.3)--(-3,-4.3)-- node[note,left=2pt] {no} (report.north);
 \draw[edge,line width=1pt] (n2.south)--(0,-4.3)--(3,-4.3)-- node[midway,rotate=90,font=\fontsize{14}{14}\selectfont] {$\Vert$} (gate.north);
 \node[note,text width=3cm] (t14) at (-2.8,-4.05) {gate warranted?};
-\node[note,text width=10cm] (t15) at (0,-6.9) {A quantity does not earn a gate by being measurable.};
+\node[note,text width=10cm] (t15) at (0,-7.3) {A quantity does not earn a gate by being measurable.};
 \node[note] at (3.5,-4.65) {yes};
 \end{tikzpicture}

@@ -7,11 +7,11 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,fill=white,text width=8cm] (task) at (0,0) {\textbf{Task exceeds the finite active state}\\Some reasoning state must be reconstructed};
 \node[n,fill=black!5,text width=8cm] (rep) at (0,-1.8) {\textbf{REPRESENTATION MATTERS}\\It determines how much must be reconstructed};
 \draw[edge] (task) -- (rep);
-\node[n,fill=white,text width=4.7cm] (l0) at (-3.6,-3.5) {\textbf{Raw implementation as\\working substrate}};
-\node[n,fill=white,text width=4.7cm] (r0) at (3.6,-3.5) {\textbf{Purposeful abstraction}};
-\draw[edge] (rep.south) -- (0,-2.7) -| (l0.north);
-\draw[edge] (0,-2.7) -| (r0.north);
-\foreach \id/\x/\y/\txt in {l1/-3.6/-5/{Large active state},l2/-3.6/-6.4/{Repeated reconstruction},l3/-3.6/-7.8/{Relevant structure\\may be lost},r1/3.6/-5/{Smaller relevant state},r2/3.6/-6.4/{Lower reconstruction burden}} {
+\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (l0) at (-3.6,-3.7) {\textbf{Raw implementation as\\working substrate}};
+\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (r0) at (3.6,-3.7) {\textbf{Purposeful abstraction}};
+\draw[edge] (rep.south) -- (0,-2.6) -| (l0.north);
+\draw[edge] (0,-2.6) -| (r0.north);
+\foreach \id/\x/\y/\txt in {l1/-3.6/-5.2/{Large active state},l2/-3.6/-6.4/{Repeated reconstruction},l3/-3.6/-7.8/{Relevant structure\\may be lost},r1/3.6/-5.2/{Smaller relevant state},r2/3.6/-6.4/{Lower reconstruction burden}} {
  \node[n,fill=white,text width=4.7cm] (\id) at (\x,\y) {\txt};}
 \node[n,fill=white,text width=4.7cm] (l4) at (-3.6,-9.2) {\textbf{Churn}};
 \node[n,fill=white,text width=4.7cm] (r3) at (3.6,-7.8) {\textbf{Longer coherent reasoning}};

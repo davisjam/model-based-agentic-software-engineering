@@ -104,7 +104,179 @@ def painted_segments(drawing):
     return result
 
 
-def audit_page(page, minimum_font=9, maximum_font=14):
+def box_nodes(page, drawings=None):
+    """Conservative rendered rectangular nodes, including rounded corners.
+
+    Require four straight boundary sides and actual contained text. Ellipses,
+    unlabelled chart marks and broad panels containing smaller boxes are excluded.
+    Node identity is reviewed text, never a guessed same-row semantic role.
+    PDF clipping/overpainting is not a node-ownership model: this conservative
+    candidate set still requires visual review of reported findings.
+    """
+    nodes=[]
+    for d in drawings if drawings is not None else page.get_drawings():
+        r=d['rect']
+        if d.get('color') is None or r.width<18 or r.height<12:continue
+        points=paths(d)
+        if not points or not any(math.dist(p[0],p[-1])<.1 for p in points if len(p)>3):continue
+        sides=set()
+        for item in d['items']:
+            if item[0]=='re':sides.update(('left','right','top','bottom'))
+            if item[0]!='l':continue
+            a,b=item[1:]
+            if abs(a.x-b.x)<.05:
+                if abs(a.x-r.x0)<.1:sides.add('left')
+                if abs(a.x-r.x1)<.1:sides.add('right')
+            if abs(a.y-b.y)<.05:
+                if abs(a.y-r.y0)<.1:sides.add('top')
+                if abs(a.y-r.y1)<.1:sides.add('bottom')
+        if len(sides)!=4:continue
+        text=' '.join(page.get_textbox(r).split())
+        if any(c.isalpha() for c in text):nodes.append({'rect':r,'text':text,'paint':d['seqno']})
+    return [n for n in nodes if not any(n is not m and n['rect'].contains(m['rect'])
+            and n['rect'].get_area()>m['rect'].get_area()*1.2 for m in nodes)]
+
+
+def terminal_approaches(page):
+    """Measure recognizable straight-shaft, filled-outline arrow approaches.
+
+    Includes the arrowhead in the approach length. A bend or intersecting branch
+    rail terminates the usable straight run. Restrict to text-bearing box targets;
+    chart arrows, open tips, curved shafts and nonrectangular nodes are not inferred.
+    """
+    drawings=page.get_drawings();nodes=box_nodes(page,drawings)
+    heads=[d for d in drawings if d.get('fill') is not None and max(d['fill'])<.4
+           and 1<max(d['rect'].width,d['rect'].height)<=12
+           and all(item[0] in ('l','c') for item in d['items'])
+           and len(paths(d))==1
+           and math.dist(paths(d)[0][0],paths(d)[0][-1])<.1]
+    shafts=[d for d in drawings if d.get('fill') is None and d.get('color') is not None
+            and d.get('stroke_opacity',0)>.5 and max(d['color'])<.65
+            and all(item[0]=='l' for item in d['items'])]
+    # Panel borders can crowd an arrowhead just as a separate branch rail can.
+    # Include their straight sides even when PDF encodes a rectangle as `re` or
+    # combines rounded corners and straight edges in the same drawing.
+    segments=[]
+    head_paints={h['seqno'] for h in heads}
+    for d in drawings:
+        if d['seqno'] in head_paints:continue
+        if d.get('color') is None or d.get('stroke_opacity',0)<=.5 or max(d['color'])>=.65:continue
+        for item in d['items']:
+            if item[0]=='l':segments.append((tuple(item[1]),tuple(item[2])))
+            elif item[0]=='re':
+                r=item[1];corners=[r.tl,r.tr,r.br,r.bl,r.tl]
+                segments.extend((tuple(a),tuple(b)) for a,b in zip(corners,corners[1:]))
+    results=[];seen=set()
+    for d in shafts:
+        for path in paths(d):
+            if len(path)<2 or math.dist(path[0],path[-1])<.1:continue
+            # Either end can carry an arrow, including bidirectional connectors.
+            for run in (path,list(reversed(path))):
+                start,end=run[-2:];length=math.dist(start,end)
+                if length<.05:continue
+                ux,uy=(end[0]-start[0])/length,(end[1]-start[1])/length
+                # Merge collinear PDF segments; PDF operation splitting is not a bend.
+                for previous in reversed(run[:-2]):
+                    if abs((start[0]-previous[0])*uy-(start[1]-previous[1])*ux)>.05:break
+                    if (start[0]-previous[0])*ux+(start[1]-previous[1])*uy<0:break
+                    start=previous
+                shaft_ux,shaft_uy=ux,uy
+                for h in heads:
+                    ux,uy=shaft_ux,shaft_uy
+                    if not (h['rect']+(-.7,-.7,.7,.7)).contains(fitz.Point(end)):continue
+                    vertices=paths(h)[0]
+                    # PGF can reverse a sub-head-length terminal shaft when the
+                    # arrowhead itself extends back past the last bend. Recover
+                    # its direction from the pointed outline and nearby target.
+                    if length<4:
+                        opposite=max(vertices,key=lambda v:-(v[0]-end[0])*ux-(v[1]-end[1])*uy)
+                        if any(not n['rect'].contains(fitz.Point(opposite)) and n['rect'].contains(fitz.Point(opposite[0]-2*ux,opposite[1]-2*uy)) for n in nodes):ux,uy=-ux,-uy
+                    tip=max(vertices,key=lambda v:(v[0]-end[0])*ux+(v[1]-end[1])*uy)
+                    advance=(tip[0]-end[0])*ux+(tip[1]-end[1])*uy
+                    if advance<.3 or abs((tip[0]-end[0])*uy-(tip[1]-end[1])*ux)>.5:continue
+                    neighbors=sorted((v for v in vertices if math.dist(v,tip)>.05),key=lambda v:math.dist(v,tip))[:2]
+                    if not neighbors or not all(abs((v[0]-tip[0])*uy-(v[1]-tip[1])*ux) <= 2*abs((v[0]-tip[0])*ux+(v[1]-tip[1])*uy)+.05 for v in neighbors):continue
+                    target=next((n for n in nodes if not n['rect'].contains(fitz.Point(tip))
+                           and n['rect'].contains(fitz.Point(tip[0]+2*ux,tip[1]+2*uy))),None)
+                    if target is None:continue
+                    key=(h['seqno'],target['paint'])
+                    if key in seen:continue
+                    seen.add(key)
+                    distance=(tip[0]-start[0])*ux+(tip[1]-start[1])*uy
+                    # A separately drawn T-junction is as relevant as an explicit bend.
+                    for a,b in segments:
+                        vx,vy=b[0]-a[0],b[1]-a[1];cross=ux*vy-uy*vx
+                        if abs(cross)<1e-6:continue
+                        ax,ay=a[0]-tip[0],a[1]-tip[1]
+                        t=(ax*vy-ay*vx)/cross;s=(ax*uy-ay*ux)/cross
+                        if -distance+.1<t<-.1 and -.001<=s<=1.001:distance=-t
+                    direction=('right' if ux>0 else 'left') if abs(ux)>.99 else ('down' if uy>0 else 'up') if abs(uy)>.99 else 'diagonal'
+                    results.append({'target':target['text'],'target_bbox':list(target['rect']),
+                        'tip_bp':list(tip),'approach_pt':distance/PT_TO_BP,'direction':direction,
+                        'bbox':list(fitz.Rect(start,tip).normalize()+(-2,-2,2,2))})
+    return results
+
+
+def layout_findings(page, contract=None, minimum_approach=9):
+    """Explicit peer semantics plus conservative terminal geometry.
+
+    Contract: peer_groups[{name,labels,align,equal_height,equal_width,tolerance_pt}],
+    terminal_exceptions[{target,direction,minimum_pt,reason}]. Labels select one
+    containing node by exact normalized phrase; ambiguous/missing selectors fail.
+    The 9pt floor is a lower bound; 12pt remains the normal editorial aim.
+    """
+    contract=contract or {};findings=[];nodes=box_nodes(page);approaches=terminal_approaches(page)
+    def add(code,text,rect,detail):
+        findings.append({'code':code,'text':text,'bbox':list(rect),'detail':detail})
+    def selected(label,items,key):
+        label=' '.join(label.split())
+        pattern=r'(?<!\w)'+re.escape(label)+r'(?!\w)'
+        return [n for n in items if re.search(pattern,n[key])]
+    exceptions={}
+    for e in contract.get('terminal_exceptions',[]):
+        hits=[a for a in selected(e['target'],approaches,'target') if a['direction']==e['direction']]
+        if len(hits)!=1 or not str(e.get('reason','')).strip() or not 0<=e.get('minimum_pt',-1)<=minimum_approach:
+            add('layout-contract',e.get('target',''),page.rect,'Terminal exception must uniquely match one target/direction, state a reason, and specify a floor from 0 to 9pt');continue
+        if id(hits[0]) in exceptions:
+            add('layout-contract',e['target'],page.rect,'Duplicate terminal exception');continue
+        exceptions[id(hits[0])]=e
+    for a in approaches:
+        exception=exceptions.get(id(a))
+        floor=exception['minimum_pt'] if exception else minimum_approach
+        if exception and a['approach_pt']+.05>=floor:
+            add('reviewed-terminal-exception',a['target'],a['bbox'],
+                f"{a['approach_pt']:.2f}pt measured; normal floor {minimum_approach:g}pt; reviewed floor {floor:g}pt: {exception['reason']}")
+            findings[-1]['reviewed']=True
+        if a['approach_pt']+.05<floor:
+            add('terminal-clearance',a['target'],a['bbox'],
+                f"{a['approach_pt']:.2f}pt from last bend/branch/start to arrowtip; floor {floor:g}pt, editorial aim 12pt; direction {a['direction']}")
+    alignments={'top':lambda r:r.y0,'center_y':lambda r:(r.y0+r.y1)/2,'bottom':lambda r:r.y1,
+                'left':lambda r:r.x0,'center_x':lambda r:(r.x0+r.x1)/2,'right':lambda r:r.x1}
+    for group in contract.get('peer_groups',[]):
+        labels=group.get('labels',[]);hits=[selected(s,nodes,'text') for s in labels]
+        if len(labels)<2 or any(len(h)!=1 for h in hits) or len({h[0]['paint'] for h in hits if len(h)==1})!=len(labels):
+            add('layout-contract',group.get('name','peer group'),page.rect,'Peer labels must resolve uniquely to at least two distinct rendered boxes');continue
+        members=[h[0] for h in hits];rect=fitz.Rect(members[0]['rect'])
+        for n in members[1:]:rect|=n['rect']
+        tolerance=group.get('tolerance_pt',1)*PT_TO_BP
+        if not 0<=tolerance<=3*PT_TO_BP:raise ValueError('Peer tolerance must be between 0 and 3pt')
+        checks=[]
+        for axis in group.get('align',[]):
+            if axis not in alignments:raise ValueError('Unknown peer alignment: '+axis)
+            checks.append((axis,[alignments[axis](n['rect']) for n in members]))
+        for dimension in ('height','width'):
+            if group.get('equal_'+dimension):checks.append((dimension,[getattr(n['rect'],dimension) for n in members]))
+        if not checks:
+            add('layout-contract',group.get('name','peer group'),rect,'Peer groups require at least one alignment or size constraint')
+        for name,values in checks:
+            delta=max(values)-min(values)
+            if delta>tolerance+.05:
+                add('peer-alignment',group.get('name',' / '.join(labels)),rect,
+                    f"Reviewed peers differ in {name} by {delta/PT_TO_BP:.2f}pt (tolerance {tolerance/PT_TO_BP:g}pt)")
+    return findings
+
+
+def audit_page(page, minimum_font=9, maximum_font=14, layout_contract=None):
     findings=[]
     def add(code, text, rect, detail):
         findings.append(dict(code=code,text=text[:160],bbox=[round(v,2) for v in rect],detail=detail))
@@ -173,15 +345,19 @@ def audit_page(page, minimum_font=9, maximum_font=14):
         if totals[seq]>=2:
             add('stroke-through-text',label['text'],label['rect'],
                 f'Dark vector stroke crosses {count} glyph cores here, {totals[seq]} total (paint {seq})')
+    findings.extend(layout_findings(page,layout_contract))
     return findings
 
 
-def audit_pdf(pdf, manifest=None, output=None, annotated=None, minimum_font=9, maximum_font=14):
+def audit_pdf(pdf, manifest=None, output=None, annotated=None, minimum_font=9, maximum_font=14, layout_contracts=None):
     doc=fitz.open(pdf)
     names={int(v['page']):k for k,v in (manifest or {}).items()}
-    findings=[]
+    findings=[];terminal_count=0
+    unknown=set(layout_contracts or {})-set(names.values())
+    if unknown:raise ValueError('Layout contracts have no manifest page: '+', '.join(sorted(unknown)))
     for i,page in enumerate(doc,1):
-        for finding in audit_page(page,minimum_font,maximum_font):
+        terminal_count+=len(terminal_approaches(page))
+        for finding in audit_page(page,minimum_font,maximum_font,(layout_contracts or {}).get(names.get(i))):
             finding.update(page=i,source=names.get(i,f'page-{i}'))
             findings.append(finding)
             if annotated:
@@ -190,8 +366,12 @@ def audit_pdf(pdf, manifest=None, output=None, annotated=None, minimum_font=9, m
     report={'pdf':str(pdf),'pdf_sha256':hashlib.sha256(Path(pdf).read_bytes()).hexdigest(),'pages':len(doc),'mode':'audit-only','counts':dict(Counter(f['code'] for f in findings)),
             'limitations':['Glyph cores approximate ink; mathematical layout and deliberate overlays may flag.',
                           'Complex clipping, nonzero winding holes and rotated glyph ink are not fully modeled.',
-                          'Geometry cannot prove semantic fidelity, arrow meaning, or node ownership.'],
-            'findings':findings}
+                          'Geometry cannot prove semantic fidelity, arrow meaning, or node ownership.',
+                          'Terminal sensor covers filled Stealth/Latex-style arrowheads, straight shafts and rectangular text nodes only; 9pt floor, 12pt aim.',
+                          'Peer equality is checked only for explicitly reviewed label groups, not inferred for arbitrary same-row panels.'],
+            'findings':findings,'unresolved_count':sum(not f.get('reviewed',False) for f in findings),
+            'checked_terminal_approaches':terminal_count,
+            'reviewed_peer_groups':sum(len(c.get('peer_groups',[])) for c in (layout_contracts or {}).values())}
     if output:
         Path(output).parent.mkdir(parents=True,exist_ok=True)
         Path(output).write_text(json.dumps(report,indent=2)+'\n')
@@ -207,7 +387,8 @@ if __name__=='__main__':
     parser.add_argument('--manifest',type=Path)
     parser.add_argument('--output',type=Path)
     parser.add_argument('--annotated',type=Path)
+    parser.add_argument('--layout-contracts',type=Path,help='Reviewed source-to-layout-contract JSON mapping')
     parser.add_argument('--strict',action='store_true')
     args=parser.parse_args()
-    report=audit_pdf(args.pdf,json.loads(args.manifest.read_text()) if args.manifest else None,args.output,args.annotated)
-    raise SystemExit(1 if args.strict and report['findings'] else 0)
+    report=audit_pdf(args.pdf,json.loads(args.manifest.read_text()) if args.manifest else None,args.output,args.annotated,layout_contracts=json.loads(args.layout_contracts.read_text()) if args.layout_contracts else None)
+    raise SystemExit(1 if args.strict and report['unresolved_count'] else 0)

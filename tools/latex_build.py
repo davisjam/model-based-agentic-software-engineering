@@ -33,6 +33,28 @@ def diagnostics(log: str) -> tuple[list[str], list[str]]:
     return rejected, allowed
 
 
+def single_page_tables(latex: str, labels: set[str]) -> str:
+    """Float selected compact comparisons together on a dedicated table page.
+
+    Keep the first header and final rule exactly once. This is an explicit print
+    layout choice: ordinary longtables retain their multipage behavior.
+    """
+    def convert(match):
+        block = match[0]
+        if not any(r'\label{' + label + '}' in block for label in labels):
+            return block
+        preamble, content = block.split(r'\caption', 1)
+        caption, content = content.split(r'\tabularnewline', 1)
+        header, content = content.split(r'\endfirsthead', 1)
+        _, content = content.split(r'\endhead', 1)
+        footer, body = content.split(r'\endlastfoot', 1)
+        body = body.removesuffix(r'\end{longtable}')
+        tabular = re.sub(r'\\begin\{longtable\}(?:\[[^]]*\])?', lambda _: r'\begin{tabular}', preamble, count=1)
+        return (r'\begin{table}[p]' + '\n' + r'\centering\footnotesize\booktablecaptionstyle' + '\n' + r'\caption' + caption + '\n'
+                + tabular + header + body + footer + r'\end{tabular}' + '\n' + r'\end{table}')
+    return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', convert, latex, flags=re.S)
+
+
 def bold_table_headers(latex: str) -> str:
     """Style Pandoc longtable header cells, including repeated page headers.
 

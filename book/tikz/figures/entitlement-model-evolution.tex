@@ -9,14 +9,14 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,fill=white,text width=4cm] (group) at (-3.7,-1.5) {Group — credits: integer};
 \node[n,fill=white,text width=2cm] (sum) at (-5.2,-2.85) {$\Sigma$ credits};
 \node[n,fill=white,text width=2.6cm] (cmp) at (-1.9,-2.85) {credits $\geq$ pages?};
-\draw[edge] (group.south) -- (-3.7,-2.2) -| (sum.north);\draw[edge] (sum) -- (cmp);
+\draw[edge] (group.south) -- (-3.7,-2.05) -| (sum.north);\draw[edge] (sum) -- (cmp);
 \node[note,text width=6cm] (a0) at (-3.7,-3.85) {An adequate reduction\\— for this domain};
 \node[head,text width=6cm] (h1) at (3.7,0) {2 · The system evolves};
 \node[note,text width=6cm] at (3.7,-.65) {\textit{Unlimited entitlement is introduced}};
 \node[n,text width=2.5cm] (g2) at (3.7,-1.5) {Group};
 \node[n,fill=white,text width=2.5cm] (fin) at (2.0,-2.85) {finite(credits)};
 \node[n,fill=white,text width=2.5cm] (unlim) at (5.4,-2.85) {\textbf{unlimited}};
-\draw[edge] (g2.south) -- (3.7,-2.2) -| (fin.north);\draw[edge] (g2.south) -- (3.7,-2.2) -| (unlim.north);
+\draw[edge] (g2.south) -- (3.7,-2.05) -| (fin.north);\draw[edge] (g2.south) -- (3.7,-2.05) -| (unlim.north);
 \node[note,text width=6cm] (a1) at (3.7,-3.85) {The entitlement state space has grown};
 \node[head,text width=6cm] (h2) at (-3.7,-5.4) {3 · Stale admission model};
 \node[note,text width=6cm] at (-3.7,-6.05) {\textit{One representation does not evolve}};
@@ -24,9 +24,9 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,fill=white,text width=2.9cm] (sf) at (-2.35,-7.1) {$\Sigma$ finite credits\\only};
 \draw[edge] (gs) -- (sf);
 \node[note,text width=4.5cm] at (-2.65,-8.45) {“Unlimited” has no\\representation — the\\distinction is discarded here};
-\node[n,fill=white,text width=1.7cm] (zero) at (-5.45,-9.5) {\textbf{0 credits}};
+\node[n,fill=white,text width=1.7cm,inner sep=3pt] (zero) at (-5.45,-9.5) {\textbf{0 credits}};
 \node[n,fill=white,text width=1.1cm,inner sep=3pt] (lt) at (-3.4,-9.5) {$0<38$};
-\node[n,fill=black!70,text=white,text width=1.8cm,inner sep=3pt] (reject) at (-1.45,-9.5) {\textbf{REJECT}};
+\node[n,fill=black!70,text=white,text width=1.6cm,inner sep=3pt] (reject) at (-1.45,-9.5) {\textbf{REJECT}};
 \draw[edge] (gs.south) -- node[lab,left] {unlimited\\user} (zero.north);
 \draw[edge] (zero) -- (lt);\draw[edge] (lt) -- (reject);
 \node[note,text width=6cm] (a2) at (-3.7,-11.1) {The server’s correct admission\\logic is never reached};

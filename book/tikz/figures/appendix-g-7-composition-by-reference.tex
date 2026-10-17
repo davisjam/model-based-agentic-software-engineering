@@ -6,11 +6,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=4cm] (n0) at (0,0.0) {\textbf{USER JOURNEY}\\ goal · criticality};
 \node[box,text width=4cm] (n1) at (0,-1.8) {\textbf{SERVICE / NODE}\\ stable identity};
 \draw[optional] (n0) -- (n1);
-\node[box,text width=2.9cm] (p0) at (-4,-4) {\textbf{COVERAGE}\\ exercised?};
+\node[box,text width=2.9cm,minimum height=1.5cm] (p0) at (-4,-4) {\textbf{COVERAGE}\\ exercised?};
 
-\node[box,text width=2.9cm] (p1) at (0,-4) {\textbf{TEST PLACEMENT}\\ where run?};
+\node[box,text width=2.9cm,minimum height=1.5cm] (p1) at (0,-4) {\textbf{TEST PLACEMENT}\\ where run?};
 
-\node[box,text width=2.9cm] (p2) at (4,-4) {\textbf{EXECUTION POLICY}\\ plan\_for(host)};
+\node[box,text width=2.9cm,minimum height=1.5cm] (p2) at (4,-4) {\textbf{EXECUTION POLICY}\\ plan\_for(host)};
 
 \node[box,text width=4cm] (join) at (0,-6.3) {\textbf{JOINED VIEW}\\ \textit{not a mega-model}};
 

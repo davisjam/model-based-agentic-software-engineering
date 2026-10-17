@@ -7,23 +7,23 @@
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[box,text width=10cm,fill=white] (p) at (0,0) {\textbf{People responsible}\\Set direction; exercise judgment; accept responsibility};
 \node[box,text width=10cm,fill=white] (g) at (0,-2.1) {\textbf{Governed environment}\\\textit{Makes work possible and safe to delegate}};
-\draw[edge,] (p) -- node[midway,right,note,fill=white] {intent, goals, constraints} (g);
-\node[box,text width=2.7cm,inner sep=3pt] (env0) at (-4.5,-3.8) {\textbf{Representations}\\what matters\\made explicit};
-\node[box,text width=2.6cm,inner sep=3pt] (env1) at (-1.5,-3.8) {\textbf{Evidence}\\what must be shown};
-\node[box,text width=2.6cm,inner sep=3pt] (env2) at (1.5,-3.8) {\textbf{Constraints}\\what agents may do};
-\node[box,text width=2.6cm,inner sep=3pt] (env3) at (4.5,-3.8) {\textbf{Enforcement}\\how rules apply};
-\draw (-6.1,-1.5) rectangle (6.1,-4.8);
+\draw[edge,] (p) -- node[pos=.2,right,note,fill=white] {intent, goals, constraints} (g);
+\node[box,text width=2.7cm,inner sep=3pt,minimum height=1.45cm] (env0) at (-4.5,-3.8) {\textbf{Representations}\\what matters\\made explicit};
+\node[box,text width=2.6cm,inner sep=3pt,minimum height=1.45cm] (env1) at (-1.5,-3.8) {\textbf{Evidence}\\what must be shown};
+\node[box,text width=2.6cm,inner sep=3pt,minimum height=1.45cm] (env2) at (1.5,-3.8) {\textbf{Constraints}\\what agents may do};
+\node[box,text width=2.6cm,inner sep=3pt,minimum height=1.45cm] (env3) at (4.5,-3.8) {\textbf{Enforcement}\\how rules apply};
+\draw (-6.1,-1.05) rectangle (6.1,-4.8);
 \node[head,text width=10cm,fill=white] (out) at (0,-6.8) {\textbf{OUTCOME}: \textnormal{\textit{what the work produces}}};
 \draw[edge,draw=none] (g.south) -- (out.north);
 \draw[edge] (0,-4.8)--node[note,right,text width=5.7cm] {Delegated work: analysis, design,\\research, evaluation}(out.north);
-\node[box,text width=5cm] (a) at (-3.1,-8.7) {\textbf{Artifact / system}\\Bridge; circuit; software; process\\[3pt]\textit{Inspected, tested, operated,\\observed directly}};
-\node[box,text width=5cm] (d) at (3.1,-8.7) {\textbf{Decision / action}\\Recommendation; approval;\\plan; transaction\\[3pt]\textit{Consequences become observable\\through subsequent events}};
-\node[note,text width=0.5cm] (or) at (0,-8.7) {OR};
-\draw (-6.1,-6.2) rectangle (6.1,-10.2);
+\node[box,text width=5cm,minimum height=3.5cm] (a) at (-3.1,-9) {\textbf{Artifact / system}\\Bridge; circuit; software; process\\[3pt]\textit{Inspected, tested, operated,\\observed directly}};
+\node[box,text width=5cm,minimum height=3.5cm] (d) at (3.1,-9) {\textbf{Decision / action}\\Recommendation; approval;\\plan; transaction\\[3pt]\textit{Consequences become observable\\through subsequent events}};
+\node[note,text width=0.5cm] (or) at (0,-9) {OR};
+\draw (-6.1,-5.95) rectangle (6.1,-11);
 \draw[edge] (6.1,-8.7)--(7,-8.7)--node[note,right,text width=1.6cm] {\textbf{Evidence};\\learning}(7,0)--(p.east);
-\node[note,text width=12cm] (ex) at (0,-11.4) {Environment examples: models, data, assumptions, standards, policies, tools,\\agent configurations, review rules, monitoring and controls.};
+\node[note,text width=12cm] (ex) at (0,-12) {Environment examples: models, data, assumptions, standards, policies, tools,\\agent configurations, review rules, monitoring and controls.};
 \begin{scope}[on background layer]
-\fill[black!5] (-6.1,-1.5) rectangle (6.1,-4.8);\draw[draw=black!50,fill=white] (-6.1,-6.2) rectangle (6.1,-10.2);
+\fill[black!5] (-6.1,-1.05) rectangle (6.1,-4.8);\draw[draw=black!50,fill=white] (-6.1,-5.95) rectangle (6.1,-11);
 \end{scope}
 \fill (-3.7,.24) circle (.07);\fill (-3.45,.29) circle (.08);\fill (-3.2,.24) circle (.07);
 \draw[line width=1.5pt] (-3.7,.12)--(-3.7,-.04) (-3.45,.16)--(-3.45,-.05) (-3.2,.12)--(-3.2,-.04);

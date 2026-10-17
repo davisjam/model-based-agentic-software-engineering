@@ -32,10 +32,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
-    "candidate_sha256": "66c8e99a2a049fe3fc5221c5d23587bf68ea13509898db7fbe6d9e3a968a57f5",
+    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
     "fill": "Residual and explain-residual share 5%; all ordinary stages stay white.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -43,10 +43,10 @@
     "visual_review": "Residual and explanation share a pale role fill; three causes use equal white boxes.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 63,
-      "width_bp": 396.226,
-      "height_bp": 226.289,
+      "width_bp": 394.1,
+      "height_bp": 226.109,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -60,7 +60,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
-    "candidate_sha256": "66c8e99a2a049fe3fc5221c5d23587bf68ea13509898db7fbe6d9e3a968a57f5",
+    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -103,15 +103,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 63,
-      "width_bp": 396.226,
-      "height_bp": 226.289,
+      "width_bp": 394.1,
+      "height_bp": 226.109,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 2
+      "semantic_typography_checks": 2,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Separated and equalized explanation peers, raised their fork, and moved the modeling-loop column right to lengthen the feedback terminal.",
+    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 63,
+      "width_bp": 394.1,
+      "height_bp": 226.109
     }
   }
 }

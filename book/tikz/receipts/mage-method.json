@@ -110,10 +110,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-    "candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
+    "candidate_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
     "fill": "One 8% role marks the two named MAGE principles equally; ordinary conditions, outcomes and feedback nodes white.",
     "bold": "Source-derived emphasis includes New engineering imbalance; Modeling Principle; Alignment Principle; Governed Engineering Environment; Engineering Capital; Commodity intelligence; Engineering Churn; Governance conversion. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical causal chain; orthogonal dashed churn branches. Outer dotted scope feedback and left governance feedback remain because these named loops are the argument.",
@@ -121,10 +121,10 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 2,
-      "width_bp": 410.628,
-      "height_bp": 379.261,
+      "width_bp": 424.801,
+      "height_bp": 387.85,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -137,7 +137,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-    "candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
+    "candidate_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -454,15 +454,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 2,
-      "width_bp": 410.628,
-      "height_bp": 379.261,
+      "width_bp": 424.801,
+      "height_bp": 387.85,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 16
+      "semantic_typography_checks": 16,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Separated the final capital stage and moved the churn sidebar outward so both dashed arrow tips have forward terminal shafts instead of folding behind their bend.",
+    "candidate_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 2,
+      "width_bp": 424.801,
+      "height_bp": 387.85
     }
   }
 }

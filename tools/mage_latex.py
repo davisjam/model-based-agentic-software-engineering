@@ -496,9 +496,12 @@ def _prepare_record(task):
         return content.replace(r'\includegraphics[', r'\includegraphics[height=.66\textheight,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
-    from latex_build import bold_table_headers
+    from latex_build import bold_table_headers, single_page_tables
     latex = bold_table_headers(latex)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
+    # This five-column comparison fits at its normal table size on one page.
+    # Float it intact instead of stranding the final row on a continuation page.
+    latex = single_page_tables(latex, {'semantic-commitment-spectrum'})
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + slug + ':' + m[2] + m[3], latex)
     # Each record retains its explicit chapter title and a unique chapter anchor.
@@ -537,6 +540,7 @@ def native_float_lists(chapters):
         path = ROOT / chapter
         def collect(match):
             content, kind = match[0], match[1]
+            if kind == 'table': kind = 'longtable'
             cap = re.search(r'\\caption(?:\[([^]]*)\])?', content)
             if not cap: return content
             body = argument(content[cap.start():], cap[0])
@@ -549,7 +553,7 @@ def native_float_lists(chapters):
                 content = content.replace(full, full + r'\label{' + label + '}', 1)
             entries[kind].append(r'\noindent\ref*{' + label + r'}\quad ' + title + r'\dotfill\pageref*{' + label + r'}\par\smallskip')
             return content
-        value = re.sub(r'\\begin\{(figure|longtable)\}.*?\\end\{\1\}', collect, path.read_text(), flags=re.S)
+        value = re.sub(r'\\begin\{(figure|longtable|table)\}.*?\\end\{\1\}', collect, path.read_text(), flags=re.S)
         path.write_text(value)
     return '\n'.join(r'\chapter*{List of ' + title + '}' + '\n{\\small\n' + '\n'.join(entries[kind]) + '\n}' for kind, title in [('figure','Figures'),('longtable','Tables')])
 
@@ -647,7 +651,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
             full_text = full_chapter.read_text()
             figures += full_text.count(r'\begin{figure}')
             tables += sum(r'\caption' in block for block in re.findall(
-                r'\\begin\{longtable\}.*?\\end\{longtable\}', full_text, flags=re.S))
+                r'\\begin\{(?:longtable|table)\}.*?\\end\{(?:longtable|table)\}', full_text, flags=re.S))
             previous = record['part']
         selected = set(slugs)
         records = [record for record in records if record['slug'] in selected]

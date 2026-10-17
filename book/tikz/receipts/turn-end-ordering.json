@@ -23,21 +23,21 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
     "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn's closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
+    "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn’s closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Modeled ordering uses heavy horizontal arrows; writes use lighter aligned vertical ports.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 53,
       "width_bp": 376.538,
-      "height_bp": 181.075,
+      "height_bp": 180.514,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -178,7 +178,7 @@
         "italic": true
       },
       {
-        "text": "the turn's closing message",
+        "text": "the turn’s closing message",
         "bold": true,
         "italic": false
       },
@@ -190,15 +190,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 53,
       "width_bp": 376.538,
-      "height_bp": 181.075,
+      "height_bp": 180.514,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8
+      "semantic_typography_checks": 8,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "retained",
+    "reason": "The three turn-end hooks use the same three-line structure and clear ordered shafts. The shared slot is an enclosing result, not another hook.",
+    "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 53,
+      "width_bp": 376.538,
+      "height_bp": 180.514
     }
   }
 }

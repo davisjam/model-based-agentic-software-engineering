@@ -10,12 +10,12 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,text width=5cm,fill=white] (v) at (3.5,-2.8) {\textbf{ANALYTICAL GRAPH VIEW}};
 \draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {\textbf{\textit{consumed by}}\\\textbf{\textit{scheduler}}} (-3.5,-1.4) -- (e.north);
 \draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {\textbf{\textit{projected /}}\\\textbf{\textit{checked}}} (3.5,-1.4) -- (v.north);
-\node[head,text width=5cm] (a) at (-3.5,-4.2) {Governing role};
-\node[head,text width=5cm] (c) at (3.5,-4.2) {Correspondence};
-\node[note,text width=12cm] (n) at (0,-6.5) {Stronger correspondence does not make the view govern execution.};
-\node[note,text width=5cm] at (3.5,-3.6) {Analysis · governance};
+\node[head,text width=5cm] (a) at (-3.5,-4.7) {Governing role};
+\node[head,text width=5cm] (c) at (3.5,-4.7) {Correspondence};
+\node[note,text width=12cm] (n) at (0,-7.0) {Stronger correspondence does not make the view govern execution.};
+\node[note,text width=5cm] at (3.5,-4.0) {Analysis · governance};
 
-\draw[edge] (v.south) -- (3.5,-3.3);
-\node[note,text width=5.6cm] at (-3.5,-5.2) {Computation model $\rightarrow$ execution};
-\node[note,text width=5.6cm] at (3.5,-5.2) {Computation model / parity-bound declarations $\rightarrow$ analytical view};
+\draw[edge] (v.south) -- (3.5,-3.7);
+\node[note,text width=5.6cm] at (-3.5,-5.7) {Computation model $\rightarrow$ execution};
+\node[note,text width=5.6cm] at (3.5,-5.7) {Computation model / parity-bound declarations $\rightarrow$ analytical view};
 \end{tikzpicture}

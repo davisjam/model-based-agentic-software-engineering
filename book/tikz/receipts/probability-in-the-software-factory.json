@@ -34,10 +34,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-    "candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
+    "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
     "fill": "Encoded property and acceptable region share 5%, tying specification to tolerance.",
     "bold": "Source-derived emphasis includes A better fabricator does not raise correct encoding.; PRODUCTION PROCESS; ACCEPTABLE REGION; PROCESS DESIGN; Measurement; TOLERANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -45,7 +45,7 @@
     "visual_review": "Probability bracket, two separate aligned inputs and four realizations retained; tolerance input no longer detours through outputs.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 84,
       "width_bp": 420.234,
       "height_bp": 352.203,
@@ -62,7 +62,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-    "candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
+    "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -255,7 +255,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 84,
       "width_bp": 420.234,
       "height_bp": 352.203,
@@ -263,7 +263,39 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 7,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Align four production-process peer boxes at common top/bottom.",
+    "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 84,
+      "width_bp": 420.234,
+      "height_bp": 352.203
     }
   }
 }

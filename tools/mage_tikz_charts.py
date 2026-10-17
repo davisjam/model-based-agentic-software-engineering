@@ -97,7 +97,7 @@ for part in range(1,8):
  s=r'\draw[line width=.7pt] (0,0)--(12.6,0);'+'\n'
  for i,label in enumerate(labels):
   s+=r'\node[circle,draw,fill='+('black' if i+1==part else 'white')+',minimum size='+('10pt' if i+1==part else '6pt')+',inner sep=0pt] at ('+str(i*2.1)+',0) {};\n'
-  s+=r'\node[align=center,text width=2cm,anchor=north'+(',font=\\bfseries' if i+1==part else '')+'] at ('+str(i*2.1)+',-.25) {'+label.replace('MAGE in Motion',r'MAGE in\\Motion')+'};\n'
+  s+=r'\node[align=center,text width=2cm,anchor=north'+(',font=\\bfseries' if i+1==part else '')+'] at ('+str(i*2.1)+',-.25) {'+label.replace('MAGE in Motion',r'MAGE in\\Motion').replace('The Problem',r'The\\Problem')+'};\n'
  s+=r'\node[align=center,text width=14cm,font=\bfseries\fontsize{11}{13}\selectfont] at (6.3,1) {\magebookref{part:'+str(part)+'}{Chapter '+str(part)+'} · '+chapter_names[part-1]+r'};'+'\n'
  write(f'nav-subway-p{part}',s,f'Current chapter{part} emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.',[])
 # Historical plots retain their historical window. Never substitute the newer series.
@@ -136,7 +136,7 @@ for path,text in generated.items():
     if path.suffix == '.json' and path.exists():
         previous=json.loads(path.read_text())
         receipt=json.loads(text)
-        for field in ('style_review','typography_review'):
+        for field in ('style_review','typography_review','layout_review'):
             if field in previous:
                 receipt[field]=previous[field]
         text=json.dumps(receipt,indent=2)+'\n'

@@ -14,12 +14,12 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (s2) -- node[lab] {exposes properties for analysis} (s3);
 \node[n,text width=6cm,fill=white] (s4) at (0,-9) {\textbf{Governed Engineering\\Environment}\\\textit{Modeling and Alignment\\work together}};
 \draw[edge] (s3) -- (s4);
-\node[n,text width=6cm,fill=white] (s5) at (0,-11.1) {\textbf{Engineering Capital}\\\textit{Effort compounds over time}\\\textit{Can depreciate; maintain or retire}};
+\node[n,text width=6cm,fill=white] (s5) at (0,-11.4) {\textbf{Engineering Capital}\\\textit{Effort compounds over time}\\\textit{Can depreciate; maintain or retire}};
 \draw[edge] (s4) -- node[lab] {when future value exceeds upkeep} (s5);
 \node[n,text width=3cm,fill=white] (ci) at (-5.4,-2.3) {\textbf{Commodity\\intelligence}\\Implementation\\cheap and abundant};
 \draw[edge] (ci) -- (s1);
 \node[lab] at (-5.4,-.65) {changes the economics};
-\node[n,text width=3cm,fill=white] (churn) at (5.4,-5.7) {\textbf{Engineering\\Churn}\\Weak\\representation:\\reconstruction\\Weak enforcement:\\repeated\\adjudication\\\textit{Same work paid again}};
+\node[n,text width=3cm,fill=white] (churn) at (5.9,-5.7) {\textbf{Engineering\\Churn}\\Weak\\representation:\\reconstruction\\Weak enforcement:\\repeated\\adjudication\\\textit{Same work paid again}};
 \draw[edge,dashed] (s2.east) -- (3.7,-4.5) |- ([yshift=8mm]churn.west);
 \draw[edge,dashed] (s3.east) -- (3.7,-6.8) |- ([yshift=-8mm]churn.west);
 \node[n,text width=3cm] (conv) at (-5.4,-9) {\textbf{Governance conversion}\\Recurring failures and judgment adapt models and controls};

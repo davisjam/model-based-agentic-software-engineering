@@ -21,10 +21,10 @@
   "alt": "From local MAGE adoption to the product GEE",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
-    "candidate_sha256": "64468e39474761cd40efc317dc8cec77bb1c9a5c970632072f518bb21d0a45ac",
+    "candidate_sha256": "8df5ef58676b6e5d42b2a5822324c0a4d6eec552ba9bcbee841a17d38c1fad3f",
     "fill": "Only the assembled governed environment has light fill; inputs, evidence, reasoning and alignment peers stay white.",
     "bold": "Source-derived emphasis includes PRODUCT DISCOVERY; AUTONOMOUS REASONING. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
     "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
@@ -32,10 +32,10 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 124,
-      "width_bp": 389.815,
-      "height_bp": 365.936,
+      "width_bp": 389.563,
+      "height_bp": 415.982,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -48,7 +48,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
-    "candidate_sha256": "64468e39474761cd40efc317dc8cec77bb1c9a5c970632072f518bb21d0a45ac",
+    "candidate_sha256": "8df5ef58676b6e5d42b2a5822324c0a4d6eec552ba9bcbee841a17d38c1fad3f",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
     "evidence": [
       {
@@ -148,15 +148,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 124,
-      "width_bp": 389.815,
-      "height_bp": 365.936,
+      "width_bp": 389.563,
+      "height_bp": 415.982,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "semantic_typography_checks": 3,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equalize lifecycle, operational/assurance, and reasoning/alignment peers; expand ranks to keep branch approaches legible.",
+    "candidate_sha256": "8df5ef58676b6e5d42b2a5822324c0a4d6eec552ba9bcbee841a17d38c1fad3f",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 124,
+      "width_bp": 389.563,
+      "height_bp": 415.982
     }
   }
 }

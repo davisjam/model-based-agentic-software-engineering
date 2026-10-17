@@ -31,7 +31,7 @@ edge/.style={-Stealth,line width=.8pt}]
 \node[font=\itshape\fontsize{10.5}{12.5}\selectfont] at (5,-.35) {The production system};
 \node at (5,-.85) {scholaccess.com};
 \draw[edge] (input.east |- system.west)--node[above=5pt,font=\itshape] {upload} (system.west);
-\draw[edge] (system.east)--node[above=16pt,align=center,font=\itshape\fontsize{10.5}{12.5}\selectfont] {remediated\\file} (output.west |- system.east);
+\draw[edge] (system.east)--node[above=16pt,xshift=-12pt,align=center,font=\itshape\fontsize{10.5}{12.5}\selectfont] {remediated\\file} (output.west |- system.east);
 \node[annotation,anchor=north,font=\bfseries] at (0,-1.9) {Inaccessible document};
 \node[annotation,anchor=north,font=\bfseries] at (10,-1.9) {Accessible document\\+ evidence};
 \node[annotation,anchor=north,font=\itshape] at (0,-2.5) {Unlabeled images · untagged\\No reading order};

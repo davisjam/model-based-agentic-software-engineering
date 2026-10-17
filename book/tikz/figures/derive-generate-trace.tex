@@ -7,17 +7,17 @@ head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[head,text width=4cm] (h0) at (0.0,1.5) {DERIVE};
 \node[n,text width=3.5cm,fill=black!8] (t0) at (0.0,0) {Model};
-\node[n,text width=3.5cm] (b0) at (0.0,-2.5) {Implementation};
+\node[n,text width=3.5cm,minimum height=1.2cm] (b0) at (0.0,-2.5) {Implementation};
 \draw[edge] (b0) -- node[lab,right] {\textit{derive}} (t0);
 \node[note,text width=4cm] (n0) at (0.0,-4) {\textit{Implementation is source of truth}};
 \node[head,text width=4cm] (h1) at (4.7,1.5) {GENERATE};
 \node[n,text width=3.5cm,fill=black!8] (t1) at (4.7,0) {Model};
-\node[n,text width=3.5cm] (b1) at (4.7,-2.5) {Implementation\\/ config};
+\node[n,text width=3.5cm,minimum height=1.2cm] (b1) at (4.7,-2.5) {Implementation\\/ config};
 \draw[edge] (t1) -- node[lab,right] {\textit{generate}} (b1);
 \node[note,text width=4cm] (n1) at (4.7,-4) {\textit{Model is source of truth}};
 \node[head,text width=4cm] (h2) at (9.4,1.5) {TRACE + CHECK};
 \node[n,text width=3.5cm,fill=black!8] (t2) at (9.4,0) {Model};
-\node[n,text width=3.5cm] (b2) at (9.4,-2.5) {System};
+\node[n,text width=3.5cm,minimum height=1.2cm] (b2) at (9.4,-2.5) {System};
 \draw[edge,<->] (t2) -- node[lab,right] {\textbf{check}\\\textbf{(decidable)}} (b2);
 \node[note,text width=4cm] (n2) at (9.4,-4) {\textit{Neither fully determines}\\\textit{the other}};
 \end{tikzpicture}

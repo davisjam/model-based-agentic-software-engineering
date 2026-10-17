@@ -6,12 +6,12 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=4cm] (n0) at (0,0.0) {ENGINEERING ACTION};
 \node[box,text width=4cm] (n1) at (0,-1.8) {\textbf{PROVENANCE FACT}\\ what · who · how};
 \draw[edge] (n0) -- (n1);
-\node[gate,text width=4cm] (audit) at (-3.3,-4) {\textbf{VALIDATION / AUDIT}\\ \textbf{CHECKED} completion gate};
-\node[box,text width=4cm] (docs) at (3.3,-4) {\textbf{GENERATED DOCUMENTATION}\\ \textbf{re-derivable}};
+\node[gate,text width=4cm,minimum height=1.5cm] (audit) at (-3.3,-4.4) {\textbf{VALIDATION / AUDIT}\\ \textbf{CHECKED} completion gate};
+\node[box,text width=4cm,minimum height=1.5cm] (docs) at (3.3,-4.4) {\textbf{GENERATED DOCUMENTATION}\\ \textbf{re-derivable}};
 \draw[edge,line width=1pt] (n1.south)--(0,-2.9)--(-3.3,-2.9)-- node[midway,rotate=90,font=\fontsize{14}{14}\selectfont] {$\Vert$} (audit.north);
 \draw[edge] (n1.south)--(0,-2.9)--(3.3,-2.9)--(docs.north);
-\node[box,dashed,text width=4cm] (prose) at (-3.3,-6) {prose maintained independently};
-\node[box,text width=4cm] (human) at (3.3,-6) {human explanation};
+\node[box,dashed,text width=4cm,minimum height=1.1cm] (prose) at (-3.3,-6.4) {prose maintained independently};
+\node[box,text width=4cm,minimum height=1.1cm] (human) at (3.3,-6.4) {human explanation};
 \draw[edge] (docs) -- (human);
 \draw[optional] (prose) -- node[note,fill=white,inner sep=2pt,below=12pt] {\textbf{no mechanical correspondence}} (human);
 \end{tikzpicture}

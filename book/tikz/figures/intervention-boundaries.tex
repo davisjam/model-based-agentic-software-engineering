@@ -5,7 +5,7 @@ head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
 edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
 \foreach \i/\x/\title/\shade in {0/-5.1/{Reasoning\\input}/20,1/-1.7/Action/30,2/1.7/{Work unit}/30,3/5.1/{Artifact / runtime}/30} {
- \node[n,fill=white,text width=2.6cm,minimum height=1cm] (n\i) at (\x,0) {\textbf{\title}};}
+ \node[n,fill=white,text width=2.6cm,minimum height=1.2cm] (n\i) at (\x,0) {\textbf{\title}};}
 \node[note,text width=2.9cm] (a0) at (-5.1,-1.7) {Prompts · briefs\\Models · examples};
 \node[note,text width=2.9cm] (a1) at (-1.7,-1.7) {Permissions\\Hooks · tools};
 \node[note,text width=2.9cm] (a2) at (1.7,-1.7) {Task · PR · build\\Deployment candidate};

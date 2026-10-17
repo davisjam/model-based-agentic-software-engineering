@@ -66,12 +66,32 @@ def compile_candidates(partial=False):
         manifest['book/'+record['source']]={'page':i,'width_pt':w,'height_pt':h,'links':mage_tikz_links.page_links(page)}
     (BUILD/'pages.json').write_text(json.dumps(manifest,indent=2)+'\n')
     from tikz_audit import audit_pdf
-    audit_pdf(pdf,manifest,BUILD/'geometry-audit.json',BUILD/'geometry-audit.pdf')
-    from mage_tikz_typography import audit_pdf as audit_typography
+    layout=json.loads((BASE/'layout-review.json').read_text())['figures']
+    if partial:layout=[r for r in layout if r['source'] in manifest]
+    if len(layout)!=len(manifest) or {r['source'] for r in layout}!=set(manifest):
+        raise ValueError('Layout review must cover every candidate exactly once')
+    geometry=audit_pdf(pdf,manifest,BUILD/'geometry-audit.json',BUILD/'geometry-audit.pdf',
+                       layout_contracts={r['source']:r.get('contracts',{}) for r in layout})
+    layout_failures=[f for f in geometry['findings'] if f['code'] in
+                     {'terminal-clearance','peer-alignment','layout-contract'}]
+    if layout_failures:
+        raise ValueError('Figure spacing differs from review: '+json.dumps(layout_failures[:8]))
+    from mage_tikz_typography import audit_pdf as audit_typography, reference_fonts
+    # Use the real book style as the reference, so this gate follows future
+    # edition font changes and catches local TikZ overrides/fallbacks too.
+    font_driver=BUILD/'body-font-reference.tex'
+    font_driver.write_text(r'''\documentclass[12pt]{book}
+\usepackage[mage]{house}
+\begin{document}
+\pagestyle{empty}
+Body text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic text.}}
+\end{document}
+''')
+    body_fonts=reference_fonts(latex_build.compile_tex(font_driver))
     typography=json.loads((BASE/'typography-review.json').read_text())
     if partial:
         typography['figures']=[r for r in typography['figures'] if r['source'] in manifest]
-    audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json')
+    audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json',body_fonts)
     print(f'Native TikZ pool: {len(pages)} candidates, all fit at their authored text sizes.',flush=True)
     return pdf,manifest
 
@@ -81,7 +101,8 @@ def source_bundle():
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(BASE.rglob('*')):
             if path.is_file():archive.write(path,path.relative_to(ROOT))
-        for path in sorted((ROOT/'book/fonts/SourceSerif4').rglob('*')):
+        archive.write(ROOT/'latex/book-fonts.tex', 'latex/book-fonts.tex')
+        for path in sorted((ROOT/'book/fonts').rglob('*')):
             if path.is_file():archive.write(path,path.relative_to(ROOT))
         archive.writestr('main.tex',(BUILD/'candidates.tex').read_text().replace(r'\def\magecollectlinks{}', ''))
         archive.writestr('README.txt',

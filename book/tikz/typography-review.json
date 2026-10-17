@@ -8,11 +8,23 @@
   "shared_style_sha256": "65d4e4e84297a50e162fa03091bdb5364eb8d442c118ec0dd130a85e5c1ea750",
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+    "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
     "rendered_checks": 869,
     "geometry_findings": 0,
     "unapproved_compile_diagnostics": 0,
-    "status": "passed"
+    "status": "passed",
+    "book_font_inheritance": {
+      "configuration": "latex/book-fonts.tex",
+      "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+      "reference": "latex/build/tikz/body-font-reference.pdf",
+      "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+      "body_faces": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ]
+    }
   },
   "figures": [
     {
@@ -20,7 +32,7 @@
       "candidate": "book/tikz/figures/book-map.tex",
       "decision": "refined",
       "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-      "candidate_sha256": "42dc83693b0be13c9750c7ec743b3d55096b66c63e756ae4af9e9c5dce41b283",
+      "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
       "evidence": [
         {
           "source_text": "Preface",
@@ -479,10 +491,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 1,
-        "width_bp": 362.169,
-        "height_bp": 413.953,
+        "width_bp": 360.015,
+        "height_bp": 416.659,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -495,7 +507,7 @@
       "candidate": "book/tikz/figures/mage-method.tex",
       "decision": "refined",
       "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-      "candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
+      "candidate_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
       "evidence": [
         {
           "source_text": "Scale × finite reasoning",
@@ -812,10 +824,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 2,
-        "width_bp": 410.628,
-        "height_bp": 379.261,
+        "width_bp": 424.801,
+        "height_bp": 387.85,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -828,7 +840,7 @@
       "candidate": "book/tikz/figures/model-classes.tex",
       "decision": "refined",
       "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
-      "candidate_sha256": "4a7baae355bb6a9c0b10ce85ba9d611c9888f043f651e417e28c9472821a9e0e",
+      "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
       "evidence": [
         {
           "source_text": "STRUCTURAL",
@@ -1198,10 +1210,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 3,
         "width_bp": 376.339,
-        "height_bp": 231.891,
+        "height_bp": 232.164,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -1386,10 +1398,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 4,
         "width_bp": 363.832,
-        "height_bp": 301.126,
+        "height_bp": 301.283,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -1730,10 +1742,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 5,
         "width_bp": 366.45,
-        "height_bp": 315.847,
+        "height_bp": 309.54,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -1746,7 +1758,7 @@
       "candidate": "book/tikz/figures/research-arc.tex",
       "decision": "refined",
       "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-      "candidate_sha256": "76a862a3feef21f5fd2fd7f1f929aca287bec70bd6675344e399ce767734a6d0",
+      "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
       "evidence": [
         {
           "source_text": "DocAble",
@@ -2058,10 +2070,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 6,
         "width_bp": 319.646,
-        "height_bp": 363.229,
+        "height_bp": 374.827,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2126,10 +2138,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 7,
         "width_bp": 401.85,
-        "height_bp": 221.98,
+        "height_bp": 222.454,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2142,7 +2154,7 @@
       "candidate": "book/tikz/figures/docable-glimpse.tex",
       "decision": "refined",
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-      "candidate_sha256": "97afb6b2f9ff21bd964be883b34c953bb5bc1b4ebb68afe18a45a0f702b74ee3",
+      "candidate_sha256": "d4e2df11f4a2f5445e5f1673350212bf7f816ce016e91f5c72fca52157f63201",
       "evidence": [
         {
           "source_text": "not accessible",
@@ -2194,10 +2206,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 8,
         "width_bp": 420.986,
-        "height_bp": 210.101,
+        "height_bp": 210.424,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2210,7 +2222,7 @@
       "candidate": "book/tikz/figures/one-docable-job.tex",
       "decision": "refined",
       "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
-      "candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
+      "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
       "evidence": [
         {
           "source_text": "split for parallel work",
@@ -2266,10 +2278,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 9,
         "width_bp": 378.005,
-        "height_bp": 345.956,
+        "height_bp": 363.108,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2354,10 +2366,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 10,
         "width_bp": 379.038,
-        "height_bp": 242.676,
+        "height_bp": 242.674,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2370,7 +2382,7 @@
       "candidate": "book/tikz/figures/reasoning-horizon.tex",
       "decision": "refined",
       "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-      "candidate_sha256": "764552a1875e858007697fac1dbea28bbf9221d6248e2bfa0f140d71542d45cd",
+      "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
       "evidence": [
         {
           "source_text": "Task exceeds the finite active state",
@@ -2489,10 +2501,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 11,
         "width_bp": 353.911,
-        "height_bp": 350.458,
+        "height_bp": 350.719,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2505,7 +2517,7 @@
       "candidate": "book/tikz/figures/substrate-to-method.tex",
       "decision": "refined",
       "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-      "candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
+      "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
       "evidence": [
         {
           "source_text": "SUBSTRATE TRAIT",
@@ -2677,10 +2689,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 12,
-        "width_bp": 408.883,
-        "height_bp": 184.579,
+        "width_bp": 418.229,
+        "height_bp": 184.495,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2806,10 +2818,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 13,
         "width_bp": 350.12,
-        "height_bp": 246.946,
+        "height_bp": 246.943,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2962,10 +2974,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 14,
         "width_bp": 396.891,
-        "height_bp": 205.449,
+        "height_bp": 204.955,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -2978,7 +2990,7 @@
       "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
       "decision": "refined",
       "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
-      "candidate_sha256": "13ad1f1683d1b6a391448d5b4b1e1412bf7fcea73b7a001589de59fd6219a786",
+      "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
       "evidence": [
         {
           "source_text": "engineering question",
@@ -3130,10 +3142,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 15,
         "width_bp": 396.181,
-        "height_bp": 296.495,
+        "height_bp": 310.754,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -3146,7 +3158,7 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-      "candidate_sha256": "77df86422aa570d2079d2b267930a877cda78aa1b65d765e01090cd61fbf5518",
+      "candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -3606,10 +3618,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 16,
         "width_bp": 413.811,
-        "height_bp": 417.875,
+        "height_bp": 417.681,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -3761,10 +3773,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 17,
         "width_bp": 322.127,
-        "height_bp": 188.84,
+        "height_bp": 188.943,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -3885,10 +3897,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 18,
         "width_bp": 336.654,
-        "height_bp": 220.883,
+        "height_bp": 221.049,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4053,10 +4065,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 19,
         "width_bp": 390.839,
-        "height_bp": 275.475,
+        "height_bp": 275.664,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4244,10 +4256,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 20,
         "width_bp": 350.12,
-        "height_bp": 225.897,
+        "height_bp": 225.916,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4394,10 +4406,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 21,
         "width_bp": 357.207,
-        "height_bp": 186.673,
+        "height_bp": 186.777,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4410,7 +4422,7 @@
       "candidate": "book/tikz/figures/behavioral-property-classes.tex",
       "decision": "refined",
       "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
-      "candidate_sha256": "510de6b0822aae042fc9e1229cc97763a7c4327089be2c8bec7641b5da06f7ce",
+      "candidate_sha256": "50bffe5b1802ebb698a297fa5778631457bb4cbdeba62b545246d9fce5e7aee2",
       "evidence": [
         {
           "source_text": "BEHAVIORAL MODEL",
@@ -4513,10 +4525,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 22,
         "width_bp": 392.64,
-        "height_bp": 226.487,
+        "height_bp": 226.517,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4681,10 +4693,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 23,
         "width_bp": 361.022,
-        "height_bp": 206.745,
+        "height_bp": 206.879,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4697,7 +4709,7 @@
       "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
       "decision": "refined",
       "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-      "candidate_sha256": "9eebfabb66ffdc1479beb045c83f9bcfbb01c98e709732458dd4fe1702c9c5fe",
+      "candidate_sha256": "17477066da395e24af8b200c187440f462f81806d7f2261db28ca23e0e221edf",
       "evidence": [
         {
           "source_text": "SHARED LEASE STATE",
@@ -4813,10 +4825,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 24,
         "width_bp": 376.338,
-        "height_bp": 141.221,
+        "height_bp": 141.164,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4914,10 +4926,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 25,
         "width_bp": 374.568,
-        "height_bp": 165.787,
+        "height_bp": 164.97,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -4961,10 +4973,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 26,
         "width_bp": 367.834,
-        "height_bp": 215.111,
+        "height_bp": 215.241,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5062,10 +5074,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 27,
         "width_bp": 399.726,
-        "height_bp": 183.287,
+        "height_bp": 183.151,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5078,7 +5090,7 @@
       "candidate": "book/tikz/figures/entitlement-domain.tex",
       "decision": "refined",
       "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
-      "candidate_sha256": "057b3e79f9947509120aacab30c3301afccb2e7e9c6a53886239b96249f3e1cb",
+      "candidate_sha256": "e4a968dc1c08667dccbd4d405e0d506cff3f10db73e0d31ed252c2e4a5b2d650",
       "evidence": [
         {
           "source_text": "Finite-credit group",
@@ -5253,7 +5265,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 28,
         "width_bp": 356.496,
         "height_bp": 230.88,
@@ -5269,7 +5281,7 @@
       "candidate": "book/tikz/figures/entitlement-model-evolution.tex",
       "decision": "refined",
       "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-      "candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
+      "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
       "evidence": [
         {
           "source_text": "unlimited",
@@ -5426,10 +5438,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 29,
         "width_bp": 414.814,
-        "height_bp": 353.559,
+        "height_bp": 353.747,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5473,10 +5485,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 30,
         "width_bp": 371.803,
-        "height_bp": 297.229,
+        "height_bp": 297.395,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5489,7 +5501,7 @@
       "candidate": "book/tikz/figures/attribution-model.tex",
       "decision": "refined",
       "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-      "candidate_sha256": "695f62b5b5851fda2675971d77d6166f435a73f05243e7802055eb12108b8504",
+      "candidate_sha256": "45cbffb726b70da43ac4f00a52d2f61223c4a5f034a063092feb57185d23c673",
       "evidence": [
         {
           "source_text": "RUN",
@@ -5628,10 +5640,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 31,
         "width_bp": 363.145,
-        "height_bp": 187.928,
+        "height_bp": 188.108,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5747,10 +5759,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 32,
-        "width_bp": 419.132,
-        "height_bp": 247.283,
+        "width_bp": 403.595,
+        "height_bp": 247.517,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5830,10 +5842,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 33,
         "width_bp": 356.496,
-        "height_bp": 260.325,
+        "height_bp": 260.459,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -5846,7 +5858,7 @@
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
       "decision": "refined",
       "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
-      "candidate_sha256": "dad5a1cafe39e7c0fb34bfdd2152fc8286cb6464dec47905b086863550e7992e",
+      "candidate_sha256": "1f82ec31c5811b59fa3f182b9eb487a82770e60203ca5d2d42084165f2d8253c",
       "evidence": [
         {
           "source_text": "DERIVE",
@@ -6021,10 +6033,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 34,
         "width_bp": 389.805,
-        "height_bp": 179.517,
+        "height_bp": 178.015,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6037,7 +6049,7 @@
       "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
       "decision": "refined",
       "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-      "candidate_sha256": "d3c92f54a6ed6cb2d2b40763919b098af2c539ac9c6a90f5bdf06cc4d0e289b1",
+      "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
       "evidence": [
         {
           "source_text": "decidable claims",
@@ -6140,10 +6152,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 35,
-        "width_bp": 420.889,
-        "height_bp": 154.483,
+        "width_bp": 418.161,
+        "height_bp": 160.043,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6277,10 +6289,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 36,
         "width_bp": 393.596,
-        "height_bp": 180.844,
+        "height_bp": 181.199,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6293,7 +6305,7 @@
       "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
       "decision": "refined",
       "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
-      "candidate_sha256": "c31b039a82641be160c35333b9fd43d0b2695890573a6fa916f72280a8ddc504",
+      "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
       "evidence": [
         {
           "source_text": "same model",
@@ -6365,10 +6377,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 37,
-        "width_bp": 415.795,
-        "height_bp": 189.139,
+        "width_bp": 417.69,
+        "height_bp": 189.33,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6430,10 +6442,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 38,
         "width_bp": 362.056,
-        "height_bp": 288.686,
+        "height_bp": 288.565,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6446,7 +6458,7 @@
       "candidate": "book/tikz/figures/intervention-boundaries.tex",
       "decision": "refined",
       "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
-      "candidate_sha256": "1c1b2929552435598aa454569a6aa7086be65292f6be35db9dd5fd047d85c5bb",
+      "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
       "evidence": [
         {
           "source_text": "action",
@@ -6495,10 +6507,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 39,
         "width_bp": 396.046,
-        "height_bp": 240.886,
+        "height_bp": 244.205,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6632,10 +6644,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 40,
         "width_bp": 350.12,
-        "height_bp": 230.359,
+        "height_bp": 230.503,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6648,7 +6660,7 @@
       "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
       "decision": "refined",
       "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-      "candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
+      "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
       "evidence": [
         {
           "source_text": "GOVERNING COMPUTATION MODEL",
@@ -6751,10 +6763,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 41,
         "width_bp": 367.128,
-        "height_bp": 212.032,
+        "height_bp": 226.203,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6852,10 +6864,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 42,
         "width_bp": 370.918,
-        "height_bp": 189.585,
+        "height_bp": 189.586,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -6868,7 +6880,7 @@
       "candidate": "book/tikz/figures/constraint-vs-sensor.tex",
       "decision": "refined",
       "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
-      "candidate_sha256": "ad6b4d9b2b403af3e2078740de18740e2a0a0b5e4c9437d6bd3bf37166a81ac8",
+      "candidate_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
       "evidence": [
         {
           "source_text": "ENGINEERING OBLIGATION",
@@ -6989,10 +7001,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 43,
         "width_bp": 376.538,
-        "height_bp": 145.317,
+        "height_bp": 164.607,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7005,7 +7017,7 @@
       "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
       "decision": "refined",
       "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
-      "candidate_sha256": "969a48940b1219735dbbc7c8ba0ce8f4670568dcb5118880cfba9a6748806553",
+      "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
       "evidence": [
         {
           "source_text": "ENGINEERING OBLIGATION",
@@ -7144,10 +7156,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 44,
         "width_bp": 382.207,
-        "height_bp": 232.68,
+        "height_bp": 274.957,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7160,7 +7172,7 @@
       "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
       "decision": "refined",
       "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
-      "candidate_sha256": "8f2d63ed3b69b588c912a54e09231bbac2379bc24a004bb195bb32182a5a54a9",
+      "candidate_sha256": "7806a671242304189740d413edcd8e0d88257925b3d11d3d91751262140d5f9c",
       "evidence": [
         {
           "source_text": "COST / USAGE MODEL",
@@ -7353,10 +7365,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 45,
         "width_bp": 379.373,
-        "height_bp": 193.849,
+        "height_bp": 201.946,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7490,10 +7502,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 46,
         "width_bp": 356.695,
-        "height_bp": 158.934,
+        "height_bp": 158.652,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7506,7 +7518,7 @@
       "candidate": "book/tikz/figures/provenance-carried-admission.tex",
       "decision": "refined",
       "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
-      "candidate_sha256": "a7b5b123c5fb9795fc89f0bd07f64e90273fbdbbeafea13d53580edb25617497",
+      "candidate_sha256": "2755ef32758113f53e7703b0eb2c3e401f7ee9bf25af025dd6cce8f40cd05edd",
       "evidence": [
         {
           "source_text": "SANCTIONED ABSTRACTION",
@@ -7627,10 +7639,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 47,
-        "width_bp": 423.309,
-        "height_bp": 118.532,
+        "width_bp": 428.979,
+        "height_bp": 118.138,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7728,10 +7740,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 48,
         "width_bp": 403.226,
-        "height_bp": 179.525,
+        "height_bp": 179.44,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -7744,7 +7756,7 @@
       "candidate": "book/tikz/figures/governance-conversion.tex",
       "decision": "refined",
       "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-      "candidate_sha256": "458487600d5cc47c03a86ffc5244c9135e10abb72045a13f126770f1153e445d",
+      "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
       "evidence": [
         {
           "source_text": "FAILURE / SURPRISE",
@@ -7924,10 +7936,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 49,
         "width_bp": 404.884,
-        "height_bp": 254.709,
+        "height_bp": 268.883,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8043,10 +8055,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 50,
         "width_bp": 326.058,
-        "height_bp": 272.003,
+        "height_bp": 271.67,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8059,7 +8071,7 @@
       "candidate": "book/tikz/figures/residual-decision-tree.tex",
       "decision": "refined",
       "source_sha256": "3212524d4dfa0171bff0d95d11eaef9bd299fd51aa94eac16e4694a304bdbd04",
-      "candidate_sha256": "e7bf4ec44c7844773fc77c89386be78ec44115cfe33112592356c665f6f81d44",
+      "candidate_sha256": "3f3248a3963e347879da7e355518e6f9c8ac6398f0e82c8bcc9e3d0f8b06e109",
       "evidence": [
         {
           "source_text": "RESIDUAL",
@@ -8216,10 +8228,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 51,
         "width_bp": 371.412,
-        "height_bp": 246.726,
+        "height_bp": 260.521,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8353,10 +8365,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 52,
         "width_bp": 362.365,
-        "height_bp": 156.419,
+        "height_bp": 156.091,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8496,7 +8508,7 @@
           "italic": true
         },
         {
-          "text": "the turn's closing message",
+          "text": "the turn’s closing message",
           "bold": true,
           "italic": false
         },
@@ -8508,10 +8520,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 53,
         "width_bp": 376.538,
-        "height_bp": 181.075,
+        "height_bp": 180.514,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8627,10 +8639,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 54,
         "width_bp": 424.727,
-        "height_bp": 204.909,
+        "height_bp": 204.566,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8643,7 +8655,7 @@
       "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
       "decision": "retained",
       "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-      "candidate_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
+      "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
       "evidence": [
         {
           "source_text": "MODELING / COMMUNICATING",
@@ -8692,10 +8704,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 55,
         "width_bp": 408.896,
-        "height_bp": 204.842,
+        "height_bp": 204.529,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8708,7 +8720,7 @@
       "candidate": "book/tikz/figures/active-passive-alignment.tex",
       "decision": "refined",
       "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
-      "candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
+      "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
       "evidence": [
         {
           "source_text": "repeat until correspondence",
@@ -8793,10 +8805,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 56,
         "width_bp": 403.226,
-        "height_bp": 281.288,
+        "height_bp": 275.62,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8930,10 +8942,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 57,
         "width_bp": 413.811,
-        "height_bp": 255.538,
+        "height_bp": 255.089,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -8946,7 +8958,7 @@
       "candidate": "book/tikz/figures/interlude-execution-unit.tex",
       "decision": "refined",
       "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
-      "candidate_sha256": "c10dd0c07c8d13bf4e59c8c041005b7c509964105bfc9562963551a6f67a2503",
+      "candidate_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
       "evidence": [
         {
           "source_text": "long-running Kubernetes worker",
@@ -8995,10 +9007,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 58,
         "width_bp": 356.695,
-        "height_bp": 283.896,
+        "height_bp": 283.783,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9011,7 +9023,7 @@
       "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
       "decision": "refined",
       "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
-      "candidate_sha256": "81bb9fec52d12053209a2eff471096b6a629b8b9530ccd2512e2aae278adc98f",
+      "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
       "evidence": [
         {
           "source_text": "stream on demand",
@@ -9078,10 +9090,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 59,
         "width_bp": 413.388,
-        "height_bp": 269.792,
+        "height_bp": 269.617,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9094,7 +9106,7 @@
       "candidate": "book/tikz/figures/interlude-graph-two-partitions.tex",
       "decision": "refined",
       "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
-      "candidate_sha256": "8f35b98463346588acba31a650e959e49b8c6c22f16f0f646e7d1dff080b200d",
+      "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
       "evidence": [
         {
           "source_text": "build document context",
@@ -9377,10 +9389,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 60,
         "width_bp": 449.009,
-        "height_bp": 250.263,
+        "height_bp": 264.086,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9393,7 +9405,7 @@
       "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
       "decision": "refined",
       "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
-      "candidate_sha256": "ffd1b0fd639d1e101deb53a959711e65cae006181b1973ebade59f5030d5be42",
+      "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
       "evidence": [
         {
           "source_text": "all operations consume the same precomputed context",
@@ -9436,10 +9448,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 61,
-        "width_bp": 399.758,
-        "height_bp": 312.391,
+        "width_bp": 403.147,
+        "height_bp": 348.784,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9452,7 +9464,7 @@
       "candidate": "book/tikz/figures/interlude-latency-floor.tex",
       "decision": "refined",
       "source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
-      "candidate_sha256": "07f08e4e3e677e92cf03d6045a0191ec383571dde892bf1fbef36ee8e2c522dd",
+      "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
       "evidence": [
         {
           "source_text": "each level waits for the one before it, so the times add",
@@ -9525,10 +9537,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 62,
-        "width_bp": 393.546,
-        "height_bp": 86.311,
+        "width_bp": 406.302,
+        "height_bp": 85.843,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9541,7 +9553,7 @@
       "candidate": "book/tikz/figures/interlude-prediction-residual.tex",
       "decision": "refined",
       "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
-      "candidate_sha256": "66c8e99a2a049fe3fc5221c5d23587bf68ea13509898db7fbe6d9e3a968a57f5",
+      "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
       "evidence": [
         {
           "source_text": "refine model",
@@ -9584,10 +9596,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 63,
-        "width_bp": 396.226,
-        "height_bp": 226.289,
+        "width_bp": 394.1,
+        "height_bp": 226.109,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9600,7 +9612,7 @@
       "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
       "decision": "refined",
       "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-      "candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
+      "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
       "evidence": [
         {
           "source_text": "refine model",
@@ -9643,10 +9655,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 64,
         "width_bp": 396.38,
-        "height_bp": 229.753,
+        "height_bp": 227.296,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -9659,7 +9671,7 @@
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
       "decision": "refined",
       "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
-      "candidate_sha256": "c411e7168d868c85b5df0069c58ae38119c1eb92983f9e00dc75b932e7384dd8",
+      "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
       "evidence": [
         {
           "source_text": "STRONGER MODEL SUBSTRATE",
@@ -10032,10 +10044,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 65,
-        "width_bp": 416.223,
-        "height_bp": 344.854,
+        "width_bp": 423.31,
+        "height_bp": 346.733,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -10211,10 +10223,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 66,
         "width_bp": 394.089,
-        "height_bp": 158.679,
+        "height_bp": 157.84,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -10227,7 +10239,7 @@
       "candidate": "book/tikz/figures/engineering-recurring-work.tex",
       "decision": "refined",
       "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
-      "candidate_sha256": "8c637082ade0d2e6b5f9756d697ea40a73a74840c3f54525f43ba72b3d1365bf",
+      "candidate_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
       "evidence": [
         {
           "source_text": "GOVERNED ENGINEERING ENVIRONMENT",
@@ -10523,10 +10535,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 67,
         "width_bp": 439.921,
-        "height_bp": 231.929,
+        "height_bp": 251.772,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -10582,10 +10594,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 68,
         "width_bp": 394.632,
-        "height_bp": 107.205,
+        "height_bp": 106.941,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -10598,7 +10610,7 @@
       "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
       "decision": "refined",
       "source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
-      "candidate_sha256": "04b6aa0b88cb2cf72e558c39bf6c5dfcc1f85d30fc2d9a5080a9af32b1bf9d72",
+      "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
       "evidence": [
         {
           "source_text": "context · tools · routing · authority · sequencing",
@@ -10791,7 +10803,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 69,
         "width_bp": 420.234,
         "height_bp": 323.856,
@@ -11073,10 +11085,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 70,
         "width_bp": 390.258,
-        "height_bp": 386.236,
+        "height_bp": 385.847,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11109,10 +11121,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 71,
-        "width_bp": 424.939,
-        "height_bp": 281.212,
+        "width_bp": 423.125,
+        "height_bp": 280.728,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11145,10 +11157,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 72,
-        "width_bp": 428.256,
-        "height_bp": 341.087,
+        "width_bp": 427.35,
+        "height_bp": 340.648,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11181,10 +11193,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 73,
-        "width_bp": 436.005,
-        "height_bp": 227.096,
+        "width_bp": 435.098,
+        "height_bp": 227.296,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11217,10 +11229,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 74,
-        "width_bp": 427.28,
-        "height_bp": 408.035,
+        "width_bp": 424.6,
+        "height_bp": 407.106,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11253,10 +11265,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 75,
         "width_bp": 388.655,
-        "height_bp": 284.217,
+        "height_bp": 283.779,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11269,7 +11281,7 @@
       "candidate": "book/tikz/figures/modeling-history.tex",
       "decision": "refined",
       "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-      "candidate_sha256": "d07f23750dadf6fbd348df325b5c8c81cde5089e9f572d5317907b1b61222c0f",
+      "candidate_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
       "evidence": [
         {
           "source_text": "Projected graph + blocking parity",
@@ -11852,10 +11864,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 76,
         "width_bp": 356.695,
-        "height_bp": 412.4,
+        "height_bp": 405.017,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11888,10 +11900,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 77,
         "width_bp": 388.655,
-        "height_bp": 122.242,
+        "height_bp": 122.103,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -11924,10 +11936,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 78,
         "width_bp": 388.655,
-        "height_bp": 395.878,
+        "height_bp": 395.368,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -12283,10 +12295,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 79,
         "width_bp": 323.766,
-        "height_bp": 272.365,
+        "height_bp": 272.123,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -12351,10 +12363,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 80,
         "width_bp": 426.688,
-        "height_bp": 414.833,
+        "height_bp": 412.218,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -12387,10 +12399,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 81,
-        "width_bp": 424.939,
-        "height_bp": 266.986,
+        "width_bp": 423.125,
+        "height_bp": 266.662,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -12720,10 +12732,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 82,
         "width_bp": 417.554,
-        "height_bp": 367.101,
+        "height_bp": 360.772,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -12736,7 +12748,7 @@
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
       "decision": "refined",
       "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-      "candidate_sha256": "368587e1d62db3d011b8d01d7390a25326a781110511c2de61f788818eda115d",
+      "candidate_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
       "evidence": [
         {
           "source_text": "Pressure / discovery loop\nStructural diagnosis",
@@ -13476,10 +13488,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 83,
         "width_bp": 426.515,
-        "height_bp": 400.996,
+        "height_bp": 400.264,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -13492,7 +13504,7 @@
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
       "decision": "refined",
       "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-      "candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
+      "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
       "evidence": [
         {
           "source_text": "not raised by a better fabricator",
@@ -13685,7 +13697,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 84,
         "width_bp": 420.234,
         "height_bp": 352.203,
@@ -13701,7 +13713,7 @@
       "candidate": "book/tikz/figures/determinization-frontier.tex",
       "decision": "refined",
       "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
-      "candidate_sha256": "8a08a1750fdf329b7f74894a69ced55a30320e4a65800a3da87b42a653794f5b",
+      "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
       "evidence": [
         {
           "source_text": "test / validator\nconstraint / gate",
@@ -14036,10 +14048,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 85,
         "width_bp": 373.703,
-        "height_bp": 249.688,
+        "height_bp": 249.499,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -14245,10 +14257,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 86,
-        "width_bp": 387.785,
-        "height_bp": 351.006,
+        "width_bp": 387.65,
+        "height_bp": 350.8,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -14261,7 +14273,7 @@
       "candidate": "book/tikz/figures/where-effort-moves.tex",
       "decision": "refined",
       "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-      "candidate_sha256": "1b1a3d8d1ca877c06cd02a97997291dcd88589803756b8892349e01a438a91e2",
+      "candidate_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
       "evidence": [
         {
           "source_text": "Implementation shifts disproportionately toward the fleet.",
@@ -14334,10 +14346,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 87,
-        "width_bp": 406.634,
-        "height_bp": 260.536,
+        "width_bp": 418.749,
+        "height_bp": 261.299,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -14350,7 +14362,7 @@
       "candidate": "book/tikz/figures/why-software-modeled.tex",
       "decision": "refined",
       "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-      "candidate_sha256": "454a8f6c136b18a4d3fe41dd324632e821f5e76c538000b14e473ba7cdaf9a40",
+      "candidate_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
       "evidence": [
         {
           "source_text": "amortized over\nexpensive build / test cycles",
@@ -14646,10 +14658,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 88,
         "width_bp": 407.719,
-        "height_bp": 244.638,
+        "height_bp": 245.107,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -14662,7 +14674,7 @@
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
       "decision": "refined",
       "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-      "candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
+      "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
       "evidence": [
         {
           "source_text": "Governed Engineering Environment",
@@ -15091,10 +15103,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 89,
         "width_bp": 399.957,
-        "height_bp": 351.735,
+        "height_bp": 351.462,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -15107,7 +15119,7 @@
       "candidate": "book/tikz/figures/governing-consequential-work.tex",
       "decision": "refined",
       "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-      "candidate_sha256": "bacf74007f13436e5589d6aa57c450e75021db4da207b01fe2689e545695b4b8",
+      "candidate_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
       "evidence": [
         {
           "source_text": "Representations",
@@ -15219,10 +15231,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 90,
         "width_bp": 429.171,
-        "height_bp": 358.123,
+        "height_bp": 374.775,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -15456,7 +15468,7 @@
           "bold": true
         },
         {
-          "text": "OBSERVE--REACT",
+          "text": "OBSERVE–REACT",
           "bold": true
         },
         {
@@ -15471,10 +15483,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 91,
         "width_bp": 362.365,
-        "height_bp": 281.756,
+        "height_bp": 275.415,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -15487,7 +15499,7 @@
       "candidate": "book/tikz/figures/model-coherence-stack.tex",
       "decision": "refined",
       "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
-      "candidate_sha256": "d5f8731197bbf7dd86acb399c81ffedbfbccc0dc6272eec138fbcfe4ab36132b",
+      "candidate_sha256": "72fd2b06915e4a02389462f427b225d9f666807d7d5593e5906b433f3d530e8a",
       "evidence": [
         {
           "source_text": "CORRESPONDENCE",
@@ -15740,10 +15752,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 92,
         "width_bp": 361.491,
-        "height_bp": 288.737,
+        "height_bp": 308.214,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -15949,10 +15961,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 93,
         "width_bp": 317.653,
-        "height_bp": 229.122,
+        "height_bp": 228.673,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -16158,10 +16170,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 94,
         "width_bp": 291.435,
-        "height_bp": 301.224,
+        "height_bp": 298.829,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -16174,7 +16186,7 @@
       "candidate": "book/tikz/figures/observe-react-stack.tex",
       "decision": "refined",
       "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
-      "candidate_sha256": "e72bb09ffe2d2f2158a6a11f40b54fbb7148643206cae3cbfbf988e501351093",
+      "candidate_sha256": "60abea9e285ad3bde0f286a54a78b2c7e216c3adba2a731302906edd1386b991",
       "evidence": [
         {
           "source_text": "OPERATING MODEL",
@@ -16367,10 +16379,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 95,
-        "width_bp": 336.078,
-        "height_bp": 207.157,
+        "width_bp": 340.33,
+        "height_bp": 206.875,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -16606,10 +16618,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 96,
         "width_bp": 322.969,
-        "height_bp": 173.398,
+        "height_bp": 172.861,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -16815,10 +16827,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 97,
         "width_bp": 307.025,
-        "height_bp": 198.662,
+        "height_bp": 198.597,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -16831,7 +16843,7 @@
       "candidate": "book/tikz/figures/context-delivery-stack.tex",
       "decision": "refined",
       "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
-      "candidate_sha256": "ca8fb6c10d102b0e870b088bf16f356e07d5d98f952fbde4e63a52e0f20f0a3c",
+      "candidate_sha256": "8b7d706cfaccdc8f92e7c92a7c77f19a2caaeeba8736ccbe3aa37ee9027b1993",
       "evidence": [
         {
           "source_text": "ENGINEERING KNOWLEDGE",
@@ -17024,10 +17036,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 98,
         "width_bp": 321.552,
-        "height_bp": 228.866,
+        "height_bp": 228.604,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -17040,7 +17052,7 @@
       "candidate": "book/tikz/figures/appendix-a-composing-a-stack.tex",
       "decision": "refined",
       "source_sha256": "3e98e21e43701dafaa032467eb24103865eecf3213618978fe1aeb9675177a18",
-      "candidate_sha256": "584521b87c6a71e50c27d22e73802a33e7fc90e335f6c473561e9be16df03f71",
+      "candidate_sha256": "2744cc75c34cf1afeef36220b7e48aa429231f287515eb6e2e14224a0fd582f2",
       "evidence": [
         {
           "source_text": "LOAD-BEARING COMPOSITION",
@@ -17233,7 +17245,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 99,
         "width_bp": 311.984,
         "height_bp": 306.848,
@@ -17249,7 +17261,7 @@
       "candidate": "book/tikz/figures/moves-overview-cheatsheet.tex",
       "decision": "refined",
       "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
-      "candidate_sha256": "1206edd3fb855106dbf8692fabc0354348f64ec23fdec29e65b9ddfb2ce54033",
+      "candidate_sha256": "bb978424ad57c31269fcd4eb1dc955f8bb1bc984c55e8622456e35ca545d7ac7",
       "evidence": [
         {
           "source_text": "PUT ENFORCEMENT WHERE LEGIBLE",
@@ -17622,10 +17634,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 100,
         "width_bp": 368.677,
-        "height_bp": 359.054,
+        "height_bp": 392.172,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -17934,10 +17946,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 101,
         "width_bp": 386.749,
-        "height_bp": 171.2,
+        "height_bp": 170.828,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18119,10 +18131,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 102,
         "width_bp": 343.165,
-        "height_bp": 180.798,
+        "height_bp": 180.269,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18135,7 +18147,7 @@
       "candidate": "book/tikz/figures/c3-bidirectional-correspondence.tex",
       "decision": "refined",
       "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
-      "candidate_sha256": "ed6de5206262ca8f29580dc001d75325c0b258418d6689a585063f1307922758",
+      "candidate_sha256": "0c64fbbd75a67379142c7f6d2734f51b8fc201543a03eaa9d4f6c501072619e9",
       "evidence": [
         {
           "source_text": "MODEL",
@@ -18214,10 +18226,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 103,
         "width_bp": 348.128,
-        "height_bp": 186.546,
+        "height_bp": 186.03,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18288,7 +18300,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 104,
         "width_bp": 280.449,
         "height_bp": 226.061,
@@ -18362,10 +18374,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 105,
         "width_bp": 379.309,
-        "height_bp": 110.39,
+        "height_bp": 109.875,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18378,7 +18390,7 @@
       "candidate": "book/tikz/figures/c6-close-action-surface.tex",
       "decision": "refined",
       "source_sha256": "ba8caab75008adcd9423043d11afe98db78c66edc8efb5fa70e5b90f5e155f5f",
-      "candidate_sha256": "7defa3b08d333be6e913b3f574dd46ebd589cd84b5b00f72b7b78e0e2b3f69b5",
+      "candidate_sha256": "c02d5fc8760d4eb87503a2d4096b89ab5dd6e953de53725ec14c15b62bf79d00",
       "evidence": [
         {
           "source_text": "OPEN · any route",
@@ -18450,10 +18462,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 106,
-        "width_bp": 382.144,
-        "height_bp": 176.882,
+        "width_bp": 406.591,
+        "height_bp": 176.515,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18466,7 +18478,7 @@
       "candidate": "book/tikz/figures/c7-knowledge-at-decision.tex",
       "decision": "refined",
       "source_sha256": "df88d4411203a5feb493daa5314e28605a099fe11abf8a97c413a22fdeba519a",
-      "candidate_sha256": "5d159e22a999a04d744e251966524a461816d88bf03a806208625862be5f3a55",
+      "candidate_sha256": "cb9e63f27d9c6da5f0faaa13058fa6050ce02b3f692e62748c4921db4ab61ea8",
       "evidence": [
         {
           "source_text": "RULES",
@@ -18545,10 +18557,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 107,
         "width_bp": 291.435,
-        "height_bp": 179.521,
+        "height_bp": 187.672,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18612,7 +18624,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 108,
         "width_bp": 347.417,
         "height_bp": 170.785,
@@ -18628,7 +18640,7 @@
       "candidate": "book/tikz/figures/c9-externalize-judgment.tex",
       "decision": "refined",
       "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
-      "candidate_sha256": "46def4afe6f9a92f10acb391833f322f86405a7bcffa3c2302da5c2dd756a84f",
+      "candidate_sha256": "d30fb82015f0c74c73ad374cf41a8552c271fbab613d1be5638d03b09f5e4bdb",
       "evidence": [
         {
           "source_text": "SYSTEM MODEL",
@@ -18665,7 +18677,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 109,
         "width_bp": 311.984,
         "height_bp": 235.982,
@@ -18753,10 +18765,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 110,
         "width_bp": 320.488,
-        "height_bp": 218.938,
+        "height_bp": 218.403,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18769,7 +18781,7 @@
       "candidate": "book/tikz/figures/appendix-g-1-executable-model.tex",
       "decision": "refined",
       "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
-      "candidate_sha256": "57163be20e32ef125b02252b54b78054e2527a4dc116c8c21d700be933d44470",
+      "candidate_sha256": "7f755199f7f0ff29949ce79305436f261cbdf37e0dfc5786e3604cec12be55bb",
       "evidence": [
         {
           "source_text": "MODEL",
@@ -18860,10 +18872,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 111,
         "width_bp": 348.128,
-        "height_bp": 255.201,
+        "height_bp": 269.065,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -18948,10 +18960,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 112,
         "width_bp": 323.268,
-        "height_bp": 193.146,
+        "height_bp": 192.63,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19036,10 +19048,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 113,
         "width_bp": 348.481,
-        "height_bp": 190.073,
+        "height_bp": 190.033,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19115,10 +19127,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 114,
         "width_bp": 343.165,
-        "height_bp": 175.641,
+        "height_bp": 175.399,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19131,7 +19143,7 @@
       "candidate": "book/tikz/figures/appendix-g-5-measurement-authority.tex",
       "decision": "refined",
       "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
-      "candidate_sha256": "75c7e3de72d16032f40f9e2df9ed9d1691407aadb97a3ad66890fc3f06499029",
+      "candidate_sha256": "ce49c4b12b2a6148910bbbc638d0d07e82ecdbfaf10c54463b17330c6b9baa66",
       "evidence": [
         {
           "source_text": "MEASUREMENT",
@@ -19196,10 +19208,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 115,
         "width_bp": 298.11,
-        "height_bp": 218.54,
+        "height_bp": 229.637,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19212,7 +19224,7 @@
       "candidate": "book/tikz/figures/appendix-g-6-facts-before-prose.tex",
       "decision": "refined",
       "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
-      "candidate_sha256": "49d122b5bdcd108c848a911b4a9b20f6b9cb3d49afc6ef41e183df8e80e7f14c",
+      "candidate_sha256": "377149c14a4149f3122bb029420da3465b33ad36011007732c0c0f56adb85bb9",
       "evidence": [
         {
           "source_text": "PROVENANCE FACT",
@@ -19277,10 +19289,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 116,
         "width_bp": 315.118,
-        "height_bp": 212.405,
+        "height_bp": 223.304,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19293,7 +19305,7 @@
       "candidate": "book/tikz/figures/appendix-g-7-composition-by-reference.tex",
       "decision": "refined",
       "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
-      "candidate_sha256": "4b05d387b7e8e7af4c3458ae1b0c9ccae385baa751f0ac629b483ff49d3d87be",
+      "candidate_sha256": "6489e9b65d1eeb7c71af16360c35356c768e2dc78e029ee5be0422d2e184936c",
       "evidence": [
         {
           "source_text": "USER JOURNEY",
@@ -19365,10 +19377,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 117,
         "width_bp": 323.322,
-        "height_bp": 244.22,
+        "height_bp": 238.322,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19460,10 +19472,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 118,
-        "width_bp": 386.011,
-        "height_bp": 256.424,
+        "width_bp": 385.926,
+        "height_bp": 256.142,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19570,10 +19582,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 119,
         "width_bp": 361.236,
-        "height_bp": 196.837,
+        "height_bp": 196.389,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19586,7 +19598,7 @@
       "candidate": "book/tikz/figures/h1-product-lifecycle.tex",
       "decision": "refined",
       "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
-      "candidate_sha256": "d47f788a6c8d5643a5112042c6bed76913696cad8191b01a2cf77679cc409cba",
+      "candidate_sha256": "ee6e2b6b3890f66e0ad96dc17eebcfb2bbe142ee4d3ad21b227596174447de23",
       "evidence": [
         {
           "source_text": "DISCOVERY",
@@ -19686,10 +19698,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 120,
-        "width_bp": 391.354,
-        "height_bp": 239.719,
+        "width_bp": 408.362,
+        "height_bp": 235.141,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19702,7 +19714,7 @@
       "candidate": "book/tikz/figures/h4-change-diagnosis-inheritance.tex",
       "decision": "refined",
       "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
-      "candidate_sha256": "acd4cb5527a68bdfe8c72156a988bc95df7b9ed80e666ddbcb50d0c1a9fbb98e",
+      "candidate_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
       "evidence": [
         {
           "source_text": "CHANGE MODEL",
@@ -19774,10 +19786,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 121,
         "width_bp": 335.372,
-        "height_bp": 364.121,
+        "height_bp": 374.724,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19790,7 +19802,7 @@
       "candidate": "book/tikz/figures/h5-incident-to-governance.tex",
       "decision": "refined",
       "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
-      "candidate_sha256": "b3c8388a87dae8bfcb30bebb74c41ffe37b0ae0f95542b83851416249aee4b29",
+      "candidate_sha256": "a62ecc07cf4bc7b09e4ce95abd44f5fb63a047aa62f25f6e4955e146f2f0a0c0",
       "evidence": [
         {
           "source_text": "MODELED CAUSE /",
@@ -19855,10 +19867,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 122,
         "width_bp": 297.811,
-        "height_bp": 374.102,
+        "height_bp": 400.392,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19871,7 +19883,7 @@
       "candidate": "book/tikz/figures/h6-assurance-models-realization.tex",
       "decision": "refined",
       "source_sha256": "2e586275c1e8854b78c44eb10c679e08c57a466c81592f809398d828a5f6c4a9",
-      "candidate_sha256": "d183a3b5111585c8d0895722d123f917aabba09abee6d2a74d47e843a268402f",
+      "candidate_sha256": "9e40b518e615cd48f779229b10c0c376078163fd8cf4ec4c982a89150cb0c351",
       "evidence": [
         {
           "source_text": "MODEL EVIDENCE",
@@ -19915,10 +19927,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 123,
         "width_bp": 297.811,
-        "height_bp": 306.848,
+        "height_bp": 329.526,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -19931,7 +19943,7 @@
       "candidate": "book/tikz/figures/h8-product-gee.tex",
       "decision": "refined",
       "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
-      "candidate_sha256": "64468e39474761cd40efc317dc8cec77bb1c9a5c970632072f518bb21d0a45ac",
+      "candidate_sha256": "8df5ef58676b6e5d42b2a5822324c0a4d6eec552ba9bcbee841a17d38c1fad3f",
       "evidence": [
         {
           "source_text": "PRODUCT DISCOVERY",
@@ -20031,10 +20043,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 124,
-        "width_bp": 389.815,
-        "height_bp": 365.936,
+        "width_bp": 389.563,
+        "height_bp": 415.982,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20133,10 +20145,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 125,
         "width_bp": 405.441,
-        "height_bp": 352.657,
+        "height_bp": 352.262,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20149,7 +20161,7 @@
       "candidate": "book/tikz/figures/adopting-assistance-to-delegation.tex",
       "decision": "refined",
       "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
-      "candidate_sha256": "6aa5860c60e44abf6e5bc6c4a09a46c3fd26f909c9eea42f914d6c885f344b19",
+      "candidate_sha256": "4f86a55c6bc2f4258e71baaf9148f787278dbf95379b6c372036b7c5d7b7d217",
       "evidence": [
         {
           "source_text": "ASSISTANCE",
@@ -20226,10 +20238,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 126,
-        "width_bp": 374.729,
-        "height_bp": 253.444,
+        "width_bp": 372.842,
+        "height_bp": 253.117,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20300,10 +20312,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 127,
         "width_bp": 348.128,
-        "height_bp": 310.182,
+        "height_bp": 309.797,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20388,7 +20400,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 128,
         "width_bp": 360.173,
         "height_bp": 230.313,
@@ -20441,10 +20453,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 129,
         "width_bp": 354.15,
-        "height_bp": 253.763,
+        "height_bp": 253.323,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20494,10 +20506,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 130,
         "width_bp": 363.007,
-        "height_bp": 172.681,
+        "height_bp": 172.183,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20551,10 +20563,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 131,
         "width_bp": 351.316,
-        "height_bp": 192.478,
+        "height_bp": 192.025,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20604,10 +20616,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 132,
         "width_bp": 356.985,
-        "height_bp": 281.984,
+        "height_bp": 281.728,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20664,10 +20676,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 133,
         "width_bp": 351.316,
-        "height_bp": 209.802,
+        "height_bp": 209.604,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20717,10 +20729,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 134,
         "width_bp": 354.15,
-        "height_bp": 248.194,
+        "height_bp": 247.804,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20758,10 +20770,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 135,
-        "width_bp": 421.493,
-        "height_bp": 221.609,
+        "width_bp": 420.586,
+        "height_bp": 221.36,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20799,10 +20811,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 136,
-        "width_bp": 434.56,
-        "height_bp": 275.867,
+        "width_bp": 433.584,
+        "height_bp": 274.017,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20815,7 +20827,7 @@
       "candidate": "book/tikz/figures/model-induction-general.tex",
       "decision": "refined",
       "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
-      "candidate_sha256": "dbdde06448e277bbc0f79c26b7e399fb25eb31e27b270854b3b5796ba8bcb10d",
+      "candidate_sha256": "3d22c22039148f5112974c3c712623b78f9f67df5496eeb8c7c5d98d0162d1d5",
       "evidence": [
         {
           "source_text": "THE GENERAL MOVE",
@@ -20918,10 +20930,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 137,
-        "width_bp": 398.441,
-        "height_bp": 383.222,
+        "width_bp": 407.212,
+        "height_bp": 397.01,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20934,7 +20946,7 @@
       "candidate": "book/tikz/figures/nav-subway-p1.tex",
       "decision": "retained",
       "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
-      "candidate_sha256": "12b47d7c1b8f583aed0acde6706f79809ea8b87dfcb40e6578db8e6a1b6a3d61",
+      "candidate_sha256": "b3f3121dc99bc947e6c9e4958a256dd2c19b2c0d70430ab533e006e33a078c7e",
       "evidence": [
         {
           "source_text": "The Problem",
@@ -20966,10 +20978,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 138,
         "width_bp": 426.477,
-        "height_bp": 75.725,
+        "height_bp": 75.748,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -20982,7 +20994,7 @@
       "candidate": "book/tikz/figures/nav-subway-p2.tex",
       "decision": "retained",
       "source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
-      "candidate_sha256": "8fe2bcc02b3f8c51b73cbc4dbd880851c09e5995fbb175961d3b3da5f9777fdf",
+      "candidate_sha256": "380d72a33dd9e24d56eebb148fc1d2894c84a00b8f2500bba8a382987cbcd58d",
       "evidence": [
         {
           "source_text": "Modeling",
@@ -21014,10 +21026,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 139,
         "width_bp": 426.477,
-        "height_bp": 75.955,
+        "height_bp": 75.857,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -21030,7 +21042,7 @@
       "candidate": "book/tikz/figures/nav-subway-p3.tex",
       "decision": "retained",
       "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
-      "candidate_sha256": "4dc110d8a8be885a9beab0a1e5720fcb4a2999483bc844d2d3625fcac650e103",
+      "candidate_sha256": "49e38dd8e4751b865e02e562f17a03c3e752a880676817247aba22a91b08c366",
       "evidence": [
         {
           "source_text": "Alignment",
@@ -21062,10 +21074,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 140,
         "width_bp": 426.477,
-        "height_bp": 75.965,
+        "height_bp": 75.857,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -21078,7 +21090,7 @@
       "candidate": "book/tikz/figures/nav-subway-p4.tex",
       "decision": "retained",
       "source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
-      "candidate_sha256": "459a9cae4927bbb812f5d63e3fd17377ecfffbf67d73a3229728c5cab2868585",
+      "candidate_sha256": "727462504be01fc5cb225123101f0472f4a006b186b4b5a5df4d74263886d8f2",
       "evidence": [
         {
           "source_text": "MAGE in Motion",
@@ -21110,10 +21122,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 141,
         "width_bp": 426.477,
-        "height_bp": 75.965,
+        "height_bp": 75.967,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -21126,7 +21138,7 @@
       "candidate": "book/tikz/figures/nav-subway-p5.tex",
       "decision": "retained",
       "source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
-      "candidate_sha256": "467bbc0d5cf4262f83d8614b3b01ff2e5da587a838e6de2e876ca27e5effe481",
+      "candidate_sha256": "b2fe97352a85b55ea8b2c9f3f2d3a2dd3aeaca97432d3deb557dfa8765a0f90d",
       "evidence": [
         {
           "source_text": "Factories",
@@ -21158,10 +21170,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 142,
         "width_bp": 426.477,
-        "height_bp": 75.965,
+        "height_bp": 75.857,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -21174,7 +21186,7 @@
       "candidate": "book/tikz/figures/nav-subway-p6.tex",
       "decision": "retained",
       "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
-      "candidate_sha256": "ed35280b68bc21bc673c99be6d569c87f92a9f46fec74e0da94d17a756deb2bd",
+      "candidate_sha256": "b8a0f71163e50705caf6efa73d42665bbb3388cd13b667cc9789de9c9619220f",
       "evidence": [
         {
           "source_text": "Theory",
@@ -21206,10 +21218,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 143,
         "width_bp": 426.477,
-        "height_bp": 75.949,
+        "height_bp": 75.644,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
@@ -21222,7 +21234,7 @@
       "candidate": "book/tikz/figures/nav-subway-p7.tex",
       "decision": "retained",
       "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
-      "candidate_sha256": "9e80e6702487d86a8b0fe6d9fca76e99ce499625e04291134e4cbbbe83363a76",
+      "candidate_sha256": "741d396c31605537d6fa3292d065423eaed412b0184785137a020359a905c721",
       "evidence": [
         {
           "source_text": "Profession",
@@ -21254,10 +21266,10 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
         "page": 144,
         "width_bp": 426.477,
-        "height_bp": 75.927,
+        "height_bp": 75.709,
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,

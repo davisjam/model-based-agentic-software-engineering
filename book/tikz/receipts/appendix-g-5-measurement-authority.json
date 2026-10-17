@@ -17,10 +17,10 @@
   "alt": "Measurement does not imply enforcement — a number earns a gate only when evidence warrants it",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
-    "candidate_sha256": "75c7e3de72d16032f40f9e2df9ed9d1691407aadb97a3ad66890fc3f06499029",
+    "candidate_sha256": "ce49c4b12b2a6148910bbbc638d0d07e82ecdbfaf10c54463b17330c6b9baa66",
     "fill": "Only the conditional admission gate is lightly shaded; measuring and reporting do not imply enforcement.",
     "bold": "Source-derived emphasis includes DECLARED BOUND. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Report/admission branches use an orthogonal rail, with an explicit guard mark only on the checked leg; external warrant question retained.",
@@ -28,10 +28,10 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 115,
       "width_bp": 298.11,
-      "height_bp": 218.54,
+      "height_bp": 229.637,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -44,7 +44,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
-    "candidate_sha256": "75c7e3de72d16032f40f9e2df9ed9d1691407aadb97a3ad66890fc3f06499029",
+    "candidate_sha256": "ce49c4b12b2a6148910bbbc638d0d07e82ecdbfaf10c54463b17330c6b9baa66",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
       {
@@ -109,15 +109,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 115,
       "width_bp": 298.11,
-      "height_bp": 218.54,
+      "height_bp": 229.637,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "semantic_typography_checks": 3,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equalize report/gate peers and extend terminal approaches around the explicit gate marker.",
+    "candidate_sha256": "ce49c4b12b2a6148910bbbc638d0d07e82ecdbfaf10c54463b17330c6b9baa66",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 115,
+      "width_bp": 298.11,
+      "height_bp": 229.637
     }
   }
 }

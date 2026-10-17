@@ -15,27 +15,27 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (job) -- (c2);
 \node[lab] at (2.4,-2.1) {\textit{split for parallel work}};
 \node[n,fill=white,text width=5cm] (w) at (0,-4.3) {Workers claim work};
-\foreach \i in {1,2,3} {\draw (c\i.south) -- (c\i.south |- 0,-3.65);}
-\draw (-3.2,-3.65) -- (3.2,-3.65);
-\draw[edge] (0,-3.65) -- (w.north);
+\foreach \i in {1,2,3} {\draw (c\i.south) -- (c\i.south |- 0,-3.45);}
+\draw (-3.2,-3.45) -- (3.2,-3.45);
+\draw[edge] (0,-3.45) -- (w.north);
 \foreach \id/\x/\txt/\wid in {g/-5.1/Generation/2.3,r/-1.8/Render/2.3,o/1.5/OCR/2.3,f/5/{Document /\\format machinery}/3} {
- \node[n,fill=white,text width=\wid cm,minimum height=1cm] (\id) at (\x,-6) {\txt};}
-\draw (w.south) -- (0,-5.2) -- (-5.1,-5.2);
-\draw (0,-5.2) -- (5,-5.2);
-\foreach \id in {g,r,o,f} {\draw[edge] (\id.north |- 0,-5.2) -- (\id.north);}
+ \node[n,fill=white,text width=\wid cm,minimum height=1.2cm] (\id) at (\x,-6.2) {\txt};}
+\draw (w.south) -- (0,-5.05) -- (-5.1,-5.05);
+\draw (0,-5.05) -- (5,-5.05);
+\foreach \id in {g,r,o,f} {\draw[edge] (\id.north |- 0,-5.05) -- (\id.north);}
 \node[lab] at (3.7,-4.9) {\textit{call specialized services}};
-\node[n,fill=white,text width=4.5cm] (pieces) at (0,-7.5) {Repaired pieces};
-\foreach \id in {g,r,o,f} {\draw (\id.south) -- (\id.south |- 0,-6.9) -- (0,-6.9);}
-\draw[edge] (0,-6.9) -- (pieces.north);
-\node[n,fill=white,text width=4.5cm] (merge) at (0,-8.7) {Merge / reassemble};
+\node[n,fill=white,text width=4.5cm] (pieces) at (0,-7.8) {Repaired pieces};
+\foreach \id in {g,r,o,f} {\draw (\id.south) -- (\id.south |- 0,-7.0) -- (0,-7.0);}
+\draw[edge] (0,-7.0) -- (pieces.north);
+\node[n,fill=white,text width=4.5cm] (merge) at (0,-9.1) {Merge / reassemble};
 \draw[edge] (pieces) -- (merge);
-\node[n,fill=white,text width=4.5cm] (v) at (0,-9.9) {Validate};
+\node[n,fill=white,text width=4.5cm] (v) at (0,-10.4) {Validate};
 \draw[edge] (merge) -- (v);
-\node[n,draw=none,text width=4.5cm] (out) at (-3.5,-11.3) {Remediated document};
+\node[n,draw=none,text width=4.5cm] (out) at (-3.5,-11.9) {Remediated document};
 \draw (out.north west) -- ($(out.north east)+(-.3,0)$) -- ($(out.north east)+(0,-.3)$) -- (out.south east) -- (out.south west) -- cycle;
 \draw ($(out.north east)+(-.3,0)$) -- ($(out.north east)+(-.3,-.3)$) -- ($(out.north east)+(0,-.3)$);
-\node[n,fill=white,text width=4cm] (evidence) at (3.5,-11.3) {Evidence};
-\draw[edge] (v.south) -- (0,-10.5) -| (out.north);
-\draw[edge] (0,-10.5) -| (evidence.north);
+\node[n,fill=white,text width=4cm] (evidence) at (3.5,-11.9) {Evidence};
+\draw[edge] (v.south) -- (0,-11.05) -| (out.north);
+\draw[edge] (0,-11.05) -| (evidence.north);
 
 \end{tikzpicture}

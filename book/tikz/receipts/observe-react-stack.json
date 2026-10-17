@@ -17,10 +17,10 @@
   "alt": "The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and\n    blocking are dashed enhancements",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
-    "candidate_sha256": "e72bb09ffe2d2f2158a6a11f40b54fbb7148643206cae3cbfbf988e501351093",
+    "candidate_sha256": "60abea9e285ad3bde0f286a54a78b2c7e216c3adba2a731302906edd1386b991",
     "fill": "Only the operating model is lightly shaded, distinguishing declarative model from runtime mechanisms.",
     "bold": "Source-derived emphasis includes OPERATING MODEL; RESPOND; WATCH; BLOCK; BEAT. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Optional heartbeat detour now uses short right-angle branches; required WATCH/RESPOND spine unchanged.",
@@ -28,10 +28,10 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 95,
-      "width_bp": 336.078,
-      "height_bp": 207.157,
+      "width_bp": 340.33,
+      "height_bp": 206.875,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -44,7 +44,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
-    "candidate_sha256": "e72bb09ffe2d2f2158a6a11f40b54fbb7148643206cae3cbfbf988e501351093",
+    "candidate_sha256": "60abea9e285ad3bde0f286a54a78b2c7e216c3adba2a731302906edd1386b991",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -237,15 +237,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 95,
-      "width_bp": 336.078,
-      "height_bp": 207.157,
+      "width_bp": 340.33,
+      "height_bp": 206.875,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 7,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Widen BEAT so liveness heartbeat fits one description line and its incoming elbow has a clear terminal shaft.",
+    "candidate_sha256": "60abea9e285ad3bde0f286a54a78b2c7e216c3adba2a731302906edd1386b991",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 95,
+      "width_bp": 340.33,
+      "height_bp": 206.875
     }
   }
 }

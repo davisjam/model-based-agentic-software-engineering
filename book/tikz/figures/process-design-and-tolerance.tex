@@ -8,10 +8,10 @@
 \node[head,text width=13cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h) at (0,0) {SOFTWARE FACTORY};
 \node[note,text width=13cm] (ph) at (0,-1.1) {\textbf{PROCESS DESIGN}: how production proceeds};
 \draw[dashed] (-7,-1.7) rectangle (7,-4.8);
-\node[box,text width=2.6cm] (p0) at (-5.4,-2.5) {Engineering\\intent};
-\node[box,text width=2.6cm] (p1) at (-1.8000000000000003,-2.5) {Context / work};
-\node[box,text width=2.6cm] (p2) at (1.7999999999999998,-2.5) {Fabricator};
-\node[box,text width=2.6cm] (p3) at (5.4,-2.5) {Realization};
+\node[box,text width=2.6cm,minimum height=1.1cm] (p0) at (-5.4,-2.5) {Engineering\\intent};
+\node[box,text width=2.6cm,minimum height=1.1cm] (p1) at (-1.8000000000000003,-2.5) {Context / work};
+\node[box,text width=2.6cm,minimum height=1.1cm] (p2) at (1.7999999999999998,-2.5) {Fabricator};
+\node[box,text width=2.6cm,minimum height=1.1cm] (p3) at (5.4,-2.5) {Realization};
 \draw[edge,] (p0) -- (p1);
 \draw[edge,] (p1) -- (p2);
 \draw[edge,] (p2) -- (p3);
@@ -28,6 +28,6 @@
 \begin{scope}[on background layer]
 
 \end{scope}
-\draw[line width=.6pt] (-5.4,-3.08)--(-5.4,-3.28)--(5.4,-3.28)--(5.4,-3.08);
+\draw[line width=.6pt] (-5.4,-3.15)--(-5.4,-3.35)--(5.4,-3.35)--(5.4,-3.15);
 \node[note,fill=white,anchor=west,inner sep=1pt] at (-6.7,-1.7) {\textbf{PRODUCTION PROCESS}};
 \end{tikzpicture}

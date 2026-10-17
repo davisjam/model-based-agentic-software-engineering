@@ -8,8 +8,8 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,text width=3cm] (u) at (0,0) {User};
 \node[n,text width=4cm] (g) at (0,-1.6) {Groups};
 \draw[edge] (u) -- node[lab,right] {\textit{belongs to one or more}} (g);
-\node[n,text width=5cm,fill=white] (f) at (-3.5,-3.4) {\textbf{Finite-credit group}\\\textit{Remaining credit balance}};
-\node[n,text width=5cm,fill=white] (inf) at (3.5,-3.4) {\textbf{Unlimited group}\\\textit{No credit limit}};
+\node[n,text width=5cm,fill=white,minimum height=1.2cm] (f) at (-3.5,-3.6) {\textbf{Finite-credit group}\\\textit{Remaining credit balance}};
+\node[n,text width=5cm,fill=white,minimum height=1.2cm] (inf) at (3.5,-3.6) {\textbf{Unlimited group}\\\textit{No credit limit}};
 \draw[edge] (g.south) -- (0,-2.5) -| (f.north);
 \draw[edge] (g.south) -- (0,-2.5) -| (inf.north);
 \node[strong,text width=5cm,fill=white] (dec) at (0,-5.5) {Upload decision};

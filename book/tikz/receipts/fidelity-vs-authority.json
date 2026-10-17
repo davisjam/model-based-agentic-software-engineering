@@ -63,10 +63,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-    "candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
+    "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
     "fill": "Only the governing computation model uses 8%; execution and analytical view are white.",
     "bold": "Source-derived emphasis includes GOVERNING COMPUTATION MODEL; EXECUTION; ANALYTICAL GRAPH VIEW; consumed by scheduler; projected / checked. Governing model, execution, and analytical view regain role-name hierarchy; italic relation verbs distinguish authority from projection. Two-line edge labels keep restored bold italic clear of the branch junction.",
     "routing": "Orthogonal branch with named scheduler-consumption and analytical-projection relations.",
@@ -74,10 +74,10 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 41,
       "width_bp": 367.128,
-      "height_bp": 212.032,
+      "height_bp": 226.203,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -90,7 +90,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-    "candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
+    "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
     "reason": "Governing model, execution, and analytical view regain role-name hierarchy; italic relation verbs distinguish authority from projection. Two-line edge labels keep restored bold italic clear of the branch junction.",
     "evidence": [
       {
@@ -193,15 +193,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 41,
       "width_bp": 367.128,
-      "height_bp": 212.032,
+      "height_bp": 226.203,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 6
+      "semantic_typography_checks": 6,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Lengthened the small analytical-output arrow and translated the explanatory rank to preserve separation.",
+    "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 41,
+      "width_bp": 367.128,
+      "height_bp": 226.203
     }
   }
 }

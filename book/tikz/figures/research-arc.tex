@@ -14,11 +14,11 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (s2) -- node[lab,right] {reconstructs} (s3);
 \node[n,line width=.65pt,text width=7cm,fill=black!8] (s4) at (0,-7.2) {\textbf{MAGE theory}\\\textit{Refined account in \magebookref{part:6}{Chapter 6}}};
 \draw[edge] (s3) -- node[lab,right] {refines} (s4);
-\node[n,text width=4.7cm,fill=white] (depth) at (-3,-9.4) {\textbf{DEPTH}\\Originating case\\\textit{Mechanism and sequence}};
-\node[n,text width=4.7cm,fill=white] (breadth) at (3,-9.4) {\textbf{BREADTH}\\Industrial accounts\\\textit{Variation and alternatives}};
+\node[n,text width=4.7cm,fill=white,minimum height=1.6cm] (depth) at (-3,-9.6) {\textbf{DEPTH}\\Originating case\\\textit{Mechanism and sequence}};
+\node[n,text width=4.7cm,fill=white,minimum height=1.6cm] (breadth) at (3,-9.6) {\textbf{BREADTH}\\Industrial accounts\\\textit{Variation and alternatives}};
 \draw[edge] (s4.south) -- (0,-8.3) -| (depth.north);
 \draw[edge] (s4.south) -- (0,-8.3) -| (breadth.north);
-\node[n,text width=8cm,fill=black!8] (basis) at (0,-11.5) {\textbf{A stronger basis for theory}\\Comparison refines; it does not validate.};
-\draw[edge] (depth.south) -- (-3,-10.6) -| (basis.north);
-\draw[edge] (breadth.south) -- (3,-10.6) -| (basis.north);
+\node[n,text width=8cm,fill=black!8] (basis) at (0,-11.9) {\textbf{A stronger basis for theory}\\Comparison refines; it does not validate.};
+\draw[edge] (depth.south) -- (-3,-10.8) -| (basis.north);
+\draw[edge] (breadth.south) -- (3,-10.8) -| (basis.north);
 \end{tikzpicture}

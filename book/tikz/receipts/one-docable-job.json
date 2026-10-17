@@ -75,10 +75,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
+    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
     "status": "reviewed",
     "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
-    "candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
+    "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
     "fill": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
     "bold": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
     "routing": "Chunks join a horizontal rail into Workers claim work; service fan-out/fan-in and outputs use right-angle routing.",
@@ -86,10 +86,10 @@
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 9,
       "width_bp": 378.005,
-      "height_bp": 345.956,
+      "height_bp": 363.108,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -102,7 +102,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
-    "candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
+    "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
     "reason": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
     "evidence": [
       {
@@ -158,15 +158,47 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
       "page": 9,
       "width_bp": 378.005,
-      "height_bp": 345.956,
+      "height_bp": 363.108,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 4
+      "semantic_typography_checks": 4,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equal-height service peers and more room at worker fork, output collection, merge, validation, and result approaches.",
+    "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 611,
+      "reviewed_peer_groups": 80,
+      "semantic_typography_checks": 869,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "page": 9,
+      "width_bp": 378.005,
+      "height_bp": 363.108
     }
   }
 }

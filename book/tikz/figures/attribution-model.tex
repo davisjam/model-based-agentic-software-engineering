@@ -8,10 +8,10 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 
 \node[n,fill=white,text width=4cm] (run) at (0,0) {\textbf{RUN}};
 \node[note,font=\fontsize{10}{12}\selectfont,text width=8cm] (op) at (0,-1.9) {\textbf{OPERATION*}\\One run, many operations; each records:};
-\node[n,text width=2.5cm] (f0) at (-4.5,-3.3) {\textbf{Target}};
-\node[n,text width=2.5cm] (f1) at (-1.5,-3.3) {\textbf{Mutation}};
-\node[n,text width=2.5cm,font=\fontsize{9}{11}\selectfont] (f2) at (1.5,-3.3) {\textbf{Responsible}\\\textbf{pass}};
-\node[n,text width=2.5cm] (f3) at (4.5,-3.3) {\textbf{Retained evidence}};
+\node[n,text width=2.5cm,minimum height=1.2cm] (f0) at (-4.5,-3.3) {\textbf{Target}};
+\node[n,text width=2.5cm,minimum height=1.2cm] (f1) at (-1.5,-3.3) {\textbf{Mutation}};
+\node[n,text width=2.5cm,font=\fontsize{9}{11}\selectfont,minimum height=1.2cm] (f2) at (1.5,-3.3) {\textbf{Responsible}\\\textbf{pass}};
+\node[n,text width=2.5cm,minimum height=1.2cm] (f3) at (4.5,-3.3) {\textbf{Retained evidence}};
 \begin{scope}[on background layer]
 \node[draw,line width=.9pt,rounded corners=3pt,fill=white,fit=(op)(f0)(f1)(f2)(f3),inner sep=10pt] (record) {};
 \end{scope}

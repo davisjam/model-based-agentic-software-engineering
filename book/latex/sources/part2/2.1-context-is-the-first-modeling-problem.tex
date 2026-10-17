@@ -319,18 +319,15 @@ Greater semantic commitment buys capabilities, but it also creates obligations. 
 
 {\footnotesize
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2}}@{}}
 \caption[Degrees of semantic commitment, in concrete artifacts]{\emph{Semantic commitment is not model completeness.} The rows are examples, not maturity levels: a representation can define precisely what its modeled distinctions mean while deliberately leaving most realization choices open.}\label{semantic-commitment-spectrum}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Semantic commitment
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Concrete example
+Semantic commitment (example)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Semantics supplied by the representation
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -344,9 +341,7 @@ Agentic implication
 \endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Semantic commitment
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Concrete example
+Semantic commitment (example)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Semantics supplied by the representation
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -360,10 +355,10 @@ Agentic implication
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Mostly implicit & Informal box-and-arrow architecture sketch & Almost none beyond marks and labels; the team supplies what boxes and arrows mean & Low for readers who share the context; high for anyone who does not & Very large & Agent must infer both the intended semantics and the realization \\
-Notation with standardized semantics & UML 2.5.1 state-machine diagrams & Standardized model elements and relationships give diagrams meanings beyond their visual appearance & Requires notation knowledge and project context & Large; UML generally describes selected aspects rather than determining a program & Agent has substantially more structure to interpret, but considerable design and implementation remain \\
-Machine-readable structured model & OpenAPI 3.1 / JSON Schema; a typed repository model such as DocAble\textquotesingle s registries and schemas & Named entities, types, fields, constraints, references, and relationships are directly machine-readable & Structure is explicit, but domain intent remains contextual & Often still large: a schema can constrain externally relevant properties while leaving implementation open & Agent can query and transform explicit structure rather than reconstructing it from prose or code \\
-Semantically defined engineering language & SysML v2 + KerML 1.0 & Abstract syntax, types, relationships, expressions, constraints, and semantic foundations are defined as part of the language; machine-readable interchange is standardized & Substantial language and tool knowledge, but less semantics to reconstruct & Potentially very large: precise semantics do not imply complete specification & Tools can reliably interpret and compose more of the model; agents can reason over model elements and tool-produced results rather than rediscovering their meaning \\
+\textbf{Mostly implicit} (Informal box-and-arrow architecture sketch) & Almost none beyond marks and labels; the team supplies what boxes and arrows mean & Low for readers who share the context; high for anyone who does not & Very large & Agent must infer both the intended semantics and the realization \\
+\textbf{Notation with standardized semantics} (UML 2.5.1 state-machine diagrams) & Standardized model elements and relationships give diagrams meanings beyond their visual appearance & Requires notation knowledge and project context & Large; UML generally describes selected aspects rather than determining a program & Agent has substantially more structure to interpret, but considerable design and implementation remain \\
+\textbf{Machine-readable structured model} (OpenAPI 3.1 / JSON Schema; a typed repository model such as DocAble\textquotesingle s registries and schemas) & Named entities, types, fields, constraints, references, and relationships are directly machine-readable & Structure is explicit, but domain intent remains contextual & Often still large: a schema can constrain externally relevant properties while leaving implementation open & Agent can query and transform explicit structure rather than reconstructing it from prose or code \\
+\textbf{Semantically defined engineering language} (SysML v2 + KerML 1.0) & Abstract syntax, types, relationships, expressions, constraints, and semantic foundations are defined as part of the language; machine-readable interchange is standardized & Substantial language and tool knowledge, but less semantics to reconstruct & Potentially very large: precise semantics do not imply complete specification & Tools can reliably interpret and compose more of the model; agents can reason over model elements and tool-produced results rather than rediscovering their meaning \\
 \end{longtable}
 }
 

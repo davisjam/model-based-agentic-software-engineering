@@ -10,7 +10,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (n1) -- (n2);
 \node[box,text width=2cm] (runtime) at (4.5,-1.8) {\textit{runtime}};
 \draw[edge] (runtime) -- (n1);
-\node[box,dashed,text width=2.7cm] (beat) at (-4.5,-2.7) {\textbf{BEAT}\\ liveness heartbeat};
+\node[box,dashed,text width=3cm] (beat) at (-4.5,-2.7) {\textbf{BEAT}\\ liveness heartbeat};
 \draw[optional] (n1.west) -| (beat.north);
 \draw[optional] (beat.south) |- (n2.west);
 \node[box,dashed,text width=4cm] (block) at (0,-5.4) {\textbf{BLOCK}\\ prevent unsafe progress};

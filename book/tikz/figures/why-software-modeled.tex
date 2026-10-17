@@ -5,14 +5,14 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=4.2cm] (h0) at (-4.8,0) {Older physical engineering};
+\node[head,text width=4.2cm,minimum height=1.15cm] (h0) at (-4.8,0) {Older physical engineering};
 \node[box,minimum height=5.5cm,text width=4.2cm] (b0) at (-4.8,-3.4) {Physical realization:\\\textbf{expensive and slow}\\[3pt]Design representation:\\\textbf{needed before realization}\\[3pt]Model maintenance \textbf{amortized over \textbf{expensive} build / test cycles}};
-\node[head,text width=4.2cm] (h1) at (0.0,0) {Software historically};
+\node[head,text width=4.2cm,minimum height=1.15cm] (h1) at (0.0,0) {Software historically};
 \node[box,minimum height=5.5cm,text width=4.2cm] (b1) at (0.0,-3.4) {Compilation / reproduction:\\\textbf{cheap}\\[3pt]Implementation / change labor:\\\textbf{expensive}\\[3pt]Code is \textbf{executable and precise}; secondary models carry \textbf{standing correspondence cost}};
-\node[head,text width=4.2cm,fill=white] (h2) at (4.8,0) {Commodity intelligence};
+\node[head,text width=4.2cm,fill=white,minimum height=1.15cm] (h2) at (4.8,0) {Commodity intelligence};
 \node[box,minimum height=5.5cm,text width=4.2cm,fill=white] (b2) at (4.8,-3.4) {Implementation labor \textbf{falls}\\[3pt]Model derivation and reconciliation labor \textbf{falls}\\[3pt]More live representations \textbf{become economical}};
 \node[head,text width=10cm,fill=white] (claim) at (0,-7.5) {The model / implementation price ratio changes};
-\draw[edge] (b0.south) -- (-4.8,-6.8) -- (0,-6.8) -- (claim.north);
-\draw[edge] (b1.south) -- (0.0,-6.8) -- (0,-6.8) -- (claim.north);
-\draw[edge] (b2.south) -- (4.8,-6.8) -- (0,-6.8) -- (claim.north);
+\draw[edge] (b0.south) -- (-4.8,-6.65) -- (0,-6.65) -- (claim.north);
+\draw[edge] (b1.south) -- (0.0,-6.65) -- (0,-6.65) -- (claim.north);
+\draw[edge] (b2.south) -- (4.8,-6.65) -- (0,-6.65) -- (claim.north);
 \end{tikzpicture}

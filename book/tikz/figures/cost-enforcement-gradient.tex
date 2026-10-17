@@ -8,14 +8,14 @@
 \node[box,text width=5cm,fill=white] (m) at (0,0) {\textbf{COST / USAGE MODEL}\\\textit{related measured quantities}};
 \node[head,text width=5cm,fill=white] (p) at (0,-1.4) {\textbf{Policy attached to the value}};
 \draw[edge,] (m) -- (p);
-\node[box,text width=3.8cm,fill=white] (a0) at (-4.5,-3.1) {\textbf{OBSERVE}\\\textit{report evidence only}};
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a0) at (-4.5,-3.4) {\textbf{OBSERVE}\\\textit{report evidence only}};
 \draw[edge,] (p.south) -- (0.000,-2.250) -- (-4.500,-2.250) -- (a0.north);
-\node[box,text width=3.8cm,fill=white] (a1) at (0,-3.1) {\textbf{ADAPT}\\\textit{change load}};
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a1) at (0,-3.4) {\textbf{ADAPT}\\\textit{change load}};
 \draw[edge,] (p) -- (a1);
-\node[box,text width=3.8cm,fill=white] (a2) at (4.5,-3.1) {\textbf{GATE}\\\textit{block admission}};
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a2) at (4.5,-3.4) {\textbf{GATE}\\\textit{block admission}};
 \draw[edge,] (p.south) -- (0.000,-2.250) -- (4.500,-2.250) -- (a2.north);
-\node[box,text width=4cm] (soft) at (0,-4.7) {Throttle; soft completion};
+\node[box,text width=4cm] (soft) at (0,-5.0) {Throttle; soft completion};
 \draw[edge,] (a1) -- (soft);
-\node[note,text width=12cm] (nt) at (0,-5.8) {Response follows the obligation attached to the quantity.};
-\node[note,text width=3.2cm] at (4.7,-4.15) {\textit{Dormant unless}\\\textit{configured}};
+\node[note,text width=12cm] (nt) at (0,-6.1) {Response follows the obligation attached to the quantity.};
+\node[note,text width=3.2cm] at (4.7,-4.45) {\textit{Dormant unless}\\\textit{configured}};
 \end{tikzpicture}

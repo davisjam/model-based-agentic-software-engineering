@@ -2,7 +2,7 @@
 """Regressions for lost semantic cues in otherwise valid rendered PDFs."""
 import unittest
 import pymupdf
-from mage_tikz_typography import check_page, audit_pdf
+from mage_tikz_typography import check_page, audit_pdf, check_body_fonts
 
 
 class TypographyTests(unittest.TestCase):
@@ -52,6 +52,20 @@ class TypographyTests(unittest.TestCase):
     def test_missing_review_coverage(self):
         with self.assertRaisesRegex(ValueError, "every candidate"):
             audit_pdf("unused.pdf", {"a.svg": {"page": 1}}, {"figures": []})
+
+    def test_fallback_font_is_detected_in_rendered_prose(self):
+        self.add("Label", font="tiro")
+        self.assertTrue(check_body_fonts(self.page, {"Helvetica"}))
+
+    def test_body_family_preserves_semantic_weight(self):
+        self.add("Heading", font="hebo")
+        self.add("Annotation", 50, "helv")
+        self.assertEqual(check_body_fonts(self.page, {"Helvetica", "Helvetica-Bold"}), [])
+
+    def test_math_symbols_do_not_require_prose_font(self):
+        self.add("x", font="tiit")
+        self.add("1", 50, "tiro")
+        self.assertEqual(check_body_fonts(self.page, {"Helvetica"}), [])
 
 
 if __name__ == "__main__":

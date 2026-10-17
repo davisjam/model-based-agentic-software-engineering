@@ -22,8 +22,10 @@ inventoried drawing, native print dimensions, alternate text, and monochrome
 rendered pixels. Pre-commit checks data projections; pre-push and the book CI job
 compile and check every candidate.
 
-`figures/` contains native TikZ pictures; `mage-figures.sty` holds common fonts and
-libraries. Pictures are compiled at their authored size, with no shrink-to-fit.
+`figures/` contains native TikZ pictures; `mage-figures.sty` holds common drawing styles and
+libraries. Font families and edition profiles come from `latex/book-fonts.tex`,
+shared with `latex/house.sty`. The standalone pool selects the MAGE body profile;
+a picture included directly in a book inherits that book’s active body family. Pictures are compiled at their authored size, with no shrink-to-fit.
 The book embeds the resulting vectors with figure alternate text. Editable TikZ
 sources remain available to the publisher. `receipts/` records the claim,
 relationships, grayscale encoding, redesign choices, and unresolved editorial questions.
@@ -69,7 +71,11 @@ fidelity checklist below.
    boxes, a heavy border and bold text without separate reasons for each. A white
    artifact inside a lightly shaded territory remains white; evidence is not a
    special gray category by default.
-5. **Preserve semantic typography.** Compare the source's boldface, capitals,
+5. **Inherit the book font and preserve semantic typography.** Use the active
+   book body family for labels, headings and annotations; do not select a separate
+   figure typeface. Local size, weight and italic changes must preserve that family.
+   The build compares rendered prose fonts against a proof from the book’s own
+   house style; mathematical symbols retain mathematical typesetting. Compare the source's boldface, capitals,
    italics and partial emphasis before simplifying. These can distinguish named
    regions from explanations, boundary names from their definitions, vocabulary
    terms from examples, or contrasting outcomes. Figure 2.2, for example, needs
@@ -86,6 +92,10 @@ fidelity checklist below.
    aligned ports, with clear direction. Do not converge diagonal arrows on a tiny
    point. Avoid long wraparound routes, crossings of unrelated boxes or text, and
    arrowheads laid along a border. Reposition nodes before adding routing detours.
+   Leave a visible straight approach between the final bend, branching rail or crossed panel border and
+   the target box: aim for at least 12 pt, with 9 pt as the audit floor. A complete
+   arrowhead alone is not enough clearance. Move the rail or the target before
+   shortening the shaft.
    Diagonals are appropriate only when geometry itself carries meaning (plots,
    triangles, radial relations, or literal expansion guides); record the reason.
 7. **Preserve distinct relation meanings.** Use solid arrows for ordinary directed
@@ -93,7 +103,11 @@ fidelity checklist below.
    relations. Preserve expansion guides, forbidden-path crosses, warning/check
    symbols and admission marks. Do not remove semantic cues to simplify the page.
 8. **Compare alternatives fairly.** Align peer paths and give their ordinary nodes
-   equal visual weight. Explain differing outcomes in words; do not imply that a
+   equal visual weight. Boxes at the same conceptual stage should share an explicit
+   top or bottom alignment; paired outcome boxes normally share both edges and
+   sufficient height for the longer text. Centering unequal-height peers can create
+   mismatched entry ports and crowd one branch, as in Figure 2.3. Equalize true peers,
+   not unrelated containers or deliberately nested structures. Explain differing outcomes in words; do not imply that a
    darker box is more important, worse or more authoritative unless that mapping is
    explicitly intended. The reasoning-horizon paths need readable structure, not a
    ladder of gray tones.
@@ -140,7 +154,9 @@ boldface and italics. Regular explanatory phrases are also checked, so making an
 entire box bold cannot substitute for preserving a term/definition distinction.
 The checks tolerate line wrapping and ligatures and require a complete correctly
 styled occurrence; they do not infer semantic meaning or replace source review.
-The build writes `latex/build/tikz/typography-audit.json` and fails on lost cues.
+The build also compares prose faces with a separate proof from `house.sty`, so
+local font fallbacks cannot silently diverge from the book. It writes
+`latex/build/tikz/typography-audit.json` and fails on lost cues or the wrong body family.
 
 ## Grayscale and geometry review
 
@@ -166,11 +182,21 @@ python tools/tikz_audit.py latex/build/tikz/candidates.pdf \
 python -m unittest tests.test_tikz_audit
 ```
 
-The new geometry checks are audit-only, following the SVG sensors' rollout
-practice; `--strict` returns failure on any finding. Compiler diagnostics,
-print dimensions and grayscale pixel checks remain blocking. Tests include
-intentionally broken TikZ that compiles without warnings, and a clean drawing
-with gray fills, a dashed connector and a white-backed edge label.
+`layout-review.json` records the bookwide spacing review and explicit peer groups.
+The build rejects short terminal approaches, misaligned reviewed peers, and invalid
+contracts. A terminal measurement runs from the last bend, branching rail, crossed panel border or shaft
+start to the arrowtip, including the tip. It recognizes filled arrowheads (including Stealth and Latex), straight shafts
+and rectangular text-bearing targets. Peer contracts select
+unique box labels and specify the relevant edges or equal dimensions; unrelated
+boxes are not presumed to be peers. A narrowly justified terminal exception must
+name its target, direction and lower bound. Its actual measurement and reason stay
+visible in the report rather than disappearing as a false zero.
+
+Collision, occlusion and font-band heuristics remain audit-only; `--strict` rejects
+any unreviewed finding. Compiler diagnostics, print dimensions, semantic typography,
+book font inheritance and grayscale pixel checks remain blocking. Tests include
+Figure 2.3-like crowded/misaligned branches that compile without warnings, repaired
+branches, and deliberately unequal non-peer panels.
 
 Glyph boxes approximate ink. Complex clipping, intentional mathematical overlays,
 node ownership and semantic fidelity still require visual/source comparison. A
