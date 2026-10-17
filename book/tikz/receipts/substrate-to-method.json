@@ -1,0 +1,49 @@
+{
+  "source": "book/assets/substrate-to-method.svg",
+  "chapter": "1.4-the-new-engineering-problem",
+  "claim": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE's corresponding answers: Modeling and Alignment.",
+  "topology": {
+    "description": "Two parallel trait→problem→method derivations; Modeling and Alignment are distinct activities.",
+    "relations": [
+      [
+        "n00",
+        "n01",
+        "",
+        ""
+      ],
+      [
+        "n01",
+        "n02",
+        "",
+        ""
+      ],
+      [
+        "n10",
+        "n11",
+        "",
+        ""
+      ],
+      [
+        "n11",
+        "n12",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Finite working state",
+    "Representation problem",
+    "Modeling Compact relevant properties",
+    "Probabilistic productive work Observable, interposable seams",
+    "Enforcement problem",
+    "Alignment Enforce selected obligations",
+    "Substrate trait",
+    "Problem",
+    "Method"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Two parallel left-to-right derivations connect substrate traits to engineering problems and methods. Finite working state creates a representation problem answered by Modeling. Probabilistic productive work with observable, interposable seams creates an enforcement problem answered by Alignment. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

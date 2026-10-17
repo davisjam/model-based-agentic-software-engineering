@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=4.5cm] (n0) at (0,0.0) {RUNNING SYSTEM};
+\node[box,text width=4.5cm] (n1) at (0,-1.6) {MEASUREMENT\\ latency · cost · queue};
+\draw[optional] (n0) -- (n1);
+\node[box,text width=4.5cm] (n2) at (0,-3.2) {DECLARED BOUND\\ threshold · scope · statistic};
+\draw[edge] (n1) -- (n2);
+\node[box,text width=4cm] (report) at (-3,-5.5) {REPORT ONLY\\ surfaced, not enforced};
+\node[gate,text width=4cm] (gate) at (3,-5.5) {WARNING / ADMISSION GATE\\ CHECKED};
+\draw[edge] (n2) -- node[note,fill=white,inner sep=2pt,pos=.8] {no} (report);
+\draw[edge] (n2) -- node[note,fill=white,inner sep=2pt,pos=.8] {yes} (gate);
+\node[note,text width=3cm] (t14) at (0,-4.1) {gate warranted?};
+\node[note,text width=10cm] (t15) at (0,-6.9) {A quantity does not earn a gate by being measurable.};
+\end{tikzpicture}

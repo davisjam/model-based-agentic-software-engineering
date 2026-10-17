@@ -1,0 +1,32 @@
+{
+  "source": "book/assets/interlude-modeling-cycle.svg",
+  "claim": "*Modeling as a loop.* (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+  "topology": "Linear after-the-fact documentation contrasted with model-analysis-prediction-implementation-measurement feedback.",
+  "required_terms": [
+    "(a) Models after implementation",
+    "(b) A modeling loop",
+    "Design",
+    "Implement",
+    "Document with models",
+    "Problem",
+    "Model",
+    "Analyze",
+    "Prediction / design",
+    "Implementation",
+    "Measurement"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Resolved inconsistent original SVG arrow near prediction/design to chapter-described causality: analysis yields prediction/design, which drives implementation.",
+  "questions": [
+    "Original SVG arrow near prediction/design pointed upward from implementation; candidate follows chapter and SVG description. Confirm this editorial repair."
+  ],
+  "alt": "Two panels. (a) Models after implementation: a linear sequence of design, implement, then document with models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a design; those drive implementation and then measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 396.38,
+    "height_pt": 227.628,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

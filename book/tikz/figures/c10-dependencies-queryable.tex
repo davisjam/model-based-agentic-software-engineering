@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=3cm] (change) at (0,0) {CHANGE X\\ proposed};
+\node[box,text width=3cm] (sub) at (0,-1.6) {SUBSTRATE NODE};
+\draw[edge] (change) -- (sub);
+\node[box,text width=2.8cm] (p0) at (-4,-3.6) {CONTROL A\\ blocks};
+\draw[edge] (sub) -- (p0);
+\node[box,dashed,text width=2.8cm] (p1) at (0,-3.6) {CONTROL B\\ unaffected};
+\draw[optional] (sub) -- (p1);
+\node[box,text width=2.8cm] (p2) at (4,-3.6) {MODEL C\\ derives};
+\draw[edge] (sub) -- (p2);
+\node[gate,text width=4cm] (blast) at (0,-5.6) {BLAST RADIUS\\ affected set};
+\draw[edge] (p0) -- (blast);
+\draw[edge] (p2) -- (blast);
+\node[note,text width=10cm] (t17) at (0,-6.8) {Typed dependencies identify affected controls and models.};
+\end{tikzpicture}

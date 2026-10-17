@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/appendix-g-6-facts-before-prose.svg",
+  "claim": "*Facts before prose.* A structured provenance record supports mechanical validation and re-derivable documentation; independently maintained prose lacks that correspondence.",
+  "topology": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box \u2014 free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
+  "required_terms": [
+    "ENGINEERING ACTION",
+    "PROVENANCE FACT what \u00b7 who \u00b7 how",
+    "VALIDATION / AUDIT CHECKED completion gate",
+    "GENERATED DOCUMENTATION re-derivable",
+    "prose maintained independently",
+    "human explanation"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Facts before prose \u2014 the strongest documentation is generated from facts the system already knows"
+}

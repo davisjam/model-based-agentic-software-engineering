@@ -1,0 +1,46 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=3cm] (h1) at (-4.7,0) {Stage / dates};
+\node[head,text width=4cm] (h2) at (0,0) {Pressure};
+\node[head,text width=4cm] (h3) at (4.7,0) {Consequence};
+\node[note,text width=3cm] (a0) at (-4.7,-1.5) {Feasibility\\March};
+\node[note,text width=4cm] (b0) at (0,-1.5) {Vision-language capability became usable};
+\node[note,text width=4cm] (c0) at (4.7,-1.5) {The build began};
+\fill (-6.6,-1.5) circle (2pt);
+\node[note,text width=3cm] (a1) at (-4.7,-3.15) {PowerPoint\\March--April};
+\node[note,text width=4cm] (b1) at (0,-3.15) {Colleagues supplied their decks};
+\node[note,text width=4cm] (c1) at (4.7,-3.15) {First real remediation pipeline};
+\fill (-6.6,-3.15) circle (2pt);
+\draw[edge,draw=none] (a0) -- (a1);
+\node[note,text width=3cm] (a2) at (-4.7,-4.8) {Format expansion\\April};
+\node[note,text width=4cm] (b2) at (0,-4.8) {Word, Excel, PDF broke uniform assumptions};
+\node[note,text width=4cm] (c2) at (4.7,-4.8) {Architecture differentiated};
+\fill (-6.6,-4.8) circle (2pt);
+\draw[edge,draw=none] (a1) -- (a2);
+\node[note,text width=3cm] (a3) at (-4.7,-6.449999999999999) {SaaS\\April};
+\node[note,text width=4cm] (b3) at (0,-6.449999999999999) {Real users on real documents};
+\node[note,text width=4cm] (c3) at (4.7,-6.449999999999999) {Auth, quota, cost, security; fidelity limits};
+\fill (-6.6,-6.449999999999999) circle (2pt);
+\draw[edge,draw=none] (a2) -- (a3);
+\node[note,text width=3cm] (a4) at (-4.7,-8.1) {Standards\\April--May};
+\node[note,text width=4cm] (b4) at (0,-8.1) {Need a defensible accessibility claim};
+\node[note,text width=4cm] (c4) at (4.7,-8.1) {Standards-grounded validation};
+\fill (-6.6,-8.1) circle (2pt);
+\draw[edge,draw=none] (a3) -- (a4);
+\node[note,text width=3cm] (a5) at (-4.7,-9.75) {Hardening\\May--June};
+\node[note,text width=4cm] (b5) at (0,-9.75) {Time for structural work};
+\node[note,text width=4cm] (c5) at (4.7,-9.75) {Models, tests, gates, provenance};
+\fill (-6.6,-9.75) circle (2pt);
+\draw[edge,draw=none] (a4) -- (a5);
+\node[note,text width=3cm] (a6) at (-4.7,-11.399999999999999) {Deployment / iteration / optimization\\July--September};
+\node[note,text width=4cm] (b6) at (0,-11.399999999999999) {Production performance, cost, reliability, architecture limits};
+\node[note,text width=4cm] (c6) at (4.7,-11.399999999999999) {Measure, redesign, optimize, re-platform};
+\fill (-6.6,-11.399999999999999) circle (2pt);
+\draw[edge,draw=none] (a5) -- (a6);
+\draw (-6.6,-1.5)--(-6.6,-11.4);
+\node[note,text width=12cm] (nt) at (0,-12.8) {Retrospective stages, not a preplanned roadmap.};
+\end{tikzpicture}

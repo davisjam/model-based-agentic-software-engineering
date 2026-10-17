@@ -1,0 +1,92 @@
+{
+  "source": "book/assets/one-docable-job.svg",
+  "chapter": "1.2-mage-by-example",
+  "claim": "*Processing one document in DocAble.* A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.",
+  "topology": {
+    "description": "Processing fork/join; workers call specialist services while repaired pieces rejoin.",
+    "relations": [
+      [
+        "doc",
+        "job",
+        "creates",
+        ""
+      ],
+      [
+        "job",
+        "c0",
+        "",
+        ""
+      ],
+      [
+        "job",
+        "c1",
+        "",
+        ""
+      ],
+      [
+        "job",
+        "c2",
+        "",
+        ""
+      ],
+      [
+        "c0",
+        "worker",
+        "",
+        ""
+      ],
+      [
+        "c1",
+        "worker",
+        "",
+        ""
+      ],
+      [
+        "c2",
+        "worker",
+        "",
+        ""
+      ],
+      [
+        "worker",
+        "services",
+        "call",
+        "<->"
+      ],
+      [
+        "worker",
+        "merge",
+        "",
+        ""
+      ],
+      [
+        "merge",
+        "v",
+        "",
+        ""
+      ],
+      [
+        "v",
+        "out",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "User uploads document",
+    "Job Tracks processing",
+    "Chunk 1",
+    "Chunk 2",
+    "Chunk 3",
+    "Workers claim work",
+    "Specialized services Generation · render · OCR Document / format machinery",
+    "Merge / reassemble Repaired pieces",
+    "Validate",
+    "Remediated document + evidence"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A submitted document creates a tracked job, which splits into chunks processed by workers. Workers call generation, rendering, OCR and document-format services. Repaired pieces rejoin, are validated and return as a remediated document with evidence of consequential changes. The fork and join distinguish concurrent work from its shared job. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

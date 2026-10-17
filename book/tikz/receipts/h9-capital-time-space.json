@@ -1,0 +1,36 @@
+{
+  "source": "book/assets/h9-capital-time-space.svg",
+  "claim": "*Engineering capital across time and space.* A conceptual snapshot of three products shaped by successive engineering episodes. Within each product, useful engineering structure has accumulated selectively; the incomplete constellations represent neither a prescribed product model nor a maturity level. Across products, an assurance obligation connects all three, code-quality mechanisms are shared by two, and connections to a common security posture remain possible. Solid relationships are established; dotted relationships are emerging or possible.",
+  "topology": "A conceptual snapshot of three products shaped by successive engineering episodes. Each\n    product is a softly bounded gray field holding a partial constellation of lifecycle surfaces around a central\n    engineering-models node. Every relationship runs to the center of a named node so it plugs in cleanly: solid\n    gray lines are established internal relationships, dotted gray lines are emerging or possible ones, and\n    unconnected nodes are local. Three cross-product concerns connect to named nodes: an assurance obligation to\n    Product 1 Assurance, Product 2 Engineering Models, and Product 3 Evidence; a code-quality mechanism to the\n    Engineering Models of Products 1 and 2; and a security posture, dotted, to the Engineering Models of all three.\n    No arrowheads, axes, or scale.",
+  "required_terms": [
+    "PRODUCT 1",
+    "ENGINEERING MODELS",
+    "Discovery",
+    "Assurance",
+    "Maintenance",
+    "Operations",
+    "PRODUCT 2",
+    "ENGINEERING MODELS",
+    "Discovery",
+    "Assurance",
+    "Maintenance",
+    "Operations",
+    "Incident",
+    "PRODUCT 3",
+    "ENGINEERING MODELS",
+    "Discovery",
+    "Assurance",
+    "Evidence",
+    "Operations",
+    "CODE-QUALITY MECHANISMS",
+    "ASSURANCE OBLIGATION DO-178C / IEC 61508",
+    "SECURITY POSTURE possible shared concern",
+    "Solid: established. Dotted: emerging / possible. Incomplete constellations are neither prescribed models nor maturity levels."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Constellations re-spaced with exact original14internal relationships and8cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point.",
+  "questions": [
+    "Constellations re-spaced with exact original 14 internal relationships and 8 cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point."
+  ],
+  "alt": "Engineering capital across time and space"
+}

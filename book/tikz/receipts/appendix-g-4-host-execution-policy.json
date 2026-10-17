@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/appendix-g-4-host-execution-policy.svg",
+  "claim": "*Stable topology, variable execution policy.* Deployment topology remains stable while host profiles select different scheduling behavior.",
+  "topology": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here \u2014 the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour.",
+  "required_terms": [
+    "web",
+    "queue",
+    "worker",
+    "storage",
+    "HOST EXECUTION POLICY profile \u2192 scheduling elastic \u2192 fan out metered \u2192 bounded fan scarce \u2192 serialize",
+    "Load rationing changes scheduling policy, not stable deployment topology. No gate is implied by this representation."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Stable topology, variable Host Execution Policy \u2014 the deploy graph holds; the policy varies"
+}

@@ -1,0 +1,24 @@
+{
+  "source": "book/assets/provenance-carried-admission.svg",
+  "claim": "*Provenance-carried admission.* A protected operation must derive through the sanctioned abstraction, which attaches provenance to the resulting operation. The receiving boundary requires that provenance before admitting the operation. The mechanism removes the degree of freedom to obtain the operation through some other implementation path, without requiring the environment to enumerate those alternative paths.",
+  "topology": "Single sanctioned left-to-right derivation crosses provenance-checking boundary.",
+  "required_terms": [
+    "Implementation logic",
+    "Sanctioned abstraction\\ provenance",
+    "Admission boundary\\ valid provenance",
+    "Admitted operation",
+    "Constrain the derivation path; the boundary need not enumerate every bypass."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 416.223,
+    "height_pt": 115.781,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/field-guide-spotify.svg",
+  "claim": "*Spotify projected onto MAGE.* Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count.",
+  "topology": "See source-specific field-guide graph and receipt redesign.",
+  "required_terms": [
+    "Spotify",
+    "Fleet-first autonomy",
+    "human judgment what \u00b7 where \u00b7 when \u00b7 whether",
+    "Governed Engineering Environment",
+    "agent 1",
+    "agent 2",
+    "agent 3",
+    "agent 4",
+    "agent 5",
+    "Agents implement concurrently; scarce human judgment moves upstream."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Field-guide visual argument preserved; decorative header/footer dropped. Evidence caveats retained explicitly rather than color/half-disc glyph alone.",
+  "questions": [],
+  "alt": "Spotify projected onto MAGE: five agents implement concurrently below a human-judgment box labeled what, where, when, and whether. An upward arrow emphasizes judgment moving upstream; the judgment box connects to the Governed Engineering Environment."
+}

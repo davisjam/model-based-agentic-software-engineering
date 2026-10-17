@@ -1,0 +1,42 @@
+{
+  "source": "book/assets/entitlement-model-evolution.svg",
+  "chapter": "2.4-decision",
+  "claim": "*One distinction, lost and preserved.* The scalar reduction cannot represent unlimited entitlement; the revised model preserves the distinction.",
+  "topology": {
+    "description": "Four chronological model states show a stale finite-credit reduction losing unlimited entitlement and repaired decision retaining it.",
+    "relations": [
+      [
+        "p0",
+        "p1",
+        "",
+        ""
+      ],
+      [
+        "p1.south",
+        "p2.north",
+        "",
+        ""
+      ],
+      [
+        "p2",
+        "p3",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "1  Original model",
+    "Group: credits integer Σ credits ≥ pages? Adequate while every entitlement is finite",
+    "2  System evolves",
+    "Group entitlement Finite(credits) OR unlimited The domain has grown",
+    "3  Stale admission model",
+    "Groups → Σ finite credits only Unlimited distinction discarded Unlimited user → 0 credits 0 < 38 → REJECT",
+    "4  Revised model",
+    "Group entitlements: finite OR unlimited Admission decision: admit? Authorizing group · ordered plan Same user → admit_unlimited"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Four successive panels show finite-credit admission, the introduction of unlimited entitlement, a stale credit-sum model and a revised model. The stale model reduces an unlimited user to zero credits and rejects a thirty-eight-page upload. The revised model retains finite versus unlimited entitlement and records admission with the authorizing group and plan. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

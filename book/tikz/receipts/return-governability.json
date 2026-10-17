@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/return-governability.svg",
+  "claim": "*The economics of explicit engineering.* The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can become enforcement. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.",
+  "topology": "Continuous conceptual two-axis space with four quadrants; high value and high governability are independent.",
+  "required_terms": [
+    "Invest in explicit judgment\\ value; low governability [3pt]Improve models, knowledge, procedures, evidence, and evaluation.",
+    "Invest in enforcement\\ value; high governability [3pt]Reliable evaluation can justify machinery with consequences.",
+    "Leave judgment informal\\ value; low governability [3pt]Ordinary situated judgment suffices; governance is uneconomical.",
+    "Mechanize selectively\\ value; high governability [3pt]Governability alone does not justify machinery.",
+    "Value of explicit engineering",
+    "Feasible governability: representation, evidence, evaluation",
+    "Low",
+    "High"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the\n    bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —\n    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit\n    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more\n    explicit and repeatable. Upper right, high value and high feasible governability: invest in enforcement; the obligation\n    can be evaluated reliably enough to carry consequences, so build the machinery that enforces it. Lower left,\n    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor\n    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;\n    governability alone does not justify machinery.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 387.901,
+    "height_pt": 351.051,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

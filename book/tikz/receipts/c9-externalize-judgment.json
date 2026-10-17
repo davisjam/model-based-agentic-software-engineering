@@ -1,0 +1,19 @@
+{
+  "source": "book/assets/c9-externalize-judgment.svg",
+  "claim": "*From system model to operational guidance.* Healthy-state predicates, states, and relations feed an operational model that produces generated procedure where possible and reasoning guidance where judgment remains necessary.",
+  "topology": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated \u2014 a procedure \u2014 and what still needs contextual reasoning \u2014 guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain.",
+  "required_terms": [
+    "SYSTEM MODEL",
+    "healthy?",
+    "states",
+    "relations",
+    "OPERATIONAL MODEL",
+    "generated procedure",
+    "reasoning guidance",
+    "OPERATOR"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.9 Externalize recurring operational judgment: derive an operational model from the system model, then serve the operator"
+}

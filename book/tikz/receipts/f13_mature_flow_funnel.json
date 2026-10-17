@@ -1,0 +1,13 @@
+{
+  "source": "assets/f13_mature_flow_funnel.svg",
+  "claim": "*The Admission Funnel, One Mature Week.* Merge-train runs in the mature era's highest-throughput full week: 592 started, 573 landed on main through the full integration gate, 10 aborted, 192 work spaces retired. Parallel realization fanned out; admission stayed serialized through regenerated evidence. The registry logs only this stage \u2014 upstream repair iterations are not retained as events.",
+  "topology": "Quantitative axes preserve source values and categories.",
+  "required_terms": [],
+  "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
+  "redesign": "Same maximum-completion week 2026-W35; categorical bars do not imply retirement is a sequential funnel stage.",
+  "questions": [],
+  "alt": "The Admission Funnel, One Mature Week. Merge-train runs in the mature era's highest-throughput full week: 592 started, 573 landed on main through the full integration gate, 10 aborted, 192 work spaces retired. Parallel realization fanned out; admission stayed serialized through regenerated evidence. The registry logs only this stage \u2014 upstream repair iterations are not retained as events.",
+  "data": [
+    "mature_flow_weekly.csv"
+  ]
+}

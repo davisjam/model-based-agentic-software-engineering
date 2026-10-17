@@ -1,0 +1,28 @@
+{
+  "source": "book/assets/mage-dynamic-model.svg",
+  "claim": "*The MAGE Dynamic Model.* Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while capability amplification reopens the frontier as stronger environments support more ambitious work. Prior engineering knowledge seeds the system before failure occurs.",
+  "topology": "Eight-construct directed system with numbered bootstrap, pressure, adaptation, amplification; balancing return to environment and reinforcing return to capacity.",
+  "required_terms": [
+    "Prior engineering knowledge\\; requirements; brownfield assets; lessons",
+    "Agentic capacity\\; concurrency; velocity",
+    "Governed environment E\\; coverage; coherence; economy",
+    "Agentic work\\ change; task frontier",
+    "Realized performance\\; defect escape; human attention",
+    "Governance pressure\\; recurring failures; escaped defects; intervention; control friction",
+    "Structural diagnosis\\ defect? missing representation? weak enforcement? stale mechanism?",
+    "Governance adaptation\\; constrain; validate; strengthen; reconcile; retire",
+    "B: diagnosis and adaptation seek fit. R: stronger environments reopen the frontier. Bootstrap is an input, not feedback. Directional model, not a fitted law."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A monochrome system diagram with eight constructs and four numbered dynamics. Prior engineering knowledge sits at the top and enters the governed environment E through 1 Bootstrap. Agentic capacity at left exercises E at right and drives agentic work below. E shapes realized performance; agentic work also produces performance. Work-environment mismatch and a performance gap feed governance pressure. The downward path continues through 2 Pressure / discovery: structural diagnosis, then 3 Governance adaptation. Diagnosis asks about local defects, missing representations, weak enforcement, or stale mechanisms. Adaptation can represent, constrain, validate, strengthen, reconcile, or retire structure. Its outer return arrow, marked B, feeds E and forms a balancing loop seeking fit. Above E and capacity, a return arrow labelled 4 Capability amplification (R) shows a stronger environment enabling bigger tasks and more concurrency. This reinforcing loop reopens the frontier. Written numbers and labels distinguish the dynamics; all arrows are black. A bottom note states that bootstrap is an input rather than feedback, and the model is directional rather than a fitted law.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 426.291,
+    "height_pt": 400.687,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

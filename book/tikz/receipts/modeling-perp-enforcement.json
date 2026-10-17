@@ -1,0 +1,55 @@
+{
+  "source": "book/assets/modeling-perp-enforcement.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.",
+  "topology": {
+    "description": "Separate measurement modeling and enforcement decisions over one shared model; four equal choices.",
+    "relations": [
+      [
+        "m",
+        "same",
+        "",
+        ""
+      ],
+      [
+        "same",
+        "c0",
+        "",
+        ""
+      ],
+      [
+        "same",
+        "c1",
+        "",
+        ""
+      ],
+      [
+        "same",
+        "c2",
+        "",
+        ""
+      ],
+      [
+        "same",
+        "c3",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Chapter 2 · Model",
+    "Quantity + reference bound Comparison",
+    "Chapter 3 · Enforcement decision",
+    "Same model",
+    "Observe",
+    "Adapt",
+    "Degrade",
+    "Gate",
+    "Model: what quantity and bound matter? Alignment: what enforcement is justified?"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A quantity and reference bound are compared in the modeling stage. The enforcement stage uses that same model and branches to four peer choices: observe, adapt, degrade or gate. Modeling names what matters; enforcement chooses its force. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

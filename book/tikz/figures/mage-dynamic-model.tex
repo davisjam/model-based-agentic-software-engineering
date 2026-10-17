@@ -1,0 +1,27 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=6cm] (prior) at (-2,1.2) {Prior engineering knowledge\\standards; requirements; brownfield assets; lessons};
+\node[box,text width=4cm] (cap) at (-4,-2.5) {Agentic capacity\\capability; concurrency; velocity};
+\node[head,text width=5cm] (env) at (3.5,-2.5) {Governed environment $E$\\representation; coverage; coherence; economy};
+\draw[edge] (prior.east)--(6.3,1.2)--node[note,right,fill=white] {1 Bootstrap}(6.3,-1.2)--(env.north east);
+\draw[edge,] (cap) -- node[midway,note,fill=white] {exercises} (env);
+\node[box,text width=4cm] (work) at (-4,-4.5) {Agentic work\\attempted change; task frontier};
+\node[box,text width=5cm] (perf) at (3.5,-4.5) {Realized performance\\throughput; defect escape; human attention};
+\draw[edge,] (cap) -- (work);
+\draw[edge,] (work) -- (perf);
+\draw[edge,] (env) -- node[midway,right,note,xshift=.4cm] {shapes} (perf);
+\node[box,text width=9cm] (press) at (0,-6.4) {Governance pressure\\churn; recurring failures; escaped defects; intervention; control friction};
+\draw[edge,] (work) -- node[midway,left,note] {mismatch} (press);
+\draw[edge,] (perf) -- node[midway,right,note] {gap} (press);
+\node[box,text width=9cm] (diag) at (0,-8.2) {\textbf{2 Pressure / discovery: structural diagnosis}\\local defect? missing representation? weak enforcement? stale mechanism?};
+\draw[edge,] (press) --  (diag);
+\node[box,text width=9cm] (adapt) at (0,-10.2) {\textbf{3 Governance adaptation}\\represent; constrain; validate; strengthen; reconcile; retire};
+\draw[edge,] (diag) --  (adapt);
+\draw[edge] (adapt.east)--(7,-10.2)--node[note,right,text width=1cm] {B}(7,-2.5)--(env.east);
+\draw[edge] (env.north)--(3.5,-.9)--(-4,-.9)--(cap.north);\node[note,text width=7cm] at (-.25,-.1) {4 Capability amplification (R): bigger tasks, more concurrency};
+\node[note,text width=13cm] (nt) at (0,-11.5) {B: diagnosis and adaptation seek fit. R: stronger environments reopen the frontier. Bootstrap is an input, not feedback. Directional model, not a fitted law.};
+\end{tikzpicture}

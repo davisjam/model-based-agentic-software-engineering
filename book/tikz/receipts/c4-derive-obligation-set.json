@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/c4-derive-obligation-set.svg",
+  "claim": "*Required set minus present evidence.* The model derives what must be assured; that required set is compared against existing evidence; the intersection is covered, and the remainder is a gap that raises a finding.",
+  "topology": "A vertical flow. A model derives the set of things that must be assured \u2014 what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
+  "required_terms": [
+    "MODEL",
+    "WHAT MUST BE ASSURED seams \u00b7 failure edges \u00b7 invariants",
+    "EXISTING EVIDENCE tests \u00b7 checks that actually exist",
+    "COVERED",
+    "GAP",
+    "FINDING",
+    "Required set minus present evidence."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence"
+}

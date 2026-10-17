@@ -1,0 +1,38 @@
+{
+  "source": "book/assets/coherence-triangle.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Checked predicates over a structured model.* A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.",
+  "topology": {
+    "description": "Structured model supports domain predicates; checker evaluates invariants; dashed feedback refines predicates.",
+    "relations": [
+      [
+        "n0",
+        "n1",
+        "supports",
+        ""
+      ],
+      [
+        "n1",
+        "n2",
+        "evaluated by",
+        ""
+      ],
+      [
+        "n2.south",
+        "n1.south",
+        "Recurring failure → new / refined invariant",
+        "dashed"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Structured model Records · edges · states Job: free / leased / done",
+    "Invariants Stable IDs + declared domains leased ⇔ owner exists",
+    "Checker Model check · drift lint · validator",
+    "One executable-model pattern, not the definition of executability."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Three nodes run left to right: a structured model supports invariants, which are evaluated by a checker. A dashed feedback edge from the checker returns to the invariants, identifying recurring failure as a reason for a new or refined invariant. The lease example states that leased is equivalent to owner exists. This is one executable-model pattern, not the definition of executability. Black lines, white nodes and explicit labels carry the meaning without color."
+}

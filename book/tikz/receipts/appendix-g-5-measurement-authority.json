@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/appendix-g-5-measurement-authority.svg",
+  "claim": "*Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or an admission gate.",
+  "topology": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate \u2014 the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
+  "required_terms": [
+    "RUNNING SYSTEM",
+    "MEASUREMENT latency \u00b7 cost \u00b7 queue",
+    "DECLARED BOUND threshold \u00b7 scope \u00b7 statistic",
+    "REPORT ONLY surfaced, not enforced",
+    "WARNING / ADMISSION GATE CHECKED",
+    "gate warranted?",
+    "A quantity does not earn a gate by being measurable."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Measurement does not imply enforcement \u2014 a number earns a gate only when evidence warrants it"
+}

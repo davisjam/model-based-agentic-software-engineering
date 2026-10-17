@@ -1,0 +1,13 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\draw[edge] (0,0)--(13,0);\node[diamond,draw,fill=white,minimum size=.35cm] at (1.5,0) {};\node[diamond,draw,fill=black,minimum size=.35cm] at (11.5,0) {};
+\node[note,text width=3cm] (w) at (1.5,1.2) {Work begins};
+\node[note,text width=3cm] (c) at (11.5,1.2) {Consequence};
+\node[note,text width=4cm] (l) at (1.5,-1.5) {\textbf{Earliest legible boundary}\\Catch cheaply near the cause};
+\node[note,text width=4cm] (s) at (11,-1.5) {\textbf{Last safe boundary}\\Re-establish what must hold};
+\node[note,text width=6cm] (nt) at (6.5,0.7) {Relevant state may change between checks.};
+\end{tikzpicture}

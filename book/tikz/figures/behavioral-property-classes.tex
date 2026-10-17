@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=8cm] (model) at (0,0) {Behavioral model\\States · transitions · legal sequences};
+\node[n,text width=3.7cm] (p0) at (-4.5,-2.5) {Local rule\\Is this edge legal?\\Transition check};
+\draw[edge] (model) -- (p0);
+\node[n,text width=3.7cm] (p1) at (0.0,-2.5) {Reachable-state\\Can this state occur?\\State-space search};
+\draw[edge] (model) -- (p1);
+\node[n,text width=3.7cm] (p2) at (4.5,-2.5) {Temporal property\\Will this eventually occur?\\Temporal model checking};
+\draw[edge] (model) -- (p2);
+\node[strong,text width=8cm] (e) at (0,-5) {Evidence about behavior};
+\draw[edge] (p0) -- (e);
+\draw[edge] (p1) -- (e);
+\draw[edge] (p2) -- (e);
+\end{tikzpicture}

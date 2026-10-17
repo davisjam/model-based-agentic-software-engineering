@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/c8-cause-travels-with-consequence.svg",
+  "claim": "*Cause travels with consequence.* A cause mints an identity; the identity rides action to change to artifact; from the final artifact the identity lets a reader reconstruct why, not just what.",
+  "topology": "A causal event mints an identity, then that identity travels alongside the work. The action\n    produces a change, the change produces an artifact, and the same identity is carried under all three as a\n    provenance rail. Because the identity moved with the work rather than being inferred afterward, the final\n    artifact can reconstruct why it changed, not merely what changed.",
+  "required_terms": [
+    "CAUSE",
+    "ACTION",
+    "CHANGE",
+    "ARTIFACT",
+    "identity travels with the work",
+    "reconstruct WHY"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.8 Make cause travel with consequence: mint identity at the causal event and carry it through the artifacts"
+}

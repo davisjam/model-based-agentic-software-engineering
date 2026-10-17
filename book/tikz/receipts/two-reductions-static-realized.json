@@ -1,0 +1,62 @@
+{
+  "source": "book/assets/two-reductions-static-realized.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Computation structure versus realized history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
+  "topology": {
+    "description": "Static computation DAG and realized edit sequence are peers; dashed undirected link marks not joined today.",
+    "relations": [
+      [
+        "a",
+        "rem",
+        "DATA_FLOW",
+        ""
+      ],
+      [
+        "gate",
+        "rem",
+        "CONTROL_GATE",
+        ""
+      ],
+      [
+        "e0",
+        "e1",
+        "",
+        ""
+      ],
+      [
+        "e1",
+        "e2",
+        "",
+        ""
+      ],
+      [
+        "e2",
+        "e3",
+        "",
+        ""
+      ],
+      [
+        "gate.east",
+        "e1.west",
+        "not joined today",
+        "dashed,-"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Computation graph What may compose",
+    "Edit record What one run did emit",
+    "Analyze pass",
+    "Route gate",
+    "Remediate pass",
+    "Session run",
+    "PdfEdit · SetAltText",
+    "PdfEdit · TagFigure",
+    "PdfEdit · SetReadingOrder",
+    "Static structure and realized history; join by computation identity when a question needs it."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Two peer panels show a static computation graph with typed data and control relations and a realized run with typed PdfEdit operations. A dashed connection states that they are not joined today. Shared computation identity can join them when a question needs that correspondence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

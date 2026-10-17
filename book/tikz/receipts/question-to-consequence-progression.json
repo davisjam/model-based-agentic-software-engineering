@@ -1,0 +1,53 @@
+{
+  "source": "book/assets/question-to-consequence-progression.svg",
+  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "claim": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
+  "topology": {
+    "description": "Question→representation→analysis→evidence; evidence informs design, enforcement, or both.",
+    "relations": [
+      [
+        "n0",
+        "n1",
+        "",
+        ""
+      ],
+      [
+        "n1",
+        "n2",
+        "",
+        ""
+      ],
+      [
+        "n2",
+        "n3",
+        "",
+        ""
+      ],
+      [
+        "n3",
+        "design",
+        "",
+        ""
+      ],
+      [
+        "n3",
+        "align",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Engineering question",
+    "Choose representation Closed state/action space · finite transition system · temporal behavior",
+    "Choose analysis appropriate to the property Constraint solving · state exploration · model checking · simulation · static analysis",
+    "Interpret evidence",
+    "Inform architecture / design Compare alternatives · revise boundaries Change dependencies · allocate resources",
+    "Decide what deserves enforcement Alignment (Chapter 3)",
+    "Either or both"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "An engineering question leads to representation, analysis and interpreted evidence. Evidence then branches to architecture and design decisions or to an obligation deserving enforcement through Alignment, or both. Example representations and analyses illustrate choices rather than a prescribed pairing. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

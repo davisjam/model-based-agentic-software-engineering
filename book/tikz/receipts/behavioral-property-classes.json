@@ -1,0 +1,57 @@
+{
+  "source": "book/assets/behavioral-property-classes.svg",
+  "chapter": "2.3-behavioral",
+  "claim": "*Behavioral models expose different classes of properties.* A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.",
+  "topology": {
+    "description": "One behavioral model forks to three property/checker questions that converge on behavioral evidence.",
+    "relations": [
+      [
+        "model",
+        "p0",
+        "",
+        ""
+      ],
+      [
+        "model",
+        "p1",
+        "",
+        ""
+      ],
+      [
+        "model",
+        "p2",
+        "",
+        ""
+      ],
+      [
+        "p0",
+        "e",
+        "",
+        ""
+      ],
+      [
+        "p1",
+        "e",
+        "",
+        ""
+      ],
+      [
+        "p2",
+        "e",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Behavioral model States · transitions · legal sequences",
+    "Local rule Is this edge legal? Transition check",
+    "Reachable-state Can this state occur? State-space search",
+    "Temporal property Will this eventually occur? Temporal model checking",
+    "Evidence about behavior"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "One behavioral model branches to three questions: whether an edge is legal, whether a state is reachable and whether a temporal property holds. Transition checking, state-space search and temporal model checking supply corresponding behavioral evidence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

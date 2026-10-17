@@ -1,0 +1,32 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=13cm] (h) at (0,0) {SOFTWARE FACTORY};
+\node[note,text width=13cm] (ph) at (0,-1.1) {PROCESS DESIGN: how production proceeds};
+\draw[dashed] (-7,-1.7) rectangle (7,-4.8);
+\node[box,text width=2.6cm] (p0) at (-5.4,-2.5) {Engineering\\intent};
+\node[box,text width=2.6cm] (p1) at (-1.8000000000000003,-2.5) {Encoded\\property};
+\node[box,text width=2.6cm] (p2) at (1.7999999999999998,-2.5) {Fabricator};
+\node[box,text width=2.6cm] (p3) at (5.4,-2.5) {Realization};
+\draw[edge,] (p0) -- (p1);
+\draw[edge,] (p1) -- (p2);
+\draw[edge,] (p2) -- (p3);
+\node[note,text width=3cm] (prob0) at (-3.6,-3.8) {$P(E)$\\correct encoding};
+\node[note,text width=3cm] (prob1) at (0.0,-3.8) {$P(I\mid E)$\\correct interpretation};
+\node[note,text width=3cm] (prob2) at (3.6,-3.8) {$P(L\mid I,E)$\\correct realization};
+\node[note,text width=4cm] (note0) at (-4.4,-5.5) {A better fabricator does not raise correct encoding.};
+\node[note,text width=7cm] (note1) at (2.8,-5.5) {Process design and better agents raise interpretation and realization.};
+\node[head,text width=4cm] (tol) at (-4.7,-7) {TOLERANCE\\acceptable product variation};
+\node[box,text width=7.7cm] (region) at (2,-7.7) {ACCEPTABLE REGION\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
+\draw[edge] (p3.south)--(5.4,-6.6)--(region.north east);
+\node[note,text width=5.8cm] (meas) at (1.8,-6.4) {Measurement: tests, PBT, analysis, simulation, human judgment};
+\draw[edge] (p1.south)--(-1.8,-6.5)--(-2.2,-6.5)--(-2.2,-8.4)--(region.south west);\node[note,text width=2.8cm] at (-3.7,-8.6) {Supplies the tolerance};
+\node[box,text width=3.6cm] (rev) at (-0.3,-10) {Revise / reject};
+\node[box,text width=3.6cm] (adm) at (4.3,-10) {Admitted change};
+\draw[edge,] (region) -- node[midway,note,fill=white] {outside} (rev);
+\draw[edge,] (region) -- node[midway,note,fill=white] {within tolerance} (adm);
+\draw[black!40] (-7.3,.5) rectangle (7.3,-10.7);
+\end{tikzpicture}

@@ -1,0 +1,68 @@
+{
+  "source": "book/assets/gloss-agent-vocab.svg",
+  "chapter": "0.4-the-books-language",
+  "claim": "The agent stack and a characteristic failure mode. When a task's reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.",
+  "topology": {
+    "description": "Two peer vertical chains; dashed undirected correspondence between bounded and available working state.",
+    "relations": [
+      [
+        "l0",
+        "l1",
+        "runs on",
+        ""
+      ],
+      [
+        "r0",
+        "r1",
+        "requires",
+        ""
+      ],
+      [
+        "l1",
+        "l2",
+        "wraps",
+        ""
+      ],
+      [
+        "r1",
+        "r2",
+        "may exceed",
+        ""
+      ],
+      [
+        "l2",
+        "l3",
+        "bounded by",
+        ""
+      ],
+      [
+        "r2",
+        "r3",
+        "contributes to",
+        ""
+      ],
+      [
+        "l3.east",
+        "r2.west",
+        "",
+        "dashed,-"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Application Your codebase",
+    "Large engineering task",
+    "Agent Harness Skills · Tools · Hooks",
+    "Reasoning Horizon",
+    "Foundation Model The trained model",
+    "Available working state Context window is one present limit",
+    "Bounded working state Context window today",
+    "Churn",
+    "Same working state",
+    "Fleet: multiple agents working on a shared engineering system."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Two vertical chains are shown. Application runs on an agent harness, which wraps a foundation model bounded by working state. A large task requires a reasoning horizon that may exceed available working state and contribute to churn. A dashed correspondence connects bounded and available working state, labeled Same working state. A footer defines a fleet as multiple agents on a shared engineering system. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

@@ -41,7 +41,7 @@ class NativeBoundaryTests(unittest.TestCase):
     def test_served_walk_keeps_real_pages(self):
         with tempfile.TemporaryDirectory() as directory:
             scratch = ['latex/build/proof.html', 'book/latex/build/book.html',
-                       'book/_latex/old.html', 'handbook/generated/epub/cover.html']
+                       'book/tikz/preview.html', 'book/_latex/old.html', 'handbook/generated/epub/cover.html']
             served = ['index.html', 'product/build/page.html', 'product/generated/page.html',
                       'product/latex/page.html', 'book/latex-other/page.html']
             for name in scratch + served:

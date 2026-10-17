@@ -1,0 +1,46 @@
+{
+  "source": "book/assets/derive-generate-trace.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Three correspondence patterns.* Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.",
+  "topology": {
+    "description": "Three peer columns: upward derivation, downward generation, bidirectional decidable check.",
+    "relations": [
+      [
+        "b0",
+        "t0",
+        "derive",
+        ""
+      ],
+      [
+        "t1",
+        "b1",
+        "generate",
+        ""
+      ],
+      [
+        "t2",
+        "b2",
+        "check\n(decidable)",
+        "<->"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Derive",
+    "Model",
+    "Implementation",
+    "Implementation is source of truth",
+    "Generate",
+    "Model",
+    "Implementation / config",
+    "Model is source of truth",
+    "Trace + check",
+    "Model",
+    "System",
+    "Neither fully determines the other"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Three peer columns distinguish direction of authority. Derive points upward from implementation to model; generate points downward from model to implementation or configuration; trace and check links model and system in both directions. Only decidable correspondences are checked when neither side fully determines the other. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

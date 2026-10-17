@@ -1,0 +1,30 @@
+{
+  "source": "book/assets/governing-consequential-work.png",
+  "claim": "*Governing consequential work.* The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome's form varies — an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.",
+  "topology": "People-to-environment-to-outcome loop; outcome branches into artifact and decision, with observation returning responsibility to people.",
+  "required_terms": [
+    "People responsible\\ direction; exercise judgment; accept responsibility",
+    "Governed environment\\ work possible and safe to delegate",
+    "Representations\\ matters made explicit",
+    "Evidence\\ must be shown",
+    "Constraints\\ agents may do",
+    "Enforcement\\ rules apply",
+    "OUTCOME: what the work produces",
+    "Artifact / system\\; circuit; software; process [3pt]Inspected, tested, operated, observed directly",
+    "Decision / action\\; approval; plan; transaction [3pt]Consequences become observable through subsequent events",
+    "OR",
+    "Environment examples: models, data, assumptions, standards, policies, tools, agent configurations, review rules, monitoring and controls."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Removed pictograms and decorative gradients. Preserved four environment components, delegated-work channel, contrasting outcome observability, and return-learning loop. Supplemental outcome examples consolidated into the two concrete branches.",
+  "questions": [],
+  "alt": "*Governing consequential work.* The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome's form varies — an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 417.832,
+    "height_pt": 358.058,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

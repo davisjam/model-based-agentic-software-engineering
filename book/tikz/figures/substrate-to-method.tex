@@ -1,0 +1,21 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=3.8cm] (n00) at (0.0,0.0) {Finite working state};
+\node[n,text width=3.8cm] (n01) at (4.8,0.0) {Representation problem};
+\draw[edge] (n00) -- (n01);
+\node[strong,text width=3.8cm] (n02) at (9.6,0.0) {Modeling\\Compact relevant properties};
+\draw[edge] (n01) -- (n02);
+\node[n,text width=3.8cm] (n10) at (0.0,-2.5) {Probabilistic productive work\\Observable, interposable seams};
+\node[n,text width=3.8cm] (n11) at (4.8,-2.5) {Enforcement problem};
+\draw[edge] (n10) -- (n11);
+\node[strong,text width=3.8cm] (n12) at (9.6,-2.5) {Alignment\\Enforce selected obligations};
+\draw[edge] (n11) -- (n12);
+\node[head,text width=3.8cm] (h0) at (0.0,1.4) {Substrate trait};
+\node[head,text width=3.8cm] (h1) at (4.8,1.4) {Problem};
+\node[head,text width=3.8cm] (h2) at (9.6,1.4) {Method};
+\end{tikzpicture}

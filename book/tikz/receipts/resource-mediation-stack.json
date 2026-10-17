@@ -1,0 +1,16 @@
+{
+  "source": "book/assets/resource-mediation-stack.svg",
+  "claim": "The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N>1 are settings of the same mediator, not separate stacks. Solid path: the required path. Dashed attachment: a useful enhancement, not required for the capability.",
+  "topology": "A solid load-bearing path runs top to bottom. RESOURCE POLICY declares which resource is\n    scarce and what capacity is acceptable. The MEDIATOR routes every access through one admission point,\n    admitting at most N actors. The SHARED RESOURCE sits below it, now governed by explicit policy rather\n    than actor timing. One enhancement attaches as a dashed, open-arrowed feedback: LIVE PRESSURE can tighten\n    or relax the effective capacity when justified, but only after the fixed policy and admission seam exist.\n    N equals one and N greater than one are settings of the same mediator, not separate stacks.",
+  "required_terms": [
+    "RESOURCE POLICY capacity \u00b7 scope",
+    "MEDIATOR admit \u2264 N actors",
+    "SHARED RESOURCE",
+    "LIVE PRESSURE tighten / relax when justified",
+    "N = 1 and N > 1 are settings of the same mediator. Solid: required. Dashed: enhancement."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "The Resource-Mediation stack: a declared resource policy routes all access through one\n    mediator to a shared resource; live pressure is a dashed enhancement"
+}

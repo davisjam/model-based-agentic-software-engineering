@@ -1,0 +1,35 @@
+{
+  "source": "book/assets/probability-in-the-software-factory.svg",
+  "claim": "*Probability in the software factory.* Correct realization depends on correctly encoding consequential intent, correctly interpreting that encoding, and correctly realizing the interpreted intent. One representation R is held fixed throughout the figure, so each probability term is drawn in its short form; the text conditions each of them on R. Process design changes the conditions under which interpretation and realization occur. When a consequential property is represented as an independently evaluable tolerance, evidence and admission can govern that property without relying solely on the producing reasoner. [short: Probability in the software factory — the encode, interpret and realize steps of the production path, and the encoded property forking into the tolerance the realization is evaluated against]",
+  "topology": "Same factory as process/tolerance figure, with three conditional probability factors and separate encoded-property-to-tolerance route.",
+  "required_terms": [
+    "SOFTWARE FACTORY",
+    "PROCESS DESIGN: how production proceeds",
+    "Engineering\\",
+    "Encoded\\",
+    "Fabricator",
+    "Realization",
+    "P(E)\\ encoding",
+    "P(I E)\\ interpretation",
+    "P(L I,E)\\ realization",
+    "A better fabricator does not raise correct encoding.",
+    "Process design and better agents raise interpretation and realization.",
+    "TOLERANCE\\ product variation",
+    "ACCEPTABLE REGION \\ acceptable realizations",
+    "Measurement: tests, PBT, analysis, simulation, human judgment",
+    "Revise / reject",
+    "Admitted change"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Kept representation fixed as in current caption; probability labels retain their short form. Encoding feeds both production and independent tolerance.",
+  "questions": [],
+  "alt": "A SOFTWARE FACTORY frame uses the same process-and-tolerance organization as the earlier figure. A dashed production band contains engineering intent, encoded property, fabricator, and realization in a left-to-right chain. Beneath the three transitions are P(E), correct encoding; P(I given E), correct interpretation; and P(L given I,E), correct realization. Notes state that a better fabricator does not raise correct encoding, while process design and better agents raise interpretation and realization. Below, the encoded property has a separate downward route labelled Supplies the tolerance into the lower-left corner of the ACCEPTABLE REGION. A separate arrow from realization reaches that region, with measurement through tests, property-based testing, analysis, simulation, and human judgment. Four black dots represent distinct acceptable realizations. The TOLERANCE heading identifies acceptable product variation. Two outgoing arrows lead to admitted change within tolerance or revise / reject outside it. All routes use black strokes; written labels distinguish their purposes. One use of the encoded property reaches the fabricator; the other participates in judging the result.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 420.234,
+    "height_pt": 323.856,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

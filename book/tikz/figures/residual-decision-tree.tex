@@ -1,0 +1,21 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=6cm] (a) at (1,0) {Is the obligation explicit in a form the environment can use?};
+\node[head,text width=3.5cm] (r) at (-4,-1.8) {RESIDUAL\\reasoner reconstructs it};
+\node[box,text width=5cm] (b) at (2,-2.2) {Can it be evaluated adequately?};
+\draw[edge,] (a) -- node[midway,note,fill=white] {no} (r);
+\draw[edge,] (a) -- node[midway,note,fill=white] {yes} (b);
+\node[head,text width=3.5cm] (j) at (-3,-4) {JUDGMENT REQUIRED\\no adequate evaluator};
+\node[box,text width=4.5cm] (c) at (3,-4.4) {Does the environment enforce the result?};
+\draw[edge,] (b) -- node[midway,note,fill=white] {no} (j);
+\draw[edge,] (b) -- node[midway,note,fill=white] {yes} (c);
+\node[head,text width=3.5cm] (u) at (-0.5,-6.4) {EVALUATED ONLY\\evaluated, yet ungated};
+\node[head,text width=3.2cm] (g) at (5,-6.4) {GOVERNED\\mechanically enforced};
+\draw[edge,] (c) -- node[midway,note,fill=white] {no} (u);
+\draw[edge,] (c) -- node[midway,note,fill=white] {yes} (g);
+\node[note,text width=12cm] (nt) at (0,-7.7) {Design choices, not maturity levels: different obligations stop in different places.};
+\end{tikzpicture}

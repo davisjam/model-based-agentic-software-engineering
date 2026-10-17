@@ -1,0 +1,22 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=6cm] (j) at (0,0) {Repeated judgment};
+\node[box,text width=5cm] (a) at (-3.8,-2.2) {\textbf{ALIGNMENT}\\Encode predicate};
+\node[box,text width=5cm] (m) at (3.8,-2.2) {\textbf{MODELING}\\Change representation};
+\draw[edge,] (j) -- node[midway,left,text width=2.6cm,note,fill=white] {already decidable} (a);
+\draw[edge,] (j) -- node[midway,right,text width=2.6cm,note,fill=white] {requires reconstruction} (m);
+\node[box,text width=5cm] (c) at (-3.8,-3.8) {Test / validator / constraint / gate};
+\node[box,text width=5cm] (s) at (3.8,-3.8) {Structured relation};
+\draw[edge,] (a) -- (c);
+\draw[edge,] (m) -- (s);
+\node[box,text width=5cm] (p) at (0,-5.4) {Predicate over model};
+\draw[edge,] (c) -- (p);
+\draw[edge,] (s) -- (p);
+\node[head,text width=6cm] (r) at (0,-6.8) {Repeatable decision};
+\draw[edge,] (p) -- (r);
+\node[note,text width=12cm] (nt) at (0,-8) {The determinization frontier: change what is decidable, then bind the decision.};
+\end{tikzpicture}

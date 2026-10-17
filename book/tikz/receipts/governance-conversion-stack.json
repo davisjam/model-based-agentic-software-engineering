@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/governance-conversion-stack.svg",
+  "claim": "The governance-conversion composition, a loop. The CONTROL MACHINERY \u2014 rules, gates, models, sensors \u2014 is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.",
+  "topology": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT \u2014 where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
+  "required_terms": [
+    "CONTROL MACHINERY rules \u00b7 gates \u00b7 models \u00b7 sensors",
+    "GAPS / COUPLING weak, stale, or entangled?",
+    "INTERPRET failure class \u2192 durable control",
+    "UPDATE ESTATE",
+    "next iteration",
+    "inspect / query",
+    "recurring failure?"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Four-move solid loop retained. Caption says UPDATE MACHINERY while original art says UPDATE ESTATE; retained original label for review.",
+  "questions": [
+    "Four-move solid loop retained. Caption says UPDATE MACHINERY while original art says UPDATE ESTATE; retained original label for review."
+  ],
+  "alt": "The Governance-Conversion stack: model the control machinery, find its gaps, interpret a\n    recurring failure into a durable control, update the estate, iterate"
+}

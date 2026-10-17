@@ -1,0 +1,23 @@
+{
+  "source": "book/assets/appendix-a-composing-a-stack.svg",
+  "claim": "Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest required composition that makes the capability claim valid.",
+  "topology": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION \u2014 the smallest set\n    that keeps the capability claim honest \u2014 which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism.",
+  "required_terms": [
+    "CAPABILITY",
+    "What makes this false?",
+    "FAILURE CLASSES",
+    "guarantee",
+    "mechanism",
+    "guarantee",
+    "mechanism",
+    "guarantee",
+    "mechanism",
+    "dependency check",
+    "LOAD-BEARING COMPOSITION",
+    "ENGINEERING STACK"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "From failure class to engineering stack: begin with a capability and the ways it can\n    fail, select mechanisms for the guarantees that close those failures, then keep only the load-bearing\n    composition"
+}

@@ -1,0 +1,30 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=3cm] (h0) at (0,0) {Catalogue};
+\node[head,text width=4cm] (h1) at (4.8,0) {Interaction graph};
+\node[head,text width=4.6cm] (h2) at (10,0) {Coverage};
+\node[box,text width=2.9cm] (cat0) at (0,-1.3) {[A] squash rule};
+\node[box,text width=2.9cm] (cat1) at (0,-2.7) {[B] brief guard};
+\node[box,text width=2.9cm] (cat2) at (0,-4.1) {[C] lint gate};
+\node[box,text width=1.8cm] (a) at (3.5,-2) {[A]\\squash rule};
+\node[box,text width=1.8cm] (b) at (6,-2) {[B]\\brief guard};
+\node[box,text width=2.7cm] (r) at (4.75,-3.6) {Commit set};
+\draw[edge,] (a) -- (r);
+\draw[edge,] (b) -- (r);
+\draw[<->,dashed] (a.east)--node[note,above,yshift=1.05cm] {conflict}(b.west);
+\node[box,text width=2.7cm] (cc) at (4.75,-5.2) {[C] lint gate};
+\node[box,text width=2.2cm] (ob0) at (9,-1.3) {Scope-bounded};
+\node[box,text width=1.8cm] (co0) at (12,-1.3) {[A]};
+\node[box,text width=2.2cm] (ob1) at (9,-2.8) {Brief-followed};
+\node[box,text width=1.8cm] (co1) at (12,-2.8) {[B]};
+\node[box,dashed,text width=2.2cm] (ob2) at (9,-4.3) {Cost-ceiling};
+\node[box,dashed,text width=1.8cm] (co2) at (12,-4.3) {[C] orphan};
+\draw[edge] (ob0)--(co0);
+\draw[edge] (ob1)--(co1);
+\node[note,text width=2.5cm] (gap) at (9,-5.5) {Coverage gap};
+\node[note,text width=12cm] (nt) at (5.5,-6.4) {Stable identities join three views; each answers a different engineering question.};
+\end{tikzpicture}

@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=6cm] (h0) at (0,0.0) {1  Original model};
+\node[n,text width=5.8cm] (p0) at (0,-1.8) {Group: credits integer\\$\Sigma$ credits $\geq$ pages?\\Adequate while every entitlement is finite};
+\node[head,text width=6cm] (h1) at (7,0.0) {2  System evolves};
+\node[n,text width=5.8cm] (p1) at (7,-1.8) {Group entitlement\\Finite(credits) OR unlimited\\The domain has grown};
+\node[head,text width=6cm] (h2) at (0,-4.3) {3  Stale admission model};
+\node[n,text width=5.8cm] (p2) at (0,-6.1) {Groups $\rightarrow$ $\Sigma$ finite credits only\\Unlimited distinction discarded\\Unlimited user $\rightarrow$ 0 credits\\0 < 38 $\rightarrow$ REJECT};
+\node[head,text width=6cm] (h3) at (7,-4.3) {4  Revised model};
+\node[strong,text width=5.8cm] (p3) at (7,-6.1) {Group entitlements: finite OR unlimited\\Admission decision: admit?\\Authorizing group · ordered plan\\Same user $\rightarrow$ admit\_unlimited};
+\draw[edge] (p0) -- (p1);
+\draw[edge] (p1.south) -- ++(0,-.6) -| (p2.north);
+\draw[edge] (p2) -- (p3);
+\end{tikzpicture}

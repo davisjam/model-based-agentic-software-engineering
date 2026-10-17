@@ -1,0 +1,52 @@
+{
+  "source": "book/assets/canonical-behavioral.svg",
+  "chapter": "2.3-behavioral",
+  "claim": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits — here the skip from IDLE straight to DONE — is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
+  "topology": {
+    "description": "Implementation reduced to legal state transitions; IDLE→DONE directly forbidden.",
+    "relations": [
+      [
+        "impl",
+        "run",
+        "reduce to",
+        ""
+      ],
+      [
+        "idle",
+        "run",
+        "start",
+        ""
+      ],
+      [
+        "run",
+        "done",
+        "finish",
+        ""
+      ],
+      [
+        "run",
+        "fail",
+        "fail",
+        ""
+      ],
+      [
+        "idle.south",
+        "done.south",
+        "no skipping RUNNING",
+        "dashed"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Implementation Handlers · retries · writes · logging",
+    "IDLE",
+    "RUNNING",
+    "DONE",
+    "FAILED",
+    "Node = legal state; edge = permitted transition; path = admitted execution. Analyze reachability, safety and liveness."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "An implementation reduces to a state model. IDLE starts RUNNING, which finishes at DONE or fails at FAILED. A crossed dashed arrow marks the forbidden direct IDLE-to-DONE transition. Labels distinguish the question, transition semantics and typical analyses. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

@@ -1,0 +1,28 @@
+{
+  "source": "book/assets/where-effort-moves.svg",
+  "claim": "*Where Engineering Effort Moves.* As the fleet assumes work across the lifecycle, the engineer increasingly works through the surrounding engineering environment: specifying intent, choosing consequential abstractions, evaluating evidence, resolving tradeoffs, and adapting the environment itself.",
+  "topology": "Unchanged five-phase lifecycle above three cross-lifecycle work bands; implementation emphasis retained without adding a new phase.",
+  "required_terms": [
+    "Requirements",
+    "Design",
+    "Implementation",
+    "Validation",
+    "Operation /\\",
+    "Human engineering judgment\\; abstractions; tradeoffs; acceptance; adaptation",
+    "Fleet\\; transformation; IMPLEMENTATION; routine remediation",
+    "Governed environment\\ and context; permissions and constraints; evidence and validators; admission; operational controls",
+    "Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Across the top, the five lifecycle phases in order — Requirements, Design, Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The human engineering judgment band carries intent, abstractions, tradeoffs, acceptance, and adaptation. The fleet band carries implementation, analysis, transformation, and routine remediation, with IMPLEMENTATION emphasized in capitals. The governed environment band carries models and context, permissions and constraints, evidence and validators, admission, and operational controls across all phases. Implementation shifts disproportionately toward the fleet, and human effort concentrates where consequential judgment and responsibility remain.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 396.381,
+    "height_pt": 260.709,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

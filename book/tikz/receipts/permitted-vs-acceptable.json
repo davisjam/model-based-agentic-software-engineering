@@ -1,0 +1,25 @@
+{
+  "source": "book/assets/permitted-vs-acceptable.svg",
+  "claim": "*Obligations and permitted realizations.* The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through — underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded — overconstraint.",
+  "topology": "Two overlapping sets; acceptable-only, intersection, permitted-only retain left/center/right spatial meaning.",
+  "required_terms": [
+    "Software realization space",
+    "Acceptable: satisfies all obligations",
+    "Permitted: controls allow it",
+    "Overconstraint\\ alternatives excluded",
+    "Preserved freedom\\ and permitted",
+    "Underconstraint\\, yet permitted\\ risk"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted — a correctness risk.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 403.226,
+    "height_pt": 180.848,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "source": "book/assets/governance-conversion.svg",
+  "claim": "*Governance conversion.* When a failure exposes a recurring failure mode rooted in missing representation, obligation, evidence, evaluation, or enforcement, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when that durable structure continues to lower future cost or uncertainty.",
+  "topology": "Diagnosis fans into five distinct missing structures, converges into durable structure and inherited capital.",
+  "required_terms": [
+    "Failure / surprise",
+    "What was missing?",
+    "Representation",
+    "Model",
+    "Obligation",
+    "Invariant",
+    "Evidence",
+    "Sensor",
+    "Evaluation",
+    "Validator",
+    "Enforcement",
+    "Constraint / gate",
+    "Durable engineering structure",
+    "Future work benefits from inheriting it",
+    "Engineering capital"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A failure or surprise flows down into one question — what was missing — which fans\n    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 404.884,
+    "height_pt": 255.669,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

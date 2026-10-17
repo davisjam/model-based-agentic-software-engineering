@@ -1,0 +1,21 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=2.8cm] (p0) at (-5.25,0) {PRODUCT\\ DISCOVERY};
+\node[note,text width=2.9cm] (t6) at (-5.25,-2.3) {What should we build? Why?\\ hypotheses · needs\\ experiments · decisions\\ requirements};
+\node[box,text width=2.8cm] (p1) at (-1.75,0) {ENGINEERING \&\\ REALIZATION};
+\node[note,text width=2.9cm] (t8) at (-1.75,-2.3) {How should it be realized?\\ architecture · behavior\\ interfaces · contracts\\ analyses};
+\draw[edge] (p0) -- (p1);
+\node[box,text width=2.8cm] (p2) at (1.75,0) {PRODUCT MGMT \&\\ MAINTENANCE};
+\node[note,text width=2.9cm] (t11) at (1.75,-2.3) {What should change? Why?\\ tickets · issues · rationale\\ acceptance · history};
+\draw[edge] (p1) -- (p2);
+\node[box,text width=2.8cm] (p3) at (5.25,0) {OPERATIONS \&\\ INCIDENTS};
+\node[note,text width=2.9cm] (t14) at (5.25,-2.3) {What is happening? Why?\\ topology · telemetry\\ SLOs · runbooks · RCAs};
+\draw[edge] (p2) -- (p3);
+\draw[optional] (6,-4)--(-6,-4);
+\node[note,text width=12cm] (t17) at (0,-4.7) {Observations, failures, evidence and new needs feed earlier activities.};
+\node[box,text width=10cm] (assure) at (0,-6.6) {ASSURANCE \& COMPLIANCE · cross-cutting\\ What must be shown to be true?\\ requirements · policies · threats · traceability · claims · evidence};
+\draw (-5.25,-3.3)--(-5.25,-5.4)--(5.25,-5.4)--(5.25,-3.3);\draw[edge] (0,-5.4)--(assure);
+\end{tikzpicture}

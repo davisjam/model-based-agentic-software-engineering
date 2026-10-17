@@ -1,0 +1,38 @@
+{
+  "source": "book/assets/reasoning-horizon.svg",
+  "chapter": "1.3-the-agentic-substrate",
+  "claim": "*The reasoning horizon.* At sufficient scale, a task requires more state than a finite reasoner can keep active, so some state must be reconstructed. Representation determines the cost: raw implementation carries irrelevant detail, while purposeful abstraction can keep question-relevant state smaller and cheaper to recover.",
+  "topology": {
+    "description": "Representation choice mediates reconstruction burden; contrasting outcomes, not unconstrained versus perfect reasoning.",
+    "relations": [
+      [
+        "limit",
+        "rep",
+        "",
+        ""
+      ],
+      [
+        "rep",
+        "p0",
+        "",
+        ""
+      ],
+      [
+        "rep",
+        "p1",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Task exceeds finite active state Some reasoning state must be reconstructed",
+    "Representation matters Determines how much must be reconstructed",
+    "Raw implementation Large active state Repeated reconstruction Relevant structure may be lost Churn",
+    "Purposeful abstraction Smaller relevant state Lower reconstruction burden Longer coherent reasoning"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Scale exceeds a finite reasoner’s active state and requires reconstruction. A representation-choice branch compares raw implementation, with repeated reconstruction and churn, against purposeful abstraction, with less question-relevant state and longer coherent reasoning. Representation determines the reconstruction burden. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

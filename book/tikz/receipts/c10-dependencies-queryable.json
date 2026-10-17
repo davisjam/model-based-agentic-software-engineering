@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/c10-dependencies-queryable.svg",
+  "claim": "*Impact as a graph query.* A proposed change reaches a substrate node; typed dependency edges identify the controls and models that depend on it, and their union defines the affected set.",
+  "topology": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents \u2014 the blast radius \u2014 is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward.",
+  "required_terms": [
+    "CHANGE X proposed",
+    "SUBSTRATE NODE",
+    "CONTROL A blocks",
+    "CONTROL B unaffected",
+    "MODEL C derives",
+    "BLAST RADIUS affected set",
+    "Typed dependencies identify affected controls and models."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Removed original solid CONTROL B (unaffected) to BLAST RADIUS edge: it contradicted the caption\u2019s affected-set semantics. Unaffected node retained outside the union.",
+  "questions": [
+    "Removed original solid CONTROL B (unaffected) to BLAST RADIUS edge: it contradicted the caption\u2019s affected-set semantics. Unaffected node retained outside the union."
+  ],
+  "alt": "C.10 Make hidden dependencies queryable: compute what a substrate change touches before it lands"
+}

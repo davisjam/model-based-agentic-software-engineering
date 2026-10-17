@@ -1,0 +1,24 @@
+{
+  "source": "book/assets/two-evidence-boundaries.svg",
+  "claim": "*Two evidence boundaries.* Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change. [short: Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]",
+  "topology": "Two distinct landmarks on one timeline: early honest evidence and last safe recheck; hollow/solid diamond separates roles.",
+  "required_terms": [
+    "Work begins",
+    "Consequence",
+    "Earliest legible boundary\\ cheaply near the cause",
+    "Last safe boundary\\-establish what must hold",
+    "Relevant state may change between checks."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A horizontal timeline runs from work begins on the left to consequence on the right. Two diamond markers sit on the axis: an open diamond at the earliest legible boundary and a solid black diamond at the last safe boundary. The left diamond is the earliest legible boundary, where a property is caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is re-established before exposure. Between them, a note reads: relevant state may change between checks. The two boundaries answer different questions — when can this be decided honestly, and what is the last point a stale check can still be caught.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 394.632,
+    "height_pt": 107.205,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

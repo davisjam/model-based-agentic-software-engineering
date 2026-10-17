@@ -1,0 +1,22 @@
+{
+  "source": "book/assets/h4-change-diagnosis-inheritance.svg",
+  "claim": "*Change-scoped models, degrees of freedom, and inheritance.* A ticket or issue provides an entry point into a change episode. Bidirectional traceability helps locate the responsible implementation and the models and obligations that govern it. Those inherited obligations bound the realization space while leaving some choices open. Acceptance evidence establishes whether the realized change satisfies its obligations; recurring or consequential lessons can then be converted into durable structure that future work inherits.",
+  "topology": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space \u2014 the choices the governing obligations leave open \u2014 within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
+  "required_terms": [
+    "CHANGE MODEL ticket / issue observation \u00b7 intent",
+    "SYSTEM KNOWLEDGE architecture \u00b7 behavior \u00b7 ownership contracts \u00b7 dependencies",
+    "DIAGNOSIS & CONTEXT LOCALIZATION root cause \u00b7 responsible concepts relevant models \u00b7 obligations",
+    "REALIZATION SPACE choices left open by governing obligations",
+    "realization",
+    "acceptance evidence",
+    "bidirectional traceability models \u2194 code",
+    "history",
+    "DURABLE STRUCTURE model \u00b7 test \u00b7 constraint validator \u00b7 architecture \u00b7 design",
+    "recurring lesson?",
+    "future work inherits it"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Change-scoped models, degrees of freedom, and inheritance"
+}

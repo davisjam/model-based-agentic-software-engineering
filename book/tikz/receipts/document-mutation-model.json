@@ -1,0 +1,60 @@
+{
+  "source": "book/assets/document-mutation-model.svg",
+  "chapter": "2.2-structural",
+  "claim": "*Document-mutation structural model.* The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.",
+  "topology": {
+    "description": "Remediation→sanctioned document abstraction→format implementation→four concrete formats; no enforcement claim.",
+    "relations": [
+      [
+        "n0",
+        "n1",
+        "operates through",
+        ""
+      ],
+      [
+        "n1",
+        "n2",
+        "realized through",
+        ""
+      ],
+      [
+        "n2",
+        "f0",
+        "",
+        ""
+      ],
+      [
+        "n2",
+        "f1",
+        "",
+        ""
+      ],
+      [
+        "n2",
+        "f2",
+        "",
+        ""
+      ],
+      [
+        "n2",
+        "f3",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Remediation logic",
+    "Structured document model The sanctioned seam",
+    "Format-specific implementation",
+    "DOCX",
+    "PPTX",
+    "XLSX",
+    "PDF",
+    "Marks where mutation belongs; does not itself prevent bypass."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Remediation logic operates through the structured document model, the sanctioned seam. A format-specific implementation realizes that model for DOCX, PPTX, XLSX and PDF. The seam identifies where mutation should occur but does not itself prevent bypass. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

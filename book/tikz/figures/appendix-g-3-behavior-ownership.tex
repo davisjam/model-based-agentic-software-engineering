@@ -1,0 +1,18 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=2.4cm] (free) at (-4,0) {FREE};
+\node[box,text width=2.4cm] (leased) at (0,0) {LEASED};
+\node[box,text width=2.4cm] (done) at (4,0) {DONE};
+\draw[edge] (free) -- node[note,fill=white,inner sep=2pt] {claim} (leased);
+\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {complete} (done);
+\draw[edge] (leased.south) to[bend left=35] node[note,fill=white,inner sep=2pt] {expiry / release} (free.south);
+\node[box,text width=4cm] (lease) at (0,-3) {OWNERSHIP OVERLAY\\ lease\_owner = W17\\ lease\_until = t};
+\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {specializes} (lease);
+\node[box,text width=2cm] (worker) at (4.5,-3) {worker};
+\draw[edge,line width=1pt] (lease) -- node[note,fill=white,inner sep=2pt,above=9pt] {lease / CAS} (worker);
+\node[note,text width=3cm] (t15) at (4,-1.3) {DONE: no re-entry};
+\node[gate,text width=10cm] (inv) at (0,-5.4) {INVARIANT\\ LEASED $\Rightarrow$ exactly one valid owner\\ FREE $\Rightarrow$ no active owner};
+\end{tikzpicture}

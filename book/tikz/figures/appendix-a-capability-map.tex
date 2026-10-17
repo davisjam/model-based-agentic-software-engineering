@@ -1,0 +1,20 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=6cm] (m) at (0,0) {Model coherence\\representation stays joined to reality};
+\node[box,text width=5cm] (a) at (-3.6,-2) {Assurance\\obligations get discharged};
+\node[box,text width=5cm] (t) at (3.6,-2) {Auditable transformation\\change is legible};
+\draw[edge,] (m) -- (a);
+\draw[edge,] (m) -- (t);
+\node[box,text width=6cm] (o) at (0,-4) {Observe--react\\detect and act};
+\draw[edge,] (a) -- (o);
+\draw[edge,] (t) -- (o);
+\node[box,text width=7cm] (g) at (0,-5.6) {Governance conversion\\useful judgment becomes capital};
+\draw[edge,] (o) -- (g);
+\node[note,text width=12cm] (nt) at (0,-7) {Useful independently: no inbound dependency};
+\node[box,text width=5cm] (r) at (-3.6,-8.4) {Resource mediation\\govern contention};
+\node[box,text width=5cm] (c) at (3.6,-8.4) {Context delivery\\right knowledge at point of work};
+\end{tikzpicture}

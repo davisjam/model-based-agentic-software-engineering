@@ -1,0 +1,24 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=3cm] (task) at (0,3) {Task};
+\node[strong,text width=4cm] (entity) at (0,1) {Named entity\\A job or a service};
+\draw[edge] (task) -- node[lab,right] {enters at} (entity);
+\node[n,text width=3cm] (r0) at (-4.5,0) {Service registry};
+\draw[edge] (entity) -- (r0);
+\node[n,text width=3cm] (r1) at (-4.5,-2.3) {Flow model};
+\draw[edge] (entity) -- (r1);
+\node[n,text width=3cm] (r2) at (-1.8,-3.7) {Lifecycle};
+\draw[edge] (entity) -- (r2);
+\node[n,text width=3cm] (r3) at (4.5,-2.3) {Policy};
+\draw[edge] (entity) -- (r3);
+\node[n,text width=3cm] (r4) at (4.5,0) {Provenance};
+\draw[edge] (entity) -- (r4);
+\node[n,text width=3cm] (r5) at (1.8,-3.7) {Measurements};
+\draw[edge] (entity) -- (r5);
+\node[note,text width=12cm] (q) at (0,-5.2) {Retrieve only the relations needed for the current question; no prescribed traversal order.};
+\end{tikzpicture}

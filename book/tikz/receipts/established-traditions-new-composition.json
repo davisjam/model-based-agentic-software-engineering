@@ -1,0 +1,30 @@
+{
+  "source": "book/assets/established-traditions-new-composition.svg",
+  "claim": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.",
+  "topology": "Two traditions feed Modeling/Alignment within MAGE containment, converge on environment, then capital and intended autonomy outside boundary.",
+  "required_terms": [
+    "ENGINEERING TRADITIONS",
+    "AI TRADITIONS",
+    "MBSE / MDE: explicit models PL / compilers: types; constrained IRs Formal methods: specifications; verification Systems / safety: boundaries; control",
+    "Knowledge representation\\; planning state\\ reasoning\\ and interfaces",
+    "Modeling\\ knowledge explicit",
+    "Alignment\\ selected obligations",
+    "Governed engineering environment\\; evidence; constraints; controls",
+    "MAGE",
+    "Engineering capital\\ judgment made durable",
+    "Trustworthy autonomy\\ outcome",
+    "New economics drive a new composition; the provenance of the parts is old."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 399.957,
+    "height_pt": 351.735,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

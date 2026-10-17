@@ -1,0 +1,27 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[note,text width=10cm] (t5) at (0,1.2) {REPEATED ENGINEERING COST};
+\node[box,text width=4.5cm] (l0) at (-3,0.0) {reconstruction};
+\node[box,text width=4.5cm] (l1) at (-3,-1.45) {better context};
+\draw[edge] (l0) -- (l1);
+\node[box,text width=4.5cm] (l2) at (-3,-2.9) {stronger representation};
+\draw[edge] (l1) -- (l2);
+\node[box,text width=4.5cm] (l3) at (-3,-4.35) {analyzable model};
+\draw[edge] (l2) -- (l3);
+\node[box,text width=4.5cm] (r0) at (3,0.0) {repeated adjudication};
+\node[box,text width=4.5cm] (r1) at (3,-1.45) {better guidance};
+\draw[edge] (r0) -- (r1);
+\node[box,text width=4.5cm] (r2) at (3,-2.9) {independent evidence};
+\draw[edge] (r1) -- (r2);
+\node[box,text width=4.5cm] (r3) at (3,-4.35) {validator · constraint · gate};
+\draw[edge] (r2) -- (r3);
+\node[box,text width=5cm] (less) at (0,-6.1) {LESS REPEATED JUDGMENT};
+\draw[edge] (l3) -- (less);
+\draw[edge] (r3) -- (less);
+\node[gate,text width=5cm] (capital) at (0,-7.7) {ENGINEERING CAPITAL\\ later work inherits the result};
+\draw[edge] (less) -- (capital);
+\node[note,text width=12cm] (t25) at (0,-9) {Invest only where expected return justifies construction and upkeep.\\ These are investment choices, not maturity levels.};
+\end{tikzpicture}

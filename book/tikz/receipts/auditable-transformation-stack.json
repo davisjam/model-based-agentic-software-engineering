@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/auditable-transformation-stack.svg",
+  "claim": "The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the core path, every step required.",
+  "topology": "A single solid load-bearing chain runs top to bottom. A sanctioned mutation enters. MARK\n    attaches actor and action. EMIT persists a structured record. COVER detects any mutation that escaped\n    attribution. READ reconstructs the transformation history. The FIDELITY GATE checks that the transformed\n    artifact retained its required semantics. Every link is required: attribution without completeness is a\n    partial history, completeness without readable provenance proves only that records exist, and provenance\n    alone cannot show the product survived. No dashed enhancement in this stack.",
+  "required_terms": [
+    "SANCTIONED MUTATION",
+    "MARK actor \u00b7 action",
+    "EMIT persist a structured record",
+    "COVER every mutation accounted for?",
+    "READ reconstruct history",
+    "FIDELITY GATE did semantics survive?",
+    "Every link is required. Attribution, completeness, readable history and product fidelity."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "The Auditable-Transformation stack: a sanctioned mutation is marked, recorded,\n    covered, read back, and gated on fidelity"
+}

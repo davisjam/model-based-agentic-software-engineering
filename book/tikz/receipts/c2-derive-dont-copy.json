@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/c2-derive-dont-copy.svg",
+  "claim": "*Query, don't snapshot.* BAD \u2014 the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD \u2014 the check queries the model directly, so the next check sees the change.",
+  "topology": "Two ways a consumer reads an authoritative model. In the bad path, the consumer copies values\n    into a snapshot and checks against the snapshot; when the model changes, the snapshot does not, so the check\n    runs against a stale answer. In the good path, the consumer queries the model directly; when the model changes,\n    the next check sees the change because the consumer is coupled to the model's interface, not to yesterday's\n    answer.",
+  "required_terms": [
+    "BAD \u00b7 copied snapshot",
+    "MODEL",
+    "SNAPSHOT",
+    "CHECK",
+    "The model changes; the snapshot does not. The check trusts a stale answer.",
+    "GOOD \u00b7 query at the point of use",
+    "MODEL",
+    "CHECK",
+    "The next check sees the change: coupled to the interface, not yesterday\u2019s answer."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.2 Derive, don't copy: a snapshot goes stale while a live query stays current"
+}

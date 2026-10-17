@@ -1,0 +1,34 @@
+{
+  "source": "book/assets/discovering-models-migration.svg",
+  "claim": "*Discovering models in a brownfield system.* Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate. [short: Discovering latent models — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate]",
+  "topology": "Discovery partitions into accepted shape, mechanical fix, or named concept; only concept branch develops typed relations and enforcement.",
+  "required_terms": [
+    "Existing codebase",
+    "Weak signals: primitive density, repeated shapes, component / boundary view",
+    "Partition findings",
+    "Legitimate shape",
+    "Accept / exempt",
+    "Mechanical debt",
+    "Codemod",
+    "Latent concept",
+    "Name the model",
+    "Typed vocabulary",
+    "Explicit relations",
+    "Migrate consumers",
+    "Narrower enforcement\\; lints; drift guard",
+    "Stronger model substrate",
+    "Weak signals locate the work; they do not dictate the remedy."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 416.223,
+    "height_pt": 340.947,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

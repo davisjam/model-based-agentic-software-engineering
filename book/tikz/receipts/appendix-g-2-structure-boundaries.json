@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/appendix-g-2-structure-boundaries.svg",
+  "claim": "*Structure and boundaries.* Authored ownership and permitted seams are reconciled with the observed repository tree. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding.",
+  "topology": "A component catalog, the authored structure, owns a web zone and permits a seam, both shown\n    along solid arrows. The web zone reaches the worker through a sanctioned seam, a solid arrow crossed by a\n    heavy gate glyph marking the one door a boundary check guards. A second crossing, from the web zone straight\n    to a raw format library, is a forbidden direct access: a dashed arrow struck through by a red X, a crossing\n    with no sanctioned door. Beneath, the observed repository tree is reverse-mapped up into the catalog along a\n    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure C-1;\n    weight, dash, and glyph carry the meaning without colour.",
+  "required_terms": [
+    "COMPONENT CATALOG ownership \u00b7 seams",
+    "WEB ZONE",
+    "WORKER",
+    "RAW FORMAT LIBRARY",
+    "REPOSITORY TREE observed structure",
+    "forbidden direct access",
+    "Solid: authored ownership / permitted seam. Dashed: observed correspondence."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Structure and boundaries \u2014 authored ownership and seams joined to the observed repository tree"
+}

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=3cm] (spec) at (0,0) {SPEC\\ state the obligations};
+\node[box,text width=3cm] (census) at (0,-1.5) {CENSUS\\ what must be discharged?};
+\draw[edge] (spec) -- (census);
+\node[box,text width=2.7cm] (p0) at (-4,-3.5) {TEST\\ examples};
+\draw[edge] (census) -- (p0);
+\node[box,text width=2.7cm] (p1) at (0,-3.5) {LINT\\ structure};
+\draw[edge] (census) -- (p1);
+\node[box,text width=2.7cm] (p2) at (4,-3.5) {PROVE\\ semantics};
+\draw[edge] (census) -- (p2);
+\node[box,text width=4cm] (coverage) at (0,-5.4) {COVERAGE\\ obligation $\rightarrow$ evidence};
+\draw[edge] (p0) -- (coverage);
+\draw[edge] (p1) -- (coverage);
+\draw[edge] (p2) -- (coverage);
+\node[note,text width=10cm] (t18) at (0,-6.5) {All paths required; choose evidence appropriate to each property.};
+\end{tikzpicture}

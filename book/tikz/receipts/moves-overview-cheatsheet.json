@@ -1,0 +1,33 @@
+{
+  "source": "book/assets/moves-overview-cheatsheet.svg",
+  "claim": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2\u20134: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
+  "topology": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree \u2014 make one authoritative.\n    Copies drift from authority \u2014 derive, don't copy. Model and reality diverge \u2014 check correspondence.\n    Assurance has invisible holes \u2014 derive the obligation set. Checks are too early or too late \u2014 put enforcement\n    where the property is legible. Actions evade governance \u2014 close the action surface. Rules exist but aren't\n    present at the decision \u2014 deliver knowledge where the decision occurs. Why gets lost after the change \u2014 carry\n    cause with consequence. Operators reconstruct the same procedure \u2014 externalize the judgment. Changes have\n    hidden dependents \u2014 make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea \u2014 improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
+  "required_terms": [
+    "RECURRING PROBLEM",
+    "ENGINEERING MOVE",
+    "B.1  many truths disagree",
+    "MAKE ONE AUTHORITATIVE",
+    "B.2  copies drift from authority",
+    "DERIVE; DON\u2019T COPY",
+    "B.3  model and reality diverge",
+    "CHECK CORRESPONDENCE",
+    "B.4  assurance has invisible holes",
+    "DERIVE THE OBLIGATION SET",
+    "B.5  checks are too early / too late",
+    "PUT ENFORCEMENT WHERE LEGIBLE",
+    "B.6  actions evade governance",
+    "CLOSE THE ACTION SURFACE",
+    "B.7  rules exist but aren\u2019t present",
+    "DELIVER KNOWLEDGE AT DECISION",
+    "B.8  rationale is lost after change",
+    "CARRY CAUSE WITH CONSEQUENCE",
+    "B.9  operators reconstruct procedure",
+    "EXTERNALIZE JUDGMENT",
+    "B.10  changes have hidden dependents",
+    "MAKE DEPENDENCIES QUERYABLE"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Ten independent problem/move pairs retained verbatim; row centers widened to 1.22 cm to separate multiline labels. No topology or vocabulary change.",
+  "questions": [],
+  "alt": "Figure B.0-1: ten recurring engineering problems, each paired with the move that retires it"
+}

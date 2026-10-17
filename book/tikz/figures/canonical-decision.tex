@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=5.8cm] (h0) at (0,1.4) {Descriptive: a fact};
+\node[n,text width=2.3cm] (a0) at (-1.7,0) {Service A};
+\node[n,text width=1.6cm] (b0) at (1.7,0) {B};
+\draw[edge] (a0) -- node[lab,above=12pt] {calls} (b0);
+\node[head,text width=5.8cm] (h1) at (7,1.4) {Normative: a rule};
+\node[n,text width=2.3cm] (a1) at (5.3,0) {Service A};
+\node[n,text width=1.6cm] (b1) at (8.7,0) {B};
+\draw[edge] (a1) -- node[lab,above=12pt] {may call} (b1);
+\draw[edge,dashed] (5.2,-1.1)--(8.8,-1.1);\node[lab] at (7,-1.1){$\times$};
+\node[note,text width=5.6cm] (abs) at (7,-2) {Absent edge = not permitted\\(Not “never happens”)};
+\node[note,text width=12cm] (q) at (3.5,-3.6) {What is allowed, required or prohibited?\\Analyze rules, conflicts and consistency.};
+\end{tikzpicture}

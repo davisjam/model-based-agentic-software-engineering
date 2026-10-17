@@ -1,0 +1,27 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[note,text width=6cm] (t5) at (-3.6,1.3) {OPEN · any route};
+\node[note,text width=6cm] (t6) at (3.6,1.3) {CLOSED · one named seam};
+\node[box,text width=1.3cm] (actor) at (-5,0) {actor};
+\node[box,dashed,text width=2cm] (raw0) at (-2,0.0) {raw surface};
+\draw[optional] (actor) -- (raw0);
+\node[box,dashed,text width=2cm] (raw1) at (-2,-1.3) {raw surface};
+\draw[optional] (actor) -- (raw1);
+\node[box,dashed,text width=2cm] (raw2) at (-2,-2.6) {helper};
+\draw[optional] (actor) -- (raw2);
+\node[box,dashed,text width=2cm] (raw3) at (-2,-3.9000000000000004) {unknown routes};
+\draw[optional] (actor) -- (raw3);
+\node[box,text width=1.3cm] (a2) at (1,0) {actor};
+\node[gate,text width=1.4cm] (seam) at (3.3,0) {SEAM};
+\draw[edge] (a2) -- (seam);
+\node[box,text width=1.7cm] (vA) at (5.6,0.0) {VERB A};
+\draw[edge] (seam.east) -- ++(.25,0) |- (vA.west);
+\node[box,text width=1.7cm] (vB) at (5.6,-1.5) {VERB B};
+\draw[edge] (seam.east) -- ++(.25,0) |- (vB.west);
+\node[box,text width=1.7cm] (vC) at (5.6,-3.0) {VERB C};
+\draw[edge] (seam.east) -- ++(.25,0) |- (vC.west);
+\node[note,text width=5cm] (t25) at (3.4,-4.2) {stamp · validate\\ constrain · observe};
+\end{tikzpicture}

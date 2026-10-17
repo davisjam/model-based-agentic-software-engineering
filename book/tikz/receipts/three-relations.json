@@ -1,0 +1,44 @@
+{
+  "source": "book/assets/three-relations.svg",
+  "chapter": "3.2-models-and-the-semantic-gap",
+  "claim": "*Three distinct relations.* Correspondence tests agreement between representations; conformance tests an artifact against an independent obligation; acceptance asks whether the receiving environment will take the result. Evidence for one relation does not establish the others.",
+  "topology": {
+    "description": "Three unordered comparison bands; symmetric correspondence vs directed conformance and acceptance.",
+    "relations": [
+      [
+        "a0",
+        "b0",
+        "agreement",
+        "<->"
+      ],
+      [
+        "a1",
+        "b1",
+        "conformance",
+        ""
+      ],
+      [
+        "a2",
+        "b2",
+        "acceptance",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Correspondence · Do they agree?",
+    "Implementation",
+    "Representation",
+    "Conformance · Does it satisfy?",
+    "Artifact",
+    "Independent obligation",
+    "Acceptance · Will it accept?",
+    "Artifact",
+    "Receiving environment",
+    "Evidence for one relation does not establish the others."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Three stacked bands distinguish correspondence, conformance and acceptance. Correspondence links two internal representations in both directions. Conformance asks whether an artifact satisfies an independent obligation. Acceptance asks whether a receiving environment will take it. The three provide different evidence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

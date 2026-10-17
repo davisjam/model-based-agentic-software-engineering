@@ -1,0 +1,34 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=6cm] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
+\node[head,text width=6cm] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
+\node[box,text width=2.3cm] (e1) at (-3.7,-1.5) {Engineer};
+\node[box,text width=2.3cm] (e2) at (3.7,-1.5) {Engineer};
+\node[box,text width=1.8cm] (m0) at (-6.0,-3) {Natural\\language};
+\draw[edge,] (e1) -- (m0);
+\node[box,text width=1.8cm] (m1) at (-3.7,-3) {Specification};
+\draw[edge,] (e1) -- (m1);
+\node[box,text width=1.8cm] (m2) at (-1.4000000000000004,-3) {Models};
+\draw[edge,] (e1) -- (m2);
+\node[box,text width=1.8cm] (a0) at (1.4,-3) {Review};
+\draw[edge,] (a0) -- (e2);
+\node[box,text width=1.8cm] (a1) at (3.6999999999999997,-3) {Testing};
+\draw[edge,] (a1) -- (e2);
+\node[box,text width=1.8cm] (a2) at (6.0,-3) {Analysis};
+\draw[edge,] (a2) -- (e2);
+\node[box,text width=2.5cm] (ag) at (-3.7,-4.6) {Agent};
+\node[box,text width=2.5cm] (re) at (3.7,-4.6) {Result};
+\node[head,text width=3.5cm] (im) at (0,-6.2) {Implementation};
+\draw[edge,] (m0) -- (ag);
+\draw[edge,] (re) -- (a0);
+\draw[edge,] (m1) -- (ag);
+\draw[edge,] (re) -- (a1);
+\draw[edge,] (m2) -- (ag);
+\draw[edge,] (re) -- (a2);
+\draw[edge,] (ag) -- (im);
+\draw[edge,] (im) -- (re);
+\end{tikzpicture}

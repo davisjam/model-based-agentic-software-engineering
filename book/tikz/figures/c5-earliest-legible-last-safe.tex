@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\draw[edge] (-6,0)--(6,0);
+\draw[fill=white] (-3.5,0) circle (2mm);
+\node[note,text width=2.6cm] (t7) at (-3.5,-1) {too early\\ property not yet legible};
+\draw[fill=white] (-0.5,0) circle (2mm);
+\node[note,text width=2.6cm] (t9) at (-0.5,-1) {earliest legible\\ CHECK};
+\draw[fill=white] (3,0) circle (2mm);
+\node[note,text width=2.6cm] (t11) at (3,-1) {last safe\\ RE-CHECK};
+\node[note,text width=2cm] (t12) at (-5.6,1) {work begins};
+\node[note,text width=2cm] (t13) at (5.5,1) {consequence};
+\draw[line width=1pt] (5.3,-.15)--(5.7,.15) (5.3,.15)--(5.7,-.15);
+\node[note,text width=3cm] (t15) at (3,-2.3) {point of no return};
+\end{tikzpicture}

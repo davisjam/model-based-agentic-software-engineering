@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/h1-product-lifecycle.svg",
+  "claim": "*MAGE across the product lifecycle.* Different lifecycle surfaces ask different engineering questions and therefore benefit from different representations. The horizontal flow is not a waterfall: experience and evidence feed earlier activities, while Assurance & Compliance spans the lifecycle. Each surface can adopt MAGE independently.",
+  "topology": "Four recurring engineering activities run left to right as a dominant lifecycle flow: Product\n    Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each\n    box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,\n    spanning the row as a cross-cutting activity that feeds up into all four. A wide arrow beneath the lifecycle row\n    shows observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a\n    lifecycle, not a waterfall.",
+  "required_terms": [
+    "PRODUCT DISCOVERY",
+    "What should we build? Why? hypotheses \u00b7 needs experiments \u00b7 decisions requirements",
+    "ENGINEERING & REALIZATION",
+    "How should it be realized? architecture \u00b7 behavior interfaces \u00b7 contracts analyses",
+    "PRODUCT MGMT & MAINTENANCE",
+    "What should change? Why? tickets \u00b7 issues \u00b7 rationale acceptance \u00b7 history",
+    "OPERATIONS & INCIDENTS",
+    "What is happening? Why? topology \u00b7 telemetry SLOs \u00b7 runbooks \u00b7 RCAs",
+    "Observations, failures, evidence and new needs feed earlier activities.",
+    "ASSURANCE & COMPLIANCE \u00b7 cross-cutting What must be shown to be true? requirements \u00b7 policies \u00b7 threats \u00b7 traceability \u00b7 claims \u00b7 evidence"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "MAGE across the product lifecycle"
+}

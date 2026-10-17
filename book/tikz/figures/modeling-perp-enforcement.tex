@@ -1,0 +1,22 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=5.6cm] (h0) at (-3.3,1.4) {Chapter 2 · Model};
+\node[n,text width=5.6cm] (m) at (-3.3,0) {Quantity + reference bound\\Comparison};
+\node[head,text width=5.8cm] (h1) at (3.3,1.4) {Chapter 3 · Enforcement decision};
+\node[n,text width=5.6cm] (same) at (3.3,0) {Same model};
+\draw[edge] (m) -- (same);
+\node[n,text width=2.5cm] (c0) at (-4.949999999999999,-2.8) {Observe};
+\draw[edge] (same) -- (c0);
+\node[n,text width=2.5cm] (c1) at (-1.65,-2.8) {Adapt};
+\draw[edge] (same) -- (c1);
+\node[strong,text width=2.5cm] (c2) at (1.65,-2.8) {Degrade};
+\draw[edge] (same) -- (c2);
+\node[strong,text width=2.5cm] (c3) at (4.949999999999999,-2.8) {Gate};
+\draw[edge] (same) -- (c3);
+\node[note,text width=12cm] (q) at (0,-4) {Model: what quantity and bound matter?\\Alignment: what enforcement is justified?};
+\end{tikzpicture}

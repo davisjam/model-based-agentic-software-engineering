@@ -1,0 +1,21 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=4cm] (run) at (0,0) {Run};
+\node[strong,text width=5cm] (op) at (0,-1.7) {Operation*\\One run, many operations};
+\draw[edge] (run) -- node[lab,right] {contains} (op);
+\node[n,text width=2.7cm] (f0) at (-4.949999999999999,-3.7) {Target};
+\draw[edge,-] (op) -- (f0);
+\node[n,text width=2.7cm] (f1) at (-1.65,-3.7) {Mutation};
+\draw[edge,-] (op) -- (f1);
+\node[n,text width=2.7cm] (f2) at (1.65,-3.7) {Responsible pass};
+\draw[edge,-] (op) -- (f2);
+\node[n,text width=2.7cm] (f3) at (4.949999999999999,-3.7) {Retained evidence};
+\draw[edge,-] (op) -- (f3);
+\node[n,text width=8cm] (views) at (0,-5.6) {Derived views\\Audit · debugging · changelog};
+\draw[edge] (op.west) -- ++(-5.5,0) |- node[lab,near end,above] {derive} (views.west);
+\end{tikzpicture}

@@ -1,0 +1,24 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=5.3cm] (s0) at (-3.8,0.0) {\textbf{1. Identify the kernel}\\Model properties that must stay protected.};
+\node[box,text width=5.3cm] (s1) at (-3.8,-1.8) {\textbf{2. Actively align}\\Change the system until it satisfies the kernel.};
+\node[box,text width=5.3cm] (s2) at (-3.8,-3.6) {\textbf{3. Extend}\\Add models under established constraints.};
+\node[box,text width=5.3cm] (s3) at (-3.8,-5.4) {\textbf{4. Repeat}\\Each model narrows later change.};
+\draw[edge,] (s0) -- (s1);
+\draw[edge,] (s1) -- (s2);
+\draw[edge,] (s2) -- (s3);
+\draw[fill=black!3] (3.9,-2.7) circle (3);
+\draw[fill=black!3] (3.9,-2.7) circle (2.35);
+\draw[fill=black!3] (3.9,-2.7) circle (1.7);
+\draw[fill=black!3] (3.9,-2.7) circle (1.05);
+\node[note,text width=1.8cm] (kernel) at (3.9,-2.7) {\textbf{Kernel}\\$M_1$};
+\node[note,text width=0.8cm] (x5) at (4.85,-1.75) {$M_2$};
+\node[note,text width=0.8cm] (x555) at (5.3,-1.3) {$M_3$};
+\node[note,text width=0.8cm] (x61) at (5.75,-0.85) {$M_4$};
+\node[note,text width=6cm] (grow) at (3.9,1) {Governed surface grows over time};
+\node[note,text width=6cm] (nt) at (3.9,-6.3) {New models are admitted under constraints inside them. Active alignment operates within the protected region.};
+\end{tikzpicture}

@@ -1,0 +1,67 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\begin{pgfonlayer}{background}\draw[fill=black!3,draw=black!25] (0,0) ellipse (3.2cm and 2cm);\end{pgfonlayer}
+\node[note,text width=3cm] (t6) at (0,1.9) {PRODUCT 1};
+\node[box,text width=2.8cm] (model1) at (0,0) {Engineering\\ models};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q10) at (0,1) {};
+\node[note,text width=2cm] (t9) at (0.0,1.3) {Discovery};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q11) at (-2,0.2) {};
+\node[note,text width=2cm] (t12) at (-2.25,0.75) {Assurance};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q12) at (2,0.1) {};
+\node[note,text width=2cm] (t15) at (2.35,0.65) {Maintenance};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q13) at (0.3,-1) {};
+\node[note,text width=2cm] (t18) at (0.3,-1.5) {Operations};
+\begin{pgfonlayer}{background}\draw[fill=black!3,draw=black!25] (-3.8,-5.5) ellipse (3.2cm and 2cm);\end{pgfonlayer}
+\node[note,text width=3cm] (t21) at (-3.8,-3.6) {PRODUCT 2};
+\node[box,text width=2.8cm] (model2) at (-3.8,-5.5) {Engineering\\ models};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q20) at (-3.8,-4.5) {};
+\node[note,text width=2cm] (t24) at (-3.8,-4.2) {Discovery};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q21) at (-5.8,-5.3) {};
+\node[note,text width=2cm] (t27) at (-6.05,-4.75) {Assurance};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q22) at (-1.7999999999999998,-5.4) {};
+\node[note,text width=2cm] (t29) at (-1.4499999999999997,-4.8500000000000005) {Maintenance};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q23) at (-3.5,-6.5) {};
+\node[note,text width=2cm] (t32) at (-3.5,-7.0) {Operations};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q24) at (-5.3,-6.5) {};
+\node[note,text width=2cm] (t35) at (-5.3,-7.0) {Incident};
+\begin{pgfonlayer}{background}\draw[fill=black!3,draw=black!25] (3.8,-5.5) ellipse (3.2cm and 2cm);\end{pgfonlayer}
+\node[note,text width=3cm] (t38) at (3.8,-3.6) {PRODUCT 3};
+\node[box,text width=2.8cm] (model3) at (3.8,-5.5) {Engineering\\ models};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q30) at (3.8,-4.5) {};
+\node[note,text width=2cm] (t41) at (3.8,-4.2) {Discovery};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q31) at (1.7999999999999998,-5.3) {};
+\node[note,text width=2cm] (t44) at (1.5499999999999998,-4.75) {Assurance};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q32) at (2.8,-6.5) {};
+\node[note,text width=2cm] (t47) at (2.8,-7.0) {Evidence};
+\node[circle,draw,fill=white,inner sep=1.5pt] (q33) at (5.6,-6.5) {};
+\node[note,text width=2cm] (t50) at (5.6,-7.0) {Operations};
+\node[box,text width=2.5cm] (code) at (-4.5,-2.5) {CODE-QUALITY\\ MECHANISMS};
+\node[box,text width=4cm] (assurance) at (2.5,-2.5) {ASSURANCE OBLIGATION\\ DO-178C / IEC 61508};
+\node[box,dotted,text width=4cm] (security) at (0,-8.5) {SECURITY POSTURE\\ possible shared concern};
+\begin{pgfonlayer}{background}\draw[draw] (code) -- (model1);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (code) -- (model2);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (assurance) -- (q11);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (assurance) -- (model2);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (assurance) -- (q32);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (security) -- (model1);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (security) -- (model2);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (security) -- (model3);\end{pgfonlayer}
+\node[note,text width=12cm] (t62) at (0,-9.8) {Solid: established. Dotted: emerging / possible.\\ Incomplete constellations are neither prescribed models nor maturity levels.};
+\begin{pgfonlayer}{background}\draw[draw] (q10) -- (model1);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q11) -- (model1);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (model1) -- (q12);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (model1) -- (q13);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q12) -- (q13);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (model2) -- (q22);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (model2) -- (q23);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q22) -- (q23);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q24) -- (q23);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q31) -- (q32);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[draw] (q32) -- (model3);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (q11) -- (q10);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (q20) -- (model2);\end{pgfonlayer}
+\begin{pgfonlayer}{background}\draw[dotted] (q30) -- (model3);\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/assurance-stack.svg",
+  "claim": "The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves \u2014 TEST for examples, LINT for structure, PROVE for semantics \u2014 and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine.",
+  "topology": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes \u2014 TEST for\n    examples, LINT for structure, PROVE for semantics \u2014 applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible \u2014 a placement rule folded into prose, not a node.",
+  "required_terms": [
+    "SPEC state the obligations",
+    "CENSUS what must be discharged?",
+    "TEST examples",
+    "LINT structure",
+    "PROVE semantics",
+    "COVERAGE obligation \u2192 evidence",
+    "All paths required; choose evidence appropriate to each property."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "The Assurance stack: a spec becomes a census of obligations, each discharged by\n    appropriate evidence, joined back into coverage"
+}

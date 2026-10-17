@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=5cm] (f) at (0,0) {Foundation Model\\Semantic reasoning\\Probabilistic output\\Bounded working state\\Cheap repeated reasoning};
+\node[n,text width=5cm] (h) at (6,0) {Agentic Harness\\Tool-mediated action\\Context management\\Interposition\\Parallel execution};
+\node[n,text width=5cm] (a) at (3,-3) {Agent\\A tool-using reasoner};
+\draw[edge] (f) -- (a);
+\draw[edge] (h) -- (a);
+\node[strong,text width=8cm] (e) at (3,-5) {Engineered Environment\\Models · obligations · evidence · controls};
+\draw[edge] (a) -- node[lab,right] {acts on} (e);
+\end{tikzpicture}

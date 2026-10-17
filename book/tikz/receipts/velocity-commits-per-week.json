@@ -1,0 +1,38 @@
+{
+  "source": "assets/velocity-commits-per-week.svg",
+  "claim": "*Weekly Commit Volume.* Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits.",
+  "topology": "Quantitative axes preserve source values and categories.",
+  "required_terms": [],
+  "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
+  "redesign": "Recovers the19 actual bars and quartiles from originalSVG; its description says20weeks but the artwork contains19. Candidate preserves the artwork window; does not manufacture the missing week.",
+  "questions": [
+    "Original SVG contains 19 bars despite 20-week description. Confirm whether publisher edition should refresh to 20-week or 29-week evidence; current candidate preserves 19 bars."
+  ],
+  "alt": "Weekly Commit Volume. Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits.",
+  "data": [
+    "book/assets/velocity-commits-per-week.svg"
+  ],
+  "recovered_counts": [
+    24,
+    0,
+    24,
+    410,
+    682,
+    755,
+    1006,
+    1011,
+    1708,
+    1346,
+    3329,
+    2554,
+    1125,
+    1307,
+    1990,
+    1379,
+    572,
+    1215,
+    1587
+  ],
+  "source_sha256": "a7fb8082bf40bf5700d374ef0107f9090a0e76a63fc0f6ecd7049ae93b18c7b5",
+  "recovery_max_error": 0.0001
+}

@@ -1,0 +1,22 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=3cm] (u) at (0,0) {User};
+\node[n,text width=4cm] (g) at (0,-1.6) {Groups};
+\draw[edge] (u) -- node[lab,right] {belongs to one or more} (g);
+\node[n,text width=5cm] (f) at (-3.5,-3.4) {Finite-credit group\\Remaining credit balance};
+\node[n,text width=5cm] (inf) at (3.5,-3.4) {Unlimited group\\No credit limit};
+\draw[edge] (g) -- (f);
+\draw[edge] (g) -- (inf);
+\node[strong,text width=5cm] (dec) at (0,-5.5) {Upload decision};
+\draw[edge] (f) -- node[lab,left] {credits remaining?} (dec);
+\draw[edge] (inf) -- node[lab,right] {any unlimited?} (dec);
+\node[n,text width=3cm] (yes) at (-2,-7.2) {ADMIT};
+\node[n,text width=3cm] (no) at (2,-7.2) {REJECT};
+\draw[edge] (dec) -- (yes);
+\draw[edge] (dec) -- (no);
+\end{tikzpicture}

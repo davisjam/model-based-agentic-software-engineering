@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/observe-react-stack.svg",
+  "claim": "The observe \u2192 react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.",
+  "topology": "An operating model states expected state. The solid load-bearing path runs WATCH \u2014 which\n    observes the runtime \u2014 to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
+  "required_terms": [
+    "OPERATING MODEL",
+    "WATCH observe divergence",
+    "RESPOND bounded recovery",
+    "runtime",
+    "BEAT liveness heartbeat",
+    "BLOCK prevent unsafe progress",
+    "Solid: required path. Dashed: optional enhancement."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and\n    blocking are dashed enhancements"
+}

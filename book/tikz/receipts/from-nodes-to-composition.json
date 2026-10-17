@@ -1,0 +1,59 @@
+{
+  "source": "book/assets/from-nodes-to-composition.svg",
+  "chapter": "2.2-structural",
+  "claim": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.",
+  "topology": {
+    "description": "Two authored seed relations plus55projected typed relations yield57total:33payload-bearing and24control.",
+    "relations": [
+      [
+        "n0",
+        "n1",
+        "",
+        ""
+      ],
+      [
+        "n2",
+        "n3",
+        "",
+        ""
+      ],
+      [
+        "n1.east",
+        "derive.west",
+        "",
+        ""
+      ],
+      [
+        "derive",
+        "payload",
+        "",
+        ""
+      ],
+      [
+        "derive",
+        "control",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Computations without composition",
+    "Pass A",
+    "Pass B",
+    "Pass C",
+    "Pass D",
+    "Pass E",
+    "125 computations 2 authored relations",
+    "Derive + type the relations",
+    "Payload-bearing: 33 DATA_FLOW: 32 Produces → Consumes CROSS_SERVICE: 1 Cross-boundary payload",
+    "Control: 24 CONTROL_GATE: 24 ConsumesForControl",
+    "2 authored + 55 projected, typed relations = 33 payload + 24 control"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [
+    "The source description says 55 projected, while 33 + 24 = 57; diagram preserves explicit SVG equation: 2 authored + 55 projected = 57 total."
+  ],
+  "alt": "A computation inventory with 125 registered computations and two authored seed relations leads through derivation to explicit typed composition. Two authored plus fifty-five projected relations yield fifty-seven total: thirty-three payload-bearing relations, comprising thirty-two DATA_FLOW and one CROSS_SERVICE, and twenty-four CONTROL_GATE relations. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

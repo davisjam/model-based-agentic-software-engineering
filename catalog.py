@@ -153,7 +153,7 @@ _WORKBENCH_PAGE = "workbench/index.html"
 
 # Native manuscript sources and compiler intermediates are not served web pages.
 # Match repository-relative roots, never broad names such as "build" or "generated".
-_NATIVE_SOURCE_ROOTS = ("latex", "book/latex", "book/_latex", "handbook/generated")
+_NATIVE_SOURCE_ROOTS = ("latex", "book/latex", "book/tikz", "book/_latex", "handbook/generated")
 
 
 def is_native_build_path(path: str) -> bool:

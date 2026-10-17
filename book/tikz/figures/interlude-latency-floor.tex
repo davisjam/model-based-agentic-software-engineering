@@ -1,0 +1,15 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=2.8cm] (n0) at (0.0,0) {Section summary\\1.777 s (estimated)};
+\node[box,text width=2.8cm] (n1) at (3.5,0) {Document summary\\1.777 s (estimated)};
+\node[box,text width=2.8cm] (n2) at (7.0,0) {Alt text\\4.1049 s (measured)};
+\node[head,text width=2.8cm] (n3) at (10.5,0) {Latency floor\\7.6589 s};
+\draw[edge,] (n0) -- (n1);
+\draw[edge,] (n1) -- (n2);
+\draw[edge,dotted] (n2) -- (n3);
+\node[note,text width=12cm] (nt) at (5.25,-1.6) {Each level waits for its predecessor: the dependent times add.};
+\end{tikzpicture}

@@ -1,0 +1,32 @@
+{
+  "source": "book/assets/measurement-no-gate.svg",
+  "claim": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose — representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
+  "topology": "Historical chain ends in dashed deferred enforcement; report must not appear to block admission.",
+  "required_terms": [
+    "Timeout",
+    "Bare kill after the budget was spent",
+    "Measurement",
+    "One incident; timestamped; provisional",
+    "Model",
+    "Per-chunk worst case versus ceiling",
+    "Evidence",
+    "Would-be breach made observable",
+    "Report",
+    "Surfaced, not enforced",
+    "? Enforcement",
+    "No gate yet; deliberately deferred",
+    "Engineering history: modeled and observed, reported, not yet binding."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report — and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose — modeled and observed, reported, not yet enforced.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 323.766,
+    "height_pt": 275.76,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "source": "assets/f5_f6_capital_and_support_ratio.svg",
+  "claim": "*Factory Capital and the Support Ratio, Weekly.* Source-tree lines of code by category (left) and the support-to-production ratio (right) at each week's last commit \u2014 an independent re-derivation with its own category boundaries, with the two recoverable earlier snapshot ratios overlaid as diamonds. The trajectory matters more than any single value: below parity in the prototype weeks, parity crossed around weeks 5\u20136, a plateau near three-to-one in the mature era.",
+  "topology": "Quantitative axes preserve source values and categories.",
+  "required_terms": [],
+  "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
+  "redesign": "Vertical panels increase print legibility. Same seven LoC categories and two ratios; snapshot diamonds and parity preserved.",
+  "questions": [],
+  "alt": "Factory Capital and the Support Ratio, Weekly. Source-tree lines of code by category (upper panel) and the support-to-production ratio (lower panel) at each week's last commit \u2014 an independent re-derivation with its own category boundaries, with the two recoverable earlier snapshot ratios overlaid as diamonds. The trajectory matters more than any single value: below parity in the prototype weeks, parity crossed around weeks 5\u20136, a plateau near three-to-one in the mature era.",
+  "data": [
+    "loc_weekly.csv",
+    "loc_snapshots.csv"
+  ]
+}

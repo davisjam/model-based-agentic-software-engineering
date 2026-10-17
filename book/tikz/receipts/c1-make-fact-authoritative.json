@@ -1,0 +1,25 @@
+{
+  "source": "book/assets/c1-make-fact-authoritative.svg",
+  "claim": "*One authoritative representation.* BEFORE \u2014 copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER \u2014 one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.",
+  "topology": "Before: three copies of the same fact each feed a separate consumer, and because each copy can\n    change independently, disagreement between them is an ordinary state. After: one authoritative representation\n    carries the fact, and the three consumers derive or query it from that single source, so disagreement becomes\n    detectable or impossible.",
+  "required_terms": [
+    "BEFORE",
+    "AFTER",
+    "copy A",
+    "consumer A",
+    "copy B",
+    "consumer B",
+    "copy C",
+    "consumer C",
+    "AUTHORITATIVE REPRESENTATION",
+    "A",
+    "B",
+    "C",
+    "Independent copies can disagree.",
+    "Derive / query: disagreement becomes detectable or impossible."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from"
+}

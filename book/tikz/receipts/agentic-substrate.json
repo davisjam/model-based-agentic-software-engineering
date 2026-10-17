@@ -1,0 +1,38 @@
+{
+  "source": "book/assets/agentic-substrate.svg",
+  "chapter": "1.3-the-agentic-substrate",
+  "claim": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
+  "topology": {
+    "description": "Foundation model and agentic harness jointly supply the agent, which acts on an engineered environment.",
+    "relations": [
+      [
+        "f",
+        "a",
+        "",
+        ""
+      ],
+      [
+        "h",
+        "a",
+        "",
+        ""
+      ],
+      [
+        "a",
+        "e",
+        "acts on",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Foundation Model Semantic reasoning Probabilistic output Bounded working state Cheap repeated reasoning",
+    "Agentic Harness Tool-mediated action Context management Interposition Parallel execution",
+    "Agent A tool-using reasoner",
+    "Engineered Environment Models · obligations · evidence · controls"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Two columns converge on an agent: the foundation model supplies semantic reasoning, probabilistic output, bounded working state and cheap repeated reasoning; the harness supplies tools, context management, interposition and parallel execution. The agent acts on an engineered environment of models, obligations, evidence and controls. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

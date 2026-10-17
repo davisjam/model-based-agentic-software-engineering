@@ -1,0 +1,18 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=4cm] (cat) at (0,0) {COMPONENT CATALOG\\ ownership · seams};
+\node[box,text width=3cm] (web) at (-3,-2.2) {WEB ZONE};
+\node[box,text width=3cm] (worker) at (3,-2.2) {WORKER};
+\draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {owns} (web);
+\draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {permits} (worker);
+\draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {CHECKED door} (worker);
+\node[box,text width=3cm] (raw) at (-3,-4.5) {RAW FORMAT LIBRARY};
+\node[box,text width=3cm] (tree) at (3,-4.5) {REPOSITORY TREE\\ observed structure};
+\draw[optional] (tree.east)--++(1.5,0) |- (cat.east);
+\draw[dashed] (web)--(raw);\draw[line width=1pt] (-3.2,-3.2)--(-2.8,-3.6) (-3.2,-3.6)--(-2.8,-3.2);
+\node[note,text width=2.5cm] (t15) at (-0.1,-3.5) {forbidden\\ direct access};
+\node[note,text width=10cm] (t16) at (0,-5.7) {Solid: authored ownership / permitted seam. Dashed: observed correspondence.};
+\end{tikzpicture}

@@ -1,0 +1,31 @@
+{
+  "source": "book/assets/interlude-execution-unit.svg",
+  "claim": "*Two execution units for document remediation.* (a) Whole-document execution keeps the artifact's working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.",
+  "topology": "Whole-worker pipeline contrasted with partition fan-out and merge.",
+  "required_terms": [
+    "(a) Whole-document execution",
+    "Document",
+    "Long-running Kubernetes worker\\ document state and media resident\\ requests sourced from memory",
+    "Output",
+    "(b) Page-chunked execution",
+    "Document",
+    "Merge",
+    "Output",
+    "Pages 1--10 worker",
+    "Pages 11--20 worker",
+    "Pages 21--30 worker",
+    "Each worker holds less document state; media representation is unchanged."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes\n    worker that holds the full document state and its media resident in memory, sources GenAI requests from\n    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range\n    partitions, each handled by a smaller worker holding only its range; the results are recombined into the\n    output. Chunking lowers per-worker memory without changing how document media is represented.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 356.695,
+    "height_pt": 283.896,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

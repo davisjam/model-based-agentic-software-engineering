@@ -1,0 +1,15 @@
+{
+  "source": "book/assets/c3-bidirectional-correspondence.svg",
+  "claim": "*Correspondence runs both ways.* A two-way loop joins MODEL and REALITY. One arrow asks whether reality still satisfies the model, catching a wrong modeled fact; the other asks whether something important appeared outside the model, catching unmodeled reality.",
+  "topology": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it \u2014 this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model \u2014 this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
+  "required_terms": [
+    "MODEL what we claim is true",
+    "REALITY the running system",
+    "CLAIM: does reality still satisfy the model? Catches a wrong modeled fact.",
+    "COVERAGE: did something important appear outside the model? Catches unmodeled reality."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.3 Keep representation and reality in correspondence, checked in both directions"
+}

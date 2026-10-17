@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/field-guide-cloudflare.svg",
+  "claim": "*Cloudflare projected onto MAGE.* Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive.",
+  "topology": "See source-specific field-guide graph and receipt redesign.",
+  "required_terms": [
+    "Cloudflare",
+    "Policy-first governance",
+    "one machine-checkable policy",
+    "change 1",
+    "change 2",
+    "change 3",
+    "change 4",
+    "change 5",
+    "LANDS ON: Alignment",
+    "One policy governs thousands of later changes. Recurrence loop remains only half-closed / interpretive."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Field-guide visual argument preserved; decorative header/footer dropped. Evidence caveats retained explicitly rather than color/half-disc glyph alone.",
+  "questions": [],
+  "alt": "*Cloudflare projected onto MAGE.* Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive."
+}

@@ -1,0 +1,29 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=6cm] (s0) at (0,0) {Scale $\times$ finite reasoning\\Large systems exceed one reasoner};
+\node[n,text width=6cm] (s1) at (0,-2) {New engineering imbalance\\Implementation abundant\\Judgment, representation,\\evidence and enforcement scarce};
+\draw[edge] (s0) -- (s1);
+\node[strong,text width=6cm] (s2) at (0,-4) {Modeling Principle\\Make consequential knowledge\\and intent explicit at useful scales};
+\draw[edge] (s1) -- (s2);
+\node[strong,text width=6cm] (s3) at (0,-6) {Alignment Principle\\Enforce selected obligations\\Constraints · sensors · validators · gates};
+\draw[edge] (s2) -- (s3);
+\node[n,text width=6cm] (s4) at (0,-8) {Governed Engineering Environment\\Modeling and Alignment\\work together};
+\draw[edge] (s3) -- (s4);
+\node[n,text width=6cm] (s5) at (0,-10) {Engineering Capital\\Effort compounds: future value > upkeep\\Can depreciate; maintain or retire};
+\draw[edge] (s4) -- (s5);
+\node[n,text width=3cm] (ci) at (-5.4,-2) {Commodity\\intelligence\\Implementation\\cheap and abundant};
+\draw[edge] (ci) -- (s1);
+\node[n,text width=3cm] (churn) at (5.4,-5) {Engineering Churn\\Weak representation: reconstruction\\Weak enforcement: repeated adjudication\\Same work paid again};
+\draw[edge,dashed] (s2.east) -- (churn.north west);
+\draw[edge,dashed] (s3.east) -- (churn.south west);
+\node[n,text width=3cm] (conv) at (-5.4,-8) {Governance conversion\\Recurring failures and judgment adapt models and controls};
+\draw[edge] (s4.west) -- (conv.east);
+\draw[edge] (conv.north) |- (s2.west);
+\draw[edge,dotted] (s5.west) -- ++(-4,0) |- (s0.west);
+\node[note,text width=3.6cm] (scope) at (-5.1,0.9) {Greater scope reopens\\the reasoning problem};
+\end{tikzpicture}

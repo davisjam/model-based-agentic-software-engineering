@@ -1,0 +1,24 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1.12cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=7cm] (s0) at (-2.3,0.0) {\textbf{1. CO-CODER}\\\fontsize{9}{11}\selectfont Delegated: Code generation\\Environment: Ordinary repository; nothing durable};
+\node[note,text width=3cm] (human0) at (6.3,0.0) {Read every diff; hold map; admit change};
+\node[box,text width=7cm] (s1) at (-1.5999999999999999,2.2) {\textbf{2. QA}\\\fontsize{9}{11}\selectfont Delegated: Generation + second agent's audit\\Environment: Probabilistic, episodic, advisory reviewer};
+\node[note,text width=3cm] (human1) at (6.3,2.2) {Adjudicate findings};
+\draw[line width=.8pt] (-6.5,1.1)--(-5.8,1.1)--(-5.8,3.0);
+\node[box,text width=7cm] (s2) at (-0.8999999999999999,4.4) {\textbf{3. REVIEW LEAD}\\\fontsize{9}{11}\selectfont Delegated: Specialized review per region\\Environment: Deterministic checks for decidable findings};
+\node[note,text width=3cm] (human2) at (6.3,4.4) {Residual semantic review};
+\draw[line width=.8pt] (-5.8,3.3000000000000003)--(-5.1,3.3000000000000003)--(-5.1,5.2);
+\node[box,text width=7cm] (s3) at (-0.20000000000000018,6.6000000000000005) {\textbf{4. TECH LEAD}\\\fontsize{9}{11}\selectfont Delegated: Bounded work inside a modeled zone\\Environment: Named zones and boundary rules};
+\node[note,text width=3cm] (human3) at (6.3,6.6000000000000005) {System map and strategy};
+\draw[line width=.8pt] (-5.1000000000000005,5.5)--(-4.4,5.5)--(-4.4,7.4);
+\node[box,text width=7cm] (s4) at (0.5,8.8) {\textbf{5. ARCHITECT}\\\fontsize{9}{11}\selectfont Delegated: Model-guided work across the system\\Environment: Explicit models, traceability, controls};
+\node[note,text width=3cm] (human4) at (6.3,8.8) {Residual semantics and strategy};
+\draw[line width=.8pt] (-4.4,7.700000000000001)--(-3.7,7.700000000000001)--(-3.7,9.600000000000001);
+\node[note,text width=6.4cm] (left) at (-2.8,10.3) {Representation and enforcement accumulate};
+\node[head,text width=3.5cm] (right) at (6.3,10.3) {HUMAN FOCUS};
+\node[note,text width=13cm] (nt) at (0,-1.8) {Delegation climbs; tactical human burden narrows but never vanishes. Failure in representation or enforcement can move work down.};
+\end{tikzpicture}

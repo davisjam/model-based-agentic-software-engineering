@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/specified-region.svg",
+  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "claim": "*Obligation, scaffolding, and degrees of freedom.* The engineering obligation establishes the minimum consequential content that must be preserved. A particular agent may require additional scaffolding to interpret and realize that obligation reliably. Greater agent capability can reduce this scaffolding and enlarge the realized degrees of freedom, but it does not change the obligation itself.",
+  "topology": {
+    "description": "Nested specified region with fixed obligation boundary and capability-dependent scaffolding boundary.",
+    "relations": []
+  },
+  "required_terms": [
+    "Engineering obligation Consequential distinctions that must be preserved",
+    "Scaffolding Additional structure this agent needs to interpret and realize the obligation reliably",
+    "Degrees of freedom Realization choices left to the agent",
+    "Obligation boundary Set by the problem; does not move with capability",
+    "Specification boundary Set by obligation and agent capability",
+    "Greater capability can reduce scaffolding"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are realization degrees of freedom. An upward capability arrow indicates that greater capability can reduce required scaffolding. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

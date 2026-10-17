@@ -1,0 +1,22 @@
+{
+  "source": "book/assets/h8-product-gee.svg",
+  "claim": "*From local MAGE adoption to the product GEE.* Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries the obligations that can responsibly be enforced. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.",
+  "topology": "Five lifecycle surfaces \u2014 Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance \u2014 are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
+  "required_terms": [
+    "Product discovery",
+    "Engineering & realization",
+    "Product management & maintenance",
+    "SHARED RELATIONS identity \u00b7 provenance temporal scope \u00b7 obligations",
+    "Operations & incident response",
+    "Assurance & compliance",
+    "CONNECTED ENGINEERING KNOWLEDGE",
+    "AUTONOMOUS REASONING reconstruction \u00b7 synthesis novel judgment \u00b7 open choices",
+    "ALIGNMENT constraints \u00b7 validators permissions \u00b7 gates",
+    "GOVERNED ENGINEERING ENVIRONMENT",
+    "PRODUCT"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "From local MAGE adoption to the product GEE"
+}

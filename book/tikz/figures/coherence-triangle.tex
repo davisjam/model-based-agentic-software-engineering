@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=3.8cm] (n0) at (0.0,0) {Structured model\\Records · edges · states\\Job: free / leased / done};
+\node[n,text width=3.8cm] (n1) at (4.8,0) {Invariants\\Stable IDs + declared domains\\leased $\Leftrightarrow$ owner exists};
+\draw[edge] (n0) -- node[lab,above=25pt] {supports} (n1);
+\node[n,text width=3.8cm] (n2) at (9.6,0) {Checker\\Model check · drift lint · validator};
+\draw[edge] (n1) -- node[lab,above=25pt] {evaluated by} (n2);
+\draw[edge,dashed] (n2.south) to[bend left=45] node[lab,below] {Recurring failure $\rightarrow$ new / refined invariant} (n1.south);
+\node[note,text width=12cm] (lim) at (4.8,-2.8) {One executable-model pattern, not the definition of executability.};
+\end{tikzpicture}

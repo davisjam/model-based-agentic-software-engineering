@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/appendix-g-7-composition-by-reference.svg",
+  "claim": "*Composition by reference.* Stable identities join the user-journey, service, coverage, test-placement, and execution-policy views. The resulting joined view supports cross-model queries without duplicating those facts into a single stored model.",
+  "topology": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears \u2014 composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
+  "required_terms": [
+    "USER JOURNEY goal \u00b7 criticality",
+    "SERVICE / NODE stable identity",
+    "COVERAGE exercised?",
+    "TEST PLACEMENT where run?",
+    "EXECUTION POLICY plan_for(host)",
+    "JOINED VIEW not a mega-model",
+    "Dashed: derived correspondence on stable identities; no copied facts."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Composition by reference \u2014 join small views on stable identities, not one mega-model"
+}

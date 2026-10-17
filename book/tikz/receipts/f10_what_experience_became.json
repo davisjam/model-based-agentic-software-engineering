@@ -1,0 +1,13 @@
+{
+  "source": "assets/f10_what_experience_became.svg",
+  "claim": "*What Experience Became.* The twelve governance-conversion episodes by the durable structure each failure became, coloured by enforcement class. Eight land deterministic and blocking; two stay probabilistic or advisory; two stop at measurement, one deliberately without a gate. Three up-front confirmations are excluded, keeping the conversion-versus-confirmation distinction; the exhibit restates the chapter's own narrative in structured form rather than censusing the repository independently.",
+  "topology": "Quantitative axes preserve source values and categories.",
+  "required_terms": [],
+  "bw_encoding": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction.",
+  "redesign": "Replaces twelve equal-length bars with a grouped count display. Exact original bucketing and enforcement classification;8 blocking2advisory2measurement; three confirmations excluded.",
+  "questions": [],
+  "alt": "What Experience Became. The twelve governance-conversion episodes by the durable structure each failure became, grouped by enforcement class. Eight land deterministic and blocking; two stay probabilistic or advisory; two stop at measurement, one deliberately without a gate. Three up-front confirmations are excluded, keeping the conversion-versus-confirmation distinction; the exhibit restates the chapter's own narrative in structured form rather than censusing the repository independently.",
+  "data": [
+    "governance_conversions.csv"
+  ]
+}

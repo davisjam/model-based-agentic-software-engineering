@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/adopting-assistance-to-delegation.svg",
+  "claim": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment \u2014 models carry context, evidence establishes properties, and mechanisms constrain and admit the result \u2014 and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
+  "topology": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent \u2014 models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results \u2014 while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
+  "required_terms": [
+    "ASSISTANCE",
+    "BOUNDED DELEGATION",
+    "WORKER",
+    "AGENT",
+    "WORKER",
+    "GOVERNED ENVIRONMENT models: context evidence: properties mechanisms: constrain / admit",
+    "AGENT",
+    "Selected responsibilities move into the environment. The delegated boundary expands; these are not maturity levels."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Dashed authority boundary now encloses environment-supported responsibilities as well as agent; original right inset boundary enclosed only agent despite caption expansion claim.",
+  "questions": [
+    "Dashed authority boundary now encloses environment-supported responsibilities as well as agent; original right inset boundary enclosed only agent despite caption expansion claim."
+  ],
+  "alt": "From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands"
+}

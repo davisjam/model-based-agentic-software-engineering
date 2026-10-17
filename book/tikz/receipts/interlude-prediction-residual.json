@@ -1,0 +1,33 @@
+{
+  "source": "book/assets/interlude-prediction-residual.svg",
+  "claim": "*Using prediction error as evidence.* (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.",
+  "topology": "Comparison yields three possible residual causes; adjacent feedback loop uses the discrepancy to revise the model.",
+  "required_terms": [
+    "(a) Prediction versus observation",
+    "(b) Modeling loop",
+    "Model predicts 11.5 s",
+    "Observed 17.8 s",
+    "Residual: 6.3 s",
+    "Wrong\\",
+    "Wrong\\",
+    "Missing\\",
+    "Model",
+    "Predict",
+    "Implement",
+    "Measure",
+    "Explain residual",
+    "Illustrative numbers, not benchmark measurements."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 394.963,
+    "height_pt": 226.289,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

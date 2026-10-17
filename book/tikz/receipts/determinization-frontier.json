@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/determinization-frontier.svg",
+  "claim": "*The Determinization Frontier.* Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.",
+  "topology": "Two routes from judgment converge on predicate-over-model and repeatable decision.",
+  "required_terms": [
+    "Repeated judgment",
+    "ALIGNMENT\\ predicate",
+    "MODELING\\ representation",
+    "Test / validator / constraint / gate",
+    "Structured relation",
+    "Predicate over model",
+    "Repeatable decision",
+    "The determinization frontier: change what is decidable, then bind the decision."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:\n    when a property is already decidable over the current artifact, Alignment encodes the predicate directly\n    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,\n    Modeling changes the representation first, producing a structured relation. Both routes converge on a\n    shared step, a predicate evaluated over a model — Alignment's test is a predicate over the artifact taken\n    as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and\n    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the\n    two sides the determinization frontier.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 373.703,
+    "height_pt": 250.268,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

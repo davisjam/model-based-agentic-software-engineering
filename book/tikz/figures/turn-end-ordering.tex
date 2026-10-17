@@ -1,0 +1,17 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=3.7cm] (h0) at (0.0,0) {Turn-end hook\\Discourages\\premature stops};
+\node[box,text width=3.7cm] (h1) at (4.5,0) {Turn-end hook\\Prompts reflection\\on failures};
+\node[box,text width=3.7cm] (h2) at (9.0,0) {Turn-end hook\\Checks for\\stranded work};
+\draw[edge,] (h0) -- node[midway,above,yshift=1.15cm,note,fill=white] {modeled order} (h1);
+\draw[edge,] (h1) -- node[midway,above,yshift=1.15cm,note,fill=white] {modeled order} (h2);
+\node[head,text width=11cm] (r) at (4.5,-2.5) {One shared slot: the turn's closing message};
+\draw[edge,] (h0) -- node[midway,note,fill=white] {writes} (r);
+\draw[edge,] (h1) -- node[midway,note,fill=white] {writes} (r);
+\draw[edge,] (h2) -- node[midway,note,fill=white] {writes} (r);
+\node[note,text width=12cm] (nt) at (4.5,-4.1) {25 mechanisms; 3 conflict edges. Topological sort computes the order; a cycle is an error. Generic runtime enforcement is not yet implemented.};
+\end{tikzpicture}

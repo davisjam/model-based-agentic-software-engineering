@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=8cm] (impl) at (0,2.5) {Implementation\\Handlers · retries · writes · logging};
+\node[state,text width=2.1cm] (idle) at (-4,0) {IDLE};
+\node[state,text width=2.5cm] (run) at (0,0) {RUNNING};
+\node[state,text width=2.1cm] (done) at (4,1) {DONE};
+\node[state,text width=2.1cm] (fail) at (4,-1.5) {FAILED};
+\draw[edge] (impl) -- node[lab,right] {reduce to} (run);
+\draw[edge] (idle) -- node[lab,above] {start} (run);
+\draw[edge] (run) -- node[lab,above] {finish} (done);
+\draw[edge] (run) -- node[lab,below] {fail} (fail);
+\draw[edge,dashed] (idle.south) to[bend right=40] node[lab,below] {no skipping RUNNING} (done.south);
+\node[note,text width=12cm] (sem) at (0,-3.5) {Node = legal state; edge = permitted transition; path = admitted execution.\\Analyze reachability, safety and liveness.};
+\end{tikzpicture}

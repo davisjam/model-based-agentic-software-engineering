@@ -1,0 +1,21 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[box,text width=6cm] (f) at (0,0) {Dangerous auto-resolution fallback exists};
+\node[box,text width=6cm] (s) at (0,-1.4) {Sensor / audit detects the condition};
+\node[head,text width=6cm] (v) at (0,-2.8) {Validator: UNSAFE};
+\draw[edge,] (f) -- (s);
+\draw[edge,] (s) -- (v);
+\draw (0,-3.2)--(0,-3.7);\draw[line width=1pt] (-.18,-3.8)--(.18,-3.6) (-.18,-4)--(.18,-3.8);
+\node[box,dashed,text width=3cm] (w) at (-4,-4.5) {WARNING ONLY\\logged, not enforced};
+\node[note,text width=4cm] (break) at (1,-4.5) {No mechanism enforces the verdict};
+\node[box,text width=5cm] (p) at (0,-5.7) {Operation proceeds anyway};
+\node[head,text width=5cm] (loss) at (0,-7) {Content lost};
+\draw[edge,] (p) -- (loss);
+\draw[dashed] (w.east)--(-.6,-4.5);
+\draw[edge] (0,-4.9)--(p.north);
+\node[note,text width=11cm] (r) at (0,-8.4) {Durable repair: remove the unsafe capability; escalate ambiguous merges to a human.};
+\end{tikzpicture}

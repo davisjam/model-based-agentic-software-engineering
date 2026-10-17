@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/appendix-g-1-executable-model.svg",
+  "claim": "*The executable-model pattern.* An engineering question selects a representation containing authored, derived, or observed facts. Correspondence machinery compares represented facts with implementation or runtime evidence. Disagreement may remain advisory or, where the obligation is enforced, feed a deterministic gate.",
+  "topology": "An engineering question selects a representation. A model box is fed from the left by\n    authored intent along a solid arrow, and from the right by derived facts along a dashed arrow. The model\n    declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are\n    observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether\n    the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a\n    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared\n    legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are\n    derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real\n    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory.",
+  "required_terms": [
+    "ENGINEERING QUESTION",
+    "MODEL entities \u00b7 relations \u00b7 properties",
+    "CODE \u00b7 CONFIG \u00b7 RUNTIME \u00b7 ARTIFACTS",
+    "CORRESPONDENCE / INVARIANT CHECK",
+    "AUTHORED intent",
+    "DERIVED facts",
+    "observe / re-derive",
+    "advisory \u00b7 report-only informs the engineer",
+    "finding / gate CHECKED where warranted",
+    "Solid: authored relation. Dashed: derived / observed correspondence. Heavy boundary: enforcement can block. A model may stay advisory."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "The executable-model pattern \u2014 the spine every later reference figure specializes"
+}

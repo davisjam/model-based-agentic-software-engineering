@@ -1,0 +1,16 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[strong,text width=8cm] (m) at (0,0) {Governing computation model\\Computations · dependencies · composition};
+\node[n,text width=5cm] (e) at (-3.5,-2.8) {Execution};
+\node[n,text width=5cm] (v) at (3.5,-2.8) {Analytical graph view\\Analysis · governance};
+\draw[edge] (m) -- node[lab,left] {consumed by scheduler} (e);
+\draw[edge] (m) -- node[lab,right] {projected / checked} (v);
+\node[head,text width=5cm] (a) at (-3.5,-4.2) {Governing role};
+\node[head,text width=5cm] (c) at (3.5,-4.2) {Correspondence};
+\node[note,text width=12cm] (n) at (0,-5.5) {Stronger correspondence does not make the view govern execution.};
+\end{tikzpicture}

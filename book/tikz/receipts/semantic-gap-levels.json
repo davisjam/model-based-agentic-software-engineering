@@ -1,0 +1,24 @@
+{
+  "source": "book/assets/semantic-gap-levels.svg",
+  "chapter": "3.2-models-and-the-semantic-gap",
+  "claim": "*The semantic gap.* A property that spans several events cannot be decided from any event alone. Move the mechanism to the earliest boundary where the evidence required by the obligation is assembled.",
+  "topology": {
+    "description": "Low-level events insufficient individually; move mechanism upward to assembled unit-of-work evidence.",
+    "relations": []
+  },
+  "required_terms": [
+    "Obligation legible Completed unit of work",
+    "Move mechanism to the earliest boundary where the needed evidence is assembled",
+    "commit",
+    "commit",
+    "commit",
+    "call",
+    "call",
+    "turn",
+    "Obligation not decidable from any event alone."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Low-level events occupy the bottom; no individual event makes the spanning obligation decidable. An upward arrow labeled move mechanism reaches the completed unit of work, where assembled evidence makes the obligation legible. The mechanism belongs at the earliest boundary with sufficient evidence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

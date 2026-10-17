@@ -1,0 +1,26 @@
+{
+  "source": "book/assets/positive-negative-obligation.svg",
+  "claim": "*Negative and positive constraints.* A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.",
+  "topology": "Parallel contrast: forbidden arrowhead-free relation versus required evidence-producing call.",
+  "required_terms": [
+    "Negative constraint",
+    "Positive constraint",
+    "Ordinary code",
+    "Raw library",
+    "Mutation verb",
+    "MUST stamp\\ attribution evidence",
+    "Both source-time rules restrict the admissible implementation space."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge\n    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that\n    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,\n    from opposite directions.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 356.695,
+    "height_pt": 159.465,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

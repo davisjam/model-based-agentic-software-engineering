@@ -1,0 +1,17 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=9cm] (n0) at (0,0) {3.1  LOCATE\\Where can enforcement occur?};
+\node[n,text width=9cm] (n1) at (0,-2) {3.2  JUSTIFY\\What may it legitimately enforce?};
+\draw[edge] (n0) -- (n1);
+\node[n,text width=9cm] (n2) at (0,-4) {3.3  MECHANIZE\\How does a mechanism enforce an obligation?};
+\draw[edge] (n1) -- (n2);
+\node[n,text width=9cm] (n3) at (0,-6) {3.4  LEARN\\How does the environment acquire new obligations and controls?};
+\draw[edge] (n2) -- (n3);
+\node[n,text width=9cm] (n4) at (0,-8) {3.5  GOVERN\\How are accumulated controls governed as a system?};
+\draw[edge] (n3) -- (n4);
+\end{tikzpicture}

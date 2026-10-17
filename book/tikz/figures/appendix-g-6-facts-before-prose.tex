@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=4cm] (n0) at (0,0.0) {ENGINEERING ACTION};
+\node[box,text width=4cm] (n1) at (0,-1.8) {PROVENANCE FACT\\ what · who · how};
+\draw[edge] (n0) -- (n1);
+\node[gate,text width=4cm] (audit) at (-3.3,-4) {VALIDATION / AUDIT\\ CHECKED completion gate};
+\node[box,text width=4cm] (docs) at (3.3,-4) {GENERATED DOCUMENTATION\\ re-derivable};
+\draw[edge] (n1) -- (audit);
+\draw[edge] (n1) -- (docs);
+\node[box,dashed,text width=4cm] (prose) at (-3.3,-6) {prose maintained independently};
+\node[box,text width=4cm] (human) at (3.3,-6) {human explanation};
+\draw[edge] (docs) -- (human);
+\draw[optional] (prose) -- node[note,fill=white,inner sep=2pt,below=12pt] {no mechanical correspondence} (human);
+\end{tikzpicture}

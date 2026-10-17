@@ -1,0 +1,29 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=5cm] (doc) at (0,0) {User uploads document};
+\node[n,text width=5cm] (job) at (0,-1.4) {Job\\Tracks processing};
+\draw[edge] (doc) -- node[lab,right] {creates} (job);
+\node[n,text width=2.2cm] (c0) at (-3,-3) {Chunk 1};
+\draw[edge] (job) -- (c0);
+\node[n,text width=2.2cm] (c1) at (0,-3) {Chunk 2};
+\draw[edge] (job) -- (c1);
+\node[n,text width=2.2cm] (c2) at (3,-3) {Chunk 3};
+\draw[edge] (job) -- (c2);
+\node[n,text width=5cm] (worker) at (0,-4.6) {Workers claim work};
+\draw[edge] (c0) -- (worker);
+\draw[edge] (c1) -- (worker);
+\draw[edge] (c2) -- (worker);
+\node[n,text width=3.7cm] (services) at (5,-4.6) {Specialized services\\Generation · render · OCR\\Document / format machinery};
+\draw[edge,<->] (worker) -- node[lab,above] {call} (services);
+\node[n,text width=5cm] (merge) at (0,-6.2) {Merge / reassemble\\Repaired pieces};
+\draw[edge] (worker) -- (merge);
+\node[n,text width=5cm] (v) at (0,-7.7) {Validate};
+\draw[edge] (merge) -- (v);
+\node[n,text width=6cm] (out) at (0,-9.2) {Remediated document + evidence};
+\draw[edge] (v) -- (out);
+\end{tikzpicture}

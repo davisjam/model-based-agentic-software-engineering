@@ -1,0 +1,72 @@
+{
+  "source": "book/assets/research-arc.svg",
+  "chapter": "0.5-preface",
+  "claim": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with seven independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
+  "topology": {
+    "description": "Research-provenance sequence followed by complementary depth/breadth evidence, not validation.",
+    "relations": [
+      [
+        "s0",
+        "s1",
+        "induces",
+        ""
+      ],
+      [
+        "s1",
+        "s2",
+        "turns outward",
+        ""
+      ],
+      [
+        "s2",
+        "s3",
+        "reconstructs",
+        ""
+      ],
+      [
+        "s3",
+        "s4",
+        "refines",
+        ""
+      ],
+      [
+        "s4",
+        "depth",
+        "",
+        ""
+      ],
+      [
+        "s4",
+        "breadth",
+        "",
+        ""
+      ],
+      [
+        "depth",
+        "basis",
+        "",
+        ""
+      ],
+      [
+        "breadth",
+        "basis",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "DocAble One production system, longitudinal depth",
+    "Early MAGE Modeling · Alignment · conversion · capital",
+    "Independent industrial accounts Seven independent industrial systems",
+    "Comparative reconstruction Recurring moves · variation · limits",
+    "MAGE theory Refined account in Chapter 6",
+    "Depth · originating case Mechanism and sequence",
+    "Breadth · industrial accounts Variation and alternatives",
+    "A stronger basis for theory Comparison refines; it does not validate."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Five stages descend: the longitudinal DocAble case, early MAGE, independent industrial accounts, comparative reconstruction and MAGE theory. Separate branches attribute depth to the originating case and breadth to the industrial accounts; together they strengthen the theory’s basis. Comparative reconstruction refines rather than validates the theory. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

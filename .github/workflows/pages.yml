@@ -436,6 +436,8 @@ jobs:
           # --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
           python3 -m pip install "pyyaml>=6,<7"
+          python3 tools/mage_tikz_charts.py --check
+          python3 tools/mage_tikz_review.py --figures-only
           python3 book/build_book.py --pdf --no-split
       - name: Render book ePub (EPUB3 from the same page records as the web edition)
         run: python3 book/book_epub.py
@@ -731,7 +733,7 @@ jobs:
           # under `plugin/` ships AGENTS.md files that are CONTENT and must keep publishing.
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' --exclude='book/_latex' --exclude='book/latex' \
+                --exclude='book/_typst' --exclude='book/_latex' --exclude='book/latex' --exclude='book/tikz' \
                 --exclude='latex' --exclude='book/dist' --exclude='book/web' \
                 --exclude='course' --exclude='site' --exclude='handbook' \
                 --exclude='/AGENTS.md' --exclude='/book/AGENTS.md' ./ _site/

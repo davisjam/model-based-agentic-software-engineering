@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/figure-composition.svg",
+  "claim": "*Three complementary skills act around one governed engineering environment.* Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment.",
+  "topology": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence \u2014 reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
+  "required_terms": [
+    "Self-Governance engineers and improves the environment",
+    "Governed Engineering Environment the GEE",
+    "Self-Operate runs operational lifecycles",
+    "Self-Communicate articulates the system to others",
+    "People engineers and readers",
+    "evidence reveals deficiencies"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Three complementary skills acting around one governed engineering environment"
+}

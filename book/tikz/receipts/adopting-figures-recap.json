@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/adopting-figures-recap.svg",
+  "claim": "*Four figures this appendix puts to work.* Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (§5.3), the governance-conversion loop (§3.4), the support-apparatus ratio, and the redistribution of engineering effort (both in Chapter 5). The appendix refers back to these rather than re-deriving them.",
+  "topology": "A two-by-two panel of reference cards. Value versus feasible governability, from Section 6.3:\n    choose where to invest, surface by surface. The governance-conversion loop, from Section 3.4: a failure is\n    diagnosed, the missing structure is encoded, and later work inherits it. The support-apparatus ratio, from\n    Chapter 5: the environment used to understand and govern realization becomes a substantial engineering product\n    in its own right. Where engineering effort moves, from Chapter 5: a redistribution toward deciding what must be\n    true and establishing whether it became true, not the disappearance of implementation.",
+  "required_terms": [
+    "SECTION 6.3 Value × feasible governability  Worth the investment? How much can be enforced? Choose surface by surface, not by maturity level.",
+    "SECTION 3.4 Governance conversion  Diagnose what the environment lacked. Encode a model, obligation, evidence or control. Later work inherits it.",
+    "CHAPTER 5 Support-apparatus ratio  Understanding, constraining and evaluating autonomous work becomes a substantial engineering product. An observation, not a target.",
+    "CHAPTER 5 Where engineering effort moves  Cheap realization shifts effort upstream to what must be true and downstream to whether it became true. Implementation remains."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section5.3 to source-art section6.3 in card only.",
+  "questions": [
+    "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section 5.3 to source-art section 6.3 in card only."
+  ],
+  "alt": "Four text cards in a two-by-two grid summarize figures reused in this appendix, each identifying its home section or chapter and the idea to recall."
+}

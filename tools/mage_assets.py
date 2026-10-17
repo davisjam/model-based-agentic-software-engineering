@@ -138,6 +138,7 @@ def pool_figures(chapters, directory):
                 raise RuntimeError(f'SVG pool changed figure dimensions: {source}')
         temporary.replace(pool)
     pages = {source: index for index, source in enumerate(sources, 1)}
+    pool.with_suffix(".pages.json").write_text(json.dumps({str(index): source.relative_to(ROOT).as_posix() for source, index in pages.items()}, indent=2) + "\n")
     relative = pool.relative_to(ROOT).as_posix()
     for chapter, text in texts.items():
         for start, end, options, asset in reversed(list(graphics(text))):

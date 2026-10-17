@@ -1,0 +1,22 @@
+{
+  "source": "book/assets/h5-incident-to-governance.svg",
+  "claim": "*From incident repair to governance conversion.* An incident provides evidence about the realized system. Traceability connects the failure to the models and obligations it realizes; relationships within those models can expose other instances of the same engineering condition even when their implementations differ. Repair can then address the class rather than only the observed instance, while governance conversion preserves the lesson in models or mechanisms that future work inherits.",
+  "topology": "An incident provides an observation about the realized system. Root-cause analysis traces the\n    failure back to the models and relationships it realizes. Relationships within those models expose the affected\n    instance and other, structurally related instances of the same engineering condition. Repair can then address\n    the class rather than only the observed instance, and governance conversion preserves the lesson as an updated\n    model or a durable mechanism that future work inherits.",
+  "required_terms": [
+    "REALIZED SYSTEM",
+    "INCIDENT",
+    "ROOT-CAUSE ANALYSIS",
+    "MODELED CAUSE / RELATIONSHIP",
+    "affected instance",
+    "related instances",
+    "REPAIR THE CLASS",
+    "GOVERNANCE CONVERSION",
+    "UPDATED MODEL",
+    "DURABLE MECHANISM invariant \u00b7 validator \u00b7 test constraint \u00b7 policy \u00b7 gate",
+    "FUTURE WORK inherits the lesson"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "From incident repair to governance conversion"
+}

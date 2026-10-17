@@ -1,0 +1,25 @@
+{
+  "source": "book/assets/engineering-recurring-work.svg",
+  "claim": "*Engineering recurring work.* A governed engineering environment combines support for probabilistic reasoning with enforcement of selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to enforce. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, that encoding is governance conversion (§3.4).",
+  "topology": "Support and enforcement are parallel contributors to environment; optional dashed support-to-enforcement move and outer outcome-learning loop.",
+  "required_terms": [
+    "Recurring engineering work",
+    "Engineer the environment",
+    "Support the reasoner\\; knowledge; examples\\; context; skills\\; evidence",
+    "Enforce selected obligations\\; validators\\; gates; checks",
+    "Governed engineering environment\\ attempts realization; mechanisms enforce selected obligations",
+    "Realized work"
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Recurring engineering work exposes a judgment and is handled by engineering the environment. The\n    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and\n    enforces selected obligations — constraints, validators, permissions, gates, checks. A dashed arrow from\n    support to enforcement marks the recurring move of adding enforcement where feasible. The governed engineering\n    environment then hosts realization, enforcement mechanisms act on selected obligations, and work is realized. A\n    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and\n    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring\n    judgment can be encoded economically.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 425.748,
+    "height_pt": 232.58,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "source": "book/assets/c7-knowledge-at-decision.svg",
+  "claim": "*Knowledge delivery at the decision point.* Context selection joins the current work with the rules relevant to its scope and supplies that subset to the decision. The distinction is encoded by shape and line style rather than color.",
+  "topology": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid \u2014 the roles are legible by shape and weight, not colour.",
+  "required_terms": [
+    "RULES the governing corpus",
+    "WORK the files being changed",
+    "CONTEXT SELECTION",
+    "DECISION",
+    "Bind relevant knowledge to the work surface where it matters."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.7 Deliver knowledge where the decision occurs: select the rules relevant to the work and bind them to the decision"
+}

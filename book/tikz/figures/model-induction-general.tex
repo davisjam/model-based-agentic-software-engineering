@@ -1,0 +1,55 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[note,text width=3.1cm] (t5) at (-5.25,1.35) {THE GENERAL MOVE};
+\node[box,text width=3.05cm] (c0r0) at (-5.25,0.0) {realized work};
+\node[box,text width=3.05cm] (c0r1) at (-5.25,-1.95) {repeated low-level forms};
+\draw[edge] (c0r0) -- (c0r1);
+\node[box,text width=3.05cm] (c0r2) at (-5.25,-3.9) {candidate regularities};
+\draw[edge] (c0r1) -- (c0r2);
+\node[box,text width=3.05cm] (c0r3) at (-5.25,-5.85) {candidate abstraction};
+\draw[edge] (c0r2) -- (c0r3);
+\node[box,text width=3.05cm] (c0r4) at (-5.25,-7.8) {explicit model / vocabulary};
+\draw[edge] (c0r3) -- (c0r4);
+\node[box,text width=3.05cm] (c0r5) at (-5.25,-9.75) {future work\\ uses the concept};
+\draw[edge] (c0r4) -- (c0r5);
+\node[note,text width=3.1cm] (t17) at (-1.75,1.35) {SOFTWARE\\ grounded: DocAble};
+\node[box,text width=3.05cm] (c1r0) at (-1.75,0.0) {realized code\\ repos · diffs · PRs};
+\node[box,text width=3.05cm] (c1r1) at (-1.75,-1.95) {primitive forms\\ dict.Put\\ raw argv · loops};
+\draw[edge] (c1r0) -- (c1r1);
+\node[box,text width=3.05cm] (c1r2) at (-1.75,-3.9) {regularities\\ primitive density\\ clusters};
+\draw[edge] (c1r1) -- (c1r2);
+\node[box,text width=3.05cm] (c1r3) at (-1.75,-5.85) {abstraction\\ repeated semantic\\ shape};
+\draw[edge] (c1r2) -- (c1r3);
+\node[box,text width=3.05cm] (c1r4) at (-1.75,-7.8) {typed vocabulary\\ and relations\\ PdfModel · JobId};
+\draw[edge] (c1r3) -- (c1r4);
+\node[box,text width=3.05cm] (c1r5) at (-1.75,-9.75) {tools search / check\\ agents reuse};
+\draw[edge] (c1r4) -- (c1r5);
+\node[note,text width=3.1cm] (t29) at (1.75,1.35) {KNOWLEDGE WORK\\ inferred};
+\node[box,dashed,text width=3.05cm] (c2r0) at (1.75,0.0) {documents\\ records / notes\\ conversations};
+\node[box,dashed,text width=3.05cm] (c2r1) at (1.75,-1.95) {terms / relations\\ phrases\\ entity patterns};
+\draw[optional] (c2r0) -- (c2r1);
+\node[box,dashed,text width=3.05cm] (c2r2) at (1.75,-3.9) {candidate clusters\\ synonyms\\ concept groups};
+\draw[optional] (c2r1) -- (c2r2);
+\node[box,dashed,text width=3.05cm] (c2r3) at (1.75,-5.85) {abstraction\\ a domain distinction};
+\draw[optional] (c2r2) -- (c2r3);
+\node[box,dashed,text width=3.05cm] (c2r4) at (1.75,-7.8) {canonical term\\ and relations\\ the agreed name};
+\draw[optional] (c2r3) -- (c2r4);
+\node[box,dashed,text width=3.05cm] (c2r5) at (1.75,-9.75) {lexicon · ontology · schema};
+\draw[optional] (c2r4) -- (c2r5);
+\node[note,text width=3.1cm] (t41) at (5.25,1.35) {CAD\\ inferred};
+\node[box,dashed,text width=3.05cm] (c3r0) at (5.25,0.0) {drawings\\ assemblies\\ geometry};
+\node[box,dashed,text width=3.05cm] (c3r1) at (5.25,-1.95) {geometry\\ constraints\\ parameter bundles};
+\draw[optional] (c3r0) -- (c3r1);
+\node[box,dashed,text width=3.05cm] (c3r2) at (5.25,-3.9) {pattern / component\\ a reusable form};
+\draw[optional] (c3r1) -- (c3r2);
+\node[box,dashed,text width=3.05cm] (c3r3) at (5.25,-5.85) {abstraction\\ a design regularity};
+\draw[optional] (c3r2) -- (c3r3);
+\node[box,dashed,text width=3.05cm] (c3r4) at (5.25,-7.8) {named feature\\ constraint model\\ interface};
+\draw[optional] (c3r3) -- (c3r4);
+\node[box,dashed,text width=3.05cm] (c3r5) at (5.25,-9.75) {reusable\\ engineering\\ vocabulary};
+\draw[optional] (c3r4) -- (c3r5);
+\node[note,text width=13cm] (t53) at (0,-11.2) {Weak detectors / retrieval / clustering $\rightarrow$ contextual comparison $\rightarrow$ adopt and name.\\ Agents propose structure; engineers decide which distinctions matter.};
+\end{tikzpicture}

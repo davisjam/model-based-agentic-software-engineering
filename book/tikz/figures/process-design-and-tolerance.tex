@@ -1,0 +1,27 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=13cm] (h) at (0,0) {SOFTWARE FACTORY};
+\node[note,text width=13cm] (ph) at (0,-1.1) {PROCESS DESIGN: how production proceeds};
+\draw[dashed] (-7,-1.7) rectangle (7,-4.8);
+\node[box,text width=2.6cm] (p0) at (-5.4,-2.5) {Engineering\\intent};
+\node[box,text width=2.6cm] (p1) at (-1.8000000000000003,-2.5) {Context / work};
+\node[box,text width=2.6cm] (p2) at (1.7999999999999998,-2.5) {Fabricator};
+\node[box,text width=2.6cm] (p3) at (5.4,-2.5) {Realization};
+\draw[edge,] (p0) -- (p1);
+\draw[edge,] (p1) -- (p2);
+\draw[edge,] (p2) -- (p3);
+\node[note,text width=12cm] (det) at (0,-3.9) {\textbf{Context; tools; routing; authority; sequencing}\\what process design determines};
+\node[head,text width=4cm] (tol) at (-4.7,-7) {TOLERANCE\\acceptable product variation};
+\node[box,text width=7.7cm] (region) at (2,-7.7) {ACCEPTABLE REGION\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
+\draw[edge] (p3.south)--(5.4,-6.6)--(region.north east);
+\node[note,text width=5.5cm] (meas) at (2,-6.1) {Measurement: tests, PBT, analysis, simulation, human judgment};
+\node[box,text width=3.6cm] (rev) at (-0.3,-10) {Revise / reject};
+\node[box,text width=3.6cm] (adm) at (4.3,-10) {Admitted change};
+\draw[edge,] (region) -- node[midway,note,fill=white] {outside} (rev);
+\draw[edge,] (region) -- node[midway,note,fill=white] {within tolerance} (adm);
+\draw[black!40] (-7.3,.5) rectangle (7.3,-10.7);
+\end{tikzpicture}

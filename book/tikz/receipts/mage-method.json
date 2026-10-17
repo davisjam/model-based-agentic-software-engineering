@@ -1,0 +1,92 @@
+{
+  "source": "book/assets/mage-method.svg",
+  "chapter": "0.3-the-mage-method-at-a-glance",
+  "claim": "The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes consequential engineering properties explicit and available to analysis; Alignment makes selected obligations enforceable. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.",
+  "topology": {
+    "description": "Causal spine with lateral economic input, dashed failure paths, conversion feedback and dotted scope feedback.",
+    "relations": [
+      [
+        "s0",
+        "s1",
+        "",
+        ""
+      ],
+      [
+        "s1",
+        "s2",
+        "",
+        ""
+      ],
+      [
+        "s2",
+        "s3",
+        "",
+        ""
+      ],
+      [
+        "s3",
+        "s4",
+        "",
+        ""
+      ],
+      [
+        "s4",
+        "s5",
+        "",
+        ""
+      ],
+      [
+        "ci",
+        "s1",
+        "",
+        ""
+      ],
+      [
+        "s2.east",
+        "churn.north west",
+        "",
+        "dashed"
+      ],
+      [
+        "s3.east",
+        "churn.south west",
+        "",
+        "dashed"
+      ],
+      [
+        "s4.west",
+        "conv.east",
+        "",
+        ""
+      ],
+      [
+        "conv.north",
+        "s2.west",
+        "",
+        ""
+      ],
+      [
+        "s5.west",
+        "s0.west",
+        "",
+        "dotted"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Scale × finite reasoning Large systems exceed one reasoner",
+    "New engineering imbalance Implementation abundant Judgment, representation, evidence and enforcement scarce",
+    "Modeling Principle Make consequential knowledge and intent explicit at useful scales",
+    "Alignment Principle Enforce selected obligations Constraints · sensors · validators · gates",
+    "Governed Engineering Environment Modeling and Alignment work together",
+    "Engineering Capital Effort compounds: future value > upkeep Can depreciate; maintain or retire",
+    "Commodity intelligence Implementation cheap and abundant",
+    "Engineering Churn Weak representation: reconstruction Weak enforcement: repeated adjudication Same work paid again",
+    "Governance conversion Recurring failures and judgment adapt models and controls",
+    "Greater scope reopens the reasoning problem"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A downward causal spine links scale and finite reasoning, a new engineering imbalance, Modeling, Alignment, a governed engineering environment and engineering capital. Commodity intelligence enters laterally at the imbalance. Dashed failure paths lead to churn; conversion feedback adapts models and controls. A dotted outer feedback path shows accumulated capital expanding scope and reopening the reasoning problem. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

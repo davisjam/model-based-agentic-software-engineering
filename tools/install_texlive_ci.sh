@@ -28,7 +28,7 @@ tlpdbopt_install_srcfiles 0
 EOF
   perl "$texlive_install/install-tl" -profile "$texlive_install/profile" -repository "$texlive_repository"
   "$texlive_bin/tlmgr" install --repository "$texlive_repository" \
-    collection-latexextra collection-luatex collection-fontsrecommended collection-bibtexextra
+    collection-latexextra collection-luatex collection-fontsrecommended collection-bibtexextra pgfplots preview
 fi
 printf '%s\n' "$texlive_bin" >> "${GITHUB_PATH:?}"
 "$texlive_bin/lualatex" --version

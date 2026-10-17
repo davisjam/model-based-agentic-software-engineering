@@ -1,0 +1,23 @@
+{
+  "source": "book/assets/adopting-investment-paths.svg",
+  "claim": "*From recurring cost to engineering capital.* Context and guidance can cheaply reduce reconstruction and improve probabilistic judgment. Where residual churn or consequence warrants further investment, organizations can strengthen representation, evidence, evaluation, or enforcement so that later work inherits more of what earlier work established. The paths are investment choices, not maturity levels.",
+  "topology": "Two columns descend from the repeated engineering costs. On the left, reconstruction is\n    answered by better context, then stronger representation, then an analyzable model. On the right,\n    repeated adjudication is answered by better guidance, then independent evidence, then a validator,\n    constraint, or gate. Both columns converge on less repeated judgment and then on engineering capital that\n    later work inherits. The paths are investment choices, made surface by surface where the expected return\n    justifies construction and upkeep, not maturity levels.",
+  "required_terms": [
+    "REPEATED ENGINEERING COST",
+    "reconstruction",
+    "better context",
+    "stronger representation",
+    "analyzable model",
+    "repeated adjudication",
+    "better guidance",
+    "independent evidence",
+    "validator \u00b7 constraint \u00b7 gate",
+    "LESS REPEATED JUDGMENT",
+    "ENGINEERING CAPITAL later work inherits the result",
+    "Invest only where expected return justifies construction and upkeep. These are investment choices, not maturity levels."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Where organizational investment can go: two paths from recurring cost to engineering capital"
+}

@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/appendix-g-3-behavior-ownership.svg",
+  "claim": "*Behavior plus ownership.* The lifecycle FREE \u2192 LEASED \u2192 DONE is combined with a lease that records the current owner and expiry. The ownership invariant requires exactly one valid owner while LEASED and no active owner while FREE.",
+  "topology": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow \u2014 the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour.",
+  "required_terms": [
+    "FREE",
+    "LEASED",
+    "DONE",
+    "OWNERSHIP OVERLAY lease_owner = W17 lease_until = t",
+    "worker",
+    "DONE: no re-entry",
+    "INVARIANT LEASED \u21d2 exactly one valid owner FREE \u21d2 no active owner"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Behavior plus ownership \u2014 a lifecycle with an ownership overlay that authorizes the worker"
+}

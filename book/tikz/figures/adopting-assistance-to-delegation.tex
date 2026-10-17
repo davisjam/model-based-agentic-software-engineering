@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[note,text width=5cm] (t5) at (-3.7,1.2) {ASSISTANCE};
+\node[note,text width=6cm] (t6) at (3.6,1.2) {BOUNDED DELEGATION};
+\node[box,text width=2.5cm] (worker1) at (-4,0) {WORKER};
+\node[box,text width=2.5cm] (agent1) at (-4,-4) {AGENT};
+\draw[edge] (worker1) -- node[note,fill=white,inner sep=2pt] {context · judgment · acceptance} (agent1);
+\draw[dashed] (-5.6,-4.7) rectangle (-2.4,-3.3);
+\node[box,text width=2.5cm] (worker2) at (3.7,0) {WORKER};
+\node[gate,text width=5cm] (env) at (3.7,-2.4) {GOVERNED ENVIRONMENT\\ models: context\\ evidence: properties\\ mechanisms: constrain / admit};
+\draw[edge] (worker2) -- node[note,fill=white,inner sep=2pt] {governs} (env);
+\node[box,text width=2.5cm] (agent2) at (3.7,-5) {AGENT};
+\draw[edge] (env) -- (agent2);
+\draw[dashed] (.7,-6) rectangle (6.7,-1.1);
+\node[note,text width=12cm] (t17) at (0,-7) {Selected responsibilities move into the environment.\\ The delegated boundary expands; these are not maturity levels.};
+\end{tikzpicture}

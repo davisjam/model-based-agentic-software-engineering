@@ -1,0 +1,23 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=4cm] (h0) at (0.0,1.5) {Derive};
+\node[n,text width=3.5cm] (t0) at (0.0,0) {Model};
+\node[n,text width=3.5cm] (b0) at (0.0,-2.5) {Implementation};
+\draw[edge] (b0) -- node[lab,right] {derive} (t0);
+\node[note,text width=4cm] (n0) at (0.0,-4) {Implementation is source of truth};
+\node[head,text width=4cm] (h1) at (4.7,1.5) {Generate};
+\node[n,text width=3.5cm] (t1) at (4.7,0) {Model};
+\node[n,text width=3.5cm] (b1) at (4.7,-2.5) {Implementation / config};
+\draw[edge] (t1) -- node[lab,right] {generate} (b1);
+\node[note,text width=4cm] (n1) at (4.7,-4) {Model is source of truth};
+\node[head,text width=4cm] (h2) at (9.4,1.5) {Trace + check};
+\node[n,text width=3.5cm] (t2) at (9.4,0) {Model};
+\node[n,text width=3.5cm] (b2) at (9.4,-2.5) {System};
+\draw[edge,<->] (t2) -- node[lab,right] {check\\(decidable)} (b2);
+\node[note,text width=4cm] (n2) at (9.4,-4) {Neither fully determines the other};
+\end{tikzpicture}

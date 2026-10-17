@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/brownfield-progress-2x2.svg",
+  "claim": "*Brownfield progress.* Representation reach and enforcement reach are independent axes. A system may be strong on either dimension without being strong on the other; the next investment should address the highest-value gap rather than maximize both indiscriminately.",
+  "topology": "A two-by-two matrix with two independent axes. The columns are enforcement reach \u2014\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary \u2014\n    running thin on the left to strong on the right. The rows are representation reach \u2014 how much of the\n    important system can be reasoned about through trustworthy externalized structure \u2014 running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
+  "required_terms": [
+    "ENFORCEMENT REACH",
+    "thin few obligations enforced",
+    "strong obligations gated at a boundary",
+    "Rich externalized, trustworthy",
+    "Thin little structure",
+    "Understands \u2014 humans enforce Rich models; people catch violations.",
+    "Rich governed surface Trustworthy models; enforcement at the right boundary.",
+    "Reconstruction + human gap Little structure or enforcement; humans carry both.",
+    "Direct / local alignment Tests, sandboxes, permissions govern what they observe.",
+    "Next move: address the highest-value gap."
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach"
+}

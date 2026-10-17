@@ -1,0 +1,21 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=11cm] (h0) at (0,1.0) {Correspondence · Do they agree?};
+\node[n,text width=4cm] (a0) at (-3.5,0.0) {Implementation};
+\node[n,text width=4cm] (b0) at (3.5,0.0) {Representation};
+\draw[edge,<->] (a0) -- node[lab,above] {agreement} (b0);
+\node[head,text width=11cm] (h1) at (0,-1.5) {Conformance · Does it satisfy?};
+\node[n,text width=4cm] (a1) at (-3.5,-2.5) {Artifact};
+\node[n,text width=4cm] (b1) at (3.5,-2.5) {Independent obligation};
+\draw[edge] (a1) -- node[lab,above] {conformance} (b1);
+\node[head,text width=11cm] (h2) at (0,-4.0) {Acceptance · Will it accept?};
+\node[n,text width=4cm] (a2) at (-3.5,-5.0) {Artifact};
+\node[n,text width=4cm] (b2) at (3.5,-5.0) {Receiving environment};
+\draw[edge] (a2) -- node[lab,above] {acceptance} (b2);
+\node[note,text width=12cm] (n) at (0,-6.5) {Evidence for one relation does not establish the others.};
+\end{tikzpicture}

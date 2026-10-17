@@ -1,0 +1,20 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=4cm] (n0) at (0,0.0) {USER JOURNEY\\ goal · criticality};
+\node[box,text width=4cm] (n1) at (0,-1.8) {SERVICE / NODE\\ stable identity};
+\draw[optional] (n0) -- (n1);
+\node[box,text width=2.9cm] (p0) at (-4,-4) {COVERAGE\\ exercised?};
+\draw[optional] (n1) -- (p0);
+\node[box,text width=2.9cm] (p1) at (0,-4) {TEST PLACEMENT\\ where run?};
+\draw[optional] (n1) -- (p1);
+\node[box,text width=2.9cm] (p2) at (4,-4) {EXECUTION POLICY\\ plan\_for(host)};
+\draw[optional] (n1) -- (p2);
+\node[gate,text width=4cm] (join) at (0,-6.3) {JOINED VIEW\\ not a mega-model};
+\draw[optional] (p0) -- (join);
+\draw[optional] (p1) -- (join);
+\draw[optional] (p2) -- (join);
+\node[note,text width=10cm] (t18) at (0,-7.5) {Dashed: derived correspondence on stable identities; no copied facts.};
+\end{tikzpicture}

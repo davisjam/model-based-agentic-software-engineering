@@ -1,0 +1,55 @@
+{
+  "source": "book/assets/gloss-gee.svg",
+  "chapter": "0.4-the-books-language",
+  "claim": "The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
+  "topology": {
+    "description": "Mechanism enforces obligation and acts directly on observable work or reasons through explicit models; environment accumulates capital.",
+    "relations": [
+      [
+        "m",
+        "o",
+        "enforces",
+        ""
+      ],
+      [
+        "m",
+        "w",
+        "acts on / observes",
+        ""
+      ],
+      [
+        "m",
+        "x",
+        "reasons through",
+        ""
+      ],
+      [
+        "w.south",
+        "c.north west",
+        "",
+        ""
+      ],
+      [
+        "x.south",
+        "c.north east",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Engineering obligation What must hold",
+    "Governance mechanism Constraint · Sensor · Validator · Gate",
+    "Directly observable work Action · artifact · execution result Local rules can act directly",
+    "Explicit model / invariant Architecture · behavior · policy · bounds Exposes richer semantics",
+    "GOVERNED ENGINEERING ENVIRONMENT",
+    "Engineering Capital Durable models · mechanisms · procedures · canonical documentation",
+    "accumulates in"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [
+    "Older D2 receipt reverses the explanatory pipeline; current SVG relation \"mechanism enforces obligation\" is retained."
+  ],
+  "alt": "Within a governed engineering environment, mechanisms enforce obligations and act directly on observable work or reason through explicit models. The environment accumulates engineering capital: durable models, mechanisms, procedures and documentation. Directed, labeled arrows identify these distinct relations. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

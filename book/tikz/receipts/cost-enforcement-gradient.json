@@ -1,0 +1,26 @@
+{
+  "source": "book/assets/cost-enforcement-gradient.svg",
+  "claim": "*One Measurement, Different Enforcement Decisions.* The same measured quantity may be observed without enforcement, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement.",
+  "topology": "One model through one policy fans out to alternative responses; adaptation has a degradation child.",
+  "required_terms": [
+    "Cost / usage model\\ measured quantities",
+    "Policy attached to the value",
+    "OBSERVE\\ evidence only",
+    "ADAPT\\ load",
+    "GATE\\ admission\\ unless configured",
+    "Throttle; soft completion",
+    "Response follows the obligation attached to the quantity."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "A single cost and usage model is read through a policy attached to the value. That policy\n    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and\n    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant\n    unless configured. The appropriate response follows from the obligation attached to the measurement, not\n    from a maturity sequence.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 379.373,
+    "height_pt": 193.934,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

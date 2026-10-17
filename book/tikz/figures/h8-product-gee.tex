@@ -1,0 +1,31 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=3.8cm] (p0) at (-4.5,0) {Product discovery};
+\node[box,text width=3.8cm] (p1) at (0.0,0) {Engineering \& realization};
+\node[box,text width=3.8cm] (p2) at (4.5,0) {Product management \& maintenance};
+\node[box,text width=5cm] (shared) at (0,-2) {SHARED RELATIONS\\ identity · provenance\\ temporal scope · obligations};
+\draw[edge] (p0) -- (shared);
+\draw[edge] (p1) -- (shared);
+\draw[edge] (p2) -- (shared);
+\node[box,text width=4cm] (ops) at (-3,-4) {Operations \& incident response};
+\node[box,text width=4cm] (assure) at (3,-4) {Assurance \& compliance};
+\draw[edge] (shared) -- (ops);
+\draw[edge] (shared) -- (assure);
+\node[box,text width=6cm] (knowledge) at (0,-5.8) {CONNECTED ENGINEERING KNOWLEDGE};
+\draw[edge] (ops) -- (knowledge);
+\draw[edge] (assure) -- (knowledge);
+\node[box,text width=4.5cm] (reason) at (-3,-7.7) {AUTONOMOUS REASONING\\ reconstruction · synthesis\\ novel judgment · open choices};
+\node[box,text width=4.5cm] (align) at (3,-7.7) {ALIGNMENT\\ constraints · validators\\ permissions · gates};
+\draw[edge] (knowledge) -- (reason);
+\draw[edge] (knowledge) -- (align);
+\node[gate,text width=6cm] (gee) at (0,-9.7) {GOVERNED ENGINEERING ENVIRONMENT};
+\draw[edge] (reason) -- (gee);
+\draw[edge] (align) -- (gee);
+\node[box,text width=3cm] (product) at (0,-11.2) {PRODUCT};
+\draw[edge] (gee) -- (product);
+\draw[optional] (product.west)--(-6.8,-11.2)--(-6.8,-2)--(shared.west);
+\node[note,rotate=90,fill=white] at (-6.8,-6.5) {experience · failures · evidence · governance conversion};
+\end{tikzpicture}

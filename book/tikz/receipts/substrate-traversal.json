@@ -1,0 +1,67 @@
+{
+  "source": "book/assets/substrate-traversal.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Task-driven traversal.* A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.",
+  "topology": {
+    "description": "Directed task entry to named entity; equal unordered relation peers accessible selectively.",
+    "relations": [
+      [
+        "task",
+        "entity",
+        "enters at",
+        ""
+      ],
+      [
+        "entity",
+        "r0",
+        "",
+        ""
+      ],
+      [
+        "entity",
+        "r1",
+        "",
+        ""
+      ],
+      [
+        "entity",
+        "r2",
+        "",
+        ""
+      ],
+      [
+        "entity",
+        "r3",
+        "",
+        ""
+      ],
+      [
+        "entity",
+        "r4",
+        "",
+        ""
+      ],
+      [
+        "entity",
+        "r5",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Task",
+    "Named entity A job or a service",
+    "Service registry",
+    "Flow model",
+    "Lifecycle",
+    "Policy",
+    "Provenance",
+    "Measurements",
+    "Retrieve only the relations needed for the current question; no prescribed traversal order."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A task enters through a named system entity. Connections fan out to six peer relationships: service registry, flow model, lifecycle, policy, provenance and measurements. The task retrieves only relationships needed for its question. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

@@ -1,0 +1,67 @@
+{
+  "source": "book/assets/modeling-substrate.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.",
+  "topology": {
+    "description": "Seven representations joined by shared identity; radial peer organization, not hierarchy.",
+    "relations": [
+      [
+        "hub",
+        "r0",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r1",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r2",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r3",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r4",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r5",
+        "",
+        "-"
+      ],
+      [
+        "hub",
+        "r6",
+        "",
+        "-"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Shared system identities",
+    "Service registry",
+    "Deployment topology",
+    "State machines",
+    "Entitlement policy",
+    "Computation graph",
+    "Provenance records",
+    "Measurements",
+    "Traceability · derivation · query surfaces Join representations where an engineering question crosses them."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "Seven peer representations surround shared system identities: service registry, deployment topology, state machines, entitlement policy, computation graph, provenance records and measurements. Connections to the hub express shared identity, not hierarchy. A separate footer names traceability, derivation and query surfaces. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

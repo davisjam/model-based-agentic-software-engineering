@@ -1,0 +1,16 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[strong,text width=7cm] (lease) at (0,0) {Shared lease state\\owner · epoch · lifetime};
+\node[n,text width=3.7cm] (v0) at (-4.5,-2.6) {Ownership\\Who owns?};
+\draw[edge] (lease) -- (v0);
+\node[n,text width=3.7cm] (v1) at (0.0,-2.6) {Behavior\\When stale?};
+\draw[edge] (lease) -- (v1);
+\node[n,text width=3.7cm] (v2) at (4.5,-2.6) {Measurement\\How many active?};
+\draw[edge] (lease) -- (v2);
+\node[note,text width=11cm] (n) at (0,-4) {One represented state, several engineering questions.};
+\end{tikzpicture}

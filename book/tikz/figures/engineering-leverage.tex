@@ -1,0 +1,26 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=3.5cm] (n00) at (0,0) {Engineer};
+\node[strong,text width=3.5cm] (n01) at (5.2,0) {Implementation\\Primary engineered object};
+\draw[edge] (n00) -- (n01);
+\node[n,text width=3.5cm] (n02) at (10.4,0) {Product};
+\draw[edge] (n01) -- (n02);
+\node[head,text width=12cm] (h0) at (5.8,1.2) {Classical: engineer writes implementation};
+\node[n,text width=2.1cm] (n10) at (0,-3) {Engineer};
+\node[strong,text width=2.1cm] (n11) at (2.9,-3) {Engineered\\Environment};
+\draw[edge] (n10) -- (n11);
+\node[n,text width=2.1cm] (n12) at (5.8,-3) {Agents};
+\draw[edge] (n11) -- (n12);
+\node[n,text width=2.1cm] (n13) at (8.7,-3) {Implementation};
+\draw[edge] (n12) -- (n13);
+\node[n,text width=2.1cm] (n14) at (11.6,-3) {Product};
+\draw[edge] (n13) -- (n14);
+\node[head,text width=12cm] (h1) at (5.8,-1.8) {Agentic: agents write implementation};
+\node[note,text width=4cm] (lever) at (2.9,-4.05) {Primary engineered lever};
+\node[note,text width=11cm] (env) at (5.8,-5) {Governed Engineering Environment\\Models · obligations · evidence · controls · infrastructure};
+\end{tikzpicture}

@@ -1,0 +1,17 @@
+{
+  "source": "book/assets/c5-earliest-legible-last-safe.svg",
+  "claim": "*Earliest legible, last safe.* A timeline runs from where work begins to consequence. Too-early sits where the property is still invisible; the earliest-legible boundary carries the first check; the last-safe boundary carries a re-check just before the point of no return.",
+  "topology": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary \u2014 the last point before the point of no return. The consequence sits at the end of the line.",
+  "required_terms": [
+    "too early property not yet legible",
+    "earliest legible CHECK",
+    "last safe RE-CHECK",
+    "work begins",
+    "consequence",
+    "point of no return"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "C.5 Put enforcement where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one"
+}

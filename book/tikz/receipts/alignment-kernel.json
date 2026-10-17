@@ -1,0 +1,29 @@
+{
+  "source": "book/assets/alignment-kernel.svg",
+  "claim": "*Incrementally extending the alignment kernel.* The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in Chapter 2 becoming governing constraints over time.",
+  "topology": "Four-step procedure beside concentric protected regions, preserving containment rather than changing it into a chain.",
+  "required_terms": [
+    "1. Identify the kernel\\ properties that must stay protected.",
+    "2. Actively align\\ the system until it satisfies the kernel.",
+    "3. Extend\\ models under established constraints.",
+    "4. Repeat\\ model narrows later change.",
+    "Kernel M_1",
+    "M_2",
+    "M_3",
+    "M_4",
+    "Governed surface grows over time",
+    "New models are admitted under constraints inside them. Active alignment operates within the protected region."
+  ],
+  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "questions": [],
+  "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 392.672,
+    "height_pt": 238.675,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "source": "book/assets/realization-space.svg",
+  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "claim": "*Obligations bound a realization space without selecting one realization.* Each region contains implementations satisfying one engineering obligation; their intersection contains implementations satisfying both. The points within that intersection may differ substantially in structure and implementation while remaining acceptable under the represented obligations. Those remaining choices are realization degrees of freedom.",
+  "topology": {
+    "description": "Set intersection inside realization space; dots denote distinct possible implementations, not measured counts.",
+    "relations": []
+  },
+  "required_terms": [
+    "Satisfies behavioral obligation",
+    "Satisfies architectural obligation",
+    "Acceptable realizations Satisfy both",
+    "Each dot is a distinct possible realization; acceptable choices retain degrees of freedom."
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}

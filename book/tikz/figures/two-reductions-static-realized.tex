@@ -1,0 +1,24 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head,text width=5.5cm] (hl) at (-3.8,1.3) {Computation graph\\What may compose};
+\node[head,text width=5.5cm] (hr) at (3.8,1.3) {Edit record\\What one run did emit};
+\node[n,text width=2.8cm] (a) at (-5,0) {Analyze pass};
+\node[n,text width=2.6cm] (gate) at (-2,-1.8) {Route gate};
+\node[n,text width=3cm] (rem) at (-5,-3.6) {Remediate pass};
+\draw[edge] (a) -- node[lab,left] {DATA\_FLOW} (rem);
+\draw[edge] (gate) -- node[lab,below] {CONTROL\_GATE} (rem);
+\node[n,text width=4.4cm] (e0) at (4,0.0) {Session run};
+\node[n,text width=4.4cm] (e1) at (4,-1.5) {PdfEdit · SetAltText};
+\draw[edge] (e0) -- (e1);
+\node[n,text width=4.4cm] (e2) at (4,-3.0) {PdfEdit · TagFigure};
+\draw[edge] (e1) -- (e2);
+\node[n,text width=4.4cm] (e3) at (4,-4.5) {PdfEdit · SetReadingOrder};
+\draw[edge] (e2) -- (e3);
+\draw[edge,dashed,-] (gate.east) -- node[lab,above] {not joined today} (e1.west);
+\node[note,text width=13cm] (n) at (0,-6) {Static structure and realized history; join by computation identity when a question needs it.};
+\end{tikzpicture}

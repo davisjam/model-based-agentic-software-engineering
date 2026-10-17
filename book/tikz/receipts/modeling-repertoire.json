@@ -1,0 +1,216 @@
+{
+  "source": "book/assets/modeling-repertoire.svg",
+  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
+  "topology": {
+    "description": "Nine peer forms. Structural fork, state machine, data-flow chain, exclusive ownership, permission graph, quantitative comparison, entity relations, provenance convergence and call graph retain original edges.",
+    "relations": [
+      [
+        "m00",
+        "m01",
+        "",
+        ""
+      ],
+      [
+        "m01",
+        "m02",
+        "",
+        ""
+      ],
+      [
+        "m01",
+        "m03",
+        "",
+        ""
+      ],
+      [
+        "m10",
+        "m11",
+        "",
+        ""
+      ],
+      [
+        "m11",
+        "m12",
+        "",
+        ""
+      ],
+      [
+        "m11",
+        "m13",
+        "",
+        ""
+      ],
+      [
+        "m20",
+        "m21",
+        "",
+        ""
+      ],
+      [
+        "m21",
+        "m22",
+        "",
+        ""
+      ],
+      [
+        "m22",
+        "m23",
+        "",
+        ""
+      ],
+      [
+        "m30",
+        "m31",
+        "",
+        ""
+      ],
+      [
+        "m32",
+        "m31",
+        "",
+        "dashed"
+      ],
+      [
+        "m40",
+        "m41",
+        "",
+        ""
+      ],
+      [
+        "m40",
+        "m42",
+        "",
+        "dashed"
+      ],
+      [
+        "m50",
+        "m52",
+        "",
+        ""
+      ],
+      [
+        "m51",
+        "m52",
+        "",
+        ""
+      ],
+      [
+        "m52",
+        "m53",
+        "",
+        ""
+      ],
+      [
+        "m60",
+        "m61",
+        "",
+        ""
+      ],
+      [
+        "m60",
+        "m62",
+        "",
+        ""
+      ],
+      [
+        "m70",
+        "m72",
+        "",
+        ""
+      ],
+      [
+        "m71",
+        "m72",
+        "",
+        ""
+      ],
+      [
+        "m80",
+        "m81",
+        "",
+        ""
+      ],
+      [
+        "m81",
+        "m82",
+        "",
+        ""
+      ],
+      [
+        "m81",
+        "m83",
+        "",
+        ""
+      ]
+    ]
+  },
+  "required_terms": [
+    "Component / dependency",
+    "UI",
+    "API",
+    "DB",
+    "CACHE",
+    "Depends on; reaches",
+    "Q: What depends on what? P: Reachability, layering, forbidden edges A: Traversal, cycles, paths",
+    "Finite-state",
+    "IDLE",
+    "RUNNING",
+    "DONE",
+    "FAILED",
+    "May become",
+    "Q: What may happen next? P: Legal states, safety, liveness A: Model checking; search",
+    "Data-flow",
+    "INPUT",
+    "PARSE",
+    "MODEL",
+    "OUTPUT",
+    "Flows to",
+    "Q: Where does data flow? P: Sources, sinks, paths, transforms A: Flow, taint, dependencies",
+    "Ownership / resource",
+    "Worker A",
+    "Job 42",
+    "Worker B",
+    "×",
+    "Owns; stale claim (dashed)",
+    "Q: Who may control what? P: Exclusivity, transfer, reclaim A: Interleavings; invariants",
+    "Decision / policy",
+    "WEB",
+    "API",
+    "DB",
+    "×",
+    "May call; dashed = prohibited",
+    "Q: What is permitted? P: Consistency, exclusion, implication A: Rules; constraint checks",
+    "Quantitative",
+    "requests",
+    "errors",
+    "error rate",
+    "< 1%",
+    "Compare error rate to bound",
+    "Q: How much / what bound? P: Budget, margin, capacity, rate A: Aggregate / optimize",
+    "Entity / schema",
+    "USER",
+    "DOCUMENT",
+    "ORG",
+    "owns / memberOf",
+    "Q: Entities and relations? P: Keys, cardinality, references A: Joins; schema checking",
+    "Provenance / derivation",
+    "SOURCE",
+    "TRANSFORM",
+    "ARTIFACT",
+    "sourceOf / produced",
+    "Q: What produced this? P: Attribution, lineage, evidence A: Lineage / audit traversal",
+    "Call / control-flow",
+    "main()",
+    "handle()",
+    "validate()",
+    "persist()",
+    "Calls",
+    "Q: What may call what? P: Entry points, reachable calls A: Call-graph traversal",
+    "Q = question · P = property · A = analysis"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Nine native mini-graphs retain the original edge endpoints and directions. Questions, properties and analyses use Q/P/A labels with an explicit legend, allowing 9pt annotations at native print size. Color backgrounds are removed; separators and labels identify peer forms.",
+  "questions": [],
+  "alt": "Nine peer panels show component dependency, finite-state transitions, data flow, ownership, permissions, quantitative bounds, entity relations, provenance, and calls. Each retains its distinct graph and lists its question, property and analysis. Crossed dashed arrows denote a stale ownership claim and a prohibited call; quantitative inputs converge on an error rate compared with a less-than-one-percent bound. Provenance shows source and transform converging on an artifact. Black lines, labels and separators distinguish all panels without color."
+}

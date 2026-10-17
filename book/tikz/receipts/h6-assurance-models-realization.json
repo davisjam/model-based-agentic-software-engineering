@@ -1,0 +1,18 @@
+{
+  "source": "book/assets/h6-assurance-models-realization.svg",
+  "claim": "*Assurance across models and realization.* Claims may depend on modeled properties, realized properties, or correspondence between the two. Traceability and Alignment connect the required evidence.",
+  "topology": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties \u2014 architecture, behavior, data flow, access policy, invariants \u2014 about the realization \u2014\n    implementation, tests, static analysis, runtime evidence, memory safety \u2014 or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
+  "required_terms": [
+    "OBLIGATION",
+    "ASSURANCE CLAIM",
+    "MODEL EVIDENCE architecture \u00b7 behavior data flow \u00b7 access policy invariants",
+    "REALIZATION EVIDENCE implementation \u00b7 tests static analysis \u00b7 runtime evidence memory safety",
+    "TRACEABILITY & ALIGNMENT models \u2194 code",
+    "EVIDENCE / ARGUMENT",
+    "CLAIM ESTABLISHED"
+  ],
+  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "questions": [],
+  "alt": "Assurance across models and realization"
+}

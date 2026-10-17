@@ -1,0 +1,31 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\node[head,text width=12cm] (h) at (0,0) {Active alignment: convergence};
+\node[box,text width=2.1cm] (a0) at (-5.5,-1.5) {Models $M$};
+\node[box,text width=2.1cm] (a1) at (-2.75,-1.5) {Compare\\detect gaps};
+\node[box,text width=2.1cm] (a2) at (0.0,-1.5) {Modify\\with agents};
+\node[box,text width=2.1cm] (a3) at (2.75,-1.5) {Evaluate\\check alignment};
+\node[box,text width=2.1cm] (a4) at (5.5,-1.5) {Aligned\\system $S'$ };
+\draw[edge,] (a0) -- (a1);
+\draw[edge,] (a1) -- (a2);
+\draw[edge,] (a2) -- (a3);
+\draw[edge,] (a3) -- (a4);
+\draw[edge] (a3.south)--(2.75,-2.7)--node[note,below] {repeat until correspondence}(-2.75,-2.7)--(a1.south);
+\node[head,text width=12cm] (ph) at (0,-4.3) {Passive alignment: preservation};
+\draw[edge,draw=none] (h.south) -- (ph.north);
+\node[note,text width=10cm] (handoff) at (0,-3.5) {Once active alignment succeeds, retain the models and mechanisms.};
+\node[box,text width=3cm] (ch) at (-4.7,-6) {Proposed change $\Delta S$};
+\node[box,text width=2.2cm] (m) at (0,-5.1) {Models $M$};
+\node[box,text width=3.5cm] (ev) at (0,-6.3) {Evaluate against models};
+\node[box,text width=2.6cm] (out) at (4.7,-6.3) {Updated system $S'$};
+\draw[edge,] (ch) -- (ev);
+\draw[edge,] (m) -- (ev);
+\draw[edge,] (ev) -- node[midway,above,yshift=.65cm,note,fill=white] {admit / reject} (out);
+\draw[edge] (out.south)--(4.7,-7.6)--node[note,below] {continue protecting correspondence}(-4.7,-7.6)--(ch.south);
+\node[note,text width=12cm] (nt) at (0,-8.8) {Models, mechanisms, and governance remain as engineering capital for every change.};
+\draw[edge] (6.5,-2.8)--(6.5,-3.9);
+\end{tikzpicture}

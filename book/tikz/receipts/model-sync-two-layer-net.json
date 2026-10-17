@@ -1,0 +1,25 @@
+{
+  "source": "book/assets/model-sync-two-layer-net.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*Coverage of model correspondence.* Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.",
+  "topology": {
+    "description": "Modeled surface contains decidable and semantic claims; unmodeled region outside; recurring miss feedback dashed.",
+    "relations": [
+      [
+        "un.east",
+        "dec.east",
+        "Recurring miss:\nrefine representation / control",
+        "dashed"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Decidable claims → mechanical check",
+    "Semantic claims → judgment",
+    "Unmodeled surface No model-based coverage"
+  ],
+  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
+  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "questions": [],
+  "alt": "A modeled surface contains two regions: decidable claims receive mechanical checks and semantic claims require judgment. A separate unmodeled region has no model-based coverage. Dashed recurring-miss feedback calls for refining the representation or control. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+}
