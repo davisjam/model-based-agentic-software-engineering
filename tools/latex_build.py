@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Compile print sources; final logs fail closed except underfull box diagnostics.
+
+Intermediate rerun warnings are expected; only the converged final log is judged.
+Overfull boxes, missing glyphs, undefined references and font substitutions fail.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+from pathlib import Path
+import re
+import shutil
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+ALLOWLIST = (re.compile(r"^Underfull \\[hv]box\b"),)
+DIAGNOSTIC = re.compile(
+    r"^(?:!|(?:LaTeX(?: Font)?|Package \S+|Class \S+|Module \S+).*\bWarning\b|"
+    r".*\bwarning:|Overfull \\[hv]box|Underfull \\[hv]box|Missing character:|LaTeX Error:)",
+    re.IGNORECASE,
+)
+
+
+def diagnostics(log: str) -> tuple[list[str], list[str]]:
+    """Return rejected and explicitly allowed diagnostics, retaining line numbers."""
+    rejected, allowed = [], []
+    for line_number, line in enumerate(log.splitlines(), 1):
+        if not DIAGNOSTIC.search(line):
+            continue
+        entry = f"{line_number}: {line}"
+        (allowed if any(p.search(line) for p in ALLOWLIST) else rejected).append(entry)
+    return rejected, allowed
+
+
+def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
+    source = Path(source).resolve()
+    output_dir = Path(output_dir).resolve() if output_dir else source.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    engine = shutil.which("lualatex")
+    if not engine:
+        raise RuntimeError("LuaLaTeX is required (TeX Live 2025 or newer).")
+    env = os.environ.copy()
+    env["TEXINPUTS"] = str(ROOT / "latex") + os.pathsep + env.get("TEXINPUTS", "")
+    # Keep Lua font caches inside the build tree, including in restricted environments.
+    env["TEXMFVAR"] = str(output_dir / ".texmf-var")
+    env["TEXMFCACHE"] = str(output_dir / ".texmf-var")
+    cmd = [engine, "-interaction=nonstopmode", "-halt-on-error", "-file-line-error",
+           "-no-shell-escape", f"-output-directory={output_dir}", str(source)]
+    previous = None
+    bibliography_state = None
+    for attempt in range(1, 6):
+        result = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
+        (output_dir / f"{source.stem}.console.txt").write_text(result.stdout + result.stderr)
+        if result.returncode:
+            raise RuntimeError(f"LuaLaTeX failed: {source}\n" + result.stdout[-6000:] + result.stderr[-2000:])
+        aux_path = output_dir / f"{source.stem}.aux"
+        aux = aux_path.read_text() if aux_path.exists() else ""
+        bib_lines = "\n".join(line for line in aux.splitlines()
+                              if line.startswith((r"\citation", r"\bibdata", r"\bibstyle")))
+        if r"\bibdata" in aux and bibliography_state != bib_lines:
+            bibtex = shutil.which("bibtex")
+            if not bibtex:
+                raise RuntimeError("BibTeX is required for this manuscript.")
+            bib_env = env.copy()
+            bib_env["BIBINPUTS"] = str(ROOT) + os.pathsep + str(ROOT / "book") + os.pathsep
+            bib = subprocess.run([bibtex, source.stem], cwd=output_dir, env=bib_env,
+                                 capture_output=True, text=True)
+            if bib.returncode or re.search(r"Warning--|I couldn't|error message", bib.stdout + bib.stderr):
+                raise RuntimeError("BibTeX diagnostics:\n" + bib.stdout + bib.stderr)
+            bibliography_state = bib_lines
+            previous = None
+            continue
+        # The auxiliary state must stabilize, including TOC and bookmark destinations.
+        state = tuple((output_dir / f"{source.stem}.{suffix}").read_bytes()
+                      if (output_dir / f"{source.stem}.{suffix}").exists() else b""
+                      for suffix in ("aux", "toc", "out", "lof", "lot"))
+        if state == previous:
+            break
+        previous = state
+    else:
+        raise RuntimeError(f"LaTeX auxiliary state did not converge after 5 passes: {source}")
+    log_path = output_dir / f"{source.stem}.log"
+    rejected, allowed = diagnostics(log_path.read_text(errors="replace"))
+    if rejected:
+        raise RuntimeError(f"Unapproved LaTeX diagnostics in {log_path}:\n" + "\n".join(rejected))
+    pdf = output_dir / f"{source.stem}.pdf"
+    if not pdf.is_file() or pdf.stat().st_size == 0:
+        raise RuntimeError(f"LaTeX produced no PDF: {pdf}")
+    print(f"LaTeX: {pdf} ({attempt} passes; {len(allowed)} allowed underfull boxes; zero unapproved diagnostics)")
+    return pdf
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("source", type=Path)
+    parser.add_argument("--output-dir", type=Path)
+    args = parser.parse_args()
+    compile_tex(args.source, args.output_dir)

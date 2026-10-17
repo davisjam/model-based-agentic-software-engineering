@@ -1,0 +1,78 @@
+% Shared print vocabulary. Chapter sources contain content, never page geometry.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{house}[2026/10/17 MAGE and SE Handbook print style]
+\newif\ifmageedition
+\DeclareOption{mage}{\mageeditiontrue}
+\ProcessOptions\relax
+% Assets are converted by the build, never by shell commands inside TeX.
+\newcommand{\DoNotLoadEpstopdf}{}
+\RequirePackage{fontspec}
+\RequirePackage[letterpaper,top=1.05in,bottom=1.05in,inner=1.3in,outer=1.1in]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{booktabs,longtable,array,calc}
+\RequirePackage{etoolbox}
+\RequirePackage{enumitem}
+\RequirePackage{fancyvrb}
+\RequirePackage{titlesec}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{caption}
+\RequirePackage{microtype}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\newfontfamily\bookserif[Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
+\newfontfamily\booksans[Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
+\setmainfont[Path=book/fonts/SourceSerif4/,UprightFont=SourceSerif4-Regular.ttf,BoldFont=SourceSerif4-Bold.ttf,ItalicFont=SourceSerif4-It.ttf,BoldItalicFont=SourceSerif4-BoldIt.ttf]{SourceSerif4}
+\setsansfont[Path=book/fonts/SourceSans3/,UprightFont=SourceSans3-Regular.ttf,BoldFont=SourceSans3-Bold.ttf,ItalicFont=SourceSans3-It.ttf,BoldItalicFont=SourceSans3-BoldIt.ttf]{SourceSans3}
+\setmonofont[Path=book/fonts/IBMPlexMono/,UprightFont=IBMPlexMono-Regular.ttf,BoldFont=IBMPlexMono-Regular.ttf,ItalicFont=IBMPlexMono-Regular.ttf,BoldItalicFont=IBMPlexMono-Regular.ttf,Scale=0.85]{IBMPlexMono}
+\definecolor{bookink}{HTML}{1C1917}
+\definecolor{bookpaper}{HTML}{FDFCF9}
+\definecolor{bookaccent}{HTML}{9A3F12}
+\definecolor{bookrule}{HTML}{E4E0D8}
+\definecolor{bookmuted}{HTML}{57534E}
+\definecolor{boxrule}{HTML}{1F6FAE}
+\definecolor{boxfill}{HTML}{EEF4FB}
+\color{bookink}
+\pagecolor{bookpaper}
+\hypersetup{colorlinks=true,linkcolor=bookaccent,urlcolor=bookaccent,citecolor=bookaccent,unicode=true}
+\newcommand{\bookheadingfont}{\booksans}
+\ifmageedition
+  \geometry{left=1.125in,right=1.125in,top=1in,bottom=1in}
+  \renewcommand{\familydefault}{\sfdefault}
+  \renewcommand{\bookheadingfont}{\bookserif}
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{0.65em plus 0.15em minus 0.1em}
+\else
+  \setlength{\parindent}{1.2em}
+  \setlength{\parskip}{0.45em plus 0.1em minus 0.1em}
+\fi
+\linespread{1.17}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\titleformat{\chapter}[display]{\bookheadingfont\bfseries\color{bookink}}{\booksans\fontsize{9}{11}\selectfont\color{bookaccent}\MakeUppercase{\chaptername}\ \thechapter}{7pt}{\fontsize{26}{31}\selectfont}[\vspace{4pt}{\color{bookrule}\titlerule[0.8pt]}]
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}{\bookheadingfont\bfseries\fontsize{15}{19}\selectfont}{\thesection}{0pt}{}
+\titleformat{\subsection}{\bookheadingfont\bfseries\color{bookmuted}\fontsize{12}{16}\selectfont}{\thesubsection}{0pt}{}
+\titlespacing*{\section}{0pt}{1.3em}{0.5em}
+\titlespacing*{\subsection}{0pt}{1em}{0.4em}
+\captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
+\setlist{topsep=0.4em,itemsep=0.15em,parsep=0pt,leftmargin=1.5em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newenvironment{bookbox}[2]{%
+  \begingroup
+  \def\bookboxtitle{#2}%
+  \ifstrequal{#1}{decision}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
+  \ifstrequal{#1}{tradeoff}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
+  \ifstrequal{#1}{inset}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
+  \ifstrequal{#1}{note}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F6F4EF}}{}%
+  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt]
+  \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
+}{\end{tcolorbox}\endgroup}
+\newcommand{\pandocbounded}[1]{#1}
+\newenvironment{CSLReferences}[2]{\begin{list}{}{\setlength{\leftmargin}{1.5em}\setlength{\itemindent}{-1.5em}\setlength{\itemsep}{0.5em}}\item[]}{\end{list}}
+\newcommand{\CSLBlock}[1]{#1\par}
+\newcommand{\CSLLeftMargin}[1]{#1}
+\newcommand{\CSLRightInline}[1]{#1}
+\newcommand{\CSLIndent}[1]{\hspace{1.5em}#1}
+\endinput

@@ -156,3 +156,6 @@ book/_contract/
 # gitignored so working notes never enter history. Durable PROCESS knowledge goes in
 # book/_design/ and is committed; this is for in-flight artifacts only.
 .scratch/
+
+# LaTeX compilation products and local font caches; manuscript .tex stays tracked.
+/latex/build/
