@@ -1,22 +1,22 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[head,text width=5.5cm] (h0) at (0,2) {Observed system\\Does A call C?};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!5] (a0) at (0,0) {A};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!5] (b0) at (-1.7,-2) {B};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!5] (c0) at (1.7,-2) {C};
-\draw[edge] (a0) -- (b0);
-\draw[edge] (a0) -- (c0);
-\node[head,text width=5.5cm] (h1) at (7,2) {Declared policy\\May A call C?};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!20] (a1) at (7,0) {A};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!20] (b1) at (5.3,-2) {B};
-\node[n,circle,rounded corners=0pt,text width=1cm,fill=black!20] (c1) at (8.7,-2) {C};
-\draw[edge] (a1) -- node[lab,left] {declared} (b1);
-\draw[dashed] (a1) -- node[lab] {$\times$} (c1);
-\node[note,text width=2cm] (missing) at (9.5,-0.9) {no edge};
+\node[head,text width=5.5cm] (h0) at (0,2) {Observed system\\\textnormal{Does A call C?}};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (a0) at (0,0) {A};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (b0) at (-1.7,-2) {B};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (c0) at (1.7,-2) {C};
+\draw[edge] (a0.south) -- (0,-.85) -| (b0.north);
+\draw[edge] (a0.south) -- (0,-.85) -| (c0.north);
+\node[head,text width=5.5cm] (h1) at (7,2) {Declared policy\\\textnormal{May A call C?}};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (a1) at (7,0) {A};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (b1) at (5.3,-2) {B};
+\node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (c1) at (8.7,-2) {C};
+\draw[edge] (a1.south) -- (7,-.85) -- node[lab,above] {declared} (5.3,-.85) -- (b1.north);
+\draw[dashed] (a1.south) -- (7,-.85) -- node[lab] {$\times$} (8.7,-.85) -- (c1.north);
+\node[note,text width=2cm] (missing) at (10,-.85) {no edge};
 \node[note,text width=12cm] (n) at (3.5,-3.6) {Agreement establishes correspondence, not correctness.};
 \end{tikzpicture}

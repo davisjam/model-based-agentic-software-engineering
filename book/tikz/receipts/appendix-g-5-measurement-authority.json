@@ -1,18 +1,42 @@
 {
   "source": "book/assets/appendix-g-5-measurement-authority.svg",
   "claim": "*Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or an admission gate.",
-  "topology": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate \u2014 the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
+  "topology": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate — the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
   "required_terms": [
     "RUNNING SYSTEM",
-    "MEASUREMENT latency \u00b7 cost \u00b7 queue",
-    "DECLARED BOUND threshold \u00b7 scope \u00b7 statistic",
+    "MEASUREMENT latency · cost · queue",
+    "DECLARED BOUND threshold · scope · statistic",
     "REPORT ONLY surfaced, not enforced",
     "WARNING / ADMISSION GATE CHECKED",
     "gate warranted?",
     "A quantity does not earn a gate by being measurable."
   ],
-  "bw_encoding": "Measurement and declared bound are representations; checked gate is darker/heavier than report-only branch. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the conditional admission gate is lightly shaded; measuring and reporting do not imply enforcement.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored double-bar admission-gate glyph on yes branch; report-only alternative remains unguarded.",
   "questions": [],
-  "alt": "Measurement does not imply enforcement \u2014 a number earns a gate only when evidence warrants it"
+  "alt": "Measurement does not imply enforcement — a number earns a gate only when evidence warrants it",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
+    "candidate_sha256": "a1e13aec4ee19934862ef57ef2e64f3b058f47bf82b599e7d351ae335fe648a0",
+    "fill": "Only the conditional admission gate is lightly shaded; measuring and reporting do not imply enforcement.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Report/admission branches use an orthogonal rail, with an explicit guard mark only on the checked leg; external warrant question retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 115,
+      "width_bp": 298.11,
+      "height_bp": 218.54,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -1,13 +1,13 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,text width=7.5cm,fill=black!30] (o) at (0,0) {Engineering obligation\\Consequential distinctions that must be preserved};
-\node[n,text width=7.5cm,fill=black!20] (s) at (0,-2.3) {Scaffolding\\Additional structure this agent needs to interpret and realize the obligation reliably};
-\begin{scope}[on background layer]\node[draw,dashed,fill=black!3,inner sep=7pt,fit=(o)(s),label={[font=\fontsize{9}{11}\selectfont]above:{SPECIFIED REGION}}] {};\end{scope}
+\node[strong,text width=7.5cm,fill=black!8] (o) at (0,0) {Engineering obligation\\Consequential distinctions that must be preserved};
+\node[n,text width=7.5cm,fill=white] (s) at (0,-2.3) {Scaffolding\\Additional structure this agent needs to interpret and realize the obligation reliably};
+\begin{scope}[on background layer]\node[draw,dashed,fill=white,inner sep=7pt,fit=(o)(s),label={[font=\fontsize{9}{11}\selectfont]above:{SPECIFIED REGION}}] {};\end{scope}
 \node[n,text width=7.5cm] (d) at (0,-5) {Degrees of freedom\\Realization choices left to the agent};
 \node[note,text width=3cm] (ob) at (5.7,-1.1) {Obligation boundary\\Set by the problem; does not move with capability};
 \node[note,text width=3cm] (sb) at (5.7,-3.7) {Specification boundary\\Set by obligation and agent capability};

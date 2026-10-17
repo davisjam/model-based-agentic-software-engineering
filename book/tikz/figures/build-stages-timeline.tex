@@ -1,9 +1,10 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=3cm] (h1) at (-4.7,0) {Stage / dates};
 \node[head,text width=4cm] (h2) at (0,0) {Pressure};
 \node[head,text width=4cm] (h3) at (4.7,0) {Consequence};

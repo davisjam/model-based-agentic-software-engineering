@@ -1,11 +1,11 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[note,text width=12cm] (t5) at (0,1.5) {Spotify};
 \node[box,text width=2.8cm] (entry) at (-4.7,0) {Fleet-first autonomy};
-\node[gate,text width=4cm] (judgment) at (0,0) {human judgment\\ what · where · when · whether};
+\node[box,text width=4cm] (judgment) at (0,0) {human judgment\\ what · where · when · whether};
 \node[box,text width=3cm] (land) at (4.7,0) {Governed Engineering Environment};
 \draw[draw] (judgment) -- (land);
 \node[box,text width=1.7cm] (a0) at (-4.8,-2.6) {agent 1};
@@ -13,7 +13,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=1.7cm] (a2) at (0.0,-2.6) {agent 3};
 \node[box,text width=1.7cm] (a3) at (2.3999999999999995,-2.6) {agent 4};
 \node[box,text width=1.7cm] (a4) at (4.8,-2.6) {agent 5};
-\draw[draw] (entry) -- (a0);
+\draw[draw] (entry.south)--(entry.south |- a0.north)--(a0.north);
 \draw[edge] (0,-1.8)--(judgment.south);
 \node[note,text width=12cm] (t17) at (0,-4) {Agents implement concurrently; scarce human judgment moves upstream.};
 \end{tikzpicture}

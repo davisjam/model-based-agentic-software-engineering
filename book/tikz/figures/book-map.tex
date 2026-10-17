@@ -1,31 +1,31 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=7.2cm,fill=black!4] (s0) at (0,0.0) {Preface\\How do we safely grant autonomy to commodity intelligence?};
-\node[n,text width=7.2cm,fill=black!4] (s1) at (0,-1.5) {1  The New Engineering Problem\\Changed economics};
+\node[n,text width=7.2cm,fill=white] (s0) at (0,0.0) {Preface\\How do we safely grant autonomy\\to commodity intelligence?};
+\node[n,text width=7.2cm,fill=white] (s1) at (0,-1.5) {\magebookref{part:1}{1  The New Engineering Problem}\\Changed economics};
 \draw[edge] (s0) -- (s1);
-\node[n,text width=7.2cm,fill=black!15] (s2) at (0,-3.0) {2  Modeling\\Make knowledge and intent explicit};
+\node[n,text width=7.2cm,fill=white] (s2) at (0,-3.0) {\magebookref{part:2}{2  Modeling}\\Make knowledge and intent explicit};
 \draw[edge] (s1) -- (s2);
-\node[n,text width=7.2cm,fill=black!30] (s3) at (0,-4.5) {3  Alignment\\Enforce selected obligations};
+\node[n,text width=7.2cm,fill=white] (s3) at (0,-4.5) {\magebookref{part:3}{3  Alignment}\\Enforce selected obligations};
 \draw[edge] (s2) -- (s3);
-\node[n,text width=7.2cm,fill=black!4] (s4) at (0,-6.0) {4  MAGE in Motion\\Model · align · work · convert};
+\node[n,text width=7.2cm,fill=white] (s4) at (0,-6.0) {\magebookref{part:4}{4  MAGE in Motion}\\Model · align · work · convert};
 \draw[edge] (s3) -- (s4);
-\node[n,text width=7.2cm,fill=black!20] (s5) at (0,-7.5) {5  Agentic Software Factories\\Deep case · industrial variation · production systems};
+\node[n,text width=7.2cm,fill=white] (s5) at (0,-7.5) {\magebookref{part:5}{5  Agentic Software Factories}\\Deep case · industrial variation\\production systems};
 \draw[edge] (s4) -- (s5);
-\node[n,text width=7.2cm,fill=black!10] (s6) at (0,-9.5) {6  The Theory\\Dynamics · economics · predictions · scope};
+\node[n,text width=7.2cm,fill=white] (s6) at (0,-9.5) {\magebookref{part:6}{6  The Theory}\\Dynamics · economics · predictions · scope};
 \draw[edge] (s5) -- node[lab,right] {abstract from the factories} (s6);
-\node[n,text width=7.2cm,fill=black!10] (s7) at (0,-11.0) {7  The Profession\\Software work · broader engineering · responsibility};
+\node[n,text width=7.2cm,fill=white] (s7) at (0,-11.0) {\magebookref{part:7}{7  The Profession}\\Software work · broader engineering\\responsibility};
 \draw[edge] (s6) -- (s7);
-\node[n,text width=7.2cm,fill=black!4] (s8) at (0,-12.4) {Conclusion\\What cannot be delegated? Responsibility.};
+\node[n,text width=7.2cm,fill=white] (s8) at (0,-12.4) {Conclusion\\What cannot be delegated? Responsibility.};
 \draw[edge] (s7) -- (s8);
-\begin{scope}[on background layer]\node[draw,fill=black!3,inner sep=7pt,fit=(s2)(s3)(s4)(s5),label={[font=\fontsize{9}{11}\selectfont]above:{}}] {};\end{scope}
+\begin{scope}[on background layer]\node[draw,fill=white,inner sep=7pt,fit=(s2)(s3)(s4)(s5),label={[font=\fontsize{9}{11}\selectfont]above:{}}] {};\end{scope}
 \node[note,rotate=90] at (-4.5,-5.2){SOFTWARE-ENGINEERING CASE};
-\node[n,text width=3.4cm] (a4) at (6,-5.8) {Appendix I · Practice\\Use and extend};
-\draw[edge,dotted,-] (s4.east) -- (a4.west);
-\node[n,text width=3.4cm] (a5) at (6,-7.8) {Appendix II · Evidence\\Inspect the empirical record};
-\draw[edge,dotted,-] (s5.east) -- (a5.west);
+\node[n,text width=3.4cm] (a4) at (6,-5.8) {\magebookref{chapter:appendix-part-1-practice}{Appendix Part I}\\Practice\\Use and extend};
+\draw[edge,dotted,-] (s4.east) -- (3.95,-6) |- (a4.west);
+\node[n,text width=3.4cm] (a5) at (6,-7.8) {\magebookref{chapter:appendix-part-2-evidence}{Appendix Part II}\\Evidence\\Inspect the\\empirical record};
+\draw[edge,dotted,-] (s5.east) -- (3.95,-7.5) |- (a5.west);
 \end{tikzpicture}

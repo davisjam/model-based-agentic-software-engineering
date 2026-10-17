@@ -1,18 +1,42 @@
 {
   "source": "book/assets/h6-assurance-models-realization.svg",
   "claim": "*Assurance across models and realization.* Claims may depend on modeled properties, realized properties, or correspondence between the two. Traceability and Alignment connect the required evidence.",
-  "topology": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties \u2014 architecture, behavior, data flow, access policy, invariants \u2014 about the realization \u2014\n    implementation, tests, static analysis, runtime evidence, memory safety \u2014 or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
+  "topology": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —\n    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
   "required_terms": [
     "OBLIGATION",
     "ASSURANCE CLAIM",
-    "MODEL EVIDENCE architecture \u00b7 behavior data flow \u00b7 access policy invariants",
-    "REALIZATION EVIDENCE implementation \u00b7 tests static analysis \u00b7 runtime evidence memory safety",
-    "TRACEABILITY & ALIGNMENT models \u2194 code",
+    "MODEL EVIDENCE architecture · behavior data flow · access policy invariants",
+    "REALIZATION EVIDENCE implementation · tests static analysis · runtime evidence memory safety",
+    "TRACEABILITY & ALIGNMENT models ↔ code",
     "EVIDENCE / ARGUMENT",
     "CLAIM ESTABLISHED"
   ],
-  "bw_encoding": "Model evidence differs from realized evidence; alignment and established claim share governance emphasis. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "Assurance across models and realization"
+  "alt": "Assurance across models and realization",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2e586275c1e8854b78c44eb10c679e08c57a466c81592f809398d828a5f6c4a9",
+    "candidate_sha256": "0a1f926dcfc65d74d86a8bfee28ff6902809e07bbcb0a24de3c9bfe5be339ca7",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 123,
+      "width_bp": 297.811,
+      "height_bp": 306.848,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -1,15 +1,15 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[box,text width=4cm] (n0) at (0,0.0) {ENGINEERING ACTION};
-\node[box,text width=4cm,fill=black!10] (n1) at (0,-1.8) {PROVENANCE FACT\\ what · who · how};
+\node[box,text width=4cm] (n1) at (0,-1.8) {PROVENANCE FACT\\ what · who · how};
 \draw[edge] (n0) -- (n1);
-\node[gate,text width=4cm,fill=black!22] (audit) at (-3.3,-4) {VALIDATION / AUDIT\\ CHECKED completion gate};
-\node[box,text width=4cm,fill=black!10] (docs) at (3.3,-4) {GENERATED DOCUMENTATION\\ re-derivable};
-\draw[edge,line width=1pt] (n1) -- node[midway,sloped,font=\fontsize{14}{14}\selectfont] {$\Vert$} (audit);
-\draw[edge] (n1) -- (docs);
+\node[gate,text width=4cm] (audit) at (-3.3,-4) {VALIDATION / AUDIT\\ CHECKED completion gate};
+\node[box,text width=4cm] (docs) at (3.3,-4) {GENERATED DOCUMENTATION\\ re-derivable};
+\draw[edge,line width=1pt] (n1.south)--(0,-2.9)--(-3.3,-2.9)-- node[midway,rotate=90,font=\fontsize{14}{14}\selectfont] {$\Vert$} (audit.north);
+\draw[edge] (n1.south)--(0,-2.9)--(3.3,-2.9)--(docs.north);
 \node[box,dashed,text width=4cm] (prose) at (-3.3,-6) {prose maintained independently};
 \node[box,text width=4cm] (human) at (3.3,-6) {human explanation};
 \draw[edge] (docs) -- (human);

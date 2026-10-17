@@ -1,15 +1,15 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=2.4cm,fill=black!10] (free) at (-4.6,0) {FREE};
-\node[box,text width=2.4cm,fill=black!10] (leased) at (0,0) {LEASED};
-\node[box,text width=2.4cm,fill=black!10] (done) at (4.6,0) {DONE};
+\node[box,text width=2.4cm] (free) at (-4.6,0) {FREE};
+\node[box,text width=2.4cm] (leased) at (0,0) {LEASED};
+\node[box,text width=2.4cm] (done) at (4.6,0) {DONE};
 \draw[edge] (free) -- node[note,fill=white,inner sep=2pt] {claim} (leased);
 \draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {complete} (done);
-\draw[edge] (leased.south) to[bend left=35] node[note,fill=white,inner sep=2pt] {expiry / release} (free.south);
-\node[box,text width=4cm,fill=black!10] (lease) at (0,-3) {OWNERSHIP OVERLAY\\ lease\_owner = W17\\ lease\_until = t};
+\draw[edge] (leased.south)--(0,-.9)-- node[note] {expiry / release} (-4.6,-.9)--(free.south);
+\node[box,text width=4cm] (lease) at (0,-3) {OWNERSHIP OVERLAY\\ lease\_owner = W17\\ lease\_until = t};
 \draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {specializes} (lease);
 \node[box,text width=2cm] (worker) at (4.5,-3) {worker};
 \draw[edge,line width=1pt] (lease) -- node[note,fill=white,inner sep=2pt,above=20pt] {lease / CAS} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);

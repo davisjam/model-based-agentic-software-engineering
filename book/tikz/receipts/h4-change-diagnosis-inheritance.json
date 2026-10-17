@@ -1,22 +1,46 @@
 {
   "source": "book/assets/h4-change-diagnosis-inheritance.svg",
   "claim": "*Change-scoped models, degrees of freedom, and inheritance.* A ticket or issue provides an entry point into a change episode. Bidirectional traceability helps locate the responsible implementation and the models and obligations that govern it. Those inherited obligations bound the realization space while leaving some choices open. Acceptance evidence establishes whether the realized change satisfies its obligations; recurring or consequential lessons can then be converted into durable structure that future work inherits.",
-  "topology": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space \u2014 the choices the governing obligations leave open \u2014 within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
+  "topology": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space — the choices the governing obligations leave open — within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
   "required_terms": [
-    "CHANGE MODEL ticket / issue observation \u00b7 intent",
-    "SYSTEM KNOWLEDGE architecture \u00b7 behavior \u00b7 ownership contracts \u00b7 dependencies",
-    "DIAGNOSIS & CONTEXT LOCALIZATION root cause \u00b7 responsible concepts relevant models \u00b7 obligations",
+    "CHANGE MODEL ticket / issue observation · intent",
+    "SYSTEM KNOWLEDGE architecture · behavior · ownership contracts · dependencies",
+    "DIAGNOSIS & CONTEXT LOCALIZATION root cause · responsible concepts relevant models · obligations",
     "REALIZATION SPACE choices left open by governing obligations",
     "realization",
     "acceptance evidence",
-    "bidirectional traceability models \u2194 code",
+    "bidirectional traceability models ↔ code",
     "history",
-    "DURABLE STRUCTURE model \u00b7 test \u00b7 constraint validator \u00b7 architecture \u00b7 design",
+    "DURABLE STRUCTURE model · test · constraint validator · architecture · design",
     "recurring lesson?",
     "future work inherits it"
   ],
-  "bw_encoding": "Diagnosis/evidence share a shade; durable governance inheritance differs from simple history. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "Change-scoped models, degrees of freedom, and inheritance"
+  "alt": "Change-scoped models, degrees of freedom, and inheritance",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
+    "candidate_sha256": "9ccf30a137785f23b1693c9aa77f3b32b4be6f3a7b90b7c60ef44a02501bd92b",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Inputs and history/durable-output alternatives use orthogonal rails; external traceability and recurring-lesson explanations remain outside.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 121,
+      "width_bp": 335.372,
+      "height_bp": 363.103,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -52,10 +52,10 @@
     "Engineering Capital Durable models · mechanisms · procedures · canonical documentation",
     "accumulates in"
   ],
-  "bw_encoding": "Grayscale publication candidate. Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
-  "redesign": "Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
+  "bw_encoding": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
+  "redesign": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Six vertically arranged concepts form an accumulation ontology. Governance mechanism points upward to engineering obligation and branches downward to directly observable work and an explicit model or invariant. The governed engineering environment below points upward to both surfaces. Engineering capital at the bottom points upward to the environment, labeled accumulates in. Obligation and explicit model use medium gray, mechanism/work/environment use light gray, and capital uses a dark gray box with white text.",
+  "alt": "Six vertically arranged concepts form an accumulation ontology. Governance mechanism points upward to engineering obligation and branches downward to directly observable work and an explicit model or invariant. The governed engineering environment below points upward to both surfaces. Engineering capital at the bottom points upward to the environment, labeled accumulates in. Obligation and explicit model use the same pale gray; all other nodes are white.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -71,5 +71,29 @@
       12.9275,
       10.9364
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+    "candidate_sha256": "6b5f7aabac2abf5e525358a9488ffa28886de0f975ad3533de1247416d7a983e",
+    "fill": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 5,
+      "width_bp": 366.45,
+      "height_bp": 309.834,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

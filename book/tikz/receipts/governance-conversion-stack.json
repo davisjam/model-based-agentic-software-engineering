@@ -1,20 +1,44 @@
 {
   "source": "book/assets/governance-conversion-stack.svg",
-  "claim": "The governance-conversion composition, a loop. The CONTROL MACHINERY \u2014 rules, gates, models, sensors \u2014 is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.",
-  "topology": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT \u2014 where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
+  "claim": "The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.",
+  "topology": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
   "required_terms": [
-    "CONTROL MACHINERY rules \u00b7 gates \u00b7 models \u00b7 sensors",
+    "CONTROL MACHINERY rules · gates · models · sensors",
     "GAPS / COUPLING weak, stale, or entangled?",
-    "INTERPRET failure class \u2192 durable control",
+    "INTERPRET failure class → durable control",
     "UPDATE ESTATE",
     "next iteration",
     "inspect / query",
     "recurring failure?"
   ],
-  "bw_encoding": "Control machinery and interpretation share a governance shade; updated estate has a lighter result shade. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Control machinery and interpretation share one light role fill for the governance conversion steps; observed gaps and updated estate are white.",
   "redesign": "Four-move solid loop retained. Caption says UPDATE MACHINERY while original art says UPDATE ESTATE; retained original label for review.",
   "questions": [
     "Four-move solid loop retained. Caption says UPDATE MACHINERY while original art says UPDATE ESTATE; retained original label for review."
   ],
-  "alt": "The Governance-Conversion stack: model the control machinery, find its gaps, interpret a\n    recurring failure into a durable control, update the estate, iterate"
+  "alt": "The Governance-Conversion stack: model the control machinery, find its gaps, interpret a\n    recurring failure into a durable control, update the estate, iterate",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
+    "candidate_sha256": "83fb336ab07d15d17b7d4a2e29e543b554fa367fe07c260b129a3101205c34b4",
+    "fill": "Control machinery and interpretation share one light role fill for the governance conversion steps; observed gaps and updated estate are white.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 97,
+      "width_bp": 307.025,
+      "height_bp": 198.706,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

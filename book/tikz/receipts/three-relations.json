@@ -37,10 +37,10 @@
     "Receiving environment",
     "Evidence for one relation does not establish the others."
   ],
-  "bw_encoding": "Grayscale publication candidate. Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
-  "redesign": "Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
+  "bw_encoding": "All compared endpoint nodes white; band headings and relation labels distinguish correspondence, conformance and acceptance.",
+  "redesign": "All compared endpoint nodes white; band headings and relation labels distinguish correspondence, conformance and acceptance. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Three stacked bands distinguish correspondence, conformance and acceptance. Correspondence links two internal representations in both directions. Conformance asks whether an artifact satisfies an independent obligation. Acceptance asks whether a receiving environment will take it. The three provide different evidence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Three stacked bands distinguish correspondence, conformance and acceptance. Correspondence links two internal representations in both directions. Conformance asks whether an artifact satisfies an independent obligation. Acceptance asks whether a receiving environment will take it. The three provide different evidence.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -56,5 +56,29 @@
       12.3515,
       8.123
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
+    "candidate_sha256": "5504d6a1ce6d342054b281f12cb73a9396eaf922fff7c32fd6933c172608d645",
+    "fill": "All compared endpoint nodes white; band headings and relation labels distinguish correspondence, conformance and acceptance.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 40,
+      "width_bp": 350.12,
+      "height_bp": 230.259,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

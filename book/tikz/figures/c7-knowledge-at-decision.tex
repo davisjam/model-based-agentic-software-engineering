@@ -1,14 +1,14 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=3cm,fill=black!12] (rules) at (-3,0) {RULES\\ the governing corpus};
-\node[box,text width=3cm,fill=black!5] (work) at (3,0) {WORK\\ the files being changed};
-\node[box,trapezium,trapezium angle=70,shape border rotate=180,text width=4cm,fill=black!22] (select) at (0,-2.2) {CONTEXT SELECTION};
+\node[box,text width=3cm] (rules) at (-3,0) {RULES\\ the governing corpus};
+\node[box,text width=3cm] (work) at (3,0) {WORK\\ the files being changed};
+\node[box,trapezium,trapezium angle=70,shape border rotate=180,text width=4cm] (select) at (0,-2.2) {CONTEXT SELECTION};
 \node[box,text width=3cm] (decision) at (0,-4) {DECISION};
-\draw[optional] (rules) -- node[note,fill=white,inner sep=2pt] {relevant to} (select);
-\draw[edge] (work) -- node[note,fill=white,inner sep=2pt] {scopes} (select);
+\draw[optional] (rules.south)--(-3,-1.4)--(-1,-1.4) node[note,above=2pt] {relevant to} --(-1,-1.6)--(select.north -| -1,0);
+\draw[edge] (work.south)--(3,-1.4)--(1,-1.4) node[note,above=2pt] {scopes} --(1,-1.6)--(select.north -| 1,0);
 \draw[edge] (select) -- (decision);
 \node[note,text width=10cm] (t12) at (0,-5.2) {Bind relevant knowledge to the work surface where it matters.};
 \end{tikzpicture}

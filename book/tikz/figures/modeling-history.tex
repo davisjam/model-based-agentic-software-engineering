@@ -1,29 +1,30 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[box,text width=12cm,fill=black!15] (s0) at (0,0.0) {\textbf{Stable computations}\\Pass decomposition: nodes already project};
-\node[box,text width=12cm] (s1) at (0,-1.3) {\textbf{Composition stays implicit}\\Repeated traversal; shared-state reads; direct mutation; special cases};
-\node[box,text width=12cm,fill=black!28] (s2) at (0,-2.6) {\textbf{Composition becomes consequential}\\Locally reasonable choices accumulate global cost};
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
+\node[box,text width=12cm,fill=white] (s0) at (0,0.0) {Stable computations\\Pass decomposition: nodes already project};
+\node[box,text width=12cm] (s1) at (0,-1.3) {Composition stays implicit\\Repeated traversal; shared-state reads; direct mutation; special cases};
+\node[box,text width=12cm,fill=white] (s2) at (0,-2.6) {Composition becomes consequential\\Locally reasonable choices accumulate global cost};
 \draw[edge,] (s0) -- (s1);
 \draw[edge,] (s1) -- (s2);
-\node[box,text width=4.7cm,fill=black!15] (d) at (-3,-4.5) {Dependency semantics\\DATA\_FLOW\\CONTROL\_GATE\\CROSS\_SERVICE};
-\node[box,text width=4.7cm,fill=black!15] (ef) at (3,-4.5) {Effect boundedness\\TypedPatchProducer\\DirectEditor\\ReadOnly};
-\draw[edge,] (s2) -- (d);
-\draw[edge,] (s2) -- (ef);
-\node[box,text width=12cm,fill=black!15] (td) at (0,-6.2) {Typed declarations: each pass declares its dependencies and effect kind};
-\draw[edge,] (d) -- (td);
-\draw[edge,] (ef) -- (td);
-\node[box,text width=12cm,fill=black!15] (t0) at (0,-7.6) {\textbf{Projected graph + blocking parity check}\\Disagreement fails the build};
+\node[box,text width=4.7cm,fill=white] (d) at (-3,-4.5) {Dependency semantics\\DATA\_FLOW\\CONTROL\_GATE\\CROSS\_SERVICE};
+\node[box,text width=4.7cm,fill=white] (ef) at (3,-4.5) {Effect boundedness\\TypedPatchProducer\\DirectEditor\\ReadOnly};
+\draw[edge,] (s2.south -| d.north) -- (d.north);
+\draw[edge,] (s2.south -| ef.north) -- (ef.north);
+\node[box,text width=12cm,fill=white] (td) at (0,-6.2) {Typed declarations: each pass declares its dependencies and effect kind};
+\draw[edge,] (d.south) -- (td.north -| d.south);
+\draw[edge,] (ef.south) -- (td.north -| ef.south);
+\node[box,text width=12cm,fill=white] (t0) at (0,-7.6) {Projected graph + blocking parity check\\Disagreement fails the build};
 \draw[edge,] (td) -- (t0);
-\node[box,text width=12cm,fill=black!15] (t1) at (0,-9.0) {\textbf{Analyze composition}\\Critical paths; boundedness; latency; coverage};
+\node[box,text width=12cm,fill=white] (t1) at (0,-9.0) {Analyze composition\\Critical paths; boundedness; latency; coverage};
 \draw[edge,] (t0) -- (t1);
-\node[box,text width=12cm,fill=black!15] (t2) at (0,-10.4) {\textbf{Authoritative computation model}\\Execution consumes modeled dependencies};
+\node[box,text width=12cm,fill=white] (t2) at (0,-10.4) {Authoritative computation model\\Execution consumes modeled dependencies};
 \draw[edge,] (t1) -- (t2);
-\node[box,text width=12cm,fill=black!15] (t3) at (0,-11.8) {\textbf{Analytical views by stable identity}\\Views join without one universal schema};
+\node[box,text width=12cm,fill=white] (t3) at (0,-11.8) {Analytical views by stable identity\\Views join without one universal schema};
 \draw[edge,] (t2) -- (t3);
-\node[box,dashed,text width=12cm] (t4) at (0,-13.2) {\textbf{Residual freedom remains}\\Not every choice is determinized};
+\node[box,dashed,text width=12cm] (t4) at (0,-13.2) {Residual freedom remains\\Not every choice is determinized};
 \draw[edge,] (t3) -- (t4);
 \end{tikzpicture}

@@ -1,20 +1,32 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[box,text width=4cm] (n0) at (0,0.0) {OBLIGATION};
 \node[box,text width=4cm] (n1) at (0,-1.5) {ASSURANCE CLAIM};
 \draw[edge] (n0) -- (n1);
-\node[box,text width=4cm,fill=black!8] (model) at (-3,-4) {MODEL EVIDENCE\\ architecture · behavior\\ data flow · access policy\\ invariants};
+\node[box,text width=4cm] (model) at (-3,-4) {MODEL EVIDENCE\\ architecture · behavior\\ data flow · access policy\\ invariants};
 \node[box,text width=4cm] (real) at (3,-4) {REALIZATION EVIDENCE\\ implementation · tests\\ static analysis · runtime evidence\\ memory safety};
-\draw[edge] (n1) -- (model);
-\draw[edge] (n1) -- (real);
-\node[box,text width=5cm,fill=black!20] (trace) at (0,-6.5) {TRACEABILITY \& ALIGNMENT\\ models $\leftrightarrow$ code};
-\draw[edge] (model) -- (trace);
-\draw[edge] (real) -- (trace);
+
+
+\node[box,text width=5cm] (trace) at (0,-6.5) {TRACEABILITY \& ALIGNMENT\\ models $\leftrightarrow$ code};
+
+
 \node[box,text width=4cm] (argument) at (0,-8.2) {EVIDENCE / ARGUMENT};
-\node[gate,text width=4cm,fill=black!20] (claim) at (0,-9.8) {CLAIM ESTABLISHED};
+\node[box,text width=4cm] (claim) at (0,-9.8) {CLAIM ESTABLISHED};
 \draw[edge] (trace) -- (argument);
 \draw[edge] (argument) -- (claim);
+\coordinate (rail20) at ($(n1.south)!.5!(real.north)$);
+\draw[line width=.6pt] (n1.south)--(n1.south |- rail20);
+\draw[line width=.6pt] (model.center |- rail20)--(real.center |- rail20);
+\draw[edge] (model.north |- rail20)--(model.north);
+\draw[edge] (real.north |- rail20)--(real.north);
+
+\coordinate (rail21) at ($(real.south)!.5!(trace.north)$);
+\draw[line width=.6pt] (model.south)--(model.south |- rail21);
+\draw[line width=.6pt] (real.south)--(real.south |- rail21);
+\draw[line width=.6pt] (model.center |- rail21)--(real.center |- rail21);
+\draw[edge] (trace.north |- rail21)--(trace.north);
+
 \end{tikzpicture}

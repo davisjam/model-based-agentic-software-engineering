@@ -60,10 +60,10 @@
     "Measurements",
     "Retrieve only the relations needed for the current question; no prescribed traversal order."
   ],
-  "bw_encoding": "Grayscale publication candidate. Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
-  "redesign": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
+  "bw_encoding": "Only the named entry entity uses 8%; six relation surfaces remain white and equal.",
+  "redesign": "Only the named entry entity uses 8%; six relation surfaces remain white and equal. Exception: radial entity-to-relation spokes show no prescribed traversal order, as the source footer explicitly states.",
   "questions": [],
-  "alt": "A task enters through a named system entity. Connections fan out to six peer relationships: service registry, flow model, lifecycle, policy, provenance and measurements. The task retrieves only relationships needed for its question. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A task enters through a named system entity. Connections fan out to six peer relationships: service registry, flow model, lifecycle, policy, provenance and measurements. The task retrieves only relationships needed for its question.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -79,5 +79,29 @@
       12.5764,
       9.1837
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+    "candidate_sha256": "d7226ab5984af05b2855d834dff8fc40946fad7f4a8e7a2626c53bf51eaf9463",
+    "fill": "Only the named entry entity uses 8%; six relation surfaces remain white and equal.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Exception: radial entity-to-relation spokes show no prescribed traversal order, as the source footer explicitly states.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 33,
+      "width_bp": 356.496,
+      "height_bp": 260.325,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

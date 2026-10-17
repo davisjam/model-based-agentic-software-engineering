@@ -1,5 +1,5 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
@@ -9,8 +9,8 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[draw] (entry) -- (corpus);
 \node[box,text width=2.5cm] (skill) at (4.5,0) {reusable skill};
 \draw[draw] (corpus) -- (skill);
-\node[note,text width=11cm] (t11) at (0,-1.7) {59,918 sessions · 5,170 channels · 7,000+ people};
-\node[gate,text width=8cm] (land) at (0,-3.2) {LANDS ON: Engineering Environment};
+\node[note,text width=11cm] (t11) at (0,-3.2) {59,918 sessions · 5,170 channels · 7,000+ people};
+\node[box,text width=8cm] (land) at (0,-1.9) {LANDS ON: Engineering Environment};
 \node[note,text width=12cm] (t13) at (0,-4.7) {Shared knowledge can become reusable capital; conversion is not automatic.};
-\draw (skill.east)--(6.3,0)--(6.3,-3.2)--(land.east);
+\draw (skill.south) |- (land.east);
 \end{tikzpicture}

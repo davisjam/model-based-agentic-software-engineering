@@ -1,38 +1,38 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[note,text width=5cm] (t5) at (-3.5,0.8) {RECURRING PROBLEM};
 \node[note,text width=5cm] (t6) at (3.5,0.8) {ENGINEERING MOVE};
-\node[box,text width=5.5cm,fill=black!5] (a0) at (-3.5,0.0) {B.1  many truths disagree};
-\node[box,text width=5.5cm,fill=black!15] (b0) at (3.5,0.0) {MAKE ONE AUTHORITATIVE};
+\node[box,text width=5.5cm] (a0) at (-3.5,0.0) {\magebookref{chapter:appendix-b-make-fact-authoritative}{B.1}  many truths disagree};
+\node[box,text width=5.5cm] (b0) at (3.5,0.0) {MAKE ONE AUTHORITATIVE};
 \draw[edge] (a0) -- (b0);
-\node[box,text width=5.5cm,fill=black!5] (a1) at (-3.5,-1.22) {B.2  copies drift from authority};
-\node[box,text width=5.5cm,fill=black!15] (b1) at (3.5,-1.22) {DERIVE; DON’T COPY};
+\node[box,text width=5.5cm] (a1) at (-3.5,-1.22) {\magebookref{chapter:appendix-b-derive-dont-copy}{B.2}  copies drift from authority};
+\node[box,text width=5.5cm] (b1) at (3.5,-1.22) {DERIVE; DON’T COPY};
 \draw[edge] (a1) -- (b1);
-\node[box,text width=5.5cm,fill=black!5] (a2) at (-3.5,-2.44) {B.3  model and reality diverge};
-\node[box,text width=5.5cm,fill=black!15] (b2) at (3.5,-2.44) {CHECK CORRESPONDENCE};
+\node[box,text width=5.5cm] (a2) at (-3.5,-2.44) {\magebookref{chapter:appendix-b-check-correspondence}{B.3}  model and reality diverge};
+\node[box,text width=5.5cm] (b2) at (3.5,-2.44) {CHECK CORRESPONDENCE};
 \draw[edge] (a2) -- (b2);
-\node[box,text width=5.5cm,fill=black!5] (a3) at (-3.5,-3.66) {B.4  assurance has invisible holes};
-\node[box,text width=5.5cm,fill=black!15] (b3) at (3.5,-3.66) {DERIVE THE OBLIGATION SET};
+\node[box,text width=5.5cm] (a3) at (-3.5,-3.66) {\magebookref{chapter:appendix-b-derive-the-obligation-set}{B.4}  assurance has invisible holes};
+\node[box,text width=5.5cm] (b3) at (3.5,-3.66) {DERIVE THE OBLIGATION SET};
 \draw[edge] (a3) -- (b3);
-\node[box,text width=5.5cm,fill=black!5] (a4) at (-3.5,-4.88) {B.5  checks are too early / too late};
-\node[box,text width=5.5cm,fill=black!15] (b4) at (3.5,-4.88) {PUT ENFORCEMENT WHERE LEGIBLE};
+\node[box,text width=5.5cm] (a4) at (-3.5,-4.88) {\magebookref{chapter:appendix-b-put-authority-where-legible}{B.5}  checks are too early / too late};
+\node[box,text width=5.5cm] (b4) at (3.5,-4.88) {PUT ENFORCEMENT WHERE LEGIBLE};
 \draw[edge] (a4) -- (b4);
-\node[box,text width=5.5cm,fill=black!5] (a5) at (-3.5,-6.1) {B.6  actions evade governance};
-\node[box,text width=5.5cm,fill=black!15] (b5) at (3.5,-6.1) {CLOSE THE ACTION SURFACE};
+\node[box,text width=5.5cm] (a5) at (-3.5,-6.1) {\magebookref{chapter:appendix-b-close-the-action-surface}{B.6}  actions evade governance};
+\node[box,text width=5.5cm] (b5) at (3.5,-6.1) {CLOSE THE ACTION SURFACE};
 \draw[edge] (a5) -- (b5);
-\node[box,text width=5.5cm,fill=black!5] (a6) at (-3.5,-7.32) {B.7  rules exist but aren’t present};
-\node[box,text width=5.5cm,fill=black!15] (b6) at (3.5,-7.32) {DELIVER KNOWLEDGE AT DECISION};
+\node[box,text width=5.5cm] (a6) at (-3.5,-7.32) {\magebookref{chapter:appendix-b-deliver-knowledge-at-decision}{B.7}  rules exist but aren’t present};
+\node[box,text width=5.5cm] (b6) at (3.5,-7.32) {DELIVER KNOWLEDGE AT DECISION};
 \draw[edge] (a6) -- (b6);
-\node[box,text width=5.5cm,fill=black!5] (a7) at (-3.5,-8.54) {B.8  rationale is lost after change};
-\node[box,text width=5.5cm,fill=black!15] (b7) at (3.5,-8.54) {CARRY CAUSE WITH CONSEQUENCE};
+\node[box,text width=5.5cm] (a7) at (-3.5,-8.54) {\magebookref{chapter:appendix-b-carry-cause-with-consequence}{B.8}  rationale is lost after change};
+\node[box,text width=5.5cm] (b7) at (3.5,-8.54) {CARRY CAUSE WITH CONSEQUENCE};
 \draw[edge] (a7) -- (b7);
-\node[box,text width=5.5cm,fill=black!5] (a8) at (-3.5,-9.76) {B.9  operators reconstruct procedure};
-\node[box,text width=5.5cm,fill=black!15] (b8) at (3.5,-9.76) {EXTERNALIZE JUDGMENT};
+\node[box,text width=5.5cm] (a8) at (-3.5,-9.76) {\magebookref{chapter:appendix-b-externalize-judgment}{B.9}  operators reconstruct procedure};
+\node[box,text width=5.5cm] (b8) at (3.5,-9.76) {EXTERNALIZE JUDGMENT};
 \draw[edge] (a8) -- (b8);
-\node[box,text width=5.5cm,fill=black!5] (a9) at (-3.5,-10.98) {B.10  changes have hidden dependents};
-\node[box,text width=5.5cm,fill=black!15] (b9) at (3.5,-10.98) {MAKE DEPENDENCIES QUERYABLE};
+\node[box,text width=5.5cm] (a9) at (-3.5,-10.98) {\magebookref{chapter:appendix-b-make-dependencies-queryable}{B.10}  changes have hidden dependents};
+\node[box,text width=5.5cm] (b9) at (3.5,-10.98) {MAKE DEPENDENCIES QUERYABLE};
 \draw[edge] (a9) -- (b9);
 \end{tikzpicture}

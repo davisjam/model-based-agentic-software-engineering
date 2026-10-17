@@ -3,7 +3,7 @@
   "claim": "*Structure and boundaries.* Authored ownership and permitted seams are reconciled with the observed repository tree. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding.",
   "topology": "A component catalog, the authored structure, owns a web zone and permits a seam, both shown\n    along solid arrows. The web zone reaches the worker through a sanctioned seam, a solid arrow crossed by a\n    heavy gate glyph marking the one door a boundary check guards. A second crossing, from the web zone straight\n    to a raw format library, is a forbidden direct access: a dashed arrow struck through by a red X, a crossing\n    with no sanctioned door. Beneath, the observed repository tree is reverse-mapped up into the catalog along a\n    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure C-1;\n    weight, dash, and glyph carry the meaning without colour.",
   "required_terms": [
-    "COMPONENT CATALOG ownership \u00b7 seams",
+    "COMPONENT CATALOG ownership · seams",
     "WEB ZONE",
     "WORKER",
     "RAW FORMAT LIBRARY",
@@ -11,8 +11,32 @@
     "forbidden direct access",
     "Solid: authored ownership / permitted seam. Dashed: observed correspondence."
   ],
-  "bw_encoding": "Authored catalog/ownership layer shaded; observed repository/raw library remain white. Checked seam and forbidden X retained. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the authored catalog is lightly shaded; its child entities and observed tree remain white.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored double-bar checked door on the sanctioned seam; forbidden direct-access X retained.",
   "questions": [],
-  "alt": "Structure and boundaries \u2014 authored ownership and seams joined to the observed repository tree"
+  "alt": "Structure and boundaries — authored ownership and seams joined to the observed repository tree",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "21fea7ba72cfe2d54e657a5e6b11a9156640f15d4fd2b98cb5dfcfd0dd93067f",
+    "candidate_sha256": "e8f9eb8df3372b79cf185b543b6ded3fc99496053371215e67b2e8332de2d8ba",
+    "fill": "Only the authored catalog is lightly shaded; its child entities and observed tree remain white.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Authored ownership/permission branches use aligned ports and a shared orthogonal rail; checked door, forbidden cross and observed return preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 112,
+      "width_bp": 323.268,
+      "height_bp": 193.191,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

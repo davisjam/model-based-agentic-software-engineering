@@ -1,9 +1,9 @@
 {
   "source": "book/assets/context-delivery-stack.svg",
-  "claim": "The context-delivery composition. Engineering knowledge \u2014 models, rules, decisions \u2014 splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
-  "topology": "Engineering knowledge \u2014 models, rules, decisions \u2014 feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
+  "claim": "The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
+  "topology": "Engineering knowledge — models, rules, decisions — feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
   "required_terms": [
-    "ENGINEERING KNOWLEDGE models \u00b7 rules \u00b7 decisions",
+    "ENGINEERING KNOWLEDGE models · rules · decisions",
     "STANDING POLICY always seen",
     "TASK SLICE retrieved as needed",
     "ACTOR CONTEXT",
@@ -11,8 +11,32 @@
     "POINT-OF-ACTION reminder / deterministic gate",
     "Dashed: enhancement. Context aids reasoning; critical decidable obligations need controls."
   ],
-  "bw_encoding": "Knowledge/action endpoints differ from intermediate context delivery; dashed reinforcement remains optional. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "The Context-Delivery stack: standing policy and a retrieved task slice compose into\n    actor context that reaches the action; point-of-action reinforcement is a dashed enhancement"
+  "alt": "The Context-Delivery stack: standing policy and a retrieved task slice compose into\n    actor context that reaches the action; point-of-action reinforcement is a dashed enhancement",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "candidate_sha256": "cb632b9cdb5f5431463c909fa814c0f943f1e7f1e932de9f66a26d9340f257a1",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 98,
+      "width_bp": 320.134,
+      "height_bp": 228.911,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

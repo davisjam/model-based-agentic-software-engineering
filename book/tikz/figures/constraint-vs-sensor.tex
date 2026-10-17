@@ -1,14 +1,15 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=5cm,fill=black!28] (o) at (0,0) {Engineering obligation};
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
+\node[head,text width=5cm,fill=white] (o) at (0,0) {Engineering obligation};
 \node[box,text width=6cm] (q) at (0,-1.5) {Can the unwanted state be excluded cleanly?};
 \draw[edge,] (o) -- (q);
-\node[box,text width=5.5cm,fill=black!10] (c) at (-3.6,-3.6) {\textbf{CONSTRAINT}\\narrows what may happen\\typed enum; permission; narrow API};
-\node[box,text width=5.5cm,fill=black!10] (s) at (3.6,-3.6) {\textbf{SENSOR}\\produces evidence of what happened\\metric; trace; call scan; log};
-\draw[edge,] (q) -- node[midway,note,fill=white] {yes} (c);
-\draw[edge,] (q) -- node[midway,note,fill=white] {no} (s);
+\node[box,text width=5.5cm,fill=white] (c) at (-3.6,-3.6) {\textbf{CONSTRAINT}\\narrows what may happen\\typed enum; permission;\\narrow API};
+\node[box,text width=5.5cm,fill=white] (s) at (3.6,-3.6) {\textbf{SENSOR}\\produces evidence of what happened\\metric; trace; call scan; log};
+\draw[edge,] (q.south) -- (0.000,-2.550) -- node[midway,above,note] {yes} (-3.600,-2.550) -- (c.north);
+\draw[edge,] (q.south) -- (0.000,-2.550) -- node[midway,above,note] {no} (3.600,-2.550) -- (s.north);
 \end{tikzpicture}

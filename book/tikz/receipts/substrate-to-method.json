@@ -28,7 +28,7 @@
     "Chapter 1 derives the two core activities; Chap-",
     "ter 4 puts them in motion as the MAGE method."
   ],
-  "bw_encoding": "Grayscale publication candidate. Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+  "bw_encoding": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
   "redesign": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
   "questions": [],
   "alt": "A grayscale dependency diagram connects the agentic substrate to the MAGE method, keeping representation, evidence and controls distinct. The external footer connects the Chapter 1 substrate discussion with the method developed by Chapter 4.",
@@ -68,5 +68,32 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+    "candidate_sha256": "86969f6c4bff80ea7115efd77d9ba2e12f03aba2bebd0ea882f3334e4667612c",
+    "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
+    "bold": "Column headings only; body labels regular.",
+    "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 12,
+      "width_bp": 408.883,
+      "height_bp": 184.574,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "part:1",
+      "part:4"
+    ]
   }
 }

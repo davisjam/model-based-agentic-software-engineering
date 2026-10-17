@@ -11,13 +11,37 @@
     "repeated adjudication",
     "better guidance",
     "independent evidence",
-    "validator \u00b7 constraint \u00b7 gate",
+    "validator · constraint · gate",
     "LESS REPEATED JUDGMENT",
     "ENGINEERING CAPITAL later work inherits the result",
     "Invest only where expected return justifies construction and upkeep. These are investment choices, not maturity levels."
   ],
-  "bw_encoding": "Representation investment lane light; adjudication/evidence lane darker; inherited capital shares representation shade. Labels retain exact choices. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "Where organizational investment can go: two paths from recurring cost to engineering capital"
+  "alt": "Where organizational investment can go: two paths from recurring cost to engineering capital",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "48b0844717206ad7a521ecd97ec246d9a347e9fb6e0873855245e9d9d57175ee",
+    "candidate_sha256": "37509488759cf8fcdff7b3071576365f4245aa79f6dbb5c22121dd2aac75cb25",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 127,
+      "width_bp": 348.128,
+      "height_bp": 310.205,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -9,5 +9,29 @@
   "alt": "What Experience Became. The twelve governance-conversion episodes by the durable structure each failure became, grouped by enforcement class. Eight land deterministic and blocking; two stay probabilistic or advisory; two stop at measurement, one deliberately without a gate. Three up-front confirmations are excluded, keeping the conversion-versus-confirmation distinction; the exhibit restates the chapter's own narrative in structured form rather than censusing the repository independently.",
   "data": [
     "governance_conversions.csv"
-  ]
+  ],
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "dec528dcc6bd51c2bd4ae7f3cc91d4eb02ed0dddaf726d6a0747d9e91cf33bac",
+    "candidate_sha256": "187ed027de96033fc6eaa00938fa90580de2d16dad01d25f2e6890ad98cf3e83",
+    "fill": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction. Quantitative marks may use darker tones; text remains on white.",
+    "bold": "Plot/panel headings only; axes, annotations, values and legends are legible at native size.",
+    "routing": "Quantitative positions, bars, line patterns and markers preserve the chart data; no process-edge routing is implied.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 78,
+      "width_bp": 388.655,
+      "height_bp": 395.878,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

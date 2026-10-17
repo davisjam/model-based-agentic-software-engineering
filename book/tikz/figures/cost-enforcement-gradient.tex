@@ -1,19 +1,19 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
-\node[box,text width=5cm,fill=black!10] (m) at (0,0) {\textbf{Cost / usage model}\\related measured quantities};
-\node[head,text width=5cm,fill=black!28] (p) at (0,-1.4) {Policy attached to the value};
+\node[box,text width=5cm,fill=white] (m) at (0,0) {Cost / usage model\\related measured quantities};
+\node[head,text width=5cm,fill=white] (p) at (0,-1.4) {Policy attached to the value};
 \draw[edge,] (m) -- (p);
-\node[box,text width=3.8cm,fill=black!0] (a0) at (-4.5,-3.1) {\textbf{OBSERVE}\\report evidence only};
-\draw[edge,] (p) -- (a0);
-\node[box,text width=3.8cm,fill=black!12] (a1) at (0,-3.1) {\textbf{ADAPT}\\change load};
+\node[box,text width=3.8cm,fill=white] (a0) at (-4.5,-3.1) {OBSERVE\\report evidence only};
+\draw[edge,] (p.south) -- (0.000,-2.250) -- (-4.500,-2.250) -- (a0.north);
+\node[box,text width=3.8cm,fill=white] (a1) at (0,-3.1) {ADAPT\\change load};
 \draw[edge,] (p) -- (a1);
-\node[box,text width=3.8cm,fill=black!28] (a2) at (4.5,-3.1) {\textbf{GATE}\\block admission};
-\draw[edge,] (p) -- (a2);
+\node[box,text width=3.8cm,fill=white] (a2) at (4.5,-3.1) {GATE\\block admission};
+\draw[edge,] (p.south) -- (0.000,-2.250) -- (4.500,-2.250) -- (a2.north);
 \node[box,text width=4cm] (soft) at (0,-4.7) {Throttle; soft completion};
 \draw[edge,] (a1) -- (soft);
 \node[note,text width=12cm] (nt) at (0,-5.8) {Response follows the obligation attached to the quantity.};

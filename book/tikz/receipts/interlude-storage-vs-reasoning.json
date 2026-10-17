@@ -16,10 +16,10 @@
     "Each chunk still carries its media in the worker.",
     "Media bypasses persistent worker residency."
   ],
-  "bw_encoding": "Internal structural state versus media restored with labeled inline shading and distinct external-media fill; reference link remains dashed. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "Only media is 5%, inside chunks and external store; structure stays white.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Internal structural state versus media restored with labeled inline shading and distinct external-media fill; reference link remains dashed.",
   "questions": [],
-  "alt": "Two panels. (a) Chunked, format-native representation: an OOXML document is split into\n    page chunks, and each of several workers holds its chunk's structural state together with the media for\n    that chunk, so media remains part of the worker's resident representation. (b) Skeletonized\n    representation: the OOXML document becomes a structural skeleton plus media references held by the\n    worker, while media stays in an external store and individual media objects stream to the GenAI service\n    on demand. Total media size no longer determines persistent worker memory.",
+  "alt": "Two panels. (a) Chunked, format-native representation: an OOXML document is split into\n    page chunks, and each of several workers holds its chunk's structural state together with the media for\n    that chunk, so media remains part of the worker's resident representation. (b) Skeletonized\n    representation: the OOXML document becomes a structural skeleton plus media references held by the\n    worker, while media stays in an external store and individual media objects stream to the GenAI service\n    on demand. Total media size no longer determines persistent worker memory. Outlined sub-artifact cards distinguish structure and media inside chunk workers, and structural skeleton and media references inside the skeletonized worker.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -27,5 +27,46 @@
     "height_pt": 275.311,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "candidate_sha256": "f14d38aa9c5438723cce8d8adbc5552c958c59854d2eaa32f01f02f46c986a42",
+    "fill": "Only media is 5%, inside chunks and external store; structure stays white.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
+    "visual_review": "Media role alone shaded, paired with labels; reference path dashed, streaming solid. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 59,
+      "width_bp": 413.388,
+      "height_bp": 275.311,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "shape_review": {
+    "index": 16,
+    "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+    "change": "Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
+    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "candidate_sha256": "f38d3d45ac77396500f0f6c4c573fcaac72e4fc3762b6dd382712c43a9579dab",
+    "pdf_sha256": "955439bd3a8bf2806dd4fbee7bd94f5af359052a881b5a190de2f2f626b01532",
+    "width_bp": 413.38800048828125,
+    "height_bp": 275.3110046386719,
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "compiler_diagnostics": [],
+    "geometry_findings": []
   }
 }

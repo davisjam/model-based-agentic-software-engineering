@@ -1,27 +1,28 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=6cm] (ha) at (-3.6,0) {(a) Prediction versus observation};
 \node[head,text width=6cm] (hb) at (3.6,0) {(b) Modeling loop};
-\node[box,text width=4cm,fill=black!8] (pred) at (-3.6,-1.5) {Model predicts 11.5 s};
-\node[box,text width=4cm,fill=black!0] (obs) at (-3.6,-2.8) {Observed 17.8 s};
-\node[box,text width=4cm,fill=black!28] (res) at (-3.6,-4.1) {Residual: 6.3 s};
+\node[box,text width=4cm,fill=white] (pred) at (-3.6,-1.5) {Model predicts 11.5 s};
+\node[box,text width=4cm,fill=white] (obs) at (-3.6,-2.8) {Observed 17.8 s};
+\node[box,text width=4cm,fill=black!5] (res) at (-3.6,-4.1) {Residual: 6.3 s};
 \draw[edge,] (pred) -- node[midway,right,note,fill=white] {compare} (obs);
 \draw[edge,] (obs) -- (res);
-\node[box,text width=1.7cm] (r0) at (-5.8,-5.8) {Wrong\\parameter};
-\draw[edge,] (res) -- (r0);
-\node[box,text width=1.7cm] (r1) at (-3.5999999999999996,-5.8) {Wrong\\relation};
+\node[box,text width=2cm,inner sep=2pt] (r0) at (-5.8,-5.8) {Wrong\\parameter};
+\draw[edge,] (res.south) -- (-3.600,-4.950) -- (-5.800,-4.950) -- (r0.north);
+\node[box,text width=2cm,inner sep=2pt] (r1) at (-3.5999999999999996,-5.8) {Wrong\\relation};
 \draw[edge,] (res) -- (r1);
-\node[box,text width=1.7cm] (r2) at (-1.3999999999999995,-5.8) {Missing\\mechanism};
-\draw[edge,] (res) -- (r2);
-\node[box,text width=2.4cm,fill=black!15] (m) at (2,-1.5) {Model};
+\node[box,text width=2cm,inner sep=2pt] (r2) at (-1.3999999999999995,-5.8) {Missing\\mechanism};
+\draw[edge,] (res.south) -- (-3.600,-4.950) -- (-1.400,-4.950) -- (r2.north);
+\node[box,text width=2.4cm,fill=white] (m) at (2,-1.5) {Model};
 \node[box,text width=2.4cm] (p) at (5.5,-1.5) {Predict};
 \node[box,text width=2.4cm] (i) at (5.5,-3.2) {Implement};
 \node[box,text width=2.4cm] (me) at (2,-3.2) {Measure};
-\node[box,text width=2.4cm,fill=black!28] (ex) at (2,-5.2) {Explain residual};
+\node[box,text width=2.4cm,fill=black!5] (ex) at (2,-5.2) {Explain residual};
 \draw[edge,] (m) -- (p);
 \draw[edge,] (p) -- (i);
 \draw[edge,] (i) -- (me);

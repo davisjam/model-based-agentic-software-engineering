@@ -36,7 +36,7 @@
     "upload",
     "remediated file"
   ],
-  "bw_encoding": "Grayscale publication candidate. Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
+  "bw_encoding": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
   "redesign": "Replaced generic text boxes with document pictograms, text bars, folded corners, a warning badge and a native vector checkmark. Dashed undescribed-image area contrasts with solid described-image area. Accessibility labels and explanatory annotations sit below the documents. Main text is 11 pt; status pills and system subtitle are 10.5 pt; headings are 12 pt.",
   "questions": [],
   "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Input and output are page pictograms with warning and check badges; annotations below explain accessibility status, while dashed and solid image panels distinguish undescribed from described images.",
@@ -48,5 +48,29 @@
       10.5,
       12
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
+    "candidate_sha256": "095bfcce55e6fc8a22d3c0b0e4288bec14ef8d6b3c62857c37db9988713f0fda",
+    "fill": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
+    "bold": "Figure/system headings and paired document status headings.",
+    "routing": "Straight input/output arrows; external annotations, document folds, warning/check marks and dashed/solid image regions retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 8,
+      "width_bp": 420.986,
+      "height_bp": 210.101,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

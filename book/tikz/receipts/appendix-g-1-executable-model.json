@@ -4,18 +4,42 @@
   "topology": "An engineering question selects a representation. A model box is fed from the left by\n    authored intent along a solid arrow, and from the right by derived facts along a dashed arrow. The model\n    declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are\n    observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether\n    the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a\n    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared\n    legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are\n    derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real\n    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory.",
   "required_terms": [
     "ENGINEERING QUESTION",
-    "MODEL entities \u00b7 relations \u00b7 properties",
-    "CODE \u00b7 CONFIG \u00b7 RUNTIME \u00b7 ARTIFACTS",
+    "MODEL entities · relations · properties",
+    "CODE · CONFIG · RUNTIME · ARTIFACTS",
     "CORRESPONDENCE / INVARIANT CHECK",
     "AUTHORED intent",
     "DERIVED facts",
     "observe / re-derive",
-    "advisory \u00b7 report-only informs the engineer",
+    "advisory · report-only informs the engineer",
     "finding / gate CHECKED where warranted",
     "Solid: authored relation. Dashed: derived / observed correspondence. Heavy boundary: enforcement can block. A model may stay advisory."
   ],
-  "bw_encoding": "Representation/check boxes differ from realized artifacts; admission gate remains heavy and darker than advisory output. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the warranted gate is lightly shaded; advisory output, evidence and model boxes are white.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored double-bar checked/admission glyph on the warranted finding branch; authored/derived dashes retained.",
   "questions": [],
-  "alt": "The executable-model pattern \u2014 the spine every later reference figure specializes"
+  "alt": "The executable-model pattern — the spine every later reference figure specializes",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
+    "candidate_sha256": "bd229c3ff2effc8f2f7d8f7ae2ae494013f79edf3b0c526d4018102bbb8a5b93",
+    "fill": "Only the warranted gate is lightly shaded; advisory output, evidence and model boxes are white.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Conditional branches use an orthogonal rail with explicit admission mark on the checked vertical leg; advisory branch remains unguarded.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 111,
+      "width_bp": 348.128,
+      "height_bp": 255.201,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -15,7 +15,7 @@
     "Analytical views by stable identity\\ join without one universal schema",
     "Residual freedom remains\\ every choice is determinized"
   ],
-  "bw_encoding": "Represented structure shares gray fill; consequential implicit composition is darker; unmodeled and residual freedom remain white. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Represented structure shares gray fill; consequential implicit composition is darker; unmodeled and residual freedom remain white.",
   "questions": [],
   "alt": "A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit — carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check. Analysis over that projected structure then motivated a redesign: an authoritative computation model that execution consumes to determine dependency order, with analytical views attaching by stable computation identity. Residual freedom remains. The progression runs from a partial model, to an analyzable one, to a model that participates directly in realization.",
@@ -26,5 +26,30 @@
     "height_pt": 412.459,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
+    "candidate_sha256": "3503c1b83564d068d621f1607acd04f79091017996791c40c1bf746320ed572b",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Parallel dependency/effect dimensions and later analysis chain remain; residual freedom dashed.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 76,
+      "width_bp": 356.695,
+      "height_bp": 412.579,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

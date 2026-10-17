@@ -23,8 +23,8 @@
     "declared × no edge",
     "Agreement establishes correspondence, not correctness."
   ],
-  "bw_encoding": "Grayscale publication candidate. Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
-  "redesign": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+  "bw_encoding": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction.",
+  "redesign": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction. Both relation forks use orthogonal ports; absent path retains its cross and arrowless dashed meaning.",
   "questions": [],
   "alt": "Circular nodes compare observed and declared relationships. The declared A-to-B edge is labeled; a dashed crossed A-to-C path identifies an absent declared relationship.",
   "review": {
@@ -63,5 +63,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+    "candidate_sha256": "e7cd276a23305da18df98b5e89f81c8f1cacb012daf3c6e1f654f5f0096a57af",
+    "fill": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Both relation forks use orthogonal ports; absent path retains its cross and arrowless dashed meaning.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 27,
+      "width_bp": 399.726,
+      "height_bp": 183.292,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

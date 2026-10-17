@@ -17,8 +17,8 @@
     "Move mechanism",
     "Move to the earliest boundary where the obligation’s evidence is assembled."
   ],
-  "bw_encoding": "Grayscale publication candidate. Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
-  "redesign": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+  "bw_encoding": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white.",
+  "redesign": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
   "alt": "A bracket groups six local events under the annotation that the obligation is not decidable there. An upward Move mechanism arrow leads to a completed work unit where the obligation becomes meaningful.",
   "review": {
@@ -57,5 +57,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+    "candidate_sha256": "5d531ae133ab56aacfc16854d934ae73464ba6769adc693261abc51da365c743",
+    "fill": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 42,
+      "width_bp": 370.918,
+      "height_bp": 189.565,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

@@ -3,14 +3,38 @@
   "claim": "The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N>1 are settings of the same mediator, not separate stacks. Solid path: the required path. Dashed attachment: a useful enhancement, not required for the capability.",
   "topology": "A solid load-bearing path runs top to bottom. RESOURCE POLICY declares which resource is\n    scarce and what capacity is acceptable. The MEDIATOR routes every access through one admission point,\n    admitting at most N actors. The SHARED RESOURCE sits below it, now governed by explicit policy rather\n    than actor timing. One enhancement attaches as a dashed, open-arrowed feedback: LIVE PRESSURE can tighten\n    or relax the effective capacity when justified, but only after the fixed policy and admission seam exist.\n    N equals one and N greater than one are settings of the same mediator, not separate stacks.",
   "required_terms": [
-    "RESOURCE POLICY capacity \u00b7 scope",
-    "MEDIATOR admit \u2264 N actors",
+    "RESOURCE POLICY capacity · scope",
+    "MEDIATOR admit ≤ N actors",
     "SHARED RESOURCE",
     "LIVE PRESSURE tighten / relax when justified",
     "N = 1 and N > 1 are settings of the same mediator. Solid: required. Dashed: enhancement."
   ],
-  "bw_encoding": "Policy and mediator form the governing pair; resource remains white and pressure dashed. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the mediator is lightly shaded: the single admission boundary is the argument focus.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored external DECLARE, MEDIATE and ADAPT annotations rather than folding these roles into resource boxes.",
   "questions": [],
-  "alt": "The Resource-Mediation stack: a declared resource policy routes all access through one\n    mediator to a shared resource; live pressure is a dashed enhancement"
+  "alt": "The Resource-Mediation stack: a declared resource policy routes all access through one\n    mediator to a shared resource; live pressure is a dashed enhancement",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "6cf6b465831eb4c9ee298962adf1922b88b5e91434c321bc918dbaaa1c20070b",
+    "candidate_sha256": "c85a492b2b7f4a060e4518bb96f5aa284ad962d459cd9600030573fc78edcd3a",
+    "fill": "Only the mediator is lightly shaded: the single admission boundary is the argument focus.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 96,
+      "width_bp": 322.969,
+      "height_bp": 173.443,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

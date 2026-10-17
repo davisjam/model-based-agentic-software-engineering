@@ -1,28 +1,29 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=6cm,fill=black!15] (eh) at (-3.7,0) {ENGINEERING TRADITIONS};
-\node[head,text width=6cm,fill=black!7] (ah) at (3.7,0) {AI TRADITIONS};
-\node[note,draw,fill=white,text width=6.4cm,fill=black!15] (e) at (-3.7,-2) {\textbf{MBSE / MDE}: explicit models\\\textbf{PL / compilers}: types; constrained IRs\\\textbf{Formal methods}: specifications; verification\\\textbf{Systems / safety}: boundaries; control};
-\node[box,text width=6cm,fill=black!7] (a) at (3.7,-2) {Knowledge representation\\Memory; planning state\\Structured reasoning\\Tools and interfaces};
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
+\node[head,text width=6cm,fill=white,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (eh) at (-3.7,0) {ENGINEERING TRADITIONS};
+\node[head,text width=6cm,fill=white,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (ah) at (3.7,0) {AI TRADITIONS};
+\node[note,draw,fill=white,text width=6.4cm,fill=white] (e) at (-3.7,-2) {MBSE / MDE: explicit models\\PL / compilers: types; constrained IRs\\Formal methods: specifications; verification\\Systems / safety: boundaries; control};
+\node[box,text width=6cm,fill=white] (a) at (3.7,-2) {Knowledge representation\\Memory; planning state\\Structured reasoning\\Tools and interfaces};
 \node[box,text width=4.6cm] (m) at (-3,-4.5) {Modeling\\make knowledge explicit};
 \node[box,text width=4.6cm] (al) at (3,-4.5) {Alignment\\enforce selected obligations};
-\draw[edge,] (e) -- (m);
-\draw[edge,] (a) -- (al);
-\node[box,text width=9cm,fill=black!15] (g) at (0,-6.2) {\textbf{Governed engineering environment}\\Representations; evidence; constraints; controls};
-\draw[edge,] (m) -- (g);
-\draw[edge,] (al) -- (g);
+\draw[edge,] (e.south -| m.north) -- (m.north);
+\draw[edge,] (a.south -| al.north) -- (al.north);
+\node[box,text width=9cm,fill=white] (g) at (0,-6.2) {Governed engineering environment\\Representations; evidence; constraints; controls};
+\draw[edge,] (m.south) -- (g.north -| m.south);
+\draw[edge,] (al.south) -- (g.north -| al.south);
 \draw[black,line width=.8pt] (-6,-3.7) rectangle (6,-7);
-\node[head,text width=1.4cm] (tag) at (0,-3.7) {MAGE};
-\node[box,text width=8cm,fill=black!15] (cap) at (0,-8.5) {Engineering capital\\recurring judgment made durable};
+\node[head,text width=1.4cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (tag) at (0,-3.7) {MAGE};
+\node[box,text width=8cm,fill=white] (cap) at (0,-8.5) {Engineering capital\\recurring judgment made durable};
 \draw[edge,] (g) -- node[midway,right,note,fill=white] {governance conversion} (cap);
 \node[box,dashed,text width=6cm] (t) at (0,-10.1) {Trustworthy autonomy\\intended outcome};
 \draw[edge,] (cap) -- node[midway,right,note,fill=white] {inherited by subsequent work} (t);
 \node[note,text width=13cm] (nt) at (0,-11.6) {New economics drive a new composition; the provenance of the parts is old.};
 \begin{scope}[on background layer]
-\fill[black!4] (-6,-3.7) rectangle (6,-7);
+\fill[black!5] (-6,-3.7) rectangle (6,-7);
 \end{scope}
 \end{tikzpicture}

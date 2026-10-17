@@ -1,10 +1,10 @@
 {
   "source": "book/assets/c6-close-action-surface.svg",
-  "claim": "*Open surface versus closed seam.* OPEN \u2014 an actor reaches a raw surface by many routes, including unknown ones. CLOSED \u2014 the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color.",
-  "topology": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes \u2014\n    a raw surface, another raw surface, a helper, and unknown paths \u2014 drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.",
+  "claim": "*Open surface versus closed seam.* OPEN — an actor reaches a raw surface by many routes, including unknown ones. CLOSED — the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color.",
+  "topology": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —\n    a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.",
   "required_terms": [
-    "OPEN \u00b7 any route",
-    "CLOSED \u00b7 one named seam",
+    "OPEN · any route",
+    "CLOSED · one named seam",
     "actor",
     "raw surface",
     "raw surface",
@@ -15,10 +15,34 @@
     "VERB A",
     "VERB B",
     "VERB C",
-    "stamp \u00b7 validate constrain \u00b7 observe"
+    "stamp · validate constrain · observe"
   ],
-  "bw_encoding": "One governing seam is emphasized; existing dashed open routes versus solid closed routes already convey mode. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "C.6 Close the action surface: replace open-ended routes with one bounded, named interface"
+  "alt": "C.6 Close the action surface: replace open-ended routes with one bounded, named interface",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "ba8caab75008adcd9423043d11afe98db78c66edc8efb5fa70e5b90f5e155f5f",
+    "candidate_sha256": "8dc8ce62471cd6180febbc16d21f035ca76bdb8fc0b9431700b2a40a8a295364",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Open routes retain dashed meaning but use a short shared vertical rail; closed side keeps the bounded seam and aligned verbs.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 106,
+      "width_bp": 382.144,
+      "height_bp": 176.923,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

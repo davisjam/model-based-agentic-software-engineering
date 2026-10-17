@@ -1,7 +1,7 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
@@ -33,8 +33,8 @@
 \node[align=center,text width=2.7cm] at (5.6,-6.65) {Operational controls};
 \node[note,text width=12cm] at (0,-8) {Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain.};
 \begin{scope}[on background layer]
-\draw[fill=black!28] (-7,-1.2) rectangle (7,-3);
-\draw[fill=black!7] (-7,-3.3) rectangle (7,-5.1);
-\draw[fill=black!15] (-7,-5.4) rectangle (7,-7.3);
+\draw[fill=white] (-7,-1.2) rectangle (7,-3);
+\draw[fill=white] (-7,-3.3) rectangle (7,-5.1);
+\draw[fill=white] (-7,-5.4) rectangle (7,-7.3);
 \end{scope}
 \end{tikzpicture}

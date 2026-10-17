@@ -1,12 +1,12 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
 \node[box,text width=2.9cm] (i) at (0,0) {Implementation\\logic};
-\node[head,text width=3cm,fill=black!20] (s) at (3.6,0) {Sanctioned abstraction};
+\node[head,text width=3cm,fill=white] (s) at (3.6,0) {Sanctioned abstraction};
 \coordinate (b) at (8,0);\draw[line width=1.2pt] (7.94,-.5)--(7.94,.5) (8.06,-.5)--(8.06,.5);\node[note,text width=3cm] at (8,1.6) {\textbf{Admission boundary}};\node[note,text width=3cm] at (8,-1) {Requires valid provenance};
 \node[box,text width=2.2cm] (a) at (11.8,0) {Admitted operation};
 \draw[edge,] (i) -- (s);

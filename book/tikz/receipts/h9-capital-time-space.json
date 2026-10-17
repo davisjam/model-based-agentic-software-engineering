@@ -27,10 +27,34 @@
     "SECURITY POSTURE possible shared concern",
     "Solid: established. Dotted: emerging / possible. Incomplete constellations are neither prescribed models nor maturity levels."
   ],
-  "bw_encoding": "Cross-product concerns share darker fill, distinct from product constellations; solid/dotted established/possible links remain unchanged. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the existing very light product-territory fields remain shaded; contained artifacts and cross-product concerns are white.",
   "redesign": "Constellations re-spaced with exact original14internal relationships and8cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point.",
   "questions": [
     "Constellations re-spaced with exact original 14 internal relationships and 8 cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point."
   ],
-  "alt": "Engineering capital across time and space"
+  "alt": "Engineering capital across time and space",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "03a4f6b9211dfe6d10735faa373eb1f5a739a039976b3af3080390536a25795b",
+    "candidate_sha256": "4f6658119bc92436954145d5163a1e076496f5422d98bbf6c4729b70ed0789d2",
+    "fill": "Only the existing very light product-territory fields remain shaded; contained artifacts and cross-product concerns are white.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Exception: undirected product constellations and cross-product concerns retain diagonal/radial graph geometry; these are dependency relations, not a process pipeline. Solid/dotted meanings preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 125,
+      "width_bp": 405.441,
+      "height_bp": 352.679,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

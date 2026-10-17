@@ -1,20 +1,20 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[n,text width=9cm] (n0) at (0,0.0) {Engineering question};
-\node[n,text width=9cm,fill=black!20] (n1) at (0,-1.8) {Choose representation\\Closed state/action space · finite transition system · temporal behavior};
+\node[n,text width=9cm,fill=white] (n1) at (0,-1.8) {Choose representation\\Closed state/action space · finite transition system\\Temporal behavior};
 \draw[edge] (n0) -- (n1);
 \node[n,text width=9cm] (n2) at (0,-3.6) {Choose analysis appropriate to the property\\Constraint solving · state exploration · model checking · simulation · static analysis};
 \draw[edge] (n1) -- (n2);
 \node[n,text width=9cm] (n3) at (0,-5.4) {Interpret evidence};
 \draw[edge] (n2) -- (n3);
-\node[n,text width=6cm,fill=black!30] (design) at (-3.7,-7.8) {Inform architecture / design\\Compare alternatives · revise boundaries\\Change dependencies · allocate resources};
-\node[n,text width=6cm,fill=black!15] (align) at (3.7,-7.8) {Decide what deserves enforcement\\Alignment (Chapter 3)};
-\draw[edge] (n3) -- (design);
-\draw[edge] (n3) -- (align);
+\node[n,text width=6cm,fill=white] (design) at (-3.7,-7.8) {Inform architecture / design\\Compare alternatives · revise boundaries\\Change dependencies · allocate resources};
+\node[n,text width=6cm,fill=white] (align) at (3.7,-7.8) {Decide what deserves enforcement\\Alignment (\magebookref{part:3}{Chapter 3})};
+\draw[edge] (n3.south) -- (0,-6.5) -| (design.north);
+\draw[edge] (n3.south) -- (0,-6.5) -| (align.north);
 \node[note,text width=4cm] (both) at (0,-9.7) {Either or both};
 \end{tikzpicture}

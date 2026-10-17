@@ -16,10 +16,10 @@
     "Revise / reject",
     "Admitted change"
   ],
-  "bw_encoding": "Dashed production group receives light gray ground; acceptable region uses a distinct darker fill, restoring process-versus-tolerance separation. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "Only acceptable-region field is 5%; dashed production boundary carries grouping.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Dashed production group receives light gray ground; acceptable region uses a distinct darker fill, restoring process-versus-tolerance separation. Fidelity pass: Restored production-process label and span bracket linking the full process to its design dimensions.",
   "questions": [],
-  "alt": "A large frame labelled SOFTWARE FACTORY contains process design above and tolerance below. The upper dashed band shows a left-to-right path: engineering intent, context / work, fabricator, realization. An annotation below the path names what process design determines: context, tools, routing, authority, and sequencing. The fabricator is one station in the process. Below, a pale-gray TOLERANCE heading defines acceptable product variation beside a bounded ACCEPTABLE REGION. Four black dots mark distinct acceptable realizations. An arrow from realization reaches the region; its measurement annotation lists tests, property-based testing, analysis, simulation, and human judgment. Two arrows leave the region: outside leads to revise / reject, and within tolerance leads to admitted change.",
+  "alt": "A large frame labelled SOFTWARE FACTORY contains process design above and tolerance below. The upper dashed band shows a left-to-right path: engineering intent, context / work, fabricator, realization. An annotation below the path names what process design determines: context, tools, routing, authority, and sequencing. The fabricator is one station in the process. Below, a TOLERANCE heading defines acceptable product variation beside a pale-gray bounded ACCEPTABLE REGION. Four black dots mark distinct acceptable realizations. An arrow from realization reaches the region; its measurement annotation lists tests, property-based testing, analysis, simulation, and human judgment. Two arrows leave the region: outside leads to revise / reject, and within tolerance leads to admitted change.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -27,5 +27,30 @@
     "height_pt": 323.8559875488281,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+    "candidate_sha256": "fa424b14fa4ae90d07b502319790e83f16282804d4b53912010ab6fbccbf46a4",
+    "fill": "Only acceptable-region field is 5%; dashed production boundary carries grouping.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Dashed production boundary and span bracket retained; tolerance field alone shaded.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 69,
+      "width_bp": 420.234,
+      "height_bp": 323.856,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

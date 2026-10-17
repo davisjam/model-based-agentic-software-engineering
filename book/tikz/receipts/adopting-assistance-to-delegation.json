@@ -1,7 +1,7 @@
 {
   "source": "book/assets/adopting-assistance-to-delegation.svg",
-  "claim": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment \u2014 models carry context, evidence establishes properties, and mechanisms constrain and admit the result \u2014 and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
-  "topology": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent \u2014 models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results \u2014 while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
+  "claim": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment — models carry context, evidence establishes properties, and mechanisms constrain and admit the result — and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
+  "topology": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent — models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results — while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
   "required_terms": [
     "ASSISTANCE",
     "BOUNDED DELEGATION",
@@ -12,10 +12,34 @@
     "AGENT",
     "Selected responsibilities move into the environment. The delegated boundary expands; these are not maturity levels."
   ],
-  "bw_encoding": "Same agent role shaded equally in both modes; governed environment separately emphasized; expanded dashed authority boundary retained. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the governed environment is lightly shaded; workers and agents are equal white peers across alternatives.",
   "redesign": "Dashed authority boundary now encloses environment-supported responsibilities as well as agent; original right inset boundary enclosed only agent despite caption expansion claim.",
   "questions": [
     "Dashed authority boundary now encloses environment-supported responsibilities as well as agent; original right inset boundary enclosed only agent despite caption expansion claim."
   ],
-  "alt": "From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands"
+  "alt": "From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "candidate_sha256": "10dff4681096840fe8eef412744a457e2ee3a09076548aab5816064b639e52ec",
+    "fill": "Only the governed environment is lightly shaded; workers and agents are equal white peers across alternatives.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 126,
+      "width_bp": 374.729,
+      "height_bp": 253.467,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

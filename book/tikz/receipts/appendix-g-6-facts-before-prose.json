@@ -1,17 +1,41 @@
 {
   "source": "book/assets/appendix-g-6-facts-before-prose.svg",
   "claim": "*Facts before prose.* A structured provenance record supports mechanical validation and re-derivable documentation; independently maintained prose lacks that correspondence.",
-  "topology": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box \u2014 free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
+  "topology": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
   "required_terms": [
     "ENGINEERING ACTION",
-    "PROVENANCE FACT what \u00b7 who \u00b7 how",
+    "PROVENANCE FACT what · who · how",
     "VALIDATION / AUDIT CHECKED completion gate",
     "GENERATED DOCUMENTATION re-derivable",
     "prose maintained independently",
     "human explanation"
   ],
-  "bw_encoding": "Provenance and generated documentation share a fact-derived family; checked audit emphasized; independent prose retains dashed outline. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored guarded completion-audit branch glyph, distinct from ordinary generated documentation branch.",
   "questions": [],
-  "alt": "Facts before prose \u2014 the strongest documentation is generated from facts the system already knows"
+  "alt": "Facts before prose — the strongest documentation is generated from facts the system already knows",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "candidate_sha256": "d5ee10414b90c6ab5847f2e951d3dadeff25be825f0c231413201f96d269c02f",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Fact branches use an orthogonal rail; audit guard preserved on audit leg, documentation leg remains ordinary, independent prose dashed.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 116,
+      "width_bp": 315.118,
+      "height_bp": 212.62,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

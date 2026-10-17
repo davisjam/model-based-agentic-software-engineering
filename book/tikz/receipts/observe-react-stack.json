@@ -1,7 +1,7 @@
 {
   "source": "book/assets/observe-react-stack.svg",
-  "claim": "The observe \u2192 react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.",
-  "topology": "An operating model states expected state. The solid load-bearing path runs WATCH \u2014 which\n    observes the runtime \u2014 to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
+  "claim": "The observe → react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.",
+  "topology": "An operating model states expected state. The solid load-bearing path runs WATCH — which\n    observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
   "required_terms": [
     "OPERATING MODEL",
     "WATCH observe divergence",
@@ -11,8 +11,32 @@
     "BLOCK prevent unsafe progress",
     "Solid: required path. Dashed: optional enhancement."
   ],
-  "bw_encoding": "Model is separated from watch/respond operations; optional attachments retain dashed borders. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the operating model is lightly shaded, distinguishing declarative model from runtime mechanisms.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and\n    blocking are dashed enhancements"
+  "alt": "The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and\n    blocking are dashed enhancements",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
+    "candidate_sha256": "6f32bd63d00e3ac85dd9c465c3902cc7615cb6d2be6ed6097193b34eb9d1b019",
+    "fill": "Only the operating model is lightly shaded, distinguishing declarative model from runtime mechanisms.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Optional heartbeat detour now uses short right-angle branches; required WATCH/RESPOND spine unchanged.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 95,
+      "width_bp": 336.078,
+      "height_bp": 207.157,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -25,8 +25,8 @@
     "Node = legal state; edge = permitted transition; path = admitted execution.",
     "Analyze reachability, safety and liveness."
   ],
-  "bw_encoding": "Grayscale publication candidate. State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained.",
-  "redesign": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+  "bw_encoding": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics.",
+  "redesign": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
   "alt": "Rounded state boxes and directed transitions depict the behavioral model. A dashed prohibited transition bears a cross, with its explanation below the path.",
   "review": {
@@ -65,5 +65,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+    "candidate_sha256": "56a4421fa2048892451f100ac64fe63e44f8c041ad8ed7ea9f264465a4cfa848",
+    "fill": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 20,
+      "width_bp": 350.12,
+      "height_bp": 225.877,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

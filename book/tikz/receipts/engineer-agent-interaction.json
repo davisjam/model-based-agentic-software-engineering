@@ -17,7 +17,7 @@
     "Result",
     "Implementation"
   ],
-  "bw_encoding": "Light left communication group and darker right evaluation group restore the two original modes; shared implementation remains outside both. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Light left communication group and darker right evaluation group restore the two original modes; shared implementation remains outside both.",
   "questions": [],
   "alt": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels — natural language, specification, and models —\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels —\n    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence.",
@@ -28,5 +28,30 @@
     "height_pt": 204.524,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+    "candidate_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "10 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Communication/evaluation panel boundaries retained; implementation links enter opposing ports.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 55,
+      "width_bp": 408.896,
+      "height_bp": 204.842,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

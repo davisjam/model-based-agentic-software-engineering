@@ -1,13 +1,13 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm,fill=black!12] (cat) at (0,0) {COMPONENT CATALOG\\ ownership · seams};
-\node[box,text width=3cm,fill=black!12] (web) at (-3,-2.2) {WEB ZONE};
-\node[box,text width=3cm,fill=black!12] (worker) at (3,-2.2) {WORKER};
-\draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {owns} (web);
-\draw[edge] (cat) -- node[note,fill=white,inner sep=2pt] {permits} (worker);
+\node[box,text width=4cm,fill=black!8] (cat) at (0,0) {COMPONENT CATALOG\\ ownership · seams};
+\node[box,text width=3cm] (web) at (-3,-2.2) {WEB ZONE};
+\node[box,text width=3cm] (worker) at (3,-2.2) {WORKER};
+\draw[edge] (cat.south)--(0,-1.1)--(-3,-1.1)-- node[note,left=2pt] {owns} (web.north);
+\draw[edge] (cat.south)--(0,-1.1)--(3,-1.1)-- node[note,right=2pt] {permits} (worker.north);
 \draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {CHECKED door} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);
 \node[box,text width=3cm] (raw) at (-3,-4.5) {RAW FORMAT LIBRARY};
 \node[box,text width=3cm] (tree) at (3,-4.5) {REPOSITORY TREE\\ observed structure};

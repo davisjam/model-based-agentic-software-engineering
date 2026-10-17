@@ -4,6 +4,11 @@
 \RequirePackage{fontspec}
 \RequirePackage{tikz}
 \RequirePackage{pgfplots}
+\RequirePackage{hyperref}
+\hypersetup{hidelinks,pageanchor=false}
+% Standalone sources retain readable references. The pool records link rectangles
+% for the book assembler, which supplies real internal destinations.
+\providecommand{\magebookref}[2]{\ifdefined\magecollectlinks\href{magebook:#1}{#2}\else#2\fi}
 \usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds,patterns,shapes.geometric,decorations.pathreplacing}
 \usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=1.18}

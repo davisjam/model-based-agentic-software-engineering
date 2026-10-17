@@ -17,7 +17,7 @@
     "HUMAN FOCUS",
     "Delegation climbs; tactical human burden narrows but never vanishes. Failure in representation or enforcement can move work down."
   ],
-  "bw_encoding": "Step cards retain readable role labels; environment stripes thicken by step and human-focus strokes narrow without reaching zero, restoring the two qualitative trajectories. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Retained staircase and per-step delegated/environment/human distinctions. Removed colored side wedges; explicit labels preserve their qualitative meaning without implying measured magnitude. Role headings use 10pt type; delegated-work and environment annotations use 9pt type, with increased vertical step spacing. Grayscale refinement: Step cards retain readable role labels; environment stripes thicken by step and human-focus strokes narrow without reaching zero, restoring the two qualitative trajectories.",
   "questions": [],
   "alt": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the bottom is Co-coder; step five at the summit is Architect. Each step card names the stage and uses written Delegated and Environment labels to distinguish the work delegated from the structure carried by the environment. Black step outlines rise along the left; heavier stripes at higher steps indicate accumulating environment structure. An annotation says representation and enforcement accumulate. A HUMAN FOCUS column at the right describes the residual human role at each stage; adjacent black strokes narrow toward the summit but never vanish, indicating reduced tactical human burden. Step one Co-coder: delegated is code generation; the environment carries nothing durable beyond an ordinary repository; the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the human adjudicates findings. Step three Review lead: delegated is specialized review per region; the environment carries deterministic checks for the decidable findings; the human does the semantic review a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the environment carries named zones and boundary rules; the human holds the system map and strategy. Step five Architect: delegated is model-guided work across the whole system; the environment carries explicit models, traceability, and controls; the human is left with residual semantics and strategy. A failure in representation or enforcement can push work back down the staircase.",
@@ -28,5 +28,30 @@
     "height_pt": 414.833,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+    "candidate_sha256": "eae7162882d41d622f5b8541901d0aa9dc0539b029e543605fb5cd2bed48c84b",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Stage headings remain bold; Delegated labels regular; accumulation and narrowing strokes preserved.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 80,
+      "width_bp": 426.688,
+      "height_bp": 414.833,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
   }
 }

@@ -14,10 +14,10 @@
     "Specification boundary Set by obligation and agent capability",
     "Greater capability can reduce scaffolding"
   ],
-  "bw_encoding": "Grayscale publication candidate. Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
-  "redesign": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
+  "bw_encoding": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
+  "redesign": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are realization degrees of freedom. An upward capability arrow indicates that greater capability can reduce required scaffolding. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are realization degrees of freedom. An upward capability arrow indicates that greater capability can reduce required scaffolding.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -33,5 +33,29 @@
       14.0014,
       7.26
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
+    "candidate_sha256": "ff495e7800d8d62c1fbae2722acd1ae4f4630710a141fb3be91b8049a5d8b5b0",
+    "fill": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 14,
+      "width_bp": 396.891,
+      "height_bp": 205.622,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

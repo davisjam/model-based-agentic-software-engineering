@@ -71,6 +71,8 @@
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-1em}{0.4em}{\bookheadingfont\bfseries\color{bookmuted}\fontsize{12}{16}\selectfont}}
 \makeatother
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
+% Table captions sit above their table and read as captions, not body paragraphs.
+\captionsetup*[table]{font={small,it},labelfont={bf,it},position=top,skip=3pt}
 \setlist{topsep=0.4em,itemsep=0.15em,parsep=0pt,leftmargin=1.5em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % The colored frame is an artifact; the box content remains tagged paragraphs in a Div.

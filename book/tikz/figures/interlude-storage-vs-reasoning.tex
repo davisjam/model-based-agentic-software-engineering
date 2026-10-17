@@ -1,25 +1,27 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{.4pt}
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=6cm] (ha) at (-3.7,0) {(a) Chunked, format-native};
 \node[head,text width=6cm] (hb) at (3.7,0) {(b) Skeletonized};
 \node[box,text width=3cm] (da) at (-3.7,-1.4) {OOXML document};
 \node[box,text width=3cm] (db) at (3.7,-1.4) {OOXML document};
-\node[box,text width=1.8cm] (w0) at (-6.0,-3.4) {Worker 1\\\colorbox{black!15}{structure}\\+ \colorbox{black!28}{media}};
-\draw[edge,] (da) -- (w0);
-\node[box,text width=1.8cm] (w1) at (-3.7,-3.4) {Worker 2\\\colorbox{black!15}{structure}\\+ \colorbox{black!28}{media}};
+\node[box,text width=1.8cm] (w0) at (-6.0,-3.4) {Worker 1\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
+\draw[edge,] (da.south) -- (-3.700,-2.400) -- (-6.000,-2.400) -- (w0.north);
+\node[box,text width=1.8cm] (w1) at (-3.7,-3.4) {Worker 2\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
 \draw[edge,] (da) -- (w1);
-\node[box,text width=1.8cm] (w2) at (-1.4000000000000004,-3.4) {Worker 3\\\colorbox{black!15}{structure}\\+ \colorbox{black!28}{media}};
-\draw[edge,] (da) -- (w2);
-\node[box,text width=3.7cm,fill=black!15] (wa) at (3.3,-3.3) {Worker\\\colorbox{black!15}{structural skeleton}\\+ media references};
-\node[box,text width=2.2cm,fill=black!28] (media) at (6,-5.3) {External media};
-\node[box,text width=3cm,fill=black!8] (gen) at (2.5,-7.2) {GenAI service};
-\draw[edge,] (db) -- (wa);
+\node[box,text width=1.8cm] (w2) at (-1.4000000000000004,-3.4) {Worker 3\\\fbox{structure}\\+ \fcolorbox{black}{black!5}{media}};
+\draw[edge,] (da.south) -- (-3.700,-2.400) -- (-1.400,-2.400) -- (w2.north);
+\node[box,text width=3.7cm,fill=white] (wa) at (3.3,-3.3) {Worker\\\fbox{structural skeleton}\\+ \fbox{media references}};
+\node[box,text width=2.2cm,fill=black!5] (media) at (6,-5.3) {External media};
+\node[box,text width=3cm,fill=white] (gen) at (2.5,-7.2) {GenAI service};
+\draw[edge,] (db.south -| wa.north) -- (wa.north);
 \draw[opt] (wa.south)--(3.3,-5.3)--(media.west);
-\draw[edge,] (media) -- node[midway,above,note,fill=white] {stream on demand} (gen);
+\draw[edge,] (media.south) -- (6.000,-6.250) -- (2.500,-6.250) -- node[midway,above,note,fill=white] {stream on demand} (gen.north);
 \node[note,text width=6cm] (nt1) at (-3.7,-5.7) {Each chunk still carries its media in the worker.};
 \node[note,text width=6cm] (nt2) at (3.7,-8.7) {Media bypasses persistent worker residency.};
 \end{tikzpicture}

@@ -8,7 +8,7 @@
     "Blocking\\ regressing commits",
     "Detected violations block re-entry."
   ],
-  "bw_encoding": "Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved.",
   "questions": [],
   "alt": "A new smell-detecting lint moves through three states, left to right. First it lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains the finding count to zero; this is drawn as a loop beneath the Findings to zero box and runs while the lint remains audit-only until nothing is left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the class of smell can never return. Squash the findings, drive them to zero, then promote — and the smells that leave stay gone.",
@@ -19,5 +19,30 @@
     "height_pt": 158.786,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+    "candidate_sha256": "8fd45928ab8d39d645dda6cc8d1bab8776fdd1ed7ed2b2947c18fcc17756d5f0",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Remediation loop now has square corners; barrier and promotion annotations remain external.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 66,
+      "width_bp": 394.089,
+      "height_bp": 158.786,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

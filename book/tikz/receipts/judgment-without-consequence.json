@@ -12,7 +12,7 @@
     "Content lost",
     "Durable repair: remove the unsafe capability; escalate ambiguous merges to a human."
   ],
-  "bw_encoding": "Detection/evaluation paired; warning and loss have consequential gray emphasis; existing broken enforcement path retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Detection/evaluation paired; warning and loss have consequential gray emphasis; existing broken enforcement path retained. Fidelity pass: Restored the missing large cross at absent enforcement; shifted explanatory prose aside so the cross, warning branch, and continuation remain distinct.",
   "questions": [],
   "alt": "A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a\n    validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any\n    binding consequence is severed; the only thing emitted at the break is a warning. So the operation\n    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement\n    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning\n    louder.",
@@ -23,5 +23,30 @@
     "height_pt": 272.00299072265625,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "bc8c83f4b400812bd10cf37f4780ced4bc91703348a5661366c77672825cbc1b",
+    "candidate_sha256": "bd9db44ed2974c38520635f1860401bda7a8ff41fe3c15b584427618367c0529",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Broken link, native cross and dashed warning branch preserved; repair note external.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 50,
+      "width_bp": 326.058,
+      "height_bp": 272.003,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

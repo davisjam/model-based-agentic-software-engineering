@@ -1,22 +1,25 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=6cm] (j) at (0,0) {Repeated judgment};
-\node[box,text width=5cm,fill=black!28] (a) at (-3.8,-2.2) {\textbf{ALIGNMENT}\\Encode predicate};
-\node[box,text width=5cm,fill=black!15] (m) at (3.8,-2.2) {\textbf{MODELING}\\Change representation};
-\draw[edge,] (j) -- node[midway,left,text width=2.6cm,note,fill=white] {already decidable} (a);
-\draw[edge,] (j) -- node[midway,right,text width=2.6cm,note,fill=white] {requires reconstruction} (m);
-\node[box,text width=5cm,fill=black!28] (c) at (-3.8,-3.8) {Test / validator / constraint / gate};
-\node[box,text width=5cm,fill=black!15] (s) at (3.8,-3.8) {Structured relation};
+\node[box,text width=5cm,fill=white] (a) at (-3.8,-2.2) {\textbf{ALIGNMENT}\\Encode predicate};
+\node[box,text width=5cm,fill=white] (m) at (3.8,-2.2) {\textbf{MODELING}\\Change representation};
+\draw[edge,] (j.south) -- (0.000,-1.100) -- (-3.800,-1.100) -- (a.north);
+\draw[edge,] (j.south) -- (0.000,-1.100) -- (3.800,-1.100) -- (m.north);
+\node[note,text width=3.7cm] at (-3.8,-.7) {already decidable};
+\node[note,text width=3.7cm] at (3.8,-.7) {requires reconstruction};
+\node[box,text width=5cm,fill=white] (c) at (-3.8,-3.8) {Test / validator / constraint / gate};
+\node[box,text width=5cm,fill=white] (s) at (3.8,-3.8) {Structured relation};
 \draw[edge,] (a) -- (c);
 \draw[edge,] (m) -- (s);
 \node[box,text width=5cm] (p) at (0,-5.4) {Predicate over model};
-\draw[edge,] (c) -- (p);
-\draw[edge,] (s) -- (p);
-\node[head,text width=6cm,fill=black!28] (r) at (0,-6.8) {Repeatable decision};
+\draw[edge,] (c.south) -- (-3.800,-4.600) -- (0.000,-4.600) -- (p.north);
+\draw[edge,] (s.south) -- (3.800,-4.600) -- (0.000,-4.600) -- (p.north);
+\node[head,text width=6cm,fill=white] (r) at (0,-6.8) {Repeatable decision};
 \draw[edge,] (p) -- (r);
 \node[note,text width=12cm] (nt) at (0,-8) {The determinization frontier: change what is decidable, then bind the decision.};
 \end{tikzpicture}

@@ -1,7 +1,7 @@
 {
   "source": "book/assets/c7-knowledge-at-decision.svg",
   "claim": "*Knowledge delivery at the decision point.* Context selection joins the current work with the rules relevant to its scope and supplies that subset to the decision. The distinction is encoded by shape and line style rather than color.",
-  "topology": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid \u2014 the roles are legible by shape and weight, not colour.",
+  "topology": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid — the roles are legible by shape and weight, not colour.",
   "required_terms": [
     "RULES the governing corpus",
     "WORK the files being changed",
@@ -9,8 +9,32 @@
     "DECISION",
     "Bind relevant knowledge to the work surface where it matters."
   ],
-  "bw_encoding": "Rules, work input and binding selection have separate shades; decision remains white. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored narrowing selection/funnel silhouette rather than a generic heavy gate box; selection binds context, not enforcement.",
   "questions": [],
-  "alt": "C.7 Deliver knowledge where the decision occurs: select the rules relevant to the work and bind them to the decision"
+  "alt": "C.7 Deliver knowledge where the decision occurs: select the rules relevant to the work and bind them to the decision",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "df88d4411203a5feb493daa5314e28605a099fe11abf8a97c413a22fdeba519a",
+    "candidate_sha256": "1ed96ae9d6231adf81292ce561afed276ccab8350c51e9e5bd81edfe2b41827e",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Rules and work enter distinct aligned ports of the selection funnel through short elbows; annotations remain outside.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 107,
+      "width_bp": 291.435,
+      "height_bp": 179.561,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

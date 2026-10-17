@@ -14,8 +14,32 @@
     "LANDS ON: Governed Engineering Environment",
     "The durable engineering object is the environment around a replaceable reasoner."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Field-guide visual argument preserved; decorative header/footer dropped. Evidence caveats retained explicitly rather than color/half-disc glyph alone. Fidelity pass: Restored the source central mechanism-to-LANDS ON connection, previously left as an unconnected conclusion box.",
   "questions": [],
-  "alt": "*Uber projected onto MAGE.* Public evidence strongly supports engineering the environment around a replaceable reasoner; the executable-model tier stays out of reach."
+  "alt": "*Uber projected onto MAGE.* Public evidence strongly supports engineering the environment around a replaceable reasoner; the executable-model tier stays out of reach.",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
+    "candidate_sha256": "a1df3d1275df760531e0f92ee7597fe59b138c3be170ca0829516f15db800a7a",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Central mechanism connects vertically into the environment destination at an explicit top port; branch rails remain separate and the Cloudflare open-loop cue is preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 134,
+      "width_bp": 354.15,
+      "height_bp": 248.234,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -17,7 +17,7 @@
     "No gate yet; deliberately deferred",
     "Engineering history: modeled and observed, reported, not yet binding."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
   "questions": [],
   "alt": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report — and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose — modeled and observed, reported, not yet enforced.",
@@ -28,5 +28,30 @@
     "height_pt": 275.76,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "candidate_sha256": "b9730aada2190f0dc4be5fe16d287de47c416198ce16f9d9a807ac16fdb635a6",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Deferred enforcement stays dashed and questioned; commentary remains in adjacent column.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 79,
+      "width_bp": 323.766,
+      "height_bp": 275.76,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

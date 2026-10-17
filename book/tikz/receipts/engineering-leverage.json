@@ -54,7 +54,7 @@
     "Governed Engineering Environment",
     "Models · obligations · evidence · controls · infrastructure"
   ],
-  "bw_encoding": "Grayscale publication candidate. Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
+  "bw_encoding": "White ordinary nodes and expanded environment; strong outline locates the engineered lever without shading.",
   "redesign": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
   "questions": [],
   "alt": "Two production chains are stacked. Classical engineering runs from engineer to implementation to product. Agentic engineering inserts an engineered environment and agents before implementation. Separate text identifies implementation as the classical engineered object and the environment as the agentic lever. Models, obligations, evidence, controls and infrastructure describe that environment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Two dotted, arrowless guides expand the environment node into the framed detail box below; primary-role annotations sit outside the nodes.",
@@ -66,5 +66,29 @@
       11,
       12
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
+    "candidate_sha256": "95f608d683bab1655a30ce54f3084a6009d1e62f8e5639cf19fd25ed043bbf98",
+    "fill": "White ordinary nodes and expanded environment; strong outline locates the engineered lever without shading.",
+    "bold": "Heading and explicitly named primary engineering focus.",
+    "routing": "Horizontal flows; dotted diagonal corner-to-corner guides deliberately denote expansion, not process edges.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 7,
+      "width_bp": 401.85,
+      "height_bp": 221.98,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

@@ -1,42 +1,42 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
 edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
 \node[head,text width=6cm] (h0) at (-3.7,0) {1 · Original model};
 \node[note,text width=6cm] at (-3.7,-.65) {Every entitlement is finite};
-\node[n,fill=black!20,text width=4cm] (group) at (-3.7,-1.5) {Group — credits: integer};
-\node[n,fill=black!20,text width=2cm] (sum) at (-5.2,-2.85) {$\Sigma$ credits};
-\node[n,fill=black!20,text width=2.6cm] (cmp) at (-1.9,-2.85) {credits $\geq$ pages?};
-\draw[edge] (group.south) |- (sum.north);\draw[edge] (sum) -- (cmp);
+\node[n,fill=white,text width=4cm] (group) at (-3.7,-1.5) {Group — credits: integer};
+\node[n,fill=white,text width=2cm] (sum) at (-5.2,-2.85) {$\Sigma$ credits};
+\node[n,fill=white,text width=2.6cm] (cmp) at (-1.9,-2.85) {credits $\geq$ pages?};
+\draw[edge] (group.south) -- (-3.7,-2.2) -| (sum.north);\draw[edge] (sum) -- (cmp);
 \node[note,text width=6cm] (a0) at (-3.7,-3.85) {An adequate reduction\\— for this domain};
 \node[head,text width=6cm] (h1) at (3.7,0) {2 · The system evolves};
 \node[note,text width=6cm] at (3.7,-.65) {Unlimited entitlement is introduced};
 \node[n,text width=2.5cm] (g2) at (3.7,-1.5) {Group};
-\node[n,fill=black!15,text width=2.5cm] (fin) at (2.0,-2.85) {finite(credits)};
-\node[n,fill=black!15,text width=2.5cm] (unlim) at (5.4,-2.85) {\textbf{unlimited}};
-\draw[edge] (g2) -- (fin);\draw[edge] (g2) -- (unlim);
+\node[n,fill=white,text width=2.5cm] (fin) at (2.0,-2.85) {finite(credits)};
+\node[n,fill=white,text width=2.5cm] (unlim) at (5.4,-2.85) {unlimited};
+\draw[edge] (g2.south) -- (3.7,-2.2) -| (fin.north);\draw[edge] (g2.south) -- (3.7,-2.2) -| (unlim.north);
 \node[note,text width=6cm] (a1) at (3.7,-3.85) {The entitlement state space has grown};
 \node[head,text width=6cm] (h2) at (-3.7,-5.4) {3 · Stale admission model};
 \node[note,text width=6cm] at (-3.7,-6.05) {One representation does not evolve};
 \node[n,text width=1.7cm] (gs) at (-5.45,-7.1) {groups};
-\node[n,fill=black!30,text width=2.9cm] (sf) at (-2.35,-7.1) {$\Sigma$ finite credits\\only};
+\node[n,fill=white,text width=2.9cm] (sf) at (-2.35,-7.1) {$\Sigma$ finite credits\\only};
 \draw[edge] (gs) -- (sf);
 \node[note,text width=3.6cm] at (-2.1,-8.4) {“Unlimited” has no\\representation —\\the distinction is\\discarded here};
-\node[n,fill=black!30,text width=1.7cm] (zero) at (-5.45,-9.5) {0 credits};
-\node[n,fill=black!30,text width=1.5cm] (lt) at (-3.4,-9.5) {$0<38$};
-\node[n,fill=black!75,text=white,text width=1.5cm] (reject) at (-1.45,-9.5) {REJECT};
+\node[n,fill=white,text width=1.7cm] (zero) at (-5.45,-9.5) {0 credits};
+\node[n,fill=white,text width=1.5cm] (lt) at (-3.4,-9.5) {$0<38$};
+\node[n,fill=black!70,text=white,text width=1.5cm] (reject) at (-1.45,-9.5) {REJECT};
 \draw[edge] (gs.south) -- node[lab,left] {unlimited\\user} (zero.north);
 \draw[edge] (zero) -- (lt);\draw[edge] (lt) -- (reject);
 \node[note,text width=6cm] (a2) at (-3.7,-11.1) {The server’s correct admission\\logic is never reached};
 \node[head,text width=6cm] (h3) at (3.7,-5.4) {4 · Revised model};
 \node[note,text width=6cm] at (3.7,-6.05) {The distinction survives the reduction};
-\node[n,fill=black!15,text width=2.6cm] (ent) at (2,-7.3) {Group\\entitlements\\finite $\mid$ unlimited};
-\node[n,fill=black!20,text width=2.4cm] (dec) at (5.5,-7.3) {Admission\\decision};
+\node[n,fill=white,text width=2.6cm] (ent) at (2.1,-7.3) {Group\\entitlements\\finite $\mid$ unlimited};
+\node[n,fill=white,text width=2.4cm] (dec) at (5.5,-7.3) {Admission\\decision};
 \draw[edge] (ent) -- (dec);
 \node[n,fill=black!70,text=white,text width=2.9cm,font=\fontsize{9.5}{11.5}\selectfont] (admit) at (2.1,-9.5) {admit\_unlimited};
-\draw[edge] (ent) -- node[lab,left] {same user} (admit);
+\draw[edge] (ent.south) -- node[lab,left] {same user} (admit.north);
 \node[n,text width=2.8cm,font=\fontsize{9.5}{11.5}\selectfont] (fields) at (5.5,-9.5) {Admit?\\Authorizing group\\Ordered plan};
 \draw[edge] (dec) -- (fields);
 \node[note,text width=6cm] (a3) at (3.7,-11.1) {The implementation now consumes the model};
@@ -46,8 +46,8 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[draw=black!70,dashed,rounded corners=3pt,minimum width=6.8cm,minimum height=6.8cm] (p2) at (-3.8,-8.35) {};
 \node[draw=black!70,line width=.9pt,rounded corners=3pt,minimum width=6.8cm,minimum height=6.8cm] (p3) at (3.8,-8.35) {};
 \end{scope}
-\draw[edge] (p0.east) -- (p1.west);
-\draw[edge] (p1.south) -- (3.7,-4.65) -- (-3.7,-4.65) -- (p2.north);
+\draw[edge] (p0.east) -- (0,0 |- p0.east) |- (p1.west);
+\draw[edge] (p1.south) -- (p1.south |- 0,-4.65) -| (p2.north);
 \draw[edge] (p2.east) -- (p3.west);
 
 \end{tikzpicture}

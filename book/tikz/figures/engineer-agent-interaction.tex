@@ -1,37 +1,38 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=6cm,fill=black!8] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
-\node[head,text width=6cm,fill=black!20] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
+\node[head,text width=6cm,fill=white] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
+\node[head,text width=6cm,fill=white] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
 \node[box,text width=2.3cm] (e1) at (-3.7,-1.5) {Engineer};
 \node[box,text width=2.3cm] (e2) at (3.7,-1.5) {Engineer};
 \node[box,text width=1.8cm] (m0) at (-6.0,-3) {Natural\\language};
-\draw[edge,] (e1) -- (m0);
-\node[box,text width=1.8cm] (m1) at (-3.7,-3) {Specification};
+\draw[edge,] (e1.south) -- (-3.700,-2.250) -- (-6.000,-2.250) -- (m0.north);
+\node[box,text width=2.05cm,inner sep=2pt] (m1) at (-3.7,-3) {Specification};
 \draw[edge,] (e1) -- (m1);
 \node[box,text width=1.8cm] (m2) at (-1.4000000000000004,-3) {Models};
-\draw[edge,] (e1) -- (m2);
+\draw[edge,] (e1.south) -- (-3.700,-2.250) -- (-1.400,-2.250) -- (m2.north);
 \node[box,text width=1.8cm] (a0) at (1.4,-3) {Review};
-\draw[edge,] (a0) -- (e2);
+\draw[edge,] (a0.north) -- (1.400,-2.250) -- (3.700,-2.250) -- (e2.south);
 \node[box,text width=1.8cm] (a1) at (3.6999999999999997,-3) {Testing};
 \draw[edge,] (a1) -- (e2);
 \node[box,text width=1.8cm] (a2) at (6.0,-3) {Analysis};
-\draw[edge,] (a2) -- (e2);
-\node[box,text width=2.5cm,fill=black!20] (ag) at (-3.7,-4.6) {Agent};
+\draw[edge,] (a2.north) -- (6.000,-2.250) -- (3.700,-2.250) -- (e2.south);
+\node[box,text width=2.5cm,fill=white] (ag) at (-3.7,-4.6) {Agent};
 \node[box,text width=2.5cm] (re) at (3.7,-4.6) {Result};
-\node[head,text width=3.5cm] (im) at (0,-6.2) {Implementation};
-\draw[edge,] (m0) -- (ag);
-\draw[edge,] (re) -- (a0);
+\node[box,text width=3.5cm] (im) at (0,-6.2) {Implementation};
+\draw[edge,] (m0.south) -- (-6.000,-3.800) -- (-3.700,-3.800) -- (ag.north);
+\draw[edge,] (re.north) -- (3.700,-3.800) -- (1.400,-3.800) -- (a0.south);
 \draw[edge,] (m1) -- (ag);
 \draw[edge,] (re) -- (a1);
-\draw[edge,] (m2) -- (ag);
-\draw[edge,] (re) -- (a2);
-\draw[edge,] (ag) -- (im);
-\draw[edge,] (im) -- (re);
+\draw[edge,] (m2.south) -- (-1.400,-3.800) -- (-3.700,-3.800) -- (ag.north);
+\draw[edge,] (re.north) -- (3.700,-3.800) -- (6.000,-3.800) -- (a2.south);
+\draw[edge] (ag.south)--(-3.7,-6.2)--(im.west);
+\draw[edge] (im.east)--(3.7,-6.2)--(re.south);
 \begin{scope}[on background layer]
-\fill[black!4] (-7.1,.45) rectangle (-.3,-5.3);\fill[black!10] (.3,.45) rectangle (7.1,-5.3);
+\draw[draw=black!50,fill=white] (-7.1,.45) rectangle (-.3,-5.3);\draw[draw=black!50,fill=white] (.3,.45) rectangle (7.1,-5.3);
 \end{scope}
 \end{tikzpicture}

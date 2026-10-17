@@ -1,7 +1,7 @@
 {
   "source": "book/assets/c5-earliest-legible-last-safe.svg",
   "claim": "*Earliest legible, last safe.* A timeline runs from where work begins to consequence. Too-early sits where the property is still invisible; the earliest-legible boundary carries the first check; the last-safe boundary carries a re-check just before the point of no return.",
-  "topology": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary \u2014 the last point before the point of no return. The consequence sits at the end of the line.",
+  "topology": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary — the last point before the point of no return. The consequence sits at the end of the line.",
   "required_terms": [
     "too early property not yet legible",
     "earliest legible CHECK",
@@ -10,8 +10,32 @@
     "consequence",
     "point of no return"
   ],
-  "bw_encoding": "Too-early marker is open; earliest-legible CHECK light gray; last-safe RE-CHECK dark gray with dashed outer ring. Explicit labels and terminal X retain the semantic distinctions.",
+  "bw_encoding": "White/light/dark small timeline markers retain CHECK versus RE-CHECK; no text-bearing gray boxes. Dark marker exception is permitted by README rule 3.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "C.5 Put enforcement where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one"
+  "alt": "C.5 Put enforcement where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+    "candidate_sha256": "47c2cf938eb4498b3b00e7f4132536622e8880b401333c46d3e64e40b93c0889",
+    "fill": "White/light/dark small timeline markers retain CHECK versus RE-CHECK; no text-bearing gray boxes. Dark marker exception is permitted by README rule 3.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 105,
+      "width_bp": 379.309,
+      "height_bp": 110.345,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

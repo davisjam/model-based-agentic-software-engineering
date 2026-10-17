@@ -1,18 +1,42 @@
 {
   "source": "book/assets/c4-derive-obligation-set.svg",
   "claim": "*Required set minus present evidence.* The model derives what must be assured; that required set is compared against existing evidence; the intersection is covered, and the remainder is a gap that raises a finding.",
-  "topology": "A vertical flow. A model derives the set of things that must be assured \u2014 what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
+  "topology": "A vertical flow. A model derives the set of things that must be assured — what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
   "required_terms": [
     "MODEL",
-    "WHAT MUST BE ASSURED seams \u00b7 failure edges \u00b7 invariants",
-    "EXISTING EVIDENCE tests \u00b7 checks that actually exist",
+    "WHAT MUST BE ASSURED seams · failure edges · invariants",
+    "EXISTING EVIDENCE tests · checks that actually exist",
     "COVERED",
     "GAP",
     "FINDING",
     "Required set minus present evidence."
   ],
-  "bw_encoding": "Model-derived required and covered sets share light shade; gap and resulting finding visibly distinct from evidence. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Increased required-set/evidence separation by 3.5 mm.",
   "questions": [],
-  "alt": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence"
+  "alt": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
+    "candidate_sha256": "ad449ecfea70ef98cdf50c59a352e95f76dc762606879ece2b4a39c686d05b24",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 104,
+      "width_bp": 280.449,
+      "height_bp": 226.061,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

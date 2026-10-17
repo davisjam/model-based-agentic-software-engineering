@@ -7,5 +7,31 @@
   "redesign": "Current chapter6 emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.",
   "questions": [],
   "alt": "Seven chapters in order, with current chapter marked.",
-  "data": []
+  "data": [],
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+    "candidate_sha256": "ed35280b68bc21bc673c99be6d569c87f92a9f46fec74e0da94d17a756deb2bd",
+    "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
+    "bold": "Current chapter and navigation heading; other chapter labels regular.",
+    "routing": "Straight ordered chapter line with circular stations; numbered heading links to the chapter.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 143,
+      "width_bp": 426.477,
+      "height_bp": 75.949,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "part:6"
+    ]
+  }
 }

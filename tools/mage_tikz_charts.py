@@ -98,7 +98,7 @@ for part in range(1,8):
  for i,label in enumerate(labels):
   s+=r'\node[circle,draw,fill='+('black' if i+1==part else 'white')+',minimum size='+('10pt' if i+1==part else '6pt')+',inner sep=0pt] at ('+str(i*2.1)+',0) {};\n'
   s+=r'\node[align=center,text width=2cm,anchor=north'+(',font=\\bfseries' if i+1==part else '')+'] at ('+str(i*2.1)+',-.25) {'+label.replace('MAGE in Motion',r'MAGE in\\Motion')+'};\n'
- s+=r'\node[align=center,text width=14cm,font=\bfseries\fontsize{11}{13}\selectfont] at (6.3,1) {Chapter '+str(part)+' · '+chapter_names[part-1]+r'};'+'\n'
+ s+=r'\node[align=center,text width=14cm,font=\bfseries\fontsize{11}{13}\selectfont] at (6.3,1) {\magebookref{part:'+str(part)+'}{Chapter '+str(part)+'} · '+chapter_names[part-1]+r'};'+'\n'
  write(f'nav-subway-p{part}',s,f'Current chapter{part} emphasized with larger solid station and bold label; ordered spine retained; full chapter heading restored.',[])
 # Historical plots retain their historical window. Never substitute the newer series.
 import re,xml.etree.ElementTree as ET,hashlib
@@ -131,6 +131,14 @@ write('velocity-commits-per-week',axis(b,'ybar,bar width=13pt,xmin=.5,xmax=19.5,
 p=O/'receipts/velocity-commits-per-week.json';r=json.loads(generated[p]);r['questions']=['Original SVG contains 19 bars despite 20-week description. Confirm whether publisher edition should refresh to 20-week or 29-week evidence; current candidate preserves 19 bars.'];r['recovered_counts']=recovered;r['source_sha256']=hashlib.sha256(svg.read_bytes()).hexdigest();r['recovery_max_error']=1e-4;emit(p,json.dumps(r,indent=2)+'\n')
 
 for path,text in generated.items():
+    # The figure review is editorial evidence, separate from the data projection.
+    # Preserve that one field while still checking every generated receipt field.
+    if path.suffix == '.json' and path.exists():
+        previous=json.loads(path.read_text())
+        if 'style_review' in previous:
+            receipt=json.loads(text)
+            receipt['style_review']=previous['style_review']
+            text=json.dumps(receipt,indent=2)+'\n'
     if args.check:
         if not path.exists() or path.read_text()!=text:raise SystemExit("Stale chart projection: "+str(path))
     else:

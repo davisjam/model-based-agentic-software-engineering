@@ -1,9 +1,10 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[box,text width=5cm] (c) at (0,0) {Existing codebase};
 \node[box,text width=6cm] (s) at (0,-1.4) {Weak signals: primitive density, repeated shapes, component / boundary view};
 \node[head,text width=5cm] (p) at (0,-2.9) {Partition findings};
@@ -11,25 +12,25 @@
 \draw[edge,] (s) -- (p);
 \node[box,text width=3.8cm] (a0) at (-4.6,-4.3) {Legitimate shape};
 \node[box,text width=3.8cm] (b0) at (-4.6,-5.6) {Accept / exempt};
-\draw[edge,] (p) -- (a0);
+\draw[edge,] (p.south) -- (0.000,-3.600) -- (-4.600,-3.600) -- (a0.north);
 \draw[edge,] (a0) -- (b0);
 \node[box,text width=3.8cm] (a1) at (0,-4.3) {Mechanical debt};
 \node[box,text width=3.8cm] (b1) at (0,-5.6) {Codemod};
 \draw[edge,] (p) -- (a1);
 \draw[edge,] (a1) -- (b1);
 \node[box,text width=3.8cm] (a2) at (4.6,-4.3) {Latent concept};
-\node[box,text width=3.8cm,fill=black!10] (b2) at (4.6,-5.6) {Name the model};
-\draw[edge,] (p) -- (a2);
+\node[box,text width=3.8cm,fill=white] (b2) at (4.6,-5.6) {Name the model};
+\draw[edge,] (p.south) -- (0.000,-3.600) -- (4.600,-3.600) -- (a2.north);
 \draw[edge,] (a2) -- (b2);
-\node[box,text width=3.4cm,fill=black!10] (v) at (2.5,-7.1) {Typed vocabulary};
-\node[box,text width=3cm,fill=black!10] (r) at (6.1,-7.1) {Explicit relations};
-\draw[edge,] (b2) -- (v);
-\draw[edge,] (b2) -- (r);
+\node[box,text width=3.4cm,fill=white] (v) at (2.5,-7.1) {Typed vocabulary};
+\node[box,text width=3cm,fill=white] (r) at (6.1,-7.1) {Explicit relations};
+\draw[edge,] (b2.south) -- (4.600,-6.350) -- (2.500,-6.350) -- (v.north);
+\draw[edge,] (b2.south -| r.north) -- (r.north);
 \node[box,text width=5cm] (mi) at (4.3,-8.5) {Migrate consumers};
-\draw[edge,] (v) -- (mi);
-\draw[edge,] (r) -- (mi);
-\node[head,text width=5cm,fill=black!28] (en) at (4.3,-9.8) {Narrower enforcement\\types; lints; drift guard};
-\node[box,text width=5cm,fill=black!10] (st) at (4.3,-11.1) {Stronger model substrate};
+\draw[edge,] (v.south) -- (mi.north -| v.south);
+\draw[edge,] (r.south) -- (mi.north -| r.south);
+\node[head,text width=5cm,fill=white] (en) at (4.3,-9.8) {Narrower enforcement\\types; lints; drift guard};
+\node[box,text width=5cm,fill=white] (st) at (4.3,-11.1) {Stronger model substrate};
 \draw[edge,] (mi) -- (en);
 \draw[edge,] (en) -- (st);
 \draw[opt] (st.west)--(-.8,-11.1)--node[note,left,text width=2cm] {next pass}(-.8,-7.1);

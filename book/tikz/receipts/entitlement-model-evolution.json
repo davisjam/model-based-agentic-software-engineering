@@ -60,8 +60,8 @@
     "The implementation",
     "now consumes the model"
   ],
-  "bw_encoding": "Grayscale publication candidate. Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
-  "redesign": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+  "bw_encoding": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
+  "redesign": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries. Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
   "questions": [],
   "alt": "Four panels trace a finite-credit model through the introduction of unlimited entitlement, a stale admission model and a revised model. The dashed stale panel shows finite-only summation and an unlimited user reaching 0 less than 38 and REJECT. The strong revised panel preserves finite versus unlimited entitlement and leads to admit_unlimited plus explicit admission fields.",
   "review": {
@@ -100,5 +100,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
+    "candidate_sha256": "a62d01030b37ee081a60883ba112196913643eb8f8f545fa175f5a0cc6221aa6",
+    "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 29,
+      "width_bp": 414.814,
+      "height_bp": 353.559,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

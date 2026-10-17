@@ -13,7 +13,7 @@
     "Governed environment\\ and context; permissions and constraints; evidence and validators; admission; operational controls",
     "Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain."
   ],
-  "bw_encoding": "Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions. Fidelity pass: Restored within-band placement under lifecycle phases instead of collapsing responsibilities into centered prose lists; implementation receives bold emphasis in its own phase column.",
   "questions": [],
   "alt": "Across the top, the five lifecycle phases in order — Requirements, Design, Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The human engineering judgment band carries intent, abstractions, tradeoffs, acceptance, and adaptation. The fleet band carries implementation, analysis, transformation, and routine remediation, with implementation emphasized in bold under its lifecycle phase. Responsibilities are placed under their corresponding phase columns. The governed environment band carries models and context, permissions and constraints, evidence and validators, admission, and operational controls across all phases. Implementation shifts disproportionately toward the fleet, and human effort concentrates where consequential judgment and responsibility remain.",
@@ -24,5 +24,30 @@
     "height_pt": 260.5950012207031,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
+    "candidate_sha256": "61fcbf2042bdd861af915cc7d2c35b1a7bff2f298770baa823b688cb61a12c11",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Band headings and single Implementation focus retain bold; responsibilities stay in phase columns.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 87,
+      "width_bp": 406.634,
+      "height_bp": 260.595,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

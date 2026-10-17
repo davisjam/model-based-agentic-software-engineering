@@ -1,15 +1,39 @@
 {
   "source": "book/assets/c3-bidirectional-correspondence.svg",
   "claim": "*Correspondence runs both ways.* A two-way loop joins MODEL and REALITY. One arrow asks whether reality still satisfies the model, catching a wrong modeled fact; the other asks whether something important appeared outside the model, catching unmodeled reality.",
-  "topology": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it \u2014 this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model \u2014 this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
+  "topology": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it — this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model — this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
   "required_terms": [
     "MODEL what we claim is true",
     "REALITY the running system",
     "CLAIM: does reality still satisfy the model? Catches a wrong modeled fact.",
     "COVERAGE: did something important appear outside the model? Catches unmodeled reality."
   ],
-  "bw_encoding": "Claimed model is shaded versus white realized system; both directional checks remain explicit. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "One light model fill distinguishes claimed representation from realized system across reciprocal checks.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "C.3 Keep representation and reality in correspondence, checked in both directions"
+  "alt": "C.3 Keep representation and reality in correspondence, checked in both directions",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+    "candidate_sha256": "c991c9ecf967881f1545500e9b3ba4ef5fc6fe024ae6ad7ad1a51dd753e3c9ff",
+    "fill": "One light model fill distinguishes claimed representation from realized system across reciprocal checks.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Reciprocal correspondence uses separate upper/lower orthogonal routes aligned with existing external claim/coverage explanations.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 103,
+      "width_bp": 348.128,
+      "height_bp": 186.546,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

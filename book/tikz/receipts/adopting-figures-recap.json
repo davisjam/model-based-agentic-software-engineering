@@ -8,10 +8,39 @@
     "CHAPTER 5 Support-apparatus ratio  Understanding, constraining and evaluating autonomous work becomes a substantial engineering product. An observation, not a target.",
     "CHAPTER 5 Where engineering effort moves  Cheap realization shifts effort upstream to what must be true and downstream to whether it became true. Implementation remains."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section5.3 to source-art section6.3 in card only.",
   "questions": [
     "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section 5.3 to source-art section 6.3 in card only."
   ],
-  "alt": "Four text cards in a two-by-two grid summarize figures reused in this appendix, each identifying its home section or chapter and the idea to recall."
+  "alt": "Four text cards in a two-by-two grid summarize figures reused in this appendix, each identifying its home section or chapter and the idea to recall.",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "candidate_sha256": "e48e2b85359d59589ca4e070b506e3113f6f83fb29da67e91f426615f4e849e6",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 128,
+      "width_bp": 360.173,
+      "height_bp": 230.313,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "chapter:6.3-scope-conditions",
+      "chapter:3.4-governance-conversion",
+      "part:5",
+      "part:5"
+    ]
+  }
 }

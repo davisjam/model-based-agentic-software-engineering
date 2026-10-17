@@ -1,21 +1,22 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[box,text width=6cm] (w) at (0,0) {Recurring engineering work};
 \node[head,text width=6cm] (e) at (0,-1.4) {Engineer the environment};
 \draw[edge,] (w) -- node[midway,right,note,fill=white] {exposes judgment} (e);
-\node[box,text width=5cm,fill=black!15] (s) at (-3.4,-3.5) {\textbf{Support the reasoner}\\Models; knowledge; examples\\procedures; context; skills\\tools; evidence};
-\node[box,text width=5cm,fill=black!28] (en) at (3.4,-3.5) {\textbf{Enforce selected obligations}\\Constraints; validators\\permissions; gates; checks};
-\draw[edge,] (e) -- (s);
-\draw[edge,] (e) -- (en);
+\node[box,text width=5cm,fill=white] (s) at (-3.4,-3.5) {Support the reasoner\\Models; knowledge; examples\\procedures; context; skills\\tools; evidence};
+\node[box,text width=5cm,fill=white] (en) at (3.4,-3.5) {Enforce selected obligations\\Constraints; validators\\permissions; gates; checks};
+\draw[edge,] (e.south) -- (0.000,-2.450) -- (-3.400,-2.450) -- (s.north);
+\draw[edge,] (e.south) -- (0.000,-2.450) -- (3.400,-2.450) -- (en.north);
 \draw[opt] (s.east)--node[note,above,text width=1.4cm] {where feasible}(en.west);
-\node[box,text width=8cm,fill=black!8] (g) at (0,-5.7) {\textbf{Governed engineering environment}\\Reasoner attempts realization; mechanisms enforce selected obligations};
-\draw[edge,] (s) -- (g);
-\draw[edge,] (en) -- (g);
+\node[box,text width=8cm,fill=white] (g) at (0,-5.7) {Governed engineering environment\\Reasoner attempts realization; mechanisms enforce selected obligations};
+\draw[edge,] (s.south) -- (g.north -| s.south);
+\draw[edge,] (en.south) -- (g.north -| en.south);
 \node[box,text width=5cm] (r) at (0,-7.3) {Realized work};
 \draw[edge,] (g) -- (r);
-\draw[edge] (r.east)--(7,-7.3)--node[note,right,text width=1.5cm] {Observe outcomes and failures; improve environment}(7,0)--(w.east);
+\draw[edge] (r.east)--(7,-7.3)--node[note,right,text width=2cm] {Observe outcomes and failures; improve environment}(7,0)--(w.east);
 \end{tikzpicture}

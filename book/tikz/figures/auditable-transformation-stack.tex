@@ -1,5 +1,5 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
@@ -8,11 +8,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (n0) -- (n1);
 \node[box,text width=4cm] (n2) at (0,-3.0) {EMIT\\ persist a structured record};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=4cm] (n3) at (0,-4.5) {COVER\\ every mutation accounted for?};
+\node[box,text width=4cm] (n3) at (0,-4.85) {COVER\\ every mutation accounted for?};
 \draw[edge] (n2) -- (n3);
-\node[box,text width=4cm] (n4) at (0,-6.0) {READ\\ reconstruct history};
+\node[box,text width=4cm] (n4) at (0,-6.7) {READ\\ reconstruct history};
 \draw[edge] (n3) -- (n4);
-\node[box,text width=4cm,fill=black!20,line width=1pt] (n5) at (0,-7.5) {FIDELITY GATE\\ did semantics survive?};
+\node[box,text width=4cm,line width=1pt] (n5) at (0,-8.35) {FIDELITY GATE\\ did semantics survive?};
 \draw[edge] (n4) -- (n5);
-\node[note,text width=10cm] (t16) at (0,-8.5) {Every link is required. Attribution, completeness, readable history and product fidelity.};
+\node[note,text width=10cm] (t16) at (0,-9.55) {Every link is required. Attribution, completeness, readable history and product fidelity.};
 \end{tikzpicture}

@@ -1,7 +1,7 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
@@ -11,7 +11,7 @@
 \node[box,dashed,text width=4cm] (b) at (-3.5,-3.5) {Raw library};
 \draw[dashed] (a)--(b);\draw[line width=1.2pt] (-3.75,-2.2)--(-3.25,-2.7) (-3.25,-2.2)--(-3.75,-2.7);\node[note,anchor=west] at (-3.05,-2.45) {must not call};
 \node[box,text width=4cm] (c) at (3.5,-1.4) {Mutation verb};
-\node[box,text width=4cm,fill=black!28] (d) at (3.5,-3.5) {\textbf{MUST stamp}\\emit attribution\\evidence};
+\node[box,text width=4cm,fill=white] (d) at (3.5,-3.5) {MUST stamp\\emit attribution\\evidence};
 \draw[edge,] (c) -- node[midway,right,note,fill=white] {must call} (d);
 \node[note,text width=12cm] (nt) at (0,-4.8) {Both source-time rules restrict the admissible implementation space.};
 \end{tikzpicture}

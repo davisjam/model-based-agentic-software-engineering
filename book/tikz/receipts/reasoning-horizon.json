@@ -31,7 +31,7 @@
     "The causal spine",
     "Finite active state Reconstructionunavoidable Representationdetermines burden"
   ],
-  "bw_encoding": "Grayscale publication candidate. Obligation-level representation choice emphasized; raw implementation and purposeful-abstraction outcomes differentiated in gray. Causal text and fork retained.",
+  "bw_encoding": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
   "redesign": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
   "questions": [],
   "alt": "Two parallel paths contrast raw state with abstraction. The raw-state path proceeds through large active state, repeated reconstruction and possible loss of relevant structure to churn. The abstraction path reduces relevant state and reconstruction burden, extending coherent reasoning. A three-box causal spine below links finite active state, unavoidable reconstruction and representation-dependent burden.",
@@ -71,5 +71,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+    "candidate_sha256": "a76225fe8292c932f82e789b030315bec5b1c13ae2ad265ad940a913bbb28449",
+    "fill": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
+    "bold": "Shared focus, branch headings and causal-spine heading; outcome labels use equal regular weight.",
+    "routing": "Aligned downward flows and orthogonal branch rail; outcomes have equal visual weight.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 11,
+      "width_bp": 353.911,
+      "height_bp": 350.483,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

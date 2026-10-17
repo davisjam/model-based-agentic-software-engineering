@@ -1,7 +1,7 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
@@ -13,31 +13,31 @@
 \node[note,text width=2cm] (c00) at (-5.7,-1.4) {Cloudflare};
 \node[note,text width=3.1cm] (c01) at (-2.8,-1.4) {Institutional\\policy};
 \node[note,text width=5cm] (c02) at (1.8,-1.4) {Machine-readable\\requirements and review};
-\node[note,text width=2.3cm,fill=black!28,draw=black] (c03) at (6,-1.4) {Governance};
+\node[note,text width=2.3cm,draw=black,fill=black!5] (c03) at (6,-1.4) {Governance};
 \node[note,text width=2cm] (c10) at (-5.7,-2.8499999999999996) {Spotify};
 \node[note,text width=3.1cm] (c11) at (-2.8,-2.8499999999999996) {Fleet-scale change};
 \node[note,text width=5cm] (c12) at (1.8,-2.8499999999999996) {Targeting, verification,\\admission};
-\node[note,text width=2.3cm,fill=black!28,draw=black] (c13) at (6,-2.8499999999999996) {Governance};
+\node[note,text width=2.3cm,draw=black,fill=black!5] (c13) at (6,-2.8499999999999996) {Governance};
 \node[note,text width=2cm] (c20) at (-5.7,-4.3) {Shopify};
 \node[note,text width=3.1cm] (c21) at (-2.8,-4.3) {Organizational\\knowledge};
 \node[note,text width=5cm] (c22) at (1.8,-4.3) {Shared context and reusable agent infrastructure};
-\node[note,text width=2.3cm,fill=black!12,draw=black] (c23) at (6,-4.3) {Knowledge};
+\node[note,text width=2.3cm,fill=white,draw=black] (c23) at (6,-4.3) {Knowledge};
 \node[note,text width=2cm] (c30) at (-5.7,-5.75) {Siemens};
 \node[note,text width=3.1cm] (c31) at (-2.8,-5.75) {Model-first engineering};
 \node[note,text width=5cm] (c32) at (1.8,-5.75) {Persistent executable representations};
-\node[note,text width=2.3cm,fill=black!12,draw=black] (c33) at (6,-5.75) {Modeling};
+\node[note,text width=2.3cm,fill=white,draw=black] (c33) at (6,-5.75) {Modeling};
 \node[note,text width=2cm] (c40) at (-5.7,-7.199999999999999) {Zenseact};
 \node[note,text width=3.1cm] (c41) at (-2.8,-7.199999999999999) {Distributed\\autonomous work};
 \node[note,text width=5cm] (c42) at (1.8,-7.199999999999999) {Platform boundaries, context, delegation};
-\node[note,text width=2.3cm,fill=black!12,draw=black] (c43) at (6,-7.199999999999999) {Knowledge};
+\node[note,text width=2.3cm,fill=white,draw=black] (c43) at (6,-7.199999999999999) {Knowledge};
 \node[note,text width=2cm] (c50) at (-5.7,-8.65) {Uber};
 \node[note,text width=3.1cm] (c51) at (-2.8,-8.65) {Software-factory\\economics at scale};
 \node[note,text width=5cm] (c52) at (1.8,-8.65) {Benchmarks, model routing, skills, outcome measurement};
-\node[note,text width=2.3cm,fill=black!20,draw=black,double,double distance=.5pt] (c53) at (6,-8.65) {Knowledge + governance};
+\node[note,text width=2.3cm,draw=black,double,double distance=.5pt,fill=black!5] (c53) at (6,-8.65) {Knowledge + governance};
 \node[note,text width=2cm] (c60) at (-5.7,-10.1) {GitLab};
 \node[note,text width=3.1cm] (c61) at (-2.8,-10.1) {Trust at\\machine-scale\\development};
 \node[note,text width=5cm] (c62) at (1.8,-10.1) {Durable context, provenance, verification, governance};
-\node[note,text width=2.3cm,fill=black!20,draw=black,double,double distance=.5pt] (c63) at (6,-10.1) {Knowledge + governance};
+\node[note,text width=2.3cm,draw=black,double,double distance=.5pt,fill=black!5] (c63) at (6,-10.1) {Knowledge + governance};
 \draw[line width=.8pt] (-7,-11)--(7.3,-11);
 \node[note,font=\magefigurefont\fontsize{9}{11}\selectfont,text width=13cm] (nt) at (0,-11.8) {MAGE supplies the comparison vocabulary; it is not an eighth case. Emphasis is not a maturity ranking.};
 \end{tikzpicture}

@@ -11,7 +11,7 @@
     "Implementation labor falls [3pt]Model derivation and reconciliation labor falls [3pt]More live representations become economical",
     "The model / implementation price ratio changes"
   ],
-  "bw_encoding": "Commodity intelligence singled out from historical comparison; resulting economic claim strengthened. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Commodity intelligence singled out from historical comparison; resulting economic claim strengthened.",
   "questions": [],
   "alt": "A comparison across three columns. Older physical engineering: physical realization is\n    expensive and slow, a design representation is necessary before realization, and model maintenance is\n    amortized over expensive build and test cycles. Software historically: compilation and reproduction are\n    cheap, detailed implementation and change labor are expensive, the code is itself an executable and\n    precise representation, and maintaining a secondary model is a standing correspondence cost. Commodity\n    intelligence: implementation labor falls, model derivation and reconciliation labor falls, and more live\n    representations become economical. Software was never model-free; the economics simply favored thin\n    models. A downward arrow resolves the three columns to a single claim: the model-to-implementation price\n    ratio changes.",
@@ -22,5 +22,30 @@
     "height_pt": 244.638,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+    "candidate_sha256": "f5723c9b429df5c53d2253745e84e7c01b8a17f11dd24c915b94e1b43db27d5c",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Column headings and concluding economic claim retain bold; ordinary comparison prose regular.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 88,
+      "width_bp": 407.719,
+      "height_bp": 244.638,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

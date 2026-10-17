@@ -1,18 +1,18 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm,fill=black!15] (n0) at (0,0.0) {OPERATING MODEL};
-\node[box,text width=4cm,fill=black!6] (n1) at (0,-1.8) {WATCH\\ observe divergence};
+\node[box,text width=4cm,fill=black!8] (n0) at (0,0.0) {OPERATING MODEL};
+\node[box,text width=4cm] (n1) at (0,-1.8) {WATCH\\ observe divergence};
 \draw[edge] (n0) -- (n1);
-\node[box,text width=4cm,fill=black!6] (n2) at (0,-3.6) {RESPOND\\ bounded recovery};
+\node[box,text width=4cm] (n2) at (0,-3.6) {RESPOND\\ bounded recovery};
 \draw[edge] (n1) -- (n2);
 \node[box,text width=2cm] (runtime) at (4.5,-1.8) {runtime};
 \draw[edge] (runtime) -- (n1);
 \node[box,dashed,text width=2.7cm] (beat) at (-4.5,-2.7) {BEAT\\ liveness heartbeat};
-\draw[optional] (n1) -- (beat);
-\draw[optional] (beat) -- (n2);
+\draw[optional] (n1.west) -| (beat.north);
+\draw[optional] (beat.south) |- (n2.west);
 \node[box,dashed,text width=4cm] (block) at (0,-5.4) {BLOCK\\ prevent unsafe progress};
 \draw[optional] (n2) -- (block);
 \node[note,text width=10cm] (t17) at (0,-6.5) {Solid: required path. Dashed: optional enhancement.};

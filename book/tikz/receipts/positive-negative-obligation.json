@@ -11,7 +11,7 @@
     "MUST stamp\\ attribution evidence",
     "Both source-time rules restrict the admissible implementation space."
   ],
-  "bw_encoding": "Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained. Fidelity pass: Restored a crossed-out forbidden path rather than an X embedded in prose; kept prohibition annotation beside edge.",
   "questions": [],
   "alt": "Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge\n    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that\n    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,\n    from opposite directions.",
@@ -22,5 +22,30 @@
     "height_pt": 159.46499633789062,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
+    "candidate_sha256": "cf802c4e31838fab601004213379b025e0c3df0bfa5f3f7f599ea38f64b6fd18",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Forbidden dashed path and native cross preserved; must-call remains solid.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 46,
+      "width_bp": 356.695,
+      "height_bp": 159.465,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

@@ -29,10 +29,10 @@
     "Absent edge = not permitted (Not “never happens”)",
     "What is allowed, required or prohibited? Analyze rules, conflicts and consistency."
   ],
-  "bw_encoding": "Grayscale publication candidate. Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
-  "redesign": "Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
+  "bw_encoding": "Both compared service pairs white and equal; descriptive/normative headings and the crossed absent edge encode the distinction.",
+  "redesign": "Both compared service pairs white and equal; descriptive/normative headings and the crossed absent edge encode the distinction. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Two peer examples share a two-node topology. The descriptive edge says Service A calls B; the normative edge says Service A may call B. A separate crossed dashed arrow identifies an absent permission as not permitted. Text distinguishes observed fact from governing rule. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Two peer examples share a two-node topology. The descriptive edge says Service A calls B; the normative edge says Service A may call B. A separate crossed dashed arrow identifies an absent permission as not permitted. Text distinguishes observed fact from governing rule.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -48,5 +48,29 @@
       13.2139,
       5.8458
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
+    "candidate_sha256": "0e4f1ca3c0422b71ada6174c4ba4131e427598edabfedd7ff2b902b9ac77073b",
+    "fill": "Both compared service pairs white and equal; descriptive/normative headings and the crossed absent edge encode the distinction.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 25,
+      "width_bp": 374.568,
+      "height_bp": 165.707,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

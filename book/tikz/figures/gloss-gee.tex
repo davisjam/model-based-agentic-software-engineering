@@ -1,31 +1,31 @@
 % Six-node accumulation ontology; arrow directions follow the authored SVG.
 \begin{tikzpicture}[
  font=\fontsize{10}{12}\selectfont,>=Stealth,
- box/.style={draw=black!75,line width=.7pt,rounded corners=2pt,
-  fill=black!5,align=center,inner sep=7pt},
+ box/.style={draw=black!75,line width=.7pt,rounded corners=3pt,
+  fill=white,align=center,inner sep=7pt},
  label/.style={font=\fontsize{9}{11}\selectfont,fill=white,inner sep=3pt},
  edge/.style={-Stealth,line width=.7pt,draw=black!75},
  branch/.style={line width=.7pt,draw=black!75}]
-\node[box,text width=5cm,fill=black!18,line width=1pt] (obligation) at (0,0)
- {\textbf{Engineering obligation}\\\textit{What must hold}};
+\node[box,text width=5cm,fill=black!8,line width=.65pt] (obligation) at (0,0)
+ {Engineering obligation\\\textit{What must hold}};
 \node[box,text width=7cm] (mechanism) at (0,-1.9)
- {\textbf{Governance mechanism}\\Constraint · Sensor · Validator · Gate};
+ {Governance mechanism\\Constraint · Sensor · Validator · Gate};
 \draw[edge] (mechanism.north) -- node[label,right] {enforces} (obligation.south);
 \node[box,text width=5.6cm,minimum height=2.2cm] (work) at (-3.3,-4.8)
- {\textbf{Directly observable work}\\Action · artifact · execution result\\Local rules can act directly};
-\node[box,text width=5.6cm,minimum height=2.2cm,fill=black!18] (model) at (3.3,-4.8)
- {\textbf{Explicit model / invariant}\\Architecture · behavior\\Policy · bounds\\Exposes richer semantics};
+ {Directly observable work\\Action · artifact · execution result\\Local rules can act directly};
+\node[box,text width=5.6cm,minimum height=2.2cm,fill=black!8] (model) at (3.3,-4.8)
+ {Explicit model / invariant\\Architecture · behavior\\Policy · bounds\\Exposes richer semantics};
 \draw[branch] (mechanism.south) -- (0,-2.9) -- (-3.3,-2.9);
 \draw[branch] (0,-2.9) -- (3.3,-2.9);
 \draw[edge] (-3.3,-2.9) -- node[label,left] {acts on / observes} (work.north);
 \draw[edge] (3.3,-2.9) -- node[label,right] {reasons through} (model.north);
 \node[box,text width=8cm] (environment) at (0,-7.6)
- {\textbf{Governed engineering environment}};
+ {Governed engineering environment};
 \draw[branch] (environment.north) -- (0,-6.5) -- (-3.3,-6.5);
 \draw[branch] (0,-6.5) -- (3.3,-6.5);
 \draw[edge] (-3.3,-6.5) -- (work.south);
 \draw[edge] (3.3,-6.5) -- (model.south);
-\node[box,text width=10cm,fill=black!80,text=white] (capital) at (0,-9.5)
- {\textbf{Engineering capital}\\Models · mechanisms · procedures · canonical documentation};
+\node[box,text width=10cm,fill=white,text=black] (capital) at (0,-9.5)
+ {Engineering capital\\Models · mechanisms · procedures · canonical documentation};
 \draw[edge] (capital.north) -- node[label,right] {accumulates in} (environment.south);
 \end{tikzpicture}

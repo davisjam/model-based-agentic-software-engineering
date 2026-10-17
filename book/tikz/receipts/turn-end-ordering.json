@@ -9,7 +9,7 @@
     "One shared slot: the turn's closing message",
     "25 mechanisms; 3 conflict edges. Topological sort computes the order; a cycle is an error. Generic runtime enforcement is not yet implemented."
   ],
-  "bw_encoding": "Hooks paired by fill; modeled-order arrows strengthened separately from resource writes. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Hooks paired by fill; modeled-order arrows strengthened separately from resource writes.",
   "questions": [],
   "alt": "Three governance mechanisms, all firing when an agent ends a turn: one discourages premature stops, one prompts reflection on failures, one checks for stranded work. Black arrows labelled modeled order between them show the modeled order, left to right. All three write the same shared resource below — the turn's closing message. An annotation notes that the typed governance graph holds twenty-five mechanisms, that these three edges are its only conflicts, and that the order is computed by topological sort, with a cycle reported as an error.",
@@ -20,5 +20,30 @@
     "height_pt": 181.075,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
+    "candidate_sha256": "35818a756f9cba68f74d70733ba220891a9f3d76b94cb6f2e1dfb6dd88fe48d5",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Modeled ordering uses heavy horizontal arrows; writes use lighter aligned vertical ports.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 53,
+      "width_bp": 376.538,
+      "height_bp": 181.075,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

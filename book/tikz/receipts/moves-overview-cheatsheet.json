@@ -1,14 +1,14 @@
 {
   "source": "book/assets/moves-overview-cheatsheet.svg",
-  "claim": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2\u20134: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
-  "topology": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree \u2014 make one authoritative.\n    Copies drift from authority \u2014 derive, don't copy. Model and reality diverge \u2014 check correspondence.\n    Assurance has invisible holes \u2014 derive the obligation set. Checks are too early or too late \u2014 put enforcement\n    where the property is legible. Actions evade governance \u2014 close the action surface. Rules exist but aren't\n    present at the decision \u2014 deliver knowledge where the decision occurs. Why gets lost after the change \u2014 carry\n    cause with consequence. Operators reconstruct the same procedure \u2014 externalize the judgment. Changes have\n    hidden dependents \u2014 make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea \u2014 improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
+  "claim": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2–4: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
+  "topology": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree — make one authoritative.\n    Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.\n    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement\n    where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't\n    present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry\n    cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have\n    hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
   "required_terms": [
     "RECURRING PROBLEM",
     "ENGINEERING MOVE",
     "B.1  many truths disagree",
     "MAKE ONE AUTHORITATIVE",
     "B.2  copies drift from authority",
-    "DERIVE; DON\u2019T COPY",
+    "DERIVE; DON’T COPY",
     "B.3  model and reality diverge",
     "CHECK CORRESPONDENCE",
     "B.4  assurance has invisible holes",
@@ -17,7 +17,7 @@
     "PUT ENFORCEMENT WHERE LEGIBLE",
     "B.6  actions evade governance",
     "CLOSE THE ACTION SURFACE",
-    "B.7  rules exist but aren\u2019t present",
+    "B.7  rules exist but aren’t present",
     "DELIVER KNOWLEDGE AT DECISION",
     "B.8  rationale is lost after change",
     "CARRY CAUSE WITH CONSEQUENCE",
@@ -26,8 +26,43 @@
     "B.10  changes have hidden dependents",
     "MAKE DEPENDENCIES QUERYABLE"
   ],
-  "bw_encoding": "Problem and engineering-move columns regain their two distinct visual families. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Ten independent problem/move pairs retained verbatim; row centers widened to 1.22 cm to separate multiline labels. No topology or vocabulary change.",
   "questions": [],
-  "alt": "Figure B.0-1: ten recurring engineering problems, each paired with the move that retires it"
+  "alt": "Figure B.0-1: ten recurring engineering problems, each paired with the move that retires it",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "candidate_sha256": "c6ee8b2a5b9f34dc55494a266186f6e4c5aec071a7413d1125c83c78d4d4dbd9",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 100,
+      "width_bp": 368.677,
+      "height_bp": 359.077,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "chapter:appendix-b-make-fact-authoritative",
+      "chapter:appendix-b-derive-dont-copy",
+      "chapter:appendix-b-check-correspondence",
+      "chapter:appendix-b-derive-the-obligation-set",
+      "chapter:appendix-b-put-authority-where-legible",
+      "chapter:appendix-b-close-the-action-surface",
+      "chapter:appendix-b-deliver-knowledge-at-decision",
+      "chapter:appendix-b-carry-cause-with-consequence",
+      "chapter:appendix-b-externalize-judgment",
+      "chapter:appendix-b-make-dependencies-queryable"
+    ]
+  }
 }

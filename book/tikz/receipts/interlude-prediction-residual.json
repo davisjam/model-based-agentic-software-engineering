@@ -18,7 +18,7 @@
     "Explain residual",
     "Illustrative numbers, not benchmark measurements."
   ],
-  "bw_encoding": "Prediction, observation, residual and model-refinement roles regain distinct fills. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "Residual and explain-residual share 5%; all ordinary stages stay white.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Prediction, observation, residual and model-refinement roles regain distinct fills.",
   "questions": [],
   "alt": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it.",
@@ -29,5 +29,30 @@
     "height_pt": 226.289,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+    "candidate_sha256": "6e7befb8c32b516587b80c488de9ee697e92acbe05cde5f279159cdc5fb83b43",
+    "fill": "Residual and explain-residual share 5%; all ordinary stages stay white.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Residual and explanation share a pale role fill; three causes use equal white boxes.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 63,
+      "width_bp": 396.226,
+      "height_bp": 226.289,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

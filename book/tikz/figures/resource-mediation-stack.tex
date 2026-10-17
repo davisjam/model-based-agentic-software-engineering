@@ -1,10 +1,10 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm,fill=black!12] (n0) at (0,0.0) {RESOURCE POLICY\\ capacity · scope};
-\node[box,text width=4cm,fill=black!12,line width=1pt] (n1) at (0,-1.9) {MEDIATOR\\ admit $\leq$ N actors};
+\node[box,text width=4cm] (n0) at (0,0.0) {RESOURCE POLICY\\ capacity · scope};
+\node[box,text width=4cm,line width=1pt,fill=black!8] (n1) at (0,-1.9) {MEDIATOR\\ admit $\leq$ N actors};
 \draw[edge] (n0) -- (n1);
 \node[box,text width=4cm] (n2) at (0,-3.8) {SHARED RESOURCE};
 \draw[edge] (n1) -- (n2);

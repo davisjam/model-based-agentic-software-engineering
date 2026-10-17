@@ -30,8 +30,8 @@
     "How are accumulated controls governed as a system?",
     "3.5 · When Controls Become a System"
   ],
-  "bw_encoding": "Grayscale publication candidate. Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
-  "redesign": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
+  "bw_encoding": "All numbered station circles white and equal; position and titles convey sequence.",
+  "redesign": "All numbered station circles white and equal; position and titles convey sequence. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
   "alt": "Five numbered stations form a vertical chapter sequence. Each station has a separate title, question and section subtitle, preserving the navigation hierarchy.",
   "review": {
@@ -70,5 +70,40 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+    "candidate_sha256": "506730c5a72a28e81e2651355eb354adedfe6ed2dea521505417b3426e649801",
+    "fill": "All numbered station circles white and equal; position and titles convey sequence.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 38,
+      "width_bp": 362.056,
+      "height_bp": 288.686,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "chapter:3.1-where-obligations-can-be-enforced",
+      "chapter:3.1-where-obligations-can-be-enforced",
+      "chapter:3.2-models-and-the-semantic-gap",
+      "chapter:3.2-models-and-the-semantic-gap",
+      "chapter:3.3-constraints-sensors-validators-gates",
+      "chapter:3.3-constraints-sensors-validators-gates",
+      "chapter:3.4-governance-conversion",
+      "chapter:3.4-governance-conversion",
+      "chapter:3.5-when-guardrails-collide",
+      "chapter:3.5-when-guardrails-collide"
+    ]
   }
 }

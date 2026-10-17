@@ -13,7 +13,7 @@
     "Valid",
     "Solid: required composition. Dashed: useful enhancement, not required for the capability."
   ],
-  "bw_encoding": "Model/correspondence/valid state, live consumption, and consequential decision/gate regain families; optional enhancements remain white/dashed/open-arrowed. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Model/correspondence/valid state, live consumption, and consequential decision/gate regain families; optional enhancements remain white/dashed/open-arrowed.",
   "questions": [],
   "alt": "A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to\n    CONSUME (read the model live rather than copy its facts) to CORRESPONDENCE (compare model against the\n    world) to a disagreement decision that gates the disagreement or passes it as valid. Two enhancements\n    attach as dashed, open-arrowed strengtheners: EMIT (generate downstream artifacts from the model) and\n    DERIVE (compute correspondence from stable identities). They are useful but not required: a descriptive\n    model may stay advisory.",
@@ -24,5 +24,30 @@
     "height_pt": 280.243,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "candidate_sha256": "60b36c3faf086910d0db7e77e8ae52e49a0536bee980bc70fc8e500a225b540d",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "3 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Required path solid, enhancements dashed/open-arrowed; yes/no labels below diamond rail.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 92,
+      "width_bp": 361.491,
+      "height_bp": 288.782,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

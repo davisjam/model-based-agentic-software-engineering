@@ -1,5 +1,5 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
@@ -8,12 +8,12 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=3.5cm] (platform) at (0,0) {PLATFORM TEAM\\ auth · sessions\\ execution · safety};
 \draw[draw] (entry) -- (platform);
 \node[box,text width=2.7cm] (d0) at (4.5,1.4) {domain team 1};
-\draw[draw] (platform) -- (d0);
+\draw[draw] (platform.east)--(2.4,0) |- (d0.west);
 \node[box,text width=2.7cm] (d1) at (4.5,-0.20000000000000018) {domain team 2};
-\draw[draw] (platform) -- (d1);
+\draw[draw] (platform.east)--(2.4,0) |- (d1.west);
 \node[box,text width=2.7cm] (d2) at (4.5,-1.8000000000000003) {domain team 3};
-\draw[draw] (platform) -- (d2);
-\node[note,text width=12cm] (t15) at (0,-3.5) {Centralize shared mechanisms; distribute domain judgment.\\ Domain teams own agents, tools and instructions.};
-\node[gate,text width=10cm] (land) at (0,-5) {LANDS ON: Governed Engineering Environment};
-\draw (platform.south)--(0,-2.7)--(6.5,-2.7)--(6.5,-5)--(land.east);
+\draw[draw] (platform.east)--(2.4,0) |- (d2.west);
+\node[note,text width=12cm] (t15) at (0,-5) {Centralize shared mechanisms; distribute domain judgment.\\ Domain teams own agents, tools and instructions.};
+\node[box,text width=10cm] (land) at (0,-3.3) {LANDS ON: Governed Engineering Environment};
+\draw (platform.south)--(land.north);
 \end{tikzpicture}

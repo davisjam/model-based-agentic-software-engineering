@@ -1,22 +1,46 @@
 {
   "source": "book/assets/h8-product-gee.svg",
   "claim": "*From local MAGE adoption to the product GEE.* Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries the obligations that can responsibly be enforced. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.",
-  "topology": "Five lifecycle surfaces \u2014 Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance \u2014 are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
+  "topology": "Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
   "required_terms": [
     "Product discovery",
     "Engineering & realization",
     "Product management & maintenance",
-    "SHARED RELATIONS identity \u00b7 provenance temporal scope \u00b7 obligations",
+    "SHARED RELATIONS identity · provenance temporal scope · obligations",
     "Operations & incident response",
     "Assurance & compliance",
     "CONNECTED ENGINEERING KNOWLEDGE",
-    "AUTONOMOUS REASONING reconstruction \u00b7 synthesis novel judgment \u00b7 open choices",
-    "ALIGNMENT constraints \u00b7 validators permissions \u00b7 gates",
+    "AUTONOMOUS REASONING reconstruction · synthesis novel judgment · open choices",
+    "ALIGNMENT constraints · validators permissions · gates",
     "GOVERNED ENGINEERING ENVIRONMENT",
     "PRODUCT"
   ],
-  "bw_encoding": "Autonomous reasoning and alignment regain distinct visual modes; resulting governed environment matches alignment. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the assembled governed environment has light fill; inputs, evidence, reasoning and alignment peers stay white.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "From local MAGE adoption to the product GEE"
+  "alt": "From local MAGE adoption to the product GEE",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "candidate_sha256": "b7d2e13783c8e6c09b251c8cca16d357997838bf4214b7596d5a6be028509070",
+    "fill": "Only the assembled governed environment has light fill; inputs, evidence, reasoning and alignment peers stay white.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 124,
+      "width_bp": 389.77,
+      "height_bp": 348.908,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

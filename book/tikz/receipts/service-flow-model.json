@@ -60,10 +60,10 @@
     "OCR",
     "Each arrow declares a permitted relationship."
   ],
-  "bw_encoding": "Grayscale publication candidate. Modeled services gray contrasted with external Internet; exact permitted edges retained.",
-  "redesign": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
+  "bw_encoding": "All service and external nodes white; permitted relationships are carried by directed edges.",
+  "redesign": "All service and external nodes white; permitted relationships are carried by directed edges. Two orthogonal fan-out rails; only worker feeds the specialist-service rail.",
   "questions": [],
-  "alt": "The declared service graph connects Internet to web; web to worker, document editor and other; worker to generation, render and OCR. Every directed edge is a declared permitted relationship. An absent edge declares no relationship. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "The declared service graph connects Internet to web; web to worker, document editor and other; worker to generation, render and OCR. Every directed edge is a declared permitted relationship. An absent edge declares no relationship.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -79,5 +79,29 @@
       12.9764,
       7.5886
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+    "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+    "fill": "All service and external nodes white; permitted relationships are carried by directed edges.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Two orthogonal fan-out rails; only worker feeds the specialist-service rail.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 26,
+      "width_bp": 367.834,
+      "height_bp": 215.111,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

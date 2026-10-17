@@ -25,8 +25,8 @@
     "Durable state may not name an arti-",
     "fact recovery has not yet published."
   ],
-  "bw_encoding": "Grayscale publication candidate. State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
-  "redesign": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+  "bw_encoding": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
+  "redesign": "All ordered state peers white; the dashed forbidden/absent transition is preserved. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
   "alt": "Rounded state boxes show the required recovery ordering. A separate annotation explicitly marks what is not part of the model.",
   "review": {
@@ -65,5 +65,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+    "candidate_sha256": "fc17dfe5f2415bad3e6009040d1901eb8bbb1fd9cc8260d86135900b291226eb",
+    "fill": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 21,
+      "width_bp": 338.781,
+      "height_bp": 186.673,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

@@ -32,7 +32,7 @@
     "V alidate",
     "Remediated document Evidence"
   ],
-  "bw_encoding": "Grayscale publication candidate. Neutral processing nodes contrasted with document input/output; explicit fork/join and specialist-service side call retained.",
+  "bw_encoding": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
   "redesign": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",
   "questions": [],
   "alt": "A folded document creates a job that fans out into three chunks and rejoins at workers. Workers call four separate specialist services. Repaired pieces proceed through merge and validation, then branch into a folded remediated-document output and a separate evidence output.",
@@ -72,5 +72,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "candidate_sha256": "dad08d4240718b96dd8cec9769d8f0883bb7ae52e7005748672c05ff66a04ea2",
+    "fill": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
+    "bold": "No arbitrary bold node names: Job and Validate have the same regular weight as peers.",
+    "routing": "Chunks join a horizontal rail into Workers claim work; service fan-out/fan-in and outputs use right-angle routing.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 9,
+      "width_bp": 378.005,
+      "height_bp": 345.956,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

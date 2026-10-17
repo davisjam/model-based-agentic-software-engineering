@@ -14,10 +14,10 @@
     "Governed surface grows over time",
     "New models are admitted under constraints inside them. Active alignment operates within the protected region."
   ],
-  "bw_encoding": "Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "Only protected kernel is 5%; nested outlines identify later layers.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. Fidelity pass: Restored ellipsis in expanding protection rings, preserving open-ended extension beyond the named models.",
   "questions": [],
-  "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
+  "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region. Circular step-number markers run beside the procedure prose and are joined by downward arrows.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -25,5 +25,46 @@
     "height_pt": 255.4929962158203,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+    "candidate_sha256": "a926f402a917ecdda658a05cf183ac0baac3949a400a763dcee93562edf7035e",
+    "fill": "Only protected kernel is 5%; nested outlines identify later layers.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+    "visual_review": "Nested M1–M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 57,
+      "width_bp": 413.811,
+      "height_bp": 255.493,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors."
+  },
+  "shape_review": {
+    "index": 14,
+    "candidate": "book/tikz/figures/alignment-kernel.tex",
+    "change": "Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+    "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+    "candidate_sha256": "3cc59eaf14264e7b3e6631897d23ef0e9fa8e15fcc9b5b3538d95f6f2103a4f4",
+    "pdf_sha256": "53596dcca1b875068e39f40e4d0e8666ab17ffa8617678bf8cbb85ce3030604d",
+    "width_bp": 413.8110046386719,
+    "height_bp": 255.4929962158203,
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "compiler_diagnostics": [],
+    "geometry_findings": []
   }
 }

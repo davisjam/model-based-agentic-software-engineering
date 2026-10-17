@@ -1,17 +1,17 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[note,text width=10cm] (t5) at (0,1) {BAD · copied snapshot};
-\node[box,text width=2.6cm,fill=black!12] (model) at (-4.5,0) {MODEL};
-\node[box,text width=2.6cm,fill=black!22] (snapshot) at (0,0) {SNAPSHOT};
+\node[box,text width=2.6cm] (model) at (-4.5,0) {MODEL};
+\node[box,text width=2.6cm] (snapshot) at (0,0) {SNAPSHOT};
 \node[box,text width=2.6cm] (check) at (4.5,0) {CHECK};
 \draw[optional] (model) -- node[note,fill=white,inner sep=2pt] {copy} (snapshot);
 \draw[edge] (snapshot) -- (check);
 \node[note,text width=10cm] (t11) at (0,-1.1) {The model changes; the snapshot does not. The check trusts a stale answer.};
 \node[note,text width=10cm] (t12) at (0,-2.3) {GOOD · query at the point of use};
-\node[box,text width=2.6cm,fill=black!12] (model2) at (-4.5,-3.3) {MODEL};
+\node[box,text width=2.6cm] (model2) at (-4.5,-3.3) {MODEL};
 \node[box,text width=2.6cm] (check2) at (4.5,-3.3) {CHECK};
 \draw[edge] (model2) -- node[note,fill=white,inner sep=2pt] {query — no second editable truth} (check2);
 \node[note,text width=10cm] (t16) at (0,-4.6) {The next check sees the change: coupled to the interface, not yesterday’s answer.};

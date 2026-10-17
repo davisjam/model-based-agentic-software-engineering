@@ -30,10 +30,10 @@
     "Recurring failure → new / refined invariant",
     "One executable-model pattern, not the definition of executability."
   ],
-  "bw_encoding": "Grayscale publication candidate. Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
-  "redesign": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",
+  "bw_encoding": "All three containers and the invariant example white; labels and feedback distinguish their roles.",
+  "redesign": "All three containers and the invariant example white; labels and feedback distinguish their roles. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Three gray boxes form a model-to-invariants-to-checker chain. Invariants contains a separate example box stating that leased is equivalent to owner exists. External labels explain predicate support and evaluation; a dashed recurring-failure feedback path returns from Checker to Invariants.",
+  "alt": "Three white boxes form a model-to-invariants-to-checker chain. Invariants contains a separate example box stating that leased is equivalent to owner exists. External labels explain predicate support and evaluation; a dashed recurring-failure feedback path returns from Checker to Invariants.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -70,5 +70,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+    "candidate_sha256": "cd8865ae45b5aab2b9856029c7ad3a3566ff4b9fbdcc9e555fc3fd5eb3ac8cb7",
+    "fill": "All three containers and the invariant example white; labels and feedback distinguish their roles.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 36,
+      "width_bp": 393.596,
+      "height_bp": 180.74,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

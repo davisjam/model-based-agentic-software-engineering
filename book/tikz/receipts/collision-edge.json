@@ -8,7 +8,7 @@
     "COMMIT SET\\ resource",
     "Incompatible demands\\ conflict lives in the relation, not either control"
   ],
-  "bw_encoding": "Paired controls distinguished from shared resource and dashed conflict region. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Paired controls distinguished from shared resource and dashed conflict region. Fidelity pass: Restored check marks on both individually correct controls; conflict remains on their shared relation.",
   "questions": [],
   "alt": "Two control nodes — Control A, which requires a squashed commit, and Control B, which rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared resource, the commit set, that they act on. Below the commit set, a dashed-outline box marks the incompatible demands: the conflict belongs to the relation among the two controls and the resource they share, not to either control's own implementation. A check mark on each control indicates that each is individually correct.",
@@ -19,5 +19,30 @@
     "height_pt": 156.41900634765625,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
+    "candidate_sha256": "a91b31e27bc244289881e657c0fe63ee28f4082fccf9afcd122f7248a98f7f23",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Both native check marks retained; shared resource and dashed conflict distinct.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 52,
+      "width_bp": 362.365,
+      "height_bp": 156.539,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

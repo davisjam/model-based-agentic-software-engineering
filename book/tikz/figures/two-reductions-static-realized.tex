@@ -1,26 +1,26 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[head,text width=5.5cm] (hl) at (-3.8,1.3) {Computation graph\\What may compose};
 \node[head,text width=5.5cm] (hr) at (3.8,1.3) {Edit record\\What one run did emit};
-\node[n,text width=2.8cm,fill=black!15] (a) at (-5,0) {Analyze pass};
-\node[n,text width=2.6cm,fill=black!15] (gate) at (-2,-1.8) {Route gate};
-\node[n,text width=3cm,fill=black!15] (rem) at (-5,-3.6) {Remediate pass};
+\node[n,text width=2.8cm,fill=white] (a) at (-5,0) {Analyze pass};
+\node[n,text width=2.6cm,fill=white] (gate) at (-2,-1.8) {Route gate};
+\node[n,text width=3cm,fill=white] (rem) at (-5,-3.6) {Remediate pass};
 \draw[edge] (a) -- node[lab,left] {DATA\_FLOW} (rem);
-\draw[edge,dashed] (gate) -- node[lab,below] {CONTROL\_GATE} (rem);
-\node[n,text width=4.4cm,fill=black!20] (e0) at (4,0.0) {Session run};
-\node[n,text width=4.4cm,fill=black!20] (e1) at (4,-1.5) {PdfEdit · SetAltText};
+\draw[edge,dashed] (gate.south) -- (-2,-2.7) -- node[lab,above] {CONTROL\_GATE} (-4,-2.7) -- ([xshift=1cm]rem.north);
+\node[n,text width=4.4cm,fill=white] (e0) at (4,0.0) {Session run};
+\node[n,text width=4.4cm,fill=white] (e1) at (4,-1.5) {PdfEdit · SetAltText};
 \draw[edge] (e0) -- (e1);
-\node[n,text width=4.4cm,fill=black!20] (e2) at (4,-3.0) {PdfEdit · TagFigure};
+\node[n,text width=4.4cm,fill=white] (e2) at (4,-3.0) {PdfEdit · TagFigure};
 \draw[edge] (e1) -- (e2);
-\node[n,text width=4.4cm,fill=black!20] (e3) at (4,-4.5) {PdfEdit · SetReadingOrder};
+\node[n,text width=4.4cm,fill=white] (e3) at (4,-4.5) {PdfEdit · SetReadingOrder};
 \draw[edge] (e2) -- (e3);
-\draw[edge,dashed,-] (gate.east) -- node[lab,above] {not joined today} (e1.west);
-\node[note,text width=13cm] (n) at (0,-6) {Static structure and realized history; join by computation identity when a question needs it.};
+\draw[edge,dashed,-] (gate.east) -- (.3,-1.8) |- node[lab,above] {not joined today} (e1.west);
+\node[note,text width=13cm] (n) at (0,-6) {Static structure and realized history;\\join by computation identity when a question needs it.};
 
 \begin{scope}[on background layer]
 \node[draw=black!40,rounded corners=3pt,fit=(hl)(a)(gate)(rem),inner sep=10pt] {};

@@ -1,22 +1,22 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm,fill=black!20] (n0) at (0,0.0) {Remediation logic};
-\node[strong,text width=6cm,fill=black!20] (n1) at (0,-1.8) {Structured document model\\The sanctioned seam};
+\node[n,text width=6cm,fill=white] (n0) at (0,0.0) {Remediation logic};
+\node[strong,text width=6cm,fill=black!8] (n1) at (0,-1.8) {Structured document model\\The sanctioned seam};
 \draw[edge] (n0) -- node[lab,right] {operates through} (n1);
 \node[n,text width=6cm] (n2) at (0,-3.6) {Format-specific implementation};
 \draw[edge] (n1) -- node[lab,right] {realized through} (n2);
 \node[n,text width=2.3cm] (f0) at (-4.5,-5.5) {DOCX};
-\draw[edge] (n2) -- (f0);
+\draw[edge] (n2.south) -- (0,-4.5) -| (f0.north);
 \node[n,text width=2.3cm] (f1) at (-1.5,-5.5) {PPTX};
-\draw[edge] (n2) -- (f1);
+\draw[edge] (n2.south) -- (0,-4.5) -| (f1.north);
 \node[n,text width=2.3cm] (f2) at (1.5,-5.5) {XLSX};
-\draw[edge] (n2) -- (f2);
+\draw[edge] (n2.south) -- (0,-4.5) -| (f2.north);
 \node[n,text width=2.3cm] (f3) at (4.5,-5.5) {PDF};
-\draw[edge] (n2) -- (f3);
+\draw[edge] (n2.south) -- (0,-4.5) -| (f3.north);
 \node[note,text width=11cm] (lim) at (0,-7) {Marks where mutation belongs; does not itself prevent bypass.};
 \end{tikzpicture}

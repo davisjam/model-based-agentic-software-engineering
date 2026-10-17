@@ -9,7 +9,7 @@
     "Last safe boundary\\-establish what must hold",
     "Relevant state may change between checks."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
   "questions": [],
   "alt": "A horizontal timeline runs from work begins on the left to consequence on the right. Two diamond markers sit on the axis: an open diamond at the earliest legible boundary and a solid black diamond at the last safe boundary. The left diamond is the earliest legible boundary, where a property is caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is re-established before exposure. Between them, a note reads: relevant state may change between checks. The two boundaries answer different questions — when can this be decided honestly, and what is the last point a stale check can still be caught.",
@@ -20,5 +20,30 @@
     "height_pt": 107.205,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+    "candidate_sha256": "675c1fba8a9ed2cb4dce5856c8dc576a72996c52691dfd9814c30b3f8975f708",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Open and filled boundary diamonds retain earliest-versus-last-safe distinction.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 68,
+      "width_bp": 394.632,
+      "height_bp": 107.205,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
   }
 }

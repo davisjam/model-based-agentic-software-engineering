@@ -29,7 +29,7 @@
     "Measure, redesign, optimize, re-platform",
     "Retrospective stages, not a preplanned roadmap."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
   "questions": [],
   "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to September: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
@@ -40,5 +40,30 @@
     "height_pt": 386.227,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "candidate_sha256": "c612c7168167c246d3b91a88f2359041400479628932d83be7dcdfc816043755",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Seven dates/stages and aligned pressure/consequence columns retained; markers not process arrows.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 70,
+      "width_bp": 390.258,
+      "height_bp": 386.227,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

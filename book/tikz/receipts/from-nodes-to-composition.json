@@ -36,8 +36,8 @@
     "2 authored + 55 projected, typed relations",
     "= 33 payload + 24 control"
   ],
-  "bw_encoding": "Grayscale publication candidate. Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
-  "redesign": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+  "bw_encoding": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
+  "redesign": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks. Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
   "questions": [
     "The source description says 55 projected, while 33 + 24 = 57; diagram preserves explicit SVG equation: 2 authored + 55 projected = 57 total."
   ],
@@ -78,5 +78,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+    "candidate_sha256": "092e07ccaf7c82d6279c4726f58589b6c70452091900c701f8b4b784b382d674",
+    "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 19,
+      "width_bp": 390.839,
+      "height_bp": 275.475,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

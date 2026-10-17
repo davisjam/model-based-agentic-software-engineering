@@ -4,18 +4,42 @@
   "topology": "Four recurring engineering activities run left to right as a dominant lifecycle flow: Product\n    Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each\n    box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,\n    spanning the row as a cross-cutting activity that feeds up into all four. A wide arrow beneath the lifecycle row\n    shows observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a\n    lifecycle, not a waterfall.",
   "required_terms": [
     "PRODUCT DISCOVERY",
-    "What should we build? Why? hypotheses \u00b7 needs experiments \u00b7 decisions requirements",
+    "What should we build? Why? hypotheses · needs experiments · decisions requirements",
     "ENGINEERING & REALIZATION",
-    "How should it be realized? architecture \u00b7 behavior interfaces \u00b7 contracts analyses",
+    "How should it be realized? architecture · behavior interfaces · contracts analyses",
     "PRODUCT MGMT & MAINTENANCE",
-    "What should change? Why? tickets \u00b7 issues \u00b7 rationale acceptance \u00b7 history",
+    "What should change? Why? tickets · issues · rationale acceptance · history",
     "OPERATIONS & INCIDENTS",
-    "What is happening? Why? topology \u00b7 telemetry SLOs \u00b7 runbooks \u00b7 RCAs",
+    "What is happening? Why? topology · telemetry SLOs · runbooks · RCAs",
     "Observations, failures, evidence and new needs feed earlier activities.",
-    "ASSURANCE & COMPLIANCE \u00b7 cross-cutting What must be shown to be true? requirements \u00b7 policies \u00b7 threats \u00b7 traceability \u00b7 claims \u00b7 evidence"
+    "ASSURANCE & COMPLIANCE · cross-cutting What must be shown to be true? requirements · policies · threats · traceability · claims · evidence"
   ],
-  "bw_encoding": "Cross-cutting assurance band differs from ordinary lifecycle phases. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "One light cross-cutting assurance panel distinguishes its scope from individual lifecycle phases.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "MAGE across the product lifecycle"
+  "alt": "MAGE across the product lifecycle",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
+    "candidate_sha256": "1ee6faedd5b02396451b034662a16826b83704542233a5f619d657c1822ff2a8",
+    "fill": "One light cross-cutting assurance panel distinguishes its scope from individual lifecycle phases.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 120,
+      "width_bp": 391.354,
+      "height_bp": 239.625,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

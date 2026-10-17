@@ -1,21 +1,21 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 
-\node[n,fill=black!20,text width=4cm] (run) at (0,0) {\textbf{Run}};
-\node[head,text width=8cm] (op) at (0,-1.9) {Operation*\\One run, many operations; each records:};
+\node[n,fill=white,text width=4cm] (run) at (0,0) {Run};
+\node[note,font=\fontsize{10}{12}\selectfont,text width=8cm] (op) at (0,-1.9) {\textbf{Operation*}\\One run, many operations; each records:};
 \node[n,text width=2.5cm] (f0) at (-4.5,-3.3) {Target};
 \node[n,text width=2.5cm] (f1) at (-1.5,-3.3) {Mutation};
 \node[n,text width=2.5cm,font=\fontsize{9}{11}\selectfont] (f2) at (1.5,-3.3) {Responsible\\pass};
 \node[n,text width=2.5cm] (f3) at (4.5,-3.3) {Retained evidence};
 \begin{scope}[on background layer]
-\node[draw,line width=.9pt,rounded corners=2pt,fill=black!20,fit=(op)(f0)(f1)(f2)(f3),inner sep=10pt] (record) {};
+\node[draw,line width=.9pt,rounded corners=3pt,fill=white,fit=(op)(f0)(f1)(f2)(f3),inner sep=10pt] (record) {};
 \end{scope}
 \draw[edge] (run) -- node[lab,right] {contains} (record.north);
-\node[n,fill=black!4,text width=8cm] (views) at (0,-5.5) {Derived views\\Audit · debugging · changelog};
+\node[n,fill=white,text width=8cm] (views) at (0,-5.5) {Derived views\\Audit · debugging · changelog};
 \draw[edge] (record.south) -- node[lab,right] {derive} (views);
 \end{tikzpicture}

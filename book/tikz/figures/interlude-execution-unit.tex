@@ -1,12 +1,13 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=12cm] (ha) at (0,.6) {(a) Whole-document execution};
 \node[box,text width=2cm] (d) at (-5,-1.7) {Document};
-\node[box,text width=5.5cm,fill=black!7] (w) at (0,-1.7) {\textbf{Long-running Kubernetes worker}\\Full document state and media resident\\GenAI requests sourced from memory};
+\node[box,text width=5.5cm,fill=white] (w) at (0,-1.7) {Long-running Kubernetes worker\\Full document state and media resident\\GenAI requests sourced from memory};
 \node[box,text width=2cm] (o) at (5,-1.7) {Output};
 \draw[edge,] (d) -- (w);
 \draw[edge,] (w) -- (o);
@@ -14,15 +15,15 @@
 \node[box,text width=2cm] (d2) at (-5,-6.1) {Document};
 \node[box,text width=2cm] (merge) at (2,-6.1) {Merge};
 \node[box,text width=2cm] (out) at (5,-6.1) {Output};
-\node[box,text width=2.9cm,fill=black!20] (w0) at (-1.6,-4.9) {Pages 1--10 worker};
-\draw[edge,] (d2) -- (w0);
-\draw[edge,] (w0) -- (merge);
-\node[box,text width=2.9cm,fill=black!20] (w1) at (-1.6,-6.1) {Pages 11--20 worker};
+\node[box,text width=2.9cm,fill=white] (w0) at (-1.6,-4.9) {Pages 1--10 worker};
+\draw[edge,] (d2.east) -- (-3.525,-6.1) -- (-3.525,-4.9) -- (w0.west);
+\draw[edge,] (w0.east) -- (0.425,-4.9) -- (0.425,-6.1) -- (merge.west);
+\node[box,text width=2.9cm,fill=white] (w1) at (-1.6,-6.1) {Pages 11--20 worker};
 \draw[edge,] (d2) -- (w1);
 \draw[edge,] (w1) -- (merge);
-\node[box,text width=2.9cm,fill=black!20] (w2) at (-1.6,-7.3) {Pages 21--30 worker};
-\draw[edge,] (d2) -- (w2);
-\draw[edge,] (w2) -- (merge);
+\node[box,text width=2.9cm,fill=white] (w2) at (-1.6,-7.3) {Pages 21--30 worker};
+\draw[edge,] (d2.east) -- (-3.525,-6.1) -- (-3.525,-7.3) -- (w2.west);
+\draw[edge,] (w2.east) -- (0.425,-7.3) -- (0.425,-6.1) -- (merge.west);
 \draw[edge,] (merge) -- (out);
 \node[note,text width=11cm] (nt) at (0,-8.6) {Each worker holds less document state; media representation is unchanged.};
 \end{tikzpicture}

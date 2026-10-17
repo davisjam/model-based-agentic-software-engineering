@@ -9,5 +9,29 @@
   "alt": "The Controls Accumulate. Project-specific lint files (definition validated against this chapter's snapshot counts), gate/check scripts (independent definition), and system-model files at each week's last commit. The four-snapshot growth curve of the earlier draft, resolved into a 29-week series: flat through week 8, a sharp takeoff at weeks 9\u201311, then cumulative growth decoupled from weekly realization volume.",
   "data": [
     "control_growth_weekly.csv"
-  ]
+  ],
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "7aa3f688c788999ab0b2f2dd7390107b76424824ed67d002d20acb4b1aba84c8",
+    "candidate_sha256": "2b84dfa58eb0e3e20406fcc6bbc2b2b8a73c684d535a34d38b3a5aa373a27a89",
+    "fill": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction. Quantitative marks may use darker tones; text remains on white.",
+    "bold": "Plot/panel headings only; axes, annotations, values and legends are legible at native size.",
+    "routing": "Quantitative positions, bars, line patterns and markers preserve the chart data; no process-edge routing is implied.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 73,
+      "width_bp": 436.005,
+      "height_bp": 227.096,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

@@ -11,7 +11,7 @@
     "Throttle; soft completion",
     "Response follows the obligation attached to the quantity."
   ],
-  "bw_encoding": "Observe remains white, adaptation light gray, admission gate dark gray: three policy modes restored. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Observe remains white, adaptation light gray, admission gate dark gray: three policy modes restored. Fidelity pass: Moved dormant-unless-configured caveat out of gate node into an external annotation, as in original.",
   "questions": [],
   "alt": "A single cost and usage model is read through a policy attached to the value. That policy\n    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and\n    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant\n    unless configured. The appropriate response follows from the obligation attached to the measurement, not\n    from a maturity sequence.",
@@ -22,5 +22,30 @@
     "height_pt": 193.9340057373047,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
+    "candidate_sha256": "a86c462bc3dfc48e925708617e57ee78306545f6275dd3fa40bc58059e574aaa",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Observe/adapt/gate remain named alternatives; dormant caveat stays outside gate.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 45,
+      "width_bp": 379.373,
+      "height_bp": 193.998,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

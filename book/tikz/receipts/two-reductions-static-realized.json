@@ -31,8 +31,8 @@
     "Static structure and realized history; join by com-",
     "putation identity when a question needs it."
   ],
-  "bw_encoding": "Grayscale publication candidate. Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
-  "redesign": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
+  "bw_encoding": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
+  "redesign": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history. Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
   "questions": [],
   "alt": "Separate framed panels contrast the static system model with realized history. Payload and control relations use distinct line conventions across the reductions.",
   "review": {
@@ -71,5 +71,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+    "candidate_sha256": "12d443c9c35f85a586be12d9191b1c286fb4c5620e0a1f6fc5e8dd65a6a2de14",
+    "fill": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 32,
+      "width_bp": 410.766,
+      "height_bp": 247.258,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

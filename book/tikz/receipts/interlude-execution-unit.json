@@ -16,7 +16,7 @@
     "Pages 21--30 worker",
     "Each worker holds less document state; media representation is unchanged."
   ],
-  "bw_encoding": "Single resident execution versus partitioned workers distinguished while retaining input/output neutrality. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Single resident execution versus partitioned workers distinguished while retaining input/output neutrality.",
   "questions": [],
   "alt": "Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes\n    worker that holds the full document state and its media resident in memory, sources GenAI requests from\n    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range\n    partitions, each handled by a smaller worker holding only its range; the results are recombined into the\n    output. Chunking lowers per-worker memory without changing how document media is represented.",
@@ -27,5 +27,30 @@
     "height_pt": 283.896,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+    "candidate_sha256": "bee0c692767be72d5597ce69731a00ccfa7dc43b7c744c175ade59eaa02ce894",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Whole-document execution versus three parallel page workers; short side rails split and merge.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 58,
+      "width_bp": 356.695,
+      "height_bp": 283.896,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

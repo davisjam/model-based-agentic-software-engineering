@@ -22,7 +22,7 @@
     "Coverage gap",
     "Stable identities join three views; each answers a different engineering question."
   ],
-  "bw_encoding": "Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. Fidelity pass: Routed dashed bidirectional conflict edge above controls so the dash pattern is visible instead of collapsing into two touching arrowheads.",
   "questions": [],
   "alt": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs.",
@@ -33,5 +33,30 @@
     "height_pt": 204.90899658203125,
     "monochrome": true,
     "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
+    "candidate_sha256": "31408b26241e2134ff8a004883af7f8ac5d865eec2be864832a6ec89d8250a74",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "A/B/C stable identities, dashed conflict, gap and orphan survive across three views.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 54,
+      "width_bp": 424.727,
+      "height_bp": 204.909,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

@@ -19,7 +19,7 @@
     "Stronger model substrate",
     "Weak signals locate the work; they do not dictate the remedy."
   ],
-  "bw_encoding": "Named model and representation products share fill; narrower enforcement has distinct darker emphasis; acceptance and codemod branches neutral. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Named model and representation products share fill; narrower enforcement has distinct darker emphasis; acceptance and codemod branches neutral.",
   "questions": [],
   "alt": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy.",
@@ -30,5 +30,30 @@
     "height_pt": 340.947,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
+    "candidate_sha256": "422be2857cad505dbd52e5f62b76ccf2b240f9f4451c4635ce7b68ed44c9f071",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "6 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Three diagnoses and typed vocabulary/relations fork remain; dashed next-pass continuation unchanged.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 65,
+      "width_bp": 416.223,
+      "height_bp": 340.947,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

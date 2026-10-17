@@ -44,6 +44,88 @@ publication. The regular release PDF and all original assets remain unchanged.
 PDF structure checks verify tags and alternate text; they do not certify complete
 accessibility or replace review of the separate HTML edition.
 
+## Publisher grayscale drawing guidelines
+
+These rules govern the MAGE TikZ edition. The goal is readable structure with a
+small number of meaningful visual distinctions, not a gray substitute for every
+color in the web artwork. Apply these rules alongside the original-versus-candidate
+fidelity checklist below.
+
+1. **Start with white.** Ordinary nodes, artifacts, evidence and outputs use white
+   interiors and dark text. A gray fill must explain a role or grouping that is
+   needed to read the argument. If removing the fill loses no information, remove it.
+2. **Keep the tonal vocabulary small.** Prefer no fill or one light gray role per
+   diagram. Two gray roles are justified only when they encode a named distinction
+   that labels, placement or a legend also convey. Do not assign a different tone
+   to each stage, importance level, source color or branch merely for variety.
+3. **Protect text contrast.** Text-bearing boxes use white or at most 15% black
+   (TikZ `black!15`); normally 5–10% is enough for a group. Never place black body
+   labels on medium/dark gray, as happened in Figure 1.6. Reserve dark fills for
+   small selected-state markers or short badges with white text. Inspect the final
+   printed size, not only an enlarged screen view. Chart marks may use a wider
+   tonal range when their labels remain on white.
+4. **Separate grouping from emphasis.** A thin boundary, heading and whitespace
+   usually suffice for a container. Do not combine a broad gray panel, shaded child
+   boxes, a heavy border and bold text without separate reasons for each. A white
+   artifact inside a lightly shaded territory remains white; evidence is not a
+   special gray category by default.
+5. **Use typography as a hierarchy.** Bold is for figure/panel headings or one
+   explicitly identified focus. Peer nodes have the same weight. Ordinary process
+   names such as Job and Validate remain regular. Use regular text for node labels
+   and smaller but legible text for explanatory annotations; preserve annotation
+   placement outside boxes when it explains the drawing rather than names a node.
+6. **Route process edges orthogonally.** Use horizontal/vertical segments, explicit
+   ports and short right-angle bends. Fan-out/fan-in uses a shared rail or separate
+   aligned ports, with clear direction. Do not converge diagonal arrows on a tiny
+   point. Avoid long wraparound routes, crossings of unrelated boxes or text, and
+   arrowheads laid along a border. Reposition nodes before adding routing detours.
+   Diagonals are appropriate only when geometry itself carries meaning (plots,
+   triangles, radial relations, or literal expansion guides); record the reason.
+7. **Preserve distinct relation meanings.** Use solid arrows for ordinary directed
+   flow; dashed/dotted lines only for named optional, feedback, excluded or detail
+   relations. Preserve expansion guides, forbidden-path crosses, warning/check
+   symbols and admission marks. Do not remove semantic cues to simplify the page.
+8. **Compare alternatives fairly.** Align peer paths and give their ordinary nodes
+   equal visual weight. Explain differing outcomes in words; do not imply that a
+   darker box is more important, worse or more authoritative unless that mapping is
+   explicitly intended. The reasoning-horizon paths need readable structure, not a
+   ladder of gray tones.
+9. **Prove legibility at output size.** Keep authored text at least 9 pt (normally
+   10–11 pt); enlarge/reflow before shrinking. Check all labels, line separation,
+   arrow entry points and white-on-dark badges in rendered output. Compiler and
+   geometry checks supplement visual inspection; they cannot establish meaning.
+10. **Use friendly boxes and meaningful shapes.** Ordinary process and concept
+    boxes have modest rounded corners (about 3 pt at print size). Keep straight
+    horizontal/vertical connectors; the corner treatment of a box does not imply
+    curved routing. Preserve document folds, stacked model cards, circular step
+    numbers, state ellipses, decision diamonds and other recognizable source cues.
+    Vary shapes only to distinguish a named role; do not turn every object into the
+    same rectangle or add a new shape solely for decoration.
+11. **Record the design decision.** For each candidate, state which role (if any)
+    uses fill, what bold signifies, and any routing exception. Compare with the
+    original to ensure that simplification preserves the relationships and cues.
+    When a candidate breaks these rules, fix it or document a specific exception;
+    a generic claim that grayscale is allowed is not a justification.
+
+## Clickable book references
+
+Use `\magebookref{stable-label}{printed reference}` for explicit chapter,
+section, figure, table and appendix references inside a drawing. For example,
+`\magebookref{part:4}{Chapter 4}`. Link the reference itself, not every ordinary
+node label. Navigation diagrams may link their numbered destinations. Keep the
+printed wording useful on paper; no blue color or visible link border is added.
+
+PDF inclusion discards annotations, so the pool records the native reference
+rectangles and the book recreates tagged internal links over them. The assembler
+rejects missing destinations and checks every final region against the graphic's
+independently recorded position and the intended PDF destination. The source gate
+also catches explicit numbered references left as inert text. Standalone publisher
+sources print references normally without dangling external URLs.
+
+`style-review.json` records the latest sparse-shading and shape review of all 144
+candidates, including each fill/bold/routing decision, current source hashes and
+compiled proof measurements. Earlier grayscale/fidelity ledgers remain historical.
+
 ## Grayscale and geometry review
 
 Grayscale includes white, gray fills, shading, patterns, dashed lines and line

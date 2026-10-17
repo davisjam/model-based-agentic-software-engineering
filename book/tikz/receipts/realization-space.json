@@ -12,10 +12,10 @@
     "Acceptable realizations Satisfy both",
     "Each dot is a distinct possible realization; acceptable choices retain degrees of freedom."
   ],
-  "bw_encoding": "Grayscale publication candidate. Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
-  "redesign": "Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
+  "bw_encoding": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
+  "redesign": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks. Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
   "questions": [],
-  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -31,5 +31,29 @@
       12.3515,
       8.7442
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
+    "candidate_sha256": "351908edb72d249bfb7d49e861aef6ff3d16a37ba0979125a66af8e0b4e0ca3a",
+    "fill": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
+    "bold": "Bold figure heading and one explicitly identified focus: acceptable realizations in the intersection.",
+    "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 13,
+      "width_bp": 350.12,
+      "height_bp": 247.867,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

@@ -21,8 +21,8 @@
     "How many active?",
     "One represented state, several engineering questions."
   ],
-  "bw_encoding": "Grayscale publication candidate. Common gray for three purpose views contrasted with represented lease state; peer status retained.",
-  "redesign": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
+  "bw_encoding": "Shared state and three purpose views white; labels and italic questions distinguish the views.",
+  "redesign": "Shared state and three purpose views white; labels and italic questions distinguish the views. Shared rail from represented state to three equal views.",
   "questions": [],
   "alt": "Separate model-purpose headings and italic questions organize ownership and lease-overlap views. State and history information remain distinct, with evidence supporting the overlap analysis.",
   "review": {
@@ -61,5 +61,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
+    "candidate_sha256": "f891361aa77bd659ea562ce10523c6dc8091eb984b7dfef52869e74e75198426",
+    "fill": "Shared state and three purpose views white; labels and italic questions distinguish the views.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Shared rail from represented state to three equal views.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 24,
+      "width_bp": 376.338,
+      "height_bp": 141.201,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

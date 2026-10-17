@@ -1,5 +1,5 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
 edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
@@ -11,16 +11,16 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \foreach \i/\txt in {0/{Tool-mediated action},1/{Context management},2/{Interposition},3/{Parallel execution}} {
  \node[n,text width=5cm,font=\fontsize{10}{12}\selectfont] (h\i) at (3.5,-.8-\i*.9) {\txt};}
 \begin{scope}[on background layer]
-\node[draw,rounded corners=3pt,fill=black!20,fit=(fh)(f0)(f3),inner sep=7pt] (foundation) {};
-\node[draw,rounded corners=3pt,fill=black!5,fit=(hh)(h0)(h3),inner sep=7pt] (harness) {};
+\node[draw,rounded corners=3pt,fill=white,fit=(fh)(f0)(f3),inner sep=7pt] (foundation) {};
+\node[draw,rounded corners=3pt,fill=white,fit=(hh)(h0)(h3),inner sep=7pt] (harness) {};
 \end{scope}
-\node[head,text width=9cm] (eh) at (0,-5) {Engineered Environment};
-\node[note,text width=10cm] (detail) at (0,-5.55) {Models · obligations · evidence · controls};
-\node[n,fill=black!20,text width=5.4cm] (agent) at (0,-7) {\textbf{Agent}\\A tool-using reasoner};
+% Two symmetric short routes enter distinct top ports; the enclosure is named below.
+\node[n,text width=6cm,minimum height=1cm] (agent) at (0,-5.6) {Agent\\A tool-using reasoner};
+\node[head,text width=9cm] (eh) at (0,-6.8) {Engineered Environment};
+\node[note,text width=10cm] (detail) at (0,-7.3) {Models · obligations · evidence · controls};
 \begin{scope}[on background layer]
-\node[draw,line width=.9pt,rounded corners=3pt,fill=black!10,fit=(eh)(detail)(agent),inner xsep=1.5cm,inner ysep=.5cm] (env) {};
+\node[draw,line width=.65pt,rounded corners=3pt,fill=black!5,fit=(eh)(detail)(agent),inner xsep=1cm,inner ysep=.35cm] (env) {};
 \end{scope}
-\draw[edge] (foundation.south) -- (-3.5,-4.2) -- (-5.5,-4.2) -- (-5.5,-7) -- (agent.west);
-\draw[edge] (harness.south) -- (3.5,-4.2) -- (5.5,-4.2) -- (5.5,-7) -- (agent.east);
-
+\draw[edge] (foundation.south) -- (-3.5,-4.35) -- (-1.8,-4.35) -- (agent.north -| -1.8,0);
+\draw[edge] (harness.south) -- (3.5,-4.35) -- (1.8,-4.35) -- (agent.north -| 1.8,0);
 \end{tikzpicture}

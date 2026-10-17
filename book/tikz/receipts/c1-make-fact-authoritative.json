@@ -1,6 +1,6 @@
 {
   "source": "book/assets/c1-make-fact-authoritative.svg",
-  "claim": "*One authoritative representation.* BEFORE \u2014 copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER \u2014 one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.",
+  "claim": "*One authoritative representation.* BEFORE — copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER — one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.",
   "topology": "Before: three copies of the same fact each feed a separate consumer, and because each copy can\n    change independently, disagreement between them is an ordinary state. After: one authoritative representation\n    carries the fact, and the three consumers derive or query it from that single source, so disagreement becomes\n    detectable or impossible.",
   "required_terms": [
     "BEFORE",
@@ -18,8 +18,32 @@
     "Independent copies can disagree.",
     "Derive / query: disagreement becomes detectable or impossible."
   ],
-  "bw_encoding": "Independent copies share light shade; one authoritative representation is darker and heavier. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Only the one authoritative representation is lightly shaded, contrasting it with independent copies and derived consumers.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from"
+  "alt": "C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "812b0b9440a2d77fd13f3405930369e895146d7426bea4ed18f4ae4a2e2bfbb5",
+    "candidate_sha256": "6095fe98e3b24642c6bb193907aa133ca99eee81e75f60ed6eaaaa0b3990a2c7",
+    "fill": "Only the one authoritative representation is lightly shaded, contrasting it with independent copies and derived consumers.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 101,
+      "width_bp": 386.749,
+      "height_bp": 171.218,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

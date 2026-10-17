@@ -65,10 +65,10 @@
     "Breadth · industrial accounts Variation and alternatives",
     "A stronger basis for theory Comparison refines; it does not validate."
   ],
-  "bw_encoding": "Grayscale publication candidate. Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
-  "redesign": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
+  "bw_encoding": "One 8% role marks emerging/refined theory and its resulting basis; empirical cases and comparison nodes white.",
+  "redesign": "One 8% role marks emerging/refined theory and its resulting basis; empirical cases and comparison nodes white. Orthogonal depth/breadth fan-out and shared-rail join replace diagonal convergence.",
   "questions": [],
-  "alt": "Five stages descend: the longitudinal DocAble case, early MAGE, independent industrial accounts, comparative reconstruction and MAGE theory. Separate branches attribute depth to the originating case and breadth to the industrial accounts; together they strengthen the theory’s basis. Comparative reconstruction refines rather than validates the theory. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Five stages descend: the longitudinal DocAble case, early MAGE, independent industrial accounts, comparative reconstruction and MAGE theory. Separate branches attribute depth to the originating case and breadth to the industrial accounts; together they strengthen the theory’s basis. Comparative reconstruction refines rather than validates the theory.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -83,6 +83,32 @@
     "native_dimensions_cm": [
       11.2764,
       12.8201
+    ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
+    "candidate_sha256": "38495c8a7e24aab98c3b524b29acd0aa317d3196fd4241efa929e186a3c4f51d",
+    "fill": "One 8% role marks emerging/refined theory and its resulting basis; empirical cases and comparison nodes white.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Orthogonal depth/breadth fan-out and shared-rail join replace diagonal convergence.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 6,
+      "width_bp": 319.646,
+      "height_bp": 363.404,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "part:6"
     ]
   }
 }

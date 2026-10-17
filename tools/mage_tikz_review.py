@@ -9,7 +9,7 @@ import argparse,json,re,shutil,sys,subprocess,tempfile,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
-import latex_build,mage_assets,mage_latex
+import latex_build,mage_assets,mage_latex,mage_tikz_links
 from mage_cover import _text
 from pypdf import PdfReader
 BASE=ROOT/'book/tikz'
@@ -30,6 +30,7 @@ def compile_candidates(partial=False):
     paths=[BASE/'figures'/f"{Path(r['source']).stem}.tex" for r in records]
     for r,p in zip(records,paths):
         if not p.exists():raise ValueError('Missing candidate: '+str(p))
+        mage_tikz_links.check_source(p.read_text())
         receipt=BASE/'receipts'/f'{p.stem}.json'
         info=json.loads(receipt.read_text())
         if not info.get('alt'):raise ValueError('Missing alternate text: '+str(receipt))
@@ -37,6 +38,7 @@ def compile_candidates(partial=False):
     driver.write_text(r'''\documentclass{article}
 \usepackage[paperwidth=22cm,paperheight=22cm,margin=1cm]{geometry}
 \newcommand{\DoNotLoadEpstopdf}{}
+\def\magecollectlinks{}
 \input{book/tikz/mage-figures.sty}
 \usepackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
@@ -61,7 +63,7 @@ def compile_candidates(partial=False):
     for i,(record,page) in enumerate(zip(records,pages),1):
         w,h=float(page.mediabox.width),float(page.mediabox.height)
         if w>450 or h>420:raise ValueError(f"Candidate exceeds print envelope: {record['source']} ({w:.1f}x{h:.1f}pt)")
-        manifest['book/'+record['source']]={'page':i,'width_pt':w,'height_pt':h}
+        manifest['book/'+record['source']]={'page':i,'width_pt':w,'height_pt':h,'links':mage_tikz_links.page_links(page)}
     (BUILD/'pages.json').write_text(json.dumps(manifest,indent=2)+'\n')
     from tikz_audit import audit_pdf
     audit_pdf(pdf,manifest,BUILD/'geometry-audit.json',BUILD/'geometry-audit.pdf')
@@ -76,7 +78,7 @@ def source_bundle():
             if path.is_file():archive.write(path,path.relative_to(ROOT))
         for path in sorted((ROOT/'book/fonts/SourceSerif4').rglob('*')):
             if path.is_file():archive.write(path,path.relative_to(ROOT))
-        archive.writestr('main.tex',(BUILD/'candidates.tex').read_text())
+        archive.writestr('main.tex',(BUILD/'candidates.tex').read_text().replace(r'\def\magecollectlinks{}', ''))
         archive.writestr('README.txt',
             'Editable MAGE grayscale figure trials. Run lualatex -no-shell-escape main.tex twice from this directory.\n'
             'Requires TeX Live2025 or newer with pgfplots, preview, fontspec. Fonts are bundled under their license.\n'
@@ -88,14 +90,18 @@ def source_bundle():
 def review_book(pool,manifest):
     driver=mage_latex.prepare_pdf(name='mage-figure-review')
     driver_text=driver.read_text()
+    driver.write_text(driver_text.replace(r'\begin{document}',mage_tikz_links.ORIGIN_SETUP+r'\begin{document}'))
     chapters=[ROOT/p for p in re.findall(r'\\input\{([^}]+)\}',driver_text)]
+    available=set(re.findall(r'\\label\{([^}]+)\}',driver_text+'\n'+'\n'.join(p.read_text() for p in chapters)))
     pairings=[]
     def candidate(source,label):
         if source not in manifest:raise ValueError('No compiled TikZ candidate for '+source)
         p=manifest[source];info=json.loads((BASE/'receipts'/f'{Path(source).stem}.json').read_text())
         alt=_text(str(info['alt']))
         pairings.append({'source':source,'original_label':label,'candidate_page':p['page']})
-        return (r'\includegraphics[page='+str(p['page'])+',alt={'+alt+'}]{'+pool.relative_to(ROOT).as_posix()+'}')
+        return (r'\leavevmode\hypertarget{tikz-candidate:'+Path(source).stem+r'}{}%'+ '\n'+
+                r'\magerecordfigureorigin{'+Path(source).stem+'}%\n'+
+                mage_tikz_links.overlay(p.get('links',[]),available)+r'\includegraphics[page='+str(p['page'])+',alt={'+alt+'}]{'+pool.relative_to(ROOT).as_posix()+'}')
     for chapter in chapters:
         text=chapter.read_text();side=chapter.with_suffix('.assets.json')
         mapping={a['pdf']:a['source'] for a in json.loads(side.read_text())} if side.exists() else {}
@@ -135,6 +141,7 @@ def review_book(pool,manifest):
     pdf=latex_build.compile_tex(driver)
     from pdf_structure import check_pdf
     check_pdf(pdf,headings=40,sections=124,tables=43,figures=145+len(pairings))
+    mage_tikz_links.verify_book(pdf,driver.with_suffix('.aux'),manifest)
     output=ROOT/'latex/build/mage-figure-review.pdf';shutil.copy2(pdf,output)
     (BUILD/'pairings.json').write_text(json.dumps(pairings,indent=2)+'\n')
     notes=['MAGE figure review — editorial questions', '']

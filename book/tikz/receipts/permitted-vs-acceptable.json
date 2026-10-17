@@ -10,7 +10,7 @@
     "Preserved freedom\\ and permitted",
     "Underconstraint\\, yet permitted\\ risk"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
+  "bw_encoding": "Acceptable region remains 4% with hatched overlap; geometry itself is the claim.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
   "questions": [],
   "alt": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted — a correctness risk.",
@@ -21,5 +21,30 @@
     "height_pt": 180.848,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+    "candidate_sha256": "5abedf8290e855a1940f94e6b18d4457dbdedba0eebc7f70dcad23ef38305dbb",
+    "fill": "Acceptable region remains 4% with hatched overlap; geometry itself is the claim.",
+    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Solid acceptable, dashed permitted and hatched intersection retain region semantics.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 48,
+      "width_bp": 403.226,
+      "height_bp": 180.848,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
   }
 }

@@ -1,21 +1,45 @@
 {
   "source": "book/assets/brownfield-progress-2x2.svg",
   "claim": "*Brownfield progress.* Representation reach and enforcement reach are independent axes. A system may be strong on either dimension without being strong on the other; the next investment should address the highest-value gap rather than maximize both indiscriminately.",
-  "topology": "A two-by-two matrix with two independent axes. The columns are enforcement reach \u2014\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary \u2014\n    running thin on the left to strong on the right. The rows are representation reach \u2014 how much of the\n    important system can be reasoned about through trustworthy externalized structure \u2014 running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
+  "topology": "A two-by-two matrix with two independent axes. The columns are enforcement reach —\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary —\n    running thin on the left to strong on the right. The rows are representation reach — how much of the\n    important system can be reasoned about through trustworthy externalized structure — running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
   "required_terms": [
     "ENFORCEMENT REACH",
     "thin few obligations enforced",
     "strong obligations gated at a boundary",
     "Rich externalized, trustworthy",
     "Thin little structure",
-    "Understands \u2014 humans enforce Rich models; people catch violations.",
+    "Understands — humans enforce Rich models; people catch violations.",
     "Rich governed surface Trustworthy models; enforcement at the right boundary.",
     "Reconstruction + human gap Little structure or enforcement; humans carry both.",
     "Direct / local alignment Tests, sandboxes, permissions govern what they observe.",
     "Next move: address the highest-value gap."
   ],
-  "bw_encoding": "Two independent dimensions: rich representation row shaded; strong enforcement column heavy border. Thin row/weak column remain white/thin. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "The rich-representation row uses one light fill; strong-enforcement column uses border weight, encoding the two independent axes.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach"
+  "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
+    "candidate_sha256": "278c6dc4fe0a5d5d7b625765bd5e13160342b92e21d26dfc9de9fa7334b73ff6",
+    "fill": "The rich-representation row uses one light fill; strong-enforcement column uses border weight, encoding the two independent axes.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 118,
+      "width_bp": 386.033,
+      "height_bp": 256.447,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

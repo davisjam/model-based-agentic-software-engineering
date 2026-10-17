@@ -1,9 +1,9 @@
 \begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
-box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=2.5cm,fill=black!20] (cause) at (-4.5,0) {CAUSE};
+\node[box,text width=2.5cm] (cause) at (-4.5,0) {CAUSE};
 \node[box,text width=2.5cm] (action) at (-4.5,-2) {ACTION};
 \node[box,text width=2.5cm] (change) at (0,-2) {CHANGE};
 \node[box,text width=2.5cm] (artifact) at (4.5,-2) {ARTIFACT};
@@ -12,7 +12,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (change) -- (artifact);
 \draw[dashed] (action.south)--++(0,-1)-| (artifact.south);\draw[dashed] (change.south)--++(0,-1);
 \node[note,text width=6cm] (t13) at (0,-4.1) {identity travels with the work};
-\node[box,text width=3cm,fill=black!10] (why) at (4.5,-5) {reconstruct WHY};
+\node[box,text width=3cm] (why) at (4.5,-5) {reconstruct WHY};
 \draw[edge] (artifact) -- (why);
 \node[note] at (-2.25,-3) {id};\node[note] at (2.25,-3) {id};
 \end{tikzpicture}

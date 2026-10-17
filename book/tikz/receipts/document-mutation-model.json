@@ -53,10 +53,10 @@
     "PDF",
     "Marks where mutation belongs; does not itself prevent bypass."
   ],
-  "bw_encoding": "Grayscale publication candidate. Model layer gray contrasts with format implementation and outputs. Sanctioned seam retains heavier border; no enforcement claim introduced.",
-  "redesign": "Model layer gray contrasts with format implementation and outputs. Sanctioned seam retains heavier border; no enforcement claim introduced.",
+  "bw_encoding": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
+  "redesign": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white. Vertical chain and shared horizontal format fan-out rail.",
   "questions": [],
-  "alt": "Remediation logic operates through the structured document model, the sanctioned seam. A format-specific implementation realizes that model for DOCX, PPTX, XLSX and PDF. The seam identifies where mutation should occur but does not itself prevent bypass. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Remediation logic operates through the structured document model, the sanctioned seam. A format-specific implementation realizes that model for DOCX, PPTX, XLSX and PDF. The seam identifies where mutation should occur but does not itself prevent bypass.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -72,5 +72,29 @@
       11.8764,
       7.7923
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+    "candidate_sha256": "a2aa9d89f9bc577e97cb9166bd67f34f74eeda6306e3ef0c9e3932d8d5ddefec",
+    "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Vertical chain and shared horizontal format fan-out rail.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 18,
+      "width_bp": 336.654,
+      "height_bp": 220.883,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

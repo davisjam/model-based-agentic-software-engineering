@@ -46,10 +46,10 @@
     "Decide what deserves enforcement Alignment (Chapter 3)",
     "Either or both"
   ],
-  "bw_encoding": "Grayscale publication candidate. Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
-  "redesign": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
+  "bw_encoding": "All stages and both consequence alternatives white; no darker alternative implies priority.",
+  "redesign": "All stages and both consequence alternatives white; no darker alternative implies priority. Vertical stages and orthogonal shared-rail consequence fork.",
   "questions": [],
-  "alt": "An engineering question leads to representation, analysis and interpreted evidence. Evidence then branches to architecture and design decisions or to an obligation deserving enforcement through Alignment, or both. Example representations and analyses illustrate choices rather than a prescribed pairing. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "An engineering question leads to representation, analysis and interpreted evidence. Evidence then branches to architecture and design decisions or to an obligation deserving enforcement through Alignment, or both. Example representations and analyses illustrate choices rather than a prescribed pairing.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -64,6 +64,32 @@
     "native_dimensions_cm": [
       13.9764,
       10.4597
+    ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "candidate_sha256": "a4c2b38ea5c6834856562d52397cfc910fd20310612df16748a00a215b4a167f",
+    "fill": "All stages and both consequence alternatives white; no darker alternative implies priority.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Vertical stages and orthogonal shared-rail consequence fork.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 15,
+      "width_bp": 396.181,
+      "height_bp": 296.495,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "part:3"
     ]
   }
 }

@@ -58,10 +58,10 @@
     "ADMIT",
     "REJECT"
   ],
-  "bw_encoding": "Grayscale publication candidate. Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
-  "redesign": "Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
+  "bw_encoding": "All finite/unlimited peers, decision and outputs white; named entitlement modes and admission branches encode consequences.",
+  "redesign": "All finite/unlimited peers, decision and outputs white; named entitlement modes and admission branches encode consequences. Orthogonal group fork, separate decision input ports and shared output rail.",
   "questions": [],
-  "alt": "A user belongs to one or more groups. The group branches into finite credits and unlimited entitlement. Both alternatives feed an upload decision ending in admit or reject; the decision must preserve both facts. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "A user belongs to one or more groups. The group branches into finite credits and unlimited entitlement. Both alternatives feed an upload decision ending in admit or reject; the decision must preserve both facts.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -77,5 +77,29 @@
       12.5764,
       8.1449
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
+    "candidate_sha256": "84606bc6cb9d05d60810c8698abb20a36b509f739c911a80ec32c81f295c7446",
+    "fill": "All finite/unlimited peers, decision and outputs white; named entitlement modes and admission branches encode consequences.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Orthogonal group fork, separate decision input ports and shared output rail.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 28,
+      "width_bp": 356.496,
+      "height_bp": 230.88,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

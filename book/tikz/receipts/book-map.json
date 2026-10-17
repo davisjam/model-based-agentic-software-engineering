@@ -49,10 +49,10 @@
     "Inspect the em-",
     "pirical record"
   ],
-  "bw_encoding": "Grayscale publication candidate. Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
-  "redesign": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+  "bw_encoding": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping.",
+  "redesign": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping. Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
   "questions": [],
-  "alt": "A grayscale map of the book connects the opening foundations to two production-system case studies, then to Modeling, Alignment and the later chapters. External annotations show abstraction from the factories; appendix boxes sit below the chapter sequence.",
+  "alt": "A vertical map connects the Preface, seven chapters and Conclusion. A thin enclosure groups the software-engineering case chapters. Dotted detail links connect MAGE in Motion to Appendix Part I, Practice, and Agentic Software Factories to Appendix Part II, Evidence. An external annotation marks abstraction from the factories toward theory.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -89,5 +89,39 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+    "candidate_sha256": "9f24711bd746cf5f10851079ce71295fb334b133ef9115d9fff9d2481a2be5cb",
+    "fill": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 1,
+      "width_bp": 362.286,
+      "height_bp": 394.843,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [
+      "part:1",
+      "part:2",
+      "part:3",
+      "part:4",
+      "part:5",
+      "part:6",
+      "part:7",
+      "chapter:appendix-part-1-practice",
+      "chapter:appendix-part-2-evidence"
+    ]
   }
 }

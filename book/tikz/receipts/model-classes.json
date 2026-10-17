@@ -17,10 +17,10 @@
     "Representation form Graph · registry · state machine · contract · table · quantitative relation",
     "Shared identity and traceability connect explicit engineering knowledge."
   ],
-  "bw_encoding": "Grayscale publication candidate. Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
-  "redesign": "Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
+  "bw_encoding": "All six purpose classes white and equal; the separate form axis supplies the other distinction.",
+  "redesign": "All six purpose classes white and equal; the separate form axis supplies the other distinction. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Six peer boxes list structural, behavioral, ownership, decision, measurement and provenance models with the questions each answers. A separate representation-form axis lists graph, registry, state machine, contract, table and quantitative relation. Model purpose and representation form are distinct; shared identity and traceability connect the models. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "alt": "Six peer boxes list structural, behavioral, ownership, decision, measurement and provenance models with the questions each answers. A separate representation-form axis lists graph, registry, state machine, contract, table and quantitative relation. Model purpose and representation form are distinct; shared identity and traceability connect the models.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -36,5 +36,29 @@
       13.2764,
       7.4144
     ]
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+    "candidate_sha256": "3641d2278649b18a04b1a1b863c8b81596404125f6c1e664b63f6459b6229ac1",
+    "fill": "All six purpose classes white and equal; the separate form axis supplies the other distinction.",
+    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 3,
+      "width_bp": 376.339,
+      "height_bp": 210.238,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }

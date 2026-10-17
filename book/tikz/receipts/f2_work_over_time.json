@@ -9,5 +9,29 @@
   "alt": "Work Over Time. Epics \u2014 DocAble's unit of formalized engineering intent \u2014 created and closed per week from the convention's introduction in week 12. A record of intent formalized, not of a backlog drained: creation outpaces closure by roughly three to one. The first week's 111 openings are a formalization event, not a burst of ideation; the trace is invariant to the late-era landing-mechanism change.",
   "data": [
     "weekly_factory_metrics.csv"
-  ]
+  ],
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "55cdf124264fb1e3fb8069f05b42b826946b148fc9f72ca8906332b9caf7d187",
+    "candidate_sha256": "a744d713ec144144b4a2ee193f80ba4f4aca5da915378bff9538bafda6ac46b9",
+    "fill": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction. Quantitative marks may use darker tones; text remains on white.",
+    "bold": "Plot/panel headings only; axes, annotations, values and legends are legible at native size.",
+    "routing": "Quantitative positions, bars, line patterns and markers preserve the chart data; no process-edge routing is implied.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 72,
+      "width_bp": 428.256,
+      "height_bp": 341.087,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

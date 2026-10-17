@@ -15,7 +15,7 @@
     "Trustworthy autonomy\\ outcome",
     "New economics drive a new composition; the provenance of the parts is old."
   ],
-  "bw_encoding": "Engineering versus AI sources separated; MAGE composition gets a bounded pale ground; durable environment/capital retain common fill. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "bw_encoding": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Engineering versus AI sources separated; MAGE composition gets a bounded pale ground; durable environment/capital retain common fill.",
   "questions": [],
   "alt": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
@@ -26,5 +26,30 @@
     "height_pt": 351.735,
     "monochrome": true,
     "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+    "candidate_sha256": "d337a29b6feeb58accb698ef4bfee851b08d0c0103b3ad4700d92628ccfc2c1e",
+    "fill": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
+    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Traditions remain separate, MAGE is the single pale composition container; intended outcome dashed.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 89,
+      "width_bp": 399.957,
+      "height_bp": 351.735,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
   }
 }

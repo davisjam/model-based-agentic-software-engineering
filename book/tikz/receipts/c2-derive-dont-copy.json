@@ -1,20 +1,44 @@
 {
   "source": "book/assets/c2-derive-dont-copy.svg",
-  "claim": "*Query, don't snapshot.* BAD \u2014 the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD \u2014 the check queries the model directly, so the next check sees the change.",
+  "claim": "*Query, don't snapshot.* BAD — the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD — the check queries the model directly, so the next check sees the change.",
   "topology": "Two ways a consumer reads an authoritative model. In the bad path, the consumer copies values\n    into a snapshot and checks against the snapshot; when the model changes, the snapshot does not, so the check\n    runs against a stale answer. In the good path, the consumer queries the model directly; when the model changes,\n    the next check sees the change because the consumer is coupled to the model's interface, not to yesterday's\n    answer.",
   "required_terms": [
-    "BAD \u00b7 copied snapshot",
+    "BAD · copied snapshot",
     "MODEL",
     "SNAPSHOT",
     "CHECK",
     "The model changes; the snapshot does not. The check trusts a stale answer.",
-    "GOOD \u00b7 query at the point of use",
+    "GOOD · query at the point of use",
     "MODEL",
     "CHECK",
-    "The next check sees the change: coupled to the interface, not yesterday\u2019s answer."
+    "The next check sees the change: coupled to the interface, not yesterday’s answer."
   ],
-  "bw_encoding": "Same model role has same shade in both modes; stale copied snapshot is distinctly darker, with BAD/GOOD labels retained. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "C.2 Derive, don't copy: a snapshot goes stale while a live query stays current"
+  "alt": "C.2 Derive, don't copy: a snapshot goes stale while a live query stays current",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "candidate_sha256": "8341099fecf52fa7374f1b4514d5ebe7e391f5dc94f9b62c709dc35a6cfb3412",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 102,
+      "width_bp": 343.165,
+      "height_bp": 181.022,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
+  }
 }

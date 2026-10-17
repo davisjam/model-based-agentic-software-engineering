@@ -1,13 +1,13 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=2pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
 state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
+strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=8cm,fill=black!15] (dec) at (0,0) {Decidable claims $\rightarrow$ mechanical check};
-\node[n,text width=8cm,fill=black!20] (sem) at (0,-1.4) {Semantic claims $\rightarrow$ judgment};
-\begin{scope}[on background layer]\node[draw,fill=black!3,inner sep=7pt,fit=(dec)(sem),label={[font=\fontsize{9}{11}\selectfont]above:{MODELED SURFACE}}] {};\end{scope}
-\node[n,dashed,text width=8cm,fill=black!30] (un) at (0,-3.6) {Unmodeled surface\\No model-based coverage};
+\node[n,text width=8cm,fill=white] (dec) at (0,0) {Decidable claims $\rightarrow$ mechanical check};
+\node[n,text width=8cm,fill=white] (sem) at (0,-1.4) {Semantic claims $\rightarrow$ judgment};
+\begin{scope}[on background layer]\node[draw,fill=black!5,inner sep=7pt,fit=(dec)(sem),label={[font=\fontsize{9}{11}\selectfont]above:{MODELED SURFACE}}] {};\end{scope}
+\node[n,dashed,text width=8cm,fill=white] (un) at (0,-3.6) {Unmodeled surface\\No model-based coverage};
 \draw[edge,dashed] (un.east) -- ++(1.6,0) |- node[lab,near start,right] {Recurring miss:\\refine representation / control} (dec.east);
 \end{tikzpicture}

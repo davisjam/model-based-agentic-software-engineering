@@ -20,8 +20,8 @@
     "Analysis · governance",
     "Computation model → execution Computation model / parity-bounddeclarations → analytical view"
   ],
-  "bw_encoding": "Grayscale publication candidate. Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
-  "redesign": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
+  "bw_encoding": "Only the governing computation model uses 8%; execution and analytical view are white.",
+  "redesign": "Only the governing computation model uses 8%; execution and analytical view are white. Orthogonal branch with named scheduler-consumption and analytical-projection relations.",
   "questions": [],
   "alt": "The model view has an external Analysis/governance annotation and downward arrow. Correspondence and governing mappings are explicitly distinguished from consequence relations.",
   "review": {
@@ -60,5 +60,29 @@
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "status": "reviewed",
+    "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
+    "candidate_sha256": "e914ab2ae6ef2a1623c649090849c0d7cc36a59f03816ff8f580fad6d74056e9",
+    "fill": "Only the governing computation model uses 8%; execution and analytical view are white.",
+    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "routing": "Orthogonal branch with named scheduler-consumption and analytical-projection relations.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "page": 41,
+      "width_bp": 367.128,
+      "height_bp": 212.067,
+      "minimum_prose_font_pt": null,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true
+    },
+    "book_references": []
   }
 }
