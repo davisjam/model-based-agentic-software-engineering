@@ -496,6 +496,8 @@ def _prepare_record(task):
         return content.replace(r'\includegraphics[', r'\includegraphics[height=.66\textheight,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
+    from latex_build import bold_table_headers
+    latex = bold_table_headers(latex)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + slug + ':' + m[2] + m[3], latex)

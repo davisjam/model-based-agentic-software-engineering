@@ -33,6 +33,38 @@ def diagnostics(log: str) -> tuple[list[str], list[str]]:
     return rejected, allowed
 
 
+def bold_table_headers(latex: str) -> str:
+    """Style Pandoc longtable header cells, including repeated page headers.
+
+    Header minipages provide a local font scope; captions and body cells remain
+    unchanged. Apply after conversion so generated tables use the same policy.
+    """
+    def table(match):
+        header, separator, body = match[0].partition(r"\endhead")
+        if not separator:
+            return match[0]
+        header = re.sub(
+            r"(\\begin\{minipage\}\[b\]\{\\linewidth\}\\(?:raggedright|centering|raggedleft))(?!\\bfseries)",
+            lambda cell: cell[0] + r"\bfseries", header)
+        def compact_head(rule):
+            content = rule[2]
+            if r"\begin{minipage}" in content:
+                return rule[0]
+            # Compact Pandoc tables use ordinary cells rather than minipages.
+            def row(match):
+                cells = re.split(r"(?<!\\)&", match[1])
+                cells = [cell.strip() if cell.strip().startswith(r"{\bfseries ") else
+                         r"{\bfseries " + cell.strip() + "}" for cell in cells]
+                return " & ".join(cells) + r" \\" + "\n"
+            content = re.sub(r"(.*?)\\\\\s*", row, content, flags=re.S)
+            return rule[1] + content + rule[3]
+        header = re.sub(
+            r"(\\(?:toprule|hline)(?:\\noalign\{\})?\s*)(.*?)(\\(?:midrule|hline))",
+            compact_head, header, flags=re.S)
+        return header + separator + body
+    return re.sub(r"\\begin\{longtable\}.*?\\end\{longtable\}", table, latex, flags=re.S)
+
+
 def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
     source = Path(source).resolve()
     output_dir = Path(output_dir).resolve() if output_dir else source.parent

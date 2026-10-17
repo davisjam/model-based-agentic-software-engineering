@@ -3,7 +3,10 @@
 MAGE and the Software Engineering Handbook use native LaTeX manuscript sources and
 one print style, `latex/house.sty`. The style retains the existing warm paper,
 self-hosted fonts, restrained headings and colored callouts. The MAGE profile uses
-sans-serif body text; the Handbook uses serif body text.
+sans-serif body text; the Handbook uses serif body text. Both PDF renderers apply
+`latex_build.bold_table_headers` to every table, including repeated page headers,
+after conversion. Header boldface is a shared print convention; authors do not
+need to add manual emphasis to each source cell.
 
 ## Author and build
 

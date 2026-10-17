@@ -9,7 +9,7 @@ import sys
 import _common as C
 import latex_source as L
 sys.path.insert(0, str(C.GC_ROOT/'tools'))
-from latex_build import compile_tex
+from latex_build import compile_tex, bold_table_headers
 
 
 def build_pdf(book, only=None):
@@ -74,6 +74,7 @@ def build_pdf(book, only=None):
                         alt=L.pandoc(image_alts.get(match.group(2), 'Book figure'), 'markdown','latex').strip()
                         return r'\includegraphics[keepaspectratio,alt={'+alt+'},'+(match.group(1) or '')+']{'+match.group(2)+'}'
                     rendered=re.sub(r'\\includegraphics(?:\[([^]]*)\])?\{([^}]+)\}',graphic,rendered)
+                    rendered=bold_table_headers(rendered)
                     # booktabs 2025 row hooks conflict with experimental table tagging.
                     # Native rules preserve the same borders and semantic table cells.
                     rendered=rendered.replace(r'\toprule',r'\hline').replace(r'\midrule',r'\hline').replace(r'\bottomrule',r'\hline').replace(r'\noalign{}','')
