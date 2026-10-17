@@ -67,6 +67,11 @@ def compile_candidates(partial=False):
     (BUILD/'pages.json').write_text(json.dumps(manifest,indent=2)+'\n')
     from tikz_audit import audit_pdf
     audit_pdf(pdf,manifest,BUILD/'geometry-audit.json',BUILD/'geometry-audit.pdf')
+    from mage_tikz_typography import audit_pdf as audit_typography
+    typography=json.loads((BASE/'typography-review.json').read_text())
+    if partial:
+        typography['figures']=[r for r in typography['figures'] if r['source'] in manifest]
+    audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json')
     print(f'Native TikZ pool: {len(pages)} candidates, all fit at their authored text sizes.',flush=True)
     return pdf,manifest
 

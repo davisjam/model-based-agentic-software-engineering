@@ -16,26 +16,105 @@
   "alt": "Stable topology, variable Host Execution Policy — the deploy graph holds; the policy varies",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "3222d90375057239bc272c30803a77ef99da399bd6ff80713511225f5f889bdf",
-    "candidate_sha256": "307aa09b0ce567ff779e81b8fe9ecfff460f390795023fd20e6891f1b34c13b2",
+    "candidate_sha256": "9115c4eb7ac76eddee863dc905059d46407458a69ee42ba86cab9186a6bce76e",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes HOST EXECUTION POLICY; fan out. Restored policy title and decision outputs contrasted with regular host profiles and deployment nodes, policy title and decision outputs contrasted with regular host profiles and deployment nodes. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Derived scheduling relation uses a short orthogonal elbow from worker into the policy panel; stable deployment chain unchanged.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 114,
       "width_bp": 343.165,
       "height_bp": 175.641,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "3222d90375057239bc272c30803a77ef99da399bd6ff80713511225f5f889bdf",
+    "candidate_sha256": "9115c4eb7ac76eddee863dc905059d46407458a69ee42ba86cab9186a6bce76e",
+    "reason": "Restored policy title and decision outputs contrasted with regular host profiles and deployment nodes, policy title and decision outputs contrasted with regular host profiles and deployment nodes. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "HOST EXECUTION POLICY",
+        "source_style": "font-weight=700",
+        "semantic_role": "Policy title and decision outputs contrasted with regular host profiles and deployment nodes",
+        "candidate_text": "HOST EXECUTION POLICY",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "fan out",
+        "source_style": "font-weight=700",
+        "semantic_role": "Policy title and decision outputs contrasted with regular host profiles and deployment nodes",
+        "candidate_text": "fan out",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "bounded fan",
+        "source_style": "font-weight=700",
+        "semantic_role": "Policy title and decision outputs contrasted with regular host profiles and deployment nodes",
+        "candidate_text": "bounded fan",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "serialize",
+        "source_style": "font-weight=700",
+        "semantic_role": "Policy title and decision outputs contrasted with regular host profiles and deployment nodes",
+        "candidate_text": "serialize",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "scheduled under",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "scheduled under",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "HOST EXECUTION POLICY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "fan out",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "scheduled under",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "web",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 114,
+      "width_bp": 343.165,
+      "height_bp": 175.641,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

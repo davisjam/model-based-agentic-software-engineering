@@ -73,26 +73,163 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
-    "candidate_sha256": "cd8865ae45b5aab2b9856029c7ad3a3566ff4b9fbdcc9e555fc3fd5eb3ac8cb7",
+    "candidate_sha256": "dfb451972c1a103bb16a6b203994ab95973a68dcb52f1dcdd4f88edad497b53a",
     "fill": "All three containers and the invariant example white; labels and feedback distinguish their roles.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes STRUCTURED MODEL; INVARIANTS; CHECKER. Restore formal model/invariant/checker headings while retaining regular concrete records and predicate content.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 36,
       "width_bp": 393.596,
-      "height_bp": 180.74,
-      "minimum_prose_font_pt": null,
+      "height_bp": 180.844,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+    "candidate_sha256": "dfb451972c1a103bb16a6b203994ab95973a68dcb52f1dcdd4f88edad497b53a",
+    "reason": "Restore formal model/invariant/checker headings while retaining regular concrete records and predicate content.",
+    "evidence": [
+      {
+        "source_text": "STRUCTURED MODEL",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "STRUCTURED MODEL",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "STRUCTURED MODEL",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "INVARIANTS",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "INVARIANTS",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "INVARIANTS",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CHECKER",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "CHECKER",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "CHECKER",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "a job: free / leased / done",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "A job: free / leased / done",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "a job: free / leased / done",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "predicates over",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "supports predicates over",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "predicates over",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "evaluated by",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "evaluated by",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/coherence-triangle.svg",
+          "element_text_path": "/svg/text[12]/text()",
+          "text_element_context": "evaluated by",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "STRUCTURED MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "INVARIANTS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CHECKER",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "A job: free / leased / done",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "supports predicates over",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "evaluated by",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Records · edges · states",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 36,
+      "width_bp": 393.596,
+      "height_bp": 180.844,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

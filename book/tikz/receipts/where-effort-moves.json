@@ -27,27 +27,116 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-    "candidate_sha256": "61fcbf2042bdd861af915cc7d2c35b1a7bff2f298770baa823b688cb61a12c11",
+    "candidate_sha256": "1b1a3d8d1ca877c06cd02a97997291dcd88589803756b8892349e01a438a91e2",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Human effort concentrates where consequential judgment and responsibility remain.. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Band headings and single Implementation focus retain bold; responsibilities stay in phase columns.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 87,
       "width_bp": 406.634,
-      "height_bp": 260.595,
+      "height_bp": 260.536,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
+    "candidate_sha256": "1b1a3d8d1ca877c06cd02a97997291dcd88589803756b8892349e01a438a91e2",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Implementation shifts disproportionately toward the fleet.",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Implementation shifts disproportionately toward the fleet.",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "Implementation shifts disproportionately toward the fleet.",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "502",
+              "text_element": 31
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Human effort concentrates where consequential judgment and responsibility remain.",
+        "source_style": {
+          "font-weight": "600",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Human effort concentrates where consequential judgment and responsibility remain.",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Human effort concentrates where consequential judgment and responsibility remain.",
+            "style": {
+              "font-weight": "600",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "530",
+              "text_element": 32
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Implementation shifts disproportionately toward the fleet.",
+        "italic": true
+      },
+      {
+        "text": "Human effort concentrates where consequential judgment and responsibility remain.",
+        "bold": true
+      },
+      {
+        "text": "Requirements",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 87,
+      "width_bp": 406.634,
+      "height_bp": 260.536,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

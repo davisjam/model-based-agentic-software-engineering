@@ -35,26 +35,128 @@
   "alt": "Engineering capital across time and space",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "03a4f6b9211dfe6d10735faa373eb1f5a739a039976b3af3080390536a25795b",
-    "candidate_sha256": "4f6658119bc92436954145d5163a1e076496f5422d98bbf6c4729b70ed0789d2",
+    "candidate_sha256": "82d910d5351c5cbffc71f16c765a4c48a41ef524b891638c319730862545f15d",
     "fill": "Only the existing very light product-territory fields remain shaded; contained artifacts and cross-product concerns are white.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes ENGINEERING MODELS. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Exception: undirected product constellations and cross-product concerns retain diagonal/radial graph geometry; these are dependency relations, not a process pipeline. Solid/dotted meanings preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 125,
       "width_bp": 405.441,
-      "height_bp": 352.679,
+      "height_bp": 352.657,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "03a4f6b9211dfe6d10735faa373eb1f5a739a039976b3af3080390536a25795b",
+    "candidate_sha256": "82d910d5351c5cbffc71f16c765a4c48a41ef524b891638c319730862545f15d",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "PRODUCT 1",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "PRODUCT 1",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "PRODUCT 2",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "PRODUCT 2",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "PRODUCT 3",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "PRODUCT 3",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "ENGINEERING MODELS",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ENGINEERING\\\\ MODELS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CODE-QUALITY",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "CODE-QUALITY\\\\ MECHANISMS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "ASSURANCE OBLIGATION",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ASSURANCE OBLIGATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "SECURITY POSTURE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "SECURITY POSTURE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "e.g., DO-178C or IEC 61508",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "DO-178C / IEC 61508",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "shared concern; connections not yet established",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "possible shared concern",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING MODELS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "possible shared concern",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Discovery",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 125,
+      "width_bp": 405.441,
+      "height_bp": 352.657,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

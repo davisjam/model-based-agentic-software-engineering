@@ -5,18 +5,18 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=7cm] (s0) at (-2.3,0.0) {\textbf{1. CO-CODER}\\\fontsize{9}{11}\selectfont Delegated: Code generation\\\textit{Environment:} Ordinary repository; nothing durable};
+\node[box,text width=7cm] (s0) at (-2.3,0.0) {\textbf{1. CO-CODER}\\\fontsize{9}{11}\selectfont \textbf{Delegated:} Code generation\\\textbf{Environment:} Ordinary repository; nothing durable};
 \node[note,text width=3cm] (human0) at (6.3,0.0) {Read every diff; hold map; admit change};
-\node[box,text width=7cm] (s1) at (-1.5999999999999999,2.2) {\textbf{2. QA}\\\fontsize{9}{11}\selectfont Delegated: Generation + second agent's audit\\\textit{Environment:} Probabilistic, episodic, advisory reviewer};
+\node[box,text width=7cm] (s1) at (-1.5999999999999999,2.2) {\textbf{2. QA}\\\fontsize{9}{11}\selectfont \textbf{Delegated:} Generation + second agent's audit\\\textbf{Environment:} Probabilistic, episodic, advisory reviewer};
 \node[note,text width=3cm] (human1) at (6.3,2.2) {Adjudicate findings};
 \draw[line width=.8pt] (-6.5,1.1)--(-5.8,1.1)--(-5.8,3.0);
-\node[box,text width=7cm] (s2) at (-0.8999999999999999,4.4) {\textbf{3. REVIEW LEAD}\\\fontsize{9}{11}\selectfont Delegated: Specialized review per region\\\textit{Environment:} Deterministic checks for decidable findings};
+\node[box,text width=7cm] (s2) at (-0.8999999999999999,4.4) {\textbf{3. REVIEW LEAD}\\\fontsize{9}{11}\selectfont \textbf{Delegated:} Specialized review per region\\\textbf{Environment:} Deterministic checks for decidable findings};
 \node[note,text width=3cm] (human2) at (6.3,4.4) {Residual semantic review};
 \draw[line width=.8pt] (-5.8,3.3000000000000003)--(-5.1,3.3000000000000003)--(-5.1,5.2);
-\node[box,text width=7cm] (s3) at (-0.20000000000000018,6.6000000000000005) {\textbf{4. TECH LEAD}\\\fontsize{9}{11}\selectfont Delegated: Bounded work inside a modeled zone\\\textit{Environment:} Named zones and boundary rules};
+\node[box,text width=7cm] (s3) at (-0.20000000000000018,6.6000000000000005) {\textbf{4. TECH LEAD}\\\fontsize{9}{11}\selectfont \textbf{Delegated:} Bounded work inside a modeled zone\\\textbf{Environment:} Named zones and boundary rules};
 \node[note,text width=3cm] (human3) at (6.3,6.6000000000000005) {System map and strategy};
 \draw[line width=.8pt] (-5.1000000000000005,5.5)--(-4.4,5.5)--(-4.4,7.4);
-\node[box,text width=7cm] (s4) at (0.5,8.8) {\textbf{5. ARCHITECT}\\\fontsize{9}{11}\selectfont Delegated: Model-guided work across the system\\\textit{Environment:} Explicit models, traceability, controls};
+\node[box,text width=7cm] (s4) at (0.5,8.8) {\textbf{5. ARCHITECT}\\\fontsize{9}{11}\selectfont \textbf{Delegated:} Model-guided work across the system\\\textbf{Environment:} Explicit models, traceability, controls};
 \node[note,text width=3cm] (human4) at (6.3,8.8) {Residual semantics and strategy};
 \draw[line width=.8pt] (-4.4,7.700000000000001)--(-3.7,7.700000000000001)--(-3.7,9.600000000000001);
 \node[note,text width=6.4cm] (left) at (-2.8,10.3) {Representation and enforcement accumulate};

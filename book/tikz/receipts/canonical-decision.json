@@ -51,26 +51,127 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
-    "candidate_sha256": "0e4f1ca3c0422b71ada6174c4ba4131e427598edabfedd7ff2b902b9ac77073b",
+    "candidate_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
     "fill": "Both compared service pairs white and equal; descriptive/normative headings and the crossed absent edge encode the distinction.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes DESCRIPTIVE. Preserve descriptive/normative category capitals and separate italic definitions and modal edge labels.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 25,
       "width_bp": 374.568,
-      "height_bp": 165.707,
-      "minimum_prose_font_pt": null,
+      "height_bp": 165.787,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
+    "candidate_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
+    "reason": "Preserve descriptive/normative category capitals and separate italic definitions and modal edge labels.",
+    "evidence": [
+      {
+        "source_text": "DESCRIPTIVE",
+        "source_style": "weight 700; normal; source size 22",
+        "semantic_role": "fact-versus-rule category",
+        "candidate_text": "DESCRIPTIVE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-decision.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "DESCRIPTIVE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "a fact about what happens",
+        "source_style": "weight normal; italic; source size 19",
+        "semantic_role": "category definition",
+        "candidate_text": "a fact",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-decision.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "a fact about what happens",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "calls",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "modal relation",
+        "candidate_text": "calls",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-decision.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "calls",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "may call",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "modal relation",
+        "candidate_text": "may call",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-decision.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "may call",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "DESCRIPTIVE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "a fact",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "calls",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "may call",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Service A",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 25,
+      "width_bp": 374.568,
+      "height_bp": 165.787,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    }
   }
 }

@@ -74,26 +74,145 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
-    "candidate_sha256": "12d443c9c35f85a586be12d9191b1c286fb4c5620e0a1f6fc5e8dd65a6a2de14",
+    "candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
     "fill": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes DATA_FLOW; CONTROL_GATE; not joined today. Italic subtitles distinguish possible composition from realized history; bold edge types and missing join retain their formal significance.",
     "routing": "Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 32,
-      "width_bp": 410.766,
-      "height_bp": 247.258,
-      "minimum_prose_font_pt": null,
+      "width_bp": 419.132,
+      "height_bp": 247.283,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+    "candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+    "reason": "Italic subtitles distinguish possible composition from realized history; bold edge types and missing join retain their formal significance.",
+    "evidence": [
+      {
+        "source_text": "what computations may compose",
+        "source_style": "weight 400; italic; source size 20",
+        "semantic_role": "view interpretation",
+        "candidate_text": "What may compose",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/two-reductions-static-realized.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "what computations may compose",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "what mutations one run did emit",
+        "source_style": "weight 400; italic; source size 20",
+        "semantic_role": "view interpretation",
+        "candidate_text": "What one run did emit",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/two-reductions-static-realized.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "what mutations one run did emit",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "DATA_FLOW",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "DATA_FLOW",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/two-reductions-static-realized.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "DATA_FLOW",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CONTROL_GATE",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "CONTROL_GATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/two-reductions-static-realized.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "CONTROL_GATE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "not joined today",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "not joined today",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/two-reductions-static-realized.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "not joined today",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "What may compose",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "What one run did emit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "DATA_FLOW",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CONTROL_GATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "not joined today",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Session run",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 32,
+      "width_bp": 419.132,
+      "height_bp": 247.283,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

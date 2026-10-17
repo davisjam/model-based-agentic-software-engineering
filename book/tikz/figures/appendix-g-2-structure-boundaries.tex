@@ -3,16 +3,16 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm,fill=black!8] (cat) at (0,0) {COMPONENT CATALOG\\ ownership · seams};
+\node[box,text width=4cm,fill=black!8] (cat) at (0,0) {\textbf{COMPONENT CATALOG}\\ ownership · seams};
 \node[box,text width=3cm] (web) at (-3,-2.2) {WEB ZONE};
 \node[box,text width=3cm] (worker) at (3,-2.2) {WORKER};
-\draw[edge] (cat.south)--(0,-1.1)--(-3,-1.1)-- node[note,left=2pt] {owns} (web.north);
-\draw[edge] (cat.south)--(0,-1.1)--(3,-1.1)-- node[note,right=2pt] {permits} (worker.north);
-\draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {CHECKED door} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);
+\draw[edge] (cat.south)--(0,-1.1)--(-3,-1.1)-- node[note,left=2pt] {\textit{owns}} (web.north);
+\draw[edge] (cat.south)--(0,-1.1)--(3,-1.1)-- node[note,right=2pt] {\textit{permits}} (worker.north);
+\draw[edge,line width=1pt] (web) -- node[note,fill=white,inner sep=2pt,above=3pt] {\textbf{CHECKED} door} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);
 \node[box,text width=3cm] (raw) at (-3,-4.5) {RAW FORMAT LIBRARY};
-\node[box,text width=3cm] (tree) at (3,-4.5) {REPOSITORY TREE\\ observed structure};
+\node[box,text width=3cm] (tree) at (3,-4.5) {\textbf{REPOSITORY TREE}\\ observed structure};
 \draw[optional] (tree.east)--++(1.5,0) |- (cat.east);
 \draw[dashed] (web)--(raw);\draw[line width=1pt] (-3.2,-3.2)--(-2.8,-3.6) (-3.2,-3.6)--(-2.8,-3.2);
-\node[note,text width=2.5cm] (t15) at (-0.1,-3.5) {forbidden\\ direct access};
+\node[note,text width=2.5cm] (t15) at (-0.1,-3.5) {\textit{forbidden}\\ \textit{direct access}};
 \node[note,text width=10cm] (t16) at (0,-5.7) {Solid: authored ownership / permitted seam. Dashed: observed correspondence.};
 \end{tikzpicture}

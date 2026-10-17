@@ -34,27 +34,236 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-    "candidate_sha256": "a5b010400046ddec62bd5d0d81afe2239713507e2ccdceb8af1bbd71c677b7bd",
+    "candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
     "fill": "Encoded property and acceptable region share 5%, tying specification to tolerance.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes A better fabricator does not raise correct encoding.; PRODUCTION PROCESS; ACCEPTABLE REGION; PROCESS DESIGN; Measurement; TOLERANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Probability bracket, two separate aligned inputs and four realizations retained; tolerance input no longer detours through outputs.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 84,
       "width_bp": 420.234,
       "height_bp": 352.203,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+    "candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "not raised by a better fabricator",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "A better fabricator does not raise correct encoding.",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "not raised by a better fabricator",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "324",
+              "y": "380",
+              "text_element": 17
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PRODUCTION PROCESS",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PRODUCTION PROCESS",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PRODUCTION PROCESS",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19"
+            },
+            "location": {
+              "x": "70",
+              "y": "180",
+              "text_element": 4
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "ACCEPTABLE REGION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "22"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ACCEPTABLE REGION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ACCEPTABLE REGION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "22"
+            },
+            "location": {
+              "x": "662",
+              "y": "490",
+              "text_element": 25
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PROCESS DESIGN",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "27"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PROCESS DESIGN",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PROCESS DESIGN",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "27"
+            },
+            "location": {
+              "x": "52",
+              "y": "104",
+              "text_element": 2
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "measurement",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Measurement",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "measurement",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "856",
+              "y": "418",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "TOLERANCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "27"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "TOLERANCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "TOLERANCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "27"
+            },
+            "location": {
+              "x": "52",
+              "y": "490",
+              "text_element": 22
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "A better fabricator does not raise correct encoding.",
+        "bold": true
+      },
+      {
+        "text": "PRODUCTION PROCESS",
+        "bold": true
+      },
+      {
+        "text": "ACCEPTABLE REGION",
+        "bold": true
+      },
+      {
+        "text": "PROCESS DESIGN",
+        "bold": true
+      },
+      {
+        "text": "Measurement",
+        "bold": true
+      },
+      {
+        "text": "TOLERANCE",
+        "bold": true
+      },
+      {
+        "text": "Fabricator",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 84,
+      "width_bp": 420.234,
+      "height_bp": 352.203,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

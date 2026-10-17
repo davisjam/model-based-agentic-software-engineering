@@ -43,27 +43,309 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
-    "candidate_sha256": "c612c7168167c246d3b91a88f2359041400479628932d83be7dcdfc816043755",
+    "candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Deployment / iteration / optimization; Format expansion; Feasibility; PowerPoint; Standards; Hardening; SaaS. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Seven dates/stages and aligned pressure/consequence columns retained; markers not process arrows.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 70,
       "width_bp": 390.258,
-      "height_bp": 386.227,
+      "height_bp": 386.236,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Deployment, iteration,\nand optimization",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Deployment / iteration / optimization",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Deployment, iteration,",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "748",
+              "text_element": 55
+            }
+          },
+          {
+            "text": "and optimization",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "769",
+              "text_element": 56
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Format expansion",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Format expansion",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Format expansion",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "331",
+              "text_element": 22
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Feasibility",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Feasibility",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Feasibility",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "119",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PowerPoint",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PowerPoint",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PowerPoint",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "225",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Standards",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Standards",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Standards",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "543",
+              "text_element": 39
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Hardening",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Hardening",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Hardening",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "649",
+              "text_element": 47
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "SaaS",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "SaaS",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "SaaS",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "100",
+              "y": "437",
+              "text_element": 30
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Retrospective stages, not a preplanned roadmap.",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "Stages are labels drawn afterward, not a plan followed at the time.",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "842",
+              "text_element": 65
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Deployment / iteration / optimization",
+        "bold": true
+      },
+      {
+        "text": "Format expansion",
+        "bold": true
+      },
+      {
+        "text": "Feasibility",
+        "bold": true
+      },
+      {
+        "text": "PowerPoint",
+        "bold": true
+      },
+      {
+        "text": "Standards",
+        "bold": true
+      },
+      {
+        "text": "Hardening",
+        "bold": true
+      },
+      {
+        "text": "SaaS",
+        "bold": true
+      },
+      {
+        "text": "Retrospective stages, not a preplanned roadmap.",
+        "italic": true
+      },
+      {
+        "text": "Real users on real documents",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 70,
+      "width_bp": 390.258,
+      "height_bp": 386.236,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

@@ -84,26 +84,214 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
-    "candidate_sha256": "9c28221613b0d2c6343791eef1ec94383bb0a3bece761414a15a5962f1ccf562",
+    "candidate_sha256": "c674a554a7fee64b1b2d3e80dc162a0e550ca8207c849173358acaee62e2bd3b",
     "fill": "All stack and limit nodes white; column headings and harness containment identify roles without fill.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes Application; Foundation Model; Bounded working state; Reasoning Horizon; Available working state; Churn; Fleet:. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 4,
       "width_bp": 363.832,
       "height_bp": 301.126,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
+    "candidate_sha256": "c674a554a7fee64b1b2d3e80dc162a0e550ca8207c849173358acaee62e2bd3b",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "Application",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Application",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Application",
+            "weight": "bold",
+            "style": "normal",
+            "x": "100",
+            "y": "122"
+          }
+        ]
+      },
+      {
+        "source_text": "Foundation Model",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Foundation Model",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Foundation Model",
+            "weight": "bold",
+            "style": "normal",
+            "x": "100",
+            "y": "338"
+          }
+        ]
+      },
+      {
+        "source_text": "Bounded working state",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Bounded working state",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Bounded working state",
+            "weight": "bold",
+            "style": "normal",
+            "x": "100",
+            "y": "422"
+          }
+        ]
+      },
+      {
+        "source_text": "Reasoning Horizon",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Reasoning Horizon",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Reasoning Horizon",
+            "weight": "bold",
+            "style": "normal",
+            "x": "820",
+            "y": "207"
+          }
+        ]
+      },
+      {
+        "source_text": "Available working state",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Available working state",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Available working state",
+            "weight": "bold",
+            "style": "normal",
+            "x": "820",
+            "y": "290"
+          }
+        ]
+      },
+      {
+        "source_text": "Churn",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Churn",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Churn",
+            "weight": "bold",
+            "style": "normal",
+            "x": "820",
+            "y": "391"
+          }
+        ]
+      },
+      {
+        "source_text": "Fleet:",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Defined vocabulary term",
+        "candidate_text": "Fleet:",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Fleet:",
+            "weight": "bold",
+            "style": "normal",
+            "x": "95",
+            "y": "484"
+          }
+        ]
+      },
+      {
+        "source_text": "context window is one present limit",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Qualification of working-state limit",
+        "candidate_text": "Context window is one present limit",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "context window is one present limit",
+            "weight": "normal",
+            "style": "italic",
+            "x": "820",
+            "y": "311"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Application",
+        "bold": true
+      },
+      {
+        "text": "Foundation Model",
+        "bold": true
+      },
+      {
+        "text": "Bounded working state",
+        "bold": true
+      },
+      {
+        "text": "Reasoning Horizon",
+        "bold": true
+      },
+      {
+        "text": "Available working state",
+        "bold": true
+      },
+      {
+        "text": "Churn",
+        "bold": true
+      },
+      {
+        "text": "Fleet:",
+        "bold": true
+      },
+      {
+        "text": "Context window is one present limit",
+        "italic": true
+      },
+      {
+        "text": "Your codebase",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 4,
+      "width_bp": 363.832,
+      "height_bp": 301.126,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

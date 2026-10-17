@@ -30,27 +30,182 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
-    "candidate_sha256": "12bea611370b90ae8ce9c93688793b365d3ccd7c729d0f19cbf3332c0ffb3adc",
+    "candidate_sha256": "969a48940b1219735dbbc7c8ba0ce8f4670568dcb5118880cfba9a6748806553",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; Can exclude invalid state?; Reachable bad state / trace?; Eventuality / fairness?; CONSTRAINT; VALIDATOR; GATE. Restore emphasis to alternative property questions and mechanism roles; gate stays a distinct admission role within a regular condition.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Three equal property-selected mechanisms feed separate gate; no invented rank.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 44,
       "width_bp": 382.207,
-      "height_bp": 233.33,
+      "height_bp": 232.68,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
+    "candidate_sha256": "969a48940b1219735dbbc7c8ba0ce8f4670568dcb5118880cfba9a6748806553",
+    "reason": "Restore emphasis to alternative property questions and mechanism roles; gate stays a distinct admission role within a regular condition.",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING OBLIGATION",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ENGINEERING OBLIGATION",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "ENGINEERING OBLIGATION",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CAN EXCLUDE IT?",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Can exclude invalid state?",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "CAN EXCLUDE IT?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "BAD STATE / TRACE?",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Reachable bad state / trace?",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "BAD STATE / TRACE?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "EVENTUALITY / FAIRNESS?",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Eventuality / fairness?",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "EVENTUALITY / FAIRNESS?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CONSTRAINT",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "CONSTRAINT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "CONSTRAINT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "VALIDATOR",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "VALIDATOR",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "VALIDATOR",
+          "matching_fragment_count": 2
+        }
+      },
+      {
+        "source_text": "GATE, IF THE VERDICT",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "GATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/match-mechanism-to-property.svg",
+          "element_text_path": "/svg/text[18]/text()",
+          "text_element_context": "GATE, IF THE VERDICT",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING OBLIGATION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Can exclude invalid state?",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Reachable bad state / trace?",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Eventuality / fairness?",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CONSTRAINT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "VALIDATOR",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "GATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "bounded exploration",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 44,
+      "width_bp": 382.207,
+      "height_bp": 232.68,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
+    }
   }
 }

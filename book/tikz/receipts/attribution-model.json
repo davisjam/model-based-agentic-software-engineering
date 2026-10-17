@@ -68,26 +68,181 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-    "candidate_sha256": "583becbc2c95360a839fe78978aa43784cad9da4dd2b5654dd16153fc2a69885",
+    "candidate_sha256": "695f62b5b5851fda2675971d77d6166f435a73f05243e7802055eb12108b8504",
     "fill": "Run, record territory, fields, evidence and derived outputs white; record containment supplies grouping.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes RUN; OPERATION*; Target; Mutation; Responsible pass; Retained evidence. Formal record names and schema fields regain label hierarchy; derived-view heading is italic, not another record type.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 31,
       "width_bp": 363.145,
       "height_bp": 187.928,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
+    "candidate_sha256": "695f62b5b5851fda2675971d77d6166f435a73f05243e7802055eb12108b8504",
+    "reason": "Formal record names and schema fields regain label hierarchy; derived-view heading is italic, not another record type.",
+    "evidence": [
+      {
+        "source_text": "RUN",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "record type",
+        "candidate_text": "RUN",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "RUN",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "OPERATION*",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "nested record type",
+        "candidate_text": "OPERATION*",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "OPERATION*",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "target",
+        "source_style": "weight 700; normal; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Target",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/g[2]/text[1]/text()",
+          "text_element_context": "target",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "mutation",
+        "source_style": "weight 700; normal; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Mutation",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/g[2]/text[2]/text()",
+          "text_element_context": "mutation",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "pass",
+        "source_style": "weight 700; normal; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Responsible pass",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/g[2]/text[3]/text()",
+          "text_element_context": "pass",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "evidence",
+        "source_style": "weight 700; normal; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Retained evidence",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/g[2]/text[4]/text()",
+          "text_element_context": "evidence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "derived views",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Derived views",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/attribution-model.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "derived views",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "RUN",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "OPERATION*",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Target",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Mutation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Responsible pass",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Retained evidence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Derived views",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Audit · debugging · changelog",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 31,
+      "width_bp": 363.145,
+      "height_bp": 187.928,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
+    }
   }
 }

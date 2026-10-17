@@ -33,27 +33,416 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
-    "candidate_sha256": "422be2857cad505dbd52e5f62b76ccf2b240f9f4451c4635ce7b68ed44c9f071",
+    "candidate_sha256": "c411e7168d868c85b5df0069c58ae38119c1eb92983f9e00dc75b932e7384dd8",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes STRONGER MODEL SUBSTRATE; NARROWER ENFORCEMENT; PARTITION FINDINGS; Explicit relations; EXISTING CODEBASE; MIGRATE CONSUMERS; LEGITIMATE SHAPE; Typed vocabulary. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "6 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Three diagnoses and typed vocabulary/relations fork remain; dashed next-pass continuation unchanged.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 65,
       "width_bp": 416.223,
-      "height_bp": 340.947,
+      "height_bp": 344.854,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 13
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
+    "candidate_sha256": "c411e7168d868c85b5df0069c58ae38119c1eb92983f9e00dc75b932e7384dd8",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "STRONGER MODEL SUBSTRATE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "STRONGER MODEL SUBSTRATE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "STRONGER MODEL SUBSTRATE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "826",
+              "text_element": 28
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "NARROWER ENFORCEMENT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "NARROWER ENFORCEMENT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "NARROWER ENFORCEMENT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "734",
+              "text_element": 26
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PARTITION FINDINGS",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PARTITION FINDINGS",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PARTITION FINDINGS",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "256",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "explicit relations",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Explicit relations",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "explicit relations",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "640",
+              "y": "540",
+              "text_element": 22
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "EXISTING CODEBASE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "EXISTING CODEBASE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "EXISTING CODEBASE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "58",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MIGRATE CONSUMERS",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MIGRATE CONSUMERS",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MIGRATE CONSUMERS",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "650",
+              "text_element": 24
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "LEGITIMATE SHAPE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "LEGITIMATE SHAPE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "LEGITIMATE SHAPE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "160",
+              "y": "332",
+              "text_element": 8
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "typed vocabulary",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Typed vocabulary",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "typed vocabulary",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "300",
+              "y": "540",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MECHANICAL DEBT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MECHANICAL DEBT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MECHANICAL DEBT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "332",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "LATENT CONCEPT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "LATENT CONCEPT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "LATENT CONCEPT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "780",
+              "y": "332",
+              "text_element": 12
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "NAME THE MODEL",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "NAME THE MODEL",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "NAME THE MODEL",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "780",
+              "y": "411",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "weak discovery signals",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.2"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Weak signals:",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "weak discovery signals",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.2"
+            },
+            "location": {
+              "x": "480",
+              "y": "128",
+              "text_element": 3
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "STRONGER MODEL SUBSTRATE",
+        "bold": true
+      },
+      {
+        "text": "NARROWER ENFORCEMENT",
+        "bold": true
+      },
+      {
+        "text": "PARTITION FINDINGS",
+        "bold": true
+      },
+      {
+        "text": "Explicit relations",
+        "bold": true
+      },
+      {
+        "text": "EXISTING CODEBASE",
+        "bold": true
+      },
+      {
+        "text": "MIGRATE CONSUMERS",
+        "bold": true
+      },
+      {
+        "text": "LEGITIMATE SHAPE",
+        "bold": true
+      },
+      {
+        "text": "Typed vocabulary",
+        "bold": true
+      },
+      {
+        "text": "MECHANICAL DEBT",
+        "bold": true
+      },
+      {
+        "text": "LATENT CONCEPT",
+        "bold": true
+      },
+      {
+        "text": "NAME THE MODEL",
+        "bold": true
+      },
+      {
+        "text": "Weak signals:",
+        "bold": true
+      },
+      {
+        "text": "Accept / exempt",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 65,
+      "width_bp": 416.223,
+      "height_bp": 344.854,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 13
+    }
   }
 }

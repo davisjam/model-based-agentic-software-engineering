@@ -5,19 +5,19 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=4cm,fill=white] (m) at (0,0) {MODEL\\authored fact};
-\node[box,text width=4cm,fill=white] (c) at (-2,-1.8) {CONSUME\\read model live};
-\node[box,dashed,text width=3.4cm] (em) at (3.8,-1.8) {EMIT\\generate artifacts};
+\node[head,text width=4cm,fill=white] (m) at (0,0) {\textbf{MODEL}\\authored fact};
+\node[box,text width=4cm,fill=white] (c) at (-2,-1.8) {\textbf{CONSUME}\\read model live};
+\node[box,dashed,text width=3.4cm] (em) at (3.8,-1.8) {\textbf{EMIT}\\generate artifacts};
 \draw[edge,] (m.south) -- (0.000,-0.900) -- (-2.000,-0.900) -- (c.north);
 \draw[edge,dashed,-{Latex[open]}] (m.south) -- (0,-.9) -- (3.8,-.9) -- (em.north);
-\node[head,text width=4cm,fill=white] (co) at (-2,-3.6) {CORRESPONDENCE\\model against world};
-\node[box,dashed,text width=3.4cm] (de) at (3.8,-3.6) {DERIVE\\stable-identity join};
+\node[head,text width=4cm,fill=white] (co) at (-2,-3.6) {\textbf{CORRESPONDENCE}\\model against world};
+\node[box,dashed,text width=3.4cm] (de) at (3.8,-3.6) {\textbf{DERIVE}\\stable-identity join};
 \draw[edge,] (c) -- (co);
 \draw[edge,dashed,-{Latex[open]}] (de) -- (co);
-\node[box,diamond,aspect=3,text width=2.8cm,fill=white] (q) at (-2,-5.4) {Disagreement?};
+\node[box,diamond,aspect=3,text width=2.8cm,fill=white] (q) at (-2,-5.4) {\textbf{Disagreement?}};
 \draw[edge,] (co) -- (q);
-\node[box,text width=3.5cm,fill=white] (g) at (-4.5,-7.5) {GATE\\reject disagreement};
-\node[box,text width=3cm,fill=white] (v) at (1,-7.5) {Valid};
+\node[box,text width=3.5cm,fill=white] (g) at (-4.5,-7.5) {\textbf{GATE}\\reject disagreement};
+\node[box,text width=3cm,fill=white] (v) at (1,-7.5) {\textbf{Valid}};
 \draw[edge,] (q.south) -- (-2.000,-6.300) -- node[midway,below,note] {yes} (-4.500,-6.300) -- (g.north);
 \draw[edge,] (q.south) -- (-2.000,-6.300) -- node[midway,below,note] {no} (1.000,-6.300) -- (v.north);
 \node[note,text width=12cm] (nt) at (0,-9) {Solid: required composition. Dashed: useful enhancement, not required for the capability.};

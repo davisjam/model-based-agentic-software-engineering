@@ -19,26 +19,235 @@
   "alt": "The Governance-Conversion stack: model the control machinery, find its gaps, interpret a\n    recurring failure into a durable control, update the estate, iterate",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
-    "candidate_sha256": "83fb336ab07d15d17b7d4a2e29e543b554fa367fe07c260b129a3101205c34b4",
+    "candidate_sha256": "8e5cd506739058a926bf16c4eb1c77783d9428a0372a982f6ffcea9f663baa71",
     "fill": "Control machinery and interpretation share one light role fill for the governance conversion steps; observed gaps and updated estate are white.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes CONTROL MACHINERY; GAPS / COUPLING; UPDATE ESTATE; INTERPRET. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 97,
       "width_bp": 307.025,
-      "height_bp": 198.706,
+      "height_bp": 198.662,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
+    "candidate_sha256": "8e5cd506739058a926bf16c4eb1c77783d9428a0372a982f6ffcea9f663baa71",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "CONTROL MACHINERY",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CONTROL MACHINERY",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CONTROL MACHINERY",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "305",
+              "y": "60",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "GAPS / COUPLING",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "GAPS / COUPLING",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "GAPS / COUPLING",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "305",
+              "y": "188",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "UPDATE ESTATE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "UPDATE ESTATE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "UPDATE ESTATE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "305",
+              "y": "464",
+              "text_element": 12
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "INTERPRET",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "INTERPRET",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "INTERPRET",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "305",
+              "y": "328",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "inspect / query",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "14.4"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "inspect / query",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "inspect / query",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "14.4"
+            },
+            "location": {
+              "x": "318",
+              "y": "132",
+              "text_element": 4
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "recurring failure?",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "14.4"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "recurring failure?",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "recurring failure?",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "14.4"
+            },
+            "location": {
+              "x": "322",
+              "y": "272",
+              "text_element": 8
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "CONTROL MACHINERY",
+        "bold": true
+      },
+      {
+        "text": "GAPS / COUPLING",
+        "bold": true
+      },
+      {
+        "text": "UPDATE ESTATE",
+        "bold": true
+      },
+      {
+        "text": "INTERPRET",
+        "bold": true
+      },
+      {
+        "text": "inspect / query",
+        "italic": true
+      },
+      {
+        "text": "recurring failure?",
+        "italic": true
+      },
+      {
+        "text": "weak, stale, or entangled?",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 97,
+      "width_bp": 307.025,
+      "height_bp": 198.662,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

@@ -80,26 +80,217 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
-    "candidate_sha256": "84606bc6cb9d05d60810c8698abb20a36b509f739c911a80ec32c81f295c7446",
+    "candidate_sha256": "057b3e79f9947509120aacab30c3301afccb2e7e9c6a53886239b96249f3e1cb",
     "fill": "All finite/unlimited peers, decision and outputs white; named entitlement modes and admission branches encode consequences.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes Finite-credit group; Unlimited group; ADMIT; REJECT. Finite and unlimited entitlement labels contrast with italic definitions; admission outcomes regain bold capitals.",
     "routing": "Orthogonal group fork, separate decision input ports and shared output rail.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 28,
       "width_bp": 356.496,
       "height_bp": 230.88,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
+    "candidate_sha256": "057b3e79f9947509120aacab30c3301afccb2e7e9c6a53886239b96249f3e1cb",
+    "reason": "Finite and unlimited entitlement labels contrast with italic definitions; admission outcomes regain bold capitals.",
+    "evidence": [
+      {
+        "source_text": "Finite-credit group",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Finite-credit group",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "Finite-credit group",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Unlimited group",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Unlimited group",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "Unlimited group",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "ADMIT",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ADMIT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[12]/text()",
+          "text_element_context": "ADMIT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "REJECT",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "REJECT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[13]/text()",
+          "text_element_context": "REJECT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "a remaining credit balance",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Remaining credit balance",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "a remaining credit balance",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "no credit limit",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "No credit limit",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "no credit limit",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "belongs to one or more",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "belongs to one or more",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "belongs to one or more",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "how many credits remain?",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "credits remaining?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "how many credits remain?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "is any entitlement unlimited?",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "any unlimited?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-domain.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "is any entitlement unlimited?",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Finite-credit group",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Unlimited group",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ADMIT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "REJECT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Remaining credit balance",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "No credit limit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "belongs to one or more",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "credits remaining?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "any unlimited?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "User",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 28,
+      "width_bp": 356.496,
+      "height_bp": 230.88,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
+    }
   }
 }

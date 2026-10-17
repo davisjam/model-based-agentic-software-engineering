@@ -12,26 +12,62 @@
   ],
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "dec528dcc6bd51c2bd4ae7f3cc91d4eb02ed0dddaf726d6a0747d9e91cf33bac",
     "candidate_sha256": "187ed027de96033fc6eaa00938fa90580de2d16dad01d25f2e6890ad98cf3e83",
     "fill": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction. Quantitative marks may use darker tones; text remains on white.",
-    "bold": "Plot/panel headings only; axes, annotations, values and legends are legible at native size.",
+    "bold": "Retained chart typography: values, axis/legend labels and callouts use regular text; series distinctions use marks/patterns rather than semantic weight.",
     "routing": "Quantitative positions, bars, line patterns and markers preserve the chart data; no process-edge routing is implied.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 78,
       "width_bp": 388.655,
       "height_bp": 395.878,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 1
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "retained",
+    "source_sha256": "dec528dcc6bd51c2bd4ae7f3cc91d4eb02ed0dddaf726d6a0747d9e91cf33bac",
+    "candidate_sha256": "187ed027de96033fc6eaa00938fa90580de2d16dad01d25f2e6890ad98cf3e83",
+    "reason": "Retained chart typography: values, axis/legend labels and callouts use regular text; series distinctions use marks/patterns rather than semantic weight.",
+    "evidence": [
+      {
+        "source_text": "measurement (deliberately no hard gate)",
+        "source_style": "regular Matplotlib glyph outlines; no Bold/Italic font glyphs in SVG",
+        "semantic_role": "axis, legend or measurement annotation",
+        "candidate_text": "measurement adds no hard gate.",
+        "candidate_style": "regular"
+      }
+    ],
+    "checks": [
+      {
+        "text": "measurement adds no hard gate.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 78,
+      "width_bp": 388.655,
+      "height_bp": 395.878,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 1
+    }
   }
 }

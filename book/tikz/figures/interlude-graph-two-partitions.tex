@@ -16,21 +16,21 @@
 \draw[fill=black!5,draw=black!50] (-2.5,-1) rectangle (-0.5,-6.4);
 \node[box,text width=1.65cm] (ap2) at (-1.5,-1.9) {Analyze\\page 3};
 \node[box,text width=1.65cm] (aq2) at (-1.5,-5.4) {GenAI query\\image 3};
-\node[box,text width=5.8cm,fill=white] (ac) at (-3.7,-3.7) {Build document context};
+\node[box,text width=5.8cm,fill=white] (ac) at (-3.7,-3.7) {\textbf{Build document context}};
 \draw[edge,] (ap0.south) -- (ac.north -| ap0.south);
 \draw[edge,] (ac.south -| aq0.north) -- (aq0.north);
 \draw[edge,] (ap1) -- (ac);
 \draw[edge,] (ac) -- (aq1);
 \draw[edge,] (ap2.south) -- (ac.north -| ap2.south);
 \draw[edge,] (ac.south -| aq2.north) -- (aq2.north);
-\node[note,text width=6cm] (ant) at (-3.7,-7) {Group by where\\work occurs};
+\node[note,text width=6cm] (ant) at (-3.7,-7) {\textit{Group by where\\work occurs}};
 \node[box,text width=1.65cm] (bp0) at (1.5,-1.9) {Analyze\\page 1};
 \node[box,text width=1.65cm] (bq0) at (1.5,-5.4) {GenAI query\\image 1};
 \node[box,text width=1.65cm] (bp1) at (3.7,-1.9) {Analyze\\page 2};
 \node[box,text width=1.65cm] (bq1) at (3.7,-5.4) {GenAI query\\image 2};
 \node[box,text width=1.65cm] (bp2) at (5.9,-1.9) {Analyze\\page 3};
 \node[box,text width=1.65cm] (bq2) at (5.9,-5.4) {GenAI query\\image 3};
-\node[box,text width=5.8cm,fill=white] (bc) at (3.7,-3.7) {Build document context};
+\node[box,text width=5.8cm,fill=white] (bc) at (3.7,-3.7) {\textbf{Build document context}};
 \draw[edge,] (bp0.south) -- (bc.north -| bp0.south);
 \draw[edge,] (bc.south -| bq0.north) -- (bq0.north);
 \draw[edge,] (bp1) -- (bc);
@@ -40,15 +40,15 @@
 \draw[black!50] (0.40000000000000036,-2.5) rectangle (7.0,-1.2999999999999998);
 \draw[black!50] (0.40000000000000036,-4.3) rectangle (7.0,-3.1);
 \draw[black!50] (0.40000000000000036,-6.3) rectangle (7.0,-4.5);
-\node[note,text width=6cm] (bnt) at (3.7,-7) {Group by when\\work is ready};
+\node[note,text width=6cm] (bnt) at (3.7,-7) {\textit{Group by when\\work is ready}};
 \node[note,text width=12cm] (nt) at (0,-8) {Same actions and dependencies; different execution boundary.};
 \begin{scope}[on background layer]
 \fill[black!5] (.4,-2.5) rectangle (7,-1.3);\fill[black!5] (.4,-4.3) rectangle (7,-3.1);\fill[black!5] (.4,-6.3) rectangle (7,-4.5);
 \end{scope}
-\node[note,fill=white,inner sep=1pt] at (-5.9,-.95) {PAGE 1};
-\node[note,fill=white,inner sep=1pt] at (-3.7,-.95) {PAGE 2};
-\node[note,fill=white,inner sep=1pt] at (-1.5,-.95) {PAGE 3};
-\node[note,anchor=west,text width=1.15cm] at (7.05,-1.9) {Ready\\frontier 1};
-\node[note,anchor=west,text width=1.15cm] at (7.05,-3.7) {Ready\\frontier 2};
-\node[note,anchor=west,text width=1.15cm] at (7.05,-5.4) {Ready\\frontier 3};
+\node[note,fill=white,inner sep=1pt] at (-5.9,-.95) {\textbf{PAGE 1}};
+\node[note,fill=white,inner sep=1pt] at (-3.7,-.95) {\textbf{PAGE 2}};
+\node[note,fill=white,inner sep=1pt] at (-1.5,-.95) {\textbf{PAGE 3}};
+\node[note,anchor=west,text width=1.6cm] at (6.9,-1.9) {\textbf{READY\\FRONTIER 1}};
+\node[note,anchor=west,text width=1.6cm] at (6.9,-3.7) {\textbf{READY\\FRONTIER 2}};
+\node[note,anchor=west,text width=1.6cm] at (6.9,-5.4) {\textbf{READY\\FRONTIER 3}};
 \end{tikzpicture}

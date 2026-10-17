@@ -21,7 +21,7 @@
 \node[box,text width=3cm,fill=white] (gen) at (2.5,-7.2) {GenAI service};
 \draw[edge,] (db.south -| wa.north) -- (wa.north);
 \draw[opt] (wa.south)--(3.3,-5.3)--(media.west);
-\draw[edge,] (media.south) -- (6.000,-6.250) -- (2.500,-6.250) -- node[midway,above,note,fill=white] {stream on demand} (gen.north);
-\node[note,text width=6cm] (nt1) at (-3.7,-5.7) {Each chunk still carries its media in the worker.};
-\node[note,text width=6cm] (nt2) at (3.7,-8.7) {Media bypasses persistent worker residency.};
+\draw[edge,] (media.south) -- (6.000,-6.250) -- (2.500,-6.250) -- node[midway,above,note,fill=white] {\textit{stream on demand}} (gen.north);
+\node[note,text width=6cm] (nt1) at (-3.7,-5.7) {\textit{Each chunk still carries its media in the worker.}};
+\node[note,text width=6cm] (nt2) at (3.7,-8.7) {\textit{Media bypasses persistent worker residency.}};
 \end{tikzpicture}

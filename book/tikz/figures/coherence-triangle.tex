@@ -4,14 +4,14 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
 edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
-\node[n,fill=white,text width=3.7cm,minimum height=3cm] (model) at (-4.8,0) {Structured model\\Records · edges · states\\A job: free / leased / done};
+\node[n,fill=white,text width=3.7cm,minimum height=3cm] (model) at (-4.8,0) {\textbf{STRUCTURED MODEL}\\Records · edges · states\\\textit{A job: free / leased / done}};
 \node[n,fill=white,text width=3.7cm,minimum height=3cm] (invariants) at (0,0) {};
-\node[note,font=\fontsize{10}{12}\selectfont,text width=3.5cm] at (0,.95) {Invariants};
+\node[note,font=\fontsize{10}{12}\selectfont,text width=3.5cm] at (0,.95) {\textbf{INVARIANTS}};
 \node[note,text width=3.5cm] at (0,.25) {Stable IDs\\Declared domains};
 \node[n,inner sep=3pt,text width=3.2cm,font=\fontsize{10}{12}\selectfont] at (0,-.85) {leased $\Leftrightarrow$ owner exists};
-\node[n,fill=white,text width=3.7cm,minimum height=3cm] (checker) at (4.8,0) {Checker\\Model check · drift lint\\Validator};
-\draw[edge] (model) -- node[lab,above=46pt] {supports\\predicates over} (invariants);
-\draw[edge] (invariants) -- node[lab,above=46pt] {evaluated by} (checker);
+\node[n,fill=white,text width=3.7cm,minimum height=3cm] (checker) at (4.8,0) {\textbf{CHECKER}\\Model check · drift lint\\Validator};
+\draw[edge] (model) -- node[lab,above=46pt] {\textit{supports}\\\textit{predicates over}} (invariants);
+\draw[edge] (invariants) -- node[lab,above=46pt] {\textit{evaluated by}} (checker);
 \draw[edge,dashed] (checker.south) -- (4.8,-2.2) -- node[lab,below] {Recurring failure → new / refined invariant} (0,-2.2) -- (invariants.south);
 \node[note,text width=12cm] at (0,-3.5) {One executable-model pattern, not the definition of executability.};
 

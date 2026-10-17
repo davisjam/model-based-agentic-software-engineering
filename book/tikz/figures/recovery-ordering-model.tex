@@ -5,12 +5,12 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm,fill=white] (n0) at (0,0) {FALLBACK\_STAGED};
-\node[n,text width=6cm,fill=white] (n1) at (0,-2) {FALLBACK\_UPLOADED};
-\draw[edge] (n0) -- node[lab,right] {upload succeeds} (n1);
-\node[n,text width=6cm,fill=white] (n2) at (0,-4) {DB\_UPDATED};
-\draw[edge] (n1) -- node[lab,right] {durable state updated} (n2);
+\node[n,text width=6cm,fill=white] (n0) at (0,0) {\textbf{FALLBACK\_STAGED}};
+\node[n,text width=6cm,fill=white] (n1) at (0,-2) {\textbf{FALLBACK\_UPLOADED}};
+\draw[edge] (n0) -- node[lab,right] {\textit{upload succeeds}} (n1);
+\node[n,text width=6cm,fill=white] (n2) at (0,-4) {\textbf{DB\_UPDATED}};
+\draw[edge] (n1) -- node[lab,right] {\textit{durable state updated}} (n2);
 \draw[edge,dashed] (n0.west) -- ++(-1.3,0) |- (n2.west);
-\node[note,fill=white,text width=1.8cm] (forbidden) at (-5.7,-2) {$\times$\\Forbidden /\\absent\\transition\\Not part of\\the model};
+\node[note,fill=white,text width=2.5cm] (forbidden) at (-6,-2) {$\times$\\\textbf{Forbidden /}\\\textbf{absent}\\\textbf{transition}\\\textit{Not part of}\\\textit{the model}};
 \node[note,text width=10cm] (rule) at (0,-5.6) {Durable state may not name an artifact\\recovery has not yet published.};
 \end{tikzpicture}

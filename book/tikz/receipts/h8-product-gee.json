@@ -21,26 +21,142 @@
   "alt": "From local MAGE adoption to the product GEE",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
-    "candidate_sha256": "b7d2e13783c8e6c09b251c8cca16d357997838bf4214b7596d5a6be028509070",
+    "candidate_sha256": "64468e39474761cd40efc317dc8cec77bb1c9a5c970632072f518bb21d0a45ac",
     "fill": "Only the assembled governed environment has light fill; inputs, evidence, reasoning and alignment peers stay white.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes PRODUCT DISCOVERY; AUTONOMOUS REASONING. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
     "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 124,
-      "width_bp": 389.77,
-      "height_bp": 348.908,
+      "width_bp": 389.815,
+      "height_bp": 365.936,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "candidate_sha256": "64468e39474761cd40efc317dc8cec77bb1c9a5c970632072f518bb21d0a45ac",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
+    "evidence": [
+      {
+        "source_text": "PRODUCT DISCOVERY",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "PRODUCT DISCOVERY",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "ENGINEERING & REALIZATION",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ENGINEERING \\& REALIZATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "PRODUCT MANAGEMENT & MAINTENANCE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "PRODUCT MANAGEMENT \\& MAINTENANCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "SHARED RELATIONS",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "SHARED RELATIONS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "OPERATIONS & INCIDENT RESPONSE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "OPERATIONS \\& INCIDENT RESPONSE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "ASSURANCE & COMPLIANCE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ASSURANCE \\& COMPLIANCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CONNECTED ENGINEERING KNOWLEDGE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "CONNECTED ENGINEERING KNOWLEDGE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "AUTONOMOUS REASONING",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "AUTONOMOUS REASONING",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "ALIGNMENT",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ALIGNMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "GOVERNED ENGINEERING",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "GOVERNED ENGINEERING ENVIRONMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "experience · failures · evidence · governance conversion",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "experience · failures · evidence · governance conversion",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "PRODUCT DISCOVERY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "AUTONOMOUS REASONING",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "identity · provenance",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 124,
+      "width_bp": 389.815,
+      "height_bp": 365.936,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

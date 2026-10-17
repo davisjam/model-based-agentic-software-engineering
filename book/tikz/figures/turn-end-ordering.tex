@@ -5,14 +5,14 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=3.7cm,fill=white] (h0) at (0.0,0) {Turn-end hook\\Discourages\\premature stops};
-\node[box,text width=3.7cm,fill=white] (h1) at (4.5,0) {Turn-end hook\\Prompts reflection\\on failures};
-\node[box,text width=3.7cm,fill=white] (h2) at (9.0,0) {Turn-end hook\\Checks for\\stranded work};
-\draw[edge,line width=1.2pt] (h0) -- node[midway,above,yshift=1.15cm,note,fill=white] {modeled order} (h1);
-\draw[edge,line width=1.2pt] (h1) -- node[midway,above,yshift=1.15cm,note,fill=white] {modeled order} (h2);
-\node[head,text width=11cm,fill=white] (r) at (4.5,-2.5) {One shared slot: the turn's closing message};
-\draw[edge,] (h0.south) -- node[midway,note,fill=white] {writes} (r.north -| h0.south);
-\draw[edge,] (h1) -- node[midway,note,fill=white] {writes} (r);
-\draw[edge,] (h2.south) -- node[midway,note,fill=white] {writes} (r.north -| h2.south);
+\node[box,text width=3.7cm,fill=white] (h0) at (0.0,0) {\textit{Turn-end hook}\\\textbf{Discourages}\\\textbf{premature stops}};
+\node[box,text width=3.7cm,fill=white] (h1) at (4.5,0) {\textit{Turn-end hook}\\\textbf{Prompts reflection}\\\textbf{on failures}};
+\node[box,text width=3.7cm,fill=white] (h2) at (9.0,0) {\textit{Turn-end hook}\\\textbf{Checks for}\\\textbf{stranded work}};
+\draw[edge,line width=1.2pt] (h0) -- node[midway,above,yshift=1.15cm,note,fill=white] {\textit{modeled order}} (h1);
+\draw[edge,line width=1.2pt] (h1) -- node[midway,above,yshift=1.15cm,note,fill=white] {\textit{modeled order}} (h2);
+\node[head,text width=11cm,fill=white] (r) at (4.5,-2.5) {One shared slot: \textbf{the turn's closing message}};
+\draw[edge,] (h0.south) -- node[midway,note,fill=white] {\textit{writes}} (r.north -| h0.south);
+\draw[edge,] (h1) -- node[midway,note,fill=white] {\textit{writes}} (r);
+\draw[edge,] (h2.south) -- node[midway,note,fill=white] {\textit{writes}} (r.north -| h2.south);
 \node[note,text width=12cm] (nt) at (4.5,-4.1) {25 mechanisms; 3 conflict edges. Topological sort computes the order; a cycle is an error. Generic runtime enforcement is not yet implemented.};
 \end{tikzpicture}

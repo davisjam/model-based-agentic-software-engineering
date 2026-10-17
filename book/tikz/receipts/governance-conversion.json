@@ -33,27 +33,223 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-    "candidate_sha256": "a5d1227ca3e0041549577f80bc16732cf313426e5ddaeaf67dd319e4a7884036",
+    "candidate_sha256": "458487600d5cc47c03a86ffc5244c9135e10abb72045a13f126770f1153e445d",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes FAILURE / SURPRISE; Representation; Obligation; Evidence; Evaluation; Enforcement; What was missing?; DURABLE ENGINEERING STRUCTURE. Missing-capability labels are bold while their concrete engineering artifacts remain regular; capital and durable structure are emphasized outcomes.",
     "routing": "8 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Five diagnostic branches converge on one shared rail into durable structure.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 49,
       "width_bp": 404.884,
-      "height_bp": 255.908,
+      "height_bp": 254.709,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
+    "candidate_sha256": "458487600d5cc47c03a86ffc5244c9135e10abb72045a13f126770f1153e445d",
+    "reason": "Missing-capability labels are bold while their concrete engineering artifacts remain regular; capital and durable structure are emphasized outcomes.",
+    "evidence": [
+      {
+        "source_text": "FAILURE / SURPRISE",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "FAILURE / SURPRISE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "FAILURE / SURPRISE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "representation",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Representation",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/g[3]/text[1]/text()",
+          "text_element_context": "representation",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "obligation",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Obligation",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/g[3]/text[2]/text()",
+          "text_element_context": "obligation",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "evidence",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Evidence",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/g[3]/text[3]/text()",
+          "text_element_context": "evidence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "evaluation",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Evaluation",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/g[3]/text[4]/text()",
+          "text_element_context": "evaluation",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "enforcement",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Enforcement",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/g[3]/text[5]/text()",
+          "text_element_context": "enforcement",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "What was missing?",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "What was missing?",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "What was missing?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "DURABLE ENGINEERING STRUCTURE",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "DURABLE ENGINEERING STRUCTURE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "DURABLE ENGINEERING STRUCTURE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "ENGINEERING CAPITAL",
+        "source_style": "weight 800; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ENGINEERING CAPITAL",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/governance-conversion.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "ENGINEERING CAPITAL",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "FAILURE / SURPRISE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Representation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Obligation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Evidence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Evaluation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Enforcement",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "What was missing?",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "DURABLE ENGINEERING STRUCTURE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ENGINEERING CAPITAL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Model",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Invariant",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 49,
+      "width_bp": 404.884,
+      "height_bp": 254.709,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11
+    }
   }
 }

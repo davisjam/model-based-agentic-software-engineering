@@ -4,8 +4,8 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
 edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
 
-\node[head,text width=5.5cm] (fh) at (-3.5,0) {Foundation Model};
-\node[head,text width=5.5cm] (hh) at (3.5,0) {Agentic Harness};
+\node[head,text width=5.5cm] (fh) at (-3.5,0) {FOUNDATION MODEL};
+\node[head,text width=5.5cm] (hh) at (3.5,0) {AGENTIC HARNESS};
 \foreach \i/\txt in {0/{Semantic reasoning},1/{Probabilistic output},2/{Bounded working state},3/{Cheap repeated reasoning}} {
  \node[n,text width=5cm,font=\fontsize{10}{12}\selectfont] (f\i) at (-3.5,-.8-\i*.9) {\txt};}
 \foreach \i/\txt in {0/{Tool-mediated action},1/{Context management},2/{Interposition},3/{Parallel execution}} {
@@ -15,7 +15,7 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[draw,rounded corners=3pt,fill=white,fit=(hh)(h0)(h3),inner sep=7pt] (harness) {};
 \end{scope}
 % Two symmetric short routes enter distinct top ports; the enclosure is named below.
-\node[n,text width=6cm,minimum height=1cm] (agent) at (0,-5.6) {Agent\\A tool-using reasoner};
+\node[n,text width=6cm,minimum height=1cm] (agent) at (0,-5.6) {\textbf{Agent}\\A tool-using reasoner};
 \node[head,text width=9cm] (eh) at (0,-6.8) {Engineered Environment};
 \node[note,text width=10cm] (detail) at (0,-7.3) {Models · obligations · evidence · controls};
 \begin{scope}[on background layer]

@@ -17,26 +17,100 @@
   "alt": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
-    "candidate_sha256": "ad449ecfea70ef98cdf50c59a352e95f76dc762606879ece2b4a39c686d05b24",
+    "candidate_sha256": "831691d74284fe5d427d0fa46d5e4bc951df199951f7eaab2173753e8c2b4233",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes EXISTING EVIDENCE. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 104,
       "width_bp": 280.449,
       "height_bp": 226.061,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
+    "candidate_sha256": "831691d74284fe5d427d0fa46d5e4bc951df199951f7eaab2173753e8c2b4233",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "WHAT MUST BE ASSURED",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "WHAT MUST BE ASSURED",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "EXISTING EVIDENCE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "EXISTING EVIDENCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "seams · failure edges · invariants",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "seams · failure edges · invariants",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "tests · checks that actually exist",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "tests · checks that actually exist",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "Measure the required set minus the present evidence — not the evidence you happen to have written.",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "Required set minus present evidence.",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "EXISTING EVIDENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "tests · checks that actually exist",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "COVERED",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 104,
+      "width_bp": 280.449,
+      "height_bp": 226.061,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

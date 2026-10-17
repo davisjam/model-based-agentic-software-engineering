@@ -20,26 +20,79 @@
   "alt": "*Uber projected onto MAGE.* Public evidence strongly supports engineering the environment around a replaceable reasoner; the executable-model tier stays out of reach.",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
-    "candidate_sha256": "a1df3d1275df760531e0f92ee7597fe59b138c3be170ca0829516f15db800a7a",
+    "candidate_sha256": "bab8c191ce612bc412adb48d073849aa5a6a526a13c9eb09f00b344f6cf11aaf",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes Uber; Governed Engineering Environment. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Central mechanism connects vertically into the environment destination at an explicit top port; branch rails remain separate and the Cloudflare open-loop cue is preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 134,
       "width_bp": 354.15,
-      "height_bp": 248.234,
+      "height_bp": 248.194,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
+    "candidate_sha256": "bab8c191ce612bc412adb48d073849aa5a6a526a13c9eb09f00b344f6cf11aaf",
+    "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "Uber",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Uber",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Governed Engineering",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Governed Engineering Environment",
+        "candidate_style": "bold"
+      }
+    ],
+    "checks": [
+      {
+        "text": "Uber",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Governed Engineering Environment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "benchmarks",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 134,
+      "width_bp": 354.15,
+      "height_bp": 248.194,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

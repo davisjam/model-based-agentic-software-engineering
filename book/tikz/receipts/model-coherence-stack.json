@@ -27,27 +27,296 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
-    "candidate_sha256": "60b36c3faf086910d0db7e77e8ae52e49a0536bee980bc70fc8e500a225b540d",
+    "candidate_sha256": "d5f8731197bbf7dd86acb399c81ffedbfbccc0dc6272eec138fbcfe4ab36132b",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes CORRESPONDENCE; Disagreement?; CONSUME; DERIVE; MODEL; Valid; EMIT; GATE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "3 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Required path solid, enhancements dashed/open-arrowed; yes/no labels below diamond rail.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 92,
       "width_bp": 361.491,
-      "height_bp": 288.782,
+      "height_bp": 288.737,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "candidate_sha256": "d5f8731197bbf7dd86acb399c81ffedbfbccc0dc6272eec138fbcfe4ab36132b",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "CORRESPONDENCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CORRESPONDENCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CORRESPONDENCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "300",
+              "y": "288",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "disagreement?",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "16.4"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Disagreement?",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "disagreement?",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "16.4"
+            },
+            "location": {
+              "x": "300",
+              "y": "429",
+              "text_element": 11
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "CONSUME",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CONSUME",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CONSUME",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "300",
+              "y": "178",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "DERIVE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "16.4"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "DERIVE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "DERIVE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "16.4"
+            },
+            "location": {
+              "x": "570",
+              "y": "284",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MODEL",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MODEL",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MODEL",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "410",
+              "y": "60",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "valid",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Valid",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "valid",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "400",
+              "y": "536",
+              "text_element": 14
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "EMIT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "EMIT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "EMIT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "560",
+              "y": "178",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "GATE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "GATE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "GATE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "195",
+              "y": "530",
+              "text_element": 12
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "CORRESPONDENCE",
+        "bold": true
+      },
+      {
+        "text": "Disagreement?",
+        "bold": true
+      },
+      {
+        "text": "CONSUME",
+        "bold": true
+      },
+      {
+        "text": "DERIVE",
+        "bold": true
+      },
+      {
+        "text": "MODEL",
+        "bold": true
+      },
+      {
+        "text": "Valid",
+        "bold": true
+      },
+      {
+        "text": "EMIT",
+        "bold": true
+      },
+      {
+        "text": "GATE",
+        "bold": true
+      },
+      {
+        "text": "authored fact",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 92,
+      "width_bp": 361.491,
+      "height_bp": 288.737,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

@@ -66,26 +66,127 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-    "candidate_sha256": "e7cd276a23305da18df98b5e89f81c8f1cacb012daf3c6e1f654f5f0096a57af",
+    "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
     "fill": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes Does; May; no edge. Uppercase headings and bold modal words distinguish observed facts from permission; missing-edge status is emphasized.",
     "routing": "Both relation forks use orthogonal ports; absent path retains its cross and arrowless dashed meaning.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 27,
       "width_bp": 399.726,
-      "height_bp": 183.292,
-      "minimum_prose_font_pt": null,
+      "height_bp": 183.287,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+    "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
+    "reason": "Uppercase headings and bold modal words distinguish observed facts from permission; missing-edge status is emphasized.",
+    "evidence": [
+      {
+        "source_text": "“Does A call C?”",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "observed modality",
+        "candidate_text": "Does",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "“Does A call C?”",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "“May A call C?”",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "normative modality",
+        "candidate_text": "May",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "“May A call C?”",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "declared",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "declared",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "declared",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "no edge",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "no edge",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "no edge",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Does",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "May",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "declared",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "no edge",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Agreement establishes correspondence, not correctness.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 27,
+      "width_bp": 399.726,
+      "height_bp": 183.287,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    }
   }
 }

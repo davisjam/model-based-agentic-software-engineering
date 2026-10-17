@@ -23,27 +23,182 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
-    "candidate_sha256": "35818a756f9cba68f74d70733ba220891a9f3d76b94cb6f2e1dfb6dd88fe48d5",
+    "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn's closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Modeled ordering uses heavy horizontal arrows; writes use lighter aligned vertical ports.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 53,
       "width_bp": 376.538,
       "height_bp": 181.075,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
+    "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
+    "reason": "Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
+    "evidence": [
+      {
+        "source_text": "turn-end hook",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Turn-end hook",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "turn-end hook",
+          "matching_fragment_count": 3
+        }
+      },
+      {
+        "source_text": "premature stops",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Discourages premature stops",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "premature stops",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "prompts reflection",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Prompts reflection on failures",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "prompts reflection",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "stranded work",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Checks for stranded work",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[13]/text()",
+          "text_element_context": "stranded work",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "modeled order — first to last",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "modeled order",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "modeled order — first to last",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "writes",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "writes",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "writes",
+          "matching_fragment_count": 3
+        }
+      },
+      {
+        "source_text": "the turn's closing message",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "the turn's closing message",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/turn-end-ordering.svg",
+          "element_text_path": "/svg/text[15]/text()",
+          "text_element_context": "the turn's closing message",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Turn-end hook",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Discourages premature stops",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Prompts reflection on failures",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Checks for stranded work",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "modeled order",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "writes",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "the turn's closing message",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "One shared slot:",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 53,
+      "width_bp": 376.538,
+      "height_bp": 181.075,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
+    }
   }
 }

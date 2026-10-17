@@ -7,12 +7,12 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=2.5cm] (action) at (-4.5,-2) {ACTION};
 \node[box,text width=2.5cm] (change) at (0,-2) {CHANGE};
 \node[box,text width=2.5cm] (artifact) at (4.5,-2) {ARTIFACT};
-\draw[edge] (cause) -- node[note,fill=white,inner sep=2pt] {mint identity} (action);
+\draw[edge] (cause) -- node[note,fill=white,inner sep=2pt] {\textit{mint identity}} (action);
 \draw[edge] (action) -- (change);
 \draw[edge] (change) -- (artifact);
 \draw[dashed] (action.south)--++(0,-1)-| (artifact.south);\draw[dashed] (change.south)--++(0,-1);
-\node[note,text width=6cm] (t13) at (0,-4.1) {identity travels with the work};
-\node[box,text width=3cm] (why) at (4.5,-5) {reconstruct WHY};
+\node[note,text width=6cm] (t13) at (0,-4.1) {\textit{identity travels with the work}};
+\node[box,text width=3cm] (why) at (4.5,-5) {reconstruct \textbf{WHY}};
 \draw[edge] (artifact) -- (why);
-\node[note] at (-2.25,-3) {id};\node[note] at (2.25,-3) {id};
+\node[note] at (-2.25,-3) {\textbf{id}};\node[note] at (2.25,-3) {\textbf{id}};
 \end{tikzpicture}

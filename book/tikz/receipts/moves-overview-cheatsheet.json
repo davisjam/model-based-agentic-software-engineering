@@ -32,25 +32,26 @@
   "alt": "Figure B.0-1: ten recurring engineering problems, each paired with the move that retires it",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
-    "candidate_sha256": "c6ee8b2a5b9f34dc55494a266186f6e4c5aec071a7413d1125c83c78d4d4dbd9",
+    "candidate_sha256": "1206edd3fb855106dbf8692fabc0354348f64ec23fdec29e65b9ddfb2ce54033",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes PUT ENFORCEMENT WHERE LEGIBLE; DELIVER KNOWLEDGE AT DECISION; CARRY CAUSE WITH CONSEQUENCE; MAKE DEPENDENCIES QUERYABLE; DERIVE THE OBLIGATION SET; CLOSE THE ACTION SURFACE; MAKE ONE AUTHORITATIVE; CHECK CORRESPONDENCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 100,
       "width_bp": 368.677,
-      "height_bp": 359.077,
+      "height_bp": 359.054,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 13
     },
     "book_references": [
       "chapter:appendix-b-make-fact-authoritative",
@@ -64,5 +65,393 @@
       "chapter:appendix-b-externalize-judgment",
       "chapter:appendix-b-make-dependencies-queryable"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "candidate_sha256": "1206edd3fb855106dbf8692fabc0354348f64ec23fdec29e65b9ddfb2ce54033",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "PUT ENFORCEMENT WHERE LEGIBLE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PUT ENFORCEMENT WHERE LEGIBLE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PUT ENFORCEMENT WHERE LEGIBLE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "372",
+              "text_element": 19
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "DELIVER KNOWLEDGE AT DECISION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "DELIVER KNOWLEDGE AT DECISION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "DELIVER KNOWLEDGE AT DECISION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "472",
+              "text_element": 25
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "CARRY CAUSE WITH CONSEQUENCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CARRY CAUSE WITH CONSEQUENCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CARRY CAUSE WITH CONSEQUENCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "522",
+              "text_element": 28
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MAKE DEPENDENCIES QUERYABLE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MAKE DEPENDENCIES QUERYABLE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MAKE DEPENDENCIES QUERYABLE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "622",
+              "text_element": 34
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "DERIVE THE OBLIGATION SET",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "DERIVE THE OBLIGATION SET",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "DERIVE THE OBLIGATION SET",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "322",
+              "text_element": 16
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "CLOSE THE ACTION SURFACE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CLOSE THE ACTION SURFACE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CLOSE THE ACTION SURFACE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "422",
+              "text_element": 22
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MAKE ONE AUTHORITATIVE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MAKE ONE AUTHORITATIVE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MAKE ONE AUTHORITATIVE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "172",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "CHECK CORRESPONDENCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CHECK CORRESPONDENCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CHECK CORRESPONDENCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "272",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "EXTERNALIZE JUDGMENT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "EXTERNALIZE JUDGMENT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "EXTERNALIZE JUDGMENT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "572",
+              "text_element": 31
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "DERIVE; DON'T COPY",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "DERIVE; DON’T COPY",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "DERIVE; DON'T COPY",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "540",
+              "y": "222",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "RECURRING PROBLEM",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "RECURRING PROBLEM",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "RECURRING PROBLEM",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "96",
+              "y": "118",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "ENGINEERING MOVE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ENGINEERING MOVE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ENGINEERING MOVE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "524",
+              "y": "118",
+              "text_element": 4
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "PUT ENFORCEMENT WHERE LEGIBLE",
+        "bold": true
+      },
+      {
+        "text": "DELIVER KNOWLEDGE AT DECISION",
+        "bold": true
+      },
+      {
+        "text": "CARRY CAUSE WITH CONSEQUENCE",
+        "bold": true
+      },
+      {
+        "text": "MAKE DEPENDENCIES QUERYABLE",
+        "bold": true
+      },
+      {
+        "text": "DERIVE THE OBLIGATION SET",
+        "bold": true
+      },
+      {
+        "text": "CLOSE THE ACTION SURFACE",
+        "bold": true
+      },
+      {
+        "text": "MAKE ONE AUTHORITATIVE",
+        "bold": true
+      },
+      {
+        "text": "CHECK CORRESPONDENCE",
+        "bold": true
+      },
+      {
+        "text": "EXTERNALIZE JUDGMENT",
+        "bold": true
+      },
+      {
+        "text": "DERIVE; DON’T COPY",
+        "bold": true
+      },
+      {
+        "text": "RECURRING PROBLEM",
+        "bold": true
+      },
+      {
+        "text": "ENGINEERING MOVE",
+        "bold": true
+      },
+      {
+        "text": "many truths disagree",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 100,
+      "width_bp": 368.677,
+      "height_bp": 359.054,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 13
+    }
   }
 }

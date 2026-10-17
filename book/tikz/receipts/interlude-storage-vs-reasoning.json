@@ -30,25 +30,26 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
-    "candidate_sha256": "f14d38aa9c5438723cce8d8adbc5552c958c59854d2eaa32f01f02f46c986a42",
+    "candidate_sha256": "81bb9fec52d12053209a2eff471096b6a629b8b9530ccd2512e2aae278adc98f",
     "fill": "Only media is 5%, inside chunks and external store; structure stays white.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
     "visual_review": "Media role alone shaded, paired with labels; reference path dashed, streaming solid. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 59,
       "width_bp": 413.388,
-      "height_bp": 275.311,
+      "height_bp": 269.792,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
@@ -68,5 +69,87 @@
     ],
     "compiler_diagnostics": [],
     "geometry_findings": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "candidate_sha256": "81bb9fec52d12053209a2eff471096b6a629b8b9530ccd2512e2aae278adc98f",
+    "reason": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
+    "evidence": [
+      {
+        "source_text": "stream on demand",
+        "source_style": "weight normal; italic; source size 13",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "stream on demand",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "stream on demand",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "each chunk still carries its media in the worker",
+        "source_style": "weight normal; italic; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Each chunk still carries its media in the worker.",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "each chunk still carries its media in the worker",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "media bypasses persistent worker residency",
+        "source_style": "weight normal; italic; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Media bypasses persistent worker residency.",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+          "element_text_path": "/svg/text[15]/text()",
+          "text_element_context": "media bypasses persistent worker residency",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "stream on demand",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Each chunk still carries its media in the worker.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Media bypasses persistent worker residency.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "OOXML document",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 59,
+      "width_bp": 413.388,
+      "height_bp": 269.792,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

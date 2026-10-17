@@ -75,26 +75,98 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
-    "candidate_sha256": "dad08d4240718b96dd8cec9769d8f0883bb7ae52e7005748672c05ff66a04ea2",
+    "candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
     "fill": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
-    "bold": "No arbitrary bold node names: Job and Validate have the same regular weight as peers.",
+    "bold": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
     "routing": "Chunks join a horizontal rail into Workers claim work; service fan-out/fan-in and outputs use right-angle routing.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 9,
       "width_bp": 378.005,
       "height_bp": 345.956,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
+    "reason": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
+    "evidence": [
+      {
+        "source_text": "split for parallel work",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Edge explanation distinct from process label",
+        "candidate_text": "split for parallel work",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "split for parallel work",
+            "weight": "normal",
+            "style": "italic",
+            "x": "392",
+            "y": "190"
+          }
+        ]
+      },
+      {
+        "source_text": "call specialized services",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Edge explanation distinct from process label",
+        "candidate_text": "call specialized services",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "call specialized services",
+            "weight": "normal",
+            "style": "italic",
+            "x": "392",
+            "y": "328"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "split for parallel work",
+        "italic": true
+      },
+      {
+        "text": "call specialized services",
+        "italic": true
+      },
+      {
+        "text": "Job",
+        "bold": false
+      },
+      {
+        "text": "Validate",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 9,
+      "width_bp": 378.005,
+      "height_bp": 345.956,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

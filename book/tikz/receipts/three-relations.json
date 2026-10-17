@@ -59,26 +59,163 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
-    "candidate_sha256": "5504d6a1ce6d342054b281f12cb73a9396eaf922fff7c32fd6933c172608d645",
+    "candidate_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
     "fill": "All compared endpoint nodes white; band headings and relation labels distinguish correspondence, conformance and acceptance.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes CORRESPONDENCE; CONFORMANCE; ACCEPTANCE. Uppercase relation categories are bold; their explanatory questions are italic regular weight instead of uniformly bold.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 40,
       "width_bp": 350.12,
-      "height_bp": 230.259,
-      "minimum_prose_font_pt": null,
+      "height_bp": 230.359,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
+    "candidate_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
+    "reason": "Uppercase relation categories are bold; their explanatory questions are italic regular weight instead of uniformly bold.",
+    "evidence": [
+      {
+        "source_text": "CORRESPONDENCE",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "relation class",
+        "candidate_text": "CORRESPONDENCE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "CORRESPONDENCE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "“Do they agree?”",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "class question",
+        "candidate_text": "Do they agree?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "“Do they agree?”",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CONFORMANCE",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "relation class",
+        "candidate_text": "CONFORMANCE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "CONFORMANCE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "“Does it satisfy?”",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "class question",
+        "candidate_text": "Does it satisfy?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "“Does it satisfy?”",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "ACCEPTANCE",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "relation class",
+        "candidate_text": "ACCEPTANCE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[13]/text()",
+          "text_element_context": "ACCEPTANCE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "“Will it accept?”",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "class question",
+        "candidate_text": "Will it accept?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/three-relations.svg",
+          "element_text_path": "/svg/text[17]/text()",
+          "text_element_context": "“Will it accept?”",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "CORRESPONDENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Do they agree?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "CONFORMANCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Does it satisfy?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "ACCEPTANCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Will it accept?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Artifact",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 40,
+      "width_bp": 350.12,
+      "height_bp": 230.359,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

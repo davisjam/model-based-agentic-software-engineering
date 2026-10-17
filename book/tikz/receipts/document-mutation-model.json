@@ -75,26 +75,150 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
-    "candidate_sha256": "a2aa9d89f9bc577e97cb9166bd67f34f74eeda6306e3ef0c9e3932d8d5ddefec",
+    "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
     "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes Remediation logic; Structured document model. Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
     "routing": "Vertical chain and shared horizontal format fan-out rail.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 18,
       "width_bp": 336.654,
       "height_bp": 220.883,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+    "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+    "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
+    "evidence": [
+      {
+        "source_text": "remediation logic",
+        "source_style": "weight 700; normal; source size 16.64",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Remediation logic",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/document-mutation-model.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "remediation logic",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "structured document model",
+        "source_style": "weight 700; normal; source size 16.64",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Structured document model",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/document-mutation-model.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "structured document model",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "the sanctioned seam",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "The sanctioned seam",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/document-mutation-model.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "the sanctioned seam",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "operates through",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "operates through",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/document-mutation-model.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "operates through",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "realized through",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "realized through",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/document-mutation-model.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "realized through",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Remediation logic",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Structured document model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "The sanctioned seam",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "operates through",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "realized through",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Format-specific implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "DOCX",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 18,
+      "width_bp": 336.654,
+      "height_bp": 220.883,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

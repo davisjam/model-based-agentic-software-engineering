@@ -40,26 +40,145 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-    "candidate_sha256": "64b4a6b83d73ef71aaa6a129266b02ed1c9f51caf159d2c64f5add44e94af794",
+    "candidate_sha256": "d3c92f54a6ed6cb2d2b40763919b098af2c539ac9c6a90f5bdf06cc4d0e289b1",
     "fill": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes Decidable claims; Semantic claims; MODELED SURFACE; UNMODELED SURFACE. Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 35,
       "width_bp": 420.889,
-      "height_bp": 154.756,
-      "minimum_prose_font_pt": null,
+      "height_bp": 154.483,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+    "candidate_sha256": "d3c92f54a6ed6cb2d2b40763919b098af2c539ac9c6a90f5bdf06cc4d0e289b1",
+    "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
+    "evidence": [
+      {
+        "source_text": "decidable claims",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Decidable claims",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/model-sync-two-layer-net.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "decidable claims",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "semantic claims",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Semantic claims",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/model-sync-two-layer-net.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "semantic claims",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "MODELED SURFACE",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "coverage domain",
+        "candidate_text": "MODELED SURFACE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/model-sync-two-layer-net.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "MODELED SURFACE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "UNMODELED SURFACE",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "UNMODELED SURFACE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/model-sync-two-layer-net.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "UNMODELED SURFACE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "no model-based coverage",
+        "source_style": "weight normal; italic; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "No model-based coverage",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/model-sync-two-layer-net.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "no model-based coverage",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Decidable claims",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Semantic claims",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "MODELED SURFACE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "UNMODELED SURFACE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "No model-based coverage",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "mechanical check",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 35,
+      "width_bp": 420.889,
+      "height_bp": 154.483,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

@@ -22,27 +22,164 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
-    "candidate_sha256": "a91b31e27bc244289881e657c0fe63ee28f4082fccf9afcd122f7248a98f7f23",
+    "candidate_sha256": "79f418072d6b834367a6e56781f4219b70216225f057f8b1046c2b5de5eadb11",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes Control A; Control B; COMMIT SET; Incompatible demands. Bold control and shared-resource names contrast with their demands; the conflict explanation is italic, not another control.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Both native check marks retained; shared resource and dashed conflict distinct.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 52,
       "width_bp": 362.365,
-      "height_bp": 156.539,
+      "height_bp": 156.419,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
+    "candidate_sha256": "79f418072d6b834367a6e56781f4219b70216225f057f8b1046c2b5de5eadb11",
+    "reason": "Bold control and shared-resource names contrast with their demands; the conflict explanation is italic, not another control.",
+    "evidence": [
+      {
+        "source_text": "Control A",
+        "source_style": "weight 700; normal; source size 24",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Control A",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "Control A",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Control B",
+        "source_style": "weight 700; normal; source size 24",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Control B",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "Control B",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "COMMIT SET",
+        "source_style": "weight 700; normal; source size 23",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "COMMIT SET",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "COMMIT SET",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "incompatible demands",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Incompatible demands",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "incompatible demands",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "shared resource",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "shared resource",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "shared resource",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "the conflict lives in this relation, not in either control",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "the conflict lives in the relation, not either control",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/collision-edge.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "the conflict lives in this relation, not in either control",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Control A",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Control B",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "COMMIT SET",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Incompatible demands",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "shared resource",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "the conflict lives in the relation, not either control",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "requires a squashed commit",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 52,
+      "width_bp": 362.365,
+      "height_bp": 156.419,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

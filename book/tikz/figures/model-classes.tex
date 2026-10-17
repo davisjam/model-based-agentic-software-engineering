@@ -5,14 +5,15 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=3.7cm,fill=white] (n0) at (0.0,0.0) {Structural\\What exists?\\How related?};
-\node[n,text width=3.7cm,fill=white] (n1) at (4.5,0.0) {Behavioral\\What may happen?\\In what order?};
-\node[n,text width=3.7cm,fill=white] (n2) at (9.0,0.0) {Ownership\\Who controls?\\For how long?};
-\node[n,text width=3.7cm,fill=white] (n3) at (0.0,-2.2) {Decision\\What is allowed?\\Which choice?};
-\node[n,text width=3.7cm,fill=white] (n4) at (4.5,-2.2) {Measurement\\How much?\\What envelope?};
-\node[n,text width=3.7cm,fill=white] (n5) at (9.0,-2.2) {Provenance\\What happened?\\What evidence?};
-\node[note,text width=10cm] (overlap) at (4.5,-3.7) {Classes may overlap.};
+\node[head,text width=12cm] at (4.5,1.3) {MODEL CLASS — What engineering question does it answer?};
+\node[n,text width=3.7cm,fill=white] (n0) at (0.0,0.0) {\textbf{STRUCTURAL}\\\textit{What exists?\\How related?}};
+\node[n,text width=3.7cm,fill=white] (n1) at (4.5,0.0) {\textbf{BEHAVIORAL}\\\textit{What may happen?\\In what order?}};
+\node[n,text width=3.7cm,fill=white] (n2) at (9.0,0.0) {\textbf{OWNERSHIP}\\\textit{Who controls?\\For how long?}};
+\node[n,text width=3.7cm,fill=white] (n3) at (0.0,-2.2) {\textbf{DECISION}\\\textit{What is allowed?\\Which choice?}};
+\node[n,text width=3.7cm,fill=white] (n4) at (4.5,-2.2) {\textbf{MEASUREMENT}\\\textit{How much?\\What envelope?}};
+\node[n,text width=3.7cm,fill=white] (n5) at (9.0,-2.2) {\textbf{PROVENANCE}\\\textit{What happened?\\What evidence?}};
+\node[note,text width=10cm] (overlap) at (4.5,-3.7) {\textit{Classes may overlap.}};
 \draw ( -2,-4.1)--(11,-4.1);
-\node[note,text width=12cm] (forms) at (4.5,-4.9) {Representation form\\Graph · registry · state machine · contract · table · quantitative relation};
-\node[note,font=\fontsize{10}{12}\selectfont,text width=12cm] (identity) at (4.5,-6) {Shared identity and traceability connect\\explicit engineering knowledge.};
+\node[note,text width=12cm] (forms) at (4.5,-4.9) {\textbf{REPRESENTATION FORM}\\Graph · registry · state machine · contract · table · quantitative relation};
+\node[note,font=\fontsize{10}{12}\selectfont,text width=12cm] (identity) at (4.5,-6) {\textit{Shared identity and traceability connect\\explicit engineering knowledge.}};
 \end{tikzpicture}

@@ -17,26 +17,235 @@
   "alt": "The Context-Delivery stack: standing policy and a retrieved task slice compose into\n    actor context that reaches the action; point-of-action reinforcement is a dashed enhancement",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
-    "candidate_sha256": "cb632b9cdb5f5431463c909fa814c0f943f1e7f1e932de9f66a26d9340f257a1",
+    "candidate_sha256": "ca8fb6c10d102b0e870b088bf16f356e07d5d98f952fbde4e63a52e0f20f0a3c",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes ENGINEERING KNOWLEDGE; STANDING POLICY; POINT-OF-ACTION; ACTOR CONTEXT; TASK SLICE; ACTION. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 98,
-      "width_bp": 320.134,
-      "height_bp": 228.911,
+      "width_bp": 321.552,
+      "height_bp": 228.866,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "candidate_sha256": "ca8fb6c10d102b0e870b088bf16f356e07d5d98f952fbde4e63a52e0f20f0a3c",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING KNOWLEDGE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ENGINEERING KNOWLEDGE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ENGINEERING KNOWLEDGE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "410",
+              "y": "49",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "STANDING POLICY",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "STANDING POLICY",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "STANDING POLICY",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "260",
+              "y": "172",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "POINT-OF-ACTION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "16.4"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "POINT-OF-ACTION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "POINT-OF-ACTION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "16.4"
+            },
+            "location": {
+              "x": "665",
+              "y": "400",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "ACTOR CONTEXT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ACTOR CONTEXT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ACTOR CONTEXT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "410",
+              "y": "309",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "TASK SLICE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "TASK SLICE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "TASK SLICE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "560",
+              "y": "172",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "ACTION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ACTION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ACTION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "410",
+              "y": "417",
+              "text_element": 8
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING KNOWLEDGE",
+        "bold": true
+      },
+      {
+        "text": "STANDING POLICY",
+        "bold": true
+      },
+      {
+        "text": "POINT-OF-ACTION",
+        "bold": true
+      },
+      {
+        "text": "ACTOR CONTEXT",
+        "bold": true
+      },
+      {
+        "text": "TASK SLICE",
+        "bold": true
+      },
+      {
+        "text": "ACTION",
+        "bold": true
+      },
+      {
+        "text": "always seen",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 98,
+      "width_bp": 321.552,
+      "height_bp": 228.866,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

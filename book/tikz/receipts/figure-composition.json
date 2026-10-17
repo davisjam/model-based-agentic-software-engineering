@@ -16,26 +16,136 @@
   "alt": "Three complementary skills acting around one governed engineering environment",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
-    "candidate_sha256": "d92b5a7463299772de8b216a55a9d6725efcdd9cb2484a9dee0404e7a1867efd",
+    "candidate_sha256": "9e3c1fbff50170f7d9f73052e9a10b0f8211790c2e52dcf99e1b7f3613b7923f",
     "fill": "Only the governed environment has light fill, identifying the shared object of the three surrounding skills.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes Self-Governance. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 119,
       "width_bp": 361.236,
-      "height_bp": 202.944,
+      "height_bp": 196.837,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+    "candidate_sha256": "9e3c1fbff50170f7d9f73052e9a10b0f8211790c2e52dcf99e1b7f3613b7923f",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "Self-Governance",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Self-Governance",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Governed Engineering",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Governed Engineering Environment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Self-Operate",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Self-Operate",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Self-Communicate",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Self-Communicate",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "People",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "People",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "engineers & improves the environment",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "engineers and improves the environment",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "the GEE",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "the GEE",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "runs operational lifecycles",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "runs operational lifecycles",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "articulates the system",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "articulates the system to others",
+        "candidate_style": "italic",
+        "source_context": "Italic subtitle below Self-Communicate; the repeated regular edge annotation is a separate occurrence."
+      },
+      {
+        "source_text": "engineers & readers",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "engineers and readers",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "Self-Governance",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "the GEE",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "canonical documentation",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 119,
+      "width_bp": 361.236,
+      "height_bp": 196.837,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

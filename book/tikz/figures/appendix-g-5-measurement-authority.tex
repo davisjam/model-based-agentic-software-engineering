@@ -4,12 +4,12 @@ gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[box,text width=4.5cm] (n0) at (0,0.0) {RUNNING SYSTEM};
-\node[box,text width=4.5cm] (n1) at (0,-1.6) {MEASUREMENT\\ latency · cost · queue};
+\node[box,text width=4.5cm] (n1) at (0,-1.6) {\textbf{MEASUREMENT}\\ latency · cost · queue};
 \draw[optional] (n0) -- (n1);
-\node[box,text width=4.5cm] (n2) at (0,-3.2) {DECLARED BOUND\\ threshold · scope · statistic};
+\node[box,text width=4.5cm] (n2) at (0,-3.2) {\textbf{DECLARED BOUND}\\ threshold · scope · statistic};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=4cm] (report) at (-3,-5.5) {REPORT ONLY\\ surfaced, not enforced};
-\node[gate,text width=4cm,fill=black!8] (gate) at (3,-5.5) {WARNING / ADMISSION GATE\\ CHECKED};
+\node[box,text width=4cm] (report) at (-3,-5.5) {\textbf{REPORT ONLY}\\ \textit{surfaced, not enforced}};
+\node[gate,text width=4cm,fill=black!8] (gate) at (3,-5.5) {\textbf{WARNING / ADMISSION GATE}\\ \textbf{CHECKED}};
 \draw[edge] (n2.south)--(0,-4.3)--(-3,-4.3)-- node[note,left=2pt] {no} (report.north);
 \draw[edge,line width=1pt] (n2.south)--(0,-4.3)--(3,-4.3)-- node[midway,rotate=90,font=\fontsize{14}{14}\selectfont] {$\Vert$} (gate.north);
 \node[note,text width=3cm] (t14) at (-2.8,-4.05) {gate warranted?};

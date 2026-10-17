@@ -3,10 +3,10 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4.5cm] (change) at (-3,0) {CHANGE MODEL\\ ticket / issue\\ observation · intent};
-\node[box,text width=4.5cm] (knowledge) at (3,0) {SYSTEM KNOWLEDGE\\ architecture · behavior · ownership\\ contracts · dependencies};
-\node[box,text width=6cm] (p0) at (0,-2.3) {DIAGNOSIS \& CONTEXT LOCALIZATION\\ root cause · responsible concepts\\ relevant models · obligations};
-\node[box,text width=6cm] (p1) at (0,-4.2) {REALIZATION SPACE\\ choices left open by governing obligations};
+\node[box,text width=4.5cm] (change) at (-3,0) {\textbf{CHANGE MODEL}\\ ticket / issue\\ observation · intent};
+\node[box,text width=4.5cm] (knowledge) at (3,0) {\textbf{SYSTEM KNOWLEDGE}\\ architecture · behavior · ownership\\ contracts · dependencies};
+\node[box,text width=6cm] (p0) at (0,-2.3) {\textbf{DIAGNOSIS \& CONTEXT LOCALIZATION}\\ root cause · responsible concepts\\ relevant models · obligations};
+\node[box,text width=6cm] (p1) at (0,-4.2) {\textbf{REALIZATION SPACE}\\ choices left open by governing obligations};
 \draw[edge] (p0) -- (p1);
 \node[box,text width=6cm] (p2) at (0,-5.7) {realization};
 \draw[edge] (p1) -- (p2);
@@ -16,11 +16,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 
 \node[note,text width=2.5cm] (t16) at (-4.8,-4) {bidirectional\\ traceability\\ models $\leftrightarrow$ code};
 \node[box,text width=3cm] (history) at (-3,-9.8) {history};
-\node[box,text width=4.5cm] (durable) at (3,-9.8) {DURABLE STRUCTURE\\ model · test · constraint\\ validator · architecture · design};
+\node[box,text width=4.5cm] (durable) at (3,-9.8) {\textbf{DURABLE STRUCTURE}\\ model · test · constraint\\ validator · architecture · design};
 \draw[edge] (p3.south)--(0,-8.5)--(-3,-8.5)-- node[note,left=2pt] {no} (history.north);
 \draw[edge] (p3.south)--(0,-8.5)--(3,-8.5)-- node[note,right=2pt] {yes} (durable.north);
-\node[note,text width=3cm] (t21) at (0,-8.1) {recurring lesson?};
-\node[note,text width=5cm] (t22) at (3,-11.5) {future work inherits it};
+\node[note,text width=3cm] (t21) at (0,-8.1) {\textit{recurring lesson?}};
+\node[note,text width=5cm] (t22) at (3,-11.5) {\textit{future work inherits it}};
 \coordinate (rail15) at ($(knowledge.south)!.5!(p0.north)$);
 \draw[line width=.6pt] (change.south)--(change.south |- rail15);
 \draw[line width=.6pt] (knowledge.south)--(knowledge.south |- rail15);

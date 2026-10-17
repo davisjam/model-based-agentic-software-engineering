@@ -5,12 +5,12 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,text width=7cm,fill=white] (lease) at (0,0) {Shared lease state\\owner · epoch · lifetime};
-\node[n,text width=3.7cm,fill=white] (v0) at (-4.5,-2.6) {Ownership\\\textit{Who owns?}};
+\node[strong,text width=7cm,fill=white] (lease) at (0,0) {\textbf{SHARED LEASE STATE}\\\textit{owner · epoch · lifetime}};
+\node[n,text width=3.7cm,fill=white] (v0) at (-4.5,-2.6) {\textbf{OWNERSHIP}\\\textit{Who owns?}};
 \draw[edge] (lease.south) -- (0,-1.3) -| (v0.north);
-\node[n,text width=3.7cm,fill=white] (v1) at (0.0,-2.6) {Behavior\\\textit{When stale?}};
+\node[n,text width=3.7cm,fill=white] (v1) at (0.0,-2.6) {\textbf{BEHAVIOR}\\\textit{When stale?}};
 \draw[edge] (lease.south) -- (0,-1.3) -| (v1.north);
-\node[n,text width=3.7cm,fill=white] (v2) at (4.5,-2.6) {Measurement\\\textit{How many active?}};
+\node[n,text width=3.7cm,fill=white] (v2) at (4.5,-2.6) {\textbf{MEASUREMENT}\\\textit{How many active?}};
 \draw[edge] (lease.south) -- (0,-1.3) -| (v2.north);
 \node[note,text width=11cm] (n) at (0,-4) {One represented state, several engineering questions.};
 \end{tikzpicture}

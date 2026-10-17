@@ -26,27 +26,236 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
-    "candidate_sha256": "df171eba023ce25055ec6dba9539844990f34c79b923beb8765fea1e690448ce",
+    "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Value of explicit engineering; Feasible governability. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Quadrants distinguished by position and written prescription, without implying ranking through tones.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 86,
-      "width_bp": 387.901,
-      "height_bp": 351.051,
+      "width_bp": 387.785,
+      "height_bp": 351.006,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+    "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "VALUE OF EXPLICIT ENGINEERING",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Value of explicit engineering",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "VALUE OF EXPLICIT ENGINEERING",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "540",
+              "y": "34",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "FEASIBLE GOVERNABILITY",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Feasible governability",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "FEASIBLE GOVERNABILITY",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "540",
+              "y": "450",
+              "text_element": 4
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "High value · Low feasible governability",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13.5"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "High value; low governability",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "High value · Low feasible governability",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13.5"
+            },
+            "location": {
+              "x": "86",
+              "y": "106",
+              "text_element": 8
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "High value · High feasible governability",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13.5"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "High value; high governability",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "High value · High feasible governability",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13.5"
+            },
+            "location": {
+              "x": "994",
+              "y": "106",
+              "text_element": 15
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Low value · Low feasible governability",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13.5"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Low value; low governability",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "Low value · Low feasible governability",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13.5"
+            },
+            "location": {
+              "x": "86",
+              "y": "812",
+              "text_element": 28
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Low value · High feasible governability",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13.5"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Low value; high governability",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "Low value · High feasible governability",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13.5"
+            },
+            "location": {
+              "x": "994",
+              "y": "812",
+              "text_element": 34
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Value of explicit engineering",
+        "bold": true
+      },
+      {
+        "text": "Feasible governability",
+        "bold": true
+      },
+      {
+        "text": "High value; low governability",
+        "italic": true
+      },
+      {
+        "text": "High value; high governability",
+        "italic": true
+      },
+      {
+        "text": "Low value; low governability",
+        "italic": true
+      },
+      {
+        "text": "Low value; high governability",
+        "italic": true
+      },
+      {
+        "text": "Governability alone does not justify machinery.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 86,
+      "width_bp": 387.785,
+      "height_bp": 351.006,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

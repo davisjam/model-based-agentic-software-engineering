@@ -25,27 +25,164 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
-    "candidate_sha256": "cf802c4e31838fab601004213379b025e0c3df0bfa5f3f7f599ea38f64b6fd18",
+    "candidate_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes NEGATIVE CONSTRAINT; POSITIVE CONSTRAINT; must not call; must call; MUST stamp. Retain uppercase constraint families and restore bold italic modal requirements; evidence description remains separate from MUST stamp.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Forbidden dashed path and native cross preserved; must-call remains solid.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 46,
       "width_bp": 356.695,
-      "height_bp": 159.465,
+      "height_bp": 158.934,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
+    "candidate_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
+    "reason": "Retain uppercase constraint families and restore bold italic modal requirements; evidence description remains separate from MUST stamp.",
+    "evidence": [
+      {
+        "source_text": "NEGATIVE CONSTRAINT",
+        "source_style": "weight 700; normal; source size 22",
+        "semantic_role": "constraint family",
+        "candidate_text": "NEGATIVE CONSTRAINT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "NEGATIVE CONSTRAINT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "POSITIVE CONSTRAINT",
+        "source_style": "weight 700; normal; source size 22",
+        "semantic_role": "constraint family",
+        "candidate_text": "POSITIVE CONSTRAINT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "POSITIVE CONSTRAINT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "must not call",
+        "source_style": "weight 700; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "must not call",
+        "candidate_style": "bold italic",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "must not call",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "must call",
+        "source_style": "weight 700; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "must call",
+        "candidate_style": "bold italic",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "must call",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "MUST stamp",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "MUST stamp",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "MUST stamp",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "emit attribution evidence",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "emit attribution evidence",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/positive-negative-obligation.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "emit attribution evidence",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "NEGATIVE CONSTRAINT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "POSITIVE CONSTRAINT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "must not call",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "must call",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "MUST stamp",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "emit attribution evidence",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Ordinary code",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 46,
+      "width_bp": 356.695,
+      "height_bp": 158.934,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

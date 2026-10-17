@@ -10,7 +10,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (p1) -- (p2);
 \node[box,text width=2cm] (p3) at (4.800000000000002,0) {storage};
 \draw[edge] (p2) -- (p3);
-\node[box,text width=5cm] (policy) at (0,-3) {HOST EXECUTION POLICY\\ profile $\rightarrow$ scheduling\\ elastic $\rightarrow$ fan out\\ metered $\rightarrow$ bounded fan\\ scarce $\rightarrow$ serialize};
-\draw[optional] (p2.south)--(1.6,-1.2)--(0,-1.2)-- node[note] {scheduled under} (policy.north);
+\node[box,text width=5cm] (policy) at (0,-3) {\textbf{HOST EXECUTION POLICY}\\ profile $\rightarrow$ scheduling\\ elastic $\rightarrow$ \textbf{fan out}\\ metered $\rightarrow$ \textbf{bounded fan}\\ scarce $\rightarrow$ \textbf{serialize}};
+\draw[optional] (p2.south)--(1.6,-1.2)--(0,-1.2)-- node[note] {\textit{scheduled under}} (policy.north);
 \node[note,text width=10cm] (t14) at (0,-5) {Load rationing changes scheduling policy, not stable deployment topology.\\ No gate is implied by this representation.};
 \end{tikzpicture}

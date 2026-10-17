@@ -73,25 +73,26 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-    "candidate_sha256": "506730c5a72a28e81e2651355eb354adedfe6ed2dea521505417b3426e649801",
+    "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
     "fill": "All numbered station circles white and equal; position and titles convey sequence.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes LOCATE; Where can enforcement occur?. Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 38,
       "width_bp": 362.056,
       "height_bp": 288.686,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": [
       "chapter:3.1-where-obligations-can-be-enforced",
@@ -105,5 +106,69 @@
       "chapter:3.5-when-guardrails-collide",
       "chapter:3.5-when-guardrails-collide"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+    "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+    "reason": "Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular.",
+    "evidence": [
+      {
+        "source_text": "LOCATE",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "navigation role",
+        "candidate_text": "LOCATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/part3-nav-arc.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "LOCATE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Where can enforcement occur?",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "section question",
+        "candidate_text": "Where can enforcement occur?",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/part3-nav-arc.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "Where can enforcement occur?",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "LOCATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Where can enforcement occur?",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Where Obligations Can Be Enforced",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 38,
+      "width_bp": 362.056,
+      "height_bp": 288.686,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

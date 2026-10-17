@@ -6,14 +6,14 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=2.4cm] (free) at (-4.6,0) {FREE};
 \node[box,text width=2.4cm] (leased) at (0,0) {LEASED};
 \node[box,text width=2.4cm] (done) at (4.6,0) {DONE};
-\draw[edge] (free) -- node[note,fill=white,inner sep=2pt] {claim} (leased);
-\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {complete} (done);
-\draw[edge] (leased.south)--(0,-.9)-- node[note] {expiry / release} (-4.6,-.9)--(free.south);
-\node[box,text width=4cm] (lease) at (0,-3) {OWNERSHIP OVERLAY\\ lease\_owner = W17\\ lease\_until = t};
-\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {specializes} (lease);
+\draw[edge] (free) -- node[note,fill=white,inner sep=2pt] {\textit{claim}} (leased);
+\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {\textit{complete}} (done);
+\draw[edge] (leased.south)--(0,-.9)-- node[note] {\textit{expiry / release}} (-4.6,-.9)--(free.south);
+\node[box,text width=4cm] (lease) at (0,-3) {\textbf{OWNERSHIP OVERLAY}\\ lease\_owner = W17\\ lease\_until = t};
+\draw[edge] (leased) -- node[note,fill=white,inner sep=2pt] {\textit{specializes}} (lease);
 \node[box,text width=2cm] (worker) at (4.5,-3) {worker};
 \draw[edge,line width=1pt] (lease) -- node[note,fill=white,inner sep=2pt,above=20pt] {lease / CAS} node[midway,font=\fontsize{14}{14}\selectfont] {$\Vert$} (worker);
-\node[note,text width=3cm] (t15) at (4.6,-1.8) {no re-entry};
-\node[box,text width=10cm] (inv) at (0,-5.4) {INVARIANT\\ LEASED $\Rightarrow$ exactly one valid owner\\ FREE $\Rightarrow$ no active owner};
+\node[note,text width=3cm] (t15) at (4.6,-1.8) {\textit{no re-entry}};
+\node[box,text width=10cm] (inv) at (0,-5.4) {\textbf{INVARIANT}\\ LEASED $\Rightarrow$ exactly one valid owner\\ FREE $\Rightarrow$ no active owner};
 \draw[optional] (done.south)--(4.6,-1.05);\draw[line width=1pt] (4.42,-1.05)--(4.78,-1.41) (4.42,-1.41)--(4.78,-1.05);
 \end{tikzpicture}

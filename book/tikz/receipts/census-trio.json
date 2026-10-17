@@ -36,27 +36,146 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-    "candidate_sha256": "31408b26241e2134ff8a004883af7f8ac5d865eec2be864832a6ec89d8250a74",
+    "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes [A]; [B]; [C]; ORPHAN; COVERAGE GAP. Shared identity tokens regain bold across views; coverage-gap and orphan statuses stand out from ordinary mechanism names.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "A/B/C stable identities, dashed conflict, gap and orphan survive across three views.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 54,
       "width_bp": 424.727,
       "height_bp": 204.909,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
+    "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
+    "reason": "Shared identity tokens regain bold across views; coverage-gap and orphan statuses stand out from ordinary mechanism names.",
+    "evidence": [
+      {
+        "source_text": "[A]",
+        "source_style": "weight 800; normal; source size 25.6",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "[A]",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/census-trio.svg",
+          "element_text_path": "/svg/g[2]/text[1]/tspan[1]/text()",
+          "text_element_context": "[A] squash rule",
+          "matching_fragment_count": 3
+        }
+      },
+      {
+        "source_text": "[B]",
+        "source_style": "weight 800; normal; source size 25.6",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "[B]",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/census-trio.svg",
+          "element_text_path": "/svg/g[2]/text[2]/tspan[1]/text()",
+          "text_element_context": "[B] brief guard",
+          "matching_fragment_count": 3
+        }
+      },
+      {
+        "source_text": "[C]",
+        "source_style": "weight 800; normal; source size 25.6",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "[C]",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/census-trio.svg",
+          "element_text_path": "/svg/g[2]/text[3]/tspan[1]/text()",
+          "text_element_context": "[C] lint gate",
+          "matching_fragment_count": 3
+        }
+      },
+      {
+        "source_text": "ORPHAN",
+        "source_style": "weight 700; normal; source size 25.6",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ORPHAN",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/census-trio.svg",
+          "element_text_path": "/svg/g[12]/text[2]/text()",
+          "text_element_context": "ORPHAN",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "COVERAGE GAP",
+        "source_style": "weight 700; normal; source size 25.6",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "COVERAGE GAP",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/census-trio.svg",
+          "element_text_path": "/svg/g[12]/text[1]/text()",
+          "text_element_context": "COVERAGE GAP",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "[A]",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "[B]",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "[C]",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ORPHAN",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "COVERAGE GAP",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "squash rule",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 54,
+      "width_bp": 424.727,
+      "height_bp": 204.909,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

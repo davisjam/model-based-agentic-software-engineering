@@ -17,26 +17,83 @@
   "alt": "*Shopify projected onto MAGE.* The source supports shared externalized knowledge and reusable context; conversion into durable capital is the interpretive step, not an automatic one.",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
-    "candidate_sha256": "ef396e5534894f0fbb0488ca7e3409a3156e9c6d340c3f9fd8640fd218f5321d",
+    "candidate_sha256": "8cb2447aae64530cb3e44391f62c5e6de2a00d3e7a1bd12d4c7be617f19b5e1d",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes Shopify; Engineering Environment. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Reusable skill connects through one short right-angle route to the environment destination. Session statistics moved below the destination, eliminating an unnecessary outer wrap without changing content.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 131,
       "width_bp": 351.316,
-      "height_bp": 192.595,
+      "height_bp": 192.478,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+    "candidate_sha256": "8cb2447aae64530cb3e44391f62c5e6de2a00d3e7a1bd12d4c7be617f19b5e1d",
+    "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "Shopify",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Shopify",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Engineering / Environment",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Engineering Environment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          "Engineering",
+          "Environment"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Shopify",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Engineering Environment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "reusable skill",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 131,
+      "width_bp": 351.316,
+      "height_bp": 192.478,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

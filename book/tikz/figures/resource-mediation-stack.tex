@@ -3,13 +3,13 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm] (n0) at (0,0.0) {RESOURCE POLICY\\ capacity · scope};
-\node[box,text width=4cm,line width=1pt,fill=black!8] (n1) at (0,-1.9) {MEDIATOR\\ admit $\leq$ N actors};
+\node[box,text width=4cm] (n0) at (0,0.0) {\textbf{RESOURCE POLICY}\\ capacity · scope};
+\node[box,text width=4cm,line width=1pt,fill=black!8] (n1) at (0,-1.9) {\textbf{MEDIATOR}\\ admit $\leq$ N actors};
 \draw[edge] (n0) -- (n1);
-\node[box,text width=4cm] (n2) at (0,-3.8) {SHARED RESOURCE};
+\node[box,text width=4cm] (n2) at (0,-3.8) {\textbf{SHARED RESOURCE}};
 \draw[edge] (n1) -- (n2);
-\node[box,dashed,text width=3cm] (pressure) at (4.5,-1.9) {LIVE PRESSURE\\ tighten / relax\\ when justified};
+\node[box,dashed,text width=3cm] (pressure) at (4.5,-1.9) {\textbf{LIVE PRESSURE}\\ tighten / relax\\ when justified};
 \draw[optional] (pressure) -- (n1);
 \node[note,text width=10cm] (t12) at (0,-5) {N = 1 and N > 1 are settings of the same mediator.\\ Solid: required. Dashed: enhancement.};
-\node[note,text width=2cm] at (-3.8,0) {DECLARE};\node[note,text width=2cm] at (-3.8,-1.9) {MEDIATE};\node[note] at (4.5,-.75) {ADAPT};
+\node[note,text width=2cm] at (-3.8,0) {\textbf{DECLARE}};\node[note,text width=2cm] at (-3.8,-1.9) {\textbf{MEDIATE}};\node[note] at (4.5,-.75) {\textbf{ADAPT}};
 \end{tikzpicture}

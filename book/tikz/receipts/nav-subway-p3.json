@@ -10,28 +10,76 @@
   "data": [],
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
     "candidate_sha256": "4dc110d8a8be885a9beab0a1e5720fcb4a2999483bc844d2d3625fcac650e103",
     "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
-    "bold": "Current chapter and navigation heading; other chapter labels regular.",
+    "bold": "Source-derived emphasis includes Alignment. Current-station and title emphasis already match the original; generated projection retained.",
     "routing": "Straight ordered chapter line with circular stations; numbered heading links to the chapter.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 140,
       "width_bp": 426.477,
       "height_bp": 75.965,
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
     },
     "book_references": [
       "part:3"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "retained",
+    "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+    "candidate_sha256": "4dc110d8a8be885a9beab0a1e5720fcb4a2999483bc844d2d3625fcac650e103",
+    "reason": "Current-station and title emphasis already match the original; generated projection retained.",
+    "evidence": [
+      {
+        "source_text": "Alignment",
+        "source_style": "font-weight=bold at current station; peers normal",
+        "semantic_role": "Current chapter locator",
+        "candidate_text": "Alignment",
+        "candidate_style": "bfseries current station; regular peers"
+      },
+      {
+        "source_text": "Chapter 3 \u00b7 Alignment",
+        "source_style": "bold chapter heading",
+        "semantic_role": "Linked current chapter title",
+        "candidate_text": "magebookref part:3",
+        "candidate_style": "bold 11 pt heading"
+      }
+    ],
+    "checks": [
+      {
+        "text": "Alignment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "MAGE in Motion",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 140,
+      "width_bp": 426.477,
+      "height_bp": 75.965,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
+    }
   }
 }

@@ -69,11 +69,18 @@ fidelity checklist below.
    boxes, a heavy border and bold text without separate reasons for each. A white
    artifact inside a lightly shaded territory remains white; evidence is not a
    special gray category by default.
-5. **Use typography as a hierarchy.** Bold is for figure/panel headings or one
-   explicitly identified focus. Peer nodes have the same weight. Ordinary process
-   names such as Job and Validate remain regular. Use regular text for node labels
-   and smaller but legible text for explanatory annotations; preserve annotation
-   placement outside boxes when it explains the drawing rather than names a node.
+5. **Preserve semantic typography.** Compare the source's boldface, capitals,
+   italics and partial emphasis before simplifying. These can distinguish named
+   regions from explanations, boundary names from their definitions, vocabulary
+   terms from examples, or contrasting outcomes. Figure 2.2, for example, needs
+   bold capitals for its region names, bold boundary names, and regular explanatory
+   prose. Multiple peer categories may all need emphasis; there is no one-bold-item
+   limit. Keep equivalent roles consistent, and scope emphasis to the term rather
+   than its whole box. Ordinary process labels such as Job and Validate stay
+   regular where emphasis adds no distinction. Preserve meaningful capitals
+   verbatim and italic questions, qualifications or relation labels where the
+   source uses them. Reflow text before shrinking it. Keep external annotations
+   outside boxes when they explain the drawing rather than name a node.
 6. **Route process edges orthogonally.** Use horizontal/vertical segments, explicit
    ports and short right-angle bends. Fan-out/fan-in uses a shared rail or separate
    aligned ports, with clear direction. Do not converge diagonal arrows on a tiny
@@ -124,7 +131,16 @@ sources print references normally without dangling external URLs.
 
 `style-review.json` records the latest sparse-shading and shape review of all 144
 candidates, including each fill/bold/routing decision, current source hashes and
-compiled proof measurements. Earlier grayscale/fidelity ledgers remain historical.
+compiled proof measurements. `typography-review.json` records the subsequent
+source-by-source semantic typography review, including preserved distinctions and
+selected exact printed phrases. Earlier grayscale/fidelity ledgers remain historical.
+
+Every candidate build checks these phrases in the actual PDF for capitalization,
+boldface and italics. Regular explanatory phrases are also checked, so making an
+entire box bold cannot substitute for preserving a term/definition distinction.
+The checks tolerate line wrapping and ligatures and require a complete correctly
+styled occurrence; they do not infer semantic meaning or replace source review.
+The build writes `latex/build/tikz/typography-audit.json` and fails on lost cues.
 
 ## Grayscale and geometry review
 
@@ -171,6 +187,8 @@ Compare rendered originals and candidates, not just their extracted words:
 - Preserve pictograms, warning/check marks, forbidden-path crosses and gate marks.
 - Preserve arrowless expansion guides, feedback paths, open endpoints and grouping.
 - Keep external annotations outside nodes; distinguish labels from explanations.
+- Compare boldface, capitalization, italics and partial emphasis with the source;
+  preserve the semantic role of each, including within a single node or sentence.
 - Check text at its authored print size; enlarge the layout before shrinking text.
 - Retain chart units, qualifications, callouts and legend meanings.
 

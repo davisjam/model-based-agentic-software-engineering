@@ -20,26 +20,121 @@
   "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
-    "candidate_sha256": "278c6dc4fe0a5d5d7b625765bd5e13160342b92e21d26dfc9de9fa7334b73ff6",
+    "candidate_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
     "fill": "The rich-representation row uses one light fill; strong-enforcement column uses border weight, encoding the two independent axes.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes Rich governed surface. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 118,
-      "width_bp": 386.033,
-      "height_bp": 256.447,
+      "width_bp": 386.011,
+      "height_bp": 256.424,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
+    "candidate_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "ENFORCEMENT REACH",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "ENFORCEMENT REACH",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "REPRESENTATION REACH",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "REPRESENTATION REACH",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "humans enforce",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Understands — humans enforce",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Rich governed surface",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Rich governed surface",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Reconstruction",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Reconstruction + human gap",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Direct / local alignment",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "Direct / local alignment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "few obligations enforced",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "few obligations enforced",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "obligations gated at a boundary",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "obligations gated at a boundary",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "Rich governed surface",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "few obligations enforced",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Next move: address the highest-value gap.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 118,
+      "width_bp": 386.011,
+      "height_bp": 256.424,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

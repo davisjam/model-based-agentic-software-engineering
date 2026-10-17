@@ -5,8 +5,8 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=3cm] (task) at (0,3) {Task};
-\node[strong,text width=4cm,fill=black!8] (entity) at (0,1) {Named entity\\A job or a service};
+\node[n,text width=3cm] (task) at (0,3) {\textbf{TASK}};
+\node[strong,text width=4cm,fill=black!8] (entity) at (0,1) {\textbf{Named ENTITY}\\\textit{A job or a service}};
 \draw[edge] (task) -- node[lab,right] {enters at} (entity);
 \node[n,text width=3cm,fill=white] (r0) at (-4.5,0) {Service registry};
 \draw[edge] (entity) -- (r0);

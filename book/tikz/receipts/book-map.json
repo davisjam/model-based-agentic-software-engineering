@@ -92,25 +92,26 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "9f24711bd746cf5f10851079ce71295fb334b133ef9115d9fff9d2481a2be5cb",
+    "candidate_sha256": "42dc83693b0be13c9750c7ec743b3d55096b66c63e756ae4af9e9c5dce41b283",
     "fill": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 1,
-      "width_bp": 362.286,
-      "height_bp": 394.843,
-      "minimum_prose_font_pt": null,
+      "width_bp": 362.169,
+      "height_bp": 413.953,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 23
     },
     "book_references": [
       "part:1",
@@ -123,5 +124,479 @@
       "chapter:appendix-part-1-practice",
       "chapter:appendix-part-2-evidence"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+    "candidate_sha256": "42dc83693b0be13c9750c7ec743b3d55096b66c63e756ae4af9e9c5dce41b283",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "Preface",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "Preface",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Preface",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "80"
+          }
+        ]
+      },
+      {
+        "source_text": "Conclusion",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "Conclusion",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Conclusion",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "858"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 1 · The New Engineering Problem",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "1 The New Engineering Problem",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 1 · The New Engineering Problem",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "187"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 2 · Modeling",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "2 Modeling",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 2 · Modeling",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "329"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 3 · Alignment",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "3 Alignment",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 3 · Alignment",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "401"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 4 · MAGE in Motion",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "4 MAGE in Motion",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 4 · MAGE in Motion",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "500"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 5 · Agentic Software Factories",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "5 Agentic Software Factories",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 5 · Agentic Software Factories",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "589"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 6 · The Theory",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "6 The Theory",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 6 · The Theory",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "707"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 7 · The Profession",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "7 The Profession",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Chapter 7 · The Profession",
+            "weight": "700",
+            "style": "normal",
+            "x": "268",
+            "y": "779"
+          }
+        ]
+      },
+      {
+        "source_text": "Appendix Part I",
+        "source_style": "weight 600, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "Appendix Part I",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Appendix Part I",
+            "weight": "600",
+            "style": "normal",
+            "x": "752",
+            "y": "503"
+          }
+        ]
+      },
+      {
+        "source_text": "Appendix Part II",
+        "source_style": "weight 600, normal",
+        "semantic_role": "Book destination heading",
+        "candidate_text": "Appendix Part II",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Appendix Part II",
+            "weight": "600",
+            "style": "normal",
+            "x": "752",
+            "y": "589"
+          }
+        ]
+      },
+      {
+        "source_text": "How do we safely grant autonomy to commodity intelligence?",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "How do we safely grant autonomy to commodity intelligence?",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "How do we safely grant autonomy",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "104"
+          },
+          {
+            "text": "to commodity intelligence?",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "122"
+          }
+        ]
+      },
+      {
+        "source_text": "changed economics",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Changed economics",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "changed economics",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "207"
+          }
+        ]
+      },
+      {
+        "source_text": "make knowledge + intent explicit",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Make knowledge and intent explicit",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "make knowledge + intent explicit",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "349"
+          }
+        ]
+      },
+      {
+        "source_text": "enforce selected obligations",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Enforce selected obligations",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "enforce selected obligations",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "421"
+          }
+        ]
+      },
+      {
+        "source_text": "dynamics · economics · predictions · scope",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Dynamics · economics · predictions · scope",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "dynamics · economics · predictions · scope",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "727"
+          }
+        ]
+      },
+      {
+        "source_text": "software work · broader engineering · responsibility",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Software work · broader engineering responsibility",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "software work · broader engineering · responsibility",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "799"
+          }
+        ]
+      },
+      {
+        "source_text": "abstract from the factories",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "abstract from the factories",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "abstract from the factories",
+            "weight": "normal",
+            "style": "italic",
+            "x": "284",
+            "y": "672"
+          }
+        ]
+      },
+      {
+        "source_text": "use + extend",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Use and extend",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "use + extend",
+            "weight": "normal",
+            "style": "italic",
+            "x": "752",
+            "y": "523"
+          }
+        ]
+      },
+      {
+        "source_text": "inspect the empirical record",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanatory subtitle or question",
+        "candidate_text": "Inspect the empirical record",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "inspect the empirical record",
+            "weight": "normal",
+            "style": "italic",
+            "x": "752",
+            "y": "609"
+          }
+        ]
+      },
+      {
+        "source_text": "responsibility",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Concluding nondelegable obligation",
+        "candidate_text": "RESPONSIBILITY.",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "responsibility",
+            "weight": "normal",
+            "style": "italic",
+            "x": "268",
+            "y": "799"
+          }
+        ]
+      },
+      {
+        "source_text": "THE SOFTWARE ENGINEERING CASE",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Scope of central group",
+        "candidate_text": "SOFTWARE-ENGINEERING CASE",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "THE SOFTWARE ENGINEERING CASE",
+            "weight": "700",
+            "style": "normal",
+            "x": "36",
+            "y": "264"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Preface",
+        "bold": true
+      },
+      {
+        "text": "Conclusion",
+        "bold": true
+      },
+      {
+        "text": "1 The New Engineering Problem",
+        "bold": true
+      },
+      {
+        "text": "2 Modeling",
+        "bold": true
+      },
+      {
+        "text": "3 Alignment",
+        "bold": true
+      },
+      {
+        "text": "4 MAGE in Motion",
+        "bold": true
+      },
+      {
+        "text": "5 Agentic Software Factories",
+        "bold": true
+      },
+      {
+        "text": "6 The Theory",
+        "bold": true
+      },
+      {
+        "text": "7 The Profession",
+        "bold": true
+      },
+      {
+        "text": "Appendix Part I",
+        "bold": true
+      },
+      {
+        "text": "Appendix Part II",
+        "bold": true
+      },
+      {
+        "text": "How do we safely grant autonomy to commodity intelligence?",
+        "italic": true
+      },
+      {
+        "text": "Changed economics",
+        "italic": true
+      },
+      {
+        "text": "Make knowledge and intent explicit",
+        "italic": true
+      },
+      {
+        "text": "Enforce selected obligations",
+        "italic": true
+      },
+      {
+        "text": "Dynamics · economics · predictions · scope",
+        "italic": true
+      },
+      {
+        "text": "Software work · broader engineering responsibility",
+        "italic": true
+      },
+      {
+        "text": "abstract from the factories",
+        "italic": true
+      },
+      {
+        "text": "Use and extend",
+        "italic": true
+      },
+      {
+        "text": "Inspect the empirical record",
+        "italic": true
+      },
+      {
+        "text": "RESPONSIBILITY.",
+        "bold": true
+      },
+      {
+        "text": "SOFTWARE-ENGINEERING CASE",
+        "bold": true
+      },
+      {
+        "text": "Model · align · work · convert",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 1,
+      "width_bp": 362.169,
+      "height_bp": 413.953,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 23
+    }
   }
 }

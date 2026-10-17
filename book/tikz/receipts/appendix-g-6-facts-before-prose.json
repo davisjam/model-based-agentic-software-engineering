@@ -16,26 +16,107 @@
   "alt": "Facts before prose — the strongest documentation is generated from facts the system already knows",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
-    "candidate_sha256": "d5ee10414b90c6ab5847f2e951d3dadeff25be825f0c231413201f96d269c02f",
+    "candidate_sha256": "49d122b5bdcd108c848a911b4a9b20f6b9cb3d49afc6ef41e183df8e80e7f14c",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes re-derivable; no mechanical correspondence. Restored factual representation, checked gate, and re-derivability contrast with independent prose, factual representation, checked gate, and re-derivability contrast with independent prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Fact branches use an orthogonal rail; audit guard preserved on audit leg, documentation leg remains ordinary, independent prose dashed.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 116,
       "width_bp": 315.118,
-      "height_bp": 212.62,
+      "height_bp": 212.405,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "candidate_sha256": "49d122b5bdcd108c848a911b4a9b20f6b9cb3d49afc6ef41e183df8e80e7f14c",
+    "reason": "Restored factual representation, checked gate, and re-derivability contrast with independent prose, factual representation, checked gate, and re-derivability contrast with independent prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "PROVENANCE FACT",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "PROVENANCE FACT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "VALIDATION / AUDIT",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "VALIDATION / AUDIT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CHECKED · completion gate",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "CHECKED",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "DOCUMENTATION",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "GENERATED DOCUMENTATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "re-derivable",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "re-derivable",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "correspondence",
+        "source_style": "font-weight=700",
+        "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
+        "candidate_text": "no mechanical correspondence",
+        "candidate_style": "bold"
+      }
+    ],
+    "checks": [
+      {
+        "text": "re-derivable",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "no mechanical correspondence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "human explanation",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 116,
+      "width_bp": 315.118,
+      "height_bp": 212.405,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

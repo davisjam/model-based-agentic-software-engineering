@@ -26,27 +26,279 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
-    "candidate_sha256": "891306a186b9cb34e1ca71528b056b4ed3d3a89ddd90f17bd8c44be48a03785b",
+    "candidate_sha256": "e82cb37d2574da224bb9372db136bf6354a5beac2999980e356c0c5860a98b1e",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE--REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Common relations orthogonal; resource mediation and context delivery still detached.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 91,
       "width_bp": 362.365,
-      "height_bp": 282.394,
+      "height_bp": 281.756,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
+    "candidate_sha256": "e82cb37d2574da224bb9372db136bf6354a5beac2999980e356c0c5860a98b1e",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "AUDITABLE\nTRANSFORMATION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "AUDITABLE TRANSFORMATION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "AUDITABLE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "655",
+              "y": "207",
+              "text_element": 5
+            }
+          },
+          {
+            "text": "TRANSFORMATION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "655",
+              "y": "228",
+              "text_element": 6
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "GOVERNANCE CONVERSION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "GOVERNANCE CONVERSION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "GOVERNANCE CONVERSION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "450",
+              "y": "464",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "RESOURCE MEDIATION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "RESOURCE MEDIATION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "RESOURCE MEDIATION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "235",
+              "y": "590",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "CONTEXT DELIVERY",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "CONTEXT DELIVERY",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "CONTEXT DELIVERY",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "665",
+              "y": "590",
+              "text_element": 15
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MODEL COHERENCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MODEL COHERENCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MODEL COHERENCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19"
+            },
+            "location": {
+              "x": "450",
+              "y": "62",
+              "text_element": 1
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "OBSERVE → REACT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "OBSERVE--REACT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "OBSERVE → REACT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "450",
+              "y": "352",
+              "text_element": 8
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "ASSURANCE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "18"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "ASSURANCE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "ASSURANCE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "location": {
+              "x": "255",
+              "y": "214",
+              "text_element": 3
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "AUDITABLE TRANSFORMATION",
+        "bold": true
+      },
+      {
+        "text": "GOVERNANCE CONVERSION",
+        "bold": true
+      },
+      {
+        "text": "RESOURCE MEDIATION",
+        "bold": true
+      },
+      {
+        "text": "CONTEXT DELIVERY",
+        "bold": true
+      },
+      {
+        "text": "MODEL COHERENCE",
+        "bold": true
+      },
+      {
+        "text": "OBSERVE--REACT",
+        "bold": true
+      },
+      {
+        "text": "ASSURANCE",
+        "bold": true
+      },
+      {
+        "text": "obligations get discharged",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 91,
+      "width_bp": 362.365,
+      "height_bp": 281.756,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
+    }
   }
 }

@@ -15,7 +15,7 @@
 \draw[edge,] (a1) -- (a2);
 \draw[edge,] (a2) -- (a3);
 \draw[edge,] (a3) -- (a4);
-\draw[edge] (a3.south)--(2.75,-2.7)--node[note,below] {repeat until correspondence}(-2.75,-2.7)--(a1.south);
+\draw[edge] (a3.south)--(2.75,-2.7)--node[note,below] {\textit{repeat until correspondence}}(-2.75,-2.7)--(a1.south);
 \node[head,text width=12cm] (ph) at (0,-4.3) {Passive alignment: preservation};
 \draw[edge,draw=none] (h.south) -- (ph.north);
 \node[note,text width=10cm] (handoff) at (0,-3.5) {Once active alignment succeeds, retain the models and mechanisms.};
@@ -25,8 +25,8 @@
 \node[box,text width=2.6cm,fill=white] (out) at (4.7,-6.3) {Updated system $S'$};
 \draw[edge] (ch.east)--(-2.7,-6)--(-2.7,-6.3)--(ev.west);
 \draw[edge,] (m) -- (ev);
-\draw[edge,] (ev) -- node[midway,above,yshift=.65cm,note,fill=white] {admit / reject} (out);
-\draw[edge] (out.south)--(4.7,-7.6)--node[note,below] {continue protecting correspondence}(-4.7,-7.6)--(ch.south);
+\draw[edge,] (ev) -- node[midway,above,yshift=.65cm,note,fill=white] {\textit{admit / reject}} (out);
+\draw[edge] (out.south)--(4.7,-7.6)--node[note,below] {\textit{continue protecting correspondence}}(-4.7,-7.6)--(ch.south);
 \node[note,text width=12cm] (nt) at (0,-8.8) {Models, mechanisms, and governance remain as engineering capital for every change.};
 \draw[edge] (6.5,-2.8)--(6.5,-3.9);
 \begin{scope}[on background layer]

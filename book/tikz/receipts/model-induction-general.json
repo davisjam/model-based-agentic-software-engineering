@@ -39,26 +39,145 @@
   "alt": "Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
-    "candidate_sha256": "a0a1712f553e903f6c371a21539791bf224e3b1380a422ab835dc64799e6a0b0",
+    "candidate_sha256": "dbdde06448e277bbc0f79c26b7e399fb25eb31e27b270854b3b5796ba8bcb10d",
     "fill": "Only the explicit-model/vocabulary row is lightly shaded across all four lanes; future outputs and discovery stages remain white.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes realized code; records; constraints. Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 137,
       "width_bp": 398.441,
-      "height_bp": 383.217,
+      "height_bp": 383.222,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+    "candidate_sha256": "dbdde06448e277bbc0f79c26b7e399fb25eb31e27b270854b3b5796ba8bcb10d",
+    "reason": "Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "THE GENERAL MOVE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Abstract schema column heading",
+        "candidate_text": "THE GENERAL MOVE",
+        "candidate_style": "bold uppercase"
+      },
+      {
+        "source_text": "realized work",
+        "source_style": "font-weight=700",
+        "semantic_role": "Abstract induction stage",
+        "candidate_text": "realized work",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "grounded — DocAble (software) evidence",
+        "source_style": "font-style=italic",
+        "semantic_role": "Grounded versus inferred evidence status",
+        "candidate_text": "grounded: DocAble",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "realized code",
+        "source_style": "font-weight=700",
+        "semantic_role": "Software stage label",
+        "candidate_text": "realized code",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "repos · diffs · PRs",
+        "source_style": "font-style=italic",
+        "semantic_role": "Concrete examples beneath stage label",
+        "candidate_text": "repos · diffs · PRs",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "documents · records",
+        "source_style": "font-weight=700",
+        "semantic_role": "Knowledge-work source objects",
+        "candidate_text": "documents / records",
+        "candidate_style": "bold, with notes/conversations italic"
+      },
+      {
+        "source_text": "typed vocabulary +",
+        "source_style": "font-weight=700",
+        "semantic_role": "Named software representation versus example names",
+        "candidate_text": "typed vocabulary and relations",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "PdfModel · JobId ·",
+        "source_style": "font-style=italic",
+        "semantic_role": "Illustrative vocabulary entries",
+        "candidate_text": "PdfModel · JobId",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "repeated geometry",
+        "source_style": "font-weight=700",
+        "semantic_role": "CAD stage category contrasted with parameter examples",
+        "candidate_text": "geometry / constraints",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "parameter bundles",
+        "source_style": "font-style=italic",
+        "semantic_role": "CAD example beneath category",
+        "candidate_text": "parameter bundles",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "realized code",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "grounded: DocAble",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "repos · diffs · PRs",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "records",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "constraints",
+        "bold": true,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 137,
+      "width_bp": 398.441,
+      "height_bp": 383.222,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    }
   }
 }

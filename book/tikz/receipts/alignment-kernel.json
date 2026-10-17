@@ -28,25 +28,26 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-    "candidate_sha256": "a926f402a917ecdda658a05cf183ac0baac3949a400a763dcee93562edf7035e",
+    "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
     "fill": "Only protected kernel is 5%; nested outlines identify later layers.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
     "visual_review": "Nested M1–M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 57,
       "width_bp": 413.811,
-      "height_bp": 255.493,
+      "height_bp": 255.538,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors."
@@ -66,5 +67,141 @@
     ],
     "compiler_diagnostics": [],
     "geometry_findings": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+    "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
+    "reason": "Step names regain bold above their regular instructions; kernel label identifies the protected core.",
+    "evidence": [
+      {
+        "source_text": "Identify the kernel",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Identify the kernel",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/g[1]/text[2]/text()",
+          "text_element_context": "Identify the kernel",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Actively align",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Actively align",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/g[1]/text[6]/text()",
+          "text_element_context": "Actively align",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Extend",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Extend",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/g[1]/text[10]/text()",
+          "text_element_context": "Extend",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Repeat",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Repeat",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/g[1]/text[14]/text()",
+          "text_element_context": "Repeat",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "kernel",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Kernel",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "kernel",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "the governed surface grows over time",
+        "source_style": "weight normal; italic; source size 19",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Governed surface grows over time",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/alignment-kernel.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "the governed surface grows over time",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Identify the kernel",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Actively align",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Extend",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Repeat",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Kernel",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Governed surface grows over time",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Model properties that",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 57,
+      "width_bp": 413.811,
+      "height_bp": 255.538,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

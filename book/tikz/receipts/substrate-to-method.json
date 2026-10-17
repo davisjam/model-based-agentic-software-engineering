@@ -71,29 +71,217 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-    "candidate_sha256": "86969f6c4bff80ea7115efd77d9ba2e12f03aba2bebd0ea882f3334e4667612c",
+    "candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
     "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
-    "bold": "Column headings only; body labels regular.",
+    "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 12,
       "width_bp": 408.883,
-      "height_bp": 184.574,
-      "minimum_prose_font_pt": null,
+      "height_bp": 184.579,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": [
       "part:1",
       "part:4"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+    "candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "SUBSTRATE TRAIT",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "SUBSTRATE TRAIT",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "SUBSTRATE TRAIT",
+            "weight": "700",
+            "style": "normal",
+            "x": "180",
+            "y": "86"
+          }
+        ]
+      },
+      {
+        "source_text": "PROBLEM",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "PROBLEM",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "PROBLEM",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "86"
+          }
+        ]
+      },
+      {
+        "source_text": "method",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "METHOD",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "method",
+            "weight": "700",
+            "style": "normal",
+            "x": "450",
+            "y": "40"
+          }
+        ]
+      },
+      {
+        "source_text": "Representation problem",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Representation problem",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Representation problem",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "143"
+          }
+        ]
+      },
+      {
+        "source_text": "Enforcement problem",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Enforcement problem",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Enforcement problem",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "293"
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Modeling",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Modeling",
+            "weight": "700",
+            "style": "normal",
+            "x": "752",
+            "y": "130"
+          }
+        ]
+      },
+      {
+        "source_text": "Alignment",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Alignment",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Alignment",
+            "weight": "700",
+            "style": "normal",
+            "x": "752",
+            "y": "284"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Cross-book explanatory annotation",
+        "candidate_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+            "weight": "normal",
+            "style": "italic",
+            "x": "450",
+            "y": "384"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "SUBSTRATE TRAIT",
+        "bold": true
+      },
+      {
+        "text": "PROBLEM",
+        "bold": true
+      },
+      {
+        "text": "METHOD",
+        "bold": true
+      },
+      {
+        "text": "Representation problem",
+        "bold": true
+      },
+      {
+        "text": "Enforcement problem",
+        "bold": true
+      },
+      {
+        "text": "Modeling",
+        "bold": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true
+      },
+      {
+        "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "italic": true
+      },
+      {
+        "text": "Compact relevant",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 12,
+      "width_bp": 408.883,
+      "height_bp": 184.579,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

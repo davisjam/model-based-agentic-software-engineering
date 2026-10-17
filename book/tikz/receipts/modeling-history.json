@@ -29,27 +29,626 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-    "candidate_sha256": "3503c1b83564d068d621f1607acd04f79091017996791c40c1bf746320ed572b",
+    "candidate_sha256": "d07f23750dadf6fbd348df325b5c8c81cde5089e9f572d5317907b1b61222c0f",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes Projected graph + blocking parity check; Analytical views by stable identity; Composition becomes consequential; Authoritative computation model; Composition stays implicit; Residual freedom remains; Dependency semantics; Stable computations. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Parallel dependency/effect dimensions and later analysis chain remain; residual freedom dashed.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 76,
       "width_bp": 356.695,
-      "height_bp": 412.579,
+      "height_bp": 412.4,
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
+    "candidate_sha256": "d07f23750dadf6fbd348df325b5c8c81cde5089e9f572d5317907b1b61222c0f",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Projected graph + blocking parity",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Projected graph + blocking parity check",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Projected graph + blocking parity",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "862",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Analytical views attach by stable identity",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Analytical views by stable identity",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Analytical views attach by stable identity",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1160",
+              "text_element": 26
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Composition becomes consequential",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Composition becomes consequential",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Composition becomes consequential",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "382",
+              "text_element": 6
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Authoritative computation model",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Authoritative computation model",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Authoritative computation model",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1064",
+              "text_element": 24
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Composition stays implicit",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Composition stays implicit",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Composition stays implicit",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "252",
+              "text_element": 4
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Residual freedom remains",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Residual freedom remains",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Residual freedom remains",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1254",
+              "text_element": 28
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Dependency semantics",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Dependency semantics",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Dependency semantics",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "310",
+              "y": "517",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Stable computations",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Stable computations",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Stable computations",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "122",
+              "text_element": 2
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Analyze composition",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Analyze composition",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Analyze composition",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "968",
+              "text_element": 22
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Effect boundedness",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Effect boundedness",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Effect boundedness",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "690",
+              "y": "517",
+              "text_element": 14
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Typed declarations",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Typed declarations",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Typed declarations",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "732",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "pass decomposition — the nodes already project",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Pass decomposition: nodes already project",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "pass decomposition — the nodes already project",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "147",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "repeated traversal · shared-state reads · direct mutation · special cases",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Repeated traversal; shared-state reads; direct mutation; special cases",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "repeated traversal · shared-state reads · direct mutation · special cases",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "277",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "locally reasonable choices accumulate global cost",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Locally reasonable choices accumulate global cost",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "locally reasonable choices accumulate global cost",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "407",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "edges projected from the declarations; disagreement fails the build",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Disagreement fails the build",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "edges projected from the declarations; disagreement fails the build",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "887",
+              "text_element": 21
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "critical paths · boundedness · latency · coverage",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Critical paths; boundedness; latency; coverage",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "critical paths · boundedness · latency · coverage",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "992",
+              "text_element": 23
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "execution consumes modeled dependencies",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Execution consumes modeled dependencies",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "execution consumes modeled dependencies",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1088",
+              "text_element": 25
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "views join without one universal schema",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Views join without one universal schema",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "views join without one universal schema",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1184",
+              "text_element": 27
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "not every choice is determinized",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Not every choice is determinized",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "not every choice is determinized",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "1279",
+              "text_element": 29
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Projected graph + blocking parity check",
+        "bold": true
+      },
+      {
+        "text": "Analytical views by stable identity",
+        "bold": true
+      },
+      {
+        "text": "Composition becomes consequential",
+        "bold": true
+      },
+      {
+        "text": "Authoritative computation model",
+        "bold": true
+      },
+      {
+        "text": "Composition stays implicit",
+        "bold": true
+      },
+      {
+        "text": "Residual freedom remains",
+        "bold": true
+      },
+      {
+        "text": "Dependency semantics",
+        "bold": true
+      },
+      {
+        "text": "Stable computations",
+        "bold": true
+      },
+      {
+        "text": "Analyze composition",
+        "bold": true
+      },
+      {
+        "text": "Effect boundedness",
+        "bold": true
+      },
+      {
+        "text": "Typed declarations",
+        "bold": true
+      },
+      {
+        "text": "Pass decomposition: nodes already project",
+        "italic": true
+      },
+      {
+        "text": "Repeated traversal; shared-state reads; direct mutation; special cases",
+        "italic": true
+      },
+      {
+        "text": "Locally reasonable choices accumulate global cost",
+        "italic": true
+      },
+      {
+        "text": "Disagreement fails the build",
+        "italic": true
+      },
+      {
+        "text": "Critical paths; boundedness; latency; coverage",
+        "italic": true
+      },
+      {
+        "text": "Execution consumes modeled dependencies",
+        "italic": true
+      },
+      {
+        "text": "Views join without one universal schema",
+        "italic": true
+      },
+      {
+        "text": "Not every choice is determinized",
+        "italic": true
+      },
+      {
+        "text": "DATA_FLOW",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 76,
+      "width_bp": 356.695,
+      "height_bp": 412.4,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20
+    }
   }
 }

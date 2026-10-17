@@ -5,17 +5,17 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=6cm,fill=white] (m) at (0,0) {Model coherence\\representation stays joined to reality};
-\node[box,text width=5cm,fill=white] (a) at (-3.6,-2) {Assurance\\obligations get discharged};
-\node[box,text width=5cm,fill=white] (t) at (3.6,-2) {Auditable transformation\\change is legible};
+\node[head,text width=6cm,fill=white] (m) at (0,0) {\textbf{MODEL COHERENCE}\\representation stays joined to reality};
+\node[box,text width=5cm,fill=white] (a) at (-3.6,-2) {\textbf{ASSURANCE}\\obligations get discharged};
+\node[box,text width=5cm,fill=white] (t) at (3.6,-2) {\textbf{AUDITABLE TRANSFORMATION}\\change is legible};
 \draw[edge,] (m.south) -- (0.000,-1.000) -- (-3.600,-1.000) -- (a.north);
 \draw[edge,] (m.south) -- (0.000,-1.000) -- (3.600,-1.000) -- (t.north);
-\node[box,text width=6cm,fill=white] (o) at (0,-4) {Observe--react\\detect and act};
+\node[box,text width=6cm,fill=white] (o) at (0,-4) {\textbf{OBSERVE--REACT}\\detect and act};
 \draw[edge,] (a.south) -- (-3.600,-3.000) -- (0.000,-3.000) -- (o.north);
 \draw[edge,] (t.south) -- (3.600,-3.000) -- (0.000,-3.000) -- (o.north);
-\node[box,text width=7cm,fill=white] (g) at (0,-5.6) {Governance conversion\\useful judgment becomes capital};
+\node[box,text width=7cm,fill=white] (g) at (0,-5.6) {\textbf{GOVERNANCE CONVERSION}\\useful judgment becomes capital};
 \draw[edge,] (o) -- (g);
 \node[note,text width=12cm] (nt) at (0,-7) {Useful independently: no inbound dependency};
-\node[box,text width=5cm,fill=white] (r) at (-3.6,-8.4) {Resource mediation\\govern contention};
-\node[box,text width=5cm,fill=white] (c) at (3.6,-8.4) {Context delivery\\right knowledge at point of work};
+\node[box,text width=5cm,fill=white] (r) at (-3.6,-8.4) {\textbf{RESOURCE MEDIATION}\\govern contention};
+\node[box,text width=5cm,fill=white] (c) at (3.6,-8.4) {\textbf{CONTEXT DELIVERY}\\right knowledge at point of work};
 \end{tikzpicture}

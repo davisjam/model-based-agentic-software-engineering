@@ -23,27 +23,86 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
-    "candidate_sha256": "675c1fba8a9ed2cb4dce5856c8dc576a72996c52691dfd9814c30b3f8975f708",
+    "candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Open and filled boundary diamonds retain earliest-versus-last-safe distinction.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 68,
       "width_bp": 394.632,
       "height_bp": 107.205,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
     },
     "book_references": [],
     "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+    "candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "relevant state may change between checks",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Relevant state may change between checks.",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "relevant state may change between checks",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "148",
+              "text_element": 3
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Relevant state may change between checks.",
+        "italic": true
+      },
+      {
+        "text": "Catch cheaply near the cause",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 68,
+      "width_bp": 394.632,
+      "height_bp": 107.205,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
+    }
   }
 }

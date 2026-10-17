@@ -3,32 +3,32 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=3.8cm] (p0) at (-4.5,0) {Product discovery};
-\node[box,text width=3.8cm] (p1) at (0.0,0) {Engineering \& realization};
-\node[box,text width=3.8cm] (p2) at (4.5,0) {Product management \& maintenance};
-\node[box,text width=5cm] (shared) at (0,-2) {SHARED RELATIONS\\ identity · provenance\\ temporal scope · obligations};
+\node[box,text width=3.8cm] (p0) at (-4.5,0) {\textbf{PRODUCT DISCOVERY}};
+\node[box,text width=3.8cm] (p1) at (0.0,0) {\textbf{ENGINEERING \& REALIZATION}};
+\node[box,text width=3.8cm] (p2) at (4.5,0) {\textbf{PRODUCT MANAGEMENT \& MAINTENANCE}};
+\node[box,text width=5cm] (shared) at (0,-2) {\textbf{SHARED RELATIONS}\\ identity · provenance\\ temporal scope · obligations};
 
 
 
-\node[box,text width=4cm] (ops) at (-3,-4) {Operations \& incident response};
-\node[box,text width=4cm] (assure) at (3,-4) {Assurance \& compliance};
+\node[box,text width=4cm] (ops) at (-3,-4) {\textbf{OPERATIONS \& INCIDENT RESPONSE}};
+\node[box,text width=4cm] (assure) at (3,-4) {\textbf{ASSURANCE \& COMPLIANCE}};
 
 
-\node[box,text width=6cm] (knowledge) at (0,-5.8) {CONNECTED ENGINEERING KNOWLEDGE};
+\node[box,text width=6cm] (knowledge) at (0,-5.8) {\textbf{CONNECTED ENGINEERING KNOWLEDGE}};
 
 
-\node[box,text width=4.5cm] (reason) at (-3,-7.7) {AUTONOMOUS REASONING\\ reconstruction · synthesis\\ novel judgment · open choices};
-\node[box,text width=4.5cm] (align) at (3,-7.7) {ALIGNMENT\\ constraints · validators\\ permissions · gates};
+\node[box,text width=4.5cm] (reason) at (-3,-7.9) {\textbf{AUTONOMOUS REASONING}\\ reconstruction · synthesis\\ novel judgment · open choices};
+\node[box,text width=4.5cm] (align) at (3,-7.9) {\textbf{ALIGNMENT}\\ constraints · validators\\ permissions · gates};
 
 
-\node[box,text width=6cm,fill=black!8] (gee) at (0,-9.7) {GOVERNED ENGINEERING ENVIRONMENT};
+\node[box,text width=6cm,fill=black!8] (gee) at (0,-10.1) {\textbf{GOVERNED ENGINEERING ENVIRONMENT}};
 
 
-\node[box,text width=3cm] (product) at (0,-11.2) {PRODUCT};
+\node[box,text width=3cm] (product) at (0,-11.6) {PRODUCT};
 \draw[edge] (gee) -- (product);
-\draw[optional] (product.west)--(-6.8,-11.2)--(-6.8,-2)--(shared.west);
-\node[note,rotate=90,fill=white] at (-6.8,-6.5) {experience · failures · evidence · governance conversion};
-\coordinate (rail22) at ($(p0.south)!.5!(shared.north)$);
+\draw[optional] (product.west)--(-6.8,-11.6)--(-6.8,-2)--(shared.west);
+\node[note,rotate=90,fill=white] at (-6.8,-6.5) {\textit{experience · failures · evidence · governance conversion}};
+\coordinate (rail22) at ($(p2.south)!.5!(shared.north)$);
 \draw[line width=.6pt] (p0.south)--(p0.south |- rail22);
 \draw[line width=.6pt] (p1.south)--(p1.south |- rail22);
 \draw[line width=.6pt] (p2.south)--(p2.south |- rail22);

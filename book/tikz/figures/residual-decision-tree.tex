@@ -6,16 +6,16 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[box,text width=6cm,fill=white] (a) at (1,0) {Is the obligation explicit in a form the environment can use?};
-\node[head,text width=3.5cm,fill=white] (r) at (-4,-1.8) {RESIDUAL\\reasoner reconstructs it};
+\node[head,text width=3.5cm,fill=white] (r) at (-4,-1.8) {\textbf{RESIDUAL}\\\textit{reasoner reconstructs it}};
 \node[box,text width=5cm,fill=white] (b) at (2,-2.2) {Can it be evaluated adequately?};
 \draw[edge,] (a.south) -- (1.000,-0.900) -- node[midway,above,note] {no} (-4.000,-0.900) -- (r.north);
 \draw[edge,] (a.south -| b.north) -- node[midway,note,fill=white] {yes} (b.north);
-\node[head,text width=3.5cm,fill=white] (j) at (-3,-4.25) {JUDGMENT REQUIRED\\no adequate evaluator};
+\node[head,text width=3.5cm,fill=white] (j) at (-3,-4.25) {\textbf{JUDGMENT REQUIRED}\\\textit{no adequate evaluator}};
 \node[box,text width=4.5cm,fill=white] (c) at (3,-4.4) {Does the environment enforce the result?};
 \draw[edge,] (b.south) -- (2.000,-3.100) -- node[midway,above,note] {no} (-3.000,-3.100) -- (j.north);
 \draw[edge,] (b.south -| c.north) -- node[midway,note,fill=white] {yes} (c.north);
-\node[head,text width=3.5cm,fill=white] (u) at (-0.5,-6.4) {EVALUATED ONLY\\evaluated, yet ungated};
-\node[head,text width=3.2cm,fill=white] (g) at (5,-6.4) {GOVERNED\\mechanically enforced};
+\node[head,text width=3.5cm,fill=white] (u) at (-0.5,-6.4) {\textbf{EVALUATED ONLY}\\\textit{evaluated, yet ungated}};
+\node[head,text width=3.2cm,fill=white] (g) at (5,-6.4) {\textbf{GOVERNED}\\\textit{mechanically enforced}};
 \draw[edge,] (c.south) -- (3.000,-5.400) -- node[midway,above,note] {no} (-0.500,-5.400) -- (u.north);
 \draw[edge,] (c.south -| g.north) -- node[midway,note,fill=white] {yes} (g.north);
 \node[note,text width=12cm] (nt) at (0,-7.7) {Design choices, not maturity levels: different obligations stop in different places.};

@@ -4,19 +4,19 @@ gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[box,text width=5cm] (n0) at (0,0.0) {ENGINEERING QUESTION};
-\node[box,text width=5cm] (n1) at (0,-1.5) {MODEL\\ entities · relations · properties};
+\node[box,text width=5cm] (n1) at (0,-1.5) {\textbf{MODEL}\\ entities · relations · properties};
 \draw[edge] (n0) -- (n1);
 \node[box,text width=5cm] (n2) at (0,-3.0) {CODE · CONFIG · RUNTIME · ARTIFACTS};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=5cm] (n3) at (0,-4.5) {CORRESPONDENCE / INVARIANT CHECK};
+\node[box,text width=5cm] (n3) at (0,-4.5) {\textbf{CORRESPONDENCE / INVARIANT CHECK}};
 \draw[optional] (n2) -- (n3);
-\node[box,text width=2cm] (auth) at (-4.4,-1.5) {AUTHORED\\ intent};
-\node[box,text width=2cm] (derived) at (4.4,-1.5) {DERIVED\\ facts};
+\node[box,text width=2cm] (auth) at (-4.4,-1.5) {\textbf{AUTHORED}\\ intent};
+\node[box,text width=2cm] (derived) at (4.4,-1.5) {\textbf{DERIVED}\\ facts};
 \draw[edge] (auth) -- (n1);
 \draw[optional] (derived) -- (n1);
-\node[note,text width=3cm] (t16) at (3.9,-3.8) {observe / re-derive};
-\node[box,text width=4cm] (advice) at (-3,-6.5) {advisory · report-only\\ informs the engineer};
-\node[gate,text width=4cm,fill=black!8] (gate) at (3,-6.5) {finding / gate\\ CHECKED where warranted};
+\node[note,text width=3cm] (t16) at (3.9,-3.8) {\textit{observe / re-derive}};
+\node[box,text width=4cm] (advice) at (-3,-6.5) {\textbf{advisory · report-only}\\ \textit{informs the engineer}};
+\node[gate,text width=4cm,fill=black!8] (gate) at (3,-6.5) {\textbf{finding / gate}\\ \textbf{CHECKED} where warranted};
 \draw[edge] (n3.south)--(0,-5.4)--(-3,-5.4)-- node[note,left=2pt] {no disagreement} (advice.north);
 \draw[edge,line width=1pt] (n3.south)--(0,-5.4)--(3,-5.4)-- node[midway,rotate=90,font=\fontsize{14}{14}\selectfont] {$\Vert$} (gate.north);\node[note] at (4.5,-5.25) {disagreement};
 \node[note,text width=12cm] (t21) at (0,-8) {Solid: authored relation. Dashed: derived / observed correspondence.\\ Heavy boundary: enforcement can block. A model may stay advisory.};

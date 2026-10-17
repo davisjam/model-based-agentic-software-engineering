@@ -31,27 +31,386 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
-    "candidate_sha256": "b9730aada2190f0dc4be5fe16d287de47c416198ce16f9d9a807ac16fdb635a6",
+    "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes ? Enforcement; Measurement; Evidence; Timeout; Report; Model. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Deferred enforcement stays dashed and questioned; commentary remains in adjacent column.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 79,
       "width_bp": 323.766,
-      "height_bp": 275.76,
+      "height_bp": 272.365,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "? enforcement",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "? Enforcement",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "? enforcement",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "518",
+              "text_element": 12
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "measurement",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Measurement",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "measurement",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "206",
+              "text_element": 4
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "evidence",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Evidence",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "evidence",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "362",
+              "text_element": 8
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "timeout",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Timeout",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "timeout",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "128",
+              "text_element": 2
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "report",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Report",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "report",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "440",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "model",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "17"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Model",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "model",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "location": {
+              "x": "200",
+              "y": "284",
+              "text_element": 6
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "a bare kill, after the budget was spent",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Bare kill after the budget was spent",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "a bare kill, after the budget was spent",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13"
+            },
+            "location": {
+              "x": "330",
+              "y": "131",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "one incident, timestamped, provisional",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "One incident; timestamped; provisional",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "one incident, timestamped, provisional",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13"
+            },
+            "location": {
+              "x": "330",
+              "y": "209",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "per-chunk worst case vs the ceiling",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Per-chunk worst case versus ceiling",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "per-chunk worst case vs the ceiling",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13"
+            },
+            "location": {
+              "x": "330",
+              "y": "287",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "a would-be breach, made observable",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Would-be breach made observable",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "a would-be breach, made observable",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13"
+            },
+            "location": {
+              "x": "330",
+              "y": "365",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "surfaced, not enforced",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "13"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Surfaced, not enforced",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "surfaced, not enforced",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "13"
+            },
+            "location": {
+              "x": "330",
+              "y": "443",
+              "text_element": 11
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "? Enforcement",
+        "bold": true
+      },
+      {
+        "text": "Measurement",
+        "bold": true
+      },
+      {
+        "text": "Evidence",
+        "bold": true
+      },
+      {
+        "text": "Timeout",
+        "bold": true
+      },
+      {
+        "text": "Report",
+        "bold": true
+      },
+      {
+        "text": "Model",
+        "bold": true
+      },
+      {
+        "text": "Bare kill after the budget was spent",
+        "italic": true
+      },
+      {
+        "text": "One incident; timestamped; provisional",
+        "italic": true
+      },
+      {
+        "text": "Per-chunk worst case versus ceiling",
+        "italic": true
+      },
+      {
+        "text": "Would-be breach made observable",
+        "italic": true
+      },
+      {
+        "text": "Surfaced, not enforced",
+        "italic": true
+      },
+      {
+        "text": "No gate yet; deliberately deferred",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 79,
+      "width_bp": 323.766,
+      "height_bp": 272.365,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12
+    }
   }
 }

@@ -68,26 +68,217 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
-    "candidate_sha256": "56a4421fa2048892451f100ac64fe63e44f8c041ad8ed7ea9f264465a4cfa848",
+    "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
     "fill": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes IMPLEMENTATION; IDLE; RUNNING; DONE; FAILED. Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 20,
       "width_bp": 350.12,
-      "height_bp": 225.877,
-      "minimum_prose_font_pt": null,
+      "height_bp": 225.897,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+    "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+    "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail.",
+    "evidence": [
+      {
+        "source_text": "IMPLEMENTATION",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "IMPLEMENTATION",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "IMPLEMENTATION",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "IDLE",
+        "source_style": "weight 700; normal; source size 23",
+        "semantic_role": "legal state identifier",
+        "candidate_text": "IDLE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "IDLE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "RUNNING",
+        "source_style": "weight 700; normal; source size 23",
+        "semantic_role": "legal state identifier",
+        "candidate_text": "RUNNING",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "RUNNING",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "DONE",
+        "source_style": "weight 700; normal; source size 23",
+        "semantic_role": "legal state identifier",
+        "candidate_text": "DONE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "DONE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "FAILED",
+        "source_style": "weight 700; normal; source size 23",
+        "semantic_role": "legal state identifier",
+        "candidate_text": "FAILED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "FAILED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "reduce to",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "transition relation",
+        "candidate_text": "reduce to",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "reduce to",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "start",
+        "source_style": "weight normal; italic; source size 19",
+        "semantic_role": "transition relation",
+        "candidate_text": "start",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "start",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "finish",
+        "source_style": "weight normal; italic; source size 19",
+        "semantic_role": "transition relation",
+        "candidate_text": "finish",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "finish",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "fail",
+        "source_style": "weight normal; italic; source size 19",
+        "semantic_role": "transition relation",
+        "candidate_text": "fail",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[12]/text()",
+          "text_element_context": "fail",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "IMPLEMENTATION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "IDLE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "RUNNING",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "DONE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "FAILED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "reduce to",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "start",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "finish",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "fail",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Handlers · retries · writes · logging",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 20,
+      "width_bp": 350.12,
+      "height_bp": 225.897,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
+    }
   }
 }

@@ -31,25 +31,26 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
-    "candidate_sha256": "393eec3155b1c860375f939dafda471dcc92d83f20512b63eeda5ae7e3b491f6",
+    "candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Active alignment: convergence. Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
     "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
     "visual_review": "Active repeat loop, handoff and passive return loop retained; change enters evaluation side port. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 56,
       "width_bp": 403.226,
       "height_bp": 281.288,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
@@ -69,5 +70,105 @@
     ],
     "compiler_diagnostics": [],
     "geometry_findings": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+    "candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
+    "reason": "Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
+    "evidence": [
+      {
+        "source_text": "repeat until correspondence",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "repeat until correspondence",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "repeat until correspondence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "admit or reject",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "admit / reject",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[27]/text()",
+          "text_element_context": "admit or reject",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "continue protecting correspondence",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "continue protecting correspondence",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[28]/text()",
+          "text_element_context": "continue protecting correspondence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Active alignment (convergence)",
+        "source_style": "weight 700; normal; source size 21.5",
+        "semantic_role": "alignment mode",
+        "candidate_text": "Active alignment: convergence",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "Active alignment (convergence)",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "repeat until correspondence",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "admit / reject",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "continue protecting correspondence",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Active alignment: convergence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "detect gaps",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 56,
+      "width_bp": 403.226,
+      "height_bp": 281.288,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    }
   }
 }

@@ -31,27 +31,86 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-    "candidate_sha256": "47671a55d019a3eaffdcb8b915fe645729859c03f7406a72f121427f9345f4e0",
+    "candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Late documentation versus iterative modeling preserved; analysis-to-prediction route enters side port.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 64,
       "width_bp": 396.38,
-      "height_bp": 227.628,
+      "height_bp": 229.753,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+    "candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "refine model",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "12.5"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "refine model",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "refine model",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "12.5"
+            },
+            "location": {
+              "x": "420",
+              "y": "296",
+              "text_element": 13
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "refine model",
+        "italic": true
+      },
+      {
+        "text": "Design",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 64,
+      "width_bp": 396.38,
+      "height_bp": 229.753,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
+    }
   }
 }

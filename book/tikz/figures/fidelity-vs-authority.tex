@@ -5,11 +5,11 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,text width=8cm,fill=black!8] (m) at (0,0) {Governing computation model\\Computations · dependencies · composition};
-\node[n,text width=5cm] (e) at (-3.5,-2.8) {Execution};
-\node[n,text width=5cm,fill=white] (v) at (3.5,-2.8) {Analytical graph view};
-\draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {consumed by scheduler} (-3.5,-1.4) -- (e.north);
-\draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {projected / checked} (3.5,-1.4) -- (v.north);
+\node[strong,text width=8cm,fill=black!8] (m) at (0,0) {\textbf{GOVERNING COMPUTATION MODEL}\\Computations · dependencies · composition};
+\node[n,text width=5cm] (e) at (-3.5,-2.8) {\textbf{EXECUTION}};
+\node[n,text width=5cm,fill=white] (v) at (3.5,-2.8) {\textbf{ANALYTICAL GRAPH VIEW}};
+\draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {\textbf{\textit{consumed by}}\\\textbf{\textit{scheduler}}} (-3.5,-1.4) -- (e.north);
+\draw[edge] (m.south) -- (0,-1.4) -- node[lab,above] {\textbf{\textit{projected /}}\\\textbf{\textit{checked}}} (3.5,-1.4) -- (v.north);
 \node[head,text width=5cm] (a) at (-3.5,-4.2) {Governing role};
 \node[head,text width=5cm] (c) at (3.5,-4.2) {Correspondence};
 \node[note,text width=12cm] (n) at (0,-6.5) {Stronger correspondence does not make the view govern execution.};

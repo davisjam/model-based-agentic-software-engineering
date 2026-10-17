@@ -5,21 +5,21 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=3.3cm] (s0) at (-2.5,0.0) {Timeout};
-\node[note,text width=5cm] (d0) at (2.5,0.0) {Bare kill after the budget was spent};
-\node[head,text width=3.3cm] (s1) at (-2.5,-1.45) {Measurement};
-\node[note,text width=5cm] (d1) at (2.5,-1.45) {One incident; timestamped; provisional};
+\node[head,text width=3.3cm] (s0) at (-2.5,0.0) {\textbf{Timeout}};
+\node[note,text width=5cm] (d0) at (2.5,0.0) {\textit{Bare kill after the budget was spent}};
+\node[head,text width=3.3cm] (s1) at (-2.5,-1.45) {\textbf{Measurement}};
+\node[note,text width=5cm] (d1) at (2.5,-1.45) {\textit{One incident; timestamped; provisional}};
 \draw[edge,] (s0) -- (s1);
-\node[head,text width=3.3cm] (s2) at (-2.5,-2.9) {Model};
-\node[note,text width=5cm] (d2) at (2.5,-2.9) {Per-chunk worst case versus ceiling};
+\node[head,text width=3.3cm] (s2) at (-2.5,-2.9) {\textbf{Model}};
+\node[note,text width=5cm] (d2) at (2.5,-2.9) {\textit{Per-chunk worst case versus ceiling}};
 \draw[edge,] (s1) -- (s2);
-\node[head,text width=3.3cm] (s3) at (-2.5,-4.35) {Evidence};
-\node[note,text width=5cm] (d3) at (2.5,-4.35) {Would-be breach made observable};
+\node[head,text width=3.3cm] (s3) at (-2.5,-4.35) {\textbf{Evidence}};
+\node[note,text width=5cm] (d3) at (2.5,-4.35) {\textit{Would-be breach made observable}};
 \draw[edge,] (s2) -- (s3);
-\node[head,text width=3.3cm] (s4) at (-2.5,-5.8) {Report};
-\node[note,text width=5cm] (d4) at (2.5,-5.8) {Surfaced, not enforced};
+\node[head,text width=3.3cm] (s4) at (-2.5,-5.8) {\textbf{Report}};
+\node[note,text width=5cm] (d4) at (2.5,-5.8) {\textit{Surfaced, not enforced}};
 \draw[edge,] (s3) -- (s4);
-\node[box,dashed,text width=3.3cm] (s5) at (-2.5,-7.25) {? Enforcement};
+\node[box,dashed,text width=3.3cm] (s5) at (-2.5,-7.25) {\textbf{? Enforcement}};
 \node[note,text width=5cm] (d5) at (2.5,-7.25) {No gate yet; deliberately deferred};
 \draw[edge,dashed] (s4) -- (s5);
 \node[note,text width=11cm] (nt) at (0,-8.8) {Engineering history: modeled and observed, reported, not yet binding.};

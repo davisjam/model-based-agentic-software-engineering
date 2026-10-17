@@ -64,26 +64,158 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-    "candidate_sha256": "f891361aa77bd659ea562ce10523c6dc8091eb984b7dfef52869e74e75198426",
+    "candidate_sha256": "9eebfabb66ffdc1479beb045c83f9bcfbb01c98e709732458dd4fe1702c9c5fe",
     "fill": "Shared state and three purpose views white; labels and italic questions distinguish the views.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes SHARED LEASE STATE; OWNERSHIP; BEHAVIOR; MEASUREMENT. Bold uppercase model perspectives contrast with italic engineering questions and lease fields.",
     "routing": "Shared rail from represented state to three equal views.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 24,
       "width_bp": 376.338,
-      "height_bp": 141.201,
-      "minimum_prose_font_pt": null,
+      "height_bp": 141.221,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
+    "candidate_sha256": "9eebfabb66ffdc1479beb045c83f9bcfbb01c98e709732458dd4fe1702c9c5fe",
+    "reason": "Bold uppercase model perspectives contrast with italic engineering questions and lease fields.",
+    "evidence": [
+      {
+        "source_text": "SHARED LEASE STATE",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "SHARED LEASE STATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "SHARED LEASE STATE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "OWNERSHIP",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "OWNERSHIP",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "OWNERSHIP",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "BEHAVIOR",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "BEHAVIOR",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "BEHAVIOR",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "MEASUREMENT",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "MEASUREMENT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "MEASUREMENT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "owner · epoch · lifetime",
+        "source_style": "weight normal; italic; source size 14.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "owner · epoch · lifetime",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "owner · epoch · lifetime",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "who owns?",
+        "source_style": "weight normal; italic; source size 14.5",
+        "semantic_role": "engineering question",
+        "candidate_text": "Who owns?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/in-flight-lease-overlap.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "who owns?",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "SHARED LEASE STATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "OWNERSHIP",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "BEHAVIOR",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "MEASUREMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "owner · epoch · lifetime",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Who owns?",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 24,
+      "width_bp": 376.338,
+      "height_bp": 141.221,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

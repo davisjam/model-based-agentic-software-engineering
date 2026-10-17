@@ -103,26 +103,199 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-    "candidate_sha256": "a62d01030b37ee081a60883ba112196913643eb8f8f545fa175f5a0cc6221aa6",
+    "candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
     "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes unlimited; 0 credits; REJECT; admit_unlimited. Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
     "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 29,
       "width_bp": 414.814,
       "height_bp": 353.559,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
+    "candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
+    "reason": "Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
+    "evidence": [
+      {
+        "source_text": "unlimited",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "entitlement mode / admission result",
+        "candidate_text": "unlimited",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "unlimited",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "0 credits",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "entitlement mode / admission result",
+        "candidate_text": "0 credits",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[23]/text()",
+          "text_element_context": "0 credits",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "REJECT",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "entitlement mode / admission result",
+        "candidate_text": "REJECT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[26]/text()",
+          "text_element_context": "REJECT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "admit_unlimited",
+        "source_style": "weight 700; normal; source size 17",
+        "semantic_role": "entitlement mode / admission result",
+        "candidate_text": "admit_unlimited",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[39]/text()",
+          "text_element_context": "admit_unlimited",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "every entitlement is finite",
+        "source_style": "weight normal; italic; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Every entitlement is finite",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "every entitlement is finite",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "unlimited entitlement is introduced",
+        "source_style": "weight normal; italic; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Unlimited entitlement is introduced",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "unlimited entitlement is introduced",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "one representation does not evolve",
+        "source_style": "weight normal; italic; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "One representation does not evolve",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[18]/text()",
+          "text_element_context": "one representation does not evolve",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "the distinction survives the reduction",
+        "source_style": "weight normal; italic; source size 17",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "The distinction survives the reduction",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/entitlement-model-evolution.svg",
+          "element_text_path": "/svg/text[30]/text()",
+          "text_element_context": "the distinction survives the reduction",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "unlimited",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "0 credits",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "REJECT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "admit_unlimited",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Every entitlement is finite",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Unlimited entitlement is introduced",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "One representation does not evolve",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "The distinction survives the reduction",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Group",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 29,
+      "width_bp": 414.814,
+      "height_bp": 353.559,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

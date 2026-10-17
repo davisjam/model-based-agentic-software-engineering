@@ -19,14 +19,14 @@ def axis(body,options=''):return r'\begin{axis}[mage plot,'+options+']\n'+body+'
 # External annotations retain units, qualifications and source callouts at print size.
 chart_notes={
  'f1_realization_over_time':r'Commits per ISO week; project W1 begins 2026-03-09.\\Dotted guides: retrospective stages — W1 feasibility, W4 SaaS,\\W5 formats/standards, W13 hardening, W20 serverless.',
- 'f19_delegation_over_time':r'Commits per ISO week; project W1 begins 2026-03-09.\\Human-or-unknown is a residual and overstates human work.',
+ 'f19_delegation_over_time':r'Commits per ISO week; project W1 begins 2026-03-09.\\Human-or-unknown is a residual and OVER-states human work.',
  'f2_work_over_time':r'Upper: epics created/closed per week. Lower: active epics (cumulative).\\Project W1 begins 2026-03-09.',
  'f7_controls_accumulate':r'Count of files in the repository at each week-end; missing observations omitted.\\Project W1 begins 2026-03-09.',
  'f5_f6_capital_and_support_ratio':r'Upper: lines of code and Markdown, excluding vendor/generated files.\\Lower: support/production ratio; dotted line marks parity (1.0).\\Diamonds: prototype (0.85) and August 3 book snapshot (3.0).',
  'f21_f22_model_census':r'Declared models (n = 130): representation forms above, modeled targets below.',
  'f13_mature_flow_funnel':r'Events in week 2026-W35: 592 started; 573 landed (96.8\%); 10 aborted.\\Workspace retirement is a separate lifecycle count.',
  'f10_what_experience_became':r'Twelve conversion episodes; three up-front confirmations excluded.\\Blocking is deterministic; advisory is probabilistic; measurement adds no hard gate.',
- 'churn-per-path':r'Web: Python service/worker. Backend: C\# CLI/rule engine.\\Mechanization backend: +941,120 / −286,378 lines.',
+ 'churn-per-path':r'Web: Python service/worker. Backend: C\# CLI/rule engine.\\\textbf{Mechanization backend: +941,120 / −286,378 lines.}',
  'velocity-commits-per-week':r'Commits per week; inset reports commit-size quartiles in lines of code.',
 }
 def write(stem,body,redesign,data):
@@ -132,13 +132,14 @@ p=O/'receipts/velocity-commits-per-week.json';r=json.loads(generated[p]);r['ques
 
 for path,text in generated.items():
     # The figure review is editorial evidence, separate from the data projection.
-    # Preserve that one field while still checking every generated receipt field.
+    # Preserve review fields while still checking every generated receipt field.
     if path.suffix == '.json' and path.exists():
         previous=json.loads(path.read_text())
-        if 'style_review' in previous:
-            receipt=json.loads(text)
-            receipt['style_review']=previous['style_review']
-            text=json.dumps(receipt,indent=2)+'\n'
+        receipt=json.loads(text)
+        for field in ('style_review','typography_review'):
+            if field in previous:
+                receipt[field]=previous[field]
+        text=json.dumps(receipt,indent=2)+'\n'
     if args.check:
         if not path.exists() or path.read_text()!=text:raise SystemExit("Stale chart projection: "+str(path))
     else:

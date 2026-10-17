@@ -61,26 +61,217 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
-    "candidate_sha256": "bc21506ebfe4cae3a6a66605c11cc937a6a1c7426b96be05d0d9b7ddb826b912",
+    "candidate_sha256": "dad5a1cafe39e7c0fb34bfdd2152fc8286cb6464dec47905b086863550e7992e",
     "fill": "One consistent 8% model role across all three comparisons; implementation/system peers white.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes DERIVE; GENERATE; TRACE + CHECK; check (decidable). Restore uppercase alternative-mode headings; italic truth-source annotations and bold decidable check identify different authority relationships.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 34,
       "width_bp": 389.805,
-      "height_bp": 178.672,
-      "minimum_prose_font_pt": null,
+      "height_bp": 179.517,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+    "candidate_sha256": "dad5a1cafe39e7c0fb34bfdd2152fc8286cb6464dec47905b086863550e7992e",
+    "reason": "Restore uppercase alternative-mode headings; italic truth-source annotations and bold decidable check identify different authority relationships.",
+    "evidence": [
+      {
+        "source_text": "DERIVE",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "alternative derivation mode",
+        "candidate_text": "DERIVE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "DERIVE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "GENERATE",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "alternative derivation mode",
+        "candidate_text": "GENERATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "GENERATE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "TRACE + CHECK",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "alternative derivation mode",
+        "candidate_text": "TRACE + CHECK",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "TRACE + CHECK",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "derive",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "relation",
+        "candidate_text": "derive",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "derive",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "generate",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "relation",
+        "candidate_text": "generate",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "generate",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "implementation is source of truth",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Implementation is source of truth",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "implementation is source of truth",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "model is source of truth",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Model is source of truth",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "model is source of truth",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "neither fully determines the other",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Neither fully determines the other",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[12]/text()",
+          "text_element_context": "neither fully determines the other",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "check (decidable)",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "check (decidable)",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/derive-generate-trace.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "check (decidable)",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "DERIVE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "GENERATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "TRACE + CHECK",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "derive",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "generate",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Implementation is source of truth",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Model is source of truth",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Neither fully determines the other",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "check (decidable)",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Model",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 34,
+      "width_bp": 389.805,
+      "height_bp": 179.517,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
+    }
   }
 }

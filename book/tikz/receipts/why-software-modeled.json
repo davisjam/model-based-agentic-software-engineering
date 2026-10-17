@@ -25,27 +25,339 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-    "candidate_sha256": "f5723c9b429df5c53d2253745e84e7c01b8a17f11dd24c915b94e1b43db27d5c",
+    "candidate_sha256": "454a8f6c136b18a4d3fe41dd324632e821f5e76c538000b14e473ba7cdaf9a40",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes amortized over expensive build / test cycles; standing correspondence cost; needed before realization; executable and precise; expensive and slow; become economical; expensive; cheap. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Column headings and concluding economic claim retain bold; ordinary comparison prose regular.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 88,
       "width_bp": 407.719,
       "height_bp": 244.638,
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+    "candidate_sha256": "454a8f6c136b18a4d3fe41dd324632e821f5e76c538000b14e473ba7cdaf9a40",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "amortized over\nexpensive build / test cycles",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "amortized over expensive build / test cycles",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "amortized over",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "58",
+              "y": "308",
+              "text_element": 9
+            }
+          },
+          {
+            "text": "expensive build / test cycles",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "58",
+              "y": "328",
+              "text_element": 10
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "standing cost",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "standing correspondence cost",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "standing cost",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "378",
+              "y": "346",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "necessary before realization",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "needed before realization",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "necessary before realization",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "58",
+              "y": "252",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "already executable & precise",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "executable and precise",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "already executable & precise",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "378",
+              "y": "294",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "expensive / slow",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "expensive and slow",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "expensive / slow",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "58",
+              "y": "196",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "become economical",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "become economical",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "become economical",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "698",
+              "y": "340",
+              "text_element": 28
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "expensive",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "expensive",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "expensive",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "378",
+              "y": "242",
+              "text_element": 16
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "cheap",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "cheap",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "cheap",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "378",
+              "y": "190",
+              "text_element": 14
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "falls",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "19.6"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "falls",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "falls",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "19.6"
+            },
+            "location": {
+              "x": "698",
+              "y": "212",
+              "text_element": 24
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "amortized over expensive build / test cycles",
+        "bold": true
+      },
+      {
+        "text": "standing correspondence cost",
+        "bold": true
+      },
+      {
+        "text": "needed before realization",
+        "bold": true
+      },
+      {
+        "text": "executable and precise",
+        "bold": true
+      },
+      {
+        "text": "expensive and slow",
+        "bold": true
+      },
+      {
+        "text": "become economical",
+        "bold": true
+      },
+      {
+        "text": "expensive",
+        "bold": true
+      },
+      {
+        "text": "cheap",
+        "bold": true
+      },
+      {
+        "text": "falls",
+        "bold": true
+      },
+      {
+        "text": "Physical realization:",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 88,
+      "width_bp": 407.719,
+      "height_bp": 244.638,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
+    }
   }
 }

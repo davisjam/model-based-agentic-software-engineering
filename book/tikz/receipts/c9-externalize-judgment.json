@@ -18,26 +18,79 @@
   "alt": "C.9 Externalize recurring operational judgment: derive an operational model from the system model, then serve the operator",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
-    "candidate_sha256": "26501927986be2ed7bebed8ba800e113398ed1e4712582dba0d827c83c319dd0",
+    "candidate_sha256": "46def4afe6f9a92f10acb391833f322f86405a7bcffa3c2302da5c2dd756a84f",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes SYSTEM MODEL; OPERATIONAL MODEL. Restored two representation levels; ordinary property and operator labels remain regular, two representation levels; ordinary property and operator labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Orthogonal shared rails replace diagonal process fan-out/fan-in; separate north/south ports preserve direction and equal peer treatment.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 109,
       "width_bp": 311.984,
       "height_bp": 235.982,
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
+    "candidate_sha256": "46def4afe6f9a92f10acb391833f322f86405a7bcffa3c2302da5c2dd756a84f",
+    "reason": "Restored two representation levels; ordinary property and operator labels remain regular, two representation levels; ordinary property and operator labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "SYSTEM MODEL",
+        "source_style": "font-weight=700",
+        "semantic_role": "Two representation levels; ordinary property and operator labels remain regular",
+        "candidate_text": "SYSTEM MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "OPERATIONAL MODEL",
+        "source_style": "font-weight=700",
+        "semantic_role": "Two representation levels; ordinary property and operator labels remain regular",
+        "candidate_text": "OPERATIONAL MODEL",
+        "candidate_style": "bold"
+      }
+    ],
+    "checks": [
+      {
+        "text": "SYSTEM MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "OPERATIONAL MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "healthy?",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 109,
+      "width_bp": 311.984,
+      "height_bp": 235.982,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

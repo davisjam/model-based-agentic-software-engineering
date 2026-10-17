@@ -36,26 +36,182 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
-    "candidate_sha256": "ff495e7800d8d62c1fbae2722acd1ae4f4630710a141fb3be91b8049a5d8b5b0",
+    "candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
     "fill": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; SCAFFOLDING; DEGREES OF FREEDOM; SPECIFIED REGION; Obligation boundary; Specification boundary. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 14,
       "width_bp": 396.891,
-      "height_bp": 205.622,
-      "minimum_prose_font_pt": null,
+      "height_bp": 205.449,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
+    "candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING OBLIGATION",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named region; uppercase differentiates the role from its explanatory prose",
+        "candidate_text": "ENGINEERING OBLIGATION",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "ENGINEERING OBLIGATION",
+            "weight": "700",
+            "style": "normal",
+            "x": "490",
+            "y": "104"
+          }
+        ]
+      },
+      {
+        "source_text": "SCAFFOLDING",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named region; uppercase differentiates the role from its explanatory prose",
+        "candidate_text": "SCAFFOLDING",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "SCAFFOLDING",
+            "weight": "700",
+            "style": "normal",
+            "x": "490",
+            "y": "248"
+          }
+        ]
+      },
+      {
+        "source_text": "DEGREES OF FREEDOM",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named region; uppercase differentiates the role from its explanatory prose",
+        "candidate_text": "DEGREES OF FREEDOM",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "DEGREES OF FREEDOM",
+            "weight": "700",
+            "style": "normal",
+            "x": "490",
+            "y": "400"
+          }
+        ]
+      },
+      {
+        "source_text": "SPECIFIED REGION",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named region; uppercase differentiates the role from its explanatory prose",
+        "candidate_text": "SPECIFIED REGION",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "SPECIFIED REGION",
+            "weight": "700",
+            "style": "normal",
+            "x": "490",
+            "y": "58"
+          }
+        ]
+      },
+      {
+        "source_text": "obligation boundary",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named boundary, distinct from the statement defining it",
+        "candidate_text": "Obligation boundary",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "obligation boundary",
+            "weight": "700",
+            "style": "normal",
+            "x": "755",
+            "y": "192"
+          }
+        ]
+      },
+      {
+        "source_text": "specification boundary",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named boundary, distinct from the statement defining it",
+        "candidate_text": "Specification boundary",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "specification boundary",
+            "weight": "700",
+            "style": "normal",
+            "x": "755",
+            "y": "338"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING OBLIGATION",
+        "bold": true
+      },
+      {
+        "text": "SCAFFOLDING",
+        "bold": true
+      },
+      {
+        "text": "DEGREES OF FREEDOM",
+        "bold": true
+      },
+      {
+        "text": "SPECIFIED REGION",
+        "bold": true
+      },
+      {
+        "text": "Obligation boundary",
+        "bold": true
+      },
+      {
+        "text": "Specification boundary",
+        "bold": true
+      },
+      {
+        "text": "Consequential distinctions that must be preserved",
+        "bold": false
+      },
+      {
+        "text": "Realization choices left to the agent",
+        "bold": false
+      },
+      {
+        "text": "Set by the problem; does not move with capability",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 14,
+      "width_bp": 396.891,
+      "height_bp": 205.449,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    }
   }
 }

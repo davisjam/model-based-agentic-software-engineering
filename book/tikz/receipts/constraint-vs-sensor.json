@@ -22,27 +22,164 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
-    "candidate_sha256": "86948d8a21ebf61d8dfaf4b31d3ce6d3d65122b613b746a537f64edfa79598a6",
+    "candidate_sha256": "ad6b4d9b2b403af3e2078740de18740e2a0a0b5e4c9437d6bd3bf37166a81ac8",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; YES; NO; CONSTRAINT. Existing mechanism role headings retain bold capitals; restore obligation and branch-answer hierarchy, and italic examples.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Equal alternative constraint/sensor branches; yes/no captions above shared rail.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 43,
       "width_bp": 376.538,
-      "height_bp": 145.963,
-      "minimum_prose_font_pt": 9.0,
+      "height_bp": 145.317,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
+    "candidate_sha256": "ad6b4d9b2b403af3e2078740de18740e2a0a0b5e4c9437d6bd3bf37166a81ac8",
+    "reason": "Existing mechanism role headings retain bold capitals; restore obligation and branch-answer hierarchy, and italic examples.",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING OBLIGATION",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ENGINEERING OBLIGATION",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "ENGINEERING OBLIGATION",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "YES",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "decision outcome",
+        "candidate_text": "YES",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "YES",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "NO",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "decision outcome",
+        "candidate_text": "NO",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "NO",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "typed enum · permission · narrow API",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "typed enum; permission; narrow API",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "typed enum · permission · narrow API",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "metric · trace · call scan · log",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "metric; trace; call scan; log",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "metric · trace · call scan · log",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "CONSTRAINT",
+        "source_style": "weight 700; normal; source size 22",
+        "semantic_role": "mechanism role",
+        "candidate_text": "CONSTRAINT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/constraint-vs-sensor.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "CONSTRAINT",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING OBLIGATION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "YES",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "NO",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "typed enum; permission; narrow API",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "metric; trace; call scan; log",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "CONSTRAINT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "narrows what may happen",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 43,
+      "width_bp": 376.538,
+      "height_bp": 145.317,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

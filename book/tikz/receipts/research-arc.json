@@ -87,28 +87,356 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-    "candidate_sha256": "38495c8a7e24aab98c3b524b29acd0aa317d3196fd4241efa929e186a3c4f51d",
+    "candidate_sha256": "76a862a3feef21f5fd2fd7f1f929aca287bec70bd6675344e399ce767734a6d0",
     "fill": "One 8% role marks emerging/refined theory and its resulting basis; empirical cases and comparison nodes white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes DocAble; Early MAGE; Independent industrial accounts; Comparative reconstruction; MAGE theory; A stronger basis for theory; DEPTH; BREADTH. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Orthogonal depth/breadth fan-out and shared-rail join replace diagonal convergence.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 6,
       "width_bp": 319.646,
-      "height_bp": 363.404,
-      "minimum_prose_font_pt": null,
+      "height_bp": 363.229,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
     },
     "book_references": [
       "part:6"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
+    "candidate_sha256": "76a862a3feef21f5fd2fd7f1f929aca287bec70bd6675344e399ce767734a6d0",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "DocAble",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "DocAble",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "DocAble",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "116"
+          }
+        ]
+      },
+      {
+        "source_text": "Early MAGE",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "Early MAGE",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Early MAGE",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "208"
+          }
+        ]
+      },
+      {
+        "source_text": "Independent industrial accounts",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "Independent industrial accounts",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Independent industrial accounts",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "300"
+          }
+        ]
+      },
+      {
+        "source_text": "Comparative reconstruction",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "Comparative reconstruction",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Comparative reconstruction",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "392"
+          }
+        ]
+      },
+      {
+        "source_text": "MAGE theory",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "MAGE theory",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "MAGE theory",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "486"
+          }
+        ]
+      },
+      {
+        "source_text": "a stronger basis for theory",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Evidence source or theory-development stage",
+        "candidate_text": "A stronger basis for theory",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "a stronger basis for theory",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "694"
+          }
+        ]
+      },
+      {
+        "source_text": "depth",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Complementary evidence dimensions",
+        "candidate_text": "DEPTH",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "depth",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "137"
+          }
+        ]
+      },
+      {
+        "source_text": "BREADTH",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Complementary evidence dimensions",
+        "candidate_text": "BREADTH",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "BREADTH",
+            "weight": "700",
+            "style": "normal",
+            "x": "690",
+            "y": "586"
+          }
+        ]
+      },
+      {
+        "source_text": "one production system, observed in longitudinal depth",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "One production system, longitudinal depth",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "one production system, observed in longitudinal depth",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "137"
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling · Alignment · conversion · capital",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Modeling · Alignment · conversion · capital",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "Modeling · Alignment · conversion · capital",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "229"
+          }
+        ]
+      },
+      {
+        "source_text": "seven independent industrial systems",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Seven independent industrial systems",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "seven independent industrial systems",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "321"
+          }
+        ]
+      },
+      {
+        "source_text": "recurring moves · variation · limits",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Recurring moves · variation · limits",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "recurring moves · variation · limits",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "413"
+          }
+        ]
+      },
+      {
+        "source_text": "the refined account developed in Chapter 6",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Refined account in Chapter 6",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "the refined account developed in Chapter 6",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "508"
+          }
+        ]
+      },
+      {
+        "source_text": "mechanism · sequence",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Mechanism and sequence",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "mechanism · sequence",
+            "weight": "normal",
+            "style": "italic",
+            "x": "310",
+            "y": "606"
+          }
+        ]
+      },
+      {
+        "source_text": "variation · alternatives",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of stage or evidence dimension",
+        "candidate_text": "Variation and alternatives",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "variation · alternatives",
+            "weight": "normal",
+            "style": "italic",
+            "x": "690",
+            "y": "606"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "DocAble",
+        "bold": true
+      },
+      {
+        "text": "Early MAGE",
+        "bold": true
+      },
+      {
+        "text": "Independent industrial accounts",
+        "bold": true
+      },
+      {
+        "text": "Comparative reconstruction",
+        "bold": true
+      },
+      {
+        "text": "MAGE theory",
+        "bold": true
+      },
+      {
+        "text": "A stronger basis for theory",
+        "bold": true
+      },
+      {
+        "text": "DEPTH",
+        "bold": true
+      },
+      {
+        "text": "BREADTH",
+        "bold": true
+      },
+      {
+        "text": "One production system, longitudinal depth",
+        "italic": true
+      },
+      {
+        "text": "Modeling · Alignment · conversion · capital",
+        "italic": true
+      },
+      {
+        "text": "Seven independent industrial systems",
+        "italic": true
+      },
+      {
+        "text": "Recurring moves · variation · limits",
+        "italic": true
+      },
+      {
+        "text": "Refined account in Chapter 6",
+        "italic": true
+      },
+      {
+        "text": "Mechanism and sequence",
+        "italic": true
+      },
+      {
+        "text": "Variation and alternatives",
+        "italic": true
+      },
+      {
+        "text": "Comparison refines; it does not validate.",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 6,
+      "width_bp": 319.646,
+      "height_bp": 363.229,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
+    }
   }
 }

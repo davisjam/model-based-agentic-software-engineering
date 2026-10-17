@@ -69,26 +69,194 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-    "candidate_sha256": "158eefc0df5bca0b168d41712c9c48c566acd15359ac95d955717fda690bd5f8",
+    "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
     "fill": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes CLAIMED; RELEASED; RECLAIMABLE; completion; expiry. Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
     "routing": "Orthogonal completion/expiry split with distinct line conventions; short outer reclaim loop preserves feedback.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 23,
       "width_bp": 361.022,
       "height_bp": 206.745,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+    "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+    "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
+    "evidence": [
+      {
+        "source_text": "CLAIMED",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "CLAIMED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "CLAIMED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "RELEASED",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "RELEASED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "RELEASED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "RECLAIMABLE",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "RECLAIMABLE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "RECLAIMABLE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "completion",
+        "source_style": "weight 700; normal; source size 14.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "completion",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "completion",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "expiry",
+        "source_style": "weight 700; normal; source size 14.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "expiry",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "expiry",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "owner · epoch · expires_at",
+        "source_style": "weight normal; italic; source size 14.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "owner · epoch · expires_at",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "owner · epoch · expires_at",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "claim ends cleanly",
+        "source_style": "weight normal; italic; source size 14.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Claim ends cleanly",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "claim ends cleanly",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "lease lapsed / stale",
+        "source_style": "weight normal; italic; source size 14.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Lease lapsed / stale",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/in-flight-ownership-states.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "lease lapsed / stale",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "CLAIMED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "RELEASED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "RECLAIMABLE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "completion",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "expiry",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "owner · epoch · expires_at",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Claim ends cleanly",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Lease lapsed / stale",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 23,
+      "width_bp": 361.022,
+      "height_bp": 206.745,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8
+    }
   }
 }

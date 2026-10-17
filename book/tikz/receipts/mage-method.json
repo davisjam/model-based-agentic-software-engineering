@@ -110,26 +110,359 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-    "candidate_sha256": "a8a5a935f7bdce498a4da2f3a61bd023b40b9914d8beb8a9fbe1ef4132fec035",
+    "candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
     "fill": "One 8% role marks the two named MAGE principles equally; ordinary conditions, outcomes and feedback nodes white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes New engineering imbalance; Modeling Principle; Alignment Principle; Governed Engineering Environment; Engineering Capital; Commodity intelligence; Engineering Churn; Governance conversion. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical causal chain; orthogonal dashed churn branches. Outer dotted scope feedback and left governance feedback remain because these named loops are the argument.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 2,
       "width_bp": 410.628,
-      "height_bp": 379.305,
-      "minimum_prose_font_pt": null,
+      "height_bp": 379.261,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+    "candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "Scale × finite reasoning",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Scale × finite reasoning",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Scale × finite reasoning",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "80"
+          }
+        ]
+      },
+      {
+        "source_text": "New engineering imbalance",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "New engineering imbalance",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "New engineering imbalance",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "278"
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling Principle",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Modeling Principle",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Modeling Principle",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "434"
+          }
+        ]
+      },
+      {
+        "source_text": "Alignment Principle",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Alignment Principle",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Alignment Principle",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "636"
+          }
+        ]
+      },
+      {
+        "source_text": "Governed Engineering Environment",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Governed Engineering Environment",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Governed Engineering Environment",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "790"
+          }
+        ]
+      },
+      {
+        "source_text": "Engineering Capital",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Engineering Capital",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Engineering Capital",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "934"
+          }
+        ]
+      },
+      {
+        "source_text": "Commodity intelligence",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Commodity intelligence",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Commodity intelligence",
+            "weight": "700",
+            "style": "normal",
+            "x": "155",
+            "y": "278"
+          }
+        ]
+      },
+      {
+        "source_text": "Engineering Churn",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Engineering Churn",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Engineering Churn",
+            "weight": "700",
+            "style": "normal",
+            "x": "840",
+            "y": "892"
+          }
+        ]
+      },
+      {
+        "source_text": "Governance conversion",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named premise, principle, environment or outcome",
+        "candidate_text": "Governance conversion",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Governance conversion",
+            "weight": "700",
+            "style": "normal",
+            "x": "92",
+            "y": "588"
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling and Alignment work together",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of outcome or feedback",
+        "candidate_text": "Modeling and Alignment work together",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "Modeling and Alignment",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "818"
+          },
+          {
+            "text": "work together",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "840"
+          }
+        ]
+      },
+      {
+        "source_text": "effort compounds over time",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of outcome or feedback",
+        "candidate_text": "Effort compounds over time",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "effort compounds over time",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "964"
+          }
+        ]
+      },
+      {
+        "source_text": "can depreciate · maintain or retire",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of outcome or feedback",
+        "candidate_text": "Can depreciate; maintain or retire",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "can depreciate · maintain or retire",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "988"
+          }
+        ]
+      },
+      {
+        "source_text": "the same work / gets paid for again",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of outcome or feedback",
+        "candidate_text": "Same work paid again",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "the same work",
+            "weight": "normal",
+            "style": "italic",
+            "x": "840",
+            "y": "922"
+          },
+          {
+            "text": "gets paid for again",
+            "weight": "normal",
+            "style": "italic",
+            "x": "840",
+            "y": "946"
+          }
+        ]
+      },
+      {
+        "source_text": "greater scope reopens the reasoning problem",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Explanation of outcome or feedback",
+        "candidate_text": "Greater scope reopens the reasoning problem",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "greater scope reopens",
+            "weight": "normal",
+            "style": "italic",
+            "x": "30",
+            "y": "462"
+          },
+          {
+            "text": "the reasoning problem",
+            "weight": "normal",
+            "style": "italic",
+            "x": "30",
+            "y": "486"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "New engineering imbalance",
+        "bold": true
+      },
+      {
+        "text": "Modeling Principle",
+        "bold": true
+      },
+      {
+        "text": "Alignment Principle",
+        "bold": true
+      },
+      {
+        "text": "Governed Engineering Environment",
+        "bold": true
+      },
+      {
+        "text": "Engineering Capital",
+        "bold": true
+      },
+      {
+        "text": "Commodity intelligence",
+        "bold": true
+      },
+      {
+        "text": "Engineering Churn",
+        "bold": true
+      },
+      {
+        "text": "Governance conversion",
+        "bold": true
+      },
+      {
+        "text": "Modeling and Alignment work together",
+        "italic": true
+      },
+      {
+        "text": "Effort compounds over time",
+        "italic": true
+      },
+      {
+        "text": "Can depreciate; maintain or retire",
+        "italic": true
+      },
+      {
+        "text": "Same work paid again",
+        "italic": true
+      },
+      {
+        "text": "Greater scope reopens the reasoning problem",
+        "italic": true
+      },
+      {
+        "text": "Make consequential knowledge",
+        "bold": false
+      },
+      {
+        "text": "Scale",
+        "bold": true
+      },
+      {
+        "text": "finite reasoning",
+        "bold": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 2,
+      "width_bp": 410.628,
+      "height_bp": 379.261,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
+    }
   }
 }

@@ -29,27 +29,472 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-    "candidate_sha256": "d337a29b6feeb58accb698ef4bfee851b08d0c0103b3ad4700d92628ccfc2c1e",
+    "candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
     "fill": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Governed engineering environment; Knowledge representation; Memory; planning state; Structured reasoning; Tools and interfaces; Trustworthy autonomy; Engineering capital; Systems / safety. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Traditions remain separate, MAGE is the single pale composition container; intended outcome dashed.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 89,
       "width_bp": 399.957,
       "height_bp": 351.735,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 14
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+    "candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Governed Engineering Environment",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Governed engineering environment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Governed Engineering Environment",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "492",
+              "text_element": 27
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Knowledge\nrepresentation",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Knowledge representation",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Knowledge",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "117",
+              "text_element": 12
+            }
+          },
+          {
+            "text": "representation",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "138",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Memory ·\nplanning state",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Memory; planning state",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Memory ·",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "117",
+              "text_element": 15
+            }
+          },
+          {
+            "text": "planning state",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "138",
+              "text_element": 16
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Structured reasoning",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Structured reasoning",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Structured reasoning",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "201",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Tools · interfaces",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Tools and interfaces",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Tools · interfaces",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "201",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Trustworthy autonomy",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Trustworthy autonomy",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Trustworthy autonomy",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "814",
+              "text_element": 32
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Engineering capital",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Engineering capital",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Engineering capital",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "706",
+              "text_element": 30
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Systems / safety",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Systems / safety",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Systems / safety",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "282",
+              "y": "201",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PL / compilers",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PL / compilers",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PL / compilers",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "282",
+              "y": "123",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Formal methods",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Formal methods",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Formal methods",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "201",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MBSE / MDE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MBSE / MDE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MBSE / MDE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "123",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Alignment",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Alignment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Alignment",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "678",
+              "y": "332",
+              "text_element": 25
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Modeling",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Modeling",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "322",
+              "y": "332",
+              "text_element": 23
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Governed engineering environment",
+        "bold": true
+      },
+      {
+        "text": "Knowledge representation",
+        "bold": true
+      },
+      {
+        "text": "Memory; planning state",
+        "bold": true
+      },
+      {
+        "text": "Structured reasoning",
+        "bold": true
+      },
+      {
+        "text": "Tools and interfaces",
+        "bold": true
+      },
+      {
+        "text": "Trustworthy autonomy",
+        "bold": true
+      },
+      {
+        "text": "Engineering capital",
+        "bold": true
+      },
+      {
+        "text": "Systems / safety",
+        "bold": true
+      },
+      {
+        "text": "PL / compilers",
+        "bold": true
+      },
+      {
+        "text": "Formal methods",
+        "bold": true
+      },
+      {
+        "text": "MBSE / MDE",
+        "bold": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true
+      },
+      {
+        "text": "Modeling",
+        "bold": true
+      },
+      {
+        "text": "explicit models",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 89,
+      "width_bp": 399.957,
+      "height_bp": 351.735,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 14
+    }
   }
 }

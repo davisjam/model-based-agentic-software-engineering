@@ -5,21 +5,21 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=6cm] (j) at (0,0) {Repeated judgment};
-\node[box,text width=5cm,fill=white] (a) at (-3.8,-2.2) {\textbf{ALIGNMENT}\\Encode predicate};
-\node[box,text width=5cm,fill=white] (m) at (3.8,-2.2) {\textbf{MODELING}\\Change representation};
+\node[head,text width=6cm] (j) at (0,0) {\textbf{REPEATED JUDGMENT}};
+\node[box,text width=5cm,fill=white] (a) at (-3.8,-2.2) {\textbf{ALIGNMENT}\\\textit{Encode predicate}};
+\node[box,text width=5cm,fill=white] (m) at (3.8,-2.2) {\textbf{MODELING}\\\textit{Change representation}};
 \draw[edge,] (j.south) -- (0.000,-1.100) -- (-3.800,-1.100) -- (a.north);
 \draw[edge,] (j.south) -- (0.000,-1.100) -- (3.800,-1.100) -- (m.north);
-\node[note,text width=3.7cm] at (-3.8,-.7) {already decidable};
-\node[note,text width=3.7cm] at (3.8,-.7) {requires reconstruction};
-\node[box,text width=5cm,fill=white] (c) at (-3.8,-3.8) {Test / validator / constraint / gate};
-\node[box,text width=5cm,fill=white] (s) at (3.8,-3.8) {Structured relation};
+\node[note,text width=3.7cm] at (-3.8,-.7) {\textit{already decidable}};
+\node[note,text width=3.7cm] at (3.8,-.7) {\textit{requires reconstruction}};
+\node[box,text width=5cm,fill=white] (c) at (-3.8,-3.8) {\textbf{Test / validator / constraint / gate}};
+\node[box,text width=5cm,fill=white] (s) at (3.8,-3.8) {\textbf{Structured relation}};
 \draw[edge,] (a) -- (c);
 \draw[edge,] (m) -- (s);
-\node[box,text width=5cm] (p) at (0,-5.4) {Predicate over model};
+\node[box,text width=5cm] (p) at (0,-5.4) {\textit{Predicate over model}};
 \draw[edge,] (c.south) -- (-3.800,-4.600) -- (0.000,-4.600) -- (p.north);
 \draw[edge,] (s.south) -- (3.800,-4.600) -- (0.000,-4.600) -- (p.north);
-\node[head,text width=6cm,fill=white] (r) at (0,-6.8) {Repeatable decision};
+\node[head,text width=6cm,fill=white] (r) at (0,-6.8) {\textbf{REPEATABLE DECISION}};
 \draw[edge,] (p) -- (r);
 \node[note,text width=12cm] (nt) at (0,-8) {The determinization frontier: change what is decidable, then bind the decision.};
 \end{tikzpicture}

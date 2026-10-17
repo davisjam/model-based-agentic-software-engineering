@@ -26,27 +26,378 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
-    "candidate_sha256": "08f8e62b95c15e895a638c394a30babbc7f863bce4a2de713598f5c04c63017a",
+    "candidate_sha256": "8a08a1750fdf329b7f74894a69ced55a30320e4a65800a3da87b42a653794f5b",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes Test / validator / constraint / gate; Structured relation; REPEATABLE DECISION; REPEATED JUDGMENT. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Alignment/modeling branch headings remain equal bold; conditions above orthogonal fork.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 85,
       "width_bp": 373.703,
-      "height_bp": 250.388,
+      "height_bp": 249.688,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+    "candidate_sha256": "8a08a1750fdf329b7f74894a69ced55a30320e4a65800a3da87b42a653794f5b",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "test / validator\nconstraint / gate",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Test / validator / constraint / gate",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "test / validator",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "250",
+              "y": "370",
+              "text_element": 12
+            }
+          },
+          {
+            "text": "constraint / gate",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "250",
+              "y": "390",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "structured relation",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Structured relation",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "structured relation",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "750",
+              "y": "380",
+              "text_element": 14
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "REPEATABLE DECISION",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "REPEATABLE DECISION",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "REPEATABLE DECISION",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "542",
+              "text_element": 17
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "REPEATED JUDGMENT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "REPEATED JUDGMENT",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "REPEATED JUDGMENT",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "117",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "encode predicate",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Encode predicate",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "encode predicate",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "250",
+              "y": "302",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "change representation",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Change representation",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "change representation",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "750",
+              "y": "302",
+              "text_element": 11
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "property already\ndecidable",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "already decidable",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "property already",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "250",
+              "y": "207",
+              "text_element": 4
+            }
+          },
+          {
+            "text": "decidable",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "250",
+              "y": "223",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "property requires\nreconstruction",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "requires reconstruction",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "property requires",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "750",
+              "y": "207",
+              "text_element": 6
+            }
+          },
+          {
+            "text": "reconstruction",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "750",
+              "y": "223",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "predicate\nover model",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "explanatory annotation or feedback relation",
+        "candidate_text": "Predicate over model",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "predicate",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "454",
+              "text_element": 15
+            }
+          },
+          {
+            "text": "over model",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "470",
+              "text_element": 16
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Test / validator / constraint / gate",
+        "bold": true
+      },
+      {
+        "text": "Structured relation",
+        "bold": true
+      },
+      {
+        "text": "REPEATABLE DECISION",
+        "bold": true
+      },
+      {
+        "text": "REPEATED JUDGMENT",
+        "bold": true
+      },
+      {
+        "text": "Encode predicate",
+        "italic": true
+      },
+      {
+        "text": "Change representation",
+        "italic": true
+      },
+      {
+        "text": "already decidable",
+        "italic": true
+      },
+      {
+        "text": "requires reconstruction",
+        "italic": true
+      },
+      {
+        "text": "Predicate over model",
+        "italic": true
+      },
+      {
+        "text": "The determinization frontier:",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 85,
+      "width_bp": 373.703,
+      "height_bp": 249.688,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10
+    }
   }
 }

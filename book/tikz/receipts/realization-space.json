@@ -34,26 +34,155 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
-    "candidate_sha256": "351908edb72d249bfb7d49e861aef6ff3d16a37ba0979125a66af8e0b4e0ca3a",
+    "candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
     "fill": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
-    "bold": "Bold figure heading and one explicitly identified focus: acceptable realizations in the intersection.",
+    "bold": "Source-derived emphasis includes SOFTWARE REALIZATION SPACE; Satisfies behavioral obligation; Satisfies architectural obligation; ACCEPTABLE REALIZATIONS. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 13,
       "width_bp": 350.12,
-      "height_bp": 247.867,
-      "minimum_prose_font_pt": null,
+      "height_bp": 246.946,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
+    "candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "SOFTWARE REALIZATION SPACE",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Universe heading (already bold)",
+        "candidate_text": "SOFTWARE REALIZATION SPACE",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "SOFTWARE REALIZATION SPACE",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "48"
+          }
+        ]
+      },
+      {
+        "source_text": "satisfies behavioral obligation",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named obligation regions",
+        "candidate_text": "Satisfies behavioral obligation",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "satisfies behavioral",
+            "weight": "700",
+            "style": "normal",
+            "x": "250",
+            "y": "225"
+          },
+          {
+            "text": "obligation",
+            "weight": "700",
+            "style": "normal",
+            "x": "250",
+            "y": "250"
+          }
+        ]
+      },
+      {
+        "source_text": "satisfies architectural obligation",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named obligation regions",
+        "candidate_text": "Satisfies architectural obligation",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "satisfies architectural",
+            "weight": "700",
+            "style": "normal",
+            "x": "770",
+            "y": "455"
+          },
+          {
+            "text": "obligation",
+            "weight": "700",
+            "style": "normal",
+            "x": "770",
+            "y": "480"
+          }
+        ]
+      },
+      {
+        "source_text": "ACCEPTABLE REALIZATIONS",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Intersection status (already bold)",
+        "candidate_text": "ACCEPTABLE REALIZATIONS",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "ACCEPTABLE",
+            "weight": "700",
+            "style": "normal",
+            "x": "520",
+            "y": "205"
+          },
+          {
+            "text": "REALIZATIONS",
+            "weight": "700",
+            "style": "normal",
+            "x": "520",
+            "y": "233"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "SOFTWARE REALIZATION SPACE",
+        "bold": true
+      },
+      {
+        "text": "Satisfies behavioral obligation",
+        "bold": true
+      },
+      {
+        "text": "Satisfies architectural obligation",
+        "bold": true
+      },
+      {
+        "text": "ACCEPTABLE REALIZATIONS",
+        "bold": true
+      },
+      {
+        "text": "Satisfy both",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 13,
+      "width_bp": 350.12,
+      "height_bp": 246.946,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    }
   }
 }

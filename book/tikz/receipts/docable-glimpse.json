@@ -51,26 +51,94 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-    "candidate_sha256": "095bfcce55e6fc8a22d3c0b0e4288bec14ef8d6b3c62857c37db9988713f0fda",
+    "candidate_sha256": "97afb6b2f9ff21bd964be883b34c953bb5bc1b4ebb68afe18a45a0f702b74ee3",
     "fill": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
-    "bold": "Figure/system headings and paired document status headings.",
+    "bold": "Source-derived emphasis includes Not accessible; Evidence record. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Straight input/output arrows; external annotations, document folds, warning/check marks and dashed/solid image regions retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 8,
       "width_bp": 420.986,
       "height_bp": 210.101,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
+    "candidate_sha256": "97afb6b2f9ff21bd964be883b34c953bb5bc1b4ebb68afe18a45a0f702b74ee3",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "not accessible",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Document status and evidence badge",
+        "candidate_text": "Not accessible",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "not accessible",
+            "weight": "700",
+            "style": "normal",
+            "x": "185",
+            "y": "292"
+          }
+        ]
+      },
+      {
+        "source_text": "evidence record",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Document status and evidence badge",
+        "candidate_text": "Evidence record",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "evidence record",
+            "weight": "700",
+            "style": "normal",
+            "x": "795",
+            "y": "292"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Not accessible",
+        "bold": true
+      },
+      {
+        "text": "Evidence record",
+        "bold": true
+      },
+      {
+        "text": "What the system does; internal structure is intentionally hidden.",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 8,
+      "width_bp": 420.986,
+      "height_bp": 210.101,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

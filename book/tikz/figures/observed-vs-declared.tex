@@ -5,18 +5,18 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[head,text width=5.5cm] (h0) at (0,2) {Observed system\\\textnormal{Does A call C?}};
+\node[head,text width=5.5cm] (h0) at (0,2) {OBSERVED SYSTEM\\\textnormal{\textbf{Does} A call C?}};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (a0) at (0,0) {A};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (b0) at (-1.7,-2) {B};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (c0) at (1.7,-2) {C};
 \draw[edge] (a0.south) -- (0,-.85) -| (b0.north);
 \draw[edge] (a0.south) -- (0,-.85) -| (c0.north);
-\node[head,text width=5.5cm] (h1) at (7,2) {Declared policy\\\textnormal{May A call C?}};
+\node[head,text width=5.5cm] (h1) at (7,2) {DECLARED POLICY\\\textnormal{\textbf{May} A call C?}};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (a1) at (7,0) {A};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (b1) at (5.3,-2) {B};
 \node[n,circle,rounded corners=0pt,text width=1cm,fill=white] (c1) at (8.7,-2) {C};
-\draw[edge] (a1.south) -- (7,-.85) -- node[lab,above] {declared} (5.3,-.85) -- (b1.north);
+\draw[edge] (a1.south) -- (7,-.85) -- node[lab,above] {\textit{declared}} (5.3,-.85) -- (b1.north);
 \draw[dashed] (a1.south) -- (7,-.85) -- node[lab] {$\times$} (8.7,-.85) -- (c1.north);
-\node[note,text width=2cm] (missing) at (10,-.85) {no edge};
+\node[note,text width=2cm] (missing) at (10,-.85) {\textbf{no edge}};
 \node[note,text width=12cm] (n) at (3.5,-3.6) {Agreement establishes correspondence, not correctness.};
 \end{tikzpicture}

@@ -21,26 +21,114 @@
   "alt": "Change-scoped models, degrees of freedom, and inheritance",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
-    "candidate_sha256": "9ccf30a137785f23b1693c9aa77f3b32b4be6f3a7b90b7c60ef44a02501bd92b",
+    "candidate_sha256": "acd4cb5527a68bdfe8c72156a988bc95df7b9ed80e666ddbcb50d0c1a9fbb98e",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes DURABLE STRUCTURE. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Inputs and history/durable-output alternatives use orthogonal rails; external traceability and recurring-lesson explanations remain outside.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 121,
       "width_bp": 335.372,
-      "height_bp": 363.103,
+      "height_bp": 364.121,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
+    "candidate_sha256": "acd4cb5527a68bdfe8c72156a988bc95df7b9ed80e666ddbcb50d0c1a9fbb98e",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "CHANGE MODEL",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "CHANGE MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "SYSTEM KNOWLEDGE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "SYSTEM KNOWLEDGE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "DIAGNOSIS & CONTEXT LOCALIZATION",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "DIAGNOSIS \\& CONTEXT LOCALIZATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "REALIZATION SPACE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "REALIZATION SPACE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "DURABLE STRUCTURE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "DURABLE STRUCTURE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "recurring lesson?",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "recurring lesson?",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "future work inherits it",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "future work inherits it",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "DURABLE STRUCTURE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "recurring lesson?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "acceptance evidence",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 121,
+      "width_bp": 335.372,
+      "height_bp": 364.121,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

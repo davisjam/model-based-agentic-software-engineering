@@ -74,26 +74,161 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-    "candidate_sha256": "a76225fe8292c932f82e789b030315bec5b1c13ae2ad265ad940a913bbb28449",
+    "candidate_sha256": "764552a1875e858007697fac1dbea28bbf9221d6248e2bfa0f140d71542d45cd",
     "fill": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
-    "bold": "Shared focus, branch headings and causal-spine heading; outcome labels use equal regular weight.",
+    "bold": "Source-derived emphasis includes Task exceeds the finite active state; REPRESENTATION MATTERS; THE CAUSAL SPINE; Churn; Longer coherent reasoning. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Aligned downward flows and orthogonal branch rail; outcomes have equal visual weight.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 11,
       "width_bp": 353.911,
-      "height_bp": 350.483,
-      "minimum_prose_font_pt": null,
+      "height_bp": 350.458,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+    "candidate_sha256": "764552a1875e858007697fac1dbea28bbf9221d6248e2bfa0f140d71542d45cd",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "Task exceeds the finite active state",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Premise heading versus explanatory sentence",
+        "candidate_text": "Task exceeds the finite active state",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Task exceeds the finite active state",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "50"
+          }
+        ]
+      },
+      {
+        "source_text": "REPRESENTATION MATTERS",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Central causal claim (already bold)",
+        "candidate_text": "REPRESENTATION MATTERS",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "REPRESENTATION MATTERS",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "135"
+          }
+        ]
+      },
+      {
+        "source_text": "THE CAUSAL SPINE",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Summary diagram heading (already bold)",
+        "candidate_text": "THE CAUSAL SPINE",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "THE CAUSAL SPINE",
+            "weight": "700",
+            "style": "normal",
+            "x": "90",
+            "y": "626"
+          }
+        ]
+      },
+      {
+        "source_text": "Churn",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Peer outcomes, equally emphasized",
+        "candidate_text": "Churn",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Churn",
+            "weight": "700",
+            "style": "normal",
+            "x": "250",
+            "y": "563"
+          }
+        ]
+      },
+      {
+        "source_text": "Longer coherent reasoning",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Peer outcomes, equally emphasized",
+        "candidate_text": "Longer coherent reasoning",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Longer coherent",
+            "weight": "700",
+            "style": "normal",
+            "x": "750",
+            "y": "475"
+          },
+          {
+            "text": "reasoning",
+            "weight": "700",
+            "style": "normal",
+            "x": "750",
+            "y": "496"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Task exceeds the finite active state",
+        "bold": true
+      },
+      {
+        "text": "REPRESENTATION MATTERS",
+        "bold": true
+      },
+      {
+        "text": "THE CAUSAL SPINE",
+        "bold": true
+      },
+      {
+        "text": "Churn",
+        "bold": true
+      },
+      {
+        "text": "Longer coherent reasoning",
+        "bold": true
+      },
+      {
+        "text": "Some reasoning state must be reconstructed",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 11,
+      "width_bp": 353.911,
+      "height_bp": 350.458,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

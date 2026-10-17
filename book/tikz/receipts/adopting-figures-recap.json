@@ -16,25 +16,26 @@
   "alt": "Four text cards in a two-by-two grid summarize figures reused in this appendix, each identifying its home section or chapter and the idea to recall.",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
-    "candidate_sha256": "e48e2b85359d59589ca4e070b506e3113f6f83fb29da67e91f426615f4e849e6",
+    "candidate_sha256": "85d8ea7daa17e7d8690265c3ac45d1b0e0d120e37443a6f065ba4baf0c2c153e",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes SECTION 6.3; Governance conversion. Restored linked source locator and concept title distinguish card heading from summary prose, linked source locator and concept title distinguish card heading from summary prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 128,
       "width_bp": 360.173,
       "height_bp": 230.313,
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": [
       "chapter:6.3-scope-conditions",
@@ -42,5 +43,92 @@
       "part:5",
       "part:5"
     ]
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "candidate_sha256": "85d8ea7daa17e7d8690265c3ac45d1b0e0d120e37443a6f065ba4baf0c2c153e",
+    "reason": "Restored linked source locator and concept title distinguish card heading from summary prose, linked source locator and concept title distinguish card heading from summary prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "SECTION 6.3",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "SECTION 6.3",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "SECTION 3.4",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "SECTION 3.4",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CHAPTER 5",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "CHAPTER 5",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Value × feasible governability",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "Value $\\times$ feasible governability",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Governance conversion",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "Governance conversion",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Support-apparatus ratio",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "Support-apparatus ratio",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Where engineering effort moves",
+        "source_style": "font-weight=700",
+        "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
+        "candidate_text": "Where engineering effort moves",
+        "candidate_style": "bold"
+      }
+    ],
+    "checks": [
+      {
+        "text": "SECTION 6.3",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Governance conversion",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation remains.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 128,
+      "width_bp": 360.173,
+      "height_bp": 230.313,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

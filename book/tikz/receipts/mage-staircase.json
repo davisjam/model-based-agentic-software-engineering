@@ -31,27 +31,95 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-    "candidate_sha256": "eae7162882d41d622f5b8541901d0aa9dc0539b029e543605fb5cd2bed48c84b",
+    "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Panel/column headings retain bold; ordinary process labels are regular.",
+    "bold": "Source-derived emphasis includes Delegated:; Environment:; 1. CO-CODER. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Stage headings remain bold; Delegated labels regular; accumulation and narrowing strokes preserved.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 80,
       "width_bp": 426.688,
       "height_bp": 414.833,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": [],
     "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+    "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "delegated — code generation",
+        "source_style": {
+          "font-weight": "600",
+          "font-style": "normal",
+          "font-size": "27"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Delegated:",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "delegated — code generation",
+            "style": {
+              "font-weight": "600",
+              "font-style": "normal",
+              "font-size": "27"
+            },
+            "location": {
+              "x": "64",
+              "y": "695",
+              "text_element": 28
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Delegated:",
+        "bold": true
+      },
+      {
+        "text": "Code generation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Environment:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "1. CO-CODER",
+        "bold": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 80,
+      "width_bp": 426.688,
+      "height_bp": 414.833,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

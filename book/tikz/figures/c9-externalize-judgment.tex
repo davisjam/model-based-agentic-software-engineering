@@ -3,14 +3,14 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm] (sys) at (0,0) {SYSTEM MODEL};
+\node[box,text width=4cm] (sys) at (0,0) {\textbf{SYSTEM MODEL}};
 \node[box,text width=2.5cm] (p0) at (-4,-1.8) {healthy?};
 
 \node[box,text width=2.5cm] (p1) at (0,-1.8) {states};
 
 \node[box,text width=2.5cm] (p2) at (4,-1.8) {relations};
 
-\node[box,text width=4cm] (op) at (0,-3.6) {OPERATIONAL MODEL};
+\node[box,text width=4cm] (op) at (0,-3.6) {\textbf{OPERATIONAL MODEL}};
 
 
 

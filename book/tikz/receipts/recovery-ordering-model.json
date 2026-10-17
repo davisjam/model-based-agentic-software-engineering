@@ -68,26 +68,176 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
-    "candidate_sha256": "fc17dfe5f2415bad3e6009040d1901eb8bbb1fd9cc8260d86135900b291226eb",
+    "candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
     "fill": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes FALLBACK_STAGED; FALLBACK_UPLOADED; DB_UPDATED; Forbidden / absent transition. Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 21,
-      "width_bp": 338.781,
+      "width_bp": 357.207,
       "height_bp": 186.673,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+    "candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+    "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+    "evidence": [
+      {
+        "source_text": "FALLBACK_STAGED",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "FALLBACK_STAGED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "FALLBACK_STAGED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "FALLBACK_UPLOADED",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "FALLBACK_UPLOADED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "FALLBACK_UPLOADED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "DB_UPDATED",
+        "source_style": "weight 700; normal; source size 18",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "DB_UPDATED",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "DB_UPDATED",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "upload succeeds",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "upload succeeds",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "upload succeeds",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "durable state updated",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "durable state updated",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "durable state updated",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "absent transition",
+        "source_style": "weight 700; normal; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Forbidden / absent transition",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "absent transition",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "not part of",
+        "source_style": "weight normal; italic; source size 14",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Not part of the model",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/recovery-ordering-model.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "not part of",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "FALLBACK_STAGED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "FALLBACK_UPLOADED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "DB_UPDATED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "upload succeeds",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "durable state updated",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Forbidden / absent transition",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Not part of the model",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 21,
+      "width_bp": 357.207,
+      "height_bp": 186.673,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

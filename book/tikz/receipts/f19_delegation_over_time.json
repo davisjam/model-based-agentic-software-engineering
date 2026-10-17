@@ -12,26 +12,62 @@
   ],
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e8bffb16470c68fd155436714cb1421c0bae03a3e51141d13fe877582dead2f1",
-    "candidate_sha256": "9e98af55c1134369cb1461b4e8b580fac8919b81df90877668ff89e4ba810c1e",
+    "candidate_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
     "fill": "Explicit labels, distinct markers and monochrome patterns; no color-only distinction. Quantitative marks may use darker tones; text remains on white.",
-    "bold": "Plot/panel headings only; axes, annotations, values and legends are legible at native size.",
+    "bold": "Restored source partial capitals OVER in the provenance caveat: this warns against reading the residual as measured human effort. Chart labels remain regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Quantitative positions, bars, line patterns and markers preserve the chart data; no process-edge routing is implied.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 81,
       "width_bp": 424.939,
-      "height_bp": 266.877,
+      "height_bp": 266.986,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 1
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e8bffb16470c68fd155436714cb1421c0bae03a3e51141d13fe877582dead2f1",
+    "candidate_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
+    "reason": "Restored source partial capitals OVER in the provenance caveat: this warns against reading the residual as measured human effort. Chart labels remain regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "human-or-unknown is ~5.5% overall and OVER-states human work",
+        "source_style": "regular glyph outlines; partial capitals OVER",
+        "semantic_role": "direction of measurement bias",
+        "candidate_text": "Human-or-unknown is a residual and OVER-states human work.",
+        "candidate_style": "regular; partial capitals OVER"
+      }
+    ],
+    "checks": [
+      {
+        "text": "OVER-states human work.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 81,
+      "width_bp": 424.939,
+      "height_bp": 266.986,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 1
+    }
   }
 }

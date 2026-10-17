@@ -95,7 +95,7 @@ ROOT = committing_toplevel()
 # site, which gate 1 and gate 4 already cover unconditionally.
 SCOPES = {
     "book": ("book/", "book-models/", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
-             "tools/mage_latex.py", "tools/mage_assets.py", "tools/mage_tikz_charts.py", "tools/mage_tikz_review.py", "tools/mage_tikz_links.py", "tools/test_mage_tikz_links.py", "tools/tikz_audit.py", "tests/test_tikz_audit.py", "tests/fixtures/tikz/", "tools/mage_cover.py", "tools/cover_assets.py", "tools/install_texlive_ci.sh", "hooks/", ".github/workflows/pages.yml"),
+             "tools/mage_latex.py", "tools/mage_assets.py", "tools/mage_tikz_charts.py", "tools/mage_tikz_review.py", "tools/mage_tikz_links.py", "tools/test_mage_tikz_links.py", "tools/mage_tikz_typography.py", "tools/test_mage_tikz_typography.py", "tools/tikz_audit.py", "tests/test_tikz_audit.py", "tests/fixtures/tikz/", "tools/mage_cover.py", "tools/cover_assets.py", "tools/install_texlive_ci.sh", "hooks/", ".github/workflows/pages.yml"),
     "handbook": ("handbook/", "tools/cover_assets.py", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
                  "tools/install_texlive_ci.sh", "book/references.bib", "book/fonts/", "book/typst/fonts/",
                  "hooks/", ".github/workflows/pages.yml"),
@@ -191,6 +191,8 @@ if _run("catalog.py", "build"):
 if _touches(changed, SCOPES["book"]):
     if _run("tools/test_mage_tikz_links.py"):
         _fail("pre-push: TikZ reference preservation regression failed")
+    if _run("tools/test_mage_tikz_typography.py"):
+        _fail("pre-push: TikZ semantic typography regression failed")
     if _run("tools/mage_tikz_charts.py", "--check") or _run("tools/mage_tikz_review.py", "--figures-only"):
         _fail("pre-push: grayscale TikZ candidate validation failed")
     print("pre-push: book/build_book.py --pdf (LaTeX PDF + strict final-log warnings + content-integrity gate) …", file=sys.stderr)

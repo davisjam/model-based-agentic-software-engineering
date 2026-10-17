@@ -5,24 +5,24 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=6cm,fill=white] (prior) at (-2,1.2) {Prior engineering knowledge\\standards; requirements; brownfield assets; lessons};
-\node[box,text width=4cm,fill=white] (cap) at (-4,-2.5) {Agentic capacity\\capability; concurrency; velocity};
-\node[head,text width=5cm,fill=black!5] (env) at (3.5,-2.5) {Governed environment $E$\\representation; coverage; coherence; economy};
+\node[box,text width=6cm,fill=white] (prior) at (-2,1.2) {\textbf{Prior engineering knowledge}\\\textit{standards; requirements; brownfield assets; lessons}};
+\node[box,text width=4cm,fill=white] (cap) at (-4,-2.5) {\textbf{Agentic capacity}\\\textit{capability; concurrency; velocity}};
+\node[head,text width=5cm,fill=black!5] (env) at (3.5,-2.5) {\textbf{Governed environment} $E$\\\textit{representation; coverage; coherence; economy}};
 \draw[edge,line width=1.1pt] (prior.east)--(6.3,1.2)--node[note,right,fill=white] {1 Bootstrap}(6.3,-1.2)-|(env.north);
-\draw[edge,] (cap) -- node[midway,note,fill=white] {exercises} (env);
-\node[box,text width=4cm,fill=white] (work) at (-4,-4.5) {Agentic work\\attempted change; task frontier};
-\node[box,text width=5cm] (perf) at (3.5,-4.5) {Realized performance\\throughput; defect escape; human attention};
+\draw[edge,] (cap) -- node[midway,note,fill=white] {\textit{exercises}} (env);
+\node[box,text width=4cm,fill=white] (work) at (-4,-4.5) {\textbf{Agentic work}\\\textit{attempted change; task frontier}};
+\node[box,text width=5cm] (perf) at (3.5,-4.5) {\textbf{Realized performance}\\\textit{throughput; defect escape; human attention}};
 \draw[edge,] (cap) -- (work);
 \draw[edge,] (work) -- (perf);
-\draw[edge,] (env) -- node[midway,right,note,xshift=.4cm] {shapes} (perf);
-\node[box,text width=9cm,fill=white] (press) at (0,-6.4) {Governance pressure\\churn; recurring failures; escaped defects; intervention; control friction};
-\draw[edge,] (work.south) -- node[midway,left,note] {mismatch} (press.north -| work.south);
+\draw[edge,] (env) -- node[midway,right,note,xshift=.4cm] {\textit{shapes}} (perf);
+\node[box,text width=9cm,fill=white] (press) at (0,-6.4) {\textbf{Governance pressure}\\\textit{churn; recurring failures; escaped defects; intervention; control friction}};
+\draw[edge,] (work.south) -- node[midway,left,note] {\textit{mismatch}} (press.north -| work.south);
 \draw[edge,] (perf.south) -- node[midway,right,note] {gap} (press.north -| perf.south);
-\node[box,text width=9cm] (diag) at (0,-8.2) {2 Pressure / discovery: structural diagnosis\\local defect? missing representation? weak enforcement? stale mechanism?};
+\node[box,text width=9cm] (diag) at (0,-8.2) {\textbf{2 Pressure / discovery: structural diagnosis}\\\textit{local defect? missing representation? weak enforcement? stale mechanism?}};
 \draw[edge,line width=1.3pt] (press) --  (diag);
-\node[box,text width=9cm,fill=white] (adapt) at (0,-10.2) {3 Governance adaptation\\represent; constrain; validate; strengthen; reconcile; retire};
+\node[box,text width=9cm,fill=white] (adapt) at (0,-10.2) {\textbf{3 Governance adaptation}\\\textit{represent; constrain; validate; strengthen; reconcile; retire}};
 \draw[edge,line width=1.1pt] (diag) --  (adapt);
 \draw[edge,line width=1.1pt] (adapt.east)--(7,-10.2)--node[note,right,text width=1cm] {B}(7,-2.5)--(env.east);
-\draw[edge,line width=1.3pt] (env.north)--(3.5,-.9)--(-4,-.9)--(cap.north);\node[note,text width=7cm] at (-.25,-.1) {4 Capability amplification (R): bigger tasks, more concurrency};
+\draw[edge,line width=1.3pt] (env.north)--(3.5,-.9)--(-4,-.9)--(cap.north);\node[note,text width=7cm] at (-.25,-.1) {4 \textbf{\textit{Capability amplification}} (R): bigger tasks, more concurrency};
 \node[note,text width=13cm] (nt) at (0,-11.5) {B: diagnosis and adaptation seek fit. R: stronger environments reopen the frontier. Bootstrap is an input, not feedback. Directional model, not a fitted law.};
 \end{tikzpicture}

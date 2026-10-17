@@ -19,26 +19,211 @@
   "alt": "C.2 Derive, don't copy: a snapshot goes stale while a live query stays current",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
-    "candidate_sha256": "8341099fecf52fa7374f1b4514d5ebe7e391f5dc94f9b62c709dc35a6cfb3412",
+    "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday’s answer.; the snapshot does not. The check trusts a stale answer.; GOOD · query at the point of use; BAD · copied snapshot; query — no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 102,
       "width_bp": 343.165,
-      "height_bp": 181.022,
+      "height_bp": 180.798,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "366",
+              "y": "440",
+              "text_element": 12
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "… the snapshot does not — the check trusts a stale answer",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "the snapshot does not. The check trusts a stale answer.",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "… the snapshot does not — the check trusts a stale answer",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "366",
+              "y": "200",
+              "text_element": 6
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "GOOD · query at the point of use",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "GOOD · query at the point of use",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "GOOD · query at the point of use",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "300",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "GOOD · query at the point of use",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "Parallel contrast heading: candidate BAD heading mirrors the original bold GOOD heading; BAD is not itself printed in the source SVG.",
+        "candidate_text": "BAD · copied snapshot",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "GOOD · query at the point of use",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "300",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "query — no second editable truth",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "semantic_role": "live-query relation contrasted with copied snapshot",
+        "candidate_text": "query — no second editable truth",
+        "candidate_style": "bold italic",
+        "source_fragments": [
+          {
+            "text": "query — no second editable truth",
+            "style": {
+              "font-weight": "700",
+              "font-style": "italic",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "425",
+              "y": "342",
+              "text_element": 9
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+        "bold": true
+      },
+      {
+        "text": "the snapshot does not. The check trusts a stale answer.",
+        "bold": true
+      },
+      {
+        "text": "GOOD · query at the point of use",
+        "bold": true
+      },
+      {
+        "text": "BAD · copied snapshot",
+        "bold": true
+      },
+      {
+        "text": "query — no second editable truth",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "MODEL",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "MODEL",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 102,
+      "width_bp": 343.165,
+      "height_bp": 180.798,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7
+    }
   }
 }

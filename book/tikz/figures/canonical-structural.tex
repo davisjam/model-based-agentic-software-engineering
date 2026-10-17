@@ -5,14 +5,14 @@ strong/.style={n,line width=.65pt,fill=white},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=2.5cm,fill=white] (web) at (0,0) {WEB};
-\node[n,text width=2.5cm,fill=white] (api) at (4,0) {API};
-\node[n,text width=2.8cm,fill=white] (db) at (8,1.5) {DATABASE};
-\node[n,text width=2.8cm,fill=white] (cache) at (8,-1.5) {CACHE};
-\draw[edge] (web) -- node[lab,above=12pt] {depends on} (api);
-\draw[edge] (api.east) -- (6,0) |- node[lab,above] {reaches} (db.west);
-\draw[edge] (api.east) -- (6,0) |- node[lab,below] {reaches} (cache.west);
-\draw[edge,dashed] (web.north) -- (0,2.6) -- node[lab,above] {forbidden bypass} (8,2.6) -- (db.north);
+\node[n,text width=2.5cm,fill=white] (web) at (0,0) {\textbf{WEB}};
+\node[n,text width=2.5cm,fill=white] (api) at (4,0) {\textbf{API}};
+\node[n,text width=2.8cm,fill=white] (db) at (8,1.5) {\textbf{DATABASE}};
+\node[n,text width=2.8cm,fill=white] (cache) at (8,-1.5) {\textbf{CACHE}};
+\draw[edge] (web) -- node[lab,above=12pt] {\textit{depends on}} (api);
+\draw[edge] (api.east) -- (6,0) |- node[lab,above] {\textit{reaches}} (db.west);
+\draw[edge] (api.east) -- (6,0) |- node[lab,below] {\textit{reaches}} (cache.west);
+\draw[edge,dashed] (web.north) -- (0,2.6) -- node[lab,above] {\textit{forbidden bypass}} (8,2.6) -- (db.north);
 \node[head,text width=0.4cm] (no) at (4,2.6) {$\times$};
 \node[note,text width=11cm] (sem) at (4,-3) {Entities and declared structural relations\\Analyze reachability, paths/cuts and cycles.};
 \end{tikzpicture}

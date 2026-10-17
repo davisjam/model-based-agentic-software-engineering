@@ -74,26 +74,370 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
-    "candidate_sha256": "6b5f7aabac2abf5e525358a9488ffa28886de0f975ad3533de1247416d7a983e",
+    "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
     "fill": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; GOVERNANCE MECHANISM; DIRECTLY OBSERVABLE WORK; EXPLICIT MODEL / INVARIANT; GOVERNED ENGINEERING ENVIRONMENT; ENGINEERING CAPITAL. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 5,
       "width_bp": 366.45,
-      "height_bp": 309.834,
-      "minimum_prose_font_pt": null,
+      "height_bp": 315.847,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+    "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING OBLIGATION",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "ENGINEERING OBLIGATION",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "ENGINEERING OBLIGATION",
+            "weight": "bold",
+            "style": "normal",
+            "x": "500",
+            "y": "102"
+          }
+        ]
+      },
+      {
+        "source_text": "GOVERNANCE MECHANISM",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "GOVERNANCE MECHANISM",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "GOVERNANCE MECHANISM",
+            "weight": "bold",
+            "style": "normal",
+            "x": "500",
+            "y": "243"
+          }
+        ]
+      },
+      {
+        "source_text": "DIRECTLY OBSERVABLE WORK",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "DIRECTLY OBSERVABLE WORK",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "DIRECTLY OBSERVABLE WORK",
+            "weight": "bold",
+            "style": "normal",
+            "x": "270",
+            "y": "400"
+          }
+        ]
+      },
+      {
+        "source_text": "EXPLICIT MODEL / INVARIANT",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "EXPLICIT MODEL / INVARIANT",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "EXPLICIT MODEL / INVARIANT",
+            "weight": "bold",
+            "style": "normal",
+            "x": "730",
+            "y": "400"
+          }
+        ]
+      },
+      {
+        "source_text": "Governed Engineering Environment",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "GOVERNED ENGINEERING ENVIRONMENT",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "Governed Engineering Environment",
+            "weight": "bold",
+            "style": "normal",
+            "x": "905",
+            "y": "40"
+          }
+        ]
+      },
+      {
+        "source_text": "ENGINEERING CAPITAL",
+        "source_style": "weight bold, normal",
+        "semantic_role": "Named ontology role",
+        "candidate_text": "ENGINEERING CAPITAL",
+        "candidate_style": "bold capitals",
+        "source_fragments": [
+          {
+            "text": "ENGINEERING CAPITAL",
+            "weight": "bold",
+            "style": "normal",
+            "x": "500",
+            "y": "684"
+          }
+        ]
+      },
+      {
+        "source_text": "Constraint · Sensor · Validator · Gate",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Constraint · Sensor · Validator · Gate",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "Constraint · Sensor · Validator · Gate",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "267"
+          }
+        ]
+      },
+      {
+        "source_text": "action · artifact · execution result",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Action · artifact · execution result",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "action · artifact · execution result",
+            "weight": "normal",
+            "style": "italic",
+            "x": "270",
+            "y": "424"
+          }
+        ]
+      },
+      {
+        "source_text": "local rules can act directly",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Local rules can act directly",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "local rules can act directly",
+            "weight": "normal",
+            "style": "italic",
+            "x": "270",
+            "y": "446"
+          }
+        ]
+      },
+      {
+        "source_text": "architecture · behavior · policy · bounds",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Architecture · behavior Policy · bounds",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "architecture · behavior · policy · bounds",
+            "weight": "normal",
+            "style": "italic",
+            "x": "730",
+            "y": "424"
+          }
+        ]
+      },
+      {
+        "source_text": "exposes richer semantics",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Exposes richer semantics",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "exposes richer semantics",
+            "weight": "normal",
+            "style": "italic",
+            "x": "730",
+            "y": "446"
+          }
+        ]
+      },
+      {
+        "source_text": "models · mechanisms · procedures · canonical documentation",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "Models · mechanisms · procedures · canonical documentation",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "models · mechanisms · procedures · canonical documentation",
+            "weight": "normal",
+            "style": "italic",
+            "x": "500",
+            "y": "706"
+          }
+        ]
+      },
+      {
+        "source_text": "enforces",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "enforces",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "enforces",
+            "weight": "normal",
+            "style": "italic",
+            "x": "514",
+            "y": "182"
+          }
+        ]
+      },
+      {
+        "source_text": "acts on / observes",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "acts on / observes",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "acts on / observes",
+            "weight": "normal",
+            "style": "italic",
+            "x": "256",
+            "y": "340"
+          }
+        ]
+      },
+      {
+        "source_text": "reasons through",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "reasons through",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "reasons through",
+            "weight": "normal",
+            "style": "italic",
+            "x": "744",
+            "y": "340"
+          }
+        ]
+      },
+      {
+        "source_text": "accumulates in",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Role explanation or named relation",
+        "candidate_text": "accumulates in",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "accumulates in",
+            "weight": "normal",
+            "style": "italic",
+            "x": "514",
+            "y": "642"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING OBLIGATION",
+        "bold": true
+      },
+      {
+        "text": "GOVERNANCE MECHANISM",
+        "bold": true
+      },
+      {
+        "text": "DIRECTLY OBSERVABLE WORK",
+        "bold": true
+      },
+      {
+        "text": "EXPLICIT MODEL / INVARIANT",
+        "bold": true
+      },
+      {
+        "text": "GOVERNED ENGINEERING ENVIRONMENT",
+        "bold": true
+      },
+      {
+        "text": "ENGINEERING CAPITAL",
+        "bold": true
+      },
+      {
+        "text": "Constraint · Sensor · Validator · Gate",
+        "italic": true
+      },
+      {
+        "text": "Action · artifact · execution result",
+        "italic": true
+      },
+      {
+        "text": "Local rules can act directly",
+        "italic": true
+      },
+      {
+        "text": "Architecture · behavior Policy · bounds",
+        "italic": true
+      },
+      {
+        "text": "Exposes richer semantics",
+        "italic": true
+      },
+      {
+        "text": "Models · mechanisms · procedures · canonical documentation",
+        "italic": true
+      },
+      {
+        "text": "enforces",
+        "italic": true
+      },
+      {
+        "text": "acts on / observes",
+        "italic": true
+      },
+      {
+        "text": "reasons through",
+        "italic": true
+      },
+      {
+        "text": "accumulates in",
+        "italic": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 5,
+      "width_bp": 366.45,
+      "height_bp": 315.847,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16
+    }
   }
 }

@@ -82,26 +82,73 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
     "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
     "fill": "All service and external nodes white; permitted relationships are carried by directed edges.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight.",
     "routing": "Two orthogonal fan-out rails; only worker feeds the specialist-service rail.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 26,
       "width_bp": 367.834,
       "height_bp": 215.111,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "retained",
+    "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+    "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+    "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight.",
+    "evidence": [
+      {
+        "source_text": "OCR",
+        "source_style": "weight 700; normal; source size 15",
+        "semantic_role": "service acronym",
+        "candidate_text": "OCR",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/service-flow-model.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "OCR",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "OCR",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "web",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 26,
+      "width_bp": 367.834,
+      "height_bp": 215.111,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 2
+    }
   }
 }

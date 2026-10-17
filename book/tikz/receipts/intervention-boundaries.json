@@ -76,26 +76,91 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
-    "candidate_sha256": "da5f083769dabe4831411ef23345831bed3dbd619fbfb5ca5d4d45c11e445e3a",
+    "candidate_sha256": "1c1b2929552435598aa454569a6aa7086be65292f6be35db9dd5fd047d85c5bb",
     "fill": "Only the named enforcement territory uses 5%; guidance and all child boundary boxes remain white.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes Action. Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 39,
       "width_bp": 396.046,
-      "height_bp": 240.926,
-      "minimum_prose_font_pt": null,
+      "height_bp": 240.886,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "candidate_sha256": "1c1b2929552435598aa454569a6aa7086be65292f6be35db9dd5fd047d85c5bb",
+    "reason": "Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
+    "evidence": [
+      {
+        "source_text": "action",
+        "source_style": "weight 600; normal; source size 20",
+        "semantic_role": "boundary category",
+        "candidate_text": "Action",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/intervention-boundaries.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "action",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "enforced only through",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Enforced only through a consuming mechanism",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/intervention-boundaries.svg",
+          "element_text_path": "/svg/text[16]/text()",
+          "text_element_context": "enforced only through",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Action",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Enforced only through a consuming mechanism",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Permissions",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 39,
+      "width_bp": 396.046,
+      "height_bp": 240.886,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    }
   }
 }

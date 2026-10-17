@@ -10,9 +10,9 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 3.3/chapter:3.3-constraints-sensors-validators-gates/MECHANIZE/{How does a mechanism enforce an obligation?}/{The Four Mechanism Roles}/-4.2,
 3.4/chapter:3.4-governance-conversion/LEARN/{How does the environment acquire new obligations and controls?}/{Growing the Governed Environment}/-6.3,
 3.5/chapter:3.5-when-guardrails-collide/GOVERN/{How are accumulated controls governed as a system?}/{When Controls Become a System}/-8.4} {
- \node[circle,draw,line width=.8pt,fill=white,minimum size=1cm] (s\i) at (0,\y) {\magebookref{\target}{\num}};
+ \node[circle,draw,line width=.8pt,fill=white,minimum size=1cm] (s\i) at (0,\y) {\magebookref{\target}{\textbf{\num}}};
  \node[head,anchor=west,text width=11cm,align=left] at (.9,\y+.35) {\title};
- \node[note,anchor=west,text width=11cm,align=left] at (.9,\y-.2) {\question};
+ \node[note,anchor=west,text width=11cm,align=left] at (.9,\y-.2) {\textbf{\question}};
  \node[note,anchor=west,text width=11cm,align=left,text=black!70] at (.9,\y-.8) {\magebookref{\target}{\num\ · \section}};
 }
 \foreach \a/\b in {1/2,2/3,3/4,4/5} {\draw[edge] (s\a) -- (s\b);}

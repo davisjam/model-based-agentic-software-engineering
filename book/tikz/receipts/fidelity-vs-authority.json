@@ -63,26 +63,145 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-    "candidate_sha256": "e914ab2ae6ef2a1623c649090849c0d7cc36a59f03816ff8f580fad6d74056e9",
+    "candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
     "fill": "Only the governing computation model uses 8%; execution and analytical view are white.",
-    "bold": "Bold restricted to panel/container headings; ordinary node labels and explanatory text regular.",
+    "bold": "Source-derived emphasis includes GOVERNING COMPUTATION MODEL; EXECUTION; ANALYTICAL GRAPH VIEW; consumed by scheduler; projected / checked. Governing model, execution, and analytical view regain role-name hierarchy; italic relation verbs distinguish authority from projection. Two-line edge labels keep restored bold italic clear of the branch junction.",
     "routing": "Orthogonal branch with named scheduler-consumption and analytical-projection relations.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 41,
       "width_bp": 367.128,
-      "height_bp": 212.067,
-      "minimum_prose_font_pt": null,
+      "height_bp": 212.032,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
+    "candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
+    "reason": "Governing model, execution, and analytical view regain role-name hierarchy; italic relation verbs distinguish authority from projection. Two-line edge labels keep restored bold italic clear of the branch junction.",
+    "evidence": [
+      {
+        "source_text": "GOVERNING COMPUTATION MODEL",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "GOVERNING COMPUTATION MODEL",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/fidelity-vs-authority.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "GOVERNING COMPUTATION MODEL",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "EXECUTION",
+        "source_style": "weight 700; normal; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "EXECUTION",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/fidelity-vs-authority.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "EXECUTION",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "ANALYTICAL GRAPH VIEW",
+        "source_style": "weight 700; normal; source size 19",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ANALYTICAL GRAPH VIEW",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/fidelity-vs-authority.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "ANALYTICAL GRAPH VIEW",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "consumed by scheduler",
+        "source_style": "weight 600; italic; source size 15",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "consumed by scheduler",
+        "candidate_style": "bold italic",
+        "source_locator": {
+          "svg": "book/assets/fidelity-vs-authority.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "consumed by scheduler",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "projected / checked",
+        "source_style": "weight 600; italic; source size 15",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "projected / checked",
+        "candidate_style": "bold italic",
+        "source_locator": {
+          "svg": "book/assets/fidelity-vs-authority.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "projected / checked",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "GOVERNING COMPUTATION MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "EXECUTION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ANALYTICAL GRAPH VIEW",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "consumed by scheduler",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "projected / checked",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "Analysis · governance",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 41,
+      "width_bp": 367.128,
+      "height_bp": 212.032,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 6
+    }
   }
 }

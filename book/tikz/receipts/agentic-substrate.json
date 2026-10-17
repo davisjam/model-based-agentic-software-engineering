@@ -67,26 +67,114 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
-    "candidate_sha256": "cc356bf4e092b86b5111f1cf116e7f9fb536ee410d9c209da34f1fe802fb398d",
+    "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
     "fill": "White foundation/harness components and Agent; 5% enclosing environment identifies shared context.",
-    "bold": "Panel headings only; Agent and property labels remain regular.",
+    "bold": "Source-derived emphasis includes FOUNDATION MODEL; AGENTIC HARNESS; Agent. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Two short symmetric routes enter separate Agent top ports; environment heading and annotation sit below the routes.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 10,
       "width_bp": 379.038,
-      "height_bp": 243.67,
-      "minimum_prose_font_pt": null,
+      "height_bp": 242.676,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+    "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "evidence": [
+      {
+        "source_text": "FOUNDATION MODEL",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Peer subsystem categories",
+        "candidate_text": "FOUNDATION MODEL",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "FOUNDATION MODEL",
+            "weight": "700",
+            "style": "normal",
+            "x": "260",
+            "y": "102"
+          }
+        ]
+      },
+      {
+        "source_text": "AGENTIC HARNESS",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Peer subsystem categories",
+        "candidate_text": "AGENTIC HARNESS",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "AGENTIC HARNESS",
+            "weight": "700",
+            "style": "normal",
+            "x": "740",
+            "y": "102"
+          }
+        ]
+      },
+      {
+        "source_text": "Agent",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Defined object versus its description",
+        "candidate_text": "Agent",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Agent",
+            "weight": "700",
+            "style": "normal",
+            "x": "500",
+            "y": "38"
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "FOUNDATION MODEL",
+        "bold": true
+      },
+      {
+        "text": "AGENTIC HARNESS",
+        "bold": true
+      },
+      {
+        "text": "Agent",
+        "bold": true
+      },
+      {
+        "text": "A tool-using reasoner",
+        "bold": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 10,
+      "width_bp": 379.038,
+      "height_bp": 242.676,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

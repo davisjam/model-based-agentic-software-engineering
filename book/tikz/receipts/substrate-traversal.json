@@ -82,26 +82,109 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
-    "candidate_sha256": "d7226ab5984af05b2855d834dff8fc40946fad7f4a8e7a2626c53bf51eaf9463",
+    "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
     "fill": "Only the named entry entity uses 8%; six relation surfaces remain white and equal.",
-    "bold": "No bold body or node labels; semantic hierarchy uses placement, spacing and named structure.",
+    "bold": "Source-derived emphasis includes TASK; Named ENTITY. Named ENTITY is the query entry identity; its example is an italic qualifier, not a second entity.",
     "routing": "Exception: radial entity-to-relation spokes show no prescribed traversal order, as the source footer explicitly states.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 33,
       "width_bp": 356.496,
       "height_bp": 260.325,
-      "minimum_prose_font_pt": null,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+    "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+    "reason": "Named ENTITY is the query entry identity; its example is an italic qualifier, not a second entity.",
+    "evidence": [
+      {
+        "source_text": "TASK",
+        "source_style": "weight 700; normal; source size 16.4",
+        "semantic_role": "query entry",
+        "candidate_text": "TASK",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/substrate-traversal.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "TASK",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "named ENTITY",
+        "source_style": "weight 700; normal; source size 16.5",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Named ENTITY",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/substrate-traversal.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "named ENTITY",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "e.g. a job, a service",
+        "source_style": "weight normal; italic; source size 16.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "A job or a service",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/substrate-traversal.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "e.g. a job, a service",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "TASK",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Named ENTITY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "A job or a service",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Service registry",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 33,
+      "width_bp": 356.496,
+      "height_bp": 260.325,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

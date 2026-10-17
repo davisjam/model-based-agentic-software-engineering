@@ -3,17 +3,17 @@ box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=5cm] (knowledge) at (0,0) {ENGINEERING KNOWLEDGE\\ models · rules · decisions};
-\node[box,text width=3cm] (standing) at (-3,-2) {STANDING POLICY\\ always seen};
+\node[box,text width=5cm] (knowledge) at (0,0) {\textbf{ENGINEERING KNOWLEDGE}\\ models · rules · decisions};
+\node[box,text width=3cm] (standing) at (-3,-2) {\textbf{STANDING POLICY}\\ always seen};
 
-\node[box,text width=3cm] (slice) at (3,-2) {TASK SLICE\\ retrieved as needed};
+\node[box,text width=3cm] (slice) at (3,-2) {\textbf{TASK SLICE}\\ retrieved as needed};
 
-\node[box,text width=3cm] (context) at (0,-4) {ACTOR CONTEXT};
+\node[box,text width=3cm] (context) at (0,-4) {\textbf{ACTOR CONTEXT}};
 
 
-\node[box,text width=3cm] (action) at (0,-5.6) {ACTION};
+\node[box,text width=3cm] (action) at (0,-5.6) {\textbf{ACTION}};
 \draw[edge] (context) -- (action);
-\node[box,dashed,text width=3cm] (point) at (4.4,-5.6) {POINT-OF-ACTION\\ reminder / deterministic gate};
+\node[box,dashed,text width=3.1cm] (point) at (4.4,-5.6) {\textbf{POINT-OF-\textbf{ACTION}}\\ reminder / deterministic gate};
 \draw[optional] (point) -- (action);
 \node[note,text width=10cm] (t17) at (0,-7) {Dashed: enhancement. Context aids reasoning; critical decidable obligations need controls.};
 \coordinate (rail3) at ($(knowledge.south)!.5!(standing.north)$);

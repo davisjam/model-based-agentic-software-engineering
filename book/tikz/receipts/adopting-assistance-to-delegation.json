@@ -20,26 +20,119 @@
   "alt": "From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
-    "candidate_sha256": "10dff4681096840fe8eef412744a457e2ee3a09076548aab5816064b639e52ec",
+    "candidate_sha256": "6aa5860c60e44abf6e5bc6c4a09a46c3fd26f909c9eea42f914d6c885f344b19",
     "fill": "Only the governed environment is lightly shaded; workers and agents are equal white peers across alternatives.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes GOVERNED ENVIRONMENT; models:. Restored alternative mode headings and the three responsibility labels inside the environment, alternative mode headings and the three responsibility labels inside the environment. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 126,
       "width_bp": 374.729,
-      "height_bp": 253.467,
+      "height_bp": 253.444,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "candidate_sha256": "6aa5860c60e44abf6e5bc6c4a09a46c3fd26f909c9eea42f914d6c885f344b19",
+    "reason": "Restored alternative mode headings and the three responsibility labels inside the environment, alternative mode headings and the three responsibility labels inside the environment. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "ASSISTANCE",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "ASSISTANCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "BOUNDED DELEGATION",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "BOUNDED DELEGATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "GOVERNED ENVIRONMENT",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "GOVERNED ENVIRONMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "models",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "models:",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "evidence",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "evidence:",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "mechanisms",
+        "source_style": "font-weight=700",
+        "semantic_role": "Alternative mode headings and the three responsibility labels inside the environment",
+        "candidate_text": "mechanisms:",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "governs",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "governs",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "GOVERNED ENVIRONMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "governs",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "WORKER",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 126,
+      "width_bp": 374.729,
+      "height_bp": 253.444,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

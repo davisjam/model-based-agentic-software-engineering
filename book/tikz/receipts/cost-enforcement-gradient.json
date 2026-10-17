@@ -25,27 +25,236 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
-    "candidate_sha256": "a86c462bc3dfc48e925708617e57ee78306545f6275dd3fa40bc58059e574aaa",
+    "candidate_sha256": "8f2d63ed3b69b588c912a54e09231bbac2379bc24a004bb195bb32182a5a54a9",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Ordinary process labels are regular; semantic category labels or the single result focus retain emphasis where present.",
+    "bold": "Source-derived emphasis includes COST / USAGE MODEL; Policy attached to the value; OBSERVE; ADAPT; GATE. Bold policy and response categories contrast with italic descriptions; the ordinary throttle example remains regular.",
     "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Observe/adapt/gate remain named alternatives; dormant caveat stays outside gate.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 45,
       "width_bp": 379.373,
-      "height_bp": 193.998,
+      "height_bp": 193.849,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11
     },
     "book_references": [],
     "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
+    "candidate_sha256": "8f2d63ed3b69b588c912a54e09231bbac2379bc24a004bb195bb32182a5a54a9",
+    "reason": "Bold policy and response categories contrast with italic descriptions; the ordinary throttle example remains regular.",
+    "evidence": [
+      {
+        "source_text": "COST / USAGE MODEL",
+        "source_style": "weight 700; normal; source size 21",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "COST / USAGE MODEL",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "COST / USAGE MODEL",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "policy attached to the value",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Policy attached to the value",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[3]/text()",
+          "text_element_context": "policy attached to the value",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "OBSERVE",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "OBSERVE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "OBSERVE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "ADAPT",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "ADAPT",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "ADAPT",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "GATE",
+        "source_style": "weight 700; normal; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "GATE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[9]/text()",
+          "text_element_context": "GATE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "related measured quantities",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "related measured quantities",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "related measured quantities",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "report evidence only",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "report evidence only",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "report evidence only",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "change load",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "change load",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[7]/text()",
+          "text_element_context": "change load",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "block admission",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "block admission",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[10]/text()",
+          "text_element_context": "block admission",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "dormant unless configured",
+        "source_style": "weight normal; italic; source size 19.2",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Dormant unless configured",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/cost-enforcement-gradient.svg",
+          "element_text_path": "/svg/text[11]/text()",
+          "text_element_context": "dormant unless configured",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "COST / USAGE MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Policy attached to the value",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "OBSERVE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ADAPT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "GATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "related measured quantities",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "report evidence only",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "change load",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "block admission",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Dormant unless configured",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Throttle; soft completion",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 45,
+      "width_bp": 379.373,
+      "height_bp": 193.849,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11
+    }
   }
 }

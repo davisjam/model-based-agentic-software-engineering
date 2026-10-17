@@ -13,7 +13,7 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (job.south) -- (0,-2.25) -| (c1.north);
 \draw[edge] (0,-2.25) -| (c3.north);
 \draw[edge] (job) -- (c2);
-\node[lab] at (2.4,-2.1) {split for parallel work};
+\node[lab] at (2.4,-2.1) {\textit{split for parallel work}};
 \node[n,fill=white,text width=5cm] (w) at (0,-4.3) {Workers claim work};
 \foreach \i in {1,2,3} {\draw (c\i.south) -- (c\i.south |- 0,-3.65);}
 \draw (-3.2,-3.65) -- (3.2,-3.65);
@@ -23,7 +23,7 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw (w.south) -- (0,-5.2) -- (-5.1,-5.2);
 \draw (0,-5.2) -- (5,-5.2);
 \foreach \id in {g,r,o,f} {\draw[edge] (\id.north |- 0,-5.2) -- (\id.north);}
-\node[lab] at (3.7,-4.9) {call specialized services};
+\node[lab] at (3.7,-4.9) {\textit{call specialized services}};
 \node[n,fill=white,text width=4.5cm] (pieces) at (0,-7.5) {Repaired pieces};
 \foreach \id in {g,r,o,f} {\draw (\id.south) -- (\id.south |- 0,-6.9) -- (0,-6.9);}
 \draw[edge] (0,-6.9) -- (pieces.north);

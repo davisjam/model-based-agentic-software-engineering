@@ -20,26 +20,133 @@
   "alt": "The executable-model pattern — the spine every later reference figure specializes",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "44918c96482aabdc77cd222ae6146b7c1be9fdf0c8700a8e354864f1a57b2a92",
+    "guidelines_sha256": "a863cb240f5ab51e004c486c68715b9983380b9aee982ad8719b8c1fbbd441cd",
     "status": "reviewed",
     "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
-    "candidate_sha256": "bd229c3ff2effc8f2f7d8f7ae2ae494013f79edf3b0c526d4018102bbb8a5b93",
+    "candidate_sha256": "57163be20e32ef125b02252b54b78054e2527a4dc116c8c21d700be933d44470",
     "fill": "Only the warranted gate is lightly shaded; advisory output, evidence and model boxes are white.",
-    "bold": "Regular node labels and annotations retained; no arbitrary bold introduced.",
+    "bold": "Source-derived emphasis includes AUTHORED; DERIVED. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Conditional branches use an orthogonal rail with explicit admission mark on the checked vertical leg; advisory branch remains unguarded.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "36afdea15d9dc62233d243c0a382d2ea0e52d70163d200d3f7d6c4461d8b384e",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
       "page": 111,
       "width_bp": 348.128,
       "height_bp": 255.201,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
     },
     "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
+    "candidate_sha256": "57163be20e32ef125b02252b54b78054e2527a4dc116c8c21d700be933d44470",
+    "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "MODEL",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "AUTHORED",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "AUTHORED",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "DERIVED",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "DERIVED",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CORRESPONDENCE /",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "CORRESPONDENCE / INVARIANT CHECK",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "advisory · report-only",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "advisory · report-only",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "finding / gate",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "finding / gate",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "CHECKED",
+        "source_style": "font-weight=700",
+        "semantic_role": "Category heading distinguished from explanatory description",
+        "candidate_text": "CHECKED",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "observe / re-derive",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "observe / re-derive",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "informs the engineer",
+        "source_style": "font-style=italic",
+        "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
+        "candidate_text": "informs the engineer",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "AUTHORED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "DERIVED",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "informs the engineer",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "intent",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "e9585113d67c0380f6824a695f215d9adb7c9a5ecc62f6b9562e7d77cef30ee1",
+      "page": 111,
+      "width_bp": 348.128,
+      "height_bp": 255.201,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    }
   }
 }

@@ -11,13 +11,13 @@ edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,fill=white,text width=2.3cm] (cmp) at (-2.3,-.85) {Comparison};
 \draw[edge] (qty.east) -- (-3.8,0) |- (cmp.west);
 \draw[edge] (bound.east) -- (-3.8,-1.7) |- (cmp.west);
-\node[n,fill=white,text width=4.5cm] (same) at (3.6,0) {Same model};
+\node[n,fill=white,text width=4.5cm] (same) at (3.6,0) {\textbf{Same model}};
 \foreach \id/\x/\txt/\shade in {o/.4/Observe/5,a/2.6/Adapt/5,d/4.8/Degrade/30,g/7/Gate/30} {
  \node[n,fill=white,text width=1.5cm] (\id) at (\x,-2.3) {\txt};
  \draw[edge] (same.south) -- (3.6,-1.2) -| (\id.north);}
 \draw[black!40] (-.75,1) -- (-.75,-3.3);
-\node[note,text width=5.3cm] at (-3.8,-3.2) {What quantity and bound matter?};
-\node[note,text width=6.5cm] at (3.7,-3.2) {What enforcement is justified?};
+\node[note,text width=5.3cm] at (-3.8,-3.2) {\textit{What quantity and bound matter?}};
+\node[note,text width=6.5cm] at (3.7,-3.2) {\textit{What enforcement is justified?}};
 \node[note,text width=13.5cm] at (.8,-4.4) {The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.};
 
 \end{tikzpicture}

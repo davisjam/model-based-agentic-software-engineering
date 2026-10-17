@@ -116,7 +116,7 @@ if _charts.returncode:
 
 for _regression_tool in ("handbook/scripts/test_latex_source.py",
                          "tools/test_latex_build.py", "tools/test_pdf_structure.py",
-                         "tools/test_mage_tikz_links.py"):
+                         "tools/test_mage_tikz_links.py", "tools/test_mage_tikz_typography.py"):
     _bridge_tests = subprocess.run([sys.executable, _regression_tool], cwd=ROOT)
     if _bridge_tests.returncode:
         print(f"pre-commit: native LaTeX regression check FAILED: {_regression_tool}")
