@@ -12,7 +12,7 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (n2) -- (n3);
 \node[box,text width=4cm] (n4) at (0,-6.0) {READ\\ reconstruct history};
 \draw[edge] (n3) -- (n4);
-\node[box,text width=4cm] (n5) at (0,-7.5) {FIDELITY GATE\\ did semantics survive?};
+\node[box,text width=4cm,fill=black!20,line width=1pt] (n5) at (0,-7.5) {FIDELITY GATE\\ did semantics survive?};
 \draw[edge] (n4) -- (n5);
 \node[note,text width=10cm] (t16) at (0,-8.5) {Every link is required. Attribution, completeness, readable history and product fidelity.};
 \end{tikzpicture}

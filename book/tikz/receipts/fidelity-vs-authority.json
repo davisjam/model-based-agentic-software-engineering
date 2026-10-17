@@ -27,8 +27,24 @@
     "Correspondence",
     "Stronger correspondence does not make the view govern execution."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
+  "redesign": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
   "questions": [],
-  "alt": "An authoritative computation model branches into two relations. Authority reaches scheduler execution; correspondence reaches an analytical graph view. Improving the analytical view’s fidelity does not transfer execution authority to that view. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "An authoritative computation model branches into two relations. Authority reaches scheduler execution; correspondence reaches an analytical graph view. Improving the analytical view’s fidelity does not transfer execution authority to that view. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.5764,
+      6.4874
+    ]
+  }
 }

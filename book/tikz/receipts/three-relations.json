@@ -37,8 +37,24 @@
     "Receiving environment",
     "Evidence for one relation does not establish the others."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
+  "redesign": "Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
   "questions": [],
-  "alt": "Three stacked bands distinguish correspondence, conformance and acceptance. Correspondence links two internal representations in both directions. Conformance asks whether an artifact satisfies an independent obligation. Acceptance asks whether a receiving environment will take it. The three provide different evidence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Three stacked bands distinguish correspondence, conformance and acceptance. Correspondence links two internal representations in both directions. Conformance asks whether an artifact satisfies an independent obligation. Acceptance asks whether a receiving environment will take it. The three provide different evidence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.3515,
+      8.123
+    ]
+  }
 }

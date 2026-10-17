@@ -9,8 +9,8 @@
     "Admitted operation",
     "Constrain the derivation path; the boundary need not enumerate every bypass."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Sanctioned source and consequential admission boundary distinguished from neutral implementation and operation. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Sanctioned source and consequential admission boundary distinguished from neutral implementation and operation.",
   "questions": [],
   "alt": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance.",
   "qa": {

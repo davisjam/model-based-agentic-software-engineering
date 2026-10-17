@@ -1,0 +1,15 @@
+\documentclass{article}
+\newcommand{\DoNotLoadEpstopdf}{}
+\usepackage{tikz}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont]
+\node at (0,0) {Overlapping words};
+\node at (.05,0) {Conflicting words};
+\node at (0,-1) {Covered label};
+\fill[gray!40] (-1,-1.2) rectangle (1,-.8);
+\node at (0,-2) {Crossed label};
+\draw (-2,-2)--(2,-2);
+\end{tikzpicture}
+\end{document}

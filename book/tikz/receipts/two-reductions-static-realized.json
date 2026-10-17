@@ -15,7 +15,7 @@
         "gate",
         "rem",
         "CONTROL_GATE",
-        ""
+        "dashed"
       ],
       [
         "e0",
@@ -55,8 +55,24 @@
     "PdfEdit · SetReadingOrder",
     "Static structure and realized history; join by computation identity when a question needs it."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
+  "redesign": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
   "questions": [],
-  "alt": "Two peer panels show a static computation graph with typed data and control relations and a realized run with typed PdfEdit operations. A dashed connection states that they are not joined today. Shared computation identity can join them when a question needs that correspondence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Two peer panels show a static computation graph with typed data and control relations and a realized run with typed PdfEdit operations. A dashed connection states that they are not joined today. Shared computation identity can join them when a question needs that correspondence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.1254,
+      8.3572
+    ]
+  }
 }

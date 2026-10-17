@@ -3,9 +3,9 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm] (gov) at (2,0) {Self-Governance\\ engineers and improves the environment};
-\node[gate,text width=4cm] (gee) at (2,-2.7) {Governed Engineering Environment\\ the GEE};
-\node[box,text width=4cm] (op) at (2,-5.5) {Self-Operate\\ runs operational lifecycles};
+\node[box,text width=4cm,fill=black!22] (gov) at (2,0) {Self-Governance\\ engineers and improves the environment};
+\node[gate,text width=4cm,fill=black!12] (gee) at (2,-2.7) {Governed Engineering Environment\\ the GEE};
+\node[box,text width=4cm,fill=black!5] (op) at (2,-5.5) {Self-Operate\\ runs operational lifecycles};
 \node[box,text width=3.4cm] (comm) at (-3.5,-2.7) {Self-Communicate\\ articulates the system to others};
 \node[box,dashed,text width=3.4cm] (people) at (-3.5,-5.5) {People\\ engineers and readers};
 \draw[edge] (gov) -- node[note,fill=white,inner sep=2pt] {improves} (gee);

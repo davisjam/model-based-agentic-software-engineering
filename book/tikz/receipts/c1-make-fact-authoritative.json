@@ -18,7 +18,7 @@
     "Independent copies can disagree.",
     "Derive / query: disagreement becomes detectable or impossible."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Independent copies share light shade; one authoritative representation is darker and heavier. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from"

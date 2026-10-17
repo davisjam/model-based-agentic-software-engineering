@@ -6,19 +6,19 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[strong,text width=3.2cm] (hub) at (0,0) {Shared system\\identities};
-\node[n,text width=2.8cm] (r0) at (0.0,4.0) {Service registry};
+\node[n,text width=2.8cm,fill=black!20] (r0) at (0.0,4.0) {Service registry};
 \draw[edge,-] (hub) -- (r0);
-\node[n,text width=2.8cm] (r1) at (-3.91,2.49) {Deployment topology};
+\node[n,text width=2.8cm,fill=black!20] (r1) at (-3.91,2.49) {Deployment topology};
 \draw[edge,-] (hub) -- (r1);
-\node[n,text width=2.8cm] (r2) at (-4.87,-0.89) {State machines};
+\node[n,text width=2.8cm,fill=black!20] (r2) at (-4.87,-0.89) {State machines};
 \draw[edge,-] (hub) -- (r2);
-\node[n,text width=2.8cm] (r3) at (-2.17,-3.6) {Entitlement policy};
+\node[n,text width=2.8cm,fill=black!20] (r3) at (-2.17,-3.6) {Entitlement policy};
 \draw[edge,-] (hub) -- (r3);
-\node[n,text width=2.8cm] (r4) at (2.17,-3.6) {Computation graph};
+\node[n,text width=2.8cm,fill=black!20] (r4) at (2.17,-3.6) {Computation graph};
 \draw[edge,-] (hub) -- (r4);
-\node[n,text width=2.8cm] (r5) at (4.87,-0.89) {Provenance records};
+\node[n,text width=2.8cm,fill=black!20] (r5) at (4.87,-0.89) {Provenance records};
 \draw[edge,-] (hub) -- (r5);
-\node[n,text width=2.8cm] (r6) at (3.91,2.49) {Measurements};
+\node[n,text width=2.8cm,fill=black!20] (r6) at (3.91,2.49) {Measurements};
 \draw[edge,-] (hub) -- (r6);
 \node[note,text width=12cm] (surfaces) at (0,-5.5) {Traceability · derivation · query surfaces\\Join representations where an engineering question crosses them.};
 \end{tikzpicture}

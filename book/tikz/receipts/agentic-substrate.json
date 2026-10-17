@@ -3,25 +3,25 @@
   "chapter": "1.3-the-agentic-substrate",
   "claim": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
   "topology": {
-    "description": "Foundation model and agentic harness jointly supply the agent, which acts on an engineered environment.",
+    "description": "Foundation model and harness supply an agent contained within the engineered environment.",
     "relations": [
       [
         "f",
         "a",
-        "",
-        ""
+        "supplies",
+        "solid"
       ],
       [
         "h",
         "a",
-        "",
-        ""
-      ],
+        "supplies",
+        "solid"
+      ]
+    ],
+    "containment": [
       [
-        "a",
-        "e",
-        "acts on",
-        ""
+        "environment",
+        "a"
       ]
     ]
   },
@@ -31,8 +31,24 @@
     "Agent A tool-using reasoner",
     "Engineered Environment Models · obligations · evidence · controls"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
+  "redesign": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
   "questions": [],
-  "alt": "Two columns converge on an agent: the foundation model supplies semantic reasoning, probabilistic output, bounded working state and cheap repeated reasoning; the harness supplies tools, context management, interposition and parallel execution. The agent acts on an engineered environment of models, obligations, evidence and controls. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Foundation model and agentic harness supply an agent. Their inputs enter an engineered-environment enclosure containing the agent. A medium-gray model contrasts with a light-gray harness and pale-gray environment; labels identify capabilities and the environment’s models, obligations, evidence and controls.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      11.5764,
+      6.32
+    ]
+  }
 }

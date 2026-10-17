@@ -5,8 +5,8 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm] (n0) at (0,0.0) {Remediation logic};
-\node[strong,text width=6cm] (n1) at (0,-1.8) {Structured document model\\The sanctioned seam};
+\node[n,text width=6cm,fill=black!20] (n0) at (0,0.0) {Remediation logic};
+\node[strong,text width=6cm,fill=black!20] (n1) at (0,-1.8) {Structured document model\\The sanctioned seam};
 \draw[edge] (n0) -- node[lab,right] {operates through} (n1);
 \node[n,text width=6cm] (n2) at (0,-3.6) {Format-specific implementation};
 \draw[edge] (n1) -- node[lab,right] {realized through} (n2);

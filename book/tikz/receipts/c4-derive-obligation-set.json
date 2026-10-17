@@ -11,8 +11,8 @@
     "FINDING",
     "Required set minus present evidence."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
-  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "bw_encoding": "Model-derived required and covered sets share light shade; gap and resulting finding visibly distinct from evidence. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Increased required-set/evidence separation by 3.5 mm.",
   "questions": [],
   "alt": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence"
 }

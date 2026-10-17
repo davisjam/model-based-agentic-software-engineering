@@ -80,8 +80,24 @@
     "Appendix I · Practice Use and extend",
     "Appendix II · Evidence Inspect the empirical record"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
+  "redesign": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
   "questions": [],
-  "alt": "A vertical book argument runs from the Preface through Chapters 1 to 7 to the Conclusion. A pale-gray enclosure groups Chapters 2–5 as the software-engineering case. Dotted branches connect Chapter 4 to Appendix Part I, Practice, and Chapter 5 to Appendix Part II, Evidence; these are related destinations, not argument steps. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A vertical book argument runs from the Preface through Chapters 1 to 7 to the Conclusion. A pale-gray enclosure groups Chapters 2–5 as the software-engineering case. Dotted branches connect Chapter 4 to Appendix Part I, Practice, and Chapter 5 to Appendix Part II, Evidence; these are related destinations, not argument steps. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.7806,
+      13.5292
+    ]
+  }
 }

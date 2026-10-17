@@ -32,8 +32,24 @@
     "Measurement How many active?",
     "One represented state, several engineering questions."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Common gray for three purpose views contrasted with represented lease state; peer status retained.",
+  "redesign": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
   "questions": [],
-  "alt": "A shared lease state containing owner, epoch and lifetime branches to three peer views: ownership asks who owns it, behavior asks when it is stale and measurement asks how many are active. The same represented state supports distinct engineering purposes. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A shared lease state containing owner, epoch and lifetime branches to three peer views: ownership asks who owns it, behavior asks when it is stale and measurement asks how many are active. The same represented state supports distinct engineering purposes. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.2764,
+      4.9874
+    ]
+  }
 }

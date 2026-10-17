@@ -3,37 +3,37 @@
   "chapter": "2.2-structural",
   "claim": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.",
   "topology": {
-    "description": "Two authored seed relations plus55projected typed relations yield57total:33payload-bearing and24control.",
+    "description": "Sparse computation inventory with two seed relations; derived typed relation examples distinguish payload flow, cross-service payload and control.",
     "relations": [
       [
-        "n0",
-        "n1",
-        "",
-        ""
+        "seed1",
+        "seed2",
+        "authored seed",
+        "solid"
       ],
       [
-        "n2",
-        "n3",
-        "",
-        ""
+        "seed2",
+        "seed3",
+        "authored seed",
+        "solid"
       ],
       [
-        "n1.east",
-        "derive.west",
-        "",
-        ""
+        "a",
+        "b",
+        "DATA_FLOW ×32",
+        "solid"
       ],
       [
-        "derive",
-        "payload",
-        "",
-        ""
+        "b2",
+        "svc",
+        "CROSS_SERVICE ×1",
+        "solid"
       ],
       [
-        "derive",
-        "control",
-        "",
-        ""
+        "a2",
+        "c",
+        "CONTROL_GATE ×24",
+        "dashed"
       ]
     ]
   },
@@ -50,10 +50,26 @@
     "Control: 24 CONTROL_GATE: 24 ConsumesForControl",
     "2 authored + 55 projected, typed relations = 33 payload + 24 control"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
+  "redesign": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
   "questions": [
     "The source description says 55 projected, while 33 + 24 = 57; diagram preserves explicit SVG equation: 2 authored + 55 projected = 57 total."
   ],
-  "alt": "A computation inventory with 125 registered computations and two authored seed relations leads through derivation to explicit typed composition. Two authored plus fifty-five projected relations yield fifty-seven total: thirty-three payload-bearing relations, comprising thirty-two DATA_FLOW and one CROSS_SERVICE, and twenty-four CONTROL_GATE relations. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A sparse inventory of125 computations highlights two authored seed relations. Derivation produces three labeled examples: Pass A to Pass B DATA_FLOW 32, Pass B to Service CROSS_SERVICE 1, and a dashed Pass A to Pass C CONTROL_GATE 24. The first two comprise33 payload-bearing relations; control comprises 24. The total is2 authored plus55 projected relations.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.9515,
+      9.3869
+    ]
+  }
 }

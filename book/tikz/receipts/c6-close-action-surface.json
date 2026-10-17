@@ -17,7 +17,7 @@
     "VERB C",
     "stamp \u00b7 validate constrain \u00b7 observe"
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "One governing seam is emphasized; existing dashed open routes versus solid closed routes already convey mode. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.6 Close the action surface: replace open-ended routes with one bounded, named interface"

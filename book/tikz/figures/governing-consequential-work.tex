@@ -4,15 +4,15 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=10cm] (p) at (0,0) {\textbf{People responsible}\\Set direction; exercise judgment; accept responsibility};
-\node[box,text width=10cm] (g) at (0,-2.1) {\textbf{Governed environment}\\Makes work possible and safe to delegate};
+\node[head,text width=10cm,fill=black!28] (p) at (0,0) {\textbf{People responsible}\\Set direction; exercise judgment; accept responsibility};
+\node[box,text width=10cm,fill=black!8] (g) at (0,-2.1) {\textbf{Governed environment}\\Makes work possible and safe to delegate};
 \draw[edge,] (p) -- node[midway,right,note,fill=white] {intent, goals, constraints} (g);
 \node[box,text width=2.3cm] (env0) at (-4.5,-3.8) {Representations\\what matters made explicit};
 \node[box,text width=2.3cm] (env1) at (-1.5,-3.8) {Evidence\\what must be shown};
 \node[box,text width=2.3cm] (env2) at (1.5,-3.8) {Constraints\\what agents may do};
 \node[box,text width=2.3cm] (env3) at (4.5,-3.8) {Enforcement\\how rules apply};
 \draw (-6.1,-1.5) rectangle (6.1,-4.8);
-\node[head,text width=10cm] (out) at (0,-6.8) {OUTCOME: what the work produces};
+\node[head,text width=10cm,fill=black!15] (out) at (0,-6.8) {OUTCOME: what the work produces};
 \draw[edge,draw=none] (g.south) -- (out.north);
 \draw[edge] (0,-4.8)--node[note,right,text width=5.7cm] {Delegated work: analysis, design, research, evaluation}(out.north);
 \node[box,text width=5cm] (a) at (-3.1,-8.7) {\textbf{Artifact / system}\\Bridge; circuit; software; process\\[3pt]Inspected, tested, operated, observed directly};
@@ -21,4 +21,7 @@
 \draw (-6.1,-6.2) rectangle (6.1,-10.2);
 \draw[edge] (6.1,-8.7)--(7,-8.7)--node[note,right,text width=1.2cm] {Evidence; learning}(7,0)--(p.east);
 \node[note,text width=12cm] (ex) at (0,-11.4) {Environment examples: models, data, assumptions, standards, policies, tools, agent configurations, review rules, monitoring and controls.};
+\begin{scope}[on background layer]
+\fill[black!5] (-6.1,-1.5) rectangle (6.1,-4.8);\fill[black!12] (-6.1,-6.2) rectangle (6.1,-10.2);
+\end{scope}
 \end{tikzpicture}

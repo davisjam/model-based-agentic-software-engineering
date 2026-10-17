@@ -10,7 +10,7 @@
     "consequence",
     "point of no return"
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Too-early marker is open; earliest-legible CHECK light gray; last-safe RE-CHECK dark gray with dashed outer ring. Explicit labels and terminal X retain the semantic distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.5 Put enforcement where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one"

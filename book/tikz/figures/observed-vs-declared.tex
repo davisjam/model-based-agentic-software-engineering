@@ -6,15 +6,15 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[head,text width=5.5cm] (h0) at (0,2) {Observed system\\Does A call C?};
-\node[n,text width=1.4cm] (a0) at (0,0) {A};
-\node[n,text width=1.4cm] (b0) at (-1.7,-2) {B};
-\node[n,text width=1.4cm] (c0) at (1.7,-2) {C};
+\node[n,text width=1.4cm,fill=black!5] (a0) at (0,0) {A};
+\node[n,text width=1.4cm,fill=black!5] (b0) at (-1.7,-2) {B};
+\node[n,text width=1.4cm,fill=black!5] (c0) at (1.7,-2) {C};
 \draw[edge] (a0) -- (b0);
 \draw[edge] (a0) -- (c0);
 \node[head,text width=5.5cm] (h1) at (7,2) {Declared policy\\May A call C?};
-\node[n,text width=1.4cm] (a1) at (7,0) {A};
-\node[n,text width=1.4cm] (b1) at (5.3,-2) {B};
-\node[n,text width=1.4cm] (c1) at (8.7,-2) {C};
+\node[n,text width=1.4cm,fill=black!20] (a1) at (7,0) {A};
+\node[n,text width=1.4cm,fill=black!20] (b1) at (5.3,-2) {B};
+\node[n,text width=1.4cm,fill=black!20] (c1) at (8.7,-2) {C};
 \draw[edge] (a1) -- (b1);
 \node[note,text width=2cm] (missing) at (8.5,-0.9) {$\times$ no edge};
 \node[note,text width=12cm] (n) at (3.5,-3.6) {Agreement establishes correspondence, not correctness.};

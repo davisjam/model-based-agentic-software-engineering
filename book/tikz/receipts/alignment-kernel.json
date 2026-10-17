@@ -14,8 +14,8 @@
     "Governed surface grows over time",
     "New models are admitted under constraints inside them. Active alignment operates within the protected region."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills.",
   "questions": [],
   "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
   "qa": {

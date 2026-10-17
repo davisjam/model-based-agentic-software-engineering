@@ -4,22 +4,25 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=6cm] (eh) at (-3.7,0) {ENGINEERING TRADITIONS};
-\node[head,text width=6cm] (ah) at (3.7,0) {AI TRADITIONS};
-\node[note,draw,fill=white,text width=6.4cm] (e) at (-3.7,-2) {\textbf{MBSE / MDE}: explicit models\\\textbf{PL / compilers}: types; constrained IRs\\\textbf{Formal methods}: specifications; verification\\\textbf{Systems / safety}: boundaries; control};
-\node[box,text width=6cm] (a) at (3.7,-2) {Knowledge representation\\Memory; planning state\\Structured reasoning\\Tools and interfaces};
+\node[head,text width=6cm,fill=black!15] (eh) at (-3.7,0) {ENGINEERING TRADITIONS};
+\node[head,text width=6cm,fill=black!7] (ah) at (3.7,0) {AI TRADITIONS};
+\node[note,draw,fill=white,text width=6.4cm,fill=black!15] (e) at (-3.7,-2) {\textbf{MBSE / MDE}: explicit models\\\textbf{PL / compilers}: types; constrained IRs\\\textbf{Formal methods}: specifications; verification\\\textbf{Systems / safety}: boundaries; control};
+\node[box,text width=6cm,fill=black!7] (a) at (3.7,-2) {Knowledge representation\\Memory; planning state\\Structured reasoning\\Tools and interfaces};
 \node[box,text width=4.6cm] (m) at (-3,-4.5) {Modeling\\make knowledge explicit};
 \node[box,text width=4.6cm] (al) at (3,-4.5) {Alignment\\enforce selected obligations};
 \draw[edge,] (e) -- (m);
 \draw[edge,] (a) -- (al);
-\node[box,text width=9cm] (g) at (0,-6.2) {\textbf{Governed engineering environment}\\Representations; evidence; constraints; controls};
+\node[box,text width=9cm,fill=black!15] (g) at (0,-6.2) {\textbf{Governed engineering environment}\\Representations; evidence; constraints; controls};
 \draw[edge,] (m) -- (g);
 \draw[edge,] (al) -- (g);
 \draw[black,line width=.8pt] (-6,-3.7) rectangle (6,-7);
 \node[head,text width=1.4cm] (tag) at (0,-3.7) {MAGE};
-\node[box,text width=8cm] (cap) at (0,-8.5) {Engineering capital\\recurring judgment made durable};
+\node[box,text width=8cm,fill=black!15] (cap) at (0,-8.5) {Engineering capital\\recurring judgment made durable};
 \draw[edge,] (g) -- node[midway,right,note,fill=white] {governance conversion} (cap);
 \node[box,dashed,text width=6cm] (t) at (0,-10.1) {Trustworthy autonomy\\intended outcome};
 \draw[edge,] (cap) -- node[midway,right,note,fill=white] {inherited by subsequent work} (t);
 \node[note,text width=13cm] (nt) at (0,-11.6) {New economics drive a new composition; the provenance of the parts is old.};
+\begin{scope}[on background layer]
+\fill[black!4] (-6,-3.7) rectangle (6,-7);
+\end{scope}
 \end{tikzpicture}

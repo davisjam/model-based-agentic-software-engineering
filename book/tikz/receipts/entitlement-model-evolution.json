@@ -35,8 +35,24 @@
     "4  Revised model",
     "Group entitlements: finite OR unlimited Admission decision: admit? Authorizing group · ordered plan Same user → admit_unlimited"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
+  "redesign": "Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
   "questions": [],
-  "alt": "Four successive panels show finite-credit admission, the introduction of unlimited entitlement, a stale credit-sum model and a revised model. The stale model reduces an unlimited user to zero credits and rejects a thirty-eight-page upload. The revised model retains finite versus unlimited entitlement and records admission with the authorizing group and plan. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Four successive panels show finite-credit admission, the introduction of unlimited entitlement, a stale credit-sum model and a revised model. The stale model reduces an unlimited user to zero credits and rejects a thirty-eight-page upload. The revised model retains finite versus unlimited entitlement and records admission with the authorizing group and plan. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.0139,
+      7.7239
+    ]
+  }
 }

@@ -12,8 +12,8 @@
     "GOVERNED\\ enforced",
     "Design choices, not maturity levels: different obligations stop in different places."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Residual reconstruction, unresolved judgment/evaluated-only, and governed outcomes regain distinct tones; textual yes/no paths remain authoritative. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Residual reconstruction, unresolved judgment/evaluated-only, and governed outcomes regain distinct tones; textual yes/no paths remain authoritative.",
   "questions": [],
   "alt": "A staircase of three questions. First: is the obligation explicit in a form the\n    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the\n    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:\n    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but\n    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different\n    obligations stop in different places.",
   "qa": {

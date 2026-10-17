@@ -4,7 +4,7 @@ gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
 \node[box,text width=4.5cm] (n0) at (0,0.0) {REALIZED SYSTEM};
-\node[box,text width=4.5cm] (n1) at (0,-1.15) {INCIDENT};
+\node[box,text width=4.5cm,fill=black!7] (n1) at (0,-1.15) {INCIDENT};
 \draw[edge] (n0) -- (n1);
 \node[box,text width=4.5cm] (n2) at (0,-2.3) {ROOT-CAUSE ANALYSIS};
 \draw[edge] (n1) -- (n2);
@@ -17,10 +17,10 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=4cm] (repair) at (0,-6.5) {REPAIR THE CLASS};
 \draw[edge] (instance) -- (repair);
 \draw[edge] (related) -- (repair);
-\node[box,text width=4cm] (conversion) at (0,-8) {GOVERNANCE CONVERSION};
+\node[box,text width=4cm,fill=black!20] (conversion) at (0,-8) {GOVERNANCE CONVERSION};
 \draw[edge] (repair) -- (conversion);
-\node[box,text width=3cm] (model) at (-3,-10) {UPDATED MODEL};
-\node[box,text width=5cm] (mechanism) at (3,-10) {DURABLE MECHANISM\\ invariant · validator · test\\ constraint · policy · gate};
+\node[box,text width=3cm,fill=black!20] (model) at (-3,-10) {UPDATED MODEL};
+\node[box,text width=5cm,fill=black!20] (mechanism) at (3,-10) {DURABLE MECHANISM\\ invariant · validator · test\\ constraint · policy · gate};
 \draw[edge] (conversion) -- (model);
 \draw[edge] (conversion) -- (mechanism);
 \node[box,text width=4cm] (future) at (0,-12.1) {FUTURE WORK\\ inherits the lesson};

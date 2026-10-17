@@ -6,13 +6,13 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \node[head,text width=5.5cm] (ha) at (-4,0) {(a) Models after implementation};
 \node[head,text width=6.5cm] (hb) at (3.4,0) {(b) A modeling loop};
-\node[box,text width=3.8cm] (a0) at (-4,-1.5) {Design};
-\node[box,text width=3.8cm] (a1) at (-4,-3.1) {Implement};
-\node[box,text width=3.8cm] (a2) at (-4,-4.7) {Document with models};
+\node[box,text width=3.8cm,fill=black!5] (a0) at (-4,-1.5) {Design};
+\node[box,text width=3.8cm,fill=black!5] (a1) at (-4,-3.1) {Implement};
+\node[box,text width=3.8cm,fill=black!5] (a2) at (-4,-4.7) {Document with models};
 \draw[edge,] (a0) -- (a1);
 \draw[edge,] (a1) -- (a2);
 \node[box,text width=2.9cm] (p) at (1,-1.4) {Problem};
-\node[box,text width=2.9cm] (m) at (1,-2.9) {Model};
+\node[box,text width=2.9cm,fill=black!15] (m) at (1,-2.9) {Model};
 \node[box,text width=2.9cm] (a) at (1,-4.4) {Analyze};
 \node[box,text width=2.9cm] (d) at (5,-2.9) {Prediction / design};
 \node[box,text width=2.9cm] (i) at (5,-4.4) {Implementation};

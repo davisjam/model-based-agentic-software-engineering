@@ -17,8 +17,24 @@
     "Representation form Graph · registry · state machine · contract · table · quantitative relation",
     "Shared identity and traceability connect explicit engineering knowledge."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
+  "redesign": "Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
   "questions": [],
-  "alt": "Six peer boxes list structural, behavioral, ownership, decision, measurement and provenance models with the questions each answers. A separate representation-form axis lists graph, registry, state machine, contract, table and quantitative relation. Model purpose and representation form are distinct; shared identity and traceability connect the models. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Six peer boxes list structural, behavioral, ownership, decision, measurement and provenance models with the questions each answers. A separate representation-form axis lists graph, registry, state machine, contract, table and quantitative relation. Model purpose and representation form are distinct; shared identity and traceability connect the models. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.2764,
+      7.4144
+    ]
+  }
 }

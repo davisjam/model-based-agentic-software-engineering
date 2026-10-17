@@ -18,8 +18,24 @@
     "Semantic claims → judgment",
     "Unmodeled surface No model-based coverage"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
+  "redesign": "Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
   "questions": [],
-  "alt": "A modeled surface contains two regions: decidable claims receive mechanical checks and semantic claims require judgment. A separate unmodeled region has no model-based coverage. Dashed recurring-miss feedback calls for refining the representation or control. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A modeled surface contains two regions: decidable claims receive mechanical checks and semantic claims require judgment. A separate unmodeled region has no model-based coverage. Dashed recurring-miss feedback calls for refining the representation or control. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.848,
+      5.4594
+    ]
+  }
 }

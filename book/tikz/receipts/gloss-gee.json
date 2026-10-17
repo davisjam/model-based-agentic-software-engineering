@@ -3,37 +3,43 @@
   "chapter": "0.4-the-books-language",
   "claim": "The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
   "topology": {
-    "description": "Mechanism enforces obligation and acts directly on observable work or reasons through explicit models; environment accumulates capital.",
+    "description": "Six-node accumulation ontology with two surfaces, not a pipeline or enclosing group.",
     "relations": [
       [
-        "m",
-        "o",
+        "mechanism",
+        "obligation",
         "enforces",
-        ""
+        "solid"
       ],
       [
-        "m",
-        "w",
+        "mechanism",
+        "work",
         "acts on / observes",
-        ""
+        "solid"
       ],
       [
-        "m",
-        "x",
+        "mechanism",
+        "model",
         "reasons through",
-        ""
+        "solid"
       ],
       [
-        "w.south",
-        "c.north west",
-        "",
-        ""
+        "environment",
+        "work",
+        "presents",
+        "solid"
       ],
       [
-        "x.south",
-        "c.north east",
-        "",
-        ""
+        "environment",
+        "model",
+        "presents",
+        "solid"
+      ],
+      [
+        "capital",
+        "environment",
+        "accumulates in",
+        "solid"
       ]
     ]
   },
@@ -46,10 +52,24 @@
     "Engineering Capital Durable models · mechanisms · procedures · canonical documentation",
     "accumulates in"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
-  "questions": [
-    "Older D2 receipt reverses the explanatory pipeline; current SVG relation \"mechanism enforces obligation\" is retained."
-  ],
-  "alt": "Within a governed engineering environment, mechanisms enforce obligations and act directly on observable work or reason through explicit models. The environment accumulates engineering capital: durable models, mechanisms, procedures and documentation. Directed, labeled arrows identify these distinct relations. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "bw_encoding": "Grayscale publication candidate. Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
+  "redesign": "Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
+  "questions": [],
+  "alt": "Six vertically arranged concepts form an accumulation ontology. Governance mechanism points upward to engineering obligation and branches downward to directly observable work and an explicit model or invariant. The governed engineering environment below points upward to both surfaces. Engineering capital at the bottom points upward to the environment, labeled accumulates in. Obligation and explicit model use medium gray, mechanism/work/environment use light gray, and capital uses a dark gray box with white text.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.9275,
+      10.9364
+    ]
+  }
 }

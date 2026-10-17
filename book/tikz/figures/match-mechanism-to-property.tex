@@ -4,7 +4,7 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=5cm] (o) at (0,0) {Engineering obligation};
+\node[head,text width=5cm,fill=black!28] (o) at (0,0) {Engineering obligation};
 \node[box,text width=3.7cm] (p0) at (-4.6,-1.6) {Can exclude invalid state?};
 \node[head,text width=3.7cm] (m0) at (-4.6,-3) {CONSTRAINT};
 \node[box,text width=3.7cm] (d0) at (-4.6,-4.5) {Structural prevention\\DB compare-and-set; closed transition};
@@ -23,7 +23,7 @@
 \draw[edge,] (o) -- (p2);
 \draw[edge,] (p2) -- (m2);
 \draw[edge,] (m2) -- (d2);
-\node[head,text width=7cm] (g) at (0,-6.3) {Separate GATE, if the verdict should control admission};
+\node[head,text width=7cm,fill=black!18] (g) at (0,-6.3) {Separate GATE, if the verdict should control admission};
 \draw[edge,] (d0) -- (g);
 \draw[edge,] (d1) -- (g);
 \draw[edge,] (d2) -- (g);

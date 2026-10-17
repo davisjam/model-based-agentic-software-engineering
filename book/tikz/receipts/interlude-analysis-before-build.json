@@ -29,8 +29,8 @@
     "Before: serial propagation",
     "After: independent operations consume precomputed context"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Heavy black edges identify the critical path; no invented numeric weights. Before/after dependency layouts retain causal direction.",
+  "bw_encoding": "Heavy bottleneck and split children distinguished; image and alt-text operations retain different fills across before/after panels; heavy critical path retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Heavy black edges identify the critical path; no invented numeric weights. Before/after dependency layouts retain causal direction. Grayscale refinement: Heavy bottleneck and split children distinguished; image and alt-text operations retain different fills across before/after panels; heavy critical path retained.",
   "questions": [],
   "alt": "Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from\n    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant\n    node into parallel children shortens the critical path, discoverable from the model before the split is\n    built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for\n    the preceding image, a serial chain of image then alt text then image then alt text; after, every image\n    instead consumes one shared precomputed page context, so the alt-text operations run independently.",
   "qa": {

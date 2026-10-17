@@ -27,8 +27,24 @@
     "remediated file",
     "What the system does; internal structure is intentionally hidden."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
+  "redesign": "Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
   "questions": [],
-  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.7764,
+      4.3095
+    ]
+  }
 }

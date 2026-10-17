@@ -15,8 +15,8 @@
     "Implementation",
     "Measurement"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Resolved inconsistent original SVG arrow near prediction/design to chapter-described causality: analysis yields prediction/design, which drives implementation.",
+  "bw_encoding": "After-the-fact document chain muted; live model emphasized; editorial arrow resolution retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Resolved inconsistent original SVG arrow near prediction/design to chapter-described causality: analysis yields prediction/design, which drives implementation. Grayscale refinement: After-the-fact document chain muted; live model emphasized; editorial arrow resolution retained.",
   "questions": [
     "Original SVG arrow near prediction/design pointed upward from implementation; candidate follows chapter and SVG description. Confirm this editorial repair."
   ],

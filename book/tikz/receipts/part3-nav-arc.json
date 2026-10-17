@@ -6,28 +6,28 @@
     "description": "Five equal stations in a directed chapter argument sequence.",
     "relations": [
       [
-        "n0",
-        "n1",
-        "",
-        ""
+        "s1",
+        "s2",
+        "chapter sequence",
+        "solid"
       ],
       [
-        "n1",
-        "n2",
-        "",
-        ""
+        "s2",
+        "s3",
+        "chapter sequence",
+        "solid"
       ],
       [
-        "n2",
-        "n3",
-        "",
-        ""
+        "s3",
+        "s4",
+        "chapter sequence",
+        "solid"
       ],
       [
-        "n3",
-        "n4",
-        "",
-        ""
+        "s4",
+        "s5",
+        "chapter sequence",
+        "solid"
       ]
     ]
   },
@@ -38,8 +38,24 @@
     "3.4  LEARN How does the environment acquire new obligations and controls?",
     "3.5  GOVERN How are accumulated controls governed as a system?"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
+  "redesign": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
   "questions": [],
-  "alt": "Five stations descend in chapter order: Locate asks where enforcement can act; Justify asks what it may enforce; Mechanize asks how; Learn asks how new obligations and controls arise; Govern asks how accumulated controls are governed. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Five gray numbered circles descend a spine from 3.1 to 3.5. Adjacent labels read Locate, Justify, Mechanize, Learn and Govern, each with its engineering question. Arrows connect the chapters in argument order.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      11.7725,
+      8.4393
+    ]
+  }
 }

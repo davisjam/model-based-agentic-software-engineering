@@ -4,8 +4,8 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=6cm] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
-\node[head,text width=6cm] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
+\node[head,text width=6cm,fill=black!8] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
+\node[head,text width=6cm,fill=black!20] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
 \node[box,text width=2.3cm] (e1) at (-3.7,-1.5) {Engineer};
 \node[box,text width=2.3cm] (e2) at (3.7,-1.5) {Engineer};
 \node[box,text width=1.8cm] (m0) at (-6.0,-3) {Natural\\language};
@@ -20,7 +20,7 @@
 \draw[edge,] (a1) -- (e2);
 \node[box,text width=1.8cm] (a2) at (6.0,-3) {Analysis};
 \draw[edge,] (a2) -- (e2);
-\node[box,text width=2.5cm] (ag) at (-3.7,-4.6) {Agent};
+\node[box,text width=2.5cm,fill=black!20] (ag) at (-3.7,-4.6) {Agent};
 \node[box,text width=2.5cm] (re) at (3.7,-4.6) {Result};
 \node[head,text width=3.5cm] (im) at (0,-6.2) {Implementation};
 \draw[edge,] (m0) -- (ag);
@@ -31,4 +31,7 @@
 \draw[edge,] (re) -- (a2);
 \draw[edge,] (ag) -- (im);
 \draw[edge,] (im) -- (re);
+\begin{scope}[on background layer]
+\fill[black!4] (-7.1,.45) rectangle (-.3,-5.3);\fill[black!10] (.3,.45) rectangle (7.1,-5.3);
+\end{scope}
 \end{tikzpicture}

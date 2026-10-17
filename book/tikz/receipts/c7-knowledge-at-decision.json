@@ -9,7 +9,7 @@
     "DECISION",
     "Bind relevant knowledge to the work surface where it matters."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Rules, work input and binding selection have separate shades; decision remains white. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.7 Deliver knowledge where the decision occurs: select the rules relevant to the work and bind them to the decision"

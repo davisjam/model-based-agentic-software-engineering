@@ -29,8 +29,24 @@
     "Absent edge = not permitted (Not “never happens”)",
     "What is allowed, required or prohibited? Analyze rules, conflicts and consistency."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
+  "redesign": "Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
   "questions": [],
-  "alt": "Two peer examples share a two-node topology. The descriptive edge says Service A calls B; the normative edge says Service A may call B. A separate crossed dashed arrow identifies an absent permission as not permitted. Text distinguishes observed fact from governing rule. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Two peer examples share a two-node topology. The descriptive edge says Service A calls B; the normative edge says Service A may call B. A separate crossed dashed arrow identifies an absent permission as not permitted. Text distinguishes observed fact from governing rule. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.2139,
+      5.8458
+    ]
+  }
 }

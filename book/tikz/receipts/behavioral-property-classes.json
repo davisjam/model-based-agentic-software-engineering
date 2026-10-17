@@ -50,8 +50,24 @@
     "Temporal property Will this eventually occur? Temporal model checking",
     "Evidence about behavior"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Model and evidence use distinct gray roles; three peer property/checker questions retained.",
+  "redesign": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
   "questions": [],
-  "alt": "One behavioral model branches to three questions: whether an edge is legal, whether a state is reachable and whether a temporal property holds. Transition checking, state-space search and temporal model checking supply corresponding behavioral evidence. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "One behavioral model branches to three questions: whether an edge is legal, whether a state is reachable and whether a temporal property holds. Transition checking, state-space search and temporal model checking supply corresponding behavioral evidence. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.2764,
+      6.1402
+    ]
+  }
 }

@@ -37,8 +37,24 @@
     "× no edge",
     "Agreement establishes correspondence, not correctness."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
+  "redesign": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
   "questions": [],
-  "alt": "Two panels compare observed calls with declared permissions. The implementation has A-to-B and A-to-C calls. The model declares A-to-B but marks A-to-C as absent with a cross. Agreement establishes correspondence, not correctness. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Two panels compare observed calls with declared permissions. The implementation has A-to-B and A-to-C calls. The model declares A-to-B but marks A-to-C as absent with a cross. Agreement establishes correspondence, not correctness. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.8514,
+      6.4653
+    ]
+  }
 }

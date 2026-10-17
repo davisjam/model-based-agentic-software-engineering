@@ -11,8 +11,8 @@
     "DONE: no re-entry",
     "INVARIANT LEASED \u21d2 exactly one valid owner FREE \u21d2 no active owner"
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
-  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "bw_encoding": "Modeled lifecycle and ownership overlay share shade; actual worker remains white; checked lease/CAS edge stays heavy. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Raised lease/CAS edge annotation clear of the ownership border.",
   "questions": [],
   "alt": "Behavior plus ownership \u2014 a lifecycle with an ownership overlay that authorizes the worker"
 }

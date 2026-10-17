@@ -209,8 +209,24 @@
     "Q: What may call what? P: Entry points, reachable calls A: Call-graph traversal",
     "Q = question · P = property · A = analysis"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Nine native mini-graphs retain the original edge endpoints and directions. Questions, properties and analyses use Q/P/A labels with an explicit legend, allowing 9pt annotations at native print size. Color backgrounds are removed; separators and labels identify peer forms.",
+  "bw_encoding": "Grayscale publication candidate. Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
+  "redesign": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
   "questions": [],
-  "alt": "Nine peer panels show component dependency, finite-state transitions, data flow, ownership, permissions, quantitative bounds, entity relations, provenance, and calls. Each retains its distinct graph and lists its question, property and analysis. Crossed dashed arrows denote a stale ownership claim and a prohibited call; quantitative inputs converge on an error rate compared with a less-than-one-percent bound. Provenance shows source and transform converging on an artifact. Black lines, labels and separators distinguish all panels without color."
+  "alt": "Nine peer panels show component dependency, finite-state transitions, data flow, ownership, permissions, quantitative bounds, entity relations, provenance, and calls. Each retains its distinct graph and lists its question, property and analysis. Crossed dashed arrows denote a stale ownership claim and a prohibited call; quantitative inputs converge on an error rate compared with a less-than-one-percent bound. Provenance shows source and transform converging on an artifact. Black lines, labels and separators distinguish all panels without color. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.6264,
+      13.9749
+    ]
+  }
 }

@@ -16,8 +16,8 @@
     "Revise / reject",
     "Admitted change"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Dashed production group receives light gray ground; acceptable region uses a distinct darker fill, restoring process-versus-tolerance separation. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Dashed production group receives light gray ground; acceptable region uses a distinct darker fill, restoring process-versus-tolerance separation.",
   "questions": [],
   "alt": "A large frame labelled SOFTWARE FACTORY contains process design above and tolerance below. The upper dashed band shows a left-to-right path: engineering intent, context / work, fabricator, realization. An annotation below the path names what process design determines: context, tools, routing, authority, and sequencing. The fabricator is one station in the process. Below, a pale-gray TOLERANCE heading defines acceptable product variation beside a bounded ACCEPTABLE REGION. Four black dots mark distinct acceptable realizations. An arrow from realization reaches the region; its measurement annotation lists tests, property-based testing, analysis, simulation, and human judgment. Two arrows leave the region: outside leads to revise / reject, and within tolerance leads to admitted change.",
   "qa": {

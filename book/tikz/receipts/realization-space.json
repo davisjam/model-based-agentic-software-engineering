@@ -12,8 +12,24 @@
     "Acceptable realizations Satisfy both",
     "Each dot is a distinct possible realization; acceptable choices retain degrees of freedom."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
+  "redesign": "Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
   "questions": [],
-  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.3515,
+      8.7442
+    ]
+  }
 }

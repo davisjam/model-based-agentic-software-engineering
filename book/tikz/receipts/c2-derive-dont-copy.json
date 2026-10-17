@@ -13,7 +13,7 @@
     "CHECK",
     "The next check sees the change: coupled to the interface, not yesterday\u2019s answer."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Same model role has same shade in both modes; stale copied snapshot is distinctly darker, with BAD/GOOD labels retained. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.2 Derive, don't copy: a snapshot goes stale while a live query stays current"

@@ -12,7 +12,7 @@ inv={Path(x['source']).stem:x for x in json.loads((O/'inventory.json').read_text
 def rows(n):return list(csv.DictReader((D/(n+'.csv')).open()))
 def esc(s):
  for a,b in [('&',r'\&'),('_',r'\_'),('%',r'\%'),('#',r'\#')]:s=s.replace(a,b)
- return s.replace('->',r'$\to$')
+ return s.replace('->',r'$\rightarrow$')
 def coords(rs,key,scale=1):return ' '.join('(%s,%g)'%(r['project_week'],float(r[key])*scale) for r in rs if r[key]!='')
 def plot(rs,key,style='',scale=1):return r'\addplot+['+style+'] coordinates {'+coords(rs,key,scale)+'};\n'
 def axis(body,options=''):return r'\begin{axis}[mage plot,'+options+']\n'+body+'\\end{axis}\n'
@@ -65,14 +65,15 @@ src=ast.parse((R/'book/figures/factory-archaeology-260925/f10_what_experience_be
 for f in fn.body:
  if isinstance(f,ast.FunctionDef):exec(compile(ast.Module(body=[f],type_ignores=[]),'category-functions','exec'),ns)
 rs=[a for a in rows('governance_conversions') if not a['recurrence_classification'].startswith('confirmation')]
-s=''; yy=0
-for group in ['deterministic / blocking','probabilistic / advisory','measurement (deliberately no hard gate)']:
- group_rs=[a for a in rs if ns['enforcement_class'](a)==group]
- s+=r'\node[anchor=west,font=\bfseries] at (0,'+str(yy)+'){'+esc(group)+f' ({len(group_rs)})'+'};\n';yy-=.55
- for a in group_rs:
-  s+=r'\node[anchor=west] at (.2,'+str(yy)+'){'+esc(ns['bucket'](a['control_type']))+r'\quad(1)};'+'\n';yy-=.5
- yy-=.25
-write('f10_what_experience_became',s,'Replaces twelve equal-length bars with a grouped count display. Exact original bucketing and enforcement classification;8 blocking2advisory2measurement; three confirmations excluded.', ['governance_conversions.csv'])
+groups=['deterministic / blocking','probabilistic / advisory','measurement (deliberately no hard gate)']
+labels=[ns['bucket'](a['control_type']) for a in rs]
+b=''
+for group,shade in zip(groups,[70,35,10]):
+ points=' '.join(f'(1,{i})' for i,a in enumerate(rs) if ns['enforcement_class'](a)==group)
+ b+=r'\addplot[draw=black,fill=black!'+str(shade)+',bar shift=0pt] coordinates {'+points+r'};'+'\n'
+b+=r'\legend{Blocking,Advisory,Measurement}'
+s=axis(b,'xbar,bar width=10pt,width=6.5cm,height=9.5cm,xmin=0,xmax=1.4,ymin=-.6,ymax=11.6,xtick={0,1},ytick={'+','.join(map(str,range(12)))+'},yticklabels={'+','.join('{'+esc(label)+'}' for label in labels)+'},y dir=reverse,xmajorgrids,ymajorgrids=false,yticklabel style={text width=5.5cm,align=right,font=\\magefigurefont\\fontsize{9}{11}\\selectfont},legend style={at={(.5,1.03)},anchor=south,legend columns=3},xlabel={Conversion episodes}')
+write('f10_what_experience_became',s,'Restores the original twelve category bars. Three distinct gray fills preserve enforcement classes: 8 blocking, 2 advisory, 2 measurement. Exact original bucketing; three confirmations excluded.', ['governance_conversions.csv'])
 # Navigation is a seven-station ordered map; markers, not colour, indicate position.
 labels=['The Problem','Modeling','Alignment','MAGE in Motion','Factories','Theory','Profession']
 for part in range(1,8):
@@ -92,9 +93,9 @@ for name in ['Prototype','Mechanization','Hardening','Loop management']:
 b=''
 for j,style in [(0,'fill=black!65'),(2,'fill=white,pattern=north east lines')]:
  for sign,k in [(1,j),(-1,j+1)]:
-  b+=r'\addplot[draw=black,'+style+',bar shift='+('-6pt' if j==0 else '6pt')+'] coordinates {'+' '.join(f'({i+1},{sign*v[k]/1000})' for i,v in enumerate(vals))+r'};'+'\n'
-b+=r'\legend{web/ added,web/ deleted,backend/ added,backend/ deleted}'
-write('churn-per-path',axis(b,'ybar,bar width=11pt,xmin=.5,xmax=4.5,ymin=-350,ymax=1000,xtick={1,2,3,4},xticklabels={Prototype,Mechanization,Hardening,{Loop management}},ytick={-250,0,500,1000},yticklabels={-250K,0,500K,1M},legend style={at={(.5,1.05)},anchor=south,legend columns=2}'),'One linear scale above and below zero replaces the original unequal positive/negative scales. All16 exact counts from the native evidence table; fills distinguish paths, sign distinguishes additions/deletions.', ['book/latex/sources/appendix-evidence-ledger/evidence-tables.tex'])
+  b+=r'\addplot[draw=black,'+style+',bar shift='+('-6pt' if j==0 else '6pt')+(',forget plot' if sign<0 else '')+'] coordinates {'+' '.join(f'({i+1},{sign*v[k]/1000})' for i,v in enumerate(vals))+r'};'+'\n'
+b+=r'\legend{Web,Backend}'
+write('churn-per-path',axis(b,'xlabel={Additions above zero; deletions below},ybar,bar width=11pt,xmin=.5,xmax=4.5,ymin=-350,ymax=1000,xtick={1,2,3,4},xticklabels={Prototype,Mechanization,Hardening,{Loop management}},ytick={-250,0,500,1000},yticklabels={-250K,0,500K,1M},legend style={at={(.5,1.05)},anchor=south,legend columns=2}'),'One linear scale above and below zero replaces the original unequal positive/negative scales. All16 exact counts from the native evidence table; fills distinguish paths, sign distinguishes additions/deletions.', ['book/latex/sources/appendix-evidence-ledger/evidence-tables.tex'])
 # Original matplotlib SVG is the only surviving weekly-series artifact located.
 # Recover integer bar counts at sub-1e-4 precision from its explicit calibrated axis.
 svg=R/'book/assets/velocity-commits-per-week.svg';tree=ET.parse(svg);ns={'s':'http://www.w3.org/2000/svg'};ax=tree.find('.//s:g[@id="axes_1"]',ns)

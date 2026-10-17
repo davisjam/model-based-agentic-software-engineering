@@ -60,8 +60,24 @@
     "Measurements",
     "Retrieve only the relations needed for the current question; no prescribed traversal order."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
+  "redesign": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
   "questions": [],
-  "alt": "A task enters through a named system entity. Connections fan out to six peer relationships: service registry, flow model, lifecycle, policy, provenance and measurements. The task retrieves only relationships needed for its question. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A task enters through a named system entity. Connections fan out to six peer relationships: service registry, flow model, lifecycle, policy, provenance and measurements. The task retrieves only relationships needed for its question. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.5764,
+      9.1837
+    ]
+  }
 }

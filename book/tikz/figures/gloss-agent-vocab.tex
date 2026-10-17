@@ -5,17 +5,17 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=4.4cm] (l0) at (0,0.0) {Application\\Your codebase};
+\node[n,text width=4.4cm,fill=black!5] (l0) at (0,0.0) {Application\\Your codebase};
 \node[n,text width=4.4cm] (r0) at (7,0.0) {Large engineering task};
-\node[n,text width=4.4cm] (l1) at (0,-1.8) {Agent Harness\\Skills · Tools · Hooks};
+\node[n,text width=4.4cm,fill=black!5] (l1) at (0,-1.8) {Agent Harness\\Skills · Tools · Hooks};
 \node[n,text width=4.4cm] (r1) at (7,-1.8) {Reasoning Horizon};
 \draw[edge] (l0) -- node[lab,right] {runs on} (l1);
 \draw[edge] (r0) -- node[lab,right] {requires} (r1);
-\node[n,text width=4.4cm] (l2) at (0,-3.6) {Foundation Model\\The trained model};
+\node[n,text width=4.4cm,fill=black!5] (l2) at (0,-3.6) {Foundation Model\\The trained model};
 \node[n,text width=4.4cm] (r2) at (7,-3.6) {Available working state\\Context window is one present limit};
 \draw[edge] (l1) -- node[lab,right] {wraps} (l2);
 \draw[edge] (r1) -- node[lab,right] {may exceed} (r2);
-\node[n,text width=4.4cm] (l3) at (0,-5.4) {Bounded working state\\Context window today};
+\node[n,text width=4.4cm,fill=black!5] (l3) at (0,-5.4) {Bounded working state\\Context window today};
 \node[n,text width=4.4cm] (r3) at (7,-5.4) {Churn};
 \draw[edge] (l2) -- node[lab,right] {bounded by} (l3);
 \draw[edge] (r2) -- node[lab,right] {contributes to} (r3);

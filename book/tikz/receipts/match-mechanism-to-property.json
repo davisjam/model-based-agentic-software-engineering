@@ -16,8 +16,8 @@
     "Separate GATE, if the verdict should control admission",
     "Alternatives selected by the property, not stages on a maturity ladder."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Engineering obligation and consequential gate separated from neutral property-selected alternatives. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Engineering obligation and consequential gate separated from neutral property-selected alternatives.",
   "questions": [],
   "alt": "An engineering obligation forks on what kind of property it is. If the invalid state can\n    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed\n    transition. If the risk is a reachable bad state or trace, a validator explores the state space through\n    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator\n    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the\n    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives\n    it consequence if the verdict should control admission.",
   "qa": {

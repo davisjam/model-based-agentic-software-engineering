@@ -14,7 +14,7 @@
     "Direct / local alignment Tests, sandboxes, permissions govern what they observe.",
     "Next move: address the highest-value gap."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Two independent dimensions: rich representation row shaded; strong enforcement column heavy border. Thin row/weak column remain white/thin. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach"

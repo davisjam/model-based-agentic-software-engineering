@@ -3,9 +3,9 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=3cm] (rules) at (-3,0) {RULES\\ the governing corpus};
-\node[box,text width=3cm] (work) at (3,0) {WORK\\ the files being changed};
-\node[gate,text width=4cm] (select) at (0,-2.2) {CONTEXT SELECTION};
+\node[box,text width=3cm,fill=black!12] (rules) at (-3,0) {RULES\\ the governing corpus};
+\node[box,text width=3cm,fill=black!5] (work) at (3,0) {WORK\\ the files being changed};
+\node[gate,text width=4cm,fill=black!22] (select) at (0,-2.2) {CONTEXT SELECTION};
 \node[box,text width=3cm] (decision) at (0,-4) {DECISION};
 \draw[optional] (rules) -- node[note,fill=white,inner sep=2pt] {relevant to} (select);
 \draw[edge] (work) -- node[note,fill=white,inner sep=2pt] {scopes} (select);

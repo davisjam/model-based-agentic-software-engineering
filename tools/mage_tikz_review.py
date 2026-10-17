@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile native monochrome candidates and place each after its original in a review book.
+"""Compile native grayscale candidates and place each after its original in a review book.
 
 Production manuscript/assets stay unchanged. Candidate PDFs are included at native
 print size with alternate text; the publisher receives the editable TikZ sources.
@@ -63,6 +63,8 @@ def compile_candidates(partial=False):
         if w>450 or h>420:raise ValueError(f"Candidate exceeds print envelope: {record['source']} ({w:.1f}x{h:.1f}pt)")
         manifest['book/'+record['source']]={'page':i,'width_pt':w,'height_pt':h}
     (BUILD/'pages.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    from tikz_audit import audit_pdf
+    audit_pdf(pdf,manifest,BUILD/'geometry-audit.json',BUILD/'geometry-audit.pdf')
     print(f'Native TikZ pool: {len(pages)} candidates, all fit at their authored text sizes.',flush=True)
     return pdf,manifest
 
@@ -76,7 +78,7 @@ def source_bundle():
             if path.is_file():archive.write(path,path.relative_to(ROOT))
         archive.writestr('main.tex',(BUILD/'candidates.tex').read_text())
         archive.writestr('README.txt',
-            'Editable MAGE B&W figure trials. Run lualatex -no-shell-escape main.tex twice from this directory.\n'
+            'Editable MAGE grayscale figure trials. Run lualatex -no-shell-escape main.tex twice from this directory.\n'
             'Requires TeX Live2025 or newer with pgfplots, preview, fontspec. Fonts are bundled under their license.\n'
             'One cropped page per candidate, ordered by book/tikz/inventory.json, then seven navigation maps.\n'
             'Receipts record source context, redesign and editorial questions. Original photograph excluded.\n')
@@ -110,7 +112,7 @@ def review_book(pool,manifest):
             label=re.search(r'\\label\{([^}]+)\}',original)
             if not label:raise ValueError('Original figure has no stable review label')
             image=candidate(source,label[1])
-            return original+'\n\\clearpage\n\\begin{figure}[p]\n\\centering\n'+image+'\n'+r'\caption*{B\&W TikZ candidate for Figure~\ref*{'+label[1]+'}. Original immediately precedes this candidate.}\n\\end{figure}\n\\clearpage\n'
+            return original+'\n\\clearpage\n\\begin{figure}[p]\n\\centering\n'+image+'\n'+r'\caption*{Grayscale TikZ candidate for Figure~\ref*{'+label[1]+'}. Original immediately precedes this candidate.}\n\\end{figure}\n\\clearpage\n'
         text=re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}',paired,text,flags=re.S)
         # Orientation maps are inline graphics, outside numbered figure environments.
         for start,end,options,path in reversed(list(mage_assets.graphics(text))):
@@ -122,7 +124,7 @@ def review_book(pool,manifest):
             m=re.fullmatch(r'book/(?:latex/)?assets/nav-subway-p(\d+)\.(?:pdf|svg)',source)
             if m:
                 source=f'book/assets/nav-subway-p{m[1]}.svg'
-                text=text[:end]+'\n\\par\\medskip\n'+candidate(source,'navigation-'+m[1])+r'\par{\small B\&W TikZ navigation candidate.}\par'+'\n'+text[end:]
+                text=text[:end]+'\n\\par\\medskip\n'+candidate(source,'navigation-'+m[1])+r'\par{\small Grayscale TikZ navigation candidate.}\par'+'\n'+text[end:]
         chapter.write_text(text)
     expected=set(manifest)
     actual=[p['source'] for p in pairings]

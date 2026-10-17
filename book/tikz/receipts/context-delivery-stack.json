@@ -11,7 +11,7 @@
     "POINT-OF-ACTION reminder / deterministic gate",
     "Dashed: enhancement. Context aids reasoning; critical decidable obligations need controls."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Knowledge/action endpoints differ from intermediate context delivery; dashed reinforcement remains optional. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "The Context-Delivery stack: standing policy and a retrieved task slice compose into\n    actor context that reaches the action; point-of-action reinforcement is a dashed enhancement"

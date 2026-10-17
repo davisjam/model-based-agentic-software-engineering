@@ -10,8 +10,8 @@
     "Governed engineering environment\\ attempts realization; mechanisms enforce selected obligations",
     "Realized work"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Support, enforcement, and their combined environment are visually distinct; existing dashed support-to-enforcement transition retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Support, enforcement, and their combined environment are visually distinct; existing dashed support-to-enforcement transition retained.",
   "questions": [],
   "alt": "Recurring engineering work exposes a judgment and is handled by engineering the environment. The\n    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and\n    enforces selected obligations — constraints, validators, permissions, gates, checks. A dashed arrow from\n    support to enforcement marks the recurring move of adding enforcement where feasible. The governed engineering\n    environment then hosts realization, enforcement mechanisms act on selected obligations, and work is realized. A\n    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and\n    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring\n    judgment can be encoded economically.",
   "qa": {

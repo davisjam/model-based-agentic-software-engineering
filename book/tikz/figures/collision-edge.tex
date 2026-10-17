@@ -4,11 +4,11 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[box,text width=5cm] (a) at (-3.6,0) {\textbf{Control A}\\requires a squashed commit};
-\node[box,text width=5cm] (b) at (3.6,0) {\textbf{Control B}\\rejects a broad diff};
-\node[head,text width=4cm] (r) at (0,-2.1) {COMMIT SET\\shared resource};
+\node[box,text width=5cm,fill=black!10] (a) at (-3.6,0) {\textbf{Control A}\\requires a squashed commit};
+\node[box,text width=5cm,fill=black!10] (b) at (3.6,0) {\textbf{Control B}\\rejects a broad diff};
+\node[head,text width=4cm,fill=black!0] (r) at (0,-2.1) {COMMIT SET\\shared resource};
 \draw[edge,] (a) -- node[midway,note,fill=white] {acts on} (r);
 \draw[edge,] (b) -- node[midway,note,fill=white] {acts on} (r);
-\node[box,dashed,text width=8cm] (c) at (0,-4) {\textbf{Incompatible demands}\\the conflict lives in the relation, not either control};
+\node[box,dashed,text width=8cm,fill=black!28] (c) at (0,-4) {\textbf{Incompatible demands}\\the conflict lives in the relation, not either control};
 \draw[edge,] (r) -- (c);
 \end{tikzpicture}

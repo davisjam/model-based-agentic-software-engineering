@@ -5,7 +5,7 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[head,text width=4.3cm] (h0) at (0.0,0.2) {Component / dependency};
+\node[head,text width=4.3cm,fill=black!30] (h0) at (0.0,0.2) {Component / dependency};
 \node[note,text width=1.3cm] (m00) at (0.0,-0.39999999999999997) {UI};
 \node[note,text width=1.3cm] (m01) at (0.0,-1.0) {API};
 \node[note,text width=1.3cm] (m02) at (-1.2,-1.7) {DB};
@@ -16,7 +16,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation0) at (0.0,-2.1) {Depends on; reaches};
 \node[note,anchor=north,text width=4.35cm] (q0) at (0.0,-2.4) {Q: What depends on what?\\P: Reachability, layering, forbidden edges\\A: Traversal, cycles, paths};
 \draw[black!25] (2.4,0.3)--(2.4,-4.1);
-\node[head,text width=4.3cm] (h1) at (4.8,0.2) {Finite-state};
+\node[head,text width=4.3cm,fill=black!20] (h1) at (4.8,0.2) {Finite-state};
 \node[note,text width=1cm] (m10) at (3.1999999999999997,-0.6000000000000001) {IDLE};
 \node[note,text width=1.6cm] (m11) at (4.8,-0.6000000000000001) {RUNNING};
 \node[note,text width=1cm] (m12) at (6.4,-0.6000000000000001) {DONE};
@@ -27,7 +27,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation1) at (4.8,-2.1) {May become};
 \node[note,anchor=north,text width=4.35cm] (q1) at (4.8,-2.4) {Q: What may happen next?\\P: Legal states, safety, liveness\\A: Model checking; search};
 \draw[black!25] (7.199999999999999,0.3)--(7.199999999999999,-4.1);
-\node[head,text width=4.3cm] (h2) at (9.6,0.2) {Data-flow};
+\node[head,text width=4.3cm,fill=black!30] (h2) at (9.6,0.2) {Data-flow};
 \node[note,text width=1.2cm] (m20) at (8.0,-0.6000000000000001) {INPUT};
 \node[note,text width=1.2cm] (m21) at (9.6,-0.6000000000000001) {PARSE};
 \node[note,text width=1.3cm] (m22) at (11.2,-0.6000000000000001) {MODEL};
@@ -37,7 +37,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (m22) -- (m23);
 \node[note,text width=4.35cm] (relation2) at (9.6,-2.1) {Flows to};
 \node[note,anchor=north,text width=4.35cm] (q2) at (9.6,-2.4) {Q: Where does data flow?\\P: Sources, sinks, paths, transforms\\A: Flow, taint, dependencies};
-\node[head,text width=4.3cm] (h3) at (0.0,-4.2) {Ownership / resource};
+\node[head,text width=4.3cm,fill=black!20] (h3) at (0.0,-4.2) {Ownership / resource};
 \node[note,text width=1.9cm] (m30) at (-1.2,-4.9) {Worker A};
 \node[note,text width=1.5cm] (m31) at (1.2,-5.4) {Job 42};
 \node[note,text width=1.9cm] (m32) at (-1.2,-6.0) {Worker B};
@@ -47,7 +47,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation3) at (0.0,-6.5) {Owns; stale claim (dashed)};
 \node[note,anchor=north,text width=4.35cm] (q3) at (0.0,-6.800000000000001) {Q: Who may control what?\\P: Exclusivity, transfer, reclaim\\A: Interleavings; invariants};
 \draw[black!25] (2.4,-4.1000000000000005)--(2.4,-8.5);
-\node[head,text width=4.3cm] (h4) at (4.8,-4.2) {Decision / policy};
+\node[head,text width=4.3cm,fill=black!15] (h4) at (4.8,-4.2) {Decision / policy};
 \node[note,text width=1.3cm] (m40) at (3.5,-5.4) {WEB};
 \node[note,text width=1.3cm] (m41) at (6.0,-4.8) {API};
 \node[note,text width=1.3cm] (m42) at (6.0,-6.0) {DB};
@@ -57,7 +57,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation4) at (4.8,-6.5) {May call; dashed = prohibited};
 \node[note,anchor=north,text width=4.35cm] (q4) at (4.8,-6.800000000000001) {Q: What is permitted?\\P: Consistency, exclusion, implication\\A: Rules; constraint checks};
 \draw[black!25] (7.199999999999999,-4.1000000000000005)--(7.199999999999999,-8.5);
-\node[head,text width=4.3cm] (h5) at (9.6,-4.2) {Quantitative};
+\node[head,text width=4.3cm,fill=black!5] (h5) at (9.6,-4.2) {Quantitative};
 \node[note,text width=1.7cm] (m50) at (8.0,-4.8) {requests};
 \node[note,text width=1.4cm] (m51) at (8.0,-6.0) {errors};
 \node[note,text width=1.5cm] (m52) at (9.6,-5.4) {error rate};
@@ -67,7 +67,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (m52) -- (m53);
 \node[note,text width=4.35cm] (relation5) at (9.6,-6.5) {Compare error rate to bound};
 \node[note,anchor=north,text width=4.35cm] (q5) at (9.6,-6.800000000000001) {Q: How much / what bound?\\P: Budget, margin, capacity, rate\\A: Aggregate / optimize};
-\node[head,text width=4.3cm] (h6) at (0.0,-8.600000000000001) {Entity / schema};
+\node[head,text width=4.3cm,fill=black!30] (h6) at (0.0,-8.600000000000001) {Entity / schema};
 \node[note,text width=1.3cm] (m60) at (-1.3,-9.8) {USER};
 \node[note,text width=2.1cm] (m61) at (1.0,-9.200000000000001) {DOCUMENT};
 \node[note,text width=1.3cm] (m62) at (1.0,-10.400000000000002) {ORG};
@@ -76,7 +76,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation6) at (0.0,-10.9) {owns / memberOf};
 \node[note,anchor=north,text width=4.35cm] (q6) at (0.0,-11.200000000000001) {Q: Entities and relations?\\P: Keys, cardinality, references\\A: Joins; schema checking};
 \draw[black!25] (2.4,-8.5)--(2.4,-12.9);
-\node[head,text width=4.3cm] (h7) at (4.8,-8.600000000000001) {Provenance / derivation};
+\node[head,text width=4.3cm,fill=black!5] (h7) at (4.8,-8.600000000000001) {Provenance / derivation};
 \node[note,text width=1.6cm] (m70) at (3.5999999999999996,-9.3) {SOURCE};
 \node[note,text width=2.2cm] (m71) at (5.9,-9.3) {TRANSFORM};
 \node[note,text width=2cm] (m72) at (4.8,-10.500000000000002) {ARTIFACT};
@@ -85,7 +85,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[note,text width=4.35cm] (relation7) at (4.8,-10.9) {sourceOf / produced};
 \node[note,anchor=north,text width=4.35cm] (q7) at (4.8,-11.200000000000001) {Q: What produced this?\\P: Attribution, lineage, evidence\\A: Lineage / audit traversal};
 \draw[black!25] (7.199999999999999,-8.5)--(7.199999999999999,-12.9);
-\node[head,text width=4.3cm] (h8) at (9.6,-8.600000000000001) {Call / control-flow};
+\node[head,text width=4.3cm,fill=black!30] (h8) at (9.6,-8.600000000000001) {Call / control-flow};
 \node[note,text width=1.2cm] (m80) at (7.85,-9.400000000000002) {main()};
 \node[note,text width=1.4cm] (m81) at (9.4,-9.400000000000002) {handle()};
 \node[note,text width=1.65cm] (m82) at (11.25,-9.400000000000002) {validate()};

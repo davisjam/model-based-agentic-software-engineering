@@ -9,7 +9,7 @@
     "LIVE PRESSURE tighten / relax when justified",
     "N = 1 and N > 1 are settings of the same mediator. Solid: required. Dashed: enhancement."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Policy and mediator form the governing pair; resource remains white and pressure dashed. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "The Resource-Mediation stack: a declared resource policy routes all access through one\n    mediator to a shared resource; live pressure is a dashed enhancement"

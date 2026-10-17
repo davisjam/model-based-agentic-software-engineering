@@ -6,19 +6,19 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[n,text width=3cm] (internet) at (0,0) {Internet};
-\node[n,text width=3cm] (web) at (0,-1.6) {web};
+\node[n,text width=3cm,fill=black!20] (web) at (0,-1.6) {web};
 \draw[edge] (internet) -- (web);
-\node[n,text width=3.4cm] (c0) at (-4.5,-3.4) {worker};
+\node[n,text width=3.4cm,fill=black!20] (c0) at (-4.5,-3.4) {worker};
 \draw[edge] (web) -- (c0);
-\node[n,text width=3.4cm] (c1) at (0.0,-3.4) {document editor};
+\node[n,text width=3.4cm,fill=black!20] (c1) at (0.0,-3.4) {document editor};
 \draw[edge] (web) -- (c1);
-\node[n,text width=3.4cm] (c2) at (4.5,-3.4) {other};
+\node[n,text width=3.4cm,fill=black!20] (c2) at (4.5,-3.4) {other};
 \draw[edge] (web) -- (c2);
-\node[n,text width=2.7cm] (s0) at (-3.6,-5.4) {generation};
+\node[n,text width=2.7cm,fill=black!20] (s0) at (-3.6,-5.4) {generation};
 \draw[edge] (c0) -- (s0);
-\node[n,text width=2.7cm] (s1) at (0.0,-5.4) {render};
+\node[n,text width=2.7cm,fill=black!20] (s1) at (0.0,-5.4) {render};
 \draw[edge] (c0) -- (s1);
-\node[n,text width=2.7cm] (s2) at (3.6,-5.4) {OCR};
+\node[n,text width=2.7cm,fill=black!20] (s2) at (3.6,-5.4) {OCR};
 \draw[edge] (c0) -- (s2);
 \node[note,text width=10cm] (key) at (0,-6.8) {Each arrow declares a permitted relationship.};
 \end{tikzpicture}

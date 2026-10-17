@@ -7,3 +7,4 @@
 pillow>=10   # PIL.Image: rasterized-page pixel analysis
 numpy>=1.26  # vectorized pixel-band math backing the coverage measurement
 pypdf>=6,<7  # inspect PDF structure roles and figure alternative text
+pymupdf>=1.24,<2  # compiled TikZ text/vector geometry and paint-order audit

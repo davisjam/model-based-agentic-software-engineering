@@ -65,8 +65,24 @@
     "Breadth · industrial accounts Variation and alternatives",
     "A stronger basis for theory Comparison refines; it does not validate."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
+  "redesign": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
   "questions": [],
-  "alt": "Five stages descend: the longitudinal DocAble case, early MAGE, independent industrial accounts, comparative reconstruction and MAGE theory. Separate branches attribute depth to the originating case and breadth to the industrial accounts; together they strengthen the theory’s basis. Comparative reconstruction refines rather than validates the theory. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Five stages descend: the longitudinal DocAble case, early MAGE, independent industrial accounts, comparative reconstruction and MAGE theory. Separate branches attribute depth to the originating case and breadth to the industrial accounts; together they strengthen the theory’s basis. Comparative reconstruction refines rather than validates the theory. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      11.2764,
+      12.8201
+    ]
+  }
 }

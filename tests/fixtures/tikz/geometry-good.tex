@@ -1,0 +1,12 @@
+\documentclass{article}
+\newcommand{\DoNotLoadEpstopdf}{}
+\usepackage{tikz}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont]
+\node[draw,fill=black!10,minimum width=3cm,minimum height=1cm] (a) at (0,0) {Evidence};
+\node[draw,fill=black!25,minimum width=3cm,minimum height=1cm] (b) at (5,0) {Theory};
+\draw[->,dashed] (a)--node[fill=white,inner sep=3pt] {informs}(b);
+\end{tikzpicture}
+\end{document}

@@ -5,10 +5,10 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=2.5cm] (web) at (0,0) {WEB};
-\node[n,text width=2.5cm] (api) at (4,0) {API};
-\node[n,text width=2.8cm] (db) at (8,1.5) {DATABASE};
-\node[n,text width=2.8cm] (cache) at (8,-1.5) {CACHE};
+\node[n,text width=2.5cm,fill=black!15] (web) at (0,0) {WEB};
+\node[n,text width=2.5cm,fill=black!15] (api) at (4,0) {API};
+\node[n,text width=2.8cm,fill=black!15] (db) at (8,1.5) {DATABASE};
+\node[n,text width=2.8cm,fill=black!15] (cache) at (8,-1.5) {CACHE};
 \draw[edge] (web) -- node[lab,above=12pt] {depends on} (api);
 \draw[edge] (api) -- node[lab,above] {reaches} (db);
 \draw[edge] (api) -- node[lab,below] {reaches} (cache);

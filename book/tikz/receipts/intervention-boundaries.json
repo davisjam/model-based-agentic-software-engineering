@@ -14,8 +14,24 @@
     "Enforced only through a consuming mechanism",
     "Choose the earliest boundary where the obligation is legible and the consequence can be affected."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
+  "redesign": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
   "questions": [],
-  "alt": "Four boundaries are ordered by semantic grain: reasoning input, action, work unit and artifact or runtime. Reasoning input is grouped as guidance. The remaining three are grouped where enforcement can occur. Labels give mechanisms at each boundary and state that the order does not rank enforcement strength. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Four boundaries are ordered by semantic grain: reasoning input, action, work unit and artifact or runtime. Reasoning input is grouped as guidance. The remaining three are grouped where enforcement can occur. Labels give mechanisms at each boundary and state that the order does not rank enforcement strength. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.8325,
+      6.8513
+    ]
+  }
 }

@@ -3,12 +3,12 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm] (n0) at (0,0.0) {CONTROL MACHINERY\\ rules · gates · models · sensors};
+\node[box,text width=4cm,fill=black!20] (n0) at (0,0.0) {CONTROL MACHINERY\\ rules · gates · models · sensors};
 \node[box,text width=4cm] (n1) at (0,-1.9) {GAPS / COUPLING\\ weak, stale, or entangled?};
 \draw[edge] (n0) -- (n1);
-\node[box,text width=4cm] (n2) at (0,-3.8) {INTERPRET\\ failure class $\rightarrow$ durable control};
+\node[box,text width=4cm,fill=black!20] (n2) at (0,-3.8) {INTERPRET\\ failure class $\rightarrow$ durable control};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=4cm] (n3) at (0,-5.699999999999999) {UPDATE ESTATE};
+\node[box,text width=4cm,fill=black!8] (n3) at (0,-5.699999999999999) {UPDATE ESTATE};
 \draw[edge] (n2) -- (n3);
 \draw[edge] (n3.east) -- ++(2,0) |- (n0.east);
 \node[note,text width=1.5cm] (t13) at (5,-2.8) {next\\ iteration};

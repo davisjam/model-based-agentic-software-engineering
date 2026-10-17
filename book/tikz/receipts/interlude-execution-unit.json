@@ -16,8 +16,8 @@
     "Pages 21--30 worker",
     "Each worker holds less document state; media representation is unchanged."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Single resident execution versus partitioned workers distinguished while retaining input/output neutrality. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Single resident execution versus partitioned workers distinguished while retaining input/output neutrality.",
   "questions": [],
   "alt": "Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes\n    worker that holds the full document state and its media resident in memory, sources GenAI requests from\n    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range\n    partitions, each handled by a smaller worker holding only its range; the results are recombined into the\n    output. Chunking lowers per-worker memory without changing how document media is represented.",
   "qa": {

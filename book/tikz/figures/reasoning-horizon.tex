@@ -6,10 +6,10 @@ note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
 \node[n,text width=8cm] (limit) at (0,0) {Task exceeds finite active state\\Some reasoning state must be reconstructed};
-\node[strong,text width=7cm] (rep) at (0,-1.8) {Representation matters\\Determines how much must be reconstructed};
+\node[strong,text width=7cm,fill=black!30] (rep) at (0,-1.8) {Representation matters\\Determines how much must be reconstructed};
 \draw[edge] (limit) -- (rep);
-\node[n,text width=5.6cm] (p0) at (-3.5,-4) {Raw implementation\\Large active state\\Repeated reconstruction\\Relevant structure may be lost\\Churn};
+\node[n,text width=5.6cm,fill=black!5] (p0) at (-3.5,-4) {Raw implementation\\Large active state\\Repeated reconstruction\\Relevant structure may be lost\\Churn};
 \draw[edge] (rep) -- (p0);
-\node[n,text width=5.6cm] (p1) at (3.5,-4) {Purposeful abstraction\\Smaller relevant state\\Lower reconstruction burden\\Longer coherent reasoning};
+\node[n,text width=5.6cm,fill=black!15] (p1) at (3.5,-4) {Purposeful abstraction\\Smaller relevant state\\Lower reconstruction burden\\Longer coherent reasoning};
 \draw[edge] (rep) -- (p1);
 \end{tikzpicture}

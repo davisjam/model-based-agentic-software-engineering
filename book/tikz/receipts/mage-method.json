@@ -85,8 +85,24 @@
     "Governance conversion Recurring failures and judgment adapt models and controls",
     "Greater scope reopens the reasoning problem"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
+  "redesign": "Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
   "questions": [],
-  "alt": "A downward causal spine links scale and finite reasoning, a new engineering imbalance, Modeling, Alignment, a governed engineering environment and engineering capital. Commodity intelligence enters laterally at the imbalance. Dashed failure paths lead to churn; conversion feedback adapts models and controls. A dotted outer feedback path shows accumulated capital expanding scope and reopening the reasoning problem. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A downward causal spine links scale and finite reasoning, a new engineering imbalance, Modeling, Alignment, a governed engineering environment and engineering capital. Commodity intelligence enters laterally at the imbalance. Dashed failure paths lead to churn; conversion feedback adapts models and controls. A dotted outer feedback path shows accumulated capital expanding scope and reopening the reasoning problem. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.486,
+      12.4919
+    ]
+  }
 }

@@ -8,7 +8,7 @@
     "CLAIM: does reality still satisfy the model? Catches a wrong modeled fact.",
     "COVERAGE: did something important appear outside the model? Catches unmodeled reality."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Claimed model is shaded versus white realized system; both directional checks remain explicit. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "C.3 Keep representation and reality in correspondence, checked in both directions"

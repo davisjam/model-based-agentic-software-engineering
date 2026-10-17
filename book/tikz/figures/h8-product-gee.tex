@@ -17,11 +17,11 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \node[box,text width=6cm] (knowledge) at (0,-5.8) {CONNECTED ENGINEERING KNOWLEDGE};
 \draw[edge] (ops) -- (knowledge);
 \draw[edge] (assure) -- (knowledge);
-\node[box,text width=4.5cm] (reason) at (-3,-7.7) {AUTONOMOUS REASONING\\ reconstruction · synthesis\\ novel judgment · open choices};
-\node[box,text width=4.5cm] (align) at (3,-7.7) {ALIGNMENT\\ constraints · validators\\ permissions · gates};
+\node[box,text width=4.5cm,fill=black!7] (reason) at (-3,-7.7) {AUTONOMOUS REASONING\\ reconstruction · synthesis\\ novel judgment · open choices};
+\node[box,text width=4.5cm,fill=black!22] (align) at (3,-7.7) {ALIGNMENT\\ constraints · validators\\ permissions · gates};
 \draw[edge] (knowledge) -- (reason);
 \draw[edge] (knowledge) -- (align);
-\node[gate,text width=6cm] (gee) at (0,-9.7) {GOVERNED ENGINEERING ENVIRONMENT};
+\node[gate,text width=6cm,fill=black!22] (gee) at (0,-9.7) {GOVERNED ENGINEERING ENVIRONMENT};
 \draw[edge] (reason) -- (gee);
 \draw[edge] (align) -- (gee);
 \node[box,text width=3cm] (product) at (0,-11.2) {PRODUCT};

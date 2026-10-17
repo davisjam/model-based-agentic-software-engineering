@@ -33,7 +33,7 @@
     "reusable engineering vocabulary",
     "Weak detectors / retrieval / clustering \u2192 contextual comparison \u2192 engineering judgment. The agent finds repetition and proposes structure; the engineer adopts and names the concept."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Explicit vocabulary row light gray and future reuse row darker; discovery stages white. Solid grounded versus dashed inferred columns retained. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Four parallel lanes retained, with explicit short labels and 1.95 cm row centers. Grounded software versus inferred extensions remains encoded by solid/dashed boundaries. Long examples abbreviated (PdfModel and JobId retained; MutationSpec omitted); CAD interfaces retained in named-feature row. Footer condenses method into detection, contextual comparison, and engineering adoption. No change to six-stage topology.",
   "questions": [],
   "alt": "Models can be induced from the work: the same abstraction move \u2014 repeated form to named model \u2014 runs in software, knowledge work, and CAD"

@@ -15,8 +15,8 @@
 \draw[edge,] (p1) -- (p2);
 \draw[edge,] (p2) -- (p3);
 \node[note,text width=12cm] (det) at (0,-3.9) {\textbf{Context; tools; routing; authority; sequencing}\\what process design determines};
-\node[head,text width=4cm] (tol) at (-4.7,-7) {TOLERANCE\\acceptable product variation};
-\node[box,text width=7.7cm] (region) at (2,-7.7) {ACCEPTABLE REGION\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
+\node[head,text width=4cm,fill=black!20] (tol) at (-4.7,-7) {TOLERANCE\\acceptable product variation};
+\node[box,text width=7.7cm,fill=black!20] (region) at (2,-7.7) {ACCEPTABLE REGION\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
 \draw[edge] (p3.south)--(5.4,-6.6)--(region.north east);
 \node[note,text width=5.5cm] (meas) at (2,-6.1) {Measurement: tests, PBT, analysis, simulation, human judgment};
 \node[box,text width=3.6cm] (rev) at (-0.3,-10) {Revise / reject};
@@ -24,4 +24,7 @@
 \draw[edge,] (region) -- node[midway,note,fill=white] {outside} (rev);
 \draw[edge,] (region) -- node[midway,note,fill=white] {within tolerance} (adm);
 \draw[black!40] (-7.3,.5) rectangle (7.3,-10.7);
+\begin{scope}[on background layer]
+\fill[black!5] (-7,-1.7) rectangle (7,-4.8);
+\end{scope}
 \end{tikzpicture}

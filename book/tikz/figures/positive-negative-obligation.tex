@@ -10,7 +10,7 @@
 \node[box,dashed,text width=4cm] (b) at (-3.5,-3.5) {Raw library};
 \draw[dashed] (a) -- node[note,fill=white] {must not call $\times$} (b);
 \node[box,text width=4cm] (c) at (3.5,-1.4) {Mutation verb};
-\node[box,text width=4cm] (d) at (3.5,-3.5) {\textbf{MUST stamp}\\emit attribution evidence};
+\node[box,text width=4cm,fill=black!28] (d) at (3.5,-3.5) {\textbf{MUST stamp}\\emit attribution evidence};
 \draw[edge,] (c) -- node[midway,right,note,fill=white] {must call} (d);
 \node[note,text width=12cm] (nt) at (0,-4.8) {Both source-time rules restrict the admissible implementation space.};
 \end{tikzpicture}

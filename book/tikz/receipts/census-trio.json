@@ -22,8 +22,8 @@
     "Coverage gap",
     "Stable identities join three views; each answers a different engineering question."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional.",
   "questions": [],
   "alt": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs.",
   "qa": {

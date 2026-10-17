@@ -11,8 +11,8 @@
     "COVERAGE obligation \u2192 evidence",
     "All paths required; choose evidence appropriate to each property."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
-  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
+  "bw_encoding": "Coverage is the joined result, distinct from obligation/evidence preparation. All text black; fills are grayscale and redundant with labels, position or border style.",
+  "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Increased SPEC/CENSUS separation by 4.5 mm.",
   "questions": [],
   "alt": "The Assurance stack: a spec becomes a census of obligations, each discharged by\n    appropriate evidence, joined back into coverage"
 }

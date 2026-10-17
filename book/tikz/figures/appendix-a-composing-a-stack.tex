@@ -3,20 +3,20 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4cm] (n0) at (0,0.0) {CAPABILITY};
+\node[box,text width=4cm,fill=black!12] (n0) at (0,0.0) {CAPABILITY};
 \node[box,text width=4cm] (n1) at (0,-1.25) {What makes this false?};
 \draw[edge] (n0) -- (n1);
-\node[box,text width=4cm] (n2) at (0,-2.5) {FAILURE CLASSES};
+\node[box,text width=4cm,fill=black!22,line width=1pt] (n2) at (0,-2.5) {FAILURE CLASSES};
 \draw[edge] (n1) -- (n2);
-\node[box,text width=2.5cm] (g0) at (-4,-4) {guarantee};
+\node[box,text width=2.5cm,fill=black!6] (g0) at (-4,-4) {guarantee};
 \node[box,text width=2.5cm] (m0) at (-4,-5.4) {mechanism};
 \draw[edge] (n2) -- (g0);
 \draw[edge] (g0) -- (m0);
-\node[box,text width=2.5cm] (g1) at (0,-4) {guarantee};
+\node[box,text width=2.5cm,fill=black!6] (g1) at (0,-4) {guarantee};
 \node[box,text width=2.5cm] (m1) at (0,-5.4) {mechanism};
 \draw[edge] (n2) -- (g1);
 \draw[edge] (g1) -- (m1);
-\node[box,text width=2.5cm] (g2) at (4,-4) {guarantee};
+\node[box,text width=2.5cm,fill=black!6] (g2) at (4,-4) {guarantee};
 \node[box,text width=2.5cm] (m2) at (4,-5.4) {mechanism};
 \draw[edge] (n2) -- (g2);
 \draw[edge] (g2) -- (m2);
@@ -24,8 +24,8 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[edge] (m0) -- (dep);
 \draw[edge] (m1) -- (dep);
 \draw[edge] (m2) -- (dep);
-\node[box,text width=5cm] (comp) at (0,-8.4) {LOAD-BEARING COMPOSITION};
-\node[box,text width=4cm] (stack) at (0,-9.8) {ENGINEERING STACK};
+\node[box,text width=5cm,fill=black!22] (comp) at (0,-8.4) {LOAD-BEARING COMPOSITION};
+\node[box,text width=4cm,fill=black!12] (stack) at (0,-9.8) {ENGINEERING STACK};
 \draw[edge] (dep) -- (comp);
 \draw[edge] (comp) -- (stack);
 \end{tikzpicture}

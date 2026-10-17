@@ -5,11 +5,11 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \node[head,text width=12cm] (h) at (0,0) {Active alignment: convergence};
-\node[box,text width=2.1cm] (a0) at (-5.5,-1.5) {Models $M$};
-\node[box,text width=2.1cm] (a1) at (-2.75,-1.5) {Compare\\detect gaps};
-\node[box,text width=2.1cm] (a2) at (0.0,-1.5) {Modify\\with agents};
-\node[box,text width=2.1cm] (a3) at (2.75,-1.5) {Evaluate\\check alignment};
-\node[box,text width=2.1cm] (a4) at (5.5,-1.5) {Aligned\\system $S'$ };
+\node[box,text width=2.1cm,fill=black!15] (a0) at (-5.5,-1.5) {Models $M$};
+\node[box,text width=2.1cm,fill=black!28] (a1) at (-2.75,-1.5) {Compare\\detect gaps};
+\node[box,text width=2.1cm,fill=black!8] (a2) at (0.0,-1.5) {Modify\\with agents};
+\node[box,text width=2.1cm,fill=black!28] (a3) at (2.75,-1.5) {Evaluate\\check alignment};
+\node[box,text width=2.1cm,fill=black!15] (a4) at (5.5,-1.5) {Aligned\\system $S'$ };
 \draw[edge,] (a0) -- (a1);
 \draw[edge,] (a1) -- (a2);
 \draw[edge,] (a2) -- (a3);
@@ -19,13 +19,16 @@
 \draw[edge,draw=none] (h.south) -- (ph.north);
 \node[note,text width=10cm] (handoff) at (0,-3.5) {Once active alignment succeeds, retain the models and mechanisms.};
 \node[box,text width=3cm] (ch) at (-4.7,-6) {Proposed change $\Delta S$};
-\node[box,text width=2.2cm] (m) at (0,-5.1) {Models $M$};
-\node[box,text width=3.5cm] (ev) at (0,-6.3) {Evaluate against models};
-\node[box,text width=2.6cm] (out) at (4.7,-6.3) {Updated system $S'$};
+\node[box,text width=2.2cm,fill=black!15] (m) at (0,-5.1) {Models $M$};
+\node[box,text width=3.5cm,fill=black!28] (ev) at (0,-6.3) {Evaluate against models};
+\node[box,text width=2.6cm,fill=black!15] (out) at (4.7,-6.3) {Updated system $S'$};
 \draw[edge,] (ch) -- (ev);
 \draw[edge,] (m) -- (ev);
 \draw[edge,] (ev) -- node[midway,above,yshift=.65cm,note,fill=white] {admit / reject} (out);
 \draw[edge] (out.south)--(4.7,-7.6)--node[note,below] {continue protecting correspondence}(-4.7,-7.6)--(ch.south);
 \node[note,text width=12cm] (nt) at (0,-8.8) {Models, mechanisms, and governance remain as engineering capital for every change.};
 \draw[edge] (6.5,-2.8)--(6.5,-3.9);
+\begin{scope}[on background layer]
+\fill[black!9] (-7,.45) rectangle (7,-3.1);\fill[black!3] (-7,-3.9) rectangle (7,-8.1);
+\end{scope}
 \end{tikzpicture}

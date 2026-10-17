@@ -31,8 +31,24 @@
     "Checker Model check · drift lint · validator",
     "One executable-model pattern, not the definition of executability."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
+  "redesign": "Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
   "questions": [],
-  "alt": "Three nodes run left to right: a structured model supports invariants, which are evaluated by a checker. A dashed feedback edge from the checker returns to the invariants, identifying recurring failure as a reason for a new or refined invariant. The lease example states that leased is equivalent to owner exists. This is one executable-model pattern, not the definition of executability. Black lines, white nodes and explicit labels carry the meaning without color."
+  "alt": "Three nodes run left to right: a structured model supports invariants, which are evaluated by a checker. A dashed feedback edge from the checker returns to the invariants, identifying recurring failure as a reason for a new or refined invariant. The lease example states that leased is equivalent to owner exists. This is one executable-model pattern, not the definition of executability. Black lines, white nodes and explicit labels carry the meaning without color. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.9764,
+      5.2413
+    ]
+  }
 }

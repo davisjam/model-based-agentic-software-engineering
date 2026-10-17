@@ -4,9 +4,9 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[box,text width=3.3cm] (a) at (0,0) {Audit-only\\reports, blocks nothing};
-\node[box,text width=3.5cm] (z) at (4.7,0) {Findings $\to 0$\\fix wave drains them};
-\node[head,text width=3.4cm] (b) at (9.5,0) {Blocking\\fails regressing commits};
+\node[box,text width=3.3cm,fill=black!0] (a) at (0,0) {Audit-only\\reports, blocks nothing};
+\node[box,text width=3.5cm,fill=black!10] (z) at (4.7,0) {Findings $\to 0$\\fix wave drains them};
+\node[head,text width=3.4cm,fill=black!28] (b) at (9.5,0) {Blocking\\fails regressing commits};
 \draw[edge,] (a) -- node[midway,above,yshift=.9cm,note,fill=white] {land} (z);
 \draw[edge,] (z) -- node[midway,above,yshift=.9cm,note,fill=white] {only at zero} (b);
 \draw[edge] (z.south west) -- (3,-1.6) -- (6.4,-1.6) -- (z.south east);\node[note,text width=6cm] at (4.7,-2.3) {Behavior-preserving fixes under test coverage};

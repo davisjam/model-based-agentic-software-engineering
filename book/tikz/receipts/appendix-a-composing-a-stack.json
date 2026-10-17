@@ -16,7 +16,7 @@
     "LOAD-BEARING COMPOSITION",
     "ENGINEERING STACK"
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Capability and resulting stack share a shade; failure diagnosis and composition emphasized; guarantees differ from mechanisms. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
   "alt": "From failure class to engineering stack: begin with a capability and the ways it can\n    fail, select mechanisms for the guarantees that close those failures, then keep only the load-bearing\n    composition"

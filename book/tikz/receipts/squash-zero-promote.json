@@ -8,8 +8,8 @@
     "Blocking\\ regressing commits",
     "Detected violations block re-entry."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable.",
+  "bw_encoding": "Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved.",
   "questions": [],
   "alt": "A new smell-detecting lint moves through three states, left to right. First it lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains the finding count to zero; this is drawn as a loop beneath the Findings to zero box and runs while the lint remains audit-only until nothing is left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the class of smell can never return. Squash the findings, drive them to zero, then promote — and the smells that leave stay gone.",
   "qa": {

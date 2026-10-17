@@ -3,43 +3,37 @@
   "chapter": "2.5-system-knowledge",
   "claim": "*Attribution provenance model.* A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.",
   "topology": {
-    "description": "Run contains many operation records; each contains provenance fields; derived views secondary.",
+    "description": "Run contains operation records; each record encloses its four provenance fields; views derive from the record.",
     "relations": [
       [
         "run",
-        "op",
+        "record",
         "contains",
-        ""
+        "solid"
       ],
       [
-        "op",
-        "f0",
-        "",
-        "-"
-      ],
-      [
-        "op",
-        "f1",
-        "",
-        "-"
-      ],
-      [
-        "op",
-        "f2",
-        "",
-        "-"
-      ],
-      [
-        "op",
-        "f3",
-        "",
-        "-"
-      ],
-      [
-        "op.west",
-        "views.west",
+        "record",
+        "views",
         "derive",
-        ""
+        "solid"
+      ]
+    ],
+    "containment": [
+      [
+        "record",
+        "f0"
+      ],
+      [
+        "record",
+        "f1"
+      ],
+      [
+        "record",
+        "f2"
+      ],
+      [
+        "record",
+        "f3"
       ]
     ]
   },
@@ -52,8 +46,24 @@
     "Retained evidence",
     "Derived views Audit · debugging · changelog"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored operation-record enclosure containing its four fields; removed field spokes and external detour. Run-to-record and record-to-derived-views remain directed.",
+  "redesign": "Restored operation-record enclosure containing its four fields; removed field spokes and external detour. Run-to-record and record-to-derived-views remain directed.",
   "questions": [],
-  "alt": "A run contains operation records. Each record contains its target, mutation, responsible pass and retained evidence. Audit, debugging and changelog are secondary views derived from that provenance model. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A run points to an operation-record enclosure. Inside it are target, mutation, responsible pass and retained evidence. A downward arrow derives audit, debugging and changelog views. The medium-gray record visibly contains the white field boxes; the derived views are light gray.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored operation-record enclosure containing its four fields; removed field spokes and external detour. Run-to-record and record-to-derived-views remain directed.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.8109,
+      6.6297
+    ]
+  }
 }

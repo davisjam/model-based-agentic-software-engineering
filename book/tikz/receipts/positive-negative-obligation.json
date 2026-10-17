@@ -11,8 +11,8 @@
     "MUST stamp\\ attribution evidence",
     "Both source-time rules restrict the admissible implementation space."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained.",
   "questions": [],
   "alt": "Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge\n    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that\n    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,\n    from opposite directions.",
   "qa": {

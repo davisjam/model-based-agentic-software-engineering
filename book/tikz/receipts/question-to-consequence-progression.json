@@ -46,8 +46,24 @@
     "Decide what deserves enforcement Alignment (Chapter 3)",
     "Either or both"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
+  "redesign": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
   "questions": [],
-  "alt": "An engineering question leads to representation, analysis and interpreted evidence. Evidence then branches to architecture and design decisions or to an obligation deserving enforcement through Alignment, or both. Example representations and analyses illustrate choices rather than a prescribed pairing. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "An engineering question leads to representation, analysis and interpreted evidence. Evidence then branches to architecture and design decisions or to an obligation deserving enforcement through Alignment, or both. Example representations and analyses illustrate choices rather than a prescribed pairing. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.9764,
+      10.4597
+    ]
+  }
 }

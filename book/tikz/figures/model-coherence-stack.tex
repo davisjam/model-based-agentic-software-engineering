@@ -4,19 +4,19 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=4cm] (m) at (0,0) {MODEL\\authored fact};
-\node[box,text width=4cm] (c) at (-2,-1.8) {CONSUME\\read model live};
+\node[head,text width=4cm,fill=black!15] (m) at (0,0) {MODEL\\authored fact};
+\node[box,text width=4cm,fill=black!7] (c) at (-2,-1.8) {CONSUME\\read model live};
 \node[box,dashed,text width=3.4cm] (em) at (3.8,-1.8) {EMIT\\generate artifacts};
 \draw[edge,] (m) -- (c);
 \draw[edge,dashed,-{Latex[open]}] (m) -- (em);
-\node[head,text width=4cm] (co) at (-2,-3.6) {CORRESPONDENCE\\model against world};
+\node[head,text width=4cm,fill=black!15] (co) at (-2,-3.6) {CORRESPONDENCE\\model against world};
 \node[box,dashed,text width=3.4cm] (de) at (3.8,-3.6) {DERIVE\\stable-identity join};
 \draw[edge,] (c) -- (co);
 \draw[edge,dashed,-{Latex[open]}] (de) -- (co);
-\node[box,diamond,aspect=3,text width=2.8cm] (q) at (-2,-5.4) {Disagreement?};
+\node[box,diamond,aspect=3,text width=2.8cm,fill=black!28] (q) at (-2,-5.4) {Disagreement?};
 \draw[edge,] (co) -- (q);
-\node[box,text width=3.5cm] (g) at (-4.5,-7.2) {GATE\\reject disagreement};
-\node[box,text width=3cm] (v) at (1,-7.2) {Valid};
+\node[box,text width=3.5cm,fill=black!28] (g) at (-4.5,-7.2) {GATE\\reject disagreement};
+\node[box,text width=3cm,fill=black!15] (v) at (1,-7.2) {Valid};
 \draw[edge,] (q) -- node[midway,note,fill=white] {yes} (g);
 \draw[edge,] (q) -- node[midway,note,fill=white] {no} (v);
 \node[note,text width=12cm] (nt) at (0,-8.7) {Solid: required composition. Dashed: useful enhancement, not required for the capability.};

@@ -13,8 +13,8 @@
     "Valid",
     "Solid: required composition. Dashed: useful enhancement, not required for the capability."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Model/correspondence/valid state, live consumption, and consequential decision/gate regain families; optional enhancements remain white/dashed/open-arrowed. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Model/correspondence/valid state, live consumption, and consequential decision/gate regain families; optional enhancements remain white/dashed/open-arrowed.",
   "questions": [],
   "alt": "A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to\n    CONSUME (read the model live rather than copy its facts) to CORRESPONDENCE (compare model against the\n    world) to a disagreement decision that gates the disagreement or passes it as valid. Two enhancements\n    attach as dashed, open-arrowed strengtheners: EMIT (generate downstream artifacts from the model) and\n    DERIVE (compute correspondence from stable identities). They are useful but not required: a descriptive\n    model may stay advisory.",
   "qa": {

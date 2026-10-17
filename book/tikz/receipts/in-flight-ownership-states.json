@@ -21,13 +21,13 @@
         "c",
         "rec",
         "expiry",
-        ""
+        "dashed"
       ],
       [
         "rec.east",
         "c.east",
         "another actor\nmay claim",
-        ""
+        "dashed"
       ]
     ]
   },
@@ -38,8 +38,24 @@
     "RECLAIMABLE Lease lapsed / stale",
     "A live claim is distinguishable from a stale one."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
+  "redesign": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
   "questions": [],
-  "alt": "Claim opens CLAIMED with owner, epoch and expires_at. Completion leads to RELEASED; expiry leads to RECLAIMABLE. A return transition allows another actor to claim again. The state model distinguishes live and stale claims without showing the storage implementation. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Claim opens CLAIMED with owner, epoch and expires_at. Completion leads to RELEASED; expiry leads to RECLAIMABLE. A return transition allows another actor to claim again. The state model distinguishes live and stale claims without showing the storage implementation. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.7456,
+      6.9088
+    ]
+  }
 }

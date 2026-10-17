@@ -4,37 +4,37 @@
  head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=black!7},
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\node[head,text width=4cm] (f) at (0,0) {Failure / surprise};
-\node[box,text width=5cm] (q) at (0,-1.3) {What was missing?};
+\node[head,text width=4cm,fill=black!28] (f) at (0,0) {Failure / surprise};
+\node[box,text width=5cm,fill=black!5] (q) at (0,-1.3) {What was missing?};
 \draw[edge,] (f) -- (q);
 \node[note,text width=2.3cm] (m0) at (-5.7,-2.8) {Representation};
-\node[box,text width=2.3cm] (a0) at (-5.7,-3.9) {Model};
+\node[box,text width=2.3cm,fill=black!10] (a0) at (-5.7,-3.9) {Model};
 \draw[edge,] (q) -- (m0);
 \draw[edge,] (m0) -- (a0);
 \node[note,text width=2.3cm] (m1) at (-2.85,-2.8) {Obligation};
-\node[box,text width=2.3cm] (a1) at (-2.85,-3.9) {Invariant};
+\node[box,text width=2.3cm,fill=black!10] (a1) at (-2.85,-3.9) {Invariant};
 \draw[edge,] (q) -- (m1);
 \draw[edge,] (m1) -- (a1);
 \node[note,text width=2.3cm] (m2) at (0,-2.8) {Evidence};
-\node[box,text width=2.3cm] (a2) at (0,-3.9) {Sensor};
+\node[box,text width=2.3cm,fill=black!10] (a2) at (0,-3.9) {Sensor};
 \draw[edge,] (q) -- (m2);
 \draw[edge,] (m2) -- (a2);
 \node[note,text width=2.3cm] (m3) at (2.85,-2.8) {Evaluation};
-\node[box,text width=2.3cm] (a3) at (2.85,-3.9) {Validator};
+\node[box,text width=2.3cm,fill=black!10] (a3) at (2.85,-3.9) {Validator};
 \draw[edge,] (q) -- (m3);
 \draw[edge,] (m3) -- (a3);
 \node[note,text width=2.3cm] (m4) at (5.7,-2.8) {Enforcement};
-\node[box,text width=2.3cm] (a4) at (5.7,-3.9) {Constraint / gate};
+\node[box,text width=2.3cm,fill=black!10] (a4) at (5.7,-3.9) {Constraint / gate};
 \draw[edge,] (q) -- (m4);
 \draw[edge,] (m4) -- (a4);
-\node[head,text width=6cm] (s) at (0,-5.5) {Durable engineering structure};
+\node[head,text width=6cm,fill=black!10] (s) at (0,-5.5) {Durable engineering structure};
 \draw[edge,] (a0) -- (s);
 \draw[edge,] (a1) -- (s);
 \draw[edge,] (a2) -- (s);
 \draw[edge,] (a3) -- (s);
 \draw[edge,] (a4) -- (s);
-\node[box,text width=7cm] (i) at (0,-6.8) {Future work benefits from inheriting it};
-\node[head,text width=5cm] (c) at (0,-8.1) {Engineering capital};
+\node[box,text width=7cm,fill=black!18] (i) at (0,-6.8) {Future work benefits from inheriting it};
+\node[head,text width=5cm,fill=black!35] (c) at (0,-8.1) {Engineering capital};
 \draw[edge,] (s) -- (i);
 \draw[edge,] (i) -- (c);
 \end{tikzpicture}

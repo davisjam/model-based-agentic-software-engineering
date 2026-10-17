@@ -27,7 +27,7 @@
     "SECURITY POSTURE possible shared concern",
     "Solid: established. Dotted: emerging / possible. Incomplete constellations are neither prescribed models nor maturity levels."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Cross-product concerns share darker fill, distinct from product constellations; solid/dotted established/possible links remain unchanged. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Constellations re-spaced with exact original14internal relationships and8cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point.",
   "questions": [
     "Constellations re-spaced with exact original 14 internal relationships and 8 cross-product edges retained; maintenance curves become undirected straight segments. Labels displaced from central model nodes. Dense cross-product crossings remain an editorial review point."

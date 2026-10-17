@@ -12,8 +12,8 @@
     "Content lost",
     "Durable repair: remove the unsafe capability; escalate ambiguous merges to a human."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Detection/evaluation paired; warning and loss have consequential gray emphasis; existing broken enforcement path retained. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Detection/evaluation paired; warning and loss have consequential gray emphasis; existing broken enforcement path retained.",
   "questions": [],
   "alt": "A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a\n    validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any\n    binding consequence is severed; the only thing emitted at the break is a warning. So the operation\n    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement\n    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning\n    louder.",
   "qa": {

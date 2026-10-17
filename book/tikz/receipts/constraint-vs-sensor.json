@@ -8,8 +8,8 @@
     "CONSTRAINT\\ what may happen\\ enum; permission; narrow API",
     "SENSOR\\ evidence of what happened\\; trace; call scan; log"
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Obligation distinct from the two alternative mechanisms; both mechanisms retain equal visual weight. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Obligation distinct from the two alternative mechanisms; both mechanisms retain equal visual weight.",
   "questions": [],
   "alt": "An engineering obligation you must hold leads to one decision: can the unwanted state be\n    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a\n    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a\n    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor\n    reports it after the fact.",
   "qa": {

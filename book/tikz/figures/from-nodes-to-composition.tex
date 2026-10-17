@@ -5,20 +5,29 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[head,text width=5.8cm] (h0) at (-4,1) {Computations without composition};
-\node[n,text width=1.5cm] (n0) at (-5,0) {Pass A};
-\node[n,text width=1.5cm] (n1) at (-3,0) {Pass B};
-\node[n,text width=1.5cm] (n2) at (-5,-1.2) {Pass C};
-\node[n,text width=1.5cm] (n3) at (-3,-1.2) {Pass D};
-\node[n,text width=1.5cm] (n4) at (-4,-2.4) {Pass E};
-\draw[edge] (n0) -- (n1);
-\draw[edge] (n2) -- (n3);
-\node[note,text width=4cm] (count) at (-4,-3.5) {125 computations\\2 authored relations};
-\node[note,text width=2cm] (derive) at (0,-1.2) {Derive + type\\the relations};
-\draw[edge] (n1.east) -- (derive.west);
-\node[strong,text width=5cm] (payload) at (4,-0.4) {Payload-bearing: 33\\DATA\_FLOW: 32\\Produces $\rightarrow$ Consumes\\CROSS\_SERVICE: 1\\Cross-boundary payload};
-\node[n,text width=5cm] (control) at (4,-2.5) {Control: 24\\CONTROL\_GATE: 24\\ConsumesForControl};
-\draw[edge] (derive) -- (payload);
-\draw[edge] (derive) -- (control);
-\node[head,text width=12cm] (sum) at (0,-5) {2 authored + 55 projected, typed relations\\= 33 payload + 24 control};
+
+\node[head,text width=4cm] (left) at (-4.6,1) {Computations\\without composition};
+\node[head,text width=7cm] (right) at (2.5,1) {Composition made explicit};
+% The sparse inventory is illustrative; the exact corpus count is stated below.
+\foreach \x/\y in {-6/0,-5/0,-4/0,-3/0,-6/-1,-3/-1,-6/-2,-5/-2,-4/-2,-3/-2,-6/-3,-5/-3,-4/-3,-3/-3}
+ \fill[black!18] (\x,\y) circle (2pt);
+\node[circle,draw,line width=1pt,fill=black!15,inner sep=3pt] (seed1) at (-5.5,-.8) {};
+\node[circle,draw,line width=1pt,fill=black!15,inner sep=3pt] (seed2) at (-4.6,-1.6) {};
+\node[circle,draw,line width=1pt,fill=black!15,inner sep=3pt] (seed3) at (-3.5,-.8) {};
+\draw[edge,line width=1pt] (seed1) -- (seed2);
+\draw[edge,line width=1pt] (seed2) -- (seed3);
+\node[note,text width=4cm] (count) at (-4.6,-4) {125 computations\\2 authored relations};
+\draw[edge] (-2.7,-2) -- node[lab,above,text width=1.6cm] {derive +\\type} (-1,-2);
+\node[note,anchor=west] at (-.4,.1) {\textbf{Payload-bearing: 33}};
+\node[n,fill=black!20,text width=1.6cm] (a) at (.5,-.8) {Pass A};
+\node[n,fill=black!15,text width=1.6cm] (b) at (4.8,-.8) {Pass B};
+\draw[edge,line width=1pt] (a) -- node[lab,above=11pt] {DATA\_FLOW ×32} node[lab,below=11pt] {Produces $\rightarrow$ Consumes} (b);
+\node[n,fill=black!20,text width=1.6cm] (b2) at (.5,-3.0) {Pass B};
+\node[n,fill=black!4,text width=1.6cm] (svc) at (4.8,-3.0) {Service};
+\draw[edge,line width=.7pt] (b2) -- node[lab,above=11pt] {CROSS\_SERVICE ×1} node[lab,below=11pt] {Cross-boundary payload} (svc);
+\node[note,anchor=west] at (-.4,-4.6) {\textbf{Control: 24}};
+\node[n,fill=black!20,text width=1.6cm] (a2) at (.5,-5.6) {Pass A};
+\node[n,fill=black!20,text width=1.6cm] (c) at (4.8,-5.6) {Pass C};
+\draw[edge,dashed,line width=.9pt] (a2) -- node[lab,above=11pt] {CONTROL\_GATE ×24} node[lab,below=11pt] {ConsumesForControl} (c);
+\node[head,text width=12cm] (sum) at (0,-7.3) {2 authored + 55 projected, typed relations\\= 33 payload + 24 control};
 \end{tikzpicture}

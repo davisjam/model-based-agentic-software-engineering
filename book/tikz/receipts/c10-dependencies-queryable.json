@@ -11,7 +11,7 @@
     "BLAST RADIUS affected set",
     "Typed dependencies identify affected controls and models."
   ],
-  "bw_encoding": "Black text and strokes, white nodes; boundary weight indicates emphasis or enforcement. Original dashed semantics retained per figure; no color-only distinction.",
+  "bw_encoding": "Blocking control and affected-set query are darker than deriving model; unaffected control stays white/dashed. All text black; fills are grayscale and redundant with labels, position or border style.",
   "redesign": "Removed original solid CONTROL B (unaffected) to BLAST RADIUS edge: it contradicted the caption\u2019s affected-set semantics. Unaffected node retained outside the union.",
   "questions": [
     "Removed original solid CONTROL B (unaffected) to BLAST RADIUS edge: it contradicted the caption\u2019s affected-set semantics. Unaffected node retained outside the union."

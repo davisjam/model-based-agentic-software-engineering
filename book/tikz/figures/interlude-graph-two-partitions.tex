@@ -6,16 +6,16 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \node[head,text width=6cm] (h0) at (-3.7,0) {(a) Page-oriented execution};
 \node[head,text width=6cm] (h1) at (3.7,0) {(b) Frontier execution};
-\draw[fill=black!3,draw=black!35] (-6.9,-1) rectangle (-4.9,-6.4);
+\draw[fill=black!12,draw=black!50] (-6.9,-1) rectangle (-4.9,-6.4);
 \node[box,text width=1.65cm] (ap0) at (-5.9,-1.9) {Analyze\\page 1};
 \node[box,text width=1.65cm] (aq0) at (-5.9,-5.4) {GenAI query\\image 1};
-\draw[fill=black!3,draw=black!35] (-4.7,-1) rectangle (-2.7,-6.4);
+\draw[fill=black!12,draw=black!50] (-4.7,-1) rectangle (-2.7,-6.4);
 \node[box,text width=1.65cm] (ap1) at (-3.7,-1.9) {Analyze\\page 2};
 \node[box,text width=1.65cm] (aq1) at (-3.7,-5.4) {GenAI query\\image 2};
-\draw[fill=black!3,draw=black!35] (-2.5,-1) rectangle (-0.5,-6.4);
+\draw[fill=black!12,draw=black!50] (-2.5,-1) rectangle (-0.5,-6.4);
 \node[box,text width=1.65cm] (ap2) at (-1.5,-1.9) {Analyze\\page 3};
 \node[box,text width=1.65cm] (aq2) at (-1.5,-5.4) {GenAI query\\image 3};
-\node[head,text width=5.8cm] (ac) at (-3.7,-3.7) {Build document context};
+\node[head,text width=5.8cm,fill=black!20] (ac) at (-3.7,-3.7) {Build document context};
 \draw[edge,] (ap0) -- (ac);
 \draw[edge,] (ac) -- (aq0);
 \draw[edge,] (ap1) -- (ac);
@@ -29,7 +29,7 @@
 \node[box,text width=1.65cm] (bq1) at (3.7,-5.4) {GenAI query\\image 2};
 \node[box,text width=1.65cm] (bp2) at (5.9,-1.9) {Analyze\\page 3};
 \node[box,text width=1.65cm] (bq2) at (5.9,-5.4) {GenAI query\\image 3};
-\node[head,text width=5.8cm] (bc) at (3.7,-3.7) {Build document context};
+\node[head,text width=5.8cm,fill=black!20] (bc) at (3.7,-3.7) {Build document context};
 \draw[edge,] (bp0) -- (bc);
 \draw[edge,] (bc) -- (bq0);
 \draw[edge,] (bp1) -- (bc);
@@ -41,4 +41,7 @@
 \draw[black!50] (0.40000000000000036,-6.3) rectangle (7.0,-4.5);
 \node[note,text width=6cm] (bnt) at (3.7,-7) {Group by when\\work is ready};
 \node[note,text width=12cm] (nt) at (0,-8) {Same actions and dependencies; different execution boundary.};
+\begin{scope}[on background layer]
+\fill[black!6] (.4,-2.5) rectangle (7,-1.3);\fill[black!6] (.4,-4.3) rectangle (7,-3.1);\fill[black!6] (.4,-6.3) rectangle (7,-4.5);
+\end{scope}
 \end{tikzpicture}

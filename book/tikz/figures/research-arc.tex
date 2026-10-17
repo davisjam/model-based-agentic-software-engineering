@@ -5,20 +5,20 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=7cm] (s0) at (0,0.0) {DocAble\\One production system, longitudinal depth};
-\node[n,text width=7cm] (s1) at (0,-1.8) {Early MAGE\\Modeling · Alignment · conversion · capital};
+\node[n,fill=black!4,text width=7cm] (s0) at (0,0.0) {DocAble\\One production system, longitudinal depth};
+\node[n,line width=1pt,text width=7cm,fill=black!20] (s1) at (0,-1.8) {Early MAGE\\Modeling · Alignment · conversion · capital};
 \draw[edge] (s0) -- node[lab,right] {induces} (s1);
-\node[n,text width=7cm] (s2) at (0,-3.6) {Independent industrial accounts\\Seven independent industrial systems};
+\node[n,fill=black!4,text width=7cm] (s2) at (0,-3.6) {Independent industrial accounts\\Seven independent industrial systems};
 \draw[edge] (s1) -- node[lab,right] {turns outward} (s2);
-\node[n,text width=7cm] (s3) at (0,-5.4) {Comparative reconstruction\\Recurring moves · variation · limits};
+\node[n,fill=black!4,text width=7cm] (s3) at (0,-5.4) {Comparative reconstruction\\Recurring moves · variation · limits};
 \draw[edge] (s2) -- node[lab,right] {reconstructs} (s3);
-\node[n,text width=7cm] (s4) at (0,-7.2) {MAGE theory\\Refined account in Chapter 6};
+\node[n,line width=1pt,text width=7cm,fill=black!20] (s4) at (0,-7.2) {MAGE theory\\Refined account in Chapter 6};
 \draw[edge] (s3) -- node[lab,right] {refines} (s4);
-\node[n,text width=4cm] (depth) at (-3,-9.4) {Depth · originating case\\Mechanism and sequence};
-\node[n,text width=4cm] (breadth) at (3,-9.4) {Breadth · industrial accounts\\Variation and alternatives};
+\node[n,text width=4.7cm,fill=black!4] (depth) at (-3,-9.4) {Depth\\Originating case\\Mechanism and sequence};
+\node[n,text width=4.7cm,fill=black!4] (breadth) at (3,-9.4) {Breadth\\Industrial accounts\\Variation and alternatives};
 \draw[edge] (s4) -- (depth);
 \draw[edge] (s4) -- (breadth);
-\node[n,text width=8cm] (basis) at (0,-11.5) {A stronger basis for theory\\Comparison refines; it does not validate.};
+\node[n,text width=8cm,fill=black!20] (basis) at (0,-11.5) {A stronger basis for theory\\Comparison refines; it does not validate.};
 \draw[edge] (depth) -- (basis);
 \draw[edge] (breadth) -- (basis);
 \end{tikzpicture}

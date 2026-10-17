@@ -14,8 +14,24 @@
     "Specification boundary Set by obligation and agent capability",
     "Greater capability can reduce scaffolding"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
+  "redesign": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
   "questions": [],
-  "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are realization degrees of freedom. An upward capability arrow indicates that greater capability can reduce required scaffolding. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are realization degrees of freedom. An upward capability arrow indicates that greater capability can reduce required scaffolding. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      14.0014,
+      7.26
+    ]
+  }
 }

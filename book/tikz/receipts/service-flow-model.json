@@ -60,8 +60,24 @@
     "OCR",
     "Each arrow declares a permitted relationship."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Modeled services gray contrasted with external Internet; exact permitted edges retained.",
+  "redesign": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
   "questions": [],
-  "alt": "The declared service graph connects Internet to web; web to worker, document editor and other; worker to generation, render and OCR. Every directed edge is a declared permitted relationship. An absent edge declares no relationship. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "The declared service graph connects Internet to web; web to worker, document editor and other; worker to generation, render and OCR. Every directed edge is a declared permitted relationship. An absent edge declares no relationship. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.9764,
+      7.5886
+    ]
+  }
 }

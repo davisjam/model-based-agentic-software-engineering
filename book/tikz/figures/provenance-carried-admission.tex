@@ -5,8 +5,8 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \node[box,text width=2.4cm] (i) at (0,0) {Implementation logic};
-\node[head,text width=3cm] (s) at (3.6,0) {Sanctioned abstraction\\issues provenance};
-\node[head,text width=3cm] (b) at (8,0) {Admission boundary\\requires valid provenance};
+\node[head,text width=3cm,fill=black!20] (s) at (3.6,0) {Sanctioned abstraction\\issues provenance};
+\node[head,text width=3cm,fill=black!28] (b) at (8,0) {Admission boundary\\requires valid provenance};
 \node[box,text width=2.2cm] (a) at (11.8,0) {Admitted operation};
 \draw[edge,] (i) -- (s);
 \draw[edge,] (s) -- node[midway,above,yshift=1cm,text width=2.6cm,note,fill=white] {operation + provenance} (b);

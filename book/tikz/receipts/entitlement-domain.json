@@ -58,8 +58,24 @@
     "ADMIT",
     "REJECT"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
+  "redesign": "Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
   "questions": [],
-  "alt": "A user belongs to one or more groups. The group branches into finite credits and unlimited entitlement. Both alternatives feed an upload decision ending in admit or reject; the decision must preserve both facts. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "A user belongs to one or more groups. The group branches into finite credits and unlimited entitlement. Both alternatives feed an upload decision ending in admit or reject; the decision must preserve both facts. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      12.5764,
+      8.1449
+    ]
+  }
 }

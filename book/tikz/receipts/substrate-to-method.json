@@ -42,8 +42,24 @@
     "Problem",
     "Method"
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+  "redesign": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
   "questions": [],
-  "alt": "Two parallel left-to-right derivations connect substrate traits to engineering problems and methods. Finite working state creates a representation problem answered by Modeling. Probabilistic productive work with observable, interposable seams creates an enforcement problem answered by Alignment. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Two parallel left-to-right derivations connect substrate traits to engineering problems and methods. Finite working state creates a representation problem answered by Modeling. Probabilistic productive work with observable, interposable seams creates an enforcement problem answered by Alignment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.9869,
+      5.277
+    ]
+  }
 }

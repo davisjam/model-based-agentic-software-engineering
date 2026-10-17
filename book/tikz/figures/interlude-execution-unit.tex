@@ -6,7 +6,7 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \node[head,text width=12cm] (ha) at (0,.6) {(a) Whole-document execution};
 \node[box,text width=2cm] (d) at (-5,-1.7) {Document};
-\node[box,text width=5.5cm] (w) at (0,-1.7) {\textbf{Long-running Kubernetes worker}\\Full document state and media resident\\GenAI requests sourced from memory};
+\node[box,text width=5.5cm,fill=black!7] (w) at (0,-1.7) {\textbf{Long-running Kubernetes worker}\\Full document state and media resident\\GenAI requests sourced from memory};
 \node[box,text width=2cm] (o) at (5,-1.7) {Output};
 \draw[edge,] (d) -- (w);
 \draw[edge,] (w) -- (o);
@@ -14,13 +14,13 @@
 \node[box,text width=2cm] (d2) at (-5,-6.1) {Document};
 \node[box,text width=2cm] (merge) at (2,-6.1) {Merge};
 \node[box,text width=2cm] (out) at (5,-6.1) {Output};
-\node[box,text width=2.9cm] (w0) at (-1.6,-4.9) {Pages 1--10 worker};
+\node[box,text width=2.9cm,fill=black!20] (w0) at (-1.6,-4.9) {Pages 1--10 worker};
 \draw[edge,] (d2) -- (w0);
 \draw[edge,] (w0) -- (merge);
-\node[box,text width=2.9cm] (w1) at (-1.6,-6.1) {Pages 11--20 worker};
+\node[box,text width=2.9cm,fill=black!20] (w1) at (-1.6,-6.1) {Pages 11--20 worker};
 \draw[edge,] (d2) -- (w1);
 \draw[edge,] (w1) -- (merge);
-\node[box,text width=2.9cm] (w2) at (-1.6,-7.3) {Pages 21--30 worker};
+\node[box,text width=2.9cm,fill=black!20] (w2) at (-1.6,-7.3) {Pages 21--30 worker};
 \draw[edge,] (d2) -- (w2);
 \draw[edge,] (w2) -- (merge);
 \draw[edge,] (merge) -- (out);

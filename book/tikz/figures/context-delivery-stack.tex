@@ -3,15 +3,15 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=5cm] (knowledge) at (0,0) {ENGINEERING KNOWLEDGE\\ models · rules · decisions};
-\node[box,text width=3cm] (standing) at (-3,-2) {STANDING POLICY\\ always seen};
+\node[box,text width=5cm,fill=black!15] (knowledge) at (0,0) {ENGINEERING KNOWLEDGE\\ models · rules · decisions};
+\node[box,text width=3cm,fill=black!5] (standing) at (-3,-2) {STANDING POLICY\\ always seen};
 \draw[edge] (knowledge) -- (standing);
-\node[box,text width=3cm] (slice) at (3,-2) {TASK SLICE\\ retrieved as needed};
+\node[box,text width=3cm,fill=black!5] (slice) at (3,-2) {TASK SLICE\\ retrieved as needed};
 \draw[edge] (knowledge) -- (slice);
-\node[box,text width=3cm] (context) at (0,-4) {ACTOR CONTEXT};
+\node[box,text width=3cm,fill=black!5] (context) at (0,-4) {ACTOR CONTEXT};
 \draw[edge] (standing) -- (context);
 \draw[edge] (slice) -- (context);
-\node[box,text width=3cm] (action) at (0,-5.6) {ACTION};
+\node[box,text width=3cm,fill=black!15] (action) at (0,-5.6) {ACTION};
 \draw[edge] (context) -- (action);
 \node[box,dashed,text width=3cm] (point) at (4.4,-5.6) {POINT-OF-ACTION\\ reminder / deterministic gate};
 \draw[optional] (point) -- (action);

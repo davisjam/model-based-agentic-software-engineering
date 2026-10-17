@@ -9,8 +9,8 @@
     "Latency floor 7.6589 s",
     "Each level waits for its predecessor: the dependent times add."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Dependent measured/estimated operations grouped apart from computed latency floor. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Dependent measured/estimated operations grouped apart from computed latency floor.",
   "questions": [],
   "alt": "Three dependent GenAI levels in series: a section summary at 1.777 seconds feeds a\n    document summary at 1.777 seconds, which feeds alt text at 4.1049 seconds. Because each level must\n    complete before the next begins, their times add to an irreducible floor of 7.6589 seconds. The vision\n    value is measured; the text-summary value is estimated.",
   "qa": {

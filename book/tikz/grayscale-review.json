@@ -1,0 +1,1442 @@
+[
+  {
+    "source": "book/assets/book-map.svg",
+    "candidate": "book/tikz/figures/book-map.tex",
+    "receipt": "book/tikz/receipts/book-map.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links. Rotated case label moved clear of enclosing border.",
+    "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+    "candidate_sha256": "634f3ac06d0729718111220ca6babfdbe7cb8660923a4c3e3721d7ebd8f34821"
+  },
+  {
+    "source": "book/assets/mage-method.svg",
+    "candidate": "book/tikz/figures/mage-method.tex",
+    "receipt": "book/tikz/receipts/mage-method.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Separated Modeling, Alignment, environment/capital and churn with gray levels; retained dashed failure and dotted scope feedback.",
+    "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+    "candidate_sha256": "d6e86c83a96379064a63ecda188c7719d48ff90542d4390b93bae611fef7cc4c"
+  },
+  {
+    "source": "book/assets/model-classes.svg",
+    "candidate": "book/tikz/figures/model-classes.tex",
+    "receipt": "book/tikz/receipts/model-classes.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
+    "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+    "candidate_sha256": "e5337f8b7cabde3aea4d753581e1a71e14cfad9f501352d2e20cd1908a598d7b"
+  },
+  {
+    "source": "book/assets/gloss-agent-vocab.svg",
+    "candidate": "book/tikz/figures/gloss-agent-vocab.tex",
+    "receipt": "book/tikz/receipts/gloss-agent-vocab.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Light gray identifies the stack, white identifies the characteristic-limit chain; dashed working-state correspondence retained.",
+    "source_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
+    "candidate_sha256": "2c0fa218eeb8050bfc4aee0b020ba193e366bdf67ef1cc0f81ab742ad1a025e2"
+  },
+  {
+    "source": "book/assets/gloss-gee.svg",
+    "candidate": "book/tikz/figures/gloss-gee.tex",
+    "receipt": "book/tikz/receipts/gloss-gee.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Rebuilt six-node ontology. Restored environment node, environment-to-both-surfaces arrows and capital-to-environment accumulation. Removed false enclosing-group substitution and reversed accumulation paths. Orthogonal branches preserve two mechanism surfaces.",
+    "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+    "candidate_sha256": "a6b00176736e86f1738779359dd7e0b2495639e4ba455a76a0dc94d36c62c584"
+  },
+  {
+    "source": "book/assets/research-arc.svg",
+    "candidate": "book/tikz/figures/research-arc.tex",
+    "receipt": "book/tikz/receipts/research-arc.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are 20% gray with emphasis; observations/procedure/depth/breadth remain 4% gray. Original spine and split retained.",
+    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
+    "candidate_sha256": "f69b5fbb47d18e42eca5b666fb6ede5dbc44c060bc11aa4f50afafe59e2b2940"
+  },
+  {
+    "source": "book/assets/engineering-leverage.svg",
+    "candidate": "book/tikz/figures/engineering-leverage.tex",
+    "receipt": "book/tikz/receipts/engineering-leverage.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
+    "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
+    "candidate_sha256": "fb451220ced3f2881dad87b6dd50274bc6439b2d3972b8cc96e6d2eb2629958d"
+  },
+  {
+    "source": "book/assets/docable-glimpse.svg",
+    "candidate": "book/tikz/figures/docable-glimpse.tex",
+    "receipt": "book/tikz/receipts/docable-glimpse.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray distinguishes inaccessible input, production black box and remediated output; all accessibility/evidence labels retained.",
+    "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
+    "candidate_sha256": "9a6e539a7a704b71cb0f4cb76e37b4f9f5f1586e18f52ccb840994024e0744d2"
+  },
+  {
+    "source": "book/assets/one-docable-job.svg",
+    "candidate": "book/tikz/figures/one-docable-job.tex",
+    "receipt": "book/tikz/receipts/one-docable-job.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Neutral processing nodes contrasted with document input/output; explicit fork/join and specialist-service side call retained.",
+    "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "candidate_sha256": "8b1106354471babc977432485fbe8328fc0382fa811322b9d67dcd3d2a3585cd"
+  },
+  {
+    "source": "book/assets/agentic-substrate.svg",
+    "candidate": "book/tikz/figures/agentic-substrate.tex",
+    "receipt": "book/tikz/receipts/agentic-substrate.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
+    "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+    "candidate_sha256": "e8b7d6b7c958c0fe5a76baec8800d8e9cb72e4e82bedd18d298401524168e442"
+  },
+  {
+    "source": "book/assets/reasoning-horizon.svg",
+    "candidate": "book/tikz/figures/reasoning-horizon.tex",
+    "receipt": "book/tikz/receipts/reasoning-horizon.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Obligation-level representation choice emphasized; raw implementation and purposeful-abstraction outcomes differentiated in gray. Causal text and fork retained.",
+    "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+    "candidate_sha256": "5d9510271aacbb98e37f7dc70026d273ffbc9f9482cf65b43a3c0e0078fc8840"
+  },
+  {
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "receipt": "book/tikz/receipts/substrate-to-method.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+    "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+    "candidate_sha256": "b237362d9ef5c503fed5e695c0f1044022a72a8ee88e66e9a6e7152fa174ec64"
+  },
+  {
+    "source": "book/assets/realization-space.svg",
+    "candidate": "book/tikz/figures/realization-space.tex",
+    "receipt": "book/tikz/receipts/realization-space.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
+    "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
+    "candidate_sha256": "a205ab520913c9ab2c308828b4341f8f8239961a33b67055ffacee4c41c2ed54"
+  },
+  {
+    "source": "book/assets/specified-region.svg",
+    "candidate": "book/tikz/figures/specified-region.tex",
+    "receipt": "book/tikz/receipts/specified-region.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
+    "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
+    "candidate_sha256": "d8b371ab6a0bf4397597e84b9c1b1454ac0620c0d2c2e4b637891a369b962891"
+  },
+  {
+    "source": "book/assets/question-to-consequence-progression.svg",
+    "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+    "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
+    "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "candidate_sha256": "a1847fc7852a9b0a50f2d6567537a8aadf541ec6bd655c3c8a08e9a7de8993f8"
+  },
+  {
+    "source": "book/assets/modeling-repertoire.svg",
+    "candidate": "book/tikz/figures/modeling-repertoire.tex",
+    "receipt": "book/tikz/receipts/modeling-repertoire.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
+    "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
+    "candidate_sha256": "d16c40420769e09046162c7342b0c68ee6c2c4f7f28dd993e58d7a2a600d99e2"
+  },
+  {
+    "source": "book/assets/canonical-structural.svg",
+    "candidate": "book/tikz/figures/canonical-structural.tex",
+    "receipt": "book/tikz/receipts/canonical-structural.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common gray entities and crossed dashed bypass retained; directed dependency fork remains distinct from prohibition.",
+    "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
+    "candidate_sha256": "b9729953b0495f423a3d5cdbd2bba33766d9c35f103f28144123c7de121fd57c"
+  },
+  {
+    "source": "book/assets/document-mutation-model.svg",
+    "candidate": "book/tikz/figures/document-mutation-model.tex",
+    "receipt": "book/tikz/receipts/document-mutation-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model layer gray contrasts with format implementation and outputs. Sanctioned seam retains heavier border; no enforcement claim introduced.",
+    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+    "candidate_sha256": "d30b573aa2b49f98eadaa25170282e13e6de0ac4a25dfcdb0abb0f2f970c5a11"
+  },
+  {
+    "source": "book/assets/from-nodes-to-composition.svg",
+    "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
+    "receipt": "book/tikz/receipts/from-nodes-to-composition.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
+    "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+    "candidate_sha256": "5dac3c985b7aeb416df3ada10e78312b0595a327e9c4d5b13a365dd4eedcb71b"
+  },
+  {
+    "source": "book/assets/canonical-behavioral.svg",
+    "candidate": "book/tikz/figures/canonical-behavioral.tex",
+    "receipt": "book/tikz/receipts/canonical-behavioral.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained. Forbidden bypass rerouted outside legal transition region; start/finish/fail labels separated from node borders and strokes.",
+    "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+    "candidate_sha256": "a1ac0d81498db5e58086f9113f1d5fdf04dbdb870875da349a8f0de6075a2266"
+  },
+  {
+    "source": "book/assets/recovery-ordering-model.svg",
+    "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+    "receipt": "book/tikz/receipts/recovery-ordering-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
+    "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+    "candidate_sha256": "17d980d702a2af0684eaea41f3f667de0441b6331a06ea84a780788fc67f9b47"
+  },
+  {
+    "source": "book/assets/behavioral-property-classes.svg",
+    "candidate": "book/tikz/figures/behavioral-property-classes.tex",
+    "receipt": "book/tikz/receipts/behavioral-property-classes.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
+    "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
+    "candidate_sha256": "8fd3884013255769e9873425baaf42b1fcf2f2f4bd3d3d94ebaf903f59af1a43"
+  },
+  {
+    "source": "book/assets/in-flight-ownership-states.svg",
+    "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+    "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
+    "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+    "candidate_sha256": "917251f11d5beab445b3dbaf1ebb5c7e09a4d109516104e2447be42154320e09"
+  },
+  {
+    "source": "book/assets/in-flight-lease-overlap.svg",
+    "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
+    "receipt": "book/tikz/receipts/in-flight-lease-overlap.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
+    "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
+    "candidate_sha256": "8fb79ddf9efb591e77b63754d3e363b75ce47e076604ffe41fc9d38de0c79c40"
+  },
+  {
+    "source": "book/assets/canonical-decision.svg",
+    "candidate": "book/tikz/figures/canonical-decision.tex",
+    "receipt": "book/tikz/receipts/canonical-decision.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
+    "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
+    "candidate_sha256": "e945938c2635a35bdead008fe604352cf950f0043a9603482a4ba27d2c8fc3b8"
+  },
+  {
+    "source": "book/assets/service-flow-model.svg",
+    "candidate": "book/tikz/figures/service-flow-model.tex",
+    "receipt": "book/tikz/receipts/service-flow-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
+    "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+    "candidate_sha256": "a1ced7a0da28607be90841ae5eabcb02e34c1ff0f3ac63c45833055be5b4997e"
+  },
+  {
+    "source": "book/assets/observed-vs-declared.svg",
+    "candidate": "book/tikz/figures/observed-vs-declared.tex",
+    "receipt": "book/tikz/receipts/observed-vs-declared.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
+    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+    "candidate_sha256": "f9f85c0617674a56b45c5c44c42d145c550d21e1f334961eebc06d3a9f4458a9"
+  },
+  {
+    "source": "book/assets/entitlement-domain.svg",
+    "candidate": "book/tikz/figures/entitlement-domain.tex",
+    "receipt": "book/tikz/receipts/entitlement-domain.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common entitlement gray groups finite/unlimited alternatives and decision, preserving both inputs and admit/reject outcomes.",
+    "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
+    "candidate_sha256": "273e691e2e90ab8bd0b3c04eac786fea0dccd176bfdde242ef32d385be22af07"
+  },
+  {
+    "source": "book/assets/entitlement-model-evolution.svg",
+    "candidate": "book/tikz/figures/entitlement-model-evolution.tex",
+    "receipt": "book/tikz/receipts/entitlement-model-evolution.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Distinct gray stages and dashed stale-model box recover original warning distinction; repaired model retains finite/unlimited alternatives. Evolution connector routed around rather than through stale-stage heading.",
+    "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
+    "candidate_sha256": "d65c8d76d828949086ce68131110e8eeae0e78e18281955e69dcca34bb17b2e1"
+  },
+  {
+    "source": "book/assets/modeling-substrate.svg",
+    "candidate": "book/tikz/figures/modeling-substrate.tex",
+    "receipt": "book/tikz/receipts/modeling-substrate.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
+    "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+    "candidate_sha256": "99b2abc9cd5fa6a67d662ff8dbfbe87f829c76d6edf0697799cca81f027d8d71"
+  },
+  {
+    "source": "book/assets/attribution-model.svg",
+    "candidate": "book/tikz/figures/attribution-model.tex",
+    "receipt": "book/tikz/receipts/attribution-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored operation-record enclosure containing its four fields; removed field spokes and external detour. Run-to-record and record-to-derived-views remain directed.",
+    "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
+    "candidate_sha256": "55565f2115f9ec643654b6960ec78e6a66093298f270d151da352c44563bac22"
+  },
+  {
+    "source": "book/assets/two-reductions-static-realized.svg",
+    "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
+    "receipt": "book/tikz/receipts/two-reductions-static-realized.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
+    "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+    "candidate_sha256": "a920dcac85665d233cb94e9f9fbd1fee5218b26597d72da7bca8f1cc34c6a7b7"
+  },
+  {
+    "source": "book/assets/substrate-traversal.svg",
+    "candidate": "book/tikz/figures/substrate-traversal.tex",
+    "receipt": "book/tikz/receipts/substrate-traversal.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
+    "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+    "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff"
+  },
+  {
+    "source": "book/assets/derive-generate-trace.svg",
+    "candidate": "book/tikz/figures/derive-generate-trace.tex",
+    "receipt": "book/tikz/receipts/derive-generate-trace.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray model tier contrasts with implementation/system tier; upward, downward and bidirectional relations retained.",
+    "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+    "candidate_sha256": "d9753cb987434ad85a69cec8b3c03e141fb7bfb4366c324be80063d9afc62641"
+  },
+  {
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "receipt": "book/tikz/receipts/model-sync-two-layer-net.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
+    "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+    "candidate_sha256": "a45e03f10aefb912214f86454a3110d89fee80322b267ddebae8e92a1a60b27f"
+  },
+  {
+    "source": "book/assets/coherence-triangle.svg",
+    "candidate": "book/tikz/figures/coherence-triangle.tex",
+    "receipt": "book/tikz/receipts/coherence-triangle.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model, invariant and checker differentiated with gray roles. Original linear support/evaluation and dashed checker-to-invariant feedback retained. Support/evaluation labels raised clear of node borders.",
+    "source_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+    "candidate_sha256": "6db0badf8c1f0e10c4a0e49d959091c2f317ce19d1b7514e7e141e39bec02f68"
+  },
+  {
+    "source": "book/assets/modeling-perp-enforcement.svg",
+    "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+    "receipt": "book/tikz/receipts/modeling-perp-enforcement.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model gray repeated across the handoff. Degrade/gate use stronger gray than observe/adapt to retain consequential-action distinction.",
+    "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+    "candidate_sha256": "4ee2eb7ebd250f5f4e929f4022c2016031b62c08250e1cfd39ede01a63f17559"
+  },
+  {
+    "source": "book/assets/part3-nav-arc.svg",
+    "candidate": "book/tikz/figures/part3-nav-arc.tex",
+    "receipt": "book/tikz/receipts/part3-nav-arc.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
+    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+    "candidate_sha256": "69f469d67e20dd5b82612f5f08ff34a139885662d0cd76b0f894a762c0023eb1"
+  },
+  {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "receipt": "book/tikz/receipts/intervention-boundaries.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
+    "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "candidate_sha256": "345ad2d9f5ef4c774d8bb95f30accd7ebd5746418b0ac45454f283a1e12a735c"
+  },
+  {
+    "source": "book/assets/three-relations.svg",
+    "candidate": "book/tikz/figures/three-relations.tex",
+    "receipt": "book/tikz/receipts/three-relations.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
+    "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
+    "candidate_sha256": "d9ee2c1fea7af9d595c6e27d05d5229042450572245d59b332e242ee0bbdbd2a"
+  },
+  {
+    "source": "book/assets/fidelity-vs-authority.svg",
+    "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
+    "receipt": "book/tikz/receipts/fidelity-vs-authority.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
+    "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
+    "candidate_sha256": "1f655418b3bf790346d472cde8a10e9d0176a90a6fa995b4f9d0f242906b9e3a"
+  },
+  {
+    "source": "book/assets/semantic-gap-levels.svg",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "receipt": "book/tikz/receipts/semantic-gap-levels.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
+    "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+    "candidate_sha256": "bc0e5d8a0efa5054444d99e60426b041d565ced7de5754a469f8be57253c9c07"
+  },
+  {
+    "source": "book/assets/constraint-vs-sensor.svg",
+    "candidate": "book/tikz/figures/constraint-vs-sensor.tex",
+    "receipt": "book/tikz/receipts/constraint-vs-sensor.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Obligation distinct from the two alternative mechanisms; both mechanisms retain equal visual weight.",
+    "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
+    "candidate_sha256": "5162b7d80b447bb3e4e7b8165b651a300f53832dee36cee74c7be26fdd4f845c"
+  },
+  {
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "receipt": "book/tikz/receipts/match-mechanism-to-property.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Engineering obligation and consequential gate separated from neutral property-selected alternatives.",
+    "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
+    "candidate_sha256": "74456207a18ec427f6d502b84a5cde0dc357f2da11a0efb105c24f6d72f92c1b"
+  },
+  {
+    "source": "book/assets/cost-enforcement-gradient.svg",
+    "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
+    "receipt": "book/tikz/receipts/cost-enforcement-gradient.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Observe remains white, adaptation light gray, admission gate dark gray: three policy modes restored.",
+    "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
+    "candidate_sha256": "bf72fc787086f0085a04b52f9d65edb27234e3cf544561cf4ec7af6f8b61324a"
+  },
+  {
+    "source": "book/assets/positive-negative-obligation.svg",
+    "candidate": "book/tikz/figures/positive-negative-obligation.tex",
+    "receipt": "book/tikz/receipts/positive-negative-obligation.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained.",
+    "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
+    "candidate_sha256": "fca9d56e1e17efa17ef56299bc29f3f46cbc1e2b89ee3120d5821b1949894827"
+  },
+  {
+    "source": "book/assets/provenance-carried-admission.svg",
+    "candidate": "book/tikz/figures/provenance-carried-admission.tex",
+    "receipt": "book/tikz/receipts/provenance-carried-admission.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Sanctioned source and consequential admission boundary distinguished from neutral implementation and operation.",
+    "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
+    "candidate_sha256": "4e7f546daf1109495a2de03468f0ea6703ccfcb7dd905997d937e393b9c604f6"
+  },
+  {
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "receipt": "book/tikz/receipts/permitted-vs-acceptable.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Existing solid acceptable boundary, dashed permitted boundary and hatched overlap already distinguish all three regions; retained.",
+    "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+    "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040"
+  },
+  {
+    "source": "book/assets/governance-conversion.svg",
+    "candidate": "book/tikz/figures/governance-conversion.tex",
+    "receipt": "book/tikz/receipts/governance-conversion.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Failure, diagnostic question, durable mechanisms, inheritance, and accumulated capital recover distinct stages without treating the five mechanisms as ranks.",
+    "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
+    "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61"
+  },
+  {
+    "source": "book/assets/judgment-without-consequence.svg",
+    "candidate": "book/tikz/figures/judgment-without-consequence.tex",
+    "receipt": "book/tikz/receipts/judgment-without-consequence.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Detection/evaluation paired; warning and loss have consequential gray emphasis; existing broken enforcement path retained.",
+    "source_sha256": "bc8c83f4b400812bd10cf37f4780ced4bc91703348a5661366c77672825cbc1b",
+    "candidate_sha256": "c4b3fbdafcbd1a732fbd0c79a5465aea1eecb04681a9581b5c7a5270bb8c18cc"
+  },
+  {
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
+    "receipt": "book/tikz/receipts/residual-decision-tree.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Residual reconstruction, unresolved judgment/evaluated-only, and governed outcomes regain distinct tones; textual yes/no paths remain authoritative.",
+    "source_sha256": "3212524d4dfa0171bff0d95d11eaef9bd299fd51aa94eac16e4694a304bdbd04",
+    "candidate_sha256": "7076981b5d64352f630986b2bb90a2dd66dcc66f35071699dd7a4d7d00e6e5fd"
+  },
+  {
+    "source": "book/assets/collision-edge.svg",
+    "candidate": "book/tikz/figures/collision-edge.tex",
+    "receipt": "book/tikz/receipts/collision-edge.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Paired controls distinguished from shared resource and dashed conflict region.",
+    "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
+    "candidate_sha256": "a46b4968d220be4ed5834fc93d98ba731341b549ac16658d3aa63878dece8610"
+  },
+  {
+    "source": "book/assets/turn-end-ordering.svg",
+    "candidate": "book/tikz/figures/turn-end-ordering.tex",
+    "receipt": "book/tikz/receipts/turn-end-ordering.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Hooks paired by fill; modeled-order arrows strengthened separately from resource writes.",
+    "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
+    "candidate_sha256": "b9fe26f57a31a422a8aa3fffc6119559b3fbde99109a5290b3e0b8d272ddb992"
+  },
+  {
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "receipt": "book/tikz/receipts/census-trio.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional.",
+    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
+    "candidate_sha256": "6aa92b875f77403a41c7847883e757ba5c997d27a77dc054ed78096a0d6b7b4f"
+  },
+  {
+    "source": "book/assets/engineer-agent-interaction.svg",
+    "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
+    "receipt": "book/tikz/receipts/engineer-agent-interaction.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Light left communication group and darker right evaluation group restore the two original modes; shared implementation remains outside both.",
+    "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+    "candidate_sha256": "3a2a3d2f17b1a297fb1450c4c178418172d781f59d8976b113594097801056cd"
+  },
+  {
+    "source": "book/assets/active-passive-alignment.svg",
+    "candidate": "book/tikz/figures/active-passive-alignment.tex",
+    "receipt": "book/tikz/receipts/active-passive-alignment.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Models and aligned states share light gray; evaluation nodes darker; active and passive panels recover their distinct enclosing shades.",
+    "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+    "candidate_sha256": "4f4ddacd1b3037c929a3507c2c3b1fef75e6534658947acd86d7bb400f2ad324"
+  },
+  {
+    "source": "book/assets/alignment-kernel.svg",
+    "candidate": "book/tikz/figures/alignment-kernel.tex",
+    "receipt": "book/tikz/receipts/alignment-kernel.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills.",
+    "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+    "candidate_sha256": "36c71ce302d6e6c0614b0b4be0deca3f879cb42c796ddb225abce274eea1e41a"
+  },
+  {
+    "source": "book/assets/interlude-execution-unit.svg",
+    "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+    "receipt": "book/tikz/receipts/interlude-execution-unit.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Single resident execution versus partitioned workers distinguished while retaining input/output neutrality.",
+    "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+    "candidate_sha256": "0b2f3a1e9657dd39a4ff1f7250955ac20a5516dd46bd4e1821fbd39aa27a9433"
+  },
+  {
+    "source": "book/assets/interlude-storage-vs-reasoning.svg",
+    "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+    "receipt": "book/tikz/receipts/interlude-storage-vs-reasoning.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Internal structural state versus media restored with labeled inline shading and distinct external-media fill; reference link remains dashed.",
+    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "candidate_sha256": "77ebf8a2fc397fcc0ab0ba7e61147ab30de7a702669319388d0ee305bce33ea0"
+  },
+  {
+    "source": "book/assets/interlude-graph-two-partitions.svg",
+    "candidate": "book/tikz/figures/interlude-graph-two-partitions.tex",
+    "receipt": "book/tikz/receipts/interlude-graph-two-partitions.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism.",
+    "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
+    "candidate_sha256": "0f75e44b2d980358b3afef97a5c747e6d678bd2eadff9b864d2b2461e674360b"
+  },
+  {
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "receipt": "book/tikz/receipts/interlude-analysis-before-build.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Heavy bottleneck and split children distinguished; image and alt-text operations retain different fills across before/after panels; heavy critical path retained.",
+    "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
+    "candidate_sha256": "b65fda2b2bcb466fca6e6eb375c9e8080e4c398c847b24b518f9fccdd14abe82"
+  },
+  {
+    "source": "book/assets/interlude-latency-floor.svg",
+    "candidate": "book/tikz/figures/interlude-latency-floor.tex",
+    "receipt": "book/tikz/receipts/interlude-latency-floor.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Dependent measured/estimated operations grouped apart from computed latency floor.",
+    "source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
+    "candidate_sha256": "641ef5f756db7284f2790a95bd480502829a938e80ba7741f5af8b30a597e3bc"
+  },
+  {
+    "source": "book/assets/interlude-prediction-residual.svg",
+    "candidate": "book/tikz/figures/interlude-prediction-residual.tex",
+    "receipt": "book/tikz/receipts/interlude-prediction-residual.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Prediction, observation, residual and model-refinement roles regain distinct fills.",
+    "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+    "candidate_sha256": "9de1e3da0e3f3c8872c9327dd592f6339ce39063b54ef99a7224ce46ae384b62"
+  },
+  {
+    "source": "book/assets/interlude-modeling-cycle.svg",
+    "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+    "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "After-the-fact document chain muted; live model emphasized; editorial arrow resolution retained.",
+    "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+    "candidate_sha256": "cc47c3cb58caa573832a34643d00b379c4aef28203a799770482cf23ea276e19"
+  },
+  {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "receipt": "book/tikz/receipts/discovering-models-migration.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Named model and representation products share fill; narrower enforcement has distinct darker emphasis; acceptance and codemod branches neutral.",
+    "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
+    "candidate_sha256": "e0ab785ecfb716675ad8f26d8df72cc31be9e63336a2b1131d768b8b23417035"
+  },
+  {
+    "source": "book/assets/squash-zero-promote.svg",
+    "candidate": "book/tikz/figures/squash-zero-promote.tex",
+    "receipt": "book/tikz/receipts/squash-zero-promote.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved.",
+    "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+    "candidate_sha256": "8b138f982485965777b30a3980f4f3e1dd5e42af480db1481a162501db5f39b2"
+  },
+  {
+    "source": "book/assets/engineering-recurring-work.svg",
+    "candidate": "book/tikz/figures/engineering-recurring-work.tex",
+    "receipt": "book/tikz/receipts/engineering-recurring-work.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Support, enforcement, and their combined environment are visually distinct; existing dashed support-to-enforcement transition retained.",
+    "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
+    "candidate_sha256": "68860bb2dc6fd5fddba6925f763af6d7916838136553bd5f4674f804b0875069"
+  },
+  {
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+    "receipt": "book/tikz/receipts/two-evidence-boundaries.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Open earliest and solid last-safe diamonds already preserve original boundary distinction; retained.",
+    "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+    "candidate_sha256": "026fa835792e0d93c62112ae558c33f03cbf9876a9c038ad6abec23a37cbf477"
+  },
+  {
+    "source": "book/assets/process-design-and-tolerance.svg",
+    "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
+    "receipt": "book/tikz/receipts/process-design-and-tolerance.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Dashed production group receives light gray ground; acceptable region uses a distinct darker fill, restoring process-versus-tolerance separation.",
+    "source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+    "candidate_sha256": "0727bb63fcd370453f5a16db2d19a448528a8df54d90e3b201b9ceb24c95ab95"
+  },
+  {
+    "source": "book/assets/build-stages-timeline.svg",
+    "candidate": "book/tikz/figures/build-stages-timeline.tex",
+    "receipt": "book/tikz/receipts/build-stages-timeline.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Stage/date, pressure and consequence remain explicit table columns; source used uniform stage accent only, so no unsupported categorical tones added.",
+    "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "candidate_sha256": "ffaf7d5ab8db6562a47b4f9dc9d803b98d6fa69be1592b5f7899654dcaa2fd68"
+  },
+  {
+    "source": "book/assets/f1_realization_over_time.svg",
+    "candidate": "book/tikz/figures/f1_realization_over_time.tex",
+    "receipt": "book/tikz/receipts/f1_realization_over_time.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Three provenance categories remain distinct through three grayscale fills; stage boundaries retained.",
+    "source_sha256": "6b5dd55fcc080f5a1ef47bd0a3b6a4bcfa7efbe6bf8838e447e823a9f7e60d59",
+    "candidate_sha256": "9b997a9c393a59a84bdd655f67d4c848f2fd731b3aebbbf5ca8f54c93735a0e6"
+  },
+  {
+    "source": "book/assets/f2_work_over_time.svg",
+    "candidate": "book/tikz/figures/f2_work_over_time.tex",
+    "receipt": "book/tikz/receipts/f2_work_over_time.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Paired created/closed bars and an active-epics line retain the two panels and their different measures.",
+    "source_sha256": "55cdf124264fb1e3fb8069f05b42b826946b148fc9f72ca8906332b9caf7d187",
+    "candidate_sha256": "b6a87b9a03365feb61934d9cb5fa478ae14eb370c27ca19e45f5dff1157c2dbc"
+  },
+  {
+    "source": "book/assets/f7_controls_accumulate.svg",
+    "candidate": "book/tikz/figures/f7_controls_accumulate.tex",
+    "receipt": "book/tikz/receipts/f7_controls_accumulate.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Three series remain distinct through line patterns and markers.",
+    "source_sha256": "7aa3f688c788999ab0b2f2dd7390107b76424824ed67d002d20acb4b1aba84c8",
+    "candidate_sha256": "8547ebd6e057615018cc219a0d72115bad9563e44e0087a129f82d83d6cb5ab9"
+  },
+  {
+    "source": "book/assets/f5_f6_capital_and_support_ratio.svg",
+    "candidate": "book/tikz/figures/f5_f6_capital_and_support_ratio.tex",
+    "receipt": "book/tikz/receipts/f5_f6_capital_and_support_ratio.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven grayscale patterns preserve capital categories; separate ratio panels retain their measures.",
+    "source_sha256": "e57ebf2297b3351810a7170cb4eb3a589732cb2f701bd0f88c3f02366e86d2a1",
+    "candidate_sha256": "ffc3c486165d990befe233087e6a0ed22f97c23dc1ad54fffefc71ff216ef972"
+  },
+  {
+    "source": "book/assets/f21_f22_model_census.svg",
+    "candidate": "book/tikz/figures/f21_f22_model_census.tex",
+    "receipt": "book/tikz/receipts/f21_f22_model_census.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Direct category labels preserve model-census categories and counts in two panels.",
+    "source_sha256": "d22f2ae12674a2388ebf1577d16922db9509e3af9ac7f6e02f60325950519981",
+    "candidate_sha256": "bbe67c16ec4b450309c34161ff96cddc1f8dc0bfcf23d847192147de45c6ac01"
+  },
+  {
+    "source": "book/assets/modeling-history.svg",
+    "candidate": "book/tikz/figures/modeling-history.tex",
+    "receipt": "book/tikz/receipts/modeling-history.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Represented structure shares gray fill; consequential implicit composition is darker; unmodeled and residual freedom remain white.",
+    "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
+    "candidate_sha256": "3a5972a7278819d452b68da6a95b10e2235aacc3b26a56781eeaf42ec5d6cec7"
+  },
+  {
+    "source": "book/assets/f13_mature_flow_funnel.svg",
+    "candidate": "book/tikz/figures/f13_mature_flow_funnel.tex",
+    "receipt": "book/tikz/receipts/f13_mature_flow_funnel.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Direct category labels preserve counts without implying that workspace retirement is a sequential funnel stage.",
+    "source_sha256": "bccb59ceea71391f65e813f4ef0b881bb6433965524d9196793f643ecf919ac3",
+    "candidate_sha256": "63b23e64569d04e1d7c82e8c6593c89b6168a2b324813ed7a81ab4645cf00078"
+  },
+  {
+    "source": "book/assets/f10_what_experience_became.svg",
+    "candidate": "book/tikz/figures/f10_what_experience_became.tex",
+    "receipt": "book/tikz/receipts/f10_what_experience_became.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored the original twelve bars: eight blocking, two advisory, and two measurement cases, distinguished by 70%, 35%, and 10% gray.",
+    "source_sha256": "dec528dcc6bd51c2bd4ae7f3cc91d4eb02ed0dddaf726d6a0747d9e91cf33bac",
+    "candidate_sha256": "cf8192d40f844b5a8ad5f6b39399c2aac4850be0f82a72ae960ad59fe332cd9e"
+  },
+  {
+    "source": "book/assets/measurement-no-gate.svg",
+    "candidate": "book/tikz/figures/measurement-no-gate.tex",
+    "receipt": "book/tikz/receipts/measurement-no-gate.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original neutral history and dashed deferred enforcement are already preserved; retained without invented category colors.",
+    "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "candidate_sha256": "274b7f94c2fd0cb3c3bcf2a183233a368508bcf60ef80b2f0bb3ba72353b9820"
+  },
+  {
+    "source": "book/assets/mage-staircase.svg",
+    "candidate": "book/tikz/figures/mage-staircase.tex",
+    "receipt": "book/tikz/receipts/mage-staircase.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Step cards retain readable role labels; environment stripes thicken by step and human-focus strokes narrow without reaching zero, restoring the two qualitative trajectories.",
+    "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+    "candidate_sha256": "9e4240bbc843c011314a1305a44d3becb113934c3d44bbe470a158209ab68d39"
+  },
+  {
+    "source": "book/assets/f19_delegation_over_time.svg",
+    "candidate": "book/tikz/figures/f19_delegation_over_time.tex",
+    "receipt": "book/tikz/receipts/f19_delegation_over_time.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Three provenance categories remain distinct through three grayscale fills; residual is not treated as human reading.",
+    "source_sha256": "e8bffb16470c68fd155436714cb1421c0bae03a3e51141d13fe877582dead2f1",
+    "candidate_sha256": "0f126ee3af010adc21e116ab072afea9d775192278fd8bd87c12d6a9f4bce985"
+  },
+  {
+    "source": "book/assets/six-entry-points.svg",
+    "candidate": "book/tikz/figures/six-entry-points.tex",
+    "receipt": "book/tikz/receipts/six-entry-points.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Emphasis badges restored: governance darker, knowledge/modeling light, combined intermediate with double outline; words disambiguate categories.",
+    "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
+    "candidate_sha256": "aad037a3f8dd91d6fab5306e2a33b7e599b41572856f83e62fd25c1aab967dca"
+  },
+  {
+    "source": "book/assets/mage-dynamic-model.svg",
+    "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+    "receipt": "book/tikz/receipts/mage-dynamic-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Capacity family, governed environment/adaptation, and pressure regain distinct gray families; numbered dynamics receive heavier strokes than shared plumbing.",
+    "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+    "candidate_sha256": "023428f0eeb7750778b506c84bdbd0bb3bdb2f70d77374b5ab5000bdd5c5f9fb"
+  },
+  {
+    "source": "book/assets/probability-in-the-software-factory.svg",
+    "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+    "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Encoding and tolerance share fill; production group light gray. Encoded-property route and measurement retain their separate trajectories.",
+    "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+    "candidate_sha256": "0b7fdec5eff9be8f07061feb4bc3a6029f518d2604a2b905ecf0432cc3b13b87"
+  },
+  {
+    "source": "book/assets/determinization-frontier.svg",
+    "candidate": "book/tikz/figures/determinization-frontier.tex",
+    "receipt": "book/tikz/receipts/determinization-frontier.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Alignment route darker, modeling route lighter; convergence into consequential repeatable decision emphasized.",
+    "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+    "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d"
+  },
+  {
+    "source": "book/assets/return-governability.svg",
+    "candidate": "book/tikz/figures/return-governability.tex",
+    "receipt": "book/tikz/receipts/return-governability.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Four investment modes regain distinct quadrant tones tied to their written prescriptions, not a maturity sequence.",
+    "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+    "candidate_sha256": "13b60eae3c043c107c6eef91096e685e0c56f85c6e918dcf2f39dffa8d80585c"
+  },
+  {
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "receipt": "book/tikz/receipts/where-effort-moves.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions.",
+    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
+    "candidate_sha256": "b3ca2746975215cec67330163045099c4fb1b0b0c7e87a9c2ac554dcc109bbc7"
+  },
+  {
+    "source": "book/assets/why-software-modeled.svg",
+    "candidate": "book/tikz/figures/why-software-modeled.tex",
+    "receipt": "book/tikz/receipts/why-software-modeled.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Commodity intelligence singled out from historical comparison; resulting economic claim strengthened.",
+    "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+    "candidate_sha256": "1bb66cd58c94562341a7bbf1c35a7df338324997d752edb75ba1c0a2c1c7dc4d"
+  },
+  {
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Engineering versus AI sources separated; MAGE composition gets a bounded pale ground; durable environment/capital retain common fill.",
+    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+    "candidate_sha256": "d76f6006ddb88d4cc7a5ca95640d4b3f2726e2f3be453bb7532c5ac207366027"
+  },
+  {
+    "source": "book/assets/governing-consequential-work.png",
+    "candidate": "book/tikz/figures/governing-consequential-work.tex",
+    "receipt": "book/tikz/receipts/governing-consequential-work.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Responsibility, governed-environment container and outcome container regain separate shades; two outcome forms remain equal alternatives.",
+    "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
+    "candidate_sha256": "81aa84c665a633b3df82fd467585250187abebfa2918cc443e1fd4c855648aab"
+  },
+  {
+    "source": "book/assets/appendix-a-capability-map.svg",
+    "candidate": "book/tikz/figures/appendix-a-capability-map.tex",
+    "receipt": "book/tikz/receipts/appendix-a-capability-map.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Coherence, mechanism stacks, and governance conversion regain distinct semantic families; detached independent stacks remain detached.",
+    "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
+    "candidate_sha256": "d22d8fa9283a164f890f958160f5c6f871dfed006a6ddf64e3c95218b07b7c54"
+  },
+  {
+    "source": "book/assets/model-coherence-stack.svg",
+    "candidate": "book/tikz/figures/model-coherence-stack.tex",
+    "receipt": "book/tikz/receipts/model-coherence-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model/correspondence/valid state, live consumption, and consequential decision/gate regain families; optional enhancements remain white/dashed/open-arrowed.",
+    "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "candidate_sha256": "952a469ed0a91acbf7b60f7a97614b40ca5f8e183466d14f269ab22495f099f0"
+  },
+  {
+    "source": "book/assets/assurance-stack.svg",
+    "candidate": "book/tikz/figures/assurance-stack.tex",
+    "receipt": "book/tikz/receipts/assurance-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Coverage is the joined result, distinct from obligation/evidence preparation.",
+    "source_sha256": "4e853982509c9fac383b3983d5d508b040085f4005cbc62ad9ab439c7f597d44",
+    "candidate_sha256": "993cf7c2c57662cce206f27fc66bea836fb6fcaa9de49b50598eef23848dbb7a"
+  },
+  {
+    "source": "book/assets/auditable-transformation-stack.svg",
+    "candidate": "book/tikz/figures/auditable-transformation-stack.tex",
+    "receipt": "book/tikz/receipts/auditable-transformation-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Fidelity gate differs from neutral mutation and provenance operations.",
+    "source_sha256": "c31fb75c5067f14c52049f3eda0854210a5bf1d1819908f4ff53721979f3e079",
+    "candidate_sha256": "b9186806c2c857449935b2ebb86cb4a0dd30d6ca9bcd04cc1fa3f08295acf406"
+  },
+  {
+    "source": "book/assets/observe-react-stack.svg",
+    "candidate": "book/tikz/figures/observe-react-stack.tex",
+    "receipt": "book/tikz/receipts/observe-react-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model is separated from watch/respond operations; optional attachments retain dashed borders.",
+    "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
+    "candidate_sha256": "197ffc52af59e1f218fcf0212489f4df1900c54f82a189f842fa025fe158ee44"
+  },
+  {
+    "source": "book/assets/resource-mediation-stack.svg",
+    "candidate": "book/tikz/figures/resource-mediation-stack.tex",
+    "receipt": "book/tikz/receipts/resource-mediation-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Policy and mediator form the governing pair; resource remains white and pressure dashed.",
+    "source_sha256": "6cf6b465831eb4c9ee298962adf1922b88b5e91434c321bc918dbaaa1c20070b",
+    "candidate_sha256": "ec0b72adaee3d606c2a8c84648c04e37aa910a6108756d2c984b997f0299a429"
+  },
+  {
+    "source": "book/assets/governance-conversion-stack.svg",
+    "candidate": "book/tikz/figures/governance-conversion-stack.tex",
+    "receipt": "book/tikz/receipts/governance-conversion-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Control machinery and interpretation share a governance shade; updated estate has a lighter result shade.",
+    "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
+    "candidate_sha256": "00a736ec1293ced905dd17cea09ec7699076a74699e178d59d6f31e39a33761a"
+  },
+  {
+    "source": "book/assets/context-delivery-stack.svg",
+    "candidate": "book/tikz/figures/context-delivery-stack.tex",
+    "receipt": "book/tikz/receipts/context-delivery-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Knowledge/action endpoints differ from intermediate context delivery; dashed reinforcement remains optional.",
+    "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "candidate_sha256": "790253494423203c2fc99a361d073ece3db2215273e9e19d471e7aca615a90fe"
+  },
+  {
+    "source": "book/assets/appendix-a-composing-a-stack.svg",
+    "candidate": "book/tikz/figures/appendix-a-composing-a-stack.tex",
+    "receipt": "book/tikz/receipts/appendix-a-composing-a-stack.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Capability and resulting stack share a shade; failure diagnosis and composition emphasized; guarantees differ from mechanisms.",
+    "source_sha256": "3e98e21e43701dafaa032467eb24103865eecf3213618978fe1aeb9675177a18",
+    "candidate_sha256": "d660df8b04c4f4ddd3bd2d8a7845c32a6cff56faa8e25f45e553a94d52cd3438"
+  },
+  {
+    "source": "book/assets/moves-overview-cheatsheet.svg",
+    "candidate": "book/tikz/figures/moves-overview-cheatsheet.tex",
+    "receipt": "book/tikz/receipts/moves-overview-cheatsheet.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Problem and engineering-move columns regain their two distinct visual families.",
+    "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "candidate_sha256": "52c5c3666884b2e3e27fda1e344a3058c23d1f1343f23ee6e63266b458dc75d6"
+  },
+  {
+    "source": "book/assets/c1-make-fact-authoritative.svg",
+    "candidate": "book/tikz/figures/c1-make-fact-authoritative.tex",
+    "receipt": "book/tikz/receipts/c1-make-fact-authoritative.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Independent copies share light shade; one authoritative representation is darker and heavier.",
+    "source_sha256": "812b0b9440a2d77fd13f3405930369e895146d7426bea4ed18f4ae4a2e2bfbb5",
+    "candidate_sha256": "9fd6d2ae8fe12578ffb3867edb55d1468fc657616eb042f86ec3eff3cfd52964"
+  },
+  {
+    "source": "book/assets/c2-derive-dont-copy.svg",
+    "candidate": "book/tikz/figures/c2-derive-dont-copy.tex",
+    "receipt": "book/tikz/receipts/c2-derive-dont-copy.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Same model role has same shade in both modes; stale copied snapshot is distinctly darker, with BAD/GOOD labels retained.",
+    "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "candidate_sha256": "afd5b612a3e79b376dd6ae694e7c911a9e4e712eb488ef703ba2616c1a85de7d"
+  },
+  {
+    "source": "book/assets/c3-bidirectional-correspondence.svg",
+    "candidate": "book/tikz/figures/c3-bidirectional-correspondence.tex",
+    "receipt": "book/tikz/receipts/c3-bidirectional-correspondence.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Claimed model is shaded versus white realized system; both directional checks remain explicit.",
+    "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+    "candidate_sha256": "31c7e09d5b1ad41315b452db5dec2b501d90ad5b7838c56d346caf46d7c7adfc"
+  },
+  {
+    "source": "book/assets/c4-derive-obligation-set.svg",
+    "candidate": "book/tikz/figures/c4-derive-obligation-set.tex",
+    "receipt": "book/tikz/receipts/c4-derive-obligation-set.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model-derived required and covered sets share light shade; gap and resulting finding visibly distinct from evidence.",
+    "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
+    "candidate_sha256": "caa97980ec06722a0919e9b8dabc61ec14cef1e69177c5a40bb9b442ccf1e3ce"
+  },
+  {
+    "source": "book/assets/c5-earliest-legible-last-safe.svg",
+    "candidate": "book/tikz/figures/c5-earliest-legible-last-safe.tex",
+    "receipt": "book/tikz/receipts/c5-earliest-legible-last-safe.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Distinct timeline positions and explicit CHECK/RE-CHECK/point-of-no-return labels preserve the modes; marker shapes refined separately.",
+    "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+    "candidate_sha256": "f002d431c146984c1484db1f5890f8cb42ee22f6617883496afa282c74bcdf92"
+  },
+  {
+    "source": "book/assets/c6-close-action-surface.svg",
+    "candidate": "book/tikz/figures/c6-close-action-surface.tex",
+    "receipt": "book/tikz/receipts/c6-close-action-surface.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "One governing seam is emphasized; existing dashed open routes versus solid closed routes already convey mode.",
+    "source_sha256": "ba8caab75008adcd9423043d11afe98db78c66edc8efb5fa70e5b90f5e155f5f",
+    "candidate_sha256": "9b07a4574f3faad63d889d3ae5b5509191e74d40a7f016416aae06fa352ea58c"
+  },
+  {
+    "source": "book/assets/c7-knowledge-at-decision.svg",
+    "candidate": "book/tikz/figures/c7-knowledge-at-decision.tex",
+    "receipt": "book/tikz/receipts/c7-knowledge-at-decision.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Rules, work input and binding selection have separate shades; decision remains white.",
+    "source_sha256": "df88d4411203a5feb493daa5314e28605a099fe11abf8a97c413a22fdeba519a",
+    "candidate_sha256": "49d5fad7f192e3c3da56d75ac4da8a0b66ce71d53248d0a3e0798306dc8db282"
+  },
+  {
+    "source": "book/assets/c8-cause-travels-with-consequence.svg",
+    "candidate": "book/tikz/figures/c8-cause-travels-with-consequence.tex",
+    "receipt": "book/tikz/receipts/c8-cause-travels-with-consequence.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Causal origin and reconstructed explanation differ from neutral action/change/artifact chain.",
+    "source_sha256": "57f4e8d83fbca07e4b4ed0b1359afc838e9a99ab1d078718545f52d38295cf22",
+    "candidate_sha256": "f137d7ee30506332d9bd462f317f89b6cbabd95d63722b8f8d7b8765ef4c9659"
+  },
+  {
+    "source": "book/assets/c9-externalize-judgment.svg",
+    "candidate": "book/tikz/figures/c9-externalize-judgment.tex",
+    "receipt": "book/tikz/receipts/c9-externalize-judgment.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model family shares light gray; reasoning guidance differs from generated procedure; operator remains a distinct recipient.",
+    "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
+    "candidate_sha256": "3d8e1887bb2b80b621d1f650d19b37decf0ae38c3e46153dce41ec0f77acf610"
+  },
+  {
+    "source": "book/assets/c10-dependencies-queryable.svg",
+    "candidate": "book/tikz/figures/c10-dependencies-queryable.tex",
+    "receipt": "book/tikz/receipts/c10-dependencies-queryable.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Blocking control and affected-set query are darker than deriving model; unaffected control stays white/dashed.",
+    "source_sha256": "ff7cf1a20308694e176f3279afafd9eb3702567c665fd1c1df752803a5a5a2b1",
+    "candidate_sha256": "1c5809eb2088b2fe163723654c22e71337faf524bcb3603c02462b5a96add435"
+  },
+  {
+    "source": "book/assets/appendix-g-1-executable-model.svg",
+    "candidate": "book/tikz/figures/appendix-g-1-executable-model.tex",
+    "receipt": "book/tikz/receipts/appendix-g-1-executable-model.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Representation/check boxes differ from realized artifacts; admission gate remains heavy and darker than advisory output.",
+    "source_sha256": "310512347e624bde8a61f0ac18529472803ac4019af54a21c2245c9e655d54c5",
+    "candidate_sha256": "ff9fe64565ac39d166c04ae26ce19369e70ffdce6fb8cae524c94cf9e6e81a38"
+  },
+  {
+    "source": "book/assets/appendix-g-2-structure-boundaries.svg",
+    "candidate": "book/tikz/figures/appendix-g-2-structure-boundaries.tex",
+    "receipt": "book/tikz/receipts/appendix-g-2-structure-boundaries.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Authored catalog/ownership layer shaded; observed repository/raw library remain white. Checked seam and forbidden X retained.",
+    "source_sha256": "21fea7ba72cfe2d54e657a5e6b11a9156640f15d4fd2b98cb5dfcfd0dd93067f",
+    "candidate_sha256": "3ecdb4cb8b95693a1999f8b0fd532183b4cee20cee2457c39cb87bbb0485fbf6"
+  },
+  {
+    "source": "book/assets/appendix-g-3-behavior-ownership.svg",
+    "candidate": "book/tikz/figures/appendix-g-3-behavior-ownership.tex",
+    "receipt": "book/tikz/receipts/appendix-g-3-behavior-ownership.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Modeled lifecycle and ownership overlay share shade; actual worker remains white; checked lease/CAS edge stays heavy.",
+    "source_sha256": "bf5090147143a1ee1b761991c5f6aa4275aa304fb643cd8ce18406498fd9e824",
+    "candidate_sha256": "7371d60b72c1fa1848bbbe88aabef0e40399109a0670abc020907a20b5d6eefb"
+  },
+  {
+    "source": "book/assets/appendix-g-4-host-execution-policy.svg",
+    "candidate": "book/tikz/figures/appendix-g-4-host-execution-policy.tex",
+    "receipt": "book/tikz/receipts/appendix-g-4-host-execution-policy.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "All original boxes belong to one representation family; topology versus policy is already separated by row and dashed derived edge. No extra shade needed.",
+    "source_sha256": "3222d90375057239bc272c30803a77ef99da399bd6ff80713511225f5f889bdf",
+    "candidate_sha256": "c1d8259127d51c33b75d69e023d56c086c11b4b857c61aaf829f24d37411eb09"
+  },
+  {
+    "source": "book/assets/appendix-g-5-measurement-authority.svg",
+    "candidate": "book/tikz/figures/appendix-g-5-measurement-authority.tex",
+    "receipt": "book/tikz/receipts/appendix-g-5-measurement-authority.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Measurement and declared bound are representations; checked gate is darker/heavier than report-only branch.",
+    "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
+    "candidate_sha256": "06d7d48cde12a1e7e1945b9f2810d615f1b22a816908da1d12bfb83c0d966c7a"
+  },
+  {
+    "source": "book/assets/appendix-g-6-facts-before-prose.svg",
+    "candidate": "book/tikz/figures/appendix-g-6-facts-before-prose.tex",
+    "receipt": "book/tikz/receipts/appendix-g-6-facts-before-prose.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Provenance and generated documentation share a fact-derived family; checked audit emphasized; independent prose retains dashed outline.",
+    "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "candidate_sha256": "cca14d7df6f90cc7a9ca871b6fd1694a5537a54af7c31b6753b79a976821f91b"
+  },
+  {
+    "source": "book/assets/appendix-g-7-composition-by-reference.svg",
+    "candidate": "book/tikz/figures/appendix-g-7-composition-by-reference.tex",
+    "receipt": "book/tikz/receipts/appendix-g-7-composition-by-reference.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "All nodes are one model family; dashed derived correspondence and heavy joined-view border preserve grouping without invented categories.",
+    "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
+    "candidate_sha256": "f25362df25c301a9f841cd330af0b2eee50628450e93671713d7287268c961b9"
+  },
+  {
+    "source": "book/assets/brownfield-progress-2x2.svg",
+    "candidate": "book/tikz/figures/brownfield-progress-2x2.tex",
+    "receipt": "book/tikz/receipts/brownfield-progress-2x2.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Two independent dimensions: rich representation row shaded; strong enforcement column heavy border. Thin row/weak column remain white/thin.",
+    "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
+    "candidate_sha256": "cd1f9df71afc48587175c38cd15e27a417897fa786ceced06ec5db3540127d29"
+  },
+  {
+    "source": "book/assets/figure-composition.svg",
+    "candidate": "book/tikz/figures/figure-composition.tex",
+    "receipt": "book/tikz/receipts/figure-composition.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Governance, governed environment and operations regain distinct tones; communication/people stay neutral.",
+    "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+    "candidate_sha256": "81ff591cf6a6b7e897dbbd6bd6cee5250b2835311ef1ed80b1ef01966df1628c"
+  },
+  {
+    "source": "book/assets/h1-product-lifecycle.svg",
+    "candidate": "book/tikz/figures/h1-product-lifecycle.tex",
+    "receipt": "book/tikz/receipts/h1-product-lifecycle.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Cross-cutting assurance band differs from ordinary lifecycle phases.",
+    "source_sha256": "a0ef986b739d463a791258bba88959d96cbbf2fbdfd3af8ac896bac65b353b88",
+    "candidate_sha256": "ab5fb540e4cf9ceba8f4a33374e8dd9a1ff977354b124302b7c8fb60ea586b13"
+  },
+  {
+    "source": "book/assets/h4-change-diagnosis-inheritance.svg",
+    "candidate": "book/tikz/figures/h4-change-diagnosis-inheritance.tex",
+    "receipt": "book/tikz/receipts/h4-change-diagnosis-inheritance.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Diagnosis/evidence share a shade; durable governance inheritance differs from simple history.",
+    "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
+    "candidate_sha256": "51b9ce1b20788eecb2ea5814f8c228822ced841abcd8f85a57e1e6abf4bf9183"
+  },
+  {
+    "source": "book/assets/h5-incident-to-governance.svg",
+    "candidate": "book/tikz/figures/h5-incident-to-governance.tex",
+    "receipt": "book/tikz/receipts/h5-incident-to-governance.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Incident observation is light; conversion and its two durable outputs share governance tone, distinct from repair/history.",
+    "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
+    "candidate_sha256": "23dedac684fa630798cd486d113b256ad51c708036ac14c316015006212bc568"
+  },
+  {
+    "source": "book/assets/h6-assurance-models-realization.svg",
+    "candidate": "book/tikz/figures/h6-assurance-models-realization.tex",
+    "receipt": "book/tikz/receipts/h6-assurance-models-realization.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Model evidence differs from realized evidence; alignment and established claim share governance emphasis.",
+    "source_sha256": "2e586275c1e8854b78c44eb10c679e08c57a466c81592f809398d828a5f6c4a9",
+    "candidate_sha256": "22a5dc3a20a73d7b21b12af4fe28cc41e5ec6a403d882f7e18de1a2d99a5f8b6"
+  },
+  {
+    "source": "book/assets/h8-product-gee.svg",
+    "candidate": "book/tikz/figures/h8-product-gee.tex",
+    "receipt": "book/tikz/receipts/h8-product-gee.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Autonomous reasoning and alignment regain distinct visual modes; resulting governed environment matches alignment.",
+    "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "candidate_sha256": "6300ed106c099548670c95badd03f1306cb50e38cd0b92bf2f1c365e917ffd59"
+  },
+  {
+    "source": "book/assets/h9-capital-time-space.svg",
+    "candidate": "book/tikz/figures/h9-capital-time-space.tex",
+    "receipt": "book/tikz/receipts/h9-capital-time-space.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Cross-product concerns share darker fill, distinct from product constellations; solid/dotted established/possible links remain unchanged.",
+    "source_sha256": "03a4f6b9211dfe6d10735faa373eb1f5a739a039976b3af3080390536a25795b",
+    "candidate_sha256": "ff97c0a3eed697a6833c5d13452053652781d99bd1cee6f016948058e155a9c9"
+  },
+  {
+    "source": "book/assets/adopting-assistance-to-delegation.svg",
+    "candidate": "book/tikz/figures/adopting-assistance-to-delegation.tex",
+    "receipt": "book/tikz/receipts/adopting-assistance-to-delegation.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Same agent role shaded equally in both modes; governed environment separately emphasized; expanded dashed authority boundary retained.",
+    "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "candidate_sha256": "10c4c62e6ee4d4d26bd701b48272c01f5479f323e0cafbce450253a79f848c39"
+  },
+  {
+    "source": "book/assets/adopting-investment-paths.svg",
+    "candidate": "book/tikz/figures/adopting-investment-paths.tex",
+    "receipt": "book/tikz/receipts/adopting-investment-paths.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Representation investment lane light; adjudication/evidence lane darker; inherited capital shares representation shade. Labels retain exact choices.",
+    "source_sha256": "48b0844717206ad7a521ecd97ec246d9a347e9fb6e0873855245e9d9d57175ee",
+    "candidate_sha256": "1fe194a1ab40daead4f3ba56a9da3d9a9e0004809b779e0a68ce641664e5ffa3"
+  },
+  {
+    "source": "book/assets/adopting-figures-recap.svg",
+    "candidate": "book/tikz/figures/adopting-figures-recap.tex",
+    "receipt": "book/tikz/receipts/adopting-figures-recap.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Four independent topics already occupy four separate cards with explicit titles and home sections; original topic colors introduce no shared group or mode. No decorative fill added.",
+    "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "candidate_sha256": "69114d4b98bd627c11764968ff9014fbe288556f8280ce0770137a30b3776672"
+  },
+  {
+    "source": "book/assets/field-guide-cloudflare.svg",
+    "candidate": "book/tikz/figures/field-guide-cloudflare.tex",
+    "receipt": "book/tikz/receipts/field-guide-cloudflare.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "befef9a9f27d94ca26298d01a8e0a25339405f8763bcc71c6398c3f38536dd41",
+    "candidate_sha256": "600a56a4ab915c6cb99a8736c76bdc7551b2c6752a9af780fb731e6d3e169ea0"
+  },
+  {
+    "source": "book/assets/field-guide-spotify.svg",
+    "candidate": "book/tikz/figures/field-guide-spotify.tex",
+    "receipt": "book/tikz/receipts/field-guide-spotify.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "3eca358ae1fe8b9c41910c41a1e91fa01737ed5000a9afa714f9f39cfc5ec5b1",
+    "candidate_sha256": "0740168a8b61201739378b59740501ccc74324f4449f834319bc640bb2831c3e"
+  },
+  {
+    "source": "book/assets/field-guide-shopify.svg",
+    "candidate": "book/tikz/figures/field-guide-shopify.tex",
+    "receipt": "book/tikz/receipts/field-guide-shopify.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+    "candidate_sha256": "3595b95c2dfec4acf0b0af956419aa0f444d6c5af9bb157063f18f5e852145d8"
+  },
+  {
+    "source": "book/assets/field-guide-siemens.svg",
+    "candidate": "book/tikz/figures/field-guide-siemens.tex",
+    "receipt": "book/tikz/receipts/field-guide-siemens.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
+    "candidate_sha256": "76604d7c7a2a2d78d3cd47193017606ae7ff43bb68c3038cd2233c8af67a1c81"
+  },
+  {
+    "source": "book/assets/field-guide-zenseact.svg",
+    "candidate": "book/tikz/figures/field-guide-zenseact.tex",
+    "receipt": "book/tikz/receipts/field-guide-zenseact.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
+    "candidate_sha256": "60adc7e7201a38443465e67a50511ebb317a212f96438d978085dacdb091e082"
+  },
+  {
+    "source": "book/assets/field-guide-uber.svg",
+    "candidate": "book/tikz/figures/field-guide-uber.tex",
+    "receipt": "book/tikz/receipts/field-guide-uber.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
+    "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
+    "candidate_sha256": "81a0c760dc4cde343ca3850489ca204043734e4a1f08512f115557081c23c205"
+  },
+  {
+    "source": "book/assets/velocity-commits-per-week.svg",
+    "candidate": "book/tikz/figures/velocity-commits-per-week.tex",
+    "receipt": "book/tikz/receipts/velocity-commits-per-week.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Weekly bars preserve the historical window and values without requiring color distinctions.",
+    "source_sha256": "a7fb8082bf40bf5700d374ef0107f9090a0e76a63fc0f6ecd7049ae93b18c7b5",
+    "candidate_sha256": "0a6b5e436da0118ac7b6c11d37c9d9b687f83763dea0bcc3a6bec5e1af51bf6c"
+  },
+  {
+    "source": "book/assets/churn-per-path.svg",
+    "candidate": "book/tikz/figures/churn-per-path.tex",
+    "receipt": "book/tikz/receipts/churn-per-path.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Restored two path-family encodings with a legend and a signed axis, preserving additions and deletions.",
+    "source_sha256": "1d2d8f28de3fea0b6da2c8fb5d40e3b2a62eba200a8b0c4b097d741ea0d0a140",
+    "candidate_sha256": "0553f12ea93a84bb1e4c867ee0678d32e4eeac0fec68d194819bc39b9ba4ec8b"
+  },
+  {
+    "source": "book/assets/model-induction-general.svg",
+    "candidate": "book/tikz/figures/model-induction-general.tex",
+    "receipt": "book/tikz/receipts/model-induction-general.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Explicit vocabulary row light gray and future reuse row darker; discovery stages white. Solid grounded versus dashed inferred columns retained.",
+    "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+    "candidate_sha256": "da6334e6233560f71699c59b2678830788256d4a6607cbd0e2140ddc06e58a45"
+  },
+  {
+    "source": "book/assets/nav-subway-p1.svg",
+    "candidate": "book/tikz/figures/nav-subway-p1.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p1.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 1 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+    "candidate_sha256": "7cf9f4bf4e97709ee00219e06b8283b0564dcb321d6cf3267cd526e54b764748"
+  },
+  {
+    "source": "book/assets/nav-subway-p2.svg",
+    "candidate": "book/tikz/figures/nav-subway-p2.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p2.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 2 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+    "candidate_sha256": "5399114470375aa0379a26afc791b47bdb242e5370ad776a79397f52891e2c1b"
+  },
+  {
+    "source": "book/assets/nav-subway-p3.svg",
+    "candidate": "book/tikz/figures/nav-subway-p3.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p3.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 3 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+    "candidate_sha256": "d6280027caed0f9b0ca47ddd5f9f16f3ac2dbbca35bd362137656d584a16470a"
+  },
+  {
+    "source": "book/assets/nav-subway-p4.svg",
+    "candidate": "book/tikz/figures/nav-subway-p4.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p4.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 4 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+    "candidate_sha256": "c3b4403458eb17125882c7dc7a08acf1a85a706c5f71bc775b129a83ad81be07"
+  },
+  {
+    "source": "book/assets/nav-subway-p5.svg",
+    "candidate": "book/tikz/figures/nav-subway-p5.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p5.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 5 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+    "candidate_sha256": "0e8cfb0abcea608cbb40e2f2a85c31f49af5fc2cc15df2778c90231b3939bae5"
+  },
+  {
+    "source": "book/assets/nav-subway-p6.svg",
+    "candidate": "book/tikz/figures/nav-subway-p6.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p6.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 6 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+    "candidate_sha256": "29a8aa047e8d705f87da02d9409228a3516178f514bd8bfd7eaec3778faf2f93"
+  },
+  {
+    "source": "book/assets/nav-subway-p7.svg",
+    "candidate": "book/tikz/figures/nav-subway-p7.tex",
+    "receipt": "book/tikz/receipts/nav-subway-p7.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Seven ordered chapter stations; chapter 7 uses a filled larger marker and bold label, while other stations remain open.",
+    "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+    "candidate_sha256": "e145fa020400711ca24d43cfe9a240068fa403ac014893cf7ff778bdc7977cbf"
+  }
+]

@@ -5,13 +5,19 @@ strong/.style={n,line width=1pt,fill=black!7},
 note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
 edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=9cm] (n0) at (0,0) {3.1  LOCATE\\Where can enforcement occur?};
-\node[n,text width=9cm] (n1) at (0,-2) {3.2  JUSTIFY\\What may it legitimately enforce?};
-\draw[edge] (n0) -- (n1);
-\node[n,text width=9cm] (n2) at (0,-4) {3.3  MECHANIZE\\How does a mechanism enforce an obligation?};
-\draw[edge] (n1) -- (n2);
-\node[n,text width=9cm] (n3) at (0,-6) {3.4  LEARN\\How does the environment acquire new obligations and controls?};
-\draw[edge] (n2) -- (n3);
-\node[n,text width=9cm] (n4) at (0,-8) {3.5  GOVERN\\How are accumulated controls governed as a system?};
-\draw[edge] (n3) -- (n4);
+
+\foreach [count=\i] \num/\title/\question/\y in {
+3.1/LOCATE/{Where can enforcement occur?}/0,
+3.2/JUSTIFY/{What may it legitimately enforce?}/-1.8,
+3.3/MECHANIZE/{How does a mechanism enforce an obligation?}/-3.6,
+3.4/LEARN/{How does the environment acquire new obligations and controls?}/-5.4,
+3.5/GOVERN/{How are accumulated controls governed as a system?}/-7.2} {
+ \node[circle,draw,line width=.8pt,fill=black!25,minimum size=1cm] (s\i) at (0,\y) {\num};
+ \node[head,anchor=west,text width=10cm,align=left] at (.9,\y+.25) {\title};
+ \node[note,anchor=west,text width=10cm,align=left] at (.9,\y-.3) {\question};
+}
+\draw[edge] (s1) -- (s2);
+\draw[edge] (s2) -- (s3);
+\draw[edge] (s3) -- (s4);
+\draw[edge] (s4) -- (s5);
 \end{tikzpicture}

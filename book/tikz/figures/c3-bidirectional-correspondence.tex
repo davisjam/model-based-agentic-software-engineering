@@ -3,7 +3,7 @@ box/.style={draw=black,fill=white,rounded corners=2pt,align=center,text width=3c
 gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=3cm] (model) at (-4,0) {MODEL\\ what we claim is true};
+\node[box,text width=3cm,fill=black!15] (model) at (-4,0) {MODEL\\ what we claim is true};
 \node[box,text width=3cm] (real) at (4,0) {REALITY\\ the running system};
 \draw[edge] (model.north) to[bend left=35] (real.north);
 \draw[edge] (real.south) to[bend left=35] (model.south);

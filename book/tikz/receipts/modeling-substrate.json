@@ -60,8 +60,24 @@
     "Measurements",
     "Traceability · derivation · query surfaces Join representations where an engineering question crosses them."
   ],
-  "bw_encoding": "Black outlines and arrows; white nodes; sparse 3–7% gray groups. Every non-solid relation is locally labeled; no distinction depends on color.",
-  "redesign": "Native semantic redraw; colors replaced by labeled relations and line conventions.",
+  "bw_encoding": "Grayscale publication candidate. Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
+  "redesign": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
   "questions": [],
-  "alt": "Seven peer representations surround shared system identities: service registry, deployment topology, state machines, entitlement policy, computation graph, provenance records and measurements. Connections to the hub express shared identity, not hierarchy. A separate footer names traceability, derivation and query surfaces. The candidate uses black lines, white backgrounds and sparse gray; meaning does not depend on color."
+  "alt": "Seven peer representations surround shared system identities: service registry, deployment topology, state machines, entitlement policy, computation graph, provenance records and measurements. Connections to the hub express shared identity, not hierarchy. A separate footer names traceability, derivation and query surfaces. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings.",
+  "review": {
+    "reference": "current authored SVG (not older D2 receipts)",
+    "checks": [
+      "semantic roles and group containment",
+      "edge endpoints/direction",
+      "source dashed meanings",
+      "gray-mode distinctions",
+      "native-size visual layout"
+    ],
+    "outcome": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.1164,
+      10.4856
+    ]
+  }
 }

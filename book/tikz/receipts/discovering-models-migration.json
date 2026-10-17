@@ -19,8 +19,8 @@
     "Stronger model substrate",
     "Weak signals locate the work; they do not dictate the remedy."
   ],
-  "bw_encoding": "Black strokes and text; pale gray headers only. Dashed paths retain optional, missing, or forbidden semantics where explicitly labeled. Position, containment, line weight, and written labels carry distinctions without color.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Named model and representation products share fill; narrower enforcement has distinct darker emphasis; acceptance and codemod branches neutral. All strokes and fills are neutral grayscale; labels remain the primary semantic key. Existing dashed meanings are preserved.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Named model and representation products share fill; narrower enforcement has distinct darker emphasis; acceptance and codemod branches neutral.",
   "questions": [],
   "alt": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy.",
   "qa": {
