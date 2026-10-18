@@ -92,10 +92,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+    "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
     "fill": "All chapter and appendix boxes white; the case-study boundary and heading already encode grouping.",
     "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
@@ -103,11 +103,11 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 1,
-      "width_bp": 360.015,
-      "height_bp": 416.659,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 362.345,
+      "height_bp": 503.79,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -129,7 +129,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+    "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -588,11 +588,11 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 1,
-      "width_bp": 360.015,
-      "height_bp": 416.659,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 362.345,
+      "height_bp": 503.79,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -601,7 +601,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -614,21 +614,49 @@
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Reduced non-text padding and spaced the vertical spine to give arrowheads clear approaches while retaining the full hierarchy. Increased the surrounding case frame padding to clear the arrow entering Chapter 2.",
-    "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+    "reason": "Reduced non-text padding and spaced the vertical spine to give arrowheads clear approaches while retaining the full hierarchy. Increased the surrounding case frame padding to clear the arrow entering Chapter 2. Raise chapter labels to11pt and annotations to10pt; increase padding and rank spacing for the overview spine.",
+    "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Raise chapter labels to11pt and annotations to10pt; increase padding and rank spacing for the overview spine.",
+      "before_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+      "after_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
+      "before_dimensions_bp": [
+        360.0150146484375,
+        416.65899658203125
+      ],
+      "after_dimensions_bp": [
+        362.3450012207031,
+        503.7900085449219
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        10.0,
+        11.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 1,
-      "width_bp": 360.015,
-      "height_bp": 416.659
+      "width_bp": 362.345,
+      "height_bp": 503.79
     }
   }
 }

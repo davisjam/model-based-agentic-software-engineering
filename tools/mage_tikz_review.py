@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Compile native grayscale candidates and place each after its original in a review book.
 
-Production manuscript/assets stay unchanged. Candidate PDFs are included at native
-print size with alternate text; the publisher receives the editable TikZ sources.
+Assembly leaves production manuscript/assets unchanged. Authored revisions to
+color originals are reflected in both editions. Candidate PDFs are included at
+native print size with alternate text; the publisher receives editable sources.
 """
 from __future__ import annotations
 import argparse,json,re,shutil,sys,subprocess,tempfile,zipfile
@@ -62,7 +63,8 @@ def compile_candidates(partial=False):
     manifest={}
     for i,(record,page) in enumerate(zip(records,pages),1):
         w,h=float(page.mediabox.width),float(page.mediabox.height)
-        if w>450 or h>420:raise ValueError(f"Candidate exceeds print envelope: {record['source']} ({w:.1f}x{h:.1f}pt)")
+        if w>mage_latex.FIGURE_WIDTH_BP or h>mage_latex.FIGURE_HEIGHT_BP:
+            raise ValueError(f"Candidate exceeds print envelope: {record['source']} ({w:.1f}x{h:.1f}bp)")
         manifest['book/'+record['source']]={'page':i,'width_pt':w,'height_pt':h,'links':mage_tikz_links.page_links(page)}
     (BUILD/'pages.json').write_text(json.dumps(manifest,indent=2)+'\n')
     from tikz_audit import audit_pdf

@@ -37,7 +37,7 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
     "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
@@ -48,7 +48,7 @@
     "visual_review": "Equal pale partition grounds; PAGE and READY FRONTIER annotations remain outside action boxes.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 60,
       "width_bp": 449.009,
       "height_bp": 264.086,
@@ -348,7 +348,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 60,
       "width_bp": 449.009,
       "height_bp": 264.086,
@@ -361,7 +361,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -376,15 +376,43 @@
     "decision": "refined",
     "reason": "Moved the frontier frames away from arrowheads and extended the bottom rank; group boundaries remain explicit without interrupting terminal shafts just before nodes.",
     "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing interlude graph two partitions layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+      "after_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+      "before_dimensions_bp": [
+        449.0090026855469,
+        264.08599853515625
+      ],
+      "after_dimensions_bp": [
+        449.0090026855469,
+        264.08599853515625
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 60,
       "width_bp": 449.009,

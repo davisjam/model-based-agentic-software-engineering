@@ -12,6 +12,15 @@ need to add manual emphasis to each source cell. The MAGE print assembler keeps
 the semantic-commitment comparison (Table 2.1) together on a portrait table page;
 its five-column content remains shared with the web edition.
 
+MAGE figures may occupy up to 450 × 560 bp of the 450 × 648 bp text area,
+leaving space for captions and float spacing. Dense TikZ drawings use that height
+at their authored font sizes; simple drawings remain compact. The paired figure
+review applies the same envelope to color originals and grayscale candidates.
+The two compact overview placements retain their half-page height limit.
+The author portrait retains its established size alongside the biography.
+Four originals with long captions reserve additional room for that text: modeling
+history, the dynamic model, change diagnosis, and incident-to-governance.
+
 ## Author and build
 
 Edit the `.tex` manuscript, not its generated `.md` sibling. Metadata and asset

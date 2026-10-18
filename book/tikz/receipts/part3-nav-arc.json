@@ -73,7 +73,7 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
     "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
@@ -84,7 +84,7 @@
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 38,
       "width_bp": 362.056,
       "height_bp": 288.565,
@@ -160,7 +160,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 38,
       "width_bp": 362.056,
       "height_bp": 288.565,
@@ -173,7 +173,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -188,15 +188,45 @@
     "decision": "retained",
     "reason": "The navigation arc uses equal circle markers and spacious vertical links; headings and explanations are external.",
     "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing part3 nav arc layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+      "after_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+      "before_dimensions_bp": [
+        362.0559997558594,
+        288.56500244140625
+      ],
+      "after_dimensions_bp": [
+        362.0559997558594,
+        288.56500244140625
+      ],
+      "before_font_sizes_pt": [
+        9.5,
+        10.0,
+        10.5
+      ],
+      "after_font_sizes_pt": [
+        9.5,
+        10.0,
+        10.5
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 38,
       "width_bp": 362.056,

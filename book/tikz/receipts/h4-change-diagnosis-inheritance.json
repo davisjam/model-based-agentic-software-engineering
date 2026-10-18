@@ -21,10 +21,10 @@
   "alt": "Change-scoped models, degrees of freedom, and inheritance",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
-    "candidate_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
+    "candidate_sha256": "1b4bda7770ea7f38cefce71e2691fe679c587ccea7416b908628a20035514937",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes DURABLE STRUCTURE. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "routing": "Inputs and history/durable-output alternatives use orthogonal rails; external traceability and recurring-lesson explanations remain outside.",
@@ -32,11 +32,11 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 121,
       "width_bp": 335.372,
-      "height_bp": 374.724,
-      "minimum_prose_font_pt": 9.0,
+      "height_bp": 463.674,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -48,7 +48,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
-    "candidate_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
+    "candidate_sha256": "1b4bda7770ea7f38cefce71e2691fe679c587ccea7416b908628a20035514937",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
       {
@@ -120,11 +120,11 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 121,
       "width_bp": 335.372,
-      "height_bp": 374.724,
-      "minimum_prose_font_pt": 9.0,
+      "height_bp": 463.674,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -133,7 +133,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -146,21 +146,49 @@
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Align input and alternative-output peers; extend rail-to-target spans to compensate for larger common boxes.",
-    "candidate_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
+    "reason": "Align input and alternative-output peers; extend rail-to-target spans to compensate for larger common boxes. Use11pt descriptions/10pt annotations; add vertical breathing room across diagnosis and inheritance branch ranks.",
+    "candidate_sha256": "1b4bda7770ea7f38cefce71e2691fe679c587ccea7416b908628a20035514937",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Use11pt descriptions/10pt annotations; add vertical breathing room across diagnosis and inheritance branch ranks.",
+      "before_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
+      "after_sha256": "1b4bda7770ea7f38cefce71e2691fe679c587ccea7416b908628a20035514937",
+      "before_dimensions_bp": [
+        335.37200927734375,
+        374.7239990234375
+      ],
+      "after_dimensions_bp": [
+        335.37200927734375,
+        463.67401123046875
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        10.0,
+        11.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 121,
       "width_bp": 335.372,
-      "height_bp": 374.724
+      "height_bp": 463.674
     }
   }
 }

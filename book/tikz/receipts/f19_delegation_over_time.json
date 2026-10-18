@@ -12,7 +12,7 @@
   ],
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "e8bffb16470c68fd155436714cb1421c0bae03a3e51141d13fe877582dead2f1",
     "candidate_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
@@ -23,7 +23,7 @@
     "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 81,
       "width_bp": 423.125,
       "height_bp": 266.662,
@@ -59,7 +59,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 81,
       "width_bp": 423.125,
       "height_bp": 266.662,
@@ -72,7 +72,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -87,15 +87,43 @@
     "decision": "retained",
     "reason": "Retained generated chart/navigation: axis, legend or station spacing is clear; process-box alignment changes are not applicable.",
     "candidate_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain quantitative chart: existing axes, legends and explanatory labels are readable at native size; no height-constrained diagram prose.",
+      "before_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
+      "after_sha256": "6ec9ea9b7e2ff209c1df8d130233dddaa3f37d07b38bfc1675cbc3e4dc43bb1c",
+      "before_dimensions_bp": [
+        423.125,
+        266.6619873046875
+      ],
+      "after_dimensions_bp": [
+        423.125,
+        266.6619873046875
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 81,
       "width_bp": 423.125,

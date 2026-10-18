@@ -15,6 +15,21 @@ sys.path.insert(0, str(ROOT / 'book'))
 import book_ir
 import build_book as bb
 
+# MAGE's 450 × 648 bp text area leaves 88 bp for a caption and float spacing.
+# Dense illustrations may use a full figure page; native TikZ uses this same
+# envelope rather than inheriting the earlier two-thirds-page height cap.
+FIGURE_WIDTH_BP = 450
+FIGURE_HEIGHT_BP = 560
+FIGURE_HEIGHT_OPTION = f'height={FIGURE_HEIGHT_BP}bp'
+# These originals have extended explanatory captions. Artwork and caption
+# together occupy a figure page; the paired native trials have shorter captions.
+FIGURE_HEIGHT_OVERRIDES_BP = {
+    'modeling-history': 490,
+    'mage-dynamic-model': 540,
+    'fig-h-change': 525,
+    'fig-h-incident': 525,
+}
+
 
 def pandoc(text, source='markdown', target='latex', *extra):
     if target == 'latex': extra = (*extra, '--syntax-highlighting=none')
@@ -493,7 +508,9 @@ def _prepare_record(task):
         content = match[0]
         caption = pandoc(argument(content, r'\caption'), 'latex', 'plain')
         from mage_cover import _text
-        return content.replace(r'\includegraphics[', r'\includegraphics[height=.66\textheight,keepaspectratio,alt={' + _text(caption) + '},', 1)
+        label = re.search(r'\\label\{([^}]+)\}', content)
+        height = FIGURE_HEIGHT_OVERRIDES_BP.get(label[1] if label else '', FIGURE_HEIGHT_BP)
+        return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
     from latex_build import bold_table_headers, single_page_tables
@@ -526,9 +543,13 @@ def _prepare_record(task):
         # Keep this reference sheet on one page with compact introductory text,
         # caption spacing and a scoped figure height.
         latex = (r'\clearpage\newgeometry{top=.5in,bottom=.5in,left=1.125in,right=1.125in}\begingroup\small\captionsetup{font=footnotesize}' + '\n'
-                 + latex.replace('[htbp]', '[!htbp]').replace('height=.66', 'height=.50') + '\n' + r'\clearpage\endgroup\restoregeometry' + '\n')
+                 + latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight') + '\n' + r'\clearpage\endgroup\restoregeometry' + '\n')
     if slug == 'appendix-a-composing-a-stack':
-        latex = latex.replace('[htbp]', '[!htbp]').replace('height=.66', 'height=.50')
+        latex = latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight')
+    if slug == 'about-the-author':
+        # The portrait accompanies the biography, rather than occupying a diagram
+        # page. Preserve its established size and avoid stranding the short bio.
+        latex = latex.replace(FIGURE_HEIGHT_OPTION, r'height=.66\textheight')
     tex_source.write_text(latex)
     print('Prepared native print chapter', slug, flush=True)
     return str(tex_source.relative_to(ROOT))

@@ -31,10 +31,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-    "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Delegated:; Environment:; 1. CO-CODER. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -42,11 +42,11 @@
     "visual_review": "Stage headings remain bold; Delegated labels regular; accumulation and narrowing strokes preserved.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 80,
       "width_bp": 426.688,
-      "height_bp": 412.218,
-      "minimum_prose_font_pt": 9.0,
+      "height_bp": 493.064,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -59,7 +59,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-    "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -111,11 +111,11 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 80,
       "width_bp": 426.688,
-      "height_bp": 412.218,
-      "minimum_prose_font_pt": 9.0,
+      "height_bp": 493.064,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -124,7 +124,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -136,22 +136,49 @@
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Retained: Stepped offsets encode progression, so equalizing their tops would erase meaning; terminal spacing is adequate.",
-    "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+    "decision": "refined",
+    "reason": "Retained: Stepped offsets encode progression, so equalizing their tops would erase meaning; terminal spacing is adequate. Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
+      "before_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+      "after_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+      "before_dimensions_bp": [
+        426.68798828125,
+        412.2179870605469
+      ],
+      "after_dimensions_bp": [
+        426.68798828125,
+        493.0639953613281
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        10.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 80,
       "width_bp": 426.688,
-      "height_bp": 412.218
+      "height_bp": 493.064
     }
   }
 }

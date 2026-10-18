@@ -42,7 +42,8 @@ with a solid marker and bold type. The author photograph is retained as a
 photograph, outside the native drawing conversion.
 
 The comparison edition intentionally adds pages and is excluded from web
-publication. The regular release PDF and all original assets remain unchanged.
+publication. Color originals remain alongside the candidates; edits to originals
+follow explicit editorial direction and also reach the regular PDF and web edition.
 PDF structure checks verify tags and alternate text; they do not certify complete
 accessibility or replace review of the separate HTML edition.
 
@@ -115,6 +116,13 @@ fidelity checklist below.
    10–11 pt); enlarge/reflow before shrinking. Check all labels, line separation,
    arrow entry points and white-on-dark badges in rendered output. Compiler and
    geometry checks supplement visual inspection; they cannot establish meaning.
+   Budget the whole figure page before arranging a dense diagram. MAGE allows
+   450 × 560 bp of artwork within its 450 × 648 bp text area, reserving at least
+   88 bp for the caption and float spacing. Long captions need a larger reserve;
+   verify the complete float on its book page. Use the height for readable annotations, sensible
+   row gaps and clear connectors; do not squeeze a full-page teaching plate into
+   a half-page diagram. Reflow and adjust authored type rather than stretching a
+   finished picture. Simple diagrams may remain compact when more space adds nothing.
 10. **Use friendly boxes and meaningful shapes.** Ordinary process and concept
     boxes have modest rounded corners (about 3 pt at print size). Keep straight
     horizontal/vertical connectors; the corner treatment of a box does not imply

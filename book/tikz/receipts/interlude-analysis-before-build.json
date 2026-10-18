@@ -43,7 +43,7 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
     "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
@@ -54,7 +54,7 @@
     "visual_review": "Heavy critical-path edges and B splitting retained; shared context has independent vertical outputs.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 61,
       "width_bp": 403.147,
       "height_bp": 348.784,
@@ -114,7 +114,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 61,
       "width_bp": 403.147,
       "height_bp": 348.784,
@@ -127,7 +127,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -142,15 +142,43 @@
     "decision": "refined",
     "reason": "Expanded critical-path graph ranks, equalized B/C, separated serial steps, and raised the first fork to leave a full incoming shaft even with large Latex heads.",
     "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing interlude analysis before build layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
+      "after_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
+      "before_dimensions_bp": [
+        403.1470031738281,
+        348.78399658203125
+      ],
+      "after_dimensions_bp": [
+        403.1470031738281,
+        348.78399658203125
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 61,
       "width_bp": 403.147,

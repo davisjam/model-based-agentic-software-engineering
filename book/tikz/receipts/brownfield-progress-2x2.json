@@ -20,7 +20,7 @@
   "alt": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
     "candidate_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
@@ -31,7 +31,7 @@
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 118,
       "width_bp": 385.926,
       "height_bp": 256.142,
@@ -126,7 +126,7 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 118,
       "width_bp": 385.926,
       "height_bp": 256.142,
@@ -139,7 +139,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -154,15 +154,43 @@
     "decision": "retained",
     "reason": "Retained: Four quadrants already have equal dimensions and intentional axis labels.",
     "candidate_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
+      "before_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
+      "after_sha256": "5d8d60587ba18295a0263989e317043fd51b1d209e4e2b50b523892a1d3e4c65",
+      "before_dimensions_bp": [
+        385.9259948730469,
+        256.1419982910156
+      ],
+      "after_dimensions_bp": [
+        385.9259948730469,
+        256.1419982910156
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 118,
       "width_bp": 385.926,

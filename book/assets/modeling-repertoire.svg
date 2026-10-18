@@ -1,207 +1,191 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Chapter 2 §2.1.5 repertoire spread — hand-authored SVG in the shared visual grammar. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1816 1568" width="1816" height="1568" role="img" aria-labelledby="modeling-repertoireT modeling-repertoireD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="modeling-repertoireT">The engineering modeling repertoire: nine familiar model forms</title>
-  <desc id="modeling-repertoireD">A three-by-three spread of nine familiar modeling forms — component/dependency, finite-state, data-flow, ownership/resource, decision/policy, quantitative, entity/schema, provenance/derivation, and call/control-flow. Each panel shows a small diagram plus a Question, Property, and Analysis line. The same graphical primitives — rounded entities, labeled directed arrows, a struck-through dashed arrow for a forbidden relation, and a bracketed envelope for a bound — recur across panels while the semantics change, and each family carries its own ground colour.</desc>
-  <defs>
-    <marker id="ah-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
-    <marker id="ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-    <marker id="ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
-    <marker id="ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-    <marker id="ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
-  </defs>
-  <rect x="0" y="0" width="1816" height="1568" fill="#fdfcf9"/>
-  <text x="908" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#1c1917">The engineering modeling repertoire</text><text x="908" y="82" text-anchor="middle" font-size="21" font-style="italic" fill="#57534e">Familiar representations for recurring engineering questions</text>
-  <rect x="40" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="40" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
-  <rect x="40" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
-  <line x1="40" y1="136" x2="600" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="320" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">COMPONENT / DEPENDENCY</text>
-  <rect x="265" y="158" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="320" y="189" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">UI</text>
-  <rect x="265" y="224" width="110" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="320" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
-  <rect x="110" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="170" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
-  <rect x="410" y="294" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="470" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CACHE</text>
-  <line x1="320" y1="206" x2="320" y2="222" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <path d="M290,272 L290,284 L170,284 L170,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <path d="M350,272 L350,284 L470,284 L470,292" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <text x="340" y="218" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">depends on</text>
-  <text x="66" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What depends on what?</text>
-  <text x="66" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> reachability, layering,</text>
-  <text x="84" y="432" font-size="20" fill="#1c1917">forbidden edges</text>
-  <text x="66" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> graph traversal,</text>
-  <text x="84" y="486" font-size="20" fill="#1c1917">cycle &amp; path checking</text>
-  <rect x="628" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="628" y="96" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
-  <rect x="628" y="122" width="560" height="14" fill="#e7edf3" stroke="none"/>
-  <line x1="628" y1="136" x2="1188" y2="136" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="908" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">FINITE-STATE MODEL</text>
-  <rect x="658" y="192" width="100" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="708" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">IDLE</text>
-  <rect x="808" y="192" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="878" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">RUNNING</text>
-  <rect x="998" y="192" width="110" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="1053" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DONE</text>
-  <rect x="808" y="282" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="878" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">FAILED</text>
-  <line x1="758" y1="216" x2="806" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
-  <line x1="948" y1="216" x2="996" y2="216" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
-  <line x1="878" y1="240" x2="878" y2="280" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ah-blue)"/>
-  <text x="782" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">may become</text>
-  <text x="654" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What may happen next?</text>
-  <text x="654" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> legal states, safety,</text>
-  <text x="672" y="432" font-size="20" fill="#1c1917">liveness</text>
-  <text x="654" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> state exploration,</text>
-  <text x="672" y="486" font-size="20" fill="#1c1917">model checking</text>
-  <rect x="1216" y="96" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="1216" y="96" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
-  <rect x="1216" y="122" width="560" height="14" fill="#faf1e6" stroke="none"/>
-  <line x1="1216" y1="136" x2="1776" y2="136" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="1496" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">DATA-FLOW MODEL</text>
-  <rect x="1246" y="192" width="100" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1296" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">INPUT</text>
-  <rect x="1381" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1446" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">PARSE</text>
-  <rect x="1546" y="192" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1611" y="223" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MODEL</text>
-  <rect x="1546" y="282" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1611" y="313" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OUTPUT</text>
-  <line x1="1346" y1="216" x2="1379" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <line x1="1511" y1="216" x2="1544" y2="216" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <line x1="1611" y1="240" x2="1611" y2="280" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <text x="1363" y="184" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">flows to</text>
-  <text x="1242" y="378" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Where does data flow?</text>
-  <text x="1242" y="407" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> source, sink, path,</text>
-  <text x="1260" y="432" font-size="20" fill="#1c1917">transformation</text>
-  <text x="1242" y="461" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> flow / taint /</text>
-  <text x="1260" y="486" font-size="20" fill="#1c1917">dependency analysis</text>
-  <rect x="40" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="40" y="574" width="560" height="40" rx="14" fill="#e7edf3" stroke="none"/>
-  <rect x="40" y="600" width="560" height="14" fill="#e7edf3" stroke="none"/>
-  <line x1="40" y1="614" x2="600" y2="614" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="320" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#2f5169">OWNERSHIP / RESOURCE</text>
-  <rect x="70" y="652" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="150" y="683" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker A</text>
-  <rect x="370" y="702" width="170" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="455" y="739" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Job 42</text>
-  <rect x="70" y="754" width="160" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="150" y="785" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Worker B</text>
-  <path d="M230,676 L300,676 L300,724 L368,724" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#ah-blue)"/>
-  <text x="305" y="670" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">owns</text>
-  <line x1="230" y1="776" x2="338" y2="750" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <line x1="337" y1="735" x2="359" y2="757" stroke="#1c1917" stroke-width="3"/><line x1="337" y1="757" x2="359" y2="735" stroke="#1c1917" stroke-width="3"/>
-  <text x="286" y="799" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">stale claim</text>
-  <text x="66" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> Who may control what?</text>
-  <text x="66" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> exclusivity, valid</text>
-  <text x="84" y="910" font-size="20" fill="#1c1917">transfer / reclaim</text>
-  <text x="66" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> interleaving,</text>
-  <text x="84" y="964" font-size="20" fill="#1c1917">invariant checking</text>
-  <rect x="628" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="628" y="574" width="560" height="40" rx="14" fill="#e3f0e7" stroke="none"/>
-  <rect x="628" y="600" width="560" height="14" fill="#e3f0e7" stroke="none"/>
-  <line x1="628" y1="614" x2="1188" y2="614" stroke="#1f7a4d" stroke-width="1.5"/>
-  <text x="908" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#155c38">DECISION / POLICY</text>
-  <rect x="658" y="702" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="713" y="733" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WEB</text>
-  <rect x="908" y="654" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="963" y="685" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">API</text>
-  <rect x="908" y="760" width="110" height="48" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="963" y="791" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DB</text>
-  <path d="M768,720 L838,720 L838,678 L906,678" fill="none" stroke="#155c38" stroke-width="2.2" marker-end="url(#ah-green)"/>
-  <text x="833" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#155c38">may call</text>
-  <line x1="768" y1="746" x2="872" y2="772" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <line x1="871" y1="763" x2="893" y2="785" stroke="#1c1917" stroke-width="3"/><line x1="871" y1="785" x2="893" y2="763" stroke="#1c1917" stroke-width="3"/>
-  <text x="836" y="802" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">not permitted</text>
-  <text x="654" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What is permitted?</text>
-  <text x="654" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> consistency, exclusion,</text>
-  <text x="672" y="910" font-size="20" fill="#1c1917">implication</text>
-  <text x="654" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> rule / constraint</text>
-  <text x="672" y="964" font-size="20" fill="#1c1917">checking</text>
-  <rect x="1216" y="574" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="1216" y="574" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
-  <rect x="1216" y="600" width="560" height="14" fill="#f6f4ef" stroke="none"/>
-  <line x1="1216" y1="614" x2="1776" y2="614" stroke="#57534e" stroke-width="1.5"/>
-  <text x="1496" y="603" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">QUANTITATIVE MODEL</text>
-  <rect x="1240" y="650" width="120" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="1300" y="679" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">requests</text>
-  <rect x="1240" y="738" width="120" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="1300" y="767" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">errors</text>
-  <rect x="1404" y="694" width="140" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="1474" y="724" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">error rate</text>
-  <line x1="1360" y1="676" x2="1402" y2="706" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
-  <line x1="1360" y1="756" x2="1402" y2="728" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
-  <line x1="1544" y1="717" x2="1620" y2="717" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
-  <text x="1580" y="708" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">compare</text>
-  <path d="M1634,696 L1624,696 L1624,738 L1634,738" fill="none" stroke="#1c1917" stroke-width="2.4"/>
-  <path d="M1736,696 L1746,696 L1746,738 L1736,738" fill="none" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="1685" y="725" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">&lt; 1%</text>
-  <text x="1242" y="856" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> How much / what bound?</text>
-  <text x="1242" y="885" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> budget, margin,</text>
-  <text x="1260" y="910" font-size="20" fill="#1c1917">capacity, rate</text>
-  <text x="1242" y="939" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> aggregation, comparison,</text>
-  <text x="1260" y="964" font-size="20" fill="#1c1917">optimization</text>
-  <rect x="40" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="40" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
-  <rect x="40" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
-  <line x1="40" y1="1092" x2="600" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="320" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">ENTITY / SCHEMA MODEL</text>
-  <rect x="70" y="1172" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="130" y="1203" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">USER</text>
-  <rect x="370" y="1130" width="160" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="450" y="1161" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DOCUMENT</text>
-  <rect x="380" y="1240" width="130" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="445" y="1271" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ORG</text>
-  <path d="M190,1190 L280,1190 L280,1154 L368,1154" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <path d="M190,1202 L280,1202 L280,1264 L378,1264" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <text x="285" y="1148" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">owns</text>
-  <text x="288" y="1292" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">memberOf</text>
-  <text x="66" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What entities &amp; relations?</text>
-  <text x="66" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> keys, cardinality,</text>
-  <text x="84" y="1388" font-size="20" fill="#1c1917">referential structure</text>
-  <text x="66" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> joins, schema checking</text>
-  <rect x="628" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="628" y="1052" width="560" height="40" rx="14" fill="#f6f4ef" stroke="none"/>
-  <rect x="628" y="1078" width="560" height="14" fill="#f6f4ef" stroke="none"/>
-  <line x1="628" y1="1092" x2="1188" y2="1092" stroke="#57534e" stroke-width="1.5"/>
-  <text x="908" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#57534e">PROVENANCE / DERIVATION</text>
-  <rect x="658" y="1148" width="130" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="723" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">SOURCE</text>
-  <rect x="838" y="1148" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="923" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TRANSFORM</text>
-  <rect x="838" y="1238" width="170" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="923" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ARTIFACT</text>
-  <path d="M723,1196 L723,1262 L836,1262" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
-  <line x1="923" y1="1196" x2="923" y2="1236" stroke="#57534e" stroke-width="2.2" marker-end="url(#ah-muted)"/>
-  <text x="768" y="1252" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">sourceOf</text>
-  <text x="1013" y="1222" text-anchor="start" font-size="15" font-style="italic" fill="#57534e">produced</text>
-  <text x="654" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What produced this?</text>
-  <text x="654" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> attribution, lineage,</text>
-  <text x="672" y="1388" font-size="20" fill="#1c1917">evidence</text>
-  <text x="654" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> lineage / audit</text>
-  <text x="672" y="1442" font-size="20" fill="#1c1917">traversal</text>
-  <rect x="1216" y="1052" width="560" height="450" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="1216" y="1052" width="560" height="40" rx="14" fill="#faf1e6" stroke="none"/>
-  <rect x="1216" y="1078" width="560" height="14" fill="#faf1e6" stroke="none"/>
-  <line x1="1216" y1="1092" x2="1776" y2="1092" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="1496" y="1081" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="0.03em" fill="#9a3f12">CALL / CONTROL-FLOW</text>
-  <rect x="1240" y="1148" width="120" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1300" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">main()</text>
-  <rect x="1396" y="1148" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1466" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">handle()</text>
-  <rect x="1576" y="1148" width="150" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1651" y="1179" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">validate()</text>
-  <rect x="1396" y="1238" width="140" height="48" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1466" y="1269" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">persist()</text>
-  <line x1="1360" y1="1172" x2="1394" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <line x1="1536" y1="1172" x2="1574" y2="1172" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <line x1="1466" y1="1196" x2="1466" y2="1236" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ah-rust)"/>
-  <text x="1377" y="1140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">calls</text>
-  <text x="1242" y="1334" font-size="20" fill="#1c1917"><tspan font-weight="700">Q:</tspan> What may call what?</text>
-  <text x="1242" y="1363" font-size="20" fill="#1c1917"><tspan font-weight="700">Property:</tspan> entry points,</text>
-  <text x="1260" y="1388" font-size="20" fill="#1c1917">reachable calls</text>
-  <text x="1242" y="1417" font-size="20" fill="#1c1917"><tspan font-weight="700">Analysis:</tspan> call-graph traversal</text>
-  <text x="908" y="1544" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Similar forms answer different questions because their entities and relations mean different things.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="440pt" height="544pt" viewBox="0 -5 440 544" role="img" aria-labelledby="title desc" style="font-family: &quot;Source Sans 3&quot;, sans-serif">
+<title id="title">The engineering modeling repertoire</title>
+<desc id="desc">Nine model families in a full-page three-by-three reference layout. Each gives a directed example, its relation meaning, and the engineering question, properties, and analyses. Dashed crossed relations distinguish stale claims and prohibited calls. The quantitative example compares error rate with a bracketed bound.</desc>
+<defs><marker id="arrow" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L6 3 L0 6 L1.5 3Z" fill="context-stroke"/></marker></defs>
+<rect x="0" y="-5" width="440" height="544" fill="white"/>
+<text x="220" y="3" text-anchor="middle" font-size="10" fill="#1c1917">Q = question · P = property · A = analysis</text>
+<text x="71" y="21" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">COMPONENT /</text>
+<text x="71" y="33" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">DEPENDENCY</text>
+<line x1="0" y1="39" x2="142" y2="39" stroke="#9a3f12" stroke-width=".8"/>
+<rect x="6.0" y="50.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="32" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">WEB</text>
+<rect x="81.0" y="50.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="107" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">API</text>
+<rect x="81.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="107" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">CACHE</text>
+<rect x="6.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="32" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">DB</text>
+<polyline points="58.0,60 81.0,60" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="107,70 107,92" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="81.0,102 58.0,102" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="71" y="126" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">Depends on; reaches</text>
+<text x="1" y="142" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">Q:</text>
+<text x="14" y="142" text-anchor="start" font-size="10" fill="#1c1917">What depends on what?</text>
+<text x="1" y="156" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">P:</text>
+<text x="14" y="156" text-anchor="start" font-size="10" fill="#1c1917">Reachability, layering,</text>
+<text x="14" y="168" text-anchor="start" font-size="10" fill="#1c1917">forbidden edges</text>
+<text x="1" y="182" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">A:</text>
+<text x="14" y="182" text-anchor="start" font-size="10" fill="#1c1917">Traversal, cycles, paths</text>
+<text x="220" y="27" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2f5169">FINITE-STATE</text>
+<line x1="149" y1="39" x2="291" y2="39" stroke="#2f5169" stroke-width=".8"/>
+<rect x="155.0" y="50.0" width="52" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="181" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">IDLE</text>
+<rect x="227.0" y="50.0" width="58" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="256" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">RUNNING</text>
+<rect x="230.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="256" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">DONE</text>
+<rect x="155.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="181" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">FAILED</text>
+<polyline points="207.0,60 227.0,60" fill="none" stroke="#2f5169" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="256,70 256,92" fill="none" stroke="#2f5169" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="256,70 256,81 181,81 181,92" fill="none" stroke="#2f5169" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="220" y="126" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">May become</text>
+<text x="150" y="142" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">Q:</text>
+<text x="163" y="142" text-anchor="start" font-size="10" fill="#1c1917">What may happen next?</text>
+<text x="150" y="156" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">P:</text>
+<text x="163" y="156" text-anchor="start" font-size="10" fill="#1c1917">Legal states, safety,</text>
+<text x="163" y="168" text-anchor="start" font-size="10" fill="#1c1917">liveness</text>
+<text x="150" y="182" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">A:</text>
+<text x="163" y="182" text-anchor="start" font-size="10" fill="#1c1917">Model checking; search</text>
+<text x="369" y="27" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">DATA-FLOW</text>
+<line x1="298" y1="39" x2="440" y2="39" stroke="#9a3f12" stroke-width=".8"/>
+<rect x="304.0" y="50.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="330" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">INPUT</text>
+<rect x="379.0" y="50.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="405" y="63.4" text-anchor="middle" font-size="10" fill="#1c1917">PARSE</text>
+<rect x="379.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="405" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">MODEL</text>
+<rect x="304.0" y="92.0" width="52" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="330" y="105.4" text-anchor="middle" font-size="10" fill="#1c1917">OUTPUT</text>
+<polyline points="356.0,60 379.0,60" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="405,70 405,92" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="379.0,102 356.0,102" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="369" y="126" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">Flows to</text>
+<text x="299" y="142" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">Q:</text>
+<text x="312" y="142" text-anchor="start" font-size="10" fill="#1c1917">Where does data flow?</text>
+<text x="299" y="156" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">P:</text>
+<text x="312" y="156" text-anchor="start" font-size="10" fill="#1c1917">Sources, sinks, paths,</text>
+<text x="312" y="168" text-anchor="start" font-size="10" fill="#1c1917">transforms</text>
+<text x="299" y="182" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">A:</text>
+<text x="312" y="182" text-anchor="start" font-size="10" fill="#1c1917">Flow, taint, dependencies</text>
+<text x="71" y="195" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2f5169">OWNERSHIP /</text>
+<text x="71" y="207" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2f5169">RESOURCE</text>
+<line x1="0" y1="213" x2="142" y2="213" stroke="#2f5169" stroke-width=".8"/>
+<rect x="2.0" y="224.0" width="56" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="30" y="237.4" text-anchor="middle" font-size="10" fill="#1c1917">Worker A</text>
+<rect x="2.0" y="266.0" width="56" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="30" y="279.4" text-anchor="middle" font-size="10" fill="#1c1917">Worker B</text>
+<rect x="86.0" y="245.0" width="52" height="20" rx="2.5" fill="white" stroke="#2f5169" stroke-width=".6"/>
+<text x="112" y="258.4" text-anchor="middle" font-size="10" fill="#1c1917">Job 42</text>
+<polyline points="58,234 70,234 70,251 86,251" fill="none" stroke="#2f5169" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="58,276 70,276 70,259 86,259" fill="none" stroke="#2f5169" stroke-width=".6" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<rect x="66" y="265" width="8" height="10" fill="white"/><path d="M67 267L73 273M67 273L73 267" stroke="#1c1917" stroke-width=".8"/>
+<text x="71" y="300" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">Owns; dashed = stale claim</text>
+<text x="1" y="316" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">Q:</text>
+<text x="14" y="316" text-anchor="start" font-size="10" fill="#1c1917">Who may control what?</text>
+<text x="1" y="330" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">P:</text>
+<text x="14" y="330" text-anchor="start" font-size="10" fill="#1c1917">Exclusivity, transfer,</text>
+<text x="14" y="342" text-anchor="start" font-size="10" fill="#1c1917">reclaim</text>
+<text x="1" y="356" text-anchor="start" font-size="10" font-weight="700" fill="#2f5169">A:</text>
+<text x="14" y="356" text-anchor="start" font-size="10" fill="#1c1917">Interleavings; invariants</text>
+<text x="220" y="201" text-anchor="middle" font-size="10.5" font-weight="700" fill="#155c38">DECISION / POLICY</text>
+<line x1="149" y1="213" x2="291" y2="213" stroke="#155c38" stroke-width=".8"/>
+<rect x="152.0" y="245.0" width="50" height="20" rx="2.5" fill="white" stroke="#155c38" stroke-width=".6"/>
+<text x="177" y="258.4" text-anchor="middle" font-size="10" fill="#1c1917">WEB</text>
+<rect x="234.0" y="224.0" width="50" height="20" rx="2.5" fill="white" stroke="#155c38" stroke-width=".6"/>
+<text x="259" y="237.4" text-anchor="middle" font-size="10" fill="#1c1917">API</text>
+<rect x="234.0" y="266.0" width="50" height="20" rx="2.5" fill="white" stroke="#155c38" stroke-width=".6"/>
+<text x="259" y="279.4" text-anchor="middle" font-size="10" fill="#1c1917">DB</text>
+<polyline points="202,255 212,255 212,234 234,234" fill="none" stroke="#155c38" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="202,255 212,255 212,276 234,276" fill="none" stroke="#155c38" stroke-width=".6" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<rect x="208" y="264" width="8" height="10" fill="white"/><path d="M209 266L215 272M209 272L215 266" stroke="#1c1917" stroke-width=".8"/>
+<text x="220" y="300" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">May call; dashed = prohibited</text>
+<text x="150" y="316" text-anchor="start" font-size="10" font-weight="700" fill="#155c38">Q:</text>
+<text x="163" y="316" text-anchor="start" font-size="10" fill="#1c1917">What is permitted?</text>
+<text x="150" y="330" text-anchor="start" font-size="10" font-weight="700" fill="#155c38">P:</text>
+<text x="163" y="330" text-anchor="start" font-size="10" fill="#1c1917">Consistency, exclusion,</text>
+<text x="163" y="342" text-anchor="start" font-size="10" fill="#1c1917">implication</text>
+<text x="150" y="356" text-anchor="start" font-size="10" font-weight="700" fill="#155c38">A:</text>
+<text x="163" y="356" text-anchor="start" font-size="10" fill="#1c1917">Rules; constraint checks</text>
+<text x="369" y="201" text-anchor="middle" font-size="10.5" font-weight="700" fill="#57534e">QUANTITATIVE</text>
+<line x1="298" y1="213" x2="440" y2="213" stroke="#57534e" stroke-width=".8"/>
+<rect x="300.0" y="224.0" width="56" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="328" y="237.4" text-anchor="middle" font-size="10" fill="#1c1917">requests</text>
+<rect x="380.0" y="224.0" width="56" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="408" y="237.4" text-anchor="middle" font-size="10" fill="#1c1917">errors</text>
+<rect x="308.0" y="266.0" width="60" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="338" y="279.4" text-anchor="middle" font-size="10" fill="#1c1917">error rate</text>
+<polyline points="328,244 328,252 330,252 330,266" fill="none" stroke="#57534e" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="408,244 408,252 346,252 346,266" fill="none" stroke="#57534e" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="410" y="279" text-anchor="middle" font-size="10" font-weight="700" fill="#57534e">[ &lt; 1% ]</text>
+<polyline points="368,276 387,276" fill="none" stroke="#57534e" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="369" y="300" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">Compare error rate to bound</text>
+<text x="299" y="316" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">Q:</text>
+<text x="312" y="316" text-anchor="start" font-size="10" fill="#1c1917">How much / what bound?</text>
+<text x="299" y="330" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">P:</text>
+<text x="312" y="330" text-anchor="start" font-size="10" fill="#1c1917">Budget, margin,</text>
+<text x="312" y="342" text-anchor="start" font-size="10" fill="#1c1917">capacity, rate</text>
+<text x="299" y="356" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">A:</text>
+<text x="312" y="356" text-anchor="start" font-size="10" fill="#1c1917">Aggregate / optimize</text>
+<text x="71" y="375" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">ENTITY / SCHEMA</text>
+<line x1="0" y1="387" x2="142" y2="387" stroke="#9a3f12" stroke-width=".8"/>
+<rect x="3.0" y="419.0" width="50" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="28" y="432.4" text-anchor="middle" font-size="10" fill="#1c1917">USER</text>
+<rect x="79.0" y="398.0" width="62" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="110" y="411.4" text-anchor="middle" font-size="10" fill="#1c1917">DOCUMENT</text>
+<rect x="85.0" y="440.0" width="50" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="110" y="453.4" text-anchor="middle" font-size="10" fill="#1c1917">ORG</text>
+<polyline points="53,429 63,429 63,408 79,408" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="53,429 63,429 63,450 85,450" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="71" y="474" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">owns / memberOf</text>
+<text x="1" y="490" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">Q:</text>
+<text x="14" y="490" text-anchor="start" font-size="10" fill="#1c1917">Entities and relations?</text>
+<text x="1" y="504" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">P:</text>
+<text x="14" y="504" text-anchor="start" font-size="10" fill="#1c1917">Keys, cardinality,</text>
+<text x="14" y="516" text-anchor="start" font-size="10" fill="#1c1917">references</text>
+<text x="1" y="530" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">A:</text>
+<text x="14" y="530" text-anchor="start" font-size="10" fill="#1c1917">Joins; schema checking</text>
+<text x="220" y="369" text-anchor="middle" font-size="10.5" font-weight="700" fill="#57534e">PROVENANCE /</text>
+<text x="220" y="381" text-anchor="middle" font-size="10.5" font-weight="700" fill="#57534e">DERIVATION</text>
+<line x1="149" y1="387" x2="291" y2="387" stroke="#57534e" stroke-width=".8"/>
+<rect x="151.0" y="398.0" width="58" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="180" y="411.4" text-anchor="middle" font-size="10" fill="#1c1917">SOURCE</text>
+<rect x="224.0" y="398.0" width="66" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="257" y="411.4" text-anchor="middle" font-size="10" fill="#1c1917">TRANSFORM</text>
+<rect x="190.0" y="440.0" width="62" height="20" rx="2.5" fill="white" stroke="#57534e" stroke-width=".6"/>
+<text x="221" y="453.4" text-anchor="middle" font-size="10" fill="#1c1917">ARTIFACT</text>
+<polyline points="180,418 180,429 213,429 213,440" fill="none" stroke="#57534e" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="257,418 257,429 229,429 229,440" fill="none" stroke="#57534e" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="220" y="474" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">sourceOf / produced</text>
+<text x="150" y="490" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">Q:</text>
+<text x="163" y="490" text-anchor="start" font-size="10" fill="#1c1917">What produced this?</text>
+<text x="150" y="504" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">P:</text>
+<text x="163" y="504" text-anchor="start" font-size="10" fill="#1c1917">Attribution, lineage,</text>
+<text x="163" y="516" text-anchor="start" font-size="10" fill="#1c1917">evidence</text>
+<text x="150" y="530" text-anchor="start" font-size="10" font-weight="700" fill="#57534e">A:</text>
+<text x="163" y="530" text-anchor="start" font-size="10" fill="#1c1917">Lineage / audit traversal</text>
+<text x="369" y="369" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">CALL /</text>
+<text x="369" y="381" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3f12">CONTROL-FLOW</text>
+<line x1="298" y1="387" x2="440" y2="387" stroke="#9a3f12" stroke-width=".8"/>
+<rect x="300.0" y="398.0" width="60" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="330" y="411.4" text-anchor="middle" font-size="10" fill="#1c1917">main()</text>
+<rect x="375.0" y="398.0" width="60" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="405" y="411.4" text-anchor="middle" font-size="10" fill="#1c1917">handle()</text>
+<rect x="375.0" y="440.0" width="60" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="405" y="453.4" text-anchor="middle" font-size="10" fill="#1c1917">validate()</text>
+<rect x="300.0" y="440.0" width="60" height="20" rx="2.5" fill="white" stroke="#9a3f12" stroke-width=".6"/>
+<text x="330" y="453.4" text-anchor="middle" font-size="10" fill="#1c1917">persist()</text>
+<polyline points="360.0,408 375.0,408" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="405,418 405,440" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<polyline points="405,418 405,429 330,429 330,440" fill="none" stroke="#9a3f12" stroke-width=".6" marker-end="url(#arrow)"/>
+<text x="369" y="474" text-anchor="middle" font-size="10" font-style="italic" fill="#1c1917">Calls</text>
+<text x="299" y="490" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">Q:</text>
+<text x="312" y="490" text-anchor="start" font-size="10" fill="#1c1917">What may call what?</text>
+<text x="299" y="504" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">P:</text>
+<text x="312" y="504" text-anchor="start" font-size="10" fill="#1c1917">Entry points,</text>
+<text x="312" y="516" text-anchor="start" font-size="10" fill="#1c1917">reachable calls</text>
+<text x="299" y="530" text-anchor="start" font-size="10" font-weight="700" fill="#9a3f12">A:</text>
+<text x="312" y="530" text-anchor="start" font-size="10" fill="#1c1917">Call-graph traversal</text>
+<line x1="145.5" y1="18" x2="145.5" y2="536" stroke="#d8d5cf" stroke-width=".4"/>
+<line x1="294.5" y1="18" x2="294.5" y2="536" stroke="#d8d5cf" stroke-width=".4"/>
 </svg>

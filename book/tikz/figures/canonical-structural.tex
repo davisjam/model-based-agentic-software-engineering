@@ -1,18 +1,23 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=2.5cm,fill=white] (web) at (0,0) {\textbf{WEB}};
-\node[n,text width=2.5cm,fill=white] (api) at (4,0) {\textbf{API}};
-\node[n,text width=2.8cm,fill=white] (db) at (8,1.5) {\textbf{DATABASE}};
-\node[n,text width=2.8cm,fill=white] (cache) at (8,-1.5) {\textbf{CACHE}};
-\draw[edge] (web) -- node[lab,above=12pt] {\textit{depends on}} (api);
-\draw[edge] (api.east) -- (6,0) |- node[lab,above] {\textit{reaches}} (db.west);
-\draw[edge] (api.east) -- (6,0) |- node[lab,below] {\textit{reaches}} (cache.west);
-\draw[edge,dashed] (web.north) -- (0,2.6) -- node[lab,above] {\textit{forbidden bypass}} (8,2.6) -- (db.north);
-\node[head,text width=0.4cm] (no) at (4,2.6) {$\times$};
-\node[note,text width=11cm] (sem) at (4,-3) {Entities and declared structural relations\\Analyze reachability, paths/cuts and cycles.};
+% Read-through dependency example, shared with the color source.
+\begin{tikzpicture}[x=1bp,y=1bp,font=\magefigurefont\fontsize{11}{14}\selectfont,
+ n/.style={draw,rounded corners=3pt,fill=white,line width=.65pt,minimum width=155bp,minimum height=42bp,align=center,inner sep=6pt,font=\magefigurefont\bfseries\fontsize{12}{15}\selectfont},
+ edge/.style={-Stealth,line width=.7pt},
+ relation/.style={font=\magefigurefont\itshape\fontsize{11}{14}\selectfont,fill=white,inner sep=3pt},
+ prose/.style={align=left,text width=390bp,anchor=north west,inner sep=0pt}]
+\path[use as bounding box] (3,0) rectangle (447,-464);
+\node[font=\magefigurefont\bfseries\fontsize{14}{17}\selectfont] at (225,-22) {Structural model};
+\node[font=\magefigurefont\itshape\fontsize{11}{14}\selectfont] at (225,-43) {Read-through cache example};
+\node[n] (web) at (225,-85) {WEB};
+\node[n] (api) at (225,-170) {API};
+\node[n] (cache) at (225,-255) {CACHE};
+\node[n] (db) at (225,-340) {DATABASE};
+\draw[edge] (web.south)--node[relation,midway,right=5pt] {depends on}(api.north);
+\draw[edge] (api.south)--node[relation,midway,right=5pt] {reads through}(cache.north);
+\draw[edge] (cache.south)--node[relation,midway,right=5pt] {loads from}(db.north);
+\draw[edge,dashed] (web.west)--(80,-85)--(80,-340)--(db.west);
+\node[relation,align=center,text width=57bp,anchor=east] at (69,-212.5) {forbidden\\bypass};
+\node[fill=white,inner sep=2pt,font=\fontsize{14}{16}\selectfont] at (80,-212.5) {$\times$};
+\node[prose] at (30,-397) {\textbf{Question:} What exists, and what is connected to what?};
+\node[prose] at (30,-419) {\textbf{Semantics:} Entities and declared structural relations};
+\node[prose] at (30,-441) {\textbf{Analysis:} Reachability, paths/cuts and cycles.};
 \end{tikzpicture}

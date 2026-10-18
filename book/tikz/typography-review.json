@@ -4,12 +4,12 @@
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
   "candidate_count": 144,
   "refined_count": 127,
-  "check_count": 869,
+  "check_count": 875,
   "shared_style_sha256": "65d4e4e84297a50e162fa03091bdb5364eb8d442c118ec0dd130a85e5c1ea750",
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
-    "rendered_checks": 869,
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "rendered_checks": 875,
     "geometry_findings": 0,
     "unapproved_compile_diagnostics": 0,
     "status": "passed",
@@ -17,7 +17,7 @@
       "configuration": "latex/book-fonts.tex",
       "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
       "reference": "latex/build/tikz/body-font-reference.pdf",
-      "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+      "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
       "body_faces": [
         "SourceSans3-Bold",
         "SourceSans3-BoldIt",
@@ -32,7 +32,7 @@
       "candidate": "book/tikz/figures/book-map.tex",
       "decision": "refined",
       "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-      "candidate_sha256": "17948e272f6b5d3071154963bcf4de8f6cc28d65996d6a6d1a3bfd97ba96c17f",
+      "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
       "evidence": [
         {
           "source_text": "Preface",
@@ -491,11 +491,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 1,
-        "width_bp": 360.015,
-        "height_bp": 416.659,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 362.345,
+        "height_bp": 503.79,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -507,7 +507,7 @@
       "candidate": "book/tikz/figures/mage-method.tex",
       "decision": "refined",
       "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-      "candidate_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
+      "candidate_sha256": "30262ce0852d1dc98c3728db4c988031a33d8dbf94cac1a7eae0d051a8d257e8",
       "evidence": [
         {
           "source_text": "Scale × finite reasoning",
@@ -824,11 +824,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 2,
         "width_bp": 424.801,
-        "height_bp": 387.85,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 487.874,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -1210,7 +1210,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 3,
         "width_bp": 376.339,
         "height_bp": 232.164,
@@ -1398,7 +1398,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 4,
         "width_bp": 363.832,
         "height_bp": 301.283,
@@ -1742,7 +1742,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 5,
         "width_bp": 366.45,
         "height_bp": 309.54,
@@ -2070,7 +2070,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 6,
         "width_bp": 319.646,
         "height_bp": 374.827,
@@ -2138,7 +2138,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 7,
         "width_bp": 401.85,
         "height_bp": 222.454,
@@ -2206,7 +2206,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 8,
         "width_bp": 420.986,
         "height_bp": 210.424,
@@ -2278,7 +2278,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 9,
         "width_bp": 378.005,
         "height_bp": 363.108,
@@ -2366,7 +2366,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 10,
         "width_bp": 379.038,
         "height_bp": 242.674,
@@ -2501,7 +2501,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 11,
         "width_bp": 353.911,
         "height_bp": 350.719,
@@ -2689,7 +2689,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 12,
         "width_bp": 418.229,
         "height_bp": 184.495,
@@ -2818,7 +2818,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 13,
         "width_bp": 350.12,
         "height_bp": 246.943,
@@ -2974,7 +2974,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 14,
         "width_bp": 396.891,
         "height_bp": 204.955,
@@ -3142,7 +3142,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 15,
         "width_bp": 396.181,
         "height_bp": 310.754,
@@ -3157,375 +3157,434 @@
       "source": "book/assets/modeling-repertoire.svg",
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
-      "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-      "candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
+      "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
+      "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "COMPONENT / DEPENDENCY",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "COMPONENT / DEPENDENCY",
+              "text": "COMPONENT /",
+              "element_text_path": "/svg/text[2]",
               "weight": "700",
               "style": "normal",
-              "x": "320",
-              "y": "125"
+              "x": "71",
+              "y": "21"
+            },
+            {
+              "text": "DEPENDENCY",
+              "element_text_path": "/svg/text[3]",
+              "weight": "700",
+              "style": "normal",
+              "x": "71",
+              "y": "33"
             }
           ]
         },
         {
           "source_text": "FINITE-STATE",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "FINITE-STATE",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "FINITE-STATE",
+              "element_text_path": "/svg/text[16]",
               "weight": "700",
               "style": "normal",
-              "x": "908",
-              "y": "125"
+              "x": "220",
+              "y": "27"
             }
           ]
         },
         {
           "source_text": "DATA-FLOW",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "DATA-FLOW",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "DATA-FLOW",
+              "element_text_path": "/svg/text[29]",
               "weight": "700",
               "style": "normal",
-              "x": "1496",
-              "y": "125"
+              "x": "369",
+              "y": "27"
             }
           ]
         },
         {
           "source_text": "OWNERSHIP / RESOURCE",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "OWNERSHIP / RESOURCE",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "OWNERSHIP / RESOURCE",
+              "text": "OWNERSHIP /",
+              "element_text_path": "/svg/text[42]",
               "weight": "700",
               "style": "normal",
-              "x": "320",
-              "y": "603"
+              "x": "71",
+              "y": "195"
+            },
+            {
+              "text": "RESOURCE",
+              "element_text_path": "/svg/text[43]",
+              "weight": "700",
+              "style": "normal",
+              "x": "71",
+              "y": "207"
             }
           ]
         },
         {
           "source_text": "DECISION / POLICY",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "DECISION / POLICY",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "DECISION / POLICY",
+              "element_text_path": "/svg/text[55]",
               "weight": "700",
               "style": "normal",
-              "x": "908",
-              "y": "603"
+              "x": "220",
+              "y": "201"
             }
           ]
         },
         {
           "source_text": "QUANTITATIVE",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "QUANTITATIVE",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "QUANTITATIVE",
+              "element_text_path": "/svg/text[67]",
               "weight": "700",
               "style": "normal",
-              "x": "1496",
-              "y": "603"
+              "x": "369",
+              "y": "201"
             }
           ]
         },
         {
           "source_text": "ENTITY / SCHEMA",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "ENTITY / SCHEMA",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "ENTITY / SCHEMA",
+              "element_text_path": "/svg/text[80]",
               "weight": "700",
               "style": "normal",
-              "x": "320",
-              "y": "1081"
+              "x": "71",
+              "y": "375"
             }
           ]
         },
         {
           "source_text": "PROVENANCE / DERIVATION",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "PROVENANCE / DERIVATION",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "PROVENANCE / DERIVATION",
+              "text": "PROVENANCE /",
+              "element_text_path": "/svg/text[92]",
               "weight": "700",
               "style": "normal",
-              "x": "908",
-              "y": "1081"
+              "x": "220",
+              "y": "369"
+            },
+            {
+              "text": "DERIVATION",
+              "element_text_path": "/svg/text[93]",
+              "weight": "700",
+              "style": "normal",
+              "x": "220",
+              "y": "381"
             }
           ]
         },
         {
           "source_text": "CALL / CONTROL-FLOW",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Model-family panel title (already bold)",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "CALL / CONTROL-FLOW",
-          "candidate_style": "capitals",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "CALL / CONTROL-FLOW",
+              "text": "CALL /",
+              "element_text_path": "/svg/text[105]",
               "weight": "700",
               "style": "normal",
-              "x": "1496",
-              "y": "1081"
+              "x": "369",
+              "y": "369"
+            },
+            {
+              "text": "CONTROL-FLOW",
+              "element_text_path": "/svg/text[106]",
+              "weight": "700",
+              "style": "normal",
+              "x": "369",
+              "y": "381"
             }
           ]
         },
         {
           "source_text": "Q:",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Field label separated from its value",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "Q:",
-          "candidate_style": "bold ",
+          "candidate_style": "bold",
           "source_fragments": [
             {
               "text": "Q:",
+              "element_text_path": "/svg/text[9]",
               "weight": "700",
               "style": "normal",
-              "x": "66",
-              "y": "378"
+              "x": "1",
+              "y": "142"
             }
           ]
         },
         {
-          "source_text": "Property:",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Field label separated from its value",
+          "source_text": "P:",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "P:",
-          "candidate_style": "bold ",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Property:",
+              "text": "P:",
+              "element_text_path": "/svg/text[11]",
               "weight": "700",
               "style": "normal",
-              "x": "66",
-              "y": "407"
+              "x": "1",
+              "y": "156"
             }
           ]
         },
         {
-          "source_text": "Analysis:",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Field label separated from its value",
+          "source_text": "A:",
+          "source_style": "bold",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "A:",
-          "candidate_style": "bold ",
+          "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Analysis:",
+              "text": "A:",
+              "element_text_path": "/svg/text[14]",
               "weight": "700",
               "style": "normal",
-              "x": "66",
-              "y": "461"
+              "x": "1",
+              "y": "182"
             }
           ]
         },
         {
-          "source_text": "depends on",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "Depends on; reaches",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "Depends on; reaches",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "depends on",
+              "text": "Depends on; reaches",
+              "element_text_path": "/svg/text[8]",
               "weight": "normal",
               "style": "italic",
-              "x": "340",
-              "y": "218"
+              "x": "71",
+              "y": "126"
             }
           ]
         },
         {
-          "source_text": "may become",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "May become",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "May become",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "may become",
+              "text": "May become",
+              "element_text_path": "/svg/text[21]",
               "weight": "normal",
               "style": "italic",
-              "x": "782",
-              "y": "184"
+              "x": "220",
+              "y": "126"
             }
           ]
         },
         {
-          "source_text": "flows to",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "Flows to",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "Flows to",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "flows to",
+              "text": "Flows to",
+              "element_text_path": "/svg/text[34]",
               "weight": "normal",
               "style": "italic",
-              "x": "1363",
-              "y": "184"
+              "x": "369",
+              "y": "126"
             }
           ]
         },
         {
-          "source_text": "owns / stale claim",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
-          "candidate_text": "Owns; stale claim (dashed)",
-          "candidate_style": "italic ",
-          "source_fragments": [
-            {
-              "text": "owns",
-              "weight": "normal",
-              "style": "italic",
-              "x": "305",
-              "y": "670"
-            },
-            {
-              "text": "stale claim",
-              "weight": "normal",
-              "style": "italic",
-              "x": "286",
-              "y": "799"
-            }
-          ]
-        },
-        {
-          "source_text": "may call / not permitted",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "May call; dashed = prohibited",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "May call; dashed = prohibited",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "may call",
+              "text": "May call; dashed = prohibited",
+              "element_text_path": "/svg/text[59]",
               "weight": "normal",
               "style": "italic",
-              "x": "833",
-              "y": "702"
-            },
-            {
-              "text": "not permitted",
-              "weight": "normal",
-              "style": "italic",
-              "x": "836",
-              "y": "802"
+              "x": "220",
+              "y": "300"
             }
           ]
         },
         {
-          "source_text": "compare",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "Compare error rate to bound",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "Compare error rate to bound",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "compare",
+              "text": "Compare error rate to bound",
+              "element_text_path": "/svg/text[72]",
               "weight": "normal",
               "style": "italic",
-              "x": "1580",
-              "y": "708"
+              "x": "369",
+              "y": "300"
             }
           ]
         },
         {
           "source_text": "owns / memberOf",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "owns / memberOf",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "owns",
+              "text": "owns / memberOf",
+              "element_text_path": "/svg/text[84]",
               "weight": "normal",
               "style": "italic",
-              "x": "305",
-              "y": "670"
-            },
-            {
-              "text": "memberOf",
-              "weight": "normal",
-              "style": "italic",
-              "x": "288",
-              "y": "1292"
+              "x": "71",
+              "y": "474"
             }
           ]
         },
         {
           "source_text": "sourceOf / produced",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "sourceOf / produced",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "sourceOf",
+              "text": "sourceOf / produced",
+              "element_text_path": "/svg/text[97]",
               "weight": "normal",
               "style": "italic",
-              "x": "768",
-              "y": "1252"
-            },
-            {
-              "text": "produced",
-              "weight": "normal",
-              "style": "italic",
-              "x": "1013",
-              "y": "1222"
+              "x": "220",
+              "y": "474"
             }
           ]
         },
         {
-          "source_text": "calls",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Relation semantics versus entity labels",
+          "source_text": "Calls",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
           "candidate_text": "Calls",
-          "candidate_style": "italic ",
+          "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "calls",
+              "text": "Calls",
+              "element_text_path": "/svg/text[111]",
               "weight": "normal",
               "style": "italic",
-              "x": "1377",
-              "y": "1140"
+              "x": "369",
+              "y": "474"
+            }
+          ]
+        },
+        {
+          "source_text": "Owns; dashed = stale claim",
+          "source_style": "italic",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+          "candidate_text": "Owns; dashed = stale claim",
+          "candidate_style": "italic",
+          "source_fragments": [
+            {
+              "text": "Owns; dashed = stale claim",
+              "element_text_path": "/svg/text[47]",
+              "weight": "normal",
+              "style": "italic",
+              "x": "71",
+              "y": "300"
+            }
+          ]
+        },
+        {
+          "source_text": "WEB",
+          "source_style": "regular",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+          "candidate_text": "WEB",
+          "candidate_style": "regular",
+          "source_fragments": [
+            {
+              "text": "WEB",
+              "element_text_path": "/svg/text[4]",
+              "weight": "normal",
+              "style": "normal",
+              "x": "32",
+              "y": "63.4"
+            }
+          ]
+        },
+        {
+          "source_text": "What depends on what?",
+          "source_style": "regular",
+          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+          "candidate_text": "What depends on what?",
+          "candidate_style": "regular",
+          "source_fragments": [
+            {
+              "text": "What depends on what?",
+              "element_text_path": "/svg/text[10]",
+              "weight": "normal",
+              "style": "normal",
+              "x": "14",
+              "y": "142"
             }
           ]
         }
       ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "reason": "Full-page three-by-three repertoire: bold capital family names and Q/P/A labels, italic relation semantics, regular entity and explanatory text. Both versions share the read-through component chain.",
       "checks": [
         {
           "text": "COMPONENT / DEPENDENCY",
@@ -3588,10 +3647,6 @@
           "italic": true
         },
         {
-          "text": "Owns; stale claim (dashed)",
-          "italic": true
-        },
-        {
           "text": "May call; dashed = prohibited",
           "italic": true
         },
@@ -3612,123 +3667,212 @@
           "italic": true
         },
         {
-          "text": "What depends on what?",
+          "text": "Owns; dashed = stale claim",
+          "italic": true,
           "bold": false
+        },
+        {
+          "text": "WEB",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "What depends on what?",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 16,
-        "width_bp": 413.811,
-        "height_bp": 417.681,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 440.973,
+        "height_bp": 546.264,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 22
+        "semantic_typography_checks": 23
       }
     },
     {
       "source": "book/assets/canonical-structural.svg",
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "decision": "refined",
-      "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
-      "candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
+      "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+      "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
       "evidence": [
         {
           "source_text": "WEB",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
           "candidate_text": "WEB",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[2]/text()",
+            "element_text_path": "/svg/g[3]/text[1]",
             "text_element_context": "WEB",
             "matching_fragment_count": 1
           }
         },
         {
           "source_text": "API",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
           "candidate_text": "API",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[3]/text()",
+            "element_text_path": "/svg/g[3]/text[2]",
             "text_element_context": "API",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "DATABASE",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "DATABASE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "DATABASE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
           "source_text": "CACHE",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
           "candidate_text": "CACHE",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[5]/text()",
+            "element_text_path": "/svg/g[3]/text[3]",
             "text_element_context": "CACHE",
             "matching_fragment_count": 1
           }
         },
         {
+          "source_text": "DATABASE",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "DATABASE",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[3]/text[4]",
+            "text_element_context": "DATABASE",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Question:",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "Question:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[7]/text[1]/tspan[1]",
+            "text_element_context": "Question:",
+            "matching_fragment_count": 2
+          }
+        },
+        {
+          "source_text": "Semantics:",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "Semantics:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[7]/text[2]/tspan[1]",
+            "text_element_context": "Semantics:",
+            "matching_fragment_count": 2
+          }
+        },
+        {
+          "source_text": "Analysis:",
+          "source_style": "bold",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "Analysis:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[7]/text[3]/tspan[1]",
+            "text_element_context": "Analysis:",
+            "matching_fragment_count": 2
+          }
+        },
+        {
+          "source_text": "Read-through cache example",
+          "source_style": "italic",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "Read-through cache example",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[1]/text[2]",
+            "text_element_context": "Read-through cache example",
+            "matching_fragment_count": 1
+          }
+        },
+        {
           "source_text": "depends on",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "italic",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
           "candidate_text": "depends on",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[6]/text()",
+            "element_text_path": "/svg/g[5]/text[1]",
             "text_element_context": "depends on",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "reaches",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "reaches",
+          "source_text": "reads through",
+          "source_style": "italic",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "reads through",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "reaches",
-            "matching_fragment_count": 2
+            "element_text_path": "/svg/g[5]/text[2]",
+            "text_element_context": "reads through",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "loads from",
+          "source_style": "italic",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "loads from",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[5]/text[3]",
+            "text_element_context": "loads from",
+            "matching_fragment_count": 1
           }
         },
         {
           "source_text": "forbidden",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "italic",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
           "candidate_text": "forbidden bypass",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/text[9]/text()",
+            "element_text_path": "/svg/g[6]/text[1]",
             "text_element_context": "forbidden",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Entities and declared structural relations",
+          "source_style": "regular",
+          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "candidate_text": "Entities and declared structural relations",
+          "candidate_style": "regular",
+          "source_locator": {
+            "svg": "book/assets/canonical-structural.svg",
+            "element_text_path": "/svg/g[7]/text[2]",
+            "text_element_context": "Semantics: Entities and declared structural relations",
             "matching_fragment_count": 1
           }
         }
       ],
-      "reason": "Formal entity identifiers and typed relation labels regain distinct typography; analysis prose remains regular.",
+      "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
       "checks": [
         {
           "text": "WEB",
@@ -3741,14 +3885,34 @@
           "italic": false
         },
         {
+          "text": "CACHE",
+          "bold": true,
+          "italic": false
+        },
+        {
           "text": "DATABASE",
           "bold": true,
           "italic": false
         },
         {
-          "text": "CACHE",
+          "text": "Question:",
           "bold": true,
           "italic": false
+        },
+        {
+          "text": "Semantics:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Analysis:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Read-through cache example",
+          "bold": false,
+          "italic": true
         },
         {
           "text": "depends on",
@@ -3756,7 +3920,12 @@
           "italic": true
         },
         {
-          "text": "reaches",
+          "text": "reads through",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "loads from",
           "bold": false,
           "italic": true
         },
@@ -3773,15 +3942,15 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 17,
-        "width_bp": 322.127,
-        "height_bp": 188.943,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 449.972,
+        "height_bp": 469.972,
+        "minimum_prose_font_pt": 11.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 13
       }
     },
     {
@@ -3897,7 +4066,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 18,
         "width_bp": 336.654,
         "height_bp": 221.049,
@@ -4065,7 +4234,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 19,
         "width_bp": 390.839,
         "height_bp": 275.664,
@@ -4256,7 +4425,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 20,
         "width_bp": 350.12,
         "height_bp": 225.916,
@@ -4406,7 +4575,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 21,
         "width_bp": 357.207,
         "height_bp": 186.777,
@@ -4525,7 +4694,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 22,
         "width_bp": 392.64,
         "height_bp": 226.517,
@@ -4693,7 +4862,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 23,
         "width_bp": 361.022,
         "height_bp": 206.879,
@@ -4825,7 +4994,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 24,
         "width_bp": 376.338,
         "height_bp": 141.164,
@@ -4926,7 +5095,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 25,
         "width_bp": 374.568,
         "height_bp": 164.97,
@@ -4973,7 +5142,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 26,
         "width_bp": 367.834,
         "height_bp": 215.241,
@@ -5074,7 +5243,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 27,
         "width_bp": 399.726,
         "height_bp": 183.151,
@@ -5265,7 +5434,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 28,
         "width_bp": 356.496,
         "height_bp": 230.88,
@@ -5438,7 +5607,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 29,
         "width_bp": 414.814,
         "height_bp": 353.747,
@@ -5485,7 +5654,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 30,
         "width_bp": 371.803,
         "height_bp": 297.395,
@@ -5640,7 +5809,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 31,
         "width_bp": 363.145,
         "height_bp": 188.108,
@@ -5759,7 +5928,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 32,
         "width_bp": 403.595,
         "height_bp": 247.517,
@@ -5842,7 +6011,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 33,
         "width_bp": 356.496,
         "height_bp": 260.459,
@@ -6033,7 +6202,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 34,
         "width_bp": 389.805,
         "height_bp": 178.015,
@@ -6152,7 +6321,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 35,
         "width_bp": 418.161,
         "height_bp": 160.043,
@@ -6289,7 +6458,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 36,
         "width_bp": 393.596,
         "height_bp": 181.199,
@@ -6377,7 +6546,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 37,
         "width_bp": 417.69,
         "height_bp": 189.33,
@@ -6442,7 +6611,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 38,
         "width_bp": 362.056,
         "height_bp": 288.565,
@@ -6507,7 +6676,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 39,
         "width_bp": 396.046,
         "height_bp": 244.205,
@@ -6644,7 +6813,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 40,
         "width_bp": 350.12,
         "height_bp": 230.503,
@@ -6763,7 +6932,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 41,
         "width_bp": 367.128,
         "height_bp": 226.203,
@@ -6864,7 +7033,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 42,
         "width_bp": 370.918,
         "height_bp": 189.586,
@@ -7001,7 +7170,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 43,
         "width_bp": 376.538,
         "height_bp": 164.607,
@@ -7156,7 +7325,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 44,
         "width_bp": 382.207,
         "height_bp": 274.957,
@@ -7365,7 +7534,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 45,
         "width_bp": 379.373,
         "height_bp": 201.946,
@@ -7502,7 +7671,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 46,
         "width_bp": 356.695,
         "height_bp": 158.652,
@@ -7639,7 +7808,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 47,
         "width_bp": 428.979,
         "height_bp": 118.138,
@@ -7740,7 +7909,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 48,
         "width_bp": 403.226,
         "height_bp": 179.44,
@@ -7936,7 +8105,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 49,
         "width_bp": 404.884,
         "height_bp": 268.883,
@@ -8055,7 +8224,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 50,
         "width_bp": 326.058,
         "height_bp": 271.67,
@@ -8228,7 +8397,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 51,
         "width_bp": 371.412,
         "height_bp": 260.521,
@@ -8365,7 +8534,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 52,
         "width_bp": 362.365,
         "height_bp": 156.091,
@@ -8520,7 +8689,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 53,
         "width_bp": 376.538,
         "height_bp": 180.514,
@@ -8639,7 +8808,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 54,
         "width_bp": 424.727,
         "height_bp": 204.566,
@@ -8704,7 +8873,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 55,
         "width_bp": 408.896,
         "height_bp": 204.529,
@@ -8805,7 +8974,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 56,
         "width_bp": 403.226,
         "height_bp": 275.62,
@@ -8942,7 +9111,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 57,
         "width_bp": 413.811,
         "height_bp": 255.089,
@@ -9007,7 +9176,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 58,
         "width_bp": 356.695,
         "height_bp": 283.783,
@@ -9090,7 +9259,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 59,
         "width_bp": 413.388,
         "height_bp": 269.617,
@@ -9389,7 +9558,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 60,
         "width_bp": 449.009,
         "height_bp": 264.086,
@@ -9448,7 +9617,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 61,
         "width_bp": 403.147,
         "height_bp": 348.784,
@@ -9537,7 +9706,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 62,
         "width_bp": 406.302,
         "height_bp": 85.843,
@@ -9596,7 +9765,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 63,
         "width_bp": 394.1,
         "height_bp": 226.109,
@@ -9655,7 +9824,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 64,
         "width_bp": 396.38,
         "height_bp": 227.296,
@@ -10044,7 +10213,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 65,
         "width_bp": 423.31,
         "height_bp": 346.733,
@@ -10223,7 +10392,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 66,
         "width_bp": 394.089,
         "height_bp": 157.84,
@@ -10535,7 +10704,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 67,
         "width_bp": 439.921,
         "height_bp": 251.772,
@@ -10594,7 +10763,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 68,
         "width_bp": 394.632,
         "height_bp": 106.941,
@@ -10803,7 +10972,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 69,
         "width_bp": 420.234,
         "height_bp": 323.856,
@@ -10819,7 +10988,7 @@
       "candidate": "book/tikz/figures/build-stages-timeline.tex",
       "decision": "refined",
       "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
-      "candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+      "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
       "evidence": [
         {
           "source_text": "Deployment, iteration,\nand optimization",
@@ -11085,11 +11254,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 70,
         "width_bp": 390.258,
-        "height_bp": 385.847,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 440.737,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -11121,7 +11290,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 71,
         "width_bp": 423.125,
         "height_bp": 280.728,
@@ -11157,7 +11326,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 72,
         "width_bp": 427.35,
         "height_bp": 340.648,
@@ -11193,7 +11362,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 73,
         "width_bp": 435.098,
         "height_bp": 227.296,
@@ -11229,7 +11398,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 74,
         "width_bp": 424.6,
         "height_bp": 407.106,
@@ -11265,7 +11434,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 75,
         "width_bp": 388.655,
         "height_bp": 283.779,
@@ -11281,7 +11450,7 @@
       "candidate": "book/tikz/figures/modeling-history.tex",
       "decision": "refined",
       "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-      "candidate_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+      "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
       "evidence": [
         {
           "source_text": "Projected graph + blocking parity",
@@ -11864,11 +12033,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 76,
         "width_bp": 356.695,
-        "height_bp": 405.017,
-        "minimum_prose_font_pt": 10.0,
+        "height_bp": 514.947,
+        "minimum_prose_font_pt": 11.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -11900,7 +12069,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 77,
         "width_bp": 388.655,
         "height_bp": 122.103,
@@ -11936,7 +12105,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 78,
         "width_bp": 388.655,
         "height_bp": 395.368,
@@ -12295,7 +12464,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 79,
         "width_bp": 323.766,
         "height_bp": 272.123,
@@ -12311,7 +12480,7 @@
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "decision": "refined",
       "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-      "candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+      "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
       "evidence": [
         {
           "source_text": "delegated — code generation",
@@ -12363,11 +12532,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 80,
         "width_bp": 426.688,
-        "height_bp": 412.218,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 493.064,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -12399,7 +12568,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 81,
         "width_bp": 423.125,
         "height_bp": 266.662,
@@ -12732,7 +12901,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 82,
         "width_bp": 417.554,
         "height_bp": 360.772,
@@ -12748,7 +12917,7 @@
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
       "decision": "refined",
       "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-      "candidate_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
+      "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
       "evidence": [
         {
           "source_text": "Pressure / discovery loop\nStructural diagnosis",
@@ -13488,11 +13657,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 83,
         "width_bp": 426.515,
-        "height_bp": 400.264,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 489.063,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -13697,7 +13866,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 84,
         "width_bp": 420.234,
         "height_bp": 352.203,
@@ -14048,7 +14217,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 85,
         "width_bp": 373.703,
         "height_bp": 249.499,
@@ -14257,7 +14426,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 86,
         "width_bp": 387.65,
         "height_bp": 350.8,
@@ -14346,7 +14515,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 87,
         "width_bp": 418.749,
         "height_bp": 261.299,
@@ -14658,7 +14827,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 88,
         "width_bp": 407.719,
         "height_bp": 245.107,
@@ -15103,7 +15272,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 89,
         "width_bp": 399.957,
         "height_bp": 351.462,
@@ -15231,7 +15400,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 90,
         "width_bp": 429.171,
         "height_bp": 374.775,
@@ -15483,7 +15652,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 91,
         "width_bp": 362.365,
         "height_bp": 275.415,
@@ -15752,7 +15921,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 92,
         "width_bp": 361.491,
         "height_bp": 308.214,
@@ -15961,7 +16130,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 93,
         "width_bp": 317.653,
         "height_bp": 228.673,
@@ -16170,7 +16339,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 94,
         "width_bp": 291.435,
         "height_bp": 298.829,
@@ -16379,7 +16548,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 95,
         "width_bp": 340.33,
         "height_bp": 206.875,
@@ -16618,7 +16787,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 96,
         "width_bp": 322.969,
         "height_bp": 172.861,
@@ -16827,7 +16996,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 97,
         "width_bp": 307.025,
         "height_bp": 198.597,
@@ -17036,7 +17205,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 98,
         "width_bp": 321.552,
         "height_bp": 228.604,
@@ -17245,7 +17414,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 99,
         "width_bp": 311.984,
         "height_bp": 306.848,
@@ -17261,7 +17430,7 @@
       "candidate": "book/tikz/figures/moves-overview-cheatsheet.tex",
       "decision": "refined",
       "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
-      "candidate_sha256": "bb978424ad57c31269fcd4eb1dc955f8bb1bc984c55e8622456e35ca545d7ac7",
+      "candidate_sha256": "5cbe09c3b8742a222c9aee2936605015ef1a4abb550b9e6a6ecccbcc7f7aed63",
       "evidence": [
         {
           "source_text": "PUT ENFORCEMENT WHERE LEGIBLE",
@@ -17634,11 +17803,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 100,
-        "width_bp": 368.677,
-        "height_bp": 392.172,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 370.669,
+        "height_bp": 480.482,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -17946,7 +18115,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 101,
         "width_bp": 386.749,
         "height_bp": 170.828,
@@ -18131,7 +18300,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 102,
         "width_bp": 343.165,
         "height_bp": 180.269,
@@ -18226,7 +18395,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 103,
         "width_bp": 348.128,
         "height_bp": 186.03,
@@ -18300,7 +18469,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 104,
         "width_bp": 280.449,
         "height_bp": 226.061,
@@ -18374,7 +18543,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 105,
         "width_bp": 379.309,
         "height_bp": 109.875,
@@ -18462,7 +18631,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 106,
         "width_bp": 406.591,
         "height_bp": 176.515,
@@ -18557,7 +18726,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 107,
         "width_bp": 291.435,
         "height_bp": 187.672,
@@ -18624,7 +18793,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 108,
         "width_bp": 347.417,
         "height_bp": 170.785,
@@ -18677,7 +18846,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 109,
         "width_bp": 311.984,
         "height_bp": 235.982,
@@ -18765,7 +18934,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 110,
         "width_bp": 320.488,
         "height_bp": 218.403,
@@ -18872,7 +19041,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 111,
         "width_bp": 348.128,
         "height_bp": 269.065,
@@ -18960,7 +19129,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 112,
         "width_bp": 323.268,
         "height_bp": 192.63,
@@ -19048,7 +19217,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 113,
         "width_bp": 348.481,
         "height_bp": 190.033,
@@ -19127,7 +19296,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 114,
         "width_bp": 343.165,
         "height_bp": 175.399,
@@ -19208,7 +19377,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 115,
         "width_bp": 298.11,
         "height_bp": 229.637,
@@ -19289,7 +19458,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 116,
         "width_bp": 315.118,
         "height_bp": 223.304,
@@ -19377,7 +19546,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 117,
         "width_bp": 323.322,
         "height_bp": 238.322,
@@ -19472,7 +19641,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 118,
         "width_bp": 385.926,
         "height_bp": 256.142,
@@ -19582,7 +19751,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 119,
         "width_bp": 361.236,
         "height_bp": 196.389,
@@ -19698,7 +19867,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 120,
         "width_bp": 408.362,
         "height_bp": 235.141,
@@ -19714,7 +19883,7 @@
       "candidate": "book/tikz/figures/h4-change-diagnosis-inheritance.tex",
       "decision": "refined",
       "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
-      "candidate_sha256": "1dbb9d00cdd832fd3853f5717d701b998c1805a44ce2a934ae6cde3b232aa246",
+      "candidate_sha256": "1b4bda7770ea7f38cefce71e2691fe679c587ccea7416b908628a20035514937",
       "evidence": [
         {
           "source_text": "CHANGE MODEL",
@@ -19786,11 +19955,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 121,
         "width_bp": 335.372,
-        "height_bp": 374.724,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 463.674,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -19802,7 +19971,7 @@
       "candidate": "book/tikz/figures/h5-incident-to-governance.tex",
       "decision": "refined",
       "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
-      "candidate_sha256": "a62ecc07cf4bc7b09e4ce95abd44f5fb63a047aa62f25f6e4955e146f2f0a0c0",
+      "candidate_sha256": "6b6d36396a0366066e7089186166b3263496629dbc19254eab86851ee16995f2",
       "evidence": [
         {
           "source_text": "MODELED CAUSE /",
@@ -19867,11 +20036,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 122,
         "width_bp": 297.811,
-        "height_bp": 400.392,
-        "minimum_prose_font_pt": 10.0,
+        "height_bp": 507.193,
+        "minimum_prose_font_pt": 11.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -19927,7 +20096,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 123,
         "width_bp": 297.811,
         "height_bp": 329.526,
@@ -19943,7 +20112,7 @@
       "candidate": "book/tikz/figures/h8-product-gee.tex",
       "decision": "refined",
       "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
-      "candidate_sha256": "8df5ef58676b6e5d42b2a5822324c0a4d6eec552ba9bcbee841a17d38c1fad3f",
+      "candidate_sha256": "0fba99f7e857daacedfd5d25e23323012da943a4c1f3a35faf5be75ab0a9ed49",
       "evidence": [
         {
           "source_text": "PRODUCT DISCOVERY",
@@ -20043,11 +20212,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 124,
-        "width_bp": 389.563,
-        "height_bp": 415.982,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 390.034,
+        "height_bp": 514.486,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -20145,7 +20314,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 125,
         "width_bp": 405.441,
         "height_bp": 352.262,
@@ -20238,7 +20407,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 126,
         "width_bp": 372.842,
         "height_bp": 253.117,
@@ -20312,7 +20481,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 127,
         "width_bp": 348.128,
         "height_bp": 309.797,
@@ -20400,7 +20569,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 128,
         "width_bp": 360.173,
         "height_bp": 230.313,
@@ -20453,7 +20622,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 129,
         "width_bp": 354.15,
         "height_bp": 253.323,
@@ -20506,7 +20675,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 130,
         "width_bp": 363.007,
         "height_bp": 172.183,
@@ -20563,7 +20732,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 131,
         "width_bp": 351.316,
         "height_bp": 192.025,
@@ -20616,7 +20785,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 132,
         "width_bp": 356.985,
         "height_bp": 281.728,
@@ -20676,7 +20845,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 133,
         "width_bp": 351.316,
         "height_bp": 209.604,
@@ -20729,7 +20898,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 134,
         "width_bp": 354.15,
         "height_bp": 247.804,
@@ -20770,7 +20939,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 135,
         "width_bp": 420.586,
         "height_bp": 221.36,
@@ -20811,7 +20980,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 136,
         "width_bp": 433.584,
         "height_bp": 274.017,
@@ -20827,7 +20996,7 @@
       "candidate": "book/tikz/figures/model-induction-general.tex",
       "decision": "refined",
       "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
-      "candidate_sha256": "3d22c22039148f5112974c3c712623b78f9f67df5496eeb8c7c5d98d0162d1d5",
+      "candidate_sha256": "b716358e4db46bf68a9fa0f9b4c508ab0248d8d78a4c1dc83c0b07e59e717314",
       "evidence": [
         {
           "source_text": "THE GENERAL MOVE",
@@ -20930,11 +21099,11 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 137,
-        "width_bp": 407.212,
-        "height_bp": 397.01,
-        "minimum_prose_font_pt": 9.0,
+        "width_bp": 409.204,
+        "height_bp": 521.468,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
@@ -20978,7 +21147,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 138,
         "width_bp": 426.477,
         "height_bp": 75.748,
@@ -21026,7 +21195,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 139,
         "width_bp": 426.477,
         "height_bp": 75.857,
@@ -21074,7 +21243,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 140,
         "width_bp": 426.477,
         "height_bp": 75.857,
@@ -21122,7 +21291,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 141,
         "width_bp": 426.477,
         "height_bp": 75.967,
@@ -21170,7 +21339,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 142,
         "width_bp": 426.477,
         "height_bp": 75.857,
@@ -21218,7 +21387,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 143,
         "width_bp": 426.477,
         "height_bp": 75.644,
@@ -21266,7 +21435,7 @@
       ],
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
         "page": 144,
         "width_bp": 426.477,
         "height_bp": 75.709,

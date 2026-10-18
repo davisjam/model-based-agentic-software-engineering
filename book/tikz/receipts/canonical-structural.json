@@ -3,7 +3,7 @@
   "chapter": "2.2-structural",
   "claim": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations — reachability, path, and cycle checks.",
   "topology": {
-    "description": "Directed dependency graph; dashed crossed bypass is forbidden, not observed traffic.",
+    "description": "Declared read-through dependencies, not a request timeline; the crossed dashed shortcut is forbidden.",
     "relations": [
       [
         "web",
@@ -13,19 +13,19 @@
       ],
       [
         "api",
-        "db",
-        "reaches",
-        ""
-      ],
-      [
-        "api",
         "cache",
-        "reaches",
+        "reads through",
         ""
       ],
       [
-        "web.north",
-        "db.north",
+        "cache",
+        "db",
+        "loads from",
+        ""
+      ],
+      [
+        "web.west",
+        "db.west",
         "forbidden bypass",
         "dashed"
       ]
@@ -34,15 +34,22 @@
   "required_terms": [
     "WEB",
     "API",
-    "DATABASE",
     "CACHE",
-    "×",
-    "Entities and declared structural relations Analyze reachability, paths/cuts and cycles."
+    "DATABASE",
+    "Question:",
+    "Semantics:",
+    "Analysis:",
+    "Read-through cache example",
+    "depends on",
+    "reads through",
+    "loads from",
+    "forbidden bypass",
+    "Entities and declared structural relations"
   ],
-  "bw_encoding": "All component peers white; dashed crossed bypass alone encodes prohibition.",
-  "redesign": "All component peers white; dashed crossed bypass alone encodes prohibition. Orthogonal dependency fork and separate short rectangular forbidden bypass; cross retained.",
+  "bw_encoding": "White component peers, dark text, and a crossed dashed prohibited bypass.",
+  "redesign": "Full-page vertical read-through architecture, matched to the color original; types and relations remain explicit.",
   "questions": [],
-  "alt": "WEB depends on API; API reaches DATABASE and CACHE. A crossed dashed bypass from WEB to DATABASE is forbidden. The accompanying labels identify dependency semantics, structural questions and typical graph analyses.",
+  "alt": "A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -52,7 +59,7 @@
       "gray-mode distinctions",
       "native-size visual layout"
     ],
-    "outcome": "Common gray entities and crossed dashed bypass retained; directed dependency fork remains distinct from prohibition.",
+    "outcome": "Linear read-through dependency example in both versions, with readable relation labels and a separate crossed bypass.",
     "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
     "native_dimensions_cm": [
       11.3639,
@@ -61,124 +68,202 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
-    "candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
-    "fill": "All component peers white; dashed crossed bypass alone encodes prohibition.",
-    "bold": "Source-derived emphasis includes WEB; API; DATABASE; CACHE. Formal entity identifiers and typed relation labels regain distinct typography; analysis prose remains regular.",
-    "routing": "Orthogonal dependency fork and separate short rectangular forbidden bypass; cross retained.",
+    "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "fill": "White component peers, dark text, and a crossed dashed prohibited bypass.",
+    "bold": "Source-derived emphasis includes WEB; API; CACHE; DATABASE; Question:; Semantics:; Analysis:. Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
+    "routing": "Single vertical chain with a separately routed orthogonal prohibited bypass.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 17,
-      "width_bp": 322.127,
-      "height_bp": 188.943,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 449.972,
+      "height_bp": 469.972,
+      "minimum_prose_font_pt": 11.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8
+      "semantic_typography_checks": 13
     },
     "book_references": []
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
-    "candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
-    "reason": "Formal entity identifiers and typed relation labels regain distinct typography; analysis prose remains regular.",
+    "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
     "evidence": [
       {
         "source_text": "WEB",
-        "source_style": "weight 700; normal; source size 24",
-        "semantic_role": "named category versus explanatory text",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
         "candidate_text": "WEB",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[2]/text()",
+          "element_text_path": "/svg/g[3]/text[1]",
           "text_element_context": "WEB",
           "matching_fragment_count": 1
         }
       },
       {
         "source_text": "API",
-        "source_style": "weight 700; normal; source size 24",
-        "semantic_role": "named category versus explanatory text",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
         "candidate_text": "API",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[3]/text()",
+          "element_text_path": "/svg/g[3]/text[2]",
           "text_element_context": "API",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "DATABASE",
-        "source_style": "weight 700; normal; source size 24",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "DATABASE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "DATABASE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
         "source_text": "CACHE",
-        "source_style": "weight 700; normal; source size 24",
-        "semantic_role": "named category versus explanatory text",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
         "candidate_text": "CACHE",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[5]/text()",
+          "element_text_path": "/svg/g[3]/text[3]",
           "text_element_context": "CACHE",
           "matching_fragment_count": 1
         }
       },
       {
+        "source_text": "DATABASE",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "DATABASE",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[3]/text[4]",
+          "text_element_context": "DATABASE",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Question:",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "Question:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[7]/text[1]/tspan[1]",
+          "text_element_context": "Question:",
+          "matching_fragment_count": 2
+        }
+      },
+      {
+        "source_text": "Semantics:",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "Semantics:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[7]/text[2]/tspan[1]",
+          "text_element_context": "Semantics:",
+          "matching_fragment_count": 2
+        }
+      },
+      {
+        "source_text": "Analysis:",
+        "source_style": "bold",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "Analysis:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[7]/text[3]/tspan[1]",
+          "text_element_context": "Analysis:",
+          "matching_fragment_count": 2
+        }
+      },
+      {
+        "source_text": "Read-through cache example",
+        "source_style": "italic",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "Read-through cache example",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[1]/text[2]",
+          "text_element_context": "Read-through cache example",
+          "matching_fragment_count": 1
+        }
+      },
+      {
         "source_text": "depends on",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
+        "source_style": "italic",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
         "candidate_text": "depends on",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[6]/text()",
+          "element_text_path": "/svg/g[5]/text[1]",
           "text_element_context": "depends on",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "reaches",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "reaches",
+        "source_text": "reads through",
+        "source_style": "italic",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "reads through",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[7]/text()",
-          "text_element_context": "reaches",
-          "matching_fragment_count": 2
+          "element_text_path": "/svg/g[5]/text[2]",
+          "text_element_context": "reads through",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "loads from",
+        "source_style": "italic",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "loads from",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[5]/text[3]",
+          "text_element_context": "loads from",
+          "matching_fragment_count": 1
         }
       },
       {
         "source_text": "forbidden",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
+        "source_style": "italic",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
         "candidate_text": "forbidden bypass",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/canonical-structural.svg",
-          "element_text_path": "/svg/text[9]/text()",
+          "element_text_path": "/svg/g[6]/text[1]",
           "text_element_context": "forbidden",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Entities and declared structural relations",
+        "source_style": "regular",
+        "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+        "candidate_text": "Entities and declared structural relations",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/canonical-structural.svg",
+          "element_text_path": "/svg/g[7]/text[2]",
+          "text_element_context": "Semantics: Entities and declared structural relations",
           "matching_fragment_count": 1
         }
       }
@@ -195,14 +280,34 @@
         "italic": false
       },
       {
+        "text": "CACHE",
+        "bold": true,
+        "italic": false
+      },
+      {
         "text": "DATABASE",
         "bold": true,
         "italic": false
       },
       {
-        "text": "CACHE",
+        "text": "Question:",
         "bold": true,
         "italic": false
+      },
+      {
+        "text": "Semantics:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Analysis:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Read-through cache example",
+        "bold": false,
+        "italic": true
       },
       {
         "text": "depends on",
@@ -210,7 +315,12 @@
         "italic": true
       },
       {
-        "text": "reaches",
+        "text": "reads through",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "loads from",
         "bold": false,
         "italic": true
       },
@@ -227,20 +337,20 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 17,
-      "width_bp": 322.127,
-      "height_bp": 188.943,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 449.972,
+      "height_bp": 469.972,
+      "minimum_prose_font_pt": 11.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
+      "semantic_typography_checks": 13,
       "book_font_inheritance": {
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -252,22 +362,32 @@
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "WEB/API and database/cache relation targets have clear visible terminal approaches; forbidden bypass and labels remain distinct.",
-    "candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
+    "decision": "refined",
+    "reason": "A single vertical WEB–API–CACHE–DATABASE dependency chain replaces the fork. Equal component boxes, clear labeled terminals and a separately routed crossed bypass use the available page height.",
+    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Replace both component forks with the explicit read-through WEB–API–CACHE–DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 17,
-      "width_bp": 322.127,
-      "height_bp": 188.943
+      "width_bp": 449.972,
+      "height_bp": 469.972
     }
   }
 }

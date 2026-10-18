@@ -3,125 +3,64 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
   "topology": {
-    "description": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+    "description": "Nine miniature model forms preserve their own graph semantics. Component dependencies now follow WEB–API–CACHE–DB. Other graphs retain their directions, branches, crossed stale/prohibited paths and quantitative bound.",
     "native_draw_commands": [
-      "\\draw[edge] (m00) -- (m01);",
-      "\\draw[edge] (m01) -- (m02);",
-      "\\draw[edge] (m01) -- (m03);",
-      "\\draw[black!25] (2.4,0.3)--(2.4,-4.1);",
-      "\\draw[edge] (m10) -- (m11);",
-      "\\draw[edge] (m11) -- (m12);",
-      "\\draw[edge] (m11) -- (m13);",
-      "\\draw[black!25] (7.199999999999999,0.3)--(7.199999999999999,-4.1);",
-      "\\draw[edge] (m20) -- (m21);",
-      "\\draw[edge] (m21) -- (m22);",
-      "\\draw[edge] (m22) -- (m23);",
-      "\\draw[edge] (m30) -- (m31);",
-      "\\draw[edge,dashed] (m32) -- (m31);",
-      "\\draw[black!25] (2.4,-4.1000000000000005)--(2.4,-8.5);",
-      "\\draw[edge] (m40) -- (m41);",
-      "\\draw[edge,dashed] (m40) -- (m42);",
-      "\\draw[black!25] (7.199999999999999,-4.1000000000000005)--(7.199999999999999,-8.5);",
-      "\\draw[edge] (m50) -- (m52);",
-      "\\draw[edge] (m51.north) -- (m52.south west);",
-      "\\draw[edge] (m52) -- (m53);",
-      "\\draw[edge] (m60) -- (m61);",
-      "\\draw[edge] (m60) -- (m62);",
-      "\\draw[black!25] (2.4,-8.5)--(2.4,-12.9);",
-      "\\draw[edge] (m70) -- (m72);",
-      "\\draw[edge] (m71) -- (m72);",
-      "\\draw[black!25] (7.199999999999999,-8.5)--(7.199999999999999,-12.9);",
-      "\\draw[edge] (m80) -- (m81);",
-      "\\draw[edge] (m81) -- (m82);",
-      "\\draw[edge] (m81) -- (m83);"
+      "\\draw[edge] (58.0,60) -- (81.0,60);",
+      "\\draw[edge] (107,70) -- (107,92);",
+      "\\draw[edge] (81.0,102) -- (58.0,102);",
+      "\\draw[edge] (207.0,60) -- (227.0,60);",
+      "\\draw[edge] (256,70) -- (256,92);",
+      "\\draw[edge] (256,70) -- (256,81) -- (181,81) -- (181,92);",
+      "\\draw[edge] (356.0,60) -- (379.0,60);",
+      "\\draw[edge] (405,70) -- (405,92);",
+      "\\draw[edge] (379.0,102) -- (356.0,102);",
+      "\\draw[edge] (58,234) -- (70,234) -- (70,251) -- (86,251);",
+      "\\draw[edge,dashed] (58,276) -- (70,276) -- (70,259) -- (86,259);",
+      "\\draw[edge] (202,255) -- (212,255) -- (212,234) -- (234,234);",
+      "\\draw[edge,dashed] (202,255) -- (212,255) -- (212,276) -- (234,276);",
+      "\\draw[edge] (328,244) -- (328,252) -- (330,252) -- (330,266);",
+      "\\draw[edge] (408,244) -- (408,252) -- (346,252) -- (346,266);",
+      "\\draw[edge] (368,276) -- (387,276);",
+      "\\draw[edge] (53,429) -- (63,429) -- (63,408) -- (79,408);",
+      "\\draw[edge] (53,429) -- (63,429) -- (63,450) -- (85,450);",
+      "\\draw[edge] (180,418) -- (180,429) -- (213,429) -- (213,440);",
+      "\\draw[edge] (257,418) -- (257,429) -- (229,429) -- (229,440);",
+      "\\draw[edge] (360.0,408) -- (375.0,408);",
+      "\\draw[edge] (405,418) -- (405,440);",
+      "\\draw[edge] (405,418) -- (405,429) -- (330,429) -- (330,440);",
+      "\\draw[black!20,line width=.4pt] (145.5,18)--(145.5,536);",
+      "\\draw[black!20,line width=.4pt] (294.5,18)--(294.5,536);"
     ]
   },
   "required_terms": [
-    "Component /",
-    "dependency",
-    "UI",
-    "API",
-    "DB CACHE",
+    "COMPONENT / DEPENDENCY",
+    "FINITE-STATE",
+    "DATA-FLOW",
+    "OWNERSHIP / RESOURCE",
+    "DECISION / POLICY",
+    "QUANTITATIVE",
+    "ENTITY / SCHEMA",
+    "PROVENANCE / DERIVATION",
+    "CALL / CONTROL-FLOW",
+    "Q:",
+    "P:",
+    "A:",
     "Depends on; reaches",
-    "Q: What depends on what?",
-    "P: Reachability, layering,",
-    "forbidden edges",
-    "A: Traversal, cycles, paths",
-    "Finite-state",
-    "IDLE RUNNING DONE",
-    "F AILED",
     "May become",
-    "Q: What may happen next?",
-    "P: Legal states,",
-    "safety, liveness",
-    "A: Model checking; search",
-    "Data-flow",
-    "INPUT PARSE MODEL",
-    "OUTPUT",
     "Flows to",
-    "Q: Where does data flow?",
-    "P: Sources, sinks,",
-    "paths, transforms",
-    "A: Flow, taint, dependencies",
-    "Ownership / resource",
-    "Worker A",
-    "Job 42",
-    "Worker B ×",
-    "Owns; stale claim (dashed)",
-    "Q: Who may control what?",
-    "P: Exclusivity,",
-    "transfer, reclaim",
-    "A: Interleavings; invariants",
-    "Decision / policy",
-    "WEB",
-    "API",
-    "DB",
-    "×",
     "May call; dashed = prohibited",
-    "Q: What is permitted?",
-    "P: Consistency, exclusion,",
-    "implication",
-    "A: Rules; constraint checks",
-    "Quantitative",
-    "requests",
-    "errors",
-    "error rate [ < 1% ]",
     "Compare error rate to bound",
-    "Q: How much / what bound?",
-    "P: Budget, margin,",
-    "capacity, rate",
-    "A: Aggregate / optimize",
-    "Entity / schema",
-    "USER",
-    "DOCUMENT",
-    "ORG",
     "owns / memberOf",
-    "Q: Entities and relations?",
-    "P: Keys, cardinality,",
-    "references",
-    "A: Joins; schema checking",
-    "Provenance / derivation",
-    "SOURCE TRANSFORM",
-    "ARTIF ACT",
     "sourceOf / produced",
-    "Q: What produced this?",
-    "P: Attribution,",
-    "lineage, evidence",
-    "A: Lineage / audit traversal",
-    "Call / control-flow",
-    "main() handle() validate()",
-    "persist()",
     "Calls",
-    "Q: What may call what?",
-    "P: Entry points,",
-    "reachable calls",
-    "A: Call-graph traversal",
-    "Q = question · P = property · A = analysis"
+    "Owns; dashed = stale claim",
+    "WEB",
+    "What depends on what?"
   ],
   "bw_encoding": "Nine equal white panels and all miniature nodes white. Shape, topology, labels and dashed/cross marks distinguish forms.",
-  "redesign": "Nine equal white panels and all miniature nodes white. Shape, topology, labels and dashed/cross marks distinguish forms. All miniature process/relation edges use aligned ports and short orthogonal branches; forbidden/stale crosses follow their dashed paths.",
+  "redesign": "Use page height to raise authored font sizes and improve padding, rank spacing, and relation labels. Retain simple compact diagrams when extra space adds no value.",
   "questions": [],
-  "alt": "Nine miniature graphs in a three-by-three grid show component dependencies, finite states, data flow, ownership, policy decisions, quantitative bounds, entity schemas, provenance and call flow. Every form has its own question, properties and analyses. Dashed crossed edges mark stale or prohibited relations; a bracket marks the quantitative bound.",
+  "alt": "Nine model families in a full-page three-by-three reference layout. Each gives a directed example, its relation meaning, and the engineering question, properties, and analyses. Dashed crossed relations distinguish stale claims and prohibited calls. The quantitative example compares error rate with a bracketed bound.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -133,7 +72,7 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+    "outcome": "Full-page nine-family plate with10–10.5pt text, larger miniatures, Q/P/A hierarchy and restrained grayscale.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       14.5983,
@@ -161,397 +100,456 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-    "candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
+    "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
+    "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
     "fill": "Nine equal white panels and all miniature nodes white. Shape, topology, labels and dashed/cross marks distinguish forms.",
-    "bold": "Source-derived emphasis includes COMPONENT / DEPENDENCY; FINITE-STATE; DATA-FLOW; OWNERSHIP / RESOURCE; DECISION / POLICY; QUANTITATIVE; ENTITY / SCHEMA; PROVENANCE / DERIVATION. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "bold": "Source-derived emphasis includes COMPONENT / DEPENDENCY; FINITE-STATE; DATA-FLOW; OWNERSHIP / RESOURCE; DECISION / POLICY; QUANTITATIVE; ENTITY / SCHEMA; PROVENANCE / DERIVATION. Full-page three-by-three repertoire: bold capital family names and Q/P/A labels, italic relation semantics, regular entity and explanatory text. Both versions share the read-through component chain.",
     "routing": "All miniature process/relation edges use aligned ports and short orthogonal branches; forbidden/stale crosses follow their dashed paths.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 16,
-      "width_bp": 413.811,
-      "height_bp": 417.681,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 440.973,
+      "height_bp": 546.264,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 22
+      "semantic_typography_checks": 23
     },
     "book_references": []
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-    "candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
+    "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
+    "reason": "Full-page three-by-three repertoire: bold capital family names and Q/P/A labels, italic relation semantics, regular entity and explanatory text. Both versions share the read-through component chain.",
     "evidence": [
       {
         "source_text": "COMPONENT / DEPENDENCY",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "COMPONENT / DEPENDENCY",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "COMPONENT / DEPENDENCY",
+            "text": "COMPONENT /",
+            "element_text_path": "/svg/text[2]",
             "weight": "700",
             "style": "normal",
-            "x": "320",
-            "y": "125"
+            "x": "71",
+            "y": "21"
+          },
+          {
+            "text": "DEPENDENCY",
+            "element_text_path": "/svg/text[3]",
+            "weight": "700",
+            "style": "normal",
+            "x": "71",
+            "y": "33"
           }
         ]
       },
       {
         "source_text": "FINITE-STATE",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "FINITE-STATE",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "FINITE-STATE",
+            "element_text_path": "/svg/text[16]",
             "weight": "700",
             "style": "normal",
-            "x": "908",
-            "y": "125"
+            "x": "220",
+            "y": "27"
           }
         ]
       },
       {
         "source_text": "DATA-FLOW",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "DATA-FLOW",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "DATA-FLOW",
+            "element_text_path": "/svg/text[29]",
             "weight": "700",
             "style": "normal",
-            "x": "1496",
-            "y": "125"
+            "x": "369",
+            "y": "27"
           }
         ]
       },
       {
         "source_text": "OWNERSHIP / RESOURCE",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "OWNERSHIP / RESOURCE",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "OWNERSHIP / RESOURCE",
+            "text": "OWNERSHIP /",
+            "element_text_path": "/svg/text[42]",
             "weight": "700",
             "style": "normal",
-            "x": "320",
-            "y": "603"
+            "x": "71",
+            "y": "195"
+          },
+          {
+            "text": "RESOURCE",
+            "element_text_path": "/svg/text[43]",
+            "weight": "700",
+            "style": "normal",
+            "x": "71",
+            "y": "207"
           }
         ]
       },
       {
         "source_text": "DECISION / POLICY",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "DECISION / POLICY",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "DECISION / POLICY",
+            "element_text_path": "/svg/text[55]",
             "weight": "700",
             "style": "normal",
-            "x": "908",
-            "y": "603"
+            "x": "220",
+            "y": "201"
           }
         ]
       },
       {
         "source_text": "QUANTITATIVE",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "QUANTITATIVE",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "QUANTITATIVE",
+            "element_text_path": "/svg/text[67]",
             "weight": "700",
             "style": "normal",
-            "x": "1496",
-            "y": "603"
+            "x": "369",
+            "y": "201"
           }
         ]
       },
       {
         "source_text": "ENTITY / SCHEMA",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "ENTITY / SCHEMA",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "ENTITY / SCHEMA",
+            "element_text_path": "/svg/text[80]",
             "weight": "700",
             "style": "normal",
-            "x": "320",
-            "y": "1081"
+            "x": "71",
+            "y": "375"
           }
         ]
       },
       {
         "source_text": "PROVENANCE / DERIVATION",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "PROVENANCE / DERIVATION",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "PROVENANCE / DERIVATION",
+            "text": "PROVENANCE /",
+            "element_text_path": "/svg/text[92]",
             "weight": "700",
             "style": "normal",
-            "x": "908",
-            "y": "1081"
+            "x": "220",
+            "y": "369"
+          },
+          {
+            "text": "DERIVATION",
+            "element_text_path": "/svg/text[93]",
+            "weight": "700",
+            "style": "normal",
+            "x": "220",
+            "y": "381"
           }
         ]
       },
       {
         "source_text": "CALL / CONTROL-FLOW",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Model-family panel title (already bold)",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "CALL / CONTROL-FLOW",
-        "candidate_style": "capitals",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "CALL / CONTROL-FLOW",
+            "text": "CALL /",
+            "element_text_path": "/svg/text[105]",
             "weight": "700",
             "style": "normal",
-            "x": "1496",
-            "y": "1081"
+            "x": "369",
+            "y": "369"
+          },
+          {
+            "text": "CONTROL-FLOW",
+            "element_text_path": "/svg/text[106]",
+            "weight": "700",
+            "style": "normal",
+            "x": "369",
+            "y": "381"
           }
         ]
       },
       {
         "source_text": "Q:",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Field label separated from its value",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "Q:",
-        "candidate_style": "bold ",
+        "candidate_style": "bold",
         "source_fragments": [
           {
             "text": "Q:",
+            "element_text_path": "/svg/text[9]",
             "weight": "700",
             "style": "normal",
-            "x": "66",
-            "y": "378"
+            "x": "1",
+            "y": "142"
           }
         ]
       },
       {
-        "source_text": "Property:",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Field label separated from its value",
+        "source_text": "P:",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "P:",
-        "candidate_style": "bold ",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "Property:",
+            "text": "P:",
+            "element_text_path": "/svg/text[11]",
             "weight": "700",
             "style": "normal",
-            "x": "66",
-            "y": "407"
+            "x": "1",
+            "y": "156"
           }
         ]
       },
       {
-        "source_text": "Analysis:",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Field label separated from its value",
+        "source_text": "A:",
+        "source_style": "bold",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "A:",
-        "candidate_style": "bold ",
+        "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "Analysis:",
+            "text": "A:",
+            "element_text_path": "/svg/text[14]",
             "weight": "700",
             "style": "normal",
-            "x": "66",
-            "y": "461"
+            "x": "1",
+            "y": "182"
           }
         ]
       },
       {
-        "source_text": "depends on",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "Depends on; reaches",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "Depends on; reaches",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "depends on",
+            "text": "Depends on; reaches",
+            "element_text_path": "/svg/text[8]",
             "weight": "normal",
             "style": "italic",
-            "x": "340",
-            "y": "218"
+            "x": "71",
+            "y": "126"
           }
         ]
       },
       {
-        "source_text": "may become",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "May become",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "May become",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "may become",
+            "text": "May become",
+            "element_text_path": "/svg/text[21]",
             "weight": "normal",
             "style": "italic",
-            "x": "782",
-            "y": "184"
+            "x": "220",
+            "y": "126"
           }
         ]
       },
       {
-        "source_text": "flows to",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "Flows to",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "Flows to",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "flows to",
+            "text": "Flows to",
+            "element_text_path": "/svg/text[34]",
             "weight": "normal",
             "style": "italic",
-            "x": "1363",
-            "y": "184"
+            "x": "369",
+            "y": "126"
           }
         ]
       },
       {
-        "source_text": "owns / stale claim",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
-        "candidate_text": "Owns; stale claim (dashed)",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "owns",
-            "weight": "normal",
-            "style": "italic",
-            "x": "305",
-            "y": "670"
-          },
-          {
-            "text": "stale claim",
-            "weight": "normal",
-            "style": "italic",
-            "x": "286",
-            "y": "799"
-          }
-        ]
-      },
-      {
-        "source_text": "may call / not permitted",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "May call; dashed = prohibited",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "May call; dashed = prohibited",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "may call",
+            "text": "May call; dashed = prohibited",
+            "element_text_path": "/svg/text[59]",
             "weight": "normal",
             "style": "italic",
-            "x": "833",
-            "y": "702"
-          },
-          {
-            "text": "not permitted",
-            "weight": "normal",
-            "style": "italic",
-            "x": "836",
-            "y": "802"
+            "x": "220",
+            "y": "300"
           }
         ]
       },
       {
-        "source_text": "compare",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "Compare error rate to bound",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "Compare error rate to bound",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "compare",
+            "text": "Compare error rate to bound",
+            "element_text_path": "/svg/text[72]",
             "weight": "normal",
             "style": "italic",
-            "x": "1580",
-            "y": "708"
+            "x": "369",
+            "y": "300"
           }
         ]
       },
       {
         "source_text": "owns / memberOf",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "owns / memberOf",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "owns",
+            "text": "owns / memberOf",
+            "element_text_path": "/svg/text[84]",
             "weight": "normal",
             "style": "italic",
-            "x": "305",
-            "y": "670"
-          },
-          {
-            "text": "memberOf",
-            "weight": "normal",
-            "style": "italic",
-            "x": "288",
-            "y": "1292"
+            "x": "71",
+            "y": "474"
           }
         ]
       },
       {
         "source_text": "sourceOf / produced",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "sourceOf / produced",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "sourceOf",
+            "text": "sourceOf / produced",
+            "element_text_path": "/svg/text[97]",
             "weight": "normal",
             "style": "italic",
-            "x": "768",
-            "y": "1252"
-          },
-          {
-            "text": "produced",
-            "weight": "normal",
-            "style": "italic",
-            "x": "1013",
-            "y": "1222"
+            "x": "220",
+            "y": "474"
           }
         ]
       },
       {
-        "source_text": "calls",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Relation semantics versus entity labels",
+        "source_text": "Calls",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
         "candidate_text": "Calls",
-        "candidate_style": "italic ",
+        "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "calls",
+            "text": "Calls",
+            "element_text_path": "/svg/text[111]",
             "weight": "normal",
             "style": "italic",
-            "x": "1377",
-            "y": "1140"
+            "x": "369",
+            "y": "474"
+          }
+        ]
+      },
+      {
+        "source_text": "Owns; dashed = stale claim",
+        "source_style": "italic",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+        "candidate_text": "Owns; dashed = stale claim",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "Owns; dashed = stale claim",
+            "element_text_path": "/svg/text[47]",
+            "weight": "normal",
+            "style": "italic",
+            "x": "71",
+            "y": "300"
+          }
+        ]
+      },
+      {
+        "source_text": "WEB",
+        "source_style": "regular",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+        "candidate_text": "WEB",
+        "candidate_style": "regular",
+        "source_fragments": [
+          {
+            "text": "WEB",
+            "element_text_path": "/svg/text[4]",
+            "weight": "normal",
+            "style": "normal",
+            "x": "32",
+            "y": "63.4"
+          }
+        ]
+      },
+      {
+        "source_text": "What depends on what?",
+        "source_style": "regular",
+        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
+        "candidate_text": "What depends on what?",
+        "candidate_style": "regular",
+        "source_fragments": [
+          {
+            "text": "What depends on what?",
+            "element_text_path": "/svg/text[10]",
+            "weight": "normal",
+            "style": "normal",
+            "x": "14",
+            "y": "142"
           }
         ]
       }
@@ -618,10 +616,6 @@
         "italic": true
       },
       {
-        "text": "Owns; stale claim (dashed)",
-        "italic": true
-      },
-      {
         "text": "May call; dashed = prohibited",
         "italic": true
       },
@@ -642,26 +636,37 @@
         "italic": true
       },
       {
-        "text": "What depends on what?",
+        "text": "Owns; dashed = stale claim",
+        "italic": true,
         "bold": false
+      },
+      {
+        "text": "WEB",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "What depends on what?",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 16,
-      "width_bp": 413.811,
-      "height_bp": 417.681,
-      "minimum_prose_font_pt": 9.0,
+      "width_bp": 440.973,
+      "height_bp": 546.264,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 22,
+      "semantic_typography_checks": 23,
       "book_font_inheritance": {
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -673,22 +678,37 @@
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Nine miniature graph-grammar examples use small semantic node glyphs; retaining their differing topology is important. These are not a uniform process chain. Relation arrows inside these miniature examples need separate semantic review if a future shaft sensor flags them.",
-    "candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
+    "decision": "refined",
+    "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+    "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+      "reviewed_visually": true,
+      "svg_audit_review": {
+        "strict_label_collision": "passed",
+        "strict_text_occlusion": "passed",
+        "heuristic_stroke_flags": "Two estimated-width flags are false positives: rendered labels end at119.03bp and271.35bp, before the145.5bp and294.5bp dividers. Measured clearances26.47bp and23.15bp at native440bp width."
+      }
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 16,
-      "width_bp": 413.811,
-      "height_bp": 417.681
+      "width_bp": 440.973,
+      "height_bp": 546.264
     }
   }
 }

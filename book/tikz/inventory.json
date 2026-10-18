@@ -204,8 +204,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The engineering modeling repertoire: nine familiar model forms",
-    "svg_description": "A three-by-three spread of nine familiar modeling forms \u2014 component/dependency, finite-state, data-flow, ownership/resource, decision/policy, quantitative, entity/schema, provenance/derivation, and call/control-flow. Each panel shows a small diagram plus a Question, Property, and Analysis line. The same graphical primitives \u2014 rounded entities, labeled directed arrows, a struck-through dashed arrow for a forbidden relation, and a bracketed envelope for a bound \u2014 recur across panels while the semantics change, and each family carries its own ground colour."
+    "svg_title": "The engineering modeling repertoire",
+    "svg_description": "Nine model families in a full-page three-by-three reference layout. Each gives a directed example, its relation meaning, and the engineering question, properties, and analyses. Dashed crossed relations distinguish stale claims and prohibited calls. The quantitative example compares error rate with a bracketed bound."
   },
   {
     "chapter": "2.2-structural",
@@ -217,8 +217,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Canonical structural model: a small service architecture",
-    "svg_description": "A structural opener in the shared grammar. WEB depends on API; API reaches DATABASE and CACHE. A struck-through dashed arrow marks a forbidden bypass from WEB straight to DATABASE around API. Caption: Question, Semantics, Typical analysis. Rust ground marks the structural family."
+    "svg_title": "Canonical structural model: a read-through cache architecture",
+    "svg_description": "A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles."
   },
   {
     "chapter": "2.2-structural",

@@ -29,10 +29,10 @@
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "85ff27ad47604f13c713bb88de381abcf746a2fbf4407decbf4587561dcb1fb9",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-    "candidate_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+    "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Projected graph + blocking parity check; Analytical views by stable identity; Composition becomes consequential; Authoritative computation model; Composition stays implicit; Residual freedom remains; Dependency semantics; Stable computations. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -40,11 +40,11 @@
     "visual_review": "Parallel dependency/effect dimensions and later analysis chain remain; residual freedom dashed.",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 76,
       "width_bp": 356.695,
-      "height_bp": 405.017,
-      "minimum_prose_font_pt": 10.0,
+      "height_bp": 514.947,
+      "minimum_prose_font_pt": 11.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -57,7 +57,7 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-    "candidate_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+    "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -640,11 +640,11 @@
     ],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 76,
       "width_bp": 356.695,
-      "height_bp": 405.017,
-      "minimum_prose_font_pt": 10.0,
+      "height_bp": 514.947,
+      "minimum_prose_font_pt": 11.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
@@ -653,7 +653,7 @@
         "configuration": "latex/book-fonts.tex",
         "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
         "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "f307b4306aa566f9ed5698cddae557c1b9fb89424a0fa87f1a86fb6045ef15e3",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
         "body_faces": [
           "SourceSans3-Bold",
           "SourceSans3-BoldIt",
@@ -666,21 +666,47 @@
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Reduce vertical padding in the dense sequential history to expose arrow shafts; four-line dependency/effect peers retain equal rank. Equalized the two peer box heights exactly.",
-    "candidate_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+    "reason": "Reduce vertical padding in the dense sequential history to expose arrow shafts; four-line dependency/effect peers retain equal rank. Equalized the two peer box heights exactly. Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
+    "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
+      "before_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+      "after_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
+      "before_dimensions_bp": [
+        356.69500732421875,
+        405.0169982910156
+      ],
+      "after_dimensions_bp": [
+        356.69500732421875,
+        514.947021484375
+      ],
+      "before_font_sizes_pt": [
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        11.0
+      ],
+      "reviewed_visually": true
+    },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3c88d6ae797be40975601c120d701f9791e94070700abdd7ada09d1a9cf6226d",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 611,
-      "reviewed_peer_groups": 80,
-      "semantic_typography_checks": 869,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
       "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed",
       "page": 76,
       "width_bp": 356.695,
-      "height_bp": 405.017
+      "height_bp": 514.947
     }
   }
 }

@@ -1,26 +1,26 @@
-\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{11}{13}\selectfont,
 box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
-gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{10}{12}\selectfont},
 edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
 every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
-\node[box,text width=4.5cm,minimum height=1.9cm] (change) at (-3,0) {\textbf{CHANGE MODEL}\\ ticket / issue\\ observation · intent};
-\node[box,text width=4.5cm,minimum height=1.9cm] (knowledge) at (3,0) {\textbf{SYSTEM KNOWLEDGE}\\ architecture · behavior · ownership\\ contracts · dependencies};
-\node[box,text width=6cm] (p0) at (0,-2.6) {\textbf{DIAGNOSIS \& CONTEXT LOCALIZATION}\\ root cause · responsible concepts\\ relevant models · obligations};
-\node[box,text width=6cm] (p1) at (0,-4.5) {\textbf{REALIZATION SPACE}\\ choices left open by governing obligations};
+\node[box,text width=4.5cm,minimum height=2.2cm] (change) at (-3,0) {\textbf{CHANGE MODEL}\\ ticket / issue\\ observation · intent};
+\node[box,text width=4.5cm,minimum height=2.2cm] (knowledge) at (3,0) {\textbf{SYSTEM KNOWLEDGE}\\ architecture · behavior · ownership\\ contracts · dependencies};
+\node[box,text width=6cm] (p0) at (0,-3.25) {\textbf{DIAGNOSIS \& CONTEXT LOCALIZATION}\\ root cause · responsible concepts\\ relevant models · obligations};
+\node[box,text width=6cm] (p1) at (0,-5.625) {\textbf{REALIZATION SPACE}\\ choices left open by governing obligations};
 \draw[edge] (p0) -- (p1);
-\node[box,text width=6cm] (p2) at (0,-6) {realization};
+\node[box,text width=6cm] (p2) at (0,-7.5) {realization};
 \draw[edge] (p1) -- (p2);
-\node[box,text width=6cm] (p3) at (0,-7.4) {acceptance evidence};
+\node[box,text width=6cm] (p3) at (0,-9.25) {acceptance evidence};
 \draw[edge] (p2) -- (p3);
 
 
-\node[note,text width=2.5cm] (t16) at (-4.8,-4) {bidirectional\\ traceability\\ models $\leftrightarrow$ code};
-\node[box,text width=3cm,minimum height=1.9cm] (history) at (-3,-10.2) {history};
-\node[box,text width=4.5cm,minimum height=1.9cm] (durable) at (3,-10.2) {\textbf{DURABLE STRUCTURE}\\ model · test · constraint\\ validator · architecture · design};
-\draw[edge] (p3.south)--(0,-8.5)--(-3,-8.5)-- node[note,left=2pt] {no} (history.north);
-\draw[edge] (p3.south)--(0,-8.5)--(3,-8.5)-- node[note,right=2pt] {yes} (durable.north);
-\node[note,text width=3cm] (t21) at (0,-8.1) {\textit{recurring lesson?}};
-\node[note,text width=5cm] (t22) at (3,-11.9) {\textit{future work inherits it}};
+\node[note,text width=2.5cm] (t16) at (-4.8,-5) {bidirectional\\ traceability\\ models $\leftrightarrow$ code};
+\node[box,text width=3cm,minimum height=2.2cm] (history) at (-3,-12.75) {history};
+\node[box,text width=4.5cm,minimum height=2.2cm] (durable) at (3,-12.75) {\textbf{DURABLE STRUCTURE}\\ model · test · constraint\\ validator · architecture · design};
+\draw[edge] (p3.south)--(0,-10.625)--(-3,-10.625)-- node[note,left=2pt] {no} (history.north);
+\draw[edge] (p3.south)--(0,-10.625)--(3,-10.625)-- node[note,right=2pt] {yes} (durable.north);
+\node[note,text width=3cm] (t21) at (0,-10.125) {\textit{recurring lesson?}};
+\node[note,text width=5cm] (t22) at (3,-14.875) {\textit{future work inherits it}};
 \coordinate (rail15) at ($(knowledge.south)!.5!(p0.north)$);
 \draw[line width=.6pt] (change.south)--(change.south |- rail15);
 \draw[line width=.6pt] (knowledge.south)--(knowledge.south |- rail15);
