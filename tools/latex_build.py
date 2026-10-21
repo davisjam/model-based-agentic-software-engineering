@@ -33,11 +33,13 @@ def diagnostics(log: str) -> tuple[list[str], list[str]]:
     return rejected, allowed
 
 
-def single_page_tables(latex: str, labels: set[str]) -> str:
-    """Float selected compact comparisons together on a dedicated table page.
+def single_page_tables(latex: str, labels: set[str], *, placement: str = "p",
+                       start_on_new_page: bool = False) -> str:
+    """Float selected compact comparisons together; default to a dedicated table page.
 
     Keep the first header and final rule exactly once. This is an explicit print
     layout choice: ordinary longtables retain their multipage behavior.
+    A new page can keep a closing comparison ahead of the next section.
     """
     def convert(match):
         block = match[0]
@@ -50,7 +52,8 @@ def single_page_tables(latex: str, labels: set[str]) -> str:
         footer, body = content.split(r'\endlastfoot', 1)
         body = body.removesuffix(r'\end{longtable}')
         tabular = re.sub(r'\\begin\{longtable\}(?:\[[^]]*\])?', lambda _: r'\begin{tabular}', preamble, count=1)
-        return (r'\begin{table}[p]' + '\n' + r'\centering\footnotesize\booktablecaptionstyle' + '\n' + r'\caption' + caption + '\n'
+        prefix = '\\clearpage\n' if start_on_new_page else ''
+        return (prefix + r'\begin{table}[' + placement + ']' + '\n' + r'\centering\footnotesize\booktablecaptionstyle' + '\n' + r'\caption' + caption + '\n'
                 + tabular + header + body + footer + r'\end{tabular}' + '\n' + r'\end{table}')
     return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', convert, latex, flags=re.S)
 

@@ -51,15 +51,20 @@ Kind & Meaning \\
 First & Example \\
 Second & Another \\
 \end{longtable}"""
-        result = single_page_tables(source, {'comparison'})
-        self.assertEqual(result.count('Kind & Meaning'), 1)
-        self.assertEqual(result.count(r'\hline'), 3)
-        self.assertIn(r'\caption[Short]{Caption}\label{comparison}', result)
-        self.assertLess(result.index(r'\caption'), result.index(r'\begin{tabular}'))
-        self.assertIn(r'First & Example \\', result)
-        self.assertIn(r'Second & Another \\', result)
-        self.assertIn(r'\begin{table}[p]', result)
-        self.assertNotIn('longtable', result)
+        for options, placement in [({}, 'p'), ({'placement': '!htbp'}, '!htbp'),
+                                   ({'placement': '!htbp', 'start_on_new_page': True}, '!htbp')]:
+            with self.subTest(placement=placement):
+                result = single_page_tables(source, {'comparison'}, **options)
+                self.assertEqual(result.count('Kind & Meaning'), 1)
+                self.assertEqual(result.count(r'\hline'), 3)
+                self.assertIn(r'\caption[Short]{Caption}\label{comparison}', result)
+                self.assertLess(result.index(r'\caption'), result.index(r'\begin{tabular}'))
+                self.assertIn(r'First & Example \\', result)
+                self.assertIn(r'Second & Another \\', result)
+                self.assertIn(r'\begin{table}[' + placement + ']', result)
+                self.assertNotIn('longtable', result)
+                self.assertEqual(result.startswith(r'\clearpage'),
+                                 options.get('start_on_new_page', False))
         self.assertEqual(single_page_tables(source, {'different'}), source)
 
     def test_compact_headers_repeat_without_bolding_body_or_caption(self):

@@ -519,6 +519,9 @@ def _prepare_record(task):
     # This five-column comparison fits at its normal table size on one page.
     # Float it intact instead of stranding the final row on a continuation page.
     latex = single_page_tables(latex, {'semantic-commitment-spectrum'})
+    # Keep the closing equation recap intact and ahead of the hypotheses.
+    latex = single_page_tables(latex, {'equation-hierarchy'}, placement='!htbp',
+                               start_on_new_page=True)
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + slug + ':' + m[2] + m[3], latex)
     # Each record retains its explicit chapter title and a unique chapter anchor.
