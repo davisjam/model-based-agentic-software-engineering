@@ -62,7 +62,7 @@ Let \(T\) denote an engineering task or task family, \(M\) the reasoning model, 
 p(T,M,R,H)
 \]
 
-for the probability that one attempt produces an acceptable candidate, and
+for the probability of faithful production in one delegation episode, and
 
 \[
 c(T,M,R,H)
@@ -102,9 +102,11 @@ Agents do not have one fixed reliability or cost. The question is how these quan
 
 Modeling and Alignment can produce similar observed improvements in final system quality through different mechanisms, so experiments must separate them. A stronger model may increase \(p\). A better representation may increase \(p\), decrease \(c\), or both. A longer reasoning loop may increase the probability of eventually finding an acceptable candidate while increasing total cost. An independent gate may leave the producer\textquotesingle s \(p\) unchanged while decreasing \(q\).
 
-% <!-- point: the-decomposition-refines-the-measurand | The encode-interpret-realize factorization tells a study what to measure inside p: a factorial design crossing representation quality, reasoner capability, harness and process, realization task, and Alignment mechanism can estimate the stage probabilities separately; the separation predicts that some representations outperform natural language with the same reasoner because engineers encode intent into them more reliably. -->
+% <!-- point: the-decomposition-refines-the-measurand | The encoding/realization decomposition motivates separate assessments of intent and fulfillment; factorial interventions test effects, while interpretation probes diagnose mechanisms rather than identify hidden reasoning stages. -->
 
-\textbf{The decomposition refines the measurand.} The Master Equation of \magevalue{sec:toward-a-theory-of-mage} --- encoding, interpretation, realization --- refines what a study measures inside \(p\). A factorial design can cross representation quality, reasoner capability, harness and process, realization task, and Alignment mechanism, then estimate \(P(E \mid R)\), \(P(I \mid E, R)\), \(P(L \mid I, E, R)\), \(q\), and \(c\) separately rather than collapsing them into one aggregate success probability. This decomposition also supports a falsifiable prediction. Some representations should outperform natural language even with the same reasoner because engineers encode consequential intent into them more reliably. The human is one of the channels whose reliability MAGE is trying to improve.
+\textbf{The decomposition refines the measurand.} The Master Equation separates encoding from realization. A study can assess whether a representation captures independently established obligations, then whether the artifact fulfills that encoding. These assessments estimate \(P(E\mid R)\) and \(P(F\mid E,R)\), subject to the reliability and coverage of the assessments themselves. Independent task acceptance should also be recorded: a correct artifact may compensate for omitted intent. Escape \(q\) and cost \(c\) remain separate outcomes.
+
+A factorial design can cross representation quality, reasoner capability, harness and process, task, and Alignment mechanism. Interpretation questions, plans, and counterexamples can diagnose mechanisms within realization; they do not by themselves reveal a hidden reasoning stage, and prompting for them may change the result. Comparisons should retain runs without those probes. The decomposition supports the same falsifiable prediction: some representations should outperform natural language with the same reasoner because engineers encode consequential intent into them more reliably. The human is one of the channels whose reliability MAGE is trying to improve.
 
 % <!-- point: objective-is-a-map-of-conditions-not-one-coefficient | The objective is a map of when capability, representation, iteration, and enforcement substitute for or complement one another. -->
 
@@ -123,7 +125,7 @@ The goal is to determine when capability, representation, harness and process, i
 \item
   How much assurance can independent mechanisms provide without increasing producer capability?
 \item
-  Does a structural representation improve a reasoner\textquotesingle s interpretation of intent that was already correctly expressed --- raising \(P(I \mid E, R)\) independently of \(P(E \mid R)\)?
+  Does a structural representation improve realization when the intended obligations are already correctly expressed, and do interpretation diagnostics help explain that effect?
 \item
   Does structured elicitation raise the probability that humans express the intended obligation at all?
 \item

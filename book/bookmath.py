@@ -7,7 +7,7 @@ build (rendered natively by the browser — no JavaScript, no webfonts, no build
 emits Typst math atoms for the print edition.
 
 The subset is deliberately small — exactly the constructs the book uses (variables, numbers, sub/superscripts,
-`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\bar`, `\\mathcal`, `\\boxed`, a fixed operator table,
+`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\bar`, `\\underbrace`, `\\substack`, `\\mathcal`, `\\boxed`, a fixed operator table,
 grouping). Anything outside it raises `MathError` so a typo fails the build loud rather than mis-rendering
 silently.
 
@@ -168,7 +168,7 @@ def _tokenize(s: str) -> list[tuple[str, str]]:
 
 
 # ── Parser → AST (nodes are small dicts) ──────────────────────────────────────────────────────────
-# node kinds: var, num, op, text, sym, row, sub, sup, subsup, bigop, boxed, accent, cal
+# node kinds: var, num, op, text, sym, row, sub, sup, subsup, bigop, boxed, accent, underbrace, stack, cal
 
 
 def _sole_letter(node: dict) -> str | None:
@@ -192,13 +192,15 @@ class _P:
     def next(self) -> tuple[str, str]:
         tok = self.t[self.i]; self.i += 1; return tok
 
-    def parse_row(self, until: str | None = None) -> dict:
+    def parse_row(self, until: str | None = None, *, row_break: bool = False) -> dict:
         nodes: list[dict] = []
         while True:
             tok = self.peek()
             if tok is None:
                 break
             if until and tok[0] == until:
+                break
+            if row_break and tok == ("cmd", "\\"):
                 break
             nodes.append(self.parse_element())
         return {"k": "row", "kids": nodes}
@@ -259,6 +261,24 @@ class _P:
             return {"k": "frac", "num": num, "den": den}
         if name == "bar":
             return {"k": "accent", "kid": self.parse_atom()}
+        if name == "underbrace":
+            return {"k": "underbrace", "kid": self.parse_atom()}
+        if name == "substack":
+            if self.peek() != ("lbrace", "{"):
+                raise MathError("\\substack must be followed by {…}")
+            self.next()
+            rows = []
+            while True:
+                row = self.parse_row(until="rbrace", row_break=True)
+                if not row["kids"]:
+                    raise MathError("\\substack needs nonempty rows")
+                rows.append(row)
+                if self.peek() == ("rbrace", "}"):
+                    self.next()
+                    return {"k": "stack", "rows": rows}
+                if self.peek() != ("cmd", "\\"):
+                    raise MathError("unbalanced { after \\substack")
+                self.next()
         if name == "mathcal":
             letter = _sole_letter(self.parse_atom())
             if letter is None:
@@ -336,6 +356,8 @@ def _ml(node: dict) -> str:
     if k == "bigop":
         return f'<mo>{html.escape(node["ml"])}</mo>' if not node.get("named") else f'<mo movablelimits="true">{html.escape(node["ml"])}</mo>'
     if k == "sub":
+        if node["base"]["k"] == "underbrace":
+            return f'<munder accentunder="false">{_ml(node["base"])}{_ml(node["sub"])}</munder>'
         return f"<msub>{_ml(node['base'])}{_ml(node['sub'])}</msub>"
     if k == "sup":
         return f"<msup>{_ml(node['base'])}{_ml(node['sup'])}</msup>"
@@ -348,6 +370,11 @@ def _ml(node: dict) -> str:
         return f"<mfrac>{_ml(node['num'])}{_ml(node['den'])}</mfrac>"
     if k == "accent":
         return f'<mover accent="true">{_ml(node["kid"])}<mo stretchy="false">&#xAF;</mo></mover>'
+    if k == "underbrace":
+        return f'<munder accentunder="true">{_ml(node["kid"])}<mo stretchy="true">⏟</mo></munder>'
+    if k == "stack":
+        rows = "".join(f"<mtr><mtd>{_ml(row)}</mtd></mtr>" for row in node["rows"])
+        return f'<mtable rowspacing="0.1em" columnalign="center">{rows}</mtable>'
     if k == "cal":
         return f'<mi mathvariant="script">{html.escape(node["v"])}</mi>'
     if k == "boxed":
@@ -405,6 +432,8 @@ def _ty(node: dict) -> str:
     if k == "bigop":
         return node["ty"]
     if k == "sub":
+        if node["base"]["k"] == "underbrace":
+            return f"underbrace({_ty(node['base']['kid'])}, {_ty(node['sub'])})"
         return f"{_grp(node['base'])}_({_ty(node['sub'])})"
     if k == "sup":
         return f"{_grp(node['base'])}^({_ty(node['sup'])})"
@@ -414,6 +443,10 @@ def _ty(node: dict) -> str:
         return f"frac({_ty(node['num'])}, {_ty(node['den'])})"
     if k == "accent":
         return f"macron({_ty(node['kid'])})"
+    if k == "underbrace":
+        return f"underbrace({_ty(node['kid'])})"
+    if k == "stack":
+        return "vec(delim: #none, " + ", ".join(_ty(row) for row in node["rows"]) + ")"
     if k == "cal":
         return f"cal({node['v']})"
     if k == "boxed":

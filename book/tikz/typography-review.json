@@ -13672,22 +13672,22 @@
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
       "decision": "refined",
-      "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-      "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+      "source_sha256": "1e5abab9d235d2589d06f61ec2967e6e23b0b80f37e0eb6fa0f88f7b17b5c5f1",
+      "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
       "evidence": [
         {
-          "source_text": "not raised by a better fabricator",
+          "source_text": "engineers authorize intent",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "17"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "A better fabricator does not raise correct encoding.",
+          "candidate_text": "Engineers authorize intent.",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "not raised by a better fabricator",
+              "text": "engineers authorize intent",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -13696,7 +13696,7 @@
               "location": {
                 "x": "324",
                 "y": "380",
-                "text_element": 17
+                "text_element": 14
               }
             }
           ]
@@ -13722,7 +13722,7 @@
               "location": {
                 "x": "70",
                 "y": "180",
-                "text_element": 4
+                "text_element": 3
               }
             }
           ]
@@ -13748,7 +13748,7 @@
               "location": {
                 "x": "662",
                 "y": "490",
-                "text_element": 25
+                "text_element": 22
               }
             }
           ]
@@ -13774,7 +13774,7 @@
               "location": {
                 "x": "52",
                 "y": "104",
-                "text_element": 2
+                "text_element": 1
               }
             }
           ]
@@ -13800,7 +13800,7 @@
               "location": {
                 "x": "856",
                 "y": "418",
-                "text_element": 20
+                "text_element": 17
               }
             }
           ]
@@ -13826,16 +13826,16 @@
               "location": {
                 "x": "52",
                 "y": "490",
-                "text_element": 22
+                "text_element": 19
               }
             }
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Two probability spans express encoding and realization. Engineer authority remains bold; interpretation is included in the agent realization annotation. The annotation wraps to keep the measurement arrow clear.",
       "checks": [
         {
-          "text": "A better fabricator does not raise correct encoding.",
+          "text": "Engineers authorize intent.",
           "bold": true
         },
         {
@@ -13865,12 +13865,12 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 84,
+        "proof": "latex/build/tikz/probability-two-term.pdf",
+        "proof_sha256": "867818b220086c265526939bb13039b55271d220a12f608d5fc6f366f44897ad",
+        "page": 1,
         "width_bp": 420.234,
         "height_bp": 352.203,
-        "minimum_prose_font_pt": 9.0,
+        "minimum_prose_font_pt": 8.97,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,

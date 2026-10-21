@@ -16,10 +16,9 @@
 \draw[edge,] (p1) -- (p2);
 \draw[edge,] (p2) -- (p3);
 \node[note,text width=3cm] (prob0) at (-3.6,-4) {{\fontsize{12}{14}\selectfont $P(E)$}\\correct encoding};
-\node[note,text width=3cm] (prob1) at (0.0,-4) {{\fontsize{12}{14}\selectfont $P(I\mid E)$}\\correct\\interpretation};
-\node[note,text width=3cm] (prob2) at (3.6,-4) {{\fontsize{12}{14}\selectfont $P(L\mid I,E)$}\\correct realization};
-\node[note,text width=4cm] (note0) at (-4.4,-5.5) {\textbf{A better fabricator does not raise correct encoding.}};
-\node[note,text width=7cm] (note1) at (2.8,-5.5) {Process design and better agents raise interpretation and realization.};
+\node[note,text width=6cm] (prob1) at (1.8,-4) {{\fontsize{12}{14}\selectfont $P(F\mid E)$}\\fulfill encoded obligations};
+\node[note,text width=4cm] (note0) at (-4.4,-5.5) {\textbf{Engineers authorize intent.}};
+\node[note,text width=6cm] (note1) at (2,-5.5) {Agents interpret, implement,\\and correct.};
 \node[head,text width=4cm,fill=white] (tol) at (-4.7,-8) {\textbf{TOLERANCE}\\acceptable product\\variation};
 \node[box,text width=7.7cm,fill=black!5] (region) at (2,-8.7) {\textbf{ACCEPTABLE REGION}\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
 \draw[edge] (p3.south)--(5.4,-6.6)--(region.north -| p3.south);
@@ -34,6 +33,6 @@
 
 \end{scope}
 \draw[line width=.6pt] (-5.4,-3.08)--(-5.4,-3.28)--(5.4,-3.28)--(5.4,-3.08);
-\draw[line width=.6pt] (-1.8,-3.08)--(-1.8,-3.28) (1.8,-3.08)--(1.8,-3.28);
+\draw[line width=.6pt] (-1.8,-3.08)--(-1.8,-3.28);
 \node[note,fill=white,anchor=west,inner sep=1pt] at (-6.7,-1.7) {\textbf{PRODUCTION PROCESS}};
 \end{tikzpicture}

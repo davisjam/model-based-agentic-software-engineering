@@ -45,15 +45,15 @@ The theory is directional rather than numerical. It names the main parts, how th
 
 The theory assembles the two engineering responses the book has developed. Modeling changes the representation over which reasoning occurs. Alignment gives selected obligations evidence and enforcement independent of the producing reasoner. \magevalue{chapter:software-factories} placed both inside a production system.
 
-% <!-- point: the-starting-point-is-the-master-equation | The starting point is the Master Equation: a decomposition of the probability that delegated reasoning produces an acceptable realization, describing one episode so we can ask where reliability comes from and where it can fail. -->
+% <!-- point: the-starting-point-is-the-master-equation | The Master Equation formalizes two responsibilities already established: engineers encode consequential intent, and agents realize it. It decomposes faithful production into encoding and realization, with interpretation inside realization. -->
 
-The starting point is the \textbf{Master Equation}: a decomposition of the probability that delegated reasoning produces an acceptable realization. For work realized through a representation \(R\), it factors that probability into the three stages a delegation must survive --- correct encoding of consequential intent, correct interpretation of that encoding, and correct realization of the interpreted intent:
+The \textbf{Master Equation} formalizes the division of responsibility developed through Modeling, Alignment, and software factories: engineers encode the consequential obligations; agents realize them while retaining the remaining degrees of freedom. Let \(E\) mean that the encoding captures those obligations and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
 
 \[
-p_R = P(E \mid R)\, P(I \mid E, R)\, P(L \mid I, E, R)
+p_R = P(E \cap F \mid R) = \underbrace{P(E \mid R)}_{\substack{\text{Encoding: engineers state}\\\text{what must hold}}} \;\underbrace{P(F \mid E,R)}_{\substack{\text{Realization: agents fulfill}\\\text{those obligations}}}
 \]
 
-The Master Equation describes one realization episode. That narrow view lets us ask precisely where reliability comes from and where it can fail.
+This is the chain rule, with no independence assumption. It describes faithful production through a representation; an agent may also guess an omitted obligation and produce correct code, so observed task correctness must be assessed separately. Interpretation, planning, implementation, and correction are mechanisms within realization. Agents can help construct and revise the encoding, while engineers retain authority over the intent. The two terms distinguish responsibilities, not isolated phases.
 
 % <!-- point: the-chapter-progressively-widens-the-view | The chapter widens that view in four steps — retry cost, independent assurance, an environment modified by the work itself, and the economics of maintaining it across a stream of changes — so that a model of one probabilistic realization becomes a model of an evolving engineering system. -->
 
@@ -91,7 +91,7 @@ What it adds
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Master Equation & Can one delegation succeed? & encoding → interpretation → realization \\
+Master Equation & Can one delegation succeed? & encoding → realization \\
 Retry economics & What does success cost? & \(\bar C_{\text{realize}} = \frac{c}{p}\) \\
 Alignment & What happens when production fails? & \(q\), the residual escape probability \\
 Dynamic environment & What does this episode leave behind? & \(p_i = p(T_i, M, R_i, H, \mathcal{G}_i)\), \(\mathcal{G}_{i+1} = f(\mathcal{G}_i, a_i)\) \\
@@ -216,7 +216,7 @@ Principal effect
 \(R\) --- representation & Engineering information made available for reasoning & A way of carrying engineering knowledge and selected product tolerances & Changes what must be reconstructed through inference and what can be reasoned about explicitly \\
 \(H\) --- harness and process & Context, tools, decomposition, routing, coordination, and other organization of work & Process design around the fabricator & Changes the conditions under which interpretation and realization occur \\
 \(A\) --- Alignment strategy & Independent evidence and enforcement for selected obligations & Measurement and admission machinery associated with selected tolerances & Changes whether unacceptable realizations acquire consequence \\
-\(p\) & Probability that an attempt produces an acceptable candidate & Reliability of production under the chosen fabricator, representation, and process & Determines retries and expected realization cost \\
+\(p\) & Probability of faithful production in a delegation episode & Reliability of production under the chosen fabricator, representation, and process & Determines retries and expected realization cost \\
 \(q\) & Probability that an unacceptable candidate escapes independent assurance & Residual failure of evidence and admission & Determines residual assurance after production \\
 \(c\) & Cost of an attempt & Cost of operating the factory for one realization attempt & Captures inference, tools, realization, validation, and human intervention as appropriate \\
 \(C_{\text{carry}}\) & Cost of retaining useful engineering structure & Cost of keeping models, policies, skills, tests, generated configuration, controls, and correspondence machinery useful as the software changes & Determines whether durable structure is cheaper than repeated reconstruction \\
@@ -480,15 +480,15 @@ One engineering problem is helping an agent understand the relevant architectura
 
 \subsection{Cost and failure, separately}\label{heading:cost-and-failure-separately}
 
-% <!-- point: modeling-lowers-expected-cost-of-acceptable-realization | Under a simple retry model the expected realization cost names the expected production cost of obtaining one acceptable realization; one role of Modeling is to raise per-attempt success or lower per-attempt cost so that quantity falls. -->
+% <!-- point: modeling-lowers-expected-cost-of-acceptable-realization | The retry model prices faithful production under independent resets of the whole delegation episode; fixed-specification implementation retries instead condition on a validated encoding. -->
 
-Modeling\textquotesingle s contribution can be priced. For a representation \(R\) available to a reasoner, \(p_R\) is the aggregate realization probability whose interior the Master Equation exposes: the probability that one attempt produces a realization satisfying a particular obligation. Let \(c_R\) be the cost of producing that attempt. A better representation can increase \(p_R\), decrease \(c_R\), or both. Under a simple retry model in which successive attempts have the same success probability \(p_R\) and expected cost \(c_R\), the \textbf{expected realization cost} --- the expected production cost required to obtain one acceptable realization --- is
+Modeling\textquotesingle s contribution can be priced. Let \(c_R\) be the expected cost of one delegation attempt and \(p_R\) its probability of faithful production: the consequential intent is correctly encoded and the artifact fulfills it. A better representation can raise \(p_R\), lower \(c_R\), or both. If independent attempts repeat the whole episode, including any work needed to revisit the encoding, with the same positive \(p_R\) and expected cost \(c_R\), then the expected cost of obtaining one such result is
 
 \[
 \bar C_{\text{realize}}(R) = \frac{c_R}{p_R}
 \]
 
-This is one role of Modeling: make acceptable realization cheaper to find. Later sections relax the fixed-attempt assumption when successive changes alter the engineering environment.
+The retry boundary matters. Repeatedly generating code from the same incorrect specification does not give the encoding another chance to be correct. With a validated encoding held fixed, the implementation retry denominator is instead \(P(F\mid E,R)\), and the attempt cost covers only that repeated work. These simple models price a specified success criterion under fixed conditions; later sections allow feedback and changes to the engineering environment.
 
 % <!-- point: the-ratio-matters-more-than-either-term | The ratio exposes the interaction between cost and reliability: halving attempt cost and doubling attempt success move the expected realization cost equally, so a representation that raises attempt cost can still be preferable when its increase in p_R is large enough. -->
 
@@ -513,7 +513,7 @@ The probabilities in these expressions belong to a production system. \autoref{p
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/probability-in-the-software-factory-13c48ad51e.pdf}
-\caption[Probability in the software factory --- the encode, interpret and realize steps of the production path, and the encoded property forking into the tolerance the realization is evaluated against]{\emph{Probability in the software factory.} Correct realization depends on correctly encoding consequential intent, correctly interpreting that encoding, and correctly realizing the interpreted intent. One representation R is held fixed throughout the figure, so each probability term is drawn in its short form; the text conditions each of them on R. Process design changes the conditions under which interpretation and realization occur. When a consequential property is represented as an independently evaluable tolerance, evidence and admission can govern that property without relying solely on the producing reasoner.}
+\caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
 \label{probability-in-the-software-factory}
 \end{figure}
 
@@ -521,41 +521,41 @@ The probabilities in these expressions belong to a production system. \autoref{p
 
 The distinction matters because improving the fabricator and improving the tolerance act differently on this system.
 
-% <!-- point: p-r-factors-into-encode-interpret-realize | Every term is conditioned on the representation R: an analytical (not independence-claiming) factorization of p_R into encoding E, interpretation I, and realization L exposes the asymmetry — a stronger reasoner improves interpretation and realization but cannot recover intent that was never encoded. -->
+% <!-- point: p-r-factors-into-encode-interpret-realize | The chain rule separates encoding E from realization F without assuming independence. Interpretation, planning, implementation, and correction are mechanisms within realization; observed task correctness may include recovery of omitted intent. -->
 
-The aggregate probability \(p_R\) hides several distinct opportunities for failure, and the Master Equation that opened this chapter separates them. \(E\) denotes correct encoding of consequential intent, \(I\) correct interpretation of that encoding, and \(L\) correct realization of the interpreted intent. For a fixed representation \(R\), \(P(E \mid R)\) is the probability that consequential intent is correctly encoded in that representation, and
+The two terms distinguish failures in what the factory was asked to produce from failures in producing it. Holding the task population and production setup fixed, \(R\) names the representation choice; probabilities range over the encodings and realizations produced through it. The Master Equation is
 
 \[
-p_R = P(E \mid R)\, P(I \mid E, R)\, P(L \mid I, E, R)
+p_R = P(E \cap F \mid R) = P(E \mid R)\, P(F \mid E,R)
 \]
 
-The Master Equation is a chain decomposition, not an independence assumption: the stages will not in general be statistically independent. Its value is that the three stages fail for different reasons:
+Its two questions locate different engineering interventions:
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Encoding} --- did the human correctly externalize consequential intent into the available representation?
+  \textbf{Encoding} --- does the representation capture the consequential intent the engineer authorizes?
 \item
-  \textbf{Interpretation} --- did the reasoner correctly recover that intent from the representation?
-\item
-  \textbf{Realization} --- did the reasoner successfully realize what it understood?
+  \textbf{Realization} --- does the artifact fulfill the encoded obligations?
 \end{itemize}
 
-% <!-- point: the-encoding-term-is-also-a-human-channel | The first term is easy to overlook: a representation can improve P(E | R) by helping the engineer express the intended property correctly, even if it leaves P(I | E, R) unchanged — which is why Modeling is an engineering activity rather than a technique for supplying context to an agent. -->
+Interpretation affects the second term: an agent must recover enough meaning to act on the obligations. But an initially mistaken interpretation need not defeat the episode; a check, counterexample, or review can expose the error before delivery. Realization therefore includes the agent\textquotesingle s use of feedback and the tools around it, without requiring every intermediate reasoning step to be correct.
 
-The first term is easy to overlook in an agentic setting. Representation is not valuable only because a machine may interpret a structured model more reliably than prose. It can also help the engineer express the intended property correctly in the first place. Different representations make different distinctions visible, force different decisions to be made explicitly, and make omissions easier or harder to notice. A representation can therefore improve \(P(E \mid R)\) even if it leaves \(P(I \mid E, R)\) unchanged. This is one reason Modeling is an engineering activity rather than merely a technique for supplying context to an agent.
+% <!-- point: the-encoding-term-is-also-a-human-channel | A representation can improve P(E | R) by helping the engineer express intent correctly even if conditional realization is unchanged; Modeling improves the human channel as well as the agent channel. -->
+
+The first term is easy to overlook in an agentic setting. Representation is not valuable only because a machine may interpret a structured model more reliably than prose. It can also help the engineer express the intended property correctly in the first place. Different representations make different distinctions visible, force different decisions to be made explicitly, and make omissions easier or harder to notice. A representation can therefore improve \(P(E \mid R)\) even if it leaves \(P(F \mid E,R)\) unchanged. This is one reason Modeling is an engineering activity rather than merely a technique for supplying context to an agent.
 
 % <!-- point: capable-agents-can-raise-the-encoding-term-through-feedback | Representation is not the only route to the encoding term: comprehension amplification returns evidence that a realization missed what the engineer meant, so capable agents can raise P(E | R) indirectly by making the encoding correctable. -->
 
 Representation is not the only route to that term. Because a realization that misses the engineer\textquotesingle s meaning is evidence about the encoding, the comprehension amplification of \magevalue{sec:the-dynamics-of-mage} can raise \(P(E \mid R)\) indirectly: capable agents return that evidence quickly enough for the engineer to encode the intent again.
 
-% <!-- point: the-two-factory-techniques-act-on-different-factors | The two factory techniques act on different factors: process design changes the conditions under which interpretation and realization occur, while explicit tolerances bear on encoding and make selected properties available for independent evaluation. | terms: tolerance -->
+% <!-- point: the-two-factory-techniques-act-on-different-factors | Process design changes the conditions and cost of realization. Explicit tolerances help encode intent and make selected properties available for independent evaluation. | terms: tolerance -->
 
-The \magevalue{chapter:software-factories} distinction identifies where different factory interventions enter this decomposition. Process design changes the conditions under which interpretation and realization occur: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(I \mid E, R)\), \(P(L \mid I, E, R)\), their cost, or several at once. A better agent raises the same terms. Explicit tolerances act differently. They bear on \(P(E \mid R)\) --- did we correctly represent the property we actually care about? --- and they make selected consequential properties available for independent evaluation, so the factory need not rely solely on successful producer interpretation and realization to determine whether those properties hold. The realization can instead be measured against the represented tolerance and rejected.
+Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A validator can then measure the realization against the represented tolerance and reject a violation. This is the distinction between helping production succeed and governing what happens when it fails.
 
-% <!-- point: interpretation-depends-on-how-much-inference-is-asked | The interpretation factor also depends on how much inference the representation asks the agent to supply, and that burden varies: where the intended solution follows well-represented patterns, a sparse specification can still interpret well. -->
+% <!-- point: interpretation-depends-on-how-much-inference-is-asked | Interpretation is one mechanism within realization, and its difficulty depends on how much inference the representation asks the agent to supply; familiar patterns can make sparse specifications useful. -->
 
-The probability of correct interpretation also depends on how much inference the representation asks the agent to supply. That burden is not constant across engineering tasks. A capable model has encountered enormous numbers of ordinary database interactions, standard algorithms, common framework idioms, and familiar architectural patterns. When the intended solution follows such well-represented patterns, a sparse specification may still yield a high probability of correct interpretation. The agent can supply much of the missing detail from what it already knows.
+Within realization, interpretation depends on how much inference the representation asks the agent to supply. That burden varies across engineering tasks. A capable model has encountered many ordinary database interactions, standard algorithms, common framework idioms, and familiar architectural patterns. When the intended solution follows such patterns, the agent can supply much of the missing detail from what it already knows.
 
 % <!-- point: novelty-reduces-the-usefulness-of-the-agents-prior | Other things equal, novelty is one factor that reduces the usefulness of the agent's prior as a substitute for explicit representation: specification supplies explicit engineering intent where inference from prior patterns is least dependable. -->
 
@@ -565,58 +565,58 @@ The situation changes as the intended approach becomes less conventional. Novel 
 
 But familiarity solves only the production problem. It does not establish the property. If an agent usually interprets "connect this service to the database" in the conventional way, that prior may be entirely adequate for a prototype. If the production system depends on a particular transaction boundary, consistency property, authorization rule, or failure behavior, relying on the same prior provides no independent basis for determining that the obligation was preserved. The agent may probably do the familiar thing; unless the consequential property is represented, the engineering environment cannot reliably distinguish following the intended pattern from merely producing something that looks right.
 
-% <!-- point: learned-priors-do-not-supply-an-assurance-surface | Raising the interpretation factor does not retire explicit models or Alignment: learned priors reduce how much must be specified for realization without supplying an assurance surface for consequential properties. -->
+% <!-- point: learned-priors-do-not-supply-an-assurance-surface | Improved interpretation can raise realization probability without supplying independent assurance: learned priors do not retire explicit models or Alignment for consequential properties. -->
 
-\textbf{Familiarity is not assurance.} This is why increasing \(P(I \mid E, R)\) does not eliminate the role of explicit models or Alignment. Learned priors can reduce how much must be specified for realization. They do not by themselves provide an assurance surface for consequential properties.
+\textbf{Familiarity is not assurance.} Better interpretation can raise \(P(F\mid E,R)\) without eliminating the role of explicit models or Alignment. Learned priors can reduce how much must be specified for realization. They do not by themselves provide an assurance surface for consequential properties.
 
 % <!-- point: process-design-cannot-discharge-a-natural-language-obligation | The same limit applies to process design: it improves how an agent interprets natural-language intent, but an obligation left in natural language may require another act of probabilistic interpretation to establish that the result satisfies it, so tolerance supplies an independently evaluable boundary instead. | terms: tolerance -->
 
-The same limit applies to the production conditions that raise that factor. Better context, decomposition, tools, examples, and review all improve how an agent interprets natural-language intent. None of them changes what happens next. If the consequential obligation itself remains in natural language, establishing that the result satisfies it may require another act of probabilistic interpretation. Ambiguity is only part of this. The evaluation inherits the fallibility of the production, so a factory that improves only its production conditions has strengthened one probabilistic step and left the other standing. Tolerance changes the structure of the problem by supplying an independently evaluable boundary around acceptable realizations.
+The same limit applies to the production conditions that improve interpretation. Better context, decomposition, tools, examples, and review can help an agent recover natural-language intent. Establishing that the result satisfies a natural-language obligation may still require another act of probabilistic interpretation. Where that evaluation relies on the same reasoning process, it can repeat the producer\textquotesingle s mistake. An independently evaluable tolerance gives the factory another basis for accepting or rejecting the realization.
 
-% <!-- point: interpretation-factor-is-conditional-on-familiarity | The interpretation factor is conditional not only on encoding quality and agent capability but also on the familiarity of the intended interpretation relative to what the agent already knows. -->
+% <!-- point: interpretation-factor-is-conditional-on-familiarity | Familiarity changes the interpretation burden within realization, while independent assurance still requires evidence about the consequential property. -->
 
-In short, \(P(I \mid E, R)\) depends not only on the quality of the encoding and the capability of the agent, but also on the familiarity of the intended interpretation relative to what the agent already knows.
+Familiarity therefore affects the cost and reliability of realization; it does not determine which obligations the engineer should authorize or what evidence suffices to accept the result.
 
-% <!-- point: the-first-factor-sits-at-the-human-interface | Encoding failure belongs largely to the human/factory interface: failing to articulate a consequential distinction and failing to recover it are different failures, and the entitlement case shows a representation that could not express the intent at all. -->
+% <!-- point: the-first-factor-sits-at-the-human-interface | Encoding failure belongs at the human/factory interface; failure to recover an encoded distinction belongs within realization. The entitlement example shows a representation unable to carry the required distinction. -->
 
-The first factor sits largely at the human/factory interface, not in machine reasoning. Two different failures hide there: the engineers may never have articulated a consequential distinction, and the reasoner may have failed to recover it. The entitlement failure from \magevalue{chapter:modeling} is the worked instance. The scalar representation read each group\textquotesingle s unlimited flag and still returned a single finite sum: its output type had no place for the distinction, so the distinction died before any reasoner saw it. No downstream capability could have recovered what the representation could not express.
+Encoding concerns what the engineering environment makes available; interpretation concerns what the agent recovers from it. The entitlement failure from \magevalue{chapter:modeling} illustrates the first problem. The scalar representation read each group\textquotesingle s unlimited flag and still returned a single finite sum: its output type had no place for the distinction. A reasoner using only that output could not distinguish unlimited entitlement from the finite sum it received. Repair required revisiting the representation or consulting information outside it.
 
-% <!-- point: capability-cannot-recover-unencoded-intent | The asymmetry: capability can compensate for difficult interpretation but not for missing intent, so Modeling helps both before implementation begins — and can sometimes remove the judgment entirely. -->
+% <!-- point: capability-cannot-recover-unencoded-intent | Capability can help interpret difficult encodings and infer some omissions, but cannot establish private engineering intent without evidence. Modeling supports both expression and realization and can sometimes remove a recurring judgment. -->
 
-A sufficiently capable reasoner cannot recover information that the engineering environment failed to express. Capability compensates for difficult interpretation; it does not reliably compensate for missing intent. Modeling can therefore improve realization economics in two ways before implementation begins: by helping humans state what they mean, and by giving machine reasoners a better surface from which to recover it. And Modeling sometimes goes beyond raising these probabilities at all --- the determinization frontier later in this section names the case where a change of representation makes a reconstructed semantic property mechanically decidable, removing the per-instance judgment altogether.
+Capability can compensate for difficult interpretation and infer some omissions from surrounding evidence. It cannot establish which of several plausible obligations an engineer intended when the environment supplies no distinguishing information. Modeling improves realization economics both by helping humans state what they mean and by giving agents a better surface from which to recover it. The determinization frontier later in this section names a further possibility: a change of representation makes a semantic property mechanically decidable, removing the per-instance judgment.
 
-% <!-- point: perfect-reasoner-bound | Within the three-stage model, a perfect reasoner drives p_R to exactly the encoding factor for the representation the factory was given; additional failure modes can only lower it — so capability purchases cannot discharge an obligation the organization never externalized. -->
+% <!-- point: perfect-reasoner-bound | For fixed encoding quality, faithful-production probability approaches the encoding factor when conditional realization approaches one. This is not a bound on correct outputs obtained by recovering omitted intent. -->
 
-An encoding may leave some intent implicit, requiring the reasoner to infer it. Other information may be absent altogether. Greater capability can help with the former, but cannot recover intent that was never represented. The limit case makes that asymmetry exact. Write \(M\) for the reasoning model. Within the three-stage model, for a fixed representation \(R\), as \(M\) approaches a perfect reasoner and the interpretation and realization factors approach one,
+The limit case holds encoding quality fixed. As the conditional realization probability approaches one, faithful production approaches the encoding probability:
 
 \[
-\lim_{M \to \text{perfect reasoner}} p_R = P(E \mid R)
+\lim_{P(F\mid E,R)\to 1} p_R = P(E\mid R)
 \]
 
-Additional failure modes can only lower the overall probability of satisfactory realization. Even perfect interpretation and realization remain bounded by whether the engineering intent was correctly encoded in the representation available to the factory. The bound restates this book\textquotesingle s account of engineering responsibility in economic terms: engineers can delegate increasing amounts of realization while remaining responsible for the result, and an organization that has not determined and externalized the obligations the work must satisfy cannot discharge that responsibility by purchasing a more capable reasoner.
+This is a limit of the defined production path, not a bound on every correct output an agent might produce by recovering omitted intent. Nor does greater reasoning capability alone ensure perfect realization: tools, resources, and the surrounding process also matter. The engineering implication remains: reliable fulfillment of an encoded obligation does not establish that it was the right obligation. Engineers remain responsible for determining and externalizing what the work must satisfy.
 
-% <!-- point: perfect-fabrication-exposes-the-upstream-problem | Perfect fabrication does not eliminate the engineering problem upstream of fabrication — it exposes it: a stronger reasoner can reconstruct much, but cannot reliably recover consequential knowledge that never entered the factory. -->
+% <!-- point: perfect-fabrication-exposes-the-upstream-problem | Perfect fabrication does not eliminate the engineering problem upstream of fabrication — it exposes it: a stronger reasoner can reconstruct much, but does not supply private consequential knowledge that never entered the factory. -->
 
-Perfect fabrication does not eliminate the engineering problem upstream of fabrication. It exposes it, quickly. A stronger reasoner can compensate for ambiguity by doing more inference: it can recover conventions, inspect surrounding artifacts, search for analogous cases, test hypotheses, and spend additional computation reconstructing what the engineer probably intended. Those capabilities raise the interpretation and realization factors. They cannot reliably recover consequential knowledge that never entered the factory.
+Perfect fabrication still exposes the engineering problem upstream of fabrication. A stronger reasoner can recover conventions, inspect surrounding artifacts, search for analogous cases, and test hypotheses about what the engineer probably intended. Those capabilities can improve realization and help the engineer revise the encoding. They do not supply private consequential knowledge that never entered the factory.
 
 % <!-- point: fast-exposure-is-not-necessarily-a-defect | Fast exposure is not necessarily a defect: Agile exploits rapid fabrication for earlier feedback, and the danger depends on whether incorrect upstream assumptions are exposed by that feedback or survive it as latent failures — the coupling the dynamic model later makes explicit. -->
 
 This is not necessarily a defect. Agile practice exploits rapid fabrication precisely because working realizations can produce feedback sooner. The danger depends on whether incorrect upstream assumptions are exposed by that feedback or survive it as latent failures that surface only in production. Feedback of that kind does not contradict the bound. It exploits the coupling the dynamic model later in this section makes explicit: each realization changes the engineering environment the next one inherits.
 
-% <!-- point: the-bound-limits-process-design-and-exposes-a-tolerance-limit | Read in factory terms the bound limits process design — it cannot make an incorrectly encoded obligation correct — and tolerance exposes a different limit: with a property represented explicitly and independently evaluated, better fabrication drives interpretation and realization error down while the remaining error approaches the probability that the engineering representation itself is wrong. | terms: tolerance -->
+% <!-- point: the-bound-limits-process-design-and-exposes-a-tolerance-limit | Improved realization cannot by itself validate an encoded obligation. A tolerance independently checks fulfillment, while the engineering decision expressed by that tolerance remains open to correction. | terms: tolerance -->
 
-Read in factory terms, the bound limits process design. As agent capability improves, process design can raise the probability that a fabricator correctly interprets and realizes engineering intent. It cannot make an incorrectly encoded obligation correct. Tolerance therefore exposes a different limit. Where a consequential property is represented explicitly and evaluated independently, improvements in fabrication drive interpretation and realization error downward while the remaining error approaches the probability that the engineering representation itself is wrong.
+In factory terms, process design can improve realization without validating the obligation being realized. A tolerance allows the factory to check fulfillment independently of the producer. The engineering decision expressed by that tolerance still needs scrutiny: a perfectly enforced but incorrect obligation remains incorrect.
 
 % <!-- point: the-bound-does-not-argue-for-complete-specification | The bound does not argue for complete specification — sometimes the appropriate choice, but where multiple realizations satisfy the obligations it sacrifices commodity intelligence's ability to explore choices engineers need not make; the economic value of Modeling and Alignment depends partly on how much useful freedom the environment preserves under adequate control. -->
 
-Nor does the bound argue for complete specification. Complete specification is sometimes the appropriate engineering choice: some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. But determining nearly every consequential and inconsequential realization decision in advance would recreate much of the economic problem that defeated the earlier software factories (\{\{chapter:software-factories\}\}), and where multiple realizations satisfy the consequential obligations, it sacrifices an important advantage of commodity intelligence: its ability to explore choices that engineers need not make themselves. The new economic possibility is different: a capable fabricator can be given enormous freedom over realization while the engineering environment explicitly preserves the smaller set of decisions whose resolution matters. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the engineered environment can preserve while maintaining adequate control.
+Nor does the bound argue for complete specification. Complete specification is sometimes the appropriate engineering choice: some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. But determining nearly every consequential and inconsequential realization decision in advance would recreate much of the economic problem that defeated the earlier software factories (\magevalue{chapter:software-factories}), and where multiple realizations satisfy the consequential obligations, it sacrifices an important advantage of commodity intelligence: its ability to explore choices that engineers need not make themselves. The new economic possibility is different: a capable fabricator can be given enormous freedom over realization while the engineering environment explicitly preserves the smaller set of decisions whose resolution matters. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the engineered environment can preserve while maintaining adequate control.
 
 % <!-- point: carrying-cost-completes-the-comparison | With carrying cost explicit, a representation can be economically preferable even when it is more expensive to construct and each realization through it is more expensive — and the carrying term covers every production structure a factory keeps useful, not only a formal model. -->
 
-\textbf{Carrying cost completes the comparison.} A technically advantageous representation may still not be worth holding. The inequality above compared realization costs alone; a representation must also be constructed and maintained. The total cost of holding a representation and realizing through it is
+\textbf{Carrying cost completes the comparison.} A technically advantageous representation may still not be worth holding. The inequality above compared realization costs alone; a representation must also be constructed and maintained. Under the same whole-episode retry assumptions, and counting that standing investment separately from attempt costs, the total is
 
 \[
-C_{\text{total}}(R) = C_{\text{carry}}(R) + \frac{c_R}{P(E \mid R)\, P(I \mid E, R)\, P(L \mid I, E, R)}
+C_{\text{total}}(R) = C_{\text{carry}}(R) + \frac{c_R}{P(E \mid R)\, P(F \mid E,R)}
 \]
 
 \(C_{\text{carry}}\) is broader than the cost of maintaining a formal model. \magevalue{chapter:software-factories} showed factories carrying engineering knowledge in models, instructions, policies, skills, tests, generated configuration, context systems, and other production structures. These structures differ in how much judgment they preserve and how strongly they govern realization, but all incur some cost to remain useful as the software and its environment change.
@@ -629,13 +629,13 @@ Commodity intelligence changes both sides of this investment. Greater implementa
 
 % <!-- point: expensive-reasoners-are-a-prediction-of-the-theory | Reasoning capability can substitute for representation: one arrangement repeatedly buys interpretation at inference time, another pays carrying cost so a cheaper reasoner suffices — which makes the vendor factory a theoretical object rather than a descriptive category. -->
 
-The factorization also shows where reasoning capability can substitute for representation. When natural language leaves a difficult interpretation problem, one response is a durable representation; another is a more capable reasoner, more inference, richer context, or additional supervisory reasoning. Those interventions may raise \(P(I \mid E, R)\) and \(P(L \mid I, E, R)\), but their cost is incurred again as production continues. For an inexpensive reasoner \(M_s\) and a frontier reasoner \(M_f\) over the same natural-language representation \(R_{\text{NL}}\), it may well be that
+The factorization also shows where reasoning capability can substitute for representation. When natural language leaves a difficult interpretation problem, one response is a durable representation; another is a more capable reasoner, more inference, richer context, or additional supervisory reasoning. Those interventions may raise \(P(F \mid E,R)\), but their cost is incurred again as production continues. For an inexpensive reasoner \(M_s\) and a frontier reasoner \(M_f\) over the same natural-language representation \(R_{\text{NL}}\), it may well be that
 
 \[
-P(I \mid R_{\text{NL}}, M_f) \gg P(I \mid R_{\text{NL}}, M_s)
+P(F \mid E,R_{\text{NL}},M_f) \gg P(F \mid E,R_{\text{NL}},M_s)
 \]
 
-A factory can compensate for weak explicit representation by spending more on reasoning capability. One arrangement repeatedly buys interpretation at inference time; another pays carrying cost for a representation that lets a cheaper reasoner suffice. Keeping consequential properties in natural-language inference therefore makes reliability a recurring purchase. The factory a vendor sells --- capable fabricator, generic supervisory machinery, none of your consequential intent (\{\{chapter:software-factories\}\}) --- thereby becomes a theoretical object rather than a descriptive category: how much engineering structure can commodity reasoning capability economically replace?
+A factory can compensate for weak explicit representation by spending more on reasoning capability. One arrangement repeatedly buys interpretation at inference time; another pays carrying cost for a representation that lets a cheaper reasoner suffice. Keeping consequential properties in natural-language inference therefore makes reliability a recurring purchase. The factory a vendor sells --- capable fabricator, generic supervisory machinery, none of your consequential intent (\magevalue{chapter:software-factories}) --- thereby becomes a theoretical object rather than a descriptive category: how much engineering structure can commodity reasoning capability economically replace?
 
 % <!-- point: not-every-recurring-judgment-should-become-a-model | The substitution argument does not imply that every recurring judgment should become a model; the comparison depends on recurrence, carrying cost, inference cost, consequence, and how much the representation actually improves production or assurance. -->
 
@@ -667,17 +667,17 @@ P(\text{covered failure admitted}\mid A)=0
 
 That guarantee does not require the producer to reason well about the obligation. The agent can be shown no structural model at all, repeatedly propose forbidden dependencies, and still be prevented from merging them. Alignment can make consequence independent of whether the producing reasoner got the covered judgment right.
 
-% <!-- point: assurance-without-modeling-can-be-expensive | Assurance without useful representation is expensive: if each independently generated candidate satisfies the covered obligation with probability p_R and rejected candidates are regenerated until one passes, the expected admission cost carries both production and validation cost on every attempt. -->
+% <!-- point: assurance-without-modeling-can-be-expensive | With a validated encoding and a sound, complete gate, admission cost divides production plus validation cost by conditional fulfillment probability; false rejections would change the denominator. -->
 
-But assurance without useful representation can be expensive. If each independently generated candidate satisfies the covered obligation with probability \(p_R\), each attempt costs \(c_R\) to produce and \(c_A\) to validate, and rejected candidates are regenerated until one passes, then
+But assurance without useful representation can be expensive. Hold a correctly encoded obligation fixed. Suppose the gate is sound and complete for that obligation, so a candidate passes exactly when it fulfills it. If independently generated candidates fulfill it with probability \(P(F\mid E,R)>0\), and each costs \(c_R\) to produce and \(c_A\) to validate, the expected cost of retrying until admission is
 
 \[
-\bar C_{\text{admit}}(R,A) = \frac{c_R + c_A}{p_R}
+\bar C_{\text{admit}}(R,A) = \frac{c_R + c_A}{P(F\mid E,R)}
 \]
 
 % <!-- point: same-guarantee-different-cost-over-different-surfaces | The same admission guarantee over two reasoning surfaces produces substantially different realization costs. -->
 
-Alignment can therefore provide the same admission guarantee over two reasoning surfaces at very different realization costs.
+Alignment can therefore provide the same admission guarantee over two reasoning surfaces at very different realization costs. If the gate also rejects valid candidates, the retry denominator must use its actual pass probability; soundness alone does not determine that cost.
 
 % <!-- point: hiding-the-model-does-not-weaken-the-gate-only-raises-cost | Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate. -->
 
@@ -746,7 +746,7 @@ The analysis so far deliberately omitted this. It treats successive realizations
 
 % <!-- point: independence-omits-the-inherited-environment | Independence omits the inherited environment; success at each step depends on the environment carried into it. -->
 
-Let the probability of satisfactory realization at step \(i\) be
+Let the probability of faithful production at step \(i\) be
 
 \[
 p_i = p(T_i, M, R_i, H, \mathcal{G}_i)

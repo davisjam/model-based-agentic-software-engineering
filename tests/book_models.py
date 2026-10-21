@@ -1164,6 +1164,32 @@ def check_bookmath_native_mappings():
                 issues.append(f"\\{command}: MathML does not contain its declared glyph {expected!r}")
         except Exception as exc:
             issues.append(f"\\{command}: MathML projection failed: {exc}")
+    # The manuscript's annotations must remain below their expressions, with
+    # meaningful line breaks, in the web edition as well as native LaTeX.
+    annotated = r"\underbrace{x}_{\substack{\text{first line}\\\text{second line}}}"
+    nested = r"\frac{\underbrace{x}_{\substack{a\\b}}}{y}"
+    for formula in (annotated, nested):
+        try:
+            math = ET.fromstring(bookmath.to_mathml(formula, display=True))
+            ns = {"m": "http://www.w3.org/1998/Math/MathML"}
+            labels = math.findall('.//m:munder[@accentunder="false"]', ns)
+            if len(labels) != 1 or labels[0][0].tag != '{' + ns['m'] + '}munder':
+                issues.append("underbrace annotation is not below its brace")
+            elif len(labels[0].findall('.//m:mtable/m:mtr', ns)) != 2:
+                issues.append("underbrace annotation lost its two lines")
+            if formula == annotated:
+                words = "".join(math.itertext()).replace(chr(0xA0), " ")
+                if not all(label in words for label in ("first line", "second line")):
+                    issues.append("underbrace annotation lost its explanatory text")
+        except Exception as exc:
+            issues.append(f"annotated math projection failed: {exc}")
+    for malformed in (r"\substack x", r"\substack{a\\}", r"\substack{a\\b"):
+        try:
+            bookmath.to_mathml(malformed)
+        except bookmath.MathError:
+            pass
+        else:
+            issues.append(f"malformed stack accepted: {malformed}")
     if issues:
         return FAIL, issues
     if not shutil.which("lualatex"):
@@ -1175,6 +1201,7 @@ def check_bookmath_native_mappings():
     probe.write_text("\\documentclass{article}\n\\usepackage{amsmath,amssymb}\n"
                      "\\begin{document}\n"
                      + "\n".join("$\\" + name + "$\\par" for name in sorted(mappings))
+                     + "\n" + "\n".join(r"\[" + expr + r"\]" for expr in (annotated, nested))
                      + "\n\\end{document}\n")
     try:
         build.compile_tex(probe)

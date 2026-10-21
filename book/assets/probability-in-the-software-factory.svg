@@ -1,51 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- §6.1 — probability-in-the-software-factory.svg. Hand-SVG: an annotated reprise of Figure 5.1-1
-     (process-design-and-tolerance.svg). EVERY inherited coordinate and dimension is copied from that
-     file unchanged — frame, band, the four path boxes, the span bracket at y=286, the acceptable
-     region, the dots, the two outcome boxes and every heading position — so that flipping between the
-     two pages reads as a transformation, not a remapping. The Chapter 5 factory recedes by THINNING
-     ITS STROKES AND LIGHTENING ITS FILLS, never by lightening its words: pale type is unreadable in
-     print, and the base layer still has to be read. Fade IN DEGREE, not IN KIND — the band keeps the
-     same fill and the boxes the same stroke hue as Figure 5.1-1, one step lighter and thinner. An
-     earlier pass dropped them to hairlines on an unfilled band, and the factory then read as a
-     different drawing rather than a quieter one.
-     What this chapter adds is the overlay. Figure 5.1-1 draws ONE bracket across the whole path;
-     this figure keeps that line and its endpoints and adds two interior ticks, partitioning the path
-     into the three transitions the decomposition scores. The three probability terms are the largest
-     type in the figure. The encoded property also forks: one use reaches the fabricator, the other
-     supplies the tolerance the realization is later evaluated against.
-     Figure 5.1-1's `context · tools · routing · authority · sequencing` is deliberately ABSENT here.
-     It labels the span bracket there; the overlay owns that lane here, and parking the phrase anywhere
-     else would make it travel across the page on a flip — the one thing this pair must not do.
-     Kept in hand-SVG for the same reason as its parent: a flow band and a bounded acceptable region
-     in one frame is a bespoke composition, not a graph d2 can lay out. -->
+<!-- Chapter 6: the Chapter 5 factory with two probability factors.
+     Keep the inherited factory geometry; annotate encoding and realization.
+     Interpretation remains within realization. The separate tolerance route
+     shows independent evaluation, not another production probability.
+     Hand-authored SVG preserves this paired diagram's flow band and bounded region. -->
 <!-- semantic-families: governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 772" width="1000" height="772"
      role="img" aria-labelledby="pfTitle pfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="pfTitle">Probability on the production path, and the encoded property forking into the
     tolerance the realization is evaluated against</title>
-  <desc id="pfDesc">The SOFTWARE FACTORY of the earlier figure, at identical proportions, with its
-    containers drawn in thin lines so that what this chapter adds stands in front of them. Across the
-    top, inside the dashed PRODUCTION PROCESS band, the same left-to-right path runs from engineering
-    intent, through a box labelled encoded property and drawn in the governance colour, through the
-    fabricator, and out to a realization. The bracket that spanned the whole path in the earlier figure
-    is here divided by two ticks into the three transitions of the path, and under each division stands
-    a probability term, set much larger and bolder than any other type in the figure: P of E over
-    intent to encoded property, P of I given E over encoded property to fabricator, and P of L given I
-    and E over fabricator to realization, with E for correct encoding, I for correct interpretation and
-    L for correct realization. A short phrase under each term names the step it scores. A note under the
-    first term reads: not raised by a better fabricator. A note under the other two reads: process
-    design and better agents raise these. Below the band the encoded property forks. A second line in
-    the governance colour leaves the bottom of that box, runs down past the band annotated supplies the
-    tolerance, and enters the bounded ACCEPTABLE REGION through its left side — a different route from
-    the production path. The region is carried by the heading TOLERANCE — what variation in the product
-    is acceptable, and dots inside it mark distinct acceptable realizations the fabricator may choose
-    among. Separately, a measurement arrow drops from the realization into the top of the same region,
-    annotated measurement, tests, property-based testing, analysis, simulation and human judgment. From
-    the region two arrows lead out, one labelled within tolerance to admitted change and one labelled
-    outside to revise or reject. One use of the encoded property reaches the fabricator; the other
-    outlives realization and takes part in judging its result.</desc>
+  <desc id="pfDesc">A software factory contains a production path from engineering intent to an encoded
+    property, through the fabricator to a realization. One bracket spans encoding, labelled
+    P(E); the other spans realization, labelled P(F given E). Engineers authorize intent;
+    agents interpret, implement, and correct. The encoded property separately supplies
+    the tolerance defining an acceptable region. Measurement of the realization, through
+    tests, analysis, simulation, and human judgment, determines whether it is within
+    tolerance and admitted or outside tolerance and revised or rejected. Distinct points
+    in the acceptable region show the implementation choices left to the fabricator.</desc>
 
   <defs>
     <marker id="pfArrowGhost" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"
@@ -116,13 +88,11 @@
   <rect id="n-realization" x="751" y="196" width="172" height="64" rx="8" fill="#fdfcf9" stroke="#a8a29e"
         stroke-width="2"/>
 
-  <!-- THE OVERLAY. Figure 5.1-1's bracket, same line, same endpoints, now divided at the two interior
-       stations: one span per transition of the decomposition. -->
+  <!-- Two spans: encoding, then realization through the fabricator. -->
   <g stroke="#1c1917" stroke-width="2" fill="none" stroke-linecap="square">
     <line x1="163" y1="286" x2="837" y2="286"/>
     <line x1="163" y1="286" x2="163" y2="272"/>
     <line x1="388" y1="286" x2="388" y2="272"/>
-    <line x1="612" y1="286" x2="612" y2="272"/>
     <line x1="837" y1="286" x2="837" y2="272"/>
   </g>
 
@@ -162,25 +132,18 @@
   <text x="612" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Fabricator</text>
   <text x="837" y="236" text-anchor="middle" font-size="22" fill="#1c1917">Realization</text>
 
-  <!-- the three probability terms: the dominant layer of this figure, each seated under the span of
-       path it scores -->
+  <!-- Two probability terms; all probabilities condition on R in the text. -->
   <text x="275" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
         font-style="italic">P</tspan>(<tspan font-style="italic">E</tspan>)</text>
-  <text x="500" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
-        font-style="italic">P</tspan>(<tspan font-style="italic">I</tspan> | <tspan
+  <text x="612" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
+        font-style="italic">P</tspan>(<tspan font-style="italic">F</tspan> | <tspan
         font-style="italic">E</tspan>)</text>
-  <text x="724" y="328" text-anchor="middle" font-size="36" font-weight="700" fill="#1c1917"><tspan
-        font-style="italic">P</tspan>(<tspan font-style="italic">L</tspan> | <tspan
-        font-style="italic">I</tspan>, <tspan font-style="italic">E</tspan>)</text>
 
-  <!-- what each term scores. The P(E) column is set flush right so the fork has a clear corridor. -->
+  <!-- Encoding stays left of the tolerance fork. -->
   <text x="324" y="354" text-anchor="end" font-size="16" fill="#1c1917">correctly encode intent</text>
-  <text x="500" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly interpret encoding</text>
-  <text x="724" y="354" text-anchor="middle" font-size="16" fill="#1c1917">correctly realize interpretation</text>
-
-  <!-- the two annotations that carry the theory: what process design can lift, and what it cannot -->
-  <text x="324" y="380" text-anchor="end" font-size="17" font-weight="700" fill="#9a3f12">not raised by a better fabricator</text>
-  <text x="612" y="380" text-anchor="middle" font-size="17" fill="#1c1917">process design and better agents raise these</text>
+  <text x="612" y="354" text-anchor="middle" font-size="16" fill="#1c1917">fulfill encoded obligations</text>
+  <text x="324" y="380" text-anchor="end" font-size="17" font-weight="700" fill="#9a3f12">engineers authorize intent</text>
+  <text x="612" y="380" text-anchor="middle" font-size="17" fill="#1c1917">agents interpret, implement, and correct</text>
 
   <text x="326" y="430" text-anchor="end" font-size="20" font-weight="700" fill="#9a3f12">supplies the tolerance</text>
 
