@@ -1,0 +1,13 @@
+{
+  "synthetic": false,
+  "experiment_id": "coe-uta-2026-validate",
+  "source_sha256": "12e3656f877de84cfe5e2a1adbbf242a8b9497363286faddfa5001d122f9a650",
+  "config_sha256": "d5e77445da1efc5ddce02ae6ed85f24fd19e1bdcac1d99e839c76f5d8bea97b6",
+  "generator_sha256": "7b22bc3f2a4703f546cd9b8918748e7644df9759bcc9008f9dc614f5ee0c28b5",
+  "schema_sha256": "d20e58140deed75c5b388ae1df6ea1fe7a1538d9d71f199031101e613bf5be8c",
+  "human_baseline_sha256": "6c5194805c5272f6ca49181c2b2b83821f568ad07f8e53c6824029a3715a79b7",
+  "reduction_analyzer_sha256": "ef16a1716806d1ee1ac283ae83cd1a0be133c7ea0f5cd6ea9e52aa77a52b9ee1",
+  "rubric_analyzer_sha256": "429ed0b14e7ed7dfefedd4a18d488e0ca95e897c3f60b7efdcb79a2f1b91dda8",
+  "evaluation_reporter_sha256": "db67cb73febf5a496b123f7902a3e02e0d70afadeeb614b718392cad379185eb",
+  "agent_importer_sha256": "fd36ded65e81308ea37b0c2a78e8c25c345d7dbc58e75908fe84e10df5915ae6"
+}

@@ -1242,6 +1242,36 @@
       "kind": "conceptual-illustration",
       "location": "part3",
       "rationale": "three turn-end hooks writing one shared slot — the governance graph's only three conflict edges among twenty-five mechanisms, ordering conflicts resolved by a modeled (not yet runtime-enforced) total order"
+    },
+    "assets/docable-seip-work-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-activity-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-analyses-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-capital-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "inside-docables-software-factory::Agent and service remediation comparison": {
+      "tier": "B",
+      "kind": "data",
+      "location": "part5",
+      "rationale": "Small measured comparison with completion denominators and inference-cost scope stated."
     }
   }
 }

@@ -1,0 +1,121 @@
+{
+  "snapshots": [
+    {
+      "project_week": "1",
+      "snapshot": "c57785f9c8b02e96beedb0cb26a1873f5e9ec23a",
+      "tracked_exported": 19,
+      "counted_files": 15,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 0,
+      "unclassified_source_lines": 0
+    },
+    {
+      "project_week": "5",
+      "snapshot": "e773f83148d8414d49be76b578395257605ba992",
+      "tracked_exported": 569,
+      "counted_files": 527,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [
+        {
+          "path": "tools/lint",
+          "rows": [
+            "Tools: lints (quality gates)",
+            "Tools: other (fuzz/eval/pilots/etc.)"
+          ],
+          "rule": "longest report-row input path"
+        }
+      ],
+      "unclassified_source_files": 0,
+      "unclassified_source_lines": 0
+    },
+    {
+      "project_week": "9",
+      "snapshot": "f7a91dae98db8b26400f3a34dba5b29385ba334d",
+      "tracked_exported": 3954,
+      "counted_files": 3688,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 6,
+      "unclassified_source_lines": 228
+    },
+    {
+      "project_week": "11",
+      "snapshot": "63745e4f181e1f132b509c49775b5e8953f8b8f9",
+      "tracked_exported": 7195,
+      "counted_files": 6614,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 3
+    },
+    {
+      "project_week": "13",
+      "snapshot": "3e7b83a1a98e6ce113918b9879593c44eec80fb6",
+      "tracked_exported": 8785,
+      "counted_files": 8124,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 3
+    },
+    {
+      "project_week": "17",
+      "snapshot": "8c19e11bddd12456ee29d3d6678b221b98f619d2",
+      "tracked_exported": 12816,
+      "counted_files": 11691,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 8,
+      "unclassified_source_lines": 58
+    },
+    {
+      "project_week": "21",
+      "snapshot": "0fb2c8901d08c227ea646b871cea2ca58695c994",
+      "tracked_exported": 16222,
+      "counted_files": 14836,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 58
+    },
+    {
+      "project_week": "25",
+      "snapshot": "991e47889ddcd9726e17030be485549a0039c5e8",
+      "tracked_exported": 20960,
+      "counted_files": 18794,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 58
+    },
+    {
+      "project_week": "29",
+      "snapshot": "eb23dd16818369e6e78d4bf46bc9ba3ce8b6579a",
+      "tracked_exported": 24547,
+      "counted_files": 21644,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 58
+    },
+    {
+      "project_week": "31",
+      "snapshot": "7bfc9e59982be67395fa10fb169956cbdd041a60",
+      "tracked_exported": 26534,
+      "counted_files": 23250,
+      "partition_disjoint": true,
+      "resolved_historical_overlaps": [],
+      "unclassified_source_files": 7,
+      "unclassified_source_lines": 58
+    }
+  ],
+  "cloc_version": "2.02",
+  "instrument_ref": "9fb6b111497cc14ef27931936f7e8aeff645bfec",
+  "miner_sha256": "b4e48bec3f459e233a9364228f2fc1217b07b25ccdf435da095d10e038c4245c",
+  "instrument_files": {
+    "tools/dev/run-cloc.py": "c0e2ad3a4040588258920ca84a03f35304b6ff9a436733a24b3e105e4186ab90",
+    "system-models/components.py": "88c9c419b069c2fbc64ed9c13860d89aa66add348593a07dd5387f4a3dceca8f"
+  },
+  "method": "Frozen run-cloc report rows on historical trees; no historical documentation in apparatus; disjoint file ownership verified"
+}

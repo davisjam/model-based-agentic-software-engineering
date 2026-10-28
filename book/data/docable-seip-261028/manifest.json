@@ -1,0 +1,40 @@
+{
+  "repo": "/Users/davisjam/Projects/ada-tool",
+  "ref": "9fb6b111497cc14ef27931936f7e8aeff645bfec",
+  "generated_at": "2026-10-19T02:01:29.242844+00:00",
+  "timezone": "America/Indiana/Indianapolis",
+  "extractors": {
+    "mine_engineering.py": "09151e6b9630d6f3769c2ba0e1d1bf348c37944e4803a1e19724056babcb6a21",
+    "model_metrics.py": "54052a18e50db0e3ea62ee5321c8b5fa2a514bb9b9270462061b5827378a48b5",
+    "agent_history.py": "bd007978dcb27b4bf723faa36aff9c3b4fedc2dea1e4ca2484270579424f133c",
+    "audit_epic_completions.py": "a5a7f46f3f7623bf35173aa1e13b50eef346cb32cdaa8d975e9adb80eb2c7340"
+  },
+  "epic_completion_evidence_sha256": "40aaa8f415f462ecc9b0efb2ae2864084a9bba01627692b972c4be4831b790c8",
+  "inception": "2026-03-12",
+  "last_commit_date": "2026-10-18",
+  "full_weeks": 31,
+  "work_commits": 37423,
+  "epics_first_closed": 448,
+  "retained_agent_starts": 15203,
+  "squash_landings": 5396,
+  "recovered_extra_commits": 3,
+  "missing_source_objects": 33,
+  "unresolved_squashes": 1,
+  "preserved_refs": 6816,
+  "registry": {
+    "sha256": "aca3e783dfa5a10b3d0b5072e499a1a918c62ad9785feefb13299de5442244cc",
+    "bytes": 7057315,
+    "register_events": 812
+  },
+  "audit": {
+    "merge_commits_excluded": 152,
+    "empty_commits_excluded": 21,
+    "bookkeeping_commits_excluded": 2575,
+    "capped_manifests_checked": 2,
+    "source_empty_excluded": 145,
+    "epic_documented_completions": 448,
+    "epic_administrative_excluded": 74,
+    "epic_unresolved_excluded": 116,
+    "unresolved_verifyref_week_occurrences": 33
+  }
+}

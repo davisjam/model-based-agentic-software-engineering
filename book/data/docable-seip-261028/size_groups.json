@@ -1,0 +1,50 @@
+{
+  "production": [
+    [
+      "Remediation",
+      "Core remediation"
+    ],
+    [
+      "Web layer",
+      "Web processing"
+    ],
+    [
+      "Frontend",
+      "Frontend"
+    ],
+    [
+      "Shared/services",
+      "Shared/services"
+    ]
+  ],
+  "apparatus": [
+    [
+      "Tests",
+      "Tests"
+    ],
+    [
+      "Lints",
+      "Lints"
+    ],
+    [
+      "Tools",
+      "Tools/helpers"
+    ],
+    [
+      "Agent Infrastructure",
+      "Agent infra."
+    ],
+    [
+      "Infrastructure as Code",
+      "Infra. as code"
+    ],
+    [
+      "System-model meta-files",
+      "Models"
+    ],
+    [
+      "Documentation (code, load-bearing)",
+      "Indexed docs"
+    ]
+  ]
+}

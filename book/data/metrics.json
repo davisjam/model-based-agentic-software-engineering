@@ -156,5 +156,22 @@
   "incident_citing_lints": "27",
   "_support_ratio_curve_provenance": "The figures the support-ratio-curve data-claims entry holds, tokenized for the same anchoring reason as control-growth: section 5.2 is that claim's source chapter, so a [data:] marker there would cross-ref itself. Source: the 29-week history-mining pass (acquired 260925.103236, series in data/factory-archaeology-260925/loc_weekly.csv), which carries its OWN category path-map. mined_support_ratio_plateau='3.5 and 3.9' is the mature-era band of the support_ratio_excl_docs column, which runs 3.46 (week 29) to 3.94 (week 22) across the plateau; it is stored as ONE token holding BOTH bounds so the band cannot drift half-updated. mined_test_loc='1.75 million' is test_loc at the final week (1,754,638). DO NOT RECONCILE mined_support_ratio_plateau AGAINST support_ratio=3.0 — they are different quantities from different instruments, and the gap is DISCLOSED in the chapter, not a defect: support_ratio=3.0 is the authored 2026-08-03 snapshot from the categorized line-count tool (support_loc/prod_loc), while the plateau band is the later mining pass's own re-derivation excluding documentation. Both measure 2026-08-03 among other weeks and disagree there (3.0 vs 3.94) because the category boundaries differ; the chapter overlays the two recoverable authored snapshots as diamonds so the definitional gap stays visible, and states that only the TREND is comparable across the two. Neither is the 'earlier (higher) measurement' the D1/D2 reconciliation in _loc_provenance supersedes — that one is a rival measurement of prod_loc/support_loc at the SAME 2026-08-03 snapshot by the SAME tool, which is a different thing entirely. RESIDUE, left as the author's prose rather than flattened: (a) the band's lower bound 3.5 is absent from the entry's holds[] list, so it is not governed on its own — it rides inside this one band token, and adding a bare '3.5' to the ledger would also make the leak lint fire on section locators like '§3.5'; (b) 5.2 and its figure caption both say the plateau settles 'around three-to-one' in word form, and word forms are not token-rendered, so a change to the band here must update them by hand.",
   "mined_support_ratio_plateau": "3.5 and 3.9",
-  "mined_test_loc": "1.75 million"
+  "mined_test_loc": "1.75 million",
+  "_seip_provenance": "October 28 DocAble SEIP manuscript and generated data; engineering complete weeks March12–October14 (partial week excluded); UTA corpus identifiable pairs, not total workforce output. See data/docable-seip-261028/. These tokens supersede earlier measurements for the DocAble case without changing unrelated dated estimates.",
+  "seip_uta_workers": "42",
+  "seip_uta_hours": "1,303.4",
+  "seip_uta_pairs": "382",
+  "seip_uta_courses": "20",
+  "seip_uta_hours_per_pair": "3.41",
+  "seip_weeks": "31",
+  "seip_commits": "36,578",
+  "seip_completions": "428",
+  "seip_dispatches": "14,392",
+  "seip_models": "143",
+  "seip_consumers": "45",
+  "seip_static": "232",
+  "seip_dynamic": "153",
+  "seip_prod_loc": "615,395",
+  "seip_apparatus_loc": "2,333,471",
+  "seip_support_ratio": "3.8"
 }
