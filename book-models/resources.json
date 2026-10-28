@@ -3,6 +3,18 @@
 
   "writings": [
     {
+      "title": "Software Engineering in the Age of Delegation",
+      "kind": "Technical report",
+      "date": "2026",
+      "url": "https://davisjam.github.io/files/publications/DavisFranceKazerouniAhmedArinzeDavis-SoftwareEngineeringInTheAgeOfDelegation-TechReport2026.pdf"
+    },
+    {
+      "title": "Open Source Software, Closed Software Factory",
+      "kind": "Technical report",
+      "date": "2026",
+      "url": "https://davisjam.github.io/files/publications/DavisJiangSynovicThiruvathukal-OpenSourceClosedSoftwareFactory-TechReport2026.pdf"
+    },
+    {
       "title": "Model-Based Agentic Software Engineering (MAGE)",
       "kind": "Blog post",
       "venue": "Medium",
@@ -27,6 +39,12 @@
 
   "_talks_note": "Ordered newest → oldest by month. Dates are the month each deck was presented (pinned from the deck's embedded modified date, corroborated by known venue dates).",
   "talks": [
+    {
+      "title": "If AI writes the code, what do engineers do?",
+      "venue": "Engineering Innovations podcast",
+      "date": "October 2026",
+      "video_url": "https://www.youtube.com/watch?v=G4FqLpKinqA"
+    },
     {
       "title": "Model-Based Agentic Engineering: A Case Study in Document Accessibility",
       "venue": "Purdue PL Seminar (PurPL)",
