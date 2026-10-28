@@ -2,7 +2,7 @@
 """Render the frozen SEIP observations; no repository mining or network access.
 
 Source: book/data/docable-seip-261028/PROVENANCE.md. Four replacement charts;
-PDF and SVG share geometry and the book's Source Serif 4 font. Retains the
+PDF and SVG share geometry and the book's Source Sans 3 font. Retains the
 full production/apparatus category mapping, not just aggregate size ratios.
 """
 import csv
@@ -19,9 +19,9 @@ from matplotlib.ticker import MaxNLocator, FuncFormatter
 
 BOOK = Path(__file__).resolve().parents[2]
 DATA = BOOK / 'data/docable-seip-261028'
-for font in (BOOK / 'fonts/SourceSerif4').glob('*.ttf'):
+for font in (BOOK / 'fonts/SourceSans3').glob('*.ttf'):
     font_manager.fontManager.addfont(str(font))
-plt.rcParams.update({'font.family': 'Source Serif 4', 'font.size': 12,
+plt.rcParams.update({'font.family': 'Source Sans 3', 'font.size': 12,
     'svg.fonttype': 'none', 'svg.hashsalt': 'docable-seip-261028', 'pdf.fonttype': 42, 'axes.spines.top': False,
     'axes.spines.right': False, 'axes.spines.left': False, 'axes.spines.bottom': False,
     'axes.axisbelow': True, 'savefig.facecolor': 'white'})

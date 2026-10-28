@@ -31,7 +31,7 @@ Regenerate four SVG/PDF pairs from these frozen inputs with:
 python3 book/figures/docable-seip-261028/generate.py
 ```
 
-The script uses the book's Source Serif 4 font and grayscale fills, patterns and
+The script uses the book's Source Sans 3 font and grayscale fills, patterns and
 line styles. SVG and PDF are generated from the same figure. Outputs are
 `book/assets/docable-seip-{work,activity,analyses,capital}-261028.svg` and matching
 PDFs under `book/latex/assets/`. The capital chart retains production components,
