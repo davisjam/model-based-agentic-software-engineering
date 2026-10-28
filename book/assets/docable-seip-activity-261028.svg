@@ -51,25 +51,25 @@ z
     <g id="xtick_1">
      <g id="line2d_1"/>
      <g id="text_1">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="33.79171" y="193.13952" transform="rotate(-0 33.79171 193.13952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">Week 1</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="33.79171" y="193.13952" transform="rotate(-0 33.79171 193.13952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">Week 1</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2"/>
      <g id="text_2">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="178.434785" y="193.13952" transform="rotate(-0 178.434785 193.13952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">11</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="178.434785" y="193.13952" transform="rotate(-0 178.434785 193.13952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">11</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3"/>
      <g id="text_3">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="323.07786" y="193.13952" transform="rotate(-0 323.07786 193.13952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">21</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="323.07786" y="193.13952" transform="rotate(-0 323.07786 193.13952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">21</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4"/>
      <g id="text_4">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.720935" y="193.13952" transform="rotate(-0 467.720935 193.13952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">31</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.720935" y="193.13952" transform="rotate(-0 467.720935 193.13952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">31</text>
      </g>
     </g>
    </g>
@@ -82,7 +82,7 @@ L 476.39952 179.595145
      </g>
      <g id="line2d_6"/>
      <g id="text_5">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="183.867332" transform="rotate(-0 20.113125 183.867332)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">0</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="183.867332" transform="rotate(-0 20.113125 183.867332)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">0</text>
      </g>
     </g>
     <g id="ytick_2">
@@ -93,7 +93,7 @@ L 476.39952 109.79954
      </g>
      <g id="line2d_8"/>
      <g id="text_6">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="114.071727" transform="rotate(-0 20.113125 114.071727)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">20</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="114.071727" transform="rotate(-0 20.113125 114.071727)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">20</text>
      </g>
     </g>
     <g id="ytick_3">
@@ -104,7 +104,7 @@ L 476.39952 40.003934
      </g>
      <g id="line2d_10"/>
      <g id="text_7">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="44.276122" transform="rotate(-0 20.113125 44.276122)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">40</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="44.276122" transform="rotate(-0 20.113125 44.276122)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">40</text>
      </g>
     </g>
    </g>
@@ -357,7 +357,7 @@ z
 " clip-path="url(#pa45e7c48e4)" style="fill: #595959"/>
    </g>
    <g id="text_8">
-    <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: start" x="34.138853" y="22.640181" transform="rotate(-0 34.138853 22.640181)" font-size="12px" font-family="'Source Sans 3'" text-anchor="start">Documented Epic completions</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: start" x="34.138853" y="22.640181" transform="rotate(-0 34.138853 22.640181)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Documented Epic completions</text>
    </g>
    <g id="text_9">
     <g id="patch_35">
@@ -368,8 +368,8 @@ L 63.295468 82.946663
 z
 " style="fill: #ffffff"/>
     </g>
-    <text style="font-size: 12px; font-family: 'Source Sans 3'" transform="translate(65.335468 93.531038)" font-size="12px" font-family="'Source Sans 3'">No recovered</text>
-    <text style="font-size: 12px; font-family: 'Source Sans 3'" transform="translate(79.908906 106.244288)" font-size="12px" font-family="'Source Sans 3'">records</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'" transform="translate(65.335468 93.531038)" font-size="12px" font-family="'Source Sans 3'" font-weight="400">No recovered</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'" transform="translate(79.908906 106.244288)" font-size="12px" font-family="'Source Sans 3'" font-weight="400">records</text>
    </g>
   </g>
   <g id="axes_2">
@@ -393,25 +393,25 @@ z
     <g id="xtick_5">
      <g id="line2d_11"/>
      <g id="text_10">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="33.79171" y="387.53952" transform="rotate(-0 33.79171 387.53952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">Week 1</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="33.79171" y="387.53952" transform="rotate(-0 33.79171 387.53952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">Week 1</text>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_12"/>
      <g id="text_11">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="178.434785" y="387.53952" transform="rotate(-0 178.434785 387.53952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">11</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="178.434785" y="387.53952" transform="rotate(-0 178.434785 387.53952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">11</text>
      </g>
     </g>
     <g id="xtick_7">
      <g id="line2d_13"/>
      <g id="text_12">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="323.07786" y="387.53952" transform="rotate(-0 323.07786 387.53952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">21</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="323.07786" y="387.53952" transform="rotate(-0 323.07786 387.53952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">21</text>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_14"/>
      <g id="text_13">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.720935" y="387.53952" transform="rotate(-0 467.720935 387.53952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">31</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.720935" y="387.53952" transform="rotate(-0 467.720935 387.53952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">31</text>
      </g>
     </g>
    </g>
@@ -424,7 +424,7 @@ L 476.39952 373.995145
      </g>
      <g id="line2d_16"/>
      <g id="text_14">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="378.267332" transform="rotate(-0 20.113125 378.267332)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">0</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="378.267332" transform="rotate(-0 20.113125 378.267332)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">0</text>
      </g>
     </g>
     <g id="ytick_5">
@@ -435,7 +435,7 @@ L 476.39952 280.34285
      </g>
      <g id="line2d_18"/>
      <g id="text_15">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="284.615037" transform="rotate(-0 20.113125 284.615037)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">1K</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="20.113125" y="284.615037" transform="rotate(-0 20.113125 284.615037)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">1K</text>
      </g>
     </g>
    </g>
@@ -688,7 +688,7 @@ z
 " clip-path="url(#p763852a409)" style="fill: #595959"/>
    </g>
    <g id="text_16">
-    <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: start" x="34.138853" y="217.040181" transform="rotate(-0 34.138853 217.040181)" font-size="12px" font-family="'Source Sans 3'" text-anchor="start">Recorded agent dispatches</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: start" x="34.138853" y="217.040181" transform="rotate(-0 34.138853 217.040181)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Recorded agent dispatches</text>
    </g>
    <g id="text_17">
     <g id="patch_69">
@@ -699,8 +699,8 @@ L 70.527622 277.346663
 z
 " style="fill: #ffffff"/>
     </g>
-    <text style="font-size: 12px; font-family: 'Source Sans 3'" transform="translate(72.567622 287.931038)" font-size="12px" font-family="'Source Sans 3'">No recovered</text>
-    <text style="font-size: 12px; font-family: 'Source Sans 3'" transform="translate(87.14106 300.644288)" font-size="12px" font-family="'Source Sans 3'">records</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'" transform="translate(72.567622 287.931038)" font-size="12px" font-family="'Source Sans 3'" font-weight="400">No recovered</text>
+    <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'" transform="translate(87.14106 300.644288)" font-size="12px" font-family="'Source Sans 3'" font-weight="400">records</text>
    </g>
   </g>
  </g>

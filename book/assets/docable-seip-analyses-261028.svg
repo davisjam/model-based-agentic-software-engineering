@@ -43,25 +43,25 @@ z
     <g id="xtick_1">
      <g id="line2d_1"/>
      <g id="text_1">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="38.67594" y="272.33952" transform="rotate(-0 38.67594 272.33952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">Week 1</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="38.67594" y="272.33952" transform="rotate(-0 38.67594 272.33952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">Week 1</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2"/>
      <g id="text_2">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="181.722862" y="272.33952" transform="rotate(-0 181.722862 272.33952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">11</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="181.722862" y="272.33952" transform="rotate(-0 181.722862 272.33952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">11</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3"/>
      <g id="text_3">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="324.769783" y="272.33952" transform="rotate(-0 324.769783 272.33952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">21</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="324.769783" y="272.33952" transform="rotate(-0 324.769783 272.33952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">21</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4"/>
      <g id="text_4">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.816705" y="272.33952" transform="rotate(-0 467.816705 272.33952)" font-size="12px" font-family="'Source Sans 3'" text-anchor="middle">31</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: middle" x="467.816705" y="272.33952" transform="rotate(-0 467.816705 272.33952)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="middle">31</text>
      </g>
     </g>
    </g>
@@ -74,7 +74,7 @@ L 476.39952 258.795145
      </g>
      <g id="line2d_6"/>
      <g id="text_5">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="25.093125" y="263.067332" transform="rotate(-0 25.093125 263.067332)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">0</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="25.093125" y="263.067332" transform="rotate(-0 25.093125 263.067332)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">0</text>
      </g>
     </g>
     <g id="ytick_2">
@@ -85,7 +85,7 @@ L 476.39952 106.313239
      </g>
      <g id="line2d_8"/>
      <g id="text_6">
-      <text style="font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="25.093125" y="110.585426" transform="rotate(-0 25.093125 110.585426)" font-size="12px" font-family="'Source Sans 3'" text-anchor="end">200</text>
+      <text style="font-weight: 400; font-size: 12px; font-family: 'Source Sans 3'; text-anchor: end" x="25.093125" y="110.585426" transform="rotate(-0 25.093125 110.585426)" font-size="12px" font-family="'Source Sans 3'" font-weight="400" text-anchor="end">200</text>
      </g>
     </g>
    </g>
@@ -233,7 +233,7 @@ L 61.993125 21.082344
 " style="fill: none; stroke: #1a1a1a; stroke-width: 1.7; stroke-linecap: square"/>
     </g>
     <g id="text_7">
-     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="24.932344" transform="rotate(-0 70.793125 24.932344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Models</text>
+     <text style="font-weight: 400; font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="24.932344" transform="rotate(-0 70.793125 24.932344)" font-size="11px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Models</text>
     </g>
     <g id="line2d_14">
      <path d="M 39.993125 36.669687
@@ -242,7 +242,7 @@ L 61.993125 36.669687
 " style="fill: none; stroke-dasharray: 6.29,2.72; stroke-dashoffset: 0; stroke: #737373; stroke-width: 1.7"/>
     </g>
     <g id="text_8">
-     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="40.519687" transform="rotate(-0 70.793125 40.519687)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Multi-model consumers</text>
+     <text style="font-weight: 400; font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="40.519687" transform="rotate(-0 70.793125 40.519687)" font-size="11px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Multi-model consumers</text>
     </g>
     <g id="line2d_15">
      <path d="M 39.993125 52.389375
@@ -251,7 +251,7 @@ L 61.993125 52.389375
 " style="fill: none; stroke-dasharray: 1.7,2.805; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 1.7"/>
     </g>
     <g id="text_9">
-     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="56.239375" transform="rotate(-0 70.793125 56.239375)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Static-analysis files</text>
+     <text style="font-weight: 400; font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="56.239375" transform="rotate(-0 70.793125 56.239375)" font-size="11px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Static-analysis files</text>
     </g>
     <g id="line2d_16">
      <path d="M 39.993125 68.15375
@@ -260,7 +260,7 @@ L 61.993125 68.15375
 " style="fill: none; stroke-dasharray: 10.88,2.72,1.7,2.72; stroke-dashoffset: 0; stroke: #737373; stroke-width: 1.7"/>
     </g>
     <g id="text_10">
-     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="72.00375" transform="rotate(-0 70.793125 72.00375)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Dynamic-analysis files</text>
+     <text style="font-weight: 400; font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="70.793125" y="72.00375" transform="rotate(-0 70.793125 72.00375)" font-size="11px" font-family="'Source Sans 3'" font-weight="400" text-anchor="start">Dynamic-analysis files</text>
     </g>
    </g>
   </g>

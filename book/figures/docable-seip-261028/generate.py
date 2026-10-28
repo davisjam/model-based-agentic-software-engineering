@@ -46,10 +46,10 @@ def save(fig,name,description):
     # preserves Matplotlib's geometry while making font/anchor semantics explicit
     # to the repository's static figure analysis and non-CSS SVG consumers.
     def typography(match):
-        tag = match.group(0)
+        tag = match.group(0).replace('style="', 'style="font-weight: 400; ')
         style = re.search(r'style="([^"]*)"', tag)
         if style:
-            for key in ['font-size', 'font-family', 'text-anchor']:
+            for key in ['font-size', 'font-family', 'font-weight', 'text-anchor']:
                 value = re.search(r'(?:^|;)\s*' + key + r':\s*([^;]+)', style.group(1))
                 if value:
                     tag = tag[:-1] + ' ' + key + '="' + value.group(1).strip().replace('"', '&quot;') + '">'
