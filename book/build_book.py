@@ -6612,6 +6612,22 @@ def _emit_book_staple(doc) -> None:
     print(f"staple → {out.relative_to(ROOT)} ({len(doc.chapters)} chapters)")
 
 
+def _expected_chapter_headings(source: str) -> int:
+    """Chapter headings the compiled PDF will actually carry as tagged H1s.
+
+    `\\chapter*{\\bibname}` appears in `\\renewcommand{\\bibsection}{...}` — a macro DEFINITION, not
+    an invocation — so counting every `\\chapter*{` occurrence inflates the expectation by one and
+    expects a heading that need not exist: the bibliography prints nothing in a section that cites
+    nothing. Measured 261028 across the section PDFs: appendices E, G and I carry 0 Reference
+    structures and 2 H1s against a counted 3 (refused); appendix J carries 16 References and 3 H1s
+    against the same counted 3 (passed, and only because its bibliography rendered). Excluding the
+    definition keeps the bound DERIVED per section — every real chapter must still be tagged — rather
+    than relaxing it to a constant that would stop noticing an untagged chapter.
+    """
+    return (len(re.findall(r"\\chapter\*?\{", source))
+            - len(re.findall(r"\\chapter\*?\{\\bibname\}", source)))
+
+
 def build_pdf() -> int:
     """Compile the native LaTeX whole book, then run the production PDF gates."""
     import book_ir
@@ -6637,7 +6653,7 @@ def build_pdf() -> int:
         driver = ROOT / "book/latex/build/mage-book.tex"
         driver_text, chapters, _ = mage_latex.pdf_sources(driver)
         source = driver_text + "\n" + "\n".join(chapters)
-        check_pdf(pdf_out, headings=len(re.findall(r"\\chapter\*?\{", source)),
+        check_pdf(pdf_out, headings=_expected_chapter_headings(source),
                   sections=len(re.findall(r"\\section\*?\{", source)),
                   tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}"),
                   figures=source.count(r"\begin{figure}"))
@@ -6743,7 +6759,7 @@ def build_pdf_split() -> int:
             pdf = compile_tex(driver)
             driver_text, chapter_texts, _ = mage_latex.pdf_sources(driver)
             source = driver_text + "\n" + "\n".join(chapter_texts)
-            check_pdf(pdf, headings=len(re.findall(r"\\chapter\*?\{", source)),
+            check_pdf(pdf, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
             destination = HERE / (name + ".pdf")
             shutil.copy2(pdf, destination)

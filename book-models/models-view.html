@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>33</b> chapters · <b>221</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>33</b> chapters · <b>222</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -634,15 +634,15 @@
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--the-build-measured-weekly">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Build, Measured Weekly</a></div>
-<p class="topic">The stage narrative above is retrospective.</p>
+<p class="topic">The repository record lets us examine the build beyond the retrospective stage narrative.</p>
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--control-growth">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Controls Accumulate</a></div>
-<p class="topic">The third trace measures one family of controls that accumulated beside that throughput: project-specific lints and gate scripts.</p>
+<p class="topic">The third trace shows the structure that accumulated around implementation ([ref:control-growth-curve]).</p>
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--support-ratio-curve">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Support Ratio</a></div>
-<p class="topic">The fourth trace weighs the tests and supporting infrastructure against the product they support.</p>
+<p class="topic">The fourth trace measures how much supporting source accumulated relative to production source ([ref:support-ratio-curve]).</p>
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--what-accumulated-and-why">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">What Accumulated, and Why</a></div>
@@ -654,7 +654,7 @@
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--what-the-factory-knows">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">What the Factory Knows</a></div>
-<p class="topic">At the repository revision examined here, DocAble contained 130 declared system models — the count the factory&#x27;s canonical census query (`repo-query models kinds`) returns, and the census Chapter 2&#x27;s &quot;roughly 130&quot; summarizes — each a typed, queryable representation registered in one place, most carrying their own consistency checks.</p>
+<p class="topic">The 31-week reconstruction identifies 143 model modules at the final snapshot.</p>
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--the-joins-what-the-factory-can-derive-and-enforce">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Joins: What the Factory Can Derive and Enforce</a></div>
@@ -668,6 +668,10 @@
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Factory in Operation</a></div>
 <p class="topic">With the representations and joins in place, the mature factory&#x27;s production flow can be walked in one pass.</p>
 </div>
+<div class="section s3" id="sec-5-2-inside-docables-software-factory--docable-dynamic-context-injection">
+<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">Task-Specific Context Discovery</a></div>
+<p class="topic">Dynamic context injection connects the factory’s represented knowledge to each task.</p>
+</div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--what-escalated-failures-became">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">What Escalated Failures Became</a></div>
 <p class="topic">Where did all this factory machinery come from?</p>
@@ -678,19 +682,19 @@
 </div>
 <div class="section s2" id="sec-5-2-inside-docables-software-factory--economics">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">Economics</a></div>
-<p class="topic">What did this factory cost, and what did the money buy?</p>
+<p class="topic">A factory’s startup cost, its marginal change cost, and its carrying cost are different numbers — a separation §6.1 develops formally.</p>
 </div>
-<div class="section s3" id="sec-5-2-inside-docables-software-factory--the-manual-remediation-counterfactual">
-<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Manual-Remediation Counterfactual</a></div>
-<p class="topic">Was that a defensible investment?</p>
+<div class="section s3" id="sec-5-2-inside-docables-software-factory--human-remediation-as-a-reference">
+<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">Human Remediation as a Reference</a></div>
+<p class="topic">The undergraduate effort introduced in §1.2 supplies a concrete reference.</p>
 </div>
-<div class="section s3" id="sec-5-2-inside-docables-software-factory--what-the-rulemaking-record-says-the-alternative-is">
-<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">What the Rulemaking Record Says the Alternative Is</a></div>
-<p class="topic">These figures measure the scale of the work under a manual-production counterfactual; they are not a market forecast.</p>
+<div class="section s3" id="sec-5-2-inside-docables-software-factory--agents-and-specialized-service">
+<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">General-Purpose Agents and a Specialized Service</a></div>
+<p class="topic">Could a general-purpose agent perform the remediation directly?</p>
 </div>
-<div class="section s3" id="sec-5-2-inside-docables-software-factory--break-even-marginal-cost-and-replication">
-<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">Break-Even, Marginal Cost, and Replication</a></div>
-<p class="topic">How much manual remediation would equal the investment in constructing the factory?</p>
+<div class="section s3" id="sec-5-2-inside-docables-software-factory--what-the-economics-establish">
+<div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">What the Economics Establish</a></div>
+<p class="topic">The three alternatives incur costs in different places.</p>
 </div>
 <div class="section s2" id="sec-5-2-inside-docables-software-factory--liability">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">Liability</a></div>
