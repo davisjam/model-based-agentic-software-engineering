@@ -19,8 +19,9 @@ Four gates, in dependency order, so a change that would fail CI cannot leave the
      renders. `--no-split` because the per-section review PDFs are a LOCAL REVIEW AID, not a gate: CI
      never compiles them (`_pdf_split_enabled` turns them off under CI), `build_book.py`'s own dispatch
      comment declares "the deploy pre-push gate [is] full-only", and pre-push may only hold a subset of
-     what CI holds. Measured 261029: the 21 section compiles cost ~9 minutes of a ~21-minute gate while
-     gating nothing CI gates. Regenerate them on demand with `python3 book/build_book.py --pdf`.
+     what CI holds. Measured 261029 under fleet load: `--pdf` with splits 954s, `--pdf --no-split` 293s
+     — the 21 section compiles were ~11 minutes of a 26.9-minute serial gate while gating nothing CI
+     gates. Regenerate them on demand with `python3 book/build_book.py --pdf`.
 
   3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's LaTeX PDF
      render (parity with the book PDF). CI renders + publishes it on every push and asserts it
@@ -273,6 +274,15 @@ class _PhaseCtx:
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         with _PROCS_LOCK:
             _PROCS.add(proc)
+        # Close the start/cancel race: a queued phase can begin BETWEEN the cancel flag being set
+        # and the terminate sweep reading _PROCS (observed in the 261029 sabotage run — a cancelled
+        # handbook render ran 200s past the red). Registered first, then re-checked, so one side
+        # always sees the other.
+        if _CANCEL.is_set():
+            try:
+                proc.terminate()
+            except OSError:
+                pass  # already gone; termination is best-effort cleanup
         try:
             out, _ = proc.communicate()
         finally:
