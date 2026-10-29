@@ -301,6 +301,23 @@ re-deriving these, so they live here:**
     land twice because its anchor was quoted from memory (`show that the measurement` for the file's
     `show the measurement`, then a guessed indent). Anchors are shapes too — `python3 -c` the exact
     `repr()` of the lines before editing a file you have only seen quoted in context.
+  - **And an ARTIFACT flavour: a render-based check must assert the render came from the target
+    FILE.** The three flavours above guess a shape, an environment, and a scope; this one guesses
+    the artifact, and it is the hardest to doubt because the findings come out precise. On 261029 a
+    visual-QA agent told to render a 23-slide `.pptx` instead rendered a **stale PDF sitting at the
+    repo root with a matching basename**, and returned seven MUST-FIX findings with pixel
+    coordinates and zoom-verified detail: title/rule collisions, a label on a panel border, broken
+    elbows, detached arrowheads. Every one was real in the stale artifact and already fixed in the
+    committed deck. The orchestrator believed it, told the author the published deck carried seven
+    visible defects, and dispatched a fix pass that found nothing to fix. **The discriminator was
+    one integer: the render had 21 pages, the deck has 23 slides.** So assert `pages == slides`
+    before reading a single pixel, render from an explicit absolute path rather than a basename
+    match, and write renders to `/tmp` — a stale sibling that never accumulates in the tree cannot
+    be matched later. Precision is not provenance: a confident measurement of the wrong artifact
+    reads exactly like a confident measurement of the right one, and it points the expensive way,
+    condemning work that is already correct. Corollary: a fix agent reporting "all findings stale,
+    nothing to change" has SUCCEEDED, and the misleading artifact it names should be moved out
+    (moved, not deleted) before the same dispatch repeats.
   - **A brief's `file:line` facts are claims, and the orchestrator is the worst-placed person to
     trust them.** The same failure recurred SIX times on 261004, always by the same mechanism: a
     `file:line` asserted into a brief from a grep hit, without reading enough around it.

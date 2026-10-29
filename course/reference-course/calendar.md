@@ -42,7 +42,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 
 *What must engineers understand and control as software systems grow, operate, and evolve?*
 
-Six units across nine lectures, developed through one running example: a small campus room
+Seven units across nine lectures, developed through one running example: a small campus room
 reservation service that acquires a new engineering obligation in each unit.
 
 | Week | Topic |
