@@ -27,7 +27,7 @@ That probability hides several different engineering problems. One useful factor
 
 We will call this the Master Equation for Act II. It separates reliable realization into three questions: was the consequential intent encoded correctly, was it interpreted correctly, and was that interpretation realized successfully? The task *T*, reasoning model *M*, and harness *H* describe the surrounding conditions under which this realization occurs.
 
-Act II uses this decomposition to organize four engineering problems:
+Act II uses this decomposition to organize four engineering problems, followed by a practical synthesis:
 
 | Unit | Engineering problem |
 |---|---|
@@ -35,9 +35,11 @@ Act II uses this decomposition to organize four engineering problems:
 | **Modeling** | Represent consequential knowledge so that it can be encoded and interpreted while leaving irrelevant realization choices free |
 | **Alignment** | Give selected obligations authority independent of whether the producing reasoner gets them right |
 | **Failure-Aware Engineering** | Use failures as evidence about what the engineering environment should change |
-| **Building with Agents** | Assemble the preceding four into an environment that produces reliable work, and build with it |
+| **Building Software with Agents** | Put delegation into practice with context, tools, skills, feedback, and the engineered production system around agents |
 
-The progression is deliberate. Delegation defines the realization problem. Modeling improves the conditions under which realization occurs. Alignment governs selected consequences when realization is unacceptable. Failure-Aware Engineering uses the resulting evidence to change the models, controls, or assumptions that future work inherits. Building with Agents puts the four together: the unit asks what an engineer is building when an agent writes the code, and argues that the answer is the environment that produces it.
+The progression is deliberate. Delegation defines the realization problem. Modeling improves the conditions under which realization occurs. Alignment governs selected consequences when realization is unacceptable. Failure-Aware Engineering uses the resulting evidence to change the models, controls, or assumptions that future work inherits.
+
+Act II concludes by putting these ideas into practice. A coding agent requires task-relevant context, tools, project instructions, reusable procedures, and evidence about the work it performs. These mechanisms can accumulate into a software factory: a production system that organizes how changes are made and establishes which resulting changes are acceptable. The factory connects the individual decisions of delegation to a continuing organizational capability.
 
 The Master Equation is a conceptual model, not a claim that these probabilities can generally be measured precisely. Its factors are conditional rather than independent. In plain terms, success at each stage depends on what happened at the stages before it. As a result, what can be realized depends on what was interpreted, and what can be interpreted depends on what was encoded. The equation gives us a vocabulary for locating where reliable realization can fail and where engineering can intervene.
 
@@ -45,4 +47,6 @@ The Master Equation is a conceptual model, not a claim that these probabilities 
 - **[Modeling: Purposeful Reduction · Degrees of Semantic Commitment](02-modeling/index.md)** (2 lectures) — how engineering knowledge is represented; what a representation must preserve; how models constrain realization without determining it; and how implementations and models correspond.
 - **[Alignment: From Guidance to Authority](03-alignment/index.md)** — how selected obligations acquire authority beyond the producing reasoner's judgment, and how realizations are admitted, rejected, or constrained.
 - **[Failure-Aware Engineering](04-failure-aware-engineering/index.md)** — what to learn when reality contradicts expectation, and how that evidence changes models, controls, the engineering environment, and the engineer.
-- **[Building with Agents](05-building-with-agents/index.md)** (2 lectures) — building with the preceding four in hand: a workshop driving agents on real work, then the organizational claim that the durable asset is the software factory rather than the source it produces.
+- **[Building Software with Agents](05-building-with-agents/index.md)** (2 lectures) — practical agent harnesses, project instructions, MCP, skills, and feedback loops; then process design, tolerance, and agentic software factories.
+
+Act III applies these engineering methods to the technical concerns of software systems: execution environments, data, architecture, dependencies, performance, reliability, security, and operation.

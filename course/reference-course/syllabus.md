@@ -75,7 +75,7 @@ The curriculum has three acts:
 
 - **Act I — Foundations:** process, teamwork, requirements, architecture, design, and validation, concluding with engineering decision-making and metrics.
 - **Act II — Delegation and Control:** how engineers retain control of systems they no longer write line by line — directing agents, representing what matters, making obligations enforceable, and learning when reality disagrees.
-- **Act III — Software in the World:** operations, security, maintenance, evolution, and professional judgment.
+- **Act III — Engineering Software Systems:** applying those methods to the technical concerns of a software system — execution environments, data, architecture, dependencies, performance, reliability, security, and operation.
 
 See the [Calendar](calendar.md) for one 16-week sequence.
 

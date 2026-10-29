@@ -44,18 +44,19 @@ Units are published as their teaching materials are completed.
 - **[Modeling: Purposeful Reduction · Degrees of Semantic Commitment](act-2-delegation-and-control/02-modeling/index.md)** (2 lectures)
 - **[Alignment: From Guidance to Authority](act-2-delegation-and-control/03-alignment/index.md)**
 - **[Failure-Aware Engineering](act-2-delegation-and-control/04-failure-aware-engineering/index.md)**
+- **[Building Software with Agents](act-2-delegation-and-control/05-building-with-agents/index.md)** (2 lectures)
 
-*Remaining materials forthcoming.*
+## Act III — Engineering Software Systems
 
-## Act III — Software in the World
+*What must engineers understand and control as software systems grow, operate, and evolve?*
 
-*How do software systems operate, survive, and change?*
+Six units across nine lectures, developed through one running example: a small campus room reservation service that acquires a new engineering obligation in each unit.
 
-- Deployment, Operations & Observability
-- Security & Adversarial Engineering
-- Maintenance & Evolution
-- Engineering Capital & Sustained Evolution
-- Engineering in Practice
-- Professional Judgment, Ethics & Synthesis
+- **[Compute Environments & Data Management](act-3-software-in-the-world/02-compute-environments-and-data-management/index.md)** (2 lectures)
+- **[Technical Debt, Architecture & Supply Chains](act-3-software-in-the-world/03-technical-debt-architecture-and-supply-chains/index.md)**
+- **[Performance & Reliability](act-3-software-in-the-world/04-performance-and-reliability/index.md)** (2 lectures)
+- **[Security Engineering](act-3-software-in-the-world/05-security-engineering/index.md)** (2 lectures)
+- **[Operations & SRE](act-3-software-in-the-world/06-operations-and-sre/index.md)**
+- **[Course in Review: Engineering Controlled Change](act-3-software-in-the-world/07-engineering-controlled-change/index.md)**
 
-*Materials forthcoming.*
+*Unit descriptions are starter copy; full landers forthcoming.*

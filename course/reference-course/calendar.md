@@ -35,20 +35,28 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 6 | {module:Delegating to Software Agents: Old Problem, New Properties} · {module:Modeling: Purposeful Reduction} |
 | 7 | {module:Modeling: Degrees of Semantic Commitment} · {module:Alignment} |
 | 8 | {module:Failure-Aware Engineering} |
-| 9 | {module:Building with Agents: Agentic Workshop} · {module:Building with Agents: Software Factories} · Oral exam |
+| 9 | Oral exam |
+| 10 | {module:Building with Agents: Agentic Workshop} · {module:Building with Agents: Software Factories} |
 
-## Act III — Software in the World
+## Act III — Engineering Software Systems
 
-*How do software systems operate, survive, and change?*
+*What must engineers understand and control as software systems grow, operate, and evolve?*
+
+Six units across nine lectures, developed through one running example: a small campus room
+reservation service that acquires a new engineering obligation in each unit.
 
 | Week | Topic |
 |---|---|
-| 10 | {module:Deployment, Operations & Observability} |
-| 11 | {module:Security & Adversarial Engineering} |
-| 12 | {module:Maintenance & Evolution} |
-| 13 | {module:Engineering Capital & Sustained Evolution} |
-| 14 | {module:Engineering in Practice} |
-| 15 | {module:Professional Judgment, Ethics & Synthesis} |
-| 16 | Oral Exam / Course Synthesis |
+| 11 | {module:Compute Environments & Deployment} · {module:Data Management} |
+| 12 | {module:Technical Debt, Architecture & Supply Chains} · {module:Performance Engineering} |
+| 13 | {module:Reliability Engineering} · {module:Security I: Threat Modeling} |
+| 14 | {module:Security II: Controls & Assurance} · Thanksgiving recess; no class |
+| 15 | {module:Operations, Observability & Incident Response} · {module:Course in Review: Engineering Controlled Change} |
+| 16 | Oral Exam 2 / course closure |
+
+The act fits a term whose teaching weeks end before the final-exam period, with one recess day
+taken out of week 14. Two units are delivered as single lectures so that nine lectures fit the
+nine remaining class meetings; adopters with a different recess or a longer term can restore the
+second lecture of either.
 
 Adopters can compress, expand, or reorder modules. Dates, project milestones, breaks, and institutional requirements belong to the local course offering.
