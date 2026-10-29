@@ -8,6 +8,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
+materials:
+  - title: "Act III kickoff slides"
+    src: 3-0-Act-III-Kickoff.pptx
 ---
 
 # Act III — Engineering Software Systems
@@ -22,13 +25,14 @@ The method remains consistent across subjects. For each concern, we identify **t
 
 | Unit | Engineering problem | Representative models and evidence |
 | --- | --- | --- |
-| [Compute Environments & Data Management](02-compute-environments-and-data-management/index.md) | Where does software run, and how does it preserve information? | Deployment topology, resource assumptions, relational schema, transactions |
-| [Technical Debt, Architecture & Supply Chains](03-technical-debt-architecture-and-supply-chains/index.md) | Can a useful implementation be changed economically, and what obligations has it inherited? | Dependency graphs, coupling and complexity measures, architectural patterns, SBOMs, license inventory |
-| [Performance & Reliability](04-performance-and-reliability/index.md) | How does the system behave under workload and component failure? | Workload and capacity models, measurements, failure models, state machines |
-| [Security Engineering](05-security-engineering/index.md) | What can an adversary do, and which security properties must the system preserve? | Threat models, trust boundaries, authorization policies, security tests |
-| [Operations & SRE](06-operations-and-sre/index.md) | How can operators understand, recover, and learn from the running system? | SLOs, logs, metrics, traces, runbooks, incident records |
-| [Course in Review: Engineering Controlled Change](07-engineering-controlled-change/index.md) | How do these technical concerns become a sustained engineering practice? | Joined models, evidence, controls, and change decisions |
+| [Compute Environments & Deployment](02-compute-environments-and-deployment/index.md) | Where does software run, and how does a tested implementation become running software? | Deployment topology, resource assumptions, pipelines, release strategies |
+| [Data Management](03-data-management/index.md) | How does the system preserve information, and what does its database guarantee? | Relational schema, constraints, execution plans, transactions |
+| [Technical Debt, Architecture & Supply Chains](04-technical-debt-architecture-and-supply-chains/index.md) | Can a useful implementation be changed economically, and what obligations has it inherited? | Dependency graphs, coupling and complexity measures, architectural patterns, SBOMs, license inventory |
+| [Performance & Reliability](05-performance-and-reliability/index.md) | How does the system behave under workload and component failure? | Workload and capacity models, measurements, failure models, state machines |
+| [Security Engineering](06-security-engineering/index.md) | What can an adversary do, and which security properties must the system preserve? | Threat models, trust boundaries, authorization policies, security tests |
+| [Operations & SRE](07-operations-and-sre/index.md) | How can operators understand, recover, and learn from the running system? | SLOs, logs, metrics, traces, runbooks, incident records |
+| [Course in Review: Engineering Controlled Change](08-engineering-controlled-change/index.md) | How do these technical concerns become a sustained engineering practice? | Joined models, evidence, controls, and change decisions |
 
 The sequence follows the increasing obligations of a small application. We begin with its execution environment and persistent state. Next we examine its internal structure and inherited dependencies, then its behavior under load, failure, and attack. Finally, we consider how the running system is observed and maintained. The concluding unit connects these concerns to the course's definition of software engineering as controlled change.
 
-The act runs nine lectures. Two units — Technical Debt, Architecture & Supply Chains, and Operations & SRE — are delivered as single lectures; the remaining topical units take two each, and the review lecture closes the course. The units build on [Delegation](../act-2-delegation-and-control/01-delegation/index.md), [Modeling](../act-2-delegation-and-control/02-modeling/index.md), [Alignment](../act-2-delegation-and-control/03-alignment/index.md), [Failure-Aware Engineering](../act-2-delegation-and-control/04-failure-aware-engineering/index.md), and [Building Software with Agents](../act-2-delegation-and-control/05-building-with-agents/index.md).
+The act runs nine lectures. Two units — Performance & Reliability, and Security Engineering — take two lectures each; the other topical units take one, and the review lecture closes the course. A ten-minute kickoff opens the act ahead of the first lecture. The units build on [Delegation](../act-2-delegation-and-control/01-delegation/index.md), [Modeling](../act-2-delegation-and-control/02-modeling/index.md), [Alignment](../act-2-delegation-and-control/03-alignment/index.md), [Failure-Aware Engineering](../act-2-delegation-and-control/04-failure-aware-engineering/index.md), and [Building Software with Agents](../act-2-delegation-and-control/05-building-with-agents/index.md).
