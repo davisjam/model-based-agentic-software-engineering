@@ -5790,6 +5790,47 @@ _PDF_PAGE_FLOOR = 50  # a real book render; under this means the render collapse
 # a full-bleed rasterized cover or an un-downsampled image blows this past 30 MB. The gate blocks such a
 # bloated PDF from shipping via CI or the local push. Measured on the post-qpdf-repack file (what ships).
 _PDF_MAX_BYTES = 8 * 1024 * 1024  # 8 MiB = 8388608 bytes
+
+#: qpdf exits 3 for "operation succeeded with warnings" and still writes a usable file; 2 means a
+#: real error. Named because the distinction is the whole reason a warning-only repack is not a
+#: failed build.
+_QPDF_EXIT_WARNINGS = 3
+
+
+def qpdf_repack(pdf_out, packed, *, runner=None):
+    """Lossless object-stream packing that retains vector artwork and the tag tree.
+
+    Exists as its own function so the EXIT-CODE CONTRACT can be tested without qpdf, a TeX
+    toolchain, or CI. qpdf exits 0 on success, 2 on errors, and 3 on "operation succeeded with
+    warnings" — on 3 it has written a usable file. Treating every non-zero code as fatal refused the
+    whole book build on 261029: CI's pinned LaTeX (kernel 2025-11-01, tagpdf 0.99y) emits duplicate
+    `/Group` keys that qpdf reports as ~80 warnings, while LaTeX itself reported zero unapproved
+    diagnostics and the packed file was fine.
+
+    The failure could not be reproduced locally and never will be: this host's TeX is a year older
+    (kernel 2024-11-01, tagpdf 0.99o) and emits no such keys, so qpdf returns 0 here. That is
+    exactly why the contract is pinned by a test with an injected runner rather than by running the
+    real build — the environment that triggers it is not the environment the gate runs in.
+
+    Warnings are surfaced and counted rather than swallowed: duplicate keys are a real defect in the
+    generated PDF and someone should fix them upstream in the figure inclusion.
+    """
+    run = runner or (lambda cmd: subprocess.run(cmd, capture_output=True, text=True))
+    result = run(['qpdf', '--object-streams=generate',
+                  '--stream-data=compress', '--compression-level=9',
+                  '--remove-unreferenced-resources=yes', str(pdf_out), str(packed)])
+    if result.returncode == _QPDF_EXIT_WARNINGS:
+        warnings = [ln for ln in (result.stderr or "").splitlines() if ln.strip()]
+        first = warnings[0].strip() if warnings else "(none captured)"
+        print(f"qpdf: packed with {len(warnings)} warning(s) — file is usable; first: {first}",
+              flush=True)
+    elif result.returncode:
+        packed.unlink(missing_ok=True)
+        raise RuntimeError(f'qpdf packing failed (exit {result.returncode}): '
+                           + (result.stderr or "").strip())
+    packed.replace(pdf_out)
+
+
 _BOOK_TITLE = _BOOK_MANIFEST["title"]  # single source: the manifest, so the title can't drift across surfaces
 _BOOK_SUBTITLE = _BOOK_MANIFEST.get("subtitle", "")  # empty renders/asserts nothing
 
@@ -6640,14 +6681,7 @@ def build_pdf() -> int:
         pdf_out = mage_latex.build_pdf()
         # Lossless object-stream packing retains vector artwork and the tag tree.
         packed = pdf_out.with_suffix('.packed.pdf')
-        result = subprocess.run(['qpdf', '--object-streams=generate',
-                                 '--stream-data=compress', '--compression-level=9',
-                                 '--remove-unreferenced-resources=yes', str(pdf_out), str(packed)],
-                                capture_output=True, text=True)
-        if result.returncode:
-            packed.unlink(missing_ok=True)
-            raise RuntimeError('qpdf packing failed: ' + result.stderr.strip())
-        packed.replace(pdf_out)
+        qpdf_repack(pdf_out, packed)
         doc = book_ir.parse_book(include_appendices=True, for_print=True)
         _emit_book_staple(doc)
         driver = ROOT / "book/latex/build/mage-book.tex"

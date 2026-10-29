@@ -201,6 +201,12 @@ if _touches(changed, SCOPES["book"]):
         _fail("pre-push: TikZ reference preservation regression failed")
     if _run("tools/test_mage_tikz_typography.py"):
         _fail("pre-push: TikZ semantic typography regression failed")
+    # Pins the qpdf exit-code contract. Runs HERE as well as in CI precisely because the failure it
+    # guards is CI-only: the pinned newer LaTeX emits duplicate /Group keys that make qpdf exit 3,
+    # and this host's older TeX does not, so the real build goes green locally either way. The test
+    # injects a fake runner, so it costs milliseconds and needs neither qpdf nor TeX.
+    if _run("tools/test_qpdf_repack.py"):
+        _fail("pre-push: qpdf repack exit-code contract regression failed")
     if _run("tools/mage_tikz_charts.py", "--check") or _run("tools/mage_tikz_review.py", "--figures-only"):
         _fail("pre-push: grayscale TikZ candidate validation failed")
     print("pre-push: book/build_book.py --pdf (LaTeX PDF + strict final-log warnings + content-integrity gate) …", file=sys.stderr)

@@ -461,6 +461,7 @@ jobs:
           python3 -m unittest tests.test_tikz_audit
           python3 tools/test_mage_tikz_links.py
           python3 tools/test_mage_tikz_typography.py
+          python3 tools/test_qpdf_repack.py
           python3 tools/mage_tikz_charts.py --check
           python3 tools/mage_tikz_review.py --figures-only
           python3 book/build_book.py --pdf --no-split
