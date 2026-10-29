@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""pre-push: run the gates the pushed change can actually affect, then the deterministic floor.
+"""pre-push: run the gates the pushed change can actually affect — concurrently — then report per-phase.
 
-Four gates, in order, so a change that would fail CI cannot leave the machine:
+Four gates, in dependency order, so a change that would fail CI cannot leave the machine:
 
   1. `catalog.py build` — the actual markdown->HTML + mermaid render. This catches BUILD failures the
      test suite structurally cannot: a notation marker that doesn't head its block, a bad mermaid fence,
@@ -11,11 +11,16 @@ Four gates, in order, so a change that would fail CI cannot leave the machine:
      to CI's "Render markdown -> HTML" step. Now the render runs at pre-push, on `main`, where mmdc is
      installed. (260729 RCA: a mid-block `index-def` aborted CI's build while `--tier1` stayed green.)
 
-  2. `book/build_book.py --pdf` — the print-native LaTeX render + whole-book content-integrity gate
-     (page floor/ceiling, title + chapter/part titles present, tail present, part-opener spread sensor).
-     This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a LaTeX compile error
-     or a content-integrity regression is caught on the machine, not three minutes into CI — and the
-     gitignored /book/mage-book.pdf refreshes on every push instead of going stale between renders.
+  2. `book/build_book.py --pdf --no-split` — the print-native LaTeX render + whole-book content-integrity
+     gate (page floor/ceiling, title + chapter/part titles present, tail present, part-opener spread
+     sensor). This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a LaTeX
+     compile error or a content-integrity regression is caught on the machine, not three minutes into
+     CI — and the gitignored /book/mage-book.pdf refreshes on every push instead of going stale between
+     renders. `--no-split` because the per-section review PDFs are a LOCAL REVIEW AID, not a gate: CI
+     never compiles them (`_pdf_split_enabled` turns them off under CI), `build_book.py`'s own dispatch
+     comment declares "the deploy pre-push gate [is] full-only", and pre-push may only hold a subset of
+     what CI holds. Measured 261029: the 21 section compiles cost ~9 minutes of a ~21-minute gate while
+     gating nothing CI gates. Regenerate them on demand with `python3 book/build_book.py --pdf`.
 
   3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's LaTeX PDF
      render (parity with the book PDF). CI renders + publishes it on every push and asserts it
@@ -74,6 +79,46 @@ a gate's inputs.** A wrong guess therefore costs time, never correctness. Specif
   - If the range cannot be determined (a new branch, a shallow clone, an unreadable ref), EVERY gate
     runs. Unknown scope is never treated as empty scope.
 
+## Concurrency — how the gates run without stepping on each other
+
+Measured 261029 on the full book+handbook scope, the gates are mutually independent except where an
+artifact flows between them, so they run as PHASES on a small worker pool (3 by default — this
+machine routinely carries an agent fleet; `GC_PREPUSH_JOBS`, clamped to 1..4, tunes it). The checks
+themselves are unchanged: same commands, same scope rules, same failure texts. Only the schedule moved.
+
+The dependency edges, each from a measured artifact flow — not guessed:
+
+  - `site build` -> `book PDF`: both emit the writing-style exports/routers
+    (`_emit_writing_style_export` runs in the web build AND in `build_pdf`), so they must not
+    overlap; and the PDF phase must read the projections the build refreshed.
+  - `site build` -> `handbook PDF`: the handbook reads the shared bibliography surfaces the build
+    refreshes; this also preserves the hook's historical ordering for the two renders.
+  - `site build` + `book PDF` -> `tier1`: the deterministic floor reads the freshly built HTML,
+    `book/web/`, `plugin/` (site build) and runs the caption-orphan sensor against
+    `book/mage-book.pdf` when present (book PDF). Running it earlier would grade a stale artifact.
+  - Everything else is pairwise write-disjoint: the toolchain check compiles in
+    `latex/build/ci-tagging`, the TikZ suite in `latex/build/tikz`, the book in `book/latex/build`,
+    the handbook in `handbook/generated` + `handbook/dist`, the workbench in `workbench/`.
+
+The ONE shared mutable resource is the LuaLaTeX font cache (`latex/build/.texmf-var`, via
+`MAGE_TEXMF_CACHE` in `tools/latex_build.py`). Concurrent compilers racing one luaotfload cache can
+corrupt it, so each concurrent LaTeX phase gets its own PERSISTENT sibling cache
+(`.texmf-var-<phase>`), seeded by an APFS clone of the main one the first time so no phase pays the
+cold font-database rebuild. The book PDF — the canonical render — keeps the default cache, which is
+safe because every other user of it is either ordered before it (site build compiles no TeX) or
+redirected to its own cache.
+
+Each phase's output is BUFFERED and emitted as one labelled block with its wall-clock seconds when
+the phase finishes — never interleaved, because this repo has repeatedly lost a verdict to reading
+the wrong fragment of a log. On the first red phase the hook stops launching, terminates the phases
+still in flight (their status prints as CANCELLED, never as a verdict), and the LAST thing printed
+is the failing phase's name and its original failure text. A summary table closes every run either
+way, so the gate reports measurable results rather than just doing its work.
+
+`GC_PREPUSH_PLAN=1 git push` (or feeding the hook its stdin by hand) prints every phase and the exact
+argv of every step it WOULD run for this push's scope, without executing any of them — the mechanical
+enumeration used to diff the executed check set across hook revisions.
+
 Override: `GC_PREPUSH_ALL=1 git push` forces every gate regardless of scope.
 Bypass entirely (humans, rare — e.g. pushing a WIP branch): `git push --no-verify`.
 
@@ -83,8 +128,12 @@ Install once with `python3 catalog.py install-hooks` (sets core.hooksPath=hooks)
 No shell — pure Python, per the repo's tooling posture.
 """
 import os
+import shutil
 import subprocess
 import sys
+import threading
+import time
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _hook_root import committing_toplevel
@@ -108,10 +157,15 @@ SCOPES = {
 }
 
 ZERO = "0" * 40
+PLAN = bool(os.environ.get("GC_PREPUSH_PLAN"))
 
 
-def _run(*args: str) -> int:
-    return subprocess.run([sys.executable, *args], cwd=ROOT).returncode
+def _jobs() -> int:
+    try:
+        n = int(os.environ.get("GC_PREPUSH_JOBS", "3"))
+    except ValueError:
+        n = 3
+    return max(1, min(4, n))
 
 
 def _git(*args: str) -> str | None:
@@ -161,10 +215,165 @@ def _touches(paths: set[str] | None, prefixes: tuple[str, ...]) -> bool:
     return any(p.startswith(pre) for p in paths for pre in prefixes)
 
 
-def _fail(message: str) -> None:
-    sys.stderr.write(message + "(or `git push --no-verify` to override).\n")
-    sys.exit(1)
+def _texmf_env(tag: str) -> dict[str, str]:
+    """A per-phase LuaLaTeX cache so concurrent compilers never race one luaotfload database.
 
+    Persistent across pushes (it lives beside the main cache), seeded by an APFS clone of the warm
+    main cache on first use so the phase does not pay the cold font-database rebuild the shared
+    cache exists to avoid. Falls back to a plain copy off APFS, and to an empty directory when
+    there is nothing to clone — correctness never depends on the seed, only warmth does.
+    """
+    env = dict(os.environ)
+    base = os.path.join(ROOT, "latex", "build", ".texmf-var")
+    cache = os.path.join(ROOT, "latex", "build", f".texmf-var-{tag}")
+    if not PLAN and not os.path.isdir(cache):
+        if os.path.isdir(base):
+            cloned = subprocess.run(["cp", "-c", "-R", base, cache],
+                                    capture_output=True).returncode == 0
+            if not cloned:
+                shutil.rmtree(cache, ignore_errors=True)
+                try:
+                    shutil.copytree(base, cache)
+                except OSError:
+                    shutil.rmtree(cache, ignore_errors=True)
+        os.makedirs(cache, exist_ok=True)
+    env["MAGE_TEXMF_CACHE"] = cache
+    return env
+
+
+# ── The phase machinery: buffered output, one worker pool, terminate-on-first-red ──────────────────
+
+_CANCEL = threading.Event()
+_PROCS: set[subprocess.Popen] = set()
+_PROCS_LOCK = threading.Lock()
+_PLANNED: list[tuple[str, list[str]]] = []
+
+
+class _Cancelled(Exception):
+    pass
+
+
+class _PhaseCtx:
+    """One phase's world: run steps, buffer their output, stop on cancellation."""
+
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.buf: list[str] = []
+
+    def echo(self, line: str) -> None:
+        self.buf.append(line)
+
+    def run(self, argv: list[str], cwd: str | None = None, env: dict[str, str] | None = None) -> int:
+        if PLAN:
+            _PLANNED.append((self.name, list(argv)))
+            return 0
+        if _CANCEL.is_set():
+            raise _Cancelled()
+        proc = subprocess.Popen(argv, cwd=cwd or ROOT, env=env,
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        with _PROCS_LOCK:
+            _PROCS.add(proc)
+        try:
+            out, _ = proc.communicate()
+        finally:
+            with _PROCS_LOCK:
+                _PROCS.discard(proc)
+        if out:
+            self.buf.append(out.rstrip("\n"))
+        if _CANCEL.is_set():
+            raise _Cancelled()
+        return proc.returncode
+
+    def py(self, *args: str, env: dict[str, str] | None = None) -> int:
+        return self.run([sys.executable, *args], env=env)
+
+
+class Phase:
+    def __init__(self, name: str, fn, deps: tuple[str, ...] = (), cost: float = 1.0) -> None:
+        self.name, self.fn, self.deps, self.cost = name, fn, deps, cost
+
+
+def _emit_block(name: str, status: str, seconds: float, buf: list[str]) -> None:
+    rule = "─" * 78
+    sys.stderr.write(f"{rule}\npre-push phase: {name} — {status} ({seconds:.1f}s)\n{rule}\n")
+    for chunk in buf:
+        sys.stderr.write(chunk + "\n")
+    sys.stderr.flush()
+
+
+def _execute(phases: list[Phase]) -> int:
+    """Run the phases on a bounded pool, respecting deps; first red terminates the rest.
+
+    Only this (main) thread prints, so blocks never interleave. A failing phase's text is emitted
+    the moment it lands AND repeated at the very end, because the last lines are the ones a human
+    under a 20-minute gate actually reads.
+    """
+    by_name = {p.name: p for p in phases}
+    status: dict[str, str] = {}
+    seconds: dict[str, float] = {}
+    failures: list[tuple[str, str]] = []  # (phase, failure message)
+
+    def worker(phase: Phase):
+        ctx = _PhaseCtx(phase.name)
+        t0 = time.monotonic()
+        try:
+            message = phase.fn(ctx)
+            return phase.name, ("FAIL" if message else "PASS"), message, time.monotonic() - t0, ctx.buf
+        except _Cancelled:
+            return phase.name, "CANCELLED", None, time.monotonic() - t0, ctx.buf
+
+    pending = dict(by_name)
+    running = {}
+    pool = ThreadPoolExecutor(max_workers=_jobs())
+    t_start = time.monotonic()
+    try:
+        while pending or running:
+            if not _CANCEL.is_set():
+                ready = [p for p in pending.values()
+                         if all(status.get(d) == "PASS" for d in p.deps if d in by_name)]
+                for p in sorted(ready, key=lambda p: -p.cost):
+                    running[pool.submit(worker, p)] = p.name
+                    del pending[p.name]
+            if not running:
+                # Nothing runnable and nothing running: deps failed or everything was cancelled.
+                for name in pending:
+                    status[name] = "NOT RUN"
+                    seconds[name] = 0.0
+                pending.clear()
+                break
+            done, _ = wait(set(running), return_when=FIRST_COMPLETED)
+            for fut in done:
+                del running[fut]
+                name, verdict, message, dt, buf = fut.result()
+                status[name], seconds[name] = verdict, dt
+                _emit_block(name, verdict, dt, buf)
+                if verdict == "FAIL":
+                    failures.append((name, message))
+                    if not _CANCEL.is_set():
+                        _CANCEL.set()
+                        with _PROCS_LOCK:
+                            for proc in _PROCS:
+                                try:
+                                    proc.terminate()
+                                except OSError:
+                                    pass  # already gone; termination is best-effort cleanup
+    finally:
+        pool.shutdown(wait=True)
+
+    total = time.monotonic() - t_start
+    sys.stderr.write("\npre-push summary:\n")
+    for p in phases:
+        sys.stderr.write(f"  {status.get(p.name, 'NOT RUN'):9s} {p.name:34s} {seconds.get(p.name, 0.0):7.1f}s\n")
+    sys.stderr.write(f"pre-push: {total:.1f}s wall over {_jobs()} worker(s)\n")
+    if failures:
+        name, message = failures[0]
+        sys.stderr.write(f"\npre-push: phase FAILED: {name}\n")
+        sys.stderr.write((message or "") + "(or `git push --no-verify` to override).\n")
+        return 1
+    return 0
+
+
+# ── Scope resolution + the serial front (projection checks guard every consumer below) ─────────────
 
 changed = _changed_paths()
 if changed is None:
@@ -176,68 +385,90 @@ else:
 # LaTeX is authoritative. Check its tracked Markdown compatibility projections before any
 # consumer reads them. Never regenerate/stage manuscript files implicitly: the author runs
 # `sync`, reviews the projection diff, and stages the intended files with the LaTeX edit.
+# These two stay SERIAL and FIRST: they are sub-second-to-seconds, and every render below
+# consumes the projections they certify.
 for _source_tool in ("tools/mage_latex.py", "handbook/scripts/latex_source.py"):
+    if PLAN:
+        _PLANNED.append(("projection checks", [sys.executable, _source_tool, "sync", "--check"]))
+        continue
     _projection = subprocess.run([sys.executable, _source_tool, "sync", "--check"], cwd=ROOT)
     if _projection.returncode:
         print(f"pre-push: LaTeX projection check FAILED. Run `python3 {_source_tool} sync`, "
               "review and stage the generated Markdown with its LaTeX source, then retry.")
         sys.exit(_projection.returncode)
 
-# Host TeX Live's year is insufficient: its tagging packages may predate CI's.
-# Exercise both real covers and the known-bad control with the frozen compiler.
-if _touches(changed, SCOPES["book"]) or _touches(changed, SCOPES["handbook"]):
-    if _run("tools/check_print_toolchain.py"):
-        _fail("pre-push: frozen print toolchain/cover tagging check FAILED — push refused.\n")
 
-print("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …", file=sys.stderr)
-if _run("catalog.py", "build"):
-    _fail("\npre-push: catalog.py build FAILED — push refused.\n"
-          "The site does not render; fix the build error above ")
+# ── Phase bodies. Same commands, same failure texts as the serial hook; only the schedule moved. ──
 
-if _touches(changed, SCOPES["book"]):
-    if _run("-m", "unittest", "tests.test_tikz_audit"):
-        _fail("pre-push: TikZ geometry and reviewed-layout regression failed")
-    if _run("tools/test_mage_tikz_links.py"):
-        _fail("pre-push: TikZ reference preservation regression failed")
-    if _run("tools/test_mage_tikz_typography.py"):
-        _fail("pre-push: TikZ semantic typography regression failed")
+def _phase_toolchain(ctx: _PhaseCtx) -> str | None:
+    # Host TeX Live's year is insufficient: its tagging packages may predate CI's.
+    # Exercise both real covers and the known-bad control with the frozen compiler.
+    if ctx.py("tools/check_print_toolchain.py", env=_texmf_env("toolchain")):
+        return "pre-push: frozen print toolchain/cover tagging check FAILED — push refused.\n"
+    return None
+
+
+def _phase_site_build(ctx: _PhaseCtx) -> str | None:
+    ctx.echo("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …")
+    if ctx.py("catalog.py", "build"):
+        return ("\npre-push: catalog.py build FAILED — push refused.\n"
+                "The site does not render; fix the build error above ")
+    return None
+
+
+def _phase_book_static(ctx: _PhaseCtx) -> str | None:
+    env = _texmf_env("tikz")
+    if ctx.py("-m", "unittest", "tests.test_tikz_audit", env=env):
+        return "pre-push: TikZ geometry and reviewed-layout regression failed"
+    if ctx.py("tools/test_mage_tikz_links.py", env=env):
+        return "pre-push: TikZ reference preservation regression failed"
+    if ctx.py("tools/test_mage_tikz_typography.py", env=env):
+        return "pre-push: TikZ semantic typography regression failed"
     # Pins the qpdf exit-code contract. Runs HERE as well as in CI precisely because the failure it
     # guards is CI-only: the pinned newer LaTeX emits duplicate /Group keys that make qpdf exit 3,
     # and this host's older TeX does not, so the real build goes green locally either way. The test
     # injects a fake runner, so it costs milliseconds and needs neither qpdf nor TeX.
-    if _run("tools/test_qpdf_repack.py"):
-        _fail("pre-push: qpdf repack exit-code contract regression failed")
-    if _run("tools/mage_tikz_charts.py", "--check") or _run("tools/mage_tikz_review.py", "--figures-only"):
-        _fail("pre-push: grayscale TikZ candidate validation failed")
-    print("pre-push: book/build_book.py --pdf (LaTeX PDF + strict final-log warnings + content-integrity gate) …", file=sys.stderr)
-    if _run("book/build_book.py", "--pdf"):
-        _fail("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
-              "The PDF does not render or fails the content-integrity gate; fix the error above ")
-else:
-    print("pre-push: book PDF SKIPPED — no book or shared LaTeX input in this push", file=sys.stderr)
+    if ctx.py("tools/test_qpdf_repack.py", env=env):
+        return "pre-push: qpdf repack exit-code contract regression failed"
+    if ctx.py("tools/mage_tikz_charts.py", "--check", env=env) or \
+            ctx.py("tools/mage_tikz_review.py", "--figures-only", env=env):
+        return "pre-push: grayscale TikZ candidate validation failed"
+    return None
 
-if _touches(changed, SCOPES["handbook"]):
-    print("pre-push: handbook/scripts/build.py pdf (handbook LaTeX PDF + strict final-log warnings) …", file=sys.stderr)
-    if _run("handbook/scripts/build.py", "pdf"):
-        _fail("\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
-              "The handbook PDF does not render; fix the error above ")
-else:
-    print("pre-push: handbook PDF SKIPPED — no handbook or shared LaTeX input in this push", file=sys.stderr)
 
-# The staple's inputs are course landers, so it is scoped on course/ — NOT on handbook/, which is
-# where its only refresh used to hide. When handbook/ moved, the `pdf` target above already emitted
-# it, so skip the duplicate work; the gate is cheap either way (no chapter build).
-if _touches(changed, SCOPES["course"]) and not _touches(changed, SCOPES["handbook"]):
-    print("pre-push: handbook/scripts/build.py staple (landers staple — course/ moved) …", file=sys.stderr)
-    if _run("handbook/scripts/build.py", "staple"):
-        _fail("\npre-push: handbook/scripts/build.py staple FAILED — push refused.\n"
-              "The course-landers staple does not emit; fix the error above ")
-elif _touches(changed, SCOPES["course"]):
-    print("pre-push: landers staple already refreshed by the handbook PDF target", file=sys.stderr)
-else:
-    print("pre-push: landers staple SKIPPED — no course/ path in this push", file=sys.stderr)
+def _phase_book_pdf(ctx: _PhaseCtx) -> str | None:
+    ctx.echo("pre-push: book/build_book.py --pdf --no-split (LaTeX PDF + strict final-log warnings + content-integrity gate) …")
+    if ctx.py("book/build_book.py", "--pdf", "--no-split"):
+        return ("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
+                "The PDF does not render or fails the content-integrity gate; fix the error above ")
+    return None
 
-if _touches(changed, SCOPES["workbench"]):
+
+def _phase_handbook_pdf(ctx: _PhaseCtx) -> str | None:
+    ctx.echo("pre-push: handbook/scripts/build.py pdf (handbook LaTeX PDF + strict final-log warnings) …")
+    if ctx.py("handbook/scripts/build.py", "pdf", env=_texmf_env("handbook")):
+        return ("\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
+                "The handbook PDF does not render; fix the error above ")
+    return None
+
+
+def _phase_staple(ctx: _PhaseCtx) -> str | None:
+    ctx.echo("pre-push: handbook/scripts/build.py staple (landers staple — course/ moved) …")
+    if ctx.py("handbook/scripts/build.py", "staple"):
+        return ("\npre-push: handbook/scripts/build.py staple FAILED — push refused.\n"
+                "The course-landers staple does not emit; fix the error above ")
+    return None
+
+
+def _phase_tier1(ctx: _PhaseCtx) -> str | None:
+    ctx.echo("pre-push: catalog_tests.py --tier1 (deterministic gate) …")
+    if ctx.py("catalog_tests.py", "--tier1"):
+        return ("\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
+                "Fix the failing gate(s) above, ")
+    return None
+
+
+def _phase_workbench(ctx: _PhaseCtx) -> str | None:
     # The TypeScript gates run FIRST and are the cheap ones: a type error or a failing unit test is
     # a faster, more localized signal than a model-validation failure, and tsc under
     # noUncheckedIndexedAccess catches a class the tests cannot reach.
@@ -294,19 +525,20 @@ if _touches(changed, SCOPES["workbench"]):
 
     # The environment every command in this block runs under. Empty prefix => PATH's own Node is fine.
     wb_env = dict(os.environ)
+    wb = os.path.join(ROOT, "workbench")
     node_ok = _node_major("node") >= FLOOR
     if not node_ok:
         for bin_dir in _nvm_candidates():
             if _node_major(os.path.join(bin_dir, "node")) >= FLOOR:
                 wb_env["PATH"] = bin_dir + os.pathsep + wb_env.get("PATH", "")
-                print(f"pre-push: workbench gates using {bin_dir} — PATH's `node` is below "
-                      f"{FLOOR} and this one is not", file=sys.stderr)
+                ctx.echo(f"pre-push: workbench gates using {bin_dir} — PATH's `node` is below "
+                         f"{FLOOR} and this one is not")
                 node_ok = True
                 break
 
     if not node_ok:
-        print(f"pre-push: workbench gates SKIPPED — no Node >= {FLOOR} on PATH and none installed "
-              "under nvm (`nvm install` reads .nvmrc); CI runs them unconditionally", file=sys.stderr)
+        ctx.echo(f"pre-push: workbench gates SKIPPED — no Node >= {FLOOR} on PATH and none installed "
+                 "under nvm (`nvm install` reads .nvmrc); CI runs them unconditionally")
     else:
         for label, args in (
             ("tsc --noEmit (strict + noUncheckedIndexedAccess + exactOptionalPropertyTypes)",
@@ -316,11 +548,10 @@ if _touches(changed, SCOPES["workbench"]):
             ("npm test (unit + parity + source hygiene)", ["npm", "test", "--silent"]),
             ("npm run build (the published bundle must actually bundle)", ["npm", "run", "build", "--silent"]),
         ):
-            print(f"pre-push: workbench {label} …", file=sys.stderr)
-            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench"), env=wb_env).returncode
-            if rc:
-                _fail(f"\npre-push: workbench {label} FAILED — push refused.\n"
-                      "Fix the error above ")
+            ctx.echo(f"pre-push: workbench {label} …")
+            if ctx.run(args, cwd=wb, env=wb_env):
+                return (f"\npre-push: workbench {label} FAILED — push refused.\n"
+                        "Fix the error above ")
 
         # ── The browser-facing tiers ────────────────────────────────────────────────────────────
         #
@@ -371,33 +602,77 @@ if _touches(changed, SCOPES["workbench"]):
         ):
             absent = [why for path, why in needs if not os.path.isfile(path)]
             if absent:
-                print(f"pre-push: workbench {label} SKIPPED — missing {'; '.join(absent)}; "
-                      "CI runs it unconditionally", file=sys.stderr)
+                ctx.echo(f"pre-push: workbench {label} SKIPPED — missing {'; '.join(absent)}; "
+                         "CI runs it unconditionally")
                 continue
-            print(f"pre-push: workbench {label} …", file=sys.stderr)
-            rc = subprocess.run(args, cwd=os.path.join(ROOT, "workbench"), env=wb_env).returncode
-            if rc:
-                _fail(f"\npre-push: workbench {label} FAILED — push refused.\n"
-                      "Fix the error above ")
+            ctx.echo(f"pre-push: workbench {label} …")
+            if ctx.run(args, cwd=wb, env=wb_env):
+                return (f"\npre-push: workbench {label} FAILED — push refused.\n"
+                        "Fix the error above ")
 
-    print("pre-push: workbench/validate.py --self-test (rules fire on models that violate them) …", file=sys.stderr)
-    if _run("workbench/validate.py", "--self-test"):
-        _fail("\npre-push: workbench self-test FAILED — push refused.\n"
-              "A semantic rule stopped detecting its own violation; fix the error above ")
+    ctx.echo("pre-push: workbench/validate.py --self-test (rules fire on models that violate them) …")
+    if ctx.py("workbench/validate.py", "--self-test"):
+        return ("\npre-push: workbench self-test FAILED — push refused.\n"
+                "A semantic rule stopped detecting its own violation; fix the error above ")
     models = []
     for base in ("workbench/models", "workbench/examples"):
         d = os.path.join(ROOT, base)
         if os.path.isdir(d):
             models += [f"{base}/{n}" for n in sorted(os.listdir(d)) if n.endswith((".mage.yaml", ".mage.yml"))]
     for rel in models:
-        print(f"pre-push: workbench/validate.py {rel} …", file=sys.stderr)
-        if _run("workbench/validate.py", rel):
-            _fail(f"\npre-push: {rel} FAILED validation — push refused.\n"
-                  "Shape, a numbered semantic rule, or an asserted architectural query; see above ")
+        ctx.echo(f"pre-push: workbench/validate.py {rel} …")
+        if ctx.py("workbench/validate.py", rel):
+            return (f"\npre-push: {rel} FAILED validation — push refused.\n"
+                    "Shape, a numbered semantic rule, or an asserted architectural query; see above ")
+    return None
+
+
+# ── Assemble the plan for THIS push's scope. Same scope rules, same skip lines, as ever. ──────────
+
+phases: list[Phase] = []
+in_book = _touches(changed, SCOPES["book"])
+in_handbook = _touches(changed, SCOPES["handbook"])
+
+if in_book or in_handbook:
+    phases.append(Phase("print toolchain", _phase_toolchain, cost=3))
+
+phases.append(Phase("site build", _phase_site_build, cost=4))
+
+if in_book:
+    phases.append(Phase("book static checks", _phase_book_static, cost=2))
+    phases.append(Phase("book PDF", _phase_book_pdf, deps=("site build",), cost=10))
+else:
+    print("pre-push: book PDF SKIPPED — no book or shared LaTeX input in this push", file=sys.stderr)
+
+if in_handbook:
+    phases.append(Phase("handbook PDF", _phase_handbook_pdf, deps=("site build",), cost=8))
+else:
+    print("pre-push: handbook PDF SKIPPED — no handbook or shared LaTeX input in this push", file=sys.stderr)
+
+# The staple's inputs are course landers, so it is scoped on course/ — NOT on handbook/, which is
+# where its only refresh used to hide. When handbook/ moved, the `pdf` target above already emitted
+# it, so skip the duplicate work; the gate is cheap either way (no chapter build).
+if _touches(changed, SCOPES["course"]) and not in_handbook:
+    phases.append(Phase("landers staple", _phase_staple, cost=1))
+elif _touches(changed, SCOPES["course"]):
+    print("pre-push: landers staple already refreshed by the handbook PDF target", file=sys.stderr)
+else:
+    print("pre-push: landers staple SKIPPED — no course/ path in this push", file=sys.stderr)
+
+if _touches(changed, SCOPES["workbench"]):
+    phases.append(Phase("workbench gates", _phase_workbench, cost=5))
 else:
     print("pre-push: workbench gate SKIPPED — no workbench/ path in this push", file=sys.stderr)
 
-print("pre-push: catalog_tests.py --tier1 (deterministic gate) …", file=sys.stderr)
-if _run("catalog_tests.py", "--tier1"):
-    _fail("\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
-          "Fix the failing gate(s) above, ")
+tier1_deps = ("site build", "book PDF") if in_book else ("site build",)
+phases.append(Phase("tier1", _phase_tier1, deps=tier1_deps, cost=2))
+
+if PLAN:
+    for phase in phases:
+        print(f"PLAN phase: {phase.name}" + (f" (after: {', '.join(phase.deps)})" if phase.deps else ""))
+        phase.fn(_PhaseCtx(phase.name))
+    for name, argv in _PLANNED:
+        print(f"PLAN step [{name}]: {' '.join(argv)}")
+    sys.exit(0)
+
+sys.exit(_execute(phases))
