@@ -35,7 +35,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 6 | {module:Delegating to Software Agents: Old Problem, New Properties} · {module:Modeling: Purposeful Reduction} |
 | 7 | {module:Modeling: Degrees of Semantic Commitment} · {module:Alignment} |
 | 8 | {module:Failure-Aware Engineering} |
-| 9 | Oral exam |
+| 9 | {module:Building with Agents: Agentic Workshop} · {module:Building with Agents: Software Factories} · Oral exam |
 
 ## Act III — Software in the World
 
