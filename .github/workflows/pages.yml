@@ -288,7 +288,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Restore frozen TeX Live 2025
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        id: texlive-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ runner.temp }}/texlive-2025
           key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
@@ -298,6 +299,12 @@ jobs:
           sudo apt-get install -y librsvg2-bin poppler-utils qpdf
           bash tools/install_texlive_ci.sh
           rsvg-convert --version
+      - name: Save successfully installed frozen TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
       - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -310,6 +317,10 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
+      - name: Check frozen print toolchain and cover tagging before full builds
+        run: |
+          python3 -m pip install "pypdf>=5,<7"
+          python3 tools/check_print_toolchain.py --native
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -384,7 +395,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Restore frozen TeX Live 2025
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        id: texlive-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ runner.temp }}/texlive-2025
           key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
@@ -394,6 +406,12 @@ jobs:
           sudo apt-get install -y librsvg2-bin poppler-utils qpdf
           bash tools/install_texlive_ci.sh
           rsvg-convert --version
+      - name: Save successfully installed frozen TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
       - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -406,6 +424,10 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
+      - name: Check frozen print toolchain and cover tagging before full builds
+        run: |
+          python3 -m pip install "pypdf>=5,<7"
+          python3 tools/check_print_toolchain.py --native
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -481,7 +503,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Restore frozen TeX Live 2025
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        id: texlive-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ runner.temp }}/texlive-2025
           key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
@@ -491,6 +514,12 @@ jobs:
           sudo apt-get install -y librsvg2-bin poppler-utils qpdf
           bash tools/install_texlive_ci.sh
           rsvg-convert --version
+      - name: Save successfully installed frozen TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
       - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -503,6 +532,10 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
+      - name: Check frozen print toolchain and cover tagging before full builds
+        run: |
+          python3 -m pip install "pypdf>=5,<7"
+          python3 tools/check_print_toolchain.py --native
       - name: Check native LaTeX source bridge regressions
         run: |
           python3 handbook/scripts/test_latex_source.py
@@ -550,7 +583,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Restore frozen TeX Live 2025
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        id: texlive-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ runner.temp }}/texlive-2025
           key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
@@ -560,6 +594,12 @@ jobs:
           sudo apt-get install -y librsvg2-bin poppler-utils qpdf
           bash tools/install_texlive_ci.sh
           rsvg-convert --version
+      - name: Save successfully installed frozen TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
       - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -572,6 +612,10 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
+      - name: Check frozen print toolchain and cover tagging before full builds
+        run: |
+          python3 -m pip install "pypdf>=5,<7"
+          python3 tools/check_print_toolchain.py --native
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc
@@ -644,7 +688,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Restore frozen TeX Live 2025
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        id: texlive-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ runner.temp }}/texlive-2025
           key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
@@ -654,6 +699,12 @@ jobs:
           sudo apt-get install -y librsvg2-bin poppler-utils qpdf
           bash tools/install_texlive_ci.sh
           rsvg-convert --version
+      - name: Save successfully installed frozen TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/texlive-2025
+          key: texlive-2025-final-${{ runner.os }}-${{ hashFiles('tools/install_texlive_ci.sh') }}
       - name: Install Pandoc (pinned release; LaTeX compatibility projections)
         run: |
           PANDOC_VERSION=3.9.0.2
@@ -666,6 +717,10 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
+      - name: Check frozen print toolchain and cover tagging before full builds
+        run: |
+          python3 -m pip install "pypdf>=5,<7"
+          python3 tools/check_print_toolchain.py --native
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: .nvmrc

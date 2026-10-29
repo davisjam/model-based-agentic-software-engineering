@@ -51,6 +51,20 @@ labels that extended beyond an original viewport; the authored figures are prese
 `tools/install_texlive_ci.sh` installs a checksum-verified, frozen TeX Live 2025
 archive in CI. It does not modify a developer's system TeX installation.
 
+Before publication, `python3 tools/check_print_toolchain.py` compiles both real
+covers and a deliberately broken cover with the package revisions recorded in
+`latex/toolchain.json`. The TeX Live year alone does not guarantee matching
+LaTeX/tagpdf revisions. If native revisions differ, this check requires a running
+Docker engine and uses the digest-pinned Linux image (a large first download),
+with a separate font cache. Pre-push runs this check for print-related changes;
+CI runs the same check with `--native`, rejecting toolchain drift. It also checks
+that title/author text remains tagged rather than becoming decorative content.
+The complete builds retain their strict diagnostic and PDF structure gates.
+
+Decorative shipout artwork must wrap the entire TikZ picture in `bookdecorative`,
+not merely mark the enclosed image as an artifact: otherwise TikZ's internal
+boxes can become invalid direct marked-content children of the PDF Document.
+
 `tools/latex_build.py` disables shell escape, runs enough passes for references and
 contents to converge, and checks the final log. Errors, undefined references,
 missing characters, overfull boxes and package/font warnings fail the build.

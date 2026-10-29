@@ -85,6 +85,14 @@
 \newcommand{\bookboxtagtext}{\ifdefined\tagpdfparaOn\tagpdfparaOn\fi}
 \newcommand{\bookboxtagpause}{\ifdefined\tagpdfparaOff\par\tagpdfparaOff\fi}
 \newcommand{\bookboxtagend}{\ifdefined\tagstructend\tagstructend\tagpdfparaOn\fi}
+% Shipout artwork is decoration as a whole, including TikZ's internal boxes.
+% Marking only the enclosed image leaves those boxes as direct Document content
+% with newer tagpdf releases. Keep live cover text outside this environment.
+\ExplSyntaxOn
+\NewDocumentEnvironment{bookdecorative}{}
+  {\tag_mc_artifact_group_begin:n {}}
+  {\tag_mc_artifact_group_end:}
+\ExplSyntaxOff
 \newenvironment{bookbox}[2]{%
   \bookboxtagbegin
   \begingroup

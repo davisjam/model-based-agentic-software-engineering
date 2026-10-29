@@ -147,13 +147,15 @@ def cover_and_imprint(book):
 \hypersetup{pageanchor=false}
 \newgeometry{left=0.6in,right=0.6in,top=0.42in,bottom=0.42in}
 \AddToHookNext{shipout/background}{%
+\begin{bookdecorative}
 \begin{tikzpicture}[remember picture,overlay]
 \fill[covercream] (current page.south west) rectangle (current page.north east);
 \begin{scope}
 \clip ([yshift=1.25in]current page.south west) rectangle (current page.north east);
 \node[anchor=north west,inner sep=0pt] at ([yshift=5.83in]current page.north west) {\includegraphics[artifact,width=8.5in]{handbook/assets/cover-artwork.png}};
 \end{scope}
-\end{tikzpicture}}
+\end{tikzpicture}
+\end{bookdecorative}}
 \begin{titlepage}\thispagestyle{empty}
 \begingroup\centering\bookserif\linespread{1}\selectfont\setlength{\parskip}{0pt}
 {\fontsize{15}{18}\selectfont\color{bookmuted} @COMPANION@\par}
@@ -177,8 +179,8 @@ def cover_and_imprint(book):
     return template
 
 
-def render_cover_pdf(work_dir, book=None):
-    """Compile a fresh one-page native cover for web/ePub thumbnails.
+def write_cover_source(work_dir, book=None):
+    """Write a fresh one-page native cover for web/ePub thumbnails.
 
     Never reads an existing full-book PDF, so cover metadata/artwork cannot go stale.
     """
@@ -189,4 +191,8 @@ def render_cover_pdf(work_dir, book=None):
     cover=cover_and_imprint(book).split(r'\end{titlepage}',1)[0]+r'\end{titlepage}'
     source=work_dir/'handbook-cover.tex'
     source.write_text(preamble()+cover+'\n\\end{document}\n')
-    return compile_tex(source)
+    return source
+
+
+def render_cover_pdf(work_dir, book=None):
+    return compile_tex(write_cover_source(work_dir, book))

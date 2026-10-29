@@ -50,5 +50,14 @@ class StructureTests(unittest.TestCase):
         self.catalog['/StructTreeRoot']['/RoleMap'] = {'/chapter': '/other', '/other': '/chapter'}
         self.assertTrue(any('cyclic role' in item for item in inspect_catalog(self.catalog)[1]))
 
+    def test_document_rejects_direct_content_but_accepts_paragraphs(self):
+        for content in [0, {'/Type': '/MCR', '/MCID': 0}]:
+            with self.subTest(content=content):
+                catalog = {'/StructTreeRoot': {'/K': element('Document', [element('P'), content])}}
+                self.assertIn('Document has direct marked content instead of a structure element',
+                              inspect_catalog(catalog, headings=0)[1])
+        catalog = {'/StructTreeRoot': {'/K': element('Document', [element('P')])}}
+        self.assertEqual(inspect_catalog(catalog, headings=0)[1], [])
+
 
 if __name__ == '__main__': unittest.main()

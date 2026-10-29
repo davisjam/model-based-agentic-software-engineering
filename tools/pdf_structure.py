@@ -77,6 +77,13 @@ def inspect_catalog(catalog, *, headings=1, sections=0, tables=0, figures=0):
         seen.add(id(node))
         kind = role(node)
         counts[kind] += 1
+        if kind == "Document":
+            kids = _object(node.get("/K"))
+            for child in kids if isinstance(kids, list) else [kids]:
+                child = _object(child)
+                if ((isinstance(child, int) and not isinstance(child, bool)) or
+                        (isinstance(child, dict) and "/MCID" in child)):
+                    findings.append("Document has direct marked content instead of a structure element")
         if kind == "P" and content(node):
             content_paragraphs += 1
         if kind in {"H1", "H2", "H3", "Table", "Figure"} and not content(node):

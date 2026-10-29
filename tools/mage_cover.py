@@ -30,12 +30,14 @@ def cover_tex() -> str:
 \thispagestyle{empty}
 % The illustration is decorative. The title and author remain live tagged text.
 \AddToHookNext{shipout/background}{%
+  \begin{bookdecorative}
   \begin{tikzpicture}[remember picture,overlay]
     \begin{scope}
       \clip (current page.north west) rectangle ([yshift=-9.75in]current page.north east);
       \node[anchor=north west,inner sep=0pt,yshift=2.125in] at (current page.north west) {\includegraphics[artifact,width=8.5in,height=12.75in]{book/assets/cover-artwork.png}};
     \end{scope}
-  \end{tikzpicture}}
+  \end{tikzpicture}
+  \end{bookdecorative}}
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{0pt}
 \begin{center}
@@ -58,7 +60,7 @@ def cover_tex() -> str:
 '''
 
 
-def render_cover_pdf(work_dir: Path) -> Path:
+def write_cover_source(work_dir: Path) -> Path:
     work_dir = Path(work_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
     source = work_dir / 'mage-cover.tex'
@@ -66,7 +68,11 @@ def render_cover_pdf(work_dir: Path) -> Path:
                       + r'\documentclass[12pt,oneside]{book}' + '\n'
                       + r'\usepackage[mage]{house}' + '\n'
                       + r'\begin{document}' + cover_tex() + r'\end{document}' + '\n')
-    return compile_tex(source)
+    return source
+
+
+def render_cover_pdf(work_dir: Path) -> Path:
+    return compile_tex(write_cover_source(work_dir))
 
 
 if __name__ == '__main__':

@@ -101,7 +101,7 @@ def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
     env["TEXINPUTS"] = str(ROOT / "latex") + os.pathsep + env.get("TEXINPUTS", "")
     # Reuse one local cache across whole books, excerpts and covers. Rebuilding the
     # system font database in every output directory dominates cold compile time.
-    cache = ROOT / "latex" / "build" / ".texmf-var"
+    cache = Path(env.get("MAGE_TEXMF_CACHE", str(ROOT / "latex" / "build" / ".texmf-var")))
     cache.mkdir(parents=True, exist_ok=True)
     env["TEXMFVAR"] = str(cache)
     env["TEXMFCACHE"] = str(cache)

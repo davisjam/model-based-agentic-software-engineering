@@ -95,9 +95,9 @@ ROOT = committing_toplevel()
 # site, which gate 1 and gate 4 already cover unconditionally.
 SCOPES = {
     "book": ("book/", "book-models/", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
-             "tools/mage_latex.py", "tools/mage_assets.py", "tools/mage_tikz_charts.py", "tools/mage_tikz_review.py", "tools/mage_tikz_links.py", "tools/test_mage_tikz_links.py", "tools/mage_tikz_typography.py", "tools/test_mage_tikz_typography.py", "tools/tikz_audit.py", "tests/test_tikz_audit.py", "tests/fixtures/tikz/", "tools/mage_cover.py", "tools/cover_assets.py", "tools/install_texlive_ci.sh", "hooks/", ".github/workflows/pages.yml"),
+             "tools/mage_latex.py", "tools/mage_assets.py", "tools/mage_tikz_charts.py", "tools/mage_tikz_review.py", "tools/mage_tikz_links.py", "tools/test_mage_tikz_links.py", "tools/mage_tikz_typography.py", "tools/test_mage_tikz_typography.py", "tools/tikz_audit.py", "tests/test_tikz_audit.py", "tests/fixtures/tikz/", "tools/mage_cover.py", "tools/cover_assets.py", "tools/install_texlive_ci.sh", "tools/check_print_toolchain.py", "hooks/", ".github/workflows/pages.yml"),
     "handbook": ("handbook/", "tools/cover_assets.py", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
-                 "tools/install_texlive_ci.sh", "book/references.bib", "book/fonts/", "book/typst/fonts/",
+                 "tools/install_texlive_ci.sh", "tools/check_print_toolchain.py", "book/references.bib", "book/fonts/", "book/typst/fonts/",
                  "hooks/", ".github/workflows/pages.yml"),
     "workbench": ("workbench/",),
     # The landers staple is DERIVED from course/lectures/**/index.md, but until 261015 its only
@@ -182,6 +182,12 @@ for _source_tool in ("tools/mage_latex.py", "handbook/scripts/latex_source.py"):
         print(f"pre-push: LaTeX projection check FAILED. Run `python3 {_source_tool} sync`, "
               "review and stage the generated Markdown with its LaTeX source, then retry.")
         sys.exit(_projection.returncode)
+
+# Host TeX Live's year is insufficient: its tagging packages may predate CI's.
+# Exercise both real covers and the known-bad control with the frozen compiler.
+if _touches(changed, SCOPES["book"]) or _touches(changed, SCOPES["handbook"]):
+    if _run("tools/check_print_toolchain.py"):
+        _fail("pre-push: frozen print toolchain/cover tagging check FAILED — push refused.\n")
 
 print("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …", file=sys.stderr)
 if _run("catalog.py", "build"):
