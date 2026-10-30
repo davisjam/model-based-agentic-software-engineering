@@ -65,6 +65,7 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "subseteq": ("⊆", "subset.eq"),
     "varepsilon": ("ε", "epsilon.alt"),
     "epsilon": ("ε", "epsilon"),
+    "rho": ("ρ", "rho"),
     "mapsto": ("↦", "arrow.r.bar"),
 }
 

@@ -1,7 +1,34 @@
 """Shared print styling and strict compiler diagnostic policy."""
 import unittest
+from pathlib import Path
+import re
+import tempfile
 
 from latex_build import diagnostics, bold_table_headers, single_page_tables, namespace_heading_links
+
+
+class NativeMathRoundTrip(unittest.TestCase):
+    def test_multiline_display_equations_survive_print_assembly(self):
+        import mage_latex
+        equations = [
+            r'\rho=P(\lnot S\mid B)' + '\n' + r'=\frac{(1-s)q}{s(1-r)+(1-s)q}.',
+            r'C_N=C_{\text{build}}+\sum_{i=1}^{N}(C_{\text{run},i}+C_{\text{carry},i}),' +
+            '\n' + r'\qquad c_N=\frac{C_N}{D_N}.',
+        ]
+        with tempfile.TemporaryDirectory(dir=mage_latex.ROOT) as directory:
+            source, projection, output = [Path(directory, name) for name in
+                                          ('source.tex', 'projection.md', 'print.tex')]
+            source.write_text(r'\chapter{Math regression}' + '\n\n' +
+                              '\n\n'.join('Before.\n\n\\[\n' + eq +
+                                          '\n\\]\n\nAfter.' for eq in equations))
+            source.with_suffix('.assets.json').write_text('[]')
+            mage_latex.compatibility(source, projection)
+            mage_latex.migrate(projection, output, driver_enabled=False)
+            emitted = re.findall(r'\\\[(.*?)\\\]', output.read_text(), re.S)
+            self.assertEqual([' '.join(eq.split()) for eq in emitted],
+                             [' '.join(eq.split()) for eq in equations])
+            self.assertEqual(output.read_text().count('Before.'), 2)
+            self.assertEqual(output.read_text().count('After.'), 2)
 
 
 class HeadingLinks(unittest.TestCase):

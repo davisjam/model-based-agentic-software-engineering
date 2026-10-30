@@ -257,9 +257,9 @@
       "id": "H3-mechanized-assurance",
       "name": "Mechanized assurance",
       "family": "Governance",
-      "core_quantity": "defect escape vs throughput",
-      "statement": "For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape relative to assurance that requires proportional per-change human attention; the advantage should widen as autonomous throughput increases.",
-      "falsifier": "Mechanized coverage adds no protection, or its advantage over review does not widen as human attention saturates.",
+      "core_quantity": "escape and false rejection vs correct throughput",
+      "statement": "For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape at matched correct throughput compared with assurance that depends on producer compliance or proportional per-change human attention. The comparison must include false rejection and the cost of sustaining that throughput. For sound admission mechanisms over mechanically decidable obligations, the covered failure class should be excluded from admitted work even when producer reliability varies.",
+      "falsifier": "Mechanized assurance provides no reduction in defect escape at matched correct throughput.",
       "loops": [
         "L3-governance-adaptation"
       ]
@@ -292,7 +292,7 @@
       "name": "Environment fit",
       "family": "Economics",
       "core_quantity": "capacity × environment interaction",
-      "statement": "The effect of increasing agentic capacity on durable throughput, defect escape, and human-attention burden will depend on effective environment quality: capacity gains should translate into more durable progress in stronger environments and into more churn or intervention in weaker ones.",
+      "statement": "The effect of increasing agentic capacity on durable throughput, defect escape, and human attention per correct admitted change will depend on effective environment quality: capacity gains should translate into more durable progress in stronger environments and into more churn or intervention in weaker ones.",
       "falsifier": "Velocity relates to durable throughput the same way regardless of environment quality.",
       "loops": [
         "L2-churn-discovery",

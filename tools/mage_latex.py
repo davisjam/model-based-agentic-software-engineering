@@ -77,6 +77,12 @@ def unique_labels(text):
 def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=None):
     source, destination = source.resolve(), destination.resolve()
     raw = source.read_text() if raw_override is None else raw_override
+    # Native display math may span source lines. The compatibility projection keeps
+    # those lines inside an eq marker, but the book IR recognizes single-line
+    # markers. Normalize that marker before parsing, or Pandoc drops it as HTML.
+    raw = re.sub(r'<!--\s*eq:\s*(.*?)\s*-->',
+                 lambda m: '<!-- eq: ' + ' '.join(m[1].splitlines()) + ' -->',
+                 raw, flags=re.S)
     # Standalone metadata terminators may immediately follow prose; keep them as
     # dedicated native comments rather than raw HTML inside a Pandoc paragraph.
     raw = re.sub(r'(?m)^(<!--[^\n]*-->)$', r'\n\1\n', raw)

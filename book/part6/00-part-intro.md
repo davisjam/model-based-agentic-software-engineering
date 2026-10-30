@@ -18,10 +18,10 @@ The objective is to develop a theory of MAGE with testable predictions and expli
 
 > ### The synthesis
 >
-> The Master Equation describes the reliability of one act of delegated realization. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+> The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
 >
-> This chapter widens the unit of analysis. It begins with the Master Equation, adds the cost of repeated realization and independent assurance, and then makes the engineered environment itself dynamic. The result is a theory of how Modeling, Alignment, process, and accumulated engineering structure convert agentic capacity into durable progress.
+> This chapter widens the unit of analysis. It begins with production, independent assurance, and lifecycle cost, and then makes the engineered environment itself dynamic. The result is a theory of how Modeling, Alignment, process, and accumulated engineering structure convert agentic capacity into durable progress.
 
-**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Probabilistic surface · Master Equation
+**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Probabilistic surface
 
 **New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions · Testable predictions · Research agenda
