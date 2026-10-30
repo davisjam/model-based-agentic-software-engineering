@@ -470,7 +470,7 @@
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises.",
-              "block_index": 53
+              "block_index": 54
             }
           ]
         },
@@ -480,17 +480,17 @@
           "heading_text": "Enforcement Outside the Producing Run",
           "topic_sentence": "Software engineering already provides mechanisms for independent enforcement.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 57,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run: it can represent an architectural boundary, a dependency rule, or a safety condition and reject changes that violate it, so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
               "text": "Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 59
+              "block_index": 60
             }
           ]
         }
