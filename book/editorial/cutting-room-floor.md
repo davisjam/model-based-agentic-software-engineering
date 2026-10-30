@@ -50,3 +50,21 @@ Excerpt scope: Original paragraph retained in full for context; the two-source e
 ```latex
 MAGE draws on two kinds of evidence. The first is a single longitudinal case: one production system, built by one engineer using one vendor\textquotesingle s agent ecosystem over several months and used in production by me and my colleagues at Purdue. Numbers from that case are observations, not measured laws. The second is a set of reconstructions based on independent industrial accounts. Those accounts show less of how each system evolved, but more variation in technical and organizational choices, including systems that rely more heavily on explicit models and systems that rely more heavily on controls and human judgment. \magevalue{chapter:software-factories} presents both sources, states their limits, and ties empirical claims to supporting data or citations.
 ```
+
+## Chapter 1 delegation passage from 30 October 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, opening discussion of implementation and delegation.
+- Source revision before editing: `1f31538eb41fdb0aac202e8fda6f3df10581545e`
+- Source line: 30.
+- Removal date: 2026-10-30.
+- Removal revision: the commit introducing this archive entry and the approved replacement paragraph.
+- Status: set aside for later review; destination undecided.
+
+Reason: Replaced with the author's approved explanation of delegating judgment as an opportunity rather than a requirement. Responsibility and engineering control remain established in the Preface and surrounding discussion.
+
+Excerpt scope: The complete original paragraph, preserved before replacement.
+
+```latex
+Engineers can delegate increasing amounts of implementation while remaining responsible for the resulting system. The engineering problem is not how to keep humans performing work that machines can perform. It is how to delegate that work without surrendering the control required to understand, direct, evaluate, and change the resulting system.
+```

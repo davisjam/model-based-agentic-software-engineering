@@ -1,5 +1,6 @@
 % mage-auto-heading: accessibility-and-the-engineering-experiment
 % mage-auto-heading: what-the-user-sees
+% mage-auto-heading: adding-a-description-without-losing-the-document
 % mage-auto-heading: one-system-several-engineering-questions
 % mage-auto-heading: following-one-job
 % mage-auto-heading: how-the-book-uses-docable
@@ -101,6 +102,32 @@ Two tensions among these obligations make DocAble an engineering problem rather 
 % <!-- point: examples-establish-the-problem-full-requirements-follow | The examples establish the nature of the engineering problem; the factories chapter presents the complete requirements and examines how they shaped the system. | terms: governance-target-product -->
 
 These examples establish the nature of the engineering problem. \magevalue{chapter:software-factories} presents the complete requirements and examines how they shaped the resulting system.
+
+\section{Adding a Description Without Losing the Document}\label{heading:adding-a-description-without-losing-the-document}
+
+% <!-- point: a-useful-description-must-preserve-the-authors-document | Describing a lecture diagram requires interpretation in context, while the lecturer's original content must survive the repair. | terms: running-example, document-accessibility -->
+
+Consider a lecture slide containing a diagram and several sentences explaining it. A student using a screen reader needs a description that conveys what the diagram contributes to the lesson. ``A diagram'' would be a description, but not a particularly useful one. Producing something better requires interpreting the figure in context. Meanwhile, the lecturer\textquotesingle s original content must survive. Making a document accessible is not permission to rewrite the lecture.
+
+% <!-- point: structured-document-operations-make-the-repair-tractable | DocAble's structured document models and named operations expose the objects and changes relevant to a repair without repeatedly reconstructing the file format's machinery. | terms: running-example, modeling-principle -->
+
+DocAble uses structured document models to represent the objects its repairs operate on. Remediation code works through named document operations rather than manipulating the underlying file format wherever convenient. This gives the engineering question a manageable form: which object needs a description, what information should be attached to it, and which existing content must remain? The representation exposes the parts relevant to the repair without requiring every repair to rediscover the document format\textquotesingle s machinery.
+
+% <!-- point: preservation-requires-inclusion-rather-than-equality | Comparable content extracted from the original and revised documents lets DocAble require original content to remain while allowing added accessibility information. | terms: running-example, modeling-principle -->
+
+Preservation requires another purposeful representation. DocAble extracts comparable content from the original and revised documents. The original extracted content must remain present in the result. Equality would be the wrong requirement: the purpose of the repair is to add accessibility information. The relationship must allow those additions while detecting the disappearance of content the author supplied.
+
+% <!-- point: a-production-validator-enforces-the-preservation-condition | DocAble's production validator fails a job when the extracted-content preservation condition is violated; structured operations restrict repairs, and the validator checks their result. | terms: running-example, alignment-principle -->
+
+Alignment gives that requirement a consequence. A production validator compares the extracted content before and after remediation and fails the job when the preservation condition is violated. A repair does not become acceptable merely because it runs successfully or reports that it has finished. The resulting document must pass the check. The structured operations restrict how repairs are made; the validator checks a property of what they produced.
+
+% <!-- point: preservation-checks-leave-semantic-judgment-open | The foundation model can choose a description, but content inclusion establishes only survival of the extracted content, not meaningful alternative text or unchanged layout. | terms: running-example -->
+
+There is still useful judgment to delegate. The foundation model can interpret the diagram and choose how to describe it without an engineer writing every description in advance. The preservation check does not establish that the description is meaningful, nor does content inclusion alone establish that the layout is unchanged. Those are separate properties requiring suitable evidence. What the check does establish is narrower and useful: the content represented by its extractor has survived.
+
+% <!-- point: the-preservation-obligation-survives-implementation-choices | Coding agents may choose how to implement repairs within the document-model interface while the explicit preservation requirement and its enforcement continue to apply. | terms: running-example, modeling-principle, alignment-principle -->
+
+This arrangement also guides the coding agents that build and change DocAble. They can choose how to implement a new repair within the document-model interface, while the preservation requirement continues to apply. The engineer has made a consequential obligation explicit and given it an enforcement mechanism. Much of the implementation remains open. That combination---preserving what matters while leaving room to solve the problem---is the opportunity MAGE develops.
 
 \section{One System, Several Engineering Questions}\label{heading:one-system-several-engineering-questions}
 
