@@ -54,7 +54,7 @@ Seven units across nine lectures, developed through one running example: a small
 
 - **[Compute Environments & Deployment](act-3-software-in-the-world/01-compute-environments-and-deployment/index.md)**
 - **[Data Management](act-3-software-in-the-world/02-data-management/index.md)**
-- **[Technical Debt, Architecture & Supply Chains](act-3-software-in-the-world/03-technical-debt-architecture-and-supply-chains/index.md)**
+- **[Agentic technical debt: Architecture and supply chains](act-3-software-in-the-world/03-technical-debt-architecture-and-supply-chains/index.md)**
 - **[Performance & Reliability](act-3-software-in-the-world/04-performance-and-reliability/index.md)** (2 lectures)
 - **[Security Engineering](act-3-software-in-the-world/05-security-engineering/index.md)** (2 lectures)
 - **[Operations & SRE](act-3-software-in-the-world/06-operations-and-sre/index.md)**

@@ -48,7 +48,7 @@ reservation service that acquires a new engineering obligation in each unit.
 | Week | Topic |
 |---|---|
 | 11 | {module:Compute Environments & Deployment} · {module:Data Management} |
-| 12 | {module:Technical Debt, Architecture & Supply Chains} · {module:Performance Engineering} |
+| 12 | {module:Agentic technical debt: Architecture and supply chains} · {module:Performance Engineering} |
 | 13 | {module:Reliability Engineering} · {module:Security I: Threat Modeling} |
 | 14 | {module:Security II: Controls & Assurance} · Thanksgiving recess; no class |
 | 15 | {module:Operations, Observability & Incident Response} · {module:Course in Review: Engineering Controlled Change} |
