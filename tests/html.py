@@ -59,6 +59,21 @@ def _book_stem_for(tgt_site: str) -> str | None:
 #: Markdown attr_list id on an interleaved heading line (`## Title {#the-id}`) — an anchor target the
 #: HTMLParser cannot see (it is markdown, not markup), collected alongside the raw `id="…"` ids.
 _MD_ATTR_ID_RE = re.compile(r"\{#([^}]+)\}")
+#: An interleaved markdown heading with NO explicit `{#id}` (`### Exploring Alternative Reasoning
+#: Engines`). MkDocs' toc extension slugifies these into real ids at serve time, so they ARE valid
+#: anchor targets — but they are markdown, so neither the HTMLParser nor the attr_list regex sees
+#: them, and an in-page `](#…)` pointing at one reads as dangling. Measured 261030 on
+#: 5.2-inside-docables-software-factory: 15 markdown H3s against 1 raw `id="…"`, and 6 of 8 sampled
+#: slugs are present as ids on the LIVE published page. Collected so the gate matches what readers get.
+_MD_HEADING_RE = re.compile(r"^#{1,6}[ \t]+(.+?)[ \t]*$", re.M)
+
+
+def _heading_slug(title: str) -> str:
+    """MkDocs/Python-Markdown toc slug: strip markup, lowercase, non-alphanumerics to single dashes."""
+    t = re.sub(r"\{#[^}]+\}", "", title)          # an explicit id is collected separately
+    t = re.sub(r"<[^>]+>", "", t)                  # inline markup
+    t = re.sub(r"[*_`\[\]]", "", t).strip().lower()
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", t)).strip("-")
 #: Path PREFIXES for subtrees built by a SEPARATE CI step and assembled into the deployed site, absent from
 #: the stdlib `catalog.py build` on disk. `teach/` is the MkDocs-rendered Teach-with-MAGE course companion
 #: (built into `_site/teach` by the Pages workflow's mkdocs step); `book/se-handbook/` is the handbook's
@@ -69,14 +84,17 @@ _CI_BUILT_PREFIXES = ("teach/", "book/se-handbook/")
 
 
 def _parse_book_bodies() -> dict[str, _Refs]:
-    """`{stem: _Refs}` for every emitted book page body — refs from the raw HTML, ids from BOTH the raw
-    `id="…"` attributes and the interleaved markdown headings' `{#id}` attr blocks."""
+    """`{stem: _Refs}` for every emitted book page body — refs from the raw HTML, ids from the raw
+    `id="…"` attributes, the interleaved markdown headings' `{#id}` attr blocks, AND the slugs MkDocs
+    derives from plain markdown headings (which become ids at serve time)."""
     out: dict[str, _Refs] = {}
     for f in book_body_files():
         text = open(f, encoding="utf-8").read()
         p = _Refs()
         p.feed(text)
         p.ids.update(_MD_ATTR_ID_RE.findall(text))
+        p.ids.update(
+            _heading_slug(h) for h in _MD_HEADING_RE.findall(text) if _heading_slug(h))
         out[os.path.splitext(os.path.basename(f))[0]] = p
     return out
 
