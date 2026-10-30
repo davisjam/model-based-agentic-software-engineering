@@ -70,7 +70,12 @@ try {
     });
 
     try {
-      await page.goto(pathToFileURL(abs).href, { waitUntil: "networkidle0", timeout: 60000 });
+      // `load`, not `networkidle0`: these are static file:// pages with no post-load network
+      // activity, so networkidle0 spent its mandatory 500ms quiet period per page waiting for
+      // silence that was already total. Measured 261030 over 12 pages: 15.3s -> 1.87s wall
+      // (1.28 -> 0.16 s/page), identical verdicts. The double-rAF below still catches
+      // onload/rAF-deferred errors, which is what the wait was actually protecting.
+      await page.goto(pathToFileURL(abs).href, { waitUntil: "load", timeout: 60000 });
       // Give any onload / rAF-scheduled script (e.g. fitFig on the landing) a couple frames to run and
       // throw, so a deferred error is captured before we move on.
       await page.evaluate(
