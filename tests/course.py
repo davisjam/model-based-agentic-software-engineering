@@ -279,6 +279,45 @@ def check_course_lander_prose_word_band():
     return (FAIL if issues else PASS), issues
 
 
+def check_course_front_matter_parses():
+    """Every course page's front matter is parseable YAML — specifically, no unquoted colon-space.
+
+    WHY THIS EXISTS. On 261029 a unit title was retitled to `Agentic technical debt: Architecture
+    and supply chains` and written unquoted. YAML reads the second colon as a nested mapping, the
+    block fails to parse, and MkDocs renders the ENTIRE front matter as body text — the readings
+    YAML lands on the published page as literal prose. A second, older instance was found the same
+    day in `Course in Review: Engineering Controlled Change`.
+
+    What makes it worth a check rather than care: the page still LOOKS populated, so every existing
+    gate passed on it. validate was clean, the full tier1 suite was green, CI was green, and a
+    live-page fetch confirmed the title, premise and readings were present — all true, because they
+    were present as text. Nothing asked whether the block parses. It reached the published site.
+
+    Scope is deliberately this one failure, not YAML validity in general: gc is stdlib-only (no
+    pyyaml), and colon-space in an unquoted scalar is the whole observed class. Quoted values, block
+    scalars, and URLs (`://`, no space) are all fine and must not be flagged."""
+    pages = sorted(glob.glob(os.path.join(ROOT, "course/**/*.md"), recursive=True))
+    if not pages:
+        return FAIL, ["course front-matter: no pages matched — tree moved"]
+    issues: list[str] = []
+    for page in pages:
+        front, _ = _split_front_matter(open(page, encoding="utf-8").read())
+        if not front:
+            continue
+        for n, line in enumerate(front.split("\n"), start=2):  # +2: the opening `---` is line 1
+            m = re.match(r"^(\s*-?\s*)([A-Za-z_][\w-]*):\s+(.+?)\s*$", line)
+            if not m:
+                continue
+            value = m.group(3)
+            if value[:1] in "\"'|>[{#":        # quoted, block scalar, flow collection, comment
+                continue
+            if ": " in value:
+                issues.append(f"{rel(page)}:{n}: unquoted `{m.group(2)}:` value contains a "
+                              f"colon-space, which YAML reads as a nested mapping — quote it. "
+                              f"Value: {value[:60]}")
+    return (FAIL if issues else PASS), issues
+
+
 def check_course_nav_titles():
     """Every lecture module directory must carry a `.pages` file whose nav `title:` is capitalized.
 

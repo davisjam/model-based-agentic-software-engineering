@@ -131,6 +131,7 @@ from tests.html import (
 )
 from tests.course import (
     check_course_act_nav_covers_every_unit,
+    check_course_front_matter_parses,
     check_course_lander_prose_word_band,
     check_course_mage_tokens_resolve,
     check_course_module_schema,
@@ -269,6 +270,11 @@ CHECKS = [
     # the session-scaled prose band (module-schema.json: 750–1,000 words/session). Promote once drained.
     Check("course: ready lander prose within session-scaled word band (module-schema sessions band)", 1,
           lambda strict: check_course_lander_prose_word_band(), audit_only=True),
+    # A unit title containing a colon-space, written unquoted, makes YAML read a nested mapping: the
+    # block fails to parse and MkDocs renders the whole front matter as body text. Two instances
+    # reached the published site on 261029-30 with every other gate green. See tests/course.py.
+    Check("course: FRONT-MATTER — parses (no unquoted colon-space in a scalar)", 1,
+          lambda strict: check_course_front_matter_parses()),
     # Committed-deck validity (tools/pptx_validate.py): stdlib OPC part-coverage always; the genuine
     # OOXML schema validator (OpenXmlValidator, needs .NET) runs skip-if-absent via pre_push — the
     # html-validate promotion posture. Two shipped PowerPoint needs-repair corruptions motivated this;
