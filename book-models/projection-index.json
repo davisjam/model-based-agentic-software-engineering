@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 821,
+    "total_sites": 822,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 483,
+      "book-web": 484,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -37,7 +37,7 @@
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
-            "occ": 14
+            "occ": 17
           },
           {
             "file": "book/web/docs/1.3-the-agentic-substrate.md",
@@ -897,7 +897,7 @@
           },
           {
             "file": "book/web/docs/1.2-mage-by-example.md",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/web/docs/1.3-the-agentic-substrate.md",
@@ -1815,7 +1815,7 @@
           },
           {
             "file": "book/web/docs/1.2-mage-by-example.md",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/web/docs/1.3-the-agentic-substrate.md",
@@ -3100,6 +3100,10 @@
       "book": {
         "book-web": [
           {
+            "file": "book/web/docs/1.2-mage-by-example.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
             "occ": 7
           },
@@ -3247,7 +3251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 37
           }
         ]
       },

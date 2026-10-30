@@ -85,7 +85,7 @@ Architectural improvement has a cost. Refactoring changes the internal structure
 
 Technical debt provides an economic model for deciding when such work is justified. A simpler implementation may cost less initially but require additional effort whenever the system changes. A more structured implementation may require greater initial investment while reducing those recurring costs. Neither is automatically preferable. The decision depends on anticipated changes, the expected lifetime of the system, and the cost and risk of restructuring.
 
-Coding agents change this calculation by separating two costs that previously moved together. Implementation cost falls: an agent may make it inexpensive to generate an alternative structure or perform a mechanical refactoring. Assurance cost does not fall with it: the engineer must still determine whether the new implementation preserves the system's obligations — its behavior, its interfaces, the properties its tests and controls pin. A restructuring is justified only when both costs are weighed against the recurring cost of leaving the structure alone.
+Coding agents change this calculation because implementation and assurance costs need not decline together. Generating an alternative structure may become inexpensive, while establishing that it preserves the system's obligations — its behavior, its interfaces, the properties its tests and controls pin — can remain costly. A restructuring is justified only when both costs are weighed against the recurring cost of leaving the structure alone.
 
 ## The software we inherited
 
