@@ -411,6 +411,13 @@ HTML and PDF are peer outputs. Author semantic source, not target-specific hacks
 
 Do not hand-edit generated artifacts. Fix the source representation, build rule, or mechanism that future outputs inherit.
 
+Before cutting or deferring substantive book prose, preserve it in the single
+[cutting room floor](editorial/cutting-room-floor.md). Include the original text,
+source path and section, source revision and line range, removal date/revision
+when known, and the reason for setting it aside. Preserve citations and references.
+The author will decide whether to reuse it elsewhere; archiving a passage does not
+authorize relocating it into another chapter.
+
 ---
 
 # 15. Final test
