@@ -18,9 +18,14 @@ use_directory_urls: true
 strict: true  # fail the build on a bad internal link or nav reference (link-integrity gate)
 
 # README.md + LICENSE under course/ are repo-facing, not site pages.
+# lectures/act-3-*/archived/ is retired from the teaching sequence and kept for reference in the
+# repo only — it must NOT be published. Excluded rather than merely hidden from nav: `not_in_nav`
+# still BUILDS and SERVES the page, and `catalog.py build` runs a blocking reachability gate that
+# fails on any built page nothing links to, so hiding-without-excluding would red the build.
 exclude_docs: |
   README.md
   LICENSE
+  lectures/act-3-software-in-the-world/archived/*
 
 # The home page is reachable via the navbar title/logo; it does not need a second
 # redundant entry at the top of the sidebar. Keep it built + served, just out of the nav.
