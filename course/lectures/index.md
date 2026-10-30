@@ -52,12 +52,12 @@ Units are published as their teaching materials are completed.
 
 Seven units across nine lectures, developed through one running example: a small campus room reservation service that acquires a new engineering obligation in each unit.
 
-- **[Compute Environments & Deployment](act-3-software-in-the-world/02-compute-environments-and-deployment/index.md)**
-- **[Data Management](act-3-software-in-the-world/03-data-management/index.md)**
-- **[Technical Debt, Architecture & Supply Chains](act-3-software-in-the-world/04-technical-debt-architecture-and-supply-chains/index.md)**
-- **[Performance & Reliability](act-3-software-in-the-world/05-performance-and-reliability/index.md)** (2 lectures)
-- **[Security Engineering](act-3-software-in-the-world/06-security-engineering/index.md)** (2 lectures)
-- **[Operations & SRE](act-3-software-in-the-world/07-operations-and-sre/index.md)**
-- **[Course in Review: Engineering Controlled Change](act-3-software-in-the-world/08-engineering-controlled-change/index.md)**
+- **[Compute Environments & Deployment](act-3-software-in-the-world/01-compute-environments-and-deployment/index.md)**
+- **[Data Management](act-3-software-in-the-world/02-data-management/index.md)**
+- **[Technical Debt, Architecture & Supply Chains](act-3-software-in-the-world/03-technical-debt-architecture-and-supply-chains/index.md)**
+- **[Performance & Reliability](act-3-software-in-the-world/04-performance-and-reliability/index.md)** (2 lectures)
+- **[Security Engineering](act-3-software-in-the-world/05-security-engineering/index.md)** (2 lectures)
+- **[Operations & SRE](act-3-software-in-the-world/06-operations-and-sre/index.md)**
+- **[Course in Review: Engineering Controlled Change](act-3-software-in-the-world/07-engineering-controlled-change/index.md)**
 
 *The first two units carry full landers; the remaining descriptions are starter copy.*
