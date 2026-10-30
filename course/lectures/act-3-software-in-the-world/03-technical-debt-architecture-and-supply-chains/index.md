@@ -32,7 +32,7 @@ instructor_notes: ""
 status: draft
 materials:
   - title: "Lecture slides — (Agentic) Technical Debt: Architecture and Dependencies"
-    src: 3-3-Agentic-Technical-Debt-Architecture-and-Supply-Chains.pptx
+    src: 3-3-Agentic-Technical-Debt-Architecture-and-Dependencies.pptx
 ---
 
 **Premise.** *A working implementation is not necessarily one we can cheaply comprehend or safely change. Engineers must understand its architecture and dependencies to judge the costs and consequences of modifying it.*
