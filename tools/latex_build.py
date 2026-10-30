@@ -90,6 +90,22 @@ def bold_table_headers(latex: str) -> str:
     return re.sub(r"\\begin\{longtable\}.*?\\end\{longtable\}", table, latex, flags=re.S)
 
 
+def namespace_heading_links(latex: str, slug: str) -> str:
+    """Keep same-chapter links attached when repeated heading IDs are qualified."""
+    pattern = r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})'
+    destinations = {}
+    def heading(match):
+        old = match[2]
+        target = slug + ':' + old
+        destinations[old] = target
+        # Pandoc links use the Markdown heading ID, without our TeX prefix.
+        destinations[old.removeprefix('heading:')] = target
+        return match[1] + target + match[3]
+    latex = re.sub(pattern, heading, latex)
+    return re.sub(r'(\\hyperref\[)([^\]]+)(\])',
+                  lambda m: m[1] + destinations.get(m[2], m[2]) + m[3], latex)
+
+
 def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
     source = Path(source).resolve()
     output_dir = Path(output_dir).resolve() if output_dir else source.parent

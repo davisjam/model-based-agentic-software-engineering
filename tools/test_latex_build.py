@@ -1,7 +1,19 @@
 """Shared print styling and strict compiler diagnostic policy."""
 import unittest
 
-from latex_build import diagnostics, bold_table_headers, single_page_tables
+from latex_build import diagnostics, bold_table_headers, single_page_tables, namespace_heading_links
+
+
+class HeadingLinks(unittest.TestCase):
+    def test_repeated_headings_link_to_their_own_chapter(self):
+        source = (r'\subsection{Summary}\label{heading:summary}' '\n'
+                  r'\hyperref[summary]{Summary} \hyperref[heading:summary]{Again} '
+                  r'\hyperref[figure-example]{Figure}')
+        for slug in ('chapter-a', 'chapter-b'):
+            output = namespace_heading_links(source, slug)
+            self.assertIn(r'\label{' + slug + ':heading:summary}', output)
+            self.assertEqual(output.count(r'\hyperref[' + slug + ':heading:summary]'), 2)
+            self.assertIn(r'\hyperref[figure-example]{Figure}', output)
 
 
 class DiagnosticPolicy(unittest.TestCase):

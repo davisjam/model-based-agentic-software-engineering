@@ -513,7 +513,7 @@ def _prepare_record(task):
         return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
-    from latex_build import bold_table_headers, single_page_tables
+    from latex_build import bold_table_headers, single_page_tables, namespace_heading_links
     latex = bold_table_headers(latex)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
     # This five-column comparison fits at its normal table size on one page.
@@ -523,7 +523,7 @@ def _prepare_record(task):
     latex = single_page_tables(latex, {'equation-hierarchy'}, placement='!htbp',
                                start_on_new_page=True)
     # Headings repeat between chapters; make destination identities unambiguous.
-    latex = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + slug + ':' + m[2] + m[3], latex)
+    latex = namespace_heading_links(latex, slug)
     # Each record retains its explicit chapter title and a unique chapter anchor.
     latex = latex.replace('\\chapter{', '\\chapter*{', 1)
     latex = latex.replace('\\chapter*{' + inline(record['chapter_title']) + '}', '\\chapter*{' + inline(record['chapter_title']) + '}\n\\phantomsection\\label{chapter:' + slug + '}\n\\addcontentsline{toc}{chapter}{' + inline(record['chapter_title']) + '}', 1)
