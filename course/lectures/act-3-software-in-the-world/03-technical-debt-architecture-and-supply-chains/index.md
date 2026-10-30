@@ -1,5 +1,5 @@
 ---
-title: Agentic technical debt: Architecture and supply chains
+title: "Agentic technical debt: Architecture and supply chains"
 readings:
   groups:
     - heading: Architectural choices and their consequences

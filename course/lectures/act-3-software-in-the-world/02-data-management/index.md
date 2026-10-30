@@ -32,7 +32,7 @@ Our room reservation service initially keeps reservations in memory. This is ade
 
 A database is a system for managing stored information through defined operations and guarantees. The familiar choice between relational and NoSQL databases is only one part of the design. Engineers must also choose how the application expresses queries, what constraints the storage system enforces, how concurrent operations interact, and how the system behaves as demand increases. A database can be a local library embedded in one process or a distributed service used by many applications.
 
-## One lecture: Data Management
+## Structure of this unit
 
 We begin with an abstract database model and compare relational, document, key-value, and graph representations. We then develop a relational schema for the reservation service, examine SQL and object-relational mapping (ORM), and look beneath the query interface at execution plans, indexes, and batching. The final part addresses transactions, concurrency, and schema evolution. Throughout, the question is which obligations the database can enforce and which remain the responsibility of application code or the wider system.
 

@@ -1,5 +1,5 @@
 ---
-title: Course in Review: Engineering Controlled Change
+title: "Course in Review: Engineering Controlled Change"
 instructor_materials: []
 student_materials: []
 assignments: []

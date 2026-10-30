@@ -31,7 +31,7 @@ A room reservation service runs successfully on a developer's laptop. Its HTTP e
 
 The word *deployment* sometimes refers narrowly to copying software into production. Here it includes selecting an execution environment, describing the intended arrangement, preparing a deployable artifact, and controlling its release. These activities are related but distinct. A suitable environment does not guarantee a correct installation, and a successful installation does not establish that the system will behave acceptably under production conditions.
 
-## One lecture: Compute Environments & Deployment
+## Structure of this unit
 
 We begin by comparing the environments in which software executes, including embedded devices, mobile and desktop computers, servers, and cloud platforms. We then develop a deployment model for the reservation service and use it to compare design alternatives. The second half of the lecture examines build and runtime environments, continuous integration and delivery, and release strategies that limit the consequences of a defective change.
 
