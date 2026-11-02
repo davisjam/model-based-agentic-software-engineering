@@ -331,3 +331,11 @@ DocAble is the primary case study. \magevalue{chapter:software-factories} examin
 
 We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it.
 ```
+
+### Roadmap authorship correction, 2 November 2026
+
+Source: `book/latex/sources/part1/1.2-mage-by-example.tex`, §1.2, line 191, revision `0fff0effd1aabeb85ed7554da46b45f7497304a0`. The author corrected the Chapter 4 sentence to first person: this case study concerns his work as a single engineer. Removed in the commit introducing this note; only the replaced sentence is preserved below.
+
+```latex
+\magevalue{chapter:one-problem-many-models} follows how engineers use and revise those models and controls as the system evolves.
+```
