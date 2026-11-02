@@ -17,7 +17,7 @@ Coding agents make implementation cheap enough to change the engineering problem
 
 For an analogy, let us begin with office supplies. Consider first a stapler and a hole-punch. The purpose and limitations are in the names. Need two sheets joined together, or a hole punched? Look no further. These tools perform narrow operations on artifacts that already exist.
 
-But is the same true about printers? A 2D printer can produce pages of text, images, or a combination of the two. A 3D printer builds physical objects from descriptions of their shapes. In each case, the same machine can produce an enormous variety of artifacts. Both are fabricative: their productive capacity is open-ended.\magefootnote{fabricative}{I use \emph{fabricative} (open-ended) for a productive technology whose useful output classes are not fixed by the machine itself. The capability arrives before the engineering conventions for exploiting it. New artifact types, representations, interfaces, constraints, and operating practices are discovered as people learn what the technology is useful for. Writing and general-purpose computation offer earlier examples; commodity generative intelligence adds a similarly broad realization substrate to engineering.}
+But is the same true about printers? A 2D printer can produce pages of text, images, or a combination of the two. A 3D printer builds physical objects from descriptions of their shapes. In each case, the same machine can produce an enormous variety of artifacts. Both are fabricative: their productive capacity is open-ended.\magefootnote{fabricative}{Here, \emph{fabricative} means open-ended in the kinds of artifacts the machinery can realize, rather than limited to one predetermined operation.}
 
 % <!-- point: open-ended-capacity-must-be-engineered | People make fabricative capacity useful by developing forms and ways of working. | terms: printer-metaphor, commodity-intelligence -->
 
@@ -86,21 +86,17 @@ These ideas have antecedents in AI research on external representations, memory,
 
 % <!-- section-terms: whose-fault, build-instructions -->
 
-% <!-- point: suspect-the-engineered-setup-before-a-machine-limit | When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability. | terms: whose-fault -->
+% <!-- point: suspect-the-engineered-setup-before-a-machine-limit | Before blaming productive machinery, examine the engineer’s work in representing the problem, choosing required properties, and arranging how the result will be checked. | terms: whose-fault -->
 
-When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability. Observed performance is a property of the whole arrangement, not just the productive machinery.
+“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked. A 3D-printed bracket may fail because the printer cannot achieve the required accuracy, but it may also fail because the design, material, or fabrication instructions were unsuitable. Diagnosing the printer alone would overlook much of the engineering.
 
-% <!-- point: a-failed-part-has-several-diagnoses | A failed part can reveal several different problems. | terms: whose-fault -->
+% <!-- point: inferred-completion-is-not-explicit | Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs. | terms: whose-fault, build-instructions -->
 
-A 3D printer separates productive capability from the instructions that condition it. A photograph may show what an object should look like, but appearance does not specify internal structure, material, tolerances, load paths, or fabrication constraints. A failed part can therefore reveal several different problems: the machine lacked capability; the model omitted a consequential property; the chosen material could not satisfy it; or the fabrication instructions permitted a realization that should have been ruled out.
+Software agents blur the distinction between the productive machinery and the engineering supplied to it because they can infer missing structure. A capable agent may produce an impressive result from a screenshot, prose request, or incomplete specification, filling in decisions that an engineer might otherwise have had to make explicit. That inferential capacity makes delegation useful, but it can also make omissions in the engineer\textquotesingle s work harder to notice. A completed artifact does not establish that the inferred choices satisfy the intended properties or reflect acceptable tradeoffs.
 
-% <!-- point: inferred-completion-is-not-explicit | Inferred completion is not an explicit specification. | terms: whose-fault, build-instructions -->
+% <!-- point: inspect-what-the-engineer-controlled-first | Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit. | terms: whose-fault, build-instructions -->
 
-Software agents blur this distinction because they can infer missing structure. A capable agent may produce an impressive result from a screenshot, prose request, or incomplete specification. But inferred completion is not an explicit statement of which properties must hold, which tradeoffs are acceptable, or what evidence establishes acceptance.
-
-% <!-- point: inspect-what-the-engineer-controlled-first | When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability. | terms: whose-fault, build-instructions -->
-
-When an agent produces the wrong result, inspect first what the engineer controlled: the instructions, the representation of the problem, the task boundary, the available tools, and the evidence the work was required to satisfy. Sometimes the foundation model simply lacks the necessary capability. Failed output alone does not establish that diagnosis.
+When an agent produces the wrong result, start with what the engineer controlled: the instructions, the representation of the problem, the task boundary, the available tools, and the evidence required of the result. Were important properties missing from the representation? Did an instruction leave a decision open that should have been settled? Could the checks detect the error? Sometimes the foundation model simply lacks the necessary capability. Failed output alone does not establish that diagnosis.
 
 % <!-- point: velocity-amplifies-sound-and-bad-engineering-alike | Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike. | terms: build-instructions -->
 

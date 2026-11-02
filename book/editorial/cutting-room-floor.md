@@ -204,3 +204,55 @@ Excerpt scope: The complete original paragraph.
 ```latex
 Commodity intelligence can also change which traditional engineering choices remain consequential. Consider the choice of a programming language. A human team might once have chosen Java over another suitable language simply because its developers already knew Java. If an agent can implement competently in either language, that constraint largely disappears: some language still has to be chosen, but the particular choice may no longer deserve much engineering attention. Other language choices remain consequential. A deployment target may require a particular toolchain, or a safety requirement may favor a language that provides a needed property. The relevant question is therefore not whether engineers have traditionally made a choice, but what property made the choice consequential.
 ```
+
+## Chapter 1 failure diagnosis from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, Examine the Environment First.
+- Source revision before editing: `43d71912a18af1b31ab48ebbd9de5b226be4a337`
+- Source lines: 89–103.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `s11-failure-diagnosis`, approved by the author.
+- Status: original preserved; replaced by the approved wording.
+
+Reason: Open with the approved craftsman aphorism and direct attention to the engineer’s work. Preserve the distinction between productive machinery and the engineering supplied to it, explain how agent inference blurs that distinction, and retain the acknowledgment of genuine capability limits.
+
+Excerpt scope: The complete original source span, including any point annotations.
+
+```latex
+% <!-- point: suspect-the-engineered-setup-before-a-machine-limit | When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability. | terms: whose-fault -->
+
+When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability. Observed performance is a property of the whole arrangement, not just the productive machinery.
+
+% <!-- point: a-failed-part-has-several-diagnoses | A failed part can reveal several different problems. | terms: whose-fault -->
+
+A 3D printer separates productive capability from the instructions that condition it. A photograph may show what an object should look like, but appearance does not specify internal structure, material, tolerances, load paths, or fabrication constraints. A failed part can therefore reveal several different problems: the machine lacked capability; the model omitted a consequential property; the chosen material could not satisfy it; or the fabrication instructions permitted a realization that should have been ruled out.
+
+% <!-- point: inferred-completion-is-not-explicit | Inferred completion is not an explicit specification. | terms: whose-fault, build-instructions -->
+
+Software agents blur this distinction because they can infer missing structure. A capable agent may produce an impressive result from a screenshot, prose request, or incomplete specification. But inferred completion is not an explicit statement of which properties must hold, which tradeoffs are acceptable, or what evidence establishes acceptance.
+
+% <!-- point: inspect-what-the-engineer-controlled-first | When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability. | terms: whose-fault, build-instructions -->
+
+When an agent produces the wrong result, inspect first what the engineer controlled: the instructions, the representation of the problem, the task boundary, the available tools, and the evidence the work was required to satisfy. Sometimes the foundation model simply lacks the necessary capability. Failed output alone does not establish that diagnosis.
+```
+
+## Chapter 1 fabricative footnote from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, fabricative terminology footnote.
+- Source revision before editing: `43d71912a18af1b31ab48ebbd9de5b226be4a337`
+- Source lines: 20–20.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `s11-fabricative-footnote`, approved by the author.
+- Status: original preserved; replaced by the approved wording.
+
+Reason: Keep the approved concise definition in the introduction. Set aside the broader historical argument about writing, general-purpose computation, and the discovery of engineering conventions for possible later reuse.
+
+Excerpt scope: The complete original source span, including any point annotations.
+
+```latex
+\magefootnote{fabricative}{I use \emph{fabricative} (open-ended) for a productive technology whose useful output classes are not fixed by the machine itself. The capability arrives before the engineering conventions for exploiting it. New artifact types, representations, interfaces, constraints, and operating practices are discovered as people learn what the technology is useful for. Writing and general-purpose computation offer earlier examples; commodity generative intelligence adds a similarly broad realization substrate to engineering.}
+```
