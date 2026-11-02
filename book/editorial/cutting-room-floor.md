@@ -256,3 +256,22 @@ Excerpt scope: The complete original source span, including any point annotation
 ```latex
 \magefootnote{fabricative}{I use \emph{fabricative} (open-ended) for a productive technology whose useful output classes are not fixed by the machine itself. The capability arrives before the engineering conventions for exploiting it. New artifact types, representations, interfaces, constraints, and operating practices are discovered as people learn what the technology is useful for. Writing and general-purpose computation offer earlier examples; commodity generative intelligence adds a similarly broad realization substrate to engineering.}
 ```
+
+## Chapter 1 DocAble introduction from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.2-mage-by-example.tex`
+- Section: §1.2, MAGE by Example, opening paragraph.
+- Source revision before editing: `5d54a8032817d2829b0f04d454ca0c8fd87d353b`
+- Source line: 17.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `s12-distinguish-two-roles`, approved by the author.
+- Status: original preserved; replaced by the approved wording.
+
+Reason: Retain the focus on DocAble as a production system built largely through coding agents. Replace the comparative “deepest worked example” with “running case study” and simplify the Chapter 5 transition without foreshadowing models and Alignment mechanisms.
+
+Excerpt scope: The complete original paragraph, including its link and Chapter 5 cross-reference.
+
+```latex
+\href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} provides the book\textquotesingle s deepest worked example: a production accessibility system built largely through coding agents. \magevalue{chapter:software-factories} presents the full case study; before examining its models and Alignment mechanisms here, a few facts about the system are in order.
+```
