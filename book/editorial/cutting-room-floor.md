@@ -68,3 +68,24 @@ Excerpt scope: The complete original paragraph, preserved before replacement.
 ```latex
 Engineers can delegate increasing amounts of implementation while remaining responsible for the resulting system. The engineering problem is not how to keep humans performing work that machines can perform. It is how to delegate that work without surrendering the control required to understand, direct, evaluate, and change the resulting system.
 ```
+
+## Chapter 1 repeated engineering-object paragraph from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, “The Engineering Object.”
+- Source revision before editing: `d0a9332fdfe2094ac2ec272e84db96f4619b693a`
+- Source lines: 61–63.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved deletion.
+- Review item: `s11-repeated-engineering-object`, approved by the author.
+- Status: set aside for later review; destination undecided.
+
+Reason: The preceding environment discussion and definition already explain what engineers design. Remove the immediate repetition so the discussion of the durable engineering problem leads directly into MAGE’s focus.
+
+Excerpt scope: The complete paragraph and its point annotation, preserved before removal.
+
+```latex
+% <!-- point: the-object-of-engineering-expands-beyond-implementation | The object of engineering expands beyond the implementation to the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce. | terms: commodity-intelligence -->
+
+The object of engineering therefore expands beyond the implementation. Engineers also design the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce.
+```

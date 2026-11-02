@@ -7,7 +7,7 @@
     "derived_ids": 218,
     "missing_topic_sentence": 5,
     "sections_drained": 172,
-    "paragraph_points": 818
+    "paragraph_points": 817
   },
   "chapters": [
     {
@@ -132,24 +132,19 @@
               "block_index": 22
             },
             {
-              "slug": "the-object-of-engineering-expands-beyond-implementation",
-              "text": "The object of engineering expands beyond the implementation to the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce.",
-              "block_index": 24
-            },
-            {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure.",
-              "block_index": 26
+              "block_index": 24
             },
             {
               "slug": "modeling-and-alignment-supply-the-instruction-package",
               "text": "Modeling and Alignment supply the printer's missing instruction halves.",
-              "block_index": 28
+              "block_index": 26
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE shifts the primary engineering focus to the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 35
+              "block_index": 33
             }
           ]
         },
@@ -159,32 +154,32 @@
           "heading_text": "Examine the Environment First",
           "topic_sentence": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 35,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
-              "block_index": 39
+              "block_index": 37
             },
             {
               "slug": "a-failed-part-has-several-diagnoses",
               "text": "A failed part can reveal several different problems.",
-              "block_index": 41
+              "block_index": 39
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Inferred completion is not an explicit specification.",
-              "block_index": 43
+              "block_index": 41
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 45
+              "block_index": 43
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 47
+              "block_index": 45
             }
           ]
         }
