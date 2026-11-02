@@ -139,3 +139,24 @@ When agents perform the implementation, more of the engineer\textquotesingle s c
 
 In the printer metaphor, the governed engineering environment is the engineered instruction set around the productive machinery: the representations that tell it what matters, the boundaries that constrain realization, and the evidence used to decide whether the result is acceptable. Some of that environment helps the agent reason better; other parts remove selected judgments from the agent\textquotesingle s discretion altogether.
 ```
+
+## Chapter 1 MAGE definition from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, “The Engineering Object.”
+- Source revision before editing: `6e3334180762924949507c638d1deec7dc859f7a`
+- Source lines: 63–65.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `11-definition`, approved by the author.
+- Status: set aside for later review; destination undecided.
+
+Reason: Replace the indirect account of MAGE's focus with the approved definition of MAGE as an engineering methodology. The new paragraph explains decisions that persist across tasks and the spectrum of delegated judgment, potential leverage, and risk.
+
+Excerpt scope: The original paragraph and its point annotation, preserved in full.
+
+```latex
+% <!-- point: mage-is-about-that-environment | MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure. | terms: commodity-intelligence -->
+
+MAGE is principally about that environment. We will get to foundation models, harnesses, tools, hooks, skills, and workflows because their properties determine what can be engineered around them. But the method lies in how engineers represent what matters, how they enforce obligations, and how they decide which recurring judgments should become durable engineering structure.
+```
