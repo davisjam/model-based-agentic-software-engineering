@@ -76,7 +76,7 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 
 \textbf{Foundation model.} The trained model at the bottom of the agent stack. Its capabilities and context capacity set important limits that the harness and engineered environment must work within.
 
-\textbf{Agentic harness.} The runtime wrapped around the foundation model --- Claude Code, OpenCode, and their kin --- that feeds it prompts, manages the context window, and provides hooks, skills, and tools.
+\textbf{Agentic harness.} The runtime that turns a foundation model’s reasoning into action by managing context, invoking tools, and returning results to the model. It may expose hooks at which additional code can run. How those facilities are configured and used is part of the engineered environment.
 
 \textbf{Skills and tools.} Capabilities exposed through an agentic harness that extend what an agent can do. A skill provides reusable guidance for a recurring class of work; a tool provides a deterministic capability the agent can invoke rather than approximate through reasoning.
 
@@ -94,7 +94,7 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 \caption{The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.}
 \end{figure}
 
-\textbf{Governed Engineering Environment.} An engineered environment where selected engineering obligations are enforced by durable mechanisms instead of relying mainly on people to remember or inspect them. Explicit models let those mechanisms govern properties that would otherwise require a person to reconstruct or judge them.
+\textbf{Governed Engineering Environment.} An engineered environment whose repeatable mechanisms enforce selected engineering obligations. The engineered environment comprises the project’s representations, tools, processes, permissions, and checks, including how harness facilities are used. A harness supplies hooks; configuring them to require project checks contributes to the environment. Build gates and review procedures can contribute independently of the harness. Explicit models let the environment govern properties that would otherwise require a person to reconstruct or judge them.
 
 \textbf{Governance mechanism.} A repeatable structure that enforces an engineering obligation in the environment. A mechanism can play four roles: constraints restrict permissible actions; sensors produce evidence; validators check evidence against an obligation; and gates decide whether work may cross a workflow boundary. One mechanism may play more than one role.
 

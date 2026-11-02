@@ -66,10 +66,10 @@
       "node_kind": "environment",
       "label": "the engineering environment",
       "question": "What conditions does the arrangement create for the work?",
-      "aliases": ["Governed Engineering Environment", "the engineered environment"],
-      "role_test": "Is the referent what the ARRANGEMENT of the factory's parts CREATES — the conditions agents produce work inside, and the accumulated constraints and information they inherit?",
-      "negative_rule": "Do not use `environment` as a loose synonym for the factory's contents. The factory is the system; the environment is the condition arranging it produces. Both name the whole, from different angles — that is why no third collective noun is needed.",
-      "exemplars": ["the existing engineering environment shaped how the work could be realized", "a Governed Engineering Environment"]
+      "aliases": ["the engineered environment"],
+      "role_test": "Is the referent the project’s deliberate arrangement of representations, tools, processes, permissions, and checks, including how harness facilities are configured and used and structures outside the harness? This is the engineered-environment concept registered in book/index-terms.md; the factory vocabulary retains engineering-environment as its local node ID.",
+      "negative_rule": "Distinguish facilities from their engineering use: a harness provides hooks; the engineered environment includes the checks installed through them, plus structures outside the harness. Do not equate the general environment with its governed form, which enforces selected obligations. The factory is the production system; the environment describes the conditions arranged for the work.",
+      "exemplars": ["the existing engineering environment shaped how the work could be realized", "the same harness used with different project checks and permissions"]
     }
   ],
 

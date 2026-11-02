@@ -410,32 +410,32 @@
       "part": 1,
       "sections": [
         {
-          "section_id": "foundation-model-and-agentic-harness",
+          "section_id": "foundation-model-agentic-harness-and-engineered-environment",
           "level": 2,
-          "heading_text": "Foundation Model and Agentic Harness",
-          "topic_sentence": "A foundation model makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required.",
+          "heading_text": "Foundation Model, Agentic Harness, and Engineered Environment",
+          "topic_sentence": "A **foundation model** makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required.",
           "id_source": "derived",
           "block_index": 6,
           "points": [
             {
               "slug": "model-plus-harness-form-a-new-engineering-substrate",
-              "text": "A foundation model supplies broad inexpensive semantic reasoning; an agentic harness turns it into action, manages the working context, and exposes points where the work can be observed or constrained — the useful unit is the pair inside an engineered environment.",
+              "text": "A foundation model supplies inexpensive reasoning; the harness supplies runtime facilities, including hooks; the engineered environment puts those facilities to use and adds project structures beyond the harness.",
               "block_index": 8
             },
             {
               "slug": "four-foundation-model-properties",
               "text": "Four properties of the foundation model matter to the engineering argument: broad semantic reasoning, probabilistic output, bounded working state, and inexpensive repeated reasoning.",
-              "block_index": 11
+              "block_index": 15
             },
             {
               "slug": "three-harness-capabilities",
               "text": "The harness contributes three complementary capabilities: action (tools turn outputs into operations), context management (assembling and maintaining working state), and interposition (points where the environment can observe, constrain, or deny an action).",
-              "block_index": 14
+              "block_index": 18
             },
             {
               "slug": "the-substrate-framing-is-an-emerging-consensus",
               "text": "None of these properties is alien to human engineering; what changes is their combination with broad inexpensive reasoning and a machine-mediated environment, and recent harness-engineering work treats autonomous capability as a property of the model–harness–environment system.",
-              "block_index": 17
+              "block_index": 21
             }
           ]
         },
@@ -445,32 +445,32 @@
           "heading_text": "The Reasoning Horizon",
           "topic_sentence": "Scale creates a reasoning problem before an agent ever enters the picture.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 24,
           "points": [
             {
               "slug": "scale-creates-the-reasoning-problem-before-an-agent-enters",
               "text": "Scale creates a reasoning problem before an agent enters; a long engineering task is a sequence of related decisions whose required state grows while the active state available to the reasoner stays finite.",
-              "block_index": 22
+              "block_index": 26
             },
             {
               "slug": "once-a-task-exceeds-active-state-question-relevant-state-must-be-reconstructed",
               "text": "Once a task exceeds active state, some information must live elsewhere and be recovered; poor reconstruction re-solves solved questions and contradicts constraints, so the problem is how much question-relevant state must be reconstructed for the next judgment.",
-              "block_index": 25
+              "block_index": 29
             },
             {
               "slug": "availability-is-not-a-useful-representation",
               "text": "Harnesses move the boundary by expanding or better managing working state, but availability is not a useful representation — usable context falls short of nominal capacity and present state is not equally accessible, and raw implementation is an expensive substrate when the question depends on a smaller set of relationships.",
-              "block_index": 27
+              "block_index": 31
             },
             {
               "slug": "the-horizon-is-a-locality-problem-for-reasoning-state",
               "text": "The reasoning horizon is a locality problem: systems keep useful state close to the computation that consumes it, and purposeful representations apply the same principle semantically — a dependency graph or state machine answers a question that retrieved source lines merely make available.",
-              "block_index": 30
+              "block_index": 34
             },
             {
               "slug": "the-reasoning-horizon-defined",
               "text": "The reasoning horizon is the boundary beyond which consequential state can no longer be carried in active reasoning and must be reconstructed; larger windows, stronger reasoners, retrieval, and memory move it, and Modeling moves it differently by changing the representation over which reasoning occurs.",
-              "block_index": 32
+              "block_index": 36
             }
           ]
         },
@@ -480,22 +480,22 @@
           "heading_text": "Probabilistic Work Needs External Enforcement",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 43,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 41
+              "block_index": 45
             },
             {
               "slug": "enforcement-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not constitute independent evidence — the environment must establish what evidence counts.",
-              "block_index": 43
+              "block_index": 47
             },
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises.",
-              "block_index": 54
+              "block_index": 58
             }
           ]
         },
@@ -505,17 +505,17 @@
           "heading_text": "Enforcement Outside the Producing Run",
           "topic_sentence": "Software engineering already provides mechanisms for independent enforcement.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 61,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run: it can represent an architectural boundary, a dependency rule, or a safety condition and reject changes that violate it, so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 58
+              "block_index": 62
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
               "text": "Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 60
+              "block_index": 64
             }
           ]
         }

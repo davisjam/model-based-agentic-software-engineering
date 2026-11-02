@@ -90,6 +90,8 @@ More context does not automatically solve a representation problem.
 
 ## Engineering environment
 
+Keep **agentic harness** and **engineered environment** distinct. The harness supplies runtime facilities, including context management, tool invocation, and hooks. The engineered environment is the project’s arrangement of representations, tools, processes, permissions, and checks: how those harness facilities are configured and used, plus structures outside the harness. A hook facility belongs to the harness; installing a project check through it is part of engineering the environment. This is a distinction of roles, not necessarily of software packages. A **Governed Engineering Environment** is the form that enforces selected obligations; it is not a synonym for the general environment. Use the existing term IDs `agentic-harness` and `engineered-environment`, whose canonical definitions are in §1.3 and `book/data/definitions.json`.
+
 The environment carries engineering decisions forward through models, APIs, abstractions, tests, static checks, generators, gates, permissions, deployment controls, conventions, and other mechanisms.
 
 When describing one, say what it actually does.

@@ -339,3 +339,40 @@ Source: `book/latex/sources/part1/1.2-mage-by-example.tex`, §1.2, line 191, rev
 ```latex
 \magevalue{chapter:one-problem-many-models} follows how engineers use and revise those models and controls as the system evolves.
 ```
+
+
+## Harness and engineered environment definitions, 2 November 2026
+
+The author approved review item `13-substrate`: retain the textbook explanation of inexpensive reasoning, define harness facilities separately from their engineering use, and bold the defined terms. The glossary now develops the environment distinction within the GEE entry. Removed in the commit introducing this note.
+
+### §1.3, Foundation Model and Agentic Harness
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, revision `a3385492a357c8681cefb8d0605925cb0fdb1ac7`, lines 22–30.
+
+```latex
+\section{Foundation Model and Agentic Harness}\label{heading:foundation-model-and-agentic-harness}
+
+% <!-- section-terms: engineering-substrate, foundation-model, agentic-harness -->
+
+% <!-- point: model-plus-harness-form-a-new-engineering-substrate | A foundation model supplies broad inexpensive semantic reasoning; an agentic harness turns it into action, manages the working context, and exposes points where the work can be observed or constrained — the useful unit is the pair inside an engineered environment. | terms: engineering-substrate, foundation-model, agentic-harness -->
+
+% <!-- index-def: engineering-substrate -->
+
+A foundation model makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required. Of course, training a frontier model can require billions of dollars in capital, data, and computation---but using an already-trained model for one additional reasoning task is comparatively cheap. An agentic harness---the runtime around it---turns that reasoning into action, manages the working context available to it, and exposes points where the resulting work can be observed or constrained. The useful engineering unit is therefore not the foundation model alone, but the foundation model and harness operating inside an engineered environment.
+```
+
+### Glossary, Agentic harness
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `a3385492a357c8681cefb8d0605925cb0fdb1ac7`, lines 79–79.
+
+```latex
+\textbf{Agentic harness.} The runtime wrapped around the foundation model --- Claude Code, OpenCode, and their kin --- that feeds it prompts, manages the context window, and provides hooks, skills, and tools.
+```
+
+### Glossary, Governed Engineering Environment
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `a3385492a357c8681cefb8d0605925cb0fdb1ac7`, lines 97–97.
+
+```latex
+\textbf{Governed Engineering Environment.} An engineered environment where selected engineering obligations are enforced by durable mechanisms instead of relying mainly on people to remember or inspect them. Explicit models let those mechanisms govern properties that would otherwise require a person to reconstruct or judge them.
+```

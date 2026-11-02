@@ -7,7 +7,7 @@
 
   "_book_only_note": "Every record now carries `site_home` = \"N/A\": the landing dropped its on-landing definitions strip (commit 727378a — 'end the landing at the nav cards; drop on-landing catalogue + vocabulary strip'), so NO definition projects to the site. The landing's conceptual preview is carried by the big-ideas projection (`id=bi-*`) plus the nav cards; each definition's realization is its BOOK home (§2.1 for the core four + the structured rider; the preface, §2.3, and §1.3 for the three core-construct insets — churn, governance-mechanism, engineered-agent-loop). `check_definitions_site` skips N/A records in the model→site direction, and the site→model direction is vacuously satisfied (no `def-*` ids on the landing). The three core-construct records also carry the concepts model's L1 home (joined by slug); their definitional text here is the SSOT the prose insets mirror. RECONCILIATION (projection metamodel, book-models/projections.json + projection-index.json): `site_home` names only the landing def-strip anchor (dropped in 727378a), NOT every website appearance of the concept. Churn, for instance, is `site_home:\"N/A\"` here yet renders a dedicated website concept page (concept-churn.html) plus a landing Big-Idea card (bi-churn) — a real cross-cutting site presence this field cannot express. That contradiction is now caught mechanically by the projection-index SITE-HOME gate (`projections_model.py site-home`, audit-only): a book-only definition whose concept has its own website concept page is flagged, so the `site_home:\"N/A\"` claim can no longer silently under-report a concept that does project to the site. The value is left as-is on purpose — flipping it would re-render the removed def-strip and break `check_definitions_site`; the projection index is the reconciling source of truth for where the concept actually renders.",
 
-  "_order": ["model", "agent", "engineering", "software-engineering", "structured", "churn", "compounding", "governance-mechanism", "engineered-agent-loop", "reasoning-horizon", "long-horizon-task"],
+  "_order": ["model", "agent", "agentic-harness", "engineered-environment", "engineering", "software-engineering", "structured", "churn", "compounding", "governance-mechanism", "engineered-agent-loop", "reasoning-horizon", "long-horizon-task"],
 
   "model": {
     "term": "Model",
@@ -180,5 +180,57 @@
     "book_home_owed": {"section": "Chapter 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
+  },
+
+  "agentic-harness": {
+    "term": "Agentic harness",
+    "box": "The runtime that turns the foundation model’s reasoning into action.",
+    "aspects": [
+      {
+        "lead": "Runtime facilities",
+        "text": "The harness manages context, invokes tools in response to model outputs, returns their results, and may expose hooks for additional code."
+      },
+      {
+        "lead": "Facilities versus use",
+        "text": "The existence of a hook is a harness facility. The engineer’s use of it to apply a project check belongs to the engineered environment. The distinction concerns roles, not a requirement for separate software packages."
+      }
+    ],
+    "site_home": "N/A",
+    "derived_from": "book/latex/sources/part1/1.3-the-agentic-substrate.tex#idx-def-agentic-harness",
+    "book_home": "reasoning-horizon#idx-def-agentic-harness",
+    "book_home_owed": {
+      "section": "Chapter 1 — §1.3 Agentic Machinery and Engineering Mechanisms",
+      "status": "landed",
+      "note": "Canonical definition introduced with the author-approved harness/environment distinction on 2 November 2026."
+    },
+    "lexicon_link": "the-books-language"
+  },
+
+  "engineered-environment": {
+    "term": "Engineered environment",
+    "box": "The project’s deliberate arrangement of representations, tools, processes, permissions, and checks around agentic machinery.",
+    "aspects": [
+      {
+        "lead": "Engineering use of harness facilities",
+        "text": "The environment includes how the engineer configures and uses the harness. Installing a hook check to prevent edits to generated files is one example; the same harness can support different environments."
+      },
+      {
+        "lead": "Beyond the harness",
+        "text": "Build checks, architectural models, and review procedures also contribute, even when they operate independently of the harness."
+      },
+      {
+        "lead": "The governed form",
+        "text": "A Governed Engineering Environment enforces selected engineering obligations through repeatable mechanisms. The general environment and its governed form are related concepts, not synonyms."
+      }
+    ],
+    "site_home": "N/A",
+    "derived_from": "book/latex/sources/part1/1.3-the-agentic-substrate.tex#idx-def-engineered-environment",
+    "book_home": "reasoning-horizon#idx-def-engineered-environment",
+    "book_home_owed": {
+      "section": "Chapter 1 — §1.3 Agentic Machinery and Engineering Mechanisms",
+      "status": "landed",
+      "note": "Canonical definition introduced with the author-approved harness/environment distinction on 2 November 2026."
+    },
+    "lexicon_link": "the-books-language"
   }
 }
