@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 29,
     "slugs_rendered": 22,
-    "total_sites": 822,
+    "total_sites": 821,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 484,
+      "book-web": 483,
       "website-catalogue": 219,
       "website-industry-cases": 47,
       "website-landing": 14,
@@ -893,7 +893,7 @@
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
-            "occ": 48
+            "occ": 44
           },
           {
             "file": "book/web/docs/1.2-mage-by-example.md",
@@ -2878,10 +2878,6 @@
             "occ": 9
           },
           {
-            "file": "book/web/docs/1.1-the-printer.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/1.2-mage-by-example.md",
             "occ": 1
           },
@@ -3053,7 +3049,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 47
+            "occ": 46
           }
         ]
       },

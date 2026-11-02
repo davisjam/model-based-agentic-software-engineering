@@ -160,3 +160,28 @@ Excerpt scope: The original paragraph and its point annotation, preserved in ful
 
 MAGE is principally about that environment. We will get to foundation models, harnesses, tools, hooks, skills, and workflows because their properties determine what can be engineered around them. But the method lies in how engineers represent what matters, how they enforce obligations, and how they decide which recurring judgments should become durable engineering structure.
 ```
+
+## Chapter 1 related-work inventory from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex`
+- Section: §1.1, The Printer, antecedents of the engineering-environment approach.
+- Source revision before editing: `8e385f13942fd20fbb04b39be91cff646bdb7d65`
+- Source line: 83.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `s11-related-work`, approved by the author.
+- Status: set aside; Chapter 7 editorial follow-up remains open.
+
+Reason: Retain a short acknowledgment and forward reference in Chapter 1, deferring the detailed literature inventory until the reader has learned the engineering argument. Preserve the full original paragraph and all seven citations below.
+
+### Chapter 7 follow-up
+
+- [ ] Revisit §7.1 (`book/latex/sources/part7/7.1-reorganization-of-se.tex`) and decide how this literature inventory should be developed there: check the depth, placement, and explanation of each work's relationship to MAGE, including the distinction between improving individual implementation tasks and engineering an environment that carries knowledge and obligations across changes.
+
+The seven citation keys are `besta2024got` (external representations), `packer2023memgpt` (managed memory), `liu2023llmp` (specialized solvers), `zhang2023repocoder` (repository retrieval), `zhang2024autocoderover` (program analysis), `yang2024sweagent` (interfaces for autonomous work), and `rich-waters` (earlier ambitions). All seven already occur in §7.1 at source revision `8e385f13942fd20fbb04b39be91cff646bdb7d65`, verified on 2026-11-02. Their presence does not close this follow-up: the author requested an editorial revisit of their treatment. No new Chapter 7 prose has been inserted as part of this cut.
+
+Excerpt scope: The complete original paragraph, including every citation and the Chapter 7 cross-reference.
+
+```latex
+That emphasis has important antecedents. AI research has long improved machine reasoning by giving systems access to external representations,\citep{besta2024got} managed memory,\citep{packer2023memgpt} and specialized solvers.\citep{liu2023llmp} Recent agentic software-engineering research extends this approach through repository retrieval,\citep{zhang2023repocoder} program analysis,\citep{zhang2024autocoderover} and interfaces designed for autonomous work.\citep{yang2024sweagent} The ambition predates foundation models.\citep{rich-waters} \magevalue{chapter:profession} returns to these traditions and to what commodity intelligence changes. The distinction lies in the engineering objective: MAGE shifts the primary engineering focus from individual implementation tasks to the engineered environment through which autonomous software work proceeds over time, including the representations and controls that govern its results.
+```
