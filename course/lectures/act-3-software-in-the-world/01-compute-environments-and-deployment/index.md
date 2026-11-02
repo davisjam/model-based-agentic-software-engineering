@@ -25,7 +25,7 @@ materials:
     src: 3-1-Compute-Environments-and-Deployment.pptx
 ---
 
-**Premise.** *The appropriate execution environment follows from what a system must do and the conditions under which it must do it. Deployment engineering represents those conditions, selects an environment that satisfies them, and controls the transition from a tested implementation to running software.*
+**Premise.** *Software executes in compute environments with different capabilities and constraints. Engineering requires understanding those constraints, representing how software components are assigned to computing resources, and controlling the process by which an implementation becomes a running system.*
 
 A room reservation service runs successfully on a developer's laptop. Its HTTP endpoints respond correctly, and its tests pass. Now the service must be used by students across campus. The application needs a reachable address, sufficient computing resources, a predictable runtime, and a way to install updates. The source code has not necessarily changed, but the engineering problem has. The implementation depended on an environment all along; deployment makes those dependencies consequential.
 
@@ -43,7 +43,7 @@ These models are purposeful reductions. A diagram showing a browser, application
 
 The common execution categories also describe different dimensions. *Embedded*, *mobile*, *desktop*, and *server* describe settings with characteristic constraints; *cloud* describes a way of obtaining and operating computing services. Processes, containers, and virtual machines are execution mechanisms. A container typically isolates processes while sharing the host kernel; a virtual machine ordinarily runs a guest operating system. None of these distinctions determines the right deployment by itself. A mobile application may use a cloud backend, and a cloud application may run inside containers or virtual machines.
 
-For the reservation service, a local installation may be suitable for a single receptionist operating without network connectivity. A centrally hosted service better supports students accessing the same reservation state from many devices, but introduces network dependence and operational responsibility. The choice follows from availability, access, cost, privacy, and maintenance requirements rather than from a preference for a particular platform.
+For the reservation service, several arrangements can satisfy different requirements. A fully local installation keeps the application and its reservation state on one machine, which suits a single receptionist working without network connectivity. A client-server arrangement runs the interface on each user's device (desktop or mobile) while a shared server maintains reservation state, so many users see the same reservations at the cost of network dependence. A web application moves the interface into the browser and leaves the logic and state on the server, simplifying updates while concentrating operational responsibility. The components need not execute in the same environment, and where the interface runs is a separate decision from where shared state is maintained. The choice follows from availability, access, cost, privacy, and maintenance requirements rather than from a preference for a particular platform.
 
 ## From a deployment model to a running system
 
