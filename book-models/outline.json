@@ -124,27 +124,27 @@
           "heading_text": "The Engineering Object",
           "topic_sentence": "Agent products and foundation models will continue to change.[note: Engineering predates machine learning in its use of models as purposeful representations of systems.",
           "id_source": "derived",
-          "block_index": 21,
+          "block_index": 22,
           "points": [
             {
               "slug": "the-agent-is-not-the-engineering-object",
               "text": "Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
-              "block_index": 22
+              "block_index": 23
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms that enforce obligations, and the judgment that decides what should become durable engineering structure.",
-              "block_index": 24
+              "block_index": 25
             },
             {
               "slug": "modeling-and-alignment-supply-the-instruction-package",
               "text": "Modeling and Alignment supply the printer's missing instruction halves.",
-              "block_index": 26
+              "block_index": 27
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE shifts the primary engineering focus to the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 33
+              "block_index": 34
             }
           ]
         },
@@ -154,32 +154,32 @@
           "heading_text": "Examine the Environment First",
           "topic_sentence": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
           "id_source": "explicit",
-          "block_index": 35,
+          "block_index": 36,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "When an agent fails, examine its engineering environment before concluding that the foundation model lacks the necessary capability.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "a-failed-part-has-several-diagnoses",
               "text": "A failed part can reveal several different problems.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Inferred completion is not an explicit specification.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 45
+              "block_index": 46
             }
           ]
         }
@@ -197,33 +197,33 @@
         },
         {
           "slug": "open-ended-capacity-must-be-engineered",
-          "text": "Open-ended capability must itself be engineered to use reliably.",
-          "block_index": 6
+          "text": "People make fabricative capacity useful by developing forms and ways of working.",
+          "block_index": 7
         },
         {
-          "slug": "intent-is-not-fabrication-instructions",
-          "text": "Intent is not the same as fabrication instructions.",
-          "block_index": 8
+          "slug": "agent-inference-needs-engineered-boundaries",
+          "text": "Agents can supply unspecified implementation choices; the forms and ways of working around them should preserve freedom among acceptable choices and constrain it where those choices are unacceptable.",
+          "block_index": 9
         },
         {
           "slug": "delegating-judgment-is-an-opportunity-not-a-requirement",
           "text": "Delegation can leave useful judgment to the agent, but the engineer decides which decisions to make explicit and which to delegate.",
-          "block_index": 11
+          "block_index": 12
         },
         {
           "slug": "a-simple-specification-leaves-enormous-freedom",
           "text": "Even a simple software specification leaves enormous freedom — ten lines or ten thousand, a monolith or microservices — so engineers can specify the properties that matter and leave other decisions to the intelligence performing the work; which choices can safely remain open is itself an engineering decision.",
-          "block_index": 13
+          "block_index": 14
         },
         {
           "slug": "leverage-moves-into-the-environment",
           "text": "As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
-          "block_index": 15
+          "block_index": 16
         },
         {
           "slug": "gee-is-the-engineered-instruction-set",
           "text": "The governed environment is the printer's engineered instruction set.",
-          "block_index": 17
+          "block_index": 18
         }
       ]
     },
