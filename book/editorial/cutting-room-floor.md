@@ -275,3 +275,22 @@ Excerpt scope: The complete original paragraph, including its link and Chapter 5
 ```latex
 \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} provides the book\textquotesingle s deepest worked example: a production accessibility system built largely through coding agents. \magevalue{chapter:software-factories} presents the full case study; before examining its models and Alignment mechanisms here, a few facts about the system are in order.
 ```
+
+## Chapter 1 accessibility and manual-remediation framing from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.2-mage-by-example.tex`
+- Section: §1.2, MAGE by Example, Accessibility and the Engineering Experiment.
+- Source revision before editing: `7ad5d1d0b4e4dfea9615112094640da31b681103`
+- Source line: 25.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review items: `s12-remediation-scale` and its paired `s12-recovery-footnote` removal, approved by the author.
+- Status: original paragraph and footnote preserved; replaced by the approved two-paragraph introduction.
+
+Reason: Explain WCAG’s perceivable and operable principles before listing example failures. Give manual remediation its own paragraph, focused on slow, costly work: total billed hours, materials for 20 courses against thousands offered, a coarse three-hour per-document estimate, and variation by document complexity. Preserve the original corpus-accounting details and qualification here; the introduction no longer uses that footnote.
+
+Excerpt scope: The complete original paragraph, including the embedded recovery footnote, metric references, and citation.
+
+```latex
+In 2024, the U.S. Department of Justice gave public universities a deadline to make their digital content accessible, measured against the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}). A typical slide deck can fail the standard in dozens of ways: images without descriptions, missing titles, or a reading order that a screen reader cannot follow. Purdue's manual remediation effort made the scale of the work concrete. Over approximately six months, \magevalue{seip_uta_workers} trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours; the resulting corpus contained \magevalue{seip_uta_pairs} identifiable before-and-after document pairs from \magevalue{seip_uta_courses} courses. That is about \magevalue{seip_uta_hours_per_pair} billed hours per identifiable pair.\footnote{The recovered pairs need not account for every document the students worked on. This corpus-level ratio is not a measured remediation time for each document.}\citep{davis2026docable}
+```
