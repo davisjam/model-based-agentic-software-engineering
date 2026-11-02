@@ -294,3 +294,40 @@ Excerpt scope: The complete original paragraph, including the embedded recovery 
 ```latex
 In 2024, the U.S. Department of Justice gave public universities a deadline to make their digital content accessible, measured against the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}). A typical slide deck can fail the standard in dozens of ways: images without descriptions, missing titles, or a reading order that a screen reader cannot follow. Purdue's manual remediation effort made the scale of the work concrete. Over approximately six months, \magevalue{seip_uta_workers} trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours; the resulting corpus contained \magevalue{seip_uta_pairs} identifiable before-and-after document pairs from \magevalue{seip_uta_courses} courses. That is about \magevalue{seip_uta_hours_per_pair} billed hours per identifiable pair.\footnote{The recovered pairs need not account for every document the students worked on. This corpus-level ratio is not a measured remediation time for each document.}\citep{davis2026docable}
 ```
+
+## Chapter 1 DocAble roadmap from 2 November 2026
+
+- Source: `book/latex/sources/part1/1.2-mage-by-example.tex`
+- Section: §1.2, MAGE by Example, How the Book Uses DocAble.
+- Source revision before editing: `215b76d1b844e71ad7feef2973042d478ea146db`
+- Source lines: 185–203.
+- Removal date: 2026-11-02.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `s12-docable-roadmap`, approved by the author with a Chapter 4 sentence added.
+- Status: original preserved; replaced by the approved concise roadmap.
+
+Reason: Preserve the common case study’s distinct roles across Chapters 2–5, including how Chapter 4 follows the use and revision of models and controls during development, then transition to the agentic machinery in §1.3. Set aside the longer roadmap and comparative framing.
+
+Excerpt scope: The complete original subsection, including its heading, cross-references, section terms, and point annotations.
+
+```latex
+\section{How the Book Uses DocAble}\label{heading:how-the-book-uses-docable}
+
+% <!-- section-terms: running-example -->
+
+% <!-- point: docable-shown-at-method-resolution | DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Chapter 2 asks which representations make properties tractable, Chapter 3 how intent comes to bind the work. | terms: running-example, modeling-principle, alignment-principle -->
+
+DocAble is the book\textquotesingle s deepest worked example because the system can be examined at the resolution the method requires. Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} use the working system to ask two different kinds of questions. \magevalue{chapter:modeling} asks which representations make important system properties tractable. \magevalue{chapter:alignment} asks how engineering intent comes to bind the work.
+
+% <!-- point: motion-then-the-production-system | Chapter 4 examines how those mechanisms are used during development, following engineering problems through successive models, decisions, implementation, and governance conversion; Chapter 5 then examines the production system itself — what failed, what those failures revealed, and how recurring judgments became durable engineering structure. | terms: running-example -->
+
+\magevalue{chapter:one-problem-many-models} examines how those mechanisms are used during development. It follows engineering problems through successive models, decisions, implementation, and governance conversion, showing how Modeling and Alignment change as the system changes. \magevalue{chapter:software-factories} then examines the production system itself: what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.
+
+% <!-- point: docable-is-depth-not-the-whole-evidence | DocAble is the primary case study; Chapter 5 examines practices at other engineering organizations, identifying where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation. | terms: running-example -->
+
+DocAble is the primary case study. \magevalue{chapter:software-factories} examines practices at other engineering organizations, identifying where related structures recur, where they take different forms, and where the available evidence supports more limited conclusions.
+
+% <!-- point: bridge-to-the-substrate | We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it. | terms: running-example -->
+
+We can now examine the machinery that makes autonomous implementation possible and the engineering mechanisms through which MAGE acts on it.
+```
