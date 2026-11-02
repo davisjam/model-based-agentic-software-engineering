@@ -3414,16 +3414,6 @@
         }
       ]
     },
-    "point:gee-is-the-engineered-instruction-set": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.1-the-printer::block-18",
-          "role": "paragraph-point"
-        }
-      ]
-    },
     "point:genai-erodes-the-implementation-apprenticeship": {
       "kind": "point",
       "dependents": [
@@ -5965,6 +5955,16 @@
         {
           "view": "outline",
           "element": "6.3-scope-conditions::block-11",
+          "role": "paragraph-point"
+        }
+      ]
+    },
+    "point:reusable-forms-carry-design-decisions-forward": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.1-the-printer::block-18",
           "role": "paragraph-point"
         }
       ]
