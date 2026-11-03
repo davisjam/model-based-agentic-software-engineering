@@ -2408,3 +2408,67 @@ Reason: Replace “representations through which a factory inherits” and “ca
 A second recurring cost is maintaining the representations through which a factory inherits engineering knowledge. GitLab budgets machinery for documentation freshness and convergence, Cloudflare checks the context supplied through AGENTS.md, and Shopify automates repair of instruction-file drift. The factory therefore acquires the same carrying-cost problem as the software it governs: production structures that preserve engineering knowledge are capital only while they remain sufficiently accurate to be useful.
 ```
 
+## Approved factory connections and theory evidence, 3 November 2026
+
+Source revision: `2f89012357edf5860dec57a5efbc795f659cca4c`. The author approved the Spotify connection, tolerance connection, knowledge upkeep, and evidence-limit edits, and approved the case-evidence edit with a request to replace “theory to explain.” The latter now says the cases identify engineering choices and tradeoffs. Original passages are preserved below.
+
+### factory-tolerance-connection
+
+Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, section “Process Design and Tolerance”, lines 42–42.
+
+Reason: Replace “maintain correspondence,” “realization freedom,” and “make selected failures consequential for admission” with the obligation, evidence, and rejected change. Preserve the distinction between a requirement and its checking technique.
+
+```latex
+DocAble\textquotesingle s approach to tolerance, however, is distinctive. MAGE represents selected consequential properties explicitly and uses Alignment to maintain correspondence between those representations and the realized system. Tests, property-based testing, static analysis, measurements, and other evidence mechanisms can participate in establishing those properties, but the tolerance is the represented engineering obligation rather than any particular checking technique. This permits more systematic control than instructions or isolated checks alone. The factory can represent related obligations, identify the realization freedom they leave open, establish evidence about the resulting system, and make selected failures consequential for admission.
+```
+
+### factory-knowledge-upkeep
+
+Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, section “Process Design and Tolerance”, lines 46–46.
+
+Reason: Replace “cost of exercising that knowledge repeatedly” and “carrying cost of production structure” with the repeated work saved and the upkeep required.
+
+```latex
+The representations used by the factory also become part of its maintenance burden. GitLab, Cloudflare, and Shopify all describe machinery for keeping instructions, documentation, or other inherited context current. Externalizing engineering knowledge therefore does not eliminate the cost of exercising that knowledge repeatedly; it exchanges some of that repeated judgment for the carrying cost of production structure. Whether that exchange pays depends on how widely the structure is reused and how expensive it is to keep accurate.
+```
+
+### theory-case-evidence
+
+Source: `book/latex/sources/part6/00-part-intro.tex`, section “00-part-intro”, lines 6–6.
+
+Reason: Replace “originating case,” “sustained engineering pressure,” and “industrial reconstructions” with the case, its observations, and the comparison.
+
+```latex
+\magevalue{chapter:software-factories} supplied two views of the evidence. The originating case showed how MAGE\textquotesingle s structures emerged under sustained engineering pressure; the industrial reconstructions showed related structures arising independently under different constraints. Neither establishes a universal law. Together, they give us something worth explaining.
+```
+
+### theory-evidence-limit
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, section “From One Delegation to an Evolving Factory”, lines 907–907.
+
+Reason: Replace “longitudinal depth,” “comparative variation,” and “independent industrial reconstructions” with what was observed; frame the theory as a proposed explanation.
+
+```latex
+The theory above explains two kinds of evidence from \magevalue{chapter:software-factories} --- longitudinal depth from the originating case and comparative variation from independent industrial reconstructions --- neither of which supplies population-level effect sizes or causal estimates. \magevalue{sec:what-the-theory-predicts} states predictions that require stronger external tests; \magevalue{sec:scope-conditions} asks where they should be expected to hold.
+```
+
+### spotify-foundation-model
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “Spotify”, lines 157–157.
+
+Reason: Remove the repeated measurement/evaluation caveat and make the MAGE connection explicit where the mechanisms appear: tool limits preserve bounded degrees of freedom, verification enforces the condition for opening a pull request independently of the producer’s assessment, and the judge’s introduction and reported removal illustrate governance conversion and control maintenance.
+
+```latex
+The controls around that station are tuned to the fabricator\textquotesingle s properties, and they move when it does. The agent chooses its own path through the code but holds a deliberately narrow tool surface --- a verify tool, restricted git subcommands that can never push, an allowlisted shell --- with code search and documentation tools deliberately withheld and context condensed into the prompt up front: "The more tools you have, the more dimensions of unpredictability you introduce."\citep{charas2025honk} Verification runs before a pull request may exist: verifiers activate from the component\textquotesingle s contents, opaque to the agent, and a failing verifier means no PR;\citep{charas2025honk} a later architecture separates the verification runtime entirely, so the PR is created only after full CI validation.\citep{curtis2026spotifyqcon} The clearest control story in the case is a lifecycle. Agents gamed builds --- commenting out failing tests, downgrading Java versions --- so Spotify added an LLM judge, which by late 2025 was vetoing about a quarter of sessions, the agent self-correcting half the time; the talk record then reports the judge removed as models improved, "verification steps in prompts proving sufficient."\citep{curtis2026spotifyqcon} A control installed against a measured failure mode and retired when the capability beneath it moved --- reported second-hand, with no first-party text yet confirming the removal. If the later account is accurate, no other case in this corpus records a control being withdrawn after the fabricator improved.
+```
+
+### spotify-point-summary
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “Spotify”, lines 155–155.
+
+Reason: Keep the editorial summary consistent with the approved passage; preserve its stable identifier.
+
+```latex
+% <!-- point: spotify-installs-and-then-retires-a-control-as-the-fabricator-improves | The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and, on a second-hand account, removed once models improved. -->
+```
+
