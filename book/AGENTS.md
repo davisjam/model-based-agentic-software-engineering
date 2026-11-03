@@ -170,6 +170,8 @@ Use that as a diagnostic, not a rigid template.
 
 A memorable sentence should usually compress a developed argument, not replace one.
 
+When introducing established background, synthesize lines of research and their shared findings, with representative citations. Avoid study-by-study accounts, benchmark multipliers, and lists of researchers unless those details matter to the engineering argument. Attribute borrowed or adapted vocabulary explicitly.
+
 ---
 
 # 5. Keep Alignment concrete

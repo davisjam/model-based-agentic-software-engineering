@@ -523,3 +523,17 @@ It is a property of the task and its representation, not merely the intelligence
 
 More context does not automatically solve a representation problem.
 ```
+
+## Research detail trimmed from the reasoning horizon, 2 November 2026
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, “The Reasoning Horizon,” revision `f9e1105a29bad7a6113968706d9e1f55e1105c32`, lines 87, 95, and 107. Replaced during the 2 November 2026 editorial pass.
+
+Reason: synthesize lines of research and their useful findings in textbook prose. Remove the individual benchmark multiplier and researcher-by-researcher exposition; retain representative citations and the explicit attribution of the borrowed term. These original paragraphs are preserved for possible later reuse, without authorizing relocation.
+
+```tex
+Scale has always created problems. An engineer may be able to hold a small program in mind, but a large system soon exceeds that capacity. Human \textbf{working memory} is limited: we can actively hold and work with only a small amount of information at once, even when we have much more knowledge in long-term memory.\citep{cowan2001capacity} A change that looks simple in one file may require us to recall an interface elsewhere, a prior design decision, and a constraint on acceptable behavior. We use notes, diagrams, and other external representations so that we do not have to keep all of that information in our heads. Norman describes this as using knowledge in the world alongside knowledge in the head.\citep{norman2013}
+
+Memory management can nevertheless expand what the whole system can work over. ReadAgent, for example, combines short summaries with selective retrieval of the original passages. On the long-document comprehension tasks it evaluated, this arrangement extended the effective context window by 3.5--20 times.\citep{lee2024readagent} The underlying model's context window remained bounded; the surrounding machinery made more information usable across the task.
+
+Better machinery and better representations can extend the horizon in different ways. A harness can preserve and recover more relevant state across a task; a useful representation can reduce what must be searched, reconstructed, or inferred. Larkin and Simon distinguish informational equivalence from computational equivalence: representations that convey the same information can differ in the computation needed to use it.\citep{larkin1987diagram} Zhang and Norman study such differences as representational effects.\citep{zhang1994representations} These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+```
