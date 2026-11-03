@@ -1,7 +1,7 @@
 {
   "source": "book/assets/reasoning-horizon.svg",
   "chapter": "1.3-the-agentic-substrate",
-  "claim": "*The reasoning horizon.* At sufficient scale, a task requires more state than a finite reasoner can keep active, so some state must be reconstructed. Representation determines the cost: raw implementation carries irrelevant detail, while purposeful abstraction can keep question-relevant state smaller and cheaper to recover.",
+  "claim": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
   "topology": {
     "description": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
     "native_draw_commands": [
@@ -292,5 +292,9 @@
       "width_bp": 353.911,
       "height_bp": 350.719
     }
+  },
+  "caption_update_2026_11_02": {
+    "source": "13-horizon-caption",
+    "scope": "Approved caption only; figure-label proposals horizon-figure-task and horizon-figure-spine remain pending. Existing figure validation records describe the unchanged drawing."
   }
 }

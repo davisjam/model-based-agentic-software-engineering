@@ -537,3 +537,13 @@ Memory management can nevertheless expand what the whole system can work over. R
 
 Better machinery and better representations can extend the horizon in different ways. A harness can preserve and recover more relevant state across a task; a useful representation can reduce what must be searched, reconstructed, or inferred. Larkin and Simon distinguish informational equivalence from computational equivalence: representations that convey the same information can differ in the computation needed to use it.\citep{larkin1987diagram} Zhang and Norman study such differences as representational effects.\citep{zhang1994representations} These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
 ```
+
+## Figure 1.5 caption, 2 November 2026
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, “The Reasoning Horizon,” revision `4fbcb65306cbc16a7f4eb08cf49e8ceb1b7e4d2b`, line 112. Replaced on 2 November 2026 by approved review item `13-horizon-caption`, including the author’s final edit to “the system’s reasoning horizon.”
+
+Reason: distinguish preservation and recovery from reconstruction, and connect representation to the broader system-level definition without claiming that every efficiency gain extends the horizon. The figure-label proposals remain separately pending.
+
+```tex
+\caption{\emph{The reasoning horizon.} At sufficient scale, a task requires more state than a finite reasoner can keep active, so some state must be reconstructed. Representation determines the cost: raw implementation carries irrelevant detail, while purposeful abstraction can keep question-relevant state smaller and cheaper to recover.}
+```
