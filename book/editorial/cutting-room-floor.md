@@ -564,3 +564,34 @@ These mechanisms expand the amount of work an agent can carry forward, but they 
 This is why MAGE uses reasoning horizon rather than context window. The engineering limit that matters is not a fixed token count but how much consequential reasoning state a task requires, and how effectively the surrounding system can preserve and recover that state. Today\textquotesingle s context windows are one implementation constraint on that horizon; larger models and better harnesses can move the constraint without making the underlying problem disappear.
 \end{bookbox}
 ```
+
+
+## Reliability and the probabilistic surface, 3 November 2026
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, §1.3, “Probabilistic Work Needs External Enforcement,” revision `35c64cf750dba448d32161007dddbe962f4e37d6`, lines 147–167. Replaced on 3 November 2026 by approved review item `13-reliability`.
+
+Reason: center the agent in a simple model of implementing multiple features, retain the product equation and numerical examples, remove the detour about implementation details, and distinguish agentic inference from deterministic tools and checks. The revised definition does not assume that decisions recur or that all decisions can be made deterministic. Preserve the original here for possible reuse; no relocation is authorized by this archive.
+
+```tex
+Commodity intelligence is probabilistic in an engineering sense. Contemporary foundation models are learned systems whose outputs do not ordinarily carry guarantees that the engineering judgments embodied in those outputs are correct. Their present implementations may add uncertainty at several levels: generation can vary across samples; an underspecified request may admit several interpretations; intermediate reasoning and tool choices may differ; and an agentic task may compose many such judgments before producing a result. Harnesses can retry, decompose, vote, retrieve additional context, or ask another model to evaluate the first. All of these can improve reliability. None by itself turns an inferred engineering judgment into an engineering guarantee.
+
+The details matter when evaluating a particular system, but they are too contingent to serve as the foundation of a general engineering method. Decoding can be deterministic. Errors can be correlated. One model or harness can be much better than another. Future foundation models may operate differently again. We therefore use a deliberately simple abstraction.
+
+Suppose a realization depends on \(n\) consequential judgments, numbered 1 through \(n\). Let \(p_i\) denote the probability that judgment \(i\) is resolved acceptably. Under the simplifying assumption that these events are independent, the probability that all of them are acceptable is the product
+
+\[
+P(\text{all judgments acceptable}) = \prod_{i=1}^{n} p_i
+\]
+
+The effect is small when each judgment is highly reliable and there are only a few of them. If each judgment has a 99\% probability of being acceptable, for example, three such judgments give an overall probability of \(0.99^3 \approx 97\%\). But the chance of success falls as the number of judgments grows: \(0.99^{10} \approx 90\%\), and \(0.99^{100} \approx 37\%\). It falls faster when individual judgments are less reliable: ten judgments that are each 95\% reliable give \(0.95^{10} \approx 60\%\). Even under this deliberately favorable model, many individually reliable judgments do not compose into a comparably reliable whole.
+
+Many techniques can improve these probabilities, most notably running agents in iterative loops that critique, test, and revise their own work. Such techniques can make individual judgments substantially more reliable. The equation is illustrative, not a model of an actual agent: real judgments are not generally independent, their probabilities may be unknown, and iterative techniques can change those probabilities. Nevertheless, the example shows why high reliability at the level of individual judgments does not establish high reliability for a system that depends on many of them.
+
+% <!-- index-def: probabilistic-surface -->
+
+% <!-- gloss-only: Probabilistic surface | The set of consequential decisions in a system whose correctness depends on probabilistic inference at the time they are made. A larger probabilistic surface creates more opportunities for inference error to affect the outcome, even when each individual decision is highly reliable. MAGE seeks to reduce this surface by moving suitable decisions into explicit models, deterministic mechanisms, and independently enforced obligations, while leaving genuinely judgment-dependent decisions probabilistic. -->
+
+% <!-- point: the-probabilistic-surface-is-the-judgments-still-bought-per-instance | The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises. | terms: engineering-substrate, foundation-model -->
+
+The consequential judgments that still depend on fallible per-instance inference form the system\textquotesingle s \textbf{probabilistic surface}. Better models, prompts, context, tools, decomposition, agent harnesses, and iterative loops can make those judgments more reliable. These are valuable improvements, but they leave the obligation dependent on probabilistic judgment each time it arises.
+```
