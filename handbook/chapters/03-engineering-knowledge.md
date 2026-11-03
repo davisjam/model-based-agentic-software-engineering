@@ -233,14 +233,14 @@ The question is therefore not simply whether something is worth knowing.
 Engineers must compare the expected value of future use against the cost
 of making the knowledge persist.
 
-The retrieval side of that cost is not fixed. Finding recorded knowledge
-is an old problem, pursued for decades as information retrieval and
-enterprise search. Language models and the agents built on them have
-made retrieval over unstructured historical material capable enough that
-knowledge once preserved but effectively unfindable may now be
-reachable. That capability demands care. A system that answers plausibly
-from stale, contradictory, or superseded records makes confident wrong
-answers cheaper to produce.
+Better retrieval tools can reduce the cost of finding preserved
+knowledge. Finding recorded knowledge is an old problem, pursued for
+decades as information retrieval and enterprise search. Language models
+and the agents built on them have made retrieval over unstructured
+historical material capable enough that knowledge once preserved but
+effectively unfindable may now be reachable. That capability demands
+care. A system that answers plausibly from stale, contradictory, or
+superseded records makes confident wrong answers cheaper to produce.
 
 ## Knowledge can be represented with different strengths {#sec-representation-forms}
 
@@ -460,15 +460,14 @@ longer deserves authority.
 ## Consequential knowledge should change engineering {#sec-knowledge-changes-engineering}
 
 The strongest evidence that knowledge matters is often that engineers
-keep needing it, and repeated rediscovery is evidence about the
-representation as much as about the knowledge. A fact that engineers
-continually reconstruct may need to become easier to find. An
-explanation repeated to every new team member may deserve durable
-representation. Repeated mistakes can indicate that documentation is too
-weak a form for the knowledge being preserved. When incidents repeatedly
-expose the same assumption, the organization may need to change the
-engineering environment rather than remind engineers of the lesson
-again.
+keep needing it. Having to rediscover it repeatedly also raises a
+question about how it is represented. A fact that engineers continually
+reconstruct may need to become easier to find. An explanation repeated
+to every new team member may deserve durable representation. Repeated
+mistakes can indicate that documentation is too weak a form for the
+knowledge being preserved. When incidents repeatedly expose the same
+assumption, the organization may need to change the engineering
+environment rather than remind engineers of the lesson again.
 
 Consequential knowledge can therefore migrate into more durable
 engineering structure, and the appropriate destination depends on what
