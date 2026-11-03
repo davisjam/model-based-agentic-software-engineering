@@ -167,7 +167,7 @@ skill.
 The source is organized by role ([`agent/`](agent/) · [`models-bridge/`](models-bridge/) ·
 [`product/`](product/)), with the full census in [`INDEX.md`](INDEX.md). `catalog.py` validates the
 schema and builds the web view (`catalog.py validate` · `build` · `deploy local|github`; see
-[`CLAUDE.md`](https://github.com/davisjam/agent-governance-mechanisms/blob/main/CLAUDE.md)).
+[`CLAUDE.md`](https://github.com/davisjam/model-based-agentic-software-engineering/blob/main/CLAUDE.md)).
 
 ## Start small, and make it yours
 

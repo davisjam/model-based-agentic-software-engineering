@@ -105,7 +105,7 @@ can't block) vs. **hard** (deterministic — holds the line regardless of agent 
 *aims*, machinery *holds*.
 
 The worked census — every mechanism by target, family, form, and enforcement, with a full writeup per
-concept named above — is this catalogue: **https://davisjam.github.io/agent-governance-mechanisms/**
+concept named above — is this catalogue: **https://davisjam.github.io/model-based-agentic-software-engineering/**
 
 ### A.1.2. Complement competence — map the playbook to the failures it governs
 
