@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 858,
+    "total_sites": 859,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 516,
+      "book-web": 517,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -105,7 +105,7 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 51
+            "occ": 50
           },
           {
             "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
@@ -1183,7 +1183,7 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 109
+            "occ": 108
           },
           {
             "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
@@ -1732,6 +1732,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 9
           },
@@ -1879,7 +1883,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 49
           }
         ]
       },
@@ -2081,7 +2085,7 @@
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 13
+            "occ": 15
           },
           {
             "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
