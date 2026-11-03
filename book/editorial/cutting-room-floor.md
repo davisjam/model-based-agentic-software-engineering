@@ -595,3 +595,33 @@ Many techniques can improve these probabilities, most notably running agents in 
 
 The consequential judgments that still depend on fallible per-instance inference form the system\textquotesingle s \textbf{probabilistic surface}. Better models, prompts, context, tools, decomposition, agent harnesses, and iterative loops can make those judgments more reliable. These are valuable improvements, but they leave the obligation dependent on probabilistic judgment each time it arises.
 ```
+
+## Enforcement Outside the Producing Run, 3 November 2026
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, §1.3, revision `5a2d47a1f5b019622a009f3cf21b3e47d2a3a525`, lines 167–177. Removed on 3 November 2026 by approved review item `13-enforcement`, including its heading, point annotations, and closing paragraph. The associated `mage-auto-heading` annotation was removed as well.
+
+Reason: §1.2 already demonstrates independent enforcement through DocAble’s content-preservation example; §1.3 introduces the machinery and its limits; §1.4 names the engineering problems. This subsection starts teaching the mechanisms developed in Chapter 3 before that progression is complete. Preserve the material here for later consideration; no relocation into another chapter is authorized by this archive.
+
+```tex
+\section{Enforcement Outside the Producing Run}\label{heading:enforcement-outside-the-producing-run}
+
+% <!-- point: software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run | For selected obligations the environment can make the required property explicit and enforce it independently of the producing run: it can represent an architectural boundary, a dependency rule, or a safety condition and reject changes that violate it, so the judgment that established the obligation is reused across later implementation. | terms: engineering-substrate -->
+
+Software engineering already provides mechanisms for independent enforcement. For selected obligations, the environment can make the required property explicit and enforce it outside the producing run. It can represent an architectural boundary, a dependency rule, or a safety condition, and reject changes that violate it. The judgment that established the obligation can then be reused across later acts of implementation.
+
+% <!-- point: agentic-work-provides-identifiable-interfaces-where-enforcement-can-act | Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points. | terms: agentic-harness, injection-point, engineering-substrate -->
+
+Agentic work provides places where such enforcement can occur. Important changes reach the engineering system through identifiable interfaces: inputs, tool calls, edits, outputs, and lifecycle transitions. A sandbox can deny network access, a hook can reject a command, and a test can block a regression without requiring a rich system model. Explicit representations can extend the semantic reach of those same control points, allowing an action to be judged against architectural, behavioral, policy, ownership, or other system-level obligations.
+
+The harness therefore supplies control points; representation determines what those control points can know. MAGE develops principled ways to use both while leaving the rest of realization open.
+```
+
+## Chapter 1 summary: reliability across features, 3 November 2026
+
+Source: `book/latex/sources/part1/1.5-problem-summary.tex`, §1.5, revision `5a2d47a1f5b019622a009f3cf21b3e47d2a3a525`, line 14. Revised on 3 November 2026 alongside approved review item `13-enforcement`, at the author’s request to reconcile the summary with the newly landed `13-reliability` passage.
+
+Reason: the old summary assumes that the same decision is repeated. The approved simple model concerns an agent implementing multiple features and the probability of getting all of them right. Preserve the original paragraph here.
+
+```tex
+Two problems follow. The Representation Problem concerns what the reasoner can know and reconstruct while performing a task. Important system knowledge left implicit in implementation must repeatedly be recovered through finite and fallible reasoning. The Enforcement Problem concerns consequential judgments left to probabilistic implementation. Even a highly reliable decision can eventually fail when it is repeated often enough.
+```
