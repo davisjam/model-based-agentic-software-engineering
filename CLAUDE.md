@@ -397,6 +397,27 @@ re-deriving these, so they live here:**
     with `grep -rn "<basename>" --include="*.py" .`. Derived view artifacts (`book-models/*.json`)
     are **re-derived through their generator, never hand-edited** — renaming a chapter heading is a
     join that reaches `outline.json`, which has its own freshness-drift check.
+- **A deck PowerPoint offers to REPAIR: get the repaired copy, diff the packages, and rank parts by
+  byte delta — but remember the delta shows what PowerPoint REMOVED, which is often collateral, not
+  cause.** Measured 261103 on `3-2-Data-Management.pptx`, where **every tool we own passed**: zip
+  integrity clean (151 entries, 0 dups, `testzip()` None), `python-pptx` opened all 29 slides, and
+  `tools/pptx_validate.py` reported **0 OPC / 0 schema** with the schema layer confirmed run. The
+  author hit *Repair*, saved a copy, and the package diff localised it in one step — 145 parts differed
+  by ~1 byte of XML-declaration re-serialisation, and **one part differed by 3,390 bytes**.
+  - **Rank by delta, not by presence.** The outlier part is the lead; the 1-byte crowd is noise.
+  - **The big delta was a `<p:timing>` block PowerPoint had stripped — and that was NOT the cause.**
+    Repair discards animations as a matter of course. Reasoning backwards from the deletion produced a
+    confident wrong diagnosis, and the instruction built on it ("timing is never legitimate, remove
+    it") nearly destroyed an author-built animation. `<p:timing>` is in **20 of the course decks**,
+    written by PowerPoint itself whenever the author adds a build.
+  - **The two actual PowerPoint-fatal defects, both invisible to every gate above**, were *referential*
+    and *structural*: a **`<p:spTgt spid="N">` targeting a shape id absent from the slide** (slide 14
+    animated shapes 7 and 8, which had been deleted), and a **`custGeom` missing its `<a:rect>`**
+    (slide 28). Check both directly — they are two cheap scans:
+    `set(spTgt spids) - set(cNvPr ids)` must be empty, and every `custGeom` must carry `rect` + `pathLst`.
+  - **Prefer the surgical fix.** Excise only the dangling effects, not the whole timing block; the rest
+    of the author's build is legitimate and unrecoverable if dropped.
+
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
   them on every save, so a run routinely begins mid-word — the 261001 instance was a run starting
