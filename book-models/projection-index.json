@@ -88,10 +88,6 @@
             "occ": 15
           },
           {
-            "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
             "occ": 6
           },
@@ -271,7 +267,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 62
+            "occ": 61
           }
         ]
       },
@@ -1199,7 +1195,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 110
+            "occ": 113
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2097,7 +2093,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 66
+            "occ": 67
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2954,8 +2950,12 @@
             "occ": 8
           },
           {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2985,7 +2985,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 12
           }
         ]
       },
@@ -3117,7 +3117,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",

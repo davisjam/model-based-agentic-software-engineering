@@ -2325,3 +2325,42 @@ Source: `book/tikz/style-review.json`, lines 3926–3954, at revision `2fe4ecab6
   "book_references": []
 }
 ```
+
+## Approved reasoning-horizon revisions, 3 November 2026
+
+Source revision: `ad0418eeaf4a292e58b7d9f910449cf9c7664e6e`. The author approved `42-partition` and `61-proposition`, with the latter headed “The Reasoning-Horizon Proposition for Engineering.” Original passages are retained below for possible reuse.
+
+### 42-partition
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, section “Pages as the Unit of Scale”, lines 72–72.
+
+Reason: Distinguish reduced execution memory from the risk of losing semantic context. Explain that chunking can continue all the way down to words or figures, state the tradeoff directly, and end with the author’s question about the architecture. Approved by the author on 3 November 2026.
+
+```latex
+This is the reasoning-horizon problem from \magevalue{chapter:problem} in architectural form. An agent can reason only over the information made available to it. Shrinking an execution unit may reduce its resource requirements while simultaneously shrinking the semantic context within which a judgment is made. Page chunking therefore had no hard scaling wall. It had an increasingly unattractive tradeoff: continue subdividing the artifact and pay both systems overhead and semantic loss, or reconsider why so much of the artifact had to reside in the worker at all.
+```
+
+### 61-proposition
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, section “The reasoning-horizon proposition”, lines 729–733.
+
+Reason: Treat representation’s effect on reasoning as established background, cite the external-representation literature already introduced in Chapter 1, and scope the proposition to engineering tasks and maintained software models. Preserve the DocAble motivation and explicit quality and resource budget. Approved by the author on 3 November 2026.
+
+```latex
+That is the general move: a useful model changes the problem by presenting the consequential structure directly --- the basis for the reasoning-horizon proposition.
+
+\begin{quote}
+\textbf{Reasoning-Horizon Proposition.} Large software systems contain more potentially relevant state than any finite reasoner can keep active at once. Task-relevant models can extend the effective reasoning horizon by replacing implementation detail with semantically richer representations of the properties under consideration. The gain holds only while the representation is relevant, sufficiently faithful to the relation it claims, and cheaper to use than reconstructing the same knowledge from lower-level artifacts.
+\end{quote}
+```
+
+### 42-partition-transition
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, section “Pages as the Unit of Scale”, lines 74–74.
+
+Reason: The approved replacement ends in a single question; remove the obsolete reference to a second question.
+
+```latex
+The 250 MB presentation made the second question worth asking.
+```
+
