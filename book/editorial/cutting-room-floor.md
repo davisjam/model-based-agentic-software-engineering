@@ -689,3 +689,15 @@ The balance between inference, explicit representation, and enforcement will cha
 
 The following chapters develop the software-engineering mechanisms in detail. \magevalue{chapter:theory} abstracts those mechanisms into a theory. \magevalue{chapter:profession} then asks what remains when the software-specific assumptions are relaxed.
 ```
+
+
+## Reasoning-horizon figure labels, 3 November 2026
+
+Source: `book/tikz/figures/reasoning-horizon.tex`, revision `85c7332250fb505726c6e423e4e47267879e39e2`, lines 7 and 21. SVG peer: `book/assets/reasoning-horizon.svg`, lines 40–41 and 110. Replaced on 3 November 2026 after approval of `horizon-figure-task` and `horizon-figure-spine`.
+
+Reason: reconstruction is not the only way to continue when relevant state cannot all remain active. The revised labels emphasize preserving what later decisions need and keeping that state available. The SVG peer and accessibility description follow the same distinction.
+
+```tex
+\node[n,fill=white,text width=8cm] (task) at (0,0) {\textbf{Task exceeds the finite active state}\\Some reasoning state must be reconstructed};
+\node[note,draw,text width=3.2cm] (c1) at (0,-11.2) {Reconstruction unavoidable};
+```

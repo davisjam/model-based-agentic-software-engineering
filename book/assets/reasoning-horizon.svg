@@ -3,13 +3,13 @@
      GRAMMAR FIX: the hinge "the representation decides how much must be reconstructed" was floating text
      under a fork arrow; it is now a real BRANCH NODE ("Representation matters") that the two branches
      fork from. Hand-authored SVG (not Mermaid).
-       TOP  — a task exceeds the finite active state, so some reasoning state must be reconstructed.
+       TOP  — relevant state cannot all remain active; preserve what later decisions need.
        HINGE (rust branch node) — REPRESENTATION MATTERS: the representation determines the burden.
        LEFT  — raw implementation as working substrate -> large active state -> repeated reconstruction
                -> relevant structure may be lost -> CHURN.
        RIGHT — purposeful abstraction -> smaller relevant state -> lower reconstruction burden
                -> LONGER COHERENT REASONING.
-     Causal spine (strip at foot): finite active state -> reconstruction unavoidable -> representation
+     Causal spine (strip at foot): finite active state -> state must remain available -> representation
      determines burden. Palette: ink #1c1917, muted #57534e, cream #f6f4ef, rust #9a3f12/#fbeee6 (hinge),
      churn #b23b3b/#fbeaea, governed green #1f7a4d/#e3f0e7, page #fdfcf9. Grayscale-survivable: every node
      labelled; the fork and the top-to-bottom order carry the meaning; hue reinforces the terminals. -->
@@ -18,13 +18,13 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="rhTitle">The reasoning horizon</title>
   <desc id="rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
-    keep active, so some state must be reconstructed. A branch node, representation matters, states that the
+    keep active. Information needed for later decisions must remain available through preservation and recovery. A branch node, representation matters, states that the
     representation the reasoner works through determines how much of that state must be reconstructed. The
     figure forks from that node. On the left, raw implementation as the working substrate carries a large
     active state, forces repeated reconstruction, and easily loses relevant structure, ending in churn. On
     the right, a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction
     burden, and sustains longer coherent reasoning. A causal spine at the foot reads: finite active state,
-    reconstruction unavoidable, representation determines burden.</desc>
+    state must remain available, representation determines burden.</desc>
 
   <defs>
     <marker id="rh-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
@@ -37,8 +37,8 @@
 
   <!-- ===== shared top: the horizon condition ===== -->
   <rect id="task" x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="500" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Task exceeds the finite active state</text>
-  <text x="500" y="72" text-anchor="middle" font-size="20" fill="#57534e">some reasoning state must be reconstructed</text>
+  <text x="500" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Relevant state cannot all remain active</text>
+  <text x="500" y="72" text-anchor="middle" font-size="20" fill="#57534e">Preserve what later decisions need</text>
 
   <!-- edge: task -> hinge -->
   <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
@@ -103,16 +103,17 @@
   <text x="90" y="626" font-size="20" font-weight="700" letter-spacing="1.5" fill="#57534e">THE CAUSAL SPINE</text>
   <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.8">
     <rect id="spine-fas" x="90" y="636" width="230" height="44" rx="9"/>
-    <rect id="spine-recon" x="356.79" y="636" width="286.42" height="44" rx="9"/>
-    <rect id="spine-rep" x="618.25" y="636" width="353.51" height="44" rx="9"/>
+    <rect id="spine-recon" x="345" y="636" width="280" height="44" rx="9"/>
+    <rect id="spine-rep" x="650" y="636" width="320" height="44" rx="9"/>
   </g>
   <text x="205" y="663" text-anchor="middle" font-size="20" fill="#1c1917">finite active state</text>
-  <text x="500" y="663" text-anchor="middle" font-size="20" fill="#1c1917">reconstruction unavoidable</text>
-  <text x="795" y="663" text-anchor="middle" font-size="20" fill="#1c1917">representation determines burden</text>
+  <text x="485" y="663" text-anchor="middle" font-size="20" fill="#1c1917">state must remain available</text>
+  <text x="810" y="654" text-anchor="middle" font-size="20" fill="#1c1917">representation</text>
+  <text x="810" y="674" text-anchor="middle" font-size="20" fill="#1c1917">determines burden</text>
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)">
     <!-- edge: spine-fas -> spine-recon -->
-    <line x1="320" y1="658" x2="383" y2="658"/>
+    <line x1="320" y1="658" x2="345" y2="658"/>
     <!-- edge: spine-recon -> spine-rep -->
-    <line x1="615" y1="658" x2="678" y2="658"/>
+    <line x1="625" y1="658" x2="650" y2="658"/>
   </g>
 </svg>

@@ -14,8 +14,8 @@
     ]
   },
   "required_terms": [
-    "T ask exceeds the finite active state",
-    "Some reasoning state must be reconstructed",
+    "Relevant state cannot all remain active",
+    "Preserve what later decisions need",
     "Representation matters",
     "It determines how much must be reconstructed",
     "Raw implementation as",
@@ -29,12 +29,12 @@
     "Churn",
     "Longer coherent reasoning",
     "The causal spine",
-    "Finite active state Reconstructionunavoidable Representationdetermines burden"
+    "Finite active state State must remain available Representationdetermines burden"
   ],
   "bw_encoding": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
   "redesign": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
   "questions": [],
-  "alt": "Two parallel paths contrast raw state with abstraction. The raw-state path proceeds through large active state, repeated reconstruction and possible loss of relevant structure to churn. The abstraction path reduces relevant state and reconstruction burden, extending coherent reasoning. A three-box causal spine below links finite active state, unavoidable reconstruction and representation-dependent burden.",
+  "alt": "Two parallel paths contrast raw state with abstraction. The raw-state path proceeds through large active state, repeated reconstruction and possible loss of relevant structure to churn. The abstraction path reduces relevant state and reconstruction burden, extending coherent reasoning. A three-box causal spine below links finite active state, the need to keep state available and representation-dependent burden.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -296,5 +296,16 @@
   "caption_update_2026_11_02": {
     "source": "13-horizon-caption",
     "scope": "Approved caption only; figure-label proposals horizon-figure-task and horizon-figure-spine remain pending. Existing figure validation records describe the unchanged drawing."
+  },
+  "editorial_update_2026_11_03": {
+    "scope": "Author-approved task and causal-spine labels; matching SVG and accessibility wording. The SVG bottom-row boxes and arrows were spaced to remove overlap, and the native label was wrapped at a word boundary.",
+    "source_sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0",
+    "native_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
+    "proof": "/private/tmp/mage-horizon-labels-nov03/reasoning-horizon.pdf",
+    "strict_compile": "Two passes, zero unapproved diagnostics",
+    "label_fit": "All SVG labels fit their padded boxes; approved labels present in the native PDF",
+    "geometry_findings": 0,
+    "palette": "Unchanged; two existing #fbeee6 warnings",
+    "historical_reviews": "Earlier geometry, typography, and caption records describe the preceding labels."
   }
 }
