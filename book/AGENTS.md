@@ -148,19 +148,23 @@ Organize the book around the engineering ideas, not the chronology of how DocAbl
 
 # 4. Write an engineering book
 
-Use `self-communicate` as the detailed style authority.
+Use `self-communicate` as the detailed style authority, especially its
+[textbook register](../plugin/mage/skills/self-communicate/writing/textbook.md).
 
-The local requirements are:
+Write for a technically capable engineer learning the argument. Develop the reasoning needed to
+understand and apply each idea in connected paragraphs, with mechanisms, examples, and transitions.
+Preserve precise terms in ordinary syntax. Start with the problem, question, example, or claim that
+best prepares the reader; definition-first is appropriate for a glossary, not a universal rule for exposition.
 
-- write textbook prose, not expanded slides;
-- prefer rich paragraphs over one-sentence barbs;
-- state the abstraction once, then use its name;
-- use plain verbs around precise technical nouns;
-- introduce examples before generalizations where practical;
-- vary rhetorical devices;
-- keep slogans rare;
-- do not narrate the manuscript itself;
-- and let later chapters become denser as the reader learns the vocabulary.
+Judge length by explanatory work. Keep intuition, worked examples, and deliberate repetition that
+helps the reader test or connect an idea. Remove repeated claims, ornament, and qualifications that
+interrupt the argument before the reader needs them. Before shortening, ask what the reader must
+now infer. Before expanding, identify the question the added material answers.
+
+Use first person, direct address, questions, and lists when they help teach. Explain engineering
+costs, alternatives, and the judgment behind a choice. As the reader learns the vocabulary, use
+its established names and increase density without skipping new reasoning. Vary rhetorical devices,
+keep slogans rare, and present the argument rather than narrating the manuscript.
 
 A normal paragraph should develop one idea:
 
