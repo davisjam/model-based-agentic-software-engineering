@@ -25,7 +25,7 @@ Reach for it when:
 |---|---|
 | **STANDING** | Supply compact policy that applies broadly. |
 | **SLICE** | Retrieve the task-relevant model and engineering context. |
-| **DELIVER** | Put that context into the actor's reasoning horizon. |
+| **DELIVER** | Make that context available to the actor for the next decision. |
 | **REINFORCE** | *(strengthens)* Reassert important obligations at the point of action where useful. |
 | **GATE** | For critical decidable obligations, do not rely on delivery at all — enforce them. |
 

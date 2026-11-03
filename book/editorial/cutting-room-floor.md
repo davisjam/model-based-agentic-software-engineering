@@ -701,3 +701,17 @@ Reason: reconstruction is not the only way to continue when relevant state canno
 \node[n,fill=white,text width=8cm] (task) at (0,0) {\textbf{Task exceeds the finite active state}\\Some reasoning state must be reconstructed};
 \node[note,draw,text width=3.2cm] (c1) at (0,-11.2) {Reconstruction unavoidable};
 ```
+
+
+## H4 and context delivery, 3 November 2026
+
+Source revision: `607f877eb0d9d43eff82590ba016fcf2d5800832`. Replaced on 3 November 2026 after approval of `62-h4` and `appendix-deliver`.
+
+- `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, line 48 (H4), with its title also used in the summary table at line 155. The revision leads with the possibility that more capable agents suggest ways to model systems that engineers had not considered, while retaining validation, maintenance cost, and resource/quality conditions.
+- `book/latex/sources/appendix-stacks/context-delivery-stack.tex`, line 54. The revision distinguishes supplied context from the reasoning horizon.
+
+```tex
+\textbf{H4 --- Representation induction and innovation.} Commodity intelligence can contribute useful engineering representations, first by inducing latent structure from existing systems and, more strongly, by proposing representations that make consequential engineering questions tractable in ways the existing set of representations does not. Where those representations can be independently validated and economically maintained, they should extend the effective reasoning horizon of later agents and human engineers.
+
+\textbf{DELIVER} & Put that context into the actor\textquotesingle s reasoning horizon. \\
+```
