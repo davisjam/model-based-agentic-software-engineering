@@ -516,13 +516,13 @@
           "section_id": "the-two-problems-in-software",
           "level": 2,
           "heading_text": "The Two Problems in Software",
-          "topic_sentence": "The properties of agentic machinery leave two engineering problems.",
+          "topic_sentence": "The probability model in §1.3 gives us one aim: increase the agent’s chance of implementing all the required features correctly.[^1] The engineered environment—the structures and practices we arrange around the agent’s work—can also support engineers in deciding what those requirements should be and establishing whether the result meets them.",
           "id_source": "derived",
           "block_index": 1,
           "points": [
             {
               "slug": "substrate-leaves-two-problems",
-              "text": "The properties of agentic machinery leave two engineering problems: a finite reasoner needs representations that keep relevant state tractable, and fallible autonomous work needs enforcement outside the producing run.",
+              "text": "The engineered environment can improve the agent’s implementation success and support engineers in choosing requirements and establishing whether the result meets them; these aims lead to the Representation Problem and the Enforcement Problem.",
               "block_index": 2
             },
             {
@@ -533,7 +533,7 @@
             {
               "slug": "modeling-and-alignment-complement-one-another",
               "text": "Modeling makes selected properties explicit enough to reason about; Alignment enforces selected obligations over realization; neither requires the other in every case, but together they let engineering knowledge and judgment persist outside any one producing run.",
-              "block_index": 10
+              "block_index": 9
             }
           ]
         },
@@ -543,12 +543,12 @@
           "heading_text": "The Problem Is Larger than Software",
           "topic_sentence": "Software makes the problem unusually visible, but does not create it.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 12,
           "points": [
             {
               "slug": "the-problem-is-larger-than-software",
               "text": "Software makes the governing problem visible; it does not create it.",
-              "block_index": 14
+              "block_index": 13
             }
           ]
         }

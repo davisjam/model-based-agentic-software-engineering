@@ -625,3 +625,32 @@ Reason: the old summary assumes that the same decision is repeated. The approved
 ```tex
 Two problems follow. The Representation Problem concerns what the reasoner can know and reconstruct while performing a task. Important system knowledge left implicit in implementation must repeatedly be recovered through finite and fallible reasoning. The Enforcement Problem concerns consequential judgments left to probabilistic implementation. Even a highly reliable decision can eventually fail when it is repeated often enough.
 ```
+
+## Two Problems the Method Must Solve: opening, 3 November 2026
+
+Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, §1.4, “The Two Problems in Software,” revision `99a576a01fbb22a6dcccd201fd54976323679f46`, lines 13–32. Replaced on 3 November 2026 by approved review item `14-opening`.
+
+Reason: connect the two engineering problems to §1.3’s probability model and to engineers’ responsibility for requirements and assurance. The approved revision recalls the engineered environment without changing its definition, adds a footnote about the total cost of completing and checking agent-produced work, retains the numbered structure, and describes Modeling and Alignment as parts of the MAGE methodology. It also uses the author’s “arbiter of validity” wording. Preserve the original opening, transition, and problem definitions here with their annotations and chapter references.
+
+```tex
+% <!-- point: substrate-leaves-two-problems | The properties of agentic machinery leave two engineering problems: a finite reasoner needs representations that keep relevant state tractable, and fallible autonomous work needs enforcement outside the producing run. | terms: engineering-substrate, foundation-model, agentic-harness -->
+
+The properties of agentic machinery leave two engineering problems. A finite reasoner needs representations that keep relevant system state tractable as systems and tasks grow. Fallible autonomous work needs enforcement outside the producing run so that important obligations do not depend on the producer resolving every consequential judgment correctly.
+
+% <!-- point: the-two-problems-representation-and-enforcement | The two problems, related but distinct: the Representation Problem (how to represent a large system so relevant properties are reasoned about without reconstruction) answered by Modeling in Chapter 2, and the Enforcement Problem (how intent comes to bind autonomous work so satisfying obligations does not depend on the producer self-certifying) answered by Alignment in Chapter 3. | terms: engineering-substrate, modeling-principle, alignment-principle, reasoning-horizon, injection-point -->
+
+These problems are related but distinct:
+
+% <!-- index-def: representation-problem -->
+
+% <!-- index-def: enforcement-problem -->
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{The Representation Problem.} Large systems contain far more detail than any one engineering question needs, while the active state available to a reasoner is finite. How should a large, evolving system be represented so that the properties relevant to an engineering question can be reasoned about without continually reconstructing them from implementation? \magevalue{chapter:modeling} develops MAGE\textquotesingle s answer: Modeling.
+\item
+  \textbf{The Enforcement Problem.} Autonomous work can be constrained and checked at the interfaces through which it acts, but the producing run cannot be the final check on its own consequential judgments. How should engineering intent be enforced over autonomous work, so that satisfying important obligations does not depend on the producing agent remembering, agreeing, or self-certifying each time? \magevalue{chapter:alignment} develops MAGE\textquotesingle s answer: Alignment.
+\end{enumerate}
+```

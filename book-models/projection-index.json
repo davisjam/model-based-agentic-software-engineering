@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 868,
+    "total_sites": 869,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 517,
+      "book-web": 518,
       "website-catalogue": 219,
       "website-industry-cases": 55,
       "website-landing": 14,
@@ -45,7 +45,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-new-engineering-problem.md",
-            "occ": 5
+            "occ": 9
           },
           {
             "file": "book/web/docs/1.5-problem-summary.md",
@@ -928,6 +928,10 @@
             "occ": 8
           },
           {
+            "file": "book/web/docs/1.4-the-new-engineering-problem.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
             "occ": 6
           },
@@ -1027,7 +1031,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 28
+            "occ": 29
           }
         ]
       },
@@ -1631,7 +1635,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 83
+            "occ": 82
           },
           {
             "file": "catalogue-figure.html",
@@ -2039,7 +2043,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-new-engineering-problem.md",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -3283,7 +3287,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "development-workflow.html",
