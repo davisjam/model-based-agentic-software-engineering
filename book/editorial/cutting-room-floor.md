@@ -2472,3 +2472,27 @@ Reason: Keep the editorial summary consistent with the approved passage; preserv
 % <!-- point: spotify-installs-and-then-retires-a-control-as-the-fabricator-improves | The controls around the agent station are tuned to the fabricator and move with it: a deliberately narrow tool surface, verification as a precondition of the PR's existence, and an LLM judge added after agents gamed builds and, on a second-hand account, removed once models improved. -->
 ```
 
+## MAGE scope across process design and tolerance, 3 November 2026
+
+Source revision: `86caa0f0b26f9f6293f045c377c20d435095ef97`. The author approved `factory-mage-scope`. The revision distinguishes DocAble’s emphasis on tolerance from MAGE’s broader application to process design and product requirements. The original paragraph and editorial summary are retained below.
+
+### factory-mage-scope
+
+Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, section “Process Design and Tolerance”, lines 54–54.
+
+Reason: Preserve the approved distinction between a case’s emphasis and the methodology’s scope; keep the editorial summary consistent.
+
+```latex
+That difference also helps locate MAGE within the larger problem of factory engineering. MAGE concentrates primarily on the tolerance side of the factory. Process design remains part of the production system, but MAGE does not attempt to prescribe a general process for agentic software development. The distinction is therefore not between factories that have tolerances and factories that do not. It is between different ways of representing tolerances, establishing them, and making them consequential in production.
+```
+
+### factory-mage-scope-point-summary
+
+Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, section “Process Design and Tolerance”, lines 52–52.
+
+Reason: Preserve the approved distinction between a case’s emphasis and the methodology’s scope; keep the editorial summary consistent.
+
+```latex
+% <!-- point: mage-concentrates-on-the-tolerance-side-of-the-factory | MAGE concentrates on the tolerance side and does not prescribe a general process, so the distinction is not between factories that have tolerances and factories that do not, but between ways of representing them, establishing them, and making them consequential. | terms: tolerance -->
+```
+
