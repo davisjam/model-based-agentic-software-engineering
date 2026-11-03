@@ -2364,3 +2364,47 @@ Reason: The approved replacement ends in a single question; remove the obsolete 
 The 250 MB presentation made the second question worth asking.
 ```
 
+## Approved industry mechanisms, retrieval, and knowledge upkeep, 3 November 2026
+
+Source revision: `5df5d951c9f03f385c2c04119146339434e9789a`. The author approved `factories-common-mechanisms`, `5-uber-retrieval`, `shopify-observed-learning`, and `factories-maintenance`. Original passages are retained below for possible reuse.
+
+### 5-uber-retrieval
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “Uber”, lines 121–121.
+
+Reason: Chapter 5 did not explain the relationship. Add the graph reported by Uber and a short footnote distinguishing representation, retrieval, and human readability.
+
+```latex
+The optimization targets the environment rather than the reasoner. Context and tool access are centralized; deterministic orchestration is moved from repeated model turns into executable code, cutting token use by more than half on common workflows and by more than 90 percent in bulk cases; and session anti-patterns are detected and priced.\citep{medisetty2026factory, medisetty2026sdlc} Real workloads become benchmarks, models are selected against cost, quality, and reliability, and managed agents are evaluated in outcome-denominated units: cost per merged pull request, review, alert, or cleanup.\citep{medisetty2026factory}
+```
+
+### factories-common-mechanisms
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “Other Agentic Software Factories”, lines 101–101.
+
+Reason: Name the teams and mechanisms doing the work, retaining externalizing as the precise verb for recording knowledge outside people’s memories. Put the transition to the individual cases in its own paragraph.
+
+```latex
+Across these factories, several structures recur. Engineering knowledge is externalized so that agents need not reconstruct it from a person\textquotesingle s memory on every task. Agent action is bounded through tools, permissions, roles, execution environments, or other controls. Realization is evaluated through tests, validators, reviewers, simulations, or other evidence before consequential changes are admitted. And some engineering judgments remain with people where the available representations, evidence, or organizational obligations do not justify delegation. These common structures establish the baseline. The cases that follow focus instead on where the factories differ: what each organization has chosen to engineer around its fabricators, what operating experience has forced it to change, and what that experience teaches about constructing and maintaining an agentic software factory.
+```
+
+### shopify-observed-learning
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “Shopify”, lines 171–171.
+
+Reason: Replace the awkward “documents people learning” opening with people using shared sessions, and use the requested language about externalizing missing knowledge in the monorepo.
+
+```latex
+The corpus of sessions is the factory\textquotesingle s learning substrate, and the mechanism Shopify documents is human. People watch River work, notice where it got stuck, and write down what it should have known; the artifacts are files in the monorepo --- a skill update, an \texttt{AGENTS.md} diff, sometimes a whole new shared skill --- alongside the code, conventions, intent documents, and runbooks the next session inherits.\citep{moreno2026river} The effect is measured with the counterfactual controlled: River\textquotesingle s merge rate rose from 36 to 77 percent over two months, and "We did not retrain a model. We did not switch models."\citep{lutke2026shopfloor} The measure is self-reported and does not isolate human learning from improvement to the surrounding environment, but that entanglement is itself revealing: the people and the factory learned through the same mechanism. Shopify\textquotesingle s engineering account closes by handing readers an imperative --- "Make the agent multiplayer by construction" --- a design prescription offered outward, not a label the company applies to itself.\citep{moreno2026river}
+```
+
+### factories-maintenance
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, section “What the Factories Share, and Where They Differ”, lines 275–275.
+
+Reason: Replace “representations through which a factory inherits” and “carrying-cost problem” with the upkeep engineers perform.
+
+```latex
+A second recurring cost is maintaining the representations through which a factory inherits engineering knowledge. GitLab budgets machinery for documentation freshness and convergence, Cloudflare checks the context supplied through AGENTS.md, and Shopify automates repair of instruction-file drift. The factory therefore acquires the same carrying-cost problem as the software it governs: production structures that preserve engineering knowledge are capital only while they remain sufficiently accurate to be useful.
+```
+
