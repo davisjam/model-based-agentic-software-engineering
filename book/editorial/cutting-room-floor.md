@@ -376,3 +376,28 @@ Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `a
 ```latex
 \textbf{Governed Engineering Environment.} An engineered environment where selected engineering obligations are enforced by durable mechanisms instead of relying mainly on people to remember or inspect them. Explicit models let those mechanisms govern properties that would otherwise require a person to reconstruct or judge them.
 ```
+
+
+## Representation argument set aside from the horizon proposal, 2 November 2026
+
+The author asked to set aside the representation-strength argument from review item `13-horizon`. At this point the reader is learning why human working memory and agent context are limited and what a reasoning horizon means; the dependency-graph and state-machine argument starts teaching the response before the problem has been established. Reconsider with the Modeling treatment later. This note does not authorize insertion elsewhere.
+
+**Status:** removed from the review proposal on 2 November 2026. The broader horizon revision remains unapproved, so the corresponding passage is still present in the manuscript pending that landing. This archive preserves both the existing manuscript passage and the unlanded proposed replacement.
+
+### Existing manuscript passage
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, §1.3, “The Reasoning Horizon,” revision `8d0fcac70aa2c7cadb607b75c5d75791d1e64089`, lines 101–103.
+
+```latex
+% <!-- point: the-horizon-is-a-locality-problem-for-reasoning-state | The reasoning horizon is a locality problem: systems keep useful state close to the computation that consumes it, and purposeful representations apply the same principle semantically — a dependency graph or state machine answers a question that retrieved source lines merely make available. | terms: reasoning-horizon, engineering-substrate -->
+
+This is a locality problem for reasoning state. Systems have long dealt with finite working sets by keeping useful state close to the computation that consumes it rather than making all state equally immediate. Purposeful representations apply the same principle semantically. A dependency graph can answer a question that thousands of retrieved source lines merely make available; a state machine can expose a behavioral property that additional context leaves implicit. Better representations reduce the amount of state that must be reconstructed for a particular engineering question.
+```
+
+### Unlanded review replacement
+
+Source: `13-horizon`, `mage-introduction-review/proposed-replacements.json`, the proposal saved immediately before this cut in `proposal-history-2026-11-02-horizon-representation-cut.json`. Removed from the proposed replacement, not from the manuscript.
+
+```markdown
+Representation determines how much of that information must be reconstructed. A dependency graph can expose a relationship that would otherwise have to be recovered from thousands of source lines; a state machine can make a behavioral question explicit. The reasoner still has to answer the engineering question, but it need not first rebuild every relevant relationship from implementation. Poor representations impose that work repeatedly and risk losing distinctions that later decisions need.
+```
