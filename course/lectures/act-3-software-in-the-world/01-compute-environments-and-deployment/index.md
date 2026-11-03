@@ -15,6 +15,11 @@ readings:
       items:
         - cite: android2026appbundle
           annotation: 'Android Developers, ["Android App Bundle Overview"](https://developer.android.com/guide/app-bundle). Mobile applications are distributed through a platform that manages packaging and delivery to heterogeneous devices. Read for the distinction between the artifact developers produce (an Android App Bundle) and the APKs installed on devices. Focus on how this arrangement handles device-specific configurations and what control the developer retains over distribution. The implementation details of individual bundle modules are less important.'
+    - heading: Earlier reading revisited
+      items:
+        - cite: dora-metrics
+          annotation: 'DORA, ["Software Delivery Metrics: The Four Keys"](https://dora.dev/guides/dora-metrics/), previously assigned in Unit 03, Teamwork. First read for how an organization measures software delivery performance; reread it against the release machinery of this unit: deployment frequency and lead time for changes describe the pipeline you have just built, while change failure rate and time to restore service describe what a release strategy is for. *Which of the four would a canary release improve, and which could it make worse?*'
+      note: 'If you skipped this reading in Teamwork, read it now.'
 instructor_materials: []
 student_materials: []
 assignments: []
