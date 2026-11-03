@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a vertical
+     pipeline whose admission-gate branch and whose delivery-vs-deployment fork (dashed decision
+     edge beside a solid automatic edge, converging on one production node) carry annotation and
+     edge-style semantics a graph auto-layout would drop. Original drawing in the course figure
+     vocabulary (act-2 .../05-building-with-agents/figures/software-factory.svg,
+     .../01-delegation/figures/delegation-model.svg); structure only — CI, delivery, deployment —
+     is the industry-standard progression, drawn fresh. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 680" width="760" height="680"
+     role="img" aria-labelledby="cdTitle cdDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cdTitle">From continuous integration to continuous delivery to continuous deployment:
+    checks admit a change, delivery keeps the accepted artifact ready for a release decision, and
+    deployment ships it automatically when the configured criteria hold</title>
+  <desc id="cdDesc">A proposed change flows down into a continuous integration band with three steps:
+    integrate the change, build an artifact, run automated checks. The checks branch: when they fail,
+    the change is revised and resubmitted; when they pass, it becomes an accepted artifact. From the
+    accepted artifact the flow forks into two sibling practices. Continuous delivery keeps every
+    accepted artifact ready to release, and a dashed edge labeled "release is a decision" leads to
+    production, because a person or policy still chooses when. Continuous deployment ships artifacts
+    that meet the configured criteria automatically, and a solid edge labeled "release is automatic"
+    leads to the same production node. A closing note reads: the required checks are an admission
+    gate — evidence about selected properties, not proof that every operational condition is safe.</desc>
+
+  <defs>
+    <marker id="cd-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="680" fill="#fdfcf9"/>
+
+  <rect x="290" y="24" width="180" height="44" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="52" text-anchor="middle" font-size="16" fill="#1c1917">Proposed change</text>
+  <line x1="380" y1="68" x2="380" y2="94" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+
+  <!-- continuous integration band -->
+  <rect x="60" y="96" width="640" height="136" rx="12" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="80" y="124" font-size="15" font-weight="700" fill="#2f5169">CONTINUOUS INTEGRATION</text>
+  <rect x="84" y="140" width="176" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="172" y="169" text-anchor="middle" font-size="15" fill="#1c1917">Integrate the change</text>
+  <line x1="260" y1="163" x2="290" y2="163" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+  <rect x="292" y="140" width="176" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="169" text-anchor="middle" font-size="15" fill="#1c1917">Build an artifact</text>
+  <line x1="468" y1="163" x2="498" y2="163" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+  <rect x="500" y="140" width="176" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="588" y="169" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Run automated checks</text>
+
+  <!-- the checks branch: fail -> revise; pass -> accepted artifact -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#cd-ah)">
+    <path d="M588,186 L588,252 L270,252 L270,270"/>
+    <path d="M588,186 L588,252 L640,252 L640,270"/>
+  </g>
+  <text x="270" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">Checks pass</text>
+  <text x="640" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">Checks fail</text>
+  <line x1="270" y1="300" x2="270" y2="322" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+  <line x1="640" y1="300" x2="640" y2="322" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+
+  <rect x="180" y="324" width="180" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="270" y="353" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Accepted artifact</text>
+  <rect x="540" y="324" width="200" height="46" rx="10" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="640" y="353" text-anchor="middle" font-size="15" fill="#8a2f2f">Revise and resubmit</text>
+
+  <!-- fork: the two sibling practices -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#cd-ah)">
+    <path d="M270,370 L270,396 L205,396 L205,414"/>
+    <path d="M270,370 L270,396 L555,396 L555,414"/>
+  </g>
+
+  <rect x="40" y="416" width="330" height="96" rx="12" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="205" y="444" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">CONTINUOUS DELIVERY</text>
+  <text x="205" y="468" text-anchor="middle" font-size="13.5" fill="#41586c">Every accepted artifact is kept</text>
+  <text x="205" y="488" text-anchor="middle" font-size="13.5" fill="#41586c">ready to release</text>
+
+  <rect x="390" y="416" width="330" height="96" rx="12" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="555" y="444" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">CONTINUOUS DEPLOYMENT</text>
+  <text x="555" y="468" text-anchor="middle" font-size="13.5" fill="#41586c">Artifacts that meet the configured</text>
+  <text x="555" y="488" text-anchor="middle" font-size="13.5" fill="#41586c">criteria ship automatically</text>
+
+  <text x="215" y="536" text-anchor="start" font-size="13.5" font-weight="700" fill="#41586c">release is a decision</text>
+  <text x="545" y="536" text-anchor="end" font-size="13.5" font-weight="700" fill="#41586c">release is automatic</text>
+  <path d="M205,512 L205,546 L340,546 L340,566" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#cd-ah)"/>
+  <path d="M555,512 L555,546 L420,546 L420,566" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#cd-ah)"/>
+
+  <rect x="280" y="568" width="200" height="46" rx="10" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="380" y="597" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5137">Production</text>
+
+  <text x="380" y="652" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the required checks are an admission gate: evidence about selected properties,</text>
+  <text x="380" y="672" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">not proof that every operational condition is safe</text>
+</svg>
