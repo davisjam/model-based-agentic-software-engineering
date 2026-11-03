@@ -547,3 +547,20 @@ Reason: distinguish preservation and recovery from reconstruction, and connect r
 ```tex
 \caption{\emph{The reasoning horizon.} At sufficient scale, a task requires more state than a finite reasoner can keep active, so some state must be reconstructed. Representation determines the cost: raw implementation carries irrelevant detail, while purposeful abstraction can keep question-relevant state smaller and cheaper to recover.}
 ```
+
+## Context Windows and Compaction inset, 3 November 2026
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, §1.3, revision `2256d4189667f026f9b86c6be95411f0db8904de`, lines 122–129. Replaced on 3 November 2026 by approved review item `13-inset`.
+
+Reason: enter from the reasoning-horizon discussion, explain LLM context windows and compaction with a concrete example of information loss, include multimodal inputs, and return to the book’s broader abstraction. Preserve the original here for possible reuse; no relocation is authorized by this archive.
+
+```tex
+\begin{bookbox}{inset}{Context Windows and Compaction}
+\label{inset-context-windows-and-compaction}
+MAGE\textquotesingle s reasoning horizon appears in today\textquotesingle s agent harnesses most visibly as the problem of working within a bounded context window. The context window determines how much material the underlying model can consider directly at once, and those windows have grown substantially across generations of foundation models. Harnesses further stretch the useful working horizon by retrieving relevant state, caching or preserving selected information, and compacting an extended interaction into a smaller representation when the accumulated context becomes too large.
+
+These mechanisms expand the amount of work an agent can carry forward, but they do so in different ways. A larger context window increases the amount of state that can remain directly available. Compaction compresses earlier state so that a longer interaction can fit within that bound, at the risk of discarding details that later matter. Retrieval and persistent state move information outside the immediate context and bring it back when needed. More generally, loop engineering can decompose work, preserve intermediate artifacts, selectively reconstruct context, and hand state between reasoning episodes. The effective working horizon of an engineered agent system can therefore be much larger than the raw context window of any single model invocation.
+
+This is why MAGE uses reasoning horizon rather than context window. The engineering limit that matters is not a fixed token count but how much consequential reasoning state a task requires, and how effectively the surrounding system can preserve and recover that state. Today\textquotesingle s context windows are one implementation constraint on that horizon; larger models and better harnesses can move the constraint without making the underlying problem disappear.
+\end{bookbox}
+```

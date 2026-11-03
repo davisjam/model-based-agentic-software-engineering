@@ -16,7 +16,7 @@ Created 3 November 2026 from the author's Chapter 1 review. These are follow-up 
 - [ ] Check the return: does the ending connect the explanation back to the chapter's argument without merely repeating the opening?
 - [ ] Check both reading paths. A reader who takes the inset should rejoin naturally; a reader who skips it should still be able to follow the mainline.
 
-The motivating example is §1.3, **Context Windows and Compaction** (`inset-context-windows-and-compaction`): enter from the reasoning-horizon discussion, explain the specific LLM mechanisms and their limitations, and return to the broader system-level concept. Its revised opening is currently in the Chapter 1 review proposal.
+The motivating example is §1.3, **Context Windows and Compaction** (`inset-context-windows-and-compaction`): enter from the reasoning-horizon discussion, explain the specific LLM mechanisms and their limitations, and return to the broader system-level concept. The revised inset was approved and applied on 3 November 2026; the book-wide inset audit remains pending.
 
 ## Chapter-ending learning material
 
