@@ -36,7 +36,7 @@ This reference course uses a 16-week sequence in three acts. The [Syllabus](syll
 | 7 | {module:Modeling: Degrees of Semantic Commitment} · {module:Alignment} |
 | 8 | {module:Failure-Aware Engineering} |
 | 9 | Oral exam |
-| 10 | {module:Building with Agents: Agentic Workshop} · {module:Building with Agents: Software Factories} |
+| 10 | {module:Building with Agents: Agentic Workshop} · {module:Building with Agents: Software Factories} · {module:Building with Agents: Inside an Agentic Software Factory} |
 
 ## Act III — Engineering Software Systems
 
