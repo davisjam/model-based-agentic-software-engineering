@@ -324,6 +324,10 @@ An inset should:
 
 The mainline must remain readable if the inset is skipped.
 
+An inset belongs to the chapter's reading sequence. Its opening should pick up a concept, question, or difficulty in the preceding prose and make clear why the extra detail is useful here. Its closing should reconnect the explanation to the main argument. Provide both transitions: a return to the mainline at the end does not replace a segue into the inset.
+
+Audit each inset with the prose immediately before and after it. Check both reading paths: entering the inset and skipping it. Track the later book-wide pass in [review.md](review.md).
+
 Once a term has been taught, use the term without re-teaching it.
 
 ---
