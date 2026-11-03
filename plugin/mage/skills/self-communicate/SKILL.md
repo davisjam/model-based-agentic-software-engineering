@@ -1,22 +1,13 @@
 ---
 name: self-communicate
 description: >-
-  Write and diagram engineer-facing prose well — the third partner skill in the
-  govern / operate / communicate trio. It governs the prose the fleet AND its
-  operator produce: the fleet's docs (a control's description, a mechanism entry, a
-  design doc, a runbook, a handoff, a README, a tutorial, an ADR, an API reference)
-  AND the operator's own reports to the human (a status report, explaining a
-  tradeoff, surfacing a decision — the orchestrator's prose to the user is prose
-  too). It also governs talks and slide decks. Use when authoring or auditing any of it. Three legs. PROSE — the rhetoric
-  toolkit (classical figures, used with
-  variety so the prose doesn't read as machine-uniform), the Diátaxis engineering
-  register (tutorial / how-to / reference / explanation), a house lexicon that
-  names concepts consistently, the target voice, and an audit procedure that grades
-  a passage and emits concrete fixes. VISUALIZATION — technical-diagram types,
-  Mermaid-first, with a narrow hand-authored-SVG escape hatch. PRESENTING — talk, deck, slide, presentation-type specialization, house style, and mechanical/accessibility rules. Also bootstraps a
-  house vocabulary by walking a codebase and keeps it living. Use whenever prose
-  quality, doc structure, term consistency, LLM-tell density, or a technical diagram
-  is in hand.
+  Write and review engineer-facing prose, technical diagrams, talks, and slide decks.
+  Use for engineering books, design docs, mechanism entries, runbooks, tutorials,
+  reference material, and the operator's reports and explanations of tradeoffs.
+  Applies document-specific registers, stable terminology, concrete mechanisms, and
+  a prose audit, including textbook guidance that preserves necessary reasoning and
+  examples. Routes diagrams to visualization resources and presentations through
+  talk, deck, and slide design.
 ---
 
 # self-communicate — write, draw, and present engineer-facing material well
@@ -113,8 +104,11 @@ The stance specializes per representation, and each specialization lives in its 
    Draw variety from the toolkit so no one figure recurs every beat.
 2. **Engineering discourse / Diátaxis (the shape).** [`writing/engineering.md`](writing/engineering.md) —
    fixes the *shape* of a doc via the four Diátaxis modes (tutorial / how-to / reference / explanation).
-   Decide the mode first; a how-to written as an explanation confuses the reader. The
-   [`drawing/diagrams.md`](drawing/diagrams.md) leg pairs a diagram type to each mode.
+   Decide the reader's purpose first. For books and sustained explanations, also read
+   [`writing/textbook.md`](writing/textbook.md): develop the reasoning with mechanisms, examples, and
+   transitions, and judge length by explanatory work. [`writing/document-types.md`](writing/document-types.md)
+   supplies the larger document arc. The [`drawing/diagrams.md`](drawing/diagrams.md) leg pairs a diagram
+   type to each mode.
 3. **Lexicon (the vocabulary).** [`writing/lexicon.md`](writing/lexicon.md) — the house vocabulary of
    engineering terms-of-art, so the prose names an established idea and links it rather than re-describing
    it each time. Pick one word per concept and say it everywhere.
@@ -162,7 +156,8 @@ The dependency is **talk → type → deck → slide → style/rules**. Do not t
 
 1. **Name the genre and the mode first.** What kind of doc is this — tutorial, how-to, reference,
    explanation, ADR, runbook, mechanism entry? The mode ([`writing/engineering.md`](writing/engineering.md))
-   decides the shape before you write a sentence.
+   decides the shape before you write a sentence. Use the textbook register
+   ([`writing/textbook.md`](writing/textbook.md)) for an engineering book or sustained explanation.
 2. **Draft in the house voice, with varied devices.** Apply [`writing/voice.md`](writing/voice.md); reach into
    [`writing/rhetoric.md`](writing/rhetoric.md) for figures, and vary them so nothing recurs on a fixed beat.
 3. **Name concepts from the lexicon.** Use [`writing/lexicon.md`](writing/lexicon.md) — one established term

@@ -3,14 +3,13 @@
 This is an **agent-facing** style doc — a resource of the `self-communicate` skill, not a catalogue entry.
 It is not rendered to HTML or served.
 
-It gives the *method* for the engineering register — the target voice for almost all repo prose, defined
-in [`voice.md`](voice.md). Voice says what the prose should *sound* like; this file says what
-*shape* each doc should take. The shape comes from [Diátaxis](https://diataxis.fr/).
+It gives a way to choose a section's *shape* from the reader's purpose, using
+[Diátaxis](https://diataxis.fr/). [`voice.md`](voice.md) supplies the register; engineering books and
+sustained explanations also use [`textbook.md`](textbook.md).
 
-This register favors the **plain and scannable**. Short declaratives, bullet and numbered lists, and tables
-are first-class here — a doc need not flow as continuous prose. A reader hunting one fact is better served
-by a list or a table than by a paragraph, so reach for the structure that surfaces the answer fastest, not
-for prettier sentences.
+Match the structure to the reader's work. A reader hunting one fact may need a list or table; a reader
+learning an argument may need connected paragraphs, examples, and transitions. Plain language serves
+both. Neither fast lookup nor minimum length is the universal objective.
 
 ## Adopt Diátaxis — one framework, four modes
 
@@ -38,14 +37,16 @@ characteristic moves that mode sanctions.
 |---|---|---|---|
 | **Mechanism entry** (`<role>/<family>/*.md`) | Reference + Explanation | Define the pattern precisely (the card, the Intent), then walk the *why* (Motivation, "Why it's not just X") | Reference: term · genus · differentia, no motivation. Explanation: earn the claim by walking the failure it kills, not by asserting it. |
 | **Design doc** (`docs/design/*`) | Explanation | Walk the reader from the problem to the chosen shape; name the alternatives you rejected and why | State the design tension first; give the second-order dynamics; concede the tradeoff in the same breath as the choice. |
+| **Engineering-book mainline** | Explanation | Develop the reasoning a technically capable engineer needs to understand and apply the argument | Use mechanisms, examples, and transitions; preserve useful intuition and repetition; increase density as vocabulary becomes familiar. See [`textbook.md`](textbook.md). |
 | **A governing project rule** (a CLAUDE-style rule) | Reference (imperative) | State the invariant as a command, then its enforcement and its escape hatch | Imperative mood ("Route all PDF I/O through the typed model"); one rule per line; name the lint that enforces it; give the bypass. |
 | **A code comment** | Explanation (in miniature) | Explain *why*, never *what* — the code already says what | A `WHY:` note on a non-obvious invariant or a footgun. If it restates the line below it, delete it. |
 | **A runbook** (`docs/*-playbook.md`, ops recovery) | How-to | Numbered imperative steps against a real goal, in order | Name the cost of each step; state the honest limit before the remedy; show the failing symptom, then command the fix. |
 | **The quick-start** (`quick-start.md`) | Tutorial | Take a first-time reader to one concrete success; explain each line as it arrives | "In this guide, we'll…"; a worked example up front; reassure ("don't worry if this looks complex"); a visible win at the end. |
 
-A doc that spans two modes (the mechanism entry, spanning reference *and* explanation) keeps them in
-**separate sections** — the card and Intent do the reference job; Motivation and "Why it's not just X" do
-the explanation job. Do not braid them into one paragraph.
+A mechanism entry separates its reference card from its explanation so each supports its reader's
+task. A textbook mainline can introduce a definition or work through an example within an explanation
+when that step advances the reasoning. Use separate reference sections or optional insets when readers
+need lookup material or a deeper background treatment.
 
 ## Each mode, grounded in a live Apache example
 

@@ -20,8 +20,8 @@
         {
           "id": "shape",
           "title": "Document shape",
-          "description": "Determine what kind of document is being written and how that form should be structured.",
-          "resources": ["writing/engineering.md", "writing/document-types.md"]
+          "description": "Determine the reader's task and document form; use textbook.md for books and sustained explanations.",
+          "resources": ["writing/engineering.md", "writing/document-types.md", "writing/textbook.md"]
         },
         {
           "id": "expression",
@@ -55,6 +55,7 @@
           "writing/voice.md",
           "writing/rhetoric.md",
           "writing/engineering.md",
+          "writing/textbook.md",
           "writing/lexicon.md",
           "writing/lexicon.local.md",
           "writing/document-types.md",

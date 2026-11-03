@@ -9,32 +9,31 @@ Read this alongside [`rhetoric.md`](rhetoric.md) (the device toolkit) and the
 house-rules writing-style discipline. The rhetoric file says *what tools exist*;
 this file says *how the author actually swings them*.
 
-## Three registers — and when to reach for each
+## Choose the register for the reader's task
 
-The catalogue draws on three registers. Two are the house author's own voice; the third is the target
-register for engineer-facing documentation, drawn from best-in-class third-party docs. The exemplars
-below are grouped by register.
+The writing stack serves both readers learning an argument and readers doing or looking up a task.
+Choose the register accordingly. The exemplars include the house author's essays and papers,
+third-party documentation, and the approved book edits in [`textbook.md`](textbook.md).
 
+- **Engineering textbook** (see [`textbook.md`](textbook.md)). Develop the reasoning a technically
+  capable engineer needs to understand and apply the argument. Use connected explanation, mechanisms,
+  examples, and transitions. Keep precise terms in ordinary syntax; judge length by explanatory work.
 - **Engineering / documentation** (best-in-class third-party docs — Apache projects). Orient before
-  detail, lead with a one-sentence "what it is", plain present-tense active-voice system description,
-  imperative how-to steps, precise term definitions, explicit "when NOT to use this" cautions. **This is
-  the register to aim for in almost all repo prose** — mechanism entries, design docs, CLAUDE rules, code
-  comments, runbooks. It is a *third-party* register, NOT the author's own voice; the exemplars are labeled
-  as such.
+  detail; use precise definitions for lookup and imperative steps for procedures. Make conditions and
+  costs easy to find. Use this register for mechanism cards, project rules, and runbooks, adapting it to
+  the document's purpose. The third-party exemplars teach the register, not the author's personal idiom.
 - **Discursive / argumentative** (his Medium essays). First person, direct address, extended analogy, a
-  claim developed by scaffolding. Reach for it *only* where you are genuinely *persuading* — a
-  **Motivation** paragraph, a design-rationale aside — walking the reader from a shared start to a
-  conclusion. It is the essay register; don't let it leak into reference or how-to prose.
+  claim developed from a shared starting point. Use it for essays and passages that persuade through
+  reasoning. First person, direct address, and questions also belong in textbook prose when they teach;
+  they do not by themselves make a passage an essay.
 - **Technical / academic** (his co-authored papers). Terse, third-person or "we", claim-scope-evidence in
   tight sequence, limitations stated flat. Reach for it in an **Intent** line, a metadata summary, a "Why
   it's not just X" contrast, or a **Known uses** — anywhere a claim needs a bounded, quantified statement.
 
-**Default to the engineering/documentation register.** Most catalogue entries want it for the spine
-(Intent, card, mechanism, Known uses), the technical register for a scoped claim or contrast, and a touch
-of the discursive one only where a Motivation earns persuasion. The essay and academic registers are for
-their own contexts — an essay, a paper — not for a runbook or a reference entry. The technical and
-engineering exemplars teach a *register*, not personal idiom (the papers are multi-author; the docs are
-third-party) — how a claim is framed and scoped, how a system is described, how a caution is stated.
+**Choose by purpose, not repository location.** A book's mainline uses the textbook register; its
+glossary uses reference prose. Catalogue cards and runbooks usually use the documentation register.
+Design explanations need enough reasoning to assess the choice. Use academic precision for a bounded
+claim without importing a paper's compressed style into an explanation that needs development.
 
 ## The voice in six characteristics
 
@@ -153,45 +152,18 @@ that don't.
 
 The [`audit.md`](audit.md) procedure flags a fluffy adjective as a Pass-3 house-style finding.
 
-## Engineering textbook, not conference keynote
+## Engineering textbook
 
-**Write like an engineering textbook, not like a conference keynote.** A textbook states the result and
-moves on; a keynote warms the room first and restates the point for effect. Lead with the definition or
-the result; cut the warm-up and cut the recap.
+Use [`textbook.md`](textbook.md) for the teaching register and calibrated editorial examples.
+Develop the reasoning behind a result. Keep the intuition, examples, and deliberate repetition that
+help the reader understand or apply it; cut announcements of importance and repeated claims that do
+no further work. A problem or example may prepare a definition, and a question may expose the next
+engineering decision. Glossaries retain their definition-first form.
 
-- **Cut the warm-up.** The keynote signals that a good part is coming before delivering it — "Here is the
-  interesting part…", "It turns out…", "Now for the fun bit." The textbook just states the thing. Delete
-  the throat-clearing and open on the result.
-- **Do not recap at the same level of abstraction; recur only to compress, connect, or advance.** The
-  keynote restates its point after making it, for effect, and the textbook trusts the reader to have read
-  the sentence — so a paragraph that restates the one above it is padding, and gets cut. But not every
-  return to a point is a recap. Recurring to *compress* a long argument into operational handles, to
-  *connect* it to a later idea, or to *advance* it a step is productive; a chapter-ending synthesis that
-  turns a forty-page argument into five named commandments is compression, not padding. This is the
-  self-commentary curl one level up — keep the point, drop the echo — but do not delete a synthesis that
-  does new work. A textbook may still mark a conceptual landmark: spend rhetorical emphasis where a new named
-  idea enters; do not spend it telling the reader that an ordinary sentence was important.
-- **Definition first, motivation second.** Open with the result, the definition, the claim; let a
-  sentence of motivation follow only where it earns its place. This is the principle behind the glossary's
-  definition-first entries and the warm-up-deletion pass across the prose.
-- **Organize exposition by the engineering system, not the project timeline.** Historical incidents
-  motivate the theory; they do not determine the structure of the chapter. Examples are evidence for the
-  abstraction, not the spine of the exposition. When a mechanism was discovered "because this happened
-  next," present it "because it logically follows." The case study *motivates* a mechanism; the exposition
-  is organized around the engineered system it belongs to. A lived incident may open a section as
-  motivation, but the section's spine is the architecture, and the reader should be able to follow the
-  mechanism without the chronology. (As-built status notes are the sanctioned exception — mark them as
-  divergence, do not let them structure the argument.)
-- **Present clinically: problem, structure, trade-offs, failure modes, consequences — not exhortation.**
-  Describe the mechanism and the failure it kills; do not crown it, do not tell the reader every project
-  should adopt it, do not comment on the idea's own importance. Confidence paired with an explicit caveat,
-  never absolutism. This governs *structure and stance*; the sanctioned lived-detail / field-note asides
-  (the first-person incidents that carry the book's warmth) stay intact.
-
-Worked examples strengthen this rule rather than relax it. When convergence across several systems shows a
-mechanism matters, the section no longer needs rhetorical motivation to persuade the reader that it does.
-You show Cloudflare, Docker, Siemens, and DocAble arriving at the same shape, and the evidence carries what
-the warm-up used to.
+Organize exposition around the engineering problem and its dependencies. Use the project's chronology
+when it reveals the judgment behind a choice, without making readers reconstruct the general argument
+from a sequence of incidents. Explain costs and alternatives as part of that judgment. The prose
+should let readers assess the choice themselves.
 
 ### Reserve the curl for concept introduction
 
@@ -231,16 +203,15 @@ summarizing the implementations.
 
 ## Progressive density — let the book's language do more work over time
 
-The economy rule above works per sentence: strip the word that carries no idea. Progressive density is the
-same instinct one level up, across a long work. **Make the explanations shorter, not the ideas.** Two axes
-get conflated here; hold them apart.
+Progressive density uses what the reader has already learned. Established terms can carry more of
+the argument, leaving room to explain new relationships. It does not require each successive
+explanation to become shorter.
 
 - **Abstraction stays high.** Don't dumb the material down as the work goes on. The ideas keep their full
   altitude, so a later section reads denser, not simpler.
-- **Exposition shrinks as the reader learns the vocabulary.** Spend the full space the first time a concept
-  appears. Later the reader holds it, so re-deriving it from scratch is waste. Compress the re-explanation
-  to a one-sentence invocation that assumes the term is internalized, and keep the freed space for the new
-  argument the passage makes with it.
+- **Use established vocabulary without repeating its introduction.** Teach a concept when it first
+  appears. Later, invoke its name and develop what the new argument does with it. Keep any reasoning
+  needed for the new use, even when the vocabulary is familiar.
 - **Exploit the reader's accumulated knowledge.** *Design Patterns* is the model: early on Gamma et al.
   explain what a pattern is; by the later chapters they write "use Strategy here" and move on. Lean on the
   terminology already introduced instead of re-explaining it. The discourse grows more abstract over time
@@ -248,14 +219,14 @@ get conflated here; hold them apart.
 - **This is pacing, not word-cutting.** The gain is not a smaller word count. It is the language doing more
   work the further in the reader is. A first introduction earns two pages; the tenth invocation of the same
   term earns one dense sentence.
-- **The four scales, made operational.** Progressive density plays out at four scales, each with its own
-  rule for how much to repeat. Within a **page**: do not restate. Within a **chapter**: repeat only in
-  compressed or applied form. Across **Parts**: reuse the canonical NAME, not the full explanation. At the
-  **conclusion**: invoke the idea, do not re-teach it.
+- **Apply the same test at each scale.** Within a page or chapter, keep repetition that helps the reader
+  test or connect an idea, and cut repeated claims that add nothing. Across Parts, use canonical names
+  and recall only what the new reasoning needs. At the conclusion, synthesize the argument without
+  repeating its full development.
 - **Do not repeat an example merely because it is familiar.** Once a concept has been established using
   DocAble, later invocations should preferentially rotate to another example unless the unique details of
-  DocAble are essential. This is the four-scales rule applied to *evidence*: reuse the canonical name, and
-  rotate the instance.
+  DocAble are essential. Return to an earlier example when its continuity helps teach a new distinction;
+  use other examples when they help readers see how the idea transfers.
 - **Progressive density applies to the mainline, not to optional primers.** The rule compresses the book's
   *own* vocabulary: the mainline should increasingly invoke an established MAGE concept without
   re-explaining it. It does not forbid a later inset from teaching an *external* concept from first

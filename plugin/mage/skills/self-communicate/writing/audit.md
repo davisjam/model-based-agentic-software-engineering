@@ -85,14 +85,12 @@ misses because the defect is in the *agreement between* two places:
 
 Compare against the target voice. The exemplars in [`voice.md`](voice.md) are the reference.
 
-**Match the ENGINEERING register by default.** `voice.md` carries three registers, and for repo
-prose — mechanism entries, design docs, CLAUDE rules, code comments, runbooks — the target is the
-**engineering / documentation** register (the third-party Apache-docs exemplars E1–E8), NOT the essay or
-academic ones. Grade against the engineering exemplars and against [`engineering.md`](engineering.md)
-(the Diátaxis discourse layer). Reach for the discursive register only in a genuinely persuading
-**Motivation**, and the academic register only in a scoped **Intent** / "Why it's not just X" claim. If a
-reference or how-to passage reads like an essay, that is a register-drift finding — flag it and pull it
-back to the engineering register.
+**Match the register to the reader's purpose.** Use [`textbook.md`](textbook.md) for a book's mainline
+and sustained explanations: check whether the prose develops the reasoning needed to understand and
+apply the idea. Use the documentation exemplars for reference entries and procedures. A reference
+that keeps persuading has drifted, and so has a textbook passage compressed until the reader must
+supply its reasoning. First person, direct address, and questions are compatible with textbook prose
+when they teach. Check the relevant method in [`engineering.md`](engineering.md).
 
 - **Hedging.** **Detect:** stacked qualifiers softening a claim the writer clearly believes — "it seems
   that perhaps this might arguably…". **Fix:** state it. The house voice is confident; it does not perform
@@ -131,9 +129,11 @@ describe-don't-sell). Each item below is a named rule in that discipline.
 - **The "X *is* a Y" copula.** **Detect:** an equative sentence that stalls on "is a / are a". **Fix:**
   reach for the verb that says what X *does*. "The pre-commit hook gates every commit," not "the
   pre-commit hook *is* a gate." Keep the copula only when the identity claim itself is the point.
-- **Restating the same point (say-it-once).** **Detect:** a "One line:" / "the heart of it" opener, a
-  closing sentence that restates the paragraph, or two sections making the same point. **Fix:** cut the
-  restatement. Make each section carry a *distinct* claim.
+- **Restating without further work.** **Detect:** an announcement of importance, a closing sentence
+  that only repeats the paragraph, or sections repeating the same claim. **Fix:** cut the empty
+  restatement. Keep repetition that tests a distinction, develops intuition, connects ideas, or helps
+  the reader apply them. Before shortening textbook prose, identify what the reader would now have
+  to infer; before expanding it, identify the question the addition answers.
 - **Bare qualifiers.** **Detect:** *very, quite, essentially, arguably, reliably*, "the whole point", "the
   heart of". **Fix:** delete them. Keep *precisely because* / *exactly when* only where they sharpen a
   causal claim.
@@ -158,13 +158,19 @@ describe-don't-sell). Each item below is a named rule in that discipline.
 - **Selling / crowning.** **Detect:** "the best", "the highest-leverage", "every project should adopt
   this", or the prose commenting on its own novelty or thinness. **Fix:** state the mechanism and the
   failure it kills. Let the reader judge value.
-- **Wall of text where bullets fit.** **Detect:** a paragraph over ~4 sentences, or a comma-run of three+
-  parallel items inside one sentence. **Fix:** break to bullets with a **bold lead-in** per item; lead the
-  section with the frame, break the detail out.
+- **Structure mismatched to the reader's work.** **Detect:** parallel items buried in prose, or a
+  developed explanation broken into bullets that hide the reasoning between them. **Fix:** use lists
+  for alternatives, sequences, or lookup; use connected paragraphs when each sentence develops the
+  last. Paragraph length alone does not establish a defect.
 
 ## Pass 4 — Structure & flow
 
 Read the passage as a whole, top to bottom.
+
+For textbook prose, also check the teaching sequence: has an example supplied the needed intuition,
+and does each qualification matter at this point? Preserve conditions that keep the claim true.
+Defer exceptions that the reader cannot yet use, or place useful secondary detail in a footnote or
+inset. Follow the repository's archival rules when removing substantive material.
 
 - **Weak transitions.** **Detect:** paragraphs that jump with no connective logic, or lean on "Moreover /
   Furthermore / Additionally" as filler glue. **Fix:** open each paragraph with the claim that follows

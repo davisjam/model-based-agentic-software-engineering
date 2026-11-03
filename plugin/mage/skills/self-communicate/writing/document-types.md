@@ -49,6 +49,8 @@ number of ideas across a long argument, chapter by chapter, without losing the t
 **Dominant mode** explanation, with reference sections (an appendix, a glossary) and the occasional how-to
 (a runbook chapter). A book is not one mode; it is an *ordered composition* of them under an arc.
 
+Use [`textbook.md`](textbook.md) for paragraph-level teaching, explanatory length, and calibrated examples.
+
 **Specialized rules:**
 
 - **A thesis or two, woven throughout.** A book earns its length by developing a claim the reader could not
@@ -74,11 +76,10 @@ number of ideas across a long argument, chapter by chapter, without losing the t
 - **A conclusion that ties back to the thesis.** The last chapter returns to the named thesis and shows the
   book delivered on it — the arc closing where it opened, one level richer. A book that stops instead of
   concluding leaves the reader holding chapters they must synthesize themselves.
-- **Recur to compress, not to repeat.** The base rule "cut the recap" ([`voice.md`](voice.md) §"Engineering
-  textbook") is register-scoped: in a concept-dense book with named vocabulary, do not recap at the *same
-  level of abstraction*, but do recur to compress, connect, or advance. A chapter-ending synthesis that
-  folds a long argument into a few operational handles is productive compression, not padding — don't cut
-  it as a recap. A paragraph that restates the one above it is padding — do.
+- **Recur when it teaches.** Returning to an example can test a distinction, connect ideas, or let the
+  reader practice an inference. A chapter-ending synthesis can turn a developed argument into useful
+  handles. Keep this productive repetition; cut repeated claims that do no additional explanatory work.
+  Judge the contribution, not merely the repeated wording or level of abstraction.
 - **Some chapters are deliberately dual-purpose: worked argument plus optional primer.** A technical book
   may need to *demonstrate* a real system and *teach* the background needed to understand it. Do not delete
   the primer because it interrupts the argument. Separate the two tracks instead — the two-track move that
