@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a vertical
+     production flow with a side input and a two-way tolerance branch, framed by two section
+     annotations (process design / tolerance) — annotation geometry a graph auto-layout would drop.
+     Palette, stroke, and type follow the course figure vocabulary
+     (04-failure-aware-engineering/figures/governance-conversion.svg,
+     01-delegation/figures/delegation-model.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 620" width="760" height="620"
+     role="img" aria-labelledby="sfTitle sfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="sfTitle">The software factory: engineering intent flows through preparation to the
+    fabricator and out as a proposed realization, which measurement and evaluation admits or
+    rejects against a tolerance</title>
+  <desc id="sfDesc">Engineering intent flows down into context and work preparation, then into the
+    fabricator, which also receives tools and guidance from the side. The fabricator emits a
+    proposed realization, which flows into measurement and evaluation. There the flow branches:
+    within tolerance, the realization becomes an admitted change; outside tolerance, it is revised
+    or rejected. Two annotations frame the flow: process design, how production proceeds, spans the
+    stages around the fabricator; tolerance, which variation is acceptable, governs the branch at
+    the bottom.</desc>
+
+  <defs>
+    <marker id="sf-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="620" fill="#fdfcf9"/>
+
+  <text x="380" y="38" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">SOFTWARE FACTORY</text>
+
+  <!-- section annotation: process design -->
+  <text x="24" y="100" font-size="16" font-weight="700" fill="#2f5169">PROCESS DESIGN</text>
+  <text x="24" y="122" font-size="13.5" fill="#41586c">How production proceeds</text>
+
+  <!-- production flow -->
+  <rect x="220" y="70" width="280" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="99" text-anchor="middle" font-size="16" fill="#1c1917">Engineering intent</text>
+  <line x1="360" y1="116" x2="360" y2="148" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <rect x="220" y="150" width="280" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="179" text-anchor="middle" font-size="16" fill="#1c1917">Context and work preparation</text>
+  <line x1="360" y1="196" x2="360" y2="228" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <rect x="220" y="230" width="280" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="360" y="259" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Fabricator</text>
+
+  <!-- side input: tools and guidance -->
+  <rect x="546" y="230" width="190" height="46" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="641" y="259" text-anchor="middle" font-size="15" fill="#41586c">Tools and guidance</text>
+  <line x1="546" y1="253" x2="504" y2="253" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <line x1="360" y1="276" x2="360" y2="308" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <rect x="220" y="310" width="280" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="339" text-anchor="middle" font-size="16" fill="#1c1917">Proposed realization</text>
+  <line x1="360" y1="356" x2="360" y2="388" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <rect x="220" y="390" width="280" height="46" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="419" text-anchor="middle" font-size="16" fill="#1c1917">Measurement and evaluation</text>
+
+  <!-- tolerance branch -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#sf-ah)">
+    <path d="M360,436 L360,458 L250,458 L250,480"/>
+    <path d="M360,436 L360,458 L470,458 L470,480"/>
+  </g>
+  <text x="250" y="504" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">Within tolerance</text>
+  <text x="470" y="504" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">Outside tolerance</text>
+  <line x1="250" y1="512" x2="250" y2="538" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+  <line x1="470" y1="512" x2="470" y2="538" stroke="#2f5169" stroke-width="2" marker-end="url(#sf-ah)"/>
+
+  <rect x="150" y="540" width="200" height="46" rx="10" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="250" y="569" text-anchor="middle" font-size="16" fill="#2f5137">Admitted change</text>
+  <rect x="370" y="540" width="200" height="46" rx="10" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="470" y="569" text-anchor="middle" font-size="16" fill="#8a2f2f">Revise or reject</text>
+
+  <!-- section annotation: tolerance -->
+  <text x="24" y="498" font-size="16" font-weight="700" fill="#2f5169">TOLERANCE</text>
+  <text x="24" y="520" font-size="13.5" fill="#41586c">Which variation is acceptable?</text>
+</svg>

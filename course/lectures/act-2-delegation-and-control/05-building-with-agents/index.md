@@ -97,37 +97,7 @@ Software factories face the same two problems, with one important difference. A 
 
 The distinction between process design and tolerance gives us a way to examine such a factory.
 
-```text
-                    SOFTWARE FACTORY
-
- PROCESS DESIGN
- How production proceeds
-
- Engineering intent
-        |
-        v
- Context and work preparation
-        |
-        v
-     Fabricator  <---- Tools and guidance
-        |
-        v
- Proposed realization
-        |
-        v
- Measurement and evaluation
-        |
-        +-----------------------------+
-        |                             |
-        v                             v
- Within tolerance              Outside tolerance
-        |                             |
-        v                             v
- Admitted change                 Revise or reject
-
- TOLERANCE
- Which variation is acceptable?
-```
+![Inside a software factory, engineering intent flows down into context and work preparation, then into the fabricator, which also receives tools and guidance from the side. The fabricator emits a proposed realization, which flows into measurement and evaluation. There the flow branches: a realization within tolerance becomes an admitted change, while one outside tolerance is revised or rejected. Two annotations frame the flow — process design ("How production proceeds") spans the stages around the fabricator, and tolerance ("Which variation is acceptable?") governs the branch between the two outcomes.](figures/software-factory.svg)
 
 *Figure: Two problems of factory engineering. Process design organizes the work around the fabricator. Tolerance bounds acceptable variation in its output. A factory can improve one without necessarily improving the other.*
 
