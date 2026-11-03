@@ -861,3 +861,287 @@ Reason: Use Chapter 1’s distinction between task demands and the capacity of t
 ```text
 \textbf{General form.} Consequential work can require more potentially relevant state than a finite reasoner can reliably keep active at once. Task-relevant representations can extend the effective reasoning horizon when they preserve the distinctions needed for the work while suppressing irrelevant detail. The software proposition is one specialization of this claim. Whether other domains admit representations with the same leverage is an empirical question.
 ```
+
+## Approved field-guide and industry wording edits, 3 November 2026
+
+Source revision: `a9faf106721820e9105ac9337c52724900c3feaa`. The author approved all six field-guide cards and the GitLab, measurement, and governance-conversion edits in Chapter 5.
+
+### uber-reading
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 29–29.
+
+Reason: Name the connection directly, describe context selection without the compiler metaphor, and distinguish a foundation model from the engineering models discussed in MAGE.
+
+```text
+\textbf{MAGE reading.} Uber is strong evidence that the durable engineering object is the Governed Engineering Environment rather than the model. It engineers the reasoning horizon by compiling context and tools down to what a task needs, externalizes organizational knowledge into a queryable graph, and converts recurring workflows into reusable skills --- engineering capital that outlives any one model.
+```
+
+### uber-boundary
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 31–31.
+
+Reason: Separate the mechanisms Uber describes from claims the account does not establish. Remove the editorial shorthand about an interpretive reading and a sibling case.
+
+```text
+\textbf{Interpretive boundary.} MAGE reads much of Uber interpretively. The reasoning-horizon and externalized-knowledge moves are directly supported, but the account stops at a knowledge graph, with no executable behavioral model as the reasoning surface. GitLab enters the same kind from the trust motive and is cited as the sibling, not developed separately.
+```
+
+### uber-comparison
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 12–12.
+
+Reason: Replace the opaque classification and claims of permanence with the engineering concern the two accounts share. Distinguish self-reported operational measurements from an independent evaluation.
+
+```text
+\textbf{A shared kind, two motives.} Two organizations build the same durable environment around a replaceable reasoner and reach it from opposite motives. GitLab starts from trust: as code gets cheap, the scarce problem becomes trusting it, so GitLab wraps the model in a durable layer of context, verification, governance, identity, and provenance, kept independent of any one model or agent so the organization\textquotesingle s controls persist as reasoners change.\citep{staples2026abundant} Uber starts from economics: with agents already writing most of its code, it treats the surrounding environment as an object of continuous measurement. Both keep the reasoner swappable and the environment permanent, and both stop at a knowledge-and-context graph rather than an executable model of behavior. Uber gives the fuller, independently measured account, so the deep treatment follows it.
+```
+
+### uber-context-tools
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 14–14.
+
+Reason: Use the mechanism described by Uber rather than “compiled down” or “harden.”
+
+```text
+\textbf{What the public record shows.} Uber describes AI tools operating throughout the software lifecycle: more than 70 percent of pull requests are attributed to local or cloud agents, engineers have created more than 3,600 agent skills, and those skills execute more than 30,000 times per day.\citep{medisetty2026factory} Managed agents perform code review, CI repair, end-to-end changes, alert triage, debugging, and maintenance. The interesting structure is not the volume of agent use but that Uber engineers the environment around the agents: real workloads become benchmarks; models are selected against cost, quality, and reliability; context and tool access are compiled down to reduce unnecessary reasoning; recurring workflows harden into reusable skills; and agents are evaluated in units such as cost per merged pull request, review, or alert.
+```
+
+### uber-evidence-limit
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 16–16.
+
+Reason: Remove the vague hierarchy of reasoning surfaces and the implication that an unreported mechanism cannot exist.
+
+```text
+\textbf{Boundary of the evidence.} The account is self-reported operational data, not a controlled comparison. It is strong on context, skills, routing, benchmarks, and cost, and much thinner on behavioral, process, or invariant models serving as the primary reasoning surface --- its substrate is a knowledge-and-context graph, not an executable model of the software. GitLab\textquotesingle s account is thinner still: a vendor architectural vision rather than a measured deployment.
+```
+
+### uber-lesson
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 18–18.
+
+Reason: Say what engineers preserve and distinguish the replaceable foundation model from engineering models.
+
+```text
+\textbf{Portable lesson.} When code is abundant, the durable engineering object is the environment around the reasoner --- the context it reads, the tools it may call, the cost it is measured against --- not the reasoner itself.
+```
+
+### uber-connection-caption
+
+Source: `book/latex/sources/appendix-field-guide/uber.tex`, lines 20–27.
+
+Reason: Use the same connection label as the other industry cards and replace the unexplained executable-model tier.
+
+```text
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-uber-ea237e11ec.pdf}
+\caption{\emph{Uber projected onto MAGE.} Public evidence strongly supports engineering the environment around a replaceable reasoner; the executable-model tier stays out of reach.}
+\label{field-guide-uber}
+\end{figure}
+```
+
+### cloudflare-connection
+
+Source: `book/latex/sources/appendix-field-guide/cloudflare.tex`, lines 6–31.
+
+Reason: Review the related wording changes together: use “Connection to MAGE,” name the mechanisms directly, and keep each claim within the evidence described in Chapter 5.
+
+```text
+\subsection{Cloudflare}\label{heading:cloudflare}
+
+\emph{Internet infrastructure · policy-first governance at organizational scale}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.\citep{reimann2026codex}
+
+The important move is not AI review itself, but turning policy into an artifact that later work inherits.
+
+\textbf{Boundary of the evidence.} The public account is much stronger on representation and enforcement of obligations than on explicit executable models of the software being governed. Nor does it show repeated failures being converted into new environmental structure over time. The evidence establishes policy → representation → mechanism, but not failure → diagnosis → environmental adaptation.
+
+\textbf{Portable lesson.} A policy decision gains multiplicative reach when the environment can apply it without requiring another person to reconstruct it.
+
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-cloudflare-6ff2dd36d5.pdf}
+\caption{\emph{Cloudflare projected onto MAGE.} Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive.}
+\label{field-guide-cloudflare}
+\end{figure}
+
+\textbf{MAGE reading.} Cloudflare is strong evidence for Alignment, with a modest Modeling move: obligations that once lived in RFC prose acquire structured identities that machinery can consume. Once represented mechanically, one policy decision can govern many later changes.
+
+\textbf{Interpretive boundary.} This is an Alignment-heavy example with a modest Modeling component, not evidence for the complete MAGE loop.
+```
+
+### siemens-connection
+
+Source: `book/latex/sources/appendix-field-guide/siemens.tex`, lines 6–31.
+
+Reason: Review the related wording changes together: use “Connection to MAGE,” name the mechanisms directly, and keep each claim within the evidence described in Chapter 5.
+
+```text
+\subsection{Siemens}\label{heading:siemens}
+
+\emph{Industrial and model-based engineering · persistent models as development surfaces}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Siemens provides a comparison from outside software-first engineering. Persistent engineering representations carry requirements, behavioral structure, simulation, traceability, and other system semantics; software generation can occur downstream of those representations. The example establishes that the strong end of MAGE\textquotesingle s Modeling is not novel: rich, executable representations are already ordinary practice in model-based engineering.\citep{siemens2026a3e}
+
+SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures can serve as engineering surfaces, with code and verification downstream.\citep{siemens2026a3e}
+
+\textbf{Boundary of the evidence.} The sources examined here do not establish a general admission mechanism that rejects changes when declared model↔implementation correspondence is violated. As throughout this appendix, source silence does not imply organizational absence.\citep{siemens2026a3e}
+
+\textbf{Portable lesson.} Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
+
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-siemens-e677963dcf.pdf}
+\caption{\emph{Siemens projected onto MAGE.} Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission.}
+\label{field-guide-siemens}
+\end{figure}
+
+\textbf{MAGE reading.} Siemens shows the strong end of Modeling in established engineering practice: engineers reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the enforcement surfaces of the governed environment.
+
+\textbf{Interpretive boundary.} The missing model↔code admission gate means not established, not absent.
+```
+
+### spotify-connection
+
+Source: `book/latex/sources/appendix-field-guide/spotify.tex`, lines 6–31.
+
+Reason: Review the related wording changes together: use “Connection to MAGE,” name the mechanisms directly, and keep each claim within the evidence described in Chapter 5.
+
+```text
+\subsection{Spotify}\label{heading:spotify}
+
+\emph{Audio streaming · fleet-scale autonomous migration}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Spotify\textquotesingle s Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work. A migration that could previously involve hundreds of teams over weeks can instead be scoped by one engineer over a few days; tooling identifies and schedules targets, agents execute changes concurrently, and the engineer supervises the fleet and handles exceptions.\citep{spotify2026honk}
+
+Spotify\textquotesingle s surrounding engineering estate also matters. Its System Model and Backstage catalog carry service identities, ownership, dependencies, endpoints, and lineage, giving fleet tooling a representation through which migrations can be targeted rather than requiring each agent to rediscover the repository landscape.\magefootnote{sp-estate}{Spotify System Model and Backstage service catalog, as recorded in the \magevalue{sec:mage-in-the-wild} reconstruction (service identities, ownership, dependencies, endpoints, lineage).}
+
+\textbf{Boundary of the evidence.} Reported activity increases --- including the 76\% PR-frequency figure\magefootnote{sp-prfreq}{76\% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.} --- measure implementation activity, not durable throughput. The stronger evidence is how the work changes: agents implement while human judgment moves upstream to scoping and supervision.
+
+\textbf{Portable lesson.} Scale implementation; concentrate human judgment on what to change and where.
+
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-spotify-d737ac4cea.pdf}
+\caption{\emph{Spotify projected onto MAGE.} Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count.}
+\label{field-guide-spotify}
+\end{figure}
+
+\textbf{MAGE reading.} Spotify shows the model and governed environment working together. A model of the service estate helps determine where work belongs; verification and admission machinery determine whether generated changes can proceed; fleet execution makes one engineer\textquotesingle s upstream decisions consequential across many repositories.
+
+\textbf{Interpretive boundary.} The evidence does not show that every Spotify migration is model-driven or automatically admitted; the reading applies only to the mechanisms described publicly.
+```
+
+### shopify-connection
+
+Source: `book/latex/sources/appendix-field-guide/shopify.tex`, lines 6–29.
+
+Reason: Review the related wording changes together: use “Connection to MAGE,” name the mechanisms directly, and keep each claim within the evidence described in Chapter 5.
+
+```text
+\subsection{Shopify}\label{heading:shopify}
+
+\emph{Commerce · shared organizational context for agent work}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Shopify\textquotesingle s public account describes agent work occurring in shared, observable channels rather than disappearing into private sessions. The record gives a one-month snapshot of \textbf{59,918 sessions across 5,170 channels involving more than 7,000 people}, together with the characterization of the system as "multiplayer by construction."\citep{moreno2026river} Shared sessions become searchable organizational artifacts; repeated knowledge can then be extracted into skills, conventions, and defaults that later agents can retrieve. This is a soft form of externalization: retrievable prose and skills rather than a structured executable system model.
+
+\textbf{Boundary of the evidence.} The evidence establishes \texttt{session\ →\ reusable\ knowledge}, but not \texttt{session\ →\ skill\ →\ engineering\ capital}. MAGE supplies the further interpretation that recurring judgment, once captured in reusable skills, may become engineering capital.
+
+\textbf{Portable lesson.} Experience cannot compound organizationally while it stays private. Make work observable before trying to make its lessons reusable.
+
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-shopify-0c48ebf9d5.pdf}
+\caption{\emph{Shopify projected onto MAGE.} The source supports shared externalized knowledge and reusable context; conversion into durable capital is the interpretive step, not an automatic one.}
+\label{field-guide-shopify}
+\end{figure}
+
+\textbf{MAGE reading.} Shopify sharpens a condition on engineering capital: experience must become observable before it can become durable. Shared sessions can be searched, corrected, mined, and --- where a lesson deserves reuse --- converted into skills or defaults. This is Modeling at the knowledge end of the spectrum, not the executable-system-model end.
+
+\textbf{Interpretive boundary.} Observability makes compounding possible; it does not make every observed session engineering capital.
+```
+
+### zenseact-connection
+
+Source: `book/latex/sources/appendix-field-guide/zenseact.tex`, lines 6–31.
+
+Reason: Review the related wording changes together: use “Connection to MAGE,” name the mechanisms directly, and keep each claim within the evidence described in Chapter 5.
+
+```text
+\subsection{Zenseact}\label{heading:zenseact}
+
+\emph{Autonomous-driving software · centralized substrate, distributed domain ownership}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Zenseact describes an organizational split. A platform team owns common substrate --- authentication, sessions, execution, and safety --- while domain teams retain their own agents, tools, instructions, and domain expertise. The arrangement expresses organizationally a principle seen technically elsewhere: centralize mechanisms that should be shared; leave domain judgment with the people who hold the domain knowledge.\citep{dufwa2026zap}
+
+Zenseact also illustrates \emph{selective context}. Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window. A central runtime and safety envelope coexist with domain expertise captured in reusable skills and surfaced on demand.\citep{dufwa2026zap}
+
+\textbf{Boundary of the evidence.} The sources show how Zenseact divides the platform, routes context, delegates work, and assigns ownership. They do not establish the resulting productivity, safety, or returns on engineering capital.
+
+\textbf{Portable lesson.} Build the common substrate once; distribute the engineering judgment to the teams that possess the knowledge it requires.
+
+\subsubsection{Recto --- MAGE Interpretation}\label{heading:recto-mage-interpretation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-zenseact-34e024fef1.pdf}
+\caption{\emph{Zenseact projected onto MAGE.} Shared mechanisms centralize while domain knowledge and judgment remain distributed --- a concrete organizational answer to scaling both context and enforcement.}
+\label{field-guide-zenseact}
+\end{figure}
+
+\textbf{MAGE reading.} Zenseact combines Modeling and Alignment organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common enforcement in one substrate. The organization does not centralize the judgment itself --- domain teams keep the expertise that defines their agents and tools. The result is an organizational realization of the Governed Engineering Environment: common mechanisms without a central knowledge bottleneck.
+
+\textbf{Interpretive boundary.} The platform/domain split illustrates the Governed Engineering Environment; the evidence does not establish a closed governance-conversion loop or complete Modeling and Alignment.
+```
+
+### factories-measurement-model
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 270–270.
+
+Reason: Use “foundation model” where “underlying model” could be confused with an engineering representation.
+
+```text
+The reported measurements are much stronger on the production of change than on the quality of the changes produced. Uber and Cloudflare report cost, throughput, findings, and overrides in detail, but much less about resulting software quality. Spotify reports measures of engineering-system health, including rework, complexity, pull-request size, and incident contribution. Shopify reports a merge-rate improvement with the underlying model held fixed. GitLab describes measurement mechanisms, while Siemens and Zenseact provide little operating evidence of this kind. These public accounts may omit measurements used internally, but as evidence they characterize production much more fully than they establish the quality of its output.
+```
+
+### factories-conversion-evidence
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 274–274.
+
+Reason: Replace abstract descriptions with concrete actions, and attribute the Spotify report without repeating the source caveat already established at the chapter opening.
+
+```text
+Operating experience changes the factories too. Cloudflare converts incidents, latency, and representation problems into new production structure; Shopify converts observed agent failures into shared instructions and, where closure depends on a property, into code-enforced guarantees; GitLab states the same discipline as doctrine, fixing the environment rather than repeatedly repairing the prompt; and Spotify provides the converse case, a probabilistic control withdrawn after the underlying models improved. These are instances of governance conversion, but the evidence usually establishes the conversion rather than its effect. No organization in this corpus publishes a recurrence measure showing that an incident-derived control reduced the failure class that produced it.
+```
+
+### gitlab-foundation-model
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 208–208.
+
+Reason: Distinguish the foundation model that performs reasoning from the engineering models that represent a system.
+
+```text
+The asymmetry is in what the vendor can supply. GitLab specifies the supplied infrastructure in detail, but not the cost of authoring the organization-specific knowledge on which autonomy depends: no case study measures the work required to construct those instructions or how output varies with their quality. The CEO\textquotesingle s essay locates trust in a durable layer of "context, verification, governance and evidence" around a replaceable model.\citep{staples2026abundant} Yet the layer that produced GitLab\textquotesingle s own 95-percent-agent-generated service included failing tests written first, CI gates, repository-resident context, and the test-count guard --- precisely the layer the adopting organization must supply.
+```

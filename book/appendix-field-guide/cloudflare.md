@@ -8,17 +8,17 @@
 
 **What the public record shows.** Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.[cite: reimann2026codex]
 
-The important move is not AI review itself, but turning policy into an artifact that later work inherits.
+Recording policy in a machine-readable form lets later checks apply it without asking someone to reconstruct the requirement each time.
 
-**Boundary of the evidence.** The public account is much stronger on representation and enforcement of obligations than on explicit executable models of the software being governed. Nor does it show repeated failures being converted into new environmental structure over time. The evidence establishes policy → representation → mechanism, but not failure → diagnosis → environmental adaptation.
+**Boundary of the evidence.** The public accounts describe structured policy and checks more fully than executable models of the software being governed. They also describe rules and tooling changed in response to incidents and operating problems, but do not measure whether those changes reduced the failures that prompted them.[cite: hartman2026failsmall; rhea2026cloudflareos]
 
-**Portable lesson.** A policy decision gains multiplicative reach when the environment can apply it without requiring another person to reconstruct it.
+**Portable lesson.** Write a policy so that tools can apply it to later changes without requiring a person to interpret it again.
 
-#### Recto — MAGE Interpretation
+#### Recto — Connection to MAGE
 
 <!-- label: field-guide-cloudflare -->
-<!-- figure: assets/field-guide-cloudflare.svg | *Cloudflare projected onto MAGE.* Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive. -->
+<!-- figure: assets/field-guide-cloudflare.svg | *Cloudflare’s connection to MAGE.* Structured requirements let tools apply policy across many changes. The accounts describe changes prompted by operating experience, but do not measure their effect on recurring failures. -->
 
-**MAGE reading.** Cloudflare is strong evidence for Alignment, with a modest Modeling move: obligations that once lived in RFC prose acquire structured identities that machinery can consume. Once represented mechanically, one policy decision can govern many later changes.
+**Connection to MAGE.** Cloudflare illustrates Alignment: tools check changes against engineering policy and can block violations. Modeling enters when requirements are recorded as structured statements that those tools can identify and use. Together, these mechanisms let one policy decision govern many later changes.
 
-**Interpretive boundary.** This is an Alignment-heavy example with a modest Modeling component, not evidence for the complete MAGE loop.
+**What the evidence establishes.** The accounts describe policy enforcement and changes made in response to operating experience. They do not establish the effectiveness of the complete MAGE cycle.

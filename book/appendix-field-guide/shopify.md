@@ -6,17 +6,17 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Shopify's public account describes agent work occurring in shared, observable channels rather than disappearing into private sessions. The record gives a one-month snapshot of **59,918 sessions across 5,170 channels involving more than 7,000 people**, together with the characterization of the system as "multiplayer by construction."[cite: moreno2026river] Shared sessions become searchable organizational artifacts; repeated knowledge can then be extracted into skills, conventions, and defaults that later agents can retrieve. This is a soft form of externalization: retrievable prose and skills rather than a structured executable system model.
+**What the public record shows.** Shopify’s public account describes agent work in shared, observable channels. In a thirty-day window reported in May 2026, it recorded **59,918 sessions across 5,170 channels involving more than 7,000 people**, and described the system as "multiplayer by construction."[cite: moreno2026river] People can search these sessions, identify what an agent should have known, and record the lesson in skills, conventions, or defaults for later agents. These artifacts preserve knowledge in prose and instructions; they do not provide an executable model of the software.
 
-**Boundary of the evidence.** The evidence establishes `session → reusable knowledge`, but not `session → skill → engineering capital`. MAGE supplies the further interpretation that recurring judgment, once captured in reusable skills, may become engineering capital.
+**Boundary of the evidence.** The accounts describe lessons turned into shared instructions and, in security workflows, rules enforced in code.[cite: moreno2026river; son2026security] Those changes may become engineering capital if they continue to help later work. The public record does not establish their lasting return after the cost of keeping them accurate.
 
-**Portable lesson.** Experience cannot compound organizationally while it stays private. Make work observable before trying to make its lessons reusable.
+**Portable lesson.** Make useful lessons from agent work available to other people and later agents.
 
-#### Recto — MAGE Interpretation
+#### Recto — Connection to MAGE
 
 <!-- label: field-guide-shopify -->
-<!-- figure: assets/field-guide-shopify.svg | *Shopify projected onto MAGE.* The source supports shared externalized knowledge and reusable context; conversion into durable capital is the interpretive step, not an automatic one. -->
+<!-- figure: assets/field-guide-shopify.svg | *Shopify’s connection to MAGE.* Shared sessions let people identify lessons and preserve them for later agents. The retained knowledge becomes engineering capital only while it continues to help later work. -->
 
-**MAGE reading.** Shopify sharpens a condition on engineering capital: experience must become observable before it can become durable. Shared sessions can be searched, corrected, mined, and — where a lesson deserves reuse — converted into skills or defaults. This is Modeling at the knowledge end of the spectrum, not the executable-system-model end.
+**Connection to MAGE.** Shopify shows how engineers can preserve knowledge that an agent would otherwise have to recover on each task. Shared sessions let people inspect the work, correct misunderstandings, and record useful lessons in skills or defaults. This illustrates Modeling through reusable knowledge; the artifacts need not be executable system models.
 
-**Interpretive boundary.** Observability makes compounding possible; it does not make every observed session engineering capital.
+**What the evidence establishes.** Shared sessions and retained lessons make reuse possible. Their value as engineering capital depends on whether they continue to improve later work and remain worth maintaining.

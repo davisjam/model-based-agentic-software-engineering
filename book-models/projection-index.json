@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 868,
+    "total_sites": 867,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 517,
+      "book-web": 516,
       "website-catalogue": 219,
       "website-industry-cases": 55,
       "website-landing": 14,
@@ -201,7 +201,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 10
+            "occ": 14
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -858,10 +858,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           }
@@ -869,7 +865,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       },
@@ -1473,7 +1469,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 66
+            "occ": 82
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -1553,7 +1549,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 307
+            "occ": 308
           },
           {
             "file": "book/web/docs/index.md",
@@ -1875,7 +1871,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "book/web/docs/index.md",
@@ -2339,7 +2335,7 @@
           },
           {
             "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 16
+            "occ": 12
           },
           {
             "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
@@ -2403,7 +2399,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 371
+            "occ": 372
           },
           {
             "file": "book/web/docs/index.md",

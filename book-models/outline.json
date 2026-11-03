@@ -3790,12 +3790,12 @@
             },
             {
               "slug": "the-reported-measurements-favor-production-over-quality",
-              "text": "The reported measurements are much stronger on production than on quality: Uber and Cloudflare report cost, throughput, findings, and overrides, Spotify reports engineering-system health, Shopify a merge-rate improvement with the model fixed, GitLab measurement mechanisms, Siemens and Zenseact little — and internal measurements may go unreported.",
+              "text": "The reported measurements are much stronger on production than on quality: Uber and Cloudflare report cost, throughput, findings, and overrides, Spotify reports engineering-system health, Shopify a merge-rate improvement with the foundation model fixed, GitLab measurement mechanisms, Siemens and Zenseact little — and internal measurements may go unreported.",
               "block_index": 100
             },
             {
               "slug": "operating-experience-changes-the-factories-but-the-effect-is-rarely-established",
-              "text": "Cloudflare, Shopify, GitLab, and Spotify all convert operating experience into rules, shared instructions, code-enforced guarantees, environment repair, or a withdrawn control — instances of governance conversion whose conversion is established far more often than its effect, and no organization publishes a recurrence measure.",
+              "text": "Cloudflare, Shopify, and GitLab describe changes to rules, shared instructions, code-enforced guarantees, and the environment; a later account reports Spotify removing a check. These examples illustrate governance conversion, but none publishes a recurrence measure establishing its effect.",
               "block_index": 102
             },
             {

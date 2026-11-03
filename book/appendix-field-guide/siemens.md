@@ -6,19 +6,19 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Siemens provides a comparison from outside software-first engineering. Persistent engineering representations carry requirements, behavioral structure, simulation, traceability, and other system semantics; software generation can occur downstream of those representations. The example establishes that the strong end of MAGE's Modeling is not novel: rich, executable representations are already ordinary practice in model-based engineering.[cite: siemens2026a3e]
+**What the public record shows.** Siemens describes engineering work organized around models of requirements, system structure, and behavior. These models support analysis, simulation, and traceability, and software can be generated from them. This illustrates an established practice in model-based engineering that MAGE applies to agentic software work.[cite: siemens2026a3e]
 
-SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures can serve as engineering surfaces, with code and verification downstream.[cite: siemens2026a3e]
+The representations include SysML and CAD models, virtual ECUs, and bills of materials. Engineers use them to reason about a system before generating code and checking its behavior.[cite: siemens2026a3e]
 
-**Boundary of the evidence.** The sources examined here do not establish a general admission mechanism that rejects changes when declared model↔implementation correspondence is violated. As throughout this appendix, source silence does not imply organizational absence.[cite: siemens2026a3e]
+**Boundary of the evidence.** The sources examined here do not establish a general check that rejects a change when its implementation disagrees with the engineering model. That leaves the check unreported; it does not show that Siemens lacks it.[cite: siemens2026a3e]
 
-**Portable lesson.** Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
+**Portable lesson.** Engineers can reason about requirements and designs through models before committing to an implementation.
 
-#### Recto — MAGE Interpretation
+#### Recto — Connection to MAGE
 
 <!-- label: field-guide-siemens -->
-<!-- figure: assets/field-guide-siemens.svg | *Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission. -->
+<!-- figure: assets/field-guide-siemens.svg | *Siemens’s connection to MAGE.* Engineering models support analysis, simulation, and code generation. The cited sources do not establish a general check that rejects disagreement between a model and its implementation. -->
 
-**MAGE reading.** Siemens shows the strong end of Modeling in established engineering practice: engineers reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the enforcement surfaces of the governed environment.
+**Connection to MAGE.** Siemens illustrates Modeling through engineering models that preserve requirements and design decisions across changes. Engineers use those models to analyze a system and guide its implementation. MAGE applies this established practice to agentic software engineering and connects the represented obligations to checks that can reject violations.
 
-**Interpretive boundary.** The missing model↔code admission gate means not established, not absent.
+**What the evidence establishes.** The sources describe models, analysis, and verification. They do not establish a general gate that checks whether the implementation agrees with its engineering model.
