@@ -67,7 +67,7 @@
   {
     "chapter": "0.5-preface",
     "source": "assets/research-arc.svg",
-    "caption": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with seven independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
+    "caption": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with six independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/research-arc.d2",
     "receipt": "book/d2-pilot/research-arc.receipt.yaml",
@@ -75,7 +75,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where the theory came from: the research provenance, one procedure read top to bottom, closing on depth and breadth",
-    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from \u2014\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble \u2014 one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE \u2014 the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts \u2014 seven independent industrial\n    systems. Stage four, comparative reconstruction \u2014 each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines \u2014 it does not validate \u2014 the theory. Stage\n    five, MAGE theory \u2014 the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
+    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from \u2014\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble \u2014 one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE \u2014 the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts \u2014 six independent industrial\n    systems. Stage four, comparative reconstruction \u2014 each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines \u2014 it does not validate \u2014 the theory. Stage\n    five, MAGE theory \u2014 the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
   },
   {
     "chapter": "1.1-the-printer",
@@ -1073,15 +1073,15 @@
   {
     "chapter": "5.3-other-agentic-software-factories",
     "source": "assets/six-entry-points.svg",
-    "caption": "*Seven Entry Points.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
+    "caption": "*Six Entry Points.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Seven entry points into a shared design space: where each organization begins and where it invests",
-    "svg_description": "A table of seven industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms \u2014 a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission \u2014\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure \u2014 a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations \u2014 a modeling emphasis.\n    Zenseact begins from distributed autonomous work and invests in platform boundaries, context, and\n    delegation \u2014 a knowledge emphasis. Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement \u2014 a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents \u2014 a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not an eighth case. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
+    "svg_title": "Six entry points into a shared design space: where each organization begins and where it invests",
+    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms \u2014 a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission \u2014\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure \u2014 a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations \u2014 a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement \u2014 a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents \u2014 a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not a seventh case. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",
@@ -1722,19 +1722,6 @@
     "chapter": "appendix-field-guide",
     "source": "assets/field-guide-siemens.svg",
     "caption": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model\u2194code admission.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "",
-    "svg_description": ""
-  },
-  {
-    "chapter": "appendix-field-guide",
-    "source": "assets/field-guide-zenseact.svg",
-    "caption": "*Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed \u2014 a concrete organizational answer to scaling both context and enforcement.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,

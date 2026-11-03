@@ -34,8 +34,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
       "projection": "book/frontmatter/0.5-preface.md",
-      "source_hash": "9d0784abf8e1d524d34101b93c5603de649a5e572fe3e41a270229ab823b918c",
-      "projection_hash": "9ee2228e47c2b119efbb85f2f2d421d29aa517c5484e3bbd01c53e8ce52cba1f"
+      "source_hash": "56cec4f89d020a79c4229dbe53c29e79885fb01f11469afd78ca546b24a7fe64",
+      "projection_hash": "0be2a582bf70583f4a522d2b7fee6b29c9280327d725410e4179fe33353c9386"
     },
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
@@ -64,8 +64,8 @@
     {
       "source": "book/latex/sources/part1/1.4-the-new-engineering-problem.tex",
       "projection": "book/part1/1.4-the-new-engineering-problem.md",
-      "source_hash": "73eb68354b528c53bbccaf7311143aec15be333ce61c53c78ba2c40011e2c63b",
-      "projection_hash": "9c78818cbac949960c41a897f454d413b3f6e114a5978d32242c67e7068fae19"
+      "source_hash": "7fe60b6cb1e429d34a83fdcb8a86303a08ca8fec0e391b066c52377b72a02e31",
+      "projection_hash": "b69c17cd26f8abaaf65a063522438065b4e62b7fa8b8a81483f1d193371fe39a"
     },
     {
       "source": "book/latex/sources/part1/1.5-problem-summary.tex",
@@ -118,14 +118,14 @@
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "a17b17c25c2ec5d65a0cb90ab9aa2c13e58c668ea77dc8ed3b3b351a333d18da",
-      "projection_hash": "a0debdb7ba0d17651c21387036dcc39835df3a855c9edff2b3652f4bf0cfe478"
+      "source_hash": "a9fb9570f82660679a2414c4461e7c947c9ef1d17a68a2a021cae59f40a62435",
+      "projection_hash": "1532819cb172067ec26188e1166b60e9152e1a5e5cf5befea2a8854de2161985"
     },
     {
       "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
       "projection": "book/part3/3.1-where-obligations-can-be-enforced.md",
-      "source_hash": "8664450a52786d3e24780c9eaf50fa03c9bc6f1d3f20bfdc8280549b67b8f030",
-      "projection_hash": "74c44149ddfa249d84e80d0dc56d08129641fdcbd122aa9c938e8019520a5b36"
+      "source_hash": "c3545699389d53f59f349ac6d1e6e37b5d5fcc19af6bd3b7fc4b7345e5f07cc6",
+      "projection_hash": "c30dc24174acc4f90ae961a5d10531200d4cabfcc69d9c39774ace6f4aaf9735"
     },
     {
       "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
@@ -184,8 +184,8 @@
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "291838c1f952113c7755eeca3bf6edf6518a071be18f01874050bec7e2a00e58",
-      "projection_hash": "dd0760c172da6f26689b9f8edb34c2ae6cb253721432319a178f4e906ab3b2c6"
+      "source_hash": "df51d5c4da339fdb8f3c1a48339cc5bbfba9e73fe029efd91095ba90ca2c884f",
+      "projection_hash": "de05109469ccdc133b65186cc5f2933e1576b6ff026b59d681341b9e636d7906"
     },
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",
@@ -208,8 +208,8 @@
     {
       "source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
       "projection": "book/part5/5.3-other-agentic-software-factories.md",
-      "source_hash": "96698d65d22e75a324ccb3baa5ca24dbe944bb8ac06ffda94264474b2c7d9d72",
-      "projection_hash": "bfe2ef701266a7ef81506be0a6a5c2f5b131aecf9998d81b31fe91780dc6544b"
+      "source_hash": "cb5b8249189548eb75bda3db1a5596b1f21ec322608bab241b1e78527f2fa942",
+      "projection_hash": "11d5f5fa6591c87fc4a5a722eb3f83abfb98e06103ddc25e11e554bfead85831"
     },
     {
       "source": "book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex",
@@ -280,8 +280,8 @@
     {
       "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",
       "projection": "book/part7/7.3-agentic-engineering-beyond-software.md",
-      "source_hash": "44e0c3a7da57cc2160a7750689b0836f25ec68ecffb71cf5a5391917cf46c273",
-      "projection_hash": "7595a16a08299ce8c16da9a9515023fdc5c16a7a7bfa9922a69540c5a377beb8"
+      "source_hash": "074464ff6742720bdd7a05d383b24377e5c14cfc9efb6a02bc42b63d72a27c11",
+      "projection_hash": "95318c57446c7a08aefbfea48185d6cb4e65585ac28e0013c0a6d153241563d8"
     },
     {
       "source": "book/latex/sources/part7/7.4-the-engineer.tex",
@@ -394,8 +394,8 @@
     {
       "source": "book/latex/sources/appendix-field-guide/_opening.tex",
       "projection": "book/appendix-field-guide/_opening.md",
-      "source_hash": "d948bb788ec5470e52b82cca325e841d456e897fa515bf2bf331c7946cc1edc2",
-      "projection_hash": "4304315b41432aa73b7be42aa2c7054e21ebd180a2663d91d4a673263932b03d"
+      "source_hash": "45eaa17dc53a3e9eac4afa6035f4f9983a1f94f289dcaf1b3c3f0bf720818d63",
+      "projection_hash": "3dc967ca7e03f0e7e1366f5545094ce5ac29c7cc5db6fd4c5665b69e9fc630a7"
     },
     {
       "source": "book/latex/sources/appendix-field-guide/cloudflare.tex",
@@ -426,12 +426,6 @@
       "projection": "book/appendix-field-guide/uber.md",
       "source_hash": "3093db362e14a1ace7bea749621cfe8f87f1dc10520c7ec99de60b95dafc7d7e",
       "projection_hash": "6f736f833d09bf277936a7e5213356c39a1833f5d99732c7da4b7b7d1cbfd9fa"
-    },
-    {
-      "source": "book/latex/sources/appendix-field-guide/zenseact.tex",
-      "projection": "book/appendix-field-guide/zenseact.md",
-      "source_hash": "9675b91f946fe2dcd10d33b3f19b52580d477f9774de8756fc43cfcaf95d1588",
-      "projection_hash": "4916a2a7af8de4792dbb6409a079fdbfc4400cce0a15a61e41d940393e97d151"
     },
     {
       "source": "book/latex/sources/appendix-models/_opening.tex",

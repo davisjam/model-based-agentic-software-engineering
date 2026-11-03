@@ -1,7 +1,7 @@
 {
   "source": "book/assets/research-arc.svg",
   "chapter": "0.5-preface",
-  "claim": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with seven independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
+  "claim": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with six independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
   "topology": {
     "description": "Research-provenance sequence followed by complementary depth/breadth evidence, not validation.",
     "relations": [
@@ -58,7 +58,7 @@
   "required_terms": [
     "DocAble One production system, longitudinal depth",
     "Early MAGE Modeling · Alignment · conversion · capital",
-    "Independent industrial accounts Seven independent industrial systems",
+    "Independent industrial accounts Six independent industrial systems",
     "Comparative reconstruction Recurring moves · variation · limits",
     "MAGE theory Refined account in Chapter 6",
     "Depth · originating case Mechanism and sequence",
@@ -78,35 +78,50 @@
       "gray-mode distinctions",
       "native-size visual layout"
     ],
-    "outcome": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are20% gray with emphasis; observations/procedure/depth/breadth remain4% gray. Original spine and split retained.",
+    "outcome": "Theory stages use 8% gray; evidence, comparison and depth/breadth stages remain white. The six-case wording preserves the research sequence.",
     "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
     "native_dimensions_cm": [
       11.2764,
-      12.8201
+      13.2231
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-    "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+    "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+    "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
     "fill": "One 8% role marks emerging/refined theory and its resulting basis; empirical cases and comparison nodes white.",
     "bold": "Source-derived emphasis includes DocAble; Early MAGE; Independent industrial accounts; Comparative reconstruction; MAGE theory; A stronger basis for theory; DEPTH; BREADTH. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Orthogonal depth/breadth fan-out and shared-rail join replace diagonal convergence.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "visual_review": "The six-case label agrees across SVG and native render. The five-stage research sequence, depth/breadth split and orthogonal merge retain clear labels and arrow approaches.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 6,
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 1,
       "width_bp": 319.646,
       "height_bp": 374.827,
       "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 16
+      "semantic_typography_checks": 16,
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     },
     "book_references": [
       "part:6"
@@ -115,8 +130,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-    "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+    "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+    "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -280,14 +295,14 @@
         ]
       },
       {
-        "source_text": "seven independent industrial systems",
+        "source_text": "six independent industrial systems",
         "source_style": "weight normal, italic",
         "semantic_role": "Explanation of stage or evidence dimension",
-        "candidate_text": "Seven independent industrial systems",
+        "candidate_text": "Six independent industrial systems",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "seven independent industrial systems",
+            "text": "six independent industrial systems",
             "weight": "normal",
             "style": "italic",
             "x": "500",
@@ -402,7 +417,7 @@
         "italic": true
       },
       {
-        "text": "Seven independent industrial systems",
+        "text": "Six independent industrial systems",
         "italic": true
       },
       {
@@ -427,9 +442,9 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 6,
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 1,
       "width_bp": 319.646,
       "height_bp": 374.827,
       "minimum_prose_font_pt": 9.0,
@@ -437,30 +452,33 @@
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 16,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Equal-height evidence peers with clear incoming and converging terminal segments.",
-    "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+    "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
     "page_layout": {
       "decision": "retained",
-      "reason": "Retain existing vertical progression: nodes already have comfortable padding and clear shafts at native text size; no remaining cap-driven compression.",
+      "reason": "The six-case label agrees across SVG and native render. The five-stage research sequence, depth/breadth split and orthogonal merge retain clear labels and arrow approaches.",
       "before_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
-      "after_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+      "after_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
       "before_dimensions_bp": [
         319.64599609375,
         374.8269958496094
@@ -480,23 +498,70 @@
       "reviewed_visually": true
     },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 1,
+      "width_bp": 319.646,
+      "height_bp": 374.827,
+      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 6,
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    },
+    "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2"
+  },
+  "editorial_update_2026_11_03": {
+    "reason": "Author-approved Zenseact removal and six-case figure consistency",
+    "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+    "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
+    "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+    "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+    "page": 1,
+    "source_render": "latex/build/tikz-six-case-review/research-arc-source.png",
+    "native_render": "latex/build/tikz-six-case-review/research-arc.png",
+    "visual_review": "The six-case label agrees across SVG and native render. The five-stage research sequence, depth/breadth split and orthogonal merge retain clear labels and arrow approaches.",
+    "validation": {
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 1,
       "width_bp": 319.646,
-      "height_bp": 374.827
+      "height_bp": 374.827,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
   }
 }

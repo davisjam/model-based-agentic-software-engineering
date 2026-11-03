@@ -3,7 +3,7 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 144,
+  "candidate_count": 143,
   "refined_count": 68,
   "reviewed_peer_groups": 81,
   "figures": [
@@ -344,9 +344,9 @@
     {
       "source": "book/assets/research-arc.svg",
       "candidate": "book/tikz/figures/research-arc.tex",
-      "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
+      "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
       "baseline_candidate_sha256": "76a862a3feef21f5fd2fd7f1f929aca287bec70bd6675344e399ce767734a6d0",
-      "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+      "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
       "decision": "refined",
       "reason": "Equal-height evidence peers with clear incoming and converging terminal segments.",
       "reviewed_visually": true,
@@ -372,29 +372,37 @@
         ]
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 1,
+        "width_bp": 319.646,
+        "height_bp": 374.827,
+        "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 16,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 8,
+        "reviewed_peer_groups": 1,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 6,
-        "width_bp": 319.646,
-        "height_bp": 374.827
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       },
       "page_layout": {
         "decision": "retained",
-        "reason": "Retain existing vertical progression: nodes already have comfortable padding and clear shafts at native text size; no remaining cap-driven compression.",
+        "reason": "The six-case label agrees across SVG and native render. The five-stage research sequence, depth/breadth split and orthogonal merge retain clear labels and arrow approaches.",
         "before_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
-        "after_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+        "after_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
         "before_dimensions_bp": [
           319.64599609375,
           374.8269958496094
@@ -5235,9 +5243,9 @@
     {
       "source": "book/assets/six-entry-points.svg",
       "candidate": "book/tikz/figures/six-entry-points.tex",
-      "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
+      "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
       "baseline_candidate_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
-      "candidate_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
+      "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
       "decision": "retained",
       "reason": "Retained: Tabular entry rows are evenly separated; badges and descriptions have different roles, not equal-height process peers.",
       "reviewed_visually": true,
@@ -5250,36 +5258,44 @@
         "terminal_exceptions": []
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 2,
+        "width_bp": 417.554,
+        "height_bp": 319.669,
+        "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 11,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 0,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 82,
-        "width_bp": 417.554,
-        "height_bp": 360.772
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       },
       "page_layout": {
         "decision": "retained",
-        "reason": "Retain existing six entry points layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "reason": "Six company rows are evenly spaced after removing Zenseact. All six names, category badges, column meanings and footer remain readable in the current SVG and native render.",
         "before_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
-        "after_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
+        "after_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
         "before_dimensions_bp": [
           417.5539855957031,
           360.7720031738281
         ],
         "after_dimensions_bp": [
           417.5539855957031,
-          360.7720031738281
+          319.66900634765625
         ],
         "before_font_sizes_pt": [
           9.0,
@@ -8815,66 +8831,6 @@
       }
     },
     {
-      "source": "book/assets/field-guide-zenseact.svg",
-      "candidate": "book/tikz/figures/field-guide-zenseact.tex",
-      "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
-      "baseline_candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
-      "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
-      "decision": "retained",
-      "reason": "Retained: observation/vocabulary grouping uses distinct role panels; repeated leaves align, and no process-terminal crowding requires repair.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        351.3160095214844,
-        209.60400390625
-      ],
-      "contracts": {
-        "peer_groups": [],
-        "terminal_exceptions": []
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 133,
-        "width_bp": 351.316,
-        "height_bp": 209.604
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain compact case mapping: grouping labels and observation branches have sufficient whitespace; expansion would separate closely related evidence.",
-        "before_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
-        "after_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
-        "before_dimensions_bp": [
-          351.3160095214844,
-          209.60400390625
-        ],
-        "after_dimensions_bp": [
-          351.3160095214844,
-          209.60400390625
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/field-guide-uber.svg",
       "candidate": "book/tikz/figures/field-guide-uber.tex",
       "source_sha256": "60370a121cfbff862b04cc72f6ee84af8a8f96c3979018210ef316bb77f915d0",
@@ -9626,13 +9582,13 @@
   ],
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "proof_sha256": "a6094fd53c7c7d4f69f0b71799cd81687bcb473c8aed658243c5a876ce33ba72",
     "geometry_findings": 0,
     "checked_terminal_approaches": 633,
     "reviewed_peer_groups": 81,
-    "semantic_typography_checks": 875,
+    "semantic_typography_checks": 872,
     "unapproved_compile_diagnostics": 0,
-    "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+    "audit_sha256": "1219ddd456cb8b5454bbdb078708f8607626be8807f218e13f1a0cdcc078e549",
     "maximum_dimensions_bp": [
       450,
       560
@@ -9641,7 +9597,7 @@
     "status": "passed"
   },
   "page_layout_review": {
-    "candidate_count": 144,
+    "candidate_count": 143,
     "refined_count": 13,
     "maximum_dimensions_bp": [
       450,

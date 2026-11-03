@@ -55,9 +55,36 @@
     "receipt": "book/tikz/receipts/research-arc.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Restored theory/evidence modes: Early MAGE, MAGE theory and stronger theory basis are 20% gray with emphasis; observations/procedure/depth/breadth remain 4% gray. Original spine and split retained.",
-    "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-    "candidate_sha256": "f69b5fbb47d18e42eca5b666fb6ede5dbc44c060bc11aa4f50afafe59e2b2940"
+    "rationale": "Early MAGE, MAGE theory and the stronger basis for theory use 8% gray; evidence and comparison stages remain white. The source sequence and depth/breadth split are preserved.",
+    "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+    "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
+    "validation": {
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 1,
+      "width_bp": 319.646,
+      "height_bp": 374.827,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    }
   },
   {
     "source": "book/assets/engineering-leverage.svg",
@@ -815,9 +842,36 @@
     "receipt": "book/tikz/receipts/six-entry-points.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Emphasis badges restored: governance darker, knowledge/modeling light, combined intermediate with double outline; words disambiguate categories.",
-    "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
-    "candidate_sha256": "aad037a3f8dd91d6fab5306e2a33b7e599b41572856f83e62fd25c1aab967dca"
+    "rationale": "Governance badges use 5% gray; knowledge and modeling badges remain white; combined emphasis retains the double outline and explicit category label.",
+    "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
+    "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
+    "validation": {
+      "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+      "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+      "page": 2,
+      "width_bp": 417.554,
+      "height_bp": 319.669,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11,
+      "body_fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-BoldIt",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
+      ],
+      "status": "passed",
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 0,
+      "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    }
   },
   {
     "source": "book/assets/mage-dynamic-model.svg",
@@ -1318,16 +1372,6 @@
     "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
     "source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
     "candidate_sha256": "76604d7c7a2a2d78d3cd47193017606ae7ff43bb68c3038cd2233c8af67a1c81"
-  },
-  {
-    "source": "book/assets/field-guide-zenseact.svg",
-    "candidate": "book/tikz/figures/field-guide-zenseact.tex",
-    "receipt": "book/tikz/receipts/field-guide-zenseact.json",
-    "reviewed": true,
-    "decision": "retained",
-    "rationale": "Original already monochrome; existing explicit labels, grouping and line patterns preserve its evidence claim. No added color replacement necessary.",
-    "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
-    "candidate_sha256": "60adc7e7201a38443465e67a50511ebb317a212f96438d978085dacdb091e082"
   },
   {
     "source": "book/assets/field-guide-uber.svg",

@@ -2,14 +2,14 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 144,
-  "refined_count": 127,
-  "check_count": 875,
-  "shared_style_sha256": "65d4e4e84297a50e162fa03091bdb5364eb8d442c118ec0dd130a85e5c1ea750",
+  "candidate_count": 143,
+  "refined_count": 126,
+  "check_count": 872,
+  "shared_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-    "rendered_checks": 875,
+    "proof_sha256": "a6094fd53c7c7d4f69f0b71799cd81687bcb473c8aed658243c5a876ce33ba72",
+    "rendered_checks": 872,
     "geometry_findings": 0,
     "unapproved_compile_diagnostics": 0,
     "status": "passed",
@@ -17,7 +17,7 @@
       "configuration": "latex/book-fonts.tex",
       "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
       "reference": "latex/build/tikz/body-font-reference.pdf",
-      "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+      "reference_sha256": "22cf0d6c2716f233b9f888f41ba62f1ccd67fb12e18831ea066c9c92fa4a877b",
       "body_faces": [
         "SourceSans3-Bold",
         "SourceSans3-BoldIt",
@@ -1225,8 +1225,8 @@
       "source": "book/assets/gloss-agent-vocab.svg",
       "candidate": "book/tikz/figures/gloss-agent-vocab.tex",
       "decision": "refined",
-      "source_sha256": "7744e615670a5ff4233596554cb3aa3c0fd17ab57054294d645e561bdacbbb62",
-      "candidate_sha256": "c674a554a7fee64b1b2d3e80dc162a0e550ca8207c849173358acaee62e2bd3b",
+      "source_sha256": "b44643ce9ff9e180688f96025981f13ce6b4402414d2e2634e213b351ec816e3",
+      "candidate_sha256": "18d537bd34b554540d07366110ee0151331611e420752e7550fe50294556f638",
       "evidence": [
         {
           "source_text": "Application",
@@ -1277,14 +1277,14 @@
           ]
         },
         {
-          "source_text": "Reasoning Horizon",
+          "source_text": "Required reasoning state",
           "source_style": "weight bold, normal",
           "semantic_role": "Defined vocabulary term",
-          "candidate_text": "Reasoning Horizon",
+          "candidate_text": "Required reasoning state",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Reasoning Horizon",
+              "text": "Required reasoning state",
               "weight": "bold",
               "style": "normal",
               "x": "820",
@@ -1357,7 +1357,7 @@
           ]
         }
       ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "reason": "Preserve the author-approved reasoning-horizon labels and their original distinction between bold headings and regular explanation. Updated after the November 2026 terminology edits.",
       "checks": [
         {
           "text": "Application",
@@ -1372,7 +1372,7 @@
           "bold": true
         },
         {
-          "text": "Reasoning Horizon",
+          "text": "Required reasoning state",
           "bold": true
         },
         {
@@ -1397,16 +1397,22 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 4,
+        "proof": "latex/build/tikz-horizon-approval/approved-horizon-figures.pdf",
+        "proof_sha256": "8d3783be1dba613d65bec55ff3c1d0d116aa60e83f6a0ee99a9be5d9f4bd82b6",
+        "page": 1,
         "width_bp": 363.832,
         "height_bp": 301.283,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 9
+        "semantic_typography_checks": 9,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
       }
     },
     {
@@ -1757,8 +1763,8 @@
       "source": "book/assets/research-arc.svg",
       "candidate": "book/tikz/figures/research-arc.tex",
       "decision": "refined",
-      "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-      "candidate_sha256": "4139a68727febb1ce2a1b8aa5e257b30ec98b24e1574cb0f08952167c41bda91",
+      "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+      "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
       "evidence": [
         {
           "source_text": "DocAble",
@@ -1921,14 +1927,14 @@
           ]
         },
         {
-          "source_text": "seven independent industrial systems",
+          "source_text": "six independent industrial systems",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Seven independent industrial systems",
+          "candidate_text": "Six independent industrial systems",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "seven independent industrial systems",
+              "text": "six independent industrial systems",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2044,7 +2050,7 @@
           "italic": true
         },
         {
-          "text": "Seven independent industrial systems",
+          "text": "Six independent industrial systems",
           "italic": true
         },
         {
@@ -2069,16 +2075,31 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 6,
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 1,
         "width_bp": 319.646,
         "height_bp": 374.827,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 16
+        "semantic_typography_checks": 16,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 8,
+        "reviewed_peer_groups": 1,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -2381,18 +2402,18 @@
       "source": "book/assets/reasoning-horizon.svg",
       "candidate": "book/tikz/figures/reasoning-horizon.tex",
       "decision": "refined",
-      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-      "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
+      "source_sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0",
+      "candidate_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
       "evidence": [
         {
-          "source_text": "Task exceeds the finite active state",
+          "source_text": "Relevant state cannot all remain active",
           "source_style": "weight 700, normal",
           "semantic_role": "Premise heading versus explanatory sentence",
-          "candidate_text": "Task exceeds the finite active state",
+          "candidate_text": "Relevant state cannot all remain active",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Task exceeds the finite active state",
+              "text": "Relevant state cannot all remain active",
               "weight": "700",
               "style": "normal",
               "x": "500",
@@ -2472,10 +2493,10 @@
           ]
         }
       ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "reason": "Preserve the author-approved reasoning-horizon labels and their original distinction between bold headings and regular explanation. Updated after the November 2026 terminology edits.",
       "checks": [
         {
-          "text": "Task exceeds the finite active state",
+          "text": "Relevant state cannot all remain active",
           "bold": true
         },
         {
@@ -2495,21 +2516,31 @@
           "bold": true
         },
         {
-          "text": "Some reasoning state must be reconstructed",
+          "text": "Preserve what later decisions need",
+          "bold": false
+        },
+        {
+          "text": "State must remain available",
           "bold": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 11,
+        "proof": "latex/build/tikz-horizon-approval/approved-horizon-figures.pdf",
+        "proof_sha256": "8d3783be1dba613d65bec55ff3c1d0d116aa60e83f6a0ee99a9be5d9f4bd82b6",
+        "page": 2,
         "width_bp": 353.911,
-        "height_bp": 350.719,
+        "height_bp": 349.663,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 6
+        "semantic_typography_checks": 7,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
       }
     },
     {
@@ -12583,8 +12614,8 @@
       "source": "book/assets/six-entry-points.svg",
       "candidate": "book/tikz/figures/six-entry-points.tex",
       "decision": "refined",
-      "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
-      "candidate_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
+      "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
+      "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
       "evidence": [
         {
           "source_text": "Cloudflare",
@@ -12691,32 +12722,6 @@
           ]
         },
         {
-          "source_text": "Zenseact",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "22"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Zenseact",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "Zenseact",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "22"
-              },
-              "location": {
-                "x": "48",
-                "y": "552",
-                "text_element": 33
-              }
-            }
-          ]
-        },
-        {
           "source_text": "Uber",
           "source_style": {
             "font-weight": "700",
@@ -12736,8 +12741,8 @@
               },
               "location": {
                 "x": "48",
-                "y": "636",
-                "text_element": 39
+                "y": "552",
+                "text_element": 33
               }
             }
           ]
@@ -12762,8 +12767,8 @@
               },
               "location": {
                 "x": "48",
-                "y": "720",
-                "text_element": 46
+                "y": "636",
+                "text_element": 40
               }
             }
           ]
@@ -12866,10 +12871,6 @@
           "bold": true
         },
         {
-          "text": "Zenseact",
-          "bold": true
-        },
-        {
           "text": "Uber",
           "bold": true
         },
@@ -12900,16 +12901,31 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 82,
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 2,
         "width_bp": 417.554,
-        "height_bp": 360.772,
+        "height_bp": 319.669,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 12
+        "semantic_typography_checks": 11,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 0,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -20789,66 +20805,6 @@
         "page": 132,
         "width_bp": 356.985,
         "height_bp": 281.728,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 3
-      }
-    },
-    {
-      "source": "book/assets/field-guide-zenseact.svg",
-      "candidate": "book/tikz/figures/field-guide-zenseact.tex",
-      "decision": "refined",
-      "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
-      "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
-      "evidence": [
-        {
-          "source_text": "Zenseact",
-          "source_style": "font-weight=bold",
-          "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
-          "candidate_text": "Zenseact",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Governed Engineering",
-          "source_style": "font-weight=bold",
-          "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
-          "candidate_text": "Governed Engineering Environment",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "platform team",
-          "source_style": "font-weight=bold",
-          "semantic_role": "Platform role heading distinguishes owner from mechanism list",
-          "candidate_text": "PLATFORM TEAM",
-          "candidate_style": "bold"
-        }
-      ],
-      "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
-      "checks": [
-        {
-          "text": "Zenseact",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "PLATFORM TEAM",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "domain team 1",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 133,
-        "width_bp": 351.316,
-        "height_bp": 209.604,
         "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,

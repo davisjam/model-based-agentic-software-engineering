@@ -3423,9 +3423,9 @@ def build_skill_recipe_chapters(part: int, for_print: bool = False,
         locator_figs=locator_figs, opening_extras_md=extras, front_only=pointer_mode)
 
 
-# APPENDIX — Field Guide. Hand-authored reference cards for the six industry teams the book studies. Unlike
+# APPENDIX — Field Guide. Hand-authored reference cards for the six industry organizations the book studies. Unlike
 # the multi-page hand-authored appendices (stacks/recipe/operators), the field guide reads as ONE deck: a
-# single front-door page carries the opening prose plus the six team cards, each an H3 section that leads
+# single front-door page carries the opening prose plus the five team cards, each an H3 section that leads
 # with its neutral hand-SVG. The cards are authored reference prose traced to Section 6.6 plus public company
 # record — no catalogue projection, no data-derived card model, ZERO operator-card rows.
 _FIELD_GUIDE_DIR = HERE / "appendix-field-guide"
@@ -3435,17 +3435,17 @@ _FIELD_GUIDE_DIR = HERE / "appendix-field-guide"
 # appendices; the letter is resolved at build from the `part_title`.
 _APPENDIX_FIELD_GUIDE_OPENING_SLUG = "appendix-field-guide"
 
-# The six team cards, in deck order (kind order). Each is one authored `.md` under the front-door dir; an
+# The five team cards, in deck order (kind order). Each is one authored `.md` under the front-door dir; an
 # absent-on-disk file is skipped, so the opening alone still renders. Uber is the deep exemplar of the
-# sixth kind (a durable environment around a replaceable reasoner); GitLab shares that kind as the cited
+# fifth kind (a durable environment around a replaceable reasoner); GitLab shares that kind as the cited
 # sibling in Uber's card and §5.5, so it has no card of its own. The Docker card was RETIRED on 260923 with
-# the Docker case, so the appendix presents exactly the seven-organization corpus §5.3 reconstructs.
-_FIELD_GUIDE_TEAMS: list[str] = ["cloudflare", "spotify", "shopify", "siemens", "zenseact", "uber"]
+# the Docker case, the Zenseact card was retired on 261103, so the appendix presents exactly the six-organization corpus §5.3 reconstructs.
+_FIELD_GUIDE_TEAMS: list[str] = ["cloudflare", "spotify", "shopify", "siemens", "uber"]
 
 
 def build_field_guide_chapters(part: int, letter: str = "G", locator_figs: bool = False) -> list[dict]:
     """Build the Field Guide appendix: ONE front-door page (chapter 0) whose body is the opening prose plus
-    the six team cards concatenated as `### <Team>` H3 sections. The six read as one deck under a single
+    the five team cards concatenated as `### <Team>` H3 sections. The five read as one deck under a single
     opening — the shape the card template authored — rather than as one page per team. Every card leads with
     its `<!-- figure: -->` neutral hand-SVG; figures number `Figure <letter>-N` off the locator when
     `locator_figs` is set. Returns [] if no card files are present.
@@ -4752,7 +4752,7 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         next_part + 7, _APPENDICES_PART2_SLUG, _APPENDICES_PART2_TITLE,
         _APPENDICES_PART2_SUBTITLE, "appendix-part-2-evidence.md"))
 
-    # ── APPENDIX H — Field Guide (re-lettered from G). The six studied teams as one-page reference cards (a
+    # ── APPENDIX H — Field Guide (re-lettered from G). The five exemplar teams as reference cards (a
     #    single deck page). A team-first reference ("who was that team again?"), distinct from Section 6.6's
     #    comparative read. Opens the Evidence Part (H–I): the external industrial reconstructions.
     chapters += build_field_guide_chapters(part=next_part + 8, letter="H", locator_figs=True)

@@ -1145,3 +1145,1183 @@ Reason: Distinguish the foundation model that performs reasoning from the engine
 ```text
 The asymmetry is in what the vendor can supply. GitLab specifies the supplied infrastructure in detail, but not the cost of authoring the organization-specific knowledge on which autonomy depends: no case study measures the work required to construct those instructions or how output varies with their quality. The CEO\textquotesingle s essay locates trust in a durable layer of "context, verification, governance and evidence" around a replaceable model.\citep{staples2026abundant} Yet the layer that produced GitLab\textquotesingle s own 95-percent-agent-generated service included failing tests written first, CI gates, repository-resident context, and the test-count guard --- precisely the layer the adopting organization must supply.
 ```
+
+## Zenseact removal and approved scope edits, 3 November 2026
+
+Source revision: `2fe4ecab61686cf46e09bdffb16e1acd8dcdc87c`. The author requested removal of Zenseact from Chapter 5 and the field guide, including dependent case references, and approved `14-scope` and `3-probabilistic-definition`. All removed prose is retained below for possible reuse; it has not been relocated into another chapter.
+
+### 14-scope
+
+Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, lines 43–59.
+
+Reason: Name the methodology in the heading. Keep the software, mechanical-engineering, and accounting examples first, the qualification about the changing balance in the middle, and the Chapter 2, 3, 6, and 7 signposts last. The complete original is already preserved in the cutting room with Chapter 6 and 7 reuse notes. This abridgement remains a proposal. Use delegation rather than inference, and connect the balance to the degrees of freedom engineers leave open for agents.
+
+```latex
+\section{The Problem Is Larger than Software}\label{heading:the-problem-is-larger-than-software}
+
+% <!-- point: the-problem-is-larger-than-software | Software makes the governing problem visible; it does not create it. -->
+
+Software makes the problem unusually visible, but does not create it.
+
+Suppose an agent is asked to perform consequential work in some other domain. It may analyze a contract, develop an engineering design, reconcile a set of accounts, or synthesize evidence for a scientific question. The artifacts differ, but two problems remain. First, the knowledge needed to do the work may exceed what the agent can reliably reconstruct and reason over in one episode. Second, some judgments matter enough that whether the work takes effect should not depend only on the producing agent having made those judgments correctly.
+
+Those are the same two problems this chapter named the Representation Problem and the Enforcement Problem. Modeling addresses the first by making consequential knowledge available in representations suited to the questions being asked. Alignment addresses the second by giving selected obligations evidence and enforcement outside the producing reasoner. Neither move fundamentally requires source code.
+
+What changes across domains is the engineering material. Software has requirements, architectures, dependency graphs, types, tests, admission gates, permissions, telemetry, and executable artifacts. Mechanical engineering has geometry, tolerances, load models, simulations, and physical tests. Accounting has ledgers, classifications, reconciliations, controls, and audit evidence. Legal work has authorities, claims, elements, facts, procedural rules, and approval structures. The useful representations differ, as do the obligations that can responsibly be enforced.
+
+MAGE is an approach to governing agentic engineering work by engineering what the agent and its environment can know, decide, check, and enforce. This book develops that approach through software engineering because software is where we have exercised it deeply enough to study the mechanisms. The broader claim is theoretical and predictive. If the account is right, similar leverage should appear elsewhere when consequential knowledge can be represented, important obligations can be evaluated with adequate evidence, and the resulting structure is economical to maintain.
+
+The balance between inference, explicit representation, and enforcement will change as agents improve. MAGE does not prescribe that balance in advance; it asks engineers to establish it for the systems and obligations they face.
+
+The following chapters develop the software-engineering mechanisms in detail. \magevalue{chapter:theory} abstracts those mechanisms into a theory. \magevalue{chapter:profession} then asks what remains when the software-specific assumptions are relaxed.
+```
+
+### 3-probabilistic-definition
+
+Source: `book/latex/sources/part3/00-part-intro.tex`, lines 10–10.
+
+Reason: Retain the concise closing from the current passage, with the agent as the actor. Identify the generative implementer as an agent and reuse Chapter 1’s probabilistic-surface definition without adding another explanation. Manuscript unchanged pending approval.
+
+```latex
+Commodity intelligence makes this longstanding problem newly important. A generative implementer can produce plausible realizations rapidly and explore degrees of freedom that human implementers might never have considered. Instructions alone do not determine which realization will appear. If an architectural relation, behavioral invariant, ownership rule, measurement requirement, or policy matters to the system, relying on every future realization to reconstruct and voluntarily preserve it leaves that obligation on the probabilistic surface.
+```
+
+### factories-shared-lesson
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 288–290.
+
+Reason: Replace “unit of governance grows,” “scarce human decision,” and “multiplicative reach” with examples that explain how a decision affects later work. Remove the platform/domain generalization whose clearest Chapter 5 support was Zenseact.
+
+```latex
+% <!-- point: the-common-structure-is-leverage-organizational-capital | Where the factories converge most strongly is leverage: shared mechanisms centralize while domain judgment stays distributed, human judgment moves upstream, private learning becomes shared structure, and the unit of governance grows — so a scarce judgment gains multiplicative reach when the environment carries it forward. -->
+
+Where the factories converge most strongly is leverage. Organizations centralize shared mechanisms while keeping domain judgment distributed; human judgment moves upstream, from hand-authoring changes toward scoping, supervision, and the engineering of reusable controls; private learning becomes shared structure; and the unit of governance grows from a task to classes of work, fleets, and platforms. A scarce human decision becomes more valuable when the environment carries it forward: one policy shapes thousands of changes, one shared representation guides work across a fleet, and one learned constraint protects later work over the same surface. Governance does not remove judgment; it gives selected judgments multiplicative reach.
+```
+
+### zenseact-chapter5-removal
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 182–190.
+
+Reason: Keep the Chapter 5 comparison focused on systems that produce controlled software changes. Zenseact’s ZAP examples support the broader MAGE discussion through information retrieval and analysis; retain that evidence in the approved field-guide card. Archive the removed case before applying this cut.
+
+```latex
+\subsection{Zenseact}\label{heading:zenseact}
+
+% <!-- point: zenseact-federates-agent-ownership-while-keeping-the-authority-to-act-central | Zenseact's agents do no software realization, and the case earns its place on the federation question: a platform team owns a runtime with no business logic, a domain team's agent is a directory with two text files, and a central permission table still resolves every tool call. -->
+
+Zenseact, a driver-assistance software company, belongs here with a scoping sentence attached: its agents do not produce software. The one substantive source --- a company-authored whitepaper describing its ZAP platform --- shows agents querying Gerrit, Zuul, JIRA, SAP, and document stores as data sources and synthesizing answers; no agent authors a patch, opens a change, or merges anything.\citep{dufwa2026zap} Under this chapter\textquotesingle s definitions that is not an agentic software factory but an agentic knowledge-work platform operating around one, and the case earns its place on a question none of the others puts squarely: where should authority over the factory\textquotesingle s agents sit? Zenseact\textquotesingle s answer is federation. A platform team owns the runtime --- authentication, sessions, tool execution, the model loop --- which deliberately "does not contain any business logic"; a domain team\textquotesingle s agent is a directory holding two text files, a configuration listing its skills and a markdown file encoding the domain\textquotesingle s rules, so a new agent is a configuration act rather than a platform change.\citep{dufwa2026zap} What makes that boundary safe to draw is that consequence stays central: a permission table resolves every tool call to auto-approve, confirm with a human, or deny, by tool and by role.\citep{dufwa2026zap} The domain team writes the knowledge; the platform keeps the authority to act.
+
+% <!-- point: zenseact-is-architecture-described-by-its-authors-not-practice-observed | The federation claim is a design property the record never demonstrates — one source, no adoption count, no outcome figure — and its one published performance measurement concerns a context router whose typed failures are repaired in the skill file rather than the model. -->
+
+The evidentiary standing travels with the claim. This is architecture described by its authors rather than practice observed: one source, no adoption count, no outcome figure, and no report of how many domain teams built an agent --- so "distributed ownership scales" is a design property the record states and never demonstrates. Its one published performance measurement concerns the context router, which selects each turn\textquotesingle s skill instructions by text similarity and carries the record\textquotesingle s only quantity, a 67 to 98 percent context reduction on financial queries and 43 to 97 percent on engineering ones. Routing misses are typed --- no skill matched, the wrong skill fired, the agent struggled with a tool --- and each class carries a prescribed repair to the skill file rather than to the model that reads it.\citep{dufwa2026zap} The federated unit is what gets repaired.
+```
+
+### factories-six-company-roster
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 22–24.
+
+Reason: Update the opening count and company list; retain the stable point ID.
+
+```latex
+% <!-- point: seven-reconstructions-differ-in-representation-direction-evidence-and-judgment | Seven public accounts are reconstructed; they differ in what they represent, how they direct and constrain agents, what evidence they require, where they keep human judgment — and in whether the factory is built for their own software or for somebody else's. -->
+
+In this section, I reconstruct agentic software factories from public reports by seven major companies: Uber, GitLab, Cloudflare, Siemens, Spotify, Shopify, and Zenseact. These factories differ in what they represent, how they direct and constrain agents, what evidence they require, and where they retain human judgment. They also differ in a more basic way: some organizations are building factories for their own software, while others are building factories for somebody else to use.
+```
+
+### factories-six-account-comparison
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 50–52.
+
+Reason: Keep the factory-form comparison consistent with six cases. The category table has no company-specific row to remove.
+
+```latex
+% <!-- point: the-two-distinctions-are-independent-axes | The two distinctions are independent: either factory form can be existing-environment-first or model-first, and the seven public accounts occupy only part of that design space. -->
+
+These distinctions are independent. An internal factory can be existing-environment-first or model-first. So can a factory in a box. The seven public accounts happen to occupy only part of that design space. \autoref{factory-forms} provides the map I will use for the rest of the section.
+```
+
+### factories-six-entry-points
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 93–100.
+
+Reason: Update the caption and baseline summary for six cases. The figure artwork must also lose its Zenseact row and use six in its title and accessibility text.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/six-entry-points-b36714cf00.pdf}
+\caption{\emph{Seven Entry Points.} MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.}
+\label{six-entry-points}
+\end{figure}
+
+% <!-- point: the-shared-substrate-is-the-baseline-and-the-cases-report-the-differences | Four structures recur across all seven factories — knowledge externalized, action bounded, realization evaluated against evidence, and consequential judgment reserved to people — so the substrate is established once here and each case that follows is organized around what it alone teaches. -->
+```
+
+### factories-four-internal-cases
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 110–112.
+
+Reason: Remove the Zenseact exception and introduce the four remaining internal software-production cases directly. Retain the stable point ID.
+
+```latex
+% <!-- point: five-internal-accounts-each-answering-a-different-engineering-question | Five accounts describe systems an organization built for its own work, and each answers a different question — optimizing the factory, converting policy into control, evolving controls as the fabricator changes, turning experience into shared knowledge, and placing authority — while Zenseact's agents do knowledge work around the factory rather than realization inside it. -->
+
+Five of the seven accounts describe a system an organization built for its own work, and each answers a different engineering question. Uber asks how to optimize the factory itself. Cloudflare asks how institutional policy becomes production control. Spotify asks how the controls should change when the fabricator does. Shopify asks how one engineer\textquotesingle s experience becomes knowledge every later session inherits. Zenseact asks where authority over the factory\textquotesingle s agents should sit. Four of the five begin with the existing software environment and delegate more of realization to agents from there. Zenseact is the exception --- its agents, as the case will show, perform knowledge work around the software factory rather than realization inside it --- and the exception is itself a data point about where agentic capability lands first.
+```
+
+### factories-six-company-measurement
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 268–270.
+
+Reason: Companion to the proposed Zenseact cut. Keep the approved foundation-model wording and remove Zenseact from the production-measurement comparison.
+
+```latex
+% <!-- point: the-reported-measurements-favor-production-over-quality | The reported measurements are much stronger on production than on quality: Uber and Cloudflare report cost, throughput, findings, and overrides, Spotify reports engineering-system health, Shopify a merge-rate improvement with the foundation model fixed, GitLab measurement mechanisms, Siemens and Zenseact little — and internal measurements may go unreported. -->
+
+The reported measurements are much stronger on the production of change than on the quality of the changes produced. Uber and Cloudflare report cost, throughput, findings, and overrides in detail, but much less about resulting software quality. Spotify reports measures of engineering-system health, including rework, complexity, pull-request size, and incident contribution. Shopify reports a merge-rate improvement with the foundation model held fixed. GitLab describes measurement mechanisms, while Siemens and Zenseact provide little operating evidence of this kind. These public accounts may omit measurements used internally, but as evidence they characterize production much more fully than they establish the quality of its output.
+```
+
+### zenseact-ch7-opening-removal
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, lines 48–52.
+
+Reason: Archive the removed case and its point directive. The following paragraph already states the broader theoretical claim; removing its initial “But” lets it follow the reading-path inset directly.
+
+```latex
+% <!-- point: the-factorys-boundary-is-not-the-problems-boundary | Zenseact's platform fell outside this book's definition of an agentic software factory and still presented the same engineering problem, showing that the engineering problem is not confined to systems that produce software changes themselves. -->
+
+\magevalue{chapter:software-factories} contained one deliberate boundary case. This book reserves \emph{agentic software factory} for a production system whose agents produce the software changes themselves and whose surrounding machinery decides which of those changes may be accepted. Zenseact\textquotesingle s ZAP platform, a driver-assistance software company\textquotesingle s internal agent platform reconstructed in \magevalue{sec:mage-in-the-wild}, did not qualify: its agents performed knowledge work around software production rather than producing software themselves.\citep{dufwa2026zap} Yet the engineering problem was already recognizable. Domain knowledge had to be represented for agents, capabilities had to be scoped, actions had to be governed, and responsibility remained with the surrounding organization.
+
+But software is not fundamental to the theory. The same engineering problem arises even when the work produces something other than source code. An agent has some capacity. It performs consequential work through an environment. Some of the knowledge needed for that work can be represented outside the agent. Some obligations can be evaluated independently of the agent\textquotesingle s own judgment. Useful decisions made today can sometimes be preserved so that tomorrow\textquotesingle s work inherits them rather than reconstructing them.
+```
+
+### zenseact-ch7-worked-example-removal
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, lines 127–141.
+
+Reason: Archive the complete Zenseact example, including its configuration, permission, and per-call-admission discussion and evidence caveat. The preceding control-loop argument already leads to the accounting and legal examples that follow.
+
+```latex
+% <!-- point: zenseact-is-an-observed-instance-of-the-generalization | One industrial case is an instance rather than a prospect: an automotive company's agents do engineering knowledge work and no software realization, domain teams author each agent as two text files, and admission runs per tool call instead of per change. -->
+
+That loop is not only a prospect. The Zenseact platform this section opened on is already an instance of it. Its agents query the company\textquotesingle s code-review, build, issue-tracking, and enterprise resource systems as data sources and synthesize answers for the engineers who ask.\citep{dufwa2026zap} No agent writes a patch or merges one. The work is consequential knowledge work inside an engineering organization, arranged around a software factory rather than performed inside it.
+
+Two of its choices bear directly on the conditions set out above.
+
+\textbf{Intent enters through domain-authored configuration.} As \magevalue{sec:mage-in-the-wild} described, Zenseact separates a platform-owned runtime from domain-authored agent configurations. Each agent consists of two text files, so creating a new agent is a configuration change rather than a platform change.\citep{dufwa2026zap} The important distinction here is where intent resides: domain teams write down their knowledge, and the platform need not understand it.
+
+\textbf{Admission operates per tool call.} A permission table keyed on the tool and the caller\textquotesingle s role resolves every call the agent attempts to one of three outcomes: execute immediately, stream the call and its arguments to a person and wait for approval, or refuse.\citep{dufwa2026zap}
+
+That second granularity deserves a name, because it differs from the one software uses. A software factory admits a \emph{change}: work is assembled, then accepted or refused as a unit at a merge point. Here the boundary sits one level down, inside the work itself, at each action the agent takes. Per-call admission governs actions as the agent works, rather than waiting to evaluate an assembled result. This matters when individual actions have consequences that cannot be undone merely by rejecting the final answer. The same three-valued choice---proceed, escalate, refuse---arrives at a far finer grain, and arrives many times inside a single session.
+
+Read the case for its architecture rather than its effect. It rests on one source, written by the platform\textquotesingle s own authors, reporting no adoption count and no outcome measure. It shows that the arrangement this section describes is being built in an engineering organization. It does not show what that arrangement yields.
+
+
+```
+
+### zenseact-ch7-professional-work-transition
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, lines 141–141.
+
+Reason: Replace the loose backward reference with the subject of the section after the worked example is removed; leave the remaining argument and accounting/law introduction intact.
+
+```latex
+Whether these professions belong here at all turns on the book\textquotesingle s definition of engineering, which is functional rather than institutional: what matters is the kind of control, evidence, expertise, and responsibility being exercised, not the name on the office door. In the tradition of my engineering forebears, I hesitate to assert that doctors and lawyers are "engineering" things. But given the definition used in this book, I must admit the possibility. What marks the boundary is not the profession\textquotesingle s name but whether specialized expertise is being used to exercise informed control over consequential outcomes for which someone remains answerable. Two professions make the range visible.
+```
+
+### zenseact-ch3-preview-removal
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 151–151.
+
+Reason: Remove the Zenseact preview and its plural lead-in. The existing Spotify example still illustrates the enforcement boundary alongside Docker and DocAble.
+
+```latex
+Two industrial fleets place enforcement the same way at coarser grain. Zenseact\textquotesingle s public account describes each domain team\textquotesingle s agent as little more than a config file and a skill, while a central team owns the runtime, permissions, and context routing; an agent\textquotesingle s reach is a property of where it sits in the platform, not of how it was asked. Spotify\textquotesingle s public account describes migration agents operating through a restricted API and a narrow Git interface, with every change clearing a merge gate before it lands. The gate, not the agent\textquotesingle s confidence, admits the work.
+```
+
+### zenseact-ch4-preview-removal
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, lines 217–217.
+
+Reason: Remove the Zenseact preview and the promise of two previews. Shopify still connects packaged skills to the later industry discussion.
+
+```latex
+The pattern is appearing across the industry, and \magevalue{chapter:software-factories} examines several such systems side by side. Two previews suffice here. Shopify\textquotesingle s public account describes agent sessions made visible and searchable, with repeated judgment mined into shared skills and defaults, so the environment gets incrementally smarter with each pass instead of every session starting cold. Zenseact\textquotesingle s describes the organizational variant: a centrally owned runtime and safety envelope, with domain teams contributing agents as little more than a directory holding a config and a skill --- the organization centralizes the mechanism and decentralizes the judgment.
+```
+
+### zenseact-preface-roster-removal
+
+Source: `book/latex/sources/frontmatter/0.5-preface.tex`, lines 66–66.
+
+Reason: Keep the preface’s account of the evidence presented in Chapter 5 consistent with the six retained company cases.
+
+```latex
+This book began with one hard engineering problem that emerged over months of building a real production system. Only later did I test its vocabulary against independently described systems from Cloudflare, Shopify, Spotify, Siemens, Zenseact, Uber, and GitLab. \magevalue{chapter:software-factories} presents both views of the evidence: DocAble in depth, then the industrial reconstructions in breadth. \magevalue{chapter:theory} asks what account explains both. \autoref{research-arc} shows the evidentiary path.
+```
+
+### zenseact-preface-caption-count
+
+Source: `book/latex/sources/frontmatter/0.5-preface.tex`, lines 71–71.
+
+Reason: Update the caption to the retained six-case comparison. The parent owns any corresponding research-arc artwork change.
+
+```latex
+\caption{\emph{From case to theory.} MAGE began with one deeply observed production system, then was compared with seven independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.}
+```
+
+### zenseact-field-guide-removal
+
+Source: `book/latex/sources/appendix-field-guide/zenseact.tex`, lines 1–32.
+
+Reason: Remove the Zenseact field-guide card at the author’s explicit request; preserve it for possible reuse.
+
+```latex
+% mage-auto-heading: zenseact
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Zenseact}\label{heading:zenseact}
+
+\emph{Autonomous-driving software · centralized substrate, distributed domain ownership}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Zenseact describes a platform team responsible for authentication, sessions, execution, and shared safety mechanisms. Domain teams define their own agents, tools, instructions, and domain knowledge. Common mechanisms can therefore be maintained in one place while the teams that know each domain decide what its agents need to know.\citep{dufwa2026zap}
+
+Zenseact also illustrates \emph{selective context}. A router selects the skill instructions relevant to a task, so each agent need not receive the organization's entire body of knowledge. The platform runs the agents under shared permissions, while domain teams maintain the skills supplied on demand.\citep{dufwa2026zap}
+
+\textbf{Boundary of the evidence.} The sources show how Zenseact divides the platform, routes context, delegates work, and assigns ownership. They do not establish the resulting productivity, safety, or returns on engineering capital.
+
+\textbf{Portable lesson.} Build the common substrate once; distribute the engineering judgment to the teams that possess the knowledge it requires.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-zenseact-34e024fef1.pdf}
+\caption{\emph{Zenseact's connection to MAGE.} Domain teams maintain the knowledge supplied to their agents; the shared platform controls tool use. This separates responsibility for domain knowledge from responsibility for common enforcement.}
+\label{field-guide-zenseact}
+\end{figure}
+
+\textbf{Connection to MAGE.} Zenseact separates two responsibilities that MAGE distinguishes. Domain teams record the knowledge their agents need, and the context router selects relevant instructions: these support Modeling. The platform's permission rules determine which tool calls may proceed, require human confirmation, or are denied: these support Alignment. The arrangement lets teams maintain their own knowledge while sharing enforcement mechanisms.
+
+\textbf{What the evidence establishes.} The source describes how the platform and domain teams divide this work. It does not establish that the arrangement improves productivity or safety, or that recurring failures lead to controls whose effects have been measured.
+
+```
+
+### zenseact-field-guide-roster
+
+Source: `book/latex/sources/appendix-field-guide/_opening.tex`, lines 1–39.
+
+Reason: Keep the field-guide roster and count consistent with the removal.
+
+```latex
+% mage-auto-heading: how-to-read-the-recto-diagrams
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Seven organizations, six kinds}
+
+\magevalue{chapter:software-factories} (\{\{sec:mage-in-the-wild\}\}) asks whether engineering structures found in DocAble recur in systems developed independently under different technical and organizational pressures. This appendix presents the evidence behind that comparison.
+
+These are reconstructions, not additional case studies. Public accounts reveal selected mechanisms and design decisions, not the engineering history available for DocAble. They can show that a comparable structure exists, demonstrate another way to realize it, or mark a limit on the MAGE interpretation. They cannot establish causation, and silence in a public source does not establish that an organization lacks a capability (see \magevalue{sec:toward-a-theory-of-mage}.5 and \magevalue{sec:mage-in-the-wild}).
+
+Each kind therefore gets a two-page spread, built on its clearest exemplar. The verso stays close to the public record: what the organization says it built, the evidence available for that account, and the boundary of what those sources establish. The recto interprets the same evidence through MAGE: Modeling, Alignment, the Governed Engineering Environment, governance conversion, and engineering capital.
+
+The diagrams are mappings, not ratings. A strongly marked relation is directly supported by the cited account; a partial relation is a MAGE interpretation. An unmarked region means only that the source does not establish it. No card claims that an organization implements MAGE as a whole.
+
+The organizations enter from different directions: Cloudflare from institutional policy; Spotify from fleet-scale change; Shopify from organizational knowledge; Siemens from model-first engineering; Zenseact from distributed autonomous work; and Uber from factory-scale economics. GitLab enters that last direction from the opposite motive---trust rather than cost---so it shares Uber\textquotesingle s spread as the sibling account of the same kind. The question is which engineering moves survive those differences.
+
+\subsection{How to read the recto diagrams}\label{heading:how-to-read-the-recto-diagrams}
+
+Every recto uses a simplified Figure 0.1-1: an observed engineering pressure enters from the left and passes through the mechanisms supported by the evidence to the part of MAGE it most directly illuminates.
+
+The overlay uses exactly three epistemic states:
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Mark & Meaning \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+████ solid & directly supported by the public account \\
+- - - dashed & MAGE interpretation / partial support \\
+░░░░ pale & part of MAGE, but not established by this source \\
+\end{longtable}
+}
+}
+
+The diagrams are neither MAGE audits nor a maturity ordering. Pale means not established, not absent.
+
+```
+
+### Zenseact supporting model and artwork archive
+
+Source revision: `2fe4ecab61686cf46e09bdffb16e1acd8dcdc87c`; removed 3 November 2026 alongside the chapter and field-guide card. Original source files are reproduced below so the case can be reconsidered with its artwork and evidence record.
+
+Source: `book-models/industry_cases_declared.json`, roster and case record.
+
+```json
+{
+  "roster": {
+    "id": "zenseact",
+    "organization": "Zenseact",
+    "domain": "engineering knowledge work / automotive",
+    "distinctive_starting_point": "autonomous knowledge work over distributed engineering systems",
+    "status": "authored"
+  },
+  "case": {
+    "id": "zenseact",
+    "onepager_lede": "Zenseact carries MAGE past source code. Its agents do not write software; they do knowledge work across the company's own systems, reasoning over issue trackers, code review, CI, search, and even ERP to decide which tool and which piece of expertise a task needs. The platform, called ZAP, is federated: a central team owns the runtime, permissions, and context machinery, while each domain team ships an agent as little more than a directory holding a config file and a skill. The origin is telling: an earlier, open approach 'did not scale,' so Zenseact rebuilt the environment around the same commodity models, betting that capability lives partly in the environment, on a single company-authored source that reports no outcome numbers yet.",
+    "organization": "Zenseact",
+    "domain": "engineering knowledge work / automotive",
+    "distinctive_starting_point": "autonomous knowledge work over distributed engineering systems",
+    "status": "authored",
+    "source": {
+      "citation_key": "dufwa2026zap",
+      "source_type": "build-report",
+      "independence": "independent",
+      "author_role": "engineering (company-authored internal-platform whitepaper: Dufwa + Luvo)",
+      "account_type": "architectural",
+      "evidence_horizon": "months"
+    },
+    "setting": {
+      "scale": "org-wide",
+      "brownfield": true,
+      "scale_facts": [
+        "measured context reduction of 67-98% for financial queries and 43-97% for engineering queries via progressive skill disclosure (context cost measured; the reasoning-quality half asserted, not measured)",
+        "skill frontmatter budget ~1.5-2 KB total across all active skills (always in the system prompt); skill bodies injected only when the deterministic TF-IDF router scores them relevant",
+        "integrations span JIRA, Gerrit, Zuul, GoCD, Elasticsearch, SAP (ERP), Confluence, SharePoint, and proprietary internal tools, built on AWS Bedrock",
+        "creating a domain agent requires only a directory under agents/ with two files (config.yaml + SKILL.md); no productivity/defect/before-after outcome data and no stated deployment duration"
+      ]
+    },
+    "autonomous_work": "ZAP agents are more than document-retrieval chatbots: they use tools to act over enterprise systems and compose multi-step activity dynamically - deciding what information a task needs, which skill/tool is relevant, which action to perform, and whether to delegate to a specialist agent. Work leans toward engineering + enterprise knowledge work (investigation, synthesis, tool-mediated action across issue-tracking, code review, CI/CD, search, and financial/ERP systems), not autonomous source-code authorship; the autonomy is in reasoning about and orchestrating heterogeneous work.",
+    "object_territory": [
+      "source-code",
+      "design-docs",
+      "incident-reports"
+    ],
+    "representations": [
+      "informal-knowledge",
+      "spec",
+      "structured-policy"
+    ],
+    "traceability": "Weak-to-absent as a model<->territory join. Skills reference the systems they operate over and tool schemas bind to specific enterprise APIs, but there is no representation<->territory drift check. Stable identity lives in the enterprise systems' own artifacts (JIRA keys, Gerrit changes, SAP records), not in a synchronized model of the system. The one traceable link the platform maintains is the disclosure record - which skills the TF-IDF router selected or missed per query - which is what makes disclosure-misses measurable.",
+    "context_strategy": "The platform treats context as a scarce resource: Level-1 frontmatter (~1.5-2 KB across all active skills) is always in the system prompt; Level-2 skill bodies are injected only when a deterministic TF-IDF cosine-similarity router scores them relevant to the query. Measured context reduction of 67-98% (financial) / 43-97% (engineering) - the set's strongest measured reasoning-horizon instance - though the without-lowering-quality half is asserted, not measured.",
+    "agent_authority": "Authority is explicit, machine-readable, and placed in the environment. Three stacked surfaces: a per-tool, per-role permission table (auto_approve / confirm-via-SSE / deny), so decide-freely != act-freely and the environment sets the line; agent-to-agent delegation that is allow-listed in config and depth-limited (the delegation topology is itself an authority model); and sanctioned tool seams with bidirectional sanitization (arguments validated for injection patterns; tool output scrubbed of prompt-injection markers). Boundaries live outside the reasoner.",
+    "mechanisms": [
+      "retrieval-layer",
+      "constrained-api",
+      "merge-gate",
+      "provenance",
+      "stable-identity",
+      "deterministic-lint"
+    ],
+    "judgment": {
+      "task_orchestration_and_synthesis": "llm",
+      "skill_context_selection": "deterministic",
+      "consequential_action_admission": "composite",
+      "inbound_tool_output_safety": "deterministic",
+      "skill_tool_permission_authorship": "human",
+      "disclosure_miss_diagnosis": "composite"
+    },
+    "feedback_adaptation": "One clean loop plus a bootstrap-by-failure origin. The disclosure-miss loop: a task runs, the right skill exists but the TF-IDF router fails to surface it, the miss is detected and recorded as telemetry, an automated improvement pipeline analyzes it, and the skill/disclosure mechanism is updated so future agents get better context - the failure is diagnosed structurally (the environment failed to present the right representation) and the repair targets the environment. Origin: the prior open-source approach 'did not scale' and 'measurable outcomes were lacking', and ZAP is the structural response (same commodity models, a better-engineered environment). Not-described: strengthen / reconcile / retire (the subtractive arm).",
+    "org_memory": "Federated engineering capital: skills make expert knowledge durable outside individual people and sessions. The central platform owns generic capital (runtime, tool/skill loading, permissions, context management, delegation, monitoring); domain teams own domain capital (their agents/tools/skills/knowledge, maintained where the expertise resides - an agent is just a directory + config.yaml + SKILL.md). Shopify centralizes; Zenseact federates. The disclosure-miss loop is capital maintenance - keeping the representation-routing fit between the capital and the reasoner.",
+    "implicit_theory": "The book reads Zenseact as holding that enterprise autonomy scales when the organization separates a common agent platform from domain-specific intelligence: teams encode expertise as reusable skills + deterministic tools; agents receive only task-relevant context rather than the whole enterprise per session; probabilistic models decide what knowledge/operation is needed, but consequential actions execute through structured tools under explicit permission policies; agent-to-agent delegation is bounded like tool access; and the platform is instrumented so context-disclosure and capability-selection failures become evidence for improving the shared environment.",
+    "mage_constructs": [
+      {
+        "construct": "alignment-principle",
+        "strength": "strong",
+        "note": "the book reads the per-tool/per-role auto/confirm/deny table, allow-listed + depth-limited delegation, bidirectional sanitization, and deterministic tools behind structured seams as authority placed outside the reasoner - the set's sharpest Alignment instance, adding a graduated per-action ladder and delegation-topology-as-authority"
+      },
+      {
+        "construct": "modeling-principle",
+        "strength": "partial",
+        "note": "the book reads rich structured knowledge representation (skills) but no invariant-bearing system/process models and no model<->territory join - skills describe how to work in a domain, not what the system is or must remain; a mild Modeling tension held at partial for matrix parity"
+      },
+      {
+        "construct": "bootstrap-governance",
+        "strength": "strong",
+        "note": "the book reads the existing engineering + enterprise tool estate, team knowledge, and explicit policies as seeding E(0), with the failed open-source attempt as a bootstrap-by-failure origin"
+      },
+      {
+        "construct": "governance-conversion",
+        "strength": "strong",
+        "note": "the book reads the disclosure-miss loop (miss -> telemetry -> automated skill-improvement pipeline) as a clean failure->diagnosis->environment-change->better-behavior sequence, narrowed to the routing/representation layer (the subtractive reconcile/retire arm is not-described)"
+      },
+      {
+        "construct": "determinization",
+        "strength": "strong",
+        "note": "the book reads three judgments other sites leave probabilistic being hardened into repeatable mechanisms - execution (deterministic tools), authority (the permission table), and context selection (the TF-IDF router)"
+      },
+      {
+        "construct": "reasoning-horizon",
+        "strength": "strong",
+        "note": "the book reads progressive disclosure with the set's strongest measured context reduction (67-98% / 43-97%) as reasoning-horizon management, noting the reasoning-quality half is asserted, not measured"
+      },
+      {
+        "construct": "engineers-seat",
+        "strength": "strong",
+        "note": "the book reads humans retaining skill/tool/permission authorship (distributed to domain teams) plus the confirm gate on consequential actions as the engineer's seat"
+      },
+      {
+        "construct": "graduated-governance",
+        "strength": "partial",
+        "note": "the book reads auto/confirm/deny as a strong graduated-authority primitive across actions, but with no soft->hard mechanism-strengthening lifecycle over time (graduation across actions, not across maturity)"
+      }
+    ],
+    "modeling_ceiling": [
+      {
+        "rung": "topology",
+        "level": "not-seen",
+        "note": "a federated tool/skill catalog, but no system model of the estate"
+      },
+      {
+        "rung": "ownership-deps",
+        "level": "implicit",
+        "note": "delegation topology + tool bindings encode ownership implicitly, not as an explicit dependency model"
+      },
+      {
+        "rung": "infra-as-code",
+        "level": "some",
+        "note": "config.yaml + permission tables + AWS Bedrock carry environment as code in part"
+      },
+      {
+        "rung": "structured-policy",
+        "level": "some",
+        "note": "the auto/confirm/deny permission table is structured authority policy — but authority policy, not domain/system obligations"
+      },
+      {
+        "rung": "data-lineage",
+        "level": "not-seen",
+        "note": "no data-lineage representation described"
+      },
+      {
+        "rung": "behavioral-state",
+        "level": "not-seen",
+        "note": "no behavioral/state models described"
+      },
+      {
+        "rung": "process-concurrency",
+        "level": "not-seen",
+        "note": "no process/concurrency models described"
+      },
+      {
+        "rung": "scenario",
+        "level": "not-seen",
+        "note": "no scenario models described"
+      },
+      {
+        "rung": "invariant-registry",
+        "level": "not-seen",
+        "note": "no explicit invariant registry described"
+      },
+      {
+        "rung": "model-derived-verification",
+        "level": "not-seen",
+        "note": "no model-derived verification described"
+      },
+      {
+        "rung": "bidirectional-traceability",
+        "level": "not-seen",
+        "note": "FLAG: the disclosure-miss record (query <-> skill the TF-IDF router selected) is provenance over routing, not a model<->code join; noted so it is not mistaken for the strong rung"
+      },
+      {
+        "rung": "drift-gate",
+        "level": "not-seen",
+        "note": "no representation<->territory drift check"
+      }
+    ],
+    "hypotheses": [
+      "H2-governance-moderation",
+      "H3-mechanized-assurance",
+      "H4-representation-leverage",
+      "H4a-representation-efficiency",
+      "H6-oversight-amortization",
+      "H7-conversion-conditions",
+      "H8-learning-propagation"
+    ],
+    "adds_to_mage": [
+      "capability-discovery-itself-must-be-governed",
+      "delegation-topology-is-an-authority-surface",
+      "graduated-per-action-authority-auto-confirm-deny",
+      "distributed-federated-governance-at-org-scale",
+      "environment-improvement-can-target-context-selection",
+      "trust-boundaries-run-in-both-directions",
+      "the-context-router-can-be-deterministic"
+    ],
+    "mage_explains_implicit": "MAGE compresses Zenseact's separately-named skills / tools / agents / progressive disclosure / permissions / delegation / sanitization / monitoring into one governed environment - skills as soft conditioning, the TF-IDF router as a sensor + reasoning-horizon mechanism (and a determinization of context selection), tool schemas as sanctioned seams, the permission table as authority allocation + a human gate, the delegation allow-list as a constraint on the agent topology, sanitization as a trust boundary, disclosure-miss telemetry as a sensor, the improvement pipeline as governance conversion, and the platform/domain split as an agent stack over federated engineering capital - and names the structural-diagnosis question Zenseact performs but never states.",
+    "limitations": [
+      "no-invariant-bearing-system-model-described-modeling-tension",
+      "no-model-territory-drift-gate",
+      "churn-defect-outcome-vocabulary-strains-on-knowledge-work",
+      "no-productivity-or-defect-or-before-after-outcome-data",
+      "deployment-duration-unstated",
+      "reasoning-quality-half-of-progressive-disclosure-unmeasured",
+      "single-primary-source",
+      "reconcile-retire-not-described"
+    ],
+    "index_blurb": "Carries the same governance past source code into federated knowledge work — deterministic tools behind structured seams, permissions per role.",
+    "result_sentence": "Zenseact built a federated internal agent platform - deterministic tools behind structured seams, a per-tool/per-role permission table, bounded delegation, and a deterministic TF-IDF disclosure router with measured 67-98% / 43-97% context reduction - over distributed engineering-and-enterprise knowledge work rather than source code, carrying MAGE's Alignment, reasoning-horizon, capital, and conversion machinery cleanly beyond code (the governance half of the MBAE widening, complementary to Siemens's modeling half), with the honest bound that its churn/defect outcome vocabulary strains on non-artifact-production work and no effectiveness outcomes are reported."
+  }
+}
+```
+
+Source: `book/assets/field-guide-zenseact.svg`, lines 1–57.
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Field Guide card — Zenseact) — NOT projector output; edit by hand and keep this header. -->
+<!-- Field-guide team card: Zenseact's entry door (autonomous knowledge work) plugs into MAGE landing (Governed Engineering Environment). label: field-guide-zenseact. Reference/nav card art, not a role-coloured figure. -->
+<!-- Connect grammar: edges drawn UNDER the nodes, each undirected end run to a node CENTRE (fill caps it). -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Zenseact — autonomous knowledge work to the Governed Engineering Environment">
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+
+  <!-- header -->
+  <text x="48" y="44" font-size="20" fill="#57534e">Field Guide · card</text>
+  <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Zenseact</text>
+  <text x="952" y="68" text-anchor="end" font-size="20" font-style="italic" fill="#57534e">Autonomous-driving software · platform-team / domain-team split</text>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+
+  <!-- ===== edges (under nodes; undirected → run to node centres) ===== -->
+  <!-- edge: door -> platform -->
+  <line x1="151" y1="205" x2="305" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: platform -> d1 -->
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M392.5,175 L392.5,160 L611,160"/>
+  <!-- edge: platform -> d2 -->
+  <line x1="480" y1="205" x2="611" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: platform -> d3 -->
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M392.5,237 L392.5,250 L611,250"/>
+  <!-- edge: d2 -> landing -->
+  <line x1="629" y1="205" x2="760" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (fills cap the edge ends) ===== -->
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <rect id="platform" x="299.9" y="175" width="185.2" height="62" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <circle id="d1" cx="620" cy="160" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="d2" cx="620" cy="205" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="d3" cx="620" cy="250" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <rect id="landing" x="737.55" y="181" width="244.89" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== node labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="20" fill="#57534e">Autonomous</text>
+  <text x="140" y="272" text-anchor="middle" font-size="20" fill="#57534e">knowledge work</text>
+
+  <text x="392" y="199" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">platform team</text>
+  <text x="392" y="219" text-anchor="middle" font-size="20" fill="#57534e">auth · sessions ·</text>
+  <text x="392" y="233" text-anchor="middle" font-size="20" fill="#57534e">execution · safety</text>
+  <text x="392" y="260" text-anchor="middle" font-size="23" fill="#78716c">centralize the mechanisms</text>
+
+  <text x="630" y="138" text-anchor="middle" font-size="23" fill="#57534e">domain teams</text>
+  <text x="630" y="288" text-anchor="middle" font-size="23" fill="#78716c">decentralize the judgment</text>
+  <text x="630" y="314" text-anchor="middle" font-size="23" fill="#78716c">own agents · tools · instructions</text>
+
+  <text x="860" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <text x="860" y="203" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Governed Engineering</text>
+  <text x="860" y="223" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Environment</text>
+
+  <!-- takeaway -->
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="500" y="396" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Build the common substrate once; leave the domain judgment</text>
+  <text x="500" y="418" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">where the domain knowledge already lives.</text>
+</svg>
+
+```
+
+Source: `book/tikz/figures/field-guide-zenseact.tex`, lines 1–19.
+
+```text
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,text width=3cm,minimum height=8mm,inner sep=4pt},
+gate/.style={box,line width=1pt},note/.style={align=center,fill=white,inner sep=1pt,font=\magefigurefont\fontsize{9}{11}\selectfont},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},optional/.style={edge,dashed},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[note,text width=12cm] (t5) at (0,1.5) {\textbf{Zenseact}};
+\node[box,text width=3cm] (entry) at (-4.5,0) {Autonomous knowledge work};
+\node[box,text width=3.5cm] (platform) at (0,0) {\textbf{PLATFORM TEAM}\\ auth · sessions\\ execution · safety};
+\draw[draw] (entry) -- (platform);
+\node[box,text width=2.7cm] (d0) at (4.5,1.4) {domain team 1};
+\draw[draw] (platform.east)--(2.4,0) |- (d0.west);
+\node[box,text width=2.7cm] (d1) at (4.5,-0.20000000000000018) {domain team 2};
+\draw[draw] (platform.east)--(2.4,0) |- (d1.west);
+\node[box,text width=2.7cm] (d2) at (4.5,-1.8000000000000003) {domain team 3};
+\draw[draw] (platform.east)--(2.4,0) |- (d2.west);
+\node[note,text width=12cm] (t15) at (0,-5) {Centralize shared mechanisms; distribute domain judgment.\\ Domain teams own agents, tools and instructions.};
+\node[box,text width=10cm] (land) at (0,-3.3) {LANDS ON: \textbf{Governed Engineering Environment}};
+\draw (platform.south)--(land.north);
+\end{tikzpicture}
+
+```
+
+Source: `book/tikz/receipts/field-guide-zenseact.json`, lines 1–163.
+
+```text
+{
+  "source": "book/assets/field-guide-zenseact.svg",
+  "claim": "*Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and enforcement.",
+  "topology": "See source-specific field-guide graph and receipt redesign.",
+  "required_terms": [
+    "Zenseact",
+    "Autonomous knowledge work",
+    "PLATFORM TEAM auth · sessions execution · safety",
+    "domain team 1",
+    "domain team 2",
+    "domain team 3",
+    "Centralize shared mechanisms; distribute domain judgment. Domain teams own agents, tools and instructions.",
+    "LANDS ON: Governed Engineering Environment"
+  ],
+  "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+  "redesign": "Field-guide visual argument preserved; decorative header/footer dropped. Evidence caveats retained explicitly rather than color/half-disc glyph alone. Fidelity pass: Restored shared platform-to-governed-environment connection, routing clear of domain labels and the external organizational annotation.",
+  "questions": [],
+  "alt": "*Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and enforcement.",
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
+    "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+    "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+    "bold": "Source-derived emphasis includes Zenseact; PLATFORM TEAM. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "routing": "Platform-to-domain peers use a short common vertical rail. The environment destination sits directly below the platform; external explanatory annotation sits below the destination, avoiding an outer detour.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 133,
+      "width_bp": 351.316,
+      "height_bp": 209.604,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    },
+    "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
+    "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+    "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+    "evidence": [
+      {
+        "source_text": "Zenseact",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Zenseact",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Governed Engineering",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Case heading and MAGE landing concept; mechanism and repeated instance labels remain regular",
+        "candidate_text": "Governed Engineering Environment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "platform team",
+        "source_style": "font-weight=bold",
+        "semantic_role": "Platform role heading distinguishes owner from mechanism list",
+        "candidate_text": "PLATFORM TEAM",
+        "candidate_style": "bold"
+      }
+    ],
+    "checks": [
+      {
+        "text": "Zenseact",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "PLATFORM TEAM",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "domain team 1",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 133,
+      "width_bp": 351.316,
+      "height_bp": 209.604,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "retained",
+    "reason": "Retained: observation/vocabulary grouping uses distinct role panels; repeated leaves align, and no process-terminal crowding requires repair.",
+    "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain compact case mapping: grouping labels and observation branches have sufficient whitespace; expansion would separate closely related evidence.",
+      "before_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+      "after_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+      "before_dimensions_bp": [
+        351.3160095214844,
+        209.60400390625
+      ],
+      "after_dimensions_bp": [
+        351.3160095214844,
+        209.60400390625
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 133,
+      "width_bp": 351.316,
+      "height_bp": 209.604
+    }
+  }
+}
+
+```
+
+Source: `book/assets/six-entry-points.svg`, lines 1–152.
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: six-entry-points). REPLACES six-company-map.svg for the reordered new §6.3.
+     The claim is redesigned: the old figure said "different entry points, common destination" and mapped
+     each org onto a MAGE construct, which read retrospectively. This figure LOCATES EMPHASIS only — each
+     organization begins with a different problem and invests in a different part of the agentic engineering
+     environment. Presented as a four-column table: Organization | Starting problem | Investment | Emphasis,
+     one row per source, badge-coloured by the house semantic language: rust for governance/alignment
+     emphasis, green for modeling/knowledge emphasis. Uber and GitLab (added this pass) span both poles, so
+     their badges use the green->rust synthesis gradient. A final synthesis band reads "MAGE — the vocabulary
+     used here to compare", NOT "the whole landscape": the bottom band is the measuring vocabulary, not an
+     eighth, superior case. Caption says the figure locates emphasis and does NOT rank maturity or claim any
+     source implements the complete method. (File name kept as six-entry-points.svg though the figure now
+     shows seven rows — the label/ref key is stable; the reader-facing title + caption say "Seven".
+     260923: the Docker row was REMOVED with the Docker case, on the author's evidentiary ruling; the
+     remaining rows and the synthesis band shifted up one 84px row pitch and the canvas lost 84px.)
+     Palette: Umber Monograph tokens (ink #1c1917 names, muted #57534e cells + captions, governed green
+     #1f7a4d/#155c38 modeling/knowledge badges + tints #e3f0e7/#eef7f0, accent #9a3f12 governance/alignment
+     badges + tint #faf1e6, rule #e4e0d8, page #fdfcf9). Cell + header fonts at the 20-26 band at the 1000px
+     reference so every cell label and column header sits at or above the 8pt print floor. -->
+<!-- semantic-families: governance, modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 904" width="1000" height="904"
+     role="group" aria-labelledby="sepTitle sepDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="sepTitle">Seven entry points into a shared design space: where each organization begins and where it invests</title>
+  <desc id="sepDesc">A table of seven industrial systems, each entering the agentic engineering design space
+    through a different problem and investing in a different part of the environment. Cloudflare begins from
+    institutional policy and invests in machine-readable requirements and review mechanisms — a governance
+    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —
+    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and
+    reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first
+    engineering and invests in persistent executable engineering representations — a modeling emphasis.
+    Zenseact begins from distributed autonomous work and invests in platform boundaries, context, and
+    delegation — a knowledge emphasis. Uber begins from software-factory economics at scale and invests in
+    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance
+    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable
+    layer of context, provenance, verification, and governance around replaceable models and agents — a
+    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to
+    compare the observed structures, not an eighth case. Badge colour keys emphasis to the house semantic
+    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust
+    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim
+    any source implements the complete method.</desc>
+
+  <defs>
+    <linearGradient id="sepSynth" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3f0e7"/>
+      <stop offset="1" stop-color="#faf1e6"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="904" fill="#fdfcf9"/>
+  <text x="500" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Seven entry points into a shared design space</text>
+  <text x="500" y="78" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Each organization begins with a different problem and invests in a different part of the environment.</text>
+
+  <!-- legend: badge colour keys emphasis to the house semantic language -->
+  <g font-size="20" fill="#57534e">
+    <rect x="250" y="96" width="20" height="20" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+    <text x="278" y="112">Modeling · knowledge emphasis</text>
+    <rect x="612" y="96" width="20" height="20" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <text x="640" y="112">Governance · alignment emphasis</text>
+  </g>
+
+  <!-- header row -->
+  <text x="48"  y="150" font-size="20" font-weight="700" letter-spacing="1" fill="#57534e">ORGANIZATION</text>
+  <text x="214" y="150" font-size="20" font-weight="700" letter-spacing="1" fill="#57534e">STARTING PROBLEM</text>
+  <text x="452" y="150" font-size="20" font-weight="700" letter-spacing="1" fill="#57534e">INVESTMENT</text>
+  <text x="869" y="150" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1" fill="#57534e">EMPHASIS</text>
+
+  <!-- row rules -->
+  <g stroke="#e4e0d8" stroke-width="1.5">
+    <line x1="40" y1="168" x2="960" y2="168"/>
+    <line x1="40" y1="252" x2="960" y2="252"/>
+    <line x1="40" y1="336" x2="960" y2="336"/>
+    <line x1="40" y1="420" x2="960" y2="420"/>
+    <line x1="40" y1="504" x2="960" y2="504"/>
+    <line x1="40" y1="588" x2="960" y2="588"/>
+    <line x1="40" y1="672" x2="960" y2="672"/>
+    <line x1="40" y1="756" x2="960" y2="756"/>
+  </g>
+
+  <!-- Cloudflare -> governance (rust) -->
+  <text x="48"  y="216" font-size="22" font-weight="700" fill="#1c1917">Cloudflare</text>
+  <text x="214" y="204" font-size="20" fill="#57534e">Institutional</text>
+  <text x="214" y="230" font-size="20" fill="#57534e">policy</text>
+  <text x="452" y="204" font-size="20" font-weight="600" fill="#1c1917">Machine-readable</text>
+  <text x="452" y="230" font-size="20" font-weight="600" fill="#1c1917">requirements + review</text>
+  <rect x="778" y="189" width="182" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="869" y="217" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Governance</text>
+
+  <!-- Spotify -> governance (rust) -->
+  <text x="48"  y="300" font-size="22" font-weight="700" fill="#1c1917">Spotify</text>
+  <text x="214" y="288" font-size="20" fill="#57534e">Fleet-scale</text>
+  <text x="214" y="314" font-size="20" fill="#57534e">change</text>
+  <text x="452" y="288" font-size="20" font-weight="600" fill="#1c1917">Targeting, verification,</text>
+  <text x="452" y="314" font-size="20" font-weight="600" fill="#1c1917">admission</text>
+  <rect x="778" y="273" width="182" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="869" y="301" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Governance</text>
+
+  <!-- Shopify -> knowledge (green) -->
+  <text x="48"  y="384" font-size="22" font-weight="700" fill="#1c1917">Shopify</text>
+  <text x="214" y="372" font-size="20" fill="#57534e">Organizational</text>
+  <text x="214" y="398" font-size="20" fill="#57534e">knowledge</text>
+  <text x="452" y="372" font-size="20" font-weight="600" fill="#1c1917">Shared context +</text>
+  <text x="452" y="398" font-size="20" font-weight="600" fill="#1c1917">reusable agent infra</text>
+  <rect x="778" y="357" width="182" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="869" y="385" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Knowledge</text>
+
+  <!-- Siemens -> modeling (green, emphasized) -->
+  <text x="48"  y="468" font-size="22" font-weight="700" fill="#1c1917">Siemens</text>
+  <text x="214" y="456" font-size="20" fill="#57534e">Model-first</text>
+  <text x="214" y="482" font-size="20" fill="#57534e">engineering</text>
+  <text x="452" y="456" font-size="20" font-weight="600" fill="#1c1917">Persistent executable</text>
+  <text x="452" y="482" font-size="20" font-weight="600" fill="#1c1917">representations</text>
+  <rect x="778" y="441" width="182" height="42" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="869" y="469" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Modeling</text>
+
+  <!-- Zenseact -> knowledge (green) -->
+  <text x="48"  y="552" font-size="22" font-weight="700" fill="#1c1917">Zenseact</text>
+  <text x="214" y="540" font-size="20" fill="#57534e">Distributed</text>
+  <text x="214" y="566" font-size="20" fill="#57534e">autonomous work</text>
+  <text x="452" y="540" font-size="20" font-weight="600" fill="#1c1917">Platform boundaries,</text>
+  <text x="452" y="566" font-size="20" font-weight="600" fill="#1c1917">context, delegation</text>
+  <rect x="778" y="525" width="182" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="869" y="553" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Knowledge</text>
+
+  <!-- Uber -> knowledge + governance (spans both: synthesis gradient badge) -->
+  <text x="48"  y="636" font-size="22" font-weight="700" fill="#1c1917">Uber</text>
+  <text x="214" y="624" font-size="20" fill="#57534e">Software-factory</text>
+  <text x="214" y="650" font-size="20" fill="#57534e">economics at scale</text>
+  <text x="452" y="624" font-size="20" font-weight="600" fill="#1c1917">Benchmarks, routing, reusable</text>
+  <text x="452" y="650" font-size="20" font-weight="600" fill="#1c1917">skills, outcome measurement</text>
+  <rect x="778" y="609" width="182" height="42" rx="8" fill="url(#sepSynth)" stroke="#57534e" stroke-width="2.2"/>
+  <text x="869" y="627" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge +</text>
+  <text x="869" y="646" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">governance</text>
+
+  <!-- GitLab -> knowledge + governance (spans both: synthesis gradient badge) -->
+  <text x="48"  y="720" font-size="22" font-weight="700" fill="#1c1917">GitLab</text>
+  <text x="214" y="708" font-size="20" fill="#57534e">Trust at machine-scale</text>
+  <text x="214" y="734" font-size="20" fill="#57534e">development</text>
+  <text x="452" y="708" font-size="20" font-weight="600" fill="#1c1917">Durable context, provenance,</text>
+  <text x="452" y="734" font-size="20" font-weight="600" fill="#1c1917">verification + governance</text>
+  <rect x="778" y="693" width="182" height="42" rx="8" fill="url(#sepSynth)" stroke="#57534e" stroke-width="2.2"/>
+  <text x="869" y="711" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge +</text>
+  <text x="869" y="730" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">governance</text>
+
+  <!-- synthesis band: MAGE is the comparing vocabulary, not an eighth case -->
+  <line x1="40" y1="768" x2="960" y2="768" stroke="#57534e" stroke-width="2"/>
+  <rect x="40" y="776" width="920" height="60" rx="9" fill="url(#sepSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
+  <text x="64"  y="814" font-size="22" font-weight="700" fill="#1c1917">MAGE</text>
+  <text x="214" y="814" font-size="20" fill="#57534e">the vocabulary used here to compare the observed structures</text>
+
+  <text x="500" y="876" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The figure locates emphasis; it does not rank maturity or claim any source implements the whole method.</text>
+</svg>
+
+```
+
+Source: `book/tikz/figures/six-entry-points.tex`, lines 1–43.
+
+```text
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
+ note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
+\node[note,text width=2.8cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h0) at (-5.7,0) {Organization};
+\node[note,text width=2.8cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h1) at (-2.8,0) {Starting problem};
+\node[note,text width=5cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h2) at (1.8,0) {Investment};
+\node[note,text width=2.3cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h3) at (6,0) {Emphasis};
+\draw[line width=.8pt] (-7,-.6)--(7.3,-.6);
+\node[note,text width=2cm] (c00) at (-5.7,-1.4) {\textbf{Cloudflare}};
+\node[note,text width=3.1cm] (c01) at (-2.8,-1.4) {Institutional\\policy};
+\node[note,text width=5cm] (c02) at (1.8,-1.4) {Machine-readable\\requirements and review};
+\node[note,text width=2.3cm,draw=black,fill=black!5] (c03) at (6,-1.4) {\textbf{Governance}};
+\node[note,text width=2cm] (c10) at (-5.7,-2.8499999999999996) {\textbf{Spotify}};
+\node[note,text width=3.1cm] (c11) at (-2.8,-2.8499999999999996) {Fleet-scale change};
+\node[note,text width=5cm] (c12) at (1.8,-2.8499999999999996) {Targeting, verification,\\admission};
+\node[note,text width=2.3cm,draw=black,fill=black!5] (c13) at (6,-2.8499999999999996) {\textbf{Governance}};
+\node[note,text width=2cm] (c20) at (-5.7,-4.3) {\textbf{Shopify}};
+\node[note,text width=3.1cm] (c21) at (-2.8,-4.3) {Organizational\\knowledge};
+\node[note,text width=5cm] (c22) at (1.8,-4.3) {Shared context and reusable agent infrastructure};
+\node[note,text width=2.3cm,fill=white,draw=black] (c23) at (6,-4.3) {\textbf{Knowledge}};
+\node[note,text width=2cm] (c30) at (-5.7,-5.75) {\textbf{Siemens}};
+\node[note,text width=3.1cm] (c31) at (-2.8,-5.75) {Model-first engineering};
+\node[note,text width=5cm] (c32) at (1.8,-5.75) {Persistent executable representations};
+\node[note,text width=2.3cm,fill=white,draw=black] (c33) at (6,-5.75) {\textbf{Modeling}};
+\node[note,text width=2cm] (c40) at (-5.7,-7.199999999999999) {\textbf{Zenseact}};
+\node[note,text width=3.1cm] (c41) at (-2.8,-7.199999999999999) {Distributed\\autonomous work};
+\node[note,text width=5cm] (c42) at (1.8,-7.199999999999999) {Platform boundaries, context, delegation};
+\node[note,text width=2.3cm,fill=white,draw=black] (c43) at (6,-7.199999999999999) {\textbf{Knowledge}};
+\node[note,text width=2cm] (c50) at (-5.7,-8.65) {\textbf{Uber}};
+\node[note,text width=3.1cm] (c51) at (-2.8,-8.65) {Software-factory\\economics at scale};
+\node[note,text width=5cm] (c52) at (1.8,-8.65) {Benchmarks, model routing, skills, outcome measurement};
+\node[note,text width=2.3cm,draw=black,double,double distance=.5pt,fill=black!5] (c53) at (6,-8.65) {\textbf{Knowledge + governance}};
+\node[note,text width=2cm] (c60) at (-5.7,-10.1) {\textbf{GitLab}};
+\node[note,text width=3.1cm] (c61) at (-2.8,-10.1) {Trust at\\machine-scale\\development};
+\node[note,text width=5cm] (c62) at (1.8,-10.1) {Durable context, provenance, verification, governance};
+\node[note,text width=2.3cm,draw=black,double,double distance=.5pt,fill=black!5] (c63) at (6,-10.1) {\textbf{Knowledge + governance}};
+\draw[line width=.8pt] (-7,-11)--(7.3,-11);
+\node[note,font=\magefigurefont\fontsize{9}{11}\selectfont,text width=13cm] (nt) at (0,-11.8) {MAGE supplies the comparison vocabulary; it is not an eighth case. Emphasis is not a maturity ranking.};
+\end{tikzpicture}
+
+```
+
+Source: `book/assets/research-arc.svg`, lines 1–119.
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Authored for the conclusion-preface-260814 front-matter redraw; frontmatter-figures-260814 COPY-EDIT of
+     the vocabulary (no geometry change). The prior redraw already fixed the epistemic verb (refines, NOT
+     tested; no node or caption says "validation"). This pass aligns the node labels to the front-matter
+     vocabulary: the deep case reads "observed in longitudinal depth"; the external evidence node is
+     "Independent industrial accounts"; the procedure node is "Comparative reconstruction" (NOT "validation").
+     The depth/breadth split under the theory is preserved: the originating case supplies mechanism and
+     sequence (depth); the industrial reconstructions supply variation and alternatives (breadth). The TRUE
+     chronological order is preserved (do NOT rearrange to chapter order; that falsifies the research story).
+     Two colour families only: green #1f7a4d/#155c38 modeling (the theory nodes) and neutral #57534e (the
+     evidence/procedure nodes + the inference spine), so the figure reads in grayscale. Palette: Umber
+     Monograph tokens (ink #1c1917, paper #fdfcf9, neutral #57534e, green #1f7a4d + emphasis #155c38,
+     modeling tint #e3f0e7, neutral tint #f6f4ef). Coordinate-authored (no invisible anchors).
+     260923: the industrial-accounts node reads "seven", not "eight" — the Docker case was removed from the
+     corpus on the author's evidentiary ruling. HAND-AUTHORED asset: nothing projects this file (the
+     generated figures are the nav-subway maps from book-models/nav_map_model.py), so edit it here. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740"
+     role="group" aria-labelledby="raTitle raDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="raTitle">Where the theory came from: the research provenance, one procedure read top to bottom, closing on depth and breadth</title>
+  <desc id="raDesc">A single vertical chain of five stages, read from top to bottom, each a titled box joined to
+    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —
+    its research provenance, in the true order the evidence produced it, which is not the order in which the
+    book later teaches the method.
+    Stage one, DocAble — one production system, observed in longitudinal depth over months.
+    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance
+    conversion, engineering capital. Stage three, independent industrial accounts — seven independent industrial
+    systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:
+    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage
+    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives
+    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);
+    together they converge on a stronger basis for theory. The theory stages are green (modeling); the
+    evidence and procedure stages and the spine are gray (neutral).</desc>
+
+  <defs>
+    <marker id="ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="740" fill="#fdfcf9"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the theory came from</text>
+  <text x="500" y="68" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">How the book arrived at its claims.</text>
+
+  <!-- spine arrows (neutral) + edge labels naming the inference; src ends seated inside the source box -->
+  <g stroke="#57534e" stroke-width="2.2" fill="none">
+    <!-- edge: docable -> early-mage -->
+    <line x1="500" y1="148" x2="500" y2="180" marker-end="url(#ra-ah)"/>
+    <!-- edge: early-mage -> industrial-accounts -->
+    <line x1="500" y1="240" x2="500" y2="272" marker-end="url(#ra-ah)"/>
+    <!-- edge: industrial-accounts -> comparative-recon -->
+    <line x1="500" y1="332" x2="500" y2="364" marker-end="url(#ra-ah)"/>
+    <!-- edge: comparative-recon -> mage-theory -->
+    <line x1="500" y1="424" x2="500" y2="456" marker-end="url(#ra-ah)"/>
+  </g>
+  <g font-size="20" font-style="italic" fill="#57534e" text-anchor="start">
+    <text x="516" y="169">induces</text>
+    <text x="516" y="261">turned outward</text>
+    <text x="516" y="353">reconstructed</text>
+    <text x="516" y="445">refines</text>
+  </g>
+
+  <!-- N1 DocAble (neutral: the deep case) -->
+  <rect id="docable" x="240" y="90" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DocAble</text>
+  <text x="500" y="137" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">one production system, observed in longitudinal depth</text>
+
+  <!-- N2 Early MAGE (modeling: the induced theory) -->
+  <rect id="early-mage" x="240" y="182" width="520" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="500" y="208" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Early MAGE</text>
+  <text x="500" y="229" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Modeling · Alignment · conversion · capital</text>
+
+  <!-- N3 Independent industrial accounts (neutral: external evidence) -->
+  <rect id="industrial-accounts" x="240" y="274" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Independent industrial accounts</text>
+  <text x="500" y="321" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">seven independent industrial systems</text>
+
+  <!-- N4 Comparative reconstruction (neutral: procedure) -->
+  <rect id="comparative-recon" x="240" y="366" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="392" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Comparative reconstruction</text>
+  <text x="500" y="413" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">recurring moves · variation · limits</text>
+
+  <!-- N5 MAGE theory (modeling, emphasis: the refined theory) -->
+  <rect id="mage-theory" x="240" y="458" width="520" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <text x="500" y="486" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">MAGE theory</text>
+  <text x="500" y="508" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the refined account developed in Chapter 6</text>
+
+  <!-- DEPTH / BREADTH split: what each evidence source contributes.
+       Fork encoded as one path per branch, each running mage-theory -> its target; the branches share the
+       trunk (500,522 -> 500,540) so it still reads as one split while every edge terminates on a node. -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <!-- edge: mage-theory -> depth -->
+    <path d="M355,522 L355,560" marker-end="url(#ra-ah)"/>
+    <!-- edge: mage-theory -> breadth -->
+    <path d="M645,522 L645,560" marker-end="url(#ra-ah)"/>
+  </g>
+
+  <!-- DEPTH cell (from the originating case) -->
+  <rect id="depth" x="150" y="562" width="320" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="310" y="586" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DEPTH</text>
+  <text x="310" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">mechanism · sequence</text>
+
+  <!-- BREADTH cell (from the industrial reconstructions) -->
+  <rect id="breadth" x="530" y="562" width="320" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="690" y="586" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">BREADTH</text>
+  <text x="690" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">variation · alternatives</text>
+
+  <!-- converge to the conclusion: one path per branch, each depth/breadth -> basis; they share the
+       trunk (500,640 -> 500,662) so it reads as one merge while every edge terminates on a node. -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <!-- edge: depth -> basis -->
+    <path d="M400,618 L400,662" marker-end="url(#ra-ah)"/>
+    <!-- edge: breadth -> basis -->
+    <path d="M600,618 L600,662" marker-end="url(#ra-ah)"/>
+  </g>
+  <rect id="basis" x="330" y="664" width="340" height="48" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="500" y="694" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">a stronger basis for theory</text>
+</svg>
+
+```
+
+Source: `book/tikz/figures/research-arc.tex`, lines 1–24.
+
+```text
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=.65pt,fill=white},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,fill=white,text width=7cm] (s0) at (0,0.0) {\textbf{DocAble}\\\textit{One production system, longitudinal depth}};
+\node[n,line width=.65pt,text width=7cm,fill=black!8] (s1) at (0,-1.8) {\textbf{Early MAGE}\\\textit{Modeling · Alignment · conversion · capital}};
+\draw[edge] (s0) -- node[lab,right] {induces} (s1);
+\node[n,fill=white,text width=7cm] (s2) at (0,-3.6) {\textbf{Independent industrial accounts}\\\textit{Seven independent industrial systems}};
+\draw[edge] (s1) -- node[lab,right] {turns outward} (s2);
+\node[n,fill=white,text width=7cm] (s3) at (0,-5.4) {\textbf{Comparative reconstruction}\\\textit{Recurring moves · variation · limits}};
+\draw[edge] (s2) -- node[lab,right] {reconstructs} (s3);
+\node[n,line width=.65pt,text width=7cm,fill=black!8] (s4) at (0,-7.2) {\textbf{MAGE theory}\\\textit{Refined account in \magebookref{part:6}{Chapter 6}}};
+\draw[edge] (s3) -- node[lab,right] {refines} (s4);
+\node[n,text width=4.7cm,fill=white,minimum height=1.6cm] (depth) at (-3,-9.6) {\textbf{DEPTH}\\Originating case\\\textit{Mechanism and sequence}};
+\node[n,text width=4.7cm,fill=white,minimum height=1.6cm] (breadth) at (3,-9.6) {\textbf{BREADTH}\\Industrial accounts\\\textit{Variation and alternatives}};
+\draw[edge] (s4.south) -- (0,-8.3) -| (depth.north);
+\draw[edge] (s4.south) -- (0,-8.3) -| (breadth.north);
+\node[n,text width=8cm,fill=black!8] (basis) at (0,-11.9) {\textbf{A stronger basis for theory}\\Comparison refines; it does not validate.};
+\draw[edge] (depth.south) -- (-3,-10.8) -| (basis.north);
+\draw[edge] (breadth.south) -- (3,-10.8) -| (basis.north);
+\end{tikzpicture}
+
+```
+
+
+### Zenseact field-guide artwork: retired style-review record (3 November 2026)
+
+Source: `book/tikz/style-review.json`, lines 3926–3954, at revision `2fe4ecab61686cf46e09bdffb16e1acd8dcdc87c`. Removed 3 November 2026 with the author-approved cut of the Zenseact case and field-guide card. This record preserves its artwork rationale and validation provenance for possible reuse.
+
+```json
+{
+  "source": "book/assets/field-guide-zenseact.svg",
+  "candidate": "book/tikz/figures/field-guide-zenseact.tex",
+  "receipt": "book/tikz/receipts/field-guide-zenseact.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
+  "candidate_sha256": "2c99f6d899f928634608e83c12083aa093acb75c766b699980d352ac5e96e283",
+  "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
+  "bold": "Source-derived emphasis includes Zenseact; PLATFORM TEAM. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
+  "routing": "Platform-to-domain peers use a short common vertical rail. The environment destination sits directly below the platform; external explanatory annotation sits below the destination, avoiding an outer detour.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 133,
+    "width_bp": 351.316,
+    "height_bp": 209.604,
+    "minimum_prose_font_pt": 9.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 3
+  },
+  "book_references": []
+}
+```

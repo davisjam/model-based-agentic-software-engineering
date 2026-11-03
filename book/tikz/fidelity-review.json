@@ -1,8 +1,8 @@
 {
-  "scope": "All 144 native grayscale TikZ candidates compared with original artwork, including seven navigation maps.",
+  "scope": "All 143 native grayscale TikZ candidates compared with original artwork, including seven navigation maps.",
   "base_commit": "25ac79978",
-  "checked_count": 144,
-  "refined_count": 70,
+  "checked_count": 143,
+  "refined_count": 69,
   "limitations": "Visual review records editorial judgment, not a proof of semantic equivalence. Geometry checks cannot detect missing visual meaning. Original color artwork remains immediately before each candidate for author review.",
   "figures": [
     {
@@ -78,16 +78,43 @@
     {
       "source": "book/assets/research-arc.svg",
       "candidate": "book/tikz/figures/research-arc.tex",
-      "source_sha256": "9b24121c9b4eb0cf6996b0a310a3ed866b13005ef9cee6b6d7142dad8a2c5908",
-      "candidate_sha256": "f69b5fbb47d18e42eca5b666fb6ede5dbc44c060bc11aa4f50afafe59e2b2940",
+      "source_sha256": "bfa3231cec6eae32beb72e3fbeef357835150e86971c31f9f242d34e069d29e2",
+      "candidate_sha256": "3737997ae155fdf4daac21886f304a1b0290bb0b8b0980513af6d953ed1f7dc3",
       "decision": "retained",
-      "review": "Compared theory/evidence modes and depth/breadth research split. Gray classes, dependencies and labels retained. No new change.",
+      "review": "The six-case label agrees across SVG and native render. The five-stage research sequence, depth/breadth split and orthogonal merge retain clear labels and arrow approaches.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         11.2764,
-        12.8201
+        13.2231
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 1,
+        "width_bp": 319.646,
+        "height_bp": 374.827,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 16,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 8,
+        "reviewed_peer_groups": 1,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+      }
     },
     {
       "source": "book/assets/engineering-leverage.svg",
@@ -1530,7 +1557,7 @@
       "candidate": "book/tikz/figures/six-entry-points.tex",
       "checks": {
         "icons_and_symbols": "Semantic emphasis badges retained, including combined double outline.",
-        "links_and_groups": "Seven cases remain seven rows; no eighth MAGE case introduced.",
+        "links_and_groups": "Six cases remain six rows; MAGE is comparison vocabulary, not a seventh case.",
         "annotation_placement": "Body raised to 10pt and headers bold 10pt; explanatory footer 9pt outside rows.",
         "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
       },
@@ -1545,12 +1572,39 @@
       "geometry_findings": [],
       "compiler_diagnostics": [],
       "width_bp": 417.5539855957031,
-      "height_bp": 367.10101318359375,
+      "height_bp": 319.66900634765625,
       "monochrome": true,
-      "source_sha256": "84930b3084e4ee782adb3b77067431d0325b181dc06376276ce4a15af0f5153b",
-      "candidate_sha256": "90f28bcc879c652d2afa9a2437be4610a3c3f740588d6fd4b9b170813f1e6196",
-      "review": "Raised table body and emphasis labels from 9pt to 10pt; retained smaller 9pt explanatory footer.",
-      "decision": "refined"
+      "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
+      "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
+      "review": "Six company rows are evenly spaced after removing Zenseact. All six names, category badges, column meanings and footer remain readable in the current SVG and native render.",
+      "decision": "refined",
+      "validation": {
+        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+        "page": 2,
+        "width_bp": 417.554,
+        "height_bp": 319.669,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 11,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 0,
+        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+      }
     },
     {
       "source": "book/assets/mage-dynamic-model.svg",
@@ -2609,26 +2663,6 @@
       ],
       "width_pt": 356.985,
       "height_pt": 281.912,
-      "minimum_prose_font_pt": 9.0,
-      "strict_compile_diagnostics": [],
-      "geometry_audit_findings": []
-    },
-    {
-      "source": "book/assets/field-guide-zenseact.svg",
-      "candidate": "book/tikz/figures/field-guide-zenseact.tex",
-      "source_sha256": "dceae24d254e2c79735b69f4b22fa321ac26de818fac3c3f81c17bf11860a973",
-      "candidate_sha256": "8a7df05fcc18ed85d7e79126a98167f5c035d91e89d9173384419764e9882865",
-      "decision": "refined",
-      "original_visual_grammar": "",
-      "review": "Restored shared platform-to-governed-environment connection, routing clear of domain labels and the external organizational annotation.",
-      "checks": [
-        "Compared original SVG raster with compiled candidate",
-        "Reviewed dashed/dotted relation meanings and grouping",
-        "Reviewed outside annotations separately from node contents",
-        "Reviewed legibility at native print dimensions"
-      ],
-      "width_pt": 364.692,
-      "height_pt": 210.769,
       "minimum_prose_font_pt": 9.0,
       "strict_compile_diagnostics": [],
       "geometry_audit_findings": []

@@ -428,7 +428,7 @@
       "text": "Ericsson's agent fabric treats the topology *among* agents as governed infrastructure — discovery, routing, observability, a secure registry all agents authenticate against, lifecycle management, and guardrails that run inside the execution cycle in real time — on the argument that unmanaged 'agent sprawl' causes resource exhaustion and security holes [cite:ericsson2026agentfabric].",
       "caution": "Telecom product architecture (Ericsson agent fabric for OSS/BSS); supporting mechanism evidence, not a case — do not treat the capability list as validated efficacy.",
       "reinforces_construct": "alignment-principle",
-      "note": "Independently confirms the fleet-governance claim (every agent has identity + lifecycle; governance is active machinery). Sits alongside Zenseact's allow-listed delegation edges."
+      "note": "Independently confirms the fleet-governance claim (every agent has identity + lifecycle; governance is active machinery)."
     },
     {
       "id": "ericsson-closed-loop",
