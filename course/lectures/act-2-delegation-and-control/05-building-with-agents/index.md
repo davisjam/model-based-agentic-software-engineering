@@ -3,6 +3,7 @@ title: Building with Agents
 sessions:
   - "Building with Agents: Agentic Workshop"
   - "Building with Agents: Software Factories"
+  - "Building with Agents: Inside an Agentic Software Factory"
 readings:
   groups:
     - heading: What becomes scarce when code becomes cheap
@@ -25,7 +26,7 @@ readings:
       items:
         - cite: davis2026mage
           locator: '§5.1, §5.3, and §5.4'
-          annotation: '{mage:5.1}, {mage:5.3}, and {mage:5.4} Davis, 2026. Read §5.1 for what a software factory is, and §5.4 for the two problems this unit is organized around — process design and tolerance. Skim the industrial cases in §5.3: attend to the comparison between organizations rather than to every implementation detail. §5.2 is valuable but too long for this assignment and is not assigned.'
+          annotation: '{mage:5.1}, {mage:5.3}, and {mage:5.4} Davis, 2026. Read §5.1 for what a software factory is, and §5.4 for the two problems this unit is organized around — process design and tolerance. Skim the industrial cases in §5.3: attend to the comparison between organizations rather than to every implementation detail. §5.2 provides a detailed account of the DocAble factory discussed in Lecture 3; it is recommended for students interested in the implementation, but is not required.'
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -36,6 +37,8 @@ materials:
     src: 2-5-Agentic-Workshop.pptx
   - title: "Lecture slides — Software Factories"
     src: 2-6-Software-Factories.pptx
+  - title: "Lecture slides — Inside an Agentic Software Factory"
+    src: 2-7-Inside-an-Agentic-Software-Factory.pptx
 ---
 
 **Premise.** *A software organization's engineering capability depends not only on the software it possesses, but on its ability to change that software reliably.*
@@ -44,13 +47,15 @@ Software is an unusually changeable engineering medium. Requirements evolve, def
 
 Coding agents change the economics of this work. They can produce substantial implementations from relatively informal instructions, reducing the amount of human effort required for realization. But generating a change and establishing that it is acceptable remain different engineering activities. As implementation becomes cheaper, the knowledge and machinery required to direct, evaluate, and integrate changes become increasingly important.
 
-This unit concludes Act II by examining how engineers build software with agents. The first lecture develops the mechanisms for delegating individual development tasks. The second considers how those mechanisms become part of a software factory, an engineered production system for repeatedly producing controlled changes to software.
+This unit concludes Act II by examining how engineers build software with agents. The first lecture develops the mechanisms for delegating individual development tasks. The second considers how those mechanisms become part of a software factory, an engineered production system for repeatedly producing controlled changes to software. The third examines a working agentic software factory, showing how planning, engineering models, automated controls, and validation allow one engineer to direct multiple coding agents.
 
 ## Structure of this unit
 
 **Lecture 1: Building with Coding Agents.** We examine the practical mechanisms that make an agent useful in a software repository: context engineering, persistent instructions, tools, MCP, skills, and feedback loops. A guided exercise uses these mechanisms to investigate and repair an implementation while preserving its existing obligations.
 
 **Lecture 2: Agentic Software Factories.** We extend the individual development environment into a production system. The factory metaphor introduces two complementary engineering problems, process design and tolerance. Industrial examples illustrate different ways organizations arrange agentic production, preserve engineering knowledge, and control the admission of changes.
+
+**Lecture 3: Inside an Agentic Software Factory.** We examine the development environment used to build DocAble, a document accessibility remediation service. A strategy document records priorities; structured work orders describe engineering obligations and implementation plans; an orchestrator schedules agents; and lifecycle hooks enforce or reinforce the processes they follow. Engineering models help agents discover constraints before modifying code, while validation and independent audits determine whether work is complete. The case illustrates both the opportunities and limitations of automated software production.
 
 ## From delegation to a working agent
 
@@ -127,9 +132,67 @@ These examples also expose a common constraint. Increasing implementation capaci
 
 The examples are not stages of a universal maturity model. Different organizations can reasonably place engineering knowledge and control in different parts of production. Their public accounts also provide stronger evidence about production mechanisms and activity than about the quality of the resulting software.
 
+## Inside an agentic software factory
+
+The preceding examples illustrate different ways organizations arrange agentic production. We can examine these arrangements more closely through DocAble, a document accessibility remediation service developed using coding agents. Its development environment supports multiple agents working concurrently on different changes. The engineer directs their work primarily through natural-language instructions, while the environment records plans, schedules tasks, checks results, and preserves information needed by subsequent agents.
+
+Three elements organize this environment: a record of the work to be done, structured templates and processes for carrying out that work, and infrastructure that allows agents to spend their time on useful engineering tasks rather than repeatedly reconstructing information or waiting for tools.
+
+These elements serve a larger purpose. The engineer must have a sufficiently concrete vision of the intended system to direct development and assess its results. Without that understanding, greater implementation capacity may simply produce more software whose correctness or usefulness cannot be established.
+
+### Organizing the work
+
+The engineer maintains a strategy document recording near-term priorities, longer-term goals, and work that must be completed before the next deployment. The document functions as a work queue. The engineer can ask the orchestrating agent to update it, rather than editing the document directly.
+
+When a substantial change is selected, a planning agent creates an epic, a structured work order describing what should be accomplished. An epic begins with the intended change but elaborates it into an engineering plan. It identifies relevant system models, proposes new models where necessary, describes affected components and types, and specifies how the result will be validated. It also decomposes implementation into phases, records dependencies between them, and identifies work that can proceed concurrently.
+
+The template matters because it makes recurring engineering decisions explicit. Without it, an agent might produce a plausible implementation while neglecting the system's architecture, existing obligations, or evidence of correctness. The template requires these matters to be considered before implementation begins.
+
+Planning itself has a review process. A second agent independently examines the proposed work order, challenges questionable decisions, and attempts to resolve open questions. Questions that remain unresolved can be referred to the engineer. The resulting plan becomes a schedulable collection of tasks.
+
+An orchestrator dispatches those tasks to implementation agents, each working in an isolated Git worktree. When an agent finishes, the orchestrator integrates acceptable changes and schedules subsequent work according to the plan's dependencies. Different models can be assigned to different tasks according to their expected difficulty.
+
+The work order also establishes a Definition of Done. A separate agent examines the completed work, confirms that the expected changes were integrated, and reviews the evidence supporting completion. An implementation agent's declaration that it has finished is therefore not sufficient to close the work order.
+
+### Making the process reliable
+
+A process described in natural language is useful, but an agent may occasionally neglect a step. This becomes consequential when the same process is executed thousands of times. The factory therefore uses lifecycle hooks to automate checks and reinforce recurring procedures.
+
+Git hooks provide a familiar example. A pre-push hook can run inexpensive checks before allowing a push, while a commit-message hook can require traceability information. These checks move selected obligations from the developer's memory into executable controls.
+
+Agent harnesses offer analogous lifecycle events. Before dispatch, a hook can check that the agent has an isolated worktree and a valid work order. At startup, the agent can receive its task-specific instructions. When an agent returns, a hook can remind the orchestrator to examine the result, integrate acceptable changes, and dispatch subsequent work.
+
+Not all hooks provide the same assurance. A deterministic check can reject an operation that violates a specified condition. A reminder supplied to an agent can improve the probability that it follows a procedure, but cannot guarantee compliance. Engineering the factory requires deciding which obligations need enforcement and which can reasonably remain guidance.
+
+The DocAble environment also requires an implementation agent to refine its assigned plan before beginning substantial changes. Its initial commit records the intended steps and target files. Subsequent commits report progress against that plan. This record helps the orchestrator distinguish completed work from an agent that stopped prematurely.
+
+Identifying target files also enables a connection to the system's engineering models. A repository-query tool can retrieve the models, tests, static analyses, and invariants associated with a file. An agent preparing to modify that file can therefore discover relevant obligations before making changes.
+
+Without this mechanism, the agent might learn the same information through trial and error: modify the code, encounter a failing test or analysis, infer the violated constraint, and attempt another change. Making the information directly queryable reduces the need to reconstruct knowledge already possessed by the engineering organization.
+
+This is a concrete use of modeling in agentic software engineering. Models are not merely documentation for human readers. They provide an abstraction through which agents can discover what the implementation is supposed to preserve.
+
+### Improving the factory
+
+The factory's infrastructure must also be engineered. Increasing the number of agents does little good if they spend most of their time waiting for tests, competing for shared resources, or repeating avoidable investigations.
+
+For example, the DocAble development environment initially batched completed changes for validation at regular intervals. As its test suite grew to approximately thirty minutes, validation increasingly limited the rate at which completed work could be integrated. The engineer experimented with allowing changes through less expensive checks while running broader validation periodically in the background. Failures could then trigger diagnostic and repair work.
+
+This arrangement trades faster integration for delayed detection of some defects. It is appropriate only when the resulting risks can be managed. The engineering problem is to determine which checks must block a change, which can run asynchronously, and what recovery mechanisms are required when a later check fails.
+
+A second source of inefficiency is unnecessary reasoning. Planning a difficult change may justify substantial model inference. Repeatedly rediscovering an existing architectural constraint does not. Templates, repository queries, and executable controls reduce the amount of reasoning spent reconstructing established knowledge, leaving more capacity for problems that genuinely require new decisions.
+
+The factory itself also changes in response to failures. A recurring problem may initially be handled by correcting an agent's output. If the problem persists, the engineer can modify a template, introduce a new model, strengthen a check, or change the production process. This is the failure-aware engineering process from earlier in Act II, applied to the development environment rather than only to the software it produces.
+
+There are limits to how much of this improvement can be delegated. Agents can identify and repair some defects in existing automation, but they may continue optimizing an inadequate process rather than proposing a different one. The engineer must recognize when local repairs are insufficient and introduce a better approach.
+
+The factory therefore amplifies engineering expertise rather than replacing it. The engineer remains responsible for deciding what to build, which obligations matter, what evidence establishes success, and when the production system itself needs to change.
+
+An engineer who cannot explain what the agents are doing, which constraints govern their work, or how their results are evaluated has lost informed control. The appropriate response is not to delegate more work, but to recover the knowledge and visibility needed to exercise that control.
+
 ## Measurement for decision-making
 
-A factory is an engineering investment. It costs resources to construct, operate, and maintain, and those costs must be justified by what the factory enables. The relevant question is how economically can the organization produce acceptable changes to its software?
+A factory is an engineering investment. It costs resources to construct, operate, and maintain, and those costs must be justified by what the factory enables. The relevant question is how economically can the organization produce acceptable changes to its software? A factory's process and tolerance mechanisms must be evaluated together: stronger checks may reduce defects but increase latency, while faster admission may reduce waiting at the cost of additional diagnosis and recovery.
 
 Implementation throughput provides only part of the answer. A factory that generates many changes but requires extensive human correction may perform worse than one producing fewer changes with stronger evidence. Useful measurements therefore include the end-to-end cost and latency of accepted changes, the amount of human supervision required, the frequency of rejected or reverted changes, and failures observed after deployment. Each measures a different aspect of the production system.
 
@@ -142,6 +205,8 @@ This brings the discussion back to the opening premise. Possessing source code g
 Act II began with delegation: deciding what work an agent may perform and what responsibility remains with the engineer. Modeling made consequential knowledge explicit. Alignment connected obligations to controls, while Failure-Aware Engineering examined how experience can improve both the engineer and the environment.
 
 An agentic software factory brings these activities together as a production system. Process design determines how work proceeds around capable agents. Tolerance determines which properties their work must preserve. Both require engineering judgment, and both can be improved as the organization learns.
+
+The DocAble example shows how this learning can become part of the factory itself: a recurring failure motivates a new model, procedure, or control that changes how subsequent agents work.
 
 As agents improve, the process required to direct them may change substantially. They may need less decomposition, recover context more effectively, or perform tasks that previously required close supervision. The obligations of the resulting software do not disappear with those improvements. Engineers must still determine what variation is acceptable and what evidence justifies admitting a change.
 
