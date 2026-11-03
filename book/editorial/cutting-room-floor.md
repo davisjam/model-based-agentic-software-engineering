@@ -382,7 +382,7 @@ Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `a
 
 The author asked to set aside the representation-strength argument from review item `13-horizon`. At this point the reader is learning why human working memory and agent context are limited and what a reasoning horizon means; the dependency-graph and state-machine argument starts teaching the response before the problem has been established. Reconsider with the Modeling treatment later. This note does not authorize insertion elsewhere.
 
-**Status:** removed from the review proposal on 2 November 2026. The broader horizon revision remains unapproved, so the corresponding passage is still present in the manuscript pending that landing. This archive preserves both the existing manuscript passage and the unlanded proposed replacement.
+**Status:** removed from the review proposal on 2 November 2026, then from the manuscript in the later system-level horizon landing on the same day. The author approved the definition and citation-backed introduction. This archive preserves the preceding manuscript passage and the unlanded proposed replacement; neither has been relocated.
 
 ### Existing manuscript passage
 
@@ -400,4 +400,126 @@ Source: `13-horizon`, `mage-introduction-review/proposed-replacements.json`, the
 
 ```markdown
 Representation determines how much of that information must be reconstructed. A dependency graph can expose a relationship that would otherwise have to be recovered from thousands of source lines; a state machine can make a behavioral question explicit. The reasoner still has to answer the engineering question, but it need not first rebuild every relevant relationship from implementation. Poor representations impose that work repeatedly and risk losing distinctions that later decisions need.
+```
+
+
+## System-level reasoning horizon, 2 November 2026
+
+The author approved defining the horizon as the practical limit of the reasoner and its supporting machinery, adding research citations in §1.3, and correcting the glossary. The task imposes demands; the system has a horizon. The excerpts below preserve the superseded prose and vocabulary. Removed in the commit introducing this note. The earlier representation-strength passage remains set aside for possible later reuse, not relocated.
+
+### book/latex/sources/part1/1.3-the-agentic-substrate.tex
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, revision `c15b945d681028c06fcbc090aca79688486a9703`, lines 85–109.
+
+```latex
+% <!-- point: scale-creates-the-reasoning-problem-before-an-agent-enters | Scale creates a reasoning problem before an agent enters; a long engineering task is a sequence of related decisions whose required state grows while the active state available to the reasoner stays finite. | terms: long-horizon-task, context-window -->
+
+% <!-- index-def: long-horizon-task -->
+
+Scale creates a reasoning problem before an agent ever enters the picture. A sufficiently large software system exceeds what one engineer can keep actively in mind; agentic work inherits the same condition. A long engineering task is not a prompt and an answer but a sequence of related decisions: read the system, form a plan, make a change, inspect the result, reconcile what changed, and carry consequential earlier decisions into later work. The state required by that work grows while the active state available to the reasoner remains finite.
+
+% <!-- point: once-a-task-exceeds-active-state-question-relevant-state-must-be-reconstructed | Once a task exceeds active state, some information must live elsewhere and be recovered; poor reconstruction re-solves solved questions and contradicts constraints, so the problem is how much question-relevant state must be reconstructed for the next judgment. | terms: reasoning-horizon, churn -->
+
+Once a task exceeds that active state, some consequential information must live elsewhere and be recovered when needed. If the reasoner repeatedly reconstructs its picture from raw implementation, loose notes, or lossy summaries, relevant decisions compete with irrelevant detail. Solved questions are re-solved, earlier constraints are contradicted, and system structure has to be rediscovered. The problem is therefore not merely how much information can be stored or retrieved, but how much question-relevant state must be reconstructed for the next engineering judgment.
+
+% <!-- point: availability-is-not-a-useful-representation | Harnesses move the boundary by expanding or better managing working state, but availability is not a useful representation — usable context falls short of nominal capacity and present state is not equally accessible, and raw implementation is an expensive substrate when the question depends on a smaller set of relationships. | terms: reasoning-horizon, context-window -->
+
+Agent harnesses can move this boundary by expanding or better managing the working state available to the reasoner. But making more information available is not the same as providing a useful representation. Empirical work on long-context language models shows both limits. Usable context can fall well short of nominal capacity, and information already present in the context is not uniformly accessible.\citep{hsieh2024ruler}\citep{liu2024lostmiddle} Greater model capability can move these boundaries; it does not make finite working state disappear.
+
+Repository-scale studies report the same problem operationally: as the relevant state spreads across a larger codebase, navigation and reconstruction consume an increasing share of the work.\citep{sourcegraph2026largecodebase} The precise boundary depends on the model, harness, repository, and task.
+
+% <!-- point: the-horizon-is-a-locality-problem-for-reasoning-state | The reasoning horizon is a locality problem: systems keep useful state close to the computation that consumes it, and purposeful representations apply the same principle semantically — a dependency graph or state machine answers a question that retrieved source lines merely make available. | terms: reasoning-horizon, engineering-substrate -->
+
+This is a locality problem for reasoning state. Systems have long dealt with finite working sets by keeping useful state close to the computation that consumes it rather than making all state equally immediate. Purposeful representations apply the same principle semantically. A dependency graph can answer a question that thousands of retrieved source lines merely make available; a state machine can expose a behavioral property that additional context leaves implicit. Better representations reduce the amount of state that must be reconstructed for a particular engineering question.
+
+% <!-- point: the-reasoning-horizon-defined | The reasoning horizon is the boundary beyond which consequential state can no longer be carried in active reasoning and must be reconstructed; larger windows, stronger reasoners, retrieval, and memory move it, and Modeling moves it differently by changing the representation over which reasoning occurs. | terms: reasoning-horizon, context-window -->
+
+% <!-- index-def: reasoning-horizon -->
+
+The \textbf{reasoning horizon} is the boundary beyond which consequential state can no longer be carried effectively in active reasoning and must instead be recovered or reconstructed. Larger context windows, stronger reasoners, retrieval, and memory can move that boundary. Modeling can move it differently, by changing the representation over which reasoning occurs. It does not make the reasoner unbounded; it makes selected engineering questions require less reconstructed state. \autoref{reasoning-horizon-fig} shows the mechanism.
+```
+
+### book/latex/sources/frontmatter/0.4-the-books-language.tex
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `c15b945d681028c06fcbc090aca79688486a9703`, lines 70–70.
+
+```latex
+\caption{The agent stack and a characteristic failure mode. When a task\textquotesingle s reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.}
+```
+
+### book/latex/sources/frontmatter/0.4-the-books-language.tex
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `c15b945d681028c06fcbc090aca79688486a9703`, lines 85–85.
+
+```latex
+\textbf{Reasoning horizon.} The amount of intermediate reasoning state that must remain available at once to carry a task to a correct result. It is a property of the task, not of who reasons --- human, agent, or a later architecture. A \emph{long-horizon task} needs more reasoning state than the available working memory can hold, forcing some state to be compressed and later reconstructed. Agent harnesses call this compaction; today, the context window is one important source of the limit.
+```
+
+### book/data/definitions.json
+
+Source: `book/data/definitions.json`, revision `c15b945d681028c06fcbc090aca79688486a9703`.
+
+```json
+{
+  "reasoning-horizon": {
+    "term": "Reasoning horizon",
+    "box": "The amount of intermediate reasoning state a task requires you to hold at once to carry it to a correct result — a property of the task, not of who reasons, whether a human, an agent, or a later architecture.",
+    "aspects": [
+      {
+        "lead": "The axis the task modes fork on",
+        "text": "One-shot scripting sits at a short horizon: the whole transaction fits in one context window and one sitting. Supervised autonomy is for a long horizon: the reasoning state outruns the working memory that must hold it. Writing a shell script, proving a theorem, debugging a deadlock, and re-architecting a subsystem sit at very different points on it."
+      },
+      {
+        "lead": "Why the constraint is capacity, not a token buffer",
+        "text": "A context window instantiates the limit today, but the horizon is architecture-independent: a longer window, a new memory architecture, or a post-transformer system each moves the wall without removing it, because a finite reasoner still has a finite reasoning horizon. This is offered as an analytic generalization for the reader to test, not a measured law."
+      }
+    ],
+    "site_home": "N/A",
+    "derived_from": "book/part1/1.3-the-agentic-substrate.md#reasoning-horizon",
+    "book_home": "reasoning-horizon#idx-def-reasoning-horizon",
+    "book_home_owed": {
+      "section": "Chapter 1 — §1.3 The Reasoning Horizon",
+      "status": "landed",
+      "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design; the modeling-principle reframe (§1.4) is where the causal chain it names is worked out."
+    },
+    "lexicon_link": "the-books-language",
+    "concepts_link": "book/data/concepts.json"
+  },
+  "long-horizon-task": {
+    "term": "Long-horizon task",
+    "box": "A task whose required intermediate reasoning state cannot be held losslessly within the available working memory, so completing it forces compression and reconstruction of that state, at some cost in fidelity.",
+    "aspects": [
+      {
+        "lead": "Why the lossy round trip matters",
+        "text": "When the state will not fit, the reasoner must compress it and rebuild it later, and every lossy round trip degrades the reasoning it stands in for. That degradation is what surfaces as churn — effort spent rebuilding a picture the reasoner keeps losing rather than advancing the system."
+      },
+      {
+        "lead": "The task class supervised autonomy is for",
+        "text": "A long-horizon task is the downward branch of the task-mode fork: too large to hold in a single context window or trust to a single pass. It is why the book spends its weight on supervised autonomy — the method that supplies correctness conditions, tools, and monitoring rather than hoping a single pass lands."
+      }
+    ],
+    "site_home": "N/A",
+    "derived_from": "book/part1/1.3-the-agentic-substrate.md#long-horizon-task",
+    "book_home": "reasoning-horizon#idx-def-long-horizon-task",
+    "book_home_owed": {
+      "section": "Chapter 1 — §1.3 The Reasoning Horizon",
+      "status": "landed",
+      "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design."
+    },
+    "lexicon_link": "the-books-language",
+    "concepts_link": "book/data/concepts.json"
+  }
+}
+```
+
+### Internal authoring rule
+
+Source: `book/AGENTS.md`, “Reasoning horizon,” revision `c15b945d681028c06fcbc090aca79688486a9703`, lines 85–89. Replaced with the same system-level definition and an explicit task-demand distinction.
+
+```markdown
+A reasoning horizon is the amount of intermediate reasoning state that must remain available at once to carry a task to a correct result.
+
+It is a property of the task and its representation, not merely the intelligence of the reasoner.
+
+More context does not automatically solve a representation problem.
 ```

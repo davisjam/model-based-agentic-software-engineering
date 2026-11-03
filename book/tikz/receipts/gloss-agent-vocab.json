@@ -1,7 +1,7 @@
 {
   "source": "book/assets/gloss-agent-vocab.svg",
   "chapter": "0.4-the-books-language",
-  "claim": "The agent stack and a characteristic failure mode. When a task's reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.",
+  "claim": "The agent stack and a characteristic failure mode. When required state cannot remain active, it must be preserved elsewhere and recovered; repeated reconstruction can contribute to churn.",
   "topology": {
     "description": "Restored hosted Skills, Tools and Hooks chips inside the harness, example harness names, stack/limit headings, and source dotted bounded-state correspondence. Kept fleet annotation outside boxes.",
     "native_draw_commands": [
@@ -31,7 +31,7 @@
     "wraps",
     "bounded by",
     "Large engineering task",
-    "Reasoning Horizon",
+    "Required reasoning state",
     "A vailable working state",
     "Context window is",
     "one present limit",
@@ -44,7 +44,7 @@
   "bw_encoding": "All stack and limit nodes white; column headings and harness containment identify roles without fill.",
   "redesign": "All stack and limit nodes white; column headings and harness containment identify roles without fill. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
   "questions": [],
-  "alt": "Two parallel vertical sequences contrast the agent stack with a characteristic reasoning limit. The stack contains Application, a Harness with Skills, Tools and Hooks chips, Foundation Model and Bounded working state. A dotted cross-link connects bounded state to Available working state in the task-to-horizon-to-churn sequence. A fleet definition appears below.",
+  "alt": "Two parallel vertical sequences contrast the agent stack with a characteristic limit. The stack contains Application, a Harness with Skills, Tools and Hooks, Foundation Model, and Bounded working state. A large engineering task requires reasoning state that may exceed the state available at once; repeated reconstruction can contribute to churn. A dotted cross-link connects the model context limit to available working state. A fleet definition appears below.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -355,5 +355,6 @@
       "width_bp": 363.832,
       "height_bp": 301.283
     }
-  }
+  },
+  "editorial_update_2026_11_02": "The demand node now reads Required reasoning state, distinct from the system-level reasoning horizon. Prior typography and geometry observations below describe the preceding label; current label checked in the landing render."
 }

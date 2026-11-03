@@ -3,13 +3,12 @@
      agent stack and the softened causal tail are UNCHANGED in geometry. Label-only edits per the front-matter
      figure pass: (1) the foundation-model annotation reads "trained model"; (2) the bottom stack layer is
      retitled "Bounded working state" (the context window is named as its present instance, not the
-     definition) — this promotes the general term while KEEPING context-window ≠ reasoning-horizon, since the
-     reasoning-horizon node stays distinct on the right; (3) the Fleet footnote is tightened to "multiple
-     agents working on a shared engineering system." The Reasoning-Horizon gloss is left bare on purpose: the
-     one-line gloss will not fit the box at print size, so the glossary text carries it. Orientation
+     definition); (3) the Fleet footnote is tightened to "multiple
+     agents working on a shared engineering system." On 2 November 2026, the demand node was renamed
+     Required reasoning state: the task imposes demands; the complete reasoning system has a horizon. Orientation
      reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack of how coding agents work, and a softened causal tail of how they come apart: a large engineering task requires a reasoning horizon that may exceed the bounded working state the agent can maintain, of which the context window is one present limit, contributing to churn">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered agent stack and a characteristic failure mode: the reasoning state required by a task may exceed the state available at once. Preserving and recovering state lets work continue; repeated reconstruction can contribute to churn.">
   <defs>
     <marker id="vh-av2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
@@ -74,9 +73,9 @@
   <line x1="820" y1="138" x2="820" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="832" y="162" font-size="20" fill="#78716c">requires</text>
 
-  <!-- Reasoning Horizon -->
-  <rect id="horizon" x="690" y="178" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="820" y="207" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
+  <!-- Required reasoning state -->
+  <rect id="horizon" x="670" y="178" width="300" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="207" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Required reasoning state</text>
 
   <!-- may exceed -->
   <!-- edge: horizon -> avail-state -->

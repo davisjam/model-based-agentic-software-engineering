@@ -41,7 +41,7 @@
   {
     "chapter": "0.4-the-books-language",
     "source": "assets/gloss-agent-vocab.svg",
-    "caption": "The agent stack and a characteristic failure mode. When a task's reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.",
+    "caption": "The agent stack and a characteristic failure mode. When required state cannot remain active, it must be preserved elsewhere and recovered; repeated reconstruction can contribute to churn.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/gloss-agent-vocab.d2",
     "receipt": "book/d2-pilot/gloss-agent-vocab.receipt.yaml",
@@ -49,7 +49,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "",
-    "svg_description": ""
+    "svg_description": "Layered agent stack and a characteristic failure mode: the reasoning state required by a task may exceed the state available at once. Preserving and recovering state lets work continue; repeated reconstruction can contribute to churn."
   },
   {
     "chapter": "0.4-the-books-language",

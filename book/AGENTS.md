@@ -82,11 +82,11 @@ Govern what is settled. Preserve what is genuinely free.
 
 ## Reasoning horizon
 
-A reasoning horizon is the amount of intermediate reasoning state that must remain available at once to carry a task to a correct result.
+A reasoning horizon is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources.
 
-It is a property of the task and its representation, not merely the intelligence of the reasoner.
+The task imposes reasoning demands; the system has a horizon. For an agent, include the foundation model, harness, external memory, and tools. Do not equate this system-level limit with a token-window size or the amount of state a task requires. A long-horizon task carries related decisions and their dependencies across an extended sequence of steps; it need not exceed the system's capacity.
 
-More context does not automatically solve a representation problem.
+Better memory management can increase the state the system can use across its work; a better representation can reduce the search, reconstruction, or inference required. Either can extend the horizon or reduce cost within it. The definition and supporting literature are in §1.3; keep the glossary and `book/data/definitions.json` consistent with them.
 
 ## Engineering environment
 

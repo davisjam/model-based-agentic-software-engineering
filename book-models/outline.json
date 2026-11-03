@@ -7,7 +7,7 @@
     "derived_ids": 218,
     "missing_topic_sentence": 5,
     "sections_drained": 172,
-    "paragraph_points": 814
+    "paragraph_points": 813
   },
   "chapters": [
     {
@@ -443,34 +443,29 @@
           "section_id": "the-reasoning-horizon",
           "level": 2,
           "heading_text": "The Reasoning Horizon",
-          "topic_sentence": "Scale creates a reasoning problem before an agent ever enters the picture.",
+          "topic_sentence": "Scale has always created problems.",
           "id_source": "derived",
           "block_index": 24,
           "points": [
             {
               "slug": "scale-creates-the-reasoning-problem-before-an-agent-enters",
-              "text": "Scale creates a reasoning problem before an agent enters; a long engineering task is a sequence of related decisions whose required state grows while the active state available to the reasoner stays finite.",
+              "text": "Human working memory is limited even when long-term knowledge is extensive; notes, diagrams, and other external representations let engineers work with more information than they can hold actively in mind.",
               "block_index": 26
             },
             {
               "slug": "once-a-task-exceeds-active-state-question-relevant-state-must-be-reconstructed",
-              "text": "Once a task exceeds active state, some information must live elsewhere and be recovered; poor reconstruction re-solves solved questions and contradicts constraints, so the problem is how much question-relevant state must be reconstructed for the next judgment.",
-              "block_index": 29
+              "text": "A harness can preserve and retrieve information across invocations, extending work beyond the model's immediate context; retaining a record does not ensure that the agent will find and use it.",
+              "block_index": 28
             },
             {
               "slug": "availability-is-not-a-useful-representation",
-              "text": "Harnesses move the boundary by expanding or better managing working state, but availability is not a useful representation — usable context falls short of nominal capacity and present state is not equally accessible, and raw implementation is an expensive substrate when the question depends on a smaller set of relationships.",
-              "block_index": 31
-            },
-            {
-              "slug": "the-horizon-is-a-locality-problem-for-reasoning-state",
-              "text": "The reasoning horizon is a locality problem: systems keep useful state close to the computation that consumes it, and purposeful representations apply the same principle semantically — a dependency graph or state machine answers a question that retrieved source lines merely make available.",
-              "block_index": 34
+              "text": "Available information is not always used effectively: usable context can fall short of nominal capacity, information within a window is not uniformly accessible, and repository work incurs navigation and reconstruction costs.",
+              "block_index": 32
             },
             {
               "slug": "the-reasoning-horizon-defined",
-              "text": "The reasoning horizon is the boundary beyond which consequential state can no longer be carried in active reasoning and must be reconstructed; larger windows, stronger reasoners, retrieval, and memory move it, and Modeling moves it differently by changing the representation over which reasoning occurs.",
-              "block_index": 36
+              "text": "The reasoning horizon is the practical limit of work the reasoner and its supporting machinery can carry through reliably, given the available representations and resources; task demands are distinct from this system-level limit.",
+              "block_index": 34
             }
           ]
         },
@@ -480,22 +475,22 @@
           "heading_text": "Probabilistic Work Needs External Enforcement",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 42,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 45
+              "block_index": 44
             },
             {
               "slug": "enforcement-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not constitute independent evidence — the environment must establish what evidence counts.",
-              "block_index": 47
+              "block_index": 46
             },
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "The consequential judgments that still depend on fallible per-instance inference form the probabilistic surface; better models, context, decomposition, harnesses, and iterative loops make those judgments more reliable but leave the obligation dependent on probabilistic judgment each time it arises.",
-              "block_index": 58
+              "block_index": 57
             }
           ]
         },
@@ -505,17 +500,17 @@
           "heading_text": "Enforcement Outside the Producing Run",
           "topic_sentence": "Software engineering already provides mechanisms for independent enforcement.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 60,
           "points": [
             {
               "slug": "software-engineering-can-make-an-obligation-explicit-and-enforce-it-outside-the-run",
               "text": "For selected obligations the environment can make the required property explicit and enforce it independently of the producing run: it can represent an architectural boundary, a dependency rule, or a safety condition and reject changes that violate it, so the judgment that established the obligation is reused across later implementation.",
-              "block_index": 62
+              "block_index": 61
             },
             {
               "slug": "agentic-work-provides-identifiable-interfaces-where-enforcement-can-act",
               "text": "Important changes reach the system through identifiable interfaces — inputs, tool calls, edits, outputs, lifecycle transitions — where a sandbox, hook, or test can act without a rich model, and explicit representations extend the semantic reach of those same control points.",
-              "block_index": 64
+              "block_index": 63
             }
           ]
         }

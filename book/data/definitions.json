@@ -154,10 +154,10 @@
 
   "reasoning-horizon": {
     "term": "Reasoning horizon",
-    "box": "The amount of intermediate reasoning state a task requires you to hold at once to carry it to a correct result — a property of the task, not of who reasons, whether a human, an agent, or a later architecture.",
+    "box": "The practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources.",
     "aspects": [
-      {"lead": "The axis the task modes fork on", "text": "One-shot scripting sits at a short horizon: the whole transaction fits in one context window and one sitting. Supervised autonomy is for a long horizon: the reasoning state outruns the working memory that must hold it. Writing a shell script, proving a theorem, debugging a deadlock, and re-architecting a subsystem sit at very different points on it."},
-      {"lead": "Why the constraint is capacity, not a token buffer", "text": "A context window instantiates the limit today, but the horizon is architecture-independent: a longer window, a new memory architecture, or a post-transformer system each moves the wall without removing it, because a finite reasoner still has a finite reasoning horizon. This is offered as an analytic generalization for the reader to test, not a measured law."}
+      {"lead": "The whole reasoning system", "text": "For an agent, the horizon depends on the foundation model together with the harness, external memory, and tools. The task imposes reasoning demands; the system has a horizon. Stored information contributes only insofar as the system can recover and use it when needed."},
+      {"lead": "Two ways to extend the horizon", "text": "Better machinery can increase the state the system can use across its work, while better representations can reduce the search, reconstruction, or inference required. Either can extend the range of tasks handled reliably or reduce cost within that range. The definition is a system-level generalization, not a universal scalar measurement; §1.3 distinguishes it from the narrower sequential-reasoning use in seqBench and cites ReadAgent, Larkin and Simon, and Zhang and Norman for the supporting mechanisms."}
     ],
     "site_home": "N/A",
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#reasoning-horizon",
@@ -169,10 +169,10 @@
 
   "long-horizon-task": {
     "term": "Long-horizon task",
-    "box": "A task whose required intermediate reasoning state cannot be held losslessly within the available working memory, so completing it forces compression and reconstruction of that state, at some cost in fidelity.",
+    "box": "A task requiring a sequence of related decisions, with earlier results or commitments carried into later steps.",
     "aspects": [
-      {"lead": "Why the lossy round trip matters", "text": "When the state will not fit, the reasoner must compress it and rebuild it later, and every lossy round trip degrades the reasoning it stands in for. That degradation is what surfaces as churn — effort spent rebuilding a picture the reasoner keeps losing rather than advancing the system."},
-      {"lead": "The task class supervised autonomy is for", "text": "A long-horizon task is the downward branch of the task-mode fork: too large to hold in a single context window or trust to a single pass. It is why the book spends its weight on supervised autonomy — the method that supplies correctness conditions, tools, and monitoring rather than hoping a single pass lands."}
+      {"lead": "Maintaining dependencies across steps", "text": "The system must preserve or recover the state that later decisions require. External memory, intermediate artifacts, retrieval, and useful representations can support that continuity; lossy compaction is one possible mechanism, not a necessary property of the task."},
+      {"lead": "Task demands and system capacity", "text": "A long sequence of decisions need not exceed the reasoning horizon of a well-supported system. Sequence length, required state, and reconstruction cost are distinct considerations. Their demands depend on the task and its representation; whether they can be met depends on the reasoner and supporting machinery."}
     ],
     "site_home": "N/A",
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#long-horizon-task",
