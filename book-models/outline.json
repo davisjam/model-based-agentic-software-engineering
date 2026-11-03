@@ -532,7 +532,7 @@
             },
             {
               "slug": "modeling-and-alignment-complement-one-another",
-              "text": "Modeling makes selected properties explicit enough to reason about; Alignment enforces selected obligations over realization; neither requires the other in every case, but together they let engineering knowledge and judgment persist outside any one producing run.",
+              "text": "Modeling represents selected system properties; Alignment constrains work and evaluates results. In DocAble, the content representation supports comparison and the validator fails a job that loses original extracted content.",
               "block_index": 9
             }
           ]
@@ -4675,7 +4675,7 @@
             },
             {
               "slug": "context-postpones-but-a-model-changes-the-problem",
-              "text": "Larger context and retrieval postpone the horizon; DocAble met the limit literally — roughly 590,000 tokens of reasoning representation against a 272,000-token context made windowing and whole-document compression the next representation problem.",
+              "text": "Larger context can accommodate more material and retrieval can bring evidence closer; changing the representation can reduce what must be loaded or reconstructed. DocAble’s roughly 590,000-token document exceeded a 272,000-token context, motivating a choice between a more costly model and windowing or compression.",
               "block_index": 253
             },
             {

@@ -84,7 +84,7 @@ Govern what is settled. Preserve what is genuinely free.
 
 A reasoning horizon is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources.
 
-The task imposes reasoning demands; the system has a horizon. For an agent, include the foundation model, harness, external memory, and tools. Do not equate this system-level limit with a token-window size or the amount of state a task requires. A long-horizon task carries related decisions and their dependencies across an extended sequence of steps; it need not exceed the system's capacity.
+For an agent, include the foundation model, harness, external memory, and tools. Do not equate this system-level limit with a token-window size or the amount of state a task requires. A long-horizon task carries related decisions and their dependencies across an extended sequence of steps; it need not exceed the system's capacity.
 
 Better memory management can increase the state the system can use across its work; a better representation can reduce the search, reconstruction, or inference required. Either can extend the horizon or reduce cost within it. The definition and supporting literature are in §1.3; keep the glossary and `book/data/definitions.json` consistent with them.
 

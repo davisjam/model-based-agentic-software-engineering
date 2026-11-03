@@ -67,7 +67,7 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/gloss-agent-vocab-077dc29ef2.pdf}
-\caption{The agent stack and a characteristic failure mode. When required state cannot remain active, it must be preserved elsewhere and recovered; repeated reconstruction can contribute to churn.}
+\caption{The agent stack and a characteristic failure mode. When a task exceeds the system's reasoning horizon, the agent may repeatedly reconstruct information without making progress. This churn can occur when the system cannot keep the information needed for later decisions available.}
 \end{figure}
 
 \textbf{Agent.} An AI system that pursues an open-ended or underspecified task through multiple steps, exercising judgment about what to do next and using tools in response to intermediate results. In this book, agent means a coding or engineering agent operating over software artifacts, tools, and an execution environment.
@@ -82,7 +82,7 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 
 \textbf{Fleet.} The set of coding agents working on a shared codebase or engineering system.
 
-\textbf{Reasoning horizon.} The practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools. The task imposes reasoning demands; the system has a horizon. Better machinery can increase what it can handle, while better representations can reduce what it has to handle. \magevalue{sec:reasoning-horizon} develops the definition and its grounding in the literature.
+\textbf{Reasoning horizon.} The practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools. Better machinery can help the system handle more demanding tasks. Better representations can reduce the reasoning a task requires. \magevalue{sec:reasoning-horizon} develops the definition and its grounding in the literature.
 
 \section{The Governed Engineering Environment}\label{heading:the-governed-engineering-environment}
 

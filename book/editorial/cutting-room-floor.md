@@ -715,3 +715,149 @@ Source revision: `607f877eb0d9d43eff82590ba016fcf2d5800832`. Replaced on 3 Novem
 
 \textbf{DELIVER} & Put that context into the actor\textquotesingle s reasoning horizon. \\
 ```
+
+
+## Approved introduction and glossary edits, 3 November 2026
+
+Source revision: `5a8575094ba50e7ec2fbfd9abc8140cff41f21b1`. Replaced on 3 November 2026 after approval of `13-enduring`, `14-together`, `gloss-caption`, and `gloss-horizon`. The glossary approval includes its recorded consistency targets.
+
+### 13-enduring
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, lines 164–164.
+
+Reason: Follow the approved reliability passage with an explicit turn to a different engineering question: reliable implementation does not tell us what to build. Keep the responsibility to choose and justify requirements, and name validation evidence rather than reusing “judge” after the discussion of agentic judgments. Remove the vague final sentence about making reasoning explicit and the extra Chapter 7 signpost. The original, including its Chapter 7 reference, will be archived if this edit is approved.
+
+```text
+This is the immediate reliability argument for moving consequential judgments out of repeated inference, but it is not the only argument for doing so. Future agents may make many such judgments cheaply and reliably. But even granting that future, engineering disciplines require an independent basis for understanding what a system is intended to do, deciding which obligations govern it, and establishing why its behavior should be trusted. \magevalue{chapter:profession} returns to that requirement as one of engineering control and responsibility.
+```
+
+### 14-together
+
+Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, lines 34–34.
+
+Reason: Connect the two activities to the DocAble example in §1.2: the content representation supports comparison, and the validator fails the job when original extracted content is missing. Carry the engineering decision forward into later work.
+
+```text
+The two activities complement one another. Modeling makes selected system properties explicit enough to reason about; Alignment enforces selected obligations over realization. Neither requires the other in every case: useful representations need not become constraints, and some local controls can act without a rich system model. Together, however, they let engineering knowledge and judgment persist outside any one producing run. \autoref{substrate-to-method} traces that derivation.
+```
+
+### gloss-caption
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, lines 70–70.
+
+Reason: Use the system’s reasoning horizon to frame the failure mode, then connect churn to the figure’s available-state limit. Describe reconstruction as a possible failure, rather than an unavoidable response to a bounded context window.
+
+```text
+\caption{The agent stack and a characteristic failure mode. When required state cannot remain active, it must be preserved elsewhere and recovered; repeated reconstruction can contribute to churn.}
+```
+
+### gloss-horizon
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, lines 85–85.
+
+Reason: Replace the opaque shorthand “the system has a horizon” with the concrete effects of better machinery and better representations. Keep the approved definition. On approval, carry this clarification into the matching wording in §1.3, the internal definition, the authoring guidance, and the figure description.
+
+```text
+\textbf{Reasoning horizon.} The practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools. The task imposes reasoning demands; the system has a horizon. Better machinery can increase what it can handle, while better representations can reduce what it has to handle. \magevalue{sec:reasoning-horizon} develops the definition and its grounding in the literature.
+```
+
+### gloss-horizon consistency: remove the opaque shorthand from §1.3
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, lines 104–104.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+The task imposes reasoning demands; the system has a horizon.
+```
+
+### gloss-horizon consistency: state the effects in §1.3
+
+Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex`, lines 106–106.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+Better machinery and better representations can extend the horizon in different ways.
+```
+
+### 14-together annotation
+
+Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, lines 32–32.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+Modeling makes selected properties explicit enough to reason about; Alignment enforces selected obligations over realization; neither requires the other in every case, but together they let engineering knowledge and judgment persist outside any one producing run.
+```
+
+### gloss-horizon consistency: authoring guidance
+
+Source: `book/AGENTS.md`, lines 87–87.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+The task imposes reasoning demands; the system has a horizon.
+```
+
+### gloss-horizon consistency: internal definition
+
+Source: `book/data/definitions.json`, lines 159–159.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+The task imposes reasoning demands; the system has a horizon.
+```
+
+### gloss-horizon consistency: internal explanation
+
+Source: `book/data/definitions.json`, lines 160–160.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+Better machinery can increase the state the system can use across its work, while better representations can reduce the search, reconstruction, or inference required.
+```
+
+### gloss-caption consistency: accessible figure description
+
+Source: `book/assets/gloss-agent-vocab.svg`, lines 11–11.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+Layered agent stack and a characteristic failure mode: the reasoning state required by a task may exceed the state available at once. Preserving and recovering state lets work continue; repeated reconstruction can contribute to churn.
+```
+
+### gloss-horizon consistency: figure maintenance note
+
+Source: `book/assets/gloss-agent-vocab.svg`, lines 8–8.
+
+Reason: keep the companion wording consistent with the approved passage.
+
+```text
+Required reasoning state: the task imposes demands; the complete reasoning system has a horizon.
+```
+
+
+### 61-window
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, line 725. Approved on 3 November 2026. Source revision: `5a8575094ba50e7ec2fbfd9abc8140cff41f21b1`.
+
+Reason: Keep the alternative between increasing available context and changing the representation. Add a transition and make the larger-window option concrete: switching to a more costly model.
+
+```text
+An agent faces the same problem. A larger context window can postpone the limit, and better retrieval can bring useful evidence closer, but neither changes the underlying fact that implementation contains far more detail than most engineering questions require. DocAble encountered the limit literally: one document produced roughly 590,000 tokens of reasoning representation against a 272,000-token context. That result did not argue for a larger context window; it made windowing and whole-document compression the next representation problem.
+```
+
+### 61-general
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, line 735. Approved on 3 November 2026. Source revision: `5a8575094ba50e7ec2fbfd9abc8140cff41f21b1`.
+
+Reason: Use Chapter 1’s distinction between task demands and the capacity of the complete reasoning system. Connect cost savings with “Even when a task is already within that horizon,” avoiding both the repeated “can” and an abrupt shift from reach to cost.
+
+```text
+\textbf{General form.} Consequential work can require more potentially relevant state than a finite reasoner can reliably keep active at once. Task-relevant representations can extend the effective reasoning horizon when they preserve the distinctions needed for the work while suppressing irrelevant detail. The software proposition is one specialization of this claim. Whether other domains admit representations with the same leverage is an empirical question.
+```
