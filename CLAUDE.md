@@ -906,6 +906,33 @@ undefined references. Only underfull horizontal/vertical boxes are allowed. See
 
 Both modes **always validate + build first**, so a broken schema can never be served or published.
 
+### Gate failures that look alarming but are not
+
+Three recurring symptoms that cost a session's time to re-derive each time:
+
+- **`pre-push` fails the `print toolchain` phase, and the log says
+  `Host print toolchain differs: {"latex_kernel": "2024-11-01", ...}`.** That line is **normal
+  and not the failure** — it is TeX Live 2025's host kernel, and the gate *always* falls back to
+  the frozen Docker image, which reports `2025-11-01` / tagpdf `0.99y` from inside the container.
+  Do not chase the version mismatch. Read further for the real error: usually the containerized
+  LuaLaTeX run. One known cause is a concurrent writer — the gate bind-mounts the whole repo into
+  the container, so an agent editing `book/latex/sources/**` mid-compile can break the build.
+  Re-run `python3 tools/check_print_toolchain.py` standalone; if it passes, retry the push once
+  the tree is quiet.
+
+- **Every commit in the checkout fails with a `catalog.py validate` error in a file you did not
+  touch.** `hooks/pre-commit` runs `validate` over the **whole working tree**, not over staged
+  paths, so one agent's half-finished caption blocks *every* writer in the checkout. This is
+  shared fate by design; find the owner of the offending file rather than reverting it.
+
+- **Commits fail with `ModuleNotFoundError: No module named 'pypdf'` from
+  `tools/test_mage_tikz_links.py`.** The hooks run under `#!/usr/bin/env python3` → homebrew
+  python, which carries pptx/lxml/PIL/yaml but not always pypdf. Fix it there, not in a scratch
+  venv that gets reaped: `python3 -m pip install --break-system-packages 'pypdf>=6,<7'`
+  (the interpreter is EXTERNALLY-MANAGED). `site/.venv` is **not** a substitute — it has pypdf
+  but lacks pptx and lxml. The underlying gap is that this repo declares no Python dependencies
+  anywhere; there is no `requirements.txt` or `pyproject.toml` outside `site/`.
+
 ## Serving model
 
 GitHub Pages serves the committed HTML (deploy path = the Actions workflow, which re-runs
