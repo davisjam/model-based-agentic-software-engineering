@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the MEANING is the
+     JOIN between two parallel columns — a request path on the left and the resource each stage demands
+     on the right — so that "the database row is the only one whose cost is waiting" reads off the
+     geometry rather than off a caption. A flowchart auto-layout renders the path but cannot hold a
+     second, row-aligned column against it, nor mark one row of that column as the qualifying case.
+     Palette, stroke, and type follow the course figure vocabulary
+     (../../02-data-management/figures/query-access-layers.svg,
+     ../../01-compute-environments-and-deployment/figures/ci-cd-pipeline.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 484" width="700" height="484"
+     role="img" aria-labelledby="rpTitle rpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="rpTitle">The path a reservation request takes through the service, with the resource each
+    stage demands shown alongside it</title>
+  <desc id="rpDesc">Two columns run down the figure, aligned row by row. The left column, headed REQUEST
+    PATH, begins with an HTTP REQUEST pill and flows down through three stages: an HTTP HANDLER that
+    validates the input, BOOKING LOGIC that evaluates the reservation rules, and a DATABASE that reads
+    and writes the shared reservation state. A final arrow reaches a RESPONSE pill. The right column,
+    headed RESOURCE DEMANDED, names what each stage consumes. Beside the HTTP handler: application CPU,
+    for parsing and validation. Beside the booking logic: application CPU, for rule evaluation. Beside
+    the database, drawn in the qualifying color: database CPU and disk input/output, plus waiting — for
+    a connection from the pool, for row locks, and for queries already queued ahead of this one. A
+    footer reads that adding application CPU cannot reduce the time a request spends waiting on the
+    database, so the engineer measures where the time goes before choosing where to add capacity, and a
+    closing italic note observes that waiting is not computing: a saturated connection pool consumes
+    elapsed time without consuming processor time.</desc>
+
+  <defs>
+    <marker id="rp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="484" fill="#fdfcf9"/>
+
+  <text x="350" y="29" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">WHERE A RESERVATION REQUEST SPENDS ITS TIME</text>
+
+  <text x="221" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#41586c" letter-spacing="1.2">REQUEST PATH</text>
+  <text x="530" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#41586c" letter-spacing="1.2">RESOURCE DEMANDED</text>
+
+  <!-- entry -->
+  <rect x="136" y="70" width="170" height="32" rx="16" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="221" y="91" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">HTTP REQUEST</text>
+  <line x1="221" y1="102" x2="221" y2="116" stroke="#2f5169" stroke-width="2" marker-end="url(#rp-ah)"/>
+
+  <!-- stage 1 -->
+  <rect x="96" y="118" width="250" height="50" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="221" y="140" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">HTTP HANDLER</text>
+  <text x="221" y="158" text-anchor="middle" font-size="12.5" fill="#41586c">validates the input</text>
+  <line x1="221" y1="168" x2="221" y2="182" stroke="#2f5169" stroke-width="2" marker-end="url(#rp-ah)"/>
+
+  <rect x="400" y="118" width="260" height="50" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="530" y="139" text-anchor="middle" font-size="14" fill="#1c1917">Application CPU</text>
+  <text x="530" y="157" text-anchor="middle" font-size="12" fill="#41586c">parsing and validation</text>
+
+  <!-- stage 2 -->
+  <rect x="96" y="184" width="250" height="50" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="221" y="206" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">BOOKING LOGIC</text>
+  <text x="221" y="224" text-anchor="middle" font-size="12.5" fill="#41586c">evaluates reservation rules</text>
+  <line x1="221" y1="234" x2="221" y2="248" stroke="#2f5169" stroke-width="2" marker-end="url(#rp-ah)"/>
+
+  <rect x="400" y="184" width="260" height="50" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="530" y="205" text-anchor="middle" font-size="14" fill="#1c1917">Application CPU</text>
+  <text x="530" y="223" text-anchor="middle" font-size="12" fill="#41586c">rule evaluation</text>
+
+  <!-- stage 3 -->
+  <rect x="96" y="250" width="250" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="221" y="274" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">DATABASE</text>
+  <text x="221" y="293" text-anchor="middle" font-size="12.5" fill="#41586c">reads and writes the shared</text>
+  <text x="221" y="309" text-anchor="middle" font-size="12.5" fill="#41586c">reservation state</text>
+  <line x1="221" y1="316" x2="221" y2="330" stroke="#2f5169" stroke-width="2" marker-end="url(#rp-ah)"/>
+
+  <rect x="400" y="250" width="260" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="530" y="271" text-anchor="middle" font-size="14" fill="#1c1917">Database CPU and disk I/O</text>
+  <text x="530" y="290" text-anchor="middle" font-size="12" fill="#9a3f12">plus waiting: a pool connection,</text>
+  <text x="530" y="306" text-anchor="middle" font-size="12" fill="#9a3f12">row locks, queries queued ahead</text>
+
+  <!-- exit -->
+  <rect x="136" y="332" width="170" height="32" rx="16" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="221" y="353" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">RESPONSE</text>
+
+  <g font-size="13" fill="#41586c" text-anchor="middle">
+    <text x="350" y="404">Adding application CPU cannot reduce the time a request spends waiting on the database.</text>
+    <text x="350" y="423">The engineer measures where the time goes before choosing where to add capacity.</text>
+  </g>
+  <text x="350" y="458" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">Waiting is not computing: a saturated connection pool consumes elapsed time without consuming CPU.</text>
+</svg>

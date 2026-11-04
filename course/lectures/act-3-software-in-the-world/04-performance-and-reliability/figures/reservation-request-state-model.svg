@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the MEANING is the
+     horizontal band split — the reservation's own state sits in an upper band, the client's knowledge of
+     that state in a lower one, and the teaching point is that a transition in the lower band leaves the
+     upper band untouched. A state-chart auto-layout draws the transitions but has no way to partition
+     them into two zones of authority, which is the one thing this figure exists to show.
+     Palette, stroke, and type follow the course figure vocabulary
+     (../../02-data-management/figures/double-booking-history.svg,
+     ../../02-data-management/figures/query-access-layers.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 562" width="700" height="562"
+     role="img" aria-labelledby="rsTitle rsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="rsTitle">A state model for one reservation request, split into an upper band holding the
+    reservation's own state and a lower band holding the client's knowledge of it</title>
+  <desc id="rsDesc">The figure is divided into two horizontal bands. The upper band, labeled
+    RESERVATION STATE as held by the server and database, begins with REQUEST RECEIVED, which transitions
+    to PENDING. PENDING forks into two terminal reservation states: COMMITTED on the left and REJECTED on
+    the right. The lower band, labeled RESPONSE DELIVERY AND CLIENT KNOWLEDGE, is reached by an arrow
+    descending from COMMITTED into RESPONSE ATTEMPTED. RESPONSE ATTEMPTED forks two ways: DELIVERED,
+    where the client learns the outcome, and LOST, drawn in the failure color, which transitions to
+    CLIENT UNCERTAIN, also in the failure color. A dashed leader points from CLIENT UNCERTAIN to a note
+    reading that the reservation is still COMMITTED in the band above: a lost response does not undo a
+    committed transaction. A footer reads that only the upper band records what happened, that every
+    transition in the lower band leaves it unchanged, and that the server must therefore be able to
+    recognize a retry of an operation it has already committed.</desc>
+
+  <defs>
+    <marker id="rs-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="rs-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="562" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">THE RESERVATION'S STATE AND THE CLIENT'S KNOWLEDGE</text>
+
+  <!-- upper band: reservation state -->
+  <rect x="26" y="46" width="648" height="212" rx="12" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="656" y="68" text-anchor="end" font-size="12" font-weight="700" fill="#41586c" letter-spacing="1.1">RESERVATION STATE — held by the server and database</text>
+
+  <rect x="265" y="80" width="170" height="38" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="104" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">REQUEST RECEIVED</text>
+  <line x1="350" y1="118" x2="350" y2="134" stroke="#2f5169" stroke-width="2" marker-end="url(#rs-ah)"/>
+
+  <rect x="265" y="136" width="170" height="38" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="160" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">PENDING</text>
+
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <path d="M350,174 L350,190 L200,190 L200,202" marker-end="url(#rs-ah)"/>
+    <path d="M350,174 L350,190 L500,190 L500,202" marker-end="url(#rs-ah)"/>
+  </g>
+
+  <rect x="120" y="204" width="160" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="200" y="224" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">COMMITTED</text>
+  <text x="200" y="241" text-anchor="middle" font-size="11.5" fill="#41586c">the room is booked</text>
+
+  <rect x="420" y="204" width="160" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="500" y="224" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">REJECTED</text>
+  <text x="500" y="241" text-anchor="middle" font-size="11.5" fill="#41586c">no booking was made</text>
+
+  <!-- lower band: delivery and knowledge -->
+  <rect x="26" y="272" width="648" height="222" rx="12" fill="#faf7f0" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="656" y="294" text-anchor="end" font-size="12" font-weight="700" fill="#41586c" letter-spacing="1.1">RESPONSE DELIVERY AND CLIENT KNOWLEDGE</text>
+
+  <line x1="200" y1="248" x2="200" y2="304" stroke="#2f5169" stroke-width="2" marker-end="url(#rs-ah)"/>
+
+  <rect x="120" y="306" width="160" height="40" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="200" y="326" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169">RESPONSE</text>
+  <text x="200" y="340" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169">ATTEMPTED</text>
+
+  <g stroke-width="2" fill="none">
+    <path d="M200,346 L200,362 L112,362 L112,376" stroke="#2f5169" marker-end="url(#rs-ah)"/>
+    <path d="M200,346 L200,362 L306,362 L306,376" stroke="#8a2f2f" marker-end="url(#rs-ah-red)"/>
+  </g>
+
+  <rect x="38" y="378" width="148" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="112" y="398" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">DELIVERED</text>
+  <text x="112" y="415" text-anchor="middle" font-size="11.5" fill="#41586c">the client knows</text>
+
+  <rect x="232" y="378" width="148" height="44" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="306" y="398" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">LOST</text>
+  <text x="306" y="415" text-anchor="middle" font-size="11.5" fill="#8a2f2f">no response arrives</text>
+
+  <line x1="306" y1="422" x2="306" y2="440" stroke="#8a2f2f" stroke-width="2" marker-end="url(#rs-ah-red)"/>
+
+  <rect x="212" y="442" width="188" height="44" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="306" y="462" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">CLIENT UNCERTAIN</text>
+  <text x="306" y="479" text-anchor="middle" font-size="11.5" fill="#8a2f2f">it may retry the request</text>
+
+  <!-- the point: the upper band is unchanged -->
+  <path d="M400,464 L432,464" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" fill="none"/>
+  <g font-size="12.5" fill="#9a3f12">
+    <text x="440" y="452">The reservation is still</text>
+    <text x="440" y="469"><tspan font-weight="700">COMMITTED</tspan> in the band above.</text>
+    <text x="440" y="486">A lost response undoes nothing.</text>
+  </g>
+
+  <g font-size="13" fill="#41586c" text-anchor="middle">
+    <text x="350" y="522">Only the upper band records what happened; every transition below leaves it unchanged.</text>
+    <text x="350" y="541">The server must therefore recognize a retry of an operation it has already committed.</text>
+  </g>
+</svg>

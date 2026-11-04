@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a fault tree's
+     meaning lives in its GATE GLYPHS — the curved-bottom OR shape and the flat-bottom AND shape are the
+     notation, and swapping one for the other changes the claim about how many events must occur. No
+     graph auto-layout draws those glyphs, and rendering the gates as labeled boxes would teach the
+     decomposition while losing the convention students will meet in any reliability review.
+     Palette, stroke, and type follow the course figure vocabulary
+     (../../02-data-management/figures/double-booking-history.svg,
+     ../../01-compute-environments-and-deployment/figures/ci-cd-pipeline.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" height="500"
+     role="img" aria-labelledby="ftTitle ftDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ftTitle">A fault tree decomposing the top event "a confirmed reservation is lost" through an
+    OR gate into two intermediate events, one of which requires an AND of two basic events</title>
+  <desc id="ftDesc">The tree reads downward from a top event banner, A CONFIRMED RESERVATION IS LOST,
+    drawn in the failure color. Below it sits an OR gate, whose curved bottom edge marks it as an OR.
+    The gate feeds two intermediate events side by side: on the left, committed data is lost; on the
+    right, the reservation is not recoverable. Each intermediate event carries its own gate. Beneath
+    "committed data lost" is an AND gate, drawn with a flat bottom and a rounded top, taking two basic
+    events: primary storage fails, and the backup is unavailable. Beneath "reservation not recoverable"
+    is a second OR gate taking two basic events: the recovery procedure fails, and the recovery data is
+    corrupted. A legend states that an OR gate occurs when any one input occurs, while an AND gate
+    occurs only when every input occurs together, so an AND branch names two defenses that must fail at
+    once. A closing italic note reads that this tree is illustrative rather than complete: whether a
+    primary-storage failure actually loses committed data depends on the replication and durability
+    guarantees in force, so the failure assumptions must be stated before the tree means anything.</desc>
+
+  <!-- No arrowheads: a fault tree is read downward through plain gate connectors, which is the
+       notation students will meet in a reliability review. -->
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="500" fill="#fdfcf9"/>
+
+  <text x="350" y="27" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">FAULT TREE: HOW A CONFIRMED RESERVATION IS LOST</text>
+
+  <!-- top event -->
+  <rect x="185" y="44" width="330" height="52" rx="10" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="350" y="68" text-anchor="middle" font-size="15.5" font-weight="700" fill="#8a2f2f">A CONFIRMED RESERVATION IS LOST</text>
+  <text x="350" y="87" text-anchor="middle" font-size="12" fill="#8a2f2f">top event: the outcome we refuse to accept</text>
+
+  <line x1="350" y1="96" x2="350" y2="112" stroke="#2f5169" stroke-width="2"/>
+
+  <!-- OR gate under the top event: curved (concave) bottom edge -->
+  <path d="M322,152 Q322,122 350,112 Q378,122 378,152 Q350,141 322,152 Z"
+        fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="141" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">OR</text>
+
+  <!-- split to the two intermediate events -->
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <path d="M350,150 L350,168 L185,168 L185,186"/>
+    <path d="M350,150 L350,168 L515,168 L515,186"/>
+  </g>
+
+  <!-- intermediate events -->
+  <rect x="55" y="186" width="260" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="185" y="207" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">COMMITTED DATA LOST</text>
+  <text x="185" y="225" text-anchor="middle" font-size="11.5" fill="#41586c">the record no longer exists anywhere</text>
+
+  <rect x="385" y="186" width="260" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="515" y="207" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">NOT RECOVERABLE</text>
+  <text x="515" y="225" text-anchor="middle" font-size="11.5" fill="#41586c">the record exists but cannot be restored</text>
+
+  <line x1="185" y1="234" x2="185" y2="248" stroke="#2f5169" stroke-width="2"/>
+  <line x1="515" y1="234" x2="515" y2="248" stroke="#2f5169" stroke-width="2"/>
+
+  <!-- AND gate: flat bottom, semicircular top -->
+  <path d="M157,290 L157,266 A28,28 0 0 1 213,266 L213,290 Z"
+        fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="185" y="283" text-anchor="middle" font-size="11.5" font-weight="700" fill="#9a3f12">AND</text>
+
+  <!-- second OR gate -->
+  <path d="M487,290 Q487,260 515,250 Q543,260 543,290 Q515,279 487,290 Z"
+        fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="515" y="279" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">OR</text>
+
+  <!-- splits to basic events -->
+  <g stroke="#9a3f12" stroke-width="2" fill="none">
+    <path d="M185,290 L185,304 L112,304 L112,318"/>
+    <path d="M185,290 L185,304 L258,304 L258,318"/>
+  </g>
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <path d="M515,288 L515,304 L442,304 L442,318"/>
+    <path d="M515,288 L515,304 L588,304 L588,318"/>
+  </g>
+
+  <!-- basic events -->
+  <rect x="44" y="320" width="136" height="56" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="112" y="343" text-anchor="middle" font-size="12.5" fill="#1c1917">Primary storage</text>
+  <text x="112" y="360" text-anchor="middle" font-size="12.5" fill="#1c1917">fails</text>
+
+  <rect x="190" y="320" width="136" height="56" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="258" y="343" text-anchor="middle" font-size="12.5" fill="#1c1917">Backup is</text>
+  <text x="258" y="360" text-anchor="middle" font-size="12.5" fill="#1c1917">unavailable</text>
+
+  <rect x="374" y="320" width="136" height="56" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="442" y="343" text-anchor="middle" font-size="12.5" fill="#1c1917">Recovery procedure</text>
+  <text x="442" y="360" text-anchor="middle" font-size="12.5" fill="#1c1917">fails</text>
+
+  <rect x="520" y="320" width="136" height="56" rx="8" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <text x="588" y="343" text-anchor="middle" font-size="12.5" fill="#1c1917">Recovery data</text>
+  <text x="588" y="360" text-anchor="middle" font-size="12.5" fill="#1c1917">corrupted</text>
+
+  <!-- legend -->
+  <line x1="44" y1="398" x2="656" y2="398" stroke="#d6d3d1" stroke-width="1"/>
+  <g font-size="12.5" fill="#41586c">
+    <text x="44" y="421"><tspan font-weight="700" fill="#2f5169">OR</tspan> occurs when any one input occurs. <tspan font-weight="700" fill="#9a3f12">AND</tspan> occurs only when every input occurs together,</text>
+    <text x="44" y="439">so the left branch names two defenses that must fail at the same time.</text>
+  </g>
+
+  <text x="350" y="470" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">Illustrative, not complete. Whether a primary-storage failure loses committed data depends on the</text>
+  <text x="350" y="487" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">replication and durability guarantees in force: state the assumptions before the tree means anything.</text>
+</svg>
