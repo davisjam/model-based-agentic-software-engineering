@@ -100,6 +100,8 @@ The strategies differ; the release decision does not:
 
 The fourth step is what makes the third worth doing. A canary nobody watches exposes a fraction of users to a defect and reports nothing back.
 
+[**The Release Factory**](../../../interactive/release-factory/index.html) runs that decision as a pipeline you parameterize. You set the build and test lanes, the release slots, the defect and flaky-test rates, and the monitoring quality, then choose a canary share and soak time or a blue-green verification, and read back all four delivery metrics: deployment frequency, lead time, change failure rate, and time to restore. The engine is seeded, so each run reproduces and a change in the numbers is a change you caused. Turn the monitoring quality down and watch the canary stop reporting. The exposure control still works; nothing comes back to act on. That is the fourth step failing while the third still looks healthy.
+
 ## Evidence and control
 
 The deployment problem follows the Act III engineering method. We identify environmental requirements, represent them in deployment and resource models, compare alternatives, and obtain evidence from builds, tests, deployment checks, and runtime observations. Alignment then connects an obligation to a control: a configuration validator rejects missing settings, a pipeline gate blocks an untested artifact, a release policy requires staged exposure. Observations after deployment may still reveal an assumption the model omitted.
