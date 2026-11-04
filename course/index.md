@@ -10,7 +10,7 @@ instructor_notes: ""
 status: ready
 ---
 
-Engineering is the discipline of exercising informed control over consequential systems. An engineer need not personally produce every part of a system. The engineer must understand what the system is supposed to accomplish, how it is organized, what it costs to build and change, how it behaves when deployed, where its weaknesses and uncertainties lie, and what evidence justifies confidence in it. Software engineering applies this responsibility to software systems.
+Engineering is the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. An engineer need not personally produce every part of a system. The engineer must understand what the system is supposed to accomplish, how it is organized, what it costs to build and change, how it behaves when deployed, where its weaknesses and uncertainties lie, and what evidence justifies confidence in it. Software engineering applies this discipline to software systems.
 
 GenAI changes how that control is exercised. Students can now delegate substantial implementation work while remaining responsible for the resulting system. This creates an opportunity to teach the enduring foundations of software engineering through the work that remains theirs: understanding the problem, specifying obligations, making and defending architectural and design decisions, evaluating evidence, governing change, and determining whether the resulting system is fit for its purpose.
 
