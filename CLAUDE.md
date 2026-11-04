@@ -85,9 +85,39 @@ re-deriving these, so they live here:**
     temporary index from exactly those paths and leaves everything else staged for its owner.
   - Before committing in a shared checkout, check `git diff --cached --name-only` for foreign paths. A
     foreign path means stop and ask, not commit.
-  - **Caveat:** the `pre-commit` hook force-stages regenerated artifacts (`*.html`, `book-models/*`,
-    `plugin/`), and a pathspec commit excludes them unless named. If your change legitimately
-    re-renders output, diff it and name the changed tracked files explicitly.
+  - **Caveat — and it is bigger than it reads: A PATHSPEC COMMIT DOES NOT STOP THE HOOK'S OWN
+    FORCE-STAGE.** The earlier wording here ("a pathspec commit excludes them unless named") was
+    wrong, and wrong in the dangerous direction: it told every agent the defense was broader than
+    it is. Corrected 261104 after a deck agent used the pathspec defense exactly as documented and
+    still swept three sibling files.
+    - **Mechanism.** `git commit -- <paths>` builds a TEMPORARY index from those paths and exports
+      it as `GIT_INDEX_FILE`. The hook's `git add` calls inherit that env var, so they write into
+      the temp index git is about to commit *from*. The hook's own module docstring states this
+      (`hooks/pre-commit`, "A pathspec on the commit does not defend against this — the temp index
+      is the one git exports"); CLAUDE.md contradicted it for an unknown span, and CLAUDE.md is the
+      file every agent boots with.
+    - **What the pathspec DOES defend:** foreign paths that were ALREADY STAGED when you commit —
+      they stay staged for their owner. That is real and worth keeping. It does **not** defend
+      against a file that is merely DIRTY in the working tree and matches one of the hook's
+      `git add` pathspecs.
+    - **The widest of those pathspecs is a bare `*.html` glob**, which git matches at ANY depth. So
+      it is not confined to generated output at all: hand-authored pages that were never rendered
+      from anything — `course/interactive/<sim>/index.html`, for one — match it and ride in. That
+      glob, not `git add -A` and not a careless stage, is why the same handful of files keep being
+      swept into unrelated commits.
+    - **Consequence for a wave:** while any sibling's hand-authored HTML is dirty, EVERY commit in
+      the checkout will carry an intermediate snapshot of it under the committer's message. That is
+      messy attribution, not data loss — the owner's further work stays in the working tree and
+      their next commit carries the remainder.
+    - **So the live hazard is narrow and specific: a `D ` (staged deletion) entry.** A swept
+      modification is recoverable; a swept deletion removes a sibling's finished file from the tree
+      under someone else's message. Check `git status --porcelain | grep '^D'` before every commit
+      and do not commit while one is present. Defuse index-only with `git restore --staged <path>`
+      *after* verifying the file is present on disk AND in HEAD. Five instances on 261103–261104.
+    - **Do not "fix" a sweep by reverting the sibling's file.** That is the destructive direction
+      and it discards live work. Let their next commit carry the remainder.
+    If your change legitimately re-renders output, diff it and name the changed tracked files
+    explicitly.
   - `git add -A` stays banned for the same family of reasons, but note it was NOT the mechanism here —
     blaming it would have left the real hole open. (Diagnosed by the agent whose commit swept the files,
     correcting the orchestrator, who had asserted the mechanism without reading the command.)
