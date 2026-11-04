@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the MEANING is the
+     row-for-row alignment of two different systems, so that the reader compares across the columns rather
+     than reading either chain on its own, plus the single dashed boundary drawn across both columns at
+     the same height. Two auto-laid-out flowcharts side by side do not align their rows, and the
+     comparison is the whole figure. Palette, stroke, and type follow the course figure vocabulary
+     (sibling ../../03-technical-debt-architecture-and-dependencies/figures/internal-and-external-dependencies.svg,
+     ../../04-performance-and-reliability/figures/reservation-request-state-model.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 626" width="880" height="626"
+     role="img" aria-labelledby="uiaTitle uiaDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="uiaTitle">Two columns, conventional software and agentic software, aligned row for row to
+    compare how attacker-controlled input reaches a consequential operation through a component that
+    interprets it</title>
+  <desc id="uiaDesc">Two columns are aligned against three numbered rows named down the left edge: row
+    one, untrusted input; row two, the component that interprets it; row three, the consequential
+    operation. The left column is headed CONVENTIONAL SOFTWARE, a logging framework. Its row-one box,
+    drawn in the hostile color, reads attacker-controlled text, a user-supplied field that the application
+    logs. A downward arrow reaches its row-two box, LOGGING FRAMEWORK, which interprets lookup syntax
+    inside the message it was asked only to record. A second downward arrow reaches its row-three box,
+    drawn in the hostile color, EXTERNAL OPERATION: the lookup resolves and fetches a remote resource. The
+    right column is headed AGENTIC SOFTWARE, an agent with tool access. Its row-one box, also in the
+    hostile color, reads attacker-controlled document, content the agent retrieves from a source it does
+    not control. A downward arrow reaches its row-two box, AGENT CONTEXT, which treats the retrieved text
+    as instructions rather than as data. A second downward arrow reaches its row-three box, in the hostile
+    color, PRIVILEGED TOOL CALL: the agent acts with the permissions its tools carry. A single heavy
+    dashed red trust boundary runs horizontally across both columns between row two and row three,
+    labeled the boundary the engineer must enforce: which information may influence a consequential
+    operation. Below the columns, two lists of controls sit side by side. For conventional software:
+    remove the interpretation behavior, restrict outbound connections, and limit process privilege. For
+    agentic software: restrict tool permissions, authorize consequential operations independently, and
+    separate retrieved content from the instructions that govern the agent. Two closing notes read that
+    the mechanisms differ while both raise the same question about authority across a trust boundary, and
+    that instructions asking an agent to ignore malicious content are guidance rather than enforcement at
+    the boundary.</desc>
+
+  <defs>
+    <marker id="uia-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="880" height="626" fill="#fdfcf9"/>
+
+  <text x="440" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">TWO WAYS UNTRUSTED INFORMATION ACQUIRES AUTHORITY</text>
+
+  <!-- column zones (fill only, so the boundary line can cross them cleanly) -->
+  <rect x="196" y="52" width="328" height="320" rx="12" fill="#f1f5f8"/>
+  <rect x="544" y="52" width="328" height="320" rx="12" fill="#f8f3ea"/>
+
+  <text x="360" y="80" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">CONVENTIONAL SOFTWARE</text>
+  <text x="360" y="99" text-anchor="middle" font-size="12" fill="#41586c">a logging framework</text>
+  <text x="708" y="80" text-anchor="middle" font-size="15.5" font-weight="700" fill="#8a6a3f">AGENTIC SOFTWARE</text>
+  <text x="708" y="99" text-anchor="middle" font-size="12" fill="#41586c">an agent with tool access</text>
+
+  <!-- row names -->
+  <g fill="#41586c" font-weight="700" font-size="12" letter-spacing="0.6">
+    <text x="30" y="148">1  UNTRUSTED</text>
+    <text x="30" y="164">    INPUT</text>
+    <text x="30" y="238">2  COMPONENT THAT</text>
+    <text x="30" y="254">    INTERPRETS IT</text>
+    <text x="30" y="328">3  CONSEQUENTIAL</text>
+    <text x="30" y="344">    OPERATION</text>
+  </g>
+
+  <!-- ── row 1 ── -->
+  <rect x="216" y="124" width="288" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="150" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">Attacker-controlled text</text>
+  <text x="360" y="170" text-anchor="middle" font-size="11.5" fill="#8a2f2f">a user-supplied field the application logs</text>
+
+  <rect x="564" y="124" width="288" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="708" y="150" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">Attacker-controlled document</text>
+  <text x="708" y="170" text-anchor="middle" font-size="11.5" fill="#8a2f2f">content retrieved from a source we do not control</text>
+
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#uia-ah)">
+    <line x1="360" y1="186" x2="360" y2="210"/>
+    <line x1="708" y1="186" x2="708" y2="210"/>
+  </g>
+
+  <!-- ── row 2 ── -->
+  <rect x="216" y="214" width="288" height="62" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="240" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">LOGGING FRAMEWORK</text>
+  <text x="360" y="260" text-anchor="middle" font-size="11.5" fill="#57534e">interprets lookup syntax inside the message</text>
+
+  <rect x="564" y="214" width="288" height="62" rx="9" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="708" y="240" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">AGENT CONTEXT</text>
+  <text x="708" y="260" text-anchor="middle" font-size="11.5" fill="#57534e">treats retrieved text as instructions</text>
+
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#uia-ah)">
+    <line x1="360" y1="276" x2="360" y2="300"/>
+    <line x1="708" y1="276" x2="708" y2="300"/>
+  </g>
+
+  <!-- the boundary that has to hold, drawn once across both columns -->
+  <line x1="28" y1="292" x2="872" y2="292" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="11 7"/>
+  <rect x="28" y="278" width="164" height="28" rx="6" fill="#fdfcf9"/>
+  <text x="30" y="297" font-size="11.5" font-style="italic" fill="#8a2f2f">the boundary to enforce</text>
+
+  <!-- ── row 3 ── -->
+  <rect x="216" y="304" width="288" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="330" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">EXTERNAL OPERATION</text>
+  <text x="360" y="350" text-anchor="middle" font-size="11.5" fill="#8a2f2f">the lookup resolves and fetches a remote resource</text>
+
+  <rect x="564" y="304" width="288" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="708" y="330" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">PRIVILEGED TOOL CALL</text>
+  <text x="708" y="350" text-anchor="middle" font-size="11.5" fill="#8a2f2f">the agent acts with the permissions its tools carry</text>
+
+  <text x="440" y="391" text-anchor="middle" font-size="12" font-style="italic" fill="#8a2f2f">which information may influence a consequential operation, and where is that restriction applied?</text>
+
+  <!-- ── controls ── -->
+  <line x1="28" y1="410" x2="872" y2="410" stroke="#d6d3d1" stroke-width="1"/>
+  <text x="216" y="436" font-size="12.5" font-weight="700" fill="#41586c" letter-spacing="0.8">CONTROLS</text>
+  <g font-size="12.5" fill="#1c1917">
+    <text x="216" y="458">Remove the interpretation behavior.</text>
+    <text x="216" y="478">Restrict outbound connections.</text>
+    <text x="216" y="498">Limit process privilege.</text>
+  </g>
+
+  <text x="564" y="436" font-size="12.5" font-weight="700" fill="#41586c" letter-spacing="0.8">CONTROLS</text>
+  <g font-size="12.5" fill="#1c1917">
+    <text x="564" y="458">Restrict tool permissions.</text>
+    <text x="564" y="478">Authorize consequential operations independently.</text>
+    <text x="564" y="498">Separate retrieved content from governing instructions.</text>
+  </g>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="440" y="548">The mechanisms differ. Both ask the same question about authority across a trust boundary.</text>
+  </g>
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#8a2f2f">
+    <text x="440" y="574">Instructions asking an agent to ignore malicious content are guidance.</text>
+    <text x="440" y="594">They are not enforcement at the boundary.</text>
+  </g>
+</svg>

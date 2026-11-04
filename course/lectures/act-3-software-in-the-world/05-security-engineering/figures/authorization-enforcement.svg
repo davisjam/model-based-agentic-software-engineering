@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a flowchart
+     auto-layout draws the decision and its two outcomes, which is the easy half. The MEANING here is the
+     dashed coordination region that encloses load, evaluate and cancel while leaving deny outside it, and
+     the second panel that shows what the interleaving does when that region is absent. Neither the region
+     nor the paired counter-example survives an auto-layout, and without them the figure says only that an
+     authorization check happens somewhere before the write. Palette, stroke, and type follow the course
+     figure vocabulary (sibling
+     ../../04-performance-and-reliability/figures/reservation-request-state-model.svg,
+     ../../02-data-management/figures/double-booking-history.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 740" width="900" height="740"
+     role="img" aria-labelledby="authTitle authDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="authTitle">Enforcement of the reservation cancellation policy, with the authorization
+    decision and the cancellation held inside one atomic step, and a second panel showing the
+    interleaving that occurs when they are not</title>
+  <desc id="authDesc">The figure has two stacked panels. The upper panel, ENFORCEMENT PATH, reads left to
+    right. A CANCELLATION REQUEST pill feeds an arrow into AUTHENTICATE PRINCIPAL, which establishes the
+    requesting principal u from the verified assertion. An arrow from there crosses into a dashed region
+    headed ONE ATOMIC STEP, which reads: evaluate and cancel under one serialized view of the state, using
+    a transaction, a row lock, or a conditional write. Three boxes sit inside that region. The first,
+    LOAD r AND ITS OWNER, draws the reservation and its ownership from server-side state. An arrow runs
+    right from it to the second, EVALUATE MayCancel of u and r, which is Admin of u OR Owner of u and r.
+    From that box two arrows leave. The arrow labeled YES runs right, still inside the region, to CANCEL
+    RESERVATION. The arrow labeled NO runs down and OUT of the region to DENY, drawn in the failure color
+    and annotated as the fail-safe default. CANCEL RESERVATION sends an arrow down to RECORD RESULT, which
+    records the principal, the outcome and the time; DENY sends an arrow right into the
+    same RECORD RESULT box, so both outcomes are recorded. Two notes close the panel: a client-supplied
+    user identifier is not evidence of ownership, and a well-formed reservation identifier is not
+    permission to use it; and the same rule must govern every path to this operation, including the
+    administrative endpoint. The lower panel, WITHOUT COORDINATION, shows three time-stamped rows running
+    downward. At T1, in the structure color, Request A loads reservation r and its owner; the owner is u,
+    so MayCancel of u and r holds. At T2, in the failure color, Request B transfers r to another student
+    and the owner becomes v. At T3, also in the failure color, Request A cancels r, acting on a decision
+    that described the state at T1. A closing note reads that the authorization decision was true when it
+    was evaluated and false when it was applied, and that evaluating the policy and performing the
+    operation as one atomic step is what removes the gap.</desc>
+
+  <defs>
+    <marker id="auth-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="auth-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="900" height="740" fill="#fdfcf9"/>
+
+  <text x="450" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">ENFORCING THE CANCELLATION POLICY, AND COORDINATING IT WITH MUTABLE STATE</text>
+
+  <!-- ══════════ PANEL A: the enforcement path ══════════ -->
+  <rect x="28" y="56" width="844" height="354" rx="12" fill="#eef2f6"/>
+  <text x="48" y="86" font-size="14.5" font-weight="700" fill="#2f5169" letter-spacing="0.8">ENFORCEMENT PATH</text>
+
+  <!-- the coordination region: the check and the act share one serialized view -->
+  <rect x="330" y="104" width="518" height="152" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="589" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12" letter-spacing="0.8">ONE ATOMIC STEP</text>
+  <text x="589" y="146" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">evaluate and cancel under one serialized view of the state:</text>
+  <text x="589" y="162" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">a transaction, a row lock, or a conditional write</text>
+
+  <!-- request -->
+  <rect x="36" y="181" width="112" height="52" rx="24" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="92" y="203" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">CANCELLATION</text>
+  <text x="92" y="219" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">REQUEST</text>
+  <line x1="148" y1="207" x2="166" y2="207" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>
+
+  <!-- authenticate -->
+  <rect x="170" y="176" width="140" height="62" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="240" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">AUTHENTICATE</text>
+  <text x="240" y="213" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PRINCIPAL</text>
+  <text x="240" y="229" text-anchor="middle" font-size="10.5" fill="#57534e">u, from the verified assertion</text>
+  <line x1="310" y1="207" x2="344" y2="207" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>
+
+  <!-- load -->
+  <rect x="348" y="176" width="130" height="62" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="413" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">LOAD r AND</text>
+  <text x="413" y="213" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">ITS OWNER</text>
+  <text x="413" y="229" text-anchor="middle" font-size="10.5" fill="#57534e">server-side state</text>
+  <line x1="478" y1="207" x2="504" y2="207" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>
+
+  <!-- evaluate -->
+  <rect x="508" y="176" width="140" height="62" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="578" y="197" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">EVALUATE</text>
+  <text x="578" y="213" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">MayCancel(u, r)</text>
+  <text x="578" y="229" text-anchor="middle" font-size="10.5" fill="#57534e">Admin(u) OR Owner(u, r)</text>
+
+  <!-- yes -->
+  <line x1="648" y1="207" x2="686" y2="207" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>
+  <text x="667" y="198" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">YES</text>
+
+  <!-- cancel -->
+  <rect x="690" y="176" width="140" height="62" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="760" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">CANCEL</text>
+  <text x="760" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">RESERVATION</text>
+
+  <!-- no: leaves the atomic region -->
+  <line x1="578" y1="238" x2="578" y2="286" stroke="#8a2f2f" stroke-width="2" marker-end="url(#auth-ah-red)"/>
+  <text x="590" y="268" font-size="11.5" font-weight="700" fill="#8a2f2f">NO</text>
+
+  <rect x="508" y="290" width="140" height="52" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="578" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#8a2f2f">DENY</text>
+  <text x="578" y="329" text-anchor="middle" font-size="10.5" fill="#8a2f2f">the fail-safe default</text>
+
+  <line x1="760" y1="238" x2="760" y2="286" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>
+  <line x1="648" y1="316" x2="686" y2="316" stroke="#8a2f2f" stroke-width="2" marker-end="url(#auth-ah-red)"/>
+
+  <rect x="690" y="290" width="140" height="52" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="760" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">RECORD RESULT</text>
+  <text x="760" y="329" text-anchor="middle" font-size="10.5" fill="#57534e">principal, outcome, time</text>
+
+  <g text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">
+    <text x="450" y="368">A client-supplied user identifier is not evidence of ownership, and a well-formed reservation identifier is not permission to use it.</text>
+    <text x="450" y="390">The same rule must govern every path to this operation, including the administrative endpoint.</text>
+  </g>
+
+  <!-- ══════════ PANEL B: what the interleaving does when the region is absent ══════════ -->
+  <rect x="28" y="432" width="844" height="288" rx="12" fill="#f9f0ed"/>
+  <text x="48" y="462" font-size="14.5" font-weight="700" fill="#8a2f2f" letter-spacing="0.8">WITHOUT COORDINATION: the decision and the act observe different states</text>
+
+  <rect x="48" y="478" width="48" height="48" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="72" y="508" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">T1</text>
+  <rect x="108" y="478" width="744" height="48" rx="8" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="128" y="508" font-size="13.5" fill="#1c1917">Request A loads reservation r and its owner. The owner is u, so MayCancel(u, r) holds.</text>
+
+  <rect x="48" y="536" width="48" height="48" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="72" y="566" text-anchor="middle" font-size="14" font-weight="700" fill="#8a2f2f">T2</text>
+  <rect x="108" y="536" width="744" height="48" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="128" y="566" font-size="13.5" fill="#8a2f2f">Request B transfers r to another student. The owner becomes v.</text>
+
+  <rect x="48" y="594" width="48" height="48" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="72" y="624" text-anchor="middle" font-size="14" font-weight="700" fill="#8a2f2f">T3</text>
+  <rect x="108" y="594" width="744" height="48" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="128" y="624" font-size="13.5" fill="#8a2f2f">Request A cancels r, acting on a decision that described the state at T1.</text>
+
+  <g text-anchor="middle" font-size="13" font-style="italic" fill="#8a2f2f">
+    <text x="450" y="672">The authorization decision was true when it was evaluated and false when it was applied.</text>
+    <text x="450" y="694">Evaluating the policy and performing the operation as one atomic step is what removes the gap.</text>
+  </g>
+</svg>

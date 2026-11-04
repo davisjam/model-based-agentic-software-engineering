@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: this is a data-flow
+     diagram in the notation the SDL threat-modeling method uses, and the MEANING lives in two things an
+     auto-layout cannot express. First, the trust domains are REGIONS enclosing the elements that share one
+     authority, with the trust boundaries drawn as the dashed lines a flow crosses between them; a graph
+     layout draws nodes and edges and has no notion of a zone. Second, the notation is load-bearing:
+     external entity, process and data store are three different shapes, and collapsing them to one
+     rounded box erases the distinction the method is built on. The identity-provider interaction is drawn
+     as an authentication exchange — the student presents credentials, the provider returns a signed
+     assertion, the service verifies that assertion against the provider's keys — rather than as the
+     booking service sending claims to the provider. Palette, stroke, and type follow the course figure
+     vocabulary (sibling
+     ../../03-technical-debt-architecture-and-dependencies/figures/internal-and-external-dependencies.svg,
+     ../../04-performance-and-reliability/figures/reservation-request-state-model.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 772" width="920" height="772"
+     role="img" aria-labelledby="dfdTitle dfdDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dfdTitle">A data-flow diagram of the reservation service in standard notation, with four
+    trust domains drawn as regions and the trust boundaries drawn as the dashed lines that data flows
+    cross between them</title>
+  <desc id="dfdDesc">The figure uses standard data-flow-diagram notation, stated in a legend along the
+    bottom: a square-cornered rectangle is an external entity outside the engineer's control, a circle is
+    a process, a shape held between two heavy horizontal rules is a data store, a solid labeled arrow is a
+    data flow, and a heavy dashed red line is a trust boundary. Four tinted regions hold the elements that
+    share one authority. The CLIENT DOMAIN region at the upper left, labeled requests the attacker
+    controls, holds two external entities, ADMINISTRATOR and STUDENT. The EXTERNAL IDENTITY DOMAIN region
+    at the upper right, labeled an authority we rely on and do not operate, holds one external entity,
+    IDENTITY PROVIDER. Between the student and the provider runs an authentication exchange of two flows:
+    the student sends credentials rightward to the provider, and the provider returns a signed assertion
+    leftward to the student. The SERVICE DOMAIN region across the middle, labeled code and credentials we
+    operate, holds two processes drawn as circles: process one point zero, the HTTP API, which
+    authenticates and validates; and process two point zero, the booking service, which evaluates the
+    reservation policy. A flow labeled request plus assertion runs down from the administrator into the
+    HTTP API, and a second such flow runs down from the student into the same process, so both client
+    paths arrive at one entry point. A flow labeled authenticated request runs rightward from the HTTP API
+    to the booking service, and a flow labeled result runs back. Two further flows connect the booking
+    service to the identity provider: the service requests verification keys, and the provider returns
+    signing keys and metadata, so the service verifies an assertion it did not create. The DATA DOMAIN
+    region at the bottom, labeled authority the service credentials carry, holds the data store D1,
+    Reservations, holding owner, room and time. A flow labeled read and write reservations runs down from
+    the booking service into the store, and a flow labeled reservation records runs back up. Three heavy
+    dashed red boundaries are drawn and labeled. TB1 runs horizontally between the client domain and the
+    service domain, where client-controlled requests meet server-side execution. TB2 runs vertically
+    between the client and service domains on one side and the identity domain on the other, then turns
+    horizontal across the right of the figure, and is labeled service slash identity provider: the service
+    verifies an assertion it did not create. TB3 runs horizontally between the service domain and the data
+    domain, where the credentials the service holds decide what it may do to every reservation. A closing
+    note reads that a trust boundary need not follow a machine boundary: two components on one host may
+    hold different privileges, and two hosts may share one administrative authority, so what matters is
+    which assumptions and permissions hold on each side.</desc>
+
+  <defs>
+    <marker id="dfd-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="dfd-ah-note" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="920" height="772" fill="#fdfcf9"/>
+
+  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">THE RESERVATION SERVICE AS A DATA-FLOW DIAGRAM, WITH ITS TRUST DOMAINS</text>
+
+  <!-- ═══ trust-domain regions (fill only, so no stroke crosses the flows that span them) ═══ -->
+  <rect x="28" y="52" width="470" height="152" rx="12" fill="#f6ece9"/>
+  <rect x="628" y="52" width="264" height="152" rx="12" fill="#f8f3ea"/>
+  <rect x="28" y="276" width="864" height="192" rx="12" fill="#eef2f6"/>
+  <rect x="28" y="534" width="864" height="112" rx="12" fill="#f1f5f8"/>
+
+  <!-- ── CLIENT DOMAIN ── -->
+  <text x="46" y="76" font-size="14.5" font-weight="700" fill="#8a2f2f" letter-spacing="0.8">CLIENT DOMAIN</text>
+  <text x="46" y="94" font-size="12.5" fill="#8a2f2f">requests the attacker controls</text>
+  <rect x="52" y="112" width="190" height="54" fill="#faf7f0" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="147" y="137" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">ADMINISTRATOR</text>
+  <text x="147" y="155" text-anchor="middle" font-size="11.5" fill="#57534e">external entity</text>
+  <rect x="282" y="112" width="190" height="54" fill="#faf7f0" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="377" y="137" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">STUDENT</text>
+  <text x="377" y="155" text-anchor="middle" font-size="11.5" fill="#57534e">external entity</text>
+
+  <!-- ── EXTERNAL IDENTITY DOMAIN ── -->
+  <text x="646" y="76" font-size="14.5" font-weight="700" fill="#8a6a3f" letter-spacing="0.8">EXTERNAL IDENTITY DOMAIN</text>
+  <text x="646" y="94" font-size="12.5" fill="#8a6a3f">an authority we rely on and do not operate</text>
+  <rect x="652" y="112" width="216" height="54" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="760" y="137" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">IDENTITY PROVIDER</text>
+  <text x="760" y="155" text-anchor="middle" font-size="11.5" fill="#57534e">external entity</text>
+
+  <!-- authentication exchange: credentials out, signed assertion back -->
+  <g stroke-width="2" fill="none" stroke="#9a3f12">
+    <path d="M476,128 L646,128" marker-end="url(#dfd-ah-note)"/>
+    <path d="M646,154 L478,154" marker-end="url(#dfd-ah-note)"/>
+  </g>
+  <text x="560" y="120" text-anchor="middle" font-size="12" fill="#9a3f12">credentials</text>
+  <text x="560" y="172" text-anchor="middle" font-size="12" fill="#9a3f12">signed assertion</text>
+  <rect x="490" y="176" width="126" height="20" rx="4" fill="#fdfcf9"/>
+  <text x="553" y="191" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">authentication exchange</text>
+
+  <!-- ═══ TB2: vertical, then horizontal across the right ═══ -->
+  <path d="M610,44 L610,240 L904,240" fill="none" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="11 7"/>
+  <rect x="590" y="56" width="40" height="24" rx="5" fill="#fdfcf9"/>
+  <text x="610" y="73" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">TB2</text>
+  <rect x="672" y="226" width="232" height="28" rx="6" fill="#fdfcf9"/>
+  <text x="788" y="245" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">TB2  service / identity provider</text>
+
+  <!-- ═══ TB1 ═══ -->
+  <line x1="28" y1="240" x2="610" y2="240" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="11 7"/>
+  <rect x="392" y="226" width="216" height="28" rx="6" fill="#fdfcf9"/>
+  <text x="500" y="245" text-anchor="middle" font-size="13" font-weight="700" fill="#8a2f2f">TB1  client / service</text>
+  <text x="176" y="218" font-size="11.5" font-style="italic" fill="#8a2f2f">client-controlled requests</text>
+  <text x="176" y="234" font-size="11.5" font-style="italic" fill="#8a2f2f">meet server-side execution</text>
+
+  <!-- ── SERVICE DOMAIN ── -->
+  <text x="46" y="300" font-size="14.5" font-weight="700" fill="#2f5169" letter-spacing="0.8">SERVICE DOMAIN</text>
+  <text x="46" y="320" font-size="12.5" fill="#41586c">code and credentials</text>
+  <text x="46" y="336" font-size="12.5" fill="#41586c">we operate</text>
+
+  <!-- flows crossing TB1 into the single entry point -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#dfd-ah)">
+    <path d="M147,166 L147,268 L264,268 L264,300"/>
+    <path d="M377,166 L377,268 L336,268 L336,300"/>
+  </g>
+  <text x="392" y="262" font-size="12" fill="#41586c">request + assertion</text>
+
+  <!-- processes: circles -->
+  <circle cx="300" cy="372" r="76" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="300" y="350" text-anchor="middle" font-size="12.5" font-weight="700" fill="#41586c">1.0</text>
+  <text x="300" y="372" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">HTTP API</text>
+  <text x="300" y="391" text-anchor="middle" font-size="11.5" fill="#57534e">authenticate,</text>
+  <text x="300" y="406" text-anchor="middle" font-size="11.5" fill="#57534e">validate</text>
+
+  <circle cx="556" cy="372" r="80" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="556" y="344" text-anchor="middle" font-size="12.5" font-weight="700" fill="#41586c">2.0</text>
+  <text x="556" y="366" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">BOOKING</text>
+  <text x="556" y="384" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">SERVICE</text>
+  <text x="556" y="403" text-anchor="middle" font-size="11.5" fill="#57534e">evaluate policy</text>
+
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#dfd-ah)">
+    <path d="M380,352 L468,352"/>
+    <path d="M468,396 L380,396"/>
+  </g>
+  <text x="424" y="343" text-anchor="middle" font-size="11.5" fill="#41586c">authenticated request</text>
+  <text x="424" y="414" text-anchor="middle" font-size="11.5" fill="#41586c">result</text>
+
+  <!-- flows crossing TB2: the service fetches verification material; it never sends the provider claims -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#dfd-ah)">
+    <path d="M634,356 L800,356 L800,172"/>
+    <path d="M724,172 L724,390 L636,390"/>
+  </g>
+  <text x="644" y="336" font-size="11" fill="#41586c">request verification keys</text>
+  <text x="644" y="412" font-size="11" fill="#41586c">signing keys and metadata</text>
+  <text x="884" y="452" text-anchor="end" font-size="11.5" font-style="italic" fill="#8a2f2f">the service verifies an assertion it did not create</text>
+
+  <!-- ═══ TB3 ═══ -->
+  <line x1="28" y1="500" x2="892" y2="500" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="11 7"/>
+  <rect x="48" y="486" width="256" height="28" rx="6" fill="#fdfcf9"/>
+  <text x="176" y="505" text-anchor="middle" font-size="13" font-weight="700" fill="#8a2f2f">TB3  service / data store</text>
+  <text x="884" y="524" text-anchor="end" font-size="11.5" font-style="italic" fill="#8a2f2f">the service's credentials reach EVERY reservation</text>
+
+  <!-- flows crossing TB3 -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#dfd-ah)">
+    <path d="M520,446 L520,572"/>
+    <path d="M600,572 L600,442"/>
+  </g>
+  <text x="508" y="478" text-anchor="end" font-size="11.5" fill="#41586c">read and write reservations</text>
+  <text x="612" y="478" font-size="11.5" fill="#41586c">reservation records</text>
+
+  <!-- ── DATA DOMAIN ── -->
+  <text x="46" y="558" font-size="14.5" font-weight="700" fill="#2f5169" letter-spacing="0.8">DATA DOMAIN</text>
+  <text x="46" y="578" font-size="12.5" fill="#41586c">authority the service</text>
+  <text x="46" y="594" font-size="12.5" fill="#41586c">credentials carry</text>
+
+  <!-- data store: held between two heavy rules -->
+  <g>
+    <rect x="394" y="578" width="320" height="50" fill="#faf7f0"/>
+    <line x1="394" y1="578" x2="714" y2="578" stroke="#2f5169" stroke-width="3"/>
+    <line x1="394" y1="628" x2="714" y2="628" stroke="#2f5169" stroke-width="3"/>
+    <line x1="430" y1="578" x2="430" y2="628" stroke="#2f5169" stroke-width="1.5"/>
+    <text x="412" y="608" text-anchor="middle" font-size="13" font-weight="700" fill="#41586c">D1</text>
+    <text x="576" y="602" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">Reservations</text>
+    <text x="576" y="619" text-anchor="middle" font-size="11.5" fill="#57534e">owner, room, time</text>
+  </g>
+
+  <!-- ═══ legend ═══ -->
+  <line x1="28" y1="664" x2="892" y2="664" stroke="#d6d3d1" stroke-width="1"/>
+  <text x="28" y="692" font-size="12" font-weight="700" fill="#41586c" letter-spacing="0.8">NOTATION</text>
+
+  <rect x="120" y="678" width="34" height="18" fill="#faf7f0" stroke="#41586c" stroke-width="2"/>
+  <text x="160" y="692" font-size="12" fill="#41586c">external entity</text>
+
+  <circle cx="274" cy="687" r="11" fill="#e7edf3" stroke="#41586c" stroke-width="2"/>
+  <text x="291" y="692" font-size="12" fill="#41586c">process</text>
+
+  <g stroke="#41586c" stroke-width="2.5">
+    <line x1="364" y1="678" x2="404" y2="678"/>
+    <line x1="364" y1="696" x2="404" y2="696"/>
+  </g>
+  <text x="412" y="692" font-size="12" fill="#41586c">data store</text>
+
+  <line x1="496" y1="687" x2="534" y2="687" stroke="#2f5169" stroke-width="2" marker-end="url(#dfd-ah)"/>
+  <text x="544" y="692" font-size="12" fill="#41586c">data flow</text>
+
+  <line x1="628" y1="687" x2="672" y2="687" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="11 7"/>
+  <text x="682" y="692" font-size="12" fill="#41586c">trust boundary</text>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="460" y="730">A trust boundary need not follow a machine boundary. Two components on one host may hold different privileges,</text>
+    <text x="460" y="750">and two hosts may share one administrative authority. What matters is which assumptions and permissions hold on each side.</text>
+  </g>
+</svg>

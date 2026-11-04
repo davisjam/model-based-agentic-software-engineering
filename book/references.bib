@@ -3657,3 +3657,93 @@
   url = {https://www.anthropic.com/research/effective-context-engineering-for-ai-agents},
   urldate = {2026-11-02},
 }
+
+% ── Security engineering (Act III Unit 5 course readings) ────────────────────────────────────
+% The canonical STRIDE + data-flow-diagram source: the Microsoft SDL threat-modeling method,
+% described by its owner. "STRIDE per element" and the DFD-driven procedure come from here.
+@inproceedings{shostack2008threatmodeling,
+  author    = {Shostack, Adam},
+  title     = {Experiences Threat Modeling at {Microsoft}},
+  booktitle = {Proceedings of the Workshop on Modeling Security ({MODSEC08}), co-located with the
+               International Conference on Model Driven Engineering Languages and Systems ({MODELS})},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {413},
+  year      = {2008},
+  address   = {Toulouse, France},
+  publisher = {CEUR-WS.org},
+  url       = {https://shostack.org/files/papers/modsec08/Shostack-ModSec08-Experiences-Threat-Modeling-At-Microsoft.pdf},
+}
+
+% The origin of the protection design principles the unit's controls table is built on:
+% least privilege, complete mediation, fail-safe defaults, separation of privilege,
+% economy of mechanism, open design.
+@article{saltzer1975protection,
+  author  = {Saltzer, Jerome H. and Schroeder, Michael D.},
+  title   = {The Protection of Information in Computer Systems},
+  journal = {Proceedings of the IEEE},
+  volume  = {63},
+  number  = {9},
+  pages   = {1278--1308},
+  year    = {1975},
+}
+
+% The assurance half: what verification a developer owes before shipping, as a minimum standard.
+@techreport{nistir8397,
+  author      = {Black, Paul E. and Guttman, Barbara and Okun, Vadim},
+  title       = {Guidelines on Minimum Standards for Developer Verification of Software},
+  institution = {{National Institute of Standards and Technology}},
+  type        = {NISTIR},
+  number      = {8397},
+  year        = {2021},
+  month       = {10},
+  doi         = {10.6028/NIST.IR.8397},
+  url         = {https://doi.org/10.6028/NIST.IR.8397},
+}
+
+% The ReDoS postmortem. NOTE: an internally deployed WAF rule, NOT an attack — the algorithmic
+% weakness is exploitable as a denial-of-service vulnerability, but this incident was self-inflicted.
+@online{grahamcumming2019cloudflare,
+  author    = {Graham-Cumming, John},
+  title     = {Details of the {Cloudflare} Outage on July 2, 2019},
+  year      = {2019},
+  date      = {2019-07-12},
+  publisher = {Cloudflare},
+  url       = {https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/},
+  urldate   = {2026-11-04},
+}
+
+% Return-oriented programming: arbitrary computation assembled from instruction sequences already
+% present in executable memory, without injecting code. Single-authored.
+@inproceedings{shacham2007geometry,
+  author    = {Shacham, Hovav},
+  title     = {The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls
+               (on the x86)},
+  booktitle = {Proceedings of the 14th {ACM} Conference on Computer and Communications Security
+               ({CCS} '07)},
+  pages     = {552--561},
+  year      = {2007},
+  address   = {Alexandria, VA},
+  publisher = {ACM},
+  doi       = {10.1145/1315245.1315313},
+}
+
+@book{anderson2020security,
+  author    = {Anderson, Ross},
+  title     = {Security Engineering: A Guide to Building Dependable Distributed Systems},
+  edition   = {3},
+  year      = {2020},
+  publisher = {Wiley},
+  address   = {Indianapolis, IN},
+  url       = {https://www.cl.cam.ac.uk/~rja14/book.html},
+}
+
+% The 9th edition, NOT the 10th (sommerville2016): security engineering is Chapter 14 here and
+% Chapter 13 there, and the two chapters are organized differently. The course scan is the 9th.
+@book{sommerville2011,
+  author    = {Sommerville, Ian},
+  title     = {Software Engineering},
+  edition   = {9},
+  year      = {2011},
+  publisher = {Addison-Wesley},
+  address   = {Boston, MA},
+}
