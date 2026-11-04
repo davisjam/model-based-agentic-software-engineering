@@ -278,6 +278,51 @@ jobs:
   # skip Tier 2), plus the two browser-backed page gates. This job re-renders the site HTML from
   # source first — the suite checks ALREADY-BUILT HTML, so it must check THIS push's render, not
   # the committed HTML a skipped hook may have left stale.
+  # The five in-browser teaching instruments under course/interactive/ ship as source assets that
+  # MkDocs copies through untransformed, and each carries its own stdlib-only node:test suite. Those
+  # suites existed from the day each instrument landed and were wired into NOTHING — confirmed 261104:
+  # no reference to interactive/ in catalog_tests.py, either hook, or this workflow. They passed only
+  # when someone ran them by hand, so a regression in a classroom exercise shipped silently.
+  #
+  # Each agent declined to wire its own suite for a good reason at the time: five of them were writing
+  # concurrently, and editing shared gate config mid-wave is a guaranteed collision. That reason
+  # expired when the wave drained.
+  #
+  # CI rather than pre-push, per the placement rule: these are not scoped to the pusher's own change,
+  # so a red here must name the owner of the instrument, not whoever pushed next. NOT in assemble's
+  # needs — a broken simulator is a quality verdict and must not hold back publishing the rest of the
+  # site, the coupling the fan-out exists to remove.
+  #
+  # Matrix so the five run in PARALLEL and the UI names which instrument failed rather than one opaque
+  # red. Default (short) tier only — the statistical tiers take a --full flag this deliberately omits,
+  # and the browser tiers are separate python entry points, excluded here. Measured 261104: 1.4s to
+  # 17.1s each, so the job is bounded by the slowest rather than their sum.
+  #
+  # No npm install: every import across all 43 test files is node:* or a local ./harness.mjs.
+  interactive-exercises:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false      # one broken instrument must not mask the state of the other four
+      matrix:
+        exercise:
+          - performance-knee
+          - n-plus-one
+          - redos
+          - release-factory
+          - storage-cost
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+      - name: ${{ matrix.exercise }} — unit + short tiers
+        run: |
+          set -euo pipefail
+          node --version
+          timeout 300 node "course/interactive/${{ matrix.exercise }}/tests/run-all.mjs"
+
   site-gates:
     runs-on: ubuntu-latest
     permissions:
@@ -358,6 +403,8 @@ jobs:
         run: python3 catalog.py build
       - name: Test suite (authoritative --full run; post-push HEAD==origin, so incremental would skip Tier 2)
         run: python3 catalog_tests.py --full
+      - name: Check canonical principle pin regressions
+        run: python3 -m unittest tests.test_canon_pins
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs
       # phone width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success
       # metric made mechanical. Needs a browser (headless Chrome), so it can't live in stdlib-only
