@@ -565,27 +565,27 @@
           "heading_text": "Modeling Is a Classical Engineering Move",
           "topic_sentence": "Modeling is not new.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 19,
           "points": [
             {
               "slug": "modeling-is-a-classical-engineering-move-not-a-mage-invention",
               "text": "Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly.",
-              "block_index": 19
+              "block_index": 20
             },
             {
               "slug": "mage-reuses-established-modeling-traditions",
-              "text": "These representations share one engineering move — choose a form in which the property of interest becomes easier to express, inspect, or analyze than in the realized artifact; MAGE proposes no new modeling language, and this chapter illustrates the technique through selected established models.",
-              "block_index": 21
+              "text": "These representations share one engineering move — choose a form in which the property of interest becomes easier to express, inspect, or analyze than in the implementation; MAGE proposes no new modeling language, and this chapter illustrates the technique through selected established models.",
+              "block_index": 22
             },
             {
               "slug": "mage-adopts-the-classical-move-under-changed-economics",
-              "text": "What changes is the economics: commodity intelligence makes explicit representations cheaper to build and use, generative implementation makes them more valuable, and models can become part of the engineered environment through which agents work.",
-              "block_index": 23
+              "text": "Agents make explicit representations cheaper to build and use, while their autonomous work makes those representations more valuable; models can become part of the engineered environment through which agents work.",
+              "block_index": 24
             },
             {
               "slug": "a-useful-model-need-not-be-elaborate",
               "text": "A useful model may be three states and two transitions, a list of permitted edges, or a schema joined on identifiers; the relevant question is what representation makes a recurring engineering question easier to answer.",
-              "block_index": 29
+              "block_index": 30
             }
           ]
         },
@@ -595,22 +595,22 @@
           "heading_text": "A Model Is a Purposeful Reduction",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 32,
           "points": [
             {
               "slug": "a-model-is-a-reduction-not-an-approximation",
               "text": "A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep.",
-              "block_index": 33
+              "block_index": 34
             },
             {
               "slug": "a-reduction-must-preserve-the-distinctions-its-question-requires",
-              "text": "A representation can contain accurate information and still be inadequate because its output cannot express a consequential case; a DocAble entitlement failure later in the chapter shows a reduction discarding a distinction the code had observed.",
-              "block_index": 37
+              "text": "A model can record accurate facts yet omit a distinction needed for a decision: remaining prepaid credits cannot distinguish an exhausted allowance from unlimited service entitlement.",
+              "block_index": 38
             },
             {
               "slug": "reduction-preserves-degrees-of-freedom",
               "text": "Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
-              "block_index": 40
+              "block_index": 41
             }
           ]
         },
@@ -620,57 +620,57 @@
           "heading_text": "Tolerance and degrees of freedom",
           "topic_sentence": "The suppressed detail has a realization-side consequence.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 42,
           "points": [
             {
               "slug": "freedom-defers-commitment",
               "text": "Preserving a degree of freedom defers a decision to a reasoner better positioned to make it: information may arrive later, and the realizing agent can acquire evidence before deciding.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "parsimony-is-the-complementary-bottom-up-test",
               "text": "Parsimony reasons from the proposed model inward: each distinction it contains must be required by the engineering question or removed; the aim is not the smallest model but the smallest model adequate to its purpose.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "reduction-fails-in-either-direction",
               "text": "Reduction fails in either direction: too little reproduces complexity and may needlessly constrain realization, while too much erases a consequential distinction.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "mage-prefers-adequate-reductions-not-more-models",
               "text": "MAGE prefers adequate purposeful reductions, not more detailed models or stronger semantics; both detail and semantic precision must earn their carrying cost.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "models-are-provisional-engineering-judgments",
               "text": "Degrees of freedom asks what present obligations permit leaving open; parsimony asks whether represented distinctions earn their place; neither judgment is final, because experience may reveal an omitted distinction was consequential or a represented one unnecessary.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "software-tolerance-is-often-qualitative",
               "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
-              "block_index": 54
+              "block_index": 55
             },
             {
               "slug": "a-measurement-model-can-carry-a-margin-not-just-a-target",
               "text": "Even a numeric bound is rarely a single line — a budget carries a margin, a capacity envelope leaves headroom — so a quantitative model can represent the band of acceptable variation, not just a target.",
-              "block_index": 56
+              "block_index": 57
             },
             {
               "slug": "obligations-bound-a-region-without-choosing-a-point",
               "text": "Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "capability-moves-the-specification-boundary-not-the-obligation",
               "text": "The obligation boundary is set by the engineering problem and does not move with agent capability; the specification boundary can move — greater capability reduces required scaffolding but cannot recover omitted semantics.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 65
+              "block_index": 66
             }
           ]
         },
@@ -680,32 +680,32 @@
           "heading_text": "Not every unmodeled choice is free",
           "topic_sentence": "This also distinguishes tacit obligations from genuinely free choices.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 67,
           "points": [
             {
               "slug": "unknown-tacit-explicit-free-are-states",
               "text": "Whether a choice is tacitly bounded or genuinely free is a present state, not a fixed one; it changes as engineers learn from the system.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "modeling-can-precede-complete-specification",
               "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 75
+              "block_index": 76
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "A model earns its place by the question it settles, not by how much of the system it represents.",
-              "block_index": 78
+              "block_index": 79
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 81
+              "block_index": 82
             }
           ]
         },
@@ -715,32 +715,32 @@
           "heading_text": "Constructing and Revising a Model",
           "topic_sentence": "Purposeful reduction is a judgment process, not an algorithm.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 84,
           "points": [
             {
               "slug": "purposeful-reduction-is-judgment-not-algorithm",
               "text": "Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives.",
-              "block_index": 85
+              "block_index": 86
             },
             {
               "slug": "reason-top-down-from-the-question",
               "text": "Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining realization choices stay free.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "reason-bottom-up-from-the-proposed-model",
               "text": "Reasoning bottom-up from the proposed model asks, for each represented distinction, what engineering question or obligation requires it; a distinction no consequential purpose justifies carrying is removed.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "revise-the-model-when-evidence-changes-the-judgment",
               "text": "Neither direction guarantees the boundary is right; analysis, implementation, measurement, or failure may reveal that an omitted distinction mattered or an included one did not, and the model is revised when the evidence changes the engineering judgment.",
-              "block_index": 91
+              "block_index": 92
             },
             {
               "slug": "the-most-important-evidence-comes-from-realization",
               "text": "The most important instance of revising from evidence is learning from realization itself.",
-              "block_index": 93
+              "block_index": 94
             }
           ]
         },
@@ -750,17 +750,17 @@
           "heading_text": "Implementation can induce a model",
           "topic_sentence": "The chapter has so far run in one direction: from question to model to realization.",
           "id_source": "derived",
-          "block_index": 95,
+          "block_index": 96,
           "points": [
             {
               "slug": "the-direction-also-runs-in-reverse",
               "text": "The chapter has so far run from question to model to realization, but the direction also reverses: a cheap exploratory realization can expose constraints, tradeoffs, state distinctions, dependencies, and bounds that were invisible on paper.",
-              "block_index": 96
+              "block_index": 97
             },
             {
               "slug": "a-prototype-preserves-a-realization-not-the-knowledge",
               "text": "A prototype preserves a realization but not necessarily the engineering knowledge learned from it; after probing, extract the durable relationship into an explicit representation, or deleting the prototype deletes the knowledge.",
-              "block_index": 98
+              "block_index": 99
             }
           ]
         },
@@ -770,32 +770,32 @@
           "heading_text": "Judging what an agent discovers",
           "topic_sentence": "An agent can bring engineering patterns learned from other systems into an exploratory realization.",
           "id_source": "derived",
-          "block_index": 100,
+          "block_index": 101,
           "points": [
             {
               "slug": "agents-import-patterns-but-design-is-contextual",
               "text": "An agent can bring patterns from other systems into an exploratory realization, but design is contextual: the engineer must judge which discovered choices suit the present system, and choices worth preserving should be extracted into explicit models rather than persist accidentally.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "model-extraction-turns-transfer-into-local-law",
               "text": "Model extraction turns candidate knowledge transfer into local engineering law: the agent proposes a judgment through implementation, the engineer decides it should persist, and once explicit the judgment can be inspected, communicated, revised, and eventually enforced.",
-              "block_index": 103
+              "block_index": 104
             },
             {
               "slug": "not-every-extraction-becomes-law",
               "text": "Not every extraction becomes law: descriptive discoveries can remain engineering knowledge, and law is the narrower case in which the engineer accepts the discovered choice as one that should persist.",
-              "block_index": 105
+              "block_index": 106
             },
             {
               "slug": "human-authority-is-not-human-invention",
               "text": "The division of labor belongs to MAGE because human authority is not human invention: the agent may supply the insight, and the engineer decides what becomes durable.",
-              "block_index": 109
+              "block_index": 110
             },
             {
               "slug": "inference-is-not-institutional-memory",
               "text": "MAGE does not simply let a capable agent infer the architecture, because inference is not institutional memory or engineering authority: different agents, contexts, prompts, or future priors may infer differently, and rediscovering a decided structure on every task is needless epistemic decay.",
-              "block_index": 111
+              "block_index": 112
             }
           ]
         },
@@ -805,67 +805,67 @@
           "heading_text": "Structure and Semantics Make Representations Machine-Operable",
           "topic_sentence": "A model can preserve the right distinctions without completely defining what those distinctions mean.",
           "id_source": "derived",
-          "block_index": 113,
+          "block_index": 114,
           "points": [
             {
               "slug": "a-model-can-preserve-distinctions-without-defining-them",
               "text": "A representation can preserve the right distinctions while its interpreters supply most of its meaning.",
-              "block_index": 115
+              "block_index": 116
             },
             {
               "slug": "semantic-commitment-names-the-second-axis",
               "text": "Semantic commitment: how much meaning the representation itself carries explicitly.",
-              "block_index": 117
+              "block_index": 118
             },
             {
               "slug": "semantic-commitment-is-distinct-from-purposeful-reduction",
               "text": "Purposeful reduction governs what the model says; semantic commitment governs how much the model itself says about what it means.",
-              "block_index": 120
+              "block_index": 121
             },
             {
               "slug": "stronger-semantics-buy-capabilities-and-create-obligations",
               "text": "Stronger semantics buy capabilities and create obligations; they are not inherently better.",
-              "block_index": 122
+              "block_index": 123
             },
             {
               "slug": "the-spectrum-in-concrete-artifacts",
               "text": "Concrete artifacts illustrate the range; the rows are examples, not maturity levels.",
-              "block_index": 124
+              "block_index": 125
             },
             {
               "slug": "the-columns-are-not-one-progression",
               "text": "Stronger commitment aids mechanical interpretation; it moves interpretation burden rather than removing it.",
-              "block_index": 127
+              "block_index": 128
             },
             {
               "slug": "semantic-precision-is-not-generative-completeness",
               "text": "Semantic precision and generative completeness are different properties.",
-              "block_index": 129
+              "block_index": 130
             },
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 135
+              "block_index": 136
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 138
+              "block_index": 139
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Shape does not distinguish representations, semantics do; semantic commitment decides how much of that meaning is declared rather than understood.",
-              "block_index": 141
+              "block_index": 142
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 143
+              "block_index": 144
             },
             {
               "slug": "agents-make-the-semantics-tradeoff-newly-consequential",
               "text": "Agents lack shared context's continuity, so stronger commitment converts recurring interpretation into durable knowledge.",
-              "block_index": 145
+              "block_index": 146
             }
           ]
         },
@@ -875,22 +875,22 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Increasing semantic commitment can make additional capabilities possible: typed relationships, machine-checkable properties, derivation, generation, traceability, composition, querying, and checking.",
           "id_source": "derived",
-          "block_index": 147,
+          "block_index": 148,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model.",
-              "block_index": 149
+              "block_index": 150
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "Selective modeling: model repeatedly reconstructed facts and repeatedly adjudicated properties; add commitment when it retires recurring work.",
-              "block_index": 152
+              "block_index": 153
             },
             {
               "slug": "enforcement-remains-separate",
               "text": "Enforcement stays separate: a rich model may remain advisory while permissions, sandboxes, compilers, or tests enforce obligations with little modeling; Modeling expands the set of properties that can be stated and evaluated, and Chapter 3 asks which the engineered environment should enforce.",
-              "block_index": 154
+              "block_index": 155
             }
           ]
         },
@@ -900,37 +900,37 @@
           "heading_text": "The Engineering Modeling Repertoire",
           "topic_sentence": "Software engineers do not need to invent a representation from first principles each time they encounter a consequential question.",
           "id_source": "derived",
-          "block_index": 157,
+          "block_index": 158,
           "points": [
             {
               "slug": "engineering-fields-have-accumulated-a-modeling-repertoire",
               "text": "Software engineers need not invent a representation from first principles each time; engineering fields have accumulated a large repertoire of models for recurring questions, each preserving different information and supporting different analyses.",
-              "block_index": 159
+              "block_index": 160
             },
             {
               "slug": "read-the-repertoire-as-available-moves-not-a-taxonomy",
               "text": "What matters is not a representation's graphical shape but the engineering question its entities and relations preserve.",
-              "block_index": 161
+              "block_index": 162
             },
             {
               "slug": "recognize-the-question-select-the-representation",
               "text": "The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; MAGE prescribes no new notation, and the inset gives the broader rule.",
-              "block_index": 164
+              "block_index": 165
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 166
+              "block_index": 167
             },
             {
               "slug": "the-sections-ahead-develop-three-kinds-of-modeling-question",
               "text": "The sections ahead do not survey the repertoire; they develop structural, behavioral, and decision questions through DocAble examples, other questions appear where the examples need them, and the final section asks what joining representations through shared identity makes possible.",
-              "block_index": 170
+              "block_index": 171
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable.",
-              "block_index": 172
+              "block_index": 173
             }
           ]
         }
@@ -953,7 +953,7 @@
         },
         {
           "slug": "models-are-also-for-the-engineer",
-          "text": "Models are not only for the agent but also for the engineer: a representation can make distinctions visible, force consequential decisions to be made explicitly, and expose omissions prose leaves easy to overlook, so its value does not depend entirely on the agent interpreting it better than natural language.",
+          "text": "Models help engineers make decisions and detect omissions as well as helping agents interpret engineering knowledge.",
           "block_index": 12
         },
         {
