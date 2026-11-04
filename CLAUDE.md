@@ -90,12 +90,22 @@ re-deriving these, so they live here:**
     wrong, and wrong in the dangerous direction: it told every agent the defense was broader than
     it is. Corrected 261104 after a deck agent used the pathspec defense exactly as documented and
     still swept three sibling files.
-    - **Mechanism.** `git commit -- <paths>` builds a TEMPORARY index from those paths and exports
-      it as `GIT_INDEX_FILE`. The hook's `git add` calls inherit that env var, so they write into
-      the temp index git is about to commit *from*. The hook's own module docstring states this
-      (`hooks/pre-commit`, "A pathspec on the commit does not defend against this — the temp index
-      is the one git exports"); CLAUDE.md contradicted it for an unknown span, and CLAUDE.md is the
-      file every agent boots with.
+    - **Mechanism — PARTLY PINNED, do not over-trust either direction.** `git commit -- <paths>`
+      builds a TEMPORARY index and exports it as `GIT_INDEX_FILE`; the hook's `git add` calls
+      inherit that env var and write into it. The hook's own module docstring asserts this is
+      sufficient to sweep ("A pathspec on the commit does not defend against this — the temp index
+      is the one git exports"), and a deck agent's commit on 261104 did sweep three siblings.
+      **But a CONTROL case the same hour did not:** a pathspec commit of `CLAUDE.md` alone, with
+      two of those same `interactive/*.html` dirty in the tree, carried only `CLAUDE.md` — and the
+      hook had run in full `gate + regenerate + stage` mode with no lock error, so its `git add`
+      succeeded and the staged HTML was nonetheless discarded. One difference between the cases is
+      that the control's HTML was already STAGED (`MM`) rather than merely dirty, but that was not
+      isolated and is not established as the discriminator.
+      So the honest statement is the OBSERVATION, not a mechanism: **a pathspec commit sometimes
+      sweeps the hook's force-staged paths and sometimes does not, and nothing in the output tells
+      you which happened.** Verify after every commit with `git show --stat HEAD` rather than
+      reasoning about which index git used. Pinning this properly is open work; an un-pinnable
+      attribution is a finding about the signal, not a reason to pick the comfortable story.
     - **What the pathspec DOES defend:** foreign paths that were ALREADY STAGED when you commit —
       they stay staged for their owner. That is real and worth keeping. It does **not** defend
       against a file that is merely DIRTY in the working tree and matches one of the hook's
