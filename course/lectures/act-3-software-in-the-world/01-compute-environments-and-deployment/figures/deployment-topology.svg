@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: three side-by-side
+     panels showing the SAME reservation service deployed three ways, with each node's contents drawn
+     as labeled tier chips (interface / business logic / persistent state) so the reader can see which
+     machine holds which tier. The containment geometry and the per-tier chip encoding are what carry
+     the point, and a graph auto-layout draws neither. Palette, stroke, and type follow the course
+     figure vocabulary (sibling figures/ci-cd-pipeline.svg,
+     ../../02-data-management/figures/representations.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 512" width="760" height="512"
+     role="img" aria-labelledby="dtTitle dtDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dtTitle">Three deployment arrangements for one reservation service, showing which machine
+    holds the interface, which holds the business logic, and which holds the persistent state</title>
+  <desc id="dtDesc">Three panels compare where the parts of one reservation service execute, and every
+    box is labeled by tier: interface, business logic, or persistent state. The LOCAL panel holds a
+    single machine carrying all three tiers stacked together. The CLIENT-SERVER panel splits them: a
+    user device holds only the interface, and an arrow labeled "network" leads down to a shared server
+    holding both the business logic and the persistent state. The WEB APPLICATION panel splits them
+    again into three: a browser holds the interface, an arrow labeled "network" leads to an application
+    server holding the business logic and annotated "holds no reservation state", and an arrow labeled
+    "data access" leads from there to a separate database service holding the persistent state. A
+    legend repeats the three tier labels. A closing note reads: the same tier may sit on a different
+    machine in each arrangement, so the split, not the number of boxes, is the decision.</desc>
+
+  <defs>
+    <marker id="dt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="512" fill="#fdfcf9"/>
+
+  <text x="380" y="36" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">WHERE THE INTERFACE, THE LOGIC, AND THE STATE EXECUTE</text>
+
+  <!-- panel bands -->
+  <g fill="#faf7f0" stroke="#2f5169" stroke-width="2">
+    <rect x="40" y="56" width="220" height="372" rx="12"/>
+    <rect x="270" y="56" width="220" height="372" rx="12"/>
+    <rect x="500" y="56" width="220" height="372" rx="12"/>
+  </g>
+
+  <!-- panel headers -->
+  <g text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">
+    <text x="150" y="84">LOCAL</text>
+    <text x="380" y="84">CLIENT-SERVER</text>
+    <text x="610" y="84">WEB APPLICATION</text>
+  </g>
+  <g text-anchor="middle" font-size="13" fill="#41586c">
+    <text x="150" y="104">all three tiers on one machine</text>
+    <text x="380" y="104">interface split from the rest</text>
+    <text x="610" y="104">all three tiers separated</text>
+  </g>
+
+  <!-- ===== left panel: local installation ===== -->
+  <rect x="58" y="118" width="184" height="138" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="140" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">One machine</text>
+  <rect x="68" y="150" width="164" height="28" rx="6" fill="#eef2f6" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="150" y="169" text-anchor="middle" font-size="13" fill="#1c1917">Interface</text>
+  <rect x="68" y="184" width="164" height="28" rx="6" fill="#f5efe3" stroke="#8a6a3f" stroke-width="1.5"/>
+  <text x="150" y="203" text-anchor="middle" font-size="13" fill="#1c1917">Business logic</text>
+  <rect x="68" y="218" width="164" height="28" rx="6" fill="#eef3ee" stroke="#3d6b4a" stroke-width="1.5"/>
+  <text x="150" y="237" text-anchor="middle" font-size="13" fill="#1c1917">Persistent state</text>
+
+  <!-- ===== middle panel: client-server ===== -->
+  <rect x="288" y="118" width="184" height="70" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="140" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">User device</text>
+  <rect x="298" y="150" width="164" height="28" rx="6" fill="#eef2f6" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="380" y="169" text-anchor="middle" font-size="13" fill="#1c1917">Interface</text>
+
+  <line x1="380" y1="188" x2="380" y2="218" stroke="#2f5169" stroke-width="2" marker-end="url(#dt-ah)"/>
+  <text x="390" y="207" font-size="12" fill="#41586c">network</text>
+
+  <rect x="288" y="220" width="184" height="104" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="380" y="242" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">Shared server</text>
+  <rect x="298" y="252" width="164" height="28" rx="6" fill="#f5efe3" stroke="#8a6a3f" stroke-width="1.5"/>
+  <text x="380" y="271" text-anchor="middle" font-size="13" fill="#1c1917">Business logic</text>
+  <rect x="298" y="286" width="164" height="28" rx="6" fill="#eef3ee" stroke="#3d6b4a" stroke-width="1.5"/>
+  <text x="380" y="305" text-anchor="middle" font-size="13" fill="#1c1917">Persistent state</text>
+
+  <!-- ===== right panel: web application ===== -->
+  <rect x="518" y="118" width="184" height="70" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="610" y="140" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">Browser</text>
+  <rect x="528" y="150" width="164" height="28" rx="6" fill="#eef2f6" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="610" y="169" text-anchor="middle" font-size="13" fill="#1c1917">Interface</text>
+
+  <line x1="610" y1="188" x2="610" y2="218" stroke="#2f5169" stroke-width="2" marker-end="url(#dt-ah)"/>
+  <text x="620" y="207" font-size="12" fill="#41586c">network</text>
+
+  <rect x="518" y="220" width="184" height="88" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="610" y="242" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">Application server</text>
+  <rect x="528" y="252" width="164" height="28" rx="6" fill="#f5efe3" stroke="#8a6a3f" stroke-width="1.5"/>
+  <text x="610" y="271" text-anchor="middle" font-size="13" fill="#1c1917">Business logic</text>
+  <text x="610" y="296" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">holds no reservation state</text>
+
+  <line x1="610" y1="308" x2="610" y2="338" stroke="#2f5169" stroke-width="2" marker-end="url(#dt-ah)"/>
+  <text x="620" y="327" font-size="12" fill="#41586c">data access</text>
+
+  <rect x="518" y="340" width="184" height="70" rx="10" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="610" y="362" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">Database service</text>
+  <rect x="528" y="372" width="164" height="28" rx="6" fill="#eef3ee" stroke="#3d6b4a" stroke-width="1.5"/>
+  <text x="610" y="391" text-anchor="middle" font-size="13" fill="#1c1917">Persistent state</text>
+
+  <!-- legend: the three tiers -->
+  <rect x="195" y="446" width="14" height="14" rx="3" fill="#eef2f6" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="217" y="458" font-size="13" fill="#41586c">interface</text>
+  <rect x="307" y="446" width="14" height="14" rx="3" fill="#f5efe3" stroke="#8a6a3f" stroke-width="1.5"/>
+  <text x="329" y="458" font-size="13" fill="#41586c">business logic</text>
+  <rect x="457" y="446" width="14" height="14" rx="3" fill="#eef3ee" stroke="#3d6b4a" stroke-width="1.5"/>
+  <text x="479" y="458" font-size="13" fill="#41586c">persistent state</text>
+
+  <text x="380" y="478" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the same tier may sit on a different machine in each arrangement:</text>
+  <text x="380" y="498" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the split, not the number of boxes, is the decision</text>
+</svg>
