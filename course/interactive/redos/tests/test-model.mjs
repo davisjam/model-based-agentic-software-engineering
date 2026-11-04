@@ -105,13 +105,23 @@ test('the predicted curve covers the ladder the sweep will walk', () => {
   }
 });
 
-test('at the top of its ladder the exponential model dwarfs the quadratic one', () => {
-  /* A statement about the two MODELS — closed forms, no clock involved. It is the comparison the
-     predicted-work chart exists to make: 30 characters of exponential beats 28,000 characters of
-     quadratic. */
-  const exp = R.predictedCandidates('exponential', R.lengthBounds('exponential').max);
-  const quad = R.predictedCandidates('quadratic', R.lengthBounds('quadratic').max);
-  assert.ok(exp > quad, `exponential ${exp} vs quadratic ${quad}`);
+test('the exponential model extracts far more work PER CHARACTER than the quadratic one', () => {
+  /* A statement about the two MODELS — closed forms, no clock involved — and the comparison the
+     predicted-work chart exists to make.
+
+     Note what is NOT claimed: that the exponential ladder's top models more total work than the
+     quadratic ladder's top. It does not, and that is an artefact of where the two ladders stop
+     (28 characters against 28,000), not a fact about the expressions. The claim that survives the
+     ladder bounds is the one that matters to an adversary: cost per character of input supplied.
+     An adversary paying by the byte would rather have the nested quantifier. */
+  const perChar = (id) => {
+    const n = R.lengthBounds(id).max;
+    return R.predictedCandidates(id, n) / n;
+  };
+  assert.ok(perChar('exponential') > 100 * perChar('quadratic'),
+    `exponential ${perChar('exponential')} vs quadratic ${perChar('quadratic')} per character`);
+  assert.ok(perChar('quadratic') > 10 * perChar('ordinary'),
+    'the quadratic model does not out-work the linear one per character');
 });
 
 /* --- the model/trace distinction, held in the data ------------------------------------------ */

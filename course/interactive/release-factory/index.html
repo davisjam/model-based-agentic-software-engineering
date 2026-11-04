@@ -603,6 +603,10 @@ footer {
          difference a canary can make — and the quantity to look at, because "was it eventually
          detected" is dominated by traffic volume rather than by the release strategy. */
       detectedDuringCanary: false,
+      /* How many test runs this instance has faced. The statistical validation needs an exact
+         denominator for "the suite signalled this defect": a defect sitting in the backlog has
+         never been offered to the tests, and counting it would understate the signal rate. */
+      testRuns: 0,
       /* Detection is rescheduled whenever the exposure fraction changes. The generation counter
          invalidates the superseded event instead of searching the heap for it. */
       detectGeneration: 0
@@ -948,6 +952,7 @@ footer {
       restoreSum: 0, restoreCount: 0,
       requestsExposed: 0, requestsAffected: 0, exposureHours: 0,
       failureExposureSum: 0, failureExposureCount: 0,
+      testHoursSum: 0, reworkHoursSum: 0,
       waitLaneSum: 0, testSum: 0, reworkSum: 0, batchWaitSum: 0, deploySum: 0
     };
     sim.leadTimes = createRing(p.quantileWindow);
@@ -1046,7 +1051,8 @@ footer {
       testStartedAt: null,
       admittedAt: null,
       firstExposureAt: null,
-      leadTime: null
+      leadTime: null,
+      leadParts: null
     };
     sim.nextChangeId += 1;
     return change;
@@ -1072,9 +1078,12 @@ footer {
     change.testHours += sim.time - change.testStartedAt;
     sim.counters.testRuns += 1;
 
+    sim.totals.testHoursSum += sim.time - change.testStartedAt;
+
     var coverage = TEST_DEPTHS[p.testDepth].coverage;
     var signalled = false;
     if (change.defect) {
+      change.defect.testRuns += 1;
       signalled = sim.rng.test() < change.defect.testDetectability * coverage;
       if (signalled) change.defect.signalledByTestsAt = sim.time;
     }
@@ -1126,6 +1135,7 @@ footer {
   function onReworkFinish(sim, change) {
     sim.inRework -= 1;
     change.reworkHours += sim.time - change.reworkStartedAt;
+    sim.totals.reworkHoursSum += sim.time - change.reworkStartedAt;
     change.attempt += 1;
     if (change.pendingRegression) {
       change.defect = drawDefect(sim, sim.time, sim.rng.regression, 'rework');
@@ -1299,17 +1309,31 @@ footer {
       for (var i = 0; i < release.changes.length; i += 1) {
         var change = release.changes[i];
         change.deployHours += sim.time - change.deployStartedAt;
-        change.firstExposureAt = sim.time;
-        change.leadTime = sim.time - change.commitTime;
-        if (sim.time >= p.warmupHours) {
-          sim.totals.leadTimeSum += change.leadTime;
-          sim.totals.leadTimeCount += 1;
-          sim.totals.waitLaneSum += change.waitLane;
-          sim.totals.testSum += change.testHours;
-          sim.totals.reworkSum += change.reworkHours;
-          sim.totals.batchWaitSum += change.batchWait;
-          sim.totals.deploySum += change.deployHours;
-          ringPush(sim.leadTimes, change.leadTime);
+        /* ONE lead-time observation per change, recorded at its FIRST arrival in production.
+           A change that is rolled back and shipped again does not produce a second observation:
+           it is the same change, and counting it twice would both inflate the sample and make the
+           mean a function of how often the factory fails. The cost of that failure is carried by
+           deployment frequency and by the change failure rate instead, which is where a reader
+           looking for it would go. */
+        if (change.firstExposureAt === null) {
+          change.firstExposureAt = sim.time;
+          change.leadTime = sim.time - change.commitTime;
+          /* Frozen here rather than recomputed later, so the breakdown always sums to exactly the
+             lead time it decomposes even after the change goes round again. */
+          change.leadParts = {
+            waitForLane: change.waitLane, test: change.testHours, rework: change.reworkHours,
+            batchWait: change.batchWait, deploy: change.deployHours
+          };
+          if (sim.time >= p.warmupHours) {
+            sim.totals.leadTimeSum += change.leadTime;
+            sim.totals.leadTimeCount += 1;
+            sim.totals.waitLaneSum += change.leadParts.waitForLane;
+            sim.totals.testSum += change.leadParts.test;
+            sim.totals.reworkSum += change.leadParts.rework;
+            sim.totals.batchWaitSum += change.leadParts.batchWait;
+            sim.totals.deploySum += change.leadParts.deploy;
+            ringPush(sim.leadTimes, change.leadTime);
+          }
         }
         /* EVENT 3. First contact with real users. */
         if (change.defect && change.defect.exposedInProductionAt === null) {
@@ -1809,6 +1833,12 @@ footer {
         admittedWithFailingChecks: sim.counters.admittedWithFailingChecks,
         reworks: sim.counters.reworks,
         reworkRegressions: sim.counters.reworkRegressions,
+        /* Observed mean durations, for comparison against the nominal values the policy tables
+           specify. A discrepancy here is a defect in the duration sampler, not in a policy. */
+        meanTestHours: sim.counters.testRuns > 0
+          ? sim.totals.testHoursSum / sim.counters.testRuns : null,
+        meanReworkHours: sim.counters.reworks > 0
+          ? sim.totals.reworkHoursSum / sim.counters.reworks : null,
         releasesAborted: sim.counters.releasesAborted,
         caughtInCanary: sim.counters.caughtInCanary
       },

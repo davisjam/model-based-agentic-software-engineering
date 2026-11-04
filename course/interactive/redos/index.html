@@ -417,18 +417,21 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   <div class="btn-row">
     <button type="button" class="act primary" id="btn-run">Run selected</button>
     <button type="button" class="act" id="btn-run-all">Run all four</button>
-    <button type="button" class="act" id="btn-run-limit">Run to the ladder limit</button>
+    <button type="button" class="act" id="btn-run-longest">One trial at the longest input</button>
     <button type="button" class="act" id="btn-reset">Reset</button>
     <span style="flex:1"></span>
     <a class="act" id="btn-download" href="index.html" download="redos.html"
-       role="button" style="text-decoration:none">Download HTML</a>
+       style="text-decoration:none">Download HTML</a>
   </div>
 
   <p class="note" id="run-policy">
-    A run walks the experiment's length ladder from its shortest input upward, stopping at the first
-    length that exceeds the budget. <strong>Run to the ladder limit</strong> raises the maximum to
-    the top of the ladder, which is how you find where the budget bites on <em>this</em> machine
-    &mdash; the answer differs between browsers, and that is part of the lesson.
+    <strong>Run selected</strong> walks the experiment's length ladder from its shortest input
+    upward, stopping at the first length that exceeds the budget. Where it stops differs between
+    browsers and machines, and that is part of the lesson.
+    <strong>One trial at the longest input</strong> skips the climb and runs the top of the ladder
+    directly. On the two linear experiments that still finishes in well under a millisecond
+    &mdash; which is the comparison. On the two pathological ones it blows past the deadline, and
+    you can watch the page destroy the worker and carry on.
   </p>
 </section>
 
@@ -762,7 +765,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
      allow. The ladder is part of the resource bound, not merely a choice of x-axis. */
   var WHITESPACE_LADDER = [500, 1000, 2000, 3000, 4000, 6000, 8000, 10000, 12000, 14000,
     16000, 18000, 20000, 24000, 28000];
-  var NESTED_LADDER = [12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+  /* The nested-quantifier ladder stops at 28 rather than running higher, and the reason is the
+     termination path rather than the chart. `terminate()` detaches a worker; it does not promise
+     that the underlying thread stops at once, so the top of this ladder sets how long a detached
+     thread may spin after the page has already recovered. At 28 the modelled work is ~2^27, which
+     measures in the low seconds — comfortably past the 400 ms deadline the demonstration needs, and
+     short enough that a classroom machine is not left burning a core. */
+  var NESTED_LADDER = [12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28];
 
   var EXPERIMENTS = [
     {
@@ -1010,9 +1019,22 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   function createSweep(options) {
     var o = options || {};
     var xp = findExperiment(o.experimentId);
+    /* An explicit length list, rather than a clipped ladder, exists for one case: running a SINGLE
+       trial at the longest input. The climbing ladder halts at the first length that overruns the
+       budget, so the only trial it can ever present to the deadline is one that just crossed 250 ms
+       — which lands under the 400 ms deadline nearly every time. The termination path would then be
+       unreachable in a classroom, and the recovery it performs undemonstrable. Naming one length
+       skips the climb and puts a genuinely expensive execution in front of the deadline. */
+    var lengths;
+    if (Array.isArray(o.lengths)) {
+      if (!o.lengths.length) throw new Error('an explicit sweep needs at least one length');
+      lengths = o.lengths.slice();
+    } else {
+      lengths = lengthLadder(xp.id, o.maxLength);
+    }
     return {
       experimentId: xp.id,
-      lengths: lengthLadder(xp.id, o.maxLength),
+      lengths: lengths,
       budgetMs: typeof o.budgetMs === 'number' ? o.budgetMs : BUDGET_MS,
       deadlineMs: typeof o.deadlineMs === 'number' ? o.deadlineMs : DEADLINE_MS,
       index: 0,
@@ -1699,6 +1721,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     experimentId: 'quadratic',
     lengths: {},
     scale: 'linear',
+    mode: 'ladder',
     sweeps: {},
     workersCreated: 0,
     terminations: 0,
@@ -1746,7 +1769,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       + 'regular expression cannot be interrupted, so a match running here could not be stopped at '
       + 'the deadline and would freeze this page outright — which is the very failure the '
       + 'demonstration is about. Reported reason: ' + reason));
-    ['btn-run', 'btn-run-all', 'btn-run-limit'].forEach(function (id) { $(id).disabled = true; });
+    ['btn-run', 'btn-run-all', 'btn-run-longest'].forEach(function (id) { $(id).disabled = true; });
     setStatus('idle', 'workers unavailable');
   }
 
@@ -1807,8 +1830,9 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     renderStatus();
   }
 
-  function startQueue(ids) {
+  function startQueue(ids, mode) {
     if (!ui.workerAvailable) return;
+    ui.mode = mode || 'ladder';
     ui.queue = ids.slice();
     ids.forEach(function (id) { delete ui.sweeps[id]; });
     $('kill-notice').hidden = true;
@@ -1816,20 +1840,29 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   }
 
   function nextInQueue() {
-    if (!ui.queue.length) { run.busy = false; setStatus('complete', 'all requested runs finished'); render(); return; }
-    var id = ui.queue.shift();
-    startSweep(id);
+    if (!ui.queue.length) {
+      run.busy = false;
+      setStatus('complete', 'all requested runs finished');
+      render();
+      return;
+    }
+    startSweep(ui.queue.shift());
   }
 
   function startSweep(experimentId) {
     if (!ensureWorker()) return;
     run.busy = true;
-    run.sweep = R.createSweep({
+    var options = {
       experimentId: experimentId,
-      maxLength: ui.lengths[experimentId],
       budgetMs: R.BUDGET_MS,
       deadlineMs: R.DEADLINE_MS
-    });
+    };
+    if (ui.mode === 'longest') {
+      options.lengths = [R.lengthBounds(experimentId).max];
+    } else {
+      options.maxLength = ui.lengths[experimentId];
+    }
+    run.sweep = R.createSweep(options);
     ui.sweeps[experimentId] = run.sweep;
     setStatus('running', 'warming up ' + R.findExperiment(experimentId).label);
     render();
@@ -2264,11 +2297,10 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     render();
   });
 
-  $('btn-run').addEventListener('click', function () { startQueue([ui.experimentId]); });
-  $('btn-run-all').addEventListener('click', function () { startQueue(R.experimentIds()); });
-  $('btn-run-limit').addEventListener('click', function () {
-    setMaxLength(R.lengthBounds(ui.experimentId).max);
-    startQueue([ui.experimentId]);
+  $('btn-run').addEventListener('click', function () { startQueue([ui.experimentId], 'ladder'); });
+  $('btn-run-all').addEventListener('click', function () { startQueue(R.experimentIds(), 'ladder'); });
+  $('btn-run-longest').addEventListener('click', function () {
+    startQueue([ui.experimentId], 'longest');
   });
   $('btn-reset').addEventListener('click', resetAll);
 
@@ -2284,10 +2316,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       selectExperiment(R.experimentIds()[Number(key) - 1]);
       event.preventDefault();
     } else if (key === 'r' || key === 'R') {
-      startQueue([ui.experimentId]);
+      startQueue([ui.experimentId], 'ladder');
       event.preventDefault();
     } else if (key === 'a' || key === 'A') {
-      startQueue(R.experimentIds());
+      startQueue(R.experimentIds(), 'ladder');
+      event.preventDefault();
+    } else if (key === 'l' || key === 'L') {
+      startQueue([ui.experimentId], 'longest');
       event.preventDefault();
     } else if (key === 'x' || key === 'X') {
       resetAll();

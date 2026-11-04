@@ -37,7 +37,7 @@ function run(label, args) {
 }
 
 const ok = run('unit tier', ['--test', 'test-patterns.mjs', 'test-measure.mjs', 'test-sweep.mjs',
-  'test-model.mjs', 'test-threat.mjs', 'test-packaging.mjs']);
+  'test-model.mjs', 'test-threat.mjs', 'test-worker-protocol.mjs', 'test-packaging.mjs']);
 
 process.stdout.write(`\n${ok ? 'ALL TIERS PASS' : 'FAILURES ABOVE'}\n`);
 process.stdout.write('(the browser tier is separate: python3 browser_test.py --serve)\n');

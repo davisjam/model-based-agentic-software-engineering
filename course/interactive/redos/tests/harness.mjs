@@ -79,6 +79,70 @@ export function fakeClock(stepMs) {
   return fn;
 }
 
+/* --- the worker, assembled the way the page assembles it ------------------------------------- */
+
+/**
+ * The exact prefix the page prepends to the engine when building the worker.
+ *
+ * Read out of the page rather than restated here. The convention ("in a worker there is no
+ * `window`, so make one") belongs to the page, and a copy in the test would let the two drift
+ * apart — at which point the suite would be exercising an assembly nobody ships.
+ */
+export function extractWorkerPrefix(html = readDemoHtml()) {
+  const m = html.match(/var WORKER_PREFIX = '((?:\\.|[^'\\])*)';/);
+  if (!m) throw new Error('the page does not declare WORKER_PREFIX');
+  return m[1].replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/\\\\/g, '\\')
+    .replace(/\\'/g, "'");
+}
+
+/** The worker-protocol function's text, delimited in the page by explicit markers. */
+export function extractWorkerProtocolSource(html = readDemoHtml()) {
+  const begin = html.indexOf('WORKER-PROTOCOL-BEGIN');
+  if (begin < 0) throw new Error('the page has no WORKER-PROTOCOL-BEGIN marker');
+  const end = html.indexOf('WORKER-PROTOCOL-END', begin);
+  if (end < 0) throw new Error('the page has no WORKER-PROTOCOL-END marker');
+  const fnStart = html.indexOf('function workerMain', begin);
+  if (fnStart < 0 || fnStart > end) throw new Error('no workerMain between the markers');
+  const lastBrace = html.lastIndexOf('}', end);
+  return html.slice(fnStart, lastBrace + 1);
+}
+
+/** The worker's full source, assembled from the page's own three pieces. */
+export function buildWorkerSource(html = readDemoHtml()) {
+  return `${extractWorkerPrefix(html)}${extractEngineSource(html)}\n(${extractWorkerProtocolSource(html)})();\n`;
+}
+
+/**
+ * Evaluate the worker's source against a fake `self` and return a driver for it.
+ *
+ * This runs the REAL protocol code — the same text the page ships into the worker — without a
+ * browser, so the message contract is covered on every machine. What it cannot cover is the part
+ * that needs a real worker: that an expensive match leaves the page responsive, and that destroying
+ * a worker frees the page and a fresh one serves the next run. Those live in browser_test.py.
+ */
+export function spawnFakeWorker() {
+  const sent = [];
+  const fakeSelf = {
+    performance: { now: () => performance.now() },
+    postMessage: (m) => { sent.push(m); },
+  };
+  const evaluate = new Function('self', buildWorkerSource());
+  evaluate(fakeSelf);
+  return {
+    sent,
+    get published() { return fakeSelf.ReDoS; },
+    /** Deliver a message and return everything the worker posted in response to it. */
+    send(message) {
+      const before = sent.length;
+      if (typeof fakeSelf.onmessage !== 'function') {
+        throw new Error('the worker installed no message handler');
+      }
+      fakeSelf.onmessage({ data: message });
+      return sent.slice(before);
+    },
+  };
+}
+
 /** A trial result shaped the way the worker would send one, for sweep-state assertions. */
 export function fakeResult(experimentId, length, over, extra) {
   return {
