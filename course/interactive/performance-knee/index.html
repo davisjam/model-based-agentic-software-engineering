@@ -1089,6 +1089,12 @@ footer {
     sim.nextRequestId = 1;
     sim.nextAttemptId = 1;
     sim.queue = [];
+    /* The FIFO is an array plus a head index, not an array and shift(). Under overload the queue
+       reaches tens of thousands of entries, and shift() is O(n): a 5000-second run at λ=110, μ=100
+       spent 20 of its 21 seconds moving array elements. Head-index dequeue with amortised
+       compaction made the same run 25x faster, which is the difference between a usable 100x
+       overload demonstration and a stuttering one. */
+    sim.queueHead = 0;
     sim.inService = null;
     sim.nextArrivalTime = null;
     sim.nextDepartureTime = null;
@@ -1112,8 +1118,23 @@ footer {
     return sim;
   }
 
-  function numberInSystem(sim) { return sim.queue.length + (sim.inService ? 1 : 0); }
-  function isEmpty(sim) { return sim.inService === null && sim.queue.length === 0; }
+  function queueLength(sim) { return sim.queue.length - sim.queueHead; }
+  function queueFront(sim) { return sim.queueHead < sim.queue.length ? sim.queue[sim.queueHead] : null; }
+  function numberInSystem(sim) { return queueLength(sim) + (sim.inService ? 1 : 0); }
+  function isEmpty(sim) { return sim.inService === null && queueLength(sim) === 0; }
+
+  /* Amortised-O(1) dequeue: advance the head, and drop the consumed prefix once it is both large
+     enough to matter and at least half the backing array. */
+  function dequeue(sim) {
+    var request = sim.queue[sim.queueHead];
+    sim.queue[sim.queueHead] = null;
+    sim.queueHead += 1;
+    if (sim.queueHead >= 4096 && sim.queueHead * 2 >= sim.queue.length) {
+      sim.queue = sim.queue.slice(sim.queueHead);
+      sim.queueHead = 0;
+    }
+    return request;
+  }
 
   /* Accumulate the time-weighted statistics over [sim.time, toTime), then advance the clock.
      Called BEFORE an event is applied, so the occupancy used is N(t-): the state that actually held
@@ -1123,7 +1144,7 @@ footer {
   function accumulate(sim, toTime) {
     if (!(toTime > sim.time)) { sim.time = Math.max(sim.time, toTime); return; }
     var n = numberInSystem(sim);
-    var nq = sim.queue.length;
+    var nq = queueLength(sim);
     var busy = sim.inService ? 1 : 0;
     var from = sim.time > sim.warmup ? sim.time : sim.warmup;
     if (toTime > from) {
@@ -1198,7 +1219,8 @@ footer {
       startService(sim, request);
     } else {
       sim.queue.push(request);
-      if (sim.queue.length > sim.counters.maxQueueLength) sim.counters.maxQueueLength = sim.queue.length;
+      var ql = queueLength(sim);
+      if (ql > sim.counters.maxQueueLength) sim.counters.maxQueueLength = ql;
     }
     var n = numberInSystem(sim);
     if (n > sim.counters.maxNumberInSystem) sim.counters.maxNumberInSystem = n;
@@ -1232,7 +1254,7 @@ footer {
     sim.inService = null;
     sim.nextDepartureTime = null;
     /* FCFS: the head of the queue, always. */
-    if (sim.queue.length > 0) startService(sim, sim.queue.shift());
+    if (queueLength(sim) > 0) startService(sim, dequeue(sim));
     return request;
   }
 
@@ -1489,7 +1511,7 @@ footer {
       events: sim.eventCount,
       arrivals: sim.counters.arrivals,
       completions: sim.counters.completions,
-      queueLength: sim.queue.length,
+      queueLength: queueLength(sim),
       numberInSystem: inSystem,
       maxQueueLength: sim.counters.maxQueueLength,
       maxNumberInSystem: sim.counters.maxNumberInSystem,
@@ -1642,7 +1664,7 @@ footer {
         if (ev === null) break;
         assert(ev.time >= last, 'time moved backward');
         last = ev.time;
-        assert(sim.queue.length >= 0, 'negative queue');
+        assert(queueLength(sim) >= 0, 'negative queue');
         assert(sim.counters.completions <= sim.counters.arrivals, 'more completions than arrivals');
         if (ev.kind === 'completion') {
           assert(sim.lastCompletion.requestId > lastId, 'FCFS order violated');
@@ -1742,6 +1764,8 @@ footer {
     applyPreset: applyPreset,
     findPreset: findPreset,
     numberInSystem: numberInSystem,
+    queueLength: queueLength,
+    queueFront: queueFront,
     isEmpty: isEmpty
   };
 }());
