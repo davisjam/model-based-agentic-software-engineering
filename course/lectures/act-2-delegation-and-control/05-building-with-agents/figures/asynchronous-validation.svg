@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: two lanes whose
+     only connection is a REVERSED dashed read edge, so no path leads from a land to the sweep. That
+     separation is the figure's whole claim and a graph auto-layout would route it back the other way.
+     The acknowledged/resolved pair below the gate carries the second claim: acknowledgment releases
+     the gate without establishing health. Palette, stroke, type and marker convention follow the
+     course figure vocabulary (05-building-with-agents/figures/software-factory.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" width="980" height="520"
+     role="img" aria-labelledby="avTitle avDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="avTitle">Asynchronous validation with a dispatch gate: cheap checks admit a change to
+    main, a broad sweep runs on its own timer rather than on landing, and a recorded failure closes a
+    pre-dispatch gate that acknowledgment reopens without proving main healthy</title>
+  <desc id="avDesc">Two lanes run side by side. The left lane, integration and synchronous: a pill of
+    implementation agents sends a land a change edge into cheap admission checks that run on every
+    land, which sends an admit edge into the main branch, the integrated tree. The right lane,
+    validation and timer-driven: an independent timer sends a fires on a schedule edge into the broad
+    validation sweep, which runs the full test suite. The timer carries the note that lands do not
+    trigger the sweep, and the lanes connect only by a dashed edge drawn outward from the sweep and
+    labelled reads main, so no edge leads from a land into the sweep. The sweep branches into a pass
+    edge, which reaches a no alert box where dispatch continues, and a fail edge, which reaches a
+    known blocking failure recorded as an alert. The alert feeds a pre-dispatch gate that refuses new
+    dispatch, and a red edge runs from the gate back around the left of the figure into the
+    implementation agents, labelled no new dispatch while the alert stands. The gate branches into
+    two handling outcomes: acknowledged, after which dispatch resumes but main is not yet proven
+    healthy, and resolved, after which the defect is repaired and the next sweep can pass. A note at
+    the lower left reads: acknowledgment is not health, only a passing sweep establishes that main is
+    healthy.</desc>
+
+  <defs>
+    <marker id="av-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="av-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    </marker>
+    <marker id="av-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f6b3a"/>
+    </marker>
+    <marker id="av-ah-o" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a6630"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="980" height="520" fill="#fdfcf9"/>
+
+  <text x="490" y="34" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ASYNCHRONOUS VALIDATION WITH A DISPATCH GATE</text>
+
+  <text x="215" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">INTEGRATION (SYNCHRONOUS)</text>
+  <text x="620" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a6630">VALIDATION (TIMER-DRIVEN)</text>
+
+  <!-- integration lane -->
+  <rect x="100" y="82" width="230" height="44" rx="22" fill="#fdfcf9" stroke="#41586c" stroke-width="2"/>
+  <text x="215" y="110" text-anchor="middle" font-size="14.5" fill="#1c1917">Implementation agents</text>
+  <line x1="215" y1="126" x2="215" y2="152" stroke="#2f5169" stroke-width="2" marker-end="url(#av-ah)"/>
+  <text x="226" y="145" font-size="12" fill="#41586c">land a change</text>
+
+  <rect x="100" y="154" width="230" height="50" rx="10" fill="#eaf0ea" stroke="#4f6b50" stroke-width="2"/>
+  <text x="215" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Cheap admission checks</text>
+  <text x="215" y="193" text-anchor="middle" font-size="11.5" fill="#41586c">run on every land</text>
+  <line x1="215" y1="204" x2="215" y2="230" stroke="#2f5169" stroke-width="2" marker-end="url(#av-ah)"/>
+  <text x="226" y="223" font-size="12" fill="#41586c">admit</text>
+
+  <rect x="100" y="232" width="230" height="50" rx="10" fill="#e3ebf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="215" y="254" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">Main branch</text>
+  <text x="215" y="272" text-anchor="middle" font-size="11.5" fill="#41586c">the integrated tree</text>
+
+  <!-- validation lane: driven only by the timer -->
+  <rect x="505" y="82" width="230" height="44" rx="22" fill="#faf7f0" stroke="#8a6630" stroke-width="2.4"/>
+  <text x="620" y="110" text-anchor="middle" font-size="14.5" fill="#1c1917">Independent timer</text>
+  <text x="752" y="100" font-size="12" fill="#8a6630">Lands do not</text>
+  <text x="752" y="117" font-size="12" fill="#8a6630">trigger the sweep.</text>
+  <line x1="620" y1="126" x2="620" y2="152" stroke="#8a6630" stroke-width="2" marker-end="url(#av-ah-o)"/>
+  <text x="631" y="145" font-size="12" fill="#8a6630">fires on a schedule</text>
+
+  <rect x="505" y="154" width="230" height="50" rx="10" fill="#faf7f0" stroke="#8a6630" stroke-width="2"/>
+  <text x="620" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Broad validation sweep</text>
+  <text x="620" y="193" text-anchor="middle" font-size="11.5" fill="#41586c">the full test suite</text>
+
+  <!-- the ONLY cross-lane edge, drawn OUTWARD from the sweep: a read, not a trigger -->
+  <path d="M505,179 L420,179 L420,257 L334,257" fill="none" stroke="#8a6630" stroke-width="1.8"
+        stroke-dasharray="6 4" marker-end="url(#av-ah-o)"/>
+  <text x="430" y="222" font-size="11.5" fill="#8a6630">reads main</text>
+
+  <!-- sweep verdict -->
+  <line x1="620" y1="204" x2="620" y2="218" stroke="#2f5169" stroke-width="2"/>
+  <line x1="620" y1="218" x2="620" y2="244" stroke="#b23b3b" stroke-width="2" marker-end="url(#av-ah-r)"/>
+  <path d="M620,218 L865,218 L865,244" fill="none" stroke="#2f6b3a" stroke-width="2" marker-end="url(#av-ah-g)"/>
+  <text x="608" y="240" text-anchor="end" font-size="13.5" font-weight="700" fill="#8a2f2f">Fail</text>
+  <text x="742" y="210" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f6b3a">Pass</text>
+
+  <rect x="505" y="246" width="230" height="52" rx="10" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="620" y="268" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">Known blocking failure</text>
+  <text x="620" y="286" text-anchor="middle" font-size="11.5" fill="#8a2f2f">recorded as an alert</text>
+
+  <rect x="780" y="246" width="170" height="52" rx="10" fill="#dfeadf" stroke="#2f6b3a" stroke-width="2"/>
+  <text x="865" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5137">No alert</text>
+  <text x="865" y="286" text-anchor="middle" font-size="11.5" fill="#2f5137">Dispatch continues</text>
+
+  <line x1="620" y1="298" x2="620" y2="324" stroke="#b23b3b" stroke-width="2" marker-end="url(#av-ah-r)"/>
+
+  <rect x="505" y="326" width="230" height="52" rx="10" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.4"/>
+  <text x="620" y="348" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f">Pre-dispatch gate</text>
+  <text x="620" y="366" text-anchor="middle" font-size="11.5" fill="#8a2f2f">refuses new dispatch</text>
+
+  <!-- the gate's consequence: no agent inherits a known-bad main -->
+  <path d="M505,352 L60,352 L60,104 L96,104" fill="none" stroke="#b23b3b" stroke-width="2" marker-end="url(#av-ah-r)"/>
+  <text x="270" y="344" text-anchor="middle" font-size="12" fill="#8a2f2f">no new dispatch while the alert stands</text>
+
+  <!-- handling: acknowledged is not resolved -->
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <line x1="620" y1="378" x2="620" y2="392"/>
+    <line x1="540" y1="392" x2="800" y2="392"/>
+    <line x1="540" y1="392" x2="540" y2="406" marker-end="url(#av-ah)"/>
+    <line x1="800" y1="392" x2="800" y2="406" marker-end="url(#av-ah)"/>
+  </g>
+  <rect x="430" y="410" width="220" height="42" rx="10" fill="#faf7f0" stroke="#8a6630" stroke-width="2"/>
+  <text x="540" y="436" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">Acknowledged</text>
+  <rect x="690" y="410" width="220" height="42" rx="10" fill="#dfeadf" stroke="#2f6b3a" stroke-width="2"/>
+  <text x="800" y="436" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5137">Resolved</text>
+  <text x="540" y="472" text-anchor="middle" font-size="11.5" fill="#41586c">Dispatch resumes. Main is</text>
+  <text x="540" y="488" text-anchor="middle" font-size="11.5" fill="#41586c">not yet proven healthy.</text>
+  <text x="800" y="472" text-anchor="middle" font-size="11.5" fill="#41586c">The defect is repaired. The</text>
+  <text x="800" y="488" text-anchor="middle" font-size="11.5" fill="#41586c">next sweep can pass.</text>
+
+  <text x="30" y="446" font-size="14" font-weight="700" fill="#8a2f2f">ACKNOWLEDGMENT IS NOT HEALTH</text>
+  <text x="30" y="468" font-size="12" fill="#41586c">Only a passing sweep establishes</text>
+  <text x="30" y="486" font-size="12" fill="#41586c">that main is healthy.</text>
+</svg>
