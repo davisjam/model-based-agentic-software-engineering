@@ -1611,10 +1611,30 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
 <script id="redos-ui">
 /* =================================================================================================
-   THE INTERFACE. Observes the model; never determines it.
+   THE INTERFACE, AND THE WORKER LIFECYCLE. Observes the model; never determines it.
 
-   This commit wires the experiment selector, the expression/input panel, and the self-test button.
-   The worker lifecycle, the charts, the backtracking diagram, and the threat panel follow.
+   The one piece of real engineering here is the execution budget, and it is worth stating plainly
+   why it takes the shape it does.
+
+   A regular expression match cannot be interrupted. There is no yield point to hook, no cancellation
+   token to set, and no message the matching thread will read while it is matching. A Web Worker does
+   not change that; it only moves the uninterruptible work off the thread that paints. So the budget
+   is enforced in two layers that fail in different ways:
+
+     LAYER 1, inside the engine, between executions. `measureTrial` checks its budget after each
+     execution and stops repeating. This handles a trial that is cheap per execution and was asked to
+     repeat many times. It cannot touch an execution already underway.
+
+     LAYER 2, in the page, with a timer the matching thread cannot block. When a trial overruns the
+     deadline the page calls `worker.terminate()` and drops the reference. This is the only thing
+     that can end a single expensive execution, and note what it is: destroying the machine, not
+     asking it to stop. A fresh worker is then created for the next experiment.
+
+   Termination is not free of consequences, and the page does not pretend otherwise: the trial's
+   measurement is lost (there is nothing to report but "it was still running at the deadline"), and
+   a message from the destroyed worker may still arrive afterwards. Both are handled explicitly — the
+   trial is recorded as `terminated` rather than dropped, and every message carries a token that a
+   destroyed worker's late reply cannot match.
    ================================================================================================= */
 (function () {
   'use strict';
@@ -1622,8 +1642,345 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   var R = window.ReDoS;
   var $ = function (id) { return document.getElementById(id); };
 
-  var ui = { experimentId: 'quadratic', lengths: {} };
+  /* The exact text prepended to the engine when it is assembled into a worker. In a worker there is
+     no `window`, and the engine publishes its namespace there; one line reconciles the two. Kept as
+     a named constant because the test suite reads THIS literal out of the page rather than keeping
+     its own copy of the assembly convention. */
+  var WORKER_PREFIX = 'var window = self;\n';
+
+  /* WORKER-PROTOCOL-BEGIN — this function's TEXT is shipped into the worker, and the Node suite
+     extracts it from this page to exercise the protocol without a browser. It therefore closes over
+     nothing: everything it needs is either inside it or published by the engine above it. */
+  function workerMain() {
+    'use strict';
+    var R = self.ReDoS;
+    var clock = function () { return self.performance.now(); };
+
+    self.onmessage = function (event) {
+      var msg = event.data || {};
+      try {
+        if (msg.type === 'warmup') {
+          self.postMessage({ type: 'warmed', token: msg.token,
+            warm: R.warmUp(msg.experimentId, clock, msg.options) });
+        } else if (msg.type === 'measure') {
+          self.postMessage({ type: 'result', token: msg.token,
+            result: R.measureTrial(msg.spec, clock) });
+        } else if (msg.type === 'ping') {
+          self.postMessage({ type: 'pong', token: msg.token });
+        } else {
+          self.postMessage({ type: 'error', token: msg.token,
+            message: 'unknown message type: ' + msg.type });
+        }
+      } catch (err) {
+        /* Converted to a reported error rather than swallowed: a trial that threw must show up as a
+           failure in the interface, not as a run that silently never finishes. */
+        self.postMessage({ type: 'error', token: msg.token,
+          message: String((err && err.message) || err) });
+      }
+    };
+
+    self.postMessage({ type: 'ready' });
+  }
+  /* WORKER-PROTOCOL-END */
+
+  /**
+   * Assemble the worker's source: the engine's own text, plus the protocol above.
+   *
+   * Read out of the live document rather than duplicated, so the code that is MEASURED and the code
+   * that is TESTED are the same bytes as the code the reader can view. A Blob URL rather than a
+   * second file, so the page stays a single artifact and opens from a file:// URL.
+   */
+  function buildWorkerSource() {
+    var engine = document.getElementById('redos-engine').textContent;
+    return WORKER_PREFIX + engine + '\n(' + workerMain.toString() + ')();\n';
+  }
+
+  var ui = {
+    experimentId: 'quadratic',
+    lengths: {},
+    scale: 'linear',
+    sweeps: {},
+    workersCreated: 0,
+    terminations: 0,
+    frames: 0,
+    status: 'idle',
+    statusDetail: '',
+    workerAvailable: true,
+    queue: [],
+    reduced: window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+  };
   R.EXPERIMENTS.forEach(function (xp) { ui.lengths[xp.id] = xp.defaultMax; });
+
+  /* ---------- the worker ---------- */
+
+  var run = {
+    worker: null,
+    sourceUrl: null,
+    token: 0,
+    pending: null,
+    deadlineTimer: null,
+    sweep: null,
+    busy: false
+  };
+
+  function workerUrl() {
+    if (!run.sourceUrl) {
+      run.sourceUrl = URL.createObjectURL(
+        new Blob([buildWorkerSource()], { type: 'text/javascript' }));
+    }
+    return run.sourceUrl;
+  }
+
+  function markWorkerUnavailable(reason) {
+    ui.workerAvailable = false;
+    var box = $('worker-unavailable');
+    box.hidden = false;
+    box.className = 'kill-msg';
+    box.textContent = '';
+    var strong = document.createElement('strong');
+    strong.textContent = 'This browser will not create a Web Worker. ';
+    box.appendChild(strong);
+    box.appendChild(document.createTextNode(
+      'The experiments are disabled rather than moved onto the page’s own thread. An expensive '
+      + 'regular expression cannot be interrupted, so a match running here could not be stopped at '
+      + 'the deadline and would freeze this page outright — which is the very failure the '
+      + 'demonstration is about. Reported reason: ' + reason));
+    ['btn-run', 'btn-run-all', 'btn-run-limit'].forEach(function (id) { $(id).disabled = true; });
+    setStatus('idle', 'workers unavailable');
+  }
+
+  /** Create a worker if there is not one. Returns false when the browser refuses. */
+  function ensureWorker() {
+    if (!ui.workerAvailable) return false;
+    if (run.worker) return true;
+    try {
+      run.worker = new Worker(workerUrl());
+    } catch (err) {
+      markWorkerUnavailable(String((err && err.message) || err));
+      return false;
+    }
+    run.worker.onmessage = onWorkerMessage;
+    run.worker.onerror = function (event) {
+      /* A worker that failed to start or threw at top level. Surface it; never swallow it. */
+      if (event && typeof event.preventDefault === 'function') event.preventDefault();
+      failRun('the worker reported an error: '
+        + String((event && (event.message || event.type)) || 'unknown'));
+    };
+    ui.workersCreated += 1;
+    return true;
+  }
+
+  /**
+   * Destroy the worker.
+   *
+   * `terminate()` is asynchronous with respect to the matching thread — the specification says the
+   * worker is to be aborted, and the page does not get to know when the underlying thread actually
+   * stops. What the page DOES get, immediately, is that the worker is detached: no further message
+   * it sends will be delivered to a handler the page still has, and the next experiment runs in a
+   * new one. Advancing the token makes the detachment total, so a reply that was already in flight
+   * cannot be mistaken for a result.
+   */
+  function destroyWorker() {
+    if (run.worker) {
+      run.worker.onmessage = null;
+      run.worker.onerror = null;
+      run.worker.terminate();
+      run.worker = null;
+    }
+    run.token += 1;
+    run.pending = null;
+  }
+
+  function clearDeadline() {
+    if (run.deadlineTimer !== null) {
+      window.clearTimeout(run.deadlineTimer);
+      run.deadlineTimer = null;
+    }
+  }
+
+  /* ---------- running a sweep ---------- */
+
+  function setStatus(kind, detail) {
+    ui.status = kind;
+    ui.statusDetail = detail || '';
+    renderStatus();
+  }
+
+  function startQueue(ids) {
+    if (!ui.workerAvailable) return;
+    ui.queue = ids.slice();
+    ids.forEach(function (id) { delete ui.sweeps[id]; });
+    $('kill-notice').hidden = true;
+    nextInQueue();
+  }
+
+  function nextInQueue() {
+    if (!ui.queue.length) { run.busy = false; setStatus('complete', 'all requested runs finished'); render(); return; }
+    var id = ui.queue.shift();
+    startSweep(id);
+  }
+
+  function startSweep(experimentId) {
+    if (!ensureWorker()) return;
+    run.busy = true;
+    run.sweep = R.createSweep({
+      experimentId: experimentId,
+      maxLength: ui.lengths[experimentId],
+      budgetMs: R.BUDGET_MS,
+      deadlineMs: R.DEADLINE_MS
+    });
+    ui.sweeps[experimentId] = run.sweep;
+    setStatus('running', 'warming up ' + R.findExperiment(experimentId).label);
+    render();
+
+    /* Warm up before the first measured trial, so the first point of the sweep does not carry the
+       compiler's start-up cost and read as an outlier. Bounded like everything else. */
+    run.token += 1;
+    var token = run.token;
+    run.pending = { kind: 'warmup', experimentId: experimentId, token: token, startedAt: nowMs() };
+    armDeadline(token);
+    run.worker.postMessage({ type: 'warmup', token: token, experimentId: experimentId,
+      options: { ms: 20, repeats: 500 } });
+  }
+
+  function nowMs() {
+    return window.performance && window.performance.now
+      ? window.performance.now() : Date.now();
+  }
+
+  function armDeadline(token) {
+    clearDeadline();
+    run.deadlineTimer = window.setTimeout(function () { onDeadline(token); }, R.DEADLINE_MS);
+  }
+
+  function pump() {
+    var spec = R.nextTrialSpec(run.sweep);
+    if (!spec) { finishSweep(); return; }
+    run.token += 1;
+    var token = run.token;
+    run.pending = { kind: 'measure', spec: spec, token: token, startedAt: nowMs() };
+    setStatus('running', R.findExperiment(spec.experimentId).label + ' at n = '
+      + spec.length.toLocaleString());
+    armDeadline(token);
+    run.worker.postMessage({ type: 'measure', token: token, spec: spec });
+  }
+
+  function onWorkerMessage(event) {
+    var msg = event.data || {};
+    if (msg.type === 'ready') return;
+    /* A message whose token is not the one we are waiting for came from a worker we have abandoned,
+       or from a trial we have already given up on. Ignore it: charting it would put a measurement on
+       the page for a run that was killed. */
+    if (msg.token !== run.token) return;
+    clearDeadline();
+
+    if (msg.type === 'error') { failRun(msg.message); return; }
+
+    if (msg.type === 'warmed') {
+      run.pending = null;
+      pump();
+      return;
+    }
+
+    if (msg.type === 'result') {
+      run.pending = null;
+      var verdict = R.recordResult(run.sweep, msg.result);
+      if (verdict === 'stale') return;
+      render();
+      if (run.sweep.status === 'running') { pump(); } else { finishSweep(); }
+    }
+  }
+
+  /**
+   * The deadline fired: the trial in flight is still running and cannot be asked to stop.
+   *
+   * This is the recovery path the whole budget exists for, and it does four things in order:
+   * destroy the worker, record the trial as terminated, tell the reader what happened, and leave the
+   * page ready for the next run with a worker that will be created fresh.
+   */
+  function onDeadline(token) {
+    if (token !== run.token || !run.pending) return;
+    var elapsed = nowMs() - run.pending.startedAt;
+    var pending = run.pending;
+    run.deadlineTimer = null;
+    destroyWorker();
+    ui.terminations += 1;
+
+    if (pending.kind === 'measure') {
+      R.recordTermination(run.sweep, { length: pending.spec.length, elapsedMs: elapsed });
+      announceTermination(pending.spec.experimentId, pending.spec.length, elapsed);
+    } else {
+      announceTermination(pending.experimentId, null, elapsed);
+    }
+    setStatus('terminated', 'worker destroyed after ' + Math.round(elapsed) + ' ms');
+    render();
+    /* The next experiment in the queue gets a NEW worker; ensureWorker creates it on demand. */
+    if (ui.queue.length) { nextInQueue(); } else { run.busy = false; }
+  }
+
+  function announceTermination(experimentId, length, elapsed) {
+    var xp = R.findExperiment(experimentId);
+    var box = $('kill-notice');
+    box.hidden = false;
+    box.className = 'kill-msg';
+    box.textContent = '';
+    var strong = document.createElement('strong');
+    strong.textContent = 'Terminated. ';
+    box.appendChild(strong);
+    box.appendChild(document.createTextNode(
+      xp.label + (length === null ? ' was still warming up' : ' at n = ' + length.toLocaleString()
+        + ' was still matching')
+      + ' when the ' + R.DEADLINE_MS + ' ms deadline passed, so the page destroyed the worker after '
+      + Math.round(elapsed) + ' ms. No time is reported for that length: the match never finished, '
+      + 'and "at least ' + Math.round(elapsed) + ' ms" is all anyone can honestly say about it. '
+      + 'The next run gets a fresh worker. Nothing asked the engine to stop, because nothing can.'));
+    return box;
+  }
+
+  function failRun(message) {
+    clearDeadline();
+    destroyWorker();
+    setStatus('terminated', 'error');
+    var box = $('kill-notice');
+    box.hidden = false;
+    box.className = 'kill-msg';
+    box.textContent = '';
+    var strong = document.createElement('strong');
+    strong.textContent = 'The run failed. ';
+    box.appendChild(strong);
+    box.appendChild(document.createTextNode(message));
+    run.busy = false;
+    ui.queue = [];
+    render();
+  }
+
+  function finishSweep() {
+    clearDeadline();
+    run.pending = null;
+    var halt = run.sweep && run.sweep.halt;
+    if (halt && halt.reason === 'budget') {
+      setStatus('halted', 'budget reached at n = ' + halt.length.toLocaleString());
+    } else if (halt && halt.reason === 'terminated') {
+      setStatus('terminated', 'worker destroyed at n = ' + halt.length.toLocaleString());
+    } else {
+      setStatus('complete', R.findExperiment(run.sweep.experimentId).label + ' finished');
+    }
+    render();
+    nextInQueue();
+  }
+
+  function resetAll() {
+    clearDeadline();
+    destroyWorker();
+    run.sweep = null;
+    run.busy = false;
+    ui.queue = [];
+    ui.sweeps = {};
+    $('kill-notice').hidden = true;
+    setStatus('idle', 'reset');
+    render();
+  }
 
   /* ---------- experiment selector ---------- */
   function renderSelector() {
@@ -1668,8 +2025,40 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
   function selectExperiment(id) {
     ui.experimentId = id;
+    syncLengthControl();
     renderSelector();
     renderExpression();
+  }
+
+  /* ---------- the length control ----------
+     The two experiment families have ranges three orders of magnitude apart — thousands of
+     characters for the whitespace family, tens for the nested quantifier — so the slider's bounds
+     follow the selected experiment rather than spanning both and leaving the useful range
+     invisible. Each experiment remembers its own setting. */
+  function syncLengthControl() {
+    var xp = R.findExperiment(ui.experimentId);
+    var b = R.lengthBounds(xp.id);
+    var value = ui.lengths[xp.id];
+    [$('maxlen'), $('maxlen-range')].forEach(function (el) {
+      el.min = String(b.min);
+      el.max = String(b.max);
+      el.step = String(b.step);
+      el.value = String(value);
+    });
+    $('maxlen-unit').textContent = xp.family === 'nested'
+      ? 'n, repeated characters' : 'n, characters';
+  }
+
+  function setMaxLength(raw) {
+    var xp = R.findExperiment(ui.experimentId);
+    var b = R.lengthBounds(xp.id);
+    var n = Math.round(Number(raw));
+    if (!isFinite(n)) n = b.defaultMax;
+    n = Math.max(b.min, Math.min(b.max, n));
+    ui.lengths[xp.id] = n;
+    syncLengthControl();
+    renderExpression();
+    render();
   }
 
   /* ---------- expression + input ---------- */
@@ -1711,6 +2100,201 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     });
   }
 
+  /* ---------- status, budget, and results ---------- */
+
+  var STATUS_PRESENTATION = {
+    idle: { cls: 's-idle', glyph: '●', word: 'idle' },
+    running: { cls: 's-run', glyph: '▶', word: 'running' },
+    complete: { cls: 's-ok', glyph: '✓', word: 'complete' },
+    halted: { cls: 's-warn', glyph: '◆', word: 'budget reached' },
+    terminated: { cls: 's-kill', glyph: '✕', word: 'terminated' }
+  };
+
+  function renderStatus() {
+    var p = STATUS_PRESENTATION[ui.status] || STATUS_PRESENTATION.idle;
+    var badge = $('status');
+    badge.className = 'badge ' + p.cls;
+    badge.querySelector('.glyph').textContent = p.glyph;
+    $('status-text').textContent = p.word + (ui.statusDetail ? ' — ' + ui.statusDetail : '');
+  }
+
+  function renderBudget() {
+    $('b-budget').textContent = R.BUDGET_MS + ' ms';
+    $('b-deadline').textContent = R.DEADLINE_MS + ' ms';
+    $('b-workers').textContent = String(ui.workersCreated);
+    $('b-terminated').textContent = String(ui.terminations);
+  }
+
+  function msText(ms) {
+    if (ms === null || ms === undefined) return '—';
+    if (ms >= 10) return ms.toFixed(1) + ' ms';
+    if (ms >= 0.1) return ms.toFixed(3) + ' ms';
+    return ms.toFixed(5) + ' ms';
+  }
+
+  function orderedSweeps() {
+    return R.EXPERIMENTS
+      .filter(function (xp) { return ui.sweeps[xp.id]; })
+      .map(function (xp) { return ui.sweeps[xp.id]; });
+  }
+
+  function renderResults() {
+    var body = $('results-table').querySelector('tbody');
+    body.textContent = '';
+    var sweeps = orderedSweeps();
+    var rows = 0;
+
+    sweeps.forEach(function (sweep) {
+      var xp = R.findExperiment(sweep.experimentId);
+      sweep.results.forEach(function (r) {
+        var tr = document.createElement('tr');
+        var cells = [
+          [xp.ordinal + '. ' + xp.label, ''],
+          [r.length.toLocaleString(), 'num'],
+          [r.inputLength === null ? '—' : r.inputLength.toLocaleString(), 'num'],
+          [r.matched === null ? '—' : (r.matched ? 'match' : 'no match'), ''],
+          [r.terminated ? '—' : r.repeats.toLocaleString(), 'num'],
+          [msText(r.msPerExecution), 'num'],
+          [trialOutcome(r), '']
+        ];
+        cells.forEach(function (c) {
+          var td = document.createElement('td');
+          if (c[1]) td.className = c[1];
+          td.textContent = c[0];
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+        rows += 1;
+      });
+    });
+
+    var caption = $('results-caption');
+    if (!rows) {
+      caption.textContent = 'No experiment has been run yet.';
+    } else {
+      caption.textContent = rows + ' trial' + (rows === 1 ? '' : 's') + ' across '
+        + sweeps.length + ' experiment' + (sweeps.length === 1 ? '' : 's') + '. '
+        + 'This table is the chart’s text equivalent: every point drawn below appears here.';
+    }
+  }
+
+  /* The outcome column carries the whole verdict in WORDS. The chart distinguishes a terminated
+     trial by marker shape as well as colour, and this column is why a reader who cannot see either
+     still learns which trials were killed. */
+  function trialOutcome(r) {
+    if (r.terminated) return 'terminated at the deadline — no time measured';
+    if (r.matchedAsExpected === false) return 'UNEXPECTED match result — the measurement is suspect';
+    if (r.budgetExceeded) return 'over the ' + r.budgetMs + ' ms budget — the sweep stopped here';
+    return 'measured';
+  }
+
+  function renderScaling() {
+    var box = $('scaling-readout');
+    box.textContent = '';
+    var sweeps = orderedSweeps();
+    if (!sweeps.length) return;
+
+    var table = document.createElement('table');
+    table.className = 'ref';
+    var cap = document.createElement('caption');
+    cap.textContent = 'Expected growth comes from the STRUCTURE of each expression. The fitted '
+      + 'figure beside it describes this run on this machine — it is a summary of the measurements '
+      + 'above, not a property of the expression, and a different browser may fit differently.';
+    table.appendChild(cap);
+
+    var thead = document.createElement('thead');
+    var htr = document.createElement('tr');
+    ['Experiment', 'Expected from structure', 'Fitted from this run', 'Points'].forEach(function (h) {
+      var th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = h;
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    sweeps.forEach(function (sweep) {
+      var xp = R.findExperiment(sweep.experimentId);
+      var s = R.sweepSummary(sweep).scaling;
+      var fitted;
+      if (s.basis === null) {
+        fitted = 'no fit — ' + s.note;
+      } else if (s.basis === 'log-log') {
+        fitted = 'time grows about as n^' + s.exponent.toFixed(2)
+          + ' (log–log fit, R² ' + s.exponentR2.toFixed(3) + ')';
+      } else {
+        fitted = 'time multiplies by about ' + s.growthPerStep.toFixed(2)
+          + ' per extra character (semi-log fit, R² ' + s.growthR2.toFixed(3) + ')';
+      }
+      var tr = document.createElement('tr');
+      [[xp.ordinal + '. ' + xp.label, ''], [xp.expectedGrowth, ''], [fitted, ''],
+        [String(s.points), 'num']].forEach(function (c) {
+        var td = document.createElement('td');
+        if (c[1]) td.className = c[1];
+        td.textContent = c[0];
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    box.appendChild(table);
+  }
+
+  function render() {
+    renderStatus();
+    renderBudget();
+    renderResults();
+    renderScaling();
+    renderSelector();
+  }
+
+  /* ---------- controls ---------- */
+
+  $('maxlen').addEventListener('change', function () { setMaxLength(this.value); });
+  $('maxlen-range').addEventListener('input', function () { setMaxLength(this.value); });
+
+  $('scale-seg').addEventListener('click', function (event) {
+    var b = event.target.closest ? event.target.closest('button[data-scale]') : null;
+    if (!b) return;
+    ui.scale = b.getAttribute('data-scale');
+    Array.prototype.forEach.call(this.querySelectorAll('button[data-scale]'), function (el) {
+      el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
+    });
+    render();
+  });
+
+  $('btn-run').addEventListener('click', function () { startQueue([ui.experimentId]); });
+  $('btn-run-all').addEventListener('click', function () { startQueue(R.experimentIds()); });
+  $('btn-run-limit').addEventListener('click', function () {
+    setMaxLength(R.lengthBounds(ui.experimentId).max);
+    startQueue([ui.experimentId]);
+  });
+  $('btn-reset').addEventListener('click', resetAll);
+
+  /* ---------- keyboard ----------
+     The shortcuts stand down while a form field has focus, so typing a length never starts a run. */
+  window.addEventListener('keydown', function (event) {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    var el = document.activeElement;
+    var tag = el ? (el.tagName || '').toLowerCase() : '';
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    var key = event.key;
+    if (key >= '1' && key <= '4') {
+      selectExperiment(R.experimentIds()[Number(key) - 1]);
+      event.preventDefault();
+    } else if (key === 'r' || key === 'R') {
+      startQueue([ui.experimentId]);
+      event.preventDefault();
+    } else if (key === 'a' || key === 'A') {
+      startQueue(R.experimentIds());
+      event.preventDefault();
+    } else if (key === 'x' || key === 'X') {
+      resetAll();
+      event.preventDefault();
+    }
+  });
+
   /* ---------- self-tests ---------- */
   $('btn-selftest').addEventListener('click', function () {
     var report = R.runSelfTests();
@@ -1722,9 +2306,29 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     $('selftest-out').textContent = lines.join('\n');
   });
 
-  renderSelector();
+  /* ---------- the frame loop ----------
+     Its only job is to be EVIDENCE. The page does not animate anything, and no measurement depends
+     on it; it counts frames so a reader can watch the interface keep painting while the matching
+     thread is fully occupied. That is the claim the worker exists to support, and a number that
+     keeps climbing during an expensive run is what demonstrates it. Reduced motion lowers the
+     readout's refresh rate, never the counting. */
+  var lastFrameShown = 0;
+  function frame(ts) {
+    ui.frames += 1;
+    var interval = ui.reduced ? 400 : 100;
+    if (ts - lastFrameShown >= interval) {
+      lastFrameShown = ts;
+      $('b-frames').textContent = ui.frames.toLocaleString();
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  if (!ensureWorker()) { /* markWorkerUnavailable has already explained itself in the page. */ }
+  syncLengthControl();
   renderExpression();
   renderExpressionTable();
+  render();
+  window.requestAnimationFrame(frame);
 }());
 </script>
 
