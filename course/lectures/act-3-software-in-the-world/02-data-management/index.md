@@ -72,6 +72,8 @@ The distinction is not simply relational versus NoSQL. NoSQL describes a broad c
 
 A second representation decision concerns normalization. The relational panel stores each room fact once, so renaming a room updates one record. Copying that name into every reservation can simplify selected reads, but every copy must then be kept consistent when the name changes.
 
+[**The Cost of Storing Information**](../../../interactive/storage-cost/index.html) is a six-minute instrument for that decision. The same reservations are written three ways — normalized tables, a denormalized table, and one document per room — and you set the room count, the reservations per room, and the size of a room's metadata, a reservation, and an identifier. Then rename a room and count the records that must change: one, many, or one. The nested-document case is the one to watch, because it stores each room's facts once and so duplicates no more than the normalized tables do. Document storage does not imply denormalization; the representation decides which facts are copied.
+
 ## Accessing data
 
 Applications generally access databases through defined query interfaces rather than manipulating storage files directly. In relational systems, SQL is a declarative language: the application describes the information it wants or the change it wishes to make, while the database chooses how to execute the request. An object-relational mapper (ORM) provides an application-level interface that translates operations on program objects into database operations.
