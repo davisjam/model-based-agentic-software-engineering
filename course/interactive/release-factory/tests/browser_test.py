@@ -92,8 +92,21 @@ def canvas_ink(page, element_id: str) -> int:
 
 
 def check_canvases_paint(page, label: str) -> None:
+    """Every canvas must carry ink.
+
+    Polled rather than sampled once. A fixed wait measures the machine, not the page: on a cold
+    browser launch the first paint can land after any constant you pick, and the check then reports
+    a blank canvas for a page that draws correctly — a false negative, which is the direction that
+    condemns working code. Measured 261104: the identical bytes reported 0 pixels on a cold start
+    and 365,718 on a warm one.
+    """
     for element_id in ('c-factory', 'c-backlog', 'c-ledger', 'c-sweep'):
-        ink = canvas_ink(page, element_id)
+        ink = 0
+        for _ in range(40):                       # up to ~4 s, and it normally exits on the first
+            ink = canvas_ink(page, element_id)
+            if ink > 500:
+                break
+            page.wait_for_timeout(100)
         check(f'{label}: {element_id} paints', ink > 500, f'{ink} opaque pixels')
 
 
