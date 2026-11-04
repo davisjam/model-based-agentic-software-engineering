@@ -41,7 +41,7 @@ Three definitions have been in force since week one, reproduced here in the word
 
 > **Software engineering.** Software engineering is the engineering discipline of controlled change in software systems. It creates and evolves software while preserving sufficient control over the properties and consequences that matter.
 
-> **Engineering.** Engineering is the discipline of exercising informed control over consequential systems. An engineer need not personally produce every part of a system. The engineer must understand what the system is supposed to accomplish, how it is organized, what it costs to build and change, how it behaves when deployed, where its weaknesses and uncertainties lie, and what evidence justifies confidence in it. Software engineering applies this responsibility to software systems.
+> **Engineering.** Engineering is the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. Engineers need not personally perform every act required to realize a system. They must retain sufficient command to understand and direct it, evaluate the evidence for its consequential properties, recognize when its assumptions fail, and intervene when necessary. They remain answerable for the consequential decisions made under their authority.
 
 Read in order they establish a hierarchy: what we engineer, what software engineering does with it, and what makes the activity engineering at all. Nothing in the third definition requires you to write the code.
 
