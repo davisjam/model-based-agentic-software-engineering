@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<!--
+  The Performance Knee — an interactive queueing simulator.
+  Teach with MAGE · ECE 30861 · Act III · Performance & Reliability.
+
+  HAND-AUTHORED. This file is NOT emitted by `catalog.py build`; it is a self-contained application
+  published verbatim by the MkDocs teach-site step (docs_dir: ../course), served at
+  /teach/interactive/performance-knee/ and equally openable from a file:// URL.
+
+  One artifact, two deployments. There is no separate "offline build": the Download HTML control
+  hands the reader this same file.
+
+  No external dependencies — no framework, no charting library, no CDN, no webfont, no backend, no
+  network request of any kind. The favicon is an inline data URI precisely so the page issues zero
+  requests, which the browser test asserts.
+
+  Structure of the single <script> pair below:
+    #queue-sim-engine  — pure model: seeded PRNG, distributions, event selection, discrete-event
+                         engine, analytical M/M/1 + M/D/1, statistics. No DOM reference anywhere.
+                         Publishes window.QueueSim. The node test suite in ./tests/ EXTRACTS this
+                         element by id and evaluates it, so the tests and the page run one
+                         implementation, not two.
+    #queue-sim-ui      — rendering and controls. Observes the model; never determines it.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Performance Knee — Teach with MAGE</title>
+<meta name="description" content="An interactive discrete-event queueing simulator: compare observed response times against Little's Law and the M/M/1 and M/D/1 predictions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Cpath d='M1 13 C7 13 10 12 12 3' stroke='%239a3f12' fill='none' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------------------------
+   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
+   instrument matches the rest of the site: warm paper ground, near-black ink, burnt-umber accent,
+   Purdue-gold rule under the header. `--model` is the family's definition-box blue, reused here as
+   "this number came from a model, not a measurement".
+
+   One token is a local extension: the family set has no amber, and the spec calls for an
+   approaching-capacity signal distinct from both green and red. `--warn` is a warm ochre chosen to
+   sit inside the family's warm palette rather than a generic traffic-light yellow.
+
+   Colour never carries meaning alone. Every state also carries a word and a glyph.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.head .tag a { color: var(--accent); }
+.gold-rule { height: 4px; background: var(--gold); }
+
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel > h2, .panel > summary > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+.grid3 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) {
+  .grid2 { grid-template-columns: 1fr 1fr; }
+  .grid2 > .panel { margin-bottom: 0; }
+  .grid2 { margin-bottom: 1.1rem; }
+}
+@media (min-width: 1500px) {
+  .grid3 { grid-template-columns: 1.15fr 1fr 1fr; }
+  .grid3 > .panel { margin-bottom: 0; }
+  .grid3 { margin-bottom: 1.1rem; }
+}
+
+/* --- controls ----------------------------------------------------------------------------- */
+.ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 820px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
+.ctl { display: grid; grid-template-columns: 11.5rem 1fr auto; gap: 0.6rem; align-items: center; }
+.ctl > label { font-weight: 600; font-size: 0.98rem; }
+.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+.ctl input[type=number], .ctl select {
+  font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.3rem 0.4rem; width: 5.4rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+.ctl select { width: auto; font-family: var(--font-body); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.seg button {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
+  background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+button.act {
+  font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+  padding: 0.5rem 1.05rem; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.act:focus-visible, .seg button:focus-visible, .preset:focus-visible,
+input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* --- presets ------------------------------------------------------------------------------ */
+.preset-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.preset {
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+  padding: 0.6rem 0.7rem; font-family: var(--font-body); font-size: 0.95rem;
+}
+.preset:hover { border-color: var(--accent); }
+.preset .pname { display: block; font-weight: 600; font-size: 1.02rem; }
+.preset .pparam { display: block; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+.preset .pnote { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+/* The keeps-the-backlog preset is marked by a dashed border AND the word "keeps backlog" —
+   two independent encodings, so the distinction survives greyscale projection. */
+.preset.keeps-backlog { border-style: dashed; border-width: 2px; border-color: var(--accent); }
+.preset .pkeep {
+  display: inline-block; margin-top: 0.3rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius);
+  padding: 0.05rem 0.35rem;
+}
+
+/* --- readouts ----------------------------------------------------------------------------- */
+dl.readout { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 1rem; margin: 0; }
+dl.readout dt { color: var(--muted); font-size: 0.95rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 1.08rem; text-align: right; }
+dl.readout dd.big { font-size: 1.3rem; font-weight: 600; }
+.model-plane { background: var(--model-fill); border-left: 3px solid var(--model); padding: 0.6rem 0.8rem; border-radius: var(--radius); }
+.measure-plane { background: var(--panel-2); border-left: 3px solid var(--muted); padding: 0.6rem 0.8rem; border-radius: var(--radius); }
+.plane-kind {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); display: block; margin-bottom: 0.35rem;
+}
+.formula { font-family: var(--font-mono); font-size: 0.95rem; color: var(--muted); }
+
+.badge {
+  display: inline-flex; align-items: baseline; gap: 0.45rem;
+  font-family: var(--font-mono); font-size: 0.92rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  border: 2px solid currentColor; border-radius: var(--radius);
+  padding: 0.25rem 0.6rem;
+}
+.badge .glyph { font-size: 1.05rem; line-height: 1; }
+.badge.s-ok { color: var(--ok); background: var(--ok-fill); }
+.badge.s-warn { color: var(--warn); background: var(--warn-fill); }
+.badge.s-crit { color: var(--bad); background: var(--bad-fill); border-style: double; border-width: 4px; }
+.badge.s-over { color: var(--bad); background: var(--bad-fill); border-style: dashed; }
+
+.unstable-msg {
+  border: 2px solid var(--bad); background: var(--bad-fill); color: var(--ink);
+  border-radius: var(--radius); padding: 0.6rem 0.8rem; margin: 0.6rem 0 0; font-size: 0.97rem;
+}
+.unstable-msg strong { color: var(--bad); }
+.warn-msg {
+  border: 1px dashed var(--warn); background: var(--warn-fill); color: var(--ink);
+  border-radius: var(--radius); padding: 0.5rem 0.7rem; margin: 0.6rem 0 0; font-size: 0.92rem;
+}
+
+/* --- charts ------------------------------------------------------------------------------- */
+.canvas-wrap { position: relative; width: 100%; }
+canvas { display: block; width: 100%; height: auto; background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; margin-top: 0.55rem; font-size: 0.88rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend .swatch { width: 2.1rem; height: 0; border-top-width: 3px; border-top-style: solid; }
+.legend .sw-obs { border: 0; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); }
+.legend .sw-mean { border-top-color: var(--ink); }
+.legend .sw-model { border-top-color: var(--model); border-top-style: dashed; }
+.legend .sw-now { border-top-color: var(--accent); border-top-style: dotted; }
+.legend .sw-svc { border-top-color: var(--muted); border-top-style: dotted; }
+
+/* --- experiments + details ---------------------------------------------------------------- */
+details.panel > summary {
+  cursor: pointer; list-style: none;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+details.panel > summary::-webkit-details-marker { display: none; }
+details.panel > summary::before { content: "▸ "; color: var(--accent); }
+details.panel[open] > summary::before { content: "▾ "; }
+details.panel[open] > summary { margin-bottom: 0.8rem; }
+
+.xp { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper); padding: 0.8rem 0.9rem; margin-bottom: 0.8rem; }
+.xp h3 { margin-top: 0; }
+.xp ol { margin: 0.4rem 0 0.6rem; padding-left: 1.3rem; }
+.xp li { margin: 0.2rem 0; }
+.xp .q { font-style: italic; }
+.xp details {
+  border: 1px dashed var(--rule); border-radius: var(--radius);
+  padding: 0.4rem 0.6rem; margin-top: 0.6rem; background: var(--panel);
+}
+.xp details > summary { cursor: pointer; font-weight: 600; font-size: 0.93rem; }
+.xp details[open] > summary { margin-bottom: 0.4rem; }
+.xp-setup { margin-top: 0.3rem; }
+
+table.ref { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 0.5rem 0; }
+table.ref th, table.ref td { border: 1px solid var(--rule); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+table.ref th { background: var(--panel-2); font-weight: 600; }
+table.ref td.num { font-family: var(--font-mono); white-space: nowrap; }
+code, .mono { font-family: var(--font-mono); font-size: 0.93em; }
+kbd {
+  font-family: var(--font-mono); font-size: 0.85em;
+  border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
+  padding: 0.05rem 0.35rem; background: var(--paper);
+}
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* Reduced motion: honour the OS preference by default, and let the reader force it. The simulator
+   has no decorative animation to disable — what the mode changes is the ARRIVAL FLASH on the queue
+   diagram and the redraw cadence, so the picture stops shimmering. The simulation itself is
+   untouched: simulated time never depends on how often we draw. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1>The Performance Knee</h1>
+    <p class="sub">Workload, capacity, queueing, and evidence &mdash; an interactive experiment.</p>
+  </div>
+  <p class="tag">
+    Teach with MAGE<br>ECE&nbsp;30861 &middot; Act&nbsp;III<br>Performance &amp; Reliability
+  </p>
+</header>
+<div class="gold-rule"></div>
+
+<main>
+
+<!-- ======================= CONTROLS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">Controls</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="lambda">Arrival rate &lambda; <span class="unit">req/s</span></label>
+      <input type="range" id="lambda-range" min="0" max="150" step="1" value="30"
+             aria-label="Arrival rate lambda, slider">
+      <input type="number" id="lambda" min="0" max="150" step="1" value="30">
+    </div>
+    <div class="ctl">
+      <label for="mu">Service rate &mu; <span class="unit">req/s</span></label>
+      <input type="range" id="mu-range" min="20" max="200" step="1" value="100"
+             aria-label="Service rate mu, slider">
+      <input type="number" id="mu" min="20" max="200" step="1" value="100">
+    </div>
+    <div class="ctl">
+      <label for="dist">Service time</label>
+      <select id="dist">
+        <option value="exponential" selected>Exponential (M/M/1)</option>
+        <option value="deterministic">Deterministic (M/D/1)</option>
+      </select>
+      <span></span>
+    </div>
+    <div class="ctl">
+      <label id="speed-label">Simulation speed</label>
+      <div class="seg" role="group" aria-labelledby="speed-label" id="speed-seg">
+        <button type="button" data-speed="1" aria-pressed="false">1&times;</button>
+        <button type="button" data-speed="10" aria-pressed="true">10&times;</button>
+        <button type="button" data-speed="100" aria-pressed="false">100&times;</button>
+      </div>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act primary" id="btn-run" aria-pressed="false">Run</button>
+    <button type="button" class="act" id="btn-step">Step</button>
+    <button type="button" class="act" id="btn-reset">Reset</button>
+    <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="performance-knee.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p class="note" id="param-policy">
+    <strong>Changing parameters while running.</strong> A change to &lambda; affects
+    <em>future</em> arrivals only &mdash; the arrival already scheduled is not regenerated, and no
+    past arrival is altered. A request <em>already in service</em> keeps the completion time it was
+    given; only requests that start service afterwards use the new &mu; or the new service
+    distribution. Setting &lambda;&nbsp;=&nbsp;0 cancels the pending arrival: at rate zero there is
+    no arrival process.
+  </p>
+</section>
+
+<!-- ======================= PRESETS ======================= -->
+<section class="panel" aria-labelledby="h-presets">
+  <h2 id="h-presets">Classroom presets</h2>
+  <div class="preset-grid" id="presets"></div>
+  <p class="note">
+    Five presets <strong>reset</strong> the simulation, so you watch a system settle from empty.
+    <strong>Recover capacity</strong> deliberately does not: it raises &mu; on the running
+    simulation and leaves the accumulated backlog in place, which is the whole point of that
+    experiment. Those buttons are marked with a dashed border and the words
+    &ldquo;keeps backlog&rdquo;.
+  </p>
+</section>
+
+<!-- ======================= VISUALS ======================= -->
+<div class="grid2">
+  <section class="panel" aria-labelledby="h-queue">
+    <h2 id="h-queue">Live queue <span class="mono" style="text-transform:none;letter-spacing:0">(simulation state)</span></h2>
+    <div class="canvas-wrap"><canvas id="c-queue" width="1200" height="300"
+      role="img" aria-labelledby="queue-alt"></canvas></div>
+    <p id="queue-alt" class="vh" aria-live="polite"></p>
+    <dl class="readout" style="margin-top:0.7rem">
+      <dt>Server</dt><dd id="r-server">idle</dd>
+      <dt>Waiting in queue</dt><dd id="r-queue">0</dd>
+      <dt>In system (waiting + in service)</dt><dd id="r-insystem">0</dd>
+      <dt>Largest queue seen</dt><dd id="r-maxq">0</dd>
+    </dl>
+  </section>
+
+  <section class="panel" aria-labelledby="h-rt">
+    <h2 id="h-rt">Response time, request by request <span class="mono" style="text-transform:none;letter-spacing:0">(observations over time)</span></h2>
+    <div class="canvas-wrap"><canvas id="c-rt" width="1200" height="340"
+      role="img" aria-labelledby="rt-alt"></canvas></div>
+    <p id="rt-alt" class="vh" aria-live="polite"></p>
+    <p class="legend">
+      <span><span class="swatch sw-obs"></span>one completed request</span>
+      <span><span class="swatch sw-mean"></span>rolling mean (solid)</span>
+      <span><span class="swatch sw-model"></span>model prediction (dashed)</span>
+    </p>
+    <p class="note">
+      This chart answers <em>what did we observe, and when?</em> The dashed model line disappears
+      when the model has no finite prediction &mdash; it is not extended past the point where it
+      stops meaning anything.
+    </p>
+  </section>
+</div>
+
+<!-- ======================= MODEL vs MEASUREMENT ======================= -->
+<div class="grid2">
+  <section class="panel" aria-labelledby="h-model">
+    <h2 id="h-model">Model prediction</h2>
+    <div class="model-plane">
+      <span class="plane-kind">Derived from the model &mdash; no simulation involved</span>
+      <dl class="readout">
+        <dt>Model in force</dt><dd id="m-model">M/M/1</dd>
+        <dt>Offered load &rho; = &lambda;/&mu;</dt><dd class="big" id="m-rho">0.300</dd>
+        <dt>Mean response time W</dt><dd class="big" id="m-w">14.3 ms</dd>
+        <dt>Mean queue wait W<sub>q</sub></dt><dd id="m-wq">4.3 ms</dd>
+        <dt>Mean number in system L</dt><dd id="m-l">0.429</dd>
+        <dt>Mean number waiting L<sub>q</sub></dt><dd id="m-lq">0.129</dd>
+        <dt>Mean service time 1/&mu;</dt><dd id="m-svc">10.0 ms</dd>
+      </dl>
+    </div>
+    <p class="formula" id="m-formula"></p>
+    <div id="m-unstable" hidden></div>
+    <p class="note" id="m-applicability"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-measure">
+    <h2 id="h-measure">Simulation measurement</h2>
+    <p style="margin-top:0"><span class="badge s-ok" id="stability" aria-live="polite"><span class="glyph" aria-hidden="true">&#9679;</span><span id="stability-text">stable</span></span></p>
+    <div class="measure-plane">
+      <span class="plane-kind">Measured from the event trace &mdash; no model involved</span>
+      <dl class="readout">
+        <dt>Simulated time</dt><dd id="s-time">0.00 s</dd>
+        <dt>Events processed</dt><dd id="s-events">0</dd>
+        <dt>Arrivals / completions</dt><dd id="s-counts">0 / 0</dd>
+        <dt>Server utilization (time-weighted)</dt><dd class="big" id="s-util">&mdash;</dd>
+        <dt>Mean response time</dt><dd class="big" id="s-w">&mdash;</dd>
+        <dt>Mean queue wait</dt><dd id="s-wq">&mdash;</dd>
+        <dt>Throughput (completions / time)</dt><dd id="s-thr">&mdash;</dd>
+        <dt>Time-average number in system</dt><dd id="s-l">&mdash;</dd>
+        <dt>Time-average queue length</dt><dd id="s-lq">&mdash;</dd>
+      </dl>
+    </div>
+    <div id="s-transient" hidden></div>
+    <div id="s-growth" hidden></div>
+    <p class="note">
+      Occupancy and utilization are accumulated as <code>&int;N(t)&nbsp;dt</code> and busy-time over
+      the observation interval, updated <em>before</em> each event is applied. They are not averages
+      of values sampled when the browser happened to draw a frame.
+    </p>
+  </section>
+</div>
+
+<!-- ======================= KNEE CHART ======================= -->
+<section class="panel" aria-labelledby="h-knee">
+  <h2 id="h-knee">The predicted load&ndash;latency curve <span class="mono" style="text-transform:none;letter-spacing:0">(the model, across all loads)</span></h2>
+  <div class="canvas-wrap"><canvas id="c-knee" width="1600" height="420"
+    role="img" aria-labelledby="knee-alt"></canvas></div>
+  <p id="knee-alt" class="vh" aria-live="polite"></p>
+  <p class="legend">
+    <span><span class="swatch sw-model"></span>predicted mean response time W(&rho;)</span>
+    <span><span class="swatch sw-now"></span>current offered load</span>
+    <span><span class="swatch sw-svc"></span>service time 1/&mu; (the no-queueing floor)</span>
+  </p>
+  <p class="note">
+    This chart answers a different question from the one beside the queue: not <em>what happened</em>
+    but <em>what does the model predict at every load?</em> It is a static curve. It moves only when
+    you change &mu; or the service-time distribution &mdash; changing &lambda; just slides the
+    vertical marker along it.
+  </p>
+  <p class="warn-msg">
+    <strong>A precision point worth insisting on.</strong> Strictly speaking there is
+    <em>no mathematically distinguished knee</em> in this curve. Response time diverges as
+    utilization approaches 100%; the curve is smooth, and every point on it has a well-defined
+    slope. &ldquo;The knee&rdquo; is an engineering choice, not a mathematical feature. Engineers
+    pick an operational threshold from latency requirements and workload variability &mdash; which
+    is why Experiment&nbsp;2 asks you to look for a universal threshold and then explains why you
+    will not find one.
+  </p>
+</section>
+
+<!-- ======================= LITTLE'S LAW ======================= -->
+<section class="panel" aria-labelledby="h-little">
+  <h2 id="h-little">Little's Law</h2>
+  <p>
+    <code>L = &lambda;W</code> &mdash; the time-average number of requests in a system equals the
+    rate at which they pass through it times the average time each one spends in it. It is a
+    <em>general relationship</em> among occupancy, throughput, and response time. It assumes no
+    particular arrival process, no particular service distribution, and no particular queue
+    discipline.
+  </p>
+  <p>
+    <strong>Little's Law does not predict the knee.</strong> It is an identity, and it holds just as
+    well at &rho;&nbsp;=&nbsp;0.1 as at &rho;&nbsp;=&nbsp;0.99. What predicts the sharp rise in
+    response time near capacity is the <em>queueing model</em> &mdash; M/M/1 or M/D/1 &mdash; which
+    adds assumptions Little's Law does not make.
+  </p>
+
+  <h3>The consistency check, computed over a compatible window</h3>
+  <p class="note" style="border-left-color: var(--model)">
+    A finite measurement window breaks the naive arithmetic: requests that arrived before the window
+    opened, or that are still in the system when it closes, contribute to one side of
+    <code>L = &lambda;W</code> and not the other. The resulting mismatch is a
+    <em>window artefact</em>, not a violation of the law. So the check below is computed over an
+    <strong>empty-to-empty cohort</strong>: an interval that begins and ends with the system empty.
+    Every request counted arrived and departed inside it, so the identity holds exactly &mdash;
+    the residual you see is floating-point noise and nothing else.
+  </p>
+  <dl class="readout" id="little-cohort-dl">
+    <dt>Cohort interval</dt><dd id="lc-window">&mdash;</dd>
+    <dt>Requests completed in cohort</dt><dd id="lc-n">&mdash;</dd>
+    <dt>L&#772; = &int;N dt / T</dt><dd class="big" id="lc-l">&mdash;</dd>
+    <dt>&lambda;&#770; &times; W&#772;</dt><dd class="big" id="lc-prod">&mdash;</dd>
+    <dt>Residual</dt><dd id="lc-res">&mdash;</dd>
+  </dl>
+  <div id="lc-pending" hidden></div>
+
+  <h3>The long-run estimate over the whole observation window</h3>
+  <dl class="readout">
+    <dt>L&#772; (time-average, whole window)</dt><dd id="lw-l">&mdash;</dd>
+    <dt>&lambda;&#770; &times; W&#772; (whole window)</dt><dd id="lw-prod">&mdash;</dd>
+    <dt>Relative difference</dt><dd id="lw-diff">&mdash;</dd>
+  </dl>
+  <p class="note">
+    These two numbers converge as the window grows and the boundary requests become a vanishing
+    fraction. Early in a run, or at high load, they differ &mdash; and that difference is the window
+    effect, which is why it is reported separately from the exact cohort check above rather than
+    presented as evidence against the law.
+  </p>
+</section>
+
+<!-- ======================= EXPERIMENTS ======================= -->
+<details class="panel" id="experiments">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Classroom experiments</h2></summary>
+  <p>
+    Five short experiments. Each one asks you to <em>predict first</em>. The explanations are
+    deliberately hidden until you ask for them &mdash; reading the answer before running the
+    experiment converts a prediction task into a recall task.
+  </p>
+
+  <div class="xp">
+    <h3>1. Predict utilization</h3>
+    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;30, &mu;&nbsp;=&nbsp;100, exponential service.</p>
+    <p class="xp-setup"><button type="button" class="act" data-xp="30,100,exponential,reset">Set up experiment 1</button></p>
+    <ol>
+      <li class="q">Before running: what fraction of the time will the server be busy? Write it down.</li>
+      <li class="q">What will the mean response time be? Is it more or less than the mean service time 1/&mu;&nbsp;=&nbsp;10&nbsp;ms?</li>
+      <li>Run for at least 60 simulated seconds and compare against the measured utilization.</li>
+    </ol>
+    <details><summary>Reveal explanation</summary>
+      <p>
+        Utilization is <code>&rho; = &lambda;/&mu; = 0.30</code>. The server is busy 30% of the time.
+        Notice what this does <em>not</em> say: it says nothing about response time. The model
+        predicts <code>W = 1/(&mu;&minus;&lambda;) = 1/70 s &asymp; 14.3 ms</code>, which is already
+        43% above the 10&nbsp;ms service time even at a load most engineers would call comfortable.
+        Queueing delay is not something that switches on at some high load; it is present at every
+        positive load and merely small here.
+      </p>
+    </details>
+  </div>
+
+  <div class="xp">
+    <h3>2. Find the knee</h3>
+    <p><strong>Set up:</strong> &mu;&nbsp;=&nbsp;100, exponential service. Step &lambda; through 50, 70, 90, 95, 99.</p>
+    <p class="xp-setup">
+      <button type="button" class="act" data-xp="50,100,exponential,reset">&lambda;=50</button>
+      <button type="button" class="act" data-xp="70,100,exponential,reset">&lambda;=70</button>
+      <button type="button" class="act" data-xp="90,100,exponential,reset">&lambda;=90</button>
+      <button type="button" class="act" data-xp="95,100,exponential,reset">&lambda;=95</button>
+      <button type="button" class="act" data-xp="99,100,exponential,reset">&lambda;=99</button>
+    </p>
+    <ol>
+      <li>Record the predicted and observed mean response time at each setting.</li>
+      <li class="q">By what factor does response time grow from &rho;&nbsp;=&nbsp;0.5 to 0.9? From 0.9 to 0.99?</li>
+      <li class="q">Is there a universal utilization threshold above which performance is unacceptable?</li>
+    </ol>
+    <details><summary>Reveal explanation</summary>
+      <p>
+        <code>W = 1/(&mu;(1&minus;&rho;))</code>. At &rho;&nbsp;=&nbsp;0.5, W&nbsp;=&nbsp;20&nbsp;ms;
+        at 0.9, 100&nbsp;ms; at 0.99, 1000&nbsp;ms. Each halving of the <em>headroom</em>
+        1&minus;&rho; doubles the response time. The growth is driven by the headroom, not by the
+        utilization figure itself.
+      </p>
+      <p>
+        <strong>There is no universal threshold.</strong> The curve is smooth and has no
+        distinguished point &mdash; no inflection, no discontinuity, no maximum of curvature that
+        survives a change of axis scaling. &ldquo;70% utilization&rdquo; is a rule of thumb, not a
+        property of queues. The threshold you should choose depends on your latency requirement, how
+        variable your service times are (compare Experiment&nbsp;5), and how much your arrival rate
+        fluctuates. An engineer who quotes a universal number has substituted a slogan for the
+        model.
+      </p>
+    </details>
+  </div>
+
+  <div class="xp">
+    <h3>3. Exceed capacity</h3>
+    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;110, &mu;&nbsp;=&nbsp;100, exponential service.</p>
+    <p class="xp-setup"><button type="button" class="act" data-xp="110,100,exponential,reset">Set up experiment 3</button></p>
+    <ol>
+      <li>Run at 100&times; and watch the queue length and the response-time chart.</li>
+      <li class="q">What does the model predict for mean response time? Why does the panel refuse to print a number?</li>
+      <li class="q">The utilization measurement approaches 1.00 but never exceeds it. Why is offered load &rho;&nbsp;=&nbsp;1.10 not the same thing as utilization?</li>
+    </ol>
+    <details><summary>Reveal explanation</summary>
+      <p>
+        With &lambda;&nbsp;&gt;&nbsp;&mu; there <em>is</em> no steady state. The queue does not
+        settle around some large average; it grows without bound at approximately
+        &lambda;&nbsp;&minus;&nbsp;&mu;&nbsp;=&nbsp;10&nbsp;requests per second. Mean response time
+        is not large &mdash; it is undefined, because the limit the mean would be taken over does
+        not exist. Printing a big number here would be a lie dressed as a measurement, so the panel
+        prints the reason instead.
+      </p>
+      <p>
+        Offered load and utilization are different quantities that coincide only when
+        &lambda;&nbsp;&lt;&nbsp;&mu;. Offered load &lambda;/&mu; can be any non-negative number;
+        utilization is a fraction of time and cannot exceed 1. A saturated server runs at
+        utilization 1 and <em>throughput &mu;</em>, not throughput &lambda;. The excess
+        &lambda;&nbsp;&minus;&nbsp;&mu; goes into the backlog, which is exactly why the real-world
+        symptom of overload is growing latency rather than falling throughput.
+      </p>
+    </details>
+  </div>
+
+  <div class="xp">
+    <h3>4. Restore capacity</h3>
+    <p><strong>Set up:</strong> run Experiment&nbsp;3 until the queue has several hundred requests in
+      it, then raise &mu; to 150 <em>without resetting</em>.</p>
+    <p class="xp-setup">
+      <button type="button" class="act" data-xp="110,100,exponential,reset">1. Overload (resets)</button>
+      <button type="button" class="act" data-xp="110,150,exponential,keep">2. Raise &mu; to 150 (keeps backlog)</button>
+    </p>
+    <ol>
+      <li class="q">Before pressing the second button: note the queue length N. How long should the backlog take to drain?</li>
+      <li>Run and time it. Compare with your estimate.</li>
+      <li class="q">Once the queue has drained, what is the mean response time &mdash; and why is the <em>measured</em> mean still far above the model's prediction?</li>
+    </ol>
+    <details><summary>Reveal explanation</summary>
+      <p>
+        While the backlog drains, the system removes work at &mu; and receives it at &lambda;, so it
+        shrinks at &mu;&nbsp;&minus;&nbsp;&lambda;&nbsp;=&nbsp;40&nbsp;requests per second. A backlog
+        of N requests therefore takes about N/40 seconds. With N&nbsp;=&nbsp;600 that is 15 seconds
+        &mdash; a fast recovery, and a useful number to be able to produce on a whiteboard during an
+        incident.
+      </p>
+      <p>
+        Afterwards the system is stable at &rho;&nbsp;=&nbsp;110/150&nbsp;&asymp;&nbsp;0.73, so the
+        model predicts W&nbsp;=&nbsp;1/40&nbsp;s&nbsp;=&nbsp;25&nbsp;ms. The measured mean stays far
+        higher for a long time because it still averages in the enormous response times of requests
+        that queued during the overload. This is the measurement-window problem in its most
+        practical form: <em>a mean over a window that spans a regime change describes neither
+        regime.</em> Press Reset after recovery, or use a warm-up, and the measurement converges on
+        the prediction.
+      </p>
+    </details>
+  </div>
+
+  <div class="xp">
+    <h3>5. Change variability</h3>
+    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;90, &mu;&nbsp;=&nbsp;100 (&rho;&nbsp;=&nbsp;0.9).
+      Compare exponential and deterministic service times.</p>
+    <p class="xp-setup">
+      <button type="button" class="act" data-xp="90,100,exponential,reset">Exponential service</button>
+      <button type="button" class="act" data-xp="90,100,deterministic,reset">Deterministic service</button>
+    </p>
+    <ol>
+      <li class="q">Both settings have the same mean service time, 10&nbsp;ms, and the same offered load, 0.9. Predict the two mean response times.</li>
+      <li>Run each for at least 200 simulated seconds and record the measurements.</li>
+      <li class="q">Why does identical mean service <em>demand</em> not imply identical latency?</li>
+    </ol>
+    <details><summary>Reveal explanation</summary>
+      <p>
+        M/M/1 predicts W&nbsp;=&nbsp;100&nbsp;ms. M/D/1 predicts
+        W<sub>q</sub>&nbsp;=&nbsp;&rho;/(2&mu;(1&minus;&rho;))&nbsp;=&nbsp;45&nbsp;ms, so
+        W&nbsp;=&nbsp;55&nbsp;ms. Removing service-time variability cuts the queue wait exactly in
+        half (90&nbsp;ms &rarr; 45&nbsp;ms) while the mean service demand is unchanged.
+      </p>
+      <p>
+        Queueing delay is produced by <em>variability</em>, not by average demand. A long service
+        time delays everything behind it, and under an exponential distribution long services are
+        common enough to dominate the average wait. Pollaczek&ndash;Khinchine makes this precise:
+        W<sub>q</sub> scales with the second moment of the service distribution, so halving the
+        coefficient of variation to zero halves the wait. This is the modelling reason that reducing
+        tail latency &mdash; making slow requests less slow &mdash; often buys more than adding
+        capacity, and it is invisible to anyone reasoning only about averages.
+      </p>
+    </details>
+  </div>
+</details>
+
+<!-- ======================= ADVANCED ======================= -->
+<details class="panel" id="advanced">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Advanced controls</h2></summary>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="seed">Random seed</label>
+      <span></span>
+      <input type="number" id="seed" min="0" max="4294967295" step="1" value="30861">
+    </div>
+    <div class="ctl">
+      <label for="warmup">Warm-up <span class="unit">s</span></label>
+      <span></span>
+      <input type="number" id="warmup" min="0" max="600" step="1" value="0">
+    </div>
+    <div class="ctl">
+      <label for="maxdisp">Max displayed requests</label>
+      <span></span>
+      <input type="number" id="maxdisp" min="5" max="200" step="1" value="40">
+    </div>
+    <div class="ctl">
+      <label for="history">Chart history <span class="unit">s</span></label>
+      <span></span>
+      <input type="number" id="history" min="5" max="600" step="5" value="120">
+    </div>
+    <div class="ctl">
+      <label for="reduced">Reduced motion</label>
+      <span></span>
+      <input type="checkbox" id="reduced" style="width:auto">
+    </div>
+    <div class="ctl">
+      <label>Arrival process</label>
+      <span></span>
+      <span class="mono">Poisson (fixed)</span>
+    </div>
+  </div>
+  <p class="note">
+    Changing the seed or the warm-up resets the run &mdash; both are properties of the whole
+    experiment, not of a moment in it. The display settings (max displayed requests, chart history,
+    reduced motion) touch only rendering and never the simulation.
+  </p>
+  <p class="note">
+    <strong>Not offered, deliberately.</strong> Finite queue capacity, admission rejection, client
+    timeouts, and retry policy belong to the Reliability lecture's extension of this same
+    instrument. The engine already distinguishes a <em>logical request</em> from a
+    <em>physical attempt</em> and reserves a timeout event kind in its ordering policy, so retries
+    can be added without rewriting the queue. Controls for mechanisms that are not implemented are
+    not shown, because a knob that does nothing is worse than a missing knob.
+  </p>
+  <p>
+    <button type="button" class="act" id="btn-selftest">Run built-in self-tests</button>
+    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+  </p>
+</details>
+
+<!-- ======================= HELP ======================= -->
+<details class="panel" id="help">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">About the models, the engine, and this page</h2></summary>
+
+  <h3>Three different things, kept apart on purpose</h3>
+  <table class="ref">
+    <thead><tr><th>What</th><th>Statement</th><th>What it does and does not do</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Little's Law</strong></td>
+        <td class="num">L = &lambda;W</td>
+        <td>A general relationship among average occupancy, throughput, and response time. Needs
+          almost no assumptions. <strong>Does not predict the knee</strong>, and cannot: it has no
+          notion of capacity.</td>
+      </tr>
+      <tr>
+        <td><strong>M/M/1</strong></td>
+        <td class="num">W = 1/(&mu;&minus;&lambda;), &lambda;&lt;&mu;</td>
+        <td>Predicts <em>how</em> mean response time rises as utilization approaches capacity.
+          Assumes Poisson arrivals, exponential service, one server, FCFS, unlimited waiting room.</td>
+      </tr>
+      <tr>
+        <td><strong>Simulation</strong></td>
+        <td class="num">the event trace</td>
+        <td>Empirical evidence about those predictions, under assumptions you can violate on purpose
+          to see what breaks.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">
+    Little's Law relates throughput, latency, and concurrency. Queueing theory predicts why latency
+    rises near capacity. Simulation shows what those relationships mean for an operating system.
+  </p>
+
+  <h3>Formulas used</h3>
+  <table class="ref">
+    <thead><tr><th>Quantity</th><th>M/M/1 (exponential service)</th><th>M/D/1 (deterministic service)</th></tr></thead>
+    <tbody>
+      <tr><td>Offered load</td><td class="num">&rho; = &lambda;/&mu;</td><td class="num">&rho; = &lambda;/&mu;</td></tr>
+      <tr><td>Mean queue wait</td><td class="num">W<sub>q</sub> = &lambda; / (&mu;(&mu;&minus;&lambda;))</td><td class="num">W<sub>q</sub> = &rho; / (2&mu;(1&minus;&rho;))</td></tr>
+      <tr><td>Mean response time</td><td class="num">W = 1/(&mu;&minus;&lambda;)</td><td class="num">W = W<sub>q</sub> + 1/&mu;</td></tr>
+      <tr><td>Mean number in system</td><td class="num">L = &lambda;/(&mu;&minus;&lambda;)</td><td class="num">L = &lambda;W</td></tr>
+      <tr><td>Mean number waiting</td><td class="num">L<sub>q</sub> = &lambda;&sup2;/(&mu;(&mu;&minus;&lambda;))</td><td class="num">L<sub>q</sub> = &lambda;W<sub>q</sub></td></tr>
+      <tr><td>&lambda; &ge; &mu;</td><td colspan="2">No finite steady-state prediction. At &lambda;&nbsp;=&nbsp;&mu; the queue is critically loaded; at &lambda;&nbsp;&gt;&nbsp;&mu; the backlog grows in the long run at about &lambda;&nbsp;&minus;&nbsp;&mu;.</td></tr>
+    </tbody>
+  </table>
+  <p>
+    The deterministic option is never scored against the M/M/1 formula. Selecting it switches the
+    whole prediction panel to M/D/1 and relabels it, because applying an exponential-service result
+    to constant service times is simply the wrong model.
+  </p>
+
+  <h3>How the engine works</h3>
+  <ul>
+    <li><strong>Discrete-event, not frame-based.</strong> The engine advances from one event to the
+      next in nondecreasing simulation-time order. Simulated time is wholly independent of
+      wall-clock time: the 1&times;, 10&times;, and 100&times; speeds change only how much simulated
+      time each animation frame is asked to cover, so the <em>same seed produces the same event
+      trace at every speed</em>. Rendering observes the state; it never determines it.</li>
+    <li><strong>Tie-break policy.</strong> Events at an identical timestamp are processed in the
+      order <span class="mono">service completion &rarr; timeout &rarr; arrival</span>. Completion
+      first means a request never queues behind a server that is, at that same instant, becoming
+      free. The timeout rung is reserved for the Reliability extension and is never scheduled here;
+      it is in the ordering now so that adding it later cannot silently change the trace of a
+      scenario that does not use it.</li>
+    <li><strong>Seeded randomness.</strong> A 32-bit <span class="mono">mulberry32</span> generator;
+      <span class="mono">Math.random</span> is not reachable from the engine. Arrivals and service
+      times draw from two <em>independent</em> streams, so changing &mu; cannot perturb the arrival
+      sequence. Deterministic service consumes no random draw at all, which is why switching the
+      service distribution leaves the arrival trace untouched.</li>
+    <li><strong>Interarrival times.</strong> &Delta;t = &minus;ln&nbsp;U / &lambda; with U uniform on
+      the open interval (0,1), so every sample is strictly positive and finite.
+      &lambda;&nbsp;=&nbsp;0 is handled explicitly: no arrival is ever scheduled.</li>
+    <li><strong>Queue discipline.</strong> FCFS, one server, unlimited waiting room. Nothing is
+      discarded, ever. There is no loss, no balking, and no admission control in this version.</li>
+    <li><strong>Statistics.</strong> Before each event at time t the engine accumulates
+      N(t&#8315;)&middot;&Delta;t into the occupancy integral and the busy indicator into the busy
+      time, then advances the clock. Utilization is busy time over observation time. Throughput
+      counts completions, not offered arrivals.</li>
+    <li><strong>Falling behind rather than skipping.</strong> Each frame has an event budget. At
+      extreme settings the simulated clock advances more slowly than the requested multiple of real
+      time, but no event is ever dropped or reordered to keep up.</li>
+  </ul>
+
+  <h3>Keyboard</h3>
+  <p>
+    <kbd>Space</kbd> run / pause &middot;
+    <kbd>S</kbd> step one event &middot;
+    <kbd>R</kbd> reset &middot;
+    <kbd>D</kbd> defaults.
+    Every control is reachable with <kbd>Tab</kbd>; sliders respond to the arrow keys,
+    <kbd>Home</kbd>, and <kbd>End</kbd>. The shortcut keys stand down while a text field or
+    <code>&lt;select&gt;</code> has focus, so typing a value never starts the simulation.
+  </p>
+
+  <h3>Accessibility</h3>
+  <p>
+    No state is signalled by colour alone: the stability badge carries a word and a glyph as well as
+    a colour and a border style, the backlog-preserving preset is marked both by a dashed border and
+    by the words &ldquo;keeps backlog&rdquo;, and the three chart series are distinguished by dash
+    pattern (dots, solid, dashed) as well as by hue. Each canvas is exposed to assistive technology
+    as an image with a live text description of what it currently shows. A reduced-motion mode is
+    offered under Advanced and is switched on automatically when the operating system asks for it.
+  </p>
+
+  <h3>Running the model from the console</h3>
+  <p>
+    The engine is a pure module published as <code>window.QueueSim</code> with no DOM dependency:
+    <code>createSimulation</code>, <code>advanceSimulation</code>, <code>calculateMM1</code>,
+    <code>calculateMD1</code>, and <code>runSelfTests</code>, plus the event-ordering policy and the
+    preset table. The repository's test suite under
+    <code>course/interactive/performance-knee/tests/</code> extracts this very script element from
+    this very file and evaluates it in Node, so the tested code and the shipped code are the same
+    text. Nothing in the interface depends on the test harness.
+  </p>
+</details>
+
+</main>
+
+<footer>
+  <p>
+    <strong>The Performance Knee.</strong> A self-contained discrete-event queueing simulator for
+    ECE&nbsp;30861 Act&nbsp;III. No network requests, no dependencies &mdash; the page you are
+    reading is the whole program, and the Download&nbsp;HTML control hands you this same file.
+  </p>
+  <p>
+    Teaching materials &copy; James C. Davis and Steve France, licensed under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+  </p>
+</footer>
+
+<script id="queue-sim-engine">
+/* =================================================================================================
+   THE MODEL. Pure, deterministic, DOM-free.
+
+   This script element is extracted BY ID and evaluated by the Node test suite in ./tests/, so it may
+   not touch `document`, `window.addEventListener`, or any other browser surface. Its only contact
+   with the outside world is the namespace it publishes at the bottom.
+
+   Sections: 1 PRNG · 2 distributions · 3 event ordering · 4 engine · 5 analytical models ·
+             6 statistics · 7 presets · 8 self-tests · 9 namespace.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var VERSION = '1.0.0';
+  var DEFAULT_SEED = 30861;
+
+  /* --- 1. Seeded PRNG ---------------------------------------------------------------------------
+     mulberry32: one 32-bit word of state, a full 2^32 period, and good enough equidistribution for
+     teaching-scale Monte Carlo. Chosen over an LCG (visible lattice structure in low dimensions)
+     and over xorshift128 (four words of state to serialise) because reproducibility here means
+     "the same seed replays the same trace", and one word is the easiest thing to reset exactly. */
+  function createRng(seed) {
+    var a = seed >>> 0;
+    function next() {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+    next.state = function () { return a >>> 0; };
+    return next;
+  }
+
+  /* Two independent streams from one user-visible seed. Separating them is what makes "changing mu
+     does not perturb the arrival sequence" true, which in turn is what makes a capacity experiment
+     a controlled experiment rather than a fresh draw. */
+  var SERVICE_STREAM_OFFSET = 0x9E3779B9;   /* golden-ratio odd constant: decorrelates the streams */
+
+  /* --- 2. Distributions ------------------------------------------------------------------------- */
+
+  /* Uniform on the OPEN interval (0,1). The raw generator returns [0,1); -ln(0) is infinite, so a
+     zero draw must be rejected rather than clamped (clamping would quietly bias the tail). */
+  function unitOpen(rng) {
+    var u = rng();
+    while (u <= 0) u = rng();
+    return u;
+  }
+
+  function exponential(rng, rate) {
+    if (!(typeof rate === 'number') || !isFinite(rate) || rate <= 0) {
+      throw new RangeError('exponential: rate must be a finite number > 0, got ' + rate);
+    }
+    return -Math.log(unitOpen(rng)) / rate;
+  }
+
+  var SERVICE_DISTRIBUTIONS = {
+    exponential: {
+      label: 'Exponential',
+      model: 'M/M/1',
+      /* S = -ln U / mu */
+      sample: function (rng, mu) { return exponential(rng, mu); },
+      usesRandomDraw: true
+    },
+    deterministic: {
+      label: 'Deterministic',
+      model: 'M/D/1',
+      /* S = 1/mu, consuming no random draw */
+      sample: function (rng, mu) { return 1 / mu; },
+      usesRandomDraw: false
+    }
+  };
+
+  /* --- 3. Event ordering ------------------------------------------------------------------------
+     Events are processed in nondecreasing simulation-time order. Ties are broken by KIND, in this
+     order. The policy is data, and it is tested directly, so it cannot drift silently.
+
+       completion  A request leaving frees the server at that instant, so a simultaneous arrival
+                   finds an idle server rather than queueing behind a departure that has already
+                   happened. Ordering it first is what makes "at most one in service" and "the
+                   queue never holds a request while the server is idle" both true at tie points.
+       timeout     Reserved for the Reliability extension; never scheduled by this version. Present
+                   in the order now so that introducing it later cannot change the trace of any
+                   scenario that does not use it.
+       arrival     Last, so an arrival at time t sees the system as it stands AFTER every departure
+                   and abandonment at t.
+  */
+  var EVENT_ORDER = ['completion', 'timeout', 'arrival'];
+
+  function eventRank(kind) {
+    var i = EVENT_ORDER.indexOf(kind);
+    if (i < 0) throw new RangeError('unknown event kind: ' + kind);
+    return i;
+  }
+
+  function compareEvents(a, b) {
+    if (a.time < b.time) return -1;
+    if (a.time > b.time) return 1;
+    return eventRank(a.kind) - eventRank(b.kind);
+  }
+
+  /* --- 4. Discrete-event engine ----------------------------------------------------------------- */
+
+  function assertRate(value, name, minimum) {
+    if (typeof value !== 'number' || !isFinite(value)) {
+      throw new RangeError(name + ': must be a finite number, got ' + value);
+    }
+    if (value < minimum) {
+      throw new RangeError(name + ': must be >= ' + minimum + ', got ' + value);
+    }
+  }
+
+  function validateParams(params) {
+    assertRate(params.arrivalRate, 'arrivalRate', 0);
+    assertRate(params.serviceRate, 'serviceRate', 0);
+    if (params.serviceRate <= 0) {
+      throw new RangeError('serviceRate: must be > 0, got ' + params.serviceRate);
+    }
+    if (!Object.prototype.hasOwnProperty.call(SERVICE_DISTRIBUTIONS, params.serviceDistribution)) {
+      throw new RangeError('serviceDistribution: unknown "' + params.serviceDistribution + '"');
+    }
+  }
+
+  function numberOr(value, fallback) {
+    return (typeof value === 'number' && isFinite(value)) ? value : fallback;
+  }
+
+  /* A bounded ring of recent completions, for the live chart. A ring rather than an array with
+     shift(): at 100x and high load this is written tens of thousands of times a second, and
+     shift() would make each write O(n). Capacity 0 disables logging entirely, which is what the
+     statistical validation runs use. */
+  function createRing(capacity) {
+    return { capacity: capacity, items: new Array(capacity > 0 ? capacity : 0), start: 0, length: 0 };
+  }
+  function ringPush(ring, item) {
+    if (ring.capacity <= 0) return;
+    if (ring.length < ring.capacity) {
+      ring.items[(ring.start + ring.length) % ring.capacity] = item;
+      ring.length += 1;
+    } else {
+      ring.items[ring.start] = item;
+      ring.start = (ring.start + 1) % ring.capacity;
+    }
+  }
+  function ringToArray(ring) {
+    var out = [];
+    for (var i = 0; i < ring.length; i += 1) out.push(ring.items[(ring.start + i) % ring.capacity]);
+    return out;
+  }
+
+  function createSimulation(options) {
+    var o = options || {};
+    var params = {
+      arrivalRate: numberOr(o.arrivalRate, 30),
+      serviceRate: numberOr(o.serviceRate, 100),
+      serviceDistribution: o.serviceDistribution === undefined ? 'exponential' : o.serviceDistribution
+    };
+    validateParams(params);
+    var warmup = numberOr(o.warmup, 0);
+    assertRate(warmup, 'warmup', 0);
+    var sim = {
+      version: VERSION,
+      seed: (o.seed === undefined ? DEFAULT_SEED : o.seed) >>> 0,
+      warmup: warmup,
+      completionLogLimit: o.completionLogLimit === undefined ? 4096 : (o.completionLogLimit | 0),
+      params: params
+    };
+    return resetSimulation(sim);
+  }
+
+  /* Restore the initial state: clock at zero, statistics empty, both random streams rewound to the
+     seed, and the first arrival scheduled. The PARAMETERS are deliberately kept — "reset" means
+     "run this experiment again from the beginning", not "forget what I configured". Restoring the
+     factory parameters is a separate operation (the Defaults control). */
+  function resetSimulation(sim) {
+    sim.rngArrival = createRng(sim.seed);
+    sim.rngService = createRng((sim.seed + SERVICE_STREAM_OFFSET) >>> 0);
+    sim.time = 0;
+    sim.eventCount = 0;
+    sim.nextRequestId = 1;
+    sim.nextAttemptId = 1;
+    sim.queue = [];
+    sim.inService = null;
+    sim.nextArrivalTime = null;
+    sim.nextDepartureTime = null;
+    sim.counters = {
+      arrivals: 0, completions: 0,
+      maxQueueLength: 0, maxNumberInSystem: 0
+    };
+    /* The observation window: everything at or after `warmup`. */
+    sim.obs = {
+      time: 0, areaL: 0, areaLq: 0, busyTime: 0,
+      completions: 0, sumResponse: 0, sumWait: 0, sumService: 0,
+      startInSystem: null, started: false
+    };
+    /* The empty-to-empty cohort used for the exact Little's-Law check. */
+    sim.cohort = { start: null, area: 0, completions: 0, sumResponse: 0, closed: null };
+    sim.completionLog = createRing(sim.completionLogLimit);
+    sim.lastCompletion = null;
+    sim.budgetExhausted = false;
+    scheduleNextArrival(sim);
+    closeCohortIfEmpty(sim);
+    return sim;
+  }
+
+  function numberInSystem(sim) { return sim.queue.length + (sim.inService ? 1 : 0); }
+  function isEmpty(sim) { return sim.inService === null && sim.queue.length === 0; }
+
+  /* Accumulate the time-weighted statistics over [sim.time, toTime), then advance the clock.
+     Called BEFORE an event is applied, so the occupancy used is N(t-): the state that actually held
+     over the interval. The warm-up boundary is handled by clamping the interval's start, so a
+     warm-up that falls inside an inter-event gap splits that gap correctly instead of discarding or
+     double-counting it. */
+  function accumulate(sim, toTime) {
+    if (!(toTime > sim.time)) { sim.time = Math.max(sim.time, toTime); return; }
+    var n = numberInSystem(sim);
+    var nq = sim.queue.length;
+    var busy = sim.inService ? 1 : 0;
+    var from = sim.time > sim.warmup ? sim.time : sim.warmup;
+    if (toTime > from) {
+      var dt = toTime - from;
+      if (!sim.obs.started) { sim.obs.started = true; sim.obs.startInSystem = n; }
+      sim.obs.time += dt;
+      sim.obs.areaL += n * dt;
+      sim.obs.areaLq += nq * dt;
+      sim.obs.busyTime += busy * dt;
+    }
+    if (sim.cohort.start !== null) {
+      var cfrom = sim.time > sim.cohort.start ? sim.time : sim.cohort.start;
+      if (toTime > cfrom) sim.cohort.area += n * (toTime - cfrom);
+    }
+    sim.time = toTime;
+  }
+
+  /* A cohort is an interval that BEGINS and ENDS with the system empty. Over such an interval every
+     request that contributes to the occupancy integral both arrived and departed inside it, so
+     the Little's-Law identity holds exactly rather than approximately. The cohort opens at the
+     first empty instant at or after warm-up and is re-closed at every subsequent empty instant, so
+     it only ever grows: more evidence, still exact. */
+  function closeCohortIfEmpty(sim) {
+    if (sim.cohort.start === null) {
+      if (sim.time >= sim.warmup && isEmpty(sim)) sim.cohort.start = sim.time;
+      return;
+    }
+    if (isEmpty(sim) && sim.time > sim.cohort.start) {
+      sim.cohort.closed = {
+        startTime: sim.cohort.start,
+        endTime: sim.time,
+        time: sim.time - sim.cohort.start,
+        area: sim.cohort.area,
+        completions: sim.cohort.completions,
+        sumResponse: sim.cohort.sumResponse
+      };
+    }
+  }
+
+  function scheduleNextArrival(sim) {
+    if (!(sim.params.arrivalRate > 0)) { sim.nextArrivalTime = null; return; }
+    sim.nextArrivalTime = sim.time + exponential(sim.rngArrival, sim.params.arrivalRate);
+  }
+
+  function sampleService(sim) {
+    return SERVICE_DISTRIBUTIONS[sim.params.serviceDistribution].sample(sim.rngService, sim.params.serviceRate);
+  }
+
+  function startService(sim, request) {
+    request.serviceStartTime = sim.time;
+    request.serviceDuration = sampleService(sim);
+    sim.inService = request;
+    sim.nextDepartureTime = sim.time + request.serviceDuration;
+  }
+
+  function applyArrival(sim) {
+    /* `requestId` is the LOGICAL request; `attemptId` the PHYSICAL attempt offered to the server.
+       They are 1:1 in this version and the distinction costs nothing to carry. It is here because
+       retry amplification is exactly the ratio between the two, and a retry mechanism bolted onto
+       a model that cannot tell them apart cannot measure its own effect. */
+    var request = {
+      requestId: sim.nextRequestId++,
+      attemptId: sim.nextAttemptId++,
+      attempt: 1,
+      arrivalTime: sim.time,
+      serviceStartTime: null,
+      serviceDuration: null,
+      departureTime: null
+    };
+    sim.counters.arrivals += 1;
+    if (sim.inService === null) {
+      startService(sim, request);
+    } else {
+      sim.queue.push(request);
+      if (sim.queue.length > sim.counters.maxQueueLength) sim.counters.maxQueueLength = sim.queue.length;
+    }
+    var n = numberInSystem(sim);
+    if (n > sim.counters.maxNumberInSystem) sim.counters.maxNumberInSystem = n;
+    scheduleNextArrival(sim);
+    return request;
+  }
+
+  function applyCompletion(sim) {
+    var request = sim.inService;
+    if (request === null) throw new Error('completion with no request in service');
+    var t = sim.time;
+    request.departureTime = t;
+    var response = t - request.arrivalTime;
+    var wait = request.serviceStartTime - request.arrivalTime;
+    sim.counters.completions += 1;
+    if (t >= sim.warmup) {
+      sim.obs.completions += 1;
+      sim.obs.sumResponse += response;
+      sim.obs.sumWait += wait;
+      sim.obs.sumService += request.serviceDuration;
+    }
+    if (sim.cohort.start !== null && t >= sim.cohort.start) {
+      sim.cohort.completions += 1;
+      sim.cohort.sumResponse += response;
+    }
+    sim.lastCompletion = {
+      requestId: request.requestId, attemptId: request.attemptId,
+      time: t, response: response, wait: wait, service: request.serviceDuration
+    };
+    ringPush(sim.completionLog, sim.lastCompletion);
+    sim.inService = null;
+    sim.nextDepartureTime = null;
+    /* FCFS: the head of the queue, always. */
+    if (sim.queue.length > 0) startService(sim, sim.queue.shift());
+    return request;
+  }
+
+  function selectNextEvent(sim) {
+    var best = null;
+    if (sim.inService !== null && sim.nextDepartureTime !== null) {
+      best = { kind: 'completion', time: sim.nextDepartureTime };
+    }
+    if (sim.nextArrivalTime !== null) {
+      var arrival = { kind: 'arrival', time: sim.nextArrivalTime };
+      if (best === null || compareEvents(arrival, best) < 0) best = arrival;
+    }
+    return best;
+  }
+
+  /* Process exactly one event. Returns the event, or null when the system has none pending (an
+     empty system with lambda = 0). */
+  function stepSimulation(sim) {
+    var ev = selectNextEvent(sim);
+    if (ev === null) return null;
+    if (ev.time < sim.time) {
+      throw new Error('event ordering violated: event at ' + ev.time + ' before clock ' + sim.time);
+    }
+    accumulate(sim, ev.time);
+    sim.eventCount += 1;
+    if (ev.kind === 'completion') applyCompletion(sim);
+    else if (ev.kind === 'arrival') applyArrival(sim);
+    else throw new RangeError('unhandled event kind: ' + ev.kind);
+    closeCohortIfEmpty(sim);
+    return ev;
+  }
+
+  /* Advance the simulation. `untilTime` is a simulated-time horizon; `maxEvents` an event budget;
+     `maxCompletions` a convenience stop for validation runs. `trace: true` records the event
+     sequence, which is how the determinism tests compare runs.
+
+     The clock only runs forward to `untilTime` when the horizon was actually reached — if the
+     budget ran out first, the clock stays where the last processed event left it. That is what
+     keeps the event trace independent of how the caller chunks time: the same seed yields the same
+     sequence of (kind, time) pairs whether the horizon is reached in one call or a thousand. */
+  function advanceSimulation(sim, options) {
+    var o = options || {};
+    var until = o.untilTime;
+    var maxEvents = o.maxEvents === undefined ? Infinity : o.maxEvents;
+    var maxCompletions = o.maxCompletions === undefined ? Infinity : o.maxCompletions;
+    var trace = o.trace ? [] : null;
+    var processed = 0;
+    var hitBudget = false;
+    for (;;) {
+      if (processed >= maxEvents) { hitBudget = true; break; }
+      if (sim.counters.completions >= maxCompletions) break;
+      var ev = selectNextEvent(sim);
+      if (ev === null) break;
+      if (until !== undefined && ev.time > until) break;
+      stepSimulation(sim);
+      processed += 1;
+      if (trace !== null) {
+        trace.push({ kind: ev.kind, time: ev.time, eventIndex: sim.eventCount, inSystem: numberInSystem(sim) });
+      }
+    }
+    if (!hitBudget && until !== undefined && sim.time < until
+        && sim.counters.completions < maxCompletions) {
+      /* No event stands between the clock and the horizon: let the idle (or busy) interval count
+         towards the statistics rather than silently vanishing. */
+      accumulate(sim, until);
+      closeCohortIfEmpty(sim);
+    }
+    sim.budgetExhausted = hitBudget;
+    return { events: processed, budgetExhausted: hitBudget, trace: trace };
+  }
+
+  /* --- Parameter changes during a run ----------------------------------------------------------
+     The policy, restated: future arrivals use the new lambda; the arrival already generated is left
+     alone; a request already in service keeps its scheduled completion; new services use the new mu
+     and the new distribution. */
+
+  function setArrivalRate(sim, rate) {
+    assertRate(rate, 'arrivalRate', 0);
+    var previous = sim.params.arrivalRate;
+    sim.params.arrivalRate = rate;
+    if (rate === 0) {
+      /* At rate zero there is no arrival process, so the pending arrival is cancelled. This is the
+         one case where a scheduled arrival is withdrawn, and it is withdrawn because keeping it
+         would mean honouring a draw from a process the user just switched off. */
+      sim.nextArrivalTime = null;
+    } else if (previous === 0 || sim.nextArrivalTime === null) {
+      scheduleNextArrival(sim);
+    }
+    return sim;
+  }
+
+  function setServiceRate(sim, rate) {
+    assertRate(rate, 'serviceRate', 0);
+    if (rate <= 0) throw new RangeError('serviceRate: must be > 0, got ' + rate);
+    sim.params.serviceRate = rate;
+    /* Deliberately NOT touching sim.nextDepartureTime: work already under way is not re-timed. */
+    return sim;
+  }
+
+  function setServiceDistribution(sim, distribution) {
+    if (!Object.prototype.hasOwnProperty.call(SERVICE_DISTRIBUTIONS, distribution)) {
+      throw new RangeError('serviceDistribution: unknown "' + distribution + '"');
+    }
+    sim.params.serviceDistribution = distribution;
+    return sim;
+  }
+
+  /* --- 5. Analytical models --------------------------------------------------------------------- */
+
+  function unstableResult(model, arrivalRate, serviceRate) {
+    var critical = arrivalRate === serviceRate;
+    return {
+      model: model,
+      stable: false,
+      offeredLoad: arrivalRate / serviceRate,
+      /* Utilization is a fraction of time and cannot exceed one, however high the offered load. */
+      utilization: 1,
+      reason: 'No finite steady-state prediction: offered load '
+        + (critical ? 'meets' : 'exceeds') + ' service capacity.',
+      detail: critical
+        ? 'At λ = μ the queue is critically loaded: the mean queue length has no finite limit.'
+        : 'At λ > μ the backlog grows in the long run, at about λ − μ = '
+          + (arrivalRate - serviceRate) + ' requests per second.',
+      backlogGrowthRate: arrivalRate - serviceRate,
+      W: null, Wq: null, L: null, Lq: null,
+      serviceTime: 1 / serviceRate
+    };
+  }
+
+  function validateModelRates(arrivalRate, serviceRate) {
+    assertRate(arrivalRate, 'arrivalRate', 0);
+    assertRate(serviceRate, 'serviceRate', 0);
+    if (serviceRate <= 0) throw new RangeError('serviceRate: must be > 0, got ' + serviceRate);
+  }
+
+  /* M/M/1: Poisson arrivals, exponential service, one server, FCFS, unlimited waiting room. */
+  function calculateMM1(arrivalRate, serviceRate) {
+    validateModelRates(arrivalRate, serviceRate);
+    var rho = arrivalRate / serviceRate;
+    if (arrivalRate >= serviceRate) return unstableResult('M/M/1', arrivalRate, serviceRate);
+    var spare = serviceRate - arrivalRate;
+    var W = 1 / spare;
+    var Wq = arrivalRate / (serviceRate * spare);
+    return {
+      model: 'M/M/1',
+      stable: true,
+      offeredLoad: rho,
+      utilization: rho,
+      W: W,
+      Wq: Wq,
+      L: arrivalRate / spare,
+      Lq: (arrivalRate * arrivalRate) / (serviceRate * spare),
+      serviceTime: 1 / serviceRate
+    };
+  }
+
+  /* M/D/1: Poisson arrivals, CONSTANT service, one server, FCFS. The Pollaczek-Khinchine mean-value
+     result with zero service-time variance — exactly half the M/M/1 queue wait at the same rho. */
+  function calculateMD1(arrivalRate, serviceRate) {
+    validateModelRates(arrivalRate, serviceRate);
+    var rho = arrivalRate / serviceRate;
+    if (arrivalRate >= serviceRate) return unstableResult('M/D/1', arrivalRate, serviceRate);
+    var Wq = rho / (2 * serviceRate * (1 - rho));
+    var W = Wq + 1 / serviceRate;
+    return {
+      model: 'M/D/1',
+      stable: true,
+      offeredLoad: rho,
+      utilization: rho,
+      W: W,
+      Wq: Wq,
+      L: arrivalRate * W,
+      Lq: arrivalRate * Wq,
+      serviceTime: 1 / serviceRate
+    };
+  }
+
+  /* The ONLY dispatch the interface uses, so an M/M/1 formula can never be shown for deterministic
+     service times. Selecting "Deterministic" switches the model, it does not merely relabel it. */
+  function predict(params) {
+    validateParams(params);
+    return params.serviceDistribution === 'deterministic'
+      ? calculateMD1(params.arrivalRate, params.serviceRate)
+      : calculateMM1(params.arrivalRate, params.serviceRate);
+  }
+
+  /* The predicted load-latency curve, sampled for the knee chart. Returns points up to
+     `maxRho` (< 1); the caller clips vertically and says so on screen. */
+  function predictedCurve(serviceRate, distribution, maxRho, samples) {
+    validateModelRates(1, serviceRate);
+    var top = numberOr(maxRho, 0.995);
+    var n = Math.max(2, (samples === undefined ? 400 : samples) | 0);
+    var fn = distribution === 'deterministic' ? calculateMD1 : calculateMM1;
+    var points = [];
+    for (var i = 0; i <= n; i += 1) {
+      var rho = top * i / n;
+      var r = fn(rho * serviceRate, serviceRate);
+      if (r.stable) points.push({ rho: rho, W: r.W });
+    }
+    return points;
+  }
+
+  /* --- 6. Statistics ---------------------------------------------------------------------------- */
+
+  function cohortReport(sim) {
+    var c = sim.cohort;
+    if (c.start === null) {
+      return { available: false, reason: 'The observation window has not yet contained an empty system.' };
+    }
+    var closed = c.closed;
+    if (isEmpty(sim) && sim.time > c.start) {
+      closed = {
+        startTime: c.start, endTime: sim.time, time: sim.time - c.start,
+        area: c.area, completions: c.completions, sumResponse: c.sumResponse
+      };
+    }
+    if (closed === null) {
+      return {
+        available: false,
+        reason: 'No empty-to-empty interval has closed yet. The system has not been empty since '
+          + c.start.toFixed(2) + ' s; at high load that can take a long time.'
+      };
+    }
+    var L = closed.time > 0 ? closed.area / closed.time : 0;
+    var lambdaHat = closed.time > 0 ? closed.completions / closed.time : 0;
+    var W = closed.completions > 0 ? closed.sumResponse / closed.completions : null;
+    var product = W === null ? 0 : lambdaHat * W;
+    return {
+      available: true,
+      startTime: closed.startTime,
+      endTime: closed.endTime,
+      time: closed.time,
+      completions: closed.completions,
+      L: L,
+      lambdaHat: lambdaHat,
+      W: W,
+      product: product,
+      residual: L - product,
+      relativeResidual: L > 0 ? Math.abs(L - product) / L : 0
+    };
+  }
+
+  function snapshot(sim) {
+    var obs = sim.obs;
+    var T = obs.time;
+    var inSystem = numberInSystem(sim);
+    var meanResponse = obs.completions > 0 ? obs.sumResponse / obs.completions : null;
+    var throughput = T > 0 ? obs.completions / T : null;
+    var timeAverageL = T > 0 ? obs.areaL / T : null;
+    var cohort = cohortReport(sim);
+    var windowProduct = (throughput !== null && meanResponse !== null) ? throughput * meanResponse : null;
+    return {
+      time: sim.time,
+      events: sim.eventCount,
+      arrivals: sim.counters.arrivals,
+      completions: sim.counters.completions,
+      queueLength: sim.queue.length,
+      numberInSystem: inSystem,
+      maxQueueLength: sim.counters.maxQueueLength,
+      maxNumberInSystem: sim.counters.maxNumberInSystem,
+      serverBusy: sim.inService !== null,
+      observedTime: T,
+      observedCompletions: obs.completions,
+      utilization: T > 0 ? obs.busyTime / T : null,
+      throughput: throughput,
+      meanResponse: meanResponse,
+      meanWait: obs.completions > 0 ? obs.sumWait / obs.completions : null,
+      meanService: obs.completions > 0 ? obs.sumService / obs.completions : null,
+      timeAverageNumberInSystem: timeAverageL,
+      timeAverageQueueLength: T > 0 ? obs.areaLq / T : null,
+      /* The long-run Little's-Law estimate over the WHOLE window, reported separately from the
+         exact cohort check precisely because it is subject to window effects. */
+      windowL: timeAverageL,
+      windowProduct: windowProduct,
+      windowRelativeDifference: (timeAverageL !== null && windowProduct !== null && timeAverageL > 0)
+        ? Math.abs(timeAverageL - windowProduct) / timeAverageL : null,
+      littleCohort: cohort,
+      /* Observed backlog growth: the slope of N(t) across the window. Meaningful when the offered
+         load exceeds capacity, where the steady-state mean does not exist. */
+      backlogGrowthObserved: (T > 0 && obs.startInSystem !== null)
+        ? (inSystem - obs.startInSystem) / T : null,
+      transient: obs.completions < 50 || !cohort.available,
+      budgetExhausted: sim.budgetExhausted
+    };
+  }
+
+  function recentCompletions(sim) { return ringToArray(sim.completionLog); }
+
+  function rollingMeanResponse(sim, count) {
+    var n = count === undefined ? 50 : count;
+    var ring = sim.completionLog;
+    var take = Math.min(n, ring.length);
+    if (take === 0) return null;
+    var sum = 0;
+    for (var i = ring.length - take; i < ring.length; i += 1) {
+      sum += ring.items[(ring.start + i) % ring.capacity].response;
+    }
+    return sum / take;
+  }
+
+  /* --- 7. Presets ------------------------------------------------------------------------------- */
+
+  var PRESETS = [
+    { id: 'light', label: 'Light load', arrivalRate: 30, serviceRate: 100,
+      reset: true, note: 'Short queues; the server is often idle.' },
+    { id: 'moderate', label: 'Moderate load', arrivalRate: 70, serviceRate: 100,
+      reset: true, note: 'Occasional waiting; response time already well above service time.' },
+    { id: 'near', label: 'Near capacity', arrivalRate: 95, serviceRate: 100,
+      reset: true, note: 'Large latency from a load that still looks like headroom.' },
+    { id: 'critical', label: 'Critical', arrivalRate: 100, serviceRate: 100,
+      reset: true, note: 'Critically loaded: no finite steady state.' },
+    { id: 'overloaded', label: 'Overloaded', arrivalRate: 110, serviceRate: 100,
+      reset: true, note: 'Backlog grows without bound at about 10 req/s.' },
+    { id: 'recover', label: 'Recover capacity', arrivalRate: 110, serviceRate: 150,
+      reset: false, note: 'Raises capacity on the RUNNING simulation so you can watch the backlog drain.' }
+  ];
+
+  function findPreset(id) {
+    for (var i = 0; i < PRESETS.length; i += 1) if (PRESETS[i].id === id) return PRESETS[i];
+    throw new RangeError('unknown preset: ' + id);
+  }
+
+  /* Apply a preset. `reset: true` presets restart the experiment from empty; `reset: false` ones
+     change the parameters of the run in progress and leave the backlog alone. */
+  function applyPreset(sim, id) {
+    var preset = findPreset(id);
+    setArrivalRate(sim, preset.arrivalRate);
+    setServiceRate(sim, preset.serviceRate);
+    if (preset.serviceDistribution) setServiceDistribution(sim, preset.serviceDistribution);
+    if (preset.reset) resetSimulation(sim);
+    return preset;
+  }
+
+  /* --- 8. Self-tests ---------------------------------------------------------------------------
+     A compact in-page suite over the same assertions the Node suite checks in depth. It exists so
+     the instrument can be checked in the room it is being used in, and so a browser test has one
+     call that exercises the model. Nothing in the interface depends on it. */
+  function runSelfTests() {
+    var results = [];
+    function check(name, fn) {
+      try {
+        var detail = fn();
+        results.push({ name: name, passed: true, detail: detail || '' });
+      } catch (err) {
+        results.push({ name: name, passed: false, detail: String(err && err.message || err) });
+      }
+    }
+    function assert(cond, message) { if (!cond) throw new Error(message || 'assertion failed'); }
+    function close(a, b, tol, message) {
+      if (!(Math.abs(a - b) <= tol)) throw new Error((message || 'not close') + ': ' + a + ' vs ' + b);
+    }
+
+    check('PRNG: same seed replays the same sequence', function () {
+      var a = createRng(30861), b = createRng(30861);
+      for (var i = 0; i < 1000; i += 1) assert(a() === b(), 'diverged at draw ' + i);
+      return '1000 draws identical';
+    });
+    check('PRNG: different seeds differ', function () {
+      var a = createRng(1), b = createRng(2), same = 0;
+      for (var i = 0; i < 100; i += 1) if (a() === b()) same += 1;
+      assert(same === 0, same + ' of 100 draws coincided');
+      return 'no coincidences in 100 draws';
+    });
+    check('Exponential samples are positive and finite', function () {
+      var rng = createRng(7);
+      for (var i = 0; i < 20000; i += 1) {
+        var s = exponential(rng, 100);
+        assert(s > 0 && isFinite(s), 'bad sample ' + s);
+      }
+      return '20000 samples in (0, inf)';
+    });
+    check('M/M/1 matches known values at rho = 0.9', function () {
+      var r = calculateMM1(90, 100);
+      close(r.W, 0.1, 1e-12, 'W');
+      close(r.Wq, 0.09, 1e-12, 'Wq');
+      close(r.L, 9, 1e-9, 'L');
+      close(r.Lq, 8.1, 1e-9, 'Lq');
+      return 'W=100ms Wq=90ms L=9 Lq=8.1';
+    });
+    check('M/D/1 halves the M/M/1 queue wait at the same rho', function () {
+      var m = calculateMM1(90, 100), d = calculateMD1(90, 100);
+      close(d.Wq, m.Wq / 2, 1e-12, 'Wq');
+      close(d.W, 0.055, 1e-12, 'W');
+      return 'M/D/1 W=55ms vs M/M/1 W=100ms';
+    });
+    check('lambda >= mu yields no finite prediction', function () {
+      [calculateMM1(100, 100), calculateMM1(110, 100), calculateMD1(110, 100)].forEach(function (r) {
+        assert(r.stable === false, 'reported stable');
+        assert(r.W === null && r.L === null, 'emitted a finite W or L');
+        assert(/No finite steady-state prediction/.test(r.reason), 'missing reason');
+      });
+      return 'all three refuse to print a number';
+    });
+    check('Invalid parameters are rejected', function () {
+      var bad = 0;
+      [[-1, 100], [30, 0], [30, -5], [NaN, 100], [30, Infinity]].forEach(function (p) {
+        try { calculateMM1(p[0], p[1]); } catch (e) { bad += 1; }
+      });
+      assert(bad === 5, 'only ' + bad + ' of 5 invalid pairs threw');
+      return '5 of 5 rejected';
+    });
+    check('Engine invariants hold over 20000 events', function () {
+      var sim = createSimulation({ arrivalRate: 90, serviceRate: 100, seed: 30861 });
+      var last = -1, lastId = 0;
+      for (var i = 0; i < 20000; i += 1) {
+        var ev = stepSimulation(sim);
+        if (ev === null) break;
+        assert(ev.time >= last, 'time moved backward');
+        last = ev.time;
+        assert(sim.queue.length >= 0, 'negative queue');
+        assert(sim.counters.completions <= sim.counters.arrivals, 'more completions than arrivals');
+        if (ev.kind === 'completion') {
+          assert(sim.lastCompletion.requestId > lastId, 'FCFS order violated');
+          lastId = sim.lastCompletion.requestId;
+        }
+      }
+      return sim.eventCount + ' events, ' + sim.counters.completions + ' completions';
+    });
+    check('Event trace is independent of how time is chunked', function () {
+      function trace(chunk) {
+        var sim = createSimulation({ arrivalRate: 90, serviceRate: 100, seed: 30861 });
+        var out = [];
+        for (var t = chunk; t <= 20; t += chunk) {
+          var r = advanceSimulation(sim, { untilTime: t, trace: true });
+          for (var i = 0; i < r.trace.length; i += 1) out.push(r.trace[i].kind + '@' + r.trace[i].time);
+        }
+        return out;
+      }
+      var a = trace(20), b = trace(0.05);
+      assert(a.length === b.length, 'lengths differ: ' + a.length + ' vs ' + b.length);
+      for (var i = 0; i < a.length; i += 1) assert(a[i] === b[i], 'diverged at event ' + i);
+      return a.length + ' events identical at two chunk sizes';
+    });
+    check("Little's Law is exact over an empty-to-empty cohort", function () {
+      var sim = createSimulation({ arrivalRate: 30, serviceRate: 100, seed: 30861 });
+      advanceSimulation(sim, { untilTime: 500 });
+      var c = snapshot(sim).littleCohort;
+      assert(c.available, c.reason);
+      assert(c.completions > 100, 'only ' + c.completions + ' completions in cohort');
+      assert(c.relativeResidual < 1e-9, 'residual ' + c.relativeResidual);
+      return c.completions + ' requests, residual ' + c.relativeResidual.toExponential(2);
+    });
+    check('lambda = 0 produces no arrivals', function () {
+      var sim = createSimulation({ arrivalRate: 0, serviceRate: 100, seed: 30861 });
+      assert(sim.nextArrivalTime === null, 'an arrival was scheduled');
+      advanceSimulation(sim, { untilTime: 100 });
+      assert(sim.counters.arrivals === 0, sim.counters.arrivals + ' arrivals appeared');
+      assert(snapshot(sim).utilization === 0, 'server was busy');
+      return '100 s, 0 arrivals, utilization 0';
+    });
+    check('Service-rate change does not re-time work in progress', function () {
+      var sim = createSimulation({ arrivalRate: 90, serviceRate: 100, seed: 30861 });
+      advanceSimulation(sim, { maxEvents: 50 });
+      while (sim.inService === null) { if (stepSimulation(sim) === null) break; }
+      var scheduled = sim.nextDepartureTime;
+      setServiceRate(sim, 150);
+      assert(sim.nextDepartureTime === scheduled, 'the in-flight completion was rescheduled');
+      return 'completion still at ' + scheduled.toFixed(6) + ' s';
+    });
+    check('Equal-time events are ordered completion before arrival', function () {
+      var sim = createSimulation({ arrivalRate: 90, serviceRate: 100, seed: 1 });
+      advanceSimulation(sim, { maxEvents: 20 });
+      while (sim.inService === null) { if (stepSimulation(sim) === null) break; }
+      sim.nextArrivalTime = sim.nextDepartureTime;
+      assert(selectNextEvent(sim).kind === 'completion', 'the arrival won the tie');
+      return 'completion wins';
+    });
+
+    var passed = 0;
+    for (var i = 0; i < results.length; i += 1) if (results[i].passed) passed += 1;
+    return { passed: passed, failed: results.length - passed, total: results.length, results: results };
+  }
+
+  /* --- 9. Namespace ----------------------------------------------------------------------------- */
+  var root = typeof window !== 'undefined' ? window : globalThis;
+  root.QueueSim = {
+    VERSION: VERSION,
+    DEFAULT_SEED: DEFAULT_SEED,
+    EVENT_ORDER: EVENT_ORDER,
+    SERVICE_DISTRIBUTIONS: SERVICE_DISTRIBUTIONS,
+    PRESETS: PRESETS,
+    /* The five names the specification requires, exactly. */
+    createSimulation: createSimulation,
+    advanceSimulation: advanceSimulation,
+    calculateMM1: calculateMM1,
+    calculateMD1: calculateMD1,
+    runSelfTests: runSelfTests,
+    /* Everything else the model exposes, for the interface and the test suite. */
+    resetSimulation: resetSimulation,
+    stepSimulation: stepSimulation,
+    selectNextEvent: selectNextEvent,
+    compareEvents: compareEvents,
+    createRng: createRng,
+    exponential: exponential,
+    setArrivalRate: setArrivalRate,
+    setServiceRate: setServiceRate,
+    setServiceDistribution: setServiceDistribution,
+    predict: predict,
+    predictedCurve: predictedCurve,
+    snapshot: snapshot,
+    recentCompletions: recentCompletions,
+    rollingMeanResponse: rollingMeanResponse,
+    applyPreset: applyPreset,
+    findPreset: findPreset,
+    numberInSystem: numberInSystem,
+    isEmpty: isEmpty
+  };
+}());
+</script>
+
+<script id="queue-sim-ui">
+/* =================================================================================================
+   THE INTERFACE. Observes the model; never determines it.
+
+   The only coupling to simulated time is one line in the animation frame: convert elapsed WALL time
+   into a simulated-time horizon and ask the engine to advance to it. Everything else reads state.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var Q = window.QueueSim;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var DEFAULTS = { arrivalRate: 30, serviceRate: 100, serviceDistribution: 'exponential', speed: 10 };
+  var EVENT_BUDGET_PER_FRAME = 200000;   /* fall behind rather than drop or reorder an event */
+  var ROLLING_WINDOW = 50;
+
+  var ui = {
+    speed: DEFAULTS.speed,
+    running: false,
+    maxDisplayed: 40,
+    history: 120,
+    reduced: false,
+    lastFrameMs: null,
+    lastDrawMs: 0,
+    arrivalFlashUntil: 0
+  };
+
+  var sim = Q.createSimulation({
+    arrivalRate: DEFAULTS.arrivalRate,
+    serviceRate: DEFAULTS.serviceRate,
+    serviceDistribution: DEFAULTS.serviceDistribution,
+    seed: Q.DEFAULT_SEED,
+    warmup: 0
+  });
+
+  /* ---------- palette: read the CSS tokens so the canvases follow the page theme ---------- */
+  var palette = {};
+  function readPalette() {
+    var cs = getComputedStyle(document.documentElement);
+    ['ink', 'paper', 'panel', 'muted', 'accent', 'model', 'ok', 'warn', 'bad', 'rule', 'grid']
+      .forEach(function (name) { palette[name] = cs.getPropertyValue('--' + name).trim() || '#000'; });
+  }
+  readPalette();
+  if (window.matchMedia) {
+    var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+    var onScheme = function () { readPalette(); draw(true); };
+    if (scheme.addEventListener) scheme.addEventListener('change', onScheme);
+    else if (scheme.addListener) scheme.addListener(onScheme);
+
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.matches) { ui.reduced = true; }
+  }
+
+  /* ---------- formatting ---------- */
+  function ms(seconds, digits) {
+    if (seconds === null || seconds === undefined || !isFinite(seconds)) return '—';
+    var v = seconds * 1000;
+    var d = digits === undefined ? (v < 10 ? 2 : v < 1000 ? 1 : 0) : digits;
+    return v.toFixed(d) + ' ms';
+  }
+  function num(value, digits) {
+    if (value === null || value === undefined || !isFinite(value)) return '—';
+    return value.toFixed(digits === undefined ? 3 : digits);
+  }
+  function rate(value) {
+    if (value === null || !isFinite(value)) return '—';
+    return value.toFixed(1) + ' req/s';
+  }
+  function int(value) {
+    if (value === null || !isFinite(value)) return '—';
+    return Math.round(value).toLocaleString('en-US');
+  }
+
+  /* ---------- controls ---------- */
+  function syncPair(numberId, rangeId, value) {
+    $(numberId).value = String(value);
+    $(rangeId).value = String(value);
+  }
+
+  function onArrivalRate(value) {
+    var v = clampInt(value, 0, 150, sim.params.arrivalRate);
+    syncPair('lambda', 'lambda-range', v);
+    Q.setArrivalRate(sim, v);
+    refresh();
+  }
+  function onServiceRate(value) {
+    var v = clampInt(value, 20, 200, sim.params.serviceRate);
+    syncPair('mu', 'mu-range', v);
+    Q.setServiceRate(sim, v);
+    refresh();
+  }
+  function clampInt(value, lo, hi, fallback) {
+    var v = parseInt(value, 10);
+    if (!isFinite(v)) return fallback;
+    return Math.max(lo, Math.min(hi, v));
+  }
+
+  $('lambda-range').addEventListener('input', function (e) { onArrivalRate(e.target.value); });
+  $('lambda').addEventListener('change', function (e) { onArrivalRate(e.target.value); });
+  $('mu-range').addEventListener('input', function (e) { onServiceRate(e.target.value); });
+  $('mu').addEventListener('change', function (e) { onServiceRate(e.target.value); });
+  $('dist').addEventListener('change', function (e) {
+    Q.setServiceDistribution(sim, e.target.value);
+    refresh();
+  });
+
+  Array.prototype.forEach.call($('speed-seg').querySelectorAll('button'), function (b) {
+    b.addEventListener('click', function () { setSpeed(parseInt(b.dataset.speed, 10)); });
+  });
+  function setSpeed(value) {
+    ui.speed = value;
+    Array.prototype.forEach.call($('speed-seg').querySelectorAll('button'), function (b) {
+      b.setAttribute('aria-pressed', String(parseInt(b.dataset.speed, 10) === value));
+    });
+    ui.lastFrameMs = null;   /* do not charge the new speed for the gap since the last frame */
+  }
+
+  function setRunning(on) {
+    ui.running = on;
+    var b = $('btn-run');
+    b.textContent = on ? 'Pause' : 'Run';
+    b.setAttribute('aria-pressed', String(on));
+    /* Pausing must not advance simulated time: the wall-clock reference is dropped, so the gap
+       spent paused is never converted into a simulated-time horizon. */
+    ui.lastFrameMs = null;
+  }
+
+  $('btn-run').addEventListener('click', function () { setRunning(!ui.running); });
+  $('btn-step').addEventListener('click', function () {
+    setRunning(false);
+    Q.stepSimulation(sim);
+    refresh();
+  });
+  $('btn-reset').addEventListener('click', function () { Q.resetSimulation(sim); refresh(); });
+  $('btn-defaults').addEventListener('click', function () {
+    Q.setArrivalRate(sim, DEFAULTS.arrivalRate);
+    Q.setServiceRate(sim, DEFAULTS.serviceRate);
+    Q.setServiceDistribution(sim, DEFAULTS.serviceDistribution);
+    sim.seed = Q.DEFAULT_SEED;
+    sim.warmup = 0;
+    syncPair('lambda', 'lambda-range', DEFAULTS.arrivalRate);
+    syncPair('mu', 'mu-range', DEFAULTS.serviceRate);
+    $('dist').value = DEFAULTS.serviceDistribution;
+    $('seed').value = String(Q.DEFAULT_SEED);
+    $('warmup').value = '0';
+    setSpeed(DEFAULTS.speed);
+    Q.resetSimulation(sim);
+    refresh();
+  });
+
+  /* Advanced */
+  $('seed').addEventListener('change', function (e) {
+    var v = parseInt(e.target.value, 10);
+    sim.seed = (isFinite(v) && v >= 0 ? v : Q.DEFAULT_SEED) >>> 0;
+    e.target.value = String(sim.seed);
+    Q.resetSimulation(sim);
+    refresh();
+  });
+  $('warmup').addEventListener('change', function (e) {
+    var v = parseFloat(e.target.value);
+    sim.warmup = isFinite(v) && v >= 0 ? v : 0;
+    e.target.value = String(sim.warmup);
+    Q.resetSimulation(sim);
+    refresh();
+  });
+  $('maxdisp').addEventListener('change', function (e) {
+    ui.maxDisplayed = clampInt(e.target.value, 5, 200, 40);
+    e.target.value = String(ui.maxDisplayed);
+    draw(true);
+  });
+  $('history').addEventListener('change', function (e) {
+    ui.history = clampInt(e.target.value, 5, 600, 120);
+    e.target.value = String(ui.history);
+    draw(true);
+  });
+  $('reduced').addEventListener('change', function (e) { ui.reduced = e.target.checked; draw(true); });
+  $('reduced').checked = ui.reduced;
+
+  $('btn-selftest').addEventListener('click', function () {
+    var r = Q.runSelfTests();
+    var lines = [r.passed + ' passed, ' + r.failed + ' failed, ' + r.total + ' total'];
+    r.results.forEach(function (x) {
+      lines.push((x.passed ? '  PASS  ' : '  FAIL  ') + x.name + (x.detail ? ' — ' + x.detail : ''));
+    });
+    $('selftest-out').textContent = lines.join('\n');
+  });
+
+  /* Presets */
+  var presetHost = $('presets');
+  Q.PRESETS.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'preset' + (p.reset ? '' : ' keeps-backlog');
+    b.innerHTML = '<span class="pname"></span><span class="pparam"></span>'
+      + '<span class="pnote"></span>' + (p.reset ? '' : '<span class="pkeep">keeps backlog</span>');
+    b.querySelector('.pname').textContent = p.label;
+    b.querySelector('.pparam').textContent = 'λ = ' + p.arrivalRate + '   μ = ' + p.serviceRate
+      + '   ρ = ' + (p.arrivalRate / p.serviceRate).toFixed(2);
+    b.querySelector('.pnote').textContent = p.note;
+    b.addEventListener('click', function () {
+      Q.applyPreset(sim, p.id);
+      syncPair('lambda', 'lambda-range', sim.params.arrivalRate);
+      syncPair('mu', 'mu-range', sim.params.serviceRate);
+      $('dist').value = sim.params.serviceDistribution;
+      refresh();
+    });
+    presetHost.appendChild(b);
+  });
+
+  /* Experiment setup buttons: "lambda,mu,dist,reset|keep" */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-xp]'), function (b) {
+    b.addEventListener('click', function () {
+      var parts = b.dataset.xp.split(',');
+      Q.setArrivalRate(sim, parseInt(parts[0], 10));
+      Q.setServiceRate(sim, parseInt(parts[1], 10));
+      Q.setServiceDistribution(sim, parts[2]);
+      if (parts[3] === 'reset') Q.resetSimulation(sim);
+      syncPair('lambda', 'lambda-range', sim.params.arrivalRate);
+      syncPair('mu', 'mu-range', sim.params.serviceRate);
+      $('dist').value = sim.params.serviceDistribution;
+      refresh();
+    });
+  });
+
+  /* Keyboard. The shortcuts stand down while a form field has focus, so typing a seed does not
+     start the simulation. */
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    var tag = t && t.tagName ? t.tagName.toLowerCase() : '';
+    if (tag === 'input' || tag === 'select' || tag === 'textarea' || (t && t.isContentEditable)) return;
+    var key = e.key.toLowerCase();
+    if (e.key === ' ' || key === 'spacebar') { e.preventDefault(); setRunning(!ui.running); }
+    else if (key === 's') { e.preventDefault(); setRunning(false); Q.stepSimulation(sim); refresh(); }
+    else if (key === 'r') { e.preventDefault(); Q.resetSimulation(sim); refresh(); }
+    else if (key === 'd') { e.preventDefault(); $('btn-defaults').click(); }
+  });
+
+  /* ---------- model + measurement panels ---------- */
+  function renderPrediction() {
+    var p = Q.predict(sim.params);
+    var dist = Q.SERVICE_DISTRIBUTIONS[sim.params.serviceDistribution];
+    $('m-model').textContent = p.model + ' — ' + dist.label.toLowerCase() + ' service';
+    $('m-rho').textContent = num(p.offeredLoad, 3);
+    $('m-svc').textContent = ms(p.serviceTime);
+    var box = $('m-unstable');
+    if (p.stable) {
+      $('m-w').textContent = ms(p.W);
+      $('m-wq').textContent = ms(p.Wq);
+      $('m-l').textContent = num(p.L, 3);
+      $('m-lq').textContent = num(p.Lq, 3);
+      box.hidden = true;
+      box.innerHTML = '';
+    } else {
+      /* Never Infinity, never NaN, never a misleading number. */
+      $('m-w').textContent = 'no finite value';
+      $('m-wq').textContent = 'no finite value';
+      $('m-l').textContent = 'no finite value';
+      $('m-lq').textContent = 'no finite value';
+      box.hidden = false;
+      box.className = 'unstable-msg';
+      box.innerHTML = '';
+      var strong = document.createElement('strong');
+      strong.textContent = p.reason;
+      box.appendChild(strong);
+      var det = document.createElement('p');
+      det.style.margin = '0.35rem 0 0';
+      det.textContent = p.detail;
+      box.appendChild(det);
+    }
+    $('m-formula').textContent = p.model === 'M/D/1'
+      ? 'ρ = λ/μ   ·   Wᵩ = ρ / (2μ(1−ρ))   ·   W = Wᵩ + 1/μ   ·   L = λW'
+      : 'ρ = λ/μ   ·   W = 1/(μ−λ)   ·   L = λ/(μ−λ)   ·   Wᵩ = λ/(μ(μ−λ))';
+    $('m-applicability').textContent = p.model === 'M/D/1'
+      ? 'Service times are constant, so the M/M/1 result does not apply and is not shown. These are the M/D/1 mean-value results: Poisson arrivals, constant service, one server, FCFS, unlimited waiting room.'
+      : 'Assumes Poisson arrivals, exponential service, one server, FCFS, unlimited waiting room. Change the service distribution to Deterministic and the panel switches to M/D/1 rather than reusing this formula.';
+    return p;
+  }
+
+  function stabilityState(p, s) {
+    if (!p.stable) {
+      return p.offeredLoad === 1
+        ? { cls: 's-crit', glyph: '◆', text: 'critically loaded' }
+        : { cls: 's-over', glyph: '■', text: 'overloaded' };
+    }
+    if (p.offeredLoad >= 0.85) return { cls: 's-warn', glyph: '◐', text: 'approaching capacity' };
+    return { cls: 's-ok', glyph: '●', text: 'stable' };
+  }
+
+  function renderMeasurement(p) {
+    var s = Q.snapshot(sim);
+    $('s-time').textContent = s.time.toFixed(2) + ' s';
+    $('s-events').textContent = int(s.events);
+    $('s-counts').textContent = int(s.arrivals) + ' / ' + int(s.completions);
+    $('s-util').textContent = s.utilization === null ? '—' : num(s.utilization, 3);
+    $('s-w').textContent = ms(s.meanResponse);
+    $('s-wq').textContent = ms(s.meanWait);
+    $('s-thr').textContent = rate(s.throughput);
+    $('s-l').textContent = num(s.timeAverageNumberInSystem, 3);
+    $('s-lq').textContent = num(s.timeAverageQueueLength, 3);
+
+    $('r-server').textContent = s.serverBusy ? 'busy' : 'idle';
+    $('r-queue').textContent = int(s.queueLength);
+    $('r-insystem').textContent = int(s.numberInSystem);
+    $('r-maxq').textContent = int(s.maxQueueLength);
+
+    var st = stabilityState(p, s);
+    var badge = $('stability');
+    badge.className = 'badge ' + st.cls;
+    badge.querySelector('.glyph').textContent = st.glyph;
+    $('stability-text').textContent = st.text + '   ρ = ' + num(p.offeredLoad, 2);
+
+    var transient = $('s-transient');
+    if (s.transient && s.observedCompletions > 0) {
+      transient.hidden = false;
+      transient.className = 'warn-msg';
+      transient.textContent = 'Transient: only ' + int(s.observedCompletions)
+        + ' completed requests so far. These are short-run numbers, not steady-state estimates.';
+    } else if (s.transient) {
+      transient.hidden = false;
+      transient.className = 'warn-msg';
+      transient.textContent = 'No completed requests yet in the observation window.';
+    } else {
+      transient.hidden = true;
+    }
+
+    var growth = $('s-growth');
+    if (!p.stable && s.observedTime > 0.5 && s.backlogGrowthObserved !== null) {
+      growth.hidden = false;
+      growth.className = 'warn-msg';
+      growth.textContent = 'Backlog growth over the window: observed '
+        + s.backlogGrowthObserved.toFixed(2) + ' req/s against the predicted λ − μ = '
+        + p.backlogGrowthRate.toFixed(2) + ' req/s. Steady-state Little’s Law does not apply here: '
+        + 'there is no steady state to apply it to.';
+    } else {
+      growth.hidden = true;
+    }
+    return s;
+  }
+
+  function renderLittle(s, p) {
+    var c = s.littleCohort;
+    var pending = $('lc-pending');
+    if (c && c.available) {
+      $('lc-window').textContent = c.startTime.toFixed(2) + ' s → ' + c.endTime.toFixed(2)
+        + ' s   (' + c.time.toFixed(2) + ' s)';
+      $('lc-n').textContent = int(c.completions);
+      $('lc-l').textContent = num(c.L, 4);
+      $('lc-prod').textContent = c.W === null ? '—'
+        : num(c.product, 4) + '   (λ̂ = ' + rate(c.lambdaHat) + ', W̄ = ' + ms(c.W) + ')';
+      $('lc-res').textContent = c.L > 0
+        ? c.residual.toExponential(2) + '   (' + c.relativeResidual.toExponential(2) + ' relative)'
+        : c.residual.toExponential(2);
+      pending.hidden = true;
+    } else {
+      ['lc-window', 'lc-n', 'lc-l', 'lc-prod', 'lc-res'].forEach(function (id) {
+        $(id).textContent = '—';
+      });
+      pending.hidden = false;
+      pending.className = 'warn-msg';
+      pending.textContent = (c ? c.reason : 'Cohort not yet available.')
+        + ' Until one closes, the exact check cannot be computed — so nothing is shown rather '
+        + 'than a mismatched pair of numbers that would look like a broken law.';
+    }
+    $('lw-l').textContent = num(s.windowL, 4);
+    $('lw-prod').textContent = num(s.windowProduct, 4);
+    $('lw-diff').textContent = s.windowRelativeDifference === null ? '—'
+      : (s.windowRelativeDifference * 100).toFixed(2) + ' %';
+  }
+
+  /* ---------- canvas plumbing ---------- */
+  function fit(canvas, cssHeight) {
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth || canvas.parentNode.clientWidth || 900;
+    canvas.style.height = cssHeight + 'px';
+    var pw = Math.max(1, Math.round(w * dpr));
+    var ph = Math.max(1, Math.round(cssHeight * dpr));
+    if (canvas.width !== pw || canvas.height !== ph) { canvas.width = pw; canvas.height = ph; }
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, cssHeight);
+    return { ctx: ctx, w: w, h: cssHeight };
+  }
+
+  function niceCeil(v) {
+    if (!(v > 0)) return 1;
+    var exp = Math.floor(Math.log(v) / Math.LN10);
+    var base = Math.pow(10, exp);
+    var m = v / base;
+    var step = m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10;
+    return step * base;
+  }
+
+  /* ---------- A. live queue ---------- */
+  function drawQueue(s, p) {
+    var c = $('c-queue');
+    var g = fit(c, 300);
+    var ctx = g.ctx, w = g.w, h = g.h;
+    var cy = h * 0.46;
+
+    ctx.font = '600 12px ' + 'ui-monospace, monospace';
+    ctx.fillStyle = palette.muted;
+    ctx.textBaseline = 'middle';
+    ctx.fillText('ARRIVALS', 8, cy - 46);
+    ctx.textAlign = 'right';
+    ctx.fillText('COMPLETED', w - 8, cy - 46);
+    ctx.textAlign = 'left';
+
+    /* server box on the right-hand third */
+    var boxW = 104, boxH = 74;
+    var boxX = w - boxW - 74, boxY = cy - boxH / 2;
+    var busy = s.serverBusy;
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = busy ? palette.ok : palette.muted;
+    ctx.fillStyle = palette.panel;
+    ctx.beginPath(); ctx.rect(boxX, boxY, boxW, boxH); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = palette.muted;
+    ctx.font = '600 11px ui-monospace, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('SERVER', boxX + boxW / 2, boxY + 15);
+    ctx.fillStyle = busy ? palette.ok : palette.muted;
+    ctx.font = '700 15px ui-monospace, monospace';
+    ctx.fillText(busy ? 'BUSY' : 'IDLE', boxX + boxW / 2, boxY + 40);
+    ctx.fillStyle = palette.muted;
+    ctx.font = '11px ui-monospace, monospace';
+    ctx.fillText('μ = ' + sim.params.serviceRate + '/s', boxX + boxW / 2, boxY + 60);
+    ctx.textAlign = 'left';
+
+    /* the request in service: a filled token with a heavy ring, inside the box's left edge */
+    if (busy) {
+      ctx.beginPath(); ctx.arc(boxX - 26, cy, 10, 0, Math.PI * 2);
+      ctx.fillStyle = palette.ok; ctx.fill();
+      ctx.lineWidth = 3; ctx.strokeStyle = palette.ink; ctx.stroke();
+    }
+
+    /* waiting tokens, right-to-left from just before the server */
+    var r = 9, gap = 7;
+    var laneRight = boxX - 52;
+    var laneLeft = 96;
+    var slots = Math.max(1, Math.floor((laneRight - laneLeft) / (2 * r + gap)));
+    var cap = Math.min(ui.maxDisplayed, slots);
+    var waiting = s.queueLength;
+    var shown = Math.min(waiting, cap);
+    var hidden = waiting - shown;
+    var flash = !ui.reduced && performance.now() < ui.arrivalFlashUntil;
+
+    ctx.lineWidth = 1.5;
+    for (var i = 0; i < shown; i += 1) {
+      var x = laneRight - i * (2 * r + gap);
+      ctx.beginPath(); ctx.arc(x, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = (i === shown - 1 && flash) ? palette.accent : palette.panel;
+      ctx.fill();
+      ctx.strokeStyle = palette.ink; ctx.stroke();
+    }
+    ctx.font = '600 15px ui-monospace, monospace';
+    if (hidden > 0) {
+      ctx.fillStyle = palette.bad;
+      ctx.textAlign = 'left';
+      ctx.fillText('… +' + hidden.toLocaleString('en-US') + ' waiting', laneLeft - 86 + 4, cy);
+    }
+
+    /* flow arrow */
+    ctx.strokeStyle = palette.rule; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(8, cy + 34); ctx.lineTo(w - 8, cy + 34); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(w - 16, cy + 30); ctx.lineTo(w - 8, cy + 34); ctx.lineTo(w - 16, cy + 38);
+    ctx.strokeStyle = palette.muted; ctx.stroke();
+
+    /* a text summary under the lane: the reading does not depend on counting circles */
+    ctx.fillStyle = palette.ink;
+    ctx.font = '600 14px ui-monospace, monospace';
+    ctx.fillText('queue ' + waiting.toLocaleString('en-US')
+      + '   in system ' + s.numberInSystem.toLocaleString('en-US')
+      + '   max seen ' + s.maxQueueLength.toLocaleString('en-US'), 8, cy + 62);
+    ctx.fillStyle = palette.muted;
+    ctx.font = '12px ui-monospace, monospace';
+    ctx.fillText('showing at most ' + cap + ' tokens; the count is authoritative', 8, cy + 84);
+
+    $('queue-alt').textContent = 'Queue diagram: server ' + (busy ? 'busy' : 'idle') + ', '
+      + waiting + ' requests waiting, ' + s.numberInSystem + ' in the system, largest queue seen '
+      + s.maxQueueLength + '.';
+  }
+
+  /* ---------- B. live response-time chart ---------- */
+  var rtScale = null;   /* eased, so the axis does not jump between frames */
+  function drawResponse(s, p) {
+    var c = $('c-rt');
+    var g = fit(c, 340);
+    var ctx = g.ctx, w = g.w, h = g.h;
+    var padL = 68, padR = 14, padT = 14, padB = 34;
+    var plotW = Math.max(10, w - padL - padR), plotH = Math.max(10, h - padT - padB);
+
+    var now = sim.time;
+    var t0 = Math.max(0, now - ui.history);
+    var t1 = Math.max(t0 + 1e-9, now);
+    var points = Q.recentCompletions(sim).filter(function (x) { return x.time >= t0; });
+
+    /* vertical scale: cover the observations and the prediction, eased towards a nice round value */
+    var peak = 0;
+    for (var i = 0; i < points.length; i += 1) if (points[i].response > peak) peak = points[i].response;
+    var target = niceCeil(Math.max(peak * 1.1, (p.stable ? p.W : 0) * 2.2, 2.5 / sim.params.serviceRate));
+    if (rtScale === null) rtScale = target;
+    else if (target > rtScale) rtScale = target;                      /* grow at once: never clip data */
+    else rtScale = rtScale + (target - rtScale) * 0.06;               /* shrink gently */
+    var yMax = Math.max(rtScale, 1e-6);
+
+    function X(t) { return padL + (t - t0) / (t1 - t0) * plotW; }
+    function Y(v) { return padT + plotH - Math.min(1, v / yMax) * plotH; }
+
+    /* grid + axes */
+    ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
+    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
+    for (var k = 0; k <= 4; k += 1) {
+      var v = yMax * k / 4, y = Y(v);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillText((v * 1000).toFixed(v * 1000 < 10 ? 1 : 0), padL - 6, y);
+    }
+    ctx.textAlign = 'left';
+    ctx.fillText('ms', 8, padT + 6);
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
+    ctx.fillText(t0.toFixed(1) + ' s', padL, h - padB + 8);
+    ctx.textAlign = 'right';
+    ctx.fillText(t1.toFixed(1) + ' s  (simulated time)', w - padR, h - padB + 8);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+
+    /* observations */
+    ctx.fillStyle = palette.accent;
+    for (var j = 0; j < points.length; j += 1) {
+      var px = X(points[j].time), py = Y(points[j].response);
+      ctx.beginPath(); ctx.arc(px, py, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+
+    /* rolling mean over the plotted points */
+    if (points.length > 2) {
+      ctx.strokeStyle = palette.ink; ctx.lineWidth = 2; ctx.setLineDash([]);
+      ctx.beginPath();
+      var window_ = Math.max(5, Math.round(points.length / 40));
+      var sum = 0, started = false;
+      for (var m = 0; m < points.length; m += 1) {
+        sum += points[m].response;
+        if (m >= window_) sum -= points[m - window_].response;
+        var n = Math.min(m + 1, window_);
+        var mx = X(points[m].time), my = Y(sum / n);
+        if (!started) { ctx.moveTo(mx, my); started = true; } else { ctx.lineTo(mx, my); }
+      }
+      ctx.stroke();
+    }
+
+    /* analytical mean — omitted entirely when the model has no finite prediction */
+    if (p.stable) {
+      ctx.strokeStyle = palette.model; ctx.lineWidth = 2; ctx.setLineDash([7, 5]);
+      var wy = Y(p.W);
+      ctx.beginPath(); ctx.moveTo(padL, wy); ctx.lineTo(w - padR, wy); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = palette.model;
+      ctx.font = '600 12px ui-monospace, monospace';
+      var label = p.model + ' W = ' + ms(p.W);
+      ctx.textAlign = 'right';
+      ctx.fillText(label, w - padR - 4, Math.max(padT + 8, wy - 11));
+      ctx.textAlign = 'left';
+    } else {
+      ctx.fillStyle = palette.bad;
+      ctx.font = '600 12px ui-monospace, monospace';
+      ctx.fillText('model line withdrawn: no finite steady-state prediction at ρ ≥ 1',
+        padL + 6, padT + 10);
+    }
+
+    var roll = Q.rollingMeanResponse(sim, ROLLING_WINDOW);
+    $('rt-alt').textContent = 'Response-time chart over the last ' + (t1 - t0).toFixed(0)
+      + ' simulated seconds: ' + points.length + ' completions plotted, vertical scale 0 to '
+      + (yMax * 1000).toFixed(0) + ' ms, rolling mean ' + (roll === null ? 'not yet available' : ms(roll))
+      + (p.stable ? ', model prediction ' + ms(p.W) + '.' : ', no model line (unstable).');
+  }
+
+  /* ---------- C. predicted load-latency (knee) chart ---------- */
+  function drawKnee(p) {
+    var c = $('c-knee');
+    var g = fit(c, 420);
+    var ctx = g.ctx, w = g.w, h = g.h;
+    var padL = 78, padR = 18, padT = 18, padB = 46;
+    var plotW = Math.max(10, w - padL - padR), plotH = Math.max(10, h - padT - padB);
+
+    var mu = sim.params.serviceRate;
+    var dist = sim.params.serviceDistribution;
+    var curve = Q.predictedCurve(mu, dist, 0.995, 600);
+
+    /* Frame chosen from the model, not from the data: 1.5x the prediction at rho = 0.95, so the
+       interesting region fills the panel at every mu and the divergence runs off the top — which
+       is the honest picture. */
+    var ref = dist === 'deterministic' ? Q.calculateMD1(0.95 * mu, mu) : Q.calculateMM1(0.95 * mu, mu);
+    var yMax = niceCeil(ref.W * 1.5);
+
+    function X(rho) { return padL + Math.min(1, rho) * plotW; }
+    function Y(v) { return padT + plotH - Math.min(1, v / yMax) * plotH; }
+
+    ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
+    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
+    for (var k = 0; k <= 5; k += 1) {
+      var v = yMax * k / 5, y = Y(v);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillText((v * 1000).toFixed(0), padL - 6, y);
+    }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (var t = 0; t <= 10; t += 1) {
+      var rho = t / 10, x = X(rho);
+      ctx.strokeStyle = palette.grid;
+      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText(rho.toFixed(1), x, padT + plotH + 8);
+    }
+    ctx.fillText('offered utilization  ρ = λ / μ', padL + plotW / 2, padT + plotH + 26);
+    ctx.save();
+    ctx.translate(16, padT + plotH / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+    ctx.fillText('predicted mean response time (ms)', 0, 0);
+    ctx.restore();
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+
+    /* the no-queueing floor, 1/mu */
+    ctx.strokeStyle = palette.muted; ctx.lineWidth = 1.5; ctx.setLineDash([2, 4]);
+    var fy = Y(1 / mu);
+    ctx.beginPath(); ctx.moveTo(padL, fy); ctx.lineTo(w - padR, fy); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
+    ctx.fillText('1/μ = ' + ms(1 / mu) + '  (service time, no queueing)', padL + 6, fy - 11);
+
+    /* the curve, clipped at the top edge */
+    ctx.strokeStyle = palette.model; ctx.lineWidth = 2.5; ctx.setLineDash([9, 5]);
+    ctx.beginPath();
+    var pen = false, clippedAt = null;
+    for (var i = 0; i < curve.length; i += 1) {
+      var pt = curve[i];
+      if (pt.W > yMax) { if (clippedAt === null) clippedAt = pt.rho; break; }
+      var cx = X(pt.rho), cyy = Y(pt.W);
+      if (!pen) { ctx.moveTo(cx, cyy); pen = true; } else { ctx.lineTo(cx, cyy); }
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    if (clippedAt !== null) {
+      ctx.fillStyle = palette.model;
+      ctx.font = '600 12px ui-monospace, monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText('curve continues above the frame — W → ∞ as ρ → 1',
+        w - padR - 4, padT + 12);
+      ctx.textAlign = 'left';
+    }
+
+    /* current offered load */
+    var rhoNow = p.offeredLoad;
+    var markX = X(Math.min(1, rhoNow));
+    ctx.strokeStyle = palette.accent; ctx.lineWidth = 2; ctx.setLineDash([2, 3]);
+    ctx.beginPath(); ctx.moveTo(markX, padT); ctx.lineTo(markX, padT + plotH); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = palette.accent;
+    ctx.font = '700 13px ui-monospace, monospace';
+    var lab = rhoNow >= 1
+      ? 'now ρ = ' + rhoNow.toFixed(2) + ' — no finite prediction'
+      : 'now ρ = ' + rhoNow.toFixed(3) + ', W = ' + ms(p.W);
+    ctx.textAlign = markX > padL + plotW * 0.6 ? 'right' : 'left';
+    ctx.fillText(lab, markX + (ctx.textAlign === 'right' ? -6 : 6), padT + plotH - 10);
+    ctx.textAlign = 'left';
+    if (p.stable && p.W <= yMax) {
+      ctx.beginPath(); ctx.arc(markX, Y(p.W), 5, 0, Math.PI * 2);
+      ctx.fillStyle = palette.accent; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = palette.paper; ctx.stroke();
+    }
+
+    ctx.fillStyle = palette.muted; ctx.font = '12px ui-monospace, monospace';
+    ctx.fillText(p.model + ' with μ = ' + mu + ' req/s', padL + 6, padT + plotH - 30);
+
+    $('knee-alt').textContent = 'Predicted load-latency curve for ' + p.model + ' at mu = ' + mu
+      + ' requests per second. Vertical axis 0 to ' + (yMax * 1000).toFixed(0)
+      + ' milliseconds. The curve rises slowly to about rho 0.7 and then steeply; it leaves the top '
+      + 'of the frame near rho ' + (clippedAt === null ? '1.0' : clippedAt.toFixed(2))
+      + '. Current offered load ' + rhoNow.toFixed(3)
+      + (p.stable ? ' with predicted mean response time ' + ms(p.W) + '.' : ', which has no finite prediction.');
+  }
+
+  /* ---------- refresh + frame loop ---------- */
+  function refresh() {
+    var p = renderPrediction();
+    var s = renderMeasurement(p);
+    renderLittle(s, p);
+    drawQueue(s, p);
+    drawResponse(s, p);
+    drawKnee(p);
+  }
+
+  function draw(force) {
+    if (force) { refresh(); }
+  }
+
+  /* The ONE place wall-clock time touches the simulation: elapsed real milliseconds are converted
+     into a simulated-time horizon, and the engine is asked to advance to it. The engine decides
+     which events fall inside that horizon, so the trace is a function of the horizon alone and not
+     of how many frames it took to get there. Rendering then observes whatever state resulted. */
+  function frame(nowMs) {
+    if (ui.running) {
+      if (ui.lastFrameMs === null) ui.lastFrameMs = nowMs;
+      var elapsed = Math.min(250, nowMs - ui.lastFrameMs);   /* cap a long stall, e.g. a hidden tab */
+      ui.lastFrameMs = nowMs;
+      var before = sim.counters.arrivals;
+      var horizon = sim.time + (elapsed / 1000) * ui.speed;
+      Q.advanceSimulation(sim, { untilTime: horizon, maxEvents: EVENT_BUDGET_PER_FRAME });
+      if (sim.counters.arrivals > before) ui.arrivalFlashUntil = nowMs + 90;
+    }
+    var minInterval = ui.reduced ? 200 : 0;
+    if (nowMs - ui.lastDrawMs >= minInterval) { ui.lastDrawMs = nowMs; refresh(); }
+    window.requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', function () { rtScale = null; refresh(); });
+
+  setSpeed(DEFAULTS.speed);
+  refresh();
+  window.requestAnimationFrame(frame);
+}());
+</script>
+
+</body>
+</html>
