@@ -287,6 +287,43 @@ code, .mono { font-family: var(--font-mono); font-size: 0.93em; }
   background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
   padding: 0.5rem 0.7rem; overflow-x: auto; white-space: pre; margin-top: 0.4rem;
 }
+/* --- charts ------------------------------------------------------------------------------- */
+.canvas-wrap { position: relative; width: 100%; }
+canvas {
+  display: block; width: 100%; height: auto;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 0.55rem; font-size: 0.88rem; color: var(--muted); }
+.legend span.item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.legend .swatch { width: 2.2rem; height: 0; border-top-width: 3px; }
+.legend .mk { font-family: var(--font-mono); font-size: 0.95rem; line-height: 1; }
+
+/* --- the backtracking model diagram -------------------------------------------------------
+   Rendered as markup rather than as a canvas, deliberately. The rows are text — groupings of
+   characters and a verdict — so a reader using assistive technology gets the model itself rather
+   than a paragraph describing a picture of it. */
+.decomp-grid { display: grid; gap: 0.35rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); margin: 0.7rem 0 0; }
+.decomp { font-family: var(--font-mono); font-size: 0.95rem; display: flex; gap: 0.2rem; align-items: center; flex-wrap: wrap; }
+.decomp .idx { color: var(--muted); font-size: 0.78rem; min-width: 1.8rem; }
+.decomp .grp {
+  border: 1px solid var(--model); background: var(--model-fill);
+  border-radius: 2px; padding: 0 0.3rem;
+}
+.decomp .verdict { color: var(--bad); font-weight: 600; margin-left: 0.25rem; font-size: 0.82rem; }
+.scan-table { margin-top: 0.7rem; }
+.scan-row {
+  display: grid; grid-template-columns: 8.5rem 1fr 11rem; gap: 0.6rem; align-items: center;
+  font-family: var(--font-mono); font-size: 0.84rem; padding: 0.1rem 0;
+}
+.scan-row .bar-cell { background: var(--panel-2); border-radius: 2px; }
+.scan-row .bar {
+  height: 0.72rem; background: var(--bad-fill); border: 1px solid var(--bad);
+  border-radius: 2px; min-width: 1px;
+}
+.scan-row.nil .bar { background: var(--panel-2); border-color: var(--rule); }
+.scan-row .out { color: var(--muted); }
+.ellipsis-row { font-family: var(--font-mono); color: var(--muted); font-size: 0.84rem; padding: 0.2rem 0 0 8.5rem; }
+
 kbd {
   font-family: var(--font-mono); font-size: 0.85em;
   border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
@@ -502,7 +539,22 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 <!-- ======================= MEASUREMENTS ======================= -->
 <section class="panel" aria-labelledby="h-measured">
   <h2 id="h-measured">Measured execution time</h2>
-  <div class="measure-plane">
+  <div class="canvas-wrap"><canvas id="c-growth" width="1600" height="440"
+    role="img" aria-labelledby="growth-alt"></canvas></div>
+  <p id="growth-alt" class="vh" aria-live="polite"></p>
+  <p class="legend" id="growth-legend"></p>
+  <p class="note" id="growth-axes"></p>
+  <p class="warn-msg">
+    <strong>Choosing the axes is part of the analysis.</strong> On a <em>linear</em> axis a
+    quadratic curve and an exponential one both just look &ldquo;steep&rdquo;. On <em>log y</em> an
+    exponential series straightens into a line, because each extra character multiplies the work by
+    a constant. On <em>log&ndash;log</em> a polynomial series straightens, and its slope is the
+    exponent &mdash; a slope near 2 is quadratic, near 1 linear. Running all four experiments also
+    puts two input ranges three orders of magnitude apart on one axis; log&ndash;log is the mode
+    that shows both at once.
+  </p>
+
+  <div class="measure-plane" style="margin-top:1rem">
     <span class="plane-kind">Measured in this browser's own RegExp engine &mdash; no model involved</span>
     <table class="ref" id="results-table">
       <caption id="results-caption">No experiment has been run yet.</caption>
@@ -525,6 +577,48 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     a property of the expressions and the inputs, and that is the question the backtracking model
     below is for.
   </p>
+</section>
+
+<!-- ======================= THE BACKTRACKING MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 id="h-model">Why the work grows &mdash; a model of backtracking</h2>
+
+  <div class="model-msg" id="model-caveat">
+    <strong>This is a conceptual model of backtracking, not a trace of your engine.</strong>
+    It enumerates candidates a backtracking matcher <em>could</em> be obliged to consider. The
+    actual engine may optimise some away, order them differently, or never attempt them at all
+    &mdash; and V8, SpiderMonkey, and JavaScriptCore do not agree with each other about which.
+    So treat the diagram as a prediction to be <em>compared</em> against the measurements above,
+    never as a picture of what happened. Learning to hold a model and an observation apart, and to
+    notice when they disagree, is the point of the exercise. It is the same distinction the
+    Performance&nbsp;Knee simulator draws between an analytical prediction and a simulated run.
+  </div>
+
+  <div class="grid2" style="margin-top:1rem;margin-bottom:0">
+    <div>
+      <h3 id="model-title" style="margin-top:0">&mdash;</h3>
+      <p id="model-explain"></p>
+      <div id="model-body"></div>
+      <p class="note" id="model-count"></p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Modelled candidates, across the whole ladder</h3>
+      <div class="model-plane">
+        <span class="plane-kind">Derived from the closed form &mdash; no measurement involved</span>
+        <div class="canvas-wrap"><canvas id="c-work" width="1200" height="340"
+          role="img" aria-labelledby="work-alt"></canvas></div>
+        <p id="work-alt" class="vh" aria-live="polite"></p>
+      </div>
+      <p class="legend" id="work-legend"></p>
+      <p class="note">
+        A logarithmic vertical axis, always: the counts span too many orders of magnitude for a
+        linear one to show anything. The two linear experiments sit almost on the floor. Compare the
+        <em>shape</em> of these curves against the measured chart above &mdash; agreement supports
+        the model, and disagreement is a finding about the engine's optimisations rather than an
+        error to hide.
+      </p>
+    </div>
+  </div>
 </section>
 
 <!-- ======================= REFERENCE + SELF-TESTS ======================= -->
@@ -2061,6 +2155,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     syncLengthControl();
     renderSelector();
     renderExpression();
+    render();
   }
 
   /* ---------- the length control ----------
@@ -2274,12 +2369,486 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     box.appendChild(table);
   }
 
+  /* ---------- charts ----------
+     Hand-drawn on a canvas, because the alternative is a charting library and the page would stop
+     being a single file with no dependencies. Every series carries three independent encodings — a
+     hue, a dash pattern, and a marker shape — plus its label drawn at its own last point, so the
+     chart survives a greyscale projector and a colour-blind reader. The results table above is its
+     text equivalent, and each canvas also publishes a live description. */
+
+  var SERIES = {
+    ordinary: { hue: 'muted', dash: [], marker: 'circle', glyph: '●', css: 'solid' },
+    quadratic: { hue: 'bad', dash: [9, 4], marker: 'square', glyph: '■', css: 'dashed' },
+    exponential: { hue: 'bad', dash: [2, 3], marker: 'triangle', glyph: '▲', css: 'dotted' },
+    safe: { hue: 'ok', dash: [12, 3, 3, 3], marker: 'diamond', glyph: '◆', css: 'double' }
+  };
+
+  var palette = {};
+  function readPalette() {
+    var style = window.getComputedStyle(document.documentElement);
+    ['ink', 'paper', 'panel', 'panel-2', 'rule', 'muted', 'accent', 'model', 'ok', 'warn', 'bad',
+      'grid'].forEach(function (key) {
+      palette[key] = style.getPropertyValue('--' + key).trim() || '#000';
+    });
+  }
+
+  function fit(canvas, cssHeight) {
+    var dpr = window.devicePixelRatio || 1;
+    var cssWidth = canvas.clientWidth || canvas.parentNode.clientWidth || 900;
+    canvas.width = Math.max(1, Math.round(cssWidth * dpr));
+    canvas.height = Math.max(1, Math.round(cssHeight * dpr));
+    canvas.style.height = cssHeight + 'px';
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssWidth, cssHeight);
+    return { ctx: ctx, w: cssWidth, h: cssHeight };
+  }
+
+  function marker(ctx, kind, x, y, size) {
+    var s = size || 4.5;
+    ctx.beginPath();
+    if (kind === 'square') {
+      ctx.rect(x - s, y - s, 2 * s, 2 * s);
+    } else if (kind === 'triangle') {
+      ctx.moveTo(x, y - s - 1); ctx.lineTo(x + s + 1, y + s); ctx.lineTo(x - s - 1, y + s);
+      ctx.closePath();
+    } else if (kind === 'diamond') {
+      ctx.moveTo(x, y - s - 1); ctx.lineTo(x + s + 1, y); ctx.lineTo(x, y + s + 1);
+      ctx.lineTo(x - s - 1, y); ctx.closePath();
+    } else {
+      ctx.arc(x, y, s, 0, Math.PI * 2);
+    }
+  }
+
+  function niceCeil(v) {
+    if (!(v > 0)) return 1;
+    var mag = Math.pow(10, Math.floor(Math.log10(v)));
+    var step = [1, 2, 2.5, 5, 10].filter(function (m) { return m * mag >= v; })[0] || 10;
+    return step * mag;
+  }
+
+  /** Every measured point across every sweep, tagged by experiment. */
+  function allSeries() {
+    return orderedSweeps().map(function (sweep) {
+      var sum = R.sweepSummary(sweep);
+      return {
+        experimentId: sweep.experimentId,
+        xp: R.findExperiment(sweep.experimentId),
+        points: sum.points,
+        terminatedAt: sweep.halt && sweep.halt.reason === 'terminated' ? sweep.halt.length : null,
+        style: SERIES[sweep.experimentId]
+      };
+    });
+  }
+
+  function drawGrowth() {
+    var g = fit($('c-growth'), 440);
+    var ctx = g.ctx, w = g.w, h = g.h;
+    var padL = 84, padR = 128, padT = 20, padB = 54;
+    var plotW = Math.max(10, w - padL - padR), plotH = Math.max(10, h - padT - padB);
+    var series = allSeries();
+    var logX = ui.scale === 'loglog';
+    var logY = ui.scale === 'logy' || ui.scale === 'loglog';
+
+    var xs = [], ys = [];
+    series.forEach(function (s) {
+      s.points.forEach(function (p) { xs.push(p.length); ys.push(p.ms); });
+      if (s.terminatedAt !== null) { xs.push(s.terminatedAt); }
+    });
+
+    ctx.font = '12px ui-monospace, monospace';
+    ctx.fillStyle = palette.muted;
+    if (!xs.length) {
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('Run an experiment to plot measured execution time.', w / 2, h / 2);
+      $('growth-alt').textContent = 'Measured execution time chart. No experiment has been run yet.';
+      $('growth-axes').textContent = '';
+      return;
+    }
+
+    /* The y domain always includes the deadline, so the two reference lines are on screen even
+       before anything approaches them. */
+    var yTop = Math.max(niceCeil(Math.max.apply(null, ys) * 1.15), R.DEADLINE_MS * 1.1);
+    var yFloor = Math.max(1e-4, Math.min.apply(null, ys) / 2);
+    var xMin = Math.min.apply(null, xs), xMax = Math.max.apply(null, xs);
+    if (xMax === xMin) { xMax = xMin * 1.2 + 1; }
+
+    function X(v) {
+      if (!logX) return padL + ((v - xMin) / (xMax - xMin)) * plotW;
+      var a = Math.log10(Math.max(1, xMin)), b = Math.log10(Math.max(2, xMax));
+      return padL + ((Math.log10(Math.max(1, v)) - a) / (b - a)) * plotW;
+    }
+    function Y(v) {
+      if (!logY) return padT + plotH - Math.min(1, Math.max(0, v / yTop)) * plotH;
+      var a = Math.log10(yFloor), b = Math.log10(yTop);
+      var t = (Math.log10(Math.max(yFloor, v)) - a) / (b - a);
+      return padT + plotH - Math.min(1, Math.max(0, t)) * plotH;
+    }
+
+    /* grid + y labels */
+    ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    var yTicks = [];
+    if (logY) {
+      for (var e = Math.floor(Math.log10(yFloor)); e <= Math.ceil(Math.log10(yTop)); e += 1) {
+        yTicks.push(Math.pow(10, e));
+      }
+    } else {
+      for (var k = 0; k <= 5; k += 1) yTicks.push((yTop * k) / 5);
+    }
+    yTicks.forEach(function (v) {
+      if (v < yFloor / 1.01 || v > yTop * 1.01) return;
+      var y = Y(v);
+      ctx.strokeStyle = palette.grid;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText(v >= 1 ? String(Math.round(v)) : v.toPrecision(1), padL - 7, y);
+    });
+
+    /* x labels */
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    var xTicks = [];
+    if (logX) {
+      for (var ex = Math.floor(Math.log10(Math.max(1, xMin)));
+        ex <= Math.ceil(Math.log10(xMax)); ex += 1) xTicks.push(Math.pow(10, ex));
+    } else {
+      for (var t2 = 0; t2 <= 5; t2 += 1) xTicks.push(xMin + ((xMax - xMin) * t2) / 5);
+    }
+    xTicks.forEach(function (v) {
+      if (v < xMin * 0.99 || v > xMax * 1.01) return;
+      var x = X(v);
+      ctx.strokeStyle = palette.grid;
+      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText(Math.round(v).toLocaleString(), x, padT + plotH + 8);
+    });
+    ctx.fillStyle = palette.muted;
+    ctx.fillText('input length n' + (logX ? '  (logarithmic)' : '  (linear)'),
+      padL + plotW / 2, padT + plotH + 28);
+    ctx.save();
+    ctx.translate(18, padT + plotH / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('measured time per execution, ms' + (logY ? ' (logarithmic)' : ' (linear)'), 0, 0);
+    ctx.restore();
+
+    /* the two reference lines: the engine's budget and the page's deadline */
+    [[R.BUDGET_MS, palette.warn, 'budget ' + R.BUDGET_MS + ' ms — the sweep stops here', [6, 4]],
+      [R.DEADLINE_MS, palette.bad, 'deadline ' + R.DEADLINE_MS + ' ms — the worker is destroyed',
+        [2, 3]]].forEach(function (ref) {
+      var y = Y(ref[0]);
+      if (y < padT || y > padT + plotH) return;
+      ctx.strokeStyle = ref[1]; ctx.lineWidth = 1.5; ctx.setLineDash(ref[3]);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = ref[1]; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+      ctx.font = '600 11px ui-monospace, monospace';
+      ctx.fillText(ref[2], padL + 5, y - 2);
+      ctx.font = '12px ui-monospace, monospace';
+    });
+
+    /* the series */
+    series.forEach(function (s) {
+      var colour = palette[s.hue || s.style.hue];
+      ctx.strokeStyle = colour; ctx.fillStyle = colour; ctx.lineWidth = 2.2;
+      ctx.setLineDash(s.style.dash);
+      ctx.beginPath();
+      s.points.forEach(function (p, i) {
+        var x = X(p.length), y = Y(p.ms);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+      s.points.forEach(function (p) {
+        marker(ctx, s.style.marker, X(p.length), Y(p.ms));
+        ctx.fill();
+      });
+
+      /* a terminated trial: an OPEN marker on the deadline line, with an upward tick. There is no
+         time to plot — the match never finished — so the chart must not imply one. */
+      if (s.terminatedAt !== null) {
+        var tx = X(s.terminatedAt), ty = Y(R.DEADLINE_MS);
+        ctx.lineWidth = 2;
+        marker(ctx, s.style.marker, tx, ty, 6);
+        ctx.strokeStyle = palette.bad; ctx.fillStyle = palette.paper;
+        ctx.fill(); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(tx, ty - 8); ctx.lineTo(tx, ty - 20);
+        ctx.moveTo(tx - 4, ty - 16); ctx.lineTo(tx, ty - 21); ctx.lineTo(tx + 4, ty - 16);
+        ctx.stroke();
+        ctx.fillStyle = palette.bad;
+        ctx.font = '600 11px ui-monospace, monospace';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+        ctx.fillText('terminated', tx, ty - 23);
+        ctx.font = '12px ui-monospace, monospace';
+      }
+
+      /* the label at the line, so the chart is readable without consulting a legend */
+      var last = s.points[s.points.length - 1];
+      if (last) {
+        ctx.fillStyle = colour;
+        ctx.font = '600 12px ui-monospace, monospace';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        ctx.fillText(s.style.glyph + ' ' + s.xp.ordinal + '. ' + s.xp.label,
+          Math.min(w - padR + 6, X(last.length) + 9), Y(last.ms));
+        ctx.font = '12px ui-monospace, monospace';
+      }
+    });
+
+    $('growth-axes').textContent = 'Drawn over n from ' + Math.round(xMin).toLocaleString()
+      + ' to ' + Math.round(xMax).toLocaleString() + ', and 0 to ' + Math.round(yTop)
+      + ' ms. Axes: ' + (logX ? 'logarithmic' : 'linear') + ' in n, '
+      + (logY ? 'logarithmic' : 'linear') + ' in time.';
+    $('growth-alt').textContent = describeGrowth(series, xMin, xMax, yTop);
+  }
+
+  function describeGrowth(series, xMin, xMax, yTop) {
+    if (!series.length) return 'Measured execution time chart. Nothing has been run.';
+    var parts = ['Measured execution time against input length. Horizontal axis n from '
+      + Math.round(xMin).toLocaleString() + ' to ' + Math.round(xMax).toLocaleString()
+      + '; vertical axis milliseconds per execution, 0 to ' + Math.round(yTop)
+      + ', ' + (ui.scale === 'linear' ? 'both axes linear'
+        : ui.scale === 'logy' ? 'time axis logarithmic' : 'both axes logarithmic') + '.'];
+    series.forEach(function (s) {
+      if (!s.points.length) {
+        parts.push(s.xp.label + ': no measured point.');
+        return;
+      }
+      var first = s.points[0], last = s.points[s.points.length - 1];
+      parts.push(s.xp.label + ': ' + s.points.length + ' points, from '
+        + msText(first.ms) + ' at n = ' + first.length.toLocaleString() + ' to '
+        + msText(last.ms) + ' at n = ' + last.length.toLocaleString() + '.'
+        + (s.terminatedAt === null ? ''
+          : ' Terminated at n = ' + s.terminatedAt.toLocaleString()
+            + ', so no time is plotted there.'));
+    });
+    return parts.join(' ');
+  }
+
+  function drawWork() {
+    var g = fit($('c-work'), 340);
+    var ctx = g.ctx, w = g.w, h = g.h;
+    var padL = 76, padR = 20, padT = 18, padB = 48;
+    var plotW = Math.max(10, w - padL - padR), plotH = Math.max(10, h - padT - padB);
+
+    /* The MODEL is defined for every experiment regardless of what has been run — it is a closed
+       form, not a measurement — so all four curves are always drawn. */
+    var curves = R.EXPERIMENTS.map(function (xp) {
+      return { xp: xp, style: SERIES[xp.id], points: R.predictedCandidateCurve(xp.id, ui.lengths[xp.id]) };
+    }).filter(function (c) { return c.points.length > 1; });
+
+    var allX = [], allY = [];
+    curves.forEach(function (c) {
+      c.points.forEach(function (p) { allX.push(p.length); allY.push(Math.max(1, p.candidates)); });
+    });
+    var xA = Math.log10(Math.max(1, Math.min.apply(null, allX)));
+    var xB = Math.log10(Math.max(2, Math.max.apply(null, allX)));
+    var yB = Math.ceil(Math.log10(Math.max.apply(null, allY)));
+    var yA = 0;
+
+    var X = function (v) { return padL + ((Math.log10(Math.max(1, v)) - xA) / (xB - xA)) * plotW; };
+    var Y = function (v) {
+      return padT + plotH - ((Math.log10(Math.max(1, v)) - yA) / (yB - yA)) * plotH;
+    };
+
+    ctx.font = '11px ui-monospace, monospace';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (var e = 0; e <= yB; e += 1) {
+      var y = Y(Math.pow(10, e));
+      ctx.strokeStyle = palette.grid;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText('1e' + e, padL - 6, y);
+    }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (var ex = Math.floor(xA); ex <= Math.ceil(xB); ex += 1) {
+      var v = Math.pow(10, ex);
+      if (v < Math.pow(10, xA) * 0.99 || v > Math.pow(10, xB) * 1.01) continue;
+      var x = X(v);
+      ctx.strokeStyle = palette.grid;
+      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText(v.toLocaleString(), x, padT + plotH + 7);
+    }
+    ctx.fillStyle = palette.muted;
+    ctx.fillText('input length n  (logarithmic)', padL + plotW / 2, padT + plotH + 26);
+    ctx.save();
+    ctx.translate(16, padT + plotH / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('modelled candidates  (logarithmic)', 0, 0);
+    ctx.restore();
+
+    var described = [];
+    curves.forEach(function (c) {
+      ctx.strokeStyle = palette[c.style.hue]; ctx.fillStyle = palette[c.style.hue];
+      ctx.lineWidth = 2.2; ctx.setLineDash(c.style.dash);
+      ctx.beginPath();
+      c.points.forEach(function (p, i) {
+        var px = X(p.length), py = Y(p.candidates);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+      var last = c.points[c.points.length - 1];
+      marker(ctx, c.style.marker, X(last.length), Y(last.candidates), 4);
+      ctx.fill();
+      ctx.font = '600 11px ui-monospace, monospace';
+      ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
+      ctx.fillText(c.style.glyph + ' ' + c.xp.modelOfWork, X(last.length) - 6,
+        Y(last.candidates) - 4);
+      ctx.font = '11px ui-monospace, monospace';
+      described.push(c.xp.label + ' models ' + c.xp.modelOfWork + ', reaching '
+        + Math.round(last.candidates).toLocaleString() + ' candidates at n = '
+        + last.length.toLocaleString());
+    });
+
+    $('work-alt').textContent = 'Modelled candidate counts against input length, both axes '
+      + 'logarithmic. ' + described.join('. ') + '. These are closed forms, not measurements.';
+  }
+
+  function renderLegends() {
+    [['growth-legend', true], ['work-legend', false]].forEach(function (spec) {
+      var box = $(spec[0]);
+      box.textContent = '';
+      R.EXPERIMENTS.forEach(function (xp) {
+        var s = SERIES[xp.id];
+        var item = document.createElement('span');
+        item.className = 'item';
+        var mk = document.createElement('span');
+        mk.className = 'mk';
+        mk.style.color = 'var(--' + s.hue + ')';
+        mk.textContent = s.glyph;
+        var sw = document.createElement('span');
+        sw.className = 'swatch';
+        sw.style.borderTopStyle = s.css;
+        sw.style.borderTopColor = 'var(--' + s.hue + ')';
+        var label = document.createElement('span');
+        label.textContent = xp.ordinal + '. ' + xp.label
+          + (spec[1] ? '' : ' — ' + xp.modelOfWork);
+        item.appendChild(mk); item.appendChild(sw); item.appendChild(label);
+        box.appendChild(item);
+      });
+      if (spec[1]) {
+        var term = document.createElement('span');
+        term.className = 'item';
+        var g = document.createElement('span');
+        g.className = 'mk';
+        g.style.color = 'var(--bad)';
+        g.textContent = '◌';
+        var t = document.createElement('span');
+        t.textContent = 'open marker on the deadline line = terminated, no time measured';
+        term.appendChild(g); term.appendChild(t);
+        box.appendChild(term);
+      }
+    });
+  }
+
+  /* ---------- the backtracking model diagram ---------- */
+
+  function renderModel() {
+    var xp = R.findExperiment(ui.experimentId);
+    var m = R.backtrackingModel(xp.id);
+    var n = ui.lengths[xp.id];
+    $('model-title').textContent = 'Experiment ' + xp.ordinal + ' — ' + m.label.toLowerCase();
+    var body = $('model-body');
+    body.textContent = '';
+
+    if (m.kind === 'compositions') {
+      $('model-explain').textContent =
+        'The outer repetition in /^(a+)+$/ may hand any number of characters to each pass of the '
+        + 'inner a+. Every such division matches the run of a characters — and then meets the '
+        + 'trailing "!", which nothing in the expression can match, so the whole attempt fails. '
+        + 'Having failed, a backtracking matcher tries the next division. Below are all '
+        + m.items.length + ' divisions of a run of ' + m.illustrativeN
+        + ' characters, drawn at a size you can read.';
+      var grid = document.createElement('div');
+      grid.className = 'decomp-grid';
+      m.items.forEach(function (parts, i) {
+        var row = document.createElement('div');
+        row.className = 'decomp';
+        var idx = document.createElement('span');
+        idx.className = 'idx';
+        idx.textContent = (i + 1) + '.';
+        row.appendChild(idx);
+        parts.forEach(function (size) {
+          var g = document.createElement('span');
+          g.className = 'grp';
+          g.textContent = new Array(size + 1).join('a');
+          row.appendChild(g);
+        });
+        var v = document.createElement('span');
+        v.className = 'verdict';
+        v.textContent = '✕ then "!" fails';
+        row.appendChild(v);
+        grid.appendChild(row);
+      });
+      body.appendChild(grid);
+      $('model-count').textContent = 'The count is ' + m.formula + ': ' + m.illustrativeN
+        + ' characters give ' + R.compositionCount(m.illustrativeN) + ' divisions, and the '
+        + n + ' characters currently selected give '
+        + R.compositionCount(n).toLocaleString() + '. Each extra character doubles it. That is '
+        + 'why this experiment is measured in tens of characters while the others are measured in '
+        + 'thousands — and why an adversary needs no volume of traffic here.';
+      return;
+    }
+
+    var sp = m.model;
+    $('model-explain').textContent =
+      'In /^.*\\s+$/ the leading .* chooses where to stop, and \\s+ must then cover everything to '
+      + 'the end. Nothing between them forces a unique choice, so each stopping point is a separate '
+      + 'candidate. Against a long run of spaces ending in "!", the whitespace scan runs forward '
+      + 'from each stopping point and fails at the "!" every time. Below are all '
+      + sp.rows.length + ' stopping points for a run of ' + m.illustrativeN
+      + ' characters; the bar is how far the whitespace scan gets before failing.';
+    var table = document.createElement('div');
+    table.className = 'scan-table';
+    sp.rows.forEach(function (r) {
+      var row = document.createElement('div');
+      row.className = 'scan-row' + (r.scan === 0 ? ' nil' : '');
+      var left = document.createElement('span');
+      left.textContent = '.* stops at ' + r.stop;
+      var cell = document.createElement('span');
+      cell.className = 'bar-cell';
+      var bar = document.createElement('span');
+      bar.className = 'bar';
+      bar.style.display = 'block';
+      bar.style.width = Math.round((r.scan / Math.max(1, m.illustrativeN)) * 100) + '%';
+      cell.appendChild(bar);
+      var out = document.createElement('span');
+      out.className = 'out';
+      out.textContent = r.scan + ' scanned, ' + (r.scan === 0 ? 'none left' : 'then ✕');
+      row.appendChild(left); row.appendChild(cell); row.appendChild(out);
+      table.appendChild(row);
+    });
+    body.appendChild(table);
+
+    var total = (m.illustrativeN * (m.illustrativeN + 1)) / 2;
+    var safeNote = xp.expression === 'forcedSplit'
+      ? ' This experiment runs the REWRITTEN expression, where the mandatory [^\\s] pins the '
+        + 'stopping point to the last non-whitespace character. Only one stopping point can '
+        + 'satisfy it, so the candidates above collapse to a single viable division and the scan '
+        + 'is performed once — which is the whole of the fix.'
+      : '';
+    var ordinaryNote = xp.inputKind === 'prose'
+      ? ' This experiment supplies ORDINARY input, where whitespace runs are one character long, '
+        + 'so almost every stopping point fails after a single step rather than after a long scan. '
+        + 'Same expression, same candidate count — far less work per candidate.'
+      : '';
+    $('model-count').textContent = 'Summed over the stopping points the scanning work is '
+      + m.formula + ': ' + total.toLocaleString() + ' steps at n = ' + m.illustrativeN + ', and '
+      + Math.round((n * (n + 1)) / 2).toLocaleString() + ' at the n = ' + n.toLocaleString()
+      + ' currently selected.' + ordinaryNote + safeNote;
+  }
+
   function render() {
     renderStatus();
     renderBudget();
     renderResults();
     renderScaling();
     renderSelector();
+    renderModel();
+    readPalette();
+    drawGrowth();
+    drawWork();
   }
 
   /* ---------- controls ---------- */
@@ -2358,7 +2927,22 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     window.requestAnimationFrame(frame);
   }
 
+  /* A resize changes the canvas geometry, and a light/dark switch changes every colour the charts
+     read out of the CSS custom properties. Both need a redraw; neither touches the measurements. */
+  window.addEventListener('resize', function () { readPalette(); drawGrowth(); drawWork(); });
+  if (window.matchMedia) {
+    var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+    var onScheme = function () { readPalette(); drawGrowth(); drawWork(); };
+    if (scheme.addEventListener) { scheme.addEventListener('change', onScheme); }
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.addEventListener) {
+      motion.addEventListener('change', function () { ui.reduced = motion.matches; });
+    }
+  }
+
   if (!ensureWorker()) { /* markWorkerUnavailable has already explained itself in the page. */ }
+  readPalette();
+  renderLegends();
   syncLengthControl();
   renderExpression();
   renderExpressionTable();

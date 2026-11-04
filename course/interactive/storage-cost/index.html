@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<!--
+  The Cost of Storing Information — an interactive representation-tradeoff exercise.
+  Teach with MAGE · ECE 30861 · Act III · Data Management.
+
+  HAND-AUTHORED. This file is NOT emitted by `catalog.py build`; it is a self-contained application
+  published verbatim by the MkDocs teach-site step (docs_dir: ../course), served at
+  /teach/interactive/storage-cost/ and equally openable from a file:// URL.
+
+  One artifact, two deployments. There is no separate "offline build": the Download HTML control
+  hands the reader this same file.
+
+  No external dependencies — no framework, no charting library, no CDN, no webfont, no backend, no
+  network request of any kind. The favicon is an inline data URI precisely so the page issues zero
+  requests, which the test suite asserts on the shipped bytes.
+
+  THIS IS ARITHMETIC OVER THE READER'S OWN PARAMETERS, NOT A BENCHMARK. Nothing here runs a storage
+  engine. LOGICAL storage follows from the representation and is exact. PHYSICAL storage needs
+  assumptions about an engine, so it is labelled an estimate, kept behind an optional control, and
+  computed from constants printed on the page. The page claims no storage figure for any named
+  product, because nobody measured one.
+
+  Structure of the single <script> pair below:
+    #storage-engine — pure model: parameter normalisation, the three record layouts, the storage
+                      arithmetic, the rename impact, presets, self-tests. No browser surface
+                      anywhere. Publishes window.StorageCost. The node test suite in ./tests/
+                      EXTRACTS this element by id and evaluates it, so the tests and the page run
+                      one implementation, not two.
+    #storage-ui     — rendering and controls. Observes the model; never determines it.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cost of Storing Information — Teach with MAGE</title>
+<meta name="description" content="An interactive representation-tradeoff exercise: the same reservation data stored three ways. Normalized, denormalized, and document-oriented representations differ in how much they store, what they duplicate, and how many records a rename has to touch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Crect x='2' y='2' width='12' height='3' fill='%231f6fae'/%3E%3Crect x='2' y='6.5' width='12' height='3' fill='%23b23b3b'/%3E%3Crect x='2' y='11' width='6' height='3' fill='%235b6b7a'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------------------------
+   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
+   instrument matches the rest of the site and its sibling simulators: warm paper ground, near-black
+   ink, burnt-umber accent, Purdue-gold rule under the header.
+
+   Three tokens carry this exercise's specific vocabulary, and each one means exactly one thing
+   everywhere on the page:
+     --model  the family's definition-box blue — UNIQUE FACTS, stored once.
+     --bad    red — DUPLICATED FACTS, the same fact stored again.
+     --refs   a slate grey-blue, a local extension — IDENTIFIER AND REFERENCE BYTES.
+     --warn   warm ochre, the siblings' local extension — an ESTIMATE rather than a calculation.
+
+   Colour never carries meaning alone. Every bar segment is also named in the legend and written
+   into the chart's text description; the estimated-overhead segment is additionally HATCHED, so a
+   reader who cannot separate amber from red still sees which segment is the estimate; and every
+   duplication readout carries a word, not just a number.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --refs: #5b6b7a;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --refs: #8fa3b5;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.gold-rule { height: 4px; background: var(--gold); }
+
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) {
+  .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls ----------------------------------------------------------------------------- */
+.ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 820px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
+.ctl { display: grid; grid-template-columns: 14rem 1fr auto; gap: 0.6rem; align-items: center; }
+.ctl > label, .ctl > span.lbl { font-weight: 600; font-size: 0.98rem; }
+.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+.ctl input[type=number] {
+  font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.3rem 0.4rem; width: 5.8rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; flex-wrap: wrap; }
+.seg button {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
+  background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
+button.act {
+  font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+  padding: 0.5rem 1.05rem; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.act:focus-visible, .seg button:focus-visible, .preset:focus-visible,
+input:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* --- presets ------------------------------------------------------------------------------ */
+.preset-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+button.preset {
+  text-align: left; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.95rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.preset:hover { border-color: var(--accent); }
+button.preset strong { display: block; font-size: 1rem; margin-bottom: 0.1rem; }
+button.preset span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; display: block; }
+
+/* --- readouts ----------------------------------------------------------------------------- */
+dl.readout { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.9rem; margin: 0; }
+dl.readout dt { color: var(--muted); font-size: 0.93rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
+.big { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0 0 0.9rem; }
+.big .cell {
+  flex: 1 1 10rem; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.55rem 0.7rem;
+}
+.big .cell .k {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); display: block;
+}
+.big .cell .v {
+  font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; line-height: 1.15;
+  display: block; word-break: break-word;
+}
+.big .cell .s { font-size: 0.82rem; color: var(--muted); display: block; }
+.big .cell.lead { border-color: var(--ink); border-width: 2px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--font-mono); font-size: 0.86rem; font-weight: 600;
+  padding: 0.12rem 0.45rem; border-radius: var(--radius); border: 1px solid;
+}
+.badge .glyph { font-size: 0.95em; }
+.s-ok   { color: var(--ok);    border-color: var(--ok);    background: var(--ok-fill); }
+.s-warn { color: var(--warn);  border-color: var(--warn);  background: var(--warn-fill); }
+.s-bad  { color: var(--bad);   border-color: var(--bad);   background: var(--bad-fill); }
+.s-model{ color: var(--model); border-color: var(--model); background: var(--model-fill); }
+
+/* --- record layouts (the three representations, as stored shapes) ------------------------- */
+pre.layout {
+  font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.5;
+  background: var(--paper); border: 1px solid var(--rule); border-left: 3px solid var(--model);
+  border-radius: var(--radius); padding: 0.6rem 0.8rem; margin: 0.4rem 0 0;
+  overflow-x: auto; white-space: pre;
+}
+
+/* --- the rename experiment ---------------------------------------------------------------- */
+.rename-grid { display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+@media (min-width: 1000px) { .rename-grid { grid-template-columns: repeat(3, 1fr); } }
+.rmap {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.6rem 0.7rem;
+}
+.rmap.is-current { border-color: var(--ink); border-width: 2px; padding: calc(0.6rem - 1px) calc(0.7rem - 1px); }
+.rmap h3 { margin: 0 0 0.1rem; font-size: 1rem; }
+.rmap .count {
+  font-family: var(--font-mono); font-size: 1.9rem; font-weight: 600; line-height: 1.1;
+  display: block;
+}
+.rmap .count.one { color: var(--ok); }
+.rmap .count.many { color: var(--bad); }
+.rmap .verdict { font-size: 0.88rem; color: var(--muted); display: block; margin-bottom: 0.5rem; }
+.rmap ul.recs { list-style: none; margin: 0.3rem 0 0; padding: 0; }
+.rmap ul.recs li {
+  font-family: var(--font-mono); font-size: 0.86rem;
+  padding: 0.2rem 0.4rem; margin: 0 0 0.2rem;
+  border: 1px solid var(--rule); border-left-width: 4px; border-radius: 2px;
+  background: var(--panel-2);
+  display: flex; gap: 0.5rem; justify-content: space-between; align-items: baseline;
+}
+/* A record that stores a copy of the room name. Three signals, not one: the red left rule, the
+   tinted ground, and the word in the marker column. */
+.rmap ul.recs li.holds {
+  border-left-color: var(--bad); background: var(--bad-fill); color: var(--bad);
+}
+.rmap ul.recs li.single { border-left-color: var(--ok); background: var(--ok-fill); color: var(--ok); }
+.rmap ul.recs li .mark { font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+.rmap ul.recs li.rest { color: var(--muted); background: var(--panel-2); border-left-color: var(--rule); }
+.rmap .qualify {
+  font-size: 0.84rem; color: var(--warn); margin: 0.5rem 0 0;
+  border-left: 3px solid var(--warn); padding-left: 0.6rem;
+}
+.name-now { font-family: var(--font-mono); font-weight: 600; }
+
+/* --- canvases ----------------------------------------------------------------------------- */
+.canvas-wrap { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); }
+canvas { display: block; width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin: 0.6rem 0 0; font-size: 0.88rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend i { width: 0.85rem; height: 0.85rem; border-radius: 2px; display: inline-block; border: 1px solid var(--ink); }
+.legend i.hatch {
+  background-image: repeating-linear-gradient(45deg, var(--warn) 0 2px, transparent 2px 4px);
+  background-color: var(--warn-fill);
+}
+
+table.model { border-collapse: collapse; font-size: 0.92rem; margin-top: 0.5rem; width: 100%; }
+table.model th, table.model td { border: 1px solid var(--rule); padding: 0.3rem 0.5rem; text-align: left; vertical-align: top; }
+table.model th { background: var(--panel-2); font-weight: 600; }
+table.model td.n { font-family: var(--font-mono); white-space: nowrap; }
+.scroll-x { overflow-x: auto; }
+code {
+  font-family: var(--font-mono); font-size: 0.93em;
+  border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
+  padding: 0.05rem 0.35rem; background: var(--paper);
+}
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+.warnbox {
+  margin: 0.7rem 0 0; padding: 0.5rem 0.7rem; font-size: 0.92rem;
+  border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
+  background: var(--warn-fill); color: var(--warn);
+}
+
+/* Reduced motion: honour the OS preference. This instrument has no decorative animation and no
+   simulation loop — every number is recomputed synchronously from the controls, so there is no
+   motion to suppress beyond the focus and hover transitions this rule disables. Stated rather than
+   implied, because a reader who sets the preference deserves to know it was considered. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1>The Cost of Storing Information</h1>
+    <p class="sub">The same reservations, stored three ways. What gets duplicated is a property of the representation, not of the database category.</p>
+  </div>
+  <p class="tag">
+    Teach with MAGE<br>ECE&nbsp;30861 &middot; Act&nbsp;III<br>Data Management
+  </p>
+</header>
+<div class="gold-rule"></div>
+
+<main>
+
+<!-- ======================= CONTROLS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">Controls</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="rooms">Number of rooms <span class="unit">R</span></label>
+      <input type="range" id="rooms-range" min="10" max="10000" step="10" value="100"
+             aria-label="Number of rooms, slider">
+      <input type="number" id="rooms" min="10" max="10000" step="1" value="100">
+    </div>
+    <div class="ctl">
+      <label for="perroom">Reservations per room <span class="unit">V</span></label>
+      <input type="range" id="perroom-range" min="1" max="1000" step="1" value="20"
+             aria-label="Reservations per room, slider">
+      <input type="number" id="perroom" min="1" max="1000" step="1" value="20">
+    </div>
+    <div class="ctl">
+      <label for="meta">Room metadata size <span class="unit">M, bytes</span></label>
+      <input type="range" id="meta-range" min="50" max="2000" step="10" value="200"
+             aria-label="Room metadata size in bytes, slider">
+      <input type="number" id="meta" min="50" max="2000" step="1" value="200">
+    </div>
+    <div class="ctl">
+      <label for="resv">Reservation size <span class="unit">Z, bytes</span></label>
+      <input type="range" id="resv-range" min="50" max="1000" step="10" value="100"
+             aria-label="Reservation size in bytes, slider">
+      <input type="number" id="resv" min="50" max="1000" step="1" value="100">
+    </div>
+    <div class="ctl">
+      <label for="idsize">Identifier size <span class="unit">I, bytes</span></label>
+      <input type="range" id="idsize-range" min="4" max="16" step="1" value="8"
+             aria-label="Identifier size in bytes, slider">
+      <input type="number" id="idsize" min="4" max="16" step="1" value="8">
+    </div>
+    <div class="ctl">
+      <label id="repr-label">Representation</label>
+      <div class="seg" role="group" aria-labelledby="repr-label" id="repr-seg">
+        <button type="button" data-repr="normalized" aria-pressed="true">Normalized</button>
+        <button type="button" data-repr="denormalized" aria-pressed="false">Denormalized</button>
+        <button type="button" data-repr="document" aria-pressed="false">Document</button>
+      </div>
+      <span></span>
+    </div>
+    <div class="ctl">
+      <label id="physical-label">Physical-overhead estimate</label>
+      <div class="seg" role="group" aria-labelledby="physical-label" id="physical-seg">
+        <button type="button" data-physical="off" aria-pressed="true">Off</button>
+        <button type="button" data-physical="on" aria-pressed="false">On</button>
+      </div>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="storage-cost.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p id="clamp-notice" class="warnbox" hidden role="status"></p>
+
+  <p class="note" id="physical-policy">
+    <strong>Why physical storage is off by default.</strong> Logical storage follows from the
+    representation: count the facts, count the copies, count the identifier bytes. It is exact
+    arithmetic over the five controls above. Physical storage adds per-record headers and index
+    entries, and those sizes are properties of a <em>storage engine</em> &mdash; so turning the
+    estimate on changes the page's claim from a calculation into a model, and every figure it
+    produces is labelled an estimate. This page claims no storage figure for PostgreSQL, MongoDB, or
+    any other product: nothing here was run.
+  </p>
+</section>
+
+<!-- ======================= PRESETS ======================= -->
+<section class="panel" aria-labelledby="h-presets">
+  <h2 id="h-presets">Classroom presets</h2>
+  <div class="preset-grid" id="presets"></div>
+  <p class="note">
+    Start at the lecture example, then go to <strong>one reservation per room</strong> &mdash; the
+    counter-example. Denormalization costs nothing there, because nothing repeats. Duplication is a
+    property of <em>repetition</em>, not of the denormalized shape by itself.
+  </p>
+</section>
+
+<div class="grid2">
+
+  <!-- ======================= THE THREE REPRESENTATIONS ======================= -->
+  <section class="panel" aria-labelledby="h-shapes">
+    <h2 id="h-shapes">The three representations</h2>
+    <p style="margin-top:0">
+      One data set &mdash; <span id="shape-summary" class="name-now">&mdash;</span>. Three ways to
+      write it down. The reader's current choice is outlined.
+    </p>
+    <div id="shapes"></div>
+    <p class="note">
+      <strong>The document representation is not the denormalized one.</strong> Nesting the
+      reservations inside the room document stores the room's facts once, exactly as the normalized
+      tables do. Its duplication profile matches the normalized case; only the denormalized table
+      copies the room's facts onto every reservation. Database category and normalization are
+      different dimensions, and this is where that separation becomes visible.
+    </p>
+  </section>
+
+  <!-- ======================= RESULTS ======================= -->
+  <section class="panel" aria-labelledby="h-results">
+    <h2 id="h-results">Storage for the current representation</h2>
+    <div class="big">
+      <div class="cell lead">
+        <span class="k">Logical storage</span>
+        <span class="v" id="r-logical">&mdash;</span>
+        <span class="s">calculated from the representation</span>
+      </div>
+      <div class="cell" id="cell-physical">
+        <span class="k">Physical storage &mdash; estimate</span>
+        <span class="v" id="r-physical">&mdash;</span>
+        <span class="s" id="r-physical-sub">turn the optional control on</span>
+      </div>
+    </div>
+    <p style="margin-top:0">
+      <span class="badge s-ok" id="dup-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="dup-band-text">no duplicated facts</span></span>
+    </p>
+    <dl class="readout">
+      <dt>Unique facts</dt><dd id="r-unique">&mdash;</dd>
+      <dt>Duplicated facts</dt><dd id="r-dup">&mdash;</dd>
+      <dt>References and identifiers</dt><dd id="r-refs">&mdash;</dd>
+      <dt>Record overhead (estimated)</dt><dd id="r-recordoh">&mdash;</dd>
+      <dt>Field-name overhead (estimated)</dt><dd id="r-keysoh">&mdash;</dd>
+      <dt>Index overhead (estimated)</dt><dd id="r-indexoh">&mdash;</dd>
+      <dt>Stored records</dt><dd id="r-records">&mdash;</dd>
+      <dt>Reservations in total</dt><dd id="r-total-resv">&mdash;</dd>
+    </dl>
+    <p class="note" id="results-note"></p>
+  </section>
+</div>
+
+<!-- ======================= THE BARS ======================= -->
+<section class="panel" aria-labelledby="h-bars">
+  <h2 id="h-bars">All three representations, same data</h2>
+  <div class="canvas-wrap"><canvas id="c-bars" width="1200" height="330"
+    role="img" aria-labelledby="bars-alt"></canvas></div>
+  <p id="bars-alt" class="vh" aria-live="polite"></p>
+  <div class="legend">
+    <span><i style="background:var(--model)"></i>Unique facts &mdash; stored once</span>
+    <span><i style="background:var(--bad)"></i>Duplicated facts &mdash; the same fact stored again</span>
+    <span><i style="background:var(--refs)"></i>References and identifiers</span>
+    <span><i class="hatch"></i>Estimated storage overhead (hatched)</span>
+  </div>
+  <p class="note" id="bars-note"></p>
+</section>
+
+<!-- ======================= THE RENAME EXPERIMENT ======================= -->
+<section class="panel" aria-labelledby="h-rename">
+  <h2 id="h-rename">The rename experiment</h2>
+  <p style="margin-top:0">
+    Rooms get renamed. A building is renumbered, a hall is given a donor's name, a department
+    reshuffles. Pick a room, rename it, and count the records that have to change.
+    <strong>This is the part that matters more than the byte totals</strong>: it connects the
+    representation to the obligation of keeping the data consistent while it is being changed.
+  </p>
+
+  <div class="ctl-row" style="margin-bottom:0.4rem">
+    <div class="ctl">
+      <label for="room-id">Room <span class="unit">1&hellip;<span id="room-max">100</span></span></label>
+      <input type="range" id="room-id-range" min="1" max="100" step="1" value="1"
+             aria-label="Which room to rename, slider">
+      <input type="number" id="room-id" min="1" max="10000" step="1" value="1">
+    </div>
+    <div class="ctl">
+      <span class="lbl">Rename it</span>
+      <div class="btn-row" style="margin:0">
+        <button type="button" class="act primary" id="btn-rename" aria-pressed="false">
+          Rename the room
+        </button>
+        <span id="rename-caption" style="color:var(--muted);font-size:0.9rem"></span>
+      </div>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="rename-grid" id="rename-maps"></div>
+  <p id="rename-alt" class="vh" aria-live="polite"></p>
+
+  <p class="note" id="rename-note"></p>
+</section>
+
+<!-- ======================= DUPLICATION SWEEP ======================= -->
+<section class="panel" aria-labelledby="h-sweep">
+  <h2 id="h-sweep">Logical storage as the reservations per room grow</h2>
+  <div class="canvas-wrap"><canvas id="c-sweep" width="1200" height="340"
+    role="img" aria-labelledby="sweep-alt"></canvas></div>
+  <p id="sweep-alt" class="vh" aria-live="polite"></p>
+  <div class="legend">
+    <span><i style="background:var(--model)"></i>Normalized relational</span>
+    <span><i style="background:var(--bad)"></i>Denormalized relational</span>
+    <span><i style="background:var(--ok)"></i>Document-oriented</span>
+  </div>
+  <p class="note" id="sweep-note"></p>
+</section>
+
+<!-- ======================= THE MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 id="h-model">The storage model, in full</h2>
+  <p style="margin-top:0">
+    Nothing on this page runs a database. There is no engine, no file, no page cache, and no
+    measurement. Every figure comes from the formulas below applied to the five controls, which is
+    why the same controls always produce the same answer.
+  </p>
+
+  <h3>Two quantities, kept apart</h3>
+  <p>
+    <code>S_logical = S_unique + S_duplicated + S_references</code>
+  </p>
+  <p>
+    <code>S_physical = S_logical + S_record_overhead + S_field_name_overhead + S_index_overhead</code>
+  </p>
+  <p>
+    The first follows directly from the chosen representation: it counts the facts the
+    representation stores, the copies it makes of them, and the identifier bytes it spends
+    connecting records. <strong>The second requires assumptions about a storage engine</strong>
+    &mdash; header layout, index structure, how field names are encoded &mdash; so it is labelled an
+    <em>estimate</em> wherever it appears, and it is off until the reader asks for it.
+  </p>
+
+  <h3>The record layouts, and what each field costs</h3>
+  <p style="margin:0.35rem 0 0">
+    Write <code>N = R &times; V</code> for the total number of reservations. Identifier bytes are
+    charged <em>per occurrence</em>: a row's own key and a foreign key each cost <code>I</code>.
+  </p>
+  <div class="scroll-x">
+  <table class="model">
+    <thead><tr><th>Representation</th><th>Stored shape</th><th class="n">Unique</th><th class="n">Duplicated</th><th class="n">References</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Normalized relational</td>
+        <td><code>ROOMS(id, metadata)</code><br><code>RESERVATIONS(id, room_id, payload)</code></td>
+        <td class="n">R&middot;M + N&middot;Z</td>
+        <td class="n">0</td>
+        <td class="n">R&middot;I + 2N&middot;I</td>
+      </tr>
+      <tr>
+        <td>Denormalized relational</td>
+        <td><code>RESERVATIONS(id, room_id, room_metadata, payload)</code></td>
+        <td class="n">R&middot;M + N&middot;Z</td>
+        <td class="n">(N &minus; R)&middot;M</td>
+        <td class="n">2N&middot;I</td>
+      </tr>
+      <tr>
+        <td>Document-oriented</td>
+        <td><code>{ room_id, metadata, reservations: [ { id, payload }, &hellip; ] }</code></td>
+        <td class="n">R&middot;M + N&middot;Z</td>
+        <td class="n">0</td>
+        <td class="n">R&middot;I + N&middot;I</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">
+    <strong>Three modelling decisions worth arguing with, stated rather than buried.</strong>
+    First, the duplicated column is the <em>excess</em>: the denormalized table stores the room's
+    metadata <code>V</code> times, one of which is the fact and <code>V &minus; 1</code> of which
+    are copies, so the excess is <code>(N &minus; R)&middot;M</code> and the unique column is the
+    same in all three rows. Second, the denormalized representation has no <code>ROOMS</code> table
+    at all, which is what the lecture's diagram shows &mdash; and it means a room with no
+    reservations has nowhere to live. That is a fidelity cost of the shape, not only a storage one.
+    Third, a nested reservation carries no <code>room_id</code>: containment <em>is</em> the
+    reference, which is why the document representation spends <code>N&middot;I</code> fewer
+    reference bytes than the normalized tables and lands a little <em>below</em> them.
+  </p>
+  <p class="note">
+    A real document encoding stores its <strong>field names</strong> alongside the data, while a
+    relational table keeps its column names once in the catalogue. That is a genuine cost, and it
+    would push the document representation back above the normalized one &mdash; but it is a
+    property of an encoding rather than of the representation, so it sits in the physical estimate
+    below and not in the logical arithmetic.
+  </p>
+
+  <h3>Reservations per room</h3>
+  <p>
+    Every room holds exactly <code>V</code> reservations, so <code>N = R &times; V</code> and the
+    arithmetic stays closed-form at every scale the controls allow &mdash; ten million reservations
+    is a multiplication, not a loop. A real campus has a long tail of popular and unused rooms. The
+    uniform assumption changes the <em>totals</em>; it does not change which facts a representation
+    duplicates, which is what the exercise is about.
+  </p>
+
+  <h3>The physical estimate &mdash; assumptions, named</h3>
+  <div class="scroll-x">
+  <table class="model">
+    <thead><tr><th>Constant</th><th class="n">Value</th><th>Assumption it encodes</th></tr></thead>
+    <tbody>
+      <tr><td>Record header</td><td class="n" id="k-record">&mdash;</td>
+          <td>Charged once per stored record: a relational row, a top-level document, and each nested sub-document. Stands for a length prefix, a visibility or version stamp, and a null bitmap.</td></tr>
+      <tr><td>Field-name bytes</td><td class="n" id="k-keys">&mdash;</td>
+          <td>Charged per document and per nested sub-document, in the <em>document representation only</em>. A schemaless encoding stores field names with every value; a relational table stores them once.</td></tr>
+      <tr><td>Index entry</td><td class="n" id="k-index">&mdash;</td>
+          <td><code>2I + 12</code> &mdash; a key, a row or document pointer, and per-entry tree bookkeeping.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="margin:0.6rem 0 0">
+    The index <em>count</em> is not a constant; it follows from which lookups each representation has
+    to support. All three are charged for the same two capabilities: find a reservation by its own
+    identifier, and find the reservations belonging to a room.
+  </p>
+  <div class="scroll-x">
+  <table class="model">
+    <thead><tr><th>Representation</th><th>Indexes assumed</th><th class="n">Entries</th></tr></thead>
+    <tbody>
+      <tr><td>Normalized relational</td>
+          <td>Primary key on <code>ROOMS.id</code>; primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
+          <td class="n">R + 2N</td></tr>
+      <tr><td>Denormalized relational</td>
+          <td>Primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
+          <td class="n">2N</td></tr>
+      <tr><td>Document-oriented</td>
+          <td>Primary key on <code>room_id</code>; one multi-key index over the nested <code>reservations[].id</code>. A room's reservations need no index at all &mdash; they arrive with the document.</td>
+          <td class="n">R + N</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">
+    <strong>What the estimate leaves out,</strong> stated so it is not mistaken for a measurement: no
+    page or block granularity and therefore no internal fragmentation, no compression, no
+    column-store encoding, no write-ahead log, no free-space map, no multi-version row copies, no
+    replication factor, and no table or index bloat from the update history. A real engine has all of
+    those, and the direction they push is not uniform &mdash; compression cuts the duplicated bytes
+    hardest, while fragmentation and version copies add bytes the model never counts. Anyone who
+    needs a number for a real system has to measure that system.
+  </p>
+
+  <h3>The rename, and what it costs</h3>
+  <div class="scroll-x">
+  <table class="model">
+    <thead><tr><th>Representation</th><th class="n">Records touched</th><th>Why, and what it obliges</th></tr></thead>
+    <tbody>
+      <tr><td>Normalized relational</td><td class="n">1 record</td>
+          <td>The room's name exists in one place. One write, and the database cannot hold two answers.</td></tr>
+      <tr><td>Denormalized relational</td><td class="n">V records</td>
+          <td>Every reservation for that room carries a copy. All <code>V</code> have to change together: a write that stops halfway leaves the database holding two different names for one room. The duplication did not merely cost space &mdash; it created a consistency obligation.</td></tr>
+      <tr><td>Document-oriented</td><td class="n">1 document</td>
+          <td>The name lives once, in the room document. <strong>Its physical rewrite cost depends on the database engine</strong>: a document store may patch the field in place, or it may rewrite the whole document including every nested reservation. That is an engine property, so this page reports the logical count and names the uncertainty rather than estimating it away.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>
+    <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
+    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+  </p>
+  <p class="note">
+    The engine is a pure module published as <code>window.StorageCost</code> with no browser
+    dependency, so the test suite under <code>tests/</code> extracts it from this file and exercises
+    it directly. The tested text and the published text are the same bytes.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    <strong>The Cost of Storing Information</strong> &mdash; an interactive
+    representation-tradeoff exercise for ECE&nbsp;30861 Act&nbsp;III. No network requests, no
+    dependencies &mdash; the page you are reading is the whole program, and the
+    Download&nbsp;HTML control hands you this same file.
+  </p>
+  <p>
+    Teaching materials &copy; James C. Davis and Steve France, licensed under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+  </p>
+</footer>
+
+<script id="storage-engine">
+/* =================================================================================================
+   THE MODEL. Pure, deterministic, browser-free.
+
+   This script element is extracted BY ID and evaluated by the Node test suite in ./tests/, so it may
+   not touch the page, event listeners, or any other browser surface. Its only contact with the
+   outside world is the namespace it publishes at the bottom.
+
+   Sections: 1 constants · 2 parameters · 3 the record layouts · 4 logical storage ·
+             5 the physical estimate · 6 the rename · 7 comparison and sweep · 8 presets ·
+             9 formatting · 10 self-tests · 11 namespace.
+
+   WHY THE TWO QUANTITIES ARE SEPARATE FUNCTIONS OF ONE INPUT. Logical storage is arithmetic over
+   the reader's parameters: it has no free variables and nothing to calibrate. Physical storage
+   needs a storage engine's header layout and index structure, which this page does not have and
+   will not invent for a named product. Keeping them apart in the model — rather than summing them
+   and labelling the total — is what lets the interface default to the calculated figure and put the
+   estimate behind a control the reader turns on deliberately.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var VERSION = '1.0.0';
+
+  var REPRESENTATIONS = [
+    {
+      id: 'normalized',
+      name: 'Normalized relational',
+      shortName: 'Normalized',
+      recordUnit: 'record',
+      tables: 'ROOMS(id, metadata) + RESERVATIONS(id, room_id, payload)'
+    },
+    {
+      id: 'denormalized',
+      name: 'Denormalized relational',
+      shortName: 'Denormalized',
+      recordUnit: 'record',
+      tables: 'RESERVATIONS(id, room_id, room_metadata, payload)'
+    },
+    {
+      id: 'document',
+      name: 'Document-oriented',
+      shortName: 'Document',
+      recordUnit: 'document',
+      tables: '{ room_id, metadata, reservations: [ { id, payload } ] }'
+    }
+  ];
+
+  var REPRESENTATION_IDS = REPRESENTATIONS.map(function (r) { return r.id; });
+
+  /* --- 1. Constants -----------------------------------------------------------------------------
+     Every one of these is printed on the page, and every one of them is an ASSUMPTION about a
+     storage engine rather than a measurement of one. They reach the arithmetic only when the reader
+     turns the physical estimate on. */
+  var PHYSICAL_MODEL = {
+    /* Per stored record: a relational row, a top-level document, or a nested sub-document. Stands
+       for a length prefix, a visibility or version stamp, and a null bitmap. */
+    RECORD_HEADER_BYTES: 24,
+    /* Per document and per nested sub-document, in the document representation ONLY. A schemaless
+       encoding stores field names with every value; a relational table stores its column names once
+       in the catalogue. */
+    FIELD_NAME_BYTES: 32,
+    /* An index entry: the key, a pointer to the row or document, and per-entry tree bookkeeping.
+       Scales with the identifier size, which is why it is a function rather than a number. */
+    indexEntryBytes: function (identifierBytes) { return 2 * identifierBytes + 12; },
+    INDEX_ENTRY_FORMULA: '2I + 12'
+  };
+
+  /* Duplication bands for the readout. Each band carries a WORD and a GLYPH, so the signal never
+     depends on colour. The thresholds are a classroom convention: they exist to make "a tenth of
+     the footprint" and "most of the footprint" land as different kinds of answer. */
+  var DUP_BANDS = [
+    { id: 'none',     maxShare: 0,        word: 'no duplicated facts',  glyph: '●', cls: 's-ok' },
+    { id: 'some',     maxShare: 0.15,     word: 'some duplication',     glyph: '▲', cls: 's-warn' },
+    { id: 'dominant', maxShare: Infinity, word: 'duplication dominates', glyph: '■', cls: 's-bad' }
+  ];
+
+  /* Room names, so the rename experiment renames something a reader recognises. Deterministic:
+     room 1 is STEW 202, which is the example the lecture notes use, and the rename increments the
+     number exactly as a renumbering would. */
+  var BUILDINGS = ['STEW', 'WALC', 'LWSN', 'PHYS', 'MSEE'];
+
+  function roomName(index) {
+    var building = BUILDINGS[index % BUILDINGS.length];
+    return building + ' ' + (202 + Math.floor(index / BUILDINGS.length));
+  }
+
+  function renamedRoomName(index) {
+    var building = BUILDINGS[index % BUILDINGS.length];
+    return building + ' ' + (203 + Math.floor(index / BUILDINGS.length));
+  }
+
+  /* --- 2. Parameters ----------------------------------------------------------------------------
+     One declaration per control, so the interface, the validator and the tests read the same
+     numbers rather than three copies of them. */
+  var PARAM_SPECS = {
+    rooms:            { min: 10, max: 10000, step: 1, def: 100 },
+    reservationsPerRoom: { min: 1, max: 1000, step: 1, def: 20 },
+    metadataBytes:    { min: 50, max: 2000, step: 1, def: 200 },
+    reservationBytes: { min: 50, max: 1000, step: 1, def: 100 },
+    identifierBytes:  { min: 4,  max: 16,   step: 1, def: 8 }
+  };
+
+  var DEFAULTS = {
+    rooms: PARAM_SPECS.rooms.def,
+    reservationsPerRoom: PARAM_SPECS.reservationsPerRoom.def,
+    metadataBytes: PARAM_SPECS.metadataBytes.def,
+    reservationBytes: PARAM_SPECS.reservationBytes.def,
+    identifierBytes: PARAM_SPECS.identifierBytes.def,
+    representation: 'normalized',
+    physicalEstimate: false,
+    roomIndex: 0
+  };
+
+  function clampInt(value, spec, fallback) {
+    var n = typeof value === 'number' ? value : parseFloat(value);
+    if (!isFinite(n)) return fallback;
+    n = Math.round(n);
+    if (n < spec.min) return spec.min;
+    if (n > spec.max) return spec.max;
+    return n;
+  }
+
+  function oneOf(value, allowed, fallback) {
+    return allowed.indexOf(value) >= 0 ? value : fallback;
+  }
+
+  /**
+   * Normalise whatever the interface hands over into a parameter set the model can use.
+   *
+   * Two kinds of correction, reported separately because they mean different things. RANGE clamping
+   * is ordinary input validation: 50,000 rooms or -3 bytes or "banana" becomes the nearest legal
+   * value, and `clamped` names which fields moved. The ROOM INDEX clamp is a modelling statement —
+   * the selected room has to exist, so shrinking the room count below the reader's selection moves
+   * the selection down rather than renaming a room that is not there.
+   */
+  function normalizeParams(raw) {
+    var r = raw || {};
+    var clamped = {};
+    function take(key) {
+      var spec = PARAM_SPECS[key];
+      var value = clampInt(r[key], spec, DEFAULTS[key]);
+      var supplied = r[key] !== undefined && r[key] !== null && r[key] !== '';
+      var asked = typeof r[key] === 'number' ? r[key] : parseFloat(r[key]);
+      /* Flag both kinds of correction: a legal number outside the range, and a value that was not
+         a number at all. Either way the reader's input did not survive, and the page says so. */
+      if (supplied && (!isFinite(asked) || Math.round(asked) !== value)) clamped[key] = true;
+      return value;
+    }
+    var rooms = take('rooms');
+    var requestedRoom = r.roomIndex === undefined || r.roomIndex === null
+      ? DEFAULTS.roomIndex
+      : Math.round(parseFloat(r.roomIndex));
+    if (!isFinite(requestedRoom)) requestedRoom = DEFAULTS.roomIndex;
+    var roomIndex = Math.min(Math.max(requestedRoom, 0), rooms - 1);
+    return {
+      rooms: rooms,
+      reservationsPerRoom: take('reservationsPerRoom'),
+      metadataBytes: take('metadataBytes'),
+      reservationBytes: take('reservationBytes'),
+      identifierBytes: take('identifierBytes'),
+      representation: oneOf(r.representation, REPRESENTATION_IDS, DEFAULTS.representation),
+      physicalEstimate: r.physicalEstimate === true || r.physicalEstimate === 'on',
+      roomIndex: roomIndex,
+      roomIndexClamped: roomIndex !== requestedRoom,
+      clamped: clamped,
+      anyClamped: Object.keys(clamped).length > 0
+    };
+  }
+
+  /** The total number of reservations. Every room holds exactly V of them. */
+  function totalReservations(p) {
+    return p.rooms * p.reservationsPerRoom;
+  }
+
+  /* --- 3. The record layouts --------------------------------------------------------------------
+     What each representation actually stores, field by field. The storage arithmetic below reads
+     this table, so the page's diagram and the page's byte counts cannot disagree about which fields
+     exist — there is one declaration of the shape.
+
+     `bucket` is which of the three logical categories a field's bytes belong to:
+       unique      a descriptive fact, counted once however many times it is stored
+       duplicated  an extra copy of a fact that is already counted
+       reference   bytes that exist to connect records, not to describe anything */
+  function recordLayouts(rawParams) {
+    var p = rawParams && rawParams.clamped !== undefined ? rawParams : normalizeParams(rawParams);
+    var I = p.identifierBytes;
+    var M = p.metadataBytes;
+    var Z = p.reservationBytes;
+    return {
+      normalized: [
+        {
+          name: 'ROOMS',
+          kind: 'table',
+          rows: p.rooms,
+          fields: [
+            { name: 'id', bytes: I, bucket: 'reference' },
+            { name: 'metadata', bytes: M, bucket: 'unique' }
+          ]
+        },
+        {
+          name: 'RESERVATIONS',
+          kind: 'table',
+          rows: totalReservations(p),
+          fields: [
+            { name: 'id', bytes: I, bucket: 'reference' },
+            { name: 'room_id', bytes: I, bucket: 'reference' },
+            { name: 'payload', bytes: Z, bucket: 'unique' }
+          ]
+        }
+      ],
+      denormalized: [
+        {
+          name: 'RESERVATIONS',
+          kind: 'table',
+          rows: totalReservations(p),
+          fields: [
+            { name: 'id', bytes: I, bucket: 'reference' },
+            { name: 'room_id', bytes: I, bucket: 'reference' },
+            /* The room's metadata, on every row. One of the V copies per room is the fact; the
+               other V-1 are duplicates, and the split below is where that is counted. */
+            { name: 'room_metadata', bytes: M, bucket: 'copied', copiesPerRoom: p.reservationsPerRoom },
+            { name: 'payload', bytes: Z, bucket: 'unique' }
+          ]
+        }
+      ],
+      document: [
+        {
+          name: 'rooms (documents)',
+          kind: 'document',
+          rows: p.rooms,
+          fields: [
+            { name: 'room_id', bytes: I, bucket: 'reference' },
+            { name: 'metadata', bytes: M, bucket: 'unique' }
+          ]
+        },
+        {
+          name: 'reservations (nested)',
+          kind: 'subdocument',
+          rows: totalReservations(p),
+          fields: [
+            { name: 'id', bytes: I, bucket: 'reference' },
+            /* No room_id. Containment IS the reference, which is the whole structural difference
+               between this and the normalized tables. */
+            { name: 'payload', bytes: Z, bucket: 'unique' }
+          ]
+        }
+      ]
+    };
+  }
+
+  /* --- 4. Logical storage -----------------------------------------------------------------------
+     Exact arithmetic over the five controls. No engine assumption reaches this function. */
+
+  /**
+   * The logical footprint of one representation, decomposed into the three categories.
+   *
+   * The `copied` bucket is where the duplication is counted honestly: a field stored `copiesPerRoom`
+   * times per room contributes ONE room's worth to `unique` and the remaining `copiesPerRoom - 1`
+   * to `duplicated`. That keeps `unique` identical across all three representations — the data set
+   * is the same data set — so the only thing the representation changes is how much of the
+   * duplicated and reference columns it spends.
+   */
+  function logicalStorage(rawParams, representation) {
+    var p = rawParams && rawParams.clamped !== undefined ? rawParams : normalizeParams(rawParams);
+    var repr = oneOf(representation, REPRESENTATION_IDS, p.representation);
+    var groups = recordLayouts(p)[repr];
+    var unique = 0;
+    var duplicated = 0;
+    var references = 0;
+    var records = 0;
+
+    groups.forEach(function (group) {
+      records += group.rows;
+      group.fields.forEach(function (field) {
+        var total = field.bytes * group.rows;
+        if (field.bucket === 'reference') {
+          references += total;
+        } else if (field.bucket === 'copied') {
+          var copies = field.copiesPerRoom;
+          var distinctHolders = group.rows / copies;
+          unique += field.bytes * distinctHolders;
+          duplicated += field.bytes * (group.rows - distinctHolders);
+        } else {
+          unique += total;
+        }
+      });
+    });
+
+    return {
+      representation: repr,
+      unique: unique,
+      duplicated: duplicated,
+      references: references,
+      logical: unique + duplicated + references,
+      records: records
+    };
+  }
+
+  /* --- 5. The physical estimate -----------------------------------------------------------------
+     Everything in this section is an assumption about a storage engine. It is reached only when the
+     reader turns the optional control on, and every figure it produces is labelled an estimate on
+     the page. */
+
+  /** How many index entries each representation needs to support the same two lookups. */
+  function indexEntries(p, representation) {
+    var N = totalReservations(p);
+    if (representation === 'normalized') return p.rooms + 2 * N;   /* 2 PKs + room_id index */
+    if (representation === 'denormalized') return 2 * N;           /* PK + room_id index */
+    return p.rooms + N;                                            /* PK + multi-key nested index */
+  }
+
+  /**
+   * Logical storage plus the engine overheads, each reported separately so the reader can see how
+   * much of the total is calculated and how much is assumed.
+   *
+   * `physical` equals `logical` exactly when the estimate is off. That is deliberate: the interface
+   * can then show one number in both modes without branching, and the model never quietly folds an
+   * assumption into a figure the page calls a calculation.
+   */
+  function computeStorage(rawParams, representation) {
+    var p = rawParams && rawParams.clamped !== undefined ? rawParams : normalizeParams(rawParams);
+    var base = logicalStorage(p, representation);
+    var repr = base.representation;
+    var estimated = p.physicalEstimate === true;
+
+    var recordOverhead = estimated ? base.records * PHYSICAL_MODEL.RECORD_HEADER_BYTES : 0;
+    /* Field names ride with the data in a schemaless encoding, and only there. */
+    var fieldNameOverhead = estimated && repr === 'document'
+      ? base.records * PHYSICAL_MODEL.FIELD_NAME_BYTES
+      : 0;
+    var entries = indexEntries(p, repr);
+    var indexOverhead = estimated
+      ? entries * PHYSICAL_MODEL.indexEntryBytes(p.identifierBytes)
+      : 0;
+    var overhead = recordOverhead + fieldNameOverhead + indexOverhead;
+
+    var share = base.logical > 0 ? base.duplicated / base.logical : 0;
+
+    return {
+      params: p,
+      representation: repr,
+      name: representationById(repr).name,
+      unique: base.unique,
+      duplicated: base.duplicated,
+      references: base.references,
+      logical: base.logical,
+      records: base.records,
+      totalReservations: totalReservations(p),
+      estimated: estimated,
+      indexEntriesAssumed: entries,
+      recordOverhead: recordOverhead,
+      fieldNameOverhead: fieldNameOverhead,
+      indexOverhead: indexOverhead,
+      overhead: overhead,
+      physical: base.logical + overhead,
+      duplicationShare: share,
+      duplicationBand: bandFor(share)
+    };
+  }
+
+  function representationById(id) {
+    for (var i = 0; i < REPRESENTATIONS.length; i += 1) {
+      if (REPRESENTATIONS[i].id === id) return REPRESENTATIONS[i];
+    }
+    return REPRESENTATIONS[0];
+  }
+
+  function bandFor(share) {
+    for (var i = 0; i < DUP_BANDS.length; i += 1) {
+      if (share <= DUP_BANDS[i].maxShare) return DUP_BANDS[i];
+    }
+    return DUP_BANDS[DUP_BANDS.length - 1];
+  }
+
+  /* --- 6. The rename ----------------------------------------------------------------------------
+     The part of the exercise that matters more than the byte totals. */
+
+  /**
+   * What renaming one room costs in each representation.
+   *
+   * Three numbers, and they are not the same number. `recordsTouched` is the count the exercise
+   * turns on — 1, V, 1. `bytesRewrittenLogical` is how many bytes of the room's metadata have to be
+   * written. `bytesEngineMayRewrite` is the honest upper bound: for the nested document it is the
+   * WHOLE document, because a document store may rewrite it rather than patch the field in place.
+   * The model reports that as an engine-dependent range and says so, rather than picking a number
+   * nobody measured.
+   */
+  function renameImpact(rawParams, representation) {
+    var p = rawParams && rawParams.clamped !== undefined ? rawParams : normalizeParams(rawParams);
+    var repr = oneOf(representation, REPRESENTATION_IDS, p.representation);
+    var V = p.reservationsPerRoom;
+    var M = p.metadataBytes;
+    var meta = representationById(repr);
+    var touched;
+    var copies;
+    var engineMay;
+    var note;
+
+    if (repr === 'denormalized') {
+      touched = V;
+      copies = V;
+      engineMay = V * M;
+      note = 'Every reservation for this room carries a copy of its metadata, so all ' + V
+        + ' rows change together. A write that stops halfway leaves the database holding two '
+        + 'different names for one room.';
+    } else if (repr === 'document') {
+      touched = 1;
+      copies = 1;
+      /* The field is one field; the DOCUMENT it sits in is the room's metadata plus every nested
+         reservation, and whether the engine rewrites all of that is an engine property. */
+      engineMay = M + V * (p.identifierBytes + p.reservationBytes);
+      note = 'The name lives once, in the room document, so one document changes — although its '
+        + 'physical rewrite cost depends on the database engine: it may patch the field in place, '
+        + 'or rewrite the whole document including all ' + V + ' nested reservations.';
+    } else {
+      touched = 1;
+      copies = 1;
+      engineMay = M;
+      note = 'The room\'s metadata exists in exactly one row, so one record changes and the '
+        + 'database cannot end up holding two answers.';
+    }
+
+    return {
+      representation: repr,
+      name: meta.name,
+      shortName: meta.shortName,
+      roomIndex: p.roomIndex,
+      oldName: roomName(p.roomIndex),
+      newName: renamedRoomName(p.roomIndex),
+      recordsTouched: touched,
+      recordUnit: meta.recordUnit,
+      storedCopiesOfTheFact: copies,
+      bytesRewrittenLogical: copies * M,
+      bytesEngineMayRewrite: engineMay,
+      engineDependentRewrite: repr === 'document',
+      consistencyObligation: copies > 1,
+      note: note
+    };
+  }
+
+  /** The rename cost in all three representations, in the page's declared order. */
+  function renameImpactAll(rawParams) {
+    var p = normalizeParams(rawParams);
+    return REPRESENTATION_IDS.map(function (id) { return renameImpact(p, id); });
+  }
+
+  /* --- 7. Comparison and sweep ------------------------------------------------------------------ */
+
+  /** All three representations at one parameter set, with the normalized case as the baseline. */
+  function compareRepresentations(rawParams) {
+    var p = normalizeParams(rawParams);
+    var rows = REPRESENTATION_IDS.map(function (id) {
+      var s = computeStorage(p, id);
+      var rename = renameImpact(p, id);
+      return {
+        id: id,
+        name: s.name,
+        shortName: representationById(id).shortName,
+        unique: s.unique,
+        duplicated: s.duplicated,
+        references: s.references,
+        logical: s.logical,
+        overhead: s.overhead,
+        recordOverhead: s.recordOverhead,
+        fieldNameOverhead: s.fieldNameOverhead,
+        indexOverhead: s.indexOverhead,
+        physical: s.physical,
+        estimated: s.estimated,
+        records: s.records,
+        recordsTouchedOnRename: rename.recordsTouched,
+        recordUnit: rename.recordUnit,
+        current: id === p.representation
+      };
+    });
+    var baseline = rows[0].estimated ? rows[0].physical : rows[0].logical;
+    rows.forEach(function (row) {
+      var shown = row.estimated ? row.physical : row.logical;
+      row.shown = shown;
+      row.multipleOfNormalized = baseline > 0 ? shown / baseline : 1;
+    });
+    return rows;
+  }
+
+  /**
+   * Logical storage for each representation as the reservations-per-room control is swept.
+   *
+   * This is the pedagogical claim drawn as a curve: the denormalized line diverges because its
+   * duplicated term grows with V, while the normalized and document lines stay close to each other
+   * at every V. They are close but never identical — the document case is lower by N·I, the foreign
+   * keys it does not need.
+   */
+  function sweepPerRoom(rawParams, options) {
+    var p = normalizeParams(rawParams);
+    var opts = options || {};
+    var spec = PARAM_SPECS.reservationsPerRoom;
+    var maxV = Math.max(4, Math.min(spec.max, opts.maxPerRoom
+      || Math.max(40, Math.min(spec.max, p.reservationsPerRoom * 2))));
+    var samples = Math.max(2, opts.samples || 48);
+    var points = [];
+    for (var i = 0; i < samples; i += 1) {
+      var v = Math.max(spec.min, Math.round(spec.min + (maxV - spec.min) * (i / (samples - 1))));
+      var at = {};
+      var keys = Object.keys(p);
+      keys.forEach(function (k) { at[k] = p[k]; });
+      at.reservationsPerRoom = v;
+      at.physicalEstimate = false;
+      var point = { perRoom: v };
+      REPRESENTATION_IDS.forEach(function (id) {
+        point[id] = logicalStorage(normalizeParams(at), id).logical;
+      });
+      points.push(point);
+    }
+    return { maxPerRoom: maxV, current: p.reservationsPerRoom, points: points };
+  }
+
+  /* --- 8. Presets -------------------------------------------------------------------------------
+     Five, in teaching order. `expect` is what the preset is supposed to demonstrate; the test suite
+     asserts every field of it, so a preset cannot drift away from the lesson it carries. */
+  var PRESETS = [
+    {
+      id: 'the-lander',
+      name: 'The lecture example',
+      blurb: '100 rooms, 20 reservations each, 200-byte room metadata. The denormalized table is 2.5× the normalized one.',
+      params: { rooms: 100, reservationsPerRoom: 20, metadataBytes: 200, reservationBytes: 100,
+        identifierBytes: 8, representation: 'normalized', physicalEstimate: false, roomIndex: 0 },
+      expect: {
+        logical: { normalized: 252800, denormalized: 632000, document: 236800 },
+        duplicated: { normalized: 0, denormalized: 380000, document: 0 },
+        renameRecords: { normalized: 1, denormalized: 20, document: 1 }
+      }
+    },
+    {
+      id: 'one-each',
+      name: 'One reservation per room',
+      blurb: 'The counter-example. Nothing repeats, so denormalization duplicates nothing and the rename touches one record everywhere.',
+      params: { rooms: 100, reservationsPerRoom: 1, metadataBytes: 200, reservationBytes: 100,
+        identifierBytes: 8, representation: 'denormalized', physicalEstimate: false, roomIndex: 0 },
+      expect: {
+        logical: { normalized: 32400, denormalized: 31600, document: 31600 },
+        duplicated: { normalized: 0, denormalized: 0, document: 0 },
+        renameRecords: { normalized: 1, denormalized: 1, document: 1 }
+      }
+    },
+    {
+      id: 'busy-rooms',
+      name: 'Two hundred bookings a room',
+      blurb: 'Duplication dominates: most of the denormalized footprint is copies of room metadata.',
+      params: { rooms: 100, reservationsPerRoom: 200, metadataBytes: 200, reservationBytes: 100,
+        identifierBytes: 8, representation: 'denormalized', physicalEstimate: false, roomIndex: 0 },
+      expect: {
+        logical: { normalized: 2340800, denormalized: 6320000, document: 2180800 },
+        duplicated: { normalized: 0, denormalized: 3980000, document: 0 },
+        renameRecords: { normalized: 1, denormalized: 200, document: 1 }
+      }
+    },
+    {
+      id: 'fat-metadata',
+      name: 'Rich room descriptions',
+      blurb: '2,000-byte room metadata. The bigger the copied fact, the worse the copying.',
+      params: { rooms: 100, reservationsPerRoom: 20, metadataBytes: 2000, reservationBytes: 100,
+        identifierBytes: 8, representation: 'denormalized', physicalEstimate: false, roomIndex: 0 },
+      expect: {
+        logical: { normalized: 432800, denormalized: 4232000, document: 416800 },
+        duplicated: { normalized: 0, denormalized: 3800000, document: 0 },
+        renameRecords: { normalized: 1, denormalized: 20, document: 1 }
+      }
+    },
+    {
+      id: 'campus-scale',
+      name: 'Campus scale, estimate on',
+      blurb: '10,000 rooms, 50 reservations each, with the physical-overhead estimate turned on.',
+      params: { rooms: 10000, reservationsPerRoom: 50, metadataBytes: 200, reservationBytes: 100,
+        identifierBytes: 8, representation: 'document', physicalEstimate: true, roomIndex: 0 },
+      expect: {
+        logical: { normalized: 60080000, denormalized: 158000000, document: 56080000 },
+        duplicated: { normalized: 0, denormalized: 98000000, document: 0 },
+        renameRecords: { normalized: 1, denormalized: 50, document: 1 }
+      }
+    }
+  ];
+
+  function findPreset(id) {
+    for (var i = 0; i < PRESETS.length; i += 1) if (PRESETS[i].id === id) return PRESETS[i];
+    return null;
+  }
+
+  /* --- 9. Formatting ----------------------------------------------------------------------------
+     In the engine rather than the interface because the tests assert on these strings and because a
+     readout and a chart label that disagree about how to write 632,000 bytes is a defect nobody
+     would look for.
+
+     Powers of 1024 throughout, with the IEC names, because "KB" for 1024 bytes is exactly the kind
+     of quiet imprecision this exercise is about. */
+
+  function formatBytes(bytes) {
+    if (!isFinite(bytes)) return '—';
+    if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + ' GiB';
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(2) + ' MiB';
+    if (bytes >= 1024) return (bytes / 1024).toFixed(1) + ' KiB';
+    return formatCount(bytes) + ' B';
+  }
+
+  function formatCount(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function formatMultiple(x) {
+    if (!isFinite(x)) return '—';
+    if (x >= 10) return x.toFixed(0) + '×';
+    return x.toFixed(2) + '×';
+  }
+
+  function formatPercent(share) {
+    if (share <= 0) return '0%';
+    if (share < 0.01) return '<1%';
+    return (share * 100).toFixed(0) + '%';
+  }
+
+  /** One sentence naming why this representation costs what it costs. */
+  function explain(storage) {
+    var p = storage.params;
+    var V = formatCount(p.reservationsPerRoom);
+    if (storage.representation === 'denormalized') {
+      if (p.reservationsPerRoom === 1) {
+        return 'Each room has exactly one reservation, so copying the room’s metadata onto it '
+          + 'duplicates nothing — there is no second row to copy it to. Denormalization is '
+          + 'expensive when facts repeat, and here nothing repeats.';
+      }
+      return 'The room’s metadata is stored on every one of its ' + V + ' reservations, so '
+        + formatCount(p.reservationsPerRoom - 1) + ' of those copies per room are duplicates: '
+        + formatBytes(storage.duplicated) + ', or ' + formatPercent(storage.duplicationShare)
+        + ' of the footprint. The table also has no ROOMS of its own, so a room with no '
+        + 'reservations has nowhere to live.';
+    }
+    if (storage.representation === 'document') {
+      return 'Each room’s metadata is stored once, in its own document, and the nested '
+        + 'reservations need no room_id because containment carries the relationship. Nothing is '
+        + 'duplicated — the same profile as the normalized tables, in a different database '
+        + 'category.';
+    }
+    return 'Each room’s metadata is stored once in ROOMS and each reservation refers to it by '
+      + 'identifier, so nothing is duplicated. The reference bytes are the price: '
+      + formatBytes(storage.references) + ' of identifiers and foreign keys.';
+  }
+
+  /* --- 10. Self-tests ---------------------------------------------------------------------------
+     The claims the page makes about itself, checkable in the page. The node suite runs these too,
+     so a reader without a terminal and a reviewer with one see the same verdict. */
+  function runSelfTests() {
+    var results = [];
+    function check(name, passed, detail) {
+      results.push({ name: name, passed: !!passed, detail: detail || '' });
+    }
+    var BASE = {
+      rooms: 100, reservationsPerRoom: 20, metadataBytes: 200, reservationBytes: 100,
+      identifierBytes: 8, representation: 'normalized', physicalEstimate: false, roomIndex: 0
+    };
+    function at(over) {
+      var base = {};
+      var k;
+      for (k in BASE) if (Object.prototype.hasOwnProperty.call(BASE, k)) base[k] = BASE[k];
+      for (k in over) if (Object.prototype.hasOwnProperty.call(over, k)) base[k] = over[k];
+      return base;
+    }
+    function logical(repr, over) {
+      return computeStorage(at(over || {}), repr).logical;
+    }
+
+    check('logical storage at the defaults matches the published formulas',
+      logical('normalized') === 252800 && logical('denormalized') === 632000
+      && logical('document') === 236800,
+      'got ' + logical('normalized') + ' / ' + logical('denormalized') + ' / ' + logical('document'));
+
+    check('unique + duplicated + references equals logical, for all three',
+      REPRESENTATION_IDS.every(function (id) {
+        var s = computeStorage(at({}), id);
+        return s.unique + s.duplicated + s.references === s.logical;
+      }));
+
+    check('the unique-facts total is the same in all three representations',
+      (function () {
+        var totals = REPRESENTATION_IDS.map(function (id) { return computeStorage(at({}), id).unique; });
+        return totals[0] === totals[1] && totals[1] === totals[2] && totals[0] === 220000;
+      })());
+
+    check('only the denormalized representation duplicates anything',
+      computeStorage(at({}), 'normalized').duplicated === 0
+      && computeStorage(at({}), 'document').duplicated === 0
+      && computeStorage(at({}), 'denormalized').duplicated === 380000);
+
+    check('duplication grows with the reservations per room, and only for the denormalized case',
+      (function () {
+        var low = computeStorage(at({ reservationsPerRoom: 5 }), 'denormalized').duplicated;
+        var high = computeStorage(at({ reservationsPerRoom: 50 }), 'denormalized').duplicated;
+        if (!(high > low * 5)) return false;
+        return [5, 50, 500].every(function (v) {
+          return computeStorage(at({ reservationsPerRoom: v }), 'normalized').duplicated === 0
+            && computeStorage(at({ reservationsPerRoom: v }), 'document').duplicated === 0;
+        });
+      })());
+
+    check('the document footprint tracks the normalized one while the denormalized one diverges',
+      (function () {
+        return [1, 10, 100, 1000].every(function (v) {
+          var n = logical('normalized', { reservationsPerRoom: v });
+          var d = logical('document', { reservationsPerRoom: v });
+          var b = logical('denormalized', { reservationsPerRoom: v });
+          var close = Math.abs(d - n) / n < 0.1;
+          var diverged = v === 1 ? b < n * 1.1 : b > n * 1.8;
+          return close && diverged;
+        });
+      })());
+
+    check('the document representation spends exactly N fewer reference identifiers',
+      (function () {
+        var p = normalizeParams(at({}));
+        var n = computeStorage(p, 'normalized');
+        var d = computeStorage(p, 'document');
+        return n.references - d.references === totalReservations(p) * p.identifierBytes;
+      })());
+
+    check('renaming a room touches 1 record, V records, and 1 document',
+      (function () {
+        return [1, 7, 20, 200, 1000].every(function (v) {
+          var all = renameImpactAll(at({ reservationsPerRoom: v }));
+          return all[0].recordsTouched === 1 && all[1].recordsTouched === v
+            && all[2].recordsTouched === 1 && all[2].recordUnit === 'document';
+        });
+      })());
+
+    check('the rename creates a consistency obligation only where copies exist',
+      (function () {
+        var many = renameImpactAll(at({ reservationsPerRoom: 20 }));
+        var one = renameImpactAll(at({ reservationsPerRoom: 1 }));
+        return many[0].consistencyObligation === false
+          && many[1].consistencyObligation === true
+          && many[2].consistencyObligation === false
+          && one.every(function (r) { return r.consistencyObligation === false; });
+      })());
+
+    check('the document rename is reported as engine-dependent, and the others are not',
+      (function () {
+        var all = renameImpactAll(at({}));
+        return all[0].engineDependentRewrite === false
+          && all[1].engineDependentRewrite === false
+          && all[2].engineDependentRewrite === true
+          && all[2].bytesEngineMayRewrite > all[2].bytesRewrittenLogical;
+      })());
+
+    check('physical equals logical exactly while the estimate is off',
+      REPRESENTATION_IDS.every(function (id) {
+        var s = computeStorage(at({ physicalEstimate: false }), id);
+        return s.physical === s.logical && s.overhead === 0 && s.estimated === false;
+      }));
+
+    check('the physical estimate is logical plus its three named overheads',
+      REPRESENTATION_IDS.every(function (id) {
+        var s = computeStorage(at({ physicalEstimate: true }), id);
+        return s.physical === s.logical + s.recordOverhead + s.fieldNameOverhead + s.indexOverhead
+          && s.physical > s.logical && s.estimated === true;
+      }));
+
+    check('only the document representation is charged field-name overhead',
+      (function () {
+        var on = { physicalEstimate: true };
+        return computeStorage(at(on), 'normalized').fieldNameOverhead === 0
+          && computeStorage(at(on), 'denormalized').fieldNameOverhead === 0
+          && computeStorage(at(on), 'document').fieldNameOverhead > 0;
+      })());
+
+    check('turning the estimate on does not reorder the three representations',
+      (function () {
+        return [false, true].every(function (flag) {
+          var rows = compareRepresentations(at({ physicalEstimate: flag }));
+          var byId = {};
+          rows.forEach(function (r) { byId[r.id] = r.shown; });
+          return byId.document < byId.normalized && byId.normalized < byId.denormalized;
+        });
+      })());
+
+    check('out-of-range and non-numeric input is clamped, never propagated',
+      (function () {
+        var a = normalizeParams({ rooms: 99999, reservationsPerRoom: -4, metadataBytes: 'banana',
+          reservationBytes: 100000, identifierBytes: 0 });
+        return a.rooms === 10000 && a.reservationsPerRoom === 1 && a.metadataBytes === 200
+          && a.reservationBytes === 1000 && a.identifierBytes === 4
+          && a.anyClamped === true && a.clamped.rooms === true;
+      })());
+
+    check('an unknown representation falls back to the default',
+      normalizeParams({ representation: 'graph' }).representation === 'normalized');
+
+    check('the selected room is clamped into the rooms that exist, and the clamp is reported',
+      (function () {
+        var a = normalizeParams({ rooms: 10, roomIndex: 500 });
+        return a.roomIndex === 9 && a.roomIndexClamped === true
+          && normalizeParams({ rooms: 100, roomIndex: 4 }).roomIndexClamped === false;
+      })());
+
+    check('the extremes of every control stay finite whole numbers of bytes',
+      (function () {
+        /* Every corner of the five-dimensional control space, both estimate states. Ten million
+           reservations has to come out as an exact integer, because the arithmetic is closed-form
+           rather than a sum over records. */
+        var axes = ['rooms', 'reservationsPerRoom', 'metadataBytes', 'reservationBytes',
+          'identifierBytes'];
+        var corners = [{}];
+        axes.forEach(function (axis) {
+          var next = [];
+          corners.forEach(function (corner) {
+            [PARAM_SPECS[axis].min, PARAM_SPECS[axis].max].forEach(function (bound) {
+              var copy = {};
+              Object.keys(corner).forEach(function (k) { copy[k] = corner[k]; });
+              copy[axis] = bound;
+              next.push(copy);
+            });
+          });
+          corners = next;
+        });
+        return corners.every(function (corner) {
+          return [false, true].every(function (flag) {
+            corner.physicalEstimate = flag;
+            return REPRESENTATION_IDS.every(function (id) {
+              var s = computeStorage(at(corner), id);
+              return isFinite(s.logical) && s.logical > 0 && s.logical === Math.round(s.logical)
+                && isFinite(s.physical) && s.physical === Math.round(s.physical)
+                && s.physical >= s.logical;
+            });
+          });
+        });
+      })());
+
+    check('the total reservation count is rooms times reservations per room',
+      (function () {
+        return computeStorage(at({ rooms: 250, reservationsPerRoom: 13 }), 'normalized')
+          .totalReservations === 3250;
+      })());
+
+    check('identifier size moves the reference bytes and leaves the facts alone',
+      (function () {
+        var small = computeStorage(at({ identifierBytes: 4 }), 'normalized');
+        var large = computeStorage(at({ identifierBytes: 16 }), 'normalized');
+        return large.references === small.references * 4 && large.unique === small.unique;
+      })());
+
+    check('every preset produces the figures it claims',
+      PRESETS.every(function (preset) {
+        return REPRESENTATION_IDS.every(function (id) {
+          var s = computeStorage(preset.params, id);
+          var r = renameImpact(preset.params, id);
+          return s.logical === preset.expect.logical[id]
+            && s.duplicated === preset.expect.duplicated[id]
+            && r.recordsTouched === preset.expect.renameRecords[id];
+        });
+      }));
+
+    check('the sweep is monotonic in V for every representation, and ends where the controls say',
+      (function () {
+        var sweep = sweepPerRoom(at({ reservationsPerRoom: 20 }));
+        if (sweep.points.length < 2) return false;
+        return REPRESENTATION_IDS.every(function (id) {
+          for (var i = 1; i < sweep.points.length; i += 1) {
+            if (sweep.points[i][id] < sweep.points[i - 1][id]) return false;
+          }
+          return true;
+        });
+      })());
+
+    var passed = results.filter(function (r) { return r.passed; }).length;
+    return { total: results.length, passed: passed, failed: results.length - passed, results: results };
+  }
+
+  /* --- 11. Namespace ---------------------------------------------------------------------------- */
+  window.StorageCost = {
+    VERSION: VERSION,
+    PHYSICAL_MODEL: PHYSICAL_MODEL,
+    DUP_BANDS: DUP_BANDS,
+    REPRESENTATIONS: REPRESENTATIONS,
+    REPRESENTATION_IDS: REPRESENTATION_IDS,
+    PARAM_SPECS: PARAM_SPECS,
+    DEFAULTS: DEFAULTS,
+    PRESETS: PRESETS,
+    BUILDINGS: BUILDINGS,
+    /* The names the specification requires, exactly. */
+    normalizeParams: normalizeParams,
+    recordLayouts: recordLayouts,
+    logicalStorage: logicalStorage,
+    computeStorage: computeStorage,
+    renameImpact: renameImpact,
+    runSelfTests: runSelfTests,
+    /* Everything else the interface and the test suite consume. */
+    renameImpactAll: renameImpactAll,
+    compareRepresentations: compareRepresentations,
+    sweepPerRoom: sweepPerRoom,
+    indexEntries: indexEntries,
+    totalReservations: totalReservations,
+    representationById: representationById,
+    roomName: roomName,
+    renamedRoomName: renamedRoomName,
+    bandFor: bandFor,
+    explain: explain,
+    findPreset: findPreset,
+    formatBytes: formatBytes,
+    formatCount: formatCount,
+    formatMultiple: formatMultiple,
+    formatPercent: formatPercent
+  };
+}());
+</script>
+
+<script id="storage-ui">
+/* =================================================================================================
+   THE INTERFACE. Observes the model; never determines it.
+
+   Every control writes into one `state` object, and every change runs one `render()`. There is no
+   animation loop and no incremental update: the model is closed-form arithmetic and cheap enough to
+   recompute whole, so a single render path means the charts, the readouts, the rename panel and the
+   assistive-technology descriptions cannot disagree about what the current configuration stores.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var M = window.StorageCost;
+  var $ = function (id) { return window.document.getElementById(id); };
+
+  /* How many reservation records the rename panel lists before it collapses the rest into a
+     summary row. Twelve is about where a column of monospace rows stops being readable on a
+     projector, and the count in the heading is the number that matters anyway. */
+  var RENAME_LIST_LIMIT = 8;
+
+  var state = {
+    rooms: M.DEFAULTS.rooms,
+    reservationsPerRoom: M.DEFAULTS.reservationsPerRoom,
+    metadataBytes: M.DEFAULTS.metadataBytes,
+    reservationBytes: M.DEFAULTS.reservationBytes,
+    identifierBytes: M.DEFAULTS.identifierBytes,
+    representation: M.DEFAULTS.representation,
+    physicalEstimate: M.DEFAULTS.physicalEstimate,
+    roomIndex: M.DEFAULTS.roomIndex
+  };
+  var renamed = false;
+
+  /* --- colours: read from the stylesheet so the canvases follow the light/dark scheme ---------- */
+  function token(name) {
+    return getComputedStyle(window.document.documentElement).getPropertyValue(name).trim();
+  }
+  function palette() {
+    return {
+      ink: token('--ink'), muted: token('--muted'), rule: token('--rule'),
+      grid: token('--grid'), paper: token('--paper'), panel2: token('--panel-2'),
+      model: token('--model'), accent: token('--accent'), refs: token('--refs'),
+      ok: token('--ok'), warn: token('--warn'), bad: token('--bad')
+    };
+  }
+
+  /* --- controls -------------------------------------------------------------------------------- */
+
+  function currentParams() {
+    return M.normalizeParams(state);
+  }
+
+  /** Bind a number field and its slider to one state key. Either one moves both. */
+  function bindNumber(key, numberId, rangeId) {
+    var num = $(numberId);
+    var range = $(rangeId);
+    function commit(value) {
+      state[key] = value;
+      var merged = M.normalizeParams(state);
+      state.rooms = merged.rooms;
+      state.reservationsPerRoom = merged.reservationsPerRoom;
+      state.metadataBytes = merged.metadataBytes;
+      state.reservationBytes = merged.reservationBytes;
+      state.identifierBytes = merged.identifierBytes;
+      state.roomIndex = merged.roomIndex;
+      syncControls();
+      render();
+    }
+    num.addEventListener('change', function () { commit(num.value); });
+    num.addEventListener('input', function () { commit(num.value); });
+    range.addEventListener('input', function () { commit(range.value); });
+  }
+
+  function bindSegment(segId, attr, apply) {
+    var seg = $(segId);
+    seg.addEventListener('click', function (event) {
+      var btn = event.target.closest('button[' + attr + ']');
+      if (!btn) return;
+      apply(btn.getAttribute(attr));
+      syncControls();
+      render();
+    });
+  }
+
+  function syncControls() {
+    var p = M.normalizeParams(state);
+    $('rooms').value = String(p.rooms);
+    $('rooms-range').value = String(p.rooms);
+    $('perroom').value = String(p.reservationsPerRoom);
+    $('perroom-range').value = String(p.reservationsPerRoom);
+    $('meta').value = String(p.metadataBytes);
+    $('meta-range').value = String(p.metadataBytes);
+    $('resv').value = String(p.reservationBytes);
+    $('resv-range').value = String(p.reservationBytes);
+    $('idsize').value = String(p.identifierBytes);
+    $('idsize-range').value = String(p.identifierBytes);
+    /* The room picker's upper bound is a property of the current room count, so it moves with it. */
+    $('room-id').max = String(p.rooms);
+    $('room-id-range').max = String(p.rooms);
+    $('room-id').value = String(p.roomIndex + 1);
+    $('room-id-range').value = String(p.roomIndex + 1);
+    $('room-max').textContent = M.formatCount(p.rooms);
+    pressGroup('repr-seg', 'data-repr', p.representation);
+    pressGroup('physical-seg', 'data-physical', p.physicalEstimate ? 'on' : 'off');
+  }
+
+  function pressGroup(segId, attr, value) {
+    var buttons = $(segId).querySelectorAll('button[' + attr + ']');
+    for (var i = 0; i < buttons.length; i += 1) {
+      buttons[i].setAttribute('aria-pressed',
+        buttons[i].getAttribute(attr) === value ? 'true' : 'false');
+    }
+  }
+
+  function buildPresets() {
+    var host = $('presets');
+    M.PRESETS.forEach(function (preset) {
+      var btn = window.document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'preset';
+      btn.setAttribute('data-preset', preset.id);
+      var name = window.document.createElement('strong');
+      name.textContent = preset.name;
+      var blurb = window.document.createElement('span');
+      blurb.textContent = preset.blurb;
+      btn.appendChild(name);
+      btn.appendChild(blurb);
+      btn.addEventListener('click', function () {
+        var p = M.normalizeParams(preset.params);
+        state.rooms = p.rooms;
+        state.reservationsPerRoom = p.reservationsPerRoom;
+        state.metadataBytes = p.metadataBytes;
+        state.reservationBytes = p.reservationBytes;
+        state.identifierBytes = p.identifierBytes;
+        state.representation = p.representation;
+        state.physicalEstimate = p.physicalEstimate;
+        state.roomIndex = p.roomIndex;
+        syncControls();
+        render();
+      });
+      host.appendChild(btn);
+    });
+  }
+
+  /* --- the three stored shapes ----------------------------------------------------------------- */
+
+  function renderShapes(rows, storage) {
+    var p = storage.params;
+    var host = $('shapes');
+    host.textContent = '';
+    var layouts = M.recordLayouts(p);
+    M.REPRESENTATION_IDS.forEach(function (id) {
+      var meta = M.representationById(id);
+      var row = rows.filter(function (r) { return r.id === id; })[0];
+      var wrap = window.document.createElement('div');
+      wrap.className = 'rmap' + (id === p.representation ? ' is-current' : '');
+      wrap.setAttribute('data-shape', id);
+      wrap.style.marginBottom = '0.7rem';
+
+      var h = window.document.createElement('h3');
+      h.textContent = (id === p.representation ? '▸ ' : '') + meta.name;
+      wrap.appendChild(h);
+
+      var pre = window.document.createElement('pre');
+      pre.className = 'layout';
+      pre.textContent = layouts[id].map(function (group) {
+        return group.name + '  × ' + M.formatCount(group.rows) + '\n'
+          + '  ' + group.fields.map(function (f) {
+            return f.name + ' ' + f.bytes + 'B'
+              + (f.bucket === 'copied' ? ' (copied onto every row)' : '');
+          }).join(', ');
+      }).join('\n');
+      wrap.appendChild(pre);
+
+      var line = window.document.createElement('p');
+      line.style.margin = '0.4rem 0 0';
+      line.style.fontSize = '0.9rem';
+      line.innerHTML = '<strong>' + M.formatBytes(row.shown) + '</strong> '
+        + (row.estimated ? 'estimated' : 'logical')
+        + ' · duplicated ' + M.formatBytes(row.duplicated)
+        + ' · rename touches ' + M.formatCount(row.recordsTouchedOnRename) + ' '
+        + row.recordUnit + (row.recordsTouchedOnRename === 1 ? '' : 's');
+      wrap.appendChild(line);
+      host.appendChild(wrap);
+    });
+
+    $('shape-summary').textContent = M.formatCount(p.rooms) + ' rooms, '
+      + M.formatCount(p.reservationsPerRoom) + ' reservations each, '
+      + M.formatCount(storage.totalReservations) + ' reservations in total';
+  }
+
+  /* --- readouts -------------------------------------------------------------------------------- */
+
+  function renderResults(storage, rows) {
+    var row = rows.filter(function (r) { return r.current; })[0];
+    $('r-logical').textContent = M.formatBytes(storage.logical);
+    $('r-physical').textContent = storage.estimated ? M.formatBytes(storage.physical) : '—';
+    $('r-physical-sub').textContent = storage.estimated
+      ? '+' + M.formatBytes(storage.overhead) + ' of assumed engine overhead'
+      : 'turn the optional control on';
+    $('cell-physical').className = 'cell' + (storage.estimated ? ' lead' : '');
+
+    $('r-unique').textContent = M.formatBytes(storage.unique);
+    $('r-dup').textContent = storage.duplicated === 0
+      ? '0 B — nothing is stored twice'
+      : M.formatBytes(storage.duplicated) + ' — '
+        + M.formatPercent(storage.duplicationShare) + ' of the footprint';
+    $('r-refs').textContent = M.formatBytes(storage.references);
+    $('r-recordoh').textContent = storage.estimated
+      ? M.formatBytes(storage.recordOverhead) + ' (estimate)' : 'not counted';
+    $('r-keysoh').textContent = storage.estimated
+      ? (storage.fieldNameOverhead === 0
+        ? '0 B — column names live in the schema'
+        : M.formatBytes(storage.fieldNameOverhead) + ' (estimate)')
+      : 'not counted';
+    $('r-indexoh').textContent = storage.estimated
+      ? M.formatBytes(storage.indexOverhead) + ' (estimate, '
+        + M.formatCount(storage.indexEntriesAssumed) + ' entries)'
+      : 'not counted';
+    $('r-records').textContent = M.formatCount(storage.records);
+    $('r-total-resv').textContent = M.formatCount(storage.totalReservations);
+
+    var badge = $('dup-band');
+    badge.className = 'badge ' + storage.duplicationBand.cls;
+    badge.querySelector('.glyph').textContent = storage.duplicationBand.glyph;
+    $('dup-band-text').textContent = storage.duplicationBand.word
+      + ' · ' + M.formatMultiple(row.multipleOfNormalized) + ' the normalized footprint';
+
+    $('results-note').textContent = M.explain(storage);
+
+    renderClamp(storage.params);
+  }
+
+  function renderClamp(p) {
+    var notice = $('clamp-notice');
+    var messages = [];
+    var names = {
+      rooms: 'number of rooms', reservationsPerRoom: 'reservations per room',
+      metadataBytes: 'room metadata size', reservationBytes: 'reservation size',
+      identifierBytes: 'identifier size'
+    };
+    Object.keys(p.clamped).forEach(function (key) {
+      messages.push(names[key] + ' clamped to ' + M.formatCount(p[key])
+        + ' (range ' + M.PARAM_SPECS[key].min + '–' + M.PARAM_SPECS[key].max + ')');
+    });
+    if (p.roomIndexClamped) {
+      messages.push('the selected room moved to ' + M.formatCount(p.roomIndex + 1)
+        + ', because only ' + M.formatCount(p.rooms) + ' rooms exist');
+    }
+    if (messages.length === 0) {
+      notice.hidden = true;
+      notice.textContent = '';
+      return;
+    }
+    notice.hidden = false;
+    notice.textContent = messages.join('; ') + '.';
+  }
+
+  /* --- the rename experiment ------------------------------------------------------------------- */
+
+  function renderRename(rows) {
+    var p = currentParams();
+    var impacts = M.renameImpactAll(p);
+    var host = $('rename-maps');
+    host.textContent = '';
+
+    $('btn-rename').setAttribute('aria-pressed', renamed ? 'true' : 'false');
+    $('btn-rename').textContent = renamed ? 'Undo the rename' : 'Rename the room';
+    $('rename-caption').textContent = renamed
+      ? impacts[0].oldName + ' → ' + impacts[0].newName + ', applied'
+      : impacts[0].oldName + ' → ' + impacts[0].newName;
+
+    impacts.forEach(function (impact) {
+      var wrap = window.document.createElement('div');
+      wrap.className = 'rmap' + (impact.representation === p.representation ? ' is-current' : '');
+      wrap.setAttribute('data-rename', impact.representation);
+
+      var h = window.document.createElement('h3');
+      h.textContent = impact.name;
+      wrap.appendChild(h);
+
+      var count = window.document.createElement('span');
+      count.className = 'count ' + (impact.recordsTouched === 1 ? 'one' : 'many');
+      count.setAttribute('data-count', String(impact.recordsTouched));
+      count.textContent = M.formatCount(impact.recordsTouched) + ' '
+        + impact.recordUnit + (impact.recordsTouched === 1 ? '' : 's');
+      wrap.appendChild(count);
+
+      var verdict = window.document.createElement('span');
+      verdict.className = 'verdict';
+      verdict.textContent = impact.consistencyObligation
+        ? 'must all change together · ' + M.formatBytes(impact.bytesRewrittenLogical)
+          + ' of name bytes rewritten'
+        : 'one stored copy · nothing to keep in agreement';
+      wrap.appendChild(verdict);
+
+      wrap.appendChild(renameRecordList(impact, p));
+
+      if (impact.engineDependentRewrite) {
+        var q = window.document.createElement('p');
+        q.className = 'qualify';
+        q.textContent = 'Engine-dependent: the document holding this field is '
+          + M.formatBytes(impact.bytesEngineMayRewrite)
+          + '. A document store may patch the name in place or rewrite the whole document, '
+          + 'including every nested reservation. This page does not guess which.';
+        wrap.appendChild(q);
+      }
+      host.appendChild(wrap);
+    });
+
+    $('rename-alt').textContent = 'Renaming ' + impacts[0].oldName + ' to ' + impacts[0].newName
+      + ': ' + impacts.map(function (i) {
+        return i.name + ' touches ' + M.formatCount(i.recordsTouched) + ' '
+          + i.recordUnit + (i.recordsTouched === 1 ? '' : 's');
+      }).join(', ') + '. '
+      + (renamed ? 'The rename has been applied.' : 'The rename has not been applied yet.');
+
+    $('rename-note').textContent = 'The byte totals above are the setup; this is the lesson. '
+      + 'The denormalized table did not merely spend more space — it created an obligation to '
+      + 'keep ' + M.formatCount(p.reservationsPerRoom) + ' copies of one fact in agreement, every '
+      + 'time that fact changes. The normalized and document representations have one copy each, '
+      + 'so there is nothing to keep in agreement. That is the difference the representation '
+      + 'bought, and it is not visible in a byte count.';
+  }
+
+  /**
+   * The records this representation stores for the selected room, with the ones holding a copy of
+   * the room name marked. Three signals on a marked row, never colour alone: the coloured left
+   * rule, the tinted ground, and the word in the marker column.
+   */
+  function renameRecordList(impact, p) {
+    var list = window.document.createElement('ul');
+    list.className = 'recs';
+    var shown = renamed;
+    var name = shown ? impact.newName : impact.oldName;
+    var V = p.reservationsPerRoom;
+
+    function row(text, mark, cls) {
+      var li = window.document.createElement('li');
+      if (cls) li.className = cls;
+      var a = window.document.createElement('span');
+      a.textContent = text;
+      var b = window.document.createElement('span');
+      b.className = 'mark';
+      b.textContent = mark;
+      li.appendChild(a);
+      li.appendChild(b);
+      list.appendChild(li);
+    }
+
+    var holdsMark = shown ? '✎ rewritten' : 'holds the name';
+    var refMark = 'refers by id';
+
+    if (impact.representation === 'normalized') {
+      row('ROOMS[' + (p.roomIndex + 1) + '] name=' + name, holdsMark, 'single');
+      var listed = Math.min(V, RENAME_LIST_LIMIT);
+      for (var i = 0; i < listed; i += 1) {
+        row('RESERVATIONS[' + (i + 1) + '] room_id=' + (p.roomIndex + 1), refMark, '');
+      }
+      if (V > listed) row('… and ' + M.formatCount(V - listed) + ' more reservation rows',
+        refMark, 'rest');
+    } else if (impact.representation === 'denormalized') {
+      var shownRows = Math.min(V, RENAME_LIST_LIMIT);
+      for (var j = 0; j < shownRows; j += 1) {
+        row('RESERVATIONS[' + (j + 1) + '] room_name=' + name, holdsMark, 'holds');
+      }
+      if (V > shownRows) {
+        row('… and ' + M.formatCount(V - shownRows) + ' more rows, each holding a copy',
+          holdsMark, 'holds');
+      }
+    } else {
+      row('room document name=' + name, holdsMark, 'single');
+      var nested = Math.min(V, RENAME_LIST_LIMIT);
+      for (var k = 0; k < nested; k += 1) {
+        row('  ↳ reservations[' + k + ']', 'nested, no copy', '');
+      }
+      if (V > nested) {
+        row('  ↳ … and ' + M.formatCount(V - nested) + ' more nested reservations',
+          'nested, no copy', 'rest');
+      }
+    }
+    return list;
+  }
+
+  /* --- canvases -------------------------------------------------------------------------------- */
+
+  function prepare(canvas) {
+    var ctx = canvas.getContext('2d');
+    var p = palette();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = p.paper;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    return { ctx: ctx, p: p, w: canvas.width, h: canvas.height };
+  }
+
+  /** Nice round tick values spanning 0..max, at most `target` of them. */
+  function ticks(max, target) {
+    if (!(max > 0)) return [0];
+    var raw = max / target;
+    var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+    var step = mag;
+    [1, 2, 2.5, 5, 10].some(function (m) {
+      if (mag * m >= raw) { step = mag * m; return true; }
+      return false;
+    });
+    var out = [];
+    for (var v = 0; v <= max + step * 0.001; v += step) out.push(v);
+    return out;
+  }
+
+  function shortBytes(bytes) {
+    if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(1) + 'G';
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(0) + 'M';
+    if (bytes >= 1024) return (bytes / 1024).toFixed(0) + 'K';
+    return String(Math.round(bytes));
+  }
+
+  function drawByteAxis(g, x0, x1, yTop, yBottom, maxBytes) {
+    var ctx = g.ctx;
+    ctx.save();
+    ctx.font = '12px ui-monospace, Menlo, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ticks(maxBytes, 7).forEach(function (t) {
+      var x = x0 + (x1 - x0) * (maxBytes > 0 ? t / maxBytes : 0);
+      ctx.strokeStyle = g.p.grid;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(Math.round(x) + 0.5, yTop);
+      ctx.lineTo(Math.round(x) + 0.5, yBottom);
+      ctx.stroke();
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText(shortBytes(t), x, yBottom + 5);
+    });
+    ctx.fillStyle = g.p.muted;
+    ctx.textAlign = 'right';
+    ctx.fillText('bytes →', x1, yBottom + 22);
+    ctx.restore();
+  }
+
+  /** A diagonal hatch, so the estimated segment is distinguishable without relying on its colour. */
+  function hatchPattern(ctx, colour, ground) {
+    var tile = window.document.createElement('canvas');
+    tile.width = 8;
+    tile.height = 8;
+    var t = tile.getContext('2d');
+    t.fillStyle = ground;
+    t.fillRect(0, 0, 8, 8);
+    t.strokeStyle = colour;
+    t.lineWidth = 2;
+    t.beginPath();
+    t.moveTo(-2, 10);
+    t.lineTo(10, -2);
+    t.moveTo(2, 14);
+    t.lineTo(14, 2);
+    t.stroke();
+    return ctx.createPattern(tile, 'repeat');
+  }
+
+  function renderBars(rows, storage) {
+    var canvas = $('c-bars');
+    var g = prepare(canvas);
+    var ctx = g.ctx;
+    var labelW = 236;
+    var x0 = labelW;
+    var x1 = g.w - 232;
+    var yTop = 18;
+    var yAxis = g.h - 46;
+    var pitch = (yAxis - yTop) / rows.length;
+    var barH = Math.min(44, pitch - 26);
+    var maxBytes = Math.max.apply(null, rows.map(function (r) { return r.shown; }).concat([1]));
+
+    drawByteAxis(g, x0, x1, yTop, yAxis, maxBytes);
+    var toW = function (bytes) { return (x1 - x0) * (bytes / maxBytes); };
+    var hatch = hatchPattern(ctx, g.p.warn, g.p.panel2);
+
+    ctx.textBaseline = 'middle';
+    rows.forEach(function (r, i) {
+      var y = yTop + pitch * i + pitch / 2;
+      var cursor = x0;
+      var segments = [
+        { bytes: r.unique, fill: g.p.model },
+        { bytes: r.duplicated, fill: g.p.bad },
+        { bytes: r.references, fill: g.p.refs }
+      ];
+      if (r.estimated) segments.push({ bytes: r.overhead, fill: hatch });
+      segments.forEach(function (seg) {
+        if (seg.bytes <= 0) return;
+        var w = Math.max(1, toW(seg.bytes));
+        ctx.fillStyle = seg.fill;
+        ctx.fillRect(cursor, y - barH / 2, w, barH);
+        cursor += w;
+      });
+      /* A hairline border so adjacent segments of similar value stay separable, and so a bar with
+         one segment still reads as a bar rather than as a block of colour. */
+      ctx.strokeStyle = g.p.ink;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(x0 + 0.5, y - barH / 2 + 0.5, Math.max(1, cursor - x0) - 1, barH - 1);
+      if (r.current) {
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(x0 - 2, y - barH / 2 - 2, Math.max(1, cursor - x0) + 4, barH + 4);
+      }
+
+      ctx.font = (r.current ? '600 ' : '') + '14px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.ink;
+      ctx.textAlign = 'right';
+      ctx.fillText((r.current ? '▸ ' : '') + r.name, labelW - 12, y - 8);
+      ctx.font = '12px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText('rename: ' + M.formatCount(r.recordsTouchedOnRename) + ' '
+        + r.recordUnit + (r.recordsTouchedOnRename === 1 ? '' : 's'), labelW - 12, y + 10);
+
+      ctx.textAlign = 'left';
+      ctx.font = '600 14px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.ink;
+      ctx.fillText(M.formatBytes(r.shown), x1 + 12, y - 8);
+      ctx.font = '12px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = r.duplicated > 0 ? g.p.bad : g.p.muted;
+      ctx.fillText(r.duplicated > 0
+        ? M.formatBytes(r.duplicated) + ' duplicated'
+        : 'no duplication', x1 + 12, y + 10);
+    });
+
+    $('bars-alt').textContent = barsDescription(rows, storage);
+    $('bars-note').textContent = rows[0].estimated
+      ? 'The hatched segment is the estimated engine overhead — record headers, field names, '
+        + 'and index entries. It is an estimate and the rest of each bar is not, which is why it is '
+        + 'drawn differently rather than merely coloured differently.'
+      : 'Every byte drawn here is calculated from the five controls. Turn the physical-overhead '
+        + 'estimate on to add the assumed engine overhead as a hatched fourth segment.';
+  }
+
+  function barsDescription(rows, storage) {
+    return 'Storage for ' + M.formatCount(storage.params.rooms) + ' rooms and '
+      + M.formatCount(storage.totalReservations) + ' reservations, three representations. '
+      + rows.map(function (r) {
+        return r.name + ': ' + M.formatBytes(r.shown)
+          + (r.estimated ? ' estimated' : ' logical')
+          + ', of which ' + M.formatBytes(r.unique) + ' unique facts, '
+          + M.formatBytes(r.duplicated) + ' duplicated facts and '
+          + M.formatBytes(r.references) + ' references'
+          + (r.estimated ? ', plus ' + M.formatBytes(r.overhead) + ' estimated overhead' : '')
+          + '; a rename touches ' + M.formatCount(r.recordsTouchedOnRename) + ' '
+          + r.recordUnit + (r.recordsTouchedOnRename === 1 ? '' : 's')
+          + (r.current ? ' (current selection)' : '');
+      }).join('. ') + '.';
+  }
+
+  function renderSweep() {
+    var sweep = M.sweepPerRoom(state);
+    var canvas = $('c-sweep');
+    var g = prepare(canvas);
+    var ctx = g.ctx;
+    var x0 = 76;
+    var x1 = g.w - 210;
+    var yTop = 20;
+    var yBottom = g.h - 46;
+    var maxY = 1;
+    sweep.points.forEach(function (pt) {
+      M.REPRESENTATION_IDS.forEach(function (id) { maxY = Math.max(maxY, pt[id]); });
+    });
+    var maxX = sweep.maxPerRoom;
+
+    /* grid and axes */
+    ctx.save();
+    ctx.font = '12px ui-monospace, Menlo, monospace';
+    ctx.fillStyle = g.p.muted;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ticks(maxY, 5).forEach(function (t) {
+      var y = yBottom - (yBottom - yTop) * (t / maxY);
+      ctx.strokeStyle = g.p.grid;
+      ctx.beginPath();
+      ctx.moveTo(x0, Math.round(y) + 0.5);
+      ctx.lineTo(x1, Math.round(y) + 0.5);
+      ctx.stroke();
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText(shortBytes(t), x0 - 8, y);
+    });
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ticks(maxX, 6).forEach(function (t) {
+      if (t < 1) return;
+      var x = x0 + (x1 - x0) * (t / maxX);
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText(String(Math.round(t)), x, yBottom + 6);
+    });
+    ctx.fillStyle = g.p.muted;
+    ctx.textAlign = 'right';
+    ctx.fillText('reservations per room →', x1, yBottom + 24);
+    ctx.restore();
+
+    var colourOf = { normalized: g.p.model, denormalized: g.p.bad, document: g.p.ok };
+    var dashOf = { normalized: [], denormalized: [], document: [7, 4] };
+    var toX = function (v) { return x0 + (x1 - x0) * (v / maxX); };
+    var toY = function (b) { return yBottom - (yBottom - yTop) * (b / maxY); };
+
+    M.REPRESENTATION_IDS.forEach(function (id) {
+      ctx.save();
+      ctx.strokeStyle = colourOf[id];
+      ctx.lineWidth = 3;
+      ctx.setLineDash(dashOf[id]);
+      ctx.beginPath();
+      sweep.points.forEach(function (pt, i) {
+        var x = toX(pt.perRoom);
+        var y = toY(pt[id]);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.restore();
+
+      var last = sweep.points[sweep.points.length - 1];
+      ctx.font = '600 13px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = colourOf[id];
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(M.representationById(id).shortName + ' ' + M.formatBytes(last[id]),
+        x1 + 10, toY(last[id]));
+    });
+
+    /* Where the reader currently is. */
+    var cx = toX(sweep.current);
+    ctx.save();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = g.p.ink;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(cx) + 0.5, yTop - 8);
+    ctx.lineTo(Math.round(cx) + 0.5, yBottom);
+    ctx.stroke();
+    ctx.restore();
+    ctx.font = '600 12px ui-monospace, Menlo, monospace';
+    ctx.fillStyle = g.p.ink;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('V = ' + M.formatCount(sweep.current), cx, yTop - 2);
+
+    var first = sweep.points[0];
+    var last2 = sweep.points[sweep.points.length - 1];
+    $('sweep-alt').textContent = 'Logical storage against reservations per room, from 1 to '
+      + M.formatCount(sweep.maxPerRoom) + ', at ' + M.formatCount(currentParams().rooms)
+      + ' rooms. ' + M.REPRESENTATION_IDS.map(function (id) {
+        return M.representationById(id).name + ' rises from ' + M.formatBytes(first[id])
+          + ' to ' + M.formatBytes(last2[id]);
+      }).join('; ')
+      + '. The normalized and document lines stay close to each other; the denormalized line '
+      + 'diverges, because its duplicated term grows with the reservations per room. '
+      + 'The current setting is marked at V = ' + M.formatCount(sweep.current) + '.';
+
+    var ratio = last2.normalized > 0 ? last2.denormalized / last2.normalized : 1;
+    var gap = last2.normalized > 0
+      ? Math.abs(last2.document - last2.normalized) / last2.normalized : 0;
+    $('sweep-note').textContent = 'At ' + M.formatCount(sweep.maxPerRoom)
+      + ' reservations per room the denormalized representation is '
+      + M.formatMultiple(ratio) + ' the normalized one, while the document representation sits '
+      + M.formatPercent(gap) + ' away from it — below it, because its nested reservations '
+      + 'carry no foreign key. The document line is dashed as well as green: the claim it carries '
+      + 'should not depend on telling two colours apart.';
+  }
+
+  /* --- one render path ------------------------------------------------------------------------- */
+
+  function render() {
+    var p = currentParams();
+    var storage = M.computeStorage(p);
+    var rows = M.compareRepresentations(p);
+    renderShapes(rows, storage);
+    renderResults(storage, rows);
+    renderBars(rows, storage);
+    renderRename(rows);
+    renderSweep();
+    renderModelConstants();
+  }
+
+  function renderModelConstants() {
+    var p = currentParams();
+    $('k-record').textContent = M.PHYSICAL_MODEL.RECORD_HEADER_BYTES + ' B';
+    $('k-keys').textContent = M.PHYSICAL_MODEL.FIELD_NAME_BYTES + ' B';
+    $('k-index').textContent = M.PHYSICAL_MODEL.indexEntryBytes(p.identifierBytes) + ' B';
+  }
+
+  /* --- wiring ---------------------------------------------------------------------------------- */
+
+  bindNumber('rooms', 'rooms', 'rooms-range');
+  bindNumber('reservationsPerRoom', 'perroom', 'perroom-range');
+  bindNumber('metadataBytes', 'meta', 'meta-range');
+  bindNumber('reservationBytes', 'resv', 'resv-range');
+  bindNumber('identifierBytes', 'idsize', 'idsize-range');
+
+  /* The room picker is 1-based on the page and 0-based in the model, so it gets its own binding
+     rather than going through bindNumber. */
+  (function bindRoomPicker() {
+    function commit(value) {
+      state.roomIndex = Math.round(parseFloat(value)) - 1;
+      var merged = M.normalizeParams(state);
+      state.roomIndex = merged.roomIndex;
+      syncControls();
+      render();
+    }
+    $('room-id').addEventListener('input', function () { commit($('room-id').value); });
+    $('room-id').addEventListener('change', function () { commit($('room-id').value); });
+    $('room-id-range').addEventListener('input', function () { commit($('room-id-range').value); });
+  }());
+
+  bindSegment('repr-seg', 'data-repr', function (value) { state.representation = value; });
+  bindSegment('physical-seg', 'data-physical', function (value) {
+    state.physicalEstimate = value === 'on';
+  });
+  buildPresets();
+
+  $('btn-defaults').addEventListener('click', function () {
+    state.rooms = M.DEFAULTS.rooms;
+    state.reservationsPerRoom = M.DEFAULTS.reservationsPerRoom;
+    state.metadataBytes = M.DEFAULTS.metadataBytes;
+    state.reservationBytes = M.DEFAULTS.reservationBytes;
+    state.identifierBytes = M.DEFAULTS.identifierBytes;
+    state.representation = M.DEFAULTS.representation;
+    state.physicalEstimate = M.DEFAULTS.physicalEstimate;
+    state.roomIndex = M.DEFAULTS.roomIndex;
+    renamed = false;
+    syncControls();
+    render();
+  });
+
+  $('btn-rename').addEventListener('click', function () {
+    renamed = !renamed;
+    render();
+  });
+
+  $('btn-selftest').addEventListener('click', function () {
+    var report = M.runSelfTests();
+    var failed = report.results.filter(function (r) { return !r.passed; });
+    $('selftest-out').textContent = failed.length === 0
+      ? report.passed + ' of ' + report.total + ' self-tests pass.'
+      : failed.length + ' of ' + report.total + ' FAILED: '
+        + failed.map(function (r) { return r.name + ' (' + r.detail + ')'; }).join('; ');
+  });
+
+  /* Re-render when the colour scheme flips, so the canvases follow the tokens rather than keeping
+     the ink they were drawn with. */
+  var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+  if (scheme.addEventListener) scheme.addEventListener('change', render);
+
+  syncControls();
+  render();
+}());
+</script>
+
+</body>
+</html>
