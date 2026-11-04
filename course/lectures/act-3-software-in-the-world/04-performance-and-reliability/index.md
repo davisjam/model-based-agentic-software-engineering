@@ -64,11 +64,7 @@ A workload model is a purposeful reduction, not a transcript of user behavior. A
 
 The result to carry away is not the formula but what it demonstrates: a resource can have ample average capacity while having almost none left to absorb variation. Random bursts create queues even when average arrivals stay below capacity, and higher utilization means longer drains. Strictly, the curve has no mathematically distinguished knee. Response time diverges as utilization approaches 100%, and the engineer picks an operational threshold from the latency requirement and the workload's variability. Real systems need not satisfy the four assumptions, and a model applied outside them predicts confidently and wrongly.
 
-<!-- PLACEHOLDER: the interactive queueing simulator for this passage is being built separately and
-     now exists on disk at course/interactive/performance-knee/index.html, but it is still in flight
-     (its page currently fails the html-validate gate) and its PUBLISHED url shape is not settled.
-     Link it here once that page is landed and its served path is known. Do NOT guess the url: a
-     reference to a path the site does not serve fails the link-resolution gate. -->
+**Interactive exercise: [The Performance Knee](../../../interactive/performance-knee/index.html).** Vary the arrival rate, the service capacity, and the service-time variability, then compare the measured queue against the M/M/1 and M/D/1 predictions.
 
 ## Finding bottlenecks
 
@@ -90,7 +86,7 @@ The service meets its functional specification and becomes slow during registrat
 | Optimize database access | Less database work per request | Query plans and measured latency |
 | Increase database capacity | More capacity for database operations | Whether contention still limits throughput |
 
-The choice follows from the workload model and the measurements, not from the observation that the service is slow. The exercise then asks what evidence would justify it: throughput under a representative workload, a latency distribution rather than a mean, utilization at each stage, and behavior near capacity.
+The choice follows from the workload model and the measurements, not from the observation that the service is slow. The exercise then asks what evidence would justify it: throughput under a representative workload, a latency distribution rather than a mean, and behavior near capacity.
 
 ## Reliability engineering
 
@@ -137,7 +133,7 @@ FMEA starts at components and asks what their failure causes. Fault-tree analysi
 
 The gates carry the argument. Each branch under an OR gate is an independent path to the top event and needs a control of its own. A branch under an AND gate names two defenses that must fail together, a far less likely proposition.
 
-The tree is illustrative rather than complete, and the gap is the teaching opportunity. Whether a primary-storage failure actually loses committed data depends on the replication topology, the durability settings in force at commit, and whether the backup is a live replica or a snapshot someone must restore. Students must define those events and state the assumptions before the tree means anything. A second top event, *two conflicting reservations are confirmed*, reaches back to the database invariant of the previous unit and gives them a tree to build.
+The tree is illustrative rather than complete, and the gap is the teaching opportunity. Whether a primary-storage failure actually loses committed data depends on the replication topology, the durability settings in force at commit, and whether the backup is a live replica or a snapshot someone must restore. Students must define those events and state the assumptions before the tree means anything at all. A second top event, *two conflicting reservations are confirmed*, reaches back to the previous unit's database invariant.
 
 ## Specifying recovery behavior
 
@@ -149,7 +145,7 @@ Did the reservation succeed? The timeout cannot answer. Repeating the request ma
 
 A state machine suits this question because it concerns permitted transitions rather than causes, and because it separates the reservation's state from the client's knowledge of it. **An idempotent operation** can be repeated without effects beyond those of the first successful execution. Here the application ties a stable request identifier to the intended operation and uses persistent state to recognize a repeat.
 
-That is not yet a design. The engineer must specify how the identifier is assigned, how long it stays valid, and what happens when two requests carrying it arrive at once. Checking whether the identifier exists and then inserting the reservation is insufficient if the check and the insertion can race, because both requests can observe it absent. Two transitions also need specifying: a committed result must stay discoverable after a restart, and reusing an identifier with different parameters must not silently return an unrelated result.
+That is not yet a design. The engineer must specify how the identifier is assigned, how long it stays valid, and what happens when two requests carrying it arrive at once. Checking whether the identifier exists and then inserting the reservation is insufficient if the check and the insertion can race, because both requests can observe it absent. Two transitions also need specifying: a committed result must stay discoverable after a restart, and a reused identifier carrying different parameters must not return an unrelated result.
 
 ## Selecting mitigations
 
@@ -164,7 +160,7 @@ Mechanisms arrive last, as answers to failures the models have already identifie
 | Circuit breaker | Stop calling a failing dependency | Does not repair the dependency |
 | Recovery procedure | Restore acceptable operation | Requires evidence that invariants still hold |
 
-A retry suits a network request that failed transiently, and the same retry offered to a saturated service adds load to the condition that caused the original failures. A timeout bounds waiting and leaves the outcome uncertain, which is what the state machine exists to resolve. Each choice improves one measurement and worsens another, which is why this table is of little use without the FMEA table in front of it.
+A retry suits a network request that failed transiently; the same retry offered to a saturated service adds load to the condition that caused the failures. A timeout bounds waiting and leaves the outcome uncertain, which is what the state machine exists to resolve. Each choice improves one measurement and worsens another, which is why this table is of little use without the FMEA table in front of it.
 
 ## Exercise B: A reservation that may already exist
 
@@ -187,12 +183,12 @@ A model is worth only the evidence that it holds, and each of the three produces
 | Fault tree | The identified causal paths are controlled | Tests of basic events and of AND-gate combinations |
 | State machine | Recovery transitions preserve the invariants | Transition tests, concurrent retries, crash and restart |
 
-Fault injection makes a failure model testable: the engineer removes the database, drops the response, kills the process mid-transaction, and saturates the connection pool, then checks whether the behavior the model permits is the behavior that occurs. Functional tests establish selected behavior under the conditions they exercise and nothing outside them, which is why a system can pass its whole suite and still lose a confirmed reservation the first time a disk fails.
+Fault injection makes a failure model testable: the engineer removes the database, drops the response, kills the process mid-transaction, and saturates the pool, then checks whether the behavior the model permits is the behavior that occurs. Functional tests establish behavior only under the conditions they exercise, which is why a system can pass its whole suite and still lose a confirmed reservation the first time a disk fails.
 
 ## Engineering judgment
 
 Both lectures do the same thing with different models. Workload and capacity models support predictions about resource demand and response time. FMEA, fault trees, and state machines support reasoning about what can fail and what the system owes its users when it does.
 
-They also interact in both directions. Additional capacity reduces overload-induced failures. Retries improve recovery from transient faults and increase offered load. Backpressure protects a service from collapse and reduces the fraction of requests accepted immediately. A mechanism that improves one measurement often worsens another, so the two must be evaluated together rather than in sequence.
+They also interact in both directions. Additional capacity reduces overload-induced failures. Retries improve recovery from transient faults and increase offered load. Backpressure protects a service from collapse and accepts fewer requests immediately. A mechanism that improves one measurement often worsens another, so the two must be evaluated together rather than in sequence.
 
 The next unit introduces a third source of behavior outside the specification: an adversary deliberately attempting to violate the system's obligations.

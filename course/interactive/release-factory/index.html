@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<!--
+  The Release Factory — an interactive delivery-pipeline simulation.
+  Teach with MAGE · ECE 30861 · Act III · Compute Environments & Deployment.
+
+  HAND-AUTHORED. This file is NOT emitted by `catalog.py build`; it is a self-contained application
+  published verbatim by the MkDocs teach-site step (docs_dir: ../course), served at
+  /teach/interactive/release-factory/ and equally openable from a file:// URL.
+
+  One artifact, two deployments. There is no separate "offline build": the Download HTML control
+  hands the reader this same file.
+
+  No external dependencies — no framework, no charting library, no CDN, no webfont, no backend, no
+  network request of any kind. The favicon is an inline data URI precisely so the page issues zero
+  requests, which the browser test asserts.
+
+  Structure of the single <script> pair below:
+    #factory-engine  — pure model: seeded PRNG, defect model, discrete-event pipeline, Four Keys
+                       statistics, user-impact accounting. No DOM reference anywhere. Publishes
+                       window.ReleaseFactory. The node test suite in ./tests/ EXTRACTS this element
+                       by id and evaluates it, so the tests and the page run one implementation,
+                       not two.
+    #factory-ui      — rendering and controls. Observes the model; never determines it.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Release Factory — Teach with MAGE</title>
+<meta name="description" content="An interactive discrete-event delivery simulation: change the pipeline's policies and watch the Four Keys measures, the defect ledger, and user exposure respond.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Crect x='2' y='3' width='12' height='2.4' fill='%239a3f12'/%3E%3Crect x='2' y='7' width='8' height='2.4' fill='%239a3f12'/%3E%3Crect x='2' y='11' width='4' height='2.4' fill='%23ceb888'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------------------------
+   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
+   instrument matches the rest of the site and its sibling simulators: warm paper ground,
+   near-black ink, burnt-umber accent, Purdue-gold rule under the header. `--model` is the
+   family's definition-box blue, reused here as "this number came from a model, not a
+   measurement".
+
+   One token is a local extension shared with the Performance Knee: the family set has no amber,
+   and the spec calls for an approaching-capacity signal distinct from both green and red.
+   `--warn` is a warm ochre chosen to sit inside the family's warm palette rather than a generic
+   traffic-light yellow.
+
+   Colour never carries meaning alone. Every state also carries a word and a glyph.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.head .tag a { color: var(--accent); }
+.gold-rule { height: 4px; background: var(--gold); }
+
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel > h2, .panel > summary > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.caveat {
+  border-left: 3px solid var(--accent);
+  background: var(--panel-2);
+  padding: 0.75rem 0.9rem; margin: 0 0 1.1rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+.caveat strong { font-weight: 600; }
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+.grid3 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) {
+  .grid2 { grid-template-columns: 1fr 1fr; }
+  .grid2 > .panel { margin-bottom: 0; }
+  .grid2 { margin-bottom: 1.1rem; }
+}
+@media (min-width: 1500px) {
+  .grid3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid3 > .panel { margin-bottom: 0; }
+  .grid3 { margin-bottom: 1.1rem; }
+}
+
+/* --- controls ----------------------------------------------------------------------------- */
+.ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
+.ctl { display: grid; grid-template-columns: 12.5rem 1fr; gap: 0.6rem; align-items: center; }
+.ctl.triple { grid-template-columns: 12.5rem 1fr auto; }
+.ctl > label, .ctl > .ctl-label { font-weight: 600; font-size: 0.98rem; }
+.ctl > label .unit, .ctl > .ctl-label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+.ctl input[type=number], .ctl select {
+  font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.3rem 0.4rem; width: 6rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+.ctl select { width: auto; font-family: var(--font-body); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.seg button {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
+  background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+button.act {
+  font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+  padding: 0.5rem 1.05rem; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.act:focus-visible, .seg button:focus-visible, .preset:focus-visible,
+input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* --- presets ------------------------------------------------------------------------------ */
+.preset-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.preset {
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+  padding: 0.6rem 0.75rem; font-family: var(--font-body); font-size: 0.95rem;
+}
+.preset:hover { border-color: var(--accent); }
+.preset .pname { display: block; font-weight: 600; margin-bottom: 0.15rem; }
+.preset .pwhy { display: block; color: var(--muted); font-size: 0.86rem; }
+.preset.step { border-left: 4px solid var(--accent); }
+
+/* --- readouts ----------------------------------------------------------------------------- */
+dl.readout { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.8rem; margin: 0; }
+dl.readout dt { color: var(--muted); font-size: 0.92rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
+.keys { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+.key {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.6rem 0.7rem;
+}
+.key .klabel {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.2rem;
+}
+.key .kval { font-family: var(--font-mono); font-size: 1.45rem; font-weight: 600; display: block; line-height: 1.15; }
+.key .kunit { color: var(--muted); font-size: 0.85rem; }
+.key .ksub { display: block; color: var(--muted); font-size: 0.84rem; margin-top: 0.2rem; }
+.key.impact { border-color: var(--accent); border-width: 2px; }
+
+.state {
+  display: inline-flex; align-items: baseline; gap: 0.35rem;
+  font-family: var(--font-mono); font-size: 0.88rem; font-weight: 600;
+  padding: 0.12rem 0.45rem; border-radius: var(--radius); border: 1px solid;
+}
+.state.ok { color: var(--ok); border-color: var(--ok); background: var(--ok-fill); }
+.state.warn { color: var(--warn); border-color: var(--warn); background: var(--warn-fill); }
+.state.bad { color: var(--bad); border-color: var(--bad); background: var(--bad-fill); }
+.state .glyph { font-weight: 700; }
+
+.mono { font-family: var(--font-mono); }
+.tagline {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  border: 1px solid var(--model); color: var(--model); background: var(--model-fill);
+  padding: 0.05rem 0.35rem; border-radius: var(--radius);
+}
+
+/* --- canvases ----------------------------------------------------------------------------- */
+.canvas-wrap { width: 100%; overflow: hidden; }
+canvas { display: block; width: 100%; height: auto; }
+
+table.model { border-collapse: collapse; width: 100%; font-size: 0.92rem; margin: 0.5rem 0; }
+table.model th, table.model td {
+  border: 1px solid var(--rule); padding: 0.3rem 0.5rem; text-align: left; vertical-align: top;
+}
+table.model th { background: var(--panel-2); font-weight: 600; }
+table.model td.num { font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+
+code, kbd { font-family: var(--font-mono); font-size: 0.93em; background: var(--panel-2); padding: 0.05rem 0.25rem; border-radius: 2px; }
+pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel-2); padding: 0.7rem 0.8rem; border-radius: var(--radius); overflow-x: auto; }
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* Reduced motion: honour the OS preference by default, and let the reader force it. The simulator
+   has no decorative animation to disable — what the mode changes is the redraw cadence, so the
+   picture stops shimmering. The simulation itself is untouched: simulated time never depends on
+   how often we draw. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1>The Release Factory</h1>
+    <p class="sub">Delivery policies, release risk, and the Four Keys &mdash; an interactive experiment.</p>
+  </div>
+  <p class="tag">
+    Teach with MAGE<br>ECE&nbsp;30861 &middot; Act&nbsp;III<br>Compute Environments &amp; Deployment
+  </p>
+</header>
+<div class="gold-rule"></div>
+
+<main id="app">
+<p class="note">Loading the interface&hellip;</p>
+</main>
+
+<footer>
+  <strong>The Release Factory.</strong> Teach with MAGE &middot; ECE&nbsp;30861 &middot; Act&nbsp;III.
+  Teaching materials &copy; James C. Davis, licensed CC&nbsp;BY&nbsp;4.0. This page runs entirely in
+  your browser and makes no network request.
+</footer>
+
+<script id="factory-engine">
+/* =================================================================================================
+   THE MODEL. Pure, deterministic, DOM-free.
+
+   This script element is extracted BY ID and evaluated by the Node test suite in ./tests/, so it may
+   not touch `document`, `window.addEventListener`, or any other browser surface. Its only contact
+   with the outside world is the namespace it publishes at the bottom.
+
+   Sections: 1 PRNG · 2 distributions · 3 defect model · 4 policy tables · 5 event ordering ·
+             6 the pipeline engine · 7 statistics (Four Keys + user impact) · 8 sweep ·
+             9 presets · 10 self-tests · 11 namespace.
+
+   ------------------------------------------------------------------------------------------------
+   THE FIVE EVENTS, AND WHY THEY ARE KEPT SEPARATE
+   ------------------------------------------------------------------------------------------------
+   A defect is an object with its own lifecycle, not a boolean on a change. Each DEFECT INSTANCE
+   carries five timestamps, every one of them initially null:
+
+     1. introducedAt             a defective change was committed
+     2. detectedBeforeReleaseAt  a pre-production control identified it AND the change did not ship
+     3. exposedInProductionAt    the change first served real user traffic
+     4. detectedAfterReleaseAt   production monitoring (or a user report) noticed it
+     5. restoredAt               service was restored after that detection
+
+   Two bookkeeping fields sit beside them, and they exist because collapsing them into the five
+   would make the policy questions unanswerable:
+
+     signalledByTestsAt          the test suite FAILED on this defect. Under a REQUIRED-checks
+                                 policy that blocks the change, so event 2 follows. Under an
+                                 ADVISORY policy the signal exists and the change ships anyway, so
+                                 event 2 never fires and event 3 does. Keeping the signal distinct
+                                 from the block is what makes "advisory admission permits failing
+                                 changes through" a measurable claim rather than an assertion.
+     removedFromProductionAt     a rollback removed this instance from production without anyone
+                                 having detected it — it rode along in a batch whose rollback was
+                                 triggered by a sibling defect. Not a restoration: nobody knew it
+                                 was there.
+
+   The invariants the test suite pins:
+     - detectedBeforeReleaseAt and exposedInProductionAt are MUTUALLY EXCLUSIVE.
+     - detectedAfterReleaseAt implies exposedInProductionAt, and never precedes it.
+     - restoredAt implies detectedAfterReleaseAt, and never precedes it.
+     - a defect may be exposed and NEVER detected, in which case it is never restored.
+     - the ledger reconciles: introduced = detectedBefore + exposed + still-in-pipeline.
+
+   ------------------------------------------------------------------------------------------------
+   WHY CANARY EFFECTIVENESS IS NOT HARD-CODED
+   ------------------------------------------------------------------------------------------------
+   Nothing in this model says "canary lowers the change failure rate". Detection in production is a
+   Poisson process whose RATE is derived from four quantities the student controls or the defect
+   carries:
+
+     affectedPerHour = requestsPerHour x exposedFraction x manifestRate
+     rate            = affectedPerHour x trafficDetectability x monitoringQuality      (instruments)
+                     + affectedPerHour x userReportsPerAffectedRequest                 (bug reports)
+
+   A canary lowers `exposedFraction` for a soak window, which lowers the rate: fewer requests reach
+   the defect, so detection is SLOWER per unit of exposure, and the probability of catching it
+   inside the soak window is 1 - exp(-rate x soakHours). For a defect that manifests on 30% of
+   requests at high traffic that probability is essentially 1. For one that manifests on 1 request
+   in 100,000 it is essentially 0 — the canary passes, the release goes to the whole fleet, and the
+   failure rate is exactly what it would have been without the canary. The only thing the canary
+   changed was the user exposure during the soak, which it made slightly WORSE, because the defect
+   was live for an extra hour at 5% traffic before full rollout.
+
+   That is the shape of the real engineering tradeoff, and it emerges from the parameters. Set
+   traffic high and the defect profile obvious, and the canary looks like a triumph. Set the defect
+   profile to `rare` and it looks like a tax. Both are true, which is the lesson.
+
+   ------------------------------------------------------------------------------------------------
+   WHY THOROUGH TESTING NEVER ELIMINATES ALL DEFECTS
+   ------------------------------------------------------------------------------------------------
+   Each defect instance draws its OWN `testDetectability` from a four-class mixture, and the test
+   depth contributes a COVERAGE factor strictly below one (thorough = 0.92). The probability that a
+   test run signals a given defect is `testDetectability x coverage`, so a latent defect with
+   testDetectability 0.02 is missed by a thorough suite 98% of the time no matter how long it runs.
+   There is no branch anywhere that sets the escape probability to zero.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var VERSION = '1.0.0';
+  var DEFAULT_SEED = 30861;
+  var HOURS_PER_DAY = 24;
+
+  /* --- 1. Seeded PRNG ---------------------------------------------------------------------------
+     mulberry32: one 32-bit word of state, a full 2^32 period, and good enough equidistribution for
+     teaching-scale Monte Carlo. Chosen over an LCG (visible lattice structure in low dimensions)
+     and over xorshift128 (four words of state to serialise) because reproducibility here means
+     "the same seed replays the same trace", and one word is the easiest thing to reset exactly.
+
+     Math.random() appears nowhere in this element, and the packaging test asserts that. */
+  function createRng(seed) {
+    var a = seed >>> 0;
+    function next() {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+    next.state = function () { return a >>> 0; };
+    return next;
+  }
+
+  /* FIVE independent streams from one user-visible seed, one per concern. Separating them is what
+     makes a POLICY COMPARISON a controlled experiment: switching the release strategy consumes
+     different numbers of draws from the `production` stream, and if arrivals shared that stream the
+     team's commit sequence would change too, so the two runs would not be comparable. Every defect
+     attribute is also drawn AT COMMIT TIME rather than lazily at deployment, for the same reason:
+     the population of defects is a property of the engineering team, not of the release policy.
+
+     Offsets are odd golden-ratio-class constants, which decorrelates the streams. */
+  var STREAM_OFFSETS = {
+    arrival: 0x00000000,      /* inter-commit times */
+    defect: 0x9E3779B9,       /* which changes are defective, and each defect's attributes */
+    test: 0x85EBCA77,         /* test verdicts, flaky failures, rework outcomes */
+    duration: 0xC2B2AE3D,     /* test / rework / rollback durations */
+    production: 0x27D4EB2F    /* detection in production, synthetic verification */
+  };
+  var STREAM_NAMES = ['arrival', 'defect', 'test', 'duration', 'production'];
+
+  function createStreams(seed) {
+    var out = {};
+    for (var i = 0; i < STREAM_NAMES.length; i += 1) {
+      var name = STREAM_NAMES[i];
+      out[name] = createRng((seed + STREAM_OFFSETS[name]) >>> 0);
+    }
+    return out;
+  }
+
+  /* --- 2. Distributions ------------------------------------------------------------------------- */
+
+  /* Uniform on the OPEN interval (0,1). The raw generator returns [0,1); -ln(0) is infinite, so a
+     zero draw must be rejected rather than clamped (clamping would quietly bias the tail). */
+  function unitOpen(rng) {
+    var u = rng();
+    while (u <= 0) u = rng();
+    return u;
+  }
+
+  function exponentialSample(rng, rate) {
+    if (typeof rate !== 'number' || !isFinite(rate) || rate <= 0) {
+      throw new RangeError('exponentialSample: rate must be a finite number > 0, got ' + rate);
+    }
+    return -Math.log(unitOpen(rng)) / rate;
+  }
+
+  /* Box-Muller, first value only. The second value is deliberately DISCARDED rather than cached:
+     a cache makes the stream position depend on how many previous calls happened to be odd or
+     even, and this engine's determinism story is "the n-th call consumes exactly 2n draws". */
+  function normalSample(rng) {
+    var u1 = unitOpen(rng);
+    var u2 = rng();
+    return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  }
+
+  /* A positive multiplier with mean exactly 1 and log-standard-deviation sigma. Used for duration
+     variability: a test run takes its nominal duration times this. sigma = 0 still consumes its
+     draws and returns exactly 1, so a test can switch to deterministic durations without shifting
+     the alignment of every subsequent draw in the stream. */
+  function lognormalMultiplier(rng, sigma) {
+    var z = normalSample(rng);
+    if (!(sigma > 0)) return 1;
+    return Math.exp(sigma * z - sigma * sigma / 2);
+  }
+
+  function uniformIn(rng, lo, hi) { return lo + (hi - lo) * rng(); }
+
+  function logUniformIn(rng, lo, hi) {
+    var a = Math.log(lo), b = Math.log(hi);
+    return Math.exp(a + (b - a) * rng());
+  }
+
+  /* --- 3. Defect model --------------------------------------------------------------------------
+     Four classes, each a named region of the attribute space. The weights are the mixture; the
+     ranges are drawn uniformly (log-uniformly where the range spans orders of magnitude, because a
+     linear draw over [1e-6, 1e-4] would put 99% of the mass in the top decade).
+
+     These are TEACHING-SCALE assumptions, not measurements of any real population, and the page
+     prints them. What matters pedagogically is the SHAPE: most defects are easy for both tests and
+     monitoring, a long tail is easy for neither, and the tail is where canary analysis gets
+     interesting.
+
+       testDetectability     probability that a FULLY thorough suite signals this defect
+       manifestRate          fraction of production requests that exercise it
+       trafficDetectability  probability that a manifestation is distinguishable as a failure
+
+     Draw order per defect is fixed at (class, testDetectability, manifestRate,
+     trafficDetectability) — four draws, always, which is what keeps `defectProfile` overrides from
+     shifting the stream. */
+  var DEFECT_CLASSES = [
+    {
+      id: 'obvious', label: 'Obvious', weight: 0.45,
+      testDetectability: [0.80, 0.98],
+      manifestRate: [0.10, 0.60], manifestScale: 'linear',
+      trafficDetectability: [0.70, 0.95],
+      note: 'Breaks a common path. Tests usually catch it; if it ships, monitoring sees it at once.'
+    },
+    {
+      id: 'conditional', label: 'Conditional', weight: 0.35,
+      testDetectability: [0.40, 0.80],
+      manifestRate: [0.005, 0.08], manifestScale: 'log',
+      trafficDetectability: [0.40, 0.80],
+      note: 'Needs a particular input or state. Coverage-sensitive; visible in production within hours.'
+    },
+    {
+      id: 'rare', label: 'Rare', weight: 0.15,
+      testDetectability: [0.05, 0.35],
+      manifestRate: [1e-5, 1e-3], manifestScale: 'log',
+      trafficDetectability: [0.20, 0.60],
+      note: 'One request in thousands. A canary soak rarely sees enough traffic to find it.'
+    },
+    {
+      id: 'latent', label: 'Latent', weight: 0.05,
+      testDetectability: [0.00, 0.06],
+      manifestRate: [1e-6, 1e-4], manifestScale: 'log',
+      trafficDetectability: [0.05, 0.30],
+      note: 'Data-dependent or timing-dependent. Escapes every pre-production control we modelled.'
+    }
+  ];
+
+  /* The mixture mean of testDetectability, computed from the table rather than written down, so a
+     change to the table cannot leave the statistical validation asserting a stale number. */
+  function meanTestDetectability(weights) {
+    var w = normalisedWeights(weights);
+    var total = 0;
+    for (var i = 0; i < DEFECT_CLASSES.length; i += 1) {
+      var c = DEFECT_CLASSES[i];
+      total += w[c.id] * (c.testDetectability[0] + c.testDetectability[1]) / 2;
+    }
+    return total;
+  }
+
+  function normalisedWeights(override) {
+    var w = {}, sum = 0, i, c;
+    for (i = 0; i < DEFECT_CLASSES.length; i += 1) {
+      c = DEFECT_CLASSES[i];
+      var v = (override && Object.prototype.hasOwnProperty.call(override, c.id))
+        ? Number(override[c.id]) : c.weight;
+      if (!(v >= 0) || !isFinite(v)) {
+        throw new RangeError('defectClassWeights.' + c.id + ': must be a finite number >= 0, got ' + v);
+      }
+      w[c.id] = v;
+      sum += v;
+    }
+    if (!(sum > 0)) throw new RangeError('defectClassWeights: at least one weight must be > 0');
+    for (i = 0; i < DEFECT_CLASSES.length; i += 1) w[DEFECT_CLASSES[i].id] /= sum;
+    return w;
+  }
+
+  function pickClass(rng, weights) {
+    var u = rng(), acc = 0;
+    for (var i = 0; i < DEFECT_CLASSES.length; i += 1) {
+      acc += weights[DEFECT_CLASSES[i].id];
+      if (u < acc) return DEFECT_CLASSES[i];
+    }
+    return DEFECT_CLASSES[DEFECT_CLASSES.length - 1];
+  }
+
+  function drawDefect(sim, now) {
+    var rng = sim.rng.defect;
+    var cls = pickClass(rng, sim.classWeights);
+    var td = uniformIn(rng, cls.testDetectability[0], cls.testDetectability[1]);
+    var mr = cls.manifestScale === 'log'
+      ? logUniformIn(rng, cls.manifestRate[0], cls.manifestRate[1])
+      : uniformIn(rng, cls.manifestRate[0], cls.manifestRate[1]);
+    var tf = uniformIn(rng, cls.trafficDetectability[0], cls.trafficDetectability[1]);
+    var p = sim.params.defectProfile;
+    var defect = {
+      id: sim.nextDefectId,
+      classId: cls.id,
+      testDetectability: p ? p.testDetectability : td,
+      manifestRate: p ? p.manifestRate : mr,
+      trafficDetectability: p ? p.trafficDetectability : tf,
+      introducedAt: now,
+      signalledByTestsAt: null,
+      detectedBeforeReleaseAt: null,
+      exposedInProductionAt: null,
+      detectedAfterReleaseAt: null,
+      restoredAt: null,
+      removedFromProductionAt: null,
+      /* Detection is rescheduled whenever the exposure fraction changes. The generation counter
+         invalidates the superseded event instead of searching the heap for it. */
+      detectGeneration: 0
+    };
+    sim.nextDefectId += 1;
+    sim.ledger.push(defect);
+    return defect;
+  }
+
+  /* --- 4. Policy tables -------------------------------------------------------------------------
+     Every option the five primary controls offer, as data. The UI renders these; the tests read
+     them instead of hard-coding the numbers (so a tuning change cannot leave a test asserting a
+     value the engine no longer uses). */
+
+  var ARRIVAL_RATES = {
+    low: { label: 'Low', perDay: 4, note: 'A small team landing a few changes a day.' },
+    medium: { label: 'Medium', perDay: 14, note: 'A steady stream — roughly two changes an hour in a working day.' },
+    high: { label: 'High', perDay: 44, note: 'A large team, or an agentic factory: changes arrive faster than one an hour, all day.' }
+  };
+
+  var TEST_DEPTHS = {
+    smoke: { label: 'Smoke', minutes: 8, coverage: 0.35, note: 'Build, unit tests, one happy path.' },
+    standard: { label: 'Standard', minutes: 42, coverage: 0.70, note: 'Unit plus integration, a representative fixture set.' },
+    thorough: { label: 'Thorough', minutes: 155, coverage: 0.92, note: 'Integration, end-to-end, performance and compatibility matrices.' }
+  };
+
+  var ADMISSION_POLICIES = {
+    advisory: { label: 'Advisory', blocks: false, note: 'A failing check is reported. The change may proceed anyway.' },
+    required: { label: 'Required checks', blocks: true, note: 'A failing check blocks the change until it is reworked.' }
+  };
+
+  var RELEASE_STRATEGIES = {
+    immediate: {
+      label: 'Immediate', initialFraction: 1, soaks: false, verifies: false,
+      note: 'The release goes to the whole fleet at once.'
+    },
+    canary: {
+      label: 'Canary', initialFraction: null, soaks: true, verifies: false,
+      note: 'A small traffic slice first, soaked under real load, then the rest.'
+    },
+    blueGreen: {
+      label: 'Blue-green', initialFraction: 1, soaks: false, verifies: true,
+      note: 'Deploy beside production, verify with synthetic traffic, then switch the whole fleet.'
+    }
+  };
+
+  var BATCH_SIZES = [1, 5, 10];
+
+  var DEFAULTS = {
+    /* --- the five primary controls --- */
+    arrivalRate: 'high',              /* a key of ARRIVAL_RATES, or null when arrivalRatePerDay is set */
+    arrivalRatePerDay: null,          /* numeric override, for the capacity experiment */
+    testDepth: 'thorough',
+    admissionPolicy: 'required',
+    releaseStrategy: 'immediate',
+    batchSize: 1,
+    /* --- capacity --- */
+    pipelineLanes: 2,                 /* concurrent build+test executors */
+    releaseSlots: 1,                  /* concurrent releases (one shared production environment) */
+    /* --- the engineering team --- */
+    defectRate: 0.18,                 /* probability a committed change carries a defect */
+    defectClassWeights: null,         /* optional {obvious, conditional, rare, latent} override */
+    defectProfile: null,              /* optional fixed attributes; a testing + teaching seam */
+    reworkHours: 4,
+    reworkFixProbability: 0.9,        /* a rework resolves the defect; 1 in 10 introduces a new one */
+    flakyTestRate: 0.04,              /* probability a clean change fails its tests anyway */
+    /* --- production --- */
+    requestsPerHour: 20000,
+    monitoringQuality: 0.7,           /* probability a distinguishable manifestation is noticed */
+    userReportsPerAffectedRequest: 1e-4,  /* 1 affected user in 10,000 files a report */
+    /* --- strategy mechanics --- */
+    deployHours: 0.05,
+    canaryFraction: 0.05,
+    canarySoakHours: 1,
+    blueGreenVerifyHours: 0.5,
+    blueGreenSyntheticRequests: 2000,
+    batchMaxWaitHours: 8,
+    rollbackHours: 0.4,
+    canaryRollbackHours: 0.15,
+    blueGreenSwitchBackHours: 0.12,
+    /* --- engine --- */
+    durationSigma: 0.3,
+    warmupHours: 0,
+    quantileWindow: 8192
+  };
+
+  /* --- 5. Event ordering ------------------------------------------------------------------------
+     Events are processed in nondecreasing simulation-time order. Ties are broken by KIND, in the
+     order below, and then by a monotone sequence number so the total order is complete and no two
+     events ever compare equal. The policy is data, and it is tested directly, so it cannot drift
+     silently.
+
+       restoreComplete  Service coming back frees the release slot at that instant, so a release
+                        waiting at the same timestamp finds the slot free.
+       productionDetect Before soakEnd, so a detection landing exactly at the end of a canary soak
+                        counts as CAUGHT IN THE CANARY rather than as a full-fleet failure. The
+                        alternative is defensible; this one is stated and tested, which is what
+                        matters.
+       testFinish       A lane emptying frees capacity before new work arrives.
+       reworkFinish     Rework returning requeues before new work arrives.
+       verifyFinish     Blue-green verification resolves before anything else consumes the slot.
+       soakEnd          The canary graduating to full traffic.
+       rolloutComplete  A release finishing frees the release slot.
+       releaseFlush     The batch timer. After every resource-freeing event, so a flush at the same
+                        instant sees the slot it is waiting for.
+       commit           LAST, so a change committed at time t sees the factory as it stands after
+                        everything else that happened at t.
+  */
+  var EVENT_ORDER = [
+    'restoreComplete', 'productionDetect', 'testFinish', 'reworkFinish',
+    'verifyFinish', 'soakEnd', 'rolloutComplete', 'releaseFlush', 'commit'
+  ];
+
+  function eventRank(kind) {
+    var i = EVENT_ORDER.indexOf(kind);
+    if (i < 0) throw new RangeError('unknown event kind: ' + kind);
+    return i;
+  }
+
+  function compareEvents(a, b) {
+    if (a.time < b.time) return -1;
+    if (a.time > b.time) return 1;
+    var ra = eventRank(a.kind), rb = eventRank(b.kind);
+    if (ra !== rb) return ra - rb;
+    return a.seq - b.seq;
+  }
+
+  /* A binary min-heap over compareEvents. The pending set stays small — at most
+     lanes + releaseSlots + one detection per live defective release + two timers — but "small"
+     is not "bounded", because a run can accumulate many un-remediated releases, and a sorted
+     array would then make every schedule O(n). */
+  function createHeap() { return { items: [] }; }
+
+  function heapPush(h, item) {
+    var a = h.items;
+    a.push(item);
+    var i = a.length - 1;
+    while (i > 0) {
+      var parent = (i - 1) >> 1;
+      if (compareEvents(a[i], a[parent]) >= 0) break;
+      var tmp = a[i]; a[i] = a[parent]; a[parent] = tmp;
+      i = parent;
+    }
+  }
+
+  function heapPeek(h) { return h.items.length ? h.items[0] : null; }
+
+  function heapPop(h) {
+    var a = h.items;
+    if (!a.length) return null;
+    var top = a[0];
+    var last = a.pop();
+    if (a.length) {
+      a[0] = last;
+      var i = 0;
+      for (;;) {
+        var l = 2 * i + 1, r = l + 1, best = i;
+        if (l < a.length && compareEvents(a[l], a[best]) < 0) best = l;
+        if (r < a.length && compareEvents(a[r], a[best]) < 0) best = r;
+        if (best === i) break;
+        var tmp = a[i]; a[i] = a[best]; a[best] = tmp;
+        i = best;
+      }
+    }
+    return top;
+  }
+
+  /* --- 6. The pipeline engine ------------------------------------------------------------------- */
+
+  function requirePositive(value, name) {
+    if (typeof value !== 'number' || !isFinite(value) || value <= 0) {
+      throw new RangeError(name + ': must be a finite number > 0, got ' + value);
+    }
+  }
+  function requireNonNegative(value, name) {
+    if (typeof value !== 'number' || !isFinite(value) || value < 0) {
+      throw new RangeError(name + ': must be a finite number >= 0, got ' + value);
+    }
+  }
+  function requireProbability(value, name) {
+    if (typeof value !== 'number' || !isFinite(value) || value < 0 || value > 1) {
+      throw new RangeError(name + ': must be a number in [0,1], got ' + value);
+    }
+  }
+  function requireKeyOf(table, value, name) {
+    if (!Object.prototype.hasOwnProperty.call(table, value)) {
+      throw new RangeError(name + ': unknown "' + value + '"; expected one of ' +
+        Object.keys(table).join(', '));
+    }
+  }
+  function requireInteger(value, name, minimum) {
+    if (typeof value !== 'number' || !isFinite(value) || Math.floor(value) !== value) {
+      throw new RangeError(name + ': must be an integer, got ' + value);
+    }
+    if (value < minimum) throw new RangeError(name + ': must be >= ' + minimum + ', got ' + value);
+  }
+
+  function validateParams(p) {
+    if (p.arrivalRatePerDay === null || p.arrivalRatePerDay === undefined) {
+      requireKeyOf(ARRIVAL_RATES, p.arrivalRate, 'arrivalRate');
+    } else {
+      requirePositive(p.arrivalRatePerDay, 'arrivalRatePerDay');
+    }
+    requireKeyOf(TEST_DEPTHS, p.testDepth, 'testDepth');
+    requireKeyOf(ADMISSION_POLICIES, p.admissionPolicy, 'admissionPolicy');
+    requireKeyOf(RELEASE_STRATEGIES, p.releaseStrategy, 'releaseStrategy');
+    requireInteger(p.batchSize, 'batchSize', 1);
+    requireInteger(p.pipelineLanes, 'pipelineLanes', 1);
+    requireInteger(p.releaseSlots, 'releaseSlots', 1);
+    requireProbability(p.defectRate, 'defectRate');
+    requireNonNegative(p.reworkHours, 'reworkHours');
+    requireProbability(p.reworkFixProbability, 'reworkFixProbability');
+    requireProbability(p.flakyTestRate, 'flakyTestRate');
+    requireNonNegative(p.requestsPerHour, 'requestsPerHour');
+    requireProbability(p.monitoringQuality, 'monitoringQuality');
+    requireProbability(p.userReportsPerAffectedRequest, 'userReportsPerAffectedRequest');
+    requireNonNegative(p.deployHours, 'deployHours');
+    if (!(p.canaryFraction > 0) || p.canaryFraction > 1) {
+      throw new RangeError('canaryFraction: must be in (0,1], got ' + p.canaryFraction);
+    }
+    requireNonNegative(p.canarySoakHours, 'canarySoakHours');
+    requireNonNegative(p.blueGreenVerifyHours, 'blueGreenVerifyHours');
+    requireNonNegative(p.blueGreenSyntheticRequests, 'blueGreenSyntheticRequests');
+    requirePositive(p.batchMaxWaitHours, 'batchMaxWaitHours');
+    requireNonNegative(p.rollbackHours, 'rollbackHours');
+    requireNonNegative(p.canaryRollbackHours, 'canaryRollbackHours');
+    requireNonNegative(p.blueGreenSwitchBackHours, 'blueGreenSwitchBackHours');
+    requireNonNegative(p.durationSigma, 'durationSigma');
+    requireNonNegative(p.warmupHours, 'warmupHours');
+    requireInteger(p.quantileWindow, 'quantileWindow', 0);
+    if (p.defectClassWeights) normalisedWeights(p.defectClassWeights);
+    if (p.defectProfile) {
+      requireProbability(p.defectProfile.testDetectability, 'defectProfile.testDetectability');
+      requireProbability(p.defectProfile.manifestRate, 'defectProfile.manifestRate');
+      requireProbability(p.defectProfile.trafficDetectability, 'defectProfile.trafficDetectability');
+    }
+  }
+
+  function arrivalRatePerHour(p) {
+    var perDay = (p.arrivalRatePerDay === null || p.arrivalRatePerDay === undefined)
+      ? ARRIVAL_RATES[p.arrivalRate].perDay
+      : p.arrivalRatePerDay;
+    return perDay / HOURS_PER_DAY;
+  }
+
+  function nominalTestHours(p) { return TEST_DEPTHS[p.testDepth].minutes / 60; }
+
+  /* Offered load on the build+test stage, as a ratio. This is the quantity the capacity experiment
+     moves: hold `pipelineLanes` and `testDepth` fixed, raise the arrival rate, and watch it cross
+     one. It is a MODEL number (it assumes the nominal test duration is the mean, which it is by
+     construction of the lognormal multiplier), and the page labels it as such. */
+  function pipelineUtilization(p) {
+    var service = p.pipelineLanes / nominalTestHours(p);
+    return arrivalRatePerHour(p) / service;
+  }
+
+  function createSimulation(options) {
+    var o = options || {};
+    var params = {};
+    var keys = Object.keys(DEFAULTS);
+    for (var i = 0; i < keys.length; i += 1) {
+      var k = keys[i];
+      params[k] = (o[k] === undefined) ? DEFAULTS[k] : o[k];
+    }
+    /* A numeric arrival rate supersedes the named one, and the named key is cleared so the two can
+       never disagree. */
+    if (o.arrivalRatePerDay !== undefined && o.arrivalRatePerDay !== null) params.arrivalRate = null;
+    validateParams(params);
+    var sim = {
+      version: VERSION,
+      seed: (o.seed === undefined ? DEFAULT_SEED : o.seed) >>> 0,
+      params: params,
+      traceLimit: o.traceLimit === undefined ? 0 : (o.traceLimit | 0)
+    };
+    return resetSimulation(sim);
+  }
+
+  /* Restore the initial state: clock at zero, ledger empty, every stream rewound to its seed, and
+     the first commit scheduled. The PARAMETERS are deliberately kept — "reset" means "run this
+     experiment again from the beginning", not "forget what I configured". */
+  function resetSimulation(sim) {
+    var p = sim.params;
+    sim.rng = createStreams(sim.seed);
+    sim.classWeights = normalisedWeights(p.defectClassWeights);
+    sim.time = 0;
+    sim.eventCount = 0;
+    sim.seqCounter = 0;
+    sim.events = createHeap();
+
+    sim.nextChangeId = 1;
+    sim.nextDefectId = 1;
+    sim.nextReleaseId = 1;
+
+    sim.pipelineQueue = [];      /* committed, waiting for a build+test lane */
+    sim.queueHead = 0;
+    sim.lanesBusy = 0;
+    sim.inRework = 0;
+    sim.releaseQueue = [];       /* admitted, waiting to be batched into a release */
+    sim.releasesInFlight = 0;
+    sim.liveReleases = [];       /* exposed to users and not yet retired */
+    sim.flushScheduled = false;
+
+    sim.ledger = [];             /* every defect instance ever introduced */
+
+    sim.counters = {
+      commits: 0, defectiveCommits: 0,
+      testRuns: 0, testPasses: 0, testFailures: 0, trueFailures: 0, flakyFailures: 0,
+      blockedDefective: 0, blockedFlaky: 0, admittedWithFailingChecks: 0,
+      admitted: 0, reworks: 0, reworkRegressions: 0,
+      releasesStarted: 0, releasesAborted: 0,
+      deployments: 0, failedDeployments: 0,
+      maxBacklog: 0, maxReleaseQueue: 0
+    };
+    sim.totals = {
+      leadTimeSum: 0, leadTimeCount: 0,
+      restoreSum: 0, restoreCount: 0,
+      requestsExposed: 0, requestsAffected: 0, exposureHours: 0,
+      waitLaneSum: 0, testSum: 0, reworkSum: 0, batchWaitSum: 0, deploySum: 0
+    };
+    sim.leadTimes = createRing(p.quantileWindow);
+    sim.restoreTimes = createRing(p.quantileWindow);
+    sim.backlogSamples = [];     /* {time, backlog, releaseQueue, liveDefects} — for the chart */
+    sim.trace = [];
+
+    scheduleNextCommit(sim);
+    return sim;
+  }
+
+  /* A bounded ring of recent observations, for quantiles and the charts. A ring rather than an
+     array with shift(): a long run produces tens of thousands of entries, and shift() would make
+     each write O(n). Capacity 0 disables logging entirely. */
+  function createRing(capacity) {
+    var cap = capacity > 0 ? (capacity | 0) : 0;
+    return { capacity: cap, items: new Array(cap), start: 0, length: 0 };
+  }
+  function ringPush(ring, item) {
+    if (ring.capacity <= 0) return;
+    if (ring.length < ring.capacity) {
+      ring.items[(ring.start + ring.length) % ring.capacity] = item;
+      ring.length += 1;
+    } else {
+      ring.items[ring.start] = item;
+      ring.start = (ring.start + 1) % ring.capacity;
+    }
+  }
+  function ringToArray(ring) {
+    var out = [];
+    for (var i = 0; i < ring.length; i += 1) out.push(ring.items[(ring.start + i) % ring.capacity]);
+    return out;
+  }
+
+  function schedule(sim, time, kind, payload) {
+    if (!(time >= sim.time)) {
+      throw new RangeError('schedule: ' + kind + ' at ' + time + ' precedes the clock ' + sim.time);
+    }
+    sim.seqCounter += 1;
+    heapPush(sim.events, { time: time, kind: kind, seq: sim.seqCounter, payload: payload || null });
+  }
+
+  function scheduleNextCommit(sim) {
+    var rate = arrivalRatePerHour(sim.params);
+    if (!(rate > 0)) return;
+    schedule(sim, sim.time + exponentialSample(sim.rng.arrival, rate), 'commit', null);
+  }
+
+  function backlog(sim) { return sim.pipelineQueue.length - sim.queueHead; }
+
+  function dequeueChange(sim) {
+    var c = sim.pipelineQueue[sim.queueHead];
+    sim.pipelineQueue[sim.queueHead] = null;
+    sim.queueHead += 1;
+    /* Amortised compaction: the head index alone would leak the whole history of a long run. */
+    if (sim.queueHead > 64 && sim.queueHead * 2 >= sim.pipelineQueue.length) {
+      sim.pipelineQueue = sim.pipelineQueue.slice(sim.queueHead);
+      sim.queueHead = 0;
+    }
+    return c;
+  }
+
+  function enqueueChange(sim, change) {
+    change.enteredQueueAt = sim.time;
+    sim.pipelineQueue.push(change);
+    if (backlog(sim) > sim.counters.maxBacklog) sim.counters.maxBacklog = backlog(sim);
+    startLanes(sim);
+  }
+
+  function startLanes(sim) {
+    var p = sim.params;
+    while (sim.lanesBusy < p.pipelineLanes && backlog(sim) > 0) {
+      var change = dequeueChange(sim);
+      change.waitLane += sim.time - change.enteredQueueAt;
+      sim.lanesBusy += 1;
+      var hours = nominalTestHours(p) * lognormalMultiplier(sim.rng.duration, p.durationSigma);
+      change.testStartedAt = sim.time;
+      schedule(sim, sim.time + hours, 'testFinish', change);
+    }
+  }
+
+  function createChange(sim) {
+    var change = {
+      id: sim.nextChangeId,
+      commitTime: sim.time,
+      attempt: 1,
+      defect: null,
+      waitLane: 0, testHours: 0, reworkHours: 0, batchWait: 0, deployHours: 0,
+      enteredQueueAt: sim.time,
+      testStartedAt: null,
+      admittedAt: null,
+      firstExposureAt: null,
+      leadTime: null
+    };
+    sim.nextChangeId += 1;
+    return change;
+  }
+
+  /* ---- commit ---- */
+  function onCommit(sim) {
+    var change = createChange(sim);
+    sim.counters.commits += 1;
+    if (sim.rng.defect() < sim.params.defectRate) {
+      change.defect = drawDefect(sim, sim.time);
+      sim.counters.defectiveCommits += 1;
+    }
+    enqueueChange(sim, change);
+    scheduleNextCommit(sim);
+    return change;
+  }
+
+  /* ---- build + test, then the admission gate ---- */
+  function onTestFinish(sim, change) {
+    var p = sim.params;
+    sim.lanesBusy -= 1;
+    change.testHours += sim.time - change.testStartedAt;
+    sim.counters.testRuns += 1;
+
+    var coverage = TEST_DEPTHS[p.testDepth].coverage;
+    var signalled = false;
+    if (change.defect) {
+      signalled = sim.rng.test() < change.defect.testDetectability * coverage;
+      if (signalled) change.defect.signalledByTestsAt = sim.time;
+    }
+    /* A flaky failure is a FALSE alarm on a clean change. It is drawn only when the suite did not
+       already fail, so the two causes of a red build never coincide and the counters add up. */
+    var flaky = false;
+    if (!signalled) flaky = sim.rng.test() < p.flakyTestRate;
+
+    if (signalled) sim.counters.trueFailures += 1;
+    if (flaky) sim.counters.flakyFailures += 1;
+    if (signalled || flaky) sim.counters.testFailures += 1; else sim.counters.testPasses += 1;
+
+    if ((signalled || flaky) && ADMISSION_POLICIES[p.admissionPolicy].blocks) {
+      if (signalled) {
+        /* EVENT 2. The control identified the defect AND the change did not ship. */
+        change.defect.detectedBeforeReleaseAt = sim.time;
+        sim.counters.blockedDefective += 1;
+      } else {
+        sim.counters.blockedFlaky += 1;
+      }
+      sendToRework(sim, change, signalled);
+    } else {
+      if (signalled || flaky) sim.counters.admittedWithFailingChecks += 1;
+      admit(sim, change);
+    }
+    startLanes(sim);
+  }
+
+  /* Rework: the author fixes what the gate found. `reworkFixProbability` is the chance the fix
+     actually resolves it; otherwise a NEW defect instance is drawn, which is why thorough testing
+     plus required checks still leaks defects into production. */
+  function sendToRework(sim, change, hadDefect) {
+    var p = sim.params;
+    sim.counters.reworks += 1;
+    sim.inRework += 1;
+    if (hadDefect) {
+      var fixed = sim.rng.test() < p.reworkFixProbability;
+      change.defect = null;
+      if (!fixed) sim.counters.reworkRegressions += 1;
+      change.pendingRegression = !fixed;
+    } else {
+      change.pendingRegression = false;
+    }
+    var hours = p.reworkHours * lognormalMultiplier(sim.rng.duration, p.durationSigma);
+    change.reworkStartedAt = sim.time;
+    schedule(sim, sim.time + hours, 'reworkFinish', change);
+  }
+
+  function onReworkFinish(sim, change) {
+    sim.inRework -= 1;
+    change.reworkHours += sim.time - change.reworkStartedAt;
+    change.attempt += 1;
+    if (change.pendingRegression) {
+      change.defect = drawDefect(sim, sim.time);
+      change.pendingRegression = false;
+    }
+    enqueueChange(sim, change);
+  }
+
+  /* ---- batching into a release ---- */
+  function admit(sim, change) {
+    change.admittedAt = sim.time;
+    sim.counters.admitted += 1;
+    sim.releaseQueue.push(change);
+    if (sim.releaseQueue.length > sim.counters.maxReleaseQueue) {
+      sim.counters.maxReleaseQueue = sim.releaseQueue.length;
+    }
+    considerRelease(sim);
+  }
+
+  /* A release starts when the queue reaches the batch size, OR when the oldest admitted change has
+     waited `batchMaxWaitHours`. Without the timer a batch size of 10 at a low arrival rate would
+     never ship, and "deployment frequency falls to zero" would be an artefact of the batching rule
+     rather than a finding about it. */
+  function considerRelease(sim) {
+    var p = sim.params;
+    while (sim.releasesInFlight < p.releaseSlots && sim.releaseQueue.length >= p.batchSize) {
+      startRelease(sim, sim.releaseQueue.splice(0, p.batchSize));
+    }
+    if (sim.releasesInFlight >= p.releaseSlots) return;
+    if (sim.releaseQueue.length === 0) return;
+    if (!sim.flushScheduled) {
+      sim.flushScheduled = true;
+      schedule(sim, sim.time + p.batchMaxWaitHours, 'releaseFlush', null);
+    }
+  }
+
+  function onReleaseFlush(sim) {
+    sim.flushScheduled = false;
+    var p = sim.params;
+    if (sim.releaseQueue.length > 0 && sim.releasesInFlight < p.releaseSlots) {
+      startRelease(sim, sim.releaseQueue.splice(0, Math.min(p.batchSize, sim.releaseQueue.length)));
+    }
+    considerRelease(sim);
+  }
+
+  function startRelease(sim, changes) {
+    var p = sim.params;
+    var strategy = RELEASE_STRATEGIES[p.releaseStrategy];
+    var release = {
+      id: sim.nextReleaseId,
+      strategy: p.releaseStrategy,
+      changes: changes,
+      startedAt: sim.time,
+      exposedFraction: 0,
+      firstExposureAt: null,
+      lastAccrualAt: sim.time,
+      requestsExposed: 0,
+      requestsAffected: 0,
+      exposureHours: 0,
+      inCanary: false,
+      failed: false,
+      detectedAt: null,
+      remediating: false,
+      retired: false,
+      slotReleased: false
+    };
+    sim.nextReleaseId += 1;
+    sim.releasesInFlight += 1;
+    sim.counters.releasesStarted += 1;
+    for (var i = 0; i < changes.length; i += 1) {
+      changes[i].batchWait += sim.time - changes[i].admittedAt;
+      changes[i].release = release;
+      changes[i].deployStartedAt = sim.time;
+    }
+    if (strategy.verifies) {
+      schedule(sim, sim.time + p.deployHours + p.blueGreenVerifyHours, 'verifyFinish', release);
+    } else {
+      scheduleExposure(sim, release, p.deployHours);
+    }
+    return release;
+  }
+
+  /* Exposure begins after the deploy delay. For a canary that is `canaryFraction` of traffic with a
+     soak timer; for the others it is the whole fleet. Both paths route through beginExposure, so
+     the user-impact accounting and the five-event bookkeeping have exactly one implementation. */
+  function scheduleExposure(sim, release, delayHours) {
+    var p = sim.params;
+    var strategy = RELEASE_STRATEGIES[p.releaseStrategy];
+    var fraction = strategy.soaks ? p.canaryFraction : 1;
+    schedule(sim, sim.time + delayHours, strategy.soaks ? 'soakEnd' : 'rolloutComplete', {
+      release: release, beginFraction: fraction, phase: 'begin'
+    });
+  }
+
+  /* ---- exposure and detection ---- */
+
+  /* The detection hazard. Everything in it is either a student-facing control or a defect
+     attribute; there is no strategy term. A canary changes `fraction`, nothing else. */
+  function detectionRate(sim, defect, fraction) {
+    var p = sim.params;
+    if (!(fraction > 0)) return 0;
+    /* Requests that actually exercise the defect, per hour. Both detection channels are driven by
+       this quantity, which is why a canary's reduced traffic share slows BOTH of them. */
+    var affectedPerHour = p.requestsPerHour * fraction * defect.manifestRate;
+    /* Channel 1: instrumentation. A manifestation has to be distinguishable from ordinary
+       behaviour (the defect's own property) and the monitoring has to be looking (the student's). */
+    var monitored = affectedPerHour * defect.trafficDetectability * p.monitoringQuality;
+    /* Channel 2: a human notices and files a bug. Proportional to AFFECTED users rather than a
+       flat hazard, because a user can only report what they experienced. This is what lets a
+       defect that manifests on one request in a million go undetected for years — a flat
+       background rate would guarantee every defect is eventually found, which would quietly
+       eliminate the "exposed but never detected" case the model exists to show. */
+    var reported = affectedPerHour * p.userReportsPerAffectedRequest;
+    return monitored + reported;
+  }
+
+  function liveDefectsOf(release) {
+    var out = [];
+    for (var i = 0; i < release.changes.length; i += 1) {
+      var d = release.changes[i].defect;
+      if (d && d.removedFromProductionAt === null) out.push(d);
+    }
+    return out;
+  }
+
+  /* Accrue user impact over [lastAccrualAt, now], clipped to the measurement window. Called before
+     every change of exposure fraction. `snapshot` does the same arithmetic WITHOUT mutating, so
+     the displayed number keeps rising between events. */
+  function accrue(sim, release, now) {
+    var p = sim.params;
+    var from = Math.max(release.lastAccrualAt, p.warmupHours);
+    var to = Math.max(now, p.warmupHours);
+    release.lastAccrualAt = now;
+    if (!(to > from) || !(release.exposedFraction > 0)) return;
+    var defects = liveDefectsOf(release);
+    if (defects.length === 0) return;
+    var dt = to - from;
+    var exposed = p.requestsPerHour * release.exposedFraction * dt;
+    var affectedFraction = 0;
+    for (var i = 0; i < defects.length; i += 1) {
+      affectedFraction += defects[i].manifestRate;
+    }
+    if (affectedFraction > 1) affectedFraction = 1;
+    release.requestsExposed += exposed;
+    release.requestsAffected += exposed * affectedFraction;
+    release.exposureHours += dt;
+    sim.totals.requestsExposed += exposed;
+    sim.totals.requestsAffected += exposed * affectedFraction;
+    sim.totals.exposureHours += dt;
+  }
+
+  function setFraction(sim, release, fraction) {
+    accrue(sim, release, sim.time);
+    release.exposedFraction = fraction;
+  }
+
+  function beginExposure(sim, release, fraction, isCanary) {
+    var p = sim.params;
+    setFraction(sim, release, fraction);
+    release.inCanary = !!isCanary;
+    if (release.firstExposureAt === null) {
+      release.firstExposureAt = sim.time;
+      /* A deployment is counted when the release first reaches real users — which is also the
+         instant lead time stops for every change it carries. A blue-green release aborted at
+         verification never gets here, so it is not a deployment and never enters the change
+         failure rate's denominator. */
+      sim.counters.deployments += 1;
+      sim.liveReleases.push(release);
+      for (var i = 0; i < release.changes.length; i += 1) {
+        var change = release.changes[i];
+        change.deployHours += sim.time - change.deployStartedAt;
+        change.firstExposureAt = sim.time;
+        change.leadTime = sim.time - change.commitTime;
+        if (sim.time >= p.warmupHours) {
+          sim.totals.leadTimeSum += change.leadTime;
+          sim.totals.leadTimeCount += 1;
+          sim.totals.waitLaneSum += change.waitLane;
+          sim.totals.testSum += change.testHours;
+          sim.totals.reworkSum += change.reworkHours;
+          sim.totals.batchWaitSum += change.batchWait;
+          sim.totals.deploySum += change.deployHours;
+          ringPush(sim.leadTimes, change.leadTime);
+        }
+        /* EVENT 3. First contact with real users. */
+        if (change.defect && change.defect.exposedInProductionAt === null) {
+          change.defect.exposedInProductionAt = sim.time;
+        }
+      }
+    }
+    rescheduleDetection(sim, release);
+  }
+
+  /* Schedule the next detection for each live, undetected defect in the release at the CURRENT
+     exposure fraction. The process is memoryless, so re-drawing when the fraction changes is
+     exact rather than an approximation — a defect that survived the canary soak faces a fresh
+     exponential clock at the full-fleet rate, which is precisely what a Poisson process with a
+     piecewise-constant rate does. */
+  function rescheduleDetection(sim, release) {
+    var defects = liveDefectsOf(release);
+    for (var i = 0; i < defects.length; i += 1) {
+      var d = defects[i];
+      if (d.detectedAfterReleaseAt !== null) continue;
+      var rate = detectionRate(sim, d, release.exposedFraction);
+      if (!(rate > 0)) continue;
+      var at = sim.time + exponentialSample(sim.rng.production, rate);
+      schedule(sim, at, 'productionDetect', { release: release, defect: d, generation: ++d.detectGeneration });
+    }
+  }
+
+  function onSoakEnd(sim, payload) {
+    var p = sim.params;
+    var release = payload.release;
+    if (release.retired) return;
+    if (payload.phase === 'begin') {
+      /* The canary begins. The soak timer is the SAME event kind one soak-window later. */
+      beginExposure(sim, release, payload.beginFraction, true);
+      schedule(sim, sim.time + p.canarySoakHours, 'soakEnd', { release: release, phase: 'graduate' });
+      return;
+    }
+    if (release.remediating) return;   /* the canary is being rolled back; it never graduates */
+    release.inCanary = false;
+    setFraction(sim, release, 1);
+    rescheduleDetection(sim, release);
+    schedule(sim, sim.time, 'rolloutComplete', { release: release, phase: 'complete' });
+  }
+
+  function onRolloutComplete(sim, payload) {
+    var release = payload.release;
+    if (release.retired) return;
+    if (payload.phase === 'begin') {
+      beginExposure(sim, release, payload.beginFraction, false);
+      schedule(sim, sim.time, 'rolloutComplete', { release: release, phase: 'complete' });
+      return;
+    }
+    if (release.remediating) return;
+    /* The release slot is free: the rollout is done. A release that still carries a live defect
+       stays LIVE for defect accounting, because that defect may be detected days later and the
+       deployment reclassified then. A CLEAN release is retired here — it can never fail, so
+       keeping it would grow `liveReleases` without bound over a long run. */
+    if (liveDefectsOf(release).length === 0) {
+      release.retired = true;
+      removeLive(sim, release);
+    }
+    if (!release.slotReleased) {
+      release.slotReleased = true;
+      sim.releasesInFlight -= 1;
+      considerRelease(sim);
+    }
+  }
+
+  /* Blue-green: synthetic traffic against the idle environment. The catch probability uses the SAME
+     defect attributes as production detection, so a rare defect is missed here for the same reason
+     it is missed by a canary — not enough requests exercise it. Zero user exposure either way,
+     which is what distinguishes this from a canary. */
+  function syntheticCatchProbability(sim, defect) {
+    var p = sim.params;
+    var n = p.blueGreenSyntheticRequests;
+    if (!(n > 0)) return 0;
+    var anyManifestation = 1 - Math.pow(1 - defect.manifestRate, n);
+    return anyManifestation * defect.trafficDetectability * p.monitoringQuality;
+  }
+
+  function onVerifyFinish(sim, release) {
+    if (release.retired) return;
+    var caught = null;
+    for (var i = 0; i < release.changes.length; i += 1) {
+      var d = release.changes[i].defect;
+      if (!d) continue;
+      if (sim.rng.production() < syntheticCatchProbability(sim, d)) { caught = d; break; }
+    }
+    if (caught === null) {
+      beginExposure(sim, release, 1, false);
+      schedule(sim, sim.time, 'rolloutComplete', { release: release, phase: 'complete' });
+      return;
+    }
+    /* EVENT 2 again, by a different control: verification found it and nothing shipped. The whole
+       BATCH is held — which is how batch size turns one bad change into a delay for nine good
+       ones. */
+    caught.detectedBeforeReleaseAt = sim.time;
+    sim.counters.releasesAborted += 1;
+    abortRelease(sim, release, caught);
+  }
+
+  function abortRelease(sim, release, caughtDefect) {
+    release.retired = true;
+    if (!release.slotReleased) { release.slotReleased = true; sim.releasesInFlight -= 1; }
+    for (var i = 0; i < release.changes.length; i += 1) {
+      var change = release.changes[i];
+      change.release = null;
+      if (change.defect === caughtDefect) {
+        sendToRework(sim, change, true);
+      } else if (change.defect) {
+        /* Held, not detected. The defect is still there when the change comes back. */
+        change.admittedAt = sim.time;
+        sim.releaseQueue.unshift(change);
+      } else {
+        change.admittedAt = sim.time;
+        sim.releaseQueue.unshift(change);
+      }
+    }
+    considerRelease(sim);
+  }
+
+  function onProductionDetect(sim, payload) {
+    var p = sim.params;
+    var release = payload.release;
+    var defect = payload.defect;
+    if (release.retired) return;
+    if (payload.generation !== defect.detectGeneration) return;   /* superseded by a rate change */
+    if (defect.detectedAfterReleaseAt !== null) return;
+    if (defect.removedFromProductionAt !== null) return;
+
+    /* EVENT 4. */
+    defect.detectedAfterReleaseAt = sim.time;
+    if (!release.failed) {
+      release.failed = true;
+      release.detectedAt = sim.time;
+      sim.counters.failedDeployments += 1;
+    }
+    if (release.remediating) return;
+    release.remediating = true;
+    var hours;
+    if (release.strategy === 'blueGreen') hours = p.blueGreenSwitchBackHours;
+    else if (release.inCanary) hours = p.canaryRollbackHours;
+    else hours = p.rollbackHours;
+    hours = hours * lognormalMultiplier(sim.rng.duration, p.durationSigma);
+    schedule(sim, sim.time + hours, 'restoreComplete', { release: release, trigger: defect });
+  }
+
+  function onRestoreComplete(sim, payload) {
+    var release = payload.release;
+    if (release.retired) return;
+    /* Exposure stops here: users were still hitting the defect while the rollback ran, which is
+       what "time to restore service" costs. */
+    setFraction(sim, release, 0);
+    release.retired = true;
+    release.remediating = false;
+    for (var i = 0; i < release.changes.length; i += 1) {
+      var change = release.changes[i];
+      var d = change.defect;
+      if (d) {
+        if (d.detectedAfterReleaseAt !== null && d.restoredAt === null) {
+          /* EVENT 5, and only for a defect somebody actually detected. */
+          d.restoredAt = sim.time;
+          if (sim.time >= sim.params.warmupHours) {
+            var ttr = sim.time - d.detectedAfterReleaseAt;
+            sim.totals.restoreSum += ttr;
+            sim.totals.restoreCount += 1;
+            ringPush(sim.restoreTimes, ttr);
+          }
+        } else if (d.removedFromProductionAt === null) {
+          /* Rode along in the batch. Removed from production without ever being detected — not a
+             restoration, because nobody knew it was there. */
+          d.removedFromProductionAt = sim.time;
+        }
+      }
+      change.release = null;
+      change.admittedAt = sim.time;
+      /* The rollback reverts the batch. Every change goes back through the pipeline. */
+      sendToRework(sim, change, !!d);
+    }
+    removeLive(sim, release);
+    if (!release.slotReleased) { release.slotReleased = true; sim.releasesInFlight -= 1; }
+    considerRelease(sim);
+  }
+
+  function removeLive(sim, release) {
+    var i = sim.liveReleases.indexOf(release);
+    if (i >= 0) sim.liveReleases.splice(i, 1);
+  }
+
+  /* ---- the step function ---- */
+  function stepSimulation(sim) {
+    var ev = heapPop(sim.events);
+    if (ev === null) return null;
+    if (ev.time < sim.time) {
+      throw new Error('event ordering violated: ' + ev.kind + ' at ' + ev.time + ' < ' + sim.time);
+    }
+    sim.time = ev.time;
+    sim.eventCount += 1;
+    switch (ev.kind) {
+      case 'commit': onCommit(sim); break;
+      case 'testFinish': onTestFinish(sim, ev.payload); break;
+      case 'reworkFinish': onReworkFinish(sim, ev.payload); break;
+      case 'releaseFlush': onReleaseFlush(sim); break;
+      case 'verifyFinish': onVerifyFinish(sim, ev.payload); break;
+      case 'soakEnd': onSoakEnd(sim, ev.payload); break;
+      case 'rolloutComplete': onRolloutComplete(sim, ev.payload); break;
+      case 'productionDetect': onProductionDetect(sim, ev.payload); break;
+      case 'restoreComplete': onRestoreComplete(sim, ev.payload); break;
+      default: throw new RangeError('unhandled event kind: ' + ev.kind);
+    }
+    if (sim.traceLimit > 0 && sim.trace.length < sim.traceLimit) {
+      sim.trace.push({ time: ev.time, kind: ev.kind, seq: ev.seq });
+    }
+    return ev;
+  }
+
+  /* Advance to a horizon. The horizon is a simulated TIME, so the trace is a function of the
+     horizon alone and not of how the caller chunked it — the property the test suite pins by
+     running the same scenario at two chunk sizes and comparing event-by-event. */
+  function advanceSimulation(sim, options) {
+    var o = options || {};
+    var untilTime = o.untilTime === undefined ? Infinity : o.untilTime;
+    var maxEvents = o.maxEvents === undefined ? Infinity : o.maxEvents;
+    var maxDeployments = o.maxDeployments === undefined ? Infinity : o.maxDeployments;
+    var sampleEvery = o.sampleEvery === undefined ? 0 : o.sampleEvery;
+    var processed = 0;
+    var trace = o.trace ? [] : null;
+    var nextSample = sampleEvery > 0 ? sim.time : Infinity;
+    for (;;) {
+      var next = heapPeek(sim.events);
+      if (next === null) break;
+      if (next.time > untilTime) break;
+      if (processed >= maxEvents) break;
+      if (sim.counters.deployments >= maxDeployments) break;
+      while (next.time >= nextSample) {
+        sampleBacklog(sim, nextSample);
+        nextSample += sampleEvery;
+      }
+      var ev = stepSimulation(sim);
+      processed += 1;
+      if (trace) trace.push({ time: ev.time, kind: ev.kind });
+    }
+    if (isFinite(untilTime) && untilTime > sim.time) {
+      sim.time = untilTime;
+      while (untilTime >= nextSample) { sampleBacklog(sim, nextSample); nextSample += sampleEvery; }
+    }
+    return { events: processed, time: sim.time, trace: trace };
+  }
+
+  function sampleBacklog(sim, at) {
+    var live = 0;
+    for (var i = 0; i < sim.liveReleases.length; i += 1) {
+      live += liveDefectsOf(sim.liveReleases[i]).length;
+    }
+    sim.backlogSamples.push({
+      time: at,
+      backlog: backlog(sim),
+      inRework: sim.inRework,
+      releaseQueue: sim.releaseQueue.length,
+      liveDefects: live
+    });
+    if (sim.backlogSamples.length > 4096) sim.backlogSamples.splice(0, sim.backlogSamples.length - 4096);
+  }
+
+  /* --- 7. Statistics: the Four Keys, plus user impact -------------------------------------------
+
+     "Four Keys" is the label, deliberately. These are the four measures the course reading names;
+     they are not a complete account of DORA's current measurement practice, and they are not a
+     measure of engineering productivity at all. The page says so where a reader will see it.
+
+     Two definitional choices worth stating, because both are easy to get wrong:
+
+       CHANGE FAILURE RATE is over DEPLOYMENTS, not over changes. The denominator counts releases
+       that reached real users; the numerator counts those in which a defect was DETECTED in
+       production. A release carrying a defect nobody ever noticed is not in the numerator — which
+       is a true statement about the metric and a false statement about the software, so the
+       snapshot reports the undetected count beside it.
+
+       LEAD TIME is commit to production, per change, measured from the ORIGINAL commit even when
+       the change was blocked and reworked. That is what makes required checks cost lead time
+       rather than hide it.
+  */
+
+  function quantile(sorted, q) {
+    if (sorted.length === 0) return null;
+    if (sorted.length === 1) return sorted[0];
+    var pos = (sorted.length - 1) * q;
+    var lo = Math.floor(pos), hi = Math.ceil(pos);
+    if (lo === hi) return sorted[lo];
+    return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+  }
+
+  function summarise(ring, sum, count) {
+    var values = ringToArray(ring).slice().sort(function (a, b) { return a - b; });
+    return {
+      n: count,
+      mean: count > 0 ? sum / count : null,
+      median: quantile(values, 0.5),
+      p90: quantile(values, 0.9),
+      windowed: values.length
+    };
+  }
+
+  function measuredHours(sim) {
+    return Math.max(0, sim.time - sim.params.warmupHours);
+  }
+
+  function defectLedger(sim) {
+    var out = {
+      introduced: 0, signalledByTests: 0, detectedBeforeRelease: 0,
+      exposedInProduction: 0, detectedAfterRelease: 0, restored: 0,
+      exposedNeverDetected: 0, removedUndetected: 0, liveUndetected: 0, inPipeline: 0,
+      byClass: {}
+    };
+    for (var k = 0; k < DEFECT_CLASSES.length; k += 1) {
+      out.byClass[DEFECT_CLASSES[k].id] = {
+        introduced: 0, detectedBeforeRelease: 0, exposedInProduction: 0, detectedAfterRelease: 0
+      };
+    }
+    for (var i = 0; i < sim.ledger.length; i += 1) {
+      var d = sim.ledger[i];
+      var c = out.byClass[d.classId];
+      out.introduced += 1; c.introduced += 1;
+      if (d.signalledByTestsAt !== null) out.signalledByTests += 1;
+      if (d.detectedBeforeReleaseAt !== null) { out.detectedBeforeRelease += 1; c.detectedBeforeRelease += 1; }
+      if (d.exposedInProductionAt !== null) { out.exposedInProduction += 1; c.exposedInProduction += 1; }
+      if (d.detectedAfterReleaseAt !== null) { out.detectedAfterRelease += 1; c.detectedAfterRelease += 1; }
+      if (d.restoredAt !== null) out.restored += 1;
+      if (d.exposedInProductionAt !== null && d.detectedAfterReleaseAt === null) {
+        out.exposedNeverDetected += 1;
+        if (d.removedFromProductionAt !== null) out.removedUndetected += 1;
+        else out.liveUndetected += 1;
+      }
+      if (d.detectedBeforeReleaseAt === null && d.exposedInProductionAt === null) out.inPipeline += 1;
+    }
+    return out;
+  }
+
+  /* Pending (not yet accrued) user impact for the live releases, computed WITHOUT mutating the
+     simulation, so a snapshot is a pure read and may be taken as often as the interface likes. */
+  function pendingImpact(sim) {
+    var p = sim.params;
+    var exposed = 0, affected = 0, hours = 0;
+    for (var i = 0; i < sim.liveReleases.length; i += 1) {
+      var r = sim.liveReleases[i];
+      if (!(r.exposedFraction > 0)) continue;
+      var defects = liveDefectsOf(r);
+      if (defects.length === 0) continue;
+      var from = Math.max(r.lastAccrualAt, p.warmupHours);
+      var to = Math.max(sim.time, p.warmupHours);
+      if (!(to > from)) continue;
+      var dt = to - from;
+      var e = p.requestsPerHour * r.exposedFraction * dt;
+      var af = 0;
+      for (var j = 0; j < defects.length; j += 1) af += defects[j].manifestRate;
+      if (af > 1) af = 1;
+      exposed += e; affected += e * af; hours += dt;
+    }
+    return { exposed: exposed, affected: affected, hours: hours };
+  }
+
+  function capacityState(utilization) {
+    if (utilization < 0.7) return 'ok';
+    if (utilization <= 1.0) return 'warn';
+    return 'bad';
+  }
+
+  function snapshot(sim) {
+    var p = sim.params;
+    var hours = measuredHours(sim);
+    var days = hours / HOURS_PER_DAY;
+    var pending = pendingImpact(sim);
+    var ledger = defectLedger(sim);
+    var deployments = sim.counters.deployments;
+    var failed = sim.counters.failedDeployments;
+    var lead = summarise(sim.leadTimes, sim.totals.leadTimeSum, sim.totals.leadTimeCount);
+    var restore = summarise(sim.restoreTimes, sim.totals.restoreSum, sim.totals.restoreCount);
+    var util = pipelineUtilization(p);
+    var n = sim.totals.leadTimeCount;
+    var live = 0;
+    for (var i = 0; i < sim.liveReleases.length; i += 1) live += liveDefectsOf(sim.liveReleases[i]).length;
+    return {
+      version: VERSION,
+      seed: sim.seed,
+      time: sim.time,
+      days: sim.time / HOURS_PER_DAY,
+      measuredHours: hours,
+      measuredDays: days,
+      eventCount: sim.eventCount,
+
+      stages: {
+        backlog: backlog(sim),
+        inTest: sim.lanesBusy,
+        inRework: sim.inRework,
+        awaitingRelease: sim.releaseQueue.length,
+        releasesInFlight: sim.releasesInFlight,
+        liveReleases: sim.liveReleases.length,
+        liveDefectsInProduction: live
+      },
+
+      capacity: {
+        lanes: p.pipelineLanes,
+        nominalTestHours: nominalTestHours(p),
+        offeredPerDay: arrivalRatePerHour(p) * HOURS_PER_DAY,
+        servicePerDay: (p.pipelineLanes / nominalTestHours(p)) * HOURS_PER_DAY,
+        utilization: util,
+        state: capacityState(util),
+        maxBacklog: sim.counters.maxBacklog
+      },
+
+      /* The Four Keys. */
+      fourKeys: {
+        deploymentFrequencyPerDay: days > 0 ? deployments / days : null,
+        successfulDeploymentFrequencyPerDay: days > 0 ? (deployments - failed) / days : null,
+        leadTimeHours: lead,
+        changeFailureRate: deployments > 0 ? failed / deployments : null,
+        timeToRestoreHours: restore
+      },
+
+      /* The fifth measure, and the one the deployment strategy moves most. */
+      userImpact: {
+        requestsExposed: sim.totals.requestsExposed + pending.exposed,
+        requestsAffected: sim.totals.requestsAffected + pending.affected,
+        exposureHours: sim.totals.exposureHours + pending.hours,
+        requestsExposedPerDay: days > 0 ? (sim.totals.requestsExposed + pending.exposed) / days : null,
+        liveUndetectedDefects: ledger.liveUndetected
+      },
+
+      ledger: ledger,
+
+      admission: {
+        commits: sim.counters.commits,
+        defectiveCommits: sim.counters.defectiveCommits,
+        testRuns: sim.counters.testRuns,
+        testFailures: sim.counters.testFailures,
+        trueFailures: sim.counters.trueFailures,
+        flakyFailures: sim.counters.flakyFailures,
+        blockedDefective: sim.counters.blockedDefective,
+        blockedFlaky: sim.counters.blockedFlaky,
+        admittedWithFailingChecks: sim.counters.admittedWithFailingChecks,
+        reworks: sim.counters.reworks,
+        reworkRegressions: sim.counters.reworkRegressions,
+        releasesAborted: sim.counters.releasesAborted
+      },
+
+      deployments: {
+        total: deployments,
+        failed: failed,
+        succeeded: deployments - failed,
+        carryingUndetectedDefect: ledger.exposedNeverDetected,
+        releasesStarted: sim.counters.releasesStarted
+      },
+
+      leadTimeBreakdownHours: n > 0 ? {
+        waitForLane: sim.totals.waitLaneSum / n,
+        test: sim.totals.testSum / n,
+        rework: sim.totals.reworkSum / n,
+        batchWait: sim.totals.batchWaitSum / n,
+        deploy: sim.totals.deploySum / n
+      } : null,
+
+      backlogSamples: sim.backlogSamples
+    };
+  }
+
+  /* --- 8. Capacity sweep -----------------------------------------------------------------------
+     The fourth step of the classroom experiment: hold capacity fixed, raise the arrival rate, and
+     watch the pipeline develop its own performance knee. Each point is an INDEPENDENT seeded run
+     of this same engine, so the curve is measured rather than analytical. Pure: it allocates its
+     own simulations and mutates nothing the caller holds. */
+  function runSweep(options) {
+    var o = options || {};
+    var base = o.base || {};
+    var rates = o.arrivalRatesPerDay || [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 150];
+    var days = o.days === undefined ? 120 : o.days;
+    var warmupDays = o.warmupDays === undefined ? 10 : o.warmupDays;
+    var seed = o.seed === undefined ? DEFAULT_SEED : o.seed;
+    var points = [];
+    var servicePerDay = null;
+    for (var i = 0; i < rates.length; i += 1) {
+      var opts = {};
+      var keys = Object.keys(base);
+      for (var k = 0; k < keys.length; k += 1) opts[keys[k]] = base[keys[k]];
+      opts.arrivalRatePerDay = rates[i];
+      opts.warmupHours = warmupDays * HOURS_PER_DAY;
+      opts.seed = (seed + i * 7919) >>> 0;
+      var sim = createSimulation(opts);
+      advanceSimulation(sim, { untilTime: (days + warmupDays) * HOURS_PER_DAY });
+      var s = snapshot(sim);
+      servicePerDay = s.capacity.servicePerDay;
+      points.push({
+        arrivalPerDay: rates[i],
+        utilization: s.capacity.utilization,
+        leadTimeMeanHours: s.fourKeys.leadTimeHours.mean,
+        leadTimeP90Hours: s.fourKeys.leadTimeHours.p90,
+        backlogFinal: s.stages.backlog,
+        deploymentsPerDay: s.fourKeys.deploymentFrequencyPerDay,
+        changeFailureRate: s.fourKeys.changeFailureRate,
+        requestsExposedPerDay: s.userImpact.requestsExposedPerDay
+      });
+    }
+    /* The build+test stage's nominal throughput, which is the same for every point (capacity is
+       held fixed; only the arrival rate moves). This is the vertical line the knee forms at. */
+    return { points: points, servicePerDay: servicePerDay, days: days, warmupDays: warmupDays };
+  }
+
+  /* --- 9. Presets -------------------------------------------------------------------------------
+     The first four are the classroom experiment, in order. Run them one after another and the
+     tradeoff appears without anyone having to be told what to look for. */
+  var PRESETS = [
+    {
+      id: 'step-1-thorough',
+      step: 1,
+      name: '1 · Thorough, required, immediate',
+      why: 'High arrival, deepest tests, nothing may ship red. Watch the backlog.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'thorough',
+        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 1
+      }
+    },
+    {
+      id: 'step-2-shallower',
+      step: 2,
+      name: '2 · Reduce test depth',
+      why: 'Standard tests instead. Lead time improves; more defects reach users.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 1
+      }
+    },
+    {
+      id: 'step-3-canary',
+      step: 3,
+      name: '3 · Enable canary',
+      why: 'A 5% soak before the fleet. Longer lead time, lower exposure — for the defects it sees.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5
+      }
+    },
+    {
+      id: 'step-4-knee',
+      step: 4,
+      name: '4 · Hold capacity, raise arrivals',
+      why: 'Same two lanes, 120 changes a day. The pipeline grows its own performance knee.',
+      params: {
+        arrivalRate: null, arrivalRatePerDay: 120, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5
+      }
+    },
+    {
+      id: 'advisory',
+      name: 'Advisory checks',
+      why: 'Same factory, but a red build only warns. Compare what the tests found with what shipped.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'advisory', releaseStrategy: 'immediate', batchSize: 1
+      }
+    },
+    {
+      id: 'rare-defects',
+      name: 'Rare defects only',
+      why: 'Every defect manifests on one request in thousands. The canary almost never finds one.',
+      params: {
+        arrivalRate: 'medium', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
+        defectClassWeights: { obvious: 0, conditional: 0, rare: 0.7, latent: 0.3 }
+      }
+    },
+    {
+      id: 'obvious-defects',
+      name: 'Obvious defects only',
+      why: 'The flattering case. Here the canary catches nearly everything before full rollout.',
+      params: {
+        arrivalRate: 'medium', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
+        defectClassWeights: { obvious: 1, conditional: 0, rare: 0, latent: 0 }
+      }
+    },
+    {
+      id: 'big-batch',
+      name: 'Ten changes per release',
+      why: 'Fewer, larger releases. Deployment frequency falls; one bad change holds nine good ones.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'blueGreen', batchSize: 10
+      }
+    },
+    {
+      id: 'blue-green-small',
+      name: 'Blue-green, one at a time',
+      why: 'Synthetic verification instead of a real-traffic soak, and a fast switch back.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'blueGreen', batchSize: 1
+      }
+    },
+    {
+      id: 'defaults',
+      name: 'Factory defaults',
+      why: 'Back to the starting configuration.',
+      params: {
+        arrivalRate: DEFAULTS.arrivalRate, arrivalRatePerDay: null, testDepth: DEFAULTS.testDepth,
+        admissionPolicy: DEFAULTS.admissionPolicy, releaseStrategy: DEFAULTS.releaseStrategy,
+        batchSize: DEFAULTS.batchSize, defectClassWeights: null
+      }
+    }
+  ];
+
+  function findPreset(id) {
+    for (var i = 0; i < PRESETS.length; i += 1) if (PRESETS[i].id === id) return PRESETS[i];
+    throw new RangeError('unknown preset: ' + id);
+  }
+
+  /* Applying a preset always RESETS: these are experiments to watch from an empty factory, not
+     perturbations of a running one. */
+  function applyPreset(sim, id) {
+    var preset = findPreset(id);
+    var keys = Object.keys(preset.params);
+    for (var i = 0; i < keys.length; i += 1) sim.params[keys[i]] = preset.params[keys[i]];
+    validateParams(sim.params);
+    resetSimulation(sim);
+    return preset;
+  }
+
+  /* --- 10. Self-tests ---------------------------------------------------------------------------
+     A compact in-page suite over the same assertions the Node suite checks in depth. It exists so
+     the instrument can be checked in the room it is being used in, and so a browser test has one
+     call that exercises the model. Nothing in the interface depends on it. */
+  function runSelfTests() {
+    var results = [];
+    function check(name, fn) {
+      try {
+        var detail = fn();
+        results.push({ name: name, passed: true, detail: detail || '' });
+      } catch (err) {
+        results.push({ name: name, passed: false, detail: String((err && err.message) || err) });
+      }
+    }
+    function assert(cond, message) { if (!cond) throw new Error(message || 'assertion failed'); }
+
+    check('PRNG: same seed replays the same sequence', function () {
+      var a = createRng(30861), b = createRng(30861);
+      for (var i = 0; i < 1000; i += 1) assert(a() === b(), 'diverged at draw ' + i);
+      return '1000 draws identical';
+    });
+
+    check('Same seed and parameters replay the same event trace', function () {
+      function trace() {
+        var sim = createSimulation({ traceLimit: 6000, seed: 7 });
+        advanceSimulation(sim, { untilTime: 24 * 60 });
+        return sim.trace.map(function (e) { return e.kind + '@' + e.time; }).join('|');
+      }
+      var a = trace(), b = trace();
+      assert(a === b, 'two runs diverged');
+      assert(a.length > 1000, 'trace suspiciously short: ' + a.length);
+      return a.split('|').length + ' events identical';
+    });
+
+    check('Event trace is independent of how time is chunked', function () {
+      function trace(chunks) {
+        var sim = createSimulation({ seed: 11 });
+        var out = [];
+        for (var k = 1; k <= chunks; k += 1) {
+          var r = advanceSimulation(sim, { untilTime: 24 * 60 * k / chunks, trace: true });
+          for (var i = 0; i < r.trace.length; i += 1) out.push(r.trace[i].kind + '@' + r.trace[i].time);
+        }
+        return out;
+      }
+      var a = trace(1), b = trace(300);
+      assert(a.length === b.length, 'lengths differ: ' + a.length + ' vs ' + b.length);
+      for (var i = 0; i < a.length; i += 1) assert(a[i] === b[i], 'diverged at event ' + i);
+      return a.length + ' events identical at two chunk sizes';
+    });
+
+    check('Simulated time never moves backward', function () {
+      var sim = createSimulation({ seed: 3, releaseStrategy: 'canary' });
+      var last = -1, steps = 0;
+      for (var i = 0; i < 40000; i += 1) {
+        var ev = stepSimulation(sim);
+        if (ev === null) break;
+        assert(ev.time >= last, 'time moved backward at event ' + i);
+        last = ev.time; steps += 1;
+      }
+      return steps + ' events nondecreasing';
+    });
+
+    check('The five defect events stay mutually consistent', function () {
+      var strategies = ['immediate', 'canary', 'blueGreen'];
+      var checked = 0;
+      for (var s = 0; s < strategies.length; s += 1) {
+        var sim = createSimulation({ releaseStrategy: strategies[s], seed: 23, arrivalRate: 'high' });
+        advanceSimulation(sim, { untilTime: 24 * 90 });
+        for (var i = 0; i < sim.ledger.length; i += 1) {
+          var d = sim.ledger[i];
+          assert(d.introducedAt !== null, 'no introduction time');
+          assert(!(d.detectedBeforeReleaseAt !== null && d.exposedInProductionAt !== null),
+            'defect ' + d.id + ' was both blocked and exposed');
+          if (d.detectedAfterReleaseAt !== null) {
+            assert(d.exposedInProductionAt !== null, 'detected after release without exposure');
+            assert(d.detectedAfterReleaseAt >= d.exposedInProductionAt, 'detected before exposed');
+          }
+          if (d.restoredAt !== null) {
+            assert(d.detectedAfterReleaseAt !== null, 'restored without a detected failure');
+            assert(d.restoredAt >= d.detectedAfterReleaseAt, 'restored before detected');
+          }
+          checked += 1;
+        }
+      }
+      assert(checked > 50, 'only ' + checked + ' defects examined');
+      return checked + ' defect instances consistent across three strategies';
+    });
+
+    check('The defect ledger reconciles', function () {
+      var sim = createSimulation({ seed: 5, arrivalRate: 'high', releaseStrategy: 'canary' });
+      advanceSimulation(sim, { untilTime: 24 * 90 });
+      var l = defectLedger(sim);
+      assert(l.introduced === l.detectedBeforeRelease + l.exposedInProduction + l.inPipeline,
+        l.introduced + ' != ' + l.detectedBeforeRelease + ' + ' + l.exposedInProduction + ' + ' + l.inPipeline);
+      assert(l.restored <= l.detectedAfterRelease, 'more restored than detected');
+      return l.introduced + ' introduced, ' + l.exposedInProduction + ' exposed, ' + l.restored + ' restored';
+    });
+
+    check('Thorough testing signals more than smoke, and never everything', function () {
+      function signalled(depth) {
+        var sim = createSimulation({ testDepth: depth, admissionPolicy: 'advisory', seed: 41, arrivalRate: 'high', pipelineLanes: 12 });
+        advanceSimulation(sim, { untilTime: 24 * 240 });
+        var l = defectLedger(sim);
+        return { signalled: l.signalledByTests, introduced: l.introduced };
+      }
+      var smoke = signalled('smoke'), thorough = signalled('thorough');
+      assert(thorough.signalled / thorough.introduced > smoke.signalled / smoke.introduced,
+        'thorough did not beat smoke');
+      assert(thorough.signalled < thorough.introduced, 'thorough caught every defect');
+      return 'smoke ' + (100 * smoke.signalled / smoke.introduced).toFixed(1) + '%, thorough '
+        + (100 * thorough.signalled / thorough.introduced).toFixed(1) + '%';
+    });
+
+    check('Advisory admission lets failing changes through; required does not', function () {
+      function run(policy) {
+        var sim = createSimulation({ admissionPolicy: policy, seed: 61, arrivalRate: 'medium' });
+        advanceSimulation(sim, { untilTime: 24 * 120 });
+        return snapshot(sim).admission;
+      }
+      var advisory = run('advisory'), required = run('required');
+      assert(advisory.admittedWithFailingChecks > 0, 'advisory admitted nothing red');
+      assert(required.admittedWithFailingChecks === 0, 'required admitted something red');
+      return advisory.admittedWithFailingChecks + ' red changes admitted under advisory, 0 under required';
+    });
+
+    check('Canary effectiveness depends on the defect, not on a flag', function () {
+      function exposedFully(weights) {
+        var sim = createSimulation({
+          releaseStrategy: 'canary', defectClassWeights: weights, seed: 97,
+          arrivalRate: 'medium', admissionPolicy: 'advisory'
+        });
+        advanceSimulation(sim, { untilTime: 24 * 240 });
+        var l = defectLedger(sim);
+        return l.exposedInProduction > 0 ? l.detectedAfterRelease / l.exposedInProduction : 0;
+      }
+      var obvious = exposedFully({ obvious: 1, conditional: 0, rare: 0, latent: 0 });
+      var rare = exposedFully({ obvious: 0, conditional: 0, rare: 0, latent: 1 });
+      assert(obvious > rare + 0.2, 'obvious ' + obvious.toFixed(3) + ' vs rare ' + rare.toFixed(3));
+      return 'detected-in-production share: obvious ' + (100 * obvious).toFixed(0)
+        + '%, latent ' + (100 * rare).toFixed(0) + '%';
+    });
+
+    check('Invalid parameters are rejected', function () {
+      var rejected = 0;
+      var bad = [
+        { arrivalRate: 'enormous' }, { testDepth: 'exhaustive' }, { admissionPolicy: 'maybe' },
+        { releaseStrategy: 'yolo' }, { batchSize: 0 }, { batchSize: 2.5 }, { pipelineLanes: 0 },
+        { defectRate: 1.5 }, { defectRate: -0.1 }, { monitoringQuality: 2 },
+        { requestsPerHour: -1 }, { canaryFraction: 0 }, { canaryFraction: 1.5 },
+        { arrivalRatePerDay: 0 }, { batchMaxWaitHours: 0 }
+      ];
+      for (var i = 0; i < bad.length; i += 1) {
+        try { createSimulation(bad[i]); } catch (e) { rejected += 1; }
+      }
+      assert(rejected === bad.length, 'only ' + rejected + ' of ' + bad.length + ' were rejected');
+      return rejected + ' of ' + bad.length + ' rejected';
+    });
+
+    check('User impact accumulates only while a defective release is exposed', function () {
+      /* Monitoring off, no user reports, one lane, one obvious defect profile: exposure runs from
+         first rollout to the end of the run, so the integral is exact arithmetic. */
+      var sim = createSimulation({
+        seed: 2, arrivalRate: 'low', testDepth: 'smoke', admissionPolicy: 'advisory',
+        releaseStrategy: 'immediate', defectRate: 1, monitoringQuality: 0,
+        userReportsPerAffectedRequest: 0, requestsPerHour: 1000, durationSigma: 0,
+        defectProfile: { testDetectability: 0, manifestRate: 0.5, trafficDetectability: 0.9 },
+        flakyTestRate: 0, batchSize: 1
+      });
+      advanceSimulation(sim, { untilTime: 24 * 30 });
+      var s = snapshot(sim);
+      assert(s.fourKeys.changeFailureRate === 0, 'something was detected with monitoring off');
+      assert(s.userImpact.requestsExposed > 0, 'no exposure accumulated');
+      assert(s.ledger.detectedAfterRelease === 0, 'a defect was detected anyway');
+      var perHour = s.userImpact.requestsExposed / s.userImpact.exposureHours;
+      assert(Math.abs(perHour - 1000) < 1e-6, 'exposure rate ' + perHour + ' != 1000 req/h');
+      return s.userImpact.exposureHours.toFixed(1) + ' exposure-hours at exactly 1000 req/h';
+    });
+
+    check('Equal-time events order completion before commit', function () {
+      var ranks = EVENT_ORDER.slice();
+      assert(ranks.indexOf('restoreComplete') < ranks.indexOf('commit'), 'commit outranks restore');
+      assert(ranks.indexOf('productionDetect') < ranks.indexOf('soakEnd'), 'soakEnd outranks detect');
+      assert(ranks.indexOf('testFinish') < ranks.indexOf('commit'), 'commit outranks testFinish');
+      var a = { time: 5, kind: 'commit', seq: 1 }, b = { time: 5, kind: 'testFinish', seq: 2 };
+      assert(compareEvents(a, b) > 0, 'tie-break did not favour testFinish');
+      return EVENT_ORDER.join(' < ');
+    });
+
+    var passed = 0;
+    for (var i = 0; i < results.length; i += 1) if (results[i].passed) passed += 1;
+    return { passed: passed, failed: results.length - passed, total: results.length, results: results };
+  }
+
+  /* --- 11. Namespace ---------------------------------------------------------------------------- */
+  var root = typeof window !== 'undefined' ? window : globalThis;
+  root.ReleaseFactory = {
+    VERSION: VERSION,
+    DEFAULT_SEED: DEFAULT_SEED,
+    HOURS_PER_DAY: HOURS_PER_DAY,
+    DEFAULTS: DEFAULTS,
+    EVENT_ORDER: EVENT_ORDER,
+    ARRIVAL_RATES: ARRIVAL_RATES,
+    TEST_DEPTHS: TEST_DEPTHS,
+    ADMISSION_POLICIES: ADMISSION_POLICIES,
+    RELEASE_STRATEGIES: RELEASE_STRATEGIES,
+    BATCH_SIZES: BATCH_SIZES,
+    DEFECT_CLASSES: DEFECT_CLASSES,
+    PRESETS: PRESETS,
+    /* lifecycle */
+    createSimulation: createSimulation,
+    resetSimulation: resetSimulation,
+    stepSimulation: stepSimulation,
+    advanceSimulation: advanceSimulation,
+    /* reads */
+    snapshot: snapshot,
+    defectLedger: defectLedger,
+    backlog: backlog,
+    pipelineUtilization: pipelineUtilization,
+    arrivalRatePerHour: arrivalRatePerHour,
+    nominalTestHours: nominalTestHours,
+    detectionRate: detectionRate,
+    syntheticCatchProbability: syntheticCatchProbability,
+    meanTestDetectability: meanTestDetectability,
+    normalisedWeights: normalisedWeights,
+    capacityState: capacityState,
+    /* experiments */
+    runSweep: runSweep,
+    applyPreset: applyPreset,
+    findPreset: findPreset,
+    runSelfTests: runSelfTests,
+    /* primitives, for the test suite */
+    createRng: createRng,
+    exponentialSample: exponentialSample,
+    normalSample: normalSample,
+    lognormalMultiplier: lognormalMultiplier,
+    compareEvents: compareEvents,
+    quantile: quantile
+  };
+}());
+</script>
+</body>
+</html>

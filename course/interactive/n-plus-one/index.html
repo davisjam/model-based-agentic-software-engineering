@@ -470,7 +470,7 @@ for r in reservations:
 <!-- ======================= COMPARISON ======================= -->
 <section class="panel" aria-labelledby="h-compare">
   <h2 id="h-compare">All four configurations, same N, D and latency</h2>
-  <div class="canvas-wrap"><canvas id="c-compare" width="1200" height="260"
+  <div class="canvas-wrap"><canvas id="c-compare" width="1200" height="290"
     role="img" aria-labelledby="compare-alt"></canvas></div>
   <p id="compare-alt" class="vh" aria-live="polite"></p>
   <p class="note">
@@ -1401,6 +1401,13 @@ for r in reservations:
       ctx.globalAlpha = 0.85;
       ctx.fill();
       ctx.globalAlpha = 1;
+      /* At 201 queries each bar is half a percent of the width, so the honest polygon is a
+         hairline. Stroke its outline rather than widening the bars: the geometry stays true and
+         the ribbon becomes visible on a projector. The note under the chart says so. */
+      ctx.strokeStyle = kindColour('room', g.p);
+      ctx.lineWidth = 3;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
 
       /* The first query is the reservations query and deserves its own colour even here. */
       var q0 = cost.timeline[0];
@@ -1446,8 +1453,9 @@ for r in reservations:
       ? 'Every query is drawn. Each bar is one round trip plus that statement’s processing; '
         + 'they do not overlap, because the loop cannot ask for a room it has not reached yet.'
       : 'Above ' + DETAIL_LIMIT + ' queries the timeline draws a band with the count rather than '
-        + M.formatCount(cost.queries) + ' separate bars. The slope is the accumulation: each query '
-        + 'starts where the one before it finished.';
+        + M.formatCount(cost.queries) + ' separate bars — at this scale each bar is a fraction of '
+        + 'a pixel wide, so the band is outlined to stay visible. The slope is the accumulation: '
+        + 'each query starts where the one before it finished.';
   }
 
   function timelineDescription(cost, detail) {
@@ -1474,10 +1482,11 @@ for r in reservations:
     var x1 = g.w - 250;
     var yTop = 16;
     var maxMs = Math.max.apply(null, rows.map(function (r) { return r.totalMs; }).concat([1]));
-    var pitch = (g.h - yTop - 30) / rows.length;
+    var yAxis = g.h - 48;   /* leave room below the ticks for the axis caption */
+    var pitch = (yAxis - yTop) / rows.length;
     var barH = Math.min(30, pitch - 12);
 
-    drawTimeAxis(g, x0, x1, yTop, g.h - 30, maxMs);
+    drawTimeAxis(g, x0, x1, yTop, yAxis, maxMs);
 
     ctx.textBaseline = 'middle';
     rows.forEach(function (r, i) {
