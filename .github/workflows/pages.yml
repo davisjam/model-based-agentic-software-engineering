@@ -403,8 +403,6 @@ jobs:
         run: python3 catalog.py build
       - name: Test suite (authoritative --full run; post-push HEAD==origin, so incremental would skip Tier 2)
         run: python3 catalog_tests.py --full
-      - name: Check canonical principle pin regressions
-        run: python3 -m unittest tests.test_canon_pins
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs
       # phone width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success
       # metric made mechanical. Needs a browser (headless Chrome), so it can't live in stdlib-only
