@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: TWO graphs drawn as
+     two tinted columns, with the cross-column edges carrying the point that the internal components are
+     the consumers of the inherited packages. The reading depends on the column zones (which we wrote /
+     which we inherited), on the indent that marks a transitive package as reached THROUGH another, and on
+     edges that cross the zone boundary. A graph auto-layout mixes both graphs into one and loses the
+     distinction the figure exists to draw. Palette, stroke, and type follow the course figure vocabulary
+     (sibling ../../02-data-management/figures/query-access-layers.svg,
+     ../../01-compute-environments-and-deployment/figures/deployment-topology.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"
+     role="img" aria-labelledby="iedTitle iedDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="iedTitle">Two dependency graphs for one reservation service: the internal structure its
+    developers wrote, and the external packages it inherited, with edges from each internal component to
+    the packages it uses</title>
+  <desc id="iedDesc">Two tinted columns hold two graphs. The INTERNAL STRUCTURE column, labeled code we
+    wrote, stacks four components: HTTP handlers, then booking policy, then persistence, then the database,
+    each joined to the next by a downward arrow. The EXTERNAL DEPENDENCIES column, labeled code we
+    inherited, holds four packages: a web framework, an HTTP parser drawn indented beneath it, a date
+    library, and a database driver. Three edges cross from the left column to the right: HTTP handlers uses
+    the web framework, booking policy uses the date library, and persistence uses the database driver. One
+    further edge stays inside the right column, drawn dashed from the web framework down to the HTTP
+    parser, because the parser arrives transitively rather than by our own choice. A legend distinguishes
+    the solid uses edges from the dashed transitive edge. Closing notes read that we can restructure the
+    left graph and can only choose, isolate, or replace the right one, and that a direct dependency is one
+    we chose while a transitive dependency arrives with it.</desc>
+
+  <defs>
+    <marker id="ied-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ied-ah-note" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="800" height="500" fill="#fdfcf9"/>
+
+  <text x="400" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">TWO GRAPHS: THE STRUCTURE WE WROTE, THE PACKAGES WE INHERITED</text>
+
+  <!-- column zones (fill only, so no stroke crosses the edges that span them) -->
+  <rect x="30" y="52" width="310" height="348" rx="12" fill="#f1f5f8"/>
+  <rect x="440" y="52" width="330" height="348" rx="12" fill="#f8f3ea"/>
+
+  <!-- column headers -->
+  <text x="185" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">INTERNAL STRUCTURE</text>
+  <text x="185" y="98" text-anchor="middle" font-size="13" fill="#41586c">code we wrote</text>
+  <text x="605" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#8a6a3f">EXTERNAL DEPENDENCIES</text>
+  <text x="605" y="98" text-anchor="middle" font-size="13" fill="#41586c">code we inherited</text>
+
+  <!-- ===== internal structure ===== -->
+  <rect x="55" y="112" width="260" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="185" y="141" text-anchor="middle" font-size="14.5" fill="#1c1917">HTTP handlers</text>
+  <line x1="185" y1="158" x2="185" y2="182" stroke="#2f5169" stroke-width="2" marker-end="url(#ied-ah)"/>
+  <rect x="55" y="184" width="260" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="185" y="213" text-anchor="middle" font-size="14.5" fill="#1c1917">Booking policy</text>
+  <line x1="185" y1="230" x2="185" y2="254" stroke="#2f5169" stroke-width="2" marker-end="url(#ied-ah)"/>
+  <rect x="55" y="256" width="260" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="185" y="285" text-anchor="middle" font-size="14.5" fill="#1c1917">Persistence</text>
+  <line x1="185" y1="302" x2="185" y2="326" stroke="#2f5169" stroke-width="2" marker-end="url(#ied-ah)"/>
+  <rect x="55" y="328" width="260" height="46" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="185" y="357" text-anchor="middle" font-size="14.5" fill="#1c1917">Database</text>
+
+  <!-- ===== external dependencies ===== -->
+  <rect x="465" y="112" width="245" height="46" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="587" y="141" text-anchor="middle" font-size="14.5" fill="#1c1917">Web framework</text>
+  <rect x="505" y="184" width="205" height="46" rx="8" fill="#faf6ee" stroke="#8a6a3f" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="607" y="213" text-anchor="middle" font-size="14.5" fill="#1c1917">HTTP parser</text>
+  <rect x="465" y="256" width="245" height="46" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="587" y="285" text-anchor="middle" font-size="14.5" fill="#1c1917">Date library</text>
+  <rect x="465" y="328" width="245" height="46" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="587" y="357" text-anchor="middle" font-size="14.5" fill="#1c1917">Database driver</text>
+
+  <!-- the parser is not ours to choose: it arrives through the framework -->
+  <line x1="607" y1="158" x2="607" y2="182" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ied-ah-note)"/>
+  <text x="718" y="213" font-size="12" fill="#9a3f12">transitive</text>
+
+  <!-- cross-column edges: each internal component reaches the packages it uses -->
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#ied-ah)">
+    <line x1="315" y1="135" x2="461" y2="135"/>
+    <line x1="315" y1="207" x2="461" y2="279"/>
+    <line x1="315" y1="279" x2="461" y2="351"/>
+  </g>
+
+  <!-- legend -->
+  <line x1="245" y1="420" x2="283" y2="420" stroke="#2f5169" stroke-width="2" marker-end="url(#ied-ah)"/>
+  <text x="293" y="425" font-size="13" fill="#41586c">uses</text>
+  <line x1="372" y1="420" x2="410" y2="420" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ied-ah-note)"/>
+  <text x="420" y="425" font-size="13" fill="#41586c">arrives transitively</text>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="400" y="462">We can restructure the left graph. We can only choose, isolate, or replace the right one.</text>
+    <text x="400" y="482">A direct dependency is one we chose; a transitive dependency arrives with it.</text>
+  </g>
+</svg>

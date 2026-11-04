@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: two panels hold the
+     SAME three components, so the figure's meaning is the DIFFERENCE between them rather than either
+     graph on its own. One extra edge, drawn in the invalid-state red and routed around the layer it
+     skips, is the whole finding. A graph auto-layout would draw two unrelated diagrams and could not
+     hold the components in identical positions, which is the only reason the comparison reads.
+     Palette, stroke, and type follow the course figure vocabulary (sibling
+     ../../02-data-management/figures/double-booking-history.svg,
+     ../../01-compute-environments-and-deployment/figures/deployment-topology.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 480" width="780" height="480"
+     role="img" aria-labelledby="raTitle raDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="raTitle">The same three components drawn twice, as the architecture intended them and as the
+    implementation realizes them, with one dependency present only in the implementation</title>
+  <desc id="raDesc">Two panels hold the same three components in the same positions. The INTENDED MODEL
+    panel stacks HTTP handlers above booking policy above persistence, with one arrow from HTTP handlers
+    down to booking policy and a second from booking policy down to persistence; its note reads that each
+    dependency points one layer down and no layer is skipped. The IMPLEMENTATION panel repeats those three
+    components and both of those arrows, and adds a third edge drawn in red: it leaves the right side of
+    HTTP handlers, routes down around the booking policy layer, and enters persistence directly. That edge
+    is labeled a forbidden dependency, because HTTP reaches persistence while skipping booking policy. A
+    closing note reads that recovery produces the right-hand graph, and that comparing it with the intended
+    model is what locates the departure, which a dependency graph alone does not show.</desc>
+
+  <defs>
+    <marker id="ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ra-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="780" height="480" fill="#fdfcf9"/>
+
+  <text x="390" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">ARCHITECTURAL RECOVERY COMPARES INTENDED AND ACTUAL STRUCTURE</text>
+
+  <!-- panel bands -->
+  <g fill="#faf7f0" stroke="#2f5169" stroke-width="2">
+    <rect x="30" y="58" width="345" height="360" rx="12"/>
+    <rect x="405" y="58" width="345" height="360" rx="12"/>
+  </g>
+
+  <!-- panel headers -->
+  <g text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">
+    <text x="202" y="88">INTENDED MODEL</text>
+    <text x="555" y="88">IMPLEMENTATION</text>
+  </g>
+  <g text-anchor="middle" font-size="13" fill="#41586c">
+    <text x="202" y="108">what the architecture permits</text>
+    <text x="555" y="108">what the code actually does</text>
+  </g>
+
+  <!-- ===== left panel: the intended model ===== -->
+  <rect x="77" y="126" width="250" height="52" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="202" y="158" text-anchor="middle" font-size="14.5" fill="#1c1917">HTTP handlers</text>
+  <line x1="202" y1="178" x2="202" y2="202" stroke="#2f5169" stroke-width="2" marker-end="url(#ra-ah)"/>
+  <rect x="77" y="204" width="250" height="52" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="202" y="236" text-anchor="middle" font-size="14.5" fill="#1c1917">Booking policy</text>
+  <line x1="202" y1="256" x2="202" y2="280" stroke="#2f5169" stroke-width="2" marker-end="url(#ra-ah)"/>
+  <rect x="77" y="282" width="250" height="52" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="202" y="314" text-anchor="middle" font-size="14.5" fill="#1c1917">Persistence</text>
+
+  <g text-anchor="middle" font-size="12.5" font-style="italic" fill="#41586c">
+    <text x="202" y="368">each dependency points one layer down</text>
+    <text x="202" y="388">and no layer is skipped</text>
+  </g>
+
+  <!-- ===== right panel: the recovered implementation ===== -->
+  <rect x="430" y="126" width="250" height="52" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="555" y="158" text-anchor="middle" font-size="14.5" fill="#1c1917">HTTP handlers</text>
+  <line x1="555" y1="178" x2="555" y2="202" stroke="#2f5169" stroke-width="2" marker-end="url(#ra-ah)"/>
+  <rect x="430" y="204" width="250" height="52" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="555" y="236" text-anchor="middle" font-size="14.5" fill="#1c1917">Booking policy</text>
+  <line x1="555" y1="256" x2="555" y2="280" stroke="#2f5169" stroke-width="2" marker-end="url(#ra-ah)"/>
+  <rect x="430" y="282" width="250" height="52" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="555" y="314" text-anchor="middle" font-size="14.5" fill="#1c1917">Persistence</text>
+
+  <!-- the one edge the intended model does not permit: routed clear of the layer it skips -->
+  <polyline points="680,152 716,152 716,308 686,308" fill="none" stroke="#8a2f2f" stroke-width="2.5"
+            marker-end="url(#ra-ah-red)"/>
+
+  <g text-anchor="middle" fill="#8a2f2f">
+    <text x="555" y="368" font-size="13" font-weight="700">FORBIDDEN DEPENDENCY</text>
+    <text x="555" y="388" font-size="12.5">HTTP reaches persistence, skipping booking policy</text>
+  </g>
+
+  <g text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">
+    <text x="390" y="446">Recovery produces the right-hand graph. Comparing it with the intended model</text>
+    <text x="390" y="466">is what locates the departure, which either graph alone leaves invisible.</text>
+  </g>
+</svg>
