@@ -964,6 +964,9 @@ footer {
        visible — the median moves, the mean barely does. */
     sim.failureExposures = createRing(p.quantileWindow);
     sim.backlogSamples = [];     /* {time, backlog, releaseQueue, liveDefects} — for the chart */
+    /* The sampling clock lives on the simulation, not on the call, so the series is evenly spaced
+       in SIMULATED time however the interface chunks its advances — one frame or a thousand. */
+    sim.nextSampleAt = 0;
     sim.trace = [];
 
     scheduleNextCommit(sim);
@@ -1595,16 +1598,16 @@ footer {
     var sampleEvery = o.sampleEvery === undefined ? 0 : o.sampleEvery;
     var processed = 0;
     var trace = o.trace ? [] : null;
-    var nextSample = sampleEvery > 0 ? sim.time : Infinity;
+    if (sampleEvery > 0 && sim.nextSampleAt < sim.time) sim.nextSampleAt = sim.time;
     for (;;) {
       var next = heapPeek(sim.events);
       if (next === null) break;
       if (next.time > untilTime) break;
       if (processed >= maxEvents) break;
       if (sim.counters.deployments >= maxDeployments) break;
-      while (next.time >= nextSample) {
-        sampleBacklog(sim, nextSample);
-        nextSample += sampleEvery;
+      while (sampleEvery > 0 && next.time >= sim.nextSampleAt) {
+        sampleBacklog(sim, sim.nextSampleAt);
+        sim.nextSampleAt += sampleEvery;
       }
       var ev = stepSimulation(sim);
       processed += 1;
@@ -1612,7 +1615,10 @@ footer {
     }
     if (isFinite(untilTime) && untilTime > sim.time) {
       sim.time = untilTime;
-      while (untilTime >= nextSample) { sampleBacklog(sim, nextSample); nextSample += sampleEvery; }
+      while (sampleEvery > 0 && untilTime >= sim.nextSampleAt) {
+        sampleBacklog(sim, sim.nextSampleAt);
+        sim.nextSampleAt += sampleEvery;
+      }
     }
     return { events: processed, time: sim.time, trace: trace };
   }

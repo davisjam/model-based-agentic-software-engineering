@@ -161,6 +161,66 @@ test('the page attributes the Stack Overflow pattern honestly', () => {
   assert.match(why, /theirs was/, 'the page does not say whose expression it was');
 });
 
+test('every canvas is described for assistive technology, and the chart has a text equivalent', () => {
+  const canvases = [...html.matchAll(/<canvas[^>]*>/g)].map((m) => m[0]);
+  assert.equal(canvases.length, 2, `expected 2 canvases, found ${canvases.length}`);
+  for (const c of canvases) {
+    assert.match(c, /role="img"/, `canvas without role="img": ${c}`);
+    assert.match(c, /aria-labelledby="/, `canvas without a description: ${c}`);
+  }
+  /* The descriptions are live regions, so they update as a run proceeds rather than describing the
+     empty chart forever. */
+  for (const id of ['growth-alt', 'work-alt']) {
+    assert.match(html, new RegExp(`id="${id}"[^>]*aria-live="polite"`), `${id} is not live`);
+  }
+  /* And the measured chart has a real text equivalent, not merely a summary: a table whose rows
+     are the plotted points. */
+  assert.match(html, /id="results-table"/);
+  assert.match(html, /the chart’s text equivalent/);
+});
+
+test('the backtracking diagram is labelled a model and not a trace', () => {
+  /* The single most important label on the page, and the one a later edit is most likely to
+     shorten into a claim the page must not make. */
+  const start = html.indexOf('id="model-caveat"');
+  assert.ok(start > 0, 'there is no caveat on the backtracking diagram');
+  const box = html.slice(start, start + 1500);
+  assert.match(box, /conceptual model of backtracking, not a trace/);
+  assert.match(box, /may optimise some away/);
+  assert.match(box, /compared<\/em> against the measurements/);
+  assert.match(box, /never as a picture of what happened/);
+  /* And the engine agrees: every model it hands out declares itself one. */
+  const R = loadEngine();
+  for (const id of R.experimentIds()) {
+    assert.equal(R.backtrackingModel(id).isModel, true);
+  }
+});
+
+test('the time axis offers a linear and a logarithmic reading', () => {
+  for (const scale of ['linear', 'logy', 'loglog']) {
+    assert.match(html, new RegExp(`data-scale="${scale}"`), `no ${scale} control`);
+  }
+  /* Exactly one is pressed at load, or the control has no initial state. */
+  assert.equal((html.match(/data-scale="[a-z]+" aria-pressed="true"/g) || []).length, 1);
+  /* And the page says how to READ each mode, which is the part that makes the toggle teach
+     something rather than merely redraw. */
+  assert.match(html, /an\s+exponential series straightens into a line/);
+  assert.match(html, /a polynomial series straightens, and its slope is the\s+exponent/);
+});
+
+test('the chart distinguishes a terminated trial without relying on colour', () => {
+  assert.match(html, /open marker on the deadline line = terminated, no time measured/);
+  /* Each series carries a marker glyph and a dash style as well as a hue. */
+  const seriesBlock = html.slice(html.indexOf('var SERIES = {'), html.indexOf('var palette = {}'));
+  assert.ok(seriesBlock.length > 100, 'the series table could not be located');
+  for (const field of ['glyph', 'dash', 'marker', 'css']) {
+    assert.ok(seriesBlock.includes(`${field}:`), `the series table has no ${field}`);
+  }
+  for (const glyph of ['●', '■', '▲', '◆']) {
+    assert.ok(seriesBlock.includes(glyph), `series glyph ${glyph} is missing`);
+  }
+});
+
 test('the file is small enough to hand to a classroom', () => {
   const bytes = Buffer.byteLength(html, 'utf8');
   assert.ok(bytes < 250000, `${DEMO_HTML} is ${bytes} bytes`);
