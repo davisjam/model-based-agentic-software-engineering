@@ -20,6 +20,11 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
+materials:
+  - title: "Lecture 1 slides — Performance and Reliability: Performance Engineering"
+    src: 3-4-Performance-and-Reliability-1-Performance-Engineering.pptx
+  - title: "Lecture 2 slides — Performance and Reliability: Reliability Engineering"
+    src: 3-4-Performance-and-Reliability-2-Reliability-Engineering.pptx
 ---
 
 **Premise.** *Functional correctness does not establish that a system will behave acceptably under load or preserve its obligations when components fail. Engineers must model the workloads and failures the system will meet, decide what behavior is acceptable, and obtain evidence that the implementation delivers it.*

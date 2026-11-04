@@ -18,6 +18,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
+materials:
+  - title: "Lecture slides — Operations and SRE"
+    src: 3-6-Operations-and-SRE.pptx
 ---
 
 **Premise.** *A running system produces evidence that no predeployment activity can obtain. Operators must decide what to observe, what to do when the system misbehaves, and what to change once it recovers.*
