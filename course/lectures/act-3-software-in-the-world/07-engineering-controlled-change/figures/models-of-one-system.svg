@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a STAR whose reading
+     depends on the central spine being one artifact while six panels are six descriptions of it, and on
+     the agreement band sitting between the models and the decision they jointly support. A graph
+     auto-layout renders a seven-node star as a ring, which loses the hub's privileged status and puts the
+     agreement band somewhere in the circumference as though it were a seventh model. The two drift edges
+     also have to run OUTSIDE their column to read as a defect rather than as another uses edge, and
+     auto-layout will route them through the middle. Palette, stroke weights and type follow the course
+     figure vocabulary (sibling
+     ../../03-technical-debt-architecture-and-dependencies/figures/internal-and-external-dependencies.svg,
+     ../../06-operations-and-sre/figures/operational-feedback-loop.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620"
+     role="img" aria-labelledby="mosTitle mosDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mosTitle">Six engineering models describe one reservation service; where they name the same
+    thing they must agree, and only then do they support an engineering decision</title>
+  <desc id="mosDesc">A tall central box labeled ONE SOFTWARE SYSTEM, sub-labeled the reservation service,
+    stands between two columns of three panels. Each panel is joined to the central box by a solid line,
+    because all six describe the same artifact. The left column holds the structural descriptions:
+    DEPLOYMENT TOPOLOGY, sub-labeled where components execute; DATA SCHEMA, sub-labeled what is
+    preserved; and DEPENDENCY GRAPH, sub-labeled what constrains change. The right column holds the
+    behavioral and adversarial descriptions: WORKLOAD AND FAILURE, sub-labeled how it behaves under
+    stress; THREAT MODEL, sub-labeled what an adversary may do; and OPERATIONAL OBJECTIVES, sub-labeled
+    what counts as healthy. Beneath the central box a wide band in the warm qualifying color is labeled
+    WHERE THEY OVERLAP THEY MUST AGREE, and notes that the models need not share a representation, only
+    the things they both name: the same service, the same table, the same boundary. From that band a
+    single arrow leads down to ENGINEERING DECISION, sub-labeled accept, revise, or reject. Two dashed
+    edges in the invalid-state color run up the outside of each column, from DEPENDENCY GRAPH to
+    DEPLOYMENT TOPOLOGY and from OPERATIONAL OBJECTIVES to WORKLOAD AND FAILURE; the legend names them
+    drift, distinguishing them from the solid describes edges. Closing notes read that a model which has
+    drifted still answers questions and answers them wrongly, and that two models disagreeing about a
+    thing they both name is a finding about the system, not a formatting problem.</desc>
+
+  <defs>
+    <marker id="mos-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="mos-ah-bad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="900" height="620" fill="#fdfcf9"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">SIX MODELS, ONE SYSTEM</text>
+
+  <!-- ===== the hub: one artifact ===== -->
+  <rect x="325" y="62" width="250" height="294" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="450" y="196" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">ONE SOFTWARE SYSTEM</text>
+  <text x="450" y="218" text-anchor="middle" font-size="13" fill="#41586c">the reservation service</text>
+  <text x="450" y="244" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">one artifact, six descriptions</text>
+
+  <!-- ===== left column: the structural descriptions ===== -->
+  <g>
+    <rect x="40" y="62" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="152" y="99" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">DEPLOYMENT TOPOLOGY</text>
+    <text x="152" y="121" text-anchor="middle" font-size="12.5" fill="#41586c">where components execute</text>
+
+    <rect x="40" y="166" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="152" y="203" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">DATA SCHEMA</text>
+    <text x="152" y="225" text-anchor="middle" font-size="12.5" fill="#41586c">what is preserved</text>
+
+    <rect x="40" y="270" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="152" y="307" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">DEPENDENCY GRAPH</text>
+    <text x="152" y="329" text-anchor="middle" font-size="12.5" fill="#41586c">what constrains change</text>
+  </g>
+
+  <!-- ===== right column: the behavioral and adversarial descriptions ===== -->
+  <g>
+    <rect x="635" y="62" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="747" y="99" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">WORKLOAD AND FAILURE</text>
+    <text x="747" y="121" text-anchor="middle" font-size="12.5" fill="#41586c">how it behaves under stress</text>
+
+    <rect x="635" y="166" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="747" y="203" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">THREAT MODEL</text>
+    <text x="747" y="225" text-anchor="middle" font-size="12.5" fill="#41586c">what an adversary may do</text>
+
+    <rect x="635" y="270" width="225" height="86" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+    <text x="747" y="307" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">OPERATIONAL OBJECTIVES</text>
+    <text x="747" y="329" text-anchor="middle" font-size="12.5" fill="#41586c">what counts as healthy</text>
+  </g>
+
+  <!-- describes edges: every panel points at the one artifact -->
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#mos-ah)">
+    <line x1="265" y1="105" x2="321" y2="105"/>
+    <line x1="265" y1="209" x2="321" y2="209"/>
+    <line x1="265" y1="313" x2="321" y2="313"/>
+    <line x1="635" y1="105" x2="579" y2="105"/>
+    <line x1="635" y1="209" x2="579" y2="209"/>
+    <line x1="635" y1="313" x2="579" y2="313"/>
+  </g>
+
+  <!-- drift: routed OUTSIDE each column so it cannot read as another describes edge -->
+  <g fill="none" stroke="#8a2f2f" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mos-ah-bad)">
+    <path d="M40,313 H22 V105 H36"/>
+    <path d="M860,313 H878 V105 H864"/>
+  </g>
+
+  <!-- ===== the agreement band ===== -->
+  <line x1="450" y1="356" x2="450" y2="382" stroke="#2f5169" stroke-width="2"/>
+  <rect x="190" y="384" width="520" height="62" rx="10" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="450" y="409" text-anchor="middle" font-size="14.5" font-weight="700" fill="#8a6a3f">WHERE THEY OVERLAP THEY MUST AGREE</text>
+  <text x="450" y="431" text-anchor="middle" font-size="12.5" fill="#41586c">not one representation: the same service, the same table, the same boundary</text>
+
+  <!-- ===== the decision the models exist to support ===== -->
+  <line x1="450" y1="446" x2="450" y2="470" stroke="#2f5169" stroke-width="2" marker-end="url(#mos-ah)"/>
+  <rect x="300" y="472" width="300" height="58" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.5"/>
+  <text x="450" y="497" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">ENGINEERING DECISION</text>
+  <text x="450" y="518" text-anchor="middle" font-size="12.5" fill="#41586c">accept, revise, or reject</text>
+
+  <!-- legend -->
+  <line x1="40" y1="497" x2="78" y2="497" stroke="#2f5169" stroke-width="2" marker-end="url(#mos-ah)"/>
+  <text x="88" y="502" font-size="13" fill="#41586c">describes</text>
+  <line x1="660" y1="497" x2="698" y2="497" stroke="#8a2f2f" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mos-ah-bad)"/>
+  <text x="708" y="502" font-size="13" fill="#41586c">drift</text>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="450" y="568">A model that has drifted still answers questions. It answers them wrongly.</text>
+    <text x="450" y="590">Two models disagreeing about a thing they both name is a finding about the system.</text>
+  </g>
+</svg>

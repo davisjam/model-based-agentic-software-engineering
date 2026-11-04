@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: the figure's whole
+     argument is that ONE of the seven stages is the delegable one and the other six are the engineer's,
+     which is carried by a single color break and by the shaded box sitting inside an otherwise uniform
+     column. It also depends on the two return edges being distinguishable by REACH: the short one re-runs
+     the realization, the long one revises the knowledge the next change will be directed through. A graph
+     auto-layout gives both return edges the same visual weight and routes them symmetrically, which
+     collapses exactly that distinction. Palette, stroke weights and type follow the course figure
+     vocabulary (sibling ../../06-operations-and-sre/figures/operational-feedback-loop.svg,
+     ../../04-performance-and-reliability/figures/reservation-request-state-model.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 700" width="860" height="700"
+     role="img" aria-labelledby="eccTitle eccDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="eccTitle">Engineering controlled change: one proposed change carried from request to running
+    system through the engineer's judgment, with realization delegated and observation returning to
+    revise the models</title>
+  <desc id="eccDesc">Seven stages run down a single column. CHANGE REQUEST leads to ENGINEERING JUDGMENT,
+    sub-labeled which questions are consequential here, which leads to MODELS AND OBLIGATIONS,
+    sub-labeled what knowledge must be made explicit, which leads to REALIZATION, sub-labeled a human or
+    an agent performs the work. REALIZATION is the one box drawn in the warm color rather than the blue of
+    the others, because it is the stage that may be delegated; every other stage is the engineer's.
+    REALIZATION leads to EVIDENCE, sub-labeled what the change actually produced, which leads to
+    ENGINEERING DECISION, sub-labeled accept, revise, or reject, which leads to RUNNING SYSTEM,
+    sub-labeled serving real users. Two return edges close the loop and differ in reach. A short dashed
+    edge on the right runs from EVIDENCE back up to REALIZATION, labeled revise and re-realize, for when
+    the evidence rejects the work rather than the design. A long dashed edge on the left leaves RUNNING
+    SYSTEM, runs out to the left margin, up the height of the figure, and re-enters MODELS AND
+    OBLIGATIONS, labeled observation revises the models, obligations and controls, because what the
+    running system teaches changes what the next change will be directed through. A legend distinguishes
+    the engineer's stages from the delegable one and the two returns from the forward sequence. Closing
+    notes read that the effort spent on each stage should follow the consequences of the decision, that
+    for many changes the modeling stage is correctly almost empty, and that only the long return changes
+    what the next change will inherit.</desc>
+
+  <defs>
+    <marker id="ecc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ecc-ah-note" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="860" height="700" fill="#fdfcf9"/>
+
+  <text x="430" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">ENGINEERING CONTROLLED CHANGE</text>
+
+  <!-- ===== the forward sequence ===== -->
+  <rect x="270" y="56" width="340" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="440" y="91" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">CHANGE REQUEST</text>
+
+  <rect x="270" y="136" width="340" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="440" y="162" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">ENGINEERING JUDGMENT</text>
+  <text x="440" y="182" text-anchor="middle" font-size="12.5" fill="#41586c">which questions are consequential here</text>
+
+  <rect x="270" y="216" width="340" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="440" y="242" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">MODELS AND OBLIGATIONS</text>
+  <text x="440" y="262" text-anchor="middle" font-size="12.5" fill="#41586c">what knowledge must be made explicit</text>
+
+  <!-- the one delegable stage, marked by the color break -->
+  <rect x="270" y="296" width="340" height="58" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2.5"/>
+  <text x="440" y="322" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">REALIZATION</text>
+  <text x="440" y="342" text-anchor="middle" font-size="12.5" fill="#41586c">a human or an agent performs the work</text>
+
+  <rect x="270" y="376" width="340" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="440" y="402" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">EVIDENCE</text>
+  <text x="440" y="422" text-anchor="middle" font-size="12.5" fill="#41586c">what the change actually produced</text>
+
+  <rect x="270" y="456" width="340" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="440" y="482" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">ENGINEERING DECISION</text>
+  <text x="440" y="502" text-anchor="middle" font-size="12.5" fill="#41586c">accept, revise, or reject</text>
+
+  <rect x="270" y="536" width="340" height="58" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.5"/>
+  <text x="440" y="562" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">RUNNING SYSTEM</text>
+  <text x="440" y="582" text-anchor="middle" font-size="12.5" fill="#41586c">serving real users</text>
+
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#ecc-ah)">
+    <line x1="440" y1="114" x2="440" y2="134"/>
+    <line x1="440" y1="194" x2="440" y2="214"/>
+    <line x1="440" y1="274" x2="440" y2="294"/>
+    <line x1="440" y1="354" x2="440" y2="374"/>
+    <line x1="440" y1="434" x2="440" y2="454"/>
+    <line x1="440" y1="514" x2="440" y2="534"/>
+  </g>
+
+  <!-- short return: the evidence rejected the WORK, not the design -->
+  <path d="M610,405 H700 V325 H614" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ecc-ah-note)"/>
+  <g font-size="12" fill="#9a3f12">
+    <text x="712" y="360">revise and</text>
+    <text x="712" y="376">re-realize</text>
+  </g>
+
+  <!-- long return: what the running system teaches changes the next change's inputs -->
+  <path d="M270,565 H60 V245 H266" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ecc-ah-note)"/>
+  <g font-size="12" fill="#9a3f12">
+    <text x="74" y="432">observation revises</text>
+    <text x="74" y="448">the models, obligations</text>
+    <text x="74" y="464">and controls</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="60" y="620" width="22" height="14" rx="3" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="90" y="632" font-size="13" fill="#41586c">the engineer's</text>
+  <rect x="196" y="620" width="22" height="14" rx="3" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="226" y="632" font-size="13" fill="#41586c">may be delegated</text>
+  <line x1="372" y1="627" x2="410" y2="627" stroke="#2f5169" stroke-width="2" marker-end="url(#ecc-ah)"/>
+  <text x="420" y="632" font-size="13" fill="#41586c">sequence</text>
+  <line x1="512" y1="627" x2="550" y2="627" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ecc-ah-note)"/>
+  <text x="560" y="632" font-size="13" fill="#41586c">returns</text>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="430" y="664">Effort on each stage should follow the consequences; for many changes the modeling stage is correctly almost empty.</text>
+    <text x="430" y="686">Only the long return changes what the next change will inherit.</text>
+  </g>
+</svg>
