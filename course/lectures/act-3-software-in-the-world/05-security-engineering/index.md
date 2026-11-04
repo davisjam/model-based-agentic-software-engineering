@@ -39,6 +39,11 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
+materials:
+  - title: "Lecture 1 slides — Security Engineering: Threat Modeling"
+    src: 3-5-Security-Engineering-1-Threat-Modeling.pptx
+  - title: "Lecture 2 slides — Security Engineering: Controls and Assurance"
+    src: 3-5-Security-Engineering-2-Controls-and-Assurance.pptx
 ---
 
 *What can an adversary do, and which security properties must the system preserve?*
@@ -113,12 +118,7 @@ A **threat** is a possible source or course of harmful action. A **vulnerability
 
 Denial of service is the category students most often leave abstract, so the assigned Cloudflare postmortem supplies a concrete mechanism. A regular expression whose matching cost grows explosively on certain inputs lets a small request consume a large amount of CPU, and a service that accepts such input from anyone has handed an attacker a lever. Work through the expression before reading the outcome, and predict which inputs are expensive.
 
-<!-- PLACEHOLDER: a hosted in-browser ReDoS demonstration for this passage is being built separately,
-     expected at a route under /teach/interactive/. Link it here once that page exists and its URL is
-     settled. Do NOT add the link before the page is published: the link-resolution gate fails on a
-     reference to a path that is absent. The demonstration illustrates the CLASS of algorithmic
-     vulnerability; it does not reproduce Cloudflare's production behavior, since regex engines differ
-     in matching algorithm and optimizations. -->
+[**Regular Expression Denial of Service**](../../../interactive/redos/index.html) is the instrument for that prediction. Four curated expressions run against generated inputs of increasing length in the browser's own engine, and the page reports measured execution time rather than a plotted complexity curve; you set the longest input to try, pick a linear or logarithmic time axis, and run the experiments singly or all four. They form a two by two. Experiments 1 and 2 run the same expression on different inputs, so the only thing that changes is what the adversary supplies, and experiments 2 and 4 run different expressions on byte-identical input, so the only thing that changes is what the engineer wrote. Watch where a run stops, because the page holds a wall-clock budget the matching thread cannot block and destroys the worker when a match overruns it: isolating the match bounds the damage, not the cost. The demonstration illustrates the class of algorithmic vulnerability rather than reproducing Cloudflare's production behavior, since regex engines differ in matching algorithm and optimizations.
 
 The engineer should also examine the paths by which an attacker can reach consequential operations. For example, the reservation API may enforce ownership correctly while a separate administrative endpoint exposes the same operation without equivalent checks. The relevant model must include both paths.
 
