@@ -54,7 +54,9 @@
 
    One token is a local extension: the family set has no amber, and an approaching-the-budget signal
    must be distinct from both green and red. `--warn` is a warm ochre chosen to sit inside the
-   family's warm palette rather than a generic traffic-light yellow.
+   family's warm palette rather than a generic traffic-light yellow. It is DARKER here than the
+   obvious choice (#9a6500) because it is used as text at 11-16px on `--warn-fill`, where that hue
+   measures 4.45:1 — just under the 4.5:1 floor. axe-core found it; #8a5a00 measures 5.3:1.
 
    Colour never carries meaning alone. Every state also carries a word and a glyph; every chart
    series also carries a dash pattern, a marker shape, and a label drawn at the line.
@@ -72,7 +74,7 @@
   --model-fill: #eef4fb;
   --ok: #15803d;
   --ok-fill: #eef7ee;
-  --warn: #9a6500;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -161,10 +163,19 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
 }
 .grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+/* A grid item defaults to `min-width: auto`, so it refuses to shrink below its widest content and
+   pushes the page wider instead — the `white-space: pre` input excerpt and the seven-column results
+   table both did exactly that, overflowing by 361px at a phone width. Allowing the items to shrink
+   is what lets the scroll containers inside them do their job. */
+.grid2 > * { min-width: 0; }
 @media (min-width: 1100px) {
   .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
   .grid2 > .panel { margin-bottom: 0; }
 }
+
+/* Wide content scrolls inside its own container; the page body never scrolls horizontally. */
+.table-wrap { overflow-x: auto; }
+#scaling-readout { overflow-x: auto; }
 
 /* --- controls ----------------------------------------------------------------------------- */
 .ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
@@ -173,6 +184,12 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
 .ctl > label { font-weight: 600; font-size: 0.98rem; }
 .ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
 .ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+@media (max-width: 780px) {
+  .ctl { grid-template-columns: 1fr; }
+  .ctl input[type=number] { width: 100%; }
+  .scan-row { grid-template-columns: 7rem 1fr; }
+  .scan-row .out { grid-column: 1 / -1; padding-left: 7rem; }
+}
 .ctl input[type=number] {
   font-family: var(--font-mono); font-size: 1rem;
   padding: 0.3rem 0.4rem; width: 6.2rem;
@@ -574,7 +591,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
   <div class="measure-plane" style="margin-top:1rem">
     <span class="plane-kind">Measured in this browser's own RegExp engine &mdash; no model involved</span>
-    <table class="ref" id="results-table">
+    <div class="table-wrap"><table class="ref" id="results-table">
       <caption id="results-caption">No experiment has been run yet.</caption>
       <thead><tr>
         <th scope="col">Experiment</th>
@@ -586,7 +603,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         <th scope="col">Outcome</th>
       </tr></thead>
       <tbody></tbody>
-    </table>
+    </table></div>
   </div>
   <div id="scaling-readout"></div>
   <p class="note">
@@ -647,10 +664,10 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       The measurements above are a performance observation. What makes this a <em>security</em>
       finding is that the expensive input is chosen by someone else. Name the elements:
     </p>
-    <table class="ref" id="threat-table">
+    <div class="table-wrap"><table class="ref" id="threat-table">
       <thead><tr><th scope="col">Model element</th><th scope="col">ReDoS example</th></tr></thead>
       <tbody></tbody>
-    </table>
+    </table></div>
     <p class="note">
       A threat is a possible course of harmful action; a vulnerability is the weakness that may let
       it succeed; an attack is an attempt to exploit that weakness. Here the vulnerability is
@@ -742,11 +759,11 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   </p>
 
   <h3>The curated expressions</h3>
-  <table class="ref" id="expr-table">
+  <div class="table-wrap"><table class="ref" id="expr-table">
     <caption>Fixed, curated patterns. The page executes no user-supplied expression.</caption>
     <thead><tr><th>Expression</th><th>Used by</th><th>Why this one</th></tr></thead>
     <tbody></tbody>
-  </table>
+  </table></div>
 
   <h3>Correctness of the curated patterns</h3>
   <p>
@@ -2044,7 +2061,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   function nextInQueue() {
     if (!ui.queue.length) {
       run.busy = false;
-      setStatus('complete', 'all requested runs finished');
+      /* Do NOT overwrite a halt reason with "complete". Why a run stopped is the signal the budget
+         exists to deliver — "the sweep stopped at n = 12,000" teaches something that "finished"
+         erases — and an earlier version of this function clobbered it on every run, so the badge
+         reported COMPLETE for sweeps that had hit the budget. The browser tier caught it. */
+      if (ui.status !== 'halted' && ui.status !== 'terminated') {
+        setStatus('complete', 'all requested runs finished');
+      }
       render();
       return;
     }
@@ -2195,9 +2218,9 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     run.pending = null;
     var halt = run.sweep && run.sweep.halt;
     if (halt && halt.reason === 'budget') {
-      setStatus('halted', 'budget reached at n = ' + halt.length.toLocaleString());
+      setStatus('halted', 'the sweep stopped at n = ' + halt.length.toLocaleString());
     } else if (halt && halt.reason === 'terminated') {
-      setStatus('terminated', 'worker destroyed at n = ' + halt.length.toLocaleString());
+      setStatus('terminated', 'at n = ' + halt.length.toLocaleString());
     } else {
       setStatus('complete', R.findExperiment(run.sweep.experimentId).label + ' finished');
     }

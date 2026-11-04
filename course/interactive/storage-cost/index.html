@@ -1683,19 +1683,20 @@ footer {
     return M.normalizeParams(state);
   }
 
-  /** Bind a number field and its slider to one state key. Either one moves both. */
+  /**
+   * Bind a number field and its slider to one state key. Either one moves both.
+   *
+   * `state` holds what the READER ASKED FOR, raw; the model is the only thing that corrects it, and
+   * `syncControls` writes the corrected value back into the control so the reader sees what is
+   * actually in effect. Writing the corrected value into `state` instead would erase the evidence
+   * that a correction happened — the notice would appear for one render and then vanish, because
+   * the next normalization would find nothing left to clamp.
+   */
   function bindNumber(key, numberId, rangeId) {
     var num = $(numberId);
     var range = $(rangeId);
     function commit(value) {
       state[key] = value;
-      var merged = M.normalizeParams(state);
-      state.rooms = merged.rooms;
-      state.reservationsPerRoom = merged.reservationsPerRoom;
-      state.metadataBytes = merged.metadataBytes;
-      state.reservationBytes = merged.reservationBytes;
-      state.identifierBytes = merged.identifierBytes;
-      state.roomIndex = merged.roomIndex;
       syncControls();
       render();
     }
@@ -2325,8 +2326,6 @@ footer {
   (function bindRoomPicker() {
     function commit(value) {
       state.roomIndex = Math.round(parseFloat(value)) - 1;
-      var merged = M.normalizeParams(state);
-      state.roomIndex = merged.roomIndex;
       syncControls();
       render();
     }

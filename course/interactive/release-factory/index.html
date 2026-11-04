@@ -170,9 +170,15 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
 
 /* --- controls ----------------------------------------------------------------------------- */
 .ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
-@media (min-width: 900px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
-.ctl { display: grid; grid-template-columns: 12.5rem 1fr; gap: 0.6rem; align-items: center; }
-.ctl.triple { grid-template-columns: 12.5rem 1fr auto; }
+@media (min-width: 900px) { .ctl-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* minmax(0, 1fr) rather than 1fr: a bare 1fr track takes its MIN-CONTENT size as a floor, and a
+   segmented control that wraps still reports its unwrapped width there — which pushes the whole
+   row past the viewport at a laptop width. */
+.ctl {
+  display: grid; grid-template-columns: 12.5rem minmax(0, 1fr);
+  gap: 0.6rem; align-items: center; min-width: 0;
+}
+.ctl.triple { grid-template-columns: 12.5rem minmax(0, 1fr) auto; }
 .ctl > label, .ctl > .ctl-label { font-weight: 600; font-size: 0.98rem; }
 .ctl > label .unit, .ctl > .ctl-label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
 .ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
@@ -183,7 +189,10 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   background: var(--paper); color: var(--ink);
 }
 .ctl select { width: auto; font-family: var(--font-body); }
-.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.seg {
+  display: flex; flex-wrap: wrap; min-width: 0; max-width: 100%;
+  border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden;
+}
 .seg button {
   font-family: var(--font-mono); font-size: 0.95rem;
   padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
@@ -260,7 +269,13 @@ dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
 .canvas-wrap { width: 100%; overflow: hidden; }
 canvas { display: block; width: 100%; height: auto; }
 
-table.model { border-collapse: collapse; width: 100%; font-size: 0.92rem; margin: 0.5rem 0; }
+/* `display: block` so a wide table scrolls inside itself on a narrow screen rather than pushing
+   the page sideways. The instrument is built for a projector, but a reader on a phone should not
+   meet a horizontally scrolling document. */
+table.model {
+  border-collapse: collapse; width: 100%; font-size: 0.92rem; margin: 0.5rem 0;
+  display: block; overflow-x: auto;
+}
 table.model th, table.model td {
   border: 1px solid var(--rule); padding: 0.3rem 0.5rem; text-align: left; vertical-align: top;
 }
@@ -512,6 +527,16 @@ footer {
     lanes and the release channel &mdash; and whichever one the policies make scarcer is the one that
     bends first. A one-hour canary soak at one change per release caps the factory near twenty-four
     deployments a day however fast the tests run.
+  </p>
+  <p class="note">
+    Two things to read carefully. The curve usually <strong>bends well to the left of the dashed
+    capacity lines</strong>, because those lines count only the <em>first</em> pass through each
+    stage: a rollback sends its whole batch back, so a factory that fails often spends real capacity
+    recovering from itself. And beyond the knee the measured lead time <strong>flattens</strong>
+    &mdash; an artefact, not a recovery. A queue past its capacity has no steady state, so the
+    average wait is bounded by how long the simulation ran. Run each point for longer and the
+    right-hand side keeps climbing. <em>In an unstable system, the number you measure depends on how
+    long you watch.</em>
   </p>
 </section>
 
@@ -2894,6 +2919,1078 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
     lognormalMultiplier: lognormalMultiplier,
     compareEvents: compareEvents,
     quantile: quantile
+  };
+}());
+</script>
+<script id="factory-ui">
+/* =================================================================================================
+   THE INTERFACE. Observes the model; never determines it.
+
+   The only coupling to simulated time is one line in the animation frame: convert elapsed WALL time
+   into a simulated-time horizon and ask the engine to advance to it. Everything else reads state
+   through `snapshot`, which is a pure read.
+
+   Changing any control REBUILDS the simulation from the control state rather than mutating a
+   running one. That is a pedagogical choice, not a technical one: a settled factory compared
+   against one still draining a backlog gives a policy credit it did not earn.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var RF = window.ReleaseFactory;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var ui = { speed: 10, running: false, reduced: false, lastFrameMs: null, lastDrawMs: 0 };
+  var SAMPLE_HOURS = 1;            /* backlog-series resolution, in simulated hours */
+  var EVENT_BUDGET_PER_FRAME = 400000;
+
+  /* The control state. One object, the single source of truth for what the student has chosen; the
+     simulation is derived from it. */
+  var cfg = {
+    seed: RF.DEFAULT_SEED,
+    arrivalRate: RF.DEFAULTS.arrivalRate,
+    arrivalRatePerDay: null,
+    testDepth: RF.DEFAULTS.testDepth,
+    admissionPolicy: RF.DEFAULTS.admissionPolicy,
+    releaseStrategy: RF.DEFAULTS.releaseStrategy,
+    batchSize: RF.DEFAULTS.batchSize,
+    pipelineLanes: RF.DEFAULTS.pipelineLanes,
+    releaseSlots: RF.DEFAULTS.releaseSlots,
+    defectRate: RF.DEFAULTS.defectRate,
+    defectClassWeights: null,
+    requestsPerHour: RF.DEFAULTS.requestsPerHour,
+    monitoringQuality: RF.DEFAULTS.monitoringQuality,
+    canaryFraction: RF.DEFAULTS.canaryFraction,
+    canarySoakHours: RF.DEFAULTS.canarySoakHours,
+    blueGreenVerifyHours: RF.DEFAULTS.blueGreenVerifyHours,
+    blueGreenSyntheticRequests: RF.DEFAULTS.blueGreenSyntheticRequests,
+    flakyTestRate: RF.DEFAULTS.flakyTestRate,
+    reworkHours: RF.DEFAULTS.reworkHours,
+    reworkFixProbability: RF.DEFAULTS.reworkFixProbability,
+    batchMaxWaitHours: RF.DEFAULTS.batchMaxWaitHours,
+    rollbackHours: RF.DEFAULTS.rollbackHours,
+    warmupHours: RF.DEFAULTS.warmupHours
+  };
+  var DEFAULT_CFG = JSON.parse(JSON.stringify(cfg));
+
+  var MIXES = [
+    { id: 'realistic', label: 'Mixed', weights: null },
+    { id: 'obvious', label: 'Obvious', weights: { obvious: 1, conditional: 0, rare: 0, latent: 0 } },
+    { id: 'conditional', label: 'Conditional', weights: { obvious: 0, conditional: 1, rare: 0, latent: 0 } },
+    { id: 'rare', label: 'Rare + latent', weights: { obvious: 0, conditional: 0, rare: 0.6, latent: 0.4 } }
+  ];
+  var mixId = 'realistic';
+
+  var sim = RF.createSimulation(cfg);
+  var sweep = null;
+
+  /* ---------- palette: read the CSS tokens so the canvases follow the page theme ---------- */
+  var palette = {};
+  function readPalette() {
+    var cs = getComputedStyle(document.documentElement);
+    ['ink', 'paper', 'panel', 'panel-2', 'muted', 'accent', 'model', 'ok', 'warn', 'bad', 'rule', 'grid', 'gold']
+      .forEach(function (name) { palette[name] = cs.getPropertyValue('--' + name).trim() || '#000'; });
+  }
+  readPalette();
+  if (window.matchMedia) {
+    var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+    var onScheme = function () { readPalette(); draw(true); };
+    if (scheme.addEventListener) scheme.addEventListener('change', onScheme);
+    else if (scheme.addListener) scheme.addListener(onScheme);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) ui.reduced = true;
+  }
+
+  /* ---------- formatting ---------- */
+  function int(v) {
+    if (v === null || v === undefined || !isFinite(v)) return '—';
+    return Math.round(v).toLocaleString('en-US');
+  }
+  function num(v, digits) {
+    if (v === null || v === undefined || !isFinite(v)) return '—';
+    return v.toFixed(digits === undefined ? 2 : digits);
+  }
+  function pct(v, digits) {
+    if (v === null || v === undefined || !isFinite(v)) return '—';
+    return (100 * v).toFixed(digits === undefined ? 1 : digits) + '%';
+  }
+  /* Hours, rendered in whatever unit a reader can hold in their head. */
+  function dur(hours) {
+    if (hours === null || hours === undefined || !isFinite(hours)) return '—';
+    if (hours < 1 / 60) return (hours * 3600).toFixed(0) + ' s';
+    if (hours < 2) return (hours * 60).toFixed(hours < 0.2 ? 1 : 0) + ' min';
+    if (hours < 48) return hours.toFixed(1) + ' h';
+    return (hours / 24).toFixed(1) + ' d';
+  }
+  function big(v) {
+    if (v === null || v === undefined || !isFinite(v)) return '—';
+    if (v === 0) return '0';
+    if (v < 1000) return v.toFixed(0);
+    if (v < 1e6) return (v / 1e3).toFixed(1) + 'k';
+    if (v < 1e9) return (v / 1e6).toFixed(1) + 'M';
+    return (v / 1e9).toFixed(1) + 'B';
+  }
+
+  /* ---------- segmented controls, generated from the policy tables ---------- */
+  function buildSegment(containerId, options, getCurrent, onPick) {
+    var box = $(containerId);
+    box.textContent = '';
+    options.forEach(function (opt) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = opt.label;
+      b.setAttribute('data-value', String(opt.value));
+      b.title = opt.note || '';
+      b.addEventListener('click', function () { onPick(opt.value); syncSegments(); rebuild(); });
+      box.appendChild(b);
+    });
+    box.setAttribute('data-current', String(getCurrent()));
+  }
+
+  var SEGMENTS = [];
+  function registerSegment(containerId, options, get, set) {
+    SEGMENTS.push({ id: containerId, get: get });
+    buildSegment(containerId, options, get, set);
+  }
+
+  function syncSegments() {
+    SEGMENTS.forEach(function (seg) {
+      var current = String(seg.get());
+      Array.prototype.forEach.call($(seg.id).querySelectorAll('button'), function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-value') === current ? 'true' : 'false');
+      });
+    });
+  }
+
+  function tableOptions(table) {
+    return Object.keys(table).map(function (key) {
+      return { value: key, label: table[key].label, note: table[key].note };
+    });
+  }
+
+  registerSegment('seg-arrival', tableOptions(RF.ARRIVAL_RATES).map(function (o) {
+    o.label = o.label + ' (' + RF.ARRIVAL_RATES[o.value].perDay + '/day)';
+    return o;
+  }), function () { return cfg.arrivalRatePerDay === null ? cfg.arrivalRate : ''; },
+  function (v) { cfg.arrivalRate = v; cfg.arrivalRatePerDay = null; });
+
+  registerSegment('seg-depth', tableOptions(RF.TEST_DEPTHS).map(function (o) {
+    o.label = o.label + ' (' + RF.TEST_DEPTHS[o.value].minutes + ' min)';
+    return o;
+  }), function () { return cfg.testDepth; }, function (v) { cfg.testDepth = v; });
+
+  registerSegment('seg-admission', tableOptions(RF.ADMISSION_POLICIES),
+    function () { return cfg.admissionPolicy; }, function (v) { cfg.admissionPolicy = v; });
+
+  registerSegment('seg-strategy', tableOptions(RF.RELEASE_STRATEGIES),
+    function () { return cfg.releaseStrategy; }, function (v) { cfg.releaseStrategy = v; });
+
+  registerSegment('seg-batch', RF.BATCH_SIZES.map(function (n) {
+    return { value: n, label: String(n), note: n + ' change' + (n === 1 ? '' : 's') + ' per release' };
+  }), function () { return cfg.batchSize; }, function (v) { cfg.batchSize = Number(v); });
+
+  registerSegment('seg-mix', MIXES.map(function (m) {
+    return { value: m.id, label: m.label, note: 'Restrict the defect population to this class' };
+  }), function () { return mixId; }, function (v) {
+    mixId = v;
+    for (var i = 0; i < MIXES.length; i += 1) {
+      if (MIXES[i].id === v) cfg.defectClassWeights = MIXES[i].weights;
+    }
+  });
+
+  /* ---------- paired number + range controls ---------- */
+  function clampNumber(value, lo, hi, fallback) {
+    var v = parseFloat(value);
+    if (!isFinite(v)) return fallback;
+    return Math.max(lo, Math.min(hi, v));
+  }
+
+  /* `toParam` and `fromParam` let a slider carry a transformed scale (a percentage, a logarithm)
+     while the number box shows the real quantity. */
+  function pair(numberId, rangeId, lo, hi, apply, read, toSlider, fromSlider) {
+    var n = $(numberId);
+    var r = rangeId ? $(rangeId) : null;
+    function push(value) {
+      var v = clampNumber(value, lo, hi, read());
+      apply(v);
+      sync();
+      rebuild();
+    }
+    function sync() {
+      n.value = String(read());
+      if (r) r.value = String(toSlider ? toSlider(read()) : read());
+    }
+    n.addEventListener('change', function () { push(n.value); });
+    if (r) {
+      r.addEventListener('input', function () {
+        var v = fromSlider ? fromSlider(parseFloat(r.value)) : parseFloat(r.value);
+        push(v);
+      });
+    }
+    return sync;
+  }
+
+  var syncers = [];
+  syncers.push(pair('arrival-num', 'arrival-range', 1, 200,
+    function (v) { cfg.arrivalRatePerDay = v; cfg.arrivalRate = null; },
+    function () {
+      return cfg.arrivalRatePerDay === null
+        ? RF.ARRIVAL_RATES[cfg.arrivalRate].perDay : cfg.arrivalRatePerDay;
+    }));
+  syncers.push(pair('seed', null, 0, 4294967295,
+    function (v) { cfg.seed = Math.round(v); }, function () { return cfg.seed; }));
+  syncers.push(pair('lanes', 'lanes-range', 1, 24,
+    function (v) { cfg.pipelineLanes = Math.round(v); }, function () { return cfg.pipelineLanes; }));
+  syncers.push(pair('slots', 'slots-range', 1, 12,
+    function (v) { cfg.releaseSlots = Math.round(v); }, function () { return cfg.releaseSlots; }));
+  syncers.push(pair('defect', 'defect-range', 0, 100,
+    function (v) { cfg.defectRate = v / 100; },
+    function () { return Math.round(cfg.defectRate * 100); }));
+  /* Traffic spans six orders of magnitude, so the slider is logarithmic and the box is literal. */
+  syncers.push(pair('traffic', 'traffic-range', 0, 5000000,
+    function (v) { cfg.requestsPerHour = Math.round(v); },
+    function () { return cfg.requestsPerHour; },
+    function (v) { return v <= 0 ? 0 : Math.round(10 * Math.log(v) / Math.LN10); },
+    function (slider) { return slider <= 0 ? 0 : Math.round(Math.pow(10, slider / 10)); }));
+  syncers.push(pair('monitor', 'monitor-range', 0, 100,
+    function (v) { cfg.monitoringQuality = v / 100; },
+    function () { return Math.round(cfg.monitoringQuality * 100); }));
+  syncers.push(pair('canaryfrac', 'canaryfrac-range', 1, 100,
+    function (v) { cfg.canaryFraction = v / 100; },
+    function () { return Math.round(cfg.canaryFraction * 100); }));
+  syncers.push(pair('soak', 'soak-range', 0, 48,
+    function (v) { cfg.canarySoakHours = v; }, function () { return cfg.canarySoakHours; }));
+  syncers.push(pair('verify', 'verify-range', 0, 24,
+    function (v) { cfg.blueGreenVerifyHours = v; },
+    function () { return cfg.blueGreenVerifyHours; }));
+  syncers.push(pair('synthetic', null, 0, 1000000,
+    function (v) { cfg.blueGreenSyntheticRequests = Math.round(v); },
+    function () { return cfg.blueGreenSyntheticRequests; }));
+  syncers.push(pair('flake', 'flake-range', 0, 50,
+    function (v) { cfg.flakyTestRate = v / 100; },
+    function () { return Math.round(cfg.flakyTestRate * 100); }));
+  syncers.push(pair('rework', 'rework-range', 0, 72,
+    function (v) { cfg.reworkHours = v; }, function () { return cfg.reworkHours; }));
+  syncers.push(pair('fixprob', 'fixprob-range', 0, 100,
+    function (v) { cfg.reworkFixProbability = v / 100; },
+    function () { return Math.round(cfg.reworkFixProbability * 100); }));
+  syncers.push(pair('batchwait', 'batchwait-range', 0.25, 72,
+    function (v) { cfg.batchMaxWaitHours = v; }, function () { return cfg.batchMaxWaitHours; }));
+  syncers.push(pair('rollback', 'rollback-range', 0, 24,
+    function (v) { cfg.rollbackHours = v; }, function () { return cfg.rollbackHours; }));
+  syncers.push(pair('warmup', 'warmup-range', 0, 60,
+    function (v) { cfg.warmupHours = v * RF.HOURS_PER_DAY; },
+    function () { return Math.round(cfg.warmupHours / RF.HOURS_PER_DAY); }));
+
+  function syncAll() {
+    syncers.forEach(function (fn) { fn(); });
+    syncSegments();
+  }
+
+  $('reduced').addEventListener('change', function (e) {
+    ui.reduced = e.target.checked;
+    draw(true);
+  });
+
+  /* ---------- lifecycle ---------- */
+  function rebuild() {
+    var wasRunning = ui.running;
+    setRunning(false);
+    sim = RF.createSimulation(cfg);
+    refresh();
+    if (wasRunning) setRunning(true);
+  }
+
+  function setRunning(on) {
+    ui.running = !!on;
+    $('btn-run').textContent = ui.running ? 'Pause' : 'Run';
+    $('btn-run').setAttribute('aria-pressed', ui.running ? 'true' : 'false');
+    ui.lastFrameMs = null;
+    if (ui.running) window.requestAnimationFrame(frame);
+  }
+
+  $('btn-run').addEventListener('click', function () { setRunning(!ui.running); });
+  $('btn-step').addEventListener('click', function () {
+    setRunning(false);
+    RF.advanceSimulation(sim, { maxEvents: 1, sampleEvery: SAMPLE_HOURS });
+    refresh();
+  });
+  $('btn-90').addEventListener('click', function () {
+    setRunning(false);
+    RF.advanceSimulation(sim, {
+      untilTime: sim.time + 90 * RF.HOURS_PER_DAY, sampleEvery: SAMPLE_HOURS
+    });
+    refresh();
+  });
+  $('btn-reset').addEventListener('click', function () {
+    setRunning(false);
+    RF.resetSimulation(sim);
+    refresh();
+  });
+  $('btn-defaults').addEventListener('click', function () {
+    setRunning(false);
+    var keys = Object.keys(DEFAULT_CFG);
+    for (var i = 0; i < keys.length; i += 1) cfg[keys[i]] = DEFAULT_CFG[keys[i]];
+    mixId = 'realistic';
+    syncAll();
+    rebuild();
+  });
+
+  Array.prototype.forEach.call($('seg-speed').querySelectorAll('button'), function (b) {
+    b.addEventListener('click', function () {
+      ui.speed = parseInt(b.getAttribute('data-speed'), 10);
+      Array.prototype.forEach.call($('seg-speed').querySelectorAll('button'), function (o) {
+        o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
+      });
+    });
+  });
+
+  /* ---------- presets ---------- */
+  function applyPreset(id) {
+    var preset = RF.findPreset(id);
+    var keys = Object.keys(preset.params);
+    for (var i = 0; i < keys.length; i += 1) cfg[keys[i]] = preset.params[keys[i]];
+    mixId = 'realistic';
+    if (preset.params.defectClassWeights) {
+      for (var m = 0; m < MIXES.length; m += 1) {
+        if (JSON.stringify(MIXES[m].weights) === JSON.stringify(preset.params.defectClassWeights)) {
+          mixId = MIXES[m].id;
+        }
+      }
+    }
+    syncAll();
+    rebuild();
+  }
+
+  RF.PRESETS.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'preset' + (p.step ? ' step' : '');
+    b.setAttribute('data-preset-id', p.id);
+    var name = document.createElement('span');
+    name.className = 'pname';
+    name.textContent = p.name;
+    var why = document.createElement('span');
+    why.className = 'pwhy';
+    why.textContent = p.why;
+    b.appendChild(name);
+    b.appendChild(why);
+    b.addEventListener('click', function () { applyPreset(p.id); });
+    $('presets').appendChild(b);
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-preset]'), function (b) {
+    b.addEventListener('click', function () {
+      applyPreset(b.getAttribute('data-preset'));
+      window.scrollTo({ top: 0, behavior: ui.reduced ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- the defect-class table, printed from the model ---------- */
+  (function renderClassTable() {
+    var weights = RF.normalisedWeights(null);
+    var table = $('class-table');
+    RF.DEFECT_CLASSES.forEach(function (c) {
+      var tr = document.createElement('tr');
+      function cell(text, cls) {
+        var td = document.createElement('td');
+        if (cls) td.className = cls;
+        td.textContent = text;
+        tr.appendChild(td);
+      }
+      function range(r, suffix) {
+        var f = function (v) { return v < 0.01 && v > 0 ? v.toExponential(0) : String(v); };
+        return f(r[0]) + '–' + f(r[1]) + (suffix || '');
+      }
+      cell(c.label);
+      cell(pct(weights[c.id], 0), 'num');
+      cell(range(c.testDetectability), 'num');
+      cell(range(c.manifestRate) + ' of requests', 'num');
+      cell(range(c.trafficDetectability), 'num');
+      cell(c.note);
+      table.appendChild(tr);
+    });
+  }());
+
+  /* ---------- self-tests ---------- */
+  $('btn-selftest').addEventListener('click', function () {
+    var r = RF.runSelfTests();
+    var lines = [r.passed + ' of ' + r.total + ' self-tests passed.'];
+    r.results.forEach(function (x) {
+      lines.push((x.passed ? 'PASS  ' : 'FAIL  ') + x.name + (x.detail ? ' — ' + x.detail : ''));
+    });
+    $('selftest-out').textContent = lines.join('\n');
+  });
+
+  /* ---------- the capacity sweep ---------- */
+  $('btn-sweep').addEventListener('click', function () {
+    setRunning(false);
+    $('sweep-status').textContent = 'running…';
+    $('btn-sweep').disabled = true;
+    /* Deferred one frame so the status text paints before the engine takes the thread. */
+    window.requestAnimationFrame(function () {
+      var started = Date.now();
+      var base = {};
+      var keys = Object.keys(cfg);
+      for (var i = 0; i < keys.length; i += 1) base[keys[i]] = cfg[keys[i]];
+      delete base.arrivalRate;
+      delete base.arrivalRatePerDay;
+      delete base.warmupHours;
+      sweep = RF.runSweep({
+        base: base, seed: cfg.seed, days: 90, warmupDays: 10,
+        arrivalRatesPerDay: [5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 150, 180]
+      });
+      $('sweep-status').textContent = sweep.points.length + ' points, '
+        + ((Date.now() - started) / 1000).toFixed(1) + ' s';
+      $('btn-sweep').disabled = false;
+      draw(true);
+    });
+  });
+
+  /* ---------- keyboard ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    if (e.key === ' ' || e.key === 'Spacebar') {
+      /* Space on a focused button is that button's own activation; do not steal it. */
+      if (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY') return;
+      e.preventDefault();
+      setRunning(!ui.running);
+    } else if (e.key === 's' || e.key === 'S') {
+      $('btn-step').click();
+    } else if (e.key === 'r' || e.key === 'R') {
+      $('btn-reset').click();
+    }
+  });
+
+  /* ---------- canvas helpers ---------- */
+  function fit(canvas, cssHeight) {
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth || canvas.parentNode.clientWidth || 900;
+    canvas.style.height = cssHeight + 'px';
+    var pw = Math.max(1, Math.round(w * dpr));
+    var ph = Math.max(1, Math.round(cssHeight * dpr));
+    if (canvas.width !== pw || canvas.height !== ph) { canvas.width = pw; canvas.height = ph; }
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, cssHeight);
+    return { ctx: ctx, w: w, h: cssHeight };
+  }
+
+  function niceCeil(v) {
+    if (!(v > 0)) return 1;
+    var exp = Math.floor(Math.log(v) / Math.LN10);
+    var base = Math.pow(10, exp);
+    var m = v / base;
+    var step = m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10;
+    return step * base;
+  }
+
+  function stateColour(state) {
+    return state === 'ok' ? palette.ok : state === 'warn' ? palette.warn : palette.bad;
+  }
+  /* Colour never carries meaning alone: every state also carries a word and a glyph. */
+  function stateWord(state) {
+    return state === 'ok' ? 'within capacity'
+      : state === 'warn' ? 'near capacity' : 'over capacity';
+  }
+  function stateGlyph(state) {
+    return state === 'ok' ? '●' : state === 'warn' ? '▲' : '▲▲';
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function arrow(ctx, x1, y, x2) {
+    ctx.strokeStyle = palette.muted;
+    ctx.fillStyle = palette.muted;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(x1, y);
+    ctx.lineTo(x2 - 6, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2, y);
+    ctx.lineTo(x2 - 7, y - 4.5);
+    ctx.lineTo(x2 - 7, y + 4.5);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  /* ---------- A. the factory ---------- */
+  function drawFactory(s) {
+    var g = fit($('c-factory'), 330);
+    var ctx = g.ctx;
+    var w = g.w;
+    var stages = [
+      {
+        title: 'ENGINEERING TEAM', value: num(s.capacity.offeredPerDay, 0) + '/day',
+        lines: [int(s.admission.commits) + ' changes committed',
+          int(s.admission.defectiveCommits) + ' of them defective']
+      },
+      {
+        title: 'BUILD + TEST', value: int(s.stages.backlog) + ' waiting',
+        lines: [s.stages.inTest + ' of ' + s.capacity.lanes + ' lanes busy',
+          int(s.stages.inRework) + ' in rework',
+          RF.TEST_DEPTHS[sim.params.testDepth].label + ', ' + dur(s.capacity.nominalTestHours)],
+        state: s.capacity.state, util: s.capacity.utilization
+      },
+      {
+        title: 'ADMISSION POLICY', value: RF.ADMISSION_POLICIES[sim.params.admissionPolicy].label,
+        lines: [int(s.admission.testFailures) + ' test runs failed',
+          int(s.admission.blockedDefective + s.admission.blockedFlaky) + ' changes blocked',
+          int(s.admission.admittedWithFailingChecks) + ' admitted while red']
+      },
+      {
+        title: 'RELEASE STRATEGY', value: RF.RELEASE_STRATEGIES[sim.params.releaseStrategy].label,
+        lines: [int(s.stages.awaitingRelease) + ' awaiting a release',
+          'batch of ' + s.releaseCapacity.batchSize + ', ' + s.releaseCapacity.slots + ' slot'
+            + (s.releaseCapacity.slots === 1 ? '' : 's'),
+          int(s.admission.releasesAborted) + ' aborted at verification'],
+        state: s.releaseCapacity.state, util: s.releaseCapacity.utilization
+      },
+      {
+        title: 'PRODUCTION', value: int(s.deployments.total) + ' deployments',
+        lines: [int(s.stages.liveReleases) + ' releases live with a defect',
+          int(s.stages.liveDefectsInProduction) + ' defects exposed now',
+          big(s.userImpact.requestsExposed) + ' requests exposed']
+      },
+      {
+        title: 'MONITOR / RECOVER', value: int(s.deployments.failed) + ' failed',
+        lines: [int(s.ledger.detectedAfterRelease) + ' detected after release',
+          int(s.ledger.restored) + ' restored',
+          int(s.ledger.exposedNeverDetected) + ' never detected']
+      }
+    ];
+
+    var gap = 14;
+    var boxW = (w - gap * (stages.length - 1)) / stages.length;
+    var boxH = 232;
+    var top = 56;
+
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = '600 12px ' + monoFont();
+    ctx.fillStyle = palette.muted;
+    ctx.textAlign = 'left';
+    ctx.fillText('CHANGES FLOW LEFT TO RIGHT', 2, 18);
+    ctx.textAlign = 'right';
+    ctx.fillText('SIMULATED TIME  ' + num(s.days, 1) + ' DAYS', w - 2, 18);
+
+    stages.forEach(function (st, i) {
+      var x = i * (boxW + gap);
+      ctx.fillStyle = palette.paper;
+      ctx.strokeStyle = st.state ? stateColour(st.state) : palette.rule;
+      ctx.lineWidth = st.state ? 2 : 1;
+      roundRect(ctx, x, top, boxW, boxH, 3);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.textAlign = 'left';
+      ctx.font = '600 10.5px ' + monoFont();
+      ctx.fillStyle = palette.muted;
+      ctx.fillText(st.title, x + 10, top + 20);
+
+      ctx.font = '600 20px ' + bodyFont();
+      ctx.fillStyle = palette.ink;
+      ctx.fillText(st.value, x + 10, top + 50);
+
+      ctx.font = '13px ' + bodyFont();
+      ctx.fillStyle = palette.muted;
+      st.lines.forEach(function (line, k) {
+        ctx.fillText(line, x + 10, top + 74 + k * 19);
+      });
+
+      if (st.state) {
+        var by = top + boxH - 42;
+        ctx.fillStyle = state2Fill(st.state);
+        ctx.strokeStyle = stateColour(st.state);
+        ctx.lineWidth = 1;
+        roundRect(ctx, x + 8, by, boxW - 16, 32, 3);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = stateColour(st.state);
+        ctx.font = '600 11px ' + monoFont();
+        ctx.fillText(stateGlyph(st.state) + '  ' + stateWord(st.state), x + 16, by + 13);
+        ctx.font = '11px ' + monoFont();
+        ctx.fillText('offered / capacity = ' + num(st.util, 2), x + 16, by + 26);
+      }
+
+      if (i < stages.length - 1) {
+        arrow(ctx, x + boxW + 2, top + boxH / 2, x + boxW + gap - 2);
+      }
+    });
+
+    ctx.textAlign = 'left';
+    ctx.font = '12px ' + bodyFont();
+    ctx.fillStyle = palette.muted;
+    ctx.fillText('A rollback returns the whole batch to BUILD + TEST — a failure consumes the '
+      + 'capacity that would otherwise have shipped the next change.', 2, top + boxH + 28);
+
+    $('factory-alt').textContent = 'At ' + num(s.days, 1) + ' simulated days: '
+      + int(s.stages.backlog) + ' changes waiting for a build-test lane, '
+      + int(s.stages.awaitingRelease) + ' awaiting a release, '
+      + int(s.deployments.total) + ' deployments of which ' + int(s.deployments.failed)
+      + ' failed. Build and test is ' + stateWord(s.capacity.state) + ' at utilisation '
+      + num(s.capacity.utilization, 2) + '; the release channel is '
+      + stateWord(s.releaseCapacity.state) + ' at ' + num(s.releaseCapacity.utilization, 2) + '.';
+  }
+
+  function state2Fill(state) {
+    var cs = getComputedStyle(document.documentElement);
+    return cs.getPropertyValue('--' + state + '-fill').trim() || palette['panel-2'];
+  }
+  function monoFont() { return 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'; }
+  function bodyFont() { return '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'; }
+
+  /* ---------- B. work in the factory over time ---------- */
+  var SERIES = [
+    { key: 'backlog', label: 'waiting for a lane', dash: [], colour: 'accent' },
+    { key: 'releaseQueue', label: 'awaiting a release', dash: [7, 4], colour: 'model' },
+    { key: 'liveDefects', label: 'defects live in production', dash: [2, 3], colour: 'bad' }
+  ];
+
+  function drawBacklog(s) {
+    var g = fit($('c-backlog'), 330);
+    var ctx = g.ctx;
+    var w = g.w;
+    var h = g.h;
+    var padL = 54;
+    var padR = 170;
+    var padT = 28;   /* room for the axis caption above the top gridline */
+    var padB = 34;
+    var plotW = Math.max(10, w - padL - padR);
+    var plotH = Math.max(10, h - padT - padB);
+    var pts = s.backlogSamples;
+
+    ctx.strokeStyle = palette.rule;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(padL, padT, plotW, plotH);
+
+    if (pts.length < 2) {
+      ctx.fillStyle = palette.muted;
+      ctx.font = '13px ' + bodyFont();
+      ctx.textAlign = 'center';
+      ctx.fillText('Press Run to begin.', padL + plotW / 2, padT + plotH / 2);
+      $('backlog-alt').textContent = 'No observations yet.';
+      return;
+    }
+
+    var t0 = pts[0].time / RF.HOURS_PER_DAY;
+    var t1 = Math.max(t0 + 0.1, pts[pts.length - 1].time / RF.HOURS_PER_DAY);
+    var peak = 1;
+    pts.forEach(function (p) {
+      SERIES.forEach(function (se) { if (p[se.key] > peak) peak = p[se.key]; });
+    });
+    var yMax = niceCeil(peak);
+
+    function X(day) { return padL + (day - t0) / (t1 - t0) * plotW; }
+    function Y(v) { return padT + plotH - Math.min(1, v / yMax) * plotH; }
+
+    ctx.strokeStyle = palette.grid;
+    ctx.fillStyle = palette.muted;
+    ctx.font = '11px ' + monoFont();
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (var k = 0; k <= 4; k += 1) {
+      var v = yMax * k / 4;
+      var y = Y(v);
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(padL + plotW, y);
+      ctx.stroke();
+      ctx.fillText(big(v), padL - 6, y);
+    }
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    for (var d = 0; d <= 4; d += 1) {
+      var day = t0 + (t1 - t0) * d / 4;
+      ctx.fillText(num(day, day < 10 ? 1 : 0) + ' d', X(day), padT + plotH + 18);
+    }
+    ctx.textAlign = 'left';
+    ctx.font = '600 10.5px ' + monoFont();
+    ctx.fillText('CHANGES', 2, 12);
+
+    SERIES.forEach(function (se) {
+      ctx.strokeStyle = palette[se.colour];
+      ctx.lineWidth = 2;
+      ctx.setLineDash(se.dash);
+      ctx.beginPath();
+      for (var i = 0; i < pts.length; i += 1) {
+        var x = X(pts[i].time / RF.HOURS_PER_DAY);
+        var y = Y(pts[i][se.key]);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+      /* Direct labels at the right edge: a legend keyed only by colour fails a reader who cannot
+         separate the hues, and a dashed sample beside the word carries the same key twice. */
+      var last = pts[pts.length - 1];
+      var ly = Y(last[se.key]);
+      ctx.strokeStyle = palette[se.colour];
+      ctx.setLineDash(se.dash);
+      ctx.beginPath();
+      ctx.moveTo(padL + plotW + 6, ly);
+      ctx.lineTo(padL + plotW + 26, ly);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = palette.ink;
+      ctx.font = '12px ' + bodyFont();
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(int(last[se.key]) + ' ' + se.label, padL + plotW + 32, ly);
+      ctx.textBaseline = 'alphabetic';
+    });
+
+    var tail = pts[pts.length - 1];
+    $('backlog-alt').textContent = 'Over ' + num(t1 - t0, 1) + ' simulated days the series end at '
+      + int(tail.backlog) + ' changes waiting for a lane, ' + int(tail.releaseQueue)
+      + ' awaiting a release, and ' + int(tail.liveDefects)
+      + ' defects live in production. The peak of any series was ' + int(peak) + '.';
+  }
+
+  /* ---------- C. the five-event ledger ---------- */
+  function drawLedger(s) {
+    var g = fit($('c-ledger'), 430);
+    var ctx = g.ctx;
+    var w = g.w;
+    var l = s.ledger;
+    var rows = [
+      { label: '1 · defect introduced', value: l.introduced, colour: 'accent', indent: 0 },
+      { label: 'signalled by the tests', value: l.signalledByTests, colour: 'model', indent: 1,
+        note: 'the signal, not the decision' },
+      { label: '2 · detected before release', value: l.detectedBeforeRelease, colour: 'ok',
+        indent: 1, note: 'identified, and kept out' },
+      { label: '3 · exposed in production', value: l.exposedInProduction, colour: 'bad',
+        indent: 1, note: 'reached real users' },
+      { label: 'caught inside the canary', value: l.detectedDuringCanary, colour: 'warn',
+        indent: 2, note: 'never reached the whole fleet' },
+      { label: 'reached the whole fleet', value: l.reachedWholeFleet, colour: 'bad', indent: 2 },
+      { label: '4 · detected after release', value: l.detectedAfterRelease, colour: 'warn',
+        indent: 1, note: 'by monitoring or a bug report' },
+      { label: 'exposed, never detected', value: l.exposedNeverDetected, colour: 'bad', indent: 1,
+        hatch: true, note: 'absent from the failure rate' },
+      { label: '5 · service restored', value: l.restored, colour: 'ok', indent: 1,
+        note: 'clock runs from DETECTION' },
+      { label: 'removed by another rollback', value: l.removedUndetected, colour: 'muted',
+        indent: 2, note: 'gone, but nobody knew' },
+      { label: 'still inside the pipeline', value: l.inPipeline, colour: 'muted', indent: 1 }
+    ];
+
+    var labelW = Math.min(300, Math.max(190, w * 0.22));
+    var padR = Math.max(170, Math.min(300, w * 0.19));
+    var barX = labelW + 12;
+    var barW = Math.max(40, w - barX - padR);
+    var top = 34;
+    var rowH = Math.min(33, (g.h - top - 18) / rows.length);
+    var maxValue = Math.max(1, l.introduced);
+
+    ctx.font = '600 11px ' + monoFont();
+    ctx.fillStyle = palette.muted;
+    ctx.textAlign = 'left';
+    ctx.fillText('EVENT', 2, 18);
+    ctx.fillText('DEFECT INSTANCES, SINCE THE FACTORY WAS RESET', barX, 18);
+
+    rows.forEach(function (r, i) {
+      var y = top + i * rowH;
+      var barH = Math.max(8, rowH - 11);
+      ctx.font = (r.indent === 0 ? '600 ' : '') + '12.5px ' + bodyFont();
+      ctx.fillStyle = r.indent === 0 ? palette.ink : palette.muted;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(r.label, 2 + r.indent * 12, y + barH / 2);
+
+      var width = Math.max(r.value > 0 ? 2 : 0, (r.value / maxValue) * barW);
+      ctx.fillStyle = palette[r.colour];
+      ctx.globalAlpha = r.colour === 'muted' ? 0.35 : 0.85;
+      ctx.fillRect(barX, y, width, barH);
+      ctx.globalAlpha = 1;
+      if (r.hatch && width > 3) {
+        /* A hatch, so this row is distinguishable from the solid bars without relying on hue. */
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(barX, y, width, barH);
+        ctx.clip();
+        ctx.strokeStyle = palette.paper;
+        ctx.lineWidth = 1.5;
+        for (var hx = -barH; hx < width + barH; hx += 6) {
+          ctx.beginPath();
+          ctx.moveTo(barX + hx, y + barH);
+          ctx.lineTo(barX + hx + barH, y);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+      ctx.strokeStyle = palette[r.colour];
+      ctx.lineWidth = 1;
+      ctx.strokeRect(barX, y, Math.max(width, 1), barH);
+
+      ctx.font = '600 12.5px ' + monoFont();
+      ctx.fillStyle = palette.ink;
+      ctx.fillText(int(r.value), barX + barW + 10, y + barH / 2);
+      if (r.note) {
+        ctx.font = '11.5px ' + bodyFont();
+        ctx.fillStyle = palette.muted;
+        var noteX = barX + barW + 70;
+        /* Drawn only when it fits. A note clipped by the canvas edge reads as a rendering defect,
+           and the prose under the chart carries the same sentence in full. */
+        if (noteX + ctx.measureText(r.note).width <= w - 2) {
+          ctx.fillText(r.note, noteX, y + barH / 2);
+        }
+      }
+    });
+    ctx.textBaseline = 'alphabetic';
+
+    $('ledger-alt').textContent = 'Of ' + int(l.introduced) + ' defects introduced, the tests '
+      + 'signalled ' + int(l.signalledByTests) + '; ' + int(l.detectedBeforeRelease)
+      + ' were kept out of production; ' + int(l.exposedInProduction) + ' reached real users, of '
+      + 'which ' + int(l.detectedDuringCanary) + ' were caught inside a canary and '
+      + int(l.reachedWholeFleet) + ' reached the whole fleet. '
+      + int(l.detectedAfterRelease) + ' were detected after release and ' + int(l.restored)
+      + ' restored. ' + int(l.exposedNeverDetected) + ' were exposed and never detected. '
+      + int(l.inPipeline) + ' are still inside the pipeline.';
+  }
+
+  /* ---------- D. the capacity sweep ---------- */
+  function drawSweep() {
+    var g = fit($('c-sweep'), 400);
+    var ctx = g.ctx;
+    var w = g.w;
+    var h = g.h;
+    var padL = 64;
+    var padR = 150;
+    var padT = 28;   /* room for the axis caption above the top gridline */
+    var padB = 46;
+    var plotW = Math.max(10, w - padL - padR);
+    var plotH = Math.max(10, h - padT - padB);
+
+    ctx.strokeStyle = palette.rule;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(padL, padT, plotW, plotH);
+
+    if (sweep === null) {
+      ctx.fillStyle = palette.muted;
+      ctx.font = '13px ' + bodyFont();
+      ctx.textAlign = 'center';
+      ctx.fillText('Press "Run the sweep". Each point is an independent 90-day simulation '
+        + 'at the current policies.', padL + plotW / 2, padT + plotH / 2);
+      $('sweep-alt').textContent = 'The sweep has not been run.';
+      return;
+    }
+
+    var pts = sweep.points;
+    var xMax = pts[pts.length - 1].arrivalPerDay;
+    var yPeak = 1;
+    pts.forEach(function (p) {
+      if (p.leadTimeMeanHours > yPeak) yPeak = p.leadTimeMeanHours;
+      if (p.leadTimeP90Hours > yPeak) yPeak = p.leadTimeP90Hours;
+    });
+    var yMax = niceCeil(yPeak);
+
+    function X(v) { return padL + (v / xMax) * plotW; }
+    function Y(v) { return padT + plotH - Math.min(1, (v || 0) / yMax) * plotH; }
+
+    ctx.strokeStyle = palette.grid;
+    ctx.fillStyle = palette.muted;
+    ctx.font = '11px ' + monoFont();
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (var k = 0; k <= 4; k += 1) {
+      var v = yMax * k / 4;
+      var y = Y(v);
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(padL + plotW, y);
+      ctx.stroke();
+      ctx.fillText(dur(v), padL - 6, y);
+    }
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    pts.forEach(function (p, i) {
+      if (i % 2 === 0) ctx.fillText(String(p.arrivalPerDay), X(p.arrivalPerDay), padT + plotH + 18);
+    });
+    ctx.fillText('changes arriving per day', padL + plotW / 2, padT + plotH + 38);
+    ctx.textAlign = 'left';
+    ctx.font = '600 10.5px ' + monoFont();
+    ctx.fillText('LEAD TIME', 2, 12);
+
+    /* The two nominal capacities, as vertical reference lines. Whichever is lower is the stage
+       the curve bends at, which is the whole point of drawing both. */
+    var probe = RF.createSimulation(cfg);
+    var sTest = RF.snapshot(probe);
+    [{ v: sTest.capacity.servicePerDay, label: 'build + test capacity' },
+      { v: sTest.releaseCapacity.servicePerDay * sTest.releaseCapacity.batchSize,
+        label: 'release channel capacity' }].forEach(function (line) {
+      if (!(line.v > 0) || !isFinite(line.v) || line.v > xMax) return;
+      ctx.strokeStyle = palette.gold;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(X(line.v), padT);
+      ctx.lineTo(X(line.v), padT + plotH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.save();
+      ctx.translate(X(line.v) + 12, padT + 10);
+      ctx.fillStyle = palette.muted;
+      ctx.font = '11px ' + monoFont();
+      ctx.textAlign = 'left';
+      ctx.fillText(line.label + ' ≈ ' + num(line.v, 0) + '/day', 0, 0);
+      ctx.restore();
+    });
+
+    [{ key: 'leadTimeMeanHours', label: 'mean lead time', dash: [], colour: 'accent' },
+      { key: 'leadTimeP90Hours', label: '90th percentile', dash: [6, 4], colour: 'model' }]
+      .forEach(function (se) {
+        ctx.strokeStyle = palette[se.colour];
+        ctx.lineWidth = 2;
+        ctx.setLineDash(se.dash);
+        ctx.beginPath();
+        pts.forEach(function (p, i) {
+          var x = X(p.arrivalPerDay);
+          var y = Y(p[se.key]);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = palette[se.colour];
+        pts.forEach(function (p) {
+          ctx.beginPath();
+          ctx.arc(X(p.arrivalPerDay), Y(p[se.key]), 3, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        var last = pts[pts.length - 1];
+        ctx.fillStyle = palette.ink;
+        ctx.font = '12px ' + bodyFont();
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(se.label, padL + plotW + 10, Y(last[se.key]));
+        ctx.textBaseline = 'alphabetic';
+      });
+
+    var worst = pts[pts.length - 1];
+    var best = pts[0];
+    $('sweep-alt').textContent = 'Across ' + pts.length + ' arrival rates from '
+      + best.arrivalPerDay + ' to ' + worst.arrivalPerDay + ' changes a day, the mean lead time '
+      + 'rises from ' + dur(best.leadTimeMeanHours) + ' to ' + dur(worst.leadTimeMeanHours)
+      + '. The build and test stage serves about ' + num(sTest.capacity.servicePerDay, 0)
+      + ' changes a day and the release channel about '
+      + num(sTest.releaseCapacity.servicePerDay * sTest.releaseCapacity.batchSize, 0) + '.';
+  }
+
+  /* ---------- readouts ---------- */
+  function renderKeys(s) {
+    var k = s.fourKeys;
+    var u = s.userImpact;
+    $('r-time').textContent = num(s.days, 2) + ' days  (' + int(s.eventCount) + ' events'
+      + (s.measuredHours < s.time
+        ? ', ' + num(s.measuredHours / RF.HOURS_PER_DAY, 1) + ' d measured' : '') + ')';
+    $('r-test-cap').textContent = num(s.capacity.offeredPerDay, 0) + ' offered / '
+      + num(s.capacity.servicePerDay, 0) + ' served per day — '
+      + stateGlyph(s.capacity.state) + ' ' + stateWord(s.capacity.state)
+      + ' (' + num(s.capacity.utilization, 2) + ')';
+    $('r-rel-cap').textContent = num(s.releaseCapacity.offeredPerDay, 1) + ' releases offered / '
+      + num(s.releaseCapacity.servicePerDay, 1) + ' served per day — '
+      + stateGlyph(s.releaseCapacity.state) + ' ' + stateWord(s.releaseCapacity.state)
+      + ' (' + num(s.releaseCapacity.utilization, 2) + ')';
+
+    $('k-freq').textContent = k.deploymentFrequencyPerDay === null
+      ? '—' : num(k.deploymentFrequencyPerDay, 2);
+    $('k-freq-sub').textContent = k.deploymentFrequencyPerDay === null
+      ? 'no deployment yet'
+      : 'per day · ' + num(k.successfulDeploymentFrequencyPerDay, 2) + ' not later classified '
+        + 'as failed';
+
+    $('k-lead').textContent = dur(k.leadTimeHours.mean);
+    $('k-lead-sub').textContent = k.leadTimeHours.mean === null ? 'no change delivered yet'
+      : 'mean · median ' + dur(k.leadTimeHours.median) + ' · p90 '
+        + dur(k.leadTimeHours.p90) + ' · n ' + int(k.leadTimeHours.n);
+
+    $('k-cfr').textContent = pct(k.changeFailureRate);
+    $('k-cfr-sub').textContent = k.changeFailureRate === null ? 'no deployment yet'
+      : int(s.deployments.failed) + ' of ' + int(s.deployments.total) + ' deployments · '
+        + int(s.deployments.carryingUndetectedDefect) + ' more carried a defect nobody detected';
+
+    $('k-ttr').textContent = dur(k.timeToRestoreHours.mean);
+    $('k-ttr-sub').textContent = k.timeToRestoreHours.mean === null ? 'nothing restored yet'
+      : 'mean · median ' + dur(k.timeToRestoreHours.median) + ' · n '
+        + int(k.timeToRestoreHours.n);
+
+    $('k-impact').textContent = big(u.requestsExposed);
+    $('k-impact-sub').textContent = u.requestsExposedPerDay === null ? 'nothing exposed yet'
+      : big(u.requestsExposedPerDay) + ' per day · ' + big(u.requestsAffected)
+        + ' of them actually hit the defect · ' + int(u.liveUndetectedDefects)
+        + ' undetected defect' + (u.liveUndetectedDefects === 1 ? '' : 's') + ' live now';
+
+    $('k-impact-med').textContent = big(u.perFailedDeployment.median);
+    $('k-impact-med-sub').textContent = u.perFailedDeployment.median === null
+      ? 'no failed deployment yet'
+      : 'mean ' + big(u.perFailedDeployment.mean) + ' · p90 '
+        + big(u.perFailedDeployment.p90) + ' · n ' + int(u.perFailedDeployment.n);
+  }
+
+  /* ---------- draw and run ---------- */
+  function refresh() { draw(true); }
+
+  function draw(force) {
+    var nowMs = (window.performance && window.performance.now) ? window.performance.now() : 0;
+    var minGap = ui.reduced ? 400 : 60;
+    if (!force && nowMs - ui.lastDrawMs < minGap) return;
+    ui.lastDrawMs = nowMs;
+    var s = RF.snapshot(sim);
+    renderKeys(s);
+    drawFactory(s);
+    drawBacklog(s);
+    drawLedger(s);
+    drawSweep();
+  }
+
+  /* Wall time becomes a simulated-time HORIZON, and the engine decides which events fall inside
+     it. The trace is therefore a function of the horizon alone and not of the frame rate. */
+  function frame(nowMs) {
+    if (!ui.running) return;
+    if (ui.lastFrameMs === null) ui.lastFrameMs = nowMs;
+    var elapsedSeconds = Math.min(0.25, (nowMs - ui.lastFrameMs) / 1000);
+    ui.lastFrameMs = nowMs;
+    RF.advanceSimulation(sim, {
+      untilTime: sim.time + elapsedSeconds * ui.speed,
+      maxEvents: EVENT_BUDGET_PER_FRAME,
+      sampleEvery: SAMPLE_HOURS
+    });
+    draw(false);
+    window.requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', function () { draw(true); });
+
+  syncAll();
+  refresh();
+
+  /* A small surface for the browser tier, so a test drives the same entry points a reader does
+     rather than reaching into closures. */
+  window.releaseFactoryUi = {
+    snapshot: function () { return RF.snapshot(sim); },
+    config: function () {
+      var out = {};
+      var keys = Object.keys(cfg);
+      for (var i = 0; i < keys.length; i += 1) out[keys[i]] = cfg[keys[i]];
+      return out;
+    },
+    isRunning: function () { return ui.running; },
+    eventCount: function () { return sim.eventCount; },
+    sweepPoints: function () { return sweep === null ? 0 : sweep.points.length; },
+    advanceDays: function (days) {
+      RF.advanceSimulation(sim, {
+        untilTime: sim.time + days * RF.HOURS_PER_DAY, sampleEvery: SAMPLE_HOURS
+      });
+      draw(true);
+    }
   };
 }());
 </script>
