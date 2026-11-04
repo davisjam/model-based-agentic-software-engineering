@@ -403,7 +403,7 @@ footer {
      and over xorshift128 (four words of state to serialise) because reproducibility here means
      "the same seed replays the same trace", and one word is the easiest thing to reset exactly.
 
-     Math.random() appears nowhere in this element, and the packaging test asserts that. */
+     The platform's unseeded random source is never called here, and a test asserts that. */
   function createRng(seed) {
     var a = seed >>> 0;
     function next() {
@@ -417,22 +417,26 @@ footer {
     return next;
   }
 
-  /* FIVE independent streams from one user-visible seed, one per concern. Separating them is what
+  /* SIX independent streams from one user-visible seed, one per concern. Separating them is what
      makes a POLICY COMPARISON a controlled experiment: switching the release strategy consumes
      different numbers of draws from the `production` stream, and if arrivals shared that stream the
      team's commit sequence would change too, so the two runs would not be comparable. Every defect
      attribute is also drawn AT COMMIT TIME rather than lazily at deployment, for the same reason:
      the population of defects is a property of the engineering team, not of the release policy.
+     A defect that a REWORK introduces draws from its own stream for the same reason: without that
+     separation, a policy that reworks more changes would shift every later commit-time draw, and
+     the two runs would no longer be looking at the same team.
 
      Offsets are odd golden-ratio-class constants, which decorrelates the streams. */
   var STREAM_OFFSETS = {
     arrival: 0x00000000,      /* inter-commit times */
-    defect: 0x9E3779B9,       /* which changes are defective, and each defect's attributes */
+    defect: 0x9E3779B9,       /* which COMMITTED changes are defective, and their attributes */
+    regression: 0x165667B1,   /* defects a rework introduces while fixing something else */
     test: 0x85EBCA77,         /* test verdicts, flaky failures, rework outcomes */
     duration: 0xC2B2AE3D,     /* test / rework / rollback durations */
     production: 0x27D4EB2F    /* detection in production, synthetic verification */
   };
-  var STREAM_NAMES = ['arrival', 'defect', 'test', 'duration', 'production'];
+  var STREAM_NAMES = ['arrival', 'defect', 'regression', 'test', 'duration', 'production'];
 
   function createStreams(seed) {
     var out = {};
@@ -572,8 +576,7 @@ footer {
     return DEFECT_CLASSES[DEFECT_CLASSES.length - 1];
   }
 
-  function drawDefect(sim, now) {
-    var rng = sim.rng.defect;
+  function drawDefect(sim, now, rng, origin) {
     var cls = pickClass(rng, sim.classWeights);
     var td = uniformIn(rng, cls.testDetectability[0], cls.testDetectability[1]);
     var mr = cls.manifestScale === 'log'
@@ -584,6 +587,7 @@ footer {
     var defect = {
       id: sim.nextDefectId,
       classId: cls.id,
+      origin: origin,
       testDetectability: p ? p.testDetectability : td,
       manifestRate: p ? p.manifestRate : mr,
       trafficDetectability: p ? p.trafficDetectability : tf,
@@ -594,6 +598,11 @@ footer {
       detectedAfterReleaseAt: null,
       restoredAt: null,
       removedFromProductionAt: null,
+      /* Bookkeeping, not a sixth event: WHERE the production detection happened. A detection while
+         the release is still a canary means the defect never reached the whole fleet, which is the
+         difference a canary can make — and the quantity to look at, because "was it eventually
+         detected" is dominated by traffic volume rather than by the release strategy. */
+      detectedDuringCanary: false,
       /* Detection is rescheduled whenever the exposure fraction changes. The generation counter
          invalidates the superseded event instead of searching the heap for it. */
       detectGeneration: 0
@@ -850,6 +859,28 @@ footer {
     return arrivalRatePerHour(p) / service;
   }
 
+  /* The release channel is a SECOND capacity, and it is the one students do not expect. A release
+     occupies its slot for the whole of its deploy delay plus any soak or verification window, so a
+     one-hour canary soak with one change per release caps the factory at roughly 24 deployments a
+     day — no matter how fast the tests are. Batch size is the lever: it divides the offered release
+     rate by the number of changes each release carries.
+
+     Like `pipelineUtilization` this is a MODEL number, computed from the nominal durations, and it
+     ignores the extra releases that rework and rollback generate. The page labels it as a model. */
+  function releaseCycleHours(p) {
+    var strategy = RELEASE_STRATEGIES[p.releaseStrategy];
+    return p.deployHours
+      + (strategy.soaks ? p.canarySoakHours : 0)
+      + (strategy.verifies ? p.blueGreenVerifyHours : 0);
+  }
+
+  function releaseUtilization(p) {
+    var cycle = releaseCycleHours(p);
+    if (!(cycle > 0)) return 0;
+    var service = p.releaseSlots / cycle;
+    return (arrivalRatePerHour(p) / p.batchSize) / service;
+  }
+
   function createSimulation(options) {
     var o = options || {};
     var params = {};
@@ -903,7 +934,7 @@ footer {
       testRuns: 0, testPasses: 0, testFailures: 0, trueFailures: 0, flakyFailures: 0,
       blockedDefective: 0, blockedFlaky: 0, admittedWithFailingChecks: 0,
       admitted: 0, reworks: 0, reworkRegressions: 0,
-      releasesStarted: 0, releasesAborted: 0,
+      releasesStarted: 0, releasesAborted: 0, caughtInCanary: 0,
       deployments: 0, failedDeployments: 0,
       maxBacklog: 0, maxReleaseQueue: 0
     };
@@ -911,10 +942,17 @@ footer {
       leadTimeSum: 0, leadTimeCount: 0,
       restoreSum: 0, restoreCount: 0,
       requestsExposed: 0, requestsAffected: 0, exposureHours: 0,
+      failureExposureSum: 0, failureExposureCount: 0,
       waitLaneSum: 0, testSum: 0, reworkSum: 0, batchWaitSum: 0, deploySum: 0
     };
     sim.leadTimes = createRing(p.quantileWindow);
     sim.restoreTimes = createRing(p.quantileWindow);
+    /* Requests exposed by each FAILED deployment, recorded when it is rolled back. The total
+       user impact is dominated by the long tail of slowly-detected defects, so the total alone
+       hides what a canary does: it cuts the TYPICAL failure's exposure by the traffic share while
+       leaving the tail where it was. Keeping the per-failure distribution is what makes that
+       visible — the median moves, the mean barely does. */
+    sim.failureExposures = createRing(p.quantileWindow);
     sim.backlogSamples = [];     /* {time, backlog, releaseQueue, liveDefects} — for the chart */
     sim.trace = [];
 
@@ -1014,7 +1052,7 @@ footer {
     var change = createChange(sim);
     sim.counters.commits += 1;
     if (sim.rng.defect() < sim.params.defectRate) {
-      change.defect = drawDefect(sim, sim.time);
+      change.defect = drawDefect(sim, sim.time, sim.rng.defect, 'commit');
       sim.counters.defectiveCommits += 1;
     }
     enqueueChange(sim, change);
@@ -1085,7 +1123,7 @@ footer {
     change.reworkHours += sim.time - change.reworkStartedAt;
     change.attempt += 1;
     if (change.pendingRegression) {
-      change.defect = drawDefect(sim, sim.time);
+      change.defect = drawDefect(sim, sim.time, sim.rng.regression, 'rework');
       change.pendingRegression = false;
     }
     enqueueChange(sim, change);
@@ -1397,6 +1435,8 @@ footer {
 
     /* EVENT 4. */
     defect.detectedAfterReleaseAt = sim.time;
+    defect.detectedDuringCanary = !!release.inCanary;
+    if (release.inCanary) sim.counters.caughtInCanary += 1;
     if (!release.failed) {
       release.failed = true;
       release.detectedAt = sim.time;
@@ -1443,6 +1483,11 @@ footer {
       change.admittedAt = sim.time;
       /* The rollback reverts the batch. Every change goes back through the pipeline. */
       sendToRework(sim, change, !!d);
+    }
+    if (sim.time >= sim.params.warmupHours) {
+      sim.totals.failureExposureSum += release.requestsExposed;
+      sim.totals.failureExposureCount += 1;
+      ringPush(sim.failureExposures, release.requestsExposed);
     }
     removeLive(sim, release);
     if (!release.slotReleased) { release.slotReleased = true; sim.releasesInFlight -= 1; }
@@ -1576,6 +1621,7 @@ footer {
     var out = {
       introduced: 0, signalledByTests: 0, detectedBeforeRelease: 0,
       exposedInProduction: 0, detectedAfterRelease: 0, restored: 0,
+      detectedDuringCanary: 0, reachedWholeFleet: 0,
       exposedNeverDetected: 0, removedUndetected: 0, liveUndetected: 0, inPipeline: 0,
       byClass: {}
     };
@@ -1591,7 +1637,11 @@ footer {
       if (d.signalledByTestsAt !== null) out.signalledByTests += 1;
       if (d.detectedBeforeReleaseAt !== null) { out.detectedBeforeRelease += 1; c.detectedBeforeRelease += 1; }
       if (d.exposedInProductionAt !== null) { out.exposedInProduction += 1; c.exposedInProduction += 1; }
-      if (d.detectedAfterReleaseAt !== null) { out.detectedAfterRelease += 1; c.detectedAfterRelease += 1; }
+      if (d.detectedAfterReleaseAt !== null) {
+        out.detectedAfterRelease += 1; c.detectedAfterRelease += 1;
+        if (d.detectedDuringCanary) out.detectedDuringCanary += 1;
+      }
+      if (d.exposedInProductionAt !== null && !d.detectedDuringCanary) out.reachedWholeFleet += 1;
       if (d.restoredAt !== null) out.restored += 1;
       if (d.exposedInProductionAt !== null && d.detectedAfterReleaseAt === null) {
         out.exposedNeverDetected += 1;
@@ -1643,6 +1693,9 @@ footer {
     var lead = summarise(sim.leadTimes, sim.totals.leadTimeSum, sim.totals.leadTimeCount);
     var restore = summarise(sim.restoreTimes, sim.totals.restoreSum, sim.totals.restoreCount);
     var util = pipelineUtilization(p);
+    var relUtil = releaseUtilization(p);
+    var failureExposure = summarise(sim.failureExposures,
+      sim.totals.failureExposureSum, sim.totals.failureExposureCount);
     var n = sim.totals.leadTimeCount;
     var live = 0;
     for (var i = 0; i < sim.liveReleases.length; i += 1) live += liveDefectsOf(sim.liveReleases[i]).length;
@@ -1675,6 +1728,18 @@ footer {
         maxBacklog: sim.counters.maxBacklog
       },
 
+      releaseCapacity: {
+        slots: p.releaseSlots,
+        cycleHours: releaseCycleHours(p),
+        batchSize: p.batchSize,
+        offeredPerDay: (arrivalRatePerHour(p) / p.batchSize) * HOURS_PER_DAY,
+        servicePerDay: releaseCycleHours(p) > 0
+          ? (p.releaseSlots / releaseCycleHours(p)) * HOURS_PER_DAY : Infinity,
+        utilization: relUtil,
+        state: capacityState(relUtil),
+        maxQueue: sim.counters.maxReleaseQueue
+      },
+
       /* The Four Keys. */
       fourKeys: {
         deploymentFrequencyPerDay: days > 0 ? deployments / days : null,
@@ -1690,7 +1755,8 @@ footer {
         requestsAffected: sim.totals.requestsAffected + pending.affected,
         exposureHours: sim.totals.exposureHours + pending.hours,
         requestsExposedPerDay: days > 0 ? (sim.totals.requestsExposed + pending.exposed) / days : null,
-        liveUndetectedDefects: ledger.liveUndetected
+        liveUndetectedDefects: ledger.liveUndetected,
+        perFailedDeployment: failureExposure
       },
 
       ledger: ledger,
@@ -1707,7 +1773,8 @@ footer {
         admittedWithFailingChecks: sim.counters.admittedWithFailingChecks,
         reworks: sim.counters.reworks,
         reworkRegressions: sim.counters.reworkRegressions,
-        releasesAborted: sim.counters.releasesAborted
+        releasesAborted: sim.counters.releasesAborted,
+        caughtInCanary: sim.counters.caughtInCanary
       },
 
       deployments: {
@@ -1778,88 +1845,107 @@ footer {
     {
       id: 'step-1-thorough',
       step: 1,
-      name: '1 · Thorough, required, immediate',
-      why: 'High arrival, deepest tests, nothing may ship red. Watch the backlog.',
+      name: '1 \u00b7 Thorough, required, immediate',
+      why: 'High arrival, deepest tests, nothing may ship red. Watch the build\u2013test backlog.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'thorough',
-        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 1
+        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'step-2-shallower',
       step: 2,
-      name: '2 · Reduce test depth',
-      why: 'Standard tests instead. Lead time improves; more defects reach users.',
+      name: '2 \u00b7 Reduce test depth',
+      why: 'Only the test depth changes. Lead time collapses; far more defective requests reach users.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
-        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 1
+        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'step-3-canary',
       step: 3,
-      name: '3 · Enable canary',
-      why: 'A 5% soak before the fleet. Longer lead time, lower exposure — for the defects it sees.',
+      name: '3 \u00b7 Enable canary',
+      why: 'Only the release strategy changes. Compare the failure RATE with the exposure per failure.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
-        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'step-4-knee',
       step: 4,
-      name: '4 · Hold capacity, raise arrivals',
-      why: 'Same two lanes, 120 changes a day. The pipeline grows its own performance knee.',
+      name: '4 \u00b7 Hold capacity, raise arrivals',
+      why: 'Same two lanes and one release slot, 120 changes a day. Both stages cross capacity.',
       params: {
         arrivalRate: null, arrivalRatePerDay: 120, testDepth: 'standard',
-        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'advisory',
       name: 'Advisory checks',
-      why: 'Same factory, but a red build only warns. Compare what the tests found with what shipped.',
+      why: 'A red build only warns. Compare what the tests found with what shipped anyway.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
-        admissionPolicy: 'advisory', releaseStrategy: 'immediate', batchSize: 1
+        admissionPolicy: 'advisory', releaseStrategy: 'immediate', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'rare-defects',
-      name: 'Rare defects only',
-      why: 'Every defect manifests on one request in thousands. The canary almost never finds one.',
+      name: 'Rare defects, quiet service',
+      why: 'Defects on one request in thousands, at 500 requests an hour. The canary almost never sees one.',
       params: {
         arrivalRate: 'medium', arrivalRatePerDay: null, testDepth: 'standard',
         admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
-        defectClassWeights: { obvious: 0, conditional: 0, rare: 0.7, latent: 0.3 }
+        defectClassWeights: { obvious: 0, conditional: 0, rare: 0.6, latent: 0.4 },
+        requestsPerHour: 500
       }
     },
     {
       id: 'obvious-defects',
       name: 'Obvious defects only',
-      why: 'The flattering case. Here the canary catches nearly everything before full rollout.',
+      why: 'The flattering case for a canary: it catches nearly everything before full rollout.',
       params: {
         arrivalRate: 'medium', arrivalRatePerDay: null, testDepth: 'standard',
         admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 5,
-        defectClassWeights: { obvious: 1, conditional: 0, rare: 0, latent: 0 }
+        defectClassWeights: { obvious: 1, conditional: 0, rare: 0, latent: 0 },
+        requestsPerHour: 20000
+      }
+    },
+    {
+      id: 'canary-one-at-a-time',
+      name: 'Canary, one change per release',
+      why: 'A one-hour soak caps the factory near 24 releases a day. The release channel is a capacity too.',
+      params: {
+        arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
+        admissionPolicy: 'required', releaseStrategy: 'canary', batchSize: 1,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
       id: 'big-batch',
       name: 'Ten changes per release',
-      why: 'Fewer, larger releases. Deployment frequency falls; one bad change holds nine good ones.',
+      why: 'Fewer, larger releases. Frequency falls, lead time rises, and the failure rate rises with it.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
-        admissionPolicy: 'required', releaseStrategy: 'blueGreen', batchSize: 10
+        admissionPolicy: 'required', releaseStrategy: 'immediate', batchSize: 10,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
-      id: 'blue-green-small',
-      name: 'Blue-green, one at a time',
-      why: 'Synthetic verification instead of a real-traffic soak, and a fast switch back.',
+      id: 'blue-green',
+      name: 'Blue-green verification',
+      why: 'Synthetic traffic instead of a real-traffic soak: no user exposure, and a fast switch back.',
       params: {
         arrivalRate: 'high', arrivalRatePerDay: null, testDepth: 'standard',
-        admissionPolicy: 'required', releaseStrategy: 'blueGreen', batchSize: 1
+        admissionPolicy: 'required', releaseStrategy: 'blueGreen', batchSize: 5,
+        defectClassWeights: null, requestsPerHour: 20000
       }
     },
     {
@@ -1869,7 +1955,8 @@ footer {
       params: {
         arrivalRate: DEFAULTS.arrivalRate, arrivalRatePerDay: null, testDepth: DEFAULTS.testDepth,
         admissionPolicy: DEFAULTS.admissionPolicy, releaseStrategy: DEFAULTS.releaseStrategy,
-        batchSize: DEFAULTS.batchSize, defectClassWeights: null
+        batchSize: DEFAULTS.batchSize, defectClassWeights: null,
+        requestsPerHour: DEFAULTS.requestsPerHour
       }
     }
   ];
@@ -2016,20 +2103,24 @@ footer {
     });
 
     check('Canary effectiveness depends on the defect, not on a flag', function () {
-      function exposedFully(weights) {
+      /* The quantity a canary can move is whether the defect is caught BEFORE the whole fleet
+         sees it. Whether it is EVENTUALLY detected is dominated by traffic volume, so asserting
+         on that would measure the wrong thing — and would have hidden this distinction. */
+      function caughtInSoak(weights) {
         var sim = createSimulation({
           releaseStrategy: 'canary', defectClassWeights: weights, seed: 97,
           arrivalRate: 'medium', admissionPolicy: 'advisory'
         });
         advanceSimulation(sim, { untilTime: 24 * 240 });
         var l = defectLedger(sim);
-        return l.exposedInProduction > 0 ? l.detectedAfterRelease / l.exposedInProduction : 0;
+        return l.exposedInProduction > 0 ? l.detectedDuringCanary / l.exposedInProduction : 0;
       }
-      var obvious = exposedFully({ obvious: 1, conditional: 0, rare: 0, latent: 0 });
-      var rare = exposedFully({ obvious: 0, conditional: 0, rare: 0, latent: 1 });
-      assert(obvious > rare + 0.2, 'obvious ' + obvious.toFixed(3) + ' vs rare ' + rare.toFixed(3));
-      return 'detected-in-production share: obvious ' + (100 * obvious).toFixed(0)
-        + '%, latent ' + (100 * rare).toFixed(0) + '%';
+      var obvious = caughtInSoak({ obvious: 1, conditional: 0, rare: 0, latent: 0 });
+      var latent = caughtInSoak({ obvious: 0, conditional: 0, rare: 0, latent: 1 });
+      assert(obvious > 0.8, 'obvious defects escaped the canary: ' + obvious.toFixed(3));
+      assert(latent < 0.2, 'latent defects were caught by the canary: ' + latent.toFixed(3));
+      return 'caught inside the soak: obvious ' + (100 * obvious).toFixed(0)
+        + '%, latent ' + (100 * latent).toFixed(0) + '%';
     });
 
     check('Invalid parameters are rejected', function () {
@@ -2115,6 +2206,8 @@ footer {
     meanTestDetectability: meanTestDetectability,
     normalisedWeights: normalisedWeights,
     capacityState: capacityState,
+    releaseCycleHours: releaseCycleHours,
+    releaseUtilization: releaseUtilization,
     /* experiments */
     runSweep: runSweep,
     applyPreset: applyPreset,
