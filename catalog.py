@@ -143,7 +143,25 @@ def _book_title_block() -> str:
 #     a workbench-owned file; fixing it does not change the console-gate verdict, which is the blocker.
 # The workbench's own gates hold it instead: `tsc --noEmit`, its unit suite, and the bundle build, all in
 # the Pages workflow. Revisit this exclusion only if the console gate learns to serve pages over http.
-NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme", "workbench")
+# `interactive` holds the course's self-contained interactive EXERCISES — `course/interactive/<slug>/`,
+# one hand-authored single-file application apiece (the first is the ECE 30861 Act-III queueing
+# simulator, `course/interactive/performance-knee/index.html`). Same reasoning as `workbench`, for the
+# same two reasons plus one of its own:
+#   - It is an APPLICATION, not a catalogue page. `catalog.py build` does not emit it (the "never
+#     hand-edit the .html" rule does not reach it) and the page-shape gates measure the wrong thing on
+#     an instrument whose body is panels and <canvas>.
+#   - Its inbound link comes from a course `.md` lander, which the orphan gate cannot see: that gate
+#     reads `href="….html"` out of BUILT html, and the Teach site is rendered by a separate CI MkDocs
+#     step into `_site/teach` (pruned here as `_site`). The page is reachable on the deployed site and
+#     unreachable to a static scan of this tree — so scanning it could only ever produce a false red.
+#   - Raw `course/` never ships: the assemble step excludes it from the Pages artifact and publishes
+#     only MkDocs' output. An `.html` here is a SOURCE asset that MkDocs copies through untransformed,
+#     which is exactly what the simulator needs and exactly what `_served_html_pages` must not claim.
+# The exercise's own gates hold it: a stdlib `node:test` suite plus a statistical validation tier under
+# `course/interactive/<slug>/tests/`, which extract the engine from the shipped HTML so the tested text
+# and the published text cannot drift. Adding this name changes nothing on the present tree — no other
+# directory is called `interactive` — so it is a forward declaration, not a retraction of coverage.
+NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design", "web-theme", "workbench", "interactive")
 
 # The workbench's published URL, linked from the landing's "Using MAGE" section. Named here, beside the
 # exclusion that keeps the shell out of the page walks, so the two statements about the same file are read

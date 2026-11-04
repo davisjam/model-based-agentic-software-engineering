@@ -22,10 +22,17 @@ strict: true  # fail the build on a bad internal link or nav reference (link-int
 # repo only — it must NOT be published. Excluded rather than merely hidden from nav: `not_in_nav`
 # still BUILDS and SERVES the page, and `catalog.py build` runs a blocking reachability gate that
 # fails on any built page nothing links to, so hiding-without-excluding would red the build.
+#
+# `interactive/*/tests/` holds each interactive exercise's Node test suite. The exercise itself —
+# `interactive/<slug>/index.html` plus any assets — is NOT excluded: MkDocs copies a non-Markdown file
+# through untransformed, so the simulator ships verbatim and is served at
+# /teach/interactive/<slug>/ with no routing change and no new toolchain. Its tests are repo-facing
+# and have no business in the published artifact.
 exclude_docs: |
   README.md
   LICENSE
   lectures/act-3-software-in-the-world/archived/*
+  interactive/*/tests/*
 
 # The home page is reachable via the navbar title/logo; it does not need a second
 # redundant entry at the top of the sidebar. Keep it built + served, just out of the nav.
