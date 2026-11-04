@@ -176,7 +176,7 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   border: 1px solid var(--rule); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
-.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; flex-wrap: wrap; }
+.seg { display: inline-flex; justify-self: start; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; flex-wrap: wrap; }
 .seg button {
   font-family: var(--font-mono); font-size: 0.95rem;
   padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
@@ -2242,14 +2242,40 @@ footer {
       });
       ctx.stroke();
       ctx.restore();
+    });
 
-      var last = sweep.points[sweep.points.length - 1];
+    /* The end labels, pushed apart so they stay readable.
+       The chart's whole claim is that two of the three curves run CLOSE TOGETHER, so their end
+       labels land on top of each other exactly when the claim is strongest. Nudge the labels apart
+       and draw a leader to the curve each one belongs to; the curve positions are untouched. */
+    var last = sweep.points[sweep.points.length - 1];
+    var labels = M.REPRESENTATION_IDS.map(function (id) {
+      return {
+        id: id,
+        anchorY: toY(last[id]),
+        y: toY(last[id]),
+        text: M.representationById(id).shortName + ' ' + M.formatBytes(last[id])
+      };
+    }).sort(function (a, b) { return a.y - b.y; });
+    var MIN_GAP = 17;
+    for (var li = 1; li < labels.length; li += 1) {
+      if (labels[li].y - labels[li - 1].y < MIN_GAP) labels[li].y = labels[li - 1].y + MIN_GAP;
+    }
+    var overshoot = labels[labels.length - 1].y - yBottom;
+    if (overshoot > 0) labels.forEach(function (l) { l.y -= overshoot; });
+
+    labels.forEach(function (label) {
+      ctx.strokeStyle = colourOf[label.id];
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x1, label.anchorY);
+      ctx.lineTo(x1 + 7, label.y);
+      ctx.stroke();
       ctx.font = '600 13px ui-monospace, Menlo, monospace';
-      ctx.fillStyle = colourOf[id];
+      ctx.fillStyle = colourOf[label.id];
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
-      ctx.fillText(M.representationById(id).shortName + ' ' + M.formatBytes(last[id]),
-        x1 + 10, toY(last[id]));
+      ctx.fillText(label.text, x1 + 10, label.y);
     });
 
     /* Where the reader currently is. */
@@ -2270,7 +2296,7 @@ footer {
     ctx.fillText('V = ' + M.formatCount(sweep.current), cx, yTop - 2);
 
     var first = sweep.points[0];
-    var last2 = sweep.points[sweep.points.length - 1];
+    var last2 = last;
     $('sweep-alt').textContent = 'Logical storage against reservations per room, from 1 to '
       + M.formatCount(sweep.maxPerRoom) + ', at ' + M.formatCount(currentParams().rooms)
       + ' rooms. ' + M.REPRESENTATION_IDS.map(function (id) {
