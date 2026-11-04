@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<!--
+  The N+1 Trap — an interactive database-access demonstration.
+  Teach with MAGE · ECE 30861 · Act III · Data Management.
+
+  HAND-AUTHORED. This file is NOT emitted by `catalog.py build`; it is a self-contained application
+  published verbatim by the MkDocs teach-site step (docs_dir: ../course), served at
+  /teach/interactive/n-plus-one/ and equally openable from a file:// URL.
+
+  One artifact, two deployments. There is no separate "offline build": the Download HTML control
+  hands the reader this same file.
+
+  No external dependencies — no framework, no charting library, no CDN, no webfont, no backend, no
+  network request of any kind. The favicon is an inline data URI precisely so the page issues zero
+  requests, which the test suite asserts on the shipped bytes.
+
+  THIS IS A COST MODEL, NOT A DATABASE. Nothing here executes SQL or estimates a real engine's
+  performance. The arithmetic is deterministic, the constants are published on the page, and the
+  quantity the exercise is actually about — the number of queries — is exact rather than estimated.
+
+  Structure of the single <script> pair below:
+    #nplus1-engine  — pure model: parameter normalisation, the query plan, the cost arithmetic,
+                      presets, self-tests. No DOM reference anywhere. Publishes window.NPlusOne.
+                      The node test suite in ./tests/ EXTRACTS this element by id and evaluates it,
+                      so the tests and the page run one implementation, not two.
+    #nplus1-ui      — rendering and controls. Observes the model; never determines it.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The N+1 Trap — Teach with MAGE</title>
+<meta name="description" content="An interactive database-access demonstration: lazy, eager, and batched loading produce the same result at wildly different cost. N+1 is a consequence of configuration, not an inevitability.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Crect x='2' y='2' width='11' height='2' fill='%231f6fae'/%3E%3Crect x='2' y='6' width='4' height='1.6' fill='%239a3f12'/%3E%3Crect x='2' y='9' width='4' height='1.6' fill='%239a3f12'/%3E%3Crect x='2' y='12' width='4' height='1.6' fill='%239a3f12'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------------------------
+   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
+   instrument matches the rest of the site and its sibling simulator: warm paper ground, near-black
+   ink, burnt-umber accent, Purdue-gold rule under the header. `--model` is the family's
+   definition-box blue, reused here as "this number came from a model, not a measurement".
+
+   One token is a local extension, carried over from the sibling: the family set has no amber, and
+   the readouts need an approaching-expensive signal distinct from both green and red. `--warn` is a
+   warm ochre chosen to sit inside the family's warm palette rather than a generic traffic-light
+   yellow.
+
+   Colour never carries meaning alone. Every cost band also carries a word and a glyph, and every
+   bar in every chart carries a text label.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.gold-rule { height: 4px; background: var(--gold); }
+
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) {
+  .grid2 { grid-template-columns: 1.25fr 1fr; margin-bottom: 1.1rem; }
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls ----------------------------------------------------------------------------- */
+.ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 820px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
+.ctl { display: grid; grid-template-columns: 12.5rem 1fr auto; gap: 0.6rem; align-items: center; }
+.ctl > label { font-weight: 600; font-size: 0.98rem; }
+.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+.ctl input[type=number] {
+  font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.3rem 0.4rem; width: 5.4rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.seg button {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
+  background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
+button.act {
+  font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+  padding: 0.5rem 1.05rem; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.act:focus-visible, .seg button:focus-visible, .preset:focus-visible,
+input:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* --- presets ------------------------------------------------------------------------------ */
+.preset-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+button.preset {
+  text-align: left; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.95rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.preset:hover { border-color: var(--accent); }
+button.preset strong { display: block; font-size: 1rem; margin-bottom: 0.1rem; }
+button.preset span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; display: block; }
+
+/* --- readouts ----------------------------------------------------------------------------- */
+dl.readout { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.9rem; margin: 0; }
+dl.readout dt { color: var(--muted); font-size: 0.93rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
+.big { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0 0 0.9rem; }
+.big .cell {
+  flex: 1 1 9rem; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.55rem 0.7rem;
+}
+.big .cell .k {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); display: block;
+}
+.big .cell .v {
+  font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; line-height: 1.15;
+  display: block; word-break: break-word;
+}
+.big .cell.lead { border-color: var(--ink); border-width: 2px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--font-mono); font-size: 0.86rem; font-weight: 600;
+  padding: 0.12rem 0.45rem; border-radius: var(--radius); border: 1px solid;
+}
+.badge .glyph { font-size: 0.95em; }
+.s-ok   { color: var(--ok);    border-color: var(--ok);    background: var(--ok-fill); }
+.s-warn { color: var(--warn);  border-color: var(--warn);  background: var(--warn-fill); }
+.s-bad  { color: var(--bad);   border-color: var(--bad);   background: var(--bad-fill); }
+.s-model{ color: var(--model); border-color: var(--model); background: var(--model-fill); }
+
+/* --- code + sql --------------------------------------------------------------------------- */
+pre.code {
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.5;
+  background: var(--paper); border: 1px solid var(--rule); border-left: 3px solid var(--model);
+  border-radius: var(--radius); padding: 0.7rem 0.85rem; margin: 0.5rem 0 0;
+  overflow-x: auto;
+}
+pre.sql {
+  font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.55;
+  background: var(--panel-2); border: 1px solid var(--rule);
+  border-radius: var(--radius); padding: 0.6rem 0.75rem; margin: 0.4rem 0 0;
+  overflow-x: auto; white-space: pre-wrap;
+}
+.answer {
+  margin-top: 0.8rem; padding: 0.7rem 0.85rem;
+  border: 1px dashed var(--accent); border-radius: var(--radius);
+  background: var(--paper);
+}
+.answer p { margin: 0.35rem 0 0; }
+.answer .count {
+  font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; color: var(--accent);
+}
+
+/* --- canvases ----------------------------------------------------------------------------- */
+.canvas-wrap { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); }
+canvas { display: block; width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin: 0.6rem 0 0; font-size: 0.88rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend i { width: 0.85rem; height: 0.85rem; border-radius: 2px; display: inline-block; border: 1px solid var(--ink); }
+
+table.model { border-collapse: collapse; font-size: 0.92rem; margin-top: 0.5rem; width: 100%; }
+table.model th, table.model td { border: 1px solid var(--rule); padding: 0.3rem 0.5rem; text-align: left; vertical-align: top; }
+table.model th { background: var(--panel-2); font-weight: 600; }
+table.model td.n { font-family: var(--font-mono); white-space: nowrap; }
+code {
+  font-family: var(--font-mono); font-size: 0.93em;
+  border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
+  padding: 0.05rem 0.35rem; background: var(--paper);
+}
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+.warnbox {
+  margin: 0.7rem 0 0; padding: 0.5rem 0.7rem; font-size: 0.92rem;
+  border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
+  background: var(--warn-fill); color: var(--warn);
+}
+
+/* Reduced motion: honour the OS preference. This instrument has no decorative animation and no
+   simulation loop — every number is recomputed synchronously from the controls, so there is no
+   motion to suppress beyond the focus and hover transitions this rule disables. Stated rather than
+   implied, because a reader who sets the preference deserves to know it was considered. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1>The N+1 Trap</h1>
+    <p class="sub">The same loop, three loading strategies, and a hundredfold difference in cost.</p>
+  </div>
+  <p class="tag">
+    Teach with MAGE<br>ECE&nbsp;30861 &middot; Act&nbsp;III<br>Data Management
+  </p>
+</header>
+<div class="gold-rule"></div>
+
+<main>
+
+<!-- ======================= CONTROLS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">Controls</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="reservations">Reservations <span class="unit">N</span></label>
+      <input type="range" id="reservations-range" min="1" max="1000" step="1" value="200"
+             aria-label="Number of reservations, slider">
+      <input type="number" id="reservations" min="1" max="1000" step="1" value="200">
+    </div>
+    <div class="ctl">
+      <label for="latency">Round-trip latency <span class="unit">ms / query</span></label>
+      <input type="range" id="latency-range" min="1" max="100" step="1" value="10"
+             aria-label="Database round-trip latency in milliseconds, slider">
+      <input type="number" id="latency" min="1" max="100" step="1" value="10">
+    </div>
+    <div class="ctl">
+      <label for="rooms">Distinct rooms <span class="unit">D</span></label>
+      <input type="range" id="rooms-range" min="1" max="200" step="1" value="10"
+             aria-label="Number of distinct rooms the reservations reference, slider">
+      <input type="number" id="rooms" min="1" max="200" step="1" value="10">
+    </div>
+    <div class="ctl">
+      <label id="strategy-label">Access strategy</label>
+      <div class="seg" role="group" aria-labelledby="strategy-label" id="strategy-seg">
+        <button type="button" data-strategy="lazy" aria-pressed="true">Lazy</button>
+        <button type="button" data-strategy="eager" aria-pressed="false">Eager</button>
+        <button type="button" data-strategy="batched" aria-pressed="false">Batched</button>
+      </div>
+      <span></span>
+    </div>
+    <div class="ctl">
+      <label id="cache-label">Database cache</label>
+      <div class="seg" role="group" aria-labelledby="cache-label" id="cache-seg">
+        <button type="button" data-cache="off" aria-pressed="true">Off</button>
+        <button type="button" data-cache="on" aria-pressed="false">On</button>
+      </div>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="n-plus-one.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p id="clamp-notice" class="warnbox" hidden role="status"></p>
+
+  <p class="note" id="cache-policy">
+    <strong>What the cache is.</strong> &ldquo;Cache on&rdquo; means an ORM identity map or
+    application cache that remembers a room <em>within this request</em>: the first access to a room
+    issues a query, and every later access to the <em>same</em> room is served from memory. It starts
+    empty on every page load, so nothing is carried over between configurations. It never changes
+    <em>which</em> rooms the loop needs &mdash; all three strategies return the same reservations and
+    the same room names.
+  </p>
+</section>
+
+<!-- ======================= PRESETS ======================= -->
+<section class="panel" aria-labelledby="h-presets">
+  <h2 id="h-presets">Classroom presets</h2>
+  <div class="preset-grid" id="presets"></div>
+  <p class="note">
+    The first preset is the configuration the lecture notes describe. Step through the rest in order:
+    each one changes exactly one decision, and the last one is the counter-example &mdash; a cache
+    that cannot help.
+  </p>
+</section>
+
+<div class="grid2">
+
+  <!-- ======================= THE CODE ======================= -->
+  <section class="panel" aria-labelledby="h-code">
+    <h2 id="h-code">The application code</h2>
+    <p style="margin-top:0">
+      This is the whole program. It does not change when you change the strategy or the cache
+      &mdash; there is one version of it, and it is the same text under every configuration.
+    </p>
+<pre class="code" id="app-code">reservations = load_reservations()
+for r in reservations:
+    print(r.room.name)</pre>
+
+    <h3 id="q-heading">How many database operations does this code perform?</h3>
+    <p style="margin:0.35rem 0 0">
+      Predict the answer before you look. Then change the strategy or the cache and predict again.
+    </p>
+    <div class="btn-row" style="margin-top:0.7rem">
+      <button type="button" class="act primary" id="btn-reveal"
+              aria-pressed="false" aria-controls="answer">Reveal the count</button>
+    </div>
+    <div class="answer" id="answer" hidden>
+      <p><span class="count" id="answer-count">&mdash;</span>
+         <span id="answer-breakdown" style="color:var(--muted)"></span></p>
+      <p id="answer-why"></p>
+    </div>
+
+    <h3>What the mapper emits</h3>
+    <pre class="sql" id="emitted-sql"></pre>
+    <p class="note">
+      Three visible source-code statements; between one and <span class="mono">N&nbsp;+&nbsp;1</span>
+      database operations. The number is a property of the loading strategy and the cache state, not
+      of the lines you can read.
+    </p>
+  </section>
+
+  <!-- ======================= RESULTS ======================= -->
+  <section class="panel" aria-labelledby="h-results">
+    <h2 id="h-results">Results <span class="badge s-model"><span class="glyph" aria-hidden="true">&#9633;</span>from the cost model</span></h2>
+    <div class="big">
+      <div class="cell lead">
+        <span class="k">Database queries</span>
+        <span class="v" id="r-queries">&mdash;</span>
+      </div>
+      <div class="cell lead">
+        <span class="k">Total response time</span>
+        <span class="v" id="r-total">&mdash;</span>
+      </div>
+    </div>
+    <p style="margin-top:0"><span class="badge s-ok" id="cost-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="cost-band-text">cheap</span></span></p>
+    <dl class="readout">
+      <dt>Round-trip overhead</dt><dd id="r-rtt">&mdash;</dd>
+      <dt>Database processing (estimated)</dt><dd id="r-db">&mdash;</dd>
+      <dt>Data transferred</dt><dd id="r-bytes">&mdash;</dd>
+      <dt>Room accesses in the loop</dt><dd id="r-accesses">&mdash;</dd>
+      <dt>Room queries issued</dt><dd id="r-roomq">&mdash;</dd>
+      <dt>Served from the cache</dt><dd id="r-hits">&mdash;</dd>
+      <dt>Distinct rooms used</dt><dd id="r-deff">&mdash;</dd>
+    </dl>
+    <p class="note">
+      <strong>Round-trip overhead dominates and is exact.</strong> It is
+      <code>queries &times; latency</code> &mdash; the lazy loads run one after another, because the
+      loop cannot ask for a room it has not reached yet. Database processing is the only
+      <em>estimated</em> quantity on this page; the query count is arithmetic.
+    </p>
+  </section>
+</div>
+
+<!-- ======================= TIMELINE ======================= -->
+<section class="panel" aria-labelledby="h-timeline">
+  <h2 id="h-timeline">Query timeline</h2>
+  <div class="canvas-wrap"><canvas id="c-timeline" width="1200" height="430"
+    role="img" aria-labelledby="timeline-alt"></canvas></div>
+  <p id="timeline-alt" class="vh" aria-live="polite"></p>
+  <div class="legend">
+    <span><i style="background:var(--model)"></i>Reservations query</span>
+    <span><i style="background:var(--accent)"></i>Room query (one per miss)</span>
+    <span><i style="background:var(--ok)"></i>Batched rooms query</span>
+    <span><i style="background:var(--warn)"></i>Join &mdash; reservations and rooms together</span>
+  </div>
+  <p class="note" id="timeline-note"></p>
+</section>
+
+<!-- ======================= COMPARISON ======================= -->
+<section class="panel" aria-labelledby="h-compare">
+  <h2 id="h-compare">All four configurations, same N, D and latency</h2>
+  <div class="canvas-wrap"><canvas id="c-compare" width="1200" height="260"
+    role="img" aria-labelledby="compare-alt"></canvas></div>
+  <p id="compare-alt" class="vh" aria-live="polite"></p>
+  <p class="note">
+    All four return the same reservations and the same room names. Nothing here is a correctness
+    difference. <strong>Eager usually wins on time and loses on bytes:</strong> a join repeats the
+    room columns on every reservation row, while the batched query sends each room once. Which of
+    those you care about depends on where the constraint is.
+  </p>
+</section>
+
+<!-- ======================= THE MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 id="h-model">The cost model, in full</h2>
+  <p style="margin-top:0">
+    Nothing on this page executes SQL. There is no database, no connection, no engine, and no
+    measurement. Every number is computed from the constants below, which is why the same controls
+    always produce the same answer. The query counts are <strong>exact arithmetic</strong>; the
+    times and byte counts are <strong>a model</strong>, and a real engine would differ.
+  </p>
+
+  <h3>Query counts &mdash; exact</h3>
+  <table class="model">
+    <thead><tr><th>Strategy</th><th>Cache</th><th class="n">Queries</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Lazy</td><td>Off</td><td class="n">1 + N</td>
+          <td>One query for the reservations, then one per reservation. Nothing remembers that two reservations share a room.</td></tr>
+      <tr><td>Lazy</td><td>On</td><td class="n">1 + D<sub>eff</sub></td>
+          <td>One query for the reservations, then one per <em>distinct</em> room. Later accesses to a room already loaded are served from the identity map.</td></tr>
+      <tr><td>Eager</td><td>either</td><td class="n">1</td>
+          <td>A single join returns reservations and their rooms together. The cache changes nothing: the room columns already arrived.</td></tr>
+      <tr><td>Batched</td><td>either</td><td class="n">2</td>
+          <td>One query for the reservations, then one <code>WHERE id IN (&hellip;)</code> for the rooms the loop will need.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">
+    <strong>N+1 is a consequence of a configuration, not a property of lazy loading.</strong> Lazy
+    loading executes N additional queries only when every room access misses. Set the cache on and
+    point 200 reservations at 10 rooms and lazy loading issues 11 queries. Point them at 200
+    different rooms and the cache cannot help: 201 again. The exercise is to find that boundary
+    yourself.
+  </p>
+
+  <h3>D<sub>eff</sub> &mdash; the clamp, and why there is one</h3>
+  <p>
+    A reservation references exactly one room, so N reservations can reference at most N distinct
+    rooms. When the <em>distinct rooms</em> control exceeds the reservation count, the model uses
+    <code>D<sub>eff</sub> = min(D, N)</code> and says so above the results rather than reporting a
+    configuration that cannot exist. Your control keeps the value you set.
+  </p>
+  <p>
+    Reservations are assigned to rooms round-robin &mdash; reservation <em>i</em> takes room
+    <code>i mod D<sub>eff</sub></code> &mdash; so every distinct room is used and the assignment is
+    deterministic. The assignment changes <em>which</em> accesses miss, and therefore where the
+    misses sit on the timeline. It does not change how many there are: with the cache on, each
+    distinct room is fetched exactly once however the reservations are spread.
+  </p>
+
+  <h3>Times and bytes &mdash; estimated</h3>
+  <table class="model">
+    <thead><tr><th>Constant</th><th class="n">Value</th><th>Stands for</th></tr></thead>
+    <tbody>
+      <tr><td>Round-trip latency</td><td class="n">your control</td>
+          <td>Charged <em>once per query</em>, and the queries are sequential. This is the term that makes 200 individually cheap queries expensive.</td></tr>
+      <tr><td>Statement cost</td><td class="n">0.15 ms</td>
+          <td>Parse, plan and dispatch, charged once per query regardless of size.</td></tr>
+      <tr><td>Row cost</td><td class="n">0.004 ms</td>
+          <td>Per row returned.</td></tr>
+      <tr><td>Join row factor</td><td class="n">&times; 1.6</td>
+          <td>Extra per-row work in the eager join, matching reservation rows to room rows.</td></tr>
+      <tr><td>Per-query bytes</td><td class="n">200 B</td>
+          <td>Statement text, result metadata and protocol framing, once per query.</td></tr>
+      <tr><td>Reservation row</td><td class="n">80 B</td></tr>
+      <tr><td>Room row</td><td class="n">120 B</td>
+          <td>Repeated on every row of the eager join; sent once per room by the batched query.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">
+    <strong>What the model leaves out,</strong> stated so it is not mistaken for a benchmark: no
+    connection-pool waiting, no lock contention, no index choice, no concurrency, no network
+    variance, no server-side caching between requests, and no application CPU. Response time here is
+    round-trip overhead plus database processing, nothing else. A real system has all of those, and
+    this page would mislead anyone who read its milliseconds as a prediction about one.
+  </p>
+  <p>
+    <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
+    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+  </p>
+  <p class="note">
+    The engine is a pure module published as <code>window.NPlusOne</code> with no DOM dependency, so
+    the test suite under <code>tests/</code> extracts it from this file and exercises it directly.
+    The tested text and the published text are the same bytes.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    <strong>The N+1 Trap</strong> &mdash; an interactive database-access demonstration for
+    ECE&nbsp;30861 Act&nbsp;III. No network requests, no dependencies &mdash; the page you are
+    reading is the whole program, and the Download&nbsp;HTML control hands you this same file.
+  </p>
+  <p>
+    Teaching materials &copy; James C. Davis and Steve France, licensed under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+  </p>
+</footer>
+
+<script id="nplus1-engine">
+/* =================================================================================================
+   THE MODEL. Pure, deterministic, DOM-free.
+
+   This script element is extracted BY ID and evaluated by the Node test suite in ./tests/, so it may
+   not touch the browser page object, event listeners, or any other browser surface. Its only contact
+   with the outside world is the namespace it publishes at the bottom.
+
+   Sections: 1 constants · 2 parameters · 3 the query plan · 4 the cost arithmetic ·
+             5 comparison · 6 presets · 7 formatting · 8 self-tests · 9 namespace.
+
+   A note on what "deterministic" buys. The quantity this exercise is about is the QUERY COUNT, and
+   that is exact arithmetic over the parameters — no sampling, no seed, no distribution. The times
+   and byte counts are a published cost model. Keeping the two apart is deliberate: a student who
+   discovers that the count changed from 201 to 11 has discovered something true, and should not
+   have to wonder whether a random draw moved it.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var VERSION = '1.0.0';
+
+  /* --- 1. Constants -----------------------------------------------------------------------------
+     Every one of these is printed on the page. They are plausible rather than measured: this is a
+     cost model, and a reader who wants a prediction about a real engine must measure that engine. */
+  var COST_MODEL = {
+    /* Parse, plan and dispatch, charged once per statement regardless of its size. */
+    STATEMENT_MS: 0.15,
+    /* Per row returned. */
+    ROW_MS: 0.004,
+    /* The eager join does extra per-row work matching reservations to rooms. */
+    JOIN_ROW_FACTOR: 1.6,
+    /* Statement text, result metadata and protocol framing, once per query. */
+    QUERY_BYTES: 200,
+    RESERVATION_ROW_BYTES: 80,
+    ROOM_ROW_BYTES: 120
+  };
+
+  /* Cost bands for the total-response-time readout. Each band also carries a WORD and a GLYPH, so
+     the signal never depends on colour. The thresholds are a classroom convention, not a
+     requirement derived from anything — they are here to make the jump from 11 ms to 2042 ms land
+     as a change in kind rather than a change in digits. */
+  var COST_BANDS = [
+    { id: 'cheap',     maxMs: 100,      word: 'cheap',       glyph: '●', cls: 's-ok' },
+    { id: 'noticeable', maxMs: 500,     word: 'noticeable',  glyph: '▲', cls: 's-warn' },
+    { id: 'expensive', maxMs: Infinity, word: 'expensive',   glyph: '■', cls: 's-bad' }
+  ];
+
+  var STRATEGIES = ['lazy', 'eager', 'batched'];
+  var CACHE_STATES = ['off', 'on'];
+
+  /* --- 2. Parameters ----------------------------------------------------------------------------
+     One declaration per control, so the interface, the validator and the tests read the same
+     numbers rather than three copies of them. */
+  var PARAM_SPECS = {
+    reservations:  { min: 1, max: 1000, step: 1, def: 200 },
+    latencyMs:     { min: 1, max: 100,  step: 1, def: 10 },
+    distinctRooms: { min: 1, max: 200,  step: 1, def: 10 }
+  };
+
+  var DEFAULTS = {
+    reservations: PARAM_SPECS.reservations.def,
+    latencyMs: PARAM_SPECS.latencyMs.def,
+    distinctRooms: PARAM_SPECS.distinctRooms.def,
+    strategy: 'lazy',
+    cache: 'off'
+  };
+
+  function clampInt(value, spec, fallback) {
+    var n = typeof value === 'number' ? value : parseFloat(value);
+    if (!isFinite(n)) return fallback;
+    n = Math.round(n);
+    if (n < spec.min) return spec.min;
+    if (n > spec.max) return spec.max;
+    return n;
+  }
+
+  function oneOf(value, allowed, fallback) {
+    return allowed.indexOf(value) >= 0 ? value : fallback;
+  }
+
+  /**
+   * Normalise whatever the interface hands over into a parameter set the model can use.
+   *
+   * Two separate jobs, and conflating them would hide the interesting one. RANGE clamping is
+   * ordinary input validation: a reservation count of 5000 or -3 or "banana" becomes the nearest
+   * legal value. The DISTINCT-ROOMS clamp is a modelling statement: N reservations reference at
+   * most N distinct rooms, because a reservation has exactly one room, so D > N describes a
+   * configuration that cannot exist. The model reports `effectiveDistinctRooms` and raises
+   * `distinctRoomsClamped` rather than silently answering a different question.
+   */
+  function normalizeParams(raw) {
+    var r = raw || {};
+    var reservations = clampInt(r.reservations, PARAM_SPECS.reservations, DEFAULTS.reservations);
+    var latencyMs = clampInt(r.latencyMs, PARAM_SPECS.latencyMs, DEFAULTS.latencyMs);
+    var requested = clampInt(r.distinctRooms, PARAM_SPECS.distinctRooms, DEFAULTS.distinctRooms);
+    var effective = Math.min(requested, reservations);
+    return {
+      reservations: reservations,
+      latencyMs: latencyMs,
+      distinctRooms: requested,
+      effectiveDistinctRooms: effective,
+      distinctRoomsClamped: effective !== requested,
+      strategy: oneOf(r.strategy, STRATEGIES, DEFAULTS.strategy),
+      cache: oneOf(r.cache, CACHE_STATES, DEFAULTS.cache)
+    };
+  }
+
+  /**
+   * Which room a given reservation references. Round-robin, so every distinct room is used and the
+   * assignment is deterministic. This decides WHERE the cache misses fall on the timeline; it does
+   * not decide how many there are.
+   */
+  function roomOfReservation(index, effectiveDistinctRooms) {
+    return index % effectiveDistinctRooms;
+  }
+
+  /* --- 3. The query plan ------------------------------------------------------------------------
+     The plan is the model's primary output: an ordered list of the queries this configuration
+     executes. Everything else — counts, times, bytes, the timeline, the comparison — is derived
+     from it, so there is exactly one place where "how many queries" is decided. */
+
+  var SQL = {
+    reservations: 'SELECT id, room_id, user_id, starts_at, ends_at FROM reservations',
+    room: 'SELECT id, name, building, capacity FROM rooms WHERE id = ?',
+    roomsIn: 'SELECT id, name, building, capacity FROM rooms WHERE id IN (?, ?, ...)',
+    join: 'SELECT r.id, r.user_id, r.starts_at, r.ends_at, m.id, m.name, m.building, m.capacity\n'
+        + '  FROM reservations r JOIN rooms m ON m.id = r.room_id'
+  };
+
+  /**
+   * The ordered queries a configuration executes, plus the room accesses that issued no query.
+   *
+   * Each query carries `kind` (which decides its cost shape and its colour), `rows` (how many rows
+   * come back) and `label` (what the timeline writes beside it). `room` queries also carry the room
+   * they fetched and the reservation whose access triggered them, which is what lets a reader see
+   * the cache warming up.
+   */
+  function queryPlan(rawParams) {
+    var p = rawParams && rawParams.effectiveDistinctRooms !== undefined
+      ? rawParams : normalizeParams(rawParams);
+    var n = p.reservations;
+    var dEff = p.effectiveDistinctRooms;
+    var queries = [];
+    var cacheHits = 0;
+
+    if (p.strategy === 'eager') {
+      /* One join. The room columns arrive with the reservation row, so the loop's N room accesses
+         touch no database at all — and the cache has nothing to do, which is why the eager count is
+         1 under both cache states. */
+      queries.push({ kind: 'join', rows: n, label: 'reservations JOIN rooms', sql: SQL.join });
+      cacheHits = 0;
+    } else {
+      queries.push({ kind: 'reservations', rows: n, label: 'reservations', sql: SQL.reservations });
+
+      if (p.strategy === 'lazy') {
+        var loaded = {};
+        for (var i = 0; i < n; i += 1) {
+          var room = roomOfReservation(i, dEff);
+          if (p.cache === 'on' && loaded[room]) {
+            cacheHits += 1;
+            continue;
+          }
+          loaded[room] = true;
+          queries.push({
+            kind: 'room', rows: 1, room: room, reservation: i,
+            label: 'room ' + (room + 1), sql: SQL.room
+          });
+        }
+      } else {
+        /* Batched. One IN-list for the rooms the loop will need; the identity map then serves every
+           one of the N accesses. Two queries whether the cache is on or off, because the batch is
+           what populates the map. */
+        queries.push({
+          kind: 'rooms-in', rows: dEff,
+          label: dEff === 1 ? '1 room by id' : dEff + ' rooms by id',
+          sql: SQL.roomsIn
+        });
+        cacheHits = 0;
+      }
+    }
+
+    return {
+      params: p,
+      queries: queries,
+      queryCount: queries.length,
+      roomAccesses: n,
+      roomQueries: queries.filter(function (q) { return q.kind === 'room' || q.kind === 'rooms-in'; }).length,
+      cacheHits: cacheHits,
+      effectiveDistinctRooms: dEff,
+      distinctRoomsClamped: p.distinctRoomsClamped
+    };
+  }
+
+  /** The number of database queries a configuration executes. The headline figure. */
+  function countQueries(rawParams) {
+    return queryPlan(rawParams).queryCount;
+  }
+
+  /* --- 4. The cost arithmetic -------------------------------------------------------------------
+     Sequential execution throughout: query k starts when query k-1 finishes. That is the whole
+     reason lazy loading is expensive, and relaxing it (pipelining, concurrency, a prefetcher) would
+     be a different model with a different lesson. */
+
+  function queryDbMs(q) {
+    var factor = q.kind === 'join' ? COST_MODEL.JOIN_ROW_FACTOR : 1;
+    return COST_MODEL.STATEMENT_MS + COST_MODEL.ROW_MS * q.rows * factor;
+  }
+
+  function queryBytes(q) {
+    var payload;
+    if (q.kind === 'reservations') {
+      payload = q.rows * COST_MODEL.RESERVATION_ROW_BYTES;
+    } else if (q.kind === 'join') {
+      /* The join repeats the room columns on every reservation row. This is the byte cost of the
+         single-round-trip strategy, and it is real rather than a modelling artefact. */
+      payload = q.rows * (COST_MODEL.RESERVATION_ROW_BYTES + COST_MODEL.ROOM_ROW_BYTES);
+    } else {
+      payload = q.rows * COST_MODEL.ROOM_ROW_BYTES;
+    }
+    return COST_MODEL.QUERY_BYTES + payload;
+  }
+
+  /**
+   * The full cost of a configuration, with the plan it was computed from.
+   *
+   * `timeline` is the per-query schedule: start, end and duration in simulated milliseconds, so the
+   * renderer draws from the model rather than recomputing it.
+   */
+  function computeCost(rawParams) {
+    var plan = queryPlan(rawParams);
+    var latency = plan.params.latencyMs;
+    var cursor = 0;
+    var dbMs = 0;
+    var bytes = 0;
+    var timeline = plan.queries.map(function (q, index) {
+      var db = queryDbMs(q);
+      var duration = latency + db;
+      var entry = {
+        index: index, kind: q.kind, label: q.label, rows: q.rows,
+        room: q.room, reservation: q.reservation,
+        startMs: cursor, endMs: cursor + duration, durationMs: duration,
+        latencyMs: latency, dbMs: db, bytes: queryBytes(q)
+      };
+      cursor += duration;
+      dbMs += db;
+      bytes += entry.bytes;
+      return entry;
+    });
+
+    var roundTripMs = plan.queryCount * latency;
+    var totalMs = roundTripMs + dbMs;
+    return {
+      params: plan.params,
+      plan: plan,
+      timeline: timeline,
+      queries: plan.queryCount,
+      roomAccesses: plan.roomAccesses,
+      roomQueries: plan.roomQueries,
+      cacheHits: plan.cacheHits,
+      effectiveDistinctRooms: plan.effectiveDistinctRooms,
+      distinctRoomsClamped: plan.distinctRoomsClamped,
+      roundTripMs: roundTripMs,
+      dbProcessingMs: dbMs,
+      totalMs: totalMs,
+      bytes: bytes,
+      band: bandFor(totalMs)
+    };
+  }
+
+  function bandFor(totalMs) {
+    for (var i = 0; i < COST_BANDS.length; i += 1) {
+      if (totalMs < COST_BANDS[i].maxMs) return COST_BANDS[i];
+    }
+    return COST_BANDS[COST_BANDS.length - 1];
+  }
+
+  /* --- 5. Comparison ----------------------------------------------------------------------------
+     The four configurations worth putting side by side at one N, D and latency. Lazy appears twice
+     because the cache is the decision the exercise exists to expose; eager and batched appear once
+     because their counts do not depend on it. */
+  var COMPARISON = [
+    { id: 'lazy-off',  strategy: 'lazy',    cache: 'off', label: 'Lazy, cache off' },
+    { id: 'lazy-on',   strategy: 'lazy',    cache: 'on',  label: 'Lazy, cache on' },
+    { id: 'eager',     strategy: 'eager',   cache: 'off', label: 'Eager (one join)' },
+    { id: 'batched',   strategy: 'batched', cache: 'off', label: 'Batched (two queries)' }
+  ];
+
+  function compareStrategies(rawParams) {
+    var p = normalizeParams(rawParams);
+    return COMPARISON.map(function (variant) {
+      var cost = computeCost({
+        reservations: p.reservations,
+        latencyMs: p.latencyMs,
+        distinctRooms: p.distinctRooms,
+        strategy: variant.strategy,
+        cache: variant.cache
+      });
+      return {
+        id: variant.id, label: variant.label,
+        strategy: variant.strategy, cache: variant.cache,
+        queries: cost.queries, totalMs: cost.totalMs, bytes: cost.bytes,
+        current: variant.strategy === p.strategy
+          && (variant.strategy !== 'lazy' || variant.cache === p.cache)
+      };
+    });
+  }
+
+  /* --- 6. Presets -------------------------------------------------------------------------------
+     Five, in teaching order. Each changes exactly one decision from the one before it, except the
+     last, which is the counter-example. `expect` is the query count the preset is supposed to
+     produce; the test suite asserts it, so a preset cannot drift away from the lesson it carries. */
+  var PRESETS = [
+    {
+      id: 'the-lander',
+      name: 'The lecture example',
+      blurb: '200 reservations, 10 rooms, lazy, cache off. 201 queries.',
+      params: { reservations: 200, latencyMs: 10, distinctRooms: 10, strategy: 'lazy', cache: 'off' },
+      expect: 201
+    },
+    {
+      id: 'cache-on',
+      name: 'Turn the cache on',
+      blurb: 'Same code, same strategy, same data. 11 queries.',
+      params: { reservations: 200, latencyMs: 10, distinctRooms: 10, strategy: 'lazy', cache: 'on' },
+      expect: 11
+    },
+    {
+      id: 'eager',
+      name: 'One join instead',
+      blurb: 'Eager loading. 1 query, and the most bytes on the wire.',
+      params: { reservations: 200, latencyMs: 10, distinctRooms: 10, strategy: 'eager', cache: 'off' },
+      expect: 1
+    },
+    {
+      id: 'batched',
+      name: 'Batch the rooms',
+      blurb: 'Two queries, and each room sent once.',
+      params: { reservations: 200, latencyMs: 10, distinctRooms: 10, strategy: 'batched', cache: 'off' },
+      expect: 2
+    },
+    {
+      id: 'no-sharing',
+      name: 'A cache that cannot help',
+      blurb: '200 reservations in 200 different rooms, cache on. 201 queries again.',
+      params: { reservations: 200, latencyMs: 10, distinctRooms: 200, strategy: 'lazy', cache: 'on' },
+      expect: 201
+    }
+  ];
+
+  function findPreset(id) {
+    for (var i = 0; i < PRESETS.length; i += 1) if (PRESETS[i].id === id) return PRESETS[i];
+    return null;
+  }
+
+  /* --- 7. Formatting ----------------------------------------------------------------------------
+     In the engine rather than the interface because the tests assert on these strings and because a
+     readout and a canvas label that disagree about how to write 2041.75 ms is a defect nobody would
+     look for. */
+
+  function formatMs(ms) {
+    if (ms >= 1000) return (ms / 1000).toFixed(ms >= 10000 ? 1 : 2) + ' s';
+    if (ms >= 100) return ms.toFixed(0) + ' ms';
+    if (ms >= 10) return ms.toFixed(1) + ' ms';
+    return ms.toFixed(2) + ' ms';
+  }
+
+  function formatBytes(bytes) {
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(2) + ' MB';
+    if (bytes >= 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return bytes + ' B';
+  }
+
+  function formatCount(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  /** One sentence naming why this configuration issues the number of queries it does. */
+  function explain(cost) {
+    var p = cost.params;
+    var n = formatCount(p.reservations);
+    var d = formatCount(cost.effectiveDistinctRooms);
+    if (p.strategy === 'eager') {
+      return 'One join carries the room columns on every reservation row, so the loop touches the '
+        + 'database once however many reservations there are. The cache state changes nothing.';
+    }
+    if (p.strategy === 'batched') {
+      return 'One query for the ' + n + ' reservations, then one query for the ' + d
+        + ' rooms the loop will need. Two queries however many reservations there are.';
+    }
+    if (p.cache === 'on') {
+      if (cost.effectiveDistinctRooms >= p.reservations) {
+        return 'The cache is on and every reservation references a different room, so every access '
+          + 'misses. Caching helps only when accesses repeat: this is the configuration where lazy '
+          + 'loading really does execute N additional queries.';
+      }
+      return 'The cache is on, so each of the ' + d + ' distinct rooms is fetched once and the '
+        + 'remaining ' + formatCount(cost.cacheHits) + ' accesses are served from memory. '
+        + 'Lazy loading does not necessarily mean N additional queries.';
+    }
+    return 'The cache is off, so each of the ' + n + ' room accesses issues its own query, even '
+      + 'when two reservations share a room. This is the N+1 pattern: 1 + ' + n + ' = '
+      + formatCount(cost.queries) + ' queries.';
+  }
+
+  /* --- 8. Self-tests ----------------------------------------------------------------------------
+     The claims the page makes about itself, checkable in the page. The node suite runs these too,
+     so a reader without a terminal and a reviewer with one see the same verdict. */
+  function runSelfTests() {
+    var results = [];
+    function check(name, passed, detail) {
+      results.push({ name: name, passed: !!passed, detail: detail || '' });
+    }
+    function cost(over) {
+      var base = { reservations: 200, latencyMs: 10, distinctRooms: 10, strategy: 'lazy', cache: 'off' };
+      for (var k in over) if (Object.prototype.hasOwnProperty.call(over, k)) base[k] = over[k];
+      return computeCost(base);
+    }
+
+    check('lazy with the cache off issues 1 + N queries',
+      cost({}).queries === 201, 'got ' + cost({}).queries);
+    check('lazy with the cache on issues 1 + D queries',
+      cost({ cache: 'on' }).queries === 11, 'got ' + cost({ cache: 'on' }).queries);
+    check('eager issues one query',
+      cost({ strategy: 'eager' }).queries === 1 && cost({ strategy: 'eager', cache: 'on' }).queries === 1);
+    check('batched issues two queries',
+      cost({ strategy: 'batched' }).queries === 2 && cost({ strategy: 'batched', cache: 'on' }).queries === 2);
+    check('the cache cannot help when every room differs',
+      cost({ distinctRooms: 200, cache: 'on' }).queries === 201);
+    check('N = 1 is coherent under every strategy',
+      countQueries({ reservations: 1, distinctRooms: 1, strategy: 'lazy', cache: 'off' }) === 2
+      && countQueries({ reservations: 1, distinctRooms: 1, strategy: 'lazy', cache: 'on' }) === 2
+      && countQueries({ reservations: 1, distinctRooms: 1, strategy: 'eager' }) === 1
+      && countQueries({ reservations: 1, distinctRooms: 1, strategy: 'batched' }) === 2);
+    check('D is clamped to N and the clamp is reported',
+      (function () {
+        var c = computeCost({ reservations: 5, distinctRooms: 200, strategy: 'lazy', cache: 'on' });
+        return c.effectiveDistinctRooms === 5 && c.distinctRoomsClamped === true && c.queries === 6;
+      })());
+    check('round-trip overhead is queries times latency',
+      cost({}).roundTripMs === 201 * 10, 'got ' + cost({}).roundTripMs);
+    check('total response time is the sum of the timeline',
+      (function () {
+        var c = cost({});
+        var sum = c.timeline.reduce(function (a, e) { return a + e.durationMs; }, 0);
+        return Math.abs(sum - c.totalMs) < 1e-9;
+      })());
+    check('the timeline is contiguous and sequential',
+      (function () {
+        var t = cost({ reservations: 12 }).timeline;
+        for (var i = 1; i < t.length; i += 1) {
+          if (Math.abs(t[i].startMs - t[i - 1].endMs) > 1e-9) return false;
+        }
+        return t[0].startMs === 0;
+      })());
+    check('the eager join transfers more bytes than the batched pair when rooms repeat',
+      cost({ strategy: 'eager' }).bytes > cost({ strategy: 'batched' }).bytes);
+    check('every strategy reads the same reservations and rooms',
+      (function () {
+        var want = { reservations: 200, rooms: 10 };
+        return ['lazy', 'eager', 'batched'].every(function (s) {
+          var c = cost({ strategy: s });
+          return c.roomAccesses === want.reservations && c.effectiveDistinctRooms === want.rooms;
+        });
+      })());
+    check('every preset produces the query count it claims',
+      PRESETS.every(function (p) { return countQueries(p.params) === p.expect; }));
+    check('out-of-range and non-numeric input is clamped, never propagated',
+      (function () {
+        var a = normalizeParams({ reservations: 99999, latencyMs: -4, distinctRooms: 'banana' });
+        return a.reservations === 1000 && a.latencyMs === 1 && a.distinctRooms === 10;
+      })());
+    check('an unknown strategy or cache state falls back to the default',
+      (function () {
+        var a = normalizeParams({ strategy: 'magic', cache: 'maybe' });
+        return a.strategy === 'lazy' && a.cache === 'off';
+      })());
+
+    var passed = results.filter(function (r) { return r.passed; }).length;
+    return { total: results.length, passed: passed, failed: results.length - passed, results: results };
+  }
+
+  /* --- 9. Namespace ----------------------------------------------------------------------------- */
+  window.NPlusOne = {
+    VERSION: VERSION,
+    COST_MODEL: COST_MODEL,
+    COST_BANDS: COST_BANDS,
+    STRATEGIES: STRATEGIES,
+    CACHE_STATES: CACHE_STATES,
+    PARAM_SPECS: PARAM_SPECS,
+    DEFAULTS: DEFAULTS,
+    PRESETS: PRESETS,
+    SQL: SQL,
+    /* The five names the specification requires, exactly. */
+    normalizeParams: normalizeParams,
+    queryPlan: queryPlan,
+    countQueries: countQueries,
+    computeCost: computeCost,
+    runSelfTests: runSelfTests,
+    /* Everything else the interface and the test suite consume. */
+    compareStrategies: compareStrategies,
+    roomOfReservation: roomOfReservation,
+    bandFor: bandFor,
+    explain: explain,
+    findPreset: findPreset,
+    formatMs: formatMs,
+    formatBytes: formatBytes,
+    formatCount: formatCount
+  };
+}());
+</script>
+
+<script id="nplus1-ui">
+/* =================================================================================================
+   THE INTERFACE. Observes the model; never determines it.
+
+   Every control writes into one `state` object, and every change runs one `render()`. There is no
+   animation loop and no incremental update: the model is cheap enough to recompute whole, and a
+   single render path means the canvases, the readouts and the assistive-technology descriptions
+   cannot disagree about what the current configuration costs.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var M = window.NPlusOne;
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Above this many queries the timeline stops drawing one bar apiece and draws a band with a
+     count. Forty is the specification's threshold: it is about where individually labelled bars
+     stop being legible on a projector. */
+  var DETAIL_LIMIT = 40;
+
+  var state = {
+    reservations: M.DEFAULTS.reservations,
+    latencyMs: M.DEFAULTS.latencyMs,
+    distinctRooms: M.DEFAULTS.distinctRooms,
+    strategy: M.DEFAULTS.strategy,
+    cache: M.DEFAULTS.cache
+  };
+  var revealed = false;
+
+  /* --- colours: read from the stylesheet so the canvases follow the light/dark scheme ---------- */
+  function token(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function palette() {
+    return {
+      ink: token('--ink'), muted: token('--muted'), rule: token('--rule'),
+      grid: token('--grid'), paper: token('--paper'), panel2: token('--panel-2'),
+      model: token('--model'), accent: token('--accent'),
+      ok: token('--ok'), warn: token('--warn'), bad: token('--bad')
+    };
+  }
+  function kindColour(kind, p) {
+    if (kind === 'reservations') return p.model;
+    if (kind === 'room') return p.accent;
+    if (kind === 'rooms-in') return p.ok;
+    return p.warn;
+  }
+
+  /* --- controls -------------------------------------------------------------------------------- */
+
+  /** Bind a number field and its slider to one state key. Either one moves both. */
+  function bindNumber(key, numberId, rangeId) {
+    var num = $(numberId);
+    var range = $(rangeId);
+    function commit(value) {
+      var normalized = M.normalizeParams(
+        { reservations: state.reservations, latencyMs: state.latencyMs,
+          distinctRooms: state.distinctRooms, strategy: state.strategy, cache: state.cache }
+      );
+      var patch = {};
+      patch[key] = value;
+      var merged = M.normalizeParams({
+        reservations: key === 'reservations' ? value : normalized.reservations,
+        latencyMs: key === 'latencyMs' ? value : normalized.latencyMs,
+        distinctRooms: key === 'distinctRooms' ? value : normalized.distinctRooms,
+        strategy: state.strategy, cache: state.cache
+      });
+      state.reservations = merged.reservations;
+      state.latencyMs = merged.latencyMs;
+      state.distinctRooms = merged.distinctRooms;
+      syncControls();
+      render();
+    }
+    num.addEventListener('change', function () { commit(num.value); });
+    num.addEventListener('input', function () { commit(num.value); });
+    range.addEventListener('input', function () { commit(range.value); });
+  }
+
+  function bindSegment(segId, attr, key) {
+    var seg = $(segId);
+    seg.addEventListener('click', function (event) {
+      var btn = event.target.closest('button[' + attr + ']');
+      if (!btn) return;
+      state[key] = btn.getAttribute(attr);
+      syncControls();
+      render();
+    });
+  }
+
+  function syncControls() {
+    $('reservations').value = String(state.reservations);
+    $('reservations-range').value = String(state.reservations);
+    $('latency').value = String(state.latencyMs);
+    $('latency-range').value = String(state.latencyMs);
+    $('rooms').value = String(state.distinctRooms);
+    $('rooms-range').value = String(state.distinctRooms);
+    pressGroup('strategy-seg', 'data-strategy', state.strategy);
+    pressGroup('cache-seg', 'data-cache', state.cache);
+  }
+
+  function pressGroup(segId, attr, value) {
+    var buttons = $(segId).querySelectorAll('button[' + attr + ']');
+    for (var i = 0; i < buttons.length; i += 1) {
+      buttons[i].setAttribute('aria-pressed',
+        buttons[i].getAttribute(attr) === value ? 'true' : 'false');
+    }
+  }
+
+  function buildPresets() {
+    var host = $('presets');
+    M.PRESETS.forEach(function (preset) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'preset';
+      btn.setAttribute('data-preset', preset.id);
+      var name = document.createElement('strong');
+      name.textContent = preset.name;
+      var blurb = document.createElement('span');
+      blurb.textContent = preset.blurb;
+      btn.appendChild(name);
+      btn.appendChild(blurb);
+      btn.addEventListener('click', function () {
+        var p = M.normalizeParams(preset.params);
+        state.reservations = p.reservations;
+        state.latencyMs = p.latencyMs;
+        state.distinctRooms = p.distinctRooms;
+        state.strategy = p.strategy;
+        state.cache = p.cache;
+        syncControls();
+        render();
+      });
+      host.appendChild(btn);
+    });
+  }
+
+  /* --- readouts -------------------------------------------------------------------------------- */
+
+  function renderResults(cost) {
+    $('r-queries').textContent = M.formatCount(cost.queries);
+    $('r-total').textContent = M.formatMs(cost.totalMs);
+    $('r-rtt').textContent = M.formatMs(cost.roundTripMs)
+      + ' = ' + M.formatCount(cost.queries) + ' × ' + cost.params.latencyMs + ' ms';
+    $('r-db').textContent = M.formatMs(cost.dbProcessingMs);
+    $('r-bytes').textContent = M.formatBytes(cost.bytes);
+    $('r-accesses').textContent = M.formatCount(cost.roomAccesses);
+    $('r-roomq').textContent = M.formatCount(cost.roomQueries)
+      + (cost.params.strategy === 'eager' ? ' (the join carried them)' : '');
+    $('r-hits').textContent = cost.params.strategy === 'lazy'
+      ? M.formatCount(cost.cacheHits)
+      : M.formatCount(cost.roomAccesses) + ' (all of them, after the first query)';
+    $('r-deff').textContent = M.formatCount(cost.effectiveDistinctRooms);
+
+    var badge = $('cost-band');
+    badge.className = 'badge ' + cost.band.cls;
+    badge.querySelector('.glyph').textContent = cost.band.glyph;
+    $('cost-band-text').textContent = cost.band.word
+      + ' · ' + M.formatMs(cost.totalMs) + ' of database time';
+
+    var notice = $('clamp-notice');
+    if (cost.distinctRoomsClamped) {
+      notice.hidden = false;
+      notice.textContent = 'Distinct rooms clamped to ' + cost.effectiveDistinctRooms
+        + '. A reservation references exactly one room, so ' + M.formatCount(cost.params.reservations)
+        + ' reservation' + (cost.params.reservations === 1 ? '' : 's')
+        + ' cannot reference ' + M.formatCount(cost.params.distinctRooms) + ' distinct rooms. '
+        + 'The control keeps your value; the model uses min(D, N).';
+    } else {
+      notice.hidden = true;
+      notice.textContent = '';
+    }
+  }
+
+  function renderAnswer(cost) {
+    $('answer').hidden = !revealed;
+    $('btn-reveal').setAttribute('aria-pressed', revealed ? 'true' : 'false');
+    $('btn-reveal').textContent = revealed ? 'Hide the count' : 'Reveal the count';
+    if (!revealed) return;
+    $('answer-count').textContent = M.formatCount(cost.queries)
+      + (cost.queries === 1 ? ' database operation' : ' database operations');
+    $('answer-breakdown').textContent = '— for ' + M.formatCount(cost.roomAccesses)
+      + ' room accesses in a three-line loop.';
+    $('answer-why').textContent = M.explain(cost);
+  }
+
+  function renderSql(cost) {
+    var s = cost.params.strategy;
+    var lines;
+    if (s === 'eager') {
+      lines = ['-- one statement, eager loading', M.SQL.join];
+    } else if (s === 'batched') {
+      lines = ['-- statement 1', M.SQL.reservations,
+        '', '-- statement 2, once, with every room id the loop needs', M.SQL.roomsIn];
+    } else {
+      var repeats = cost.roomQueries;
+      lines = ['-- statement 1', M.SQL.reservations,
+        '', '-- statement 2, repeated ' + M.formatCount(repeats) + ' time'
+          + (repeats === 1 ? '' : 's')
+          + (cost.params.cache === 'on' ? ' (once per distinct room)' : ' (once per reservation)'),
+        M.SQL.room];
+    }
+    $('emitted-sql').textContent = lines.join('\n');
+  }
+
+  /* --- the timeline canvas --------------------------------------------------------------------- */
+
+  function prepare(canvas) {
+    var ctx = canvas.getContext('2d');
+    var p = palette();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = p.paper;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    return { ctx: ctx, p: p, w: canvas.width, h: canvas.height };
+  }
+
+  /** Nice round tick values spanning 0..max, at most `target` of them. */
+  function ticks(max, target) {
+    if (!(max > 0)) return [0];
+    var raw = max / target;
+    var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+    var step = mag;
+    [1, 2, 2.5, 5, 10].some(function (m) {
+      if (mag * m >= raw) { step = mag * m; return true; }
+      return false;
+    });
+    var out = [];
+    for (var v = 0; v <= max + step * 0.001; v += step) out.push(v);
+    return out;
+  }
+
+  function drawTimeAxis(g, x0, x1, yTop, yBottom, maxMs) {
+    var ctx = g.ctx;
+    ctx.save();
+    ctx.font = '12px ' + 'ui-monospace, Menlo, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ticks(maxMs, 7).forEach(function (t) {
+      var x = x0 + (x1 - x0) * (maxMs > 0 ? t / maxMs : 0);
+      ctx.strokeStyle = g.p.grid;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(Math.round(x) + 0.5, yTop);
+      ctx.lineTo(Math.round(x) + 0.5, yBottom);
+      ctx.stroke();
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText(t >= 1000 ? (t / 1000).toFixed(t >= 10000 ? 0 : 1) + 's' : Math.round(t) + '',
+        x, yBottom + 5);
+    });
+    ctx.fillStyle = g.p.muted;
+    ctx.textAlign = 'right';
+    ctx.fillText('milliseconds →', x1, yBottom + 22);
+    ctx.restore();
+  }
+
+  function renderTimeline(cost) {
+    var canvas = $('c-timeline');
+    var g = prepare(canvas);
+    var ctx = g.ctx;
+    var labelW = 132;
+    var x0 = labelW;
+    var x1 = g.w - 24;
+    var yTop = 20;
+    var yBottom = g.h - 34;
+    var maxMs = Math.max(cost.totalMs, 1);
+    var detail = cost.queries <= DETAIL_LIMIT;
+
+    drawTimeAxis(g, x0, x1, yTop, yBottom, maxMs);
+    var toX = function (ms) { return x0 + (x1 - x0) * (ms / maxMs); };
+
+    ctx.font = '12px ui-monospace, Menlo, monospace';
+    ctx.textBaseline = 'middle';
+
+    if (detail) {
+      var rows = cost.queries;
+      var pitch = (yBottom - yTop) / rows;
+      var barH = Math.max(4, Math.min(16, pitch - 3));
+      cost.timeline.forEach(function (q, i) {
+        var y = yTop + pitch * i + pitch / 2;
+        var bx = toX(q.startMs);
+        var bw = Math.max(2, toX(q.endMs) - bx);
+        ctx.fillStyle = kindColour(q.kind, g.p);
+        ctx.fillRect(bx, y - barH / 2, bw, barH);
+        /* Label every row while they fit; thin out as the rows tighten, but always keep the first
+           and last so the extent of the run is readable. */
+        var showLabel = pitch >= 13 || i === 0 || i === rows - 1 || i % Math.ceil(13 / pitch) === 0;
+        if (showLabel) {
+          ctx.fillStyle = g.p.ink;
+          ctx.textAlign = 'right';
+          ctx.fillText('Q' + (i + 1) + '  ' + q.label, labelW - 8, y);
+        }
+      });
+    } else {
+      /* Compact band. One polygon whose upper edge is the query starts and whose lower edge is the
+         query ends, which is the staircase of the detailed view with the steps too small to draw.
+         Individual bars at this count would be sub-pixel and the drawing would be a lie about how
+         many there are, so the count is written instead. */
+      var n = cost.queries;
+      var top = yTop + 6;
+      var bot = yBottom - 6;
+      var yOf = function (i) { return top + (bot - top) * (i / (n - 1)); };
+      ctx.beginPath();
+      ctx.moveTo(toX(cost.timeline[0].startMs), yOf(0));
+      cost.timeline.forEach(function (q, i) { ctx.lineTo(toX(q.startMs), yOf(i)); });
+      for (var i = n - 1; i >= 0; i -= 1) {
+        ctx.lineTo(toX(cost.timeline[i].endMs), yOf(i));
+      }
+      ctx.closePath();
+      ctx.fillStyle = kindColour('room', g.p);
+      ctx.globalAlpha = 0.85;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      /* The first query is the reservations query and deserves its own colour even here. */
+      var q0 = cost.timeline[0];
+      ctx.fillStyle = kindColour(q0.kind, g.p);
+      ctx.fillRect(toX(q0.startMs), yOf(0) - 5,
+        Math.max(2, toX(q0.endMs) - toX(q0.startMs)), 10);
+
+      ctx.fillStyle = g.p.ink;
+      ctx.textAlign = 'right';
+      ctx.fillText('Q1  ' + q0.label, labelW - 8, yOf(0));
+      ctx.fillText('Q' + n + '  ' + cost.timeline[n - 1].label, labelW - 8, yOf(n - 1));
+      var mid = Math.floor(n / 2);
+      ctx.fillText('Q' + (mid + 1), labelW - 8, yOf(mid));
+
+      ctx.textAlign = 'left';
+      ctx.font = '600 15px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.ink;
+      ctx.fillText(M.formatCount(n) + ' sequential queries', toX(0) + 14, yOf(mid) - 14);
+      ctx.font = '13px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.muted;
+      ctx.fillText('drawn as a band — ' + M.formatMs(cost.timeline[1] ? cost.timeline[1].durationMs : cost.totalMs)
+        + ' each, one after another', toX(0) + 14, yOf(mid) + 8);
+    }
+
+    /* The finish line, and the number that matters. */
+    ctx.save();
+    ctx.setLineDash([5, 4]);
+    ctx.strokeStyle = g.p.ink;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(toX(cost.totalMs)) - 0.5, yTop - 8);
+    ctx.lineTo(Math.round(toX(cost.totalMs)) - 0.5, yBottom);
+    ctx.stroke();
+    ctx.restore();
+    ctx.font = '600 13px ui-monospace, Menlo, monospace';
+    ctx.fillStyle = g.p.ink;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(M.formatMs(cost.totalMs), toX(cost.totalMs) - 6, yTop - 2);
+
+    $('timeline-alt').textContent = timelineDescription(cost, detail);
+    $('timeline-note').textContent = detail
+      ? 'Every query is drawn. Each bar is one round trip plus that statement’s processing; '
+        + 'they do not overlap, because the loop cannot ask for a room it has not reached yet.'
+      : 'Above ' + DETAIL_LIMIT + ' queries the timeline draws a band with the count rather than '
+        + M.formatCount(cost.queries) + ' separate bars. The slope is the accumulation: each query '
+        + 'starts where the one before it finished.';
+  }
+
+  function timelineDescription(cost, detail) {
+    var s = cost.params.strategy;
+    var mode = s === 'lazy' ? 'lazy loading with the cache ' + cost.params.cache
+      : s === 'eager' ? 'eager loading' : 'batched loading';
+    return 'Query timeline, ' + mode + '. ' + M.formatCount(cost.queries)
+      + (cost.queries === 1 ? ' query' : ' sequential queries')
+      + ', each about ' + M.formatMs(cost.params.latencyMs) + ' of round-trip latency, finishing at '
+      + M.formatMs(cost.totalMs) + '. '
+      + (detail ? 'Each query is drawn as its own bar.'
+        : 'Drawn as a single band because there are more than ' + DETAIL_LIMIT + ' of them.');
+  }
+
+  /* --- the comparison canvas ------------------------------------------------------------------- */
+
+  function renderCompare() {
+    var rows = M.compareStrategies(state);
+    var canvas = $('c-compare');
+    var g = prepare(canvas);
+    var ctx = g.ctx;
+    var labelW = 190;
+    var x0 = labelW;
+    var x1 = g.w - 250;
+    var yTop = 16;
+    var maxMs = Math.max.apply(null, rows.map(function (r) { return r.totalMs; }).concat([1]));
+    var pitch = (g.h - yTop - 30) / rows.length;
+    var barH = Math.min(30, pitch - 12);
+
+    drawTimeAxis(g, x0, x1, yTop, g.h - 30, maxMs);
+
+    ctx.textBaseline = 'middle';
+    rows.forEach(function (r, i) {
+      var y = yTop + pitch * i + pitch / 2;
+      var bw = Math.max(3, (x1 - x0) * (r.totalMs / maxMs));
+      ctx.fillStyle = r.strategy === 'lazy' ? g.p.accent
+        : r.strategy === 'eager' ? g.p.warn : g.p.ok;
+      ctx.fillRect(x0, y - barH / 2, bw, barH);
+      if (r.current) {
+        ctx.strokeStyle = g.p.ink;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x0 - 1, y - barH / 2 - 1, bw + 2, barH + 2);
+      }
+      ctx.font = (r.current ? '600 ' : '') + '13px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = g.p.ink;
+      ctx.textAlign = 'right';
+      ctx.fillText((r.current ? '▸ ' : '') + r.label, labelW - 10, y);
+      ctx.textAlign = 'left';
+      ctx.fillText(M.formatCount(r.queries) + (r.queries === 1 ? ' query' : ' queries')
+        + ' · ' + M.formatMs(r.totalMs) + ' · ' + M.formatBytes(r.bytes), x1 + 10, y);
+    });
+
+    $('compare-alt').textContent = 'Comparison of four configurations at '
+      + M.formatCount(state.reservations) + ' reservations, '
+      + M.formatCount(Math.min(state.distinctRooms, state.reservations)) + ' distinct rooms and '
+      + state.latencyMs + ' millisecond latency. '
+      + rows.map(function (r) {
+        return r.label + ': ' + M.formatCount(r.queries) + ' queries, ' + M.formatMs(r.totalMs)
+          + ', ' + M.formatBytes(r.bytes) + (r.current ? ' (current)' : '');
+      }).join('. ') + '.';
+  }
+
+  /* --- one render path ------------------------------------------------------------------------- */
+
+  function render() {
+    var cost = M.computeCost(state);
+    renderResults(cost);
+    renderAnswer(cost);
+    renderSql(cost);
+    renderTimeline(cost);
+    renderCompare();
+  }
+
+  /* --- wiring ---------------------------------------------------------------------------------- */
+
+  bindNumber('reservations', 'reservations', 'reservations-range');
+  bindNumber('latencyMs', 'latency', 'latency-range');
+  bindNumber('distinctRooms', 'rooms', 'rooms-range');
+  bindSegment('strategy-seg', 'data-strategy', 'strategy');
+  bindSegment('cache-seg', 'data-cache', 'cache');
+  buildPresets();
+
+  $('btn-defaults').addEventListener('click', function () {
+    state.reservations = M.DEFAULTS.reservations;
+    state.latencyMs = M.DEFAULTS.latencyMs;
+    state.distinctRooms = M.DEFAULTS.distinctRooms;
+    state.strategy = M.DEFAULTS.strategy;
+    state.cache = M.DEFAULTS.cache;
+    syncControls();
+    render();
+  });
+
+  $('btn-reveal').addEventListener('click', function () {
+    revealed = !revealed;
+    render();
+  });
+
+  $('btn-selftest').addEventListener('click', function () {
+    var report = M.runSelfTests();
+    var failed = report.results.filter(function (r) { return !r.passed; });
+    $('selftest-out').textContent = failed.length === 0
+      ? report.passed + ' of ' + report.total + ' self-tests pass.'
+      : failed.length + ' of ' + report.total + ' FAILED: '
+        + failed.map(function (r) { return r.name + ' (' + r.detail + ')'; }).join('; ');
+  });
+
+  /* Re-render when the colour scheme flips, so the canvases follow the tokens rather than keeping
+     the ink they were drawn with. */
+  var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+  if (scheme.addEventListener) scheme.addEventListener('change', render);
+
+  syncControls();
+  render();
+}());
+</script>
+
+</body>
+</html>

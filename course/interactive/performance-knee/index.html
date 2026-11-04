@@ -171,7 +171,7 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   border: 1px solid var(--rule); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
-.ctl select { width: auto; font-family: var(--font-body); }
+.ctl select { width: auto; max-width: 22rem; justify-self: start; font-family: var(--font-body); }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
 .seg button {
   font-family: var(--font-mono); font-size: 0.95rem;
@@ -290,11 +290,28 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 .xp details[open] > summary { margin-bottom: 0.4rem; }
 .xp-setup { margin-top: 0.3rem; }
 
-table.ref { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 0.5rem 0; }
+/* Wide content scrolls inside its own box; the page body must never scroll sideways. */
+.table-scroll { overflow-x: auto; margin: 0.5rem 0; }
+table.ref { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 0.95rem; }
 table.ref th, table.ref td { border: 1px solid var(--rule); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
 table.ref th { background: var(--panel-2); font-weight: 600; }
 table.ref td.num { font-family: var(--font-mono); white-space: nowrap; }
 code, .mono { font-family: var(--font-mono); font-size: 0.93em; }
+
+/* Below ~700px the three-column control row cannot hold a label, a slider and a number field
+   without pushing the page sideways (measured: 34px of horizontal overflow at 414px). Give the
+   label its own row and let the slider and field share the next one. */
+@media (max-width: 700px) {
+  main { padding: 1rem 0.9rem 2.5rem; }
+  .head { padding: 0.9rem 0.9rem 0.8rem; }
+  .head h1 { font-size: 1.7rem; }
+  .head .tag { text-align: left; }
+  footer { padding: 1rem 0.9rem 2rem; }
+  .ctl { grid-template-columns: 1fr auto; gap: 0.4rem 0.6rem; }
+  .ctl > label { grid-column: 1 / -1; }
+  .ctl select { max-width: 100%; }
+  .preset-grid { grid-template-columns: 1fr; }
+}
 kbd {
   font-family: var(--font-mono); font-size: 0.85em;
   border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
@@ -780,7 +797,7 @@ footer {
   <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">About the models, the engine, and this page</h2></summary>
 
   <h3>Three different things, kept apart on purpose</h3>
-  <table class="ref">
+  <div class="table-scroll"><table class="ref">
     <thead><tr><th>What</th><th>Statement</th><th>What it does and does not do</th></tr></thead>
     <tbody>
       <tr>
@@ -803,14 +820,14 @@ footer {
           to see what breaks.</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="note">
     Little's Law relates throughput, latency, and concurrency. Queueing theory predicts why latency
     rises near capacity. Simulation shows what those relationships mean for an operating system.
   </p>
 
   <h3>Formulas used</h3>
-  <table class="ref">
+  <div class="table-scroll"><table class="ref">
     <thead><tr><th>Quantity</th><th>M/M/1 (exponential service)</th><th>M/D/1 (deterministic service)</th></tr></thead>
     <tbody>
       <tr><td>Offered load</td><td class="num">&rho; = &lambda;/&mu;</td><td class="num">&rho; = &lambda;/&mu;</td></tr>
@@ -820,7 +837,7 @@ footer {
       <tr><td>Mean number waiting</td><td class="num">L<sub>q</sub> = &lambda;&sup2;/(&mu;(&mu;&minus;&lambda;))</td><td class="num">L<sub>q</sub> = &lambda;W<sub>q</sub></td></tr>
       <tr><td>&lambda; &ge; &mu;</td><td colspan="2">No finite steady-state prediction. At &lambda;&nbsp;=&nbsp;&mu; the queue is critically loaded; at &lambda;&nbsp;&gt;&nbsp;&mu; the backlog grows in the long run at about &lambda;&nbsp;&minus;&nbsp;&mu;.</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p>
     The deterministic option is never scored against the M/M/1 formula. Selecting it switches the
     whole prediction panel to M/D/1 and relabels it, because applying an exponential-service result
@@ -2156,6 +2173,19 @@ footer {
     return { ctx: ctx, w: w, h: cssHeight };
   }
 
+  /* Shrink a canvas label until it fits its box, down to a floor. Canvas text does not wrap or
+     ellipsise: an over-long string simply runs off the bitmap and the reader loses the end of the
+     sentence. Returns the weight-and-size prefix actually used. */
+  function fitFont(ctx, text, maxWidth, basePx, minPx, weight) {
+    var w = weight === undefined ? '600 ' : weight + ' ';
+    for (var size = basePx; size >= minPx; size -= 1) {
+      ctx.font = w + size + 'px ui-monospace, monospace';
+      if (ctx.measureText(text).width <= maxWidth) return size;
+    }
+    ctx.font = w + minPx + 'px ui-monospace, monospace';
+    return minPx;
+  }
+
   function niceCeil(v) {
     if (!(v > 0)) return 1;
     var exp = Math.floor(Math.log(v) / Math.LN10);
@@ -2166,92 +2196,111 @@ footer {
   }
 
   /* ---------- A. live queue ---------- */
+  var QUEUE_ROWS = 3;   /* lay waiting tokens in up to three rows, so ~40 fit at panel width */
+
   function drawQueue(s, p) {
     var c = $('c-queue');
     var g = fit(c, 300);
     var ctx = g.ctx, w = g.w, h = g.h;
-    var cy = h * 0.46;
+    var cy = h * 0.47;
 
-    ctx.font = '600 12px ' + 'ui-monospace, monospace';
-    ctx.fillStyle = palette.muted;
     ctx.textBaseline = 'middle';
-    ctx.fillText('ARRIVALS', 8, cy - 46);
+    ctx.font = '600 12px ui-monospace, monospace';
+    ctx.fillStyle = palette.muted;
+    ctx.textAlign = 'left';
+    ctx.fillText('ARRIVALS →', 8, 18);
     ctx.textAlign = 'right';
-    ctx.fillText('COMPLETED', w - 8, cy - 46);
+    ctx.fillText('→ COMPLETED', w - 8, 18);
     ctx.textAlign = 'left';
 
-    /* server box on the right-hand third */
-    var boxW = 104, boxH = 74;
-    var boxX = w - boxW - 74, boxY = cy - boxH / 2;
+    /* server box, right-hand edge */
+    var boxW = 96, boxH = 76;
+    var boxX = w - boxW - 16, boxY = cy - boxH / 2;
     var busy = s.serverBusy;
     ctx.lineWidth = 2;
     ctx.strokeStyle = busy ? palette.ok : palette.muted;
     ctx.fillStyle = palette.panel;
     ctx.beginPath(); ctx.rect(boxX, boxY, boxW, boxH); ctx.fill(); ctx.stroke();
+    ctx.textAlign = 'center';
     ctx.fillStyle = palette.muted;
     ctx.font = '600 11px ui-monospace, monospace';
-    ctx.textAlign = 'center';
     ctx.fillText('SERVER', boxX + boxW / 2, boxY + 15);
     ctx.fillStyle = busy ? palette.ok : palette.muted;
-    ctx.font = '700 15px ui-monospace, monospace';
-    ctx.fillText(busy ? 'BUSY' : 'IDLE', boxX + boxW / 2, boxY + 40);
+    ctx.font = '700 16px ui-monospace, monospace';
+    ctx.fillText(busy ? 'BUSY' : 'IDLE', boxX + boxW / 2, boxY + 39);
     ctx.fillStyle = palette.muted;
     ctx.font = '11px ui-monospace, monospace';
     ctx.fillText('μ = ' + sim.params.serviceRate + '/s', boxX + boxW / 2, boxY + 60);
     ctx.textAlign = 'left';
 
-    /* the request in service: a filled token with a heavy ring, inside the box's left edge */
+    /* the request in service: filled, with a heavy ring — shape as well as colour */
     if (busy) {
-      ctx.beginPath(); ctx.arc(boxX - 26, cy, 10, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(boxX - 22, cy, 10, 0, Math.PI * 2);
       ctx.fillStyle = palette.ok; ctx.fill();
       ctx.lineWidth = 3; ctx.strokeStyle = palette.ink; ctx.stroke();
     }
 
-    /* waiting tokens, right-to-left from just before the server */
-    var r = 9, gap = 7;
-    var laneRight = boxX - 52;
-    var laneLeft = 96;
-    var slots = Math.max(1, Math.floor((laneRight - laneLeft) / (2 * r + gap)));
-    var cap = Math.min(ui.maxDisplayed, slots);
+    /* Waiting tokens: head of the queue nearest the server, filling right to left and wrapping
+       downward. Above the display cap the overflow is reported as a COUNT — drawing thousands of
+       circles would cost a great deal and say nothing. */
+    var r = 9, gap = 7, pitch = 2 * r + gap;
+    var laneRight = boxX - 44;
+    var laneLeft = 10;
+    var perRow = Math.max(1, Math.floor((laneRight - laneLeft) / pitch));
+    var cap = Math.min(ui.maxDisplayed, perRow * QUEUE_ROWS);
     var waiting = s.queueLength;
     var shown = Math.min(waiting, cap);
     var hidden = waiting - shown;
+    var rowsUsed = Math.max(1, Math.ceil(shown / perRow));
+    var top = cy - ((rowsUsed - 1) * pitch) / 2;
     var flash = !ui.reduced && performance.now() < ui.arrivalFlashUntil;
 
     ctx.lineWidth = 1.5;
     for (var i = 0; i < shown; i += 1) {
-      var x = laneRight - i * (2 * r + gap);
-      ctx.beginPath(); ctx.arc(x, cy, r, 0, Math.PI * 2);
+      var row = Math.floor(i / perRow);
+      var col = i % perRow;
+      var x = laneRight - col * pitch;
+      var y = top + row * pitch;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
       ctx.fillStyle = (i === shown - 1 && flash) ? palette.accent : palette.panel;
       ctx.fill();
       ctx.strokeStyle = palette.ink; ctx.stroke();
     }
-    ctx.font = '600 15px ui-monospace, monospace';
     if (hidden > 0) {
       ctx.fillStyle = palette.bad;
+      ctx.font = '700 15px ui-monospace, monospace';
       ctx.textAlign = 'left';
-      ctx.fillText('… +' + hidden.toLocaleString('en-US') + ' waiting', laneLeft - 86 + 4, cy);
+      ctx.fillText('… +' + hidden.toLocaleString('en-US') + ' more waiting',
+        laneLeft, top + rowsUsed * pitch + 6);
     }
 
-    /* flow arrow */
-    ctx.strokeStyle = palette.rule; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, cy + 34); ctx.lineTo(w - 8, cy + 34); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(w - 16, cy + 30); ctx.lineTo(w - 8, cy + 34); ctx.lineTo(w - 16, cy + 38);
-    ctx.strokeStyle = palette.muted; ctx.stroke();
-
-    /* a text summary under the lane: the reading does not depend on counting circles */
+    /* A text summary, so the reading never depends on counting circles. */
+    ctx.textAlign = 'left';
     ctx.fillStyle = palette.ink;
-    ctx.font = '600 14px ui-monospace, monospace';
-    ctx.fillText('queue ' + waiting.toLocaleString('en-US')
-      + '   in system ' + s.numberInSystem.toLocaleString('en-US')
-      + '   max seen ' + s.maxQueueLength.toLocaleString('en-US'), 8, cy + 62);
+    var summary = 'queue ' + waiting.toLocaleString('en-US')
+      + '   ·   in system ' + s.numberInSystem.toLocaleString('en-US')
+      + '   ·   max seen ' + s.maxQueueLength.toLocaleString('en-US');
+    var avail = w - 16;
+    ctx.font = '700 15px ui-monospace, monospace';
+    if (ctx.measureText(summary).width <= avail) {
+      ctx.fillText(summary, 8, h - 30);
+    } else {
+      /* Two short lines beat one clipped one. */
+      var lineA = 'queue ' + waiting.toLocaleString('en-US')
+        + '  ·  in system ' + s.numberInSystem.toLocaleString('en-US');
+      var lineB = 'max seen ' + s.maxQueueLength.toLocaleString('en-US');
+      fitFont(ctx, lineA, avail, 15, 10, '700');
+      ctx.fillText(lineA, 8, h - 38);
+      ctx.fillText(lineB, 8, h - 22);
+    }
     ctx.fillStyle = palette.muted;
-    ctx.font = '12px ui-monospace, monospace';
-    ctx.fillText('showing at most ' + cap + ' tokens; the count is authoritative', 8, cy + 84);
+    var caption = 'at most ' + cap + ' tokens drawn; the counts are authoritative';
+    fitFont(ctx, caption, avail, 12, 8, '400');
+    ctx.fillText(caption, 8, h - 8);
 
-    $('queue-alt').textContent = 'Queue diagram: server ' + (busy ? 'busy' : 'idle') + ', '
-      + waiting + ' requests waiting, ' + s.numberInSystem + ' in the system, largest queue seen '
-      + s.maxQueueLength + '.';
+    $('queue-alt').textContent = 'Queue diagram: the server is ' + (busy ? 'busy' : 'idle') + ', '
+      + waiting + ' requests are waiting, ' + s.numberInSystem + ' are in the system, and the '
+      + 'largest queue seen so far is ' + s.maxQueueLength + '.';
   }
 
   /* ---------- B. live response-time chart ---------- */
@@ -2284,10 +2333,11 @@ footer {
     ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
     ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
     ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
+    var tickDigits = yMax * 1000 < 20 ? 1 : 0;   /* one format for the whole axis, not per tick */
     for (var k = 0; k <= 4; k += 1) {
       var v = yMax * k / 4, y = Y(v);
       ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
-      ctx.fillText((v * 1000).toFixed(v * 1000 < 10 ? 1 : 0), padL - 6, y);
+      ctx.fillText((v * 1000).toFixed(tickDigits), padL - 6, y);
     }
     ctx.textAlign = 'left';
     ctx.fillText('ms', 8, padT + 6);
@@ -2328,16 +2378,16 @@ footer {
       ctx.beginPath(); ctx.moveTo(padL, wy); ctx.lineTo(w - padR, wy); ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = palette.model;
-      ctx.font = '600 12px ui-monospace, monospace';
       var label = p.model + ' W = ' + ms(p.W);
+      fitFont(ctx, label, plotW - 8, 12, 8, '600');
       ctx.textAlign = 'right';
       ctx.fillText(label, w - padR - 4, Math.max(padT + 8, wy - 11));
       ctx.textAlign = 'left';
     } else {
       ctx.fillStyle = palette.bad;
-      ctx.font = '600 12px ui-monospace, monospace';
-      ctx.fillText('model line withdrawn: no finite steady-state prediction at ρ ≥ 1',
-        padL + 6, padT + 10);
+      var note = 'model line withdrawn: no finite prediction at ρ ≥ 1';
+      fitFont(ctx, note, plotW - 12, 12, 8, '600');
+      ctx.fillText(note, padL + 6, padT + 10);
     }
 
     var roll = Q.rollingMeanResponse(sim, ROLLING_WINDOW);
@@ -2397,8 +2447,12 @@ footer {
     var fy = Y(1 / mu);
     ctx.beginPath(); ctx.moveTo(padL, fy); ctx.lineTo(w - padR, fy); ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
-    ctx.fillText('1/μ = ' + ms(1 / mu) + '  (service time, no queueing)', padL + 6, fy - 11);
+    ctx.fillStyle = palette.muted;
+    var floorLabel = '1/μ = ' + ms(1 / mu) + '  (service time, no queueing)';
+    fitFont(ctx, floorLabel, plotW * 0.6, 11, 8, '400');
+    ctx.textAlign = 'right';
+    ctx.fillText(floorLabel, w - padR - 6, fy - 11);
+    ctx.textAlign = 'left';
 
     /* the curve, clipped at the top edge */
     ctx.strokeStyle = palette.model; ctx.lineWidth = 2.5; ctx.setLineDash([9, 5]);
@@ -2414,12 +2468,21 @@ footer {
     ctx.setLineDash([]);
     if (clippedAt !== null) {
       ctx.fillStyle = palette.model;
-      ctx.font = '600 12px ui-monospace, monospace';
+      var clipNote = 'curve continues above the frame — W → ∞ as ρ → 1';
+      fitFont(ctx, clipNote, plotW * 0.62, 12, 8, '600');
       ctx.textAlign = 'right';
-      ctx.fillText('curve continues above the frame — W → ∞ as ρ → 1',
-        w - padR - 4, padT + 12);
+      ctx.fillText(clipNote, w - padR - 4, padT + 12);
+      ctx.textAlign = 'left';
       ctx.textAlign = 'left';
     }
+
+    /* The model caption sits at the TOP of the plot. Everything interesting on this curve happens
+       along the bottom edge until rho is large, so captions placed there collide with the 1/mu
+       reference line, with the curve, and with each other. */
+    ctx.fillStyle = palette.muted;
+    var caption = p.model + ' with μ = ' + mu + ' req/s';
+    fitFont(ctx, caption, plotW * 0.5, 12, 8, '600');
+    ctx.fillText(caption, padL + 6, padT + 12);
 
     /* current offered load */
     var rhoNow = p.offeredLoad;
@@ -2428,21 +2491,18 @@ footer {
     ctx.beginPath(); ctx.moveTo(markX, padT); ctx.lineTo(markX, padT + plotH); ctx.stroke();
     ctx.setLineDash([]);
     ctx.fillStyle = palette.accent;
-    ctx.font = '700 13px ui-monospace, monospace';
     var lab = rhoNow >= 1
       ? 'now ρ = ' + rhoNow.toFixed(2) + ' — no finite prediction'
       : 'now ρ = ' + rhoNow.toFixed(3) + ', W = ' + ms(p.W);
-    ctx.textAlign = markX > padL + plotW * 0.6 ? 'right' : 'left';
-    ctx.fillText(lab, markX + (ctx.textAlign === 'right' ? -6 : 6), padT + plotH - 10);
+    fitFont(ctx, lab, plotW * 0.6, 13, 8, '700');
+    ctx.textAlign = markX > padL + plotW * 0.55 ? 'right' : 'left';
+    ctx.fillText(lab, markX + (ctx.textAlign === 'right' ? -8 : 8), padT + 32);
     ctx.textAlign = 'left';
     if (p.stable && p.W <= yMax) {
       ctx.beginPath(); ctx.arc(markX, Y(p.W), 5, 0, Math.PI * 2);
       ctx.fillStyle = palette.accent; ctx.fill();
       ctx.lineWidth = 2; ctx.strokeStyle = palette.paper; ctx.stroke();
     }
-
-    ctx.fillStyle = palette.muted; ctx.font = '12px ui-monospace, monospace';
-    ctx.fillText(p.model + ' with μ = ' + mu + ' req/s', padL + 6, padT + plotH - 30);
 
     $('knee-alt').textContent = 'Predicted load-latency curve for ' + p.model + ' at mu = ' + mu
       + ' requests per second. Vertical axis 0 to ' + (yMax * 1000).toFixed(0)

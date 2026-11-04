@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<!--
+  Regular Expression Denial of Service — an interactive demonstration.
+  Teach with MAGE · ECE 30861 · Act III · Security Engineering.
+
+  HAND-AUTHORED. This file is NOT emitted by `catalog.py build`; it is a self-contained application
+  published verbatim by the MkDocs teach-site step (docs_dir: ../course), served at
+  /teach/interactive/redos/ and equally openable from a file:// URL.
+
+  One artifact, two deployments. There is no separate "offline build": the Download HTML control
+  hands the reader this same file.
+
+  No external dependencies — no framework, no charting library, no CDN, no webfont, no backend, no
+  network request of any kind. The favicon is an inline data URI precisely so the page issues zero
+  requests, which the browser test asserts.
+
+  Structure of the single <script> pair below:
+    #redos-engine  — pure model: the curated expressions, input construction, the correctness
+                     tables, trial measurement against a caller-supplied clock, the sweep state
+                     machine, the growth description, the backtracking MODEL, and the threat /
+                     mitigation tables. No DOM reference anywhere, and no clock of its own.
+                     Publishes window.ReDoS. The node test suite in ./tests/ EXTRACTS this element
+                     by id and evaluates it, so the tests and the page run one implementation, not
+                     two. The WORKER is built from this same element's text, so the measured code
+                     and the tested code are also the same bytes.
+    #redos-ui      — rendering, controls, and the worker lifecycle. Observes the model; never
+                     determines it.
+
+  Two accuracy constraints this page is built to respect, stated here because they are the easiest
+  thing for a later edit to smooth away:
+    1. The Cloudflare outage of 2 July 2019 was caused by a rule Cloudflare deployed itself, NOT by
+       an attacker. The algorithmic weakness is nevertheless exploitable as a denial-of-service
+       vulnerability, which is why it belongs in a security lecture.
+    2. This demonstration does not reproduce Cloudflare's production behaviour. Regex engines differ
+       in matching algorithm and optimisation. It demonstrates the same CLASS of vulnerability.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regular Expression Denial of Service — Teach with MAGE</title>
+<meta name="description" content="An interactive demonstration of algorithmic complexity attacks on regular expression matching: measure real backtracking cost in the browser's own engine, under a wall-clock budget, and model why it grows.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Cpath d='M1 14 C9 14 12 13 14 2' stroke='%23b23b3b' fill='none' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------------------------
+   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) and kept
+   byte-identical to the sibling instrument (course/interactive/performance-knee/) so the two
+   demonstrations read as one pair: warm paper ground, near-black ink, burnt-umber accent,
+   Purdue-gold rule under the header. `--model` is the family's definition-box blue, reused here as
+   "this number came from a model, not a measurement" — the same distinction the Performance Knee
+   draws between an analytical prediction and a simulation.
+
+   One token is a local extension: the family set has no amber, and an approaching-the-budget signal
+   must be distinct from both green and red. `--warn` is a warm ochre chosen to sit inside the
+   family's warm palette rather than a generic traffic-light yellow.
+
+   Colour never carries meaning alone. Every state also carries a word and a glyph; every chart
+   series also carries a dash pattern, a marker shape, and a label drawn at the line.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.head .tag a { color: var(--accent); }
+.gold-rule { height: 4px; background: var(--gold); }
+
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel > h2, .panel > summary > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) {
+  .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls ----------------------------------------------------------------------------- */
+.ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .ctl-row { grid-template-columns: 1.4fr 1fr; } }
+.ctl { display: grid; grid-template-columns: 13rem 1fr auto; gap: 0.6rem; align-items: center; }
+.ctl > label { font-weight: 600; font-size: 0.98rem; }
+.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
+.ctl input[type=number] {
+  font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.3rem 0.4rem; width: 6.2rem;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.seg button {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
+  background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
+button.act {
+  font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+  padding: 0.5rem 1.05rem; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.act[disabled] { opacity: 0.45; cursor: not-allowed; }
+button.act:focus-visible, .seg button:focus-visible, .xpsel:focus-visible,
+input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* --- experiment selector ------------------------------------------------------------------ */
+.xpsel-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.xpsel {
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+  padding: 0.6rem 0.7rem; font-family: var(--font-body); font-size: 0.95rem;
+}
+.xpsel:hover { border-color: var(--accent); }
+/* The selected experiment is marked by a filled left bar, a heavier border, AND the word
+   "selected" in its status line — three encodings, so the selection survives a greyscale
+   projector and a colour-blind reader alike. */
+.xpsel[aria-pressed=true] { border-color: var(--ink); border-width: 2px; border-left-width: 8px; background: var(--panel-2); }
+.xpsel .xname { display: block; font-weight: 600; font-size: 1.04rem; }
+.xpsel .xpat { display: block; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; word-break: break-all; }
+.xpsel .xgrow { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+.xpsel .xstate { display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+.xpsel[aria-pressed=true] .xstate { color: var(--ink); font-weight: 600; }
+.xpsel .hostile, .xpsel .benign {
+  display: inline-block; margin-top: 0.3rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid currentColor; border-radius: var(--radius); padding: 0.05rem 0.35rem;
+}
+.xpsel .hostile { color: var(--bad); background: var(--bad-fill); }
+.xpsel .benign { color: var(--ok); background: var(--ok-fill); }
+
+/* --- readouts ----------------------------------------------------------------------------- */
+dl.readout { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 1rem; margin: 0; }
+dl.readout dt { color: var(--muted); font-size: 0.95rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 1.08rem; text-align: right; }
+dl.readout dd.big { font-size: 1.3rem; font-weight: 600; }
+.model-plane { background: var(--model-fill); border-left: 3px solid var(--model); padding: 0.6rem 0.8rem; border-radius: var(--radius); }
+.measure-plane { background: var(--panel-2); border-left: 3px solid var(--muted); padding: 0.6rem 0.8rem; border-radius: var(--radius); }
+.plane-kind {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); display: block; margin-bottom: 0.35rem;
+}
+
+.badge {
+  display: inline-flex; align-items: baseline; gap: 0.45rem;
+  font-family: var(--font-mono); font-size: 0.92rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  border: 2px solid currentColor; border-radius: var(--radius);
+  padding: 0.25rem 0.6rem;
+}
+.badge .glyph { font-size: 1.05rem; line-height: 1; }
+.badge.s-idle { color: var(--muted); background: var(--panel-2); }
+.badge.s-ok { color: var(--ok); background: var(--ok-fill); }
+.badge.s-run { color: var(--model); background: var(--model-fill); }
+.badge.s-warn { color: var(--warn); background: var(--warn-fill); }
+.badge.s-kill { color: var(--bad); background: var(--bad-fill); border-style: double; border-width: 4px; }
+
+.kill-msg {
+  border: 2px solid var(--bad); background: var(--bad-fill); color: var(--ink);
+  border-radius: var(--radius); padding: 0.6rem 0.8rem; margin: 0.6rem 0 0; font-size: 0.97rem;
+}
+.kill-msg strong { color: var(--bad); }
+.warn-msg {
+  border: 1px dashed var(--warn); background: var(--warn-fill); color: var(--ink);
+  border-radius: var(--radius); padding: 0.5rem 0.7rem; margin: 0.6rem 0 0; font-size: 0.92rem;
+}
+.model-msg {
+  border: 1px solid var(--model); background: var(--model-fill); color: var(--ink);
+  border-radius: var(--radius); padding: 0.55rem 0.75rem; margin: 0.6rem 0 0; font-size: 0.93rem;
+}
+
+/* --- code + tables ------------------------------------------------------------------------ */
+table.ref { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 0.5rem 0; }
+table.ref th, table.ref td { border: 1px solid var(--rule); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+table.ref th { background: var(--panel-2); font-weight: 600; }
+table.ref td.num, table.ref td.mono { font-family: var(--font-mono); white-space: nowrap; }
+table.ref caption { text-align: left; color: var(--muted); font-size: 0.88rem; padding-bottom: 0.3rem; }
+code, .mono { font-family: var(--font-mono); font-size: 0.93em; }
+.exprbox {
+  font-family: var(--font-mono); font-size: 1.15rem;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 0.6rem 0.8rem; overflow-x: auto; word-break: break-all;
+}
+.inputbox {
+  font-family: var(--font-mono); font-size: 0.95rem;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 0.5rem 0.7rem; overflow-x: auto; white-space: pre; margin-top: 0.4rem;
+}
+kbd {
+  font-family: var(--font-mono); font-size: 0.85em;
+  border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
+  padding: 0.05rem 0.35rem; background: var(--paper);
+}
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+details.panel > summary {
+  cursor: pointer; list-style: none;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+details.panel > summary::-webkit-details-marker { display: none; }
+details.panel > summary::before { content: "\25B8 "; color: var(--accent); }
+details.panel[open] > summary::before { content: "\25BE "; }
+details.panel[open] > summary { margin-bottom: 0.8rem; }
+
+/* Reduced motion: the page has no decorative animation to disable. What the mode changes is the
+   redraw cadence of the chart while a sweep is in flight, so the picture stops twitching between
+   trials. The measurement itself is untouched — a trial's duration never depends on how often we
+   draw, because the drawing happens on a different thread from the matching. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1>Regular Expression Denial of Service</h1>
+    <p class="sub">An adversary choosing the input, not the engineer choosing the workload.</p>
+  </div>
+  <p class="tag">
+    Teach with MAGE<br>ECE&nbsp;30861 &middot; Act&nbsp;III<br>Security Engineering
+  </p>
+</header>
+<div class="gold-rule"></div>
+
+<main>
+
+<!-- ======================= THE CASE ======================= -->
+<section class="panel" aria-labelledby="h-case">
+  <h2 id="h-case">The engineering case</h2>
+  <p>
+    On <strong>2 July 2019</strong> Cloudflare deployed a new rule to its Web Application Firewall.
+    The rule contained a regular expression whose matching cost grew explosively on some inputs. As
+    the rule was evaluated against live traffic it exhausted CPU across Cloudflare's network, and
+    for roughly <strong>27 minutes</strong> the company's core proxy, CDN, and WAF services returned
+    errors globally. The required reading is Cloudflare's own postmortem,
+    <em>&ldquo;Details of the Cloudflare outage on July 2, 2019&rdquo;</em>.
+  </p>
+  <div class="model-msg">
+    <strong>Two things this page will not claim.</strong>
+    <strong>(1)</strong> The outage was <em>not</em> an attack. The pathological rule was written and
+    deployed by Cloudflare itself; no adversary was involved. The underlying algorithmic weakness is
+    nevertheless exploitable as a denial-of-service vulnerability, which is exactly why it belongs in
+    a security lecture rather than only a performance one.
+    <strong>(2)</strong> The demonstration below does <em>not</em> reproduce Cloudflare's production
+    behaviour. Different regex engines use different matching algorithms and different
+    optimisations, and your browser's engine is not the one Cloudflare was running. What the
+    demonstration reproduces is the same <em>class</em> of algorithmic vulnerability. Cloudflare
+    supplies the real engineering case; the browser supplies a real measurement of the class.
+  </div>
+  <h3>The expression, before the outcome</h3>
+  <p>
+    Work through the construct before reading what happened. The postmortem identifies this fragment
+    inside the much larger rule:
+  </p>
+  <p class="exprbox">.*(?:.*=.*)</p>
+  <p>
+    Two unbounded <code>.*</code> repetitions in sequence, with nothing between them that forces a
+    unique division of the input. When the overall match fails, the engine must try the ways of
+    dividing the text between them before it can conclude failure. <strong>Predict which inputs are
+    expensive</strong> before you run anything.
+  </p>
+  <p class="note">
+    The same shape appears in Experiment&nbsp;2 below, in a smaller expression you can read in one
+    glance: <code>/^.*\s+$/</code> &mdash; an unbounded <code>.*</code> followed by an unbounded
+    <code>\s+</code>, with no forced division between them.
+  </p>
+</section>
+
+<!-- ======================= CONTROLS (wired in the next commit) ======================= -->
+<section class="panel" aria-labelledby="h-experiments">
+  <h2 id="h-experiments">Experiments</h2>
+  <div class="xpsel-grid" id="xp-grid"></div>
+  <p class="note" id="xp-pairing">
+    The four experiments form a 2&times;2. Experiments&nbsp;1 and&nbsp;2 run the <em>same
+    expression</em> on different inputs, so the only thing that changes is what the adversary
+    supplies. Experiments&nbsp;2 and&nbsp;4 run <em>different expressions on byte-identical
+    input</em>, so the only thing that changes is what the engineer wrote. Holding one variable
+    fixed at a time is what makes each comparison an experiment rather than an anecdote.
+  </p>
+</section>
+
+<section class="panel" aria-labelledby="h-expr">
+  <h2 id="h-expr">The expression and the input under test</h2>
+  <div class="grid2" style="margin-bottom:0">
+    <div>
+      <h3 id="expr-name">&mdash;</h3>
+      <p class="exprbox" id="expr-source">&mdash;</p>
+      <p class="note" id="expr-why"></p>
+    </div>
+    <div>
+      <h3>Generated input</h3>
+      <p class="inputbox" id="input-shape">&mdash;</p>
+      <dl class="readout" style="margin-top:0.6rem">
+        <dt>Input length</dt><dd id="input-len">&mdash;</dd>
+        <dt>Match result</dt><dd id="input-match">&mdash;</dd>
+      </dl>
+      <p class="note" id="input-why"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= REFERENCE + SELF-TESTS ======================= -->
+<details class="panel" id="about">
+  <summary><span class="panel-title" style="display:inline">About this instrument</span></summary>
+
+  <h3>What it measures</h3>
+  <p>
+    Each experiment runs one curated regular expression against generated inputs of increasing
+    length, using <strong>the browser's own <code>RegExp</code> engine</strong>, and reports the
+    measured execution time. Nothing here plots a theoretical complexity curve and calls it a
+    measurement: the numbers come from running the matcher. The <em>model</em> of why the numbers
+    grow is reported separately and labelled as a model.
+  </p>
+
+  <h3>The curated expressions</h3>
+  <table class="ref" id="expr-table">
+    <caption>Fixed, curated patterns. The page executes no user-supplied expression.</caption>
+    <thead><tr><th>Expression</th><th>Used by</th><th>Why this one</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Correctness of the curated patterns</h3>
+  <p>
+    A demonstration that mis-states what its expressions <em>mean</em> teaches the wrong thing, so
+    the match behaviour is pinned rather than asserted in prose. Each expression is checked against
+    a table of small inputs, and the safe alternative is checked for exact
+    <em>language equivalence</em> with the pathological expression by exhaustive enumeration of
+    short strings &mdash; the claim &ldquo;same decision, far less work&rdquo; is only worth making
+    if it is true.
+  </p>
+
+  <h3>Self-tests</h3>
+  <p>
+    The engine carries its own suite so the instrument can be checked in the room it is being used
+    in. The repository's Node suite under
+    <code>course/interactive/redos/tests/</code> extracts this page's engine script element and
+    evaluates it, so the tested code and the shipped code are the same text.
+  </p>
+  <p><button type="button" class="act" id="btn-selftest">Run self-tests</button></p>
+  <p class="selftest-out" id="selftest-out" aria-live="polite"></p>
+</details>
+
+</main>
+
+<footer>
+  <p>
+    <strong>Regular Expression Denial of Service.</strong> A self-contained in-browser demonstration
+    for ECE&nbsp;30861 Act&nbsp;III. No network requests, no dependencies &mdash; the page you are
+    reading is the whole program, and the Download&nbsp;HTML control hands you this same file.
+  </p>
+  <p>
+    Teaching materials &copy; James C. Davis and Steve France, licensed under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+  </p>
+</footer>
+
+<script id="redos-engine">
+/* =================================================================================================
+   THE MODEL. Pure, deterministic, DOM-free, clock-free.
+
+   This script element is extracted BY ID in two places, so it may not touch `document`, `window`
+   beyond the one namespace assignment at the bottom, or any other browser surface:
+
+     - the Node test suite in ./tests/ evaluates it against a bare `window` stub; and
+     - the page builds its Web Worker out of this element's own text, prefixed with
+       `var window = self;`.
+
+   The second of those is why the engine takes its clock as an argument instead of calling
+   `performance.now()` itself: the measuring code must be identical in the worker and in the test,
+   and only the caller knows which clock it has.
+
+   Sections: 1 expressions · 2 input construction · 3 experiments · 4 correctness tables ·
+             5 measurement · 6 sweep state machine · 7 growth description · 8 backtracking model ·
+             9 threat model and mitigations · 10 self-tests · 11 namespace.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var VERSION = '1.0.0';
+
+  /* The budget an individual experiment may spend, in wall-clock milliseconds. Deliberately small:
+     a classroom demonstration that pauses for a second has already lost the room, and a small
+     budget keeps the worst single execution the page can provoke close to the budget itself (see
+     `createSweep` for why the geometric ladder bounds the overshoot). */
+  var BUDGET_MS = 250;
+
+  /* The page-side hard deadline, after which the worker is TERMINATED. Strictly greater than
+     BUDGET_MS because the two limits do different jobs:
+
+       BUDGET_MS    is checked by this engine BETWEEN executions. It stops a trial that is cheap per
+                    execution but was asked to repeat many times. It cannot stop a single execution.
+       DEADLINE_MS  is enforced by the page with a timer the matching thread cannot block. It is the
+                    only thing that can end a single execution that has already begun, and it ends
+                    it by destroying the worker rather than by asking it to stop.
+
+     The gap covers worker start-up, input construction, and message passing. */
+  var DEADLINE_MS = 400;
+
+  /* A trial repeats a cheap execution until it has accumulated a measurable sample. Below ~2 ms a
+     single execution is mostly clock granularity, and reporting that as the cost of the match would
+     make the linear experiments look like noise rather than like a straight line. */
+  var MIN_SAMPLE_MS = 2;
+  var MAX_REPEATS = 4000;
+
+  /* --- 1. The curated expressions ---------------------------------------------------------------
+     Three expressions, fixed in the page. The page never compiles a user-supplied expression: an
+     arbitrary-regex box turns a teaching instrument into a way to hang a reader's tab, and the
+     lesson does not need it. */
+  var EXPRESSIONS = {
+    trimLike: {
+      id: 'trimLike',
+      source: '^.*\\s+$',
+      flags: '',
+      display: '/^.*\\s+$/',
+      name: 'Trailing-whitespace test, unbounded on both sides',
+      intent: 'Does this string end with whitespace, with no line break before the trailing run?',
+      why: 'Two unbounded repetitions in sequence with no forced division between them — the same '
+         + 'shape as the fragment named in the Cloudflare postmortem, small enough to read at a '
+         + 'glance. A whitespace-trimming expression of this family took Stack Overflow offline on '
+         + '20 July 2016 when one post contained a long run of spaces; theirs was '
+         + '/^[\\s\\u200c]+|[\\s\\u200c]+$/, not this one, so this is the same class rather than '
+         + 'the same expression.',
+      hazard: 'quadratic'
+    },
+    nestedQuant: {
+      id: 'nestedQuant',
+      source: '^(a+)+$',
+      flags: '',
+      display: '/^(a+)+$/',
+      name: 'Nested quantifier',
+      intent: 'Is this string a non-empty run of the letter a?',
+      why: 'The canonical exponential case. A repetition inside a repetition means a run of n '
+         + 'characters can be divided among the inner groups in 2^(n-1) ways, and a failing match '
+         + 'forces the engine to rule them out. The expression is also pointless — /^a+$/ decides '
+         + 'the same question in linear time — which is itself the lesson: the cost buys nothing.',
+      hazard: 'exponential'
+    },
+    forcedSplit: {
+      id: 'forcedSplit',
+      source: '^.*[^\\s]\\s+$|^\\s+$',
+      flags: '',
+      display: '/^.*[^\\s]\\s+$|^\\s+$/',
+      name: 'Trailing-whitespace test, division forced',
+      intent: 'Does this string end with whitespace, with no line break before the trailing run?',
+      why: 'Exactly the same decision as /^.*\\s+$/, rewritten so the engine cannot try many '
+         + 'divisions: the mandatory [^\\s] pins the boundary to the last non-whitespace character, '
+         + 'and the second branch covers the all-whitespace case the first branch now excludes. '
+         + 'Equivalence is not asserted here — it is checked by exhaustive enumeration of short '
+         + 'strings in EQUIVALENCE_PAIR.',
+      hazard: 'none'
+    }
+  };
+
+  /* A fresh RegExp per compile. Sharing one instance across trials would make a later trial's
+     measurement depend on an earlier trial's engine state, which is the sort of coupling that
+     makes a benchmark quietly meaningless. */
+  function compile(expressionId) {
+    var e = EXPRESSIONS[expressionId];
+    if (!e) throw new Error('unknown expression: ' + expressionId);
+    return new RegExp(e.source, e.flags);
+  }
+
+  /* --- 2. Input construction --------------------------------------------------------------------
+     Every experiment's input is generated from one number, so an input is reproducible from the
+     chart's x-axis alone. Three shapes:
+
+       prose         ordinary text: single spaces, no long whitespace run, last character a letter.
+       whitespaceRun n spaces then one '!'. The '!' is what makes the match FAIL, and failure is
+                     what forces the engine to rule out every division before it can answer.
+       aRun          n copies of 'a' then one '!', for the same reason.
+
+     Note that all three FAIL to match. That is deliberate: if the ordinary input matched and the
+     adversarial input did not, the comparison would confound "different work" with "different
+     answer". Here every trial returns the same answer — false — and the only difference is how much
+     work the engine spent reaching it. */
+  var PROSE = 'the quick brown fox jumps over the lazy dog while the engineer measures where the '
+            + 'time actually goes and declines to guess ';
+
+  function buildProse(n) {
+    if (n < 2) throw new Error('prose input needs at least 2 characters');
+    var parts = [];
+    var total = 0;
+    while (total < n) { parts.push(PROSE); total += PROSE.length; }
+    var s = parts.join('').slice(0, n);
+    /* The last character must not be whitespace, so this input fails the match for the same reason
+       the adversarial input does. */
+    if (/\s$/.test(s)) s = s.slice(0, n - 1) + 'x';
+    return s;
+  }
+
+  function buildInput(experimentId, n) {
+    var xp = findExperiment(experimentId);
+    if (!(typeof n === 'number') || !isFinite(n) || n !== Math.floor(n) || n < 1) {
+      throw new Error('input length must be a positive integer, got ' + n);
+    }
+    if (xp.inputKind === 'prose') return buildProse(n);
+    if (xp.inputKind === 'whitespaceRun') return repeat(' ', n) + '!';
+    if (xp.inputKind === 'aRun') return repeat('a', n) + '!';
+    throw new Error('unknown input kind: ' + xp.inputKind);
+  }
+
+  function repeat(ch, n) {
+    /* String.prototype.repeat, via a helper so the one place that could throw on a silly n is
+       named and tested. */
+    return new Array(n + 1).join(ch);
+  }
+
+  /* The shape, as a reader should describe it, independent of n. */
+  function describeInputShape(experimentId) {
+    var xp = findExperiment(experimentId);
+    if (xp.inputKind === 'prose') return 'ordinary prose of length n, single spaces, ending in a letter';
+    if (xp.inputKind === 'whitespaceRun') return '" " repeated n times, then "!"';
+    if (xp.inputKind === 'aRun') return '"a" repeated n times, then "!"';
+    throw new Error('unknown input kind: ' + xp.inputKind);
+  }
+
+  /* A short, printable excerpt — the head and tail of the generated string with the middle elided,
+     so a reader can see the structure without the page rendering 28,000 spaces. */
+  function excerptInput(experimentId, n, edge) {
+    var s = buildInput(experimentId, n);
+    var k = edge || 24;
+    var vis = function (t) { return t.replace(/ /g, '·').replace(/\t/g, '→').replace(/\n/g, '¶'); };
+    if (s.length <= 2 * k + 12) return vis(s);
+    return vis(s.slice(0, k)) + ' …[' + (s.length - 2 * k) + ' more]… ' + vis(s.slice(-k));
+  }
+
+  /* --- 3. The four experiments ------------------------------------------------------------------
+     `expectedGrowth` is what the STRUCTURE of the expression predicts, not a measured claim and not
+     something any test asserts about a timing ratio. Engines differ; the page shows what it
+     measured and asks the student to explain it from the structure. */
+
+  /* Ladders are geometric-ish rather than uniform, for a reason that matters to the budget: the
+     sweep stops at the FIRST length that exceeds the budget, so the largest execution the page can
+     provoke is roughly one ladder step beyond the last affordable one. With a step ratio near 1.3
+     (whitespace) or 2 (nested quantifier, where each +1 doubles the work), the overshoot past the
+     250 ms budget is bounded at about 2x — not the 100x a uniform ladder to a large maximum would
+     allow. The ladder is part of the resource bound, not merely a choice of x-axis. */
+  var WHITESPACE_LADDER = [500, 1000, 2000, 3000, 4000, 6000, 8000, 10000, 12000, 14000,
+    16000, 18000, 20000, 24000, 28000];
+  var NESTED_LADDER = [12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+
+  var EXPERIMENTS = [
+    {
+      id: 'ordinary',
+      ordinal: 1,
+      label: 'Ordinary input',
+      expression: 'trimLike',
+      inputKind: 'prose',
+      family: 'whitespace',
+      adversarial: false,
+      expectedGrowth: 'approximately linear',
+      expectedGrowthShort: 'linear',
+      modelOfWork: 'n',
+      claim: 'The expression is the pathological one. The input is not. Most division points fail '
+           + 'immediately, because an ordinary whitespace run is one character long.',
+      ladder: WHITESPACE_LADDER,
+      defaultMax: 16000
+    },
+    {
+      id: 'quadratic',
+      ordinal: 2,
+      label: 'Quadratic ReDoS',
+      expression: 'trimLike',
+      inputKind: 'whitespaceRun',
+      family: 'whitespace',
+      adversarial: true,
+      expectedGrowth: 'approximately quadratic',
+      expectedGrowthShort: 'quadratic',
+      modelOfWork: 'n(n+1)/2',
+      claim: 'Same expression, same deployment, same code path. The adversary changed only the '
+           + 'input: a long run of whitespace with one non-whitespace character at the end.',
+      ladder: WHITESPACE_LADDER,
+      defaultMax: 16000
+    },
+    {
+      id: 'exponential',
+      ordinal: 3,
+      label: 'Exponential ReDoS',
+      expression: 'nestedQuant',
+      inputKind: 'aRun',
+      family: 'nested',
+      adversarial: true,
+      expectedGrowth: 'potentially exponential',
+      expectedGrowthShort: 'exponential',
+      modelOfWork: '2^(n-1)',
+      claim: 'A repetition nested inside a repetition. Note the input range: tens of characters, '
+           + 'not thousands. An adversary needs no volume here — a single short request is the '
+           + 'whole attack.',
+      ladder: NESTED_LADDER,
+      defaultMax: 24
+    },
+    {
+      id: 'safe',
+      ordinal: 4,
+      label: 'Safe alternative',
+      expression: 'forcedSplit',
+      inputKind: 'whitespaceRun',
+      family: 'whitespace',
+      adversarial: true,
+      expectedGrowth: 'approximately linear',
+      expectedGrowthShort: 'linear',
+      modelOfWork: 'n',
+      claim: 'Byte-identical input to Experiment 2 — the adversary is doing exactly the same thing '
+           + '— against an expression that decides exactly the same question. Only the engineer '
+           + 'changed anything.',
+      ladder: WHITESPACE_LADDER,
+      defaultMax: 16000
+    }
+  ];
+
+  function findExperiment(id) {
+    for (var i = 0; i < EXPERIMENTS.length; i += 1) {
+      if (EXPERIMENTS[i].id === id) return EXPERIMENTS[i];
+    }
+    throw new Error('unknown experiment: ' + id);
+  }
+
+  function experimentIds() {
+    return EXPERIMENTS.map(function (x) { return x.id; });
+  }
+
+  /* The ladder clipped to a caller-chosen maximum, with at least two points so a sweep always
+     produces something comparable. */
+  function lengthLadder(experimentId, maxLength) {
+    var xp = findExperiment(experimentId);
+    var cap = typeof maxLength === 'number' ? maxLength : xp.defaultMax;
+    var out = xp.ladder.filter(function (n) { return n <= cap; });
+    if (out.length < 2) out = xp.ladder.slice(0, 2);
+    return out;
+  }
+
+  function lengthBounds(experimentId) {
+    var l = findExperiment(experimentId).ladder;
+    return { min: l[0], max: l[l.length - 1], step: 1, defaultMax: findExperiment(experimentId).defaultMax };
+  }
+
+  /* --- 4. Correctness of the curated patterns ---------------------------------------------------
+     Timing is only interesting if the expressions mean what the page says they mean. */
+
+  var MATCH_EXAMPLES = [
+    { expression: 'trimLike', input: 'abc  ', shouldMatch: true, note: 'ends with a whitespace run' },
+    { expression: 'trimLike', input: 'abc ', shouldMatch: true, note: 'ends with one space' },
+    { expression: 'trimLike', input: 'abc', shouldMatch: false, note: 'no trailing whitespace' },
+    { expression: 'trimLike', input: '  !', shouldMatch: false, note: 'trailing character is not whitespace' },
+    { expression: 'trimLike', input: ' ', shouldMatch: true, note: 'all whitespace' },
+    { expression: 'trimLike', input: '', shouldMatch: false, note: 'empty: the run must be non-empty' },
+
+    { expression: 'nestedQuant', input: 'a', shouldMatch: true, note: 'one a' },
+    { expression: 'nestedQuant', input: 'aaaa', shouldMatch: true, note: 'a run of a' },
+    { expression: 'nestedQuant', input: 'aaaa!', shouldMatch: false, note: 'the trailing ! cannot be matched' },
+    { expression: 'nestedQuant', input: 'b', shouldMatch: false, note: 'not an a' },
+    { expression: 'nestedQuant', input: '', shouldMatch: false, note: 'empty: a+ needs one a' },
+
+    { expression: 'forcedSplit', input: 'abc  ', shouldMatch: true, note: 'ends with a whitespace run' },
+    { expression: 'forcedSplit', input: 'abc', shouldMatch: false, note: 'no trailing whitespace' },
+    { expression: 'forcedSplit', input: '  !', shouldMatch: false, note: 'trailing character is not whitespace' },
+    { expression: 'forcedSplit', input: ' ', shouldMatch: true, note: 'all whitespace, via the second branch' },
+    { expression: 'forcedSplit', input: '', shouldMatch: false, note: 'empty' }
+  ];
+
+  function checkMatchExamples() {
+    var failures = [];
+    for (var i = 0; i < MATCH_EXAMPLES.length; i += 1) {
+      var ex = MATCH_EXAMPLES[i];
+      var got = compile(ex.expression).test(ex.input);
+      if (got !== ex.shouldMatch) {
+        failures.push(EXPRESSIONS[ex.expression].display + ' on ' + JSON.stringify(ex.input)
+          + ': expected ' + ex.shouldMatch + ', got ' + got);
+      }
+    }
+    return failures;
+  }
+
+  /* The safe alternative is only a legitimate replacement if it decides the SAME question. That is
+     a claim about two languages, so it is checked by enumerating every string over an alphabet
+     chosen to exercise each construct — a letter, a space, a tab, a newline (the one character `.`
+     excludes and `\s` includes), and a non-whitespace sentinel — up to a given length. 5^0..5^6 is
+     19,531 strings, which is exhaustive rather than sampled. */
+  var EQUIVALENCE_PAIR = { pathological: 'trimLike', safe: 'forcedSplit' };
+  var EQUIVALENCE_ALPHABET = ['a', ' ', '\t', '\n', '!'];
+
+  function equivalenceDivergences(maxLength, limit) {
+    var a = compile(EQUIVALENCE_PAIR.pathological);
+    var b = compile(EQUIVALENCE_PAIR.safe);
+    var cap = typeof limit === 'number' ? limit : 20;
+    var found = [];
+    var tested = 0;
+    var walk = function (s) {
+      tested += 1;
+      if (a.test(s) !== b.test(s) && found.length < cap) found.push(s);
+      if (s.length >= maxLength) return;
+      for (var i = 0; i < EQUIVALENCE_ALPHABET.length; i += 1) walk(s + EQUIVALENCE_ALPHABET[i]);
+    };
+    walk('');
+    return { tested: tested, divergences: found, maxLength: maxLength };
+  }
+
+  /* --- 5. Measurement --------------------------------------------------------------------------
+     `now` is supplied by the caller: `performance.now` in the worker and in the browser, Node's
+     global `performance.now` in the test suite. The engine owns no clock, which is what lets the
+     same bytes be measured in a worker and asserted in Node. */
+
+  function requireClock(now) {
+    if (typeof now !== 'function') throw new Error('measurement needs a clock function');
+    return now;
+  }
+
+  /* Give the engine a chance to compile and tier up the expression before anything is recorded.
+     Without this the first point of every sweep carries the JIT's warm-up cost and reads as an
+     outlier — a measurement artefact that would invite exactly the wrong explanation. The warm-up
+     runs at the ladder's smallest length and is itself bounded. */
+  function warmUp(experimentId, now, options) {
+    requireClock(now);
+    var o = options || {};
+    var xp = findExperiment(experimentId);
+    var re = compile(xp.expression);
+    var input = buildInput(experimentId, xp.ladder[0]);
+    var limit = typeof o.ms === 'number' ? o.ms : 20;
+    var maxReps = typeof o.repeats === 'number' ? o.repeats : 500;
+    var start = now();
+    var reps = 0;
+    var sink = false;
+    while (reps < maxReps && (now() - start) < limit) { sink = re.test(input); reps += 1; }
+    return { experimentId: experimentId, repeats: reps, ms: now() - start, matched: sink };
+  }
+
+  /**
+   * Measure one (experiment, length) pair.
+   *
+   * The repeat loop exists so a sub-millisecond execution can still be reported as a number rather
+   * than as clock noise, and it is bounded three ways: by the accumulated sample, by a repeat cap,
+   * and by the budget. `budgetExceeded` is set when the budget — not the sample target — ended the
+   * loop, which is the engine's own, between-executions limit. A single execution that blows the
+   * budget on its own cannot be stopped from here; that is the page's job, and this function's
+   * inability to do it is the point of `DEADLINE_MS`.
+   */
+  function measureTrial(spec, now) {
+    requireClock(now);
+    if (!spec || typeof spec !== 'object') throw new Error('measureTrial needs a spec');
+    var xp = findExperiment(spec.experimentId);
+    var length = spec.length;
+    var budget = typeof spec.budgetMs === 'number' ? spec.budgetMs : BUDGET_MS;
+    var minSample = typeof spec.minSampleMs === 'number' ? spec.minSampleMs : MIN_SAMPLE_MS;
+    var maxReps = typeof spec.maxRepeats === 'number' ? spec.maxRepeats : MAX_REPEATS;
+
+    var re = compile(xp.expression);
+    var input = buildInput(spec.experimentId, length);
+
+    var repeats = 0;
+    var matched = false;
+    var elapsed = 0;
+    var start = now();
+    do {
+      matched = re.test(input);
+      repeats += 1;
+      elapsed = now() - start;
+    } while (elapsed < minSample && repeats < maxReps && elapsed < budget);
+
+    return {
+      experimentId: spec.experimentId,
+      expressionId: xp.expression,
+      length: length,
+      inputLength: input.length,
+      matched: matched,
+      expectedMatch: false,
+      matchedAsExpected: matched === false,
+      repeats: repeats,
+      totalMs: elapsed,
+      msPerExecution: elapsed / repeats,
+      budgetMs: budget,
+      budgetExceeded: elapsed >= budget,
+      terminated: false
+    };
+  }
+
+  /* --- 6. The sweep state machine ---------------------------------------------------------------
+     A sweep is an explicit state machine rather than a loop with flags, because the interesting
+     transitions are the ones a loop hides: a trial that overran its budget inside the engine, and a
+     trial whose worker had to be destroyed from outside. Both end the sweep, and they end it for
+     different reasons the reader must be able to tell apart. It is pure, so the termination path is
+     testable without a browser. */
+
+  var SWEEP_STATES = ['ready', 'running', 'complete', 'halted'];
+
+  function createSweep(options) {
+    var o = options || {};
+    var xp = findExperiment(o.experimentId);
+    return {
+      experimentId: xp.id,
+      lengths: lengthLadder(xp.id, o.maxLength),
+      budgetMs: typeof o.budgetMs === 'number' ? o.budgetMs : BUDGET_MS,
+      deadlineMs: typeof o.deadlineMs === 'number' ? o.deadlineMs : DEADLINE_MS,
+      index: 0,
+      results: [],
+      status: 'ready',
+      halt: null
+    };
+  }
+
+  function nextTrialSpec(sweep) {
+    if (sweep.status === 'complete' || sweep.status === 'halted') return null;
+    if (sweep.index >= sweep.lengths.length) return null;
+    sweep.status = 'running';
+    return {
+      experimentId: sweep.experimentId,
+      length: sweep.lengths[sweep.index],
+      budgetMs: sweep.budgetMs,
+      minSampleMs: MIN_SAMPLE_MS,
+      maxRepeats: MAX_REPEATS
+    };
+  }
+
+  /**
+   * Record a completed trial. Returns 'accepted' or 'stale'.
+   *
+   * The 'stale' verdict is load-bearing. After the page destroys a worker it may still receive that
+   * worker's last message, and a result for a trial the sweep has already given up on must not be
+   * mistaken for evidence that the trial finished. So the sweep checks that the result describes
+   * the trial it is actually waiting for.
+   */
+  function recordResult(sweep, result) {
+    if (sweep.status === 'complete' || sweep.status === 'halted') return 'stale';
+    var expected = sweep.lengths[sweep.index];
+    if (!result || result.experimentId !== sweep.experimentId || result.length !== expected) {
+      return 'stale';
+    }
+    sweep.results.push(result);
+    sweep.index += 1;
+    if (result.budgetExceeded) {
+      sweep.status = 'halted';
+      sweep.halt = {
+        reason: 'budget',
+        length: result.length,
+        ms: result.totalMs,
+        budgetMs: sweep.budgetMs
+      };
+    } else if (sweep.index >= sweep.lengths.length) {
+      sweep.status = 'complete';
+    }
+    return 'accepted';
+  }
+
+  /**
+   * Record that the page gave up on the trial in flight and destroyed its worker.
+   *
+   * The sweep keeps the trial as a result rather than dropping it, marked `terminated`, because
+   * "we stopped measuring here" is a finding the chart should show. It is not a gap in the data.
+   */
+  function recordTermination(sweep, info) {
+    var i = info || {};
+    var length = typeof i.length === 'number' ? i.length : sweep.lengths[sweep.index];
+    sweep.results.push({
+      experimentId: sweep.experimentId,
+      expressionId: findExperiment(sweep.experimentId).expression,
+      length: length,
+      inputLength: null,
+      matched: null,
+      expectedMatch: false,
+      matchedAsExpected: null,
+      repeats: 0,
+      totalMs: typeof i.elapsedMs === 'number' ? i.elapsedMs : sweep.deadlineMs,
+      msPerExecution: null,
+      budgetMs: sweep.budgetMs,
+      budgetExceeded: true,
+      terminated: true
+    });
+    sweep.index += 1;
+    sweep.status = 'halted';
+    sweep.halt = {
+      reason: 'terminated',
+      length: length,
+      ms: typeof i.elapsedMs === 'number' ? i.elapsedMs : sweep.deadlineMs,
+      deadlineMs: sweep.deadlineMs
+    };
+    return sweep;
+  }
+
+  function sweepSummary(sweep) {
+    var measured = sweep.results.filter(function (r) { return !r.terminated && r.msPerExecution !== null; });
+    var points = measured.map(function (r) { return { length: r.length, ms: r.msPerExecution }; });
+    return {
+      experimentId: sweep.experimentId,
+      status: sweep.status,
+      halt: sweep.halt,
+      trials: sweep.results.length,
+      measuredTrials: measured.length,
+      remaining: Math.max(0, sweep.lengths.length - sweep.index),
+      points: points,
+      scaling: observedScaling(points),
+      maxMeasuredLength: points.length ? points[points.length - 1].length : null,
+      correctnessFailures: sweep.results.filter(function (r) {
+        return r.matchedAsExpected === false;
+      }).length
+    };
+  }
+
+  /* --- 7. Describing the observed growth --------------------------------------------------------
+     This is a DESCRIPTION of one run on one machine, not a verdict about the expression and not
+     something any test asserts a value for. Two fits are computed and the better-correlated one is
+     named:
+
+       log-log   slope k in  t ~ n^k     — a straight line here means polynomial growth of degree k
+       semi-log  slope s in  t ~ e^(sn)  — a straight line here means exponential growth
+
+     Reported together with the number of points, because three points will fit anything. */
+  function leastSquares(xs, ys) {
+    var n = xs.length;
+    if (n < 3) return null;
+    var mx = 0, my = 0, i;
+    for (i = 0; i < n; i += 1) { mx += xs[i]; my += ys[i]; }
+    mx /= n; my /= n;
+    var sxy = 0, sxx = 0, syy = 0;
+    for (i = 0; i < n; i += 1) {
+      var dx = xs[i] - mx, dy = ys[i] - my;
+      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+    }
+    if (sxx === 0 || syy === 0) return null;
+    var slope = sxy / sxx;
+    var r = sxy / Math.sqrt(sxx * syy);
+    return { slope: slope, intercept: my - slope * mx, r2: r * r, n: n };
+  }
+
+  function observedScaling(points) {
+    var usable = (points || []).filter(function (p) {
+      return typeof p.ms === 'number' && isFinite(p.ms) && p.ms > 0 && p.length > 0;
+    });
+    if (usable.length < 3) {
+      return { basis: null, points: usable.length, exponent: null, growthPerStep: null,
+        note: 'at least three measured points are needed before any fit is worth reporting' };
+    }
+    var lens = usable.map(function (p) { return p.length; });
+    var ms = usable.map(function (p) { return p.ms; });
+    var logLog = leastSquares(lens.map(Math.log), ms.map(Math.log));
+    var semiLog = leastSquares(lens, ms.map(Math.log));
+    if (!logLog && !semiLog) {
+      return { basis: null, points: usable.length, exponent: null, growthPerStep: null,
+        note: 'the measured points carry no spread to fit' };
+    }
+    var preferSemi = semiLog && logLog && semiLog.r2 > logLog.r2;
+    return {
+      basis: preferSemi ? 'semi-log' : 'log-log',
+      points: usable.length,
+      exponent: logLog ? logLog.slope : null,
+      exponentR2: logLog ? logLog.r2 : null,
+      growthPerStep: semiLog ? Math.exp(semiLog.slope) : null,
+      growthR2: semiLog ? semiLog.r2 : null,
+      note: 'descriptive fit over this run on this machine; not a property of the expression'
+    };
+  }
+
+  /* The MODEL's count of candidates the engine must rule out, per experiment. Reported beside the
+     measurement and labelled as model-derived — the same separation of planes the Performance Knee
+     draws between an M/M/1 prediction and a simulated trace. */
+  function predictedCandidates(experimentId, n) {
+    var xp = findExperiment(experimentId);
+    if (xp.modelOfWork === 'n') return n;
+    if (xp.modelOfWork === 'n(n+1)/2') return n * (n + 1) / 2;
+    if (xp.modelOfWork === '2^(n-1)') return Math.pow(2, n - 1);
+    throw new Error('unknown work model: ' + xp.modelOfWork);
+  }
+
+  function predictedCandidateCurve(experimentId, maxLength) {
+    return lengthLadder(experimentId, maxLength).map(function (n) {
+      return { length: n, candidates: predictedCandidates(experimentId, n) };
+    });
+  }
+
+  /* --- 8. The backtracking MODEL ----------------------------------------------------------------
+     A CONCEPTUAL MODEL of why the work grows, NOT a trace of the engine's execution. The engine may
+     optimise away, reorder, memoise, or never attempt some of the candidates enumerated here; V8,
+     SpiderMonkey, and JavaScriptCore do not agree with each other about which. The exercise is to
+     compare a model with observed behaviour, and that comparison is only possible if the two are
+     kept apart and labelled.
+
+     Two models, one per hazard family.
+
+     nested quantifier, /^(a+)+$/ on "a"*n + "!":
+       the outer repetition divides the run of n characters among its inner groups. A division is an
+       ordered composition of n, and there are 2^(n-1) of them. Every one matches the a's and then
+       fails at the '!', so a failing match rules all of them out.
+
+     trim-like, /^.*\s+$/ on " "*n + "!":
+       `.*` chooses where to stop; `\s+` must then cover the rest. For each of the n+1 stopping
+       points the whitespace scan runs forward to the '!' and fails there, so the work is the sum of
+       the scan lengths — n(n+1)/2. */
+
+  function compositionCount(n) {
+    if (n < 1) return 0;
+    return Math.pow(2, n - 1);
+  }
+
+  /** Ordered compositions of n, as arrays of part sizes. Enumerated up to `limit` items. */
+  function enumerateCompositions(n, limit) {
+    var cap = typeof limit === 'number' ? limit : 64;
+    var out = [];
+    if (n < 1 || cap < 1) return out;
+    var walk = function (remaining, parts) {
+      if (out.length >= cap) return;
+      if (remaining === 0) { out.push(parts.slice()); return; }
+      for (var take = remaining; take >= 1; take -= 1) {
+        if (out.length >= cap) return;
+        parts.push(take);
+        walk(remaining - take, parts);
+        parts.pop();
+      }
+    };
+    walk(n, []);
+    return out;
+  }
+
+  /** The division points of `.*`, with the whitespace scan each one provokes. */
+  function splitPointModel(n) {
+    var rows = [];
+    var total = 0;
+    for (var stop = n; stop >= 0; stop -= 1) {
+      /* `.*` greedily stops at `stop`; `\s+` then scans the remaining whitespace and meets '!'. */
+      var scan = n - stop;
+      rows.push({ stop: stop, scan: scan, outcome: scan === 0 ? 'nothing left to scan' : 'scan then fail at "!"' });
+      total += scan + 1;
+    }
+    return { n: n, rows: rows, steps: total, closedForm: 'n(n+1)/2 + (n+1)' };
+  }
+
+  function backtrackingModel(experimentId, illustrativeN) {
+    var xp = findExperiment(experimentId);
+    if (xp.family === 'nested') {
+      var n = typeof illustrativeN === 'number' ? illustrativeN : 5;
+      return {
+        kind: 'compositions',
+        label: 'Ways the outer repetition can divide a run of ' + n + ' characters among its inner groups',
+        illustrativeN: n,
+        items: enumerateCompositions(n, 64),
+        countAt: function (k) { return compositionCount(k); },
+        formula: '2^(n-1)',
+        isModel: true
+      };
+    }
+    var m = typeof illustrativeN === 'number' ? illustrativeN : 8;
+    return {
+      kind: 'splitPoints',
+      label: 'Division points the leading .* can choose, and the whitespace scan each one provokes',
+      illustrativeN: m,
+      model: splitPointModel(m),
+      formula: 'n(n+1)/2',
+      isModel: true
+    };
+  }
+
+  /* --- 9. Threat model and mitigations ----------------------------------------------------------
+     The rows of the threat-modelling panel, held as data so the page and the tests read one table.
+     The element names are the course's, not an ad-hoc set. */
+  var THREAT_MODEL = [
+    { element: 'Asset', value: 'Service availability' },
+    { element: 'Adversary', value: 'Unauthenticated API client' },
+    { element: 'Capability', value: 'Controls search input' },
+    { element: 'Entry point', value: 'Search endpoint' },
+    { element: 'Vulnerability', value: 'Superlinear regex matching' },
+    { element: 'Threat', value: 'Resource exhaustion through crafted inputs' },
+    { element: 'Security objective', value: 'Bound computation per request' }
+  ];
+
+  /* `bounds` answers one question only: does this control bound the computation an individual
+     request may provoke? That is the security objective in the table above, and it is the axis on
+     which these five options differ most and are most often confused. */
+  var MITIGATIONS = [
+    {
+      id: 'replace',
+      label: 'Replace the expression with one having acceptable worst-case behaviour',
+      bounds: 'yes',
+      detail: 'Removes the vulnerability rather than containing it. Experiment 4 is this mitigation, '
+            + 'measured: same input, same decision, linear cost.',
+      caveat: 'Requires knowing that the replacement is equivalent. Assert that, then check it.'
+    },
+    {
+      id: 'engine',
+      label: 'Use a matching engine with complexity guarantees',
+      bounds: 'yes',
+      detail: 'An automaton-based engine (RE2, Go regexp, the Rust regex crate) matches in time '
+            + 'linear in the input, so no expression it accepts can be made superlinear by input. '
+            + 'Cloudflare’s remediation included moving to an engine with such guarantees.',
+      caveat: 'Such engines decline some constructs — notably backreferences and lookaround — so '
+            + 'this is a change to what the service can express, not a drop-in.'
+    },
+    {
+      id: 'restrict',
+      label: 'Restrict input length and structure where justified',
+      bounds: 'conditional',
+      detail: 'A length cap converts an unbounded worst case into a bounded one. Whether the bound '
+            + 'is acceptable depends on the growth: for the quadratic case a cap of a few hundred '
+            + 'characters may suffice; for the exponential case even 30 characters is already too '
+            + 'many.',
+      caveat: 'Bounds the cost only if the cap is small enough that the worst case at the cap is '
+            + 'affordable. A cap chosen for usability is not a security control.'
+    },
+    {
+      id: 'isolate',
+      label: 'Isolate expensive matching with enforceable resource limits',
+      bounds: 'yes',
+      detail: 'A timeout or a separate process with a CPU limit bounds what one request can consume, '
+            + 'and lets the service shed the request instead of the whole node. This page does '
+            + 'exactly that: the match runs in a Web Worker the page destroys when it overruns.',
+      caveat: 'Bounds the damage, not the cost. The expression is still superlinear, the work is '
+            + 'still performed up to the limit, and the limit must be ENFORCEABLE — a cooperative '
+            + 'check the matching thread never reaches is not a limit.'
+    },
+    {
+      id: 'admission',
+      label: 'Apply admission control and rate limits',
+      bounds: 'no',
+      detail: 'Reduces how many expensive requests arrive, and is worth having for other reasons.',
+      caveat: 'Rate limiting alone does not eliminate the vulnerability. A single request may '
+            + 'consume substantial resources, and a rate limit that permits one request permits '
+            + 'that one.'
+    }
+  ];
+
+  function findMitigation(id) {
+    for (var i = 0; i < MITIGATIONS.length; i += 1) if (MITIGATIONS[i].id === id) return MITIGATIONS[i];
+    throw new Error('unknown mitigation: ' + id);
+  }
+
+  /**
+   * Assess a chosen set of mitigations against the security objective in THREAT_MODEL.
+   *
+   * Pure, so the panel's verdict is testable without a browser. The two confusions the course
+   * insists on are encoded here rather than left to prose: a selection of only `admission` does not
+   * meet the objective, and `isolate` meets it without making the expression efficient.
+   */
+  function assessMitigations(selectedIds) {
+    var ids = (selectedIds || []).slice();
+    var selected = ids.map(findMitigation);
+    var meets = selected.filter(function (m) { return m.bounds === 'yes'; });
+    var conditional = selected.filter(function (m) { return m.bounds === 'conditional'; });
+    var warnings = [];
+    if (selected.length === 0) {
+      warnings.push('Nothing selected. The objective — bound computation per request — is unmet.');
+    }
+    if (selected.length && meets.length === 0 && conditional.length === 0) {
+      warnings.push('Rate limiting alone does not eliminate the vulnerability: a single request may '
+        + 'consume substantial resources.');
+    }
+    if (meets.length === 0 && conditional.length > 0) {
+      warnings.push('A length restriction bounds the cost only if the cap is small enough that the '
+        + 'worst case at the cap is affordable. Check the growth before trusting it.');
+    }
+    if (ids.indexOf('isolate') >= 0 && ids.indexOf('replace') < 0 && ids.indexOf('engine') < 0) {
+      warnings.push('Isolation bounds the damage, not the cost. The expression remains superlinear; '
+        + 'you have made the failure survivable, not absent.');
+    }
+    return {
+      selected: ids,
+      meetsObjective: meets.length > 0,
+      conditionalOnly: meets.length === 0 && conditional.length > 0,
+      removesVulnerability: ids.indexOf('replace') >= 0 || ids.indexOf('engine') >= 0,
+      warnings: warnings,
+      objective: 'Bound computation per request'
+    };
+  }
+
+  /* --- 10. Self-tests ---------------------------------------------------------------------------
+     A compact in-page suite over the same assertions the Node suite checks in depth. Notice what it
+     does NOT assert: no expected ratio between a linear and a quadratic timing. JavaScript engines
+     differ, JIT warm-up and regex optimisations move the numbers, and a test that pinned a ratio
+     would fail on a browser that is doing nothing wrong. What is asserted is functional behaviour,
+     bounded execution, and correct reporting. */
+  function runSelfTests() {
+    var results = [];
+    var now = function () { return Date.now(); };
+    function check(name, fn) {
+      try {
+        var detail = fn();
+        results.push({ name: name, passed: true, detail: detail || '' });
+      } catch (err) {
+        results.push({ name: name, passed: false, detail: String((err && err.message) || err) });
+      }
+    }
+    function assert(cond, message) { if (!cond) throw new Error(message || 'assertion failed'); }
+
+    check('Four experiments, with the documented growth expectations', function () {
+      assert(EXPERIMENTS.length === 4, EXPERIMENTS.length + ' experiments');
+      var growth = EXPERIMENTS.map(function (x) { return x.expectedGrowth; });
+      assert(growth.join(' | ') === 'approximately linear | approximately quadratic | '
+        + 'potentially exponential | approximately linear', growth.join(' | '));
+      return growth.join(', ');
+    });
+
+    check('Generated inputs match their documented shape', function () {
+      assert(/^[A-Za-z ]+[A-Za-z]$/.test(buildInput('ordinary', 400)), 'prose shape');
+      assert(buildInput('ordinary', 400).length === 400, 'prose length');
+      assert(!/\s\s/.test(buildInput('ordinary', 400)), 'prose has a whitespace run');
+      assert(/^ +!$/.test(buildInput('quadratic', 50)), 'whitespace-run shape');
+      assert(buildInput('quadratic', 50).length === 51, 'whitespace-run length');
+      assert(/^a+!$/.test(buildInput('exponential', 20)), 'a-run shape');
+      assert(buildInput('exponential', 20).length === 21, 'a-run length');
+      return 'three shapes verified';
+    });
+
+    check('Experiments 2 and 4 receive byte-identical input', function () {
+      for (var i = 0; i < WHITESPACE_LADDER.length; i += 1) {
+        var n = WHITESPACE_LADDER[i];
+        assert(buildInput('quadratic', n) === buildInput('safe', n), 'differ at n = ' + n);
+      }
+      return 'identical at all ' + WHITESPACE_LADDER.length + ' ladder lengths';
+    });
+
+    check('Every curated expression matches and fails as documented', function () {
+      var failures = checkMatchExamples();
+      assert(failures.length === 0, failures.join('; '));
+      return MATCH_EXAMPLES.length + ' examples';
+    });
+
+    check('The safe alternative is language-equivalent to the pathological one', function () {
+      var r = equivalenceDivergences(4);
+      assert(r.divergences.length === 0,
+        r.divergences.length + ' divergences, e.g. ' + JSON.stringify(r.divergences[0]));
+      return r.tested + ' strings, exhaustive to length 4';
+    });
+
+    check('Every generated input fails to match, so every trial does equal work for equal answers', function () {
+      ['ordinary', 'quadratic', 'exponential', 'safe'].forEach(function (id) {
+        var xp = findExperiment(id);
+        var n = xp.ladder[0];
+        assert(compile(xp.expression).test(buildInput(id, n)) === false, id + ' matched at n = ' + n);
+      });
+      return 'all four fail, as intended';
+    });
+
+    check('A trial reports what it measured and respects its budget', function () {
+      var r = measureTrial({ experimentId: 'ordinary', length: 1000, budgetMs: 50 }, now);
+      assert(r.repeats >= 1, 'no execution recorded');
+      assert(typeof r.msPerExecution === 'number' && isFinite(r.msPerExecution), 'no per-execution time');
+      assert(r.totalMs <= 50 + 25, 'overran its budget by more than the granularity of the clock');
+      assert(r.matchedAsExpected === true, 'reported an unexpected match result');
+      return r.repeats + ' executions in ' + r.totalMs.toFixed(1) + ' ms';
+    });
+
+    check('A zero budget stops a trial after one execution', function () {
+      var r = measureTrial({ experimentId: 'ordinary', length: 500, budgetMs: 0 }, now);
+      assert(r.repeats === 1, r.repeats + ' executions');
+      assert(r.budgetExceeded === true, 'did not report the budget as exceeded');
+      return 'stopped after one execution';
+    });
+
+    check('A sweep halts on the first budget overrun and says which length', function () {
+      var s = createSweep({ experimentId: 'quadratic', maxLength: 4000, budgetMs: 250 });
+      var spec = nextTrialSpec(s);
+      assert(spec !== null, 'no first trial');
+      recordResult(s, { experimentId: 'quadratic', length: spec.length, budgetExceeded: false,
+        msPerExecution: 1, totalMs: 1, matchedAsExpected: true, terminated: false });
+      var second = nextTrialSpec(s);
+      recordResult(s, { experimentId: 'quadratic', length: second.length, budgetExceeded: true,
+        msPerExecution: 300, totalMs: 300, matchedAsExpected: true, terminated: false });
+      assert(s.status === 'halted', 'status ' + s.status);
+      assert(s.halt.reason === 'budget', 'reason ' + s.halt.reason);
+      assert(s.halt.length === second.length, 'wrong length reported');
+      return 'halted at n = ' + s.halt.length;
+    });
+
+    check('A terminated trial is recorded, not dropped', function () {
+      var s = createSweep({ experimentId: 'exponential', maxLength: 30 });
+      var spec = nextTrialSpec(s);
+      recordTermination(s, { length: spec.length, elapsedMs: 400 });
+      assert(s.status === 'halted', 'status ' + s.status);
+      assert(s.halt.reason === 'terminated', 'reason ' + s.halt.reason);
+      assert(s.results.length === 1 && s.results[0].terminated === true, 'not kept as a result');
+      assert(sweepSummary(s).points.length === 0, 'a terminated trial contributed a data point');
+      return 'kept as a terminated trial at n = ' + spec.length;
+    });
+
+    check('A late result from a destroyed worker is rejected as stale', function () {
+      var s = createSweep({ experimentId: 'quadratic', maxLength: 2000 });
+      var spec = nextTrialSpec(s);
+      recordTermination(s, { length: spec.length, elapsedMs: 400 });
+      var verdict = recordResult(s, { experimentId: 'quadratic', length: spec.length,
+        budgetExceeded: false, msPerExecution: 1, totalMs: 1, terminated: false });
+      assert(verdict === 'stale', 'verdict ' + verdict);
+      return 'stale result rejected';
+    });
+
+    check('The backtracking model counts 2^(n-1) divisions and enumerates them', function () {
+      assert(compositionCount(1) === 1 && compositionCount(4) === 8 && compositionCount(6) === 32,
+        'counts are wrong');
+      var items = enumerateCompositions(4, 64);
+      assert(items.length === 8, items.length + ' enumerated');
+      items.forEach(function (parts) {
+        var sum = parts.reduce(function (a, b) { return a + b; }, 0);
+        assert(sum === 4, 'a division does not sum to n: ' + parts.join('+'));
+      });
+      return '8 divisions of 4, each summing to 4';
+    });
+
+    check('The split-point model counts n+1 division points', function () {
+      var m = splitPointModel(8);
+      assert(m.rows.length === 9, m.rows.length + ' rows for n = 8');
+      assert(m.rows[0].scan === 0 && m.rows[8].scan === 8, 'scan lengths are wrong');
+      return '9 division points, scans 0 to 8';
+    });
+
+    check('Observed-growth description declines to fit fewer than three points', function () {
+      var r = observedScaling([{ length: 1, ms: 1 }, { length: 2, ms: 4 }]);
+      assert(r.basis === null && r.exponent === null, 'fitted two points anyway');
+      var q = observedScaling([{ length: 10, ms: 1 }, { length: 20, ms: 4 },
+        { length: 40, ms: 16 }, { length: 80, ms: 64 }]);
+      assert(Math.abs(q.exponent - 2) < 0.01, 'exponent ' + q.exponent);
+      return 'declines 2 points; fits a synthetic n^2 at k = ' + q.exponent.toFixed(2);
+    });
+
+    check('Mitigation assessment encodes the two distinctions the course insists on', function () {
+      var rate = assessMitigations(['admission']);
+      assert(rate.meetsObjective === false, 'rate limiting alone met the objective');
+      assert(/single request/.test(rate.warnings.join(' ')), 'no single-request warning');
+      var iso = assessMitigations(['isolate']);
+      assert(iso.meetsObjective === true, 'isolation did not meet the objective');
+      assert(iso.removesVulnerability === false, 'isolation claimed to remove the vulnerability');
+      assert(/bounds the damage/.test(iso.warnings.join(' ')), 'no damage-vs-cost warning');
+      var fix = assessMitigations(['replace']);
+      assert(fix.removesVulnerability === true && fix.warnings.length === 0, 'replace mis-assessed');
+      return 'rate-limit, isolate, and replace all assessed as specified';
+    });
+
+    check('The threat model carries every element the course names', function () {
+      var names = THREAT_MODEL.map(function (r) { return r.element; }).join(',');
+      assert(names === 'Asset,Adversary,Capability,Entry point,Vulnerability,Threat,Security objective',
+        names);
+      return '7 elements';
+    });
+
+    var passed = results.filter(function (r) { return r.passed; }).length;
+    return { results: results, total: results.length, passed: passed, failed: results.length - passed };
+  }
+
+  /* --- 11. Namespace ---------------------------------------------------------------------------- */
+  window.ReDoS = {
+    VERSION: VERSION,
+    BUDGET_MS: BUDGET_MS,
+    DEADLINE_MS: DEADLINE_MS,
+    MIN_SAMPLE_MS: MIN_SAMPLE_MS,
+    MAX_REPEATS: MAX_REPEATS,
+    SWEEP_STATES: SWEEP_STATES,
+
+    EXPRESSIONS: EXPRESSIONS,
+    EXPERIMENTS: EXPERIMENTS,
+    MATCH_EXAMPLES: MATCH_EXAMPLES,
+    EQUIVALENCE_PAIR: EQUIVALENCE_PAIR,
+    EQUIVALENCE_ALPHABET: EQUIVALENCE_ALPHABET,
+    THREAT_MODEL: THREAT_MODEL,
+    MITIGATIONS: MITIGATIONS,
+
+    compile: compile,
+    buildInput: buildInput,
+    describeInputShape: describeInputShape,
+    excerptInput: excerptInput,
+    findExperiment: findExperiment,
+    experimentIds: experimentIds,
+    lengthLadder: lengthLadder,
+    lengthBounds: lengthBounds,
+
+    checkMatchExamples: checkMatchExamples,
+    equivalenceDivergences: equivalenceDivergences,
+
+    warmUp: warmUp,
+    measureTrial: measureTrial,
+
+    createSweep: createSweep,
+    nextTrialSpec: nextTrialSpec,
+    recordResult: recordResult,
+    recordTermination: recordTermination,
+    sweepSummary: sweepSummary,
+
+    observedScaling: observedScaling,
+    predictedCandidates: predictedCandidates,
+    predictedCandidateCurve: predictedCandidateCurve,
+
+    compositionCount: compositionCount,
+    enumerateCompositions: enumerateCompositions,
+    splitPointModel: splitPointModel,
+    backtrackingModel: backtrackingModel,
+
+    findMitigation: findMitigation,
+    assessMitigations: assessMitigations,
+
+    runSelfTests: runSelfTests
+  };
+}());
+</script>
+
+<script id="redos-ui">
+/* =================================================================================================
+   THE INTERFACE. Observes the model; never determines it.
+
+   This commit wires the experiment selector, the expression/input panel, and the self-test button.
+   The worker lifecycle, the charts, the backtracking diagram, and the threat panel follow.
+   ================================================================================================= */
+(function () {
+  'use strict';
+
+  var R = window.ReDoS;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var ui = { experimentId: 'quadratic', lengths: {} };
+  R.EXPERIMENTS.forEach(function (xp) { ui.lengths[xp.id] = xp.defaultMax; });
+
+  /* ---------- experiment selector ---------- */
+  function renderSelector() {
+    var grid = $('xp-grid');
+    grid.textContent = '';
+    R.EXPERIMENTS.forEach(function (xp) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'xpsel';
+      b.setAttribute('data-xp', xp.id);
+      b.setAttribute('aria-pressed', xp.id === ui.experimentId ? 'true' : 'false');
+
+      var name = document.createElement('span');
+      name.className = 'xname';
+      name.textContent = xp.ordinal + '. ' + xp.label;
+      b.appendChild(name);
+
+      var pat = document.createElement('span');
+      pat.className = 'xpat';
+      pat.textContent = R.EXPRESSIONS[xp.expression].display;
+      b.appendChild(pat);
+
+      var grow = document.createElement('span');
+      grow.className = 'xgrow';
+      grow.textContent = 'expected: ' + xp.expectedGrowth;
+      b.appendChild(grow);
+
+      var tagline = document.createElement('span');
+      tagline.className = xp.adversarial ? 'hostile' : 'benign';
+      tagline.textContent = xp.adversarial ? 'adversary-chosen input' : 'ordinary input';
+      b.appendChild(tagline);
+
+      var state = document.createElement('span');
+      state.className = 'xstate';
+      state.textContent = xp.id === ui.experimentId ? 'selected' : 'not selected';
+      b.appendChild(state);
+
+      b.addEventListener('click', function () { selectExperiment(xp.id); });
+      grid.appendChild(b);
+    });
+  }
+
+  function selectExperiment(id) {
+    ui.experimentId = id;
+    renderSelector();
+    renderExpression();
+  }
+
+  /* ---------- expression + input ---------- */
+  function renderExpression() {
+    var xp = R.findExperiment(ui.experimentId);
+    var ex = R.EXPRESSIONS[xp.expression];
+    var n = ui.lengths[xp.id];
+
+    $('expr-name').textContent = 'Experiment ' + xp.ordinal + ' — ' + ex.name;
+    $('expr-source').textContent = ex.display;
+    $('expr-why').textContent = 'Intent: ' + ex.intent + ' Chosen because: ' + ex.why;
+
+    $('input-shape').textContent = R.describeInputShape(xp.id) + '   with n = ' + n
+      + '\n' + R.excerptInput(xp.id, Math.min(n, 400));
+    var s = R.buildInput(xp.id, n);
+    $('input-len').textContent = s.length.toLocaleString() + ' characters';
+    $('input-match').textContent = R.compile(xp.expression).test(s) ? 'match' : 'no match (expected)';
+    $('input-why').textContent = xp.claim;
+  }
+
+  /* ---------- reference table ---------- */
+  function renderExpressionTable() {
+    var body = $('expr-table').querySelector('tbody');
+    body.textContent = '';
+    Object.keys(R.EXPRESSIONS).forEach(function (key) {
+      var ex = R.EXPRESSIONS[key];
+      var users = R.EXPERIMENTS.filter(function (x) { return x.expression === key; })
+        .map(function (x) { return x.ordinal + '. ' + x.label; }).join('; ');
+      var tr = document.createElement('tr');
+      var td1 = document.createElement('td');
+      td1.className = 'mono';
+      td1.textContent = ex.display;
+      var td2 = document.createElement('td');
+      td2.textContent = users;
+      var td3 = document.createElement('td');
+      td3.textContent = ex.why;
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+      body.appendChild(tr);
+    });
+  }
+
+  /* ---------- self-tests ---------- */
+  $('btn-selftest').addEventListener('click', function () {
+    var report = R.runSelfTests();
+    var lines = report.results.map(function (r) {
+      return (r.passed ? 'PASS  ' : 'FAIL  ') + r.name + (r.detail ? '  — ' + r.detail : '');
+    });
+    lines.push('');
+    lines.push(report.passed + ' of ' + report.total + ' self-tests passed.');
+    $('selftest-out').textContent = lines.join('\n');
+  });
+
+  renderSelector();
+  renderExpression();
+  renderExpressionTable();
+}());
+</script>
+
+</body>
+</html>
