@@ -82,13 +82,13 @@ An ORM can reduce repetitive persistence code. It does not remove the need to un
 
 The engine chooses a physical execution plan for whatever query reaches it. A plan may scan stored records, use an index to locate candidates, or join information from several tables. Two plans producing the same results can have substantially different costs. Indexes reduce search work for selected queries, but require additional storage and maintenance.
 
-Application-level access patterns matter as well, and the order of operations is what makes one of them expensive. Suppose an application loads reservations, then reads the room associated with each one, with lazy loading in effect:
+Application-level access patterns matter as well, and the order of operations is what makes one of them expensive. An application that loads 200 reservations with one query, then reads each reservation's room under lazy loading, executes 201 queries rather than one or a small fixed number. This is the N+1 query problem, and a join, eager loading, or batched retrieval each reduce the round trips a different way while returning the same information.
 
-1. The application loads 200 reservations with one query.
-2. Accessing each reservation's room triggers another query.
-3. The application executes 201 queries instead of one or a small fixed number.
+Whether it occurs is a property of the configuration rather than of lazy loading as such. If those 200 reservations reference only ten rooms and an ORM identity map holds each one after its first access, eleven queries suffice. If every reservation references a different room, no cache helps and the 201 queries return.
 
-This is the N+1 query problem. A join, eager loading, or batched retrieval reduces the number of database round trips. The program may be functionally correct while its database access pattern is unnecessarily expensive, and query plans, generated SQL, and runtime measurements are the evidence that application source code alone cannot supply.
+[**The N+1 Trap**](../../../interactive/n-plus-one/index.html) is a five-minute instrument for observing that. The three-line loop stays fixed while you change the loading strategy, the cache, and how many distinct rooms the reservations share; the query timeline shows why two hundred individually cheap queries are expensive. Predict the count before each run.
+
+The program may be functionally correct while its database access pattern is unnecessarily expensive, and query plans, generated SQL, and runtime measurements are the evidence that application source code alone cannot supply.
 
 ## Exercise A: Persisting the reservation service
 
