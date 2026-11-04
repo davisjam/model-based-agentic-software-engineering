@@ -14,8 +14,8 @@ readings:
     - heading: What a declarative query actually costs
       items:
         - cite: winand2025index
-          locator: 'indexing basics, multicolumn indexes, and joins'
-          annotation: 'Winand, [*Use the Index, Luke!*](https://use-the-index-luke.com/), selected chapters. Read the introductory material on indexing and the sections on multicolumn indexes and joins. The site is an online book; do not attempt to read it in full. Start with the explanation of how a B-tree index supports data retrieval, then examine how index column order and query predicates affect which records must be examined. Finally, read the discussion of joins and how database access patterns affect query performance. Focus on the distinction between a declarative query and the physical work required to evaluate it. Two queries that produce the same result may have very different execution costs. Similarly, an ORM can generate functionally correct queries that perform poorly because of repeated database round trips or unsuitable access patterns. The SQL examples are intended to illustrate engineering choices — you do not need to memorize database-specific syntax or become proficient at tuning indexes. The important skill is recognizing when a query''s performance depends on its execution plan and knowing what evidence to inspect before changing the database design.'
+          locator: 'indexing basics and joins; multicolumn indexes optional'
+          annotation: 'Winand, [*Use the Index, Luke!*](https://use-the-index-luke.com/), selected chapters. Read the introductory material on indexing and the sections on joins; the multicolumn-index chapters are optional. The site is an online book; do not attempt to read it in full. Start with the explanation of how a B-tree index supports data retrieval, then read the discussion of joins and how database access patterns affect query performance. Focus on the distinction between a declarative query and the physical work required to evaluate it. Two queries that produce the same result may have very different execution costs. Similarly, an ORM can generate functionally correct queries that perform poorly because of repeated database round trips or unsuitable access patterns. The SQL examples are intended to illustrate engineering choices: you do not need to memorize database-specific syntax or become proficient at tuning indexes. The important skill is recognizing when a query''s performance depends on its execution plan and knowing what evidence to inspect before changing the database design.'
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -26,44 +26,124 @@ materials:
     src: 3-2-Data-Management.pptx
 ---
 
-**Premise.** *A database design follows from the information a system must preserve and the operations it must support. Engineers choose representations, query interfaces, and concurrency guarantees by identifying the required semantics, then obtain evidence that those guarantees hold at an acceptable cost.*
+**Premise.** *Applications execute in processes that start, stop, and change. The information they manage may need to persist independently. Engineers must decide how that information is represented, accessed, and protected, then obtain evidence that the chosen mechanisms provide the required guarantees at an acceptable cost.*
 
-Our room reservation service initially keeps reservations in memory. This is adequate for a demonstration, but restarting the process loses the records. Moving the data to persistent storage addresses that defect. It does not by itself ensure that two simultaneous requests cannot reserve the same room for overlapping times, or that retrieving available rooms remains efficient as the reservation history grows. Persistence, correctness under concurrency, and query performance are separate engineering concerns.
+A software application can keep information in its own memory. That is simple and often sufficient for a prototype, but the information disappears when the process stops, and separate instances cannot share coherent state. Moving data into persistent storage separates the lifetime of information from the lifetime of the code that manipulates it.
 
-A database is a system for managing stored information through defined operations and guarantees. The familiar choice between relational and NoSQL databases is only one part of the design. Engineers must also choose how the application expresses queries, what constraints the storage system enforces, how concurrent operations interact, and how the system behaves as demand increases. A database can be a local library embedded in one process or a distributed service used by many applications.
+A database provides mechanisms for managing stored information through defined operations and guarantees. It need not be a separate server: an embedded database can operate within an application process while maintaining persistent data on disk. Other arrangements use database servers or distributed storage systems shared by many applications. Each arrangement changes what the application can assume about durability, concurrent access, and availability.
+
+![Two panels. Panel (a), in-process state, shows an APPLICATION box holding business logic above in-memory state, with an arrow down to a terminal outcome: the process exits and the state disappears, so a restart loses it and separate instances cannot share it. Panel (b), persistent data, shows an APPLICATION box holding only business logic, with an arrow labeled "queries and updates" down to a separate DATABASE box holding persistent storage under defined operations and guarantees; its caption reads that information outlives the process that wrote it and is reachable by every instance. A footer note says the separation is logical: an embedded database keeps persistent data inside the process.](figures/application-and-persistent-data.svg)
+
+The engineering problem is not simply to choose a database product. It is to decide what information must be represented, how the application needs to access it, what properties must remain true, and which mechanisms should enforce those properties.
 
 ## Structure of this unit
 
-We begin with an abstract database model and compare relational, document, key-value, and graph representations. We then develop a relational schema for the reservation service, examine SQL and object-relational mapping (ORM), and look beneath the query interface at execution plans, indexes, and batching. The final part addresses transactions, concurrency, and schema evolution. Throughout, the question is which obligations the database can enforce and which remain the responsibility of application code or the wider system.
+The lecture begins by separating application execution from persistent information and identifying five engineering decisions: representation, semantics, access, concurrency, and scale. We then examine relational, document, key-value, and graph representations, including the tradeoff between normalized and denormalized data. Next we consider how applications communicate with databases through SQL and object-relational mapping (ORM), and how query optimizers, indexes, and access patterns affect the cost of retrieving information.
 
-## The database design space
+The first exercise applies these concepts to our room reservation service. Students select a storage arrangement, develop a data model, and identify the properties that stored reservations must satisfy.
 
-A useful database model separates five dimensions. The **data model** defines how information is represented, such as relations, documents, key-value entries, or graphs. **Semantics** describe guarantees about stored values, constraints, durability, and observations. The **query interface** defines how applications request and modify information. **Concurrency** governs the behavior of overlapping operations. **Scalability** concerns the costs and mechanisms of handling growing data volumes and workloads, including indexing, replication, and partitioning. These dimensions interact, but none can be inferred from the label of a database product alone.
+After the break we examine concurrent access, transactions, ACID guarantees, and serializability. A second exercise asks students to diagnose a double-booking race and choose an enforcement mechanism. We conclude with the compatibility obligations introduced when stored representations change.
 
-For example, a relational representation might place rooms and reservations in separate tables connected by a foreign key. A document representation might group selected reservation information with a room. The second choice can make some reads convenient but may complicate updates or queries spanning many rooms. A key-value design favors access by known keys; a graph representation favors traversing relationships. Actual systems often support more than one representation or access pattern.
+Both exercises use the Act III engineering method: identify the problem, develop an appropriate model, exercise judgment about realization, and obtain evidence that the chosen solution satisfies its obligations.
+
+## Engineering application data
+
+Five related decisions organize data management.
+
+| Engineering decision | Question |
+|---|---|
+| Representation | How should information be structured? |
+| Semantics | Which guarantees must hold? |
+| Access | How should applications query and update information? |
+| Concurrency | What behavior is permitted when operations overlap? |
+| Scale | What data volume and request rate must be supported? |
+
+These decisions are related but distinct. A database product may support several representations and access patterns, and two products using the same representation may offer different concurrency guarantees. Engineers should therefore establish the application's requirements before selecting a database technology.
+
+## Representing data
+
+A relational representation organizes information into tables connected by relationships. A document representation groups related information into a single stored object. Key-value storage favors retrieving values by known keys, while graph representations make relationships and traversal central operations.
 
 ![Two panels hold the same reservation information. The relational panel shows a rooms table with columns room_id, building, and capacity, holding rows for STEW 202 and HAMP 112, above a reservations table with columns res_id, room_id, start, and end, holding three bookings; an arrow labeled "room_id references rooms" marks the foreign key connecting them. Its caption reads: each room fact is stored once; reading a room with its bookings joins the tables; a reservation change updates one row. The document panel shows one document per room: the STEW 202 document lists room_id, building, and capacity, with its two bookings nested inside a reservations list, and the HAMP 112 document likewise nests its one booking. Its caption reads: one read returns a room with its reservations; a query across rooms must visit every document; editing one reservation rewrites the whole document.](figures/representations.svg)
 
-Likewise, *NoSQL* does not mean that transactions or strong consistency are unavailable. Relational systems can scale across machines, and some NoSQL systems provide multi-record transactions: a system labeled *relational* may partition its tables across many servers, and a system labeled *NoSQL* may guarantee that a group of related changes takes effect entirely or not at all. The useful comparison concerns the particular system's guarantees under the workload and failure conditions that matter. A reservation service that must prevent double-booking has different requirements from a telemetry service that ingests independent sensor measurements.
+Neither panel is more correct. Each makes one operation convenient and another awkward, so the choice follows from the operations the application must support.
 
-## Schemas and query interfaces
+The distinction is not simply relational versus NoSQL. NoSQL describes a broad collection of database approaches, not a particular consistency model. Some nonrelational systems support transactions and strong consistency, while relational systems can support distributed storage and large workloads.
 
-A relational schema represents entities, attributes, and relationships. Primary keys identify records; foreign keys constrain references; check constraints can reject invalid field values. For example, a reservation should refer to an existing room and have an end time after its start time. Normalization reduces redundant facts and the risk that separate copies disagree. Denormalization can reduce work for selected reads, but requires additional care when duplicated information changes.
+A second representation decision concerns normalization. The relational panel stores each room fact once, so renaming a room updates one record. Copying that name into every reservation can simplify selected reads, but every copy must then be kept consistent when the name changes.
 
-SQL is a declarative query language: an application states which results it wants, and the database selects an execution strategy. An ORM offers an application-level interface that maps objects and operations to database queries. It may reduce repetitive persistence code and fit a language's type system, but it does not remove the underlying query semantics or costs. SQL and ORM therefore occupy different layers of the design space. An ORM often generates SQL; developers still need to understand what it asks the database to do.
+## Accessing data
 
-The database engine parses and validates a query, constructs a logical representation, chooses a physical execution plan, and runs operators such as scans, index lookups, and joins. Two plans that return the same rows can have very different costs. An index may avoid scanning every reservation when searching for bookings for one room. Conversely, an ORM that fetches 100 reservations and then issues a separate query for each associated room creates an **N+1 query** pattern. A join, eager loading, or batched retrieval may reduce network round trips. Query plans and measurements provide evidence about performance that the source-level query alone cannot supply.
+Applications generally access databases through defined query interfaces rather than manipulating storage files directly. In relational systems, SQL is a declarative language: the application describes the information it wants or the change it wishes to make, while the database chooses how to execute the request. An object-relational mapper (ORM) provides an application-level interface that translates operations on program objects into database operations.
 
-## Transactions and concurrent state
+![An APPLICATION node forks into two branches. The left branch is direct SQL, written by the engineer. The right branch is an ORM, drawn with a dashed outline and labeled an optional layer, leading to a generated-SQL node. Both branches rejoin into one QUERY ENGINE node, annotated parse, plan, execute, which reaches STORED DATA. A footer note reads that the ORM is optional and the SQL it generates meets the same engine.](figures/query-access-layers.svg)
 
-Suppose two students request the same available room at nearly the same time. Each request checks for conflicts, sees none, and inserts a reservation. Both operations may be locally reasonable while their interleaving violates the application's central invariant: confirmed reservations for one room must not overlap. A valid schema does not automatically prevent this race.
+An ORM can reduce repetitive persistence code. It does not remove the need to understand the queries it produces.
 
-Transactions provide a unit for grouping database operations. The ACID properties describe atomicity, consistency, isolation, and durability, but they do not mean that a database automatically knows every application rule. Isolation determines which effects of concurrent operations are permitted. **Serializability** provides a useful reference criterion: a concurrent execution should have the same relevant effect as some serial ordering of the transactions. Weaker isolation levels may allow anomalies, and their precise guarantees depend on the database implementation.
+The engine chooses a physical execution plan for whatever query reaches it. A plan may scan stored records, use an index to locate candidates, or join information from several tables. Two plans producing the same results can have substantially different costs. Indexes reduce search work for selected queries, but require additional storage and maintenance.
 
-The reservation invariant can be enforced through different mechanisms, including a database-specific exclusion constraint, an appropriately designed serializable transaction with retries, or explicit locking. These alternatives differ in portability, contention, and implementation complexity. The engineer must decide where the invariant is represented and where enforcement occurs. Tests should exercise overlapping requests, not merely successful sequential bookings. Under contention, the costs of locking, retries, and aborted transactions also become performance questions.
+Application-level access patterns matter as well, and the order of operations is what makes one of them expensive. Suppose an application loads reservations, then reads the room associated with each one, with lazy loading in effect:
 
-## Evolving the data model
+1. The application loads 200 reservations with one query.
+2. Accessing each reservation's room triggers another query.
+3. The application executes 201 queries instead of one or a small fixed number.
 
-Stored information outlives many versions of the application that created it. Adding recurring reservations, changing an identifier, or splitting one entity into two may require a schema migration and a plan for existing records. When old and new application versions run concurrently, compatibility becomes another obligation. A migration that succeeds on an empty test database may still fail on real data or interrupt service.
+This is the N+1 query problem. A join, eager loading, or batched retrieval reduces the number of database round trips. The program may be functionally correct while its database access pattern is unnecessarily expensive, and query plans, generated SQL, and runtime measurements are the evidence that application source code alone cannot supply.
 
-Data management thus provides a direct instance of Modeling and Alignment. Schemas and transaction models represent selected facts and permitted behavior; constraints and concurrency mechanisms can enforce some of those obligations independently of agent-generated application code. Query plans, concurrency tests, and migration rehearsals provide evidence about the resulting system. The next question is how easily the application and its dependencies can be changed as requirements continue to evolve.
+## Exercise A: Persisting the reservation service
+
+Our reservation service initially keeps reservations in memory. Restarting the application loses its records, and running several instances creates the possibility of inconsistent state. Students need storage that preserves information independently of application execution and makes it available to every instance.
+
+The first decision is which representation and storage arrangement to use. A relational database server is a natural candidate because the application manages users, rooms, and reservations with explicit relationships. Other arrangements are possible, and each must be evaluated against the requirements for persistence, shared access, and integrity.
+
+The second decision is which models to build, and the exercise asks for three.
+
+| Model | What it specifies | Reservation example |
+|---|---|---|
+| Data model | Facts and relationships | Users, rooms, reservations |
+| Integrity model | Acceptable states | No overlapping confirmed reservations |
+| Concurrency model | Permitted executions | Concurrent requests cannot both confirm conflicting bookings *(developed in Exercise B)* |
+
+A data model describes the facts the system represents and stops there. Half-open intervals settle one question an integrity model must answer: a reservation ending at 11:00 does not conflict with another beginning at 11:00. The distinction matters because a database can hold individually valid reservation records whose combination violates the application's requirements. Students must determine which obligations can be expressed as database constraints and which require enforcement elsewhere.
+
+## Concurrent access and guarantees
+
+A database may serve many application requests simultaneously. Applications commonly reuse connections through a connection pool, while transactions group related operations under specified guarantees. Concurrent transactions can observe and modify shared information in overlapping periods.
+
+The familiar ACID properties describe four aspects of transaction behavior. Atomicity concerns all-or-nothing transaction effects. Consistency concerns preservation of declared integrity constraints. Isolation governs permitted interactions between concurrent transactions. Durability concerns survival of committed changes under specified failures.
+
+These guarantees are not universal across every operation and configuration: systems differ in the scope of atomicity they provide, in the isolation levels they offer, and in their durability policies. Weaker guarantees may reduce coordination costs, but can require the application to tolerate additional failure modes or enforce properties itself.
+
+![Time runs down two lanes, transaction A on the left and transaction B on the right. A checks availability and sees no conflict. Next, before A has written anything, B checks availability and also sees no conflict. A inserts its reservation and commits; B then inserts its reservation and commits. Both lanes lead into one outcome banner: invalid shared state, two confirmed reservations overlapping in one room. A footer note reads that both transactions observe an available room before either commits.](figures/double-booking-history.svg)
+
+Serializability provides a useful model for reasoning about histories like this one. A concurrent execution is serializable when its relevant effects are equivalent to some serial ordering of the transactions. This does not require transactions to execute one at a time. It constrains which outcomes are permitted.
+
+## Exercise B: Preventing double-booking
+
+Neither request in that history was unreasonable on its own. Their interleaving violated an invariant of the shared state, and no amount of care inside either transaction detects it. Students examine the execution and choose an enforcement mechanism.
+
+| Mechanism | Enforcement authority | Engineering consideration |
+|---|---|---|
+| Exclusion constraint | Database engine | Rejects invalid writes directly; engine-specific support (PostgreSQL provides it) |
+| Serializable transaction | Database isolation plus application retry | Correct transaction design and retry handling |
+| Explicit locking | Application protocol plus database locks | Every writer must follow the locking protocol |
+
+The three mechanisms place responsibility in different places, which makes this a decision about the guarantee, its enforcement authority, and its cost rather than a choice among implementation techniques. Stronger coordination can introduce waiting, contention, retries, and reduced throughput. Evidence must therefore include concurrent reservation tests, not merely sequential examples.
+
+## Changing stored representations
+
+Stored information often outlives the application version that created it. A relational schema change therefore proceeds in stages rather than as a single edit:
+
+1. **Expand.** Add the new representation while retaining the old one.
+2. **Migrate.** Backfill existing records and keep both representations correct for ongoing writes.
+3. **Contract.** Remove the old representation once dependent application versions have retired.
+
+Schema-flexible document databases may let old and new document shapes coexist without that sequence, but application code must then interpret both correctly. Neither approach eliminates the compatibility obligation. The engineer decides where the cost of migration and backward compatibility will be paid.
+
+## Engineering judgment
+
+Data management illustrates the relationship between Modeling and Alignment. Data models describe information, integrity models identify acceptable states, and concurrency models constrain permitted executions. Database constraints and transaction mechanisms can enforce selected obligations independently of application code.
+
+The engineering work is to determine which properties matter, select mechanisms that provide the necessary guarantees, and obtain evidence that they do so at an acceptable cost. Choosing a database is therefore not merely a technology decision. It settles where important properties of the software system are represented and enforced.
+
+The next unit examines how the resulting software structure and its dependencies affect the cost of subsequent changes.

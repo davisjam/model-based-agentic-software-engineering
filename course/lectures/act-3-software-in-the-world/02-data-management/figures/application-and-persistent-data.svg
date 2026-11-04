@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: two side-by-side
+     panels contrasting in-process state with persistent data, where the LIFETIME claim lives in a
+     terminal outcome box under one panel and not the other, and a footer qualifies the separation as
+     logical rather than physical — nesting, panel captions, and a qualifying note a graph auto-layout
+     cannot place. Palette, stroke, and type follow the course figure vocabulary
+     (./representations.svg, ../../01-compute-environments-and-deployment/figures/ci-cd-pipeline.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 452" width="760" height="452"
+     role="img" aria-labelledby="apTitle apDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="apTitle">Application execution separated from persistent information: in-process state
+    disappears when the process exits, while persistent data outlives the process and is reachable by
+    every instance</title>
+  <desc id="apDesc">Two panels. Panel (a), in-process state, shows one APPLICATION box holding
+    business logic above in-memory state, with an arrow from the application down to a terminal
+    outcome: the process exits and the state disappears. Its caption reads that information lives only
+    as long as the process, so a restart loses it and separate instances cannot share it. Panel (b),
+    persistent data, shows an APPLICATION box holding only business logic, with an arrow labeled
+    "queries and updates" leading down to a separate DATABASE box holding persistent storage. Its
+    caption reads that information outlives the process that wrote it and is reachable by every
+    instance. A footer note says the separation is logical, not necessarily separate processes or
+    machines: an embedded database keeps persistent data inside the application process.</desc>
+
+  <defs>
+    <marker id="ap-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ap-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="760" height="452" fill="#fdfcf9"/>
+
+  <text x="380" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">WHERE THE INFORMATION LIVES</text>
+
+  <!-- panel headers -->
+  <text x="196" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">(a) IN-PROCESS STATE</text>
+  <text x="564" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">(b) PERSISTENT DATA</text>
+
+  <!-- ===== left panel: in-process state ===== -->
+  <rect x="62" y="88" width="268" height="168" rx="12" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="78" y="112" font-size="14" font-weight="700" fill="#2f5169">APPLICATION</text>
+  <rect x="86" y="124" width="220" height="44" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="196" y="152" text-anchor="middle" font-size="15" fill="#1c1917">Business logic</text>
+  <line x1="196" y1="168" x2="196" y2="194" stroke="#2f5169" stroke-width="2" marker-end="url(#ap-ah)"/>
+  <rect x="86" y="196" width="220" height="44" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="196" y="224" text-anchor="middle" font-size="15" fill="#1c1917">In-memory state</text>
+
+  <line x1="196" y1="256" x2="196" y2="288" stroke="#8a2f2f" stroke-width="2" marker-end="url(#ap-ah-red)"/>
+  <rect x="86" y="290" width="220" height="58" rx="10" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="196" y="314" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">Process exits</text>
+  <text x="196" y="334" text-anchor="middle" font-size="14" fill="#8a2f2f">state disappears</text>
+
+  <!-- ===== right panel: persistent data ===== -->
+  <rect x="430" y="88" width="268" height="96" rx="12" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="446" y="112" font-size="14" font-weight="700" fill="#2f5169">APPLICATION</text>
+  <rect x="454" y="124" width="220" height="44" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="564" y="152" text-anchor="middle" font-size="15" fill="#1c1917">Business logic</text>
+
+  <line x1="564" y1="184" x2="564" y2="228" stroke="#2f5169" stroke-width="2" marker-end="url(#ap-ah)"/>
+  <text x="578" y="211" font-size="12.5" fill="#41586c">queries and updates</text>
+
+  <rect x="430" y="230" width="268" height="118" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="446" y="254" font-size="14" font-weight="700" fill="#2f5169">DATABASE</text>
+  <rect x="454" y="266" width="220" height="44" rx="8" fill="#fdfcf9" stroke="#2f5169" stroke-width="2"/>
+  <text x="564" y="294" text-anchor="middle" font-size="15" fill="#1c1917">Persistent storage</text>
+  <text x="564" y="332" text-anchor="middle" font-size="13.5" fill="#41586c">defined operations and guarantees</text>
+
+  <!-- panel captions -->
+  <g font-size="13.5" fill="#41586c" text-anchor="middle">
+    <text x="196" y="376">Information lives as long as the process.</text>
+    <text x="196" y="396">A restart loses it, and separate instances</text>
+    <text x="196" y="416">cannot share it.</text>
+    <text x="564" y="376">Information outlives the process that</text>
+    <text x="564" y="396">wrote it and is reachable by every</text>
+    <text x="564" y="416">instance of the application.</text>
+  </g>
+
+  <text x="380" y="444" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">The separation is logical: an embedded database keeps persistent data inside the process.</text>
+</svg>
