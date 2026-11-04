@@ -379,7 +379,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   </p>
 </section>
 
-<!-- ======================= CONTROLS (wired in the next commit) ======================= -->
+<!-- ======================= EXPERIMENTS ======================= -->
 <section class="panel" aria-labelledby="h-experiments">
   <h2 id="h-experiments">Experiments</h2>
   <div class="xpsel-grid" id="xp-grid"></div>
@@ -390,6 +390,90 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     input</em>, so the only thing that changes is what the engineer wrote. Holding one variable
     fixed at a time is what makes each comparison an experiment rather than an anecdote.
   </p>
+</section>
+
+<!-- ======================= CONTROLS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">Controls</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="maxlen">Longest input to try
+        <span class="unit" id="maxlen-unit">n, characters</span></label>
+      <input type="range" id="maxlen-range" min="500" max="28000" step="1" value="16000"
+             aria-label="Longest input to try, slider">
+      <input type="number" id="maxlen" min="500" max="28000" step="1" value="16000">
+    </div>
+    <div class="ctl">
+      <label id="scale-label">Time axis</label>
+      <div class="seg" role="group" aria-labelledby="scale-label" id="scale-seg">
+        <button type="button" data-scale="linear" aria-pressed="true">Linear</button>
+        <button type="button" data-scale="logy" aria-pressed="false">Log y</button>
+        <button type="button" data-scale="loglog" aria-pressed="false">Log&ndash;log</button>
+      </div>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act primary" id="btn-run">Run selected</button>
+    <button type="button" class="act" id="btn-run-all">Run all four</button>
+    <button type="button" class="act" id="btn-run-limit">Run to the ladder limit</button>
+    <button type="button" class="act" id="btn-reset">Reset</button>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="redos.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p class="note" id="run-policy">
+    A run walks the experiment's length ladder from its shortest input upward, stopping at the first
+    length that exceeds the budget. <strong>Run to the ladder limit</strong> raises the maximum to
+    the top of the ladder, which is how you find where the budget bites on <em>this</em> machine
+    &mdash; the answer differs between browsers, and that is part of the lesson.
+  </p>
+</section>
+
+<!-- ======================= EXECUTION BUDGET AND ISOLATION ======================= -->
+<section class="panel" aria-labelledby="h-budget">
+  <h2 id="h-budget">Execution budget and isolation</h2>
+  <div class="grid2" style="margin-bottom:0">
+    <div>
+      <p style="margin-top:0">
+        <span class="badge s-idle" id="status" aria-live="polite"><span class="glyph"
+          aria-hidden="true">&#9679;</span><span id="status-text">idle</span></span>
+      </p>
+      <dl class="readout">
+        <dt>Budget per experiment</dt><dd id="b-budget">&mdash;</dd>
+        <dt>Hard deadline, then the worker is destroyed</dt><dd id="b-deadline">&mdash;</dd>
+        <dt>Workers created this session</dt><dd id="b-workers">0</dd>
+        <dt>Experiments terminated</dt><dd id="b-terminated">0</dd>
+        <dt>Interface frames rendered</dt><dd id="b-frames">0</dd>
+      </dl>
+      <div id="kill-notice" hidden></div>
+      <div id="worker-unavailable" hidden></div>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Why a worker, and why that is not enough</h3>
+      <p>
+        The match runs in a <strong>Web Worker</strong>, on its own thread, so the interface stays
+        responsive while the engine is occupied. Watch the frame counter during an expensive run:
+        it keeps climbing.
+      </p>
+      <p>
+        <strong>A worker does not make an expensive regular expression interruptible.</strong> There
+        is no way to ask a matching engine to stop. So the page keeps a wall-clock timer the
+        matching thread cannot block, and when a run overruns the deadline the page
+        <strong>destroys the worker</strong> and <strong>creates a fresh one</strong> for the next
+        experiment. Destroying it is the only available remedy, and the counters above record how
+        often it was needed.
+      </p>
+      <p class="note">
+        Note what this does and does not buy. Moving the computation into a worker protects the
+        <em>interface</em>; it does nothing to make the regular expression efficient. The same holds
+        for the server-side analogue in the mitigation list below: isolating the match bounds the
+        damage, not the cost.
+      </p>
+    </div>
+  </div>
 </section>
 
 <section class="panel" aria-labelledby="h-expr">
@@ -410,6 +494,34 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       <p class="note" id="input-why"></p>
     </div>
   </div>
+</section>
+
+<!-- ======================= MEASUREMENTS ======================= -->
+<section class="panel" aria-labelledby="h-measured">
+  <h2 id="h-measured">Measured execution time</h2>
+  <div class="measure-plane">
+    <span class="plane-kind">Measured in this browser's own RegExp engine &mdash; no model involved</span>
+    <table class="ref" id="results-table">
+      <caption id="results-caption">No experiment has been run yet.</caption>
+      <thead><tr>
+        <th scope="col">Experiment</th>
+        <th scope="col">n</th>
+        <th scope="col">Input length</th>
+        <th scope="col">Match</th>
+        <th scope="col">Executions</th>
+        <th scope="col">Time per execution</th>
+        <th scope="col">Outcome</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="scaling-readout"></div>
+  <p class="note">
+    <strong>Explain the differences from the structure of the expressions, not from the numbers.</strong>
+    The numbers are what happened on this machine, in this browser, on this run. Why they differ is
+    a property of the expressions and the inputs, and that is the question the backtracking model
+    below is for.
+  </p>
 </section>
 
 <!-- ======================= REFERENCE + SELF-TESTS ======================= -->

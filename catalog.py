@@ -144,8 +144,10 @@ def _book_title_block() -> str:
 # The workbench's own gates hold it instead: `tsc --noEmit`, its unit suite, and the bundle build, all in
 # the Pages workflow. Revisit this exclusion only if the console gate learns to serve pages over http.
 # `interactive` holds the course's self-contained interactive EXERCISES — `course/interactive/<slug>/`,
-# one hand-authored single-file application apiece (`performance-knee`, the Act-III queueing simulator;
-# `n-plus-one`; `redos`). Same reasoning as `workbench`, for the same two reasons plus one of its own:
+# one hand-authored single-file application apiece (e.g. `performance-knee`, the Act-III queueing
+# simulator; `ls course/interactive/` for the current set — this note deliberately does not enumerate
+# them, because the first version of it named "the first" exercise and three siblings landed the same
+# afternoon). Same reasoning as `workbench`, for the same two reasons plus one of its own:
 #   - It is an APPLICATION, not a catalogue page. `catalog.py build` does not emit it (the "never
 #     hand-edit the .html" rule does not reach it) and the page-shape gates measure the wrong thing on
 #     an instrument whose body is panels and <canvas>.

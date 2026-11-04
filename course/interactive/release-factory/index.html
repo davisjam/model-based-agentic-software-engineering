@@ -925,6 +925,7 @@ footer {
     sim.releaseQueue = [];       /* admitted, waiting to be batched into a release */
     sim.releasesInFlight = 0;
     sim.liveReleases = [];       /* exposed to users and not yet retired */
+    sim.openReleases = [];       /* started and not yet finished rolling out, aborted, or restored */
     sim.flushScheduled = false;
 
     sim.ledger = [];             /* every defect instance ever introduced */
@@ -935,6 +936,10 @@ footer {
       blockedDefective: 0, blockedFlaky: 0, admittedWithFailingChecks: 0,
       admitted: 0, reworks: 0, reworkRegressions: 0,
       releasesStarted: 0, releasesAborted: 0, caughtInCanary: 0,
+      /* Changes that completed their rollout and stayed there. Decremented when a release that had
+         already completed its rollout is later rolled back, so this plus the five in-factory stage
+         counts always equals `commits` — the conservation law the test suite checks. */
+      changesDelivered: 0,
       deployments: 0, failedDeployments: 0,
       maxBacklog: 0, maxReleaseQueue: 0
     };
@@ -1185,9 +1190,11 @@ footer {
       detectedAt: null,
       remediating: false,
       retired: false,
-      slotReleased: false
+      slotReleased: false,
+      delivered: false
     };
     sim.nextReleaseId += 1;
+    sim.openReleases.push(release);
     sim.releasesInFlight += 1;
     sim.counters.releasesStarted += 1;
     for (var i = 0; i < changes.length; i += 1) {
@@ -1356,6 +1363,10 @@ footer {
       return;
     }
     if (release.remediating) return;
+    if (!release.delivered) {
+      release.delivered = true;
+      sim.counters.changesDelivered += release.changes.length;
+    }
     /* The release slot is free: the rollout is done. A release that still carries a live defect
        stays LIVE for defect accounting, because that defect may be detected days later and the
        deployment reclassified then. A CLEAN release is retired here — it can never fail, so
@@ -1367,6 +1378,7 @@ footer {
     if (!release.slotReleased) {
       release.slotReleased = true;
       sim.releasesInFlight -= 1;
+      removeOpen(sim, release);
       considerRelease(sim);
     }
   }
@@ -1406,6 +1418,7 @@ footer {
 
   function abortRelease(sim, release, caughtDefect) {
     release.retired = true;
+    removeOpen(sim, release);
     if (!release.slotReleased) { release.slotReleased = true; sim.releasesInFlight -= 1; }
     for (var i = 0; i < release.changes.length; i += 1) {
       var change = release.changes[i];
@@ -1460,6 +1473,10 @@ footer {
     setFraction(sim, release, 0);
     release.retired = true;
     release.remediating = false;
+    if (release.delivered) {
+      release.delivered = false;
+      sim.counters.changesDelivered -= release.changes.length;
+    }
     for (var i = 0; i < release.changes.length; i += 1) {
       var change = release.changes[i];
       var d = change.defect;
@@ -1490,13 +1507,30 @@ footer {
       ringPush(sim.failureExposures, release.requestsExposed);
     }
     removeLive(sim, release);
+    removeOpen(sim, release);
     if (!release.slotReleased) { release.slotReleased = true; sim.releasesInFlight -= 1; }
     considerRelease(sim);
+  }
+
+  /* Changes inside a release that has not yet completed its rollout — deploying, soaking, or
+     being verified. They have left the release queue and have not yet been delivered, so the
+     conservation law needs them named. */
+  function changesInOpenReleases(sim) {
+    var total = 0;
+    for (var i = 0; i < sim.openReleases.length; i += 1) {
+      total += sim.openReleases[i].changes.length;
+    }
+    return total;
   }
 
   function removeLive(sim, release) {
     var i = sim.liveReleases.indexOf(release);
     if (i >= 0) sim.liveReleases.splice(i, 1);
+  }
+
+  function removeOpen(sim, release) {
+    var i = sim.openReleases.indexOf(release);
+    if (i >= 0) sim.openReleases.splice(i, 1);
   }
 
   /* ---- the step function ---- */
@@ -1713,6 +1747,8 @@ footer {
         inTest: sim.lanesBusy,
         inRework: sim.inRework,
         awaitingRelease: sim.releaseQueue.length,
+        inOpenReleases: changesInOpenReleases(sim),
+        changesDelivered: sim.counters.changesDelivered,
         releasesInFlight: sim.releasesInFlight,
         liveReleases: sim.liveReleases.length,
         liveDefectsInProduction: live
@@ -2206,6 +2242,7 @@ footer {
     meanTestDetectability: meanTestDetectability,
     normalisedWeights: normalisedWeights,
     capacityState: capacityState,
+    changesInOpenReleases: changesInOpenReleases,
     releaseCycleHours: releaseCycleHours,
     releaseUtilization: releaseUtilization,
     /* experiments */
