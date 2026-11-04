@@ -298,6 +298,24 @@ canvas {
 .legend .swatch { width: 2.2rem; height: 0; border-top-width: 3px; }
 .legend .mk { font-family: var(--font-mono); font-size: 0.95rem; line-height: 1; }
 
+/* --- the mitigation chooser ---------------------------------------------------------------- */
+.mit { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper); padding: 0.55rem 0.7rem; margin-bottom: 0.5rem; }
+.mit > label { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start; cursor: pointer; }
+.mit input[type=checkbox] { margin-top: 0.35rem; accent-color: var(--accent); width: 1.1rem; height: 1.1rem; }
+.mit .mlabel { font-weight: 600; }
+.mit .bounds {
+  display: inline-block; margin-left: 0.4rem;
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid currentColor; border-radius: var(--radius); padding: 0.02rem 0.32rem;
+  vertical-align: 0.1rem;
+}
+.mit .bounds.b-yes { color: var(--ok); background: var(--ok-fill); }
+.mit .bounds.b-conditional { color: var(--warn); background: var(--warn-fill); border-style: dashed; }
+.mit .bounds.b-no { color: var(--bad); background: var(--bad-fill); border-style: double; border-width: 3px; }
+.mit .mdetail { font-size: 0.89rem; color: var(--muted); margin: 0.25rem 0 0; }
+.mit .mcaveat { font-size: 0.89rem; margin: 0.3rem 0 0; padding-left: 0.6rem; border-left: 3px solid var(--warn); }
+.mit[data-chosen=true] { border-color: var(--ink); border-width: 2px; border-left-width: 8px; background: var(--panel-2); }
+
 /* --- the backtracking model diagram -------------------------------------------------------
    Rendered as markup rather than as a canvas, deliberately. The rows are text — groupings of
    characters and a verdict — so a reader using assistive technology gets the model itself rather
@@ -619,6 +637,95 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       </p>
     </div>
   </div>
+</section>
+
+<!-- ======================= THREAT MODEL ======================= -->
+<div class="grid2">
+  <section class="panel" aria-labelledby="h-threat">
+    <h2 id="h-threat">The threat model</h2>
+    <p style="margin-top:0">
+      The measurements above are a performance observation. What makes this a <em>security</em>
+      finding is that the expensive input is chosen by someone else. Name the elements:
+    </p>
+    <table class="ref" id="threat-table">
+      <thead><tr><th scope="col">Model element</th><th scope="col">ReDoS example</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <p class="note">
+      A threat is a possible course of harmful action; a vulnerability is the weakness that may let
+      it succeed; an attack is an attempt to exploit that weakness. Here the vulnerability is
+      superlinear matching, the threat is resource exhaustion, and the attack is one HTTP request
+      carrying a long run of spaces.
+    </p>
+    <p class="warn-msg">
+      <strong>The distinction from Performance Engineering.</strong> A performance model assumes a
+      service-time distribution <em>chosen by the engineer</em> &mdash; the Performance Knee
+      simulator asks what happens when many ordinary requests compete for finite capacity. This
+      demonstration shows an adversary <em>influencing that distribution</em> by selecting inputs.
+      Experiments&nbsp;1 and&nbsp;2 differ in nothing an engineer controls: same expression, same
+      code path, same deployment. Only the input changed.
+    </p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-mitigate">
+    <h2 id="h-mitigate">Choose a mitigation</h2>
+    <p style="margin-top:0">
+      The security objective is <strong>bound computation per request</strong>. Select what you
+      would do, then read how the selection is judged against that objective.
+    </p>
+    <div id="mitigation-list"></div>
+    <div id="mitigation-verdict" aria-live="polite"></div>
+  </section>
+</div>
+
+<!-- ======================= CLASSROOM SEQUENCE + CLOSING QUESTION ======================= -->
+<details class="panel" id="sequence">
+  <summary><span class="panel-title" style="display:inline">Using this in class &mdash; the intended sequence</span></summary>
+  <ol>
+    <li><strong>Read the Cloudflare postmortem.</strong> A real outage, at a company whose core
+      competence is operating this kind of infrastructure. Establish that the question matters
+      before introducing any synthetic expression.</li>
+    <li><strong>Examine the regular expression.</strong> Find <code>.*(?:.*=.*)</code> in the rule.
+      Two unbounded repetitions in sequence, nothing forcing a unique division between them.</li>
+    <li><strong>Predict.</strong> Which inputs are expensive, and why? Commit to an answer before
+      measuring. The prediction is the part that is graded by the measurement.</li>
+    <li><strong>Run the demonstration.</strong> Experiments 1 and 2 first, because they isolate the
+      adversary's variable. Then 3, for what a nested quantifier costs. Then 4, which is the fix,
+      on byte-identical input to 2.</li>
+    <li><strong>Identify the threat.</strong> Fill in the threat model: who supplies the input,
+      through which entry point, and what resource is exhausted.</li>
+    <li><strong>Propose controls.</strong> Choose mitigations and defend the choice against the
+      objective &mdash; including why a rate limit is not sufficient on its own.</li>
+  </ol>
+  <h3>Exercises</h3>
+  <ol>
+    <li>Experiments 1 and 2 run the same expression. Experiment 1 is fast. Explain the difference
+      using the structure of <code>/^.*\s+$/</code> and the structure of the two inputs &mdash; not
+      the measured numbers.</li>
+    <li>Set the time axis to log&ndash;log and read the slope of experiment 2. What value would you
+      expect from <code>n(n+1)/2</code>, and does your run agree? If it does not, name a reason
+      that is about the engine rather than about the expression.</li>
+    <li>Experiment 3 runs out of budget somewhere in the twenties. Each extra character doubles the
+      modelled work. If a service capped its input at 100 characters, would that cap bound the cost
+      for experiment 3? For experiment 2?</li>
+    <li>Experiment 4 decides exactly the same question as experiment 2 on exactly the same bytes.
+      Read both expressions and say which construct removed the cost.</li>
+    <li>The page runs the match in a worker and destroys it at a deadline. Name what that protects
+      and what it does not. Then say which of the two the server-side analogue protects.</li>
+  </ol>
+</details>
+
+<section class="panel" aria-labelledby="h-closing">
+  <h2 id="h-closing">The engineering question to leave with</h2>
+  <p style="font-family:var(--font-display);font-size:1.5rem;line-height:1.35;margin:0.3rem 0 0">
+    What input can an adversary control, and what resource can it exhaust?
+  </p>
+  <p class="note">
+    Asked of every component that accepts input from outside the trust boundary, this question finds
+    algorithmic complexity vulnerabilities well beyond regular expressions: parsers, decompressors,
+    hash tables, sorting, image decoders, and anything whose cost depends on the shape of its input
+    rather than only on its size.
+  </p>
 </section>
 
 <!-- ======================= REFERENCE + SELF-TESTS ======================= -->
@@ -1816,6 +1923,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     lengths: {},
     scale: 'linear',
     mode: 'ladder',
+    mitigations: [],
     sweeps: {},
     workersCreated: 0,
     terminations: 0,
@@ -2839,6 +2947,123 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       + ' currently selected.' + ordinaryNote + safeNote;
   }
 
+  /* ---------- the threat model and the mitigation chooser ----------
+     Both read the engine's tables. The verdict is computed by `assessMitigations`, which is pure
+     and tested, so the two confusions the course insists on — that a rate limit alone does not meet
+     the objective, and that isolation meets it without removing the vulnerability — are enforced by
+     a test rather than by a paragraph nobody re-reads. */
+
+  function renderThreatModel() {
+    var body = $('threat-table').querySelector('tbody');
+    body.textContent = '';
+    R.THREAT_MODEL.forEach(function (row) {
+      var tr = document.createElement('tr');
+      var th = document.createElement('th');
+      th.scope = 'row';
+      th.textContent = row.element;
+      var td = document.createElement('td');
+      td.textContent = row.value;
+      tr.appendChild(th); tr.appendChild(td);
+      body.appendChild(tr);
+    });
+  }
+
+  var BOUNDS_WORD = {
+    yes: 'bounds per-request cost',
+    conditional: 'bounds it conditionally',
+    no: 'does not bound per-request cost'
+  };
+
+  function renderMitigationList() {
+    var list = $('mitigation-list');
+    list.textContent = '';
+    R.MITIGATIONS.forEach(function (m) {
+      var box = document.createElement('div');
+      box.className = 'mit';
+      box.setAttribute('data-mit', m.id);
+      box.setAttribute('data-chosen', ui.mitigations.indexOf(m.id) >= 0 ? 'true' : 'false');
+
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'mit-' + m.id;
+      cb.checked = ui.mitigations.indexOf(m.id) >= 0;
+      cb.addEventListener('change', function () { toggleMitigation(m.id, this.checked); });
+
+      var text = document.createElement('span');
+      var name = document.createElement('span');
+      name.className = 'mlabel';
+      name.textContent = m.label;
+      /* The bounds verdict carries a WORD as well as a colour and a border style. */
+      var tag = document.createElement('span');
+      tag.className = 'bounds b-' + m.bounds;
+      tag.textContent = BOUNDS_WORD[m.bounds];
+      name.appendChild(tag);
+      text.appendChild(name);
+
+      var detail = document.createElement('p');
+      detail.className = 'mdetail';
+      detail.textContent = m.detail;
+      text.appendChild(detail);
+
+      var caveat = document.createElement('p');
+      caveat.className = 'mcaveat';
+      caveat.textContent = 'Caveat: ' + m.caveat;
+      text.appendChild(caveat);
+
+      label.appendChild(cb);
+      label.appendChild(text);
+      box.appendChild(label);
+      list.appendChild(box);
+    });
+  }
+
+  function toggleMitigation(id, on) {
+    var at = ui.mitigations.indexOf(id);
+    if (on && at < 0) ui.mitigations.push(id);
+    if (!on && at >= 0) ui.mitigations.splice(at, 1);
+    renderMitigationList();
+    renderMitigationVerdict();
+  }
+
+  function renderMitigationVerdict() {
+    var a = R.assessMitigations(ui.mitigations);
+    var box = $('mitigation-verdict');
+    box.textContent = '';
+
+    var head = document.createElement('p');
+    head.style.margin = '0.6rem 0 0';
+    var badge = document.createElement('span');
+    badge.className = 'badge ' + (a.meetsObjective ? 's-ok' : a.conditionalOnly ? 's-warn' : 's-kill');
+    badge.id = 'verdict-badge';
+    var glyph = document.createElement('span');
+    glyph.className = 'glyph';
+    glyph.setAttribute('aria-hidden', 'true');
+    glyph.textContent = a.meetsObjective ? '✓' : a.conditionalOnly ? '◆' : '✕';
+    var word = document.createElement('span');
+    word.id = 'verdict-text';
+    word.textContent = a.meetsObjective ? 'objective met'
+      : a.conditionalOnly ? 'objective met only conditionally' : 'objective unmet';
+    badge.appendChild(glyph); badge.appendChild(word);
+    head.appendChild(badge);
+    box.appendChild(head);
+
+    var obj = document.createElement('p');
+    obj.className = 'note';
+    obj.textContent = 'Objective: ' + a.objective + '. '
+      + (a.removesVulnerability
+        ? 'Your selection removes the vulnerability rather than only containing it.'
+        : 'Nothing in your selection removes the vulnerability; it remains superlinear.');
+    box.appendChild(obj);
+
+    a.warnings.forEach(function (w) {
+      var p = document.createElement('p');
+      p.className = 'kill-msg';
+      p.textContent = w;
+      box.appendChild(p);
+    });
+  }
+
   function render() {
     renderStatus();
     renderBudget();
@@ -2943,6 +3168,9 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   if (!ensureWorker()) { /* markWorkerUnavailable has already explained itself in the page. */ }
   readPalette();
   renderLegends();
+  renderThreatModel();
+  renderMitigationList();
+  renderMitigationVerdict();
   syncLengthControl();
   renderExpression();
   renderExpressionTable();

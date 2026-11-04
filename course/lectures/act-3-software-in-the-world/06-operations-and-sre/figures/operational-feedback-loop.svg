@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a CYCLE whose
+     reading depends on the return edge closing all the way back to the running system, and on the
+     color break between the stages that happen during an incident and the two that happen after it.
+     A graph auto-layout renders a seven-node cycle as a ring or a spiral and loses both: the return
+     edge stops being visually distinguishable from the sequence edges, and the dashed back-edge from
+     diagnosis to observations reads as just another step. The per-node sub-labels are positioned
+     relative to their own boxes, which auto-layout also will not hold. Palette, stroke weights and
+     type follow the course figure vocabulary (sibling
+     ../../03-technical-debt-architecture-and-dependencies/figures/internal-and-external-dependencies.svg,
+     ../../04-performance-and-reliability/figures/reservation-request-state-model.svg). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" width="860" height="460"
+     role="img" aria-labelledby="ofLoopTitle ofLoopDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ofLoopTitle">The operational feedback loop: a running system produces observations, which
+    support diagnosis, response and recovery, after which a postmortem decides which new controls return
+    to the running system</title>
+  <desc id="ofLoopDesc">Seven stages form one cycle, read across two rows. The upper row runs left to
+    right through four boxes. RUNNING SYSTEM, sub-labeled serving real users now, leads to
+    OBSERVATIONS, sub-labeled only what we instrumented, which leads to DIAGNOSIS, sub-labeled a
+    hypothesis, not a cause, which leads to RESPONSE, sub-labeled chosen under uncertainty. A dashed
+    arc arches back above the row from DIAGNOSIS to OBSERVATIONS, labeled returns for more evidence,
+    because a diagnosis commonly asks for an observation nobody has yet made. From RESPONSE a connector
+    runs out to the right margin and down into the lower row, reaching RECOVERY, sub-labeled the
+    incident ends here. The lower row then runs right to left in the warm color that marks what happens
+    after the incident: RECOVERY leads to POSTMORTEM, sub-labeled contributing conditions, which leads
+    to NEW CONTROLS, sub-labeled the durable change. From NEW CONTROLS a return edge runs left to the
+    margin, up the left side, and back into RUNNING SYSTEM, labeled feeds back into production, closing
+    the cycle. A legend distinguishes the stages during the incident, drawn in blue, from the stages
+    after it, drawn in the warm color, and distinguishes the solid sequence edges from the dashed
+    return for more evidence. A closing note reads that recovery ends the incident but does not change
+    the conditions that produced it, and that only the last stage alters what the next incident will
+    look like.</desc>
+
+  <defs>
+    <marker id="ofl-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ofl-ah-warm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a6a3f"/>
+    </marker>
+    <marker id="ofl-ah-note" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="860" height="460" fill="#fdfcf9"/>
+
+  <text x="430" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">THE OPERATIONAL FEEDBACK LOOP</text>
+
+  <!-- a diagnosis commonly asks for an observation nobody has made yet -->
+  <text x="430" y="82" text-anchor="middle" font-size="12.5" fill="#9a3f12">returns for more evidence</text>
+  <path d="M 535,116 C 535,90 325,90 325,116" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ofl-ah-note)"/>
+
+  <!-- ===== upper row: the running system, and the stages that happen while the incident is live ===== -->
+  <rect x="40" y="118" width="150" height="46" rx="8" fill="#dfe7ee" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="115" y="147" text-anchor="middle" font-size="14" fill="#1c1917">RUNNING SYSTEM</text>
+  <text x="115" y="182" text-anchor="middle" font-size="11.5" fill="#57534e">serving real users now</text>
+
+  <rect x="250" y="118" width="150" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="325" y="147" text-anchor="middle" font-size="14" fill="#1c1917">OBSERVATIONS</text>
+  <text x="325" y="182" text-anchor="middle" font-size="11.5" fill="#57534e">only what we instrumented</text>
+
+  <rect x="460" y="118" width="150" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="535" y="147" text-anchor="middle" font-size="14" fill="#1c1917">DIAGNOSIS</text>
+  <text x="535" y="182" text-anchor="middle" font-size="11.5" fill="#57534e">a hypothesis, not a cause</text>
+
+  <rect x="670" y="118" width="150" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="745" y="147" text-anchor="middle" font-size="14" fill="#1c1917">RESPONSE</text>
+  <text x="745" y="182" text-anchor="middle" font-size="11.5" fill="#57534e">chosen under uncertainty</text>
+
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#ofl-ah)">
+    <line x1="190" y1="141" x2="246" y2="141"/>
+    <line x1="400" y1="141" x2="456" y2="141"/>
+    <line x1="610" y1="141" x2="666" y2="141"/>
+  </g>
+
+  <!-- response carries into recovery: out to the right margin, down, and back in -->
+  <path d="M 824,141 L 845,141 L 845,291 L 824,291" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#ofl-ah)"/>
+
+  <!-- ===== lower row: recovery, then the two stages that happen after the incident ===== -->
+  <rect x="670" y="268" width="150" height="46" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="745" y="297" text-anchor="middle" font-size="14" fill="#1c1917">RECOVERY</text>
+  <text x="745" y="332" text-anchor="middle" font-size="11.5" fill="#57534e">the incident ends here</text>
+
+  <rect x="460" y="268" width="150" height="46" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="535" y="297" text-anchor="middle" font-size="14" fill="#1c1917">POSTMORTEM</text>
+  <text x="535" y="332" text-anchor="middle" font-size="11.5" fill="#57534e">contributing conditions</text>
+
+  <rect x="250" y="268" width="150" height="46" rx="8" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="325" y="297" text-anchor="middle" font-size="14" fill="#1c1917">NEW CONTROLS</text>
+  <text x="325" y="332" text-anchor="middle" font-size="11.5" fill="#57534e">the durable change</text>
+
+  <g stroke="#8a6a3f" stroke-width="2" marker-end="url(#ofl-ah-warm)">
+    <line x1="666" y1="291" x2="614" y2="291"/>
+    <line x1="456" y1="291" x2="404" y2="291"/>
+  </g>
+
+  <!-- the loop closes: a new control changes the system the next incident will arrive at -->
+  <text x="30" y="283" font-size="12.5" fill="#8a6a3f">feeds back into production</text>
+  <path d="M 246,291 L 20,291 L 20,141 L 36,141" fill="none" stroke="#8a6a3f" stroke-width="2.5" marker-end="url(#ofl-ah-warm)"/>
+
+  <!-- legend -->
+  <rect x="150" y="362" width="22" height="16" rx="3" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="180" y="375" font-size="13" fill="#41586c">during the incident</text>
+  <rect x="330" y="362" width="22" height="16" rx="3" fill="#f5efe3" stroke="#8a6a3f" stroke-width="2"/>
+  <text x="360" y="375" font-size="13" fill="#41586c">after the incident</text>
+  <line x1="505" y1="370" x2="543" y2="370" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ofl-ah-note)"/>
+  <text x="553" y="375" font-size="13" fill="#41586c">returns for more evidence</text>
+
+  <g text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">
+    <text x="430" y="412">Recovery ends the incident. It does not change the conditions that produced it.</text>
+    <text x="430" y="434">Only the last stage alters what the next incident will look like.</text>
+  </g>
+</svg>

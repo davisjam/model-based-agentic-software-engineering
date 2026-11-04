@@ -302,8 +302,609 @@ footer {
 </header>
 <div class="gold-rule"></div>
 
-<main id="app">
-<p class="note">Loading the interface&hellip;</p>
+<main>
+
+<!-- ======================= THE CAVEAT, WHERE A READER WILL SEE IT ======================= -->
+<p class="caveat">
+  <strong>What this instrument is about, and what it is not.</strong>
+  It measures <strong>delivery performance and release risk</strong>. The four measures below are
+  the <strong>Four Keys</strong> &mdash; deployment frequency, lead time for changes, change failure
+  rate, time to restore service &mdash; and that label is deliberate: they are the four the course
+  reading names, not an account of current DORA measurement practice, which has moved on.
+  They describe <em>selected outcomes of the delivery process</em>.
+  <strong>They do not establish whether the organisation is producing valuable or correct
+  software.</strong> A factory can ship ten times a day, restore in minutes, and build the wrong
+  thing perfectly.
+</p>
+
+<!-- ======================= CONTROLS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">The factory&rsquo;s policies</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <span class="ctl-label" id="lab-arrival">Change arrival rate
+        <span class="unit">&mdash; can the pipeline keep up?</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-arrival" id="seg-arrival"></div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label" id="lab-depth">Test depth
+        <span class="unit">&mdash; how much evidence is worth the delay?</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-depth" id="seg-depth"></div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label" id="lab-admission">Admission policy
+        <span class="unit">&mdash; can failing changes proceed?</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-admission" id="seg-admission"></div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label" id="lab-strategy">Release strategy
+        <span class="unit">&mdash; how should exposure be controlled?</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-strategy" id="seg-strategy"></div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label" id="lab-batch">Deployment batch size
+        <span class="unit">&mdash; how much work should one release carry?</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-batch" id="seg-batch"></div>
+    </div>
+    <div class="ctl triple">
+      <label for="arrival-num">Arrival rate, exactly
+        <span class="unit">changes/day</span></label>
+      <input type="range" id="arrival-range" min="1" max="200" step="1" value="44"
+             aria-label="Arrival rate in changes per day, slider">
+      <input type="number" id="arrival-num" min="1" max="200" step="1" value="44">
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act primary" id="btn-run" aria-pressed="false">Run</button>
+    <button type="button" class="act" id="btn-step">Step</button>
+    <button type="button" class="act" id="btn-90">Run 90 days</button>
+    <button type="button" class="act" id="btn-reset">Reset</button>
+    <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <span class="ctl-label" id="lab-speed" style="align-self:center">Speed</span>
+    <div class="seg" role="group" aria-labelledby="lab-speed" id="seg-speed">
+      <button type="button" data-speed="1" aria-pressed="false">1&times;</button>
+      <button type="button" data-speed="10" aria-pressed="true">10&times;</button>
+      <button type="button" data-speed="100" aria-pressed="false">100&times;</button>
+    </div>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="release-factory.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p class="note" id="param-policy">
+    <strong>Changing a policy resets the factory.</strong> These are experiments to watch from an
+    empty pipeline, not perturbations of a running one, and comparing a settled factory against one
+    that is still draining a backlog is how a policy gets credit it did not earn. The
+    <em>seed</em> is unchanged by a reset, so the team commits the same changes at the same times
+    carrying the same defects: switching one policy is a controlled experiment, not a fresh draw.
+    Speed is <span class="mono">1&times;</span>&nbsp;=&nbsp;one simulated hour per second of your
+    time.
+  </p>
+</section>
+
+<!-- ======================= PRESETS ======================= -->
+<section class="panel" aria-labelledby="h-presets">
+  <h2 id="h-presets">Classroom presets</h2>
+  <div class="preset-grid" id="presets"></div>
+  <p class="note">
+    The four marked <strong>1</strong> to <strong>4</strong> are one experiment, in order, and each
+    step changes <em>exactly one</em> control from the step before. Run each to about thirty
+    simulated days before reading its numbers. The rest are variations worth a minute each.
+  </p>
+</section>
+
+<!-- ======================= THE FACTORY ======================= -->
+<section class="panel" aria-labelledby="h-factory">
+  <h2 id="h-factory">The factory
+    <span class="mono" style="text-transform:none;letter-spacing:0">(simulation state)</span></h2>
+  <div class="canvas-wrap"><canvas id="c-factory" width="1600" height="330"
+    role="img" aria-labelledby="factory-alt"></canvas></div>
+  <p id="factory-alt" class="vh" aria-live="polite"></p>
+  <dl class="readout" style="margin-top:0.8rem">
+    <dt>Simulated time</dt><dd id="r-time">&mdash;</dd>
+    <dt>Build + test stage</dt><dd id="r-test-cap">&mdash;</dd>
+    <dt>Release channel</dt><dd id="r-rel-cap">&mdash;</dd>
+  </dl>
+  <p class="note">
+    <span class="tagline">model</span> Both utilisation figures are
+    <strong>offered load divided by nominal capacity</strong>, computed from the policy tables &mdash;
+    not measured from the run. They ignore the extra work that rework and rollback generate, so a
+    factory can sit below one on both and still grow a backlog. That gap is itself worth noticing:
+    a release pipeline consumes its own capacity recovering from its own failures.
+  </p>
+</section>
+
+<div class="grid2">
+  <!-- ======================= FOUR KEYS ======================= -->
+  <section class="panel" aria-labelledby="h-keys">
+    <h2 id="h-keys">The Four Keys, and the fifth measure</h2>
+    <div class="keys">
+      <div class="key">
+        <span class="klabel">Deployment frequency</span>
+        <span class="kval" id="k-freq">&mdash;</span>
+        <span class="ksub" id="k-freq-sub">&nbsp;</span>
+      </div>
+      <div class="key">
+        <span class="klabel">Lead time for changes</span>
+        <span class="kval" id="k-lead">&mdash;</span>
+        <span class="ksub" id="k-lead-sub">&nbsp;</span>
+      </div>
+      <div class="key">
+        <span class="klabel">Change failure rate</span>
+        <span class="kval" id="k-cfr">&mdash;</span>
+        <span class="ksub" id="k-cfr-sub">&nbsp;</span>
+      </div>
+      <div class="key">
+        <span class="klabel">Time to restore service</span>
+        <span class="kval" id="k-ttr">&mdash;</span>
+        <span class="ksub" id="k-ttr-sub">&nbsp;</span>
+      </div>
+      <div class="key impact">
+        <span class="klabel">User impact &mdash; requests exposed</span>
+        <span class="kval" id="k-impact">&mdash;</span>
+        <span class="ksub" id="k-impact-sub">&nbsp;</span>
+      </div>
+      <div class="key impact">
+        <span class="klabel">&hellip; per failed deployment, median</span>
+        <span class="kval" id="k-impact-med">&mdash;</span>
+        <span class="ksub" id="k-impact-med-sub">&nbsp;</span>
+      </div>
+    </div>
+    <p class="note" id="cfr-honesty">
+      <strong>The failure rate is a measurement, not the truth.</strong> A deployment carrying a
+      defect <em>nobody detected</em> is not in its numerator. That count is shown under the rate,
+      and it is the number a canary moves least.
+    </p>
+  </section>
+
+  <!-- ======================= BACKLOG OVER TIME ======================= -->
+  <section class="panel" aria-labelledby="h-backlog">
+    <h2 id="h-backlog">Work in the factory, over time
+      <span class="mono" style="text-transform:none;letter-spacing:0">(observations)</span></h2>
+    <div class="canvas-wrap"><canvas id="c-backlog" width="1200" height="330"
+      role="img" aria-labelledby="backlog-alt"></canvas></div>
+    <p id="backlog-alt" class="vh" aria-live="polite"></p>
+    <p class="note">
+      Three series, each labelled on the chart and drawn with its own line style, so the picture
+      reads without colour. A queue that climbs and never comes back down is a stage past its
+      capacity &mdash; the same shape as the Performance&nbsp;Knee simulator&rsquo;s response-time
+      curve, in a release pipeline instead of a server.
+    </p>
+  </section>
+</div>
+
+<!-- ======================= THE FIVE EVENTS ======================= -->
+<section class="panel" aria-labelledby="h-ledger">
+  <h2 id="h-ledger">The defect ledger &mdash; five separate events</h2>
+  <div class="canvas-wrap"><canvas id="c-ledger" width="1500" height="430"
+    role="img" aria-labelledby="ledger-alt"></canvas></div>
+  <p id="ledger-alt" class="vh" aria-live="polite"></p>
+  <p class="note">
+    A defect is tracked as five events, never collapsed into one: <strong>introduced</strong>,
+    <strong>detected before release</strong>, <strong>exposed in production</strong>,
+    <strong>detected after release</strong>, <strong>service restored</strong>. Two rows sit beside
+    them because collapsing those would hide a policy: the tests&rsquo; <em>signal</em> is recorded
+    separately from the gate&rsquo;s <em>block</em> (so an advisory policy is visible as a signal
+    that shipped anyway), and a defect removed by someone else&rsquo;s rollback is counted as
+    <em>removed</em>, not restored &mdash; nobody ever knew it was there.
+  </p>
+</section>
+
+<!-- ======================= THE CAPACITY SWEEP ======================= -->
+<section class="panel" aria-labelledby="h-sweep">
+  <h2 id="h-sweep">Hold capacity fixed, raise the arrival rate</h2>
+  <p>
+    Step&nbsp;4 of the experiment, measured rather than asserted: the same policies, the same two
+    build&ndash;test lanes and one release slot, run independently at each arrival rate on the chart.
+    Every point is a full seeded simulation.
+  </p>
+  <div class="btn-row" style="margin-top:0.4rem">
+    <button type="button" class="act primary" id="btn-sweep">Run the sweep</button>
+    <span class="mono" id="sweep-status" style="align-self:center;color:var(--muted);font-size:0.9rem"></span>
+  </div>
+  <div class="canvas-wrap" style="margin-top:0.8rem"><canvas id="c-sweep" width="1500" height="400"
+    role="img" aria-labelledby="sweep-alt"></canvas></div>
+  <p id="sweep-alt" class="vh" aria-live="polite"></p>
+  <p class="note">
+    The sweep holds everything except the arrival rate, including the seed offsets, so the curve is
+    a function of load alone. A pipeline has <em>two</em> capacities &mdash; the build&ndash;test
+    lanes and the release channel &mdash; and whichever one the policies make scarcer is the one that
+    bends first. A one-hour canary soak at one change per release caps the factory near twenty-four
+    deployments a day however fast the tests run.
+  </p>
+</section>
+
+<!-- ======================= EXPERIMENTS ======================= -->
+<details class="panel" id="experiments">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Classroom experiments</h2></summary>
+
+  <h3>1 &middot; Thorough tests, required checks, immediate deployment</h3>
+  <p>
+    Load preset <strong>1</strong> and run to about thirty days. Changes arrive at
+    forty-four a day; a thorough suite takes two and a half hours and there are two lanes, so the
+    stage can serve about nineteen a day.
+  </p>
+  <p><button type="button" class="act" data-preset="step-1-thorough">Load preset 1</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      The build&ndash;test queue climbs without bound and the mean lead time runs into
+      <em>weeks</em>. No single change is slow; the <em>queue</em> is. Utilisation reads above two,
+      and the state badge says <span class="state bad"><span class="glyph">&#9650;</span>
+      over capacity</span> in words as well as colour.
+    </p>
+    <p>
+      Notice what the Four Keys say about this factory. Change failure rate is <em>low</em> and time
+      to restore is fast. Two of the four measures look healthy while the organisation cannot ship.
+    </p>
+  </details>
+
+  <h3>2 &middot; Reduce the test depth</h3>
+  <p>
+    Preset <strong>2</strong> changes one control: standard tests instead of thorough. Everything
+    else is identical, and the seed is the same, so the same changes arrive carrying the same
+    defects.
+  </p>
+  <p><button type="button" class="act" data-preset="step-2-shallower">Load preset 2</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      Lead time collapses from weeks to hours and deployment frequency triples: the stage now serves
+      about sixty-nine changes a day against forty-four arriving. That is the whole case for a
+      shallower suite.
+    </p>
+    <p>
+      Now read the ledger. The signal rate falls from about 59% of defects to about 45%, so more
+      defects reach users &mdash; and <strong>requests exposed per day rises by roughly an order of
+      magnitude</strong>. The cost did not disappear; it moved from the pipeline to production,
+      where the people paying it are users rather than engineers.
+    </p>
+    <p>
+      The honest reading of step&nbsp;1 versus step&nbsp;2 is not &ldquo;shallower is better&rdquo;.
+      It is that the two configurations spend the same risk in different currencies.
+    </p>
+  </details>
+
+  <h3>3 &middot; Enable the canary</h3>
+  <p>
+    Preset <strong>3</strong> changes one control again: a canary at five per cent of traffic,
+    soaked for an hour, before the whole fleet.
+  </p>
+  <p><button type="button" class="act" data-preset="step-3-canary">Load preset 3</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      Four things move, and they do not move together.
+    </p>
+    <ul>
+      <li><strong>Change failure rate barely changes.</strong> A canary does not stop a deployment
+        being classified as failed &mdash; real users were exposed, and the rollback happened.</li>
+      <li><strong>Median exposure per failed deployment falls by a large factor</strong> &mdash;
+        roughly the traffic share. This is the consequence a canary actually buys, and it is why the
+        fifth measure is on the page at all.</li>
+      <li><strong>Lead time rises</strong>, because every release now holds the release channel for
+        the length of its soak.</li>
+      <li><strong>Some defects are caught inside the soak and some are not.</strong> The ledger
+        splits them: <em>caught in the canary</em> versus <em>reached the whole fleet</em>.</li>
+    </ul>
+    <p>
+      Nothing in the model says a canary helps. Detection in production is a Poisson process whose
+      rate is <span class="mono">affected requests/hour &times; distinguishability &times;
+      monitoring quality</span>; a canary lowers the first term by the traffic share, so the chance
+      of catching a defect inside the soak is
+      <span class="mono">1 &minus; e<sup>&minus;rate &times; soak</sup></span>. Try the
+      <strong>Obvious defects only</strong> and <strong>Rare defects, quiet service</strong> presets
+      back to back: the first makes the canary look like a triumph, the second like a tax. Both are
+      the same code.
+    </p>
+  </details>
+
+  <h3>4 &middot; Hold capacity fixed and raise the arrival rate</h3>
+  <p>
+    Preset <strong>4</strong> keeps step&nbsp;3&rsquo;s policies and raises arrivals to a hundred and
+    twenty changes a day. Then run the sweep above.
+  </p>
+  <p><button type="button" class="act" data-preset="step-4-knee">Load preset 4</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      Lead time does not rise in proportion to the load. It is flat, then it bends, then it runs
+      away &mdash; <strong>a release pipeline develops its own performance knee</strong>, for exactly
+      the reason a server does: arrivals are random, service takes time, and a queue in front of a
+      stage near its capacity grows faster than the load that feeds it.
+    </p>
+    <p>
+      This is the bridge to the Performance&nbsp;Knee simulator and to the agentic-software-factory
+      lecture. If an agent fleet raises the arrival rate tenfold and the pipeline&rsquo;s capacity is
+      unchanged, the fleet has not made the organisation faster. It has made the queue longer.
+    </p>
+  </details>
+
+  <h3>5 &middot; Make the checks advisory</h3>
+  <p><button type="button" class="act" data-preset="advisory">Load the advisory preset</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      The ledger now shows a gap between two rows that were previously identical: the tests
+      <em>signalled</em> a defect and the change <strong>shipped anyway</strong>. That gap is the
+      policy. Required checks close it and charge for it in lead time &mdash; including on the
+      changes that were never broken, because a flaky suite blocks those too.
+    </p>
+  </details>
+
+  <h3>6 &middot; Ten changes per release</h3>
+  <p><button type="button" class="act" data-preset="big-batch">Load the large-batch preset</button></p>
+  <details><summary>What to look for</summary>
+    <p>
+      Deployment frequency falls, lead time rises &mdash; and the change failure rate rises with
+      them, because the rate is computed <em>per deployment</em>. A release carrying ten changes
+      fails if any one of them does. The same defects, the same tests, a worse-looking metric: the
+      denominator moved.
+    </p>
+    <p>
+      Blue-green makes the batch cost concrete. A verification failure holds the whole batch, so one
+      bad change delays nine good ones.
+    </p>
+  </details>
+</details>
+
+<!-- ======================= ADVANCED ======================= -->
+<details class="panel" id="advanced">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Advanced controls</h2></summary>
+  <p class="note" style="margin-top:0.6rem">
+    Everything the five primary controls hold fixed. Changing any of these resets the factory.
+  </p>
+  <div class="ctl-row" style="margin-top:0.9rem">
+    <div class="ctl triple">
+      <label for="seed">Seed</label>
+      <span></span>
+      <input type="number" id="seed" min="0" step="1" value="30861">
+    </div>
+    <div class="ctl triple">
+      <label for="lanes">Build + test lanes</label>
+      <input type="range" id="lanes-range" min="1" max="24" step="1" value="2" aria-label="Lanes, slider">
+      <input type="number" id="lanes" min="1" max="24" step="1" value="2">
+    </div>
+    <div class="ctl triple">
+      <label for="slots">Release slots</label>
+      <input type="range" id="slots-range" min="1" max="12" step="1" value="1" aria-label="Release slots, slider">
+      <input type="number" id="slots" min="1" max="12" step="1" value="1">
+    </div>
+    <div class="ctl triple">
+      <label for="defect">Defect rate <span class="unit">per change</span></label>
+      <input type="range" id="defect-range" min="0" max="100" step="1" value="18" aria-label="Defect rate, slider">
+      <input type="number" id="defect" min="0" max="100" step="1" value="18">
+    </div>
+    <div class="ctl triple">
+      <label for="traffic">Traffic <span class="unit">requests/hour</span></label>
+      <input type="range" id="traffic-range" min="0" max="60" step="1" value="43" aria-label="Traffic, logarithmic slider">
+      <input type="number" id="traffic" min="0" max="5000000" step="100" value="20000">
+    </div>
+    <div class="ctl triple">
+      <label for="monitor">Monitoring quality</label>
+      <input type="range" id="monitor-range" min="0" max="100" step="1" value="70" aria-label="Monitoring quality, slider">
+      <input type="number" id="monitor" min="0" max="100" step="1" value="70">
+    </div>
+    <div class="ctl triple">
+      <label for="canaryfrac">Canary traffic share <span class="unit">%</span></label>
+      <input type="range" id="canaryfrac-range" min="1" max="100" step="1" value="5" aria-label="Canary share, slider">
+      <input type="number" id="canaryfrac" min="1" max="100" step="1" value="5">
+    </div>
+    <div class="ctl triple">
+      <label for="soak">Canary soak <span class="unit">hours</span></label>
+      <input type="range" id="soak-range" min="0" max="48" step="1" value="1" aria-label="Canary soak hours, slider">
+      <input type="number" id="soak" min="0" max="48" step="0.25" value="1">
+    </div>
+    <div class="ctl triple">
+      <label for="verify">Blue-green verification <span class="unit">hours</span></label>
+      <input type="range" id="verify-range" min="0" max="24" step="1" value="0.5" aria-label="Verification hours, slider">
+      <input type="number" id="verify" min="0" max="24" step="0.25" value="0.5">
+    </div>
+    <div class="ctl triple">
+      <label for="synthetic">Synthetic verification requests</label>
+      <span></span>
+      <input type="number" id="synthetic" min="0" max="1000000" step="100" value="2000">
+    </div>
+    <div class="ctl triple">
+      <label for="flake">Flaky test rate <span class="unit">%</span></label>
+      <input type="range" id="flake-range" min="0" max="50" step="1" value="4" aria-label="Flaky rate, slider">
+      <input type="number" id="flake" min="0" max="50" step="1" value="4">
+    </div>
+    <div class="ctl triple">
+      <label for="rework">Rework <span class="unit">hours</span></label>
+      <input type="range" id="rework-range" min="0" max="72" step="1" value="4" aria-label="Rework hours, slider">
+      <input type="number" id="rework" min="0" max="72" step="0.5" value="4">
+    </div>
+    <div class="ctl triple">
+      <label for="fixprob">Rework fixes the defect <span class="unit">%</span></label>
+      <input type="range" id="fixprob-range" min="0" max="100" step="1" value="90" aria-label="Fix probability, slider">
+      <input type="number" id="fixprob" min="0" max="100" step="1" value="90">
+    </div>
+    <div class="ctl triple">
+      <label for="batchwait">Batch wait before shipping anyway <span class="unit">hours</span></label>
+      <input type="range" id="batchwait-range" min="1" max="72" step="1" value="8" aria-label="Batch max wait, slider">
+      <input type="number" id="batchwait" min="0.25" max="72" step="0.25" value="8">
+    </div>
+    <div class="ctl triple">
+      <label for="rollback">Rollback <span class="unit">hours</span></label>
+      <input type="range" id="rollback-range" min="0" max="24" step="1" value="0.4" aria-label="Rollback hours, slider">
+      <input type="number" id="rollback" min="0" max="24" step="0.05" value="0.4">
+    </div>
+    <div class="ctl triple">
+      <label for="warmup">Warm-up excluded from the metrics <span class="unit">days</span></label>
+      <input type="range" id="warmup-range" min="0" max="60" step="1" value="0" aria-label="Warm-up days, slider">
+      <input type="number" id="warmup" min="0" max="60" step="1" value="0">
+    </div>
+    <div class="ctl triple">
+      <label id="lab-mix">Defect population</label>
+      <div class="seg" role="group" aria-labelledby="lab-mix" id="seg-mix"></div>
+      <span></span>
+    </div>
+    <div class="ctl triple">
+      <label for="reduced">Reduce motion <span class="unit">fewer redraws</span></label>
+      <span></span>
+      <input type="checkbox" id="reduced" style="width:auto;justify-self:start">
+    </div>
+  </div>
+  <p class="note">
+    <strong>Warm-up</strong> excludes the first days from every aggregate. It is zero by default and
+    that is deliberate: a factory past its capacity has no steady state to warm up <em>into</em>,
+    and hiding the transient would hide the finding. Raise it when you want a settled measurement of
+    a configuration that settles.
+  </p>
+</details>
+
+<!-- ======================= ABOUT ======================= -->
+<details class="panel" id="help">
+  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">About the model, the engine, and this page</h2></summary>
+
+  <h3>What the model is</h3>
+  <p>
+    A seeded <strong>discrete-event simulation</strong> of one delivery pipeline. Changes arrive as a
+    Poisson process; each is tested in one of a fixed number of lanes; an admission policy decides
+    whether a failing change proceeds; admitted changes are batched into releases; a release strategy
+    decides how the batch meets users; production monitoring may notice a defect, after which the
+    release is rolled back and its changes return through the pipeline.
+  </p>
+  <p>
+    Every number on this page comes from that one engine. Nothing is a lookup table, and no outcome
+    is predetermined &mdash; which is why two policies can swap places when you change the defect
+    population or the traffic volume.
+  </p>
+
+  <h3>The five events, and why they are kept apart</h3>
+  <p>
+    A defect is an object with its own lifecycle. Collapsing any two of these would make a policy
+    question unanswerable:
+  </p>
+  <table class="model">
+    <tr><th>Event</th><th>Fires when</th><th>What it lets you ask</th></tr>
+    <tr><td>1 &middot; introduced</td><td>a defective change is committed</td>
+      <td>how many defects does this team produce?</td></tr>
+    <tr><td>2 &middot; detected before release</td>
+      <td>a pre-production control found it <em>and the change did not ship</em></td>
+      <td>what did the gate actually keep out?</td></tr>
+    <tr><td>3 &middot; exposed in production</td><td>the change first served real traffic</td>
+      <td>what reached users, whatever the tests said?</td></tr>
+    <tr><td>4 &middot; detected after release</td><td>monitoring or a user report noticed it</td>
+      <td>what did we find, and how fast?</td></tr>
+    <tr><td>5 &middot; service restored</td><td>the rollback finished</td>
+      <td>how long did users carry it?</td></tr>
+    <tr><td><em>signalled by tests</em></td><td>the suite failed on this defect</td>
+      <td>the <em>signal</em>, separate from the <em>block</em> &mdash; which is how an advisory
+      policy becomes measurable</td></tr>
+    <tr><td><em>removed from production</em></td>
+      <td>a rollback triggered by a <em>different</em> defect took it away</td>
+      <td>not a restoration: nobody knew it was there</td></tr>
+  </table>
+  <p>
+    Events 2 and 3 are mutually exclusive. Event 4 implies event 3. Event 5 implies event 4.
+    A defect can be exposed and <strong>never detected</strong>, in which case it is never restored
+    and never appears in the change failure rate. The test suite checks every one of these on every
+    release strategy.
+  </p>
+
+  <h3>How a defect behaves</h3>
+  <p>
+    Each defect draws three attributes from a four-class mixture at the moment it is committed,
+    independently of every policy. The classes are teaching-scale assumptions, not measurements of
+    any real population, and they are printed here so you can see what the simulator believes:
+  </p>
+  <table class="model" id="class-table">
+    <tr><th>Class</th><th class="num">Share</th><th class="num">Test detectability</th>
+      <th class="num">Manifests on</th><th class="num">Distinguishable</th><th>Character</th></tr>
+  </table>
+  <p>
+    <strong>Test detectability</strong> is the probability a <em>fully</em> thorough suite signals
+    it. The configured depth multiplies that by a coverage factor &mdash; and the deepest suite's
+    factor is <span class="mono">0.92</span>, not one, so <strong>thorough testing never eliminates
+    all defects</strong>. There is no branch anywhere that sets the escape probability to zero.
+  </p>
+
+  <h3>Detection in production</h3>
+  <p>
+    Detection is a Poisson process. Its rate is built from affected traffic, not from the release
+    strategy:
+  </p>
+  <pre>affected/hour = requests/hour &times; exposed fraction &times; manifest rate
+
+rate = affected/hour &times; distinguishability &times; monitoring quality   (instruments)
+     + affected/hour &times; reports per affected request                  (bug reports)</pre>
+  <p>
+    So the chance of catching a defect inside a canary soak of length
+    <span class="mono">S</span> is <span class="mono">1 &minus; e<sup>&minus;rate&times;S</sup></span>.
+    A canary enters only through the <em>exposed fraction</em>. That is the whole of its
+    effect, and it is why the answer depends on the defect: at twenty thousand requests an hour a
+    defect manifesting on 30% of them is caught in the soak essentially always, and one manifesting
+    on 1 request in 100,000 essentially never. <strong>Nothing hard-codes that a canary improves
+    the change failure rate.</strong>
+  </p>
+  <p>
+    The bug-report channel is proportional to <em>affected</em> users rather than a flat background
+    rate, because a user can only report what they experienced. A flat rate would quietly guarantee
+    that every defect is eventually found, which would delete the &ldquo;exposed but never
+    detected&rdquo; case the model exists to show.
+  </p>
+  <p>
+    Blue-green verification uses the <em>same</em> defect attributes against a fixed number of
+    synthetic requests, so it misses a rare defect for the same reason a canary does &mdash; not
+    enough requests exercise it. What it does differently is expose nobody while it looks.
+  </p>
+
+  <h3>How the four measures are computed</h3>
+  <table class="model">
+    <tr><th>Measure</th><th>Definition used here</th></tr>
+    <tr><td>Deployment frequency</td>
+      <td>releases that reached real users, per measured day. A blue-green release aborted at
+        verification never reached users, so it is not a deployment.</td></tr>
+    <tr><td>Lead time for changes</td>
+      <td>first commit to first arrival in production, <em>including</em> any rework. One
+        observation per change: a rolled-back change shipped again does not produce a second, or
+        the mean would depend on how often the factory fails.</td></tr>
+    <tr><td>Change failure rate</td>
+      <td>failed deployments &divide; <strong>deployments</strong> &mdash; not changes. A deployment
+        fails if a defect it carries is <em>detected</em> in production.</td></tr>
+    <tr><td>Time to restore service</td>
+      <td>detection to rollback complete. The clock starts when somebody <em>noticed</em>, not when
+        the defect was exposed.</td></tr>
+    <tr><td>User impact</td>
+      <td>requests served by a defective release while it is live, integrated over the exposed
+        traffic share. Reported as a total, a per-day rate, and the <em>median per failed
+        deployment</em> &mdash; the last because the total is dominated by the long tail of
+        slowly-detected defects, so a canary moves the median far more than the mean.</td></tr>
+  </table>
+
+  <h3>What is deliberately not modelled</h3>
+  <ul>
+    <li><strong>Feature flags.</strong> They decouple deploy from release, which would need a
+      separate exposure control; the 3-1 lecture covers them and this instrument does not.</li>
+    <li><strong>Partial rollback.</strong> A rollback here reverts the whole batch.</li>
+    <li><strong>Supersession.</strong> A later release does not fix an earlier defect, so an
+      undetected defect keeps accruing exposure until somebody finds it. That is deliberate: it is
+      the honest answer, and it is where most of the user impact comes from.</li>
+    <li><strong>Dependencies between changes</strong>, review time, and anything about whether the
+      change was worth making.</li>
+  </ul>
+
+  <h3>Reproducibility</h3>
+  <p>
+    The engine is a pure module published as <span class="mono">window.ReleaseFactory</span> with no
+    reference to the page. It uses six independent seeded generators &mdash; arrivals, defect
+    attributes, rework regressions, test verdicts, durations, production detection &mdash; and no
+    unseeded random source and no clock, so the same seed and parameters replay the same event trace
+    exactly, and switching one policy leaves the others&rsquo; draws where they were. Its test suite
+    extracts this element from the published file, so the tested code and the code you are running
+    are the same bytes.
+  </p>
+  <p>
+    <button type="button" class="act" id="btn-selftest">Run the in-page self-tests</button>
+  </p>
+  <p class="selftest-out" id="selftest-out" aria-live="polite"></p>
+
+  <h3>Licence</h3>
+  <p>
+    Teaching materials &copy; James C. Davis, licensed
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. One file, no dependencies,
+    no network request; <strong>Download HTML</strong> hands you this same artifact.
+  </p>
+</details>
+
 </main>
 
 <footer>
