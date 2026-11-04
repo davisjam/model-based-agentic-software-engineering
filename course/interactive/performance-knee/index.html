@@ -1652,16 +1652,20 @@ footer {
       return sim.eventCount + ' events, ' + sim.counters.completions + ' completions';
     });
     check('Event trace is independent of how time is chunked', function () {
-      function trace(chunk) {
+      /* Horizons are computed as exact fractions of the SAME end time (20 s) rather than by
+         accumulating a step, so the two runs are compared over an identical interval. Summing a
+         float step would leave the fine-grained run short of 20 s and the test would be measuring
+         its own arithmetic. */
+      function trace(steps) {
         var sim = createSimulation({ arrivalRate: 90, serviceRate: 100, seed: 30861 });
         var out = [];
-        for (var t = chunk; t <= 20; t += chunk) {
-          var r = advanceSimulation(sim, { untilTime: t, trace: true });
+        for (var k = 1; k <= steps; k += 1) {
+          var r = advanceSimulation(sim, { untilTime: 20 * k / steps, trace: true });
           for (var i = 0; i < r.trace.length; i += 1) out.push(r.trace[i].kind + '@' + r.trace[i].time);
         }
         return out;
       }
-      var a = trace(20), b = trace(0.05);
+      var a = trace(1), b = trace(400);
       assert(a.length === b.length, 'lengths differ: ' + a.length + ' vs ' + b.length);
       for (var i = 0; i < a.length; i += 1) assert(a[i] === b[i], 'diverged at event ' + i);
       return a.length + ' events identical at two chunk sizes';
