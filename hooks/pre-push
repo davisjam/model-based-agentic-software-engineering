@@ -149,7 +149,16 @@ SCOPES = {
     "handbook": ("handbook/", "tools/cover_assets.py", "latex/", "tools/latex_build.py", "tools/pdf_structure.py",
                  "tools/install_texlive_ci.sh", "tools/check_print_toolchain.py", "book/references.bib", "book/fonts/", "book/typst/fonts/",
                  "hooks/", ".github/workflows/pages.yml"),
-    "workbench": ("workbench/",),
+    # The workbench scope is NOT just workbench/. `workbench/test/gate-reachability.test.ts` is the
+    # test that polices the WIRING of the other two runners, and it reads three files that live
+    # outside this directory: `.github/workflows/pages.yml` (PUBLISH_RUNNER), `hooks/pre-push`
+    # (PRE_PUSH_RUNNER), and the root `package.json`. With the scope keyed on `workbench/` alone, a
+    # push that edited ONLY those files skipped the one gate that checks them — observed 261104, a
+    # push adding a workflow job printed "workbench gate SKIPPED" and shipped the workflow change
+    # unchecked by its own reachability test. Same failure class the course scope's note below
+    # records: hold the join where its INPUTS live, not where the test file happens to sit.
+    # `book` and `handbook` already declare pages.yml and hooks/ for the same reason.
+    "workbench": ("workbench/", ".github/workflows/pages.yml", "hooks/", "package.json"),
     # The landers staple is DERIVED from course/lectures/**/index.md, but until 261015 its only
     # refresh path was a side effect of `handbook/scripts/build.py pdf` under the handbook scope.
     # A lander-only push therefore left dist/course-landers-stapled.md stale with no gate noticing
