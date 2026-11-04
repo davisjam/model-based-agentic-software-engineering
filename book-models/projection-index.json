@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 859,
+    "total_sites": 861,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 517,
+      "book-web": 519,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -101,7 +101,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 49
+            "occ": 57
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -174,6 +174,10 @@
           {
             "file": "book/web/docs/appendix-b-put-authority-where-legible.md",
             "occ": 1
+          },
+          {
+            "file": "book/web/docs/appendix-d-a-worked-factory-workflow.md",
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-d-from-drifted-wiki-to-trusted-model.md",
@@ -253,7 +257,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 83
+            "occ": 86
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -267,7 +271,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 61
+            "occ": 62
           }
         ]
       },
@@ -1171,7 +1175,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 61
+            "occ": 62
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1179,7 +1183,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 67
+            "occ": 66
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -1352,6 +1356,10 @@
           {
             "file": "book/web/docs/appendix-crazy-ideas.md",
             "occ": 2
+          },
+          {
+            "file": "book/web/docs/appendix-d-a-worked-factory-workflow.md",
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-d-brownfield-progress.md",
@@ -1531,7 +1539,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 306
+            "occ": 308
           },
           {
             "file": "book/web/docs/index.md",
@@ -1539,7 +1547,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1573,7 +1581,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 127
           }
         ]
       },

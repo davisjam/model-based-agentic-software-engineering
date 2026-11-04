@@ -140,11 +140,15 @@ Three elements organize this environment: a record of the work to be done, struc
 
 These elements serve a larger purpose. The engineer must have a sufficiently concrete vision of the intended system to direct development and assess its results. Without that understanding, greater implementation capacity may simply produce more software whose correctness or usefulness cannot be established.
 
+The example artifacts described below, including the governance document, the dispatch brief, the epic template, and the design-document template, are available as starter templates in the [downloads directory](https://github.com/davisjam/model-based-agentic-software-engineering/tree/main/downloads).
+
 ### Organizing the work
 
 The engineer maintains a strategy document recording near-term priorities, longer-term goals, and work that must be completed before the next deployment. The document functions as a work queue. The engineer can ask the orchestrating agent to update it, rather than editing the document directly.
 
 When a substantial change is selected, a planning agent creates an epic, a structured work order describing what should be accomplished. An epic begins with the intended change but elaborates it into an engineering plan. It identifies relevant system models, proposes new models where necessary, describes affected components and types, and specifies how the result will be validated. It also decomposes implementation into phases, records dependencies between them, and identifies work that can proceed concurrently.
+
+The epic records the management decision and execution plan, while a separate design document develops the engineering argument: the intended structure, invariants, failure modes, observability, and controls needed to preserve the system's obligations.
 
 The template matters because it makes recurring engineering decisions explicit. Without it, an agent might produce a plausible implementation while neglecting the system's architecture, existing obligations, or evidence of correctness. The template requires these matters to be considered before implementation begins.
 
@@ -157,6 +161,10 @@ The work order also establishes a Definition of Done. A separate agent examines 
 ### Making the process reliable
 
 A process described in natural language is useful, but an agent may occasionally neglect a step. This becomes consequential when the same process is executed thousands of times. The factory therefore uses lifecycle hooks to automate checks and reinforce recurring procedures.
+
+The factory also distinguishes instructions that apply to every agent from those specific to one assignment. A governance document records durable engineering principles and project rules. Each dispatch brief supplies the selected agent with its task, scope, relevant context, verification procedure, and acceptance criteria. The brief is assembled from a template and checked before dispatch. If required information is missing or inconsistent, the agent is not launched.
+
+The governance document separates portable engineering principles from rules specific to the repository. For example, a general principle may discourage bypassing a project's established abstractions, while a project rule prohibits direct access to a particular document-processing library. A corresponding lint checks for prohibited usage. This arrangement gives the principle a concrete realization and makes the project rule enforceable without relying solely on the agent's interpretation.
 
 Git hooks provide a familiar example. A pre-push hook can run inexpensive checks before allowing a push, while a commit-message hook can require traceability information. These checks move selected obligations from the developer's memory into executable controls.
 
@@ -206,7 +214,7 @@ Act II began with delegation: deciding what work an agent may perform and what r
 
 An agentic software factory brings these activities together as a production system. Process design determines how work proceeds around capable agents. Tolerance determines which properties their work must preserve. Both require engineering judgment, and both can be improved as the organization learns.
 
-The DocAble example shows how this learning can become part of the factory itself: a recurring failure motivates a new model, procedure, or control that changes how subsequent agents work.
+In DocAble, these changes accumulate in the factory's models, templates, and controls, allowing subsequent agents to benefit from engineering decisions made during earlier work.
 
 As agents improve, the process required to direct them may change substantially. They may need less decomposition, recover context more effectively, or perform tasks that previously required close supervision. The obligations of the resulting software do not disappear with those improvements. Engineers must still determine what variation is acceptable and what evidence justifies admitting a change.
 
