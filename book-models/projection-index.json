@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 861,
+    "total_sites": 862,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 519,
+      "book-web": 520,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -264,6 +264,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/part-2-intro.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/part-3-intro.md",
             "occ": 3
           }
@@ -271,7 +275,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 62
+            "occ": 63
           }
         ]
       },
@@ -2401,7 +2405,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-3-intro.md",
