@@ -455,6 +455,19 @@ re-deriving these, so they live here:**
     animated shapes 7 and 8, which had been deleted), and a **`custGeom` missing its `<a:rect>`**
     (slide 28). Check both directly — they are two cheap scans:
     `set(spTgt spids) - set(cNvPr ids)` must be empty, and every `custGeom` must carry `rect` + `pathLst`.
+  - **A shape id on a slide is `p:cNvPr` — PRESENTATIONML. Get this wrong and the scan above inverts
+    into a false alarm on every animated deck you own.** The namespaces are
+    `p = http://schemas.openxmlformats.org/presentationml/2006/main` (both `spTgt` AND the shape
+    `cNvPr`) and `a = .../drawingml/2006/main` (`custGeom`, `rect`, `pathLst`). `a:cNvPr` exists but
+    appears only inside charts, diagrams and some graphic frames, so a scan keyed on it alone finds
+    almost no shape ids and reports nearly every target as dangling. Take the UNION of both to be safe.
+    Measured 261104: `a:cNvPr` found **0** ids on a slide holding **29**, and the scan called **7 of 9**
+    Act III decks structurally broken — including six the author had personally opened in PowerPoint
+    and confirmed clean. The orchestrator wrote that scan **from the line above**, which named
+    `cNvPr` without its namespace; the guidance was followed exactly and still produced the wrong
+    answer. **So assert the precondition and the scan cannot lie to you:**
+    `assert ids, "no shape ids found — wrong namespace"`. The membership of the failing set is the
+    other tell: when a scan condemns work that was independently verified, suspect the scan.
   - **Prefer the surgical fix.** Excise only the dangling effects, not the whole timing block; the rest
     of the author's build is legitimate and unrecoverable if dropped.
 
