@@ -31,10 +31,11 @@ labs:
     about: >
       The restructuring decision for the laboratory-reservation requirement. One service is drawn
       three ways — the structure as it stands, a modular monolith, and the policies extracted into
-      separately deployed services — and you choose the change scenario, the expected number and kind
-      of future changes, how many teams own booking policy, and whether laboratory changes must ship
-      on their own. Two cost controls move independently: an implementation multiplier down to a
-      hundredth, and a validation-and-integration level. Commit a prediction for three conditions
+      separately deployed services — and you choose how many future changes to expect and whether
+      laboratory changes must ship on their own. Two cost controls move independently: an
+      implementation multiplier down to a hundredth, and a validation-and-integration level. The
+      change scenario, the mix of future changes, and how many teams own booking policy are one
+      disclosure away, under Further investigation. Commit a prediction for three conditions
       before the page will show you a number, then watch what the discount does and does not do.
       Driving implementation to a hundredth moves the point at which modularizing repays from four
       future changes to one, and never makes extracting services preferable at any horizon; that
