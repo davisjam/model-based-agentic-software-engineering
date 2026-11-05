@@ -29,6 +29,26 @@ A presentation move may need no slide, one slide, or a sequence.
 
 The deck supports the talk; it does not determine its granularity.
 
+### Distinguish discovery, practice, and transfer
+
+An exercise should have one of three primary instructional purposes, and the purpose decides where it goes.
+
+| Purpose | Placement | Student work |
+|---|---|---|
+| Discovery | Before the complete explanation | Construct or revise an idea |
+| Practice | After explanation | Apply the newly established method |
+| Transfer | After one or more worked examples | Apply the method under changed conditions |
+
+A discovery exercise may ask students to identify failure modes before receiving a completed FMEA.
+A practice exercise may ask them to complete another FMEA row once the method has been demonstrated.
+A transfer exercise may ask them to apply failure analysis to an unfamiliar system.
+
+Do not move every exercise earlier merely to satisfy a problem-first preference.
+Match each placement to the intellectual work the exercise is meant to do.
+
+If an exercise asks students to reproduce an answer already on screen, either move it earlier or change
+the problem enough to require genuine application.
+
 ## Preserve visual continuity
 
 The audience has visual memory.
@@ -46,6 +66,29 @@ The audience should spend its attention on the new idea, not on reconstructing w
 
 This is the visual analogue of progressive density: establish a representation once, then make it do more work.
 
+## Preserve continuity of the investigation
+
+Visual continuity should carry continuity of reasoning.
+
+When a lecture uses a running system or problem, preserve the audience's knowledge of that system across movements.
+
+Before introducing a new concept, name what has changed:
+
+- a requirement;
+- an assumption;
+- an observation;
+- a failure;
+- a proposed design;
+- an engineering obligation.
+
+Prefer modifying an established system diagram over introducing an unrelated new diagram when the system itself has not changed.
+
+For example, a reservation-service diagram may first show application components, then reveal database access, then expose a concurrency failure, and finally annotate the enforcement mechanism.
+
+The audience should recognize the system while watching its engineering interpretation become more sophisticated.
+
+A new concept should not force the audience to reconstruct the whole problem, unless that reconstruction is itself the lesson.
+
 ## Use progressive disclosure when it reduces cognitive load
 
 Mayer's **segmenting** and **temporal contiguity** principles support revealing complex material in stages when the audience cannot usefully process the final state all at once.
@@ -62,6 +105,35 @@ Motion consumes attention and must earn it.
 
 When the deck will be distributed as PDF, ensure that essential information is available in the static artifact.
 Do not make understanding depend on an animation that disappears on export.
+
+## Treat interactive demonstrations as experiments
+
+An interactive simulation should support reasoning about a model, not animate a conclusion.
+
+For a teaching demonstration, establish:
+
+1. **Model.** What system or relationship does it represent?
+2. **Assumptions.** What has been simplified or excluded?
+3. **Prediction.** What should happen when a parameter changes?
+4. **Experiment.** Which parameter changes, and which stay fixed?
+5. **Observation.** What did the simulation produce?
+6. **Interpretation.** Does the result support the prediction?
+7. **Judgment.** What engineering decision follows?
+
+For example, a performance-knee simulator lets students vary arrival rate while holding service capacity fixed.
+The class predicts how response time will change, observes the simulated queue, and compares the result against the analytical model.
+
+Such a simulation does not establish the performance of an actual service.
+It supplies evidence about the behavior of the specified queueing model.
+Say so.
+
+The slide that introduces the demonstration should carry the engineering question and the experiment's essential parameters.
+It should not reproduce the simulator's interface.
+
+The speaker notes should preserve the experiment sequence, the expected observations, the important limitations, and a fallback if the demonstration cannot run.
+
+Do not add an interactive demonstration merely because one exists.
+It should replace or strengthen a specific instructional move.
 
 ## Let visual rhythm follow the argument
 
@@ -306,6 +378,49 @@ those are important to successful delivery.
 Speaker notes remain presenter-facing. Audience-essential information must still appear in the visible or
 otherwise accessible presentation artifact rather than existing only below the `=====` delimiter.
 
+### Preserve the instructional sequence in lecture notes
+
+For a substantive teaching slide, the notes should make the intended reasoning recoverable.
+
+Where applicable, identify:
+
+- **Prior belief.** What intuition or assumption does the audience bring?
+- **Question.** What should the instructor ask before revealing the answer?
+- **Discovery.** What should students learn from the evidence, example, or failed attempt?
+- **Transition.** What unresolved question motivates the next slide?
+
+These need not appear as four literal headings on every slide. They should be recoverable from the crib or
+the detailed speaking notes.
+
+Example:
+
+    2 minutes — *Show that CI evidence does not itself enforce admission.*
+
+    - Prior belief: failed CI prevents merging
+    - Ask: can a developer merge when CI reports failure?
+    - Reveal: CI reports failure, but branch protection is absent
+    - Discovery: evidence needs an enforcement mechanism
+    - Next: how do we control exposure after a change is admitted?
+
+    =====
+
+    Ask whether a failed CI job necessarily prevents merging.
+    Allow a few responses before revealing the branch-protection
+    configuration.
+
+    ANIMATE
+
+    The checks produce evidence. Branch protection determines
+    whether that evidence has authority over admission.
+
+The `ANIMATE` marker must correspond to an animation the slide actually contains, exactly as the format
+rules require.
+
+For an exercise, the notes should also give plausible student responses, the evidence the instructor should
+reveal, and how the debrief changes the audience's understanding.
+
+Do not script student responses as though they are guaranteed. Preserve alternative paths where reasonable.
+
 ## Citations and provenance
 
 Technical evidence should retain enough provenance to be trustworthy.
@@ -374,6 +489,66 @@ Design for actual presentation conditions, not the author's monitor.
 Accessibility is not a separate aesthetic.
 It is part of whether the deck successfully communicates.
 
+## Audit the timing of questions and answers
+
+A lecture deck is a temporal artifact.
+Information can be correct and still appear too early to support the intended learning experience.
+
+For each consequential question or activity, identify:
+
+1. The first point at which the question appears.
+2. The knowledge students hold at that point.
+3. The point at which students are expected to reason or commit to an answer.
+4. The point at which the answer or decisive evidence becomes visible.
+5. The subsequent application or revision of the result.
+
+Then check whether the answer has already appeared.
+
+Common failures:
+
+- A completed FMEA table precedes an exercise asking students to construct the same table.
+- A fault tree is fully revealed before students are asked to identify its branches.
+- A mechanism comparison declares the preferred alternative before students evaluate the alternatives.
+- A slide displays a question and its answer at the same time.
+- An exercise asks students to recall the preceding explanation rather than apply it to a new situation.
+
+These are not always defects.
+A worked example may properly precede a transfer exercise.
+The defect occurs when the intended intellectual work has already been performed for the students.
+
+### Prefer staged evidence
+
+For an investigation, consider this sequence:
+
+    QUESTION
+       |
+       v
+    INITIAL EVIDENCE
+       |
+       v
+    STUDENT PREDICTION
+       |
+       v
+    ADDITIONAL EVIDENCE
+       |
+       v
+    REVISED JUDGMENT
+       |
+       v
+    ENGINEERING PRINCIPLE
+
+The stages may occupy several slides or successive builds of one slide.
+
+Do not require an animation for every stage.
+Use separate slides when that better preserves the static artifact or simplifies delivery.
+
+The governing rule:
+
+> Students should receive the information they need to reason, but not the conclusion they are being asked
+> to construct.
+
+This is a stronger operational requirement than the general recommendation to use progressive disclosure.
+
 ## Audit the deck
 
 Review the deck as a sequence, not only as individual slides.
@@ -385,18 +560,54 @@ Does the visual sequence realize the talk's movements?
 
 ### Titles-only test
 
-Read only the slide titles.
-Is there an intelligible progression of questions and claims?
-Then perform the same test using only visible section-divider titles and
-commentaries. Do those dividers form a compressed version of the talk's
-reasoning, or merely a list of topics?
+Read only the slide titles, in order.
 
-Not every title must be an assertion, but a deck whose titles read only "Background / Method / Results / Discussion" is hiding most of its argument.
+First ask whether they form an intelligible sequence.
+Then ask whether they form a developing argument or investigation rather than a catalogue of subjects.
+
+A weak sequence can be perfectly well organized:
+
+    Workload characterization
+    Latency and throughput
+    Little's Law
+    Queueing theory
+    Profiling
+    Tracing
+
+A stronger teaching sequence exposes the questions that connect those concepts:
+
+    Why is the reservation service slow?
+    Are 100 requests per second always the same workload?
+    Can throughput tell us whether users are waiting?
+    Can Little's Law predict response time?
+    What happens as demand approaches capacity?
+    Where is the actual bottleneck?
+
+The second sequence makes the intellectual dependencies visible.
+
+Neither extreme is the rule.
+Do not require every title to be a question — once a conclusion has been established, an assertion title is usually stronger.
+Do not require every title to be an assertion either; a deck whose titles read only "Background / Method / Results / Discussion" is hiding most of its argument.
+
+The test is whether the titles reveal how the audience's understanding develops.
+
+Then run the same test on the visible section-divider titles and commentaries.
+Those dividers should form a compressed account of the talk's reasoning, not a list of its subject categories.
+
+### Question-timing test
+
+For every consequential question or activity, does the audience get the chance to reason before the deck
+shows the answer? Run the full timing audit above; this test is its one-line form.
 
 ### Continuity test
 
 Are recurring concepts named and represented consistently?
 Does the audience have to relearn diagrams unnecessarily?
+
+### Investigation test
+
+Does the running system or problem survive across movements, with each new concept changing a requirement,
+assumption, observation, failure, design, or obligation the audience already holds?
 
 ### Build test
 

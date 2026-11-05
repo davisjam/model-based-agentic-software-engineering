@@ -48,6 +48,80 @@ Ask of each major point:
 
 Organize by logical dependency rather than by the chronology in which you discovered the material.
 
+## Instructional causality
+
+A logically ordered collection of explanations is not yet a teaching sequence.
+
+For a lecture, distinguish **logical dependency** from **instructional causality**.
+Logical dependency asks which concepts must be understood before another concept can be explained.
+Instructional causality asks why the audience should need that concept at this point in the talk.
+
+A sequence can satisfy logical dependency and still leave the audience with no reason to care:
+
+    Workload characterization
+    Little's Law
+    Queueing theory
+    Profiling
+    Tracing
+
+Each explanation may change what the audience knows.
+The sequence still never establishes why any of it was needed.
+
+A useful lecture establishes an engineering problem, lets the audience reason about it, introduces the knowledge that resolves it, then uses the resolution to expose the next problem.
+It repeats that cycle:
+
+    The service becomes slow.
+        |
+        v
+    What workload does it face?
+        |
+        v
+    A workload model describes demand.
+        |
+        v
+    Can we predict response time?
+        |
+        v
+    Little's Law is insufficient by itself.
+        |
+        v
+    A queueing model introduces capacity.
+        |
+        v
+    Where is the actual bottleneck?
+        |
+        v
+    Profiling and tracing provide evidence.
+
+These concepts are not merely arranged in a sensible order.
+Each one becomes necessary because the preceding investigation exposed a limit on what the audience could explain or decide.
+
+Before introducing a substantial new concept, ask:
+
+1. What question or difficulty makes this concept useful?
+2. Has the audience encountered that question?
+3. What can the audience now explain or decide that it could not before?
+4. What remains unresolved after introducing the concept?
+
+Not every definition needs an elaborate motivating problem.
+Establish basic vocabulary directly when it is a prerequisite for productive reasoning.
+The requirement governs the major intellectual moves of the talk.
+
+A lecture should develop an investigation rather than deliver an inventory of correct facts.
+
+### The three governing tests
+
+Three questions carry most of the instructional discipline in this stack.
+Apply them at the level each one names, and treat a failure as a defect at that level.
+
+- **Talk level — need.** Why does the audience need this concept now, and what can they do with it that they could not do before?
+- **Deck level — timing.** Have students had an opportunity to reason about the problem before the presentation supplies the answer?
+- **Prerequisite safeguard — productivity.** Do students possess enough knowledge to make that reasoning productive?
+
+The first governs the sequence of concepts, developed above.
+The second governs where questions and answers appear in the realized deck; see `deck.md`.
+The third bounds the first two, and is easy to violate while obeying them; see `presentation-types.md`.
+
 ## Divide the talk into movements
 
 A long talk should contain a small number of meaningful **movements**: portions of the talk in which the audience's model changes in a coherent way.
@@ -133,6 +207,33 @@ Examples:
 
 This can produce useful reasoning time.
 Avoid dramatized withholding when the audience gains nothing from attempting the problem.
+
+#### Productive uncertainty
+
+When the learning objective involves engineering judgment, let the audience commit to a provisional judgment before supplying the complete explanation.
+
+Useful sequences include:
+
+- prediction → observation → explanation;
+- proposed solution → counterexample → revised solution;
+- incomplete evidence → diagnosis → additional evidence;
+- engineering choice → changed assumptions → reconsideration;
+- attempted model → limitation → stronger model.
+
+The purpose is not suspense.
+It exposes the assumptions the audience is reasoning under.
+
+For example, students may propose making retries safe by checking whether a request identifier already exists.
+A concurrent execution then shows that two requests can both observe the identifier as absent.
+That failure motivates atomic coordination.
+The audience should meet the inadequacy of its own proposal before receiving the complete protocol.
+
+Do not manufacture a puzzle when the audience lacks the prerequisites to reason productively.
+Establish enough vocabulary and context first.
+
+Do not withhold information merely to make an obvious fact look surprising.
+
+The test is whether the audience's attempted reasoning contributes to understanding the eventual explanation.
 
 ### Decompose
 
@@ -282,6 +383,9 @@ Before realizing the talk as a deck, ask:
 - Can the governing question or claim be stated in one sentence?
 - What should change in the audience's model during each movement?
 - Does each movement earn the next?
+- Does each major concept answer a question or difficulty the audience has already encountered?
+- Does the audience reason about a problem before the talk supplies its resolution?
+- Do they hold enough prerequisite knowledge to make that reasoning productive?
 - Are prerequisite concepts established before use?
 - Does the audience encounter evidence for consequential claims?
 - Are concrete anchors available for difficult abstractions?

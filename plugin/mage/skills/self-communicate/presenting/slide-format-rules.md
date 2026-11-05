@@ -56,6 +56,9 @@ doing.
 -   Use assertion titles by default for slides making technical claims.
 -   Use question titles when the audience is meant to reason before the
     answer is supplied.
+-   Do not state the answer in the title of a slide intended to elicit
+    that answer. For such a slide this rule outranks the
+    assertion-title default.
 -   Topic titles are acceptable for genuine orientation, reference,
     activity, or section slides.
 -   Avoid generic titles such as `Background`, `Results`,
@@ -542,23 +545,29 @@ For PowerPoint/O365 decks:
 
 - Use native **Sections** for major module/talk movements.
 - Give every section a meaningful label.
-- Keep section names consistent with the visible module outline and the movement vocabulary.
+- Keep section names consistent with the movement vocabulary, and with the visible module outline when the
+  deck has one.
 - Do not substitute divider slides for native Sections.
 - Do not require a divider slide merely because a Section begins.
 
-Opening (the first two slides):
+Opening:
 
-- **Lecture/module** — Slide 1 is the cover; Slide 2 is the module outline. The outline describes the
-  module's intellectual movements, not slide ranges or administrative agenda items.
+- **Lecture/module** —
+  - Slide 1 is the cover.
+  - The opening establishes a motivating engineering problem, question, or concrete phenomenon.
+  - A module outline follows when it is useful for orientation, and describes the module's intellectual
+    movements rather than slide ranges or administrative agenda items.
+  - Do not require the outline on Slide 2.
 - **Research talk** — Slide 1 is the cover; Slide 2 is the contributions slide. All principal contributions
   fit on that single slide, and state substantive knowledge/capability rather than sections of the
   presentation. Do not put a generic outline/agenda on slide 2.
 
 Audit:
 
-- Does slide 2 provide the correct orientation for the presentation type — for a lecture, where the
-  reasoning is going; for a research talk, what the work contributes?
-- Does the outline (lecture) accurately represent the talk's movements?
+- Does the lecture opening establish the problem students will investigate?
+- If an outline is present, does it describe the intellectual progression rather than enumerate topics?
+- Does the opening preserve enough prerequisite context for students to reason productively?
+- Does a research talk's slide 2 state what the work contributes?
 - Are major movements represented with native, meaningfully-named PowerPoint Sections?
 - Do outline labels, Section names, and movement terminology agree?
 - Are visible section dividers used only where they help the audience perceive a meaningful transition?
@@ -648,6 +657,59 @@ the visual left-to-right or top-to-bottom arrangement.
 Before considering a deck complete, check every slide and the deck as a
 whole.
 
+## Instructional sequence audit for lectures
+
+Inspect the lecture as a temporal sequence before checking any slide's
+formatting.
+
+Verify:
+
+1.  **Motivating problem.** Does the audience meet a consequential
+    question or phenomenon before receiving the full conceptual
+    framework?
+2.  **Instructional causality.** Does each major concept answer a
+    previously established question or difficulty?
+3.  **Model identification.** Are the engineering models distinguished
+    from the implementation mechanisms that realize them?
+4.  **Question timing.** Are students asked to reason before decisive
+    answers are revealed?
+5.  **Prerequisites.** Does each substantial question or exercise sit
+    where students already know enough to attempt it, rather than guess?
+6.  **Exercise purpose.** Is each activity identifiable as discovery,
+    practice, or transfer?
+7.  **Demonstrations.** Does each interactive demonstration state its
+    model and assumptions and take a student prediction before showing
+    the result?
+8.  **Running-example continuity.** Does the lecture preserve the system,
+    its assumptions, and the accumulated knowledge across movements?
+9.  **Decision conditions.** Do comparisons identify the requirements
+    under which the alternatives differ?
+10. **Evidence.** Are consequential engineering claims supported by
+    models, measurements, examples, or other inspectable evidence?
+11. **Synthesis.** Does the ending establish what students can now
+    explain or decide?
+12. **Timing.** Is enough time allocated for student reasoning,
+    demonstration, and discussion?
+
+A failure here is a talk-level or deck-level defect. Do not attempt to
+repair it by polishing typography, changing titles, or adding animations.
+
+## Question–answer visibility audit
+
+For every question slide and every exercise:
+
+-   Is the question visible when students are expected to reason?
+-   Are the necessary assumptions and evidence visible?
+-   Is the answer inadvertently visible in the title, diagram, table, or
+    footer?
+-   Does the reveal occur after the intended reasoning?
+-   Does the final static state remain interpretable?
+-   Do the speaker notes describe the actual reveal sequence?
+
+Apply these checks to the realized slide states, not to the source text
+alone. A correct final slide can still be pedagogically defective when
+its first visible state gives the answer away.
+
 ## Typography and titles
 
 -   Is any audience-facing text below 20 pt?
@@ -676,6 +738,10 @@ whole.
 -   Are charts and diagrams directly annotated where useful?
 -   Are axes, units, baselines, denominators, and other necessary
     context present?
+-   Does any simplified example omit an assumption necessary for its
+    stated conclusion?
+-   Is a simplified model being presented as an actual system, or a
+    hypothetical measurement as a real one?
 -   Is the representation visually honest?
 -   Does every meaningful visual have useful alt text?
 -   Are decorative visuals marked decorative?
@@ -722,6 +788,10 @@ When speaker notes are authored:
 -   Does each `ANIMATE` marker correspond to an actual build and occur at the intended point in the spoken
     sequence?
 -   Is any audience-essential information incorrectly available only in speaker notes?
+-   For a substantive teaching slide, can the intended reasoning be recovered — the prior belief, the
+    question to ask, the discovery, and the unresolved question that motivates the next slide?
+-   For an exercise, do the notes give plausible student responses, the evidence to reveal, and the
+    debrief, without scripting the responses as guaranteed?
 
 Treat failures as defects unless there is a deliberate reason for the
 exception. If an exception is necessary, preserve the underlying

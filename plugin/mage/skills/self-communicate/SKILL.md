@@ -143,10 +143,10 @@ draw it.
 
 Do **not** begin presentation work by manufacturing slides. Design the intellectual object first, then its visual realization.
 
-1. **Talk.** [`presenting/talk.md`](presenting/talk.md) — the audience transformation, governing question or claim, movements, presentation moves, activities, and pacing.
-2. **Presentation type.** [`presenting/presentation-types.md`](presenting/presentation-types.md) — specialize the talk for a **lecture** (including tutorial-like guided practice), a **research talk**, or a deliberate blend.
-3. **Deck.** [`presenting/deck.md`](presenting/deck.md) — realize the talk as a visual sequence; preserve continuity, progressive disclosure, vocabulary, provenance, and the distinction between live and distributed artifacts.
-4. **Slide.** [`presenting/slide.md`](presenting/slide.md) — design the atomic visual unit; give it one primary job, default to assertion → evidence for technical claims, and choose the representation by the relationship being communicated.
+1. **Talk.** [`presenting/talk.md`](presenting/talk.md) — the audience transformation, governing question or claim, movements, instructional causality, presentation moves, activities, and pacing.
+2. **Presentation type.** [`presenting/presentation-types.md`](presenting/presentation-types.md) — specialize the talk for a **lecture** (including tutorial-like guided practice), a **research talk**, or a deliberate blend. A lecture also gets a sustained engineering investigation, named engineering models, a prerequisite check, and a design brief.
+3. **Deck.** [`presenting/deck.md`](presenting/deck.md) — realize the talk as a visual sequence; preserve continuity of reasoning, question–answer timing, progressive disclosure, vocabulary, provenance, and the distinction between live and distributed artifacts.
+4. **Slide.** [`presenting/slide.md`](presenting/slide.md) — design the atomic visual unit; give it one primary job, pick its instructional role before its title, default to assertion → evidence for established technical claims, and choose the representation by the relationship being communicated.
 5. **Style.** [`presenting/style.md`](presenting/style.md) — apply the house choices that specialize the portable presentation discipline.
 6. **Format rules.** [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md) — enforce mechanically auditable realization constraints, including the 20 pt audience-text floor, one-line idea-bearing titles, alt text, structural slide titles, and semantic object/reading order.
 
@@ -173,13 +173,21 @@ The dependency is **talk → type → deck → slide → style/rules**. Do not t
 
 For presentation work:
 
-1. Read [`presenting/talk.md`](presenting/talk.md) and state or recover the audience transformation before polishing slides.
-2. Read the relevant section of [`presenting/presentation-types.md`](presenting/presentation-types.md).
-3. Apply [`presenting/deck.md`](presenting/deck.md) to the sequence.
-4. Apply [`presenting/slide.md`](presenting/slide.md) to individual slides.
-5. Apply [`presenting/style.md`](presenting/style.md) and any local overlay.
-6. Run [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md) as the final construction/audit pass.
-7. Re-check the distributed artifact after export; source-deck accessibility metadata is not guaranteed to survive conversion.
+1. **Design the talk.** Read [`presenting/talk.md`](presenting/talk.md). Establish the audience transformation, the governing question, the intellectual movements, and the intended reasoning.
+2. **Specialize for the presentation type.** Read [`presenting/presentation-types.md`](presenting/presentation-types.md). For a lecture, establish the developing problem, the prerequisite concepts, the opportunities for student reasoning, and the engineering models; write the lecture design brief. For a research talk, establish the contributions and the evidence that supports them.
+3. **Audit the intellectual sequence before creating slides.** For a lecture, verify instructional causality: each major concept answers a question the audience has encountered, and each exercise sits where its intended reasoning is useful. For a research talk, verify the progression from problem through contribution, mechanism, and evidence.
+4. **Design the deck.** Apply [`presenting/deck.md`](presenting/deck.md) to realize the talk as a visual sequence. Preserve continuity, question–answer timing, progressive disclosure, vocabulary, provenance, and the distinction between live and distributed artifacts.
+5. **Design individual slides.** Apply [`presenting/slide.md`](presenting/slide.md). Choose each slide's instructional role before choosing its title or representation — question, investigation, conclusion, evidence, activity, or synthesis.
+6. **Apply house style.** Read [`presenting/style.md`](presenting/style.md) and any local overlay. Preserve the established visual grammar without letting visual consistency override the talk's intellectual requirements.
+7. **Audit the realized sequence.** Review the slides in presentation order, including their initial visible states, builds, activities, and speaker notes. Verify that the audience receives what it needs to reason before it reasons, and the decisive answers afterward.
+8. **Run the construction and accessibility audit.** Apply [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md), including typography, layout, semantics, reading order, alt text, animation-note consistency, and the instructional-sequence checks.
+9. **Inspect the distributed artifact.** Re-check the exported PDF or other distributed form. Essential content, provenance, and accessibility metadata do not survive conversion automatically.
+
+The dependency is still **talk → type → deck → slide → style/rules**. Steps 3 and 7 are gates inside that workflow, not additional presentation layers.
+
+For an existing deck, find the level the defect originates at. A slide-level formatting problem can be repaired locally. A question revealed too early needs a deck-level repair. A lecture that catalogues correct facts without developing an engineering problem needs a talk-level repair.
+
+**Do not repair a pedagogically weak lecture through typography, animation, or visual polish alone.**
 
 ## Bootstrap the lexicon from a codebase walk — then keep it living
 

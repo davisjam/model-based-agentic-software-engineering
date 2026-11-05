@@ -36,6 +36,39 @@ A system diagram with twelve components can perform one job.
 
 Split the slide when different regions compete for unrelated audience actions.
 
+## A fact is not necessarily a lesson
+
+A technically correct statement does not by itself make a useful teaching slide.
+Three slides can define a term, define a second term, and show a diagram, each individually clear, and together advance nothing.
+
+For every substantive slide, identify:
+
+1. **Need.** Why does the audience need this information now?
+2. **Intellectual job.** What should change in the audience's understanding?
+3. **Evidence or reasoning.** What establishes the point?
+4. **Consequence.** What can the audience now explain, predict, or decide?
+
+Weak instructional design:
+
+    Title: ACID Properties
+    Body: Definitions of atomicity, consistency, isolation, and durability.
+
+Stronger:
+
+    Title: What would we need to implement without a database?
+    Body: Four failure scenarios involving concurrent updates, crashes,
+          durability, and integrity.
+
+Students identify the obligations.
+ACID then names the guarantees transactional databases already provide.
+The definitions are still necessary; now they answer a question.
+
+Some slides legitimately introduce vocabulary, notation, or prerequisites with no separate motivating problem.
+Keep those brief and connected to the reasoning that follows.
+
+Do not manufacture a thesis for a reference slide.
+Do not let an entire lecture consist of reference slides.
+
 ## Default to assertion → evidence
 
 Michael Alley's assertion–evidence approach provides a strong default grammar for technical slides.
@@ -78,6 +111,74 @@ Evidence may be:
 Avoid **topic heading + bullet inventory** as the automatic structure for a technical slide.
 If the content is fundamentally a list, a list may be correct.
 Do not turn relational or evidentiary content into bullets merely because bullets are easy to author.
+
+## Choose the title by the slide's instructional role
+
+Assertion–evidence is a strong default for communicating an established technical claim.
+It is the wrong opening move when the audience is supposed to construct the claim.
+
+In a lecture, three instructional roles recur, and the role decides the title.
+
+| Slide role | Purpose | Preferred title |
+|---|---|---|
+| Question | Establish a problem requiring reasoning | A question the audience can attempt |
+| Investigation | Supply evidence, expose a mechanism, or test an explanation | The relationship or uncertainty under examination |
+| Conclusion | Establish the principle the investigation supports | An assertion stating what was learned |
+
+A performance-engineering sequence might run:
+
+- **Question** — *Why does the service become slow near capacity?*
+  Show the workload and the service capacity. Ask students to predict the effect of more arrivals.
+- **Investigation** — *What happens as utilization approaches 100%?*
+  Show the queueing model and progressively reveal the predicted response-time curve.
+- **Conclusion** — *Queueing delay grows rapidly near capacity.*
+  Show the relationship and identify the assumptions under which it holds.
+
+The conclusion slide may reuse the investigation's figure. What changes is what the audience is now expected to understand.
+
+Do not mechanically build three slides for every concept.
+These roles may appear as builds within one slide, across several slides, or through a combination of speech and visuals.
+
+Use a question title when the audience is genuinely expected to reason before the answer appears.
+Use an assertion title when the audience should inspect evidence for a conclusion already established.
+
+**Do not reveal the answer in the title of a slide meant to elicit that answer.**
+For question and investigation slides, this rule takes precedence over the assertion-title default.
+
+Research talks keep assertion–evidence as the default throughout; this role distinction is a lecture concern.
+
+## Questions must support productive reasoning
+
+A teaching question needs a clear intellectual purpose.
+
+Before placing a question on a slide, determine:
+
+- what information students hold;
+- what reasoning they can perform with it;
+- what plausible answers they might propose;
+- what observation or explanation resolves the question;
+- how the result contributes to the lecture.
+
+Avoid questions that merely disguise a definition.
+
+Weak:
+
+> What is an ORM?
+
+Students who have never met one can only guess.
+
+Stronger:
+
+> How many database queries will this loop execute?
+
+Show a short application loop. Students can reason about possible access patterns, and the ORM's loading behavior then becomes consequential.
+
+Likewise, avoid a question whose answer is already visible elsewhere on the slide.
+
+Keep the question visible while students deliberate. Reveal the decisive evidence or the conclusion afterward.
+
+Do not overuse question titles.
+Once the audience holds a concept, later slides can use assertion titles and develop more sophisticated applications.
 
 ## Design for acquisition conditions
 
@@ -212,6 +313,45 @@ Keep alternatives visually comparable. Do not use layout, color, checkmarks,
 or other emphasis to imply that one alternative is preferred unless the
 argument actually establishes that preference.
 
+### Make the decision conditions visible
+
+An engineering comparison should name the requirements or assumptions that decide which alternative wins.
+
+Comparing a modular monolith with independently deployed services is incomplete without team ownership,
+deployment independence, coordination costs, and shared-state obligations.
+
+A useful comparison contains:
+
+    ENGINEERING REQUIREMENT
+             |
+             v
+        ALTERNATIVES
+           /    \
+          A      B
+           \    /
+             v
+       CONSEQUENCES
+             |
+             v
+          JUDGMENT
+
+The alternatives should each be credible under some assumption.
+
+When practical, ask students to make a provisional choice before revealing all the consequences.
+Then change an assumption and ask whether their choice changes.
+
+Conditions worth varying:
+
+- One development team becomes two independently releasing teams.
+- A prototype becomes a long-lived production system.
+- Cached data becomes authoritative data.
+- A release changes shared database state.
+- Implementation becomes cheaper while validation stays expensive.
+
+The purpose is conditional engineering judgment, not a universally preferred technology.
+
+A comparison without decision conditions degenerates into a catalogue of advantages and disadvantages.
+
 ## Preserve information integrity
 
 Tufte's work provides the discipline for technical evidence.
@@ -242,6 +382,23 @@ Remove gradients, ornamental icons, unnecessary borders, 3-D effects, background
 
 Visual magnitude, area, scale, ordering, and emphasis should fairly represent the underlying evidence.
 Do not make a small effect look large through graphical manipulation.
+
+### Preserve the assumptions that make a teaching example true
+
+Simplification may remove incidental detail. It must not remove a condition the explanation depends on.
+
+When a technical claim holds only under stated assumptions, make those assumptions visible at the point
+where they affect interpretation.
+
+- Little's Law relates average occupancy, throughput, and response time; predicting latency from offered load needs an additional model.
+- A canary limits initial exposure to a version. It may not limit the consequences of writes to shared state.
+- A database enforces the constraints it was given. It does not know application-specific invariants nobody declared.
+- A dependency inventory establishes presence, not reachability or exploitability.
+
+Distinguish a simplified model from an actual system.
+Label hypothetical measurements and costs as illustrative.
+
+Simplify the representation without changing the claim.
 
 The goal is not maximum emptiness.
 
@@ -318,6 +475,18 @@ What is this slide supposed to change in the audience's understanding or attenti
 
 If the answer is only "cover topic X," sharpen the job.
 
+### Need test
+
+Why does the audience need this now, and what can they explain, predict, or decide afterward that they
+could not before?
+
+If the only answer is "it is true," the slide states a fact without doing a job.
+
+### Role test
+
+Is this slide posing a question, running an investigation, or establishing a conclusion — and does its
+title match that role rather than contradict it?
+
 ### Assertion test
 
 If the slide makes a claim, does the title state the useful conclusion rather than merely name the topic?
@@ -354,5 +523,9 @@ Can anything be removed without reducing evidence, meaning, orientation, accessi
 ### Integrity test
 
 Would a technically sophisticated audience regard the representation as a fair account of the underlying evidence?
+
+### Assumption test
+
+Has simplification removed a condition the slide's stated conclusion depends on?
 
 A slide that fails one of these tests may still be correct—the principles have boundary conditions—but the failure should be deliberate rather than accidental.

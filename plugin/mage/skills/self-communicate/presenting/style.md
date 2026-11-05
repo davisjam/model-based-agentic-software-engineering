@@ -71,6 +71,116 @@ Observed pattern: a design lecture can introduce a principle, develop a
 concrete case, return explicitly to the principle, use another example
 to expose structure, and then state the abstraction and its mechanisms.
 
+### Engineering lectures develop a decision
+
+A MAGE engineering lecture should ordinarily develop one sustained
+engineering problem through a sequence of models, judgments, mechanisms,
+and evidence.
+
+The preferred pattern is:
+
+    CONCRETE ENGINEERING PROBLEM
+                 |
+                 v
+          STUDENT REASONING
+                 |
+                 v
+           MODEL OR METHOD
+                 |
+                 v
+         ENGINEERING DECISION
+                 |
+                 v
+         REALIZATION / CONTROL
+                 |
+                 v
+               EVIDENCE
+                 |
+                 v
+        REVISED UNDERSTANDING
+
+This is an intellectual structure, not a required slide template.
+
+-   Use a running system or case when several concepts concern the same
+    engineering decision. Revisit it as new evidence, requirements, or
+    failures arise.
+-   Introduce major techniques because the investigation requires them.
+    Do not organize a lecture primarily as a catalogue of terminology,
+    mechanisms, or technologies.
+-   Have students predict, diagnose failures, compare alternatives, or
+    propose controls before the complete answer is supplied.
+
+A lecture may also contain direct exposition, worked examples,
+definitions, historical context, and deliberate digressions. These are
+valuable when they support the audience's developing understanding.
+
+The objective is not constant interaction. It is sustained intellectual
+engagement.
+
+### Prefer engineering judgment to technology selection
+
+The course teaches engineering decisions, not product recommendations.
+
+A database, cloud platform, deployment strategy, or architectural pattern
+should appear as a possible realization of requirements.
+
+When comparing alternatives, identify:
+
+-   the requirement or obligation;
+-   the relevant model;
+-   the available alternatives;
+-   the consequences of each;
+-   the evidence that would justify the choice.
+
+Where useful, change an assumption and ask whether the decision changes.
+
+Do not imply that one technology is universally preferable merely because
+it appears later in the lecture or has a more elaborate architecture.
+
+### Let established engineering practice carry weight
+
+Not every engineering decision is an unconstrained menu of equally
+plausible choices.
+
+Some practices embody decades of accumulated experience. Transactional
+databases, established security principles, reproducible builds, and
+systematic failure analysis exist because engineers repeatedly met the
+problems they address. Teach the reasons those practices became
+established.
+
+An alternative that weakens a guarantee may still be appropriate. The
+engineer must then identify which obligations are relaxed, which are
+transferred, and which are accepted as risks.
+
+For example, self-managed files, Redis with asynchronous persistence, and
+a transactional relational database offer different guarantees. The
+lesson is not that one is always correct; it is that consequential shared
+state often justifies established transactional mechanisms.
+
+Do not manufacture false equivalence among alternatives when the evidence
+supports a strong default.
+
+### Preserve room for expert digression
+
+A lecture is a live intellectual exchange, not a recorded reading of the
+deck.
+
+A question may open an opportunity to examine a deeper mechanism, connect
+to another field, or explore a consequential exception. Such digressions
+earn their place by showing how an expert reasons beyond prepared
+material.
+
+Keep the prepared sequence coherent enough that the instructor can leave
+it and return. Use stable conceptual anchors, meaningful section
+boundaries, and concise speaker notes. Identify the material that can be
+skipped when a discussion runs long.
+
+Do not script every transition so tightly that the lecture becomes hard
+to adapt to student questions.
+
+A digression should contribute understanding rather than consume time.
+The instructor decides when to return to the governing problem.
+
 ## Research talk
 
 Goal: make an evidence-backed argument quickly enough that the audience
@@ -258,18 +368,24 @@ harder to edit, align, or reuse.
 
 # Establish orientation immediately
 
-MAGE presentations begin with a stable two-slide opening whose second slide depends on presentation type:
+MAGE presentations open by orienting the audience, and the form of that orientation depends on
+presentation type:
 
     Lecture/module:
-        cover → module outline
+        cover → motivating problem → orientation when useful
 
     Research talk:
         cover → contributions
 
-For a lecture, orient the audience to the intellectual journey — keep the module outline compact and
-meaningful; it is not an administrative agenda. For a research talk, orient the audience to the
-intellectual payload — state what the work contributes, not the sections of the presentation. Do not
-substitute a generic agenda for either.
+For a lecture, orient the audience to the intellectual journey by giving it a problem to reason about. The
+motivating problem should ordinarily appear before the taxonomy, roadmap, or framework used to analyze it;
+an outline may follow once the audience understands what the lecture is trying to resolve. When an outline
+is used, keep it compact and meaningful — it is not an administrative agenda.
+
+For a research talk, orient the audience to the intellectual payload — state what the work contributes,
+not the sections of the presentation. Keep the contributions on slide 2.
+
+Do not substitute a generic agenda for either.
 
 Use the same vocabulary across the outline, the PowerPoint/O365 Sections, any meaningful section-divider
 slides, and the references to the movements in speaker notes — one stable representation of the module's
@@ -329,6 +445,9 @@ normalize slides toward one density, layout, or amount of text.
 -   If a slide feels empty, do not add decoration. Ask whether the
     emptiness serves pacing; otherwise strengthen the intellectual
     content.
+-   Do not repair a pedagogically weak lecture through typography,
+    animation, or visual polish. Diagnose the level that is wrong — a
+    slide, the sequence, or the teaching argument — and repair it there.
 
 # Source basis
 
