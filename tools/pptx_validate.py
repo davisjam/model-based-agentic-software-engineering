@@ -236,13 +236,21 @@ def structural_findings(display_path: str, fs_path: str) -> list[str]:
     So the union of both namespaces is taken, and a slide that yields NO shape ids while carrying
     animation targets is reported as a PROBE failure rather than silently producing findings.
 
-    AUDIT-ONLY: findings are printed but do not contribute to the exit code. Promotion to
-    blocking is a posture change and is pending ratification — and it needs a small fix-wave
-    first. Measured at the time of writing: clean across all nine Act III decks, but THREE
-    duplicate-id findings tree-wide under --all-tracked (2-4 Failure-Aware Engineering slides 4
-    and 5, and a WIP deck under book/_design/). So the Act-III-only claim does not generalise;
-    drain those three, then promote. Sabotage-verified: injecting one bad spid into a copy of a
-    clean deck reports the dangling target by name.
+    BLOCKING since 261105, at the author's direction, after the fix-wave drained to zero. The
+    promotion history is worth keeping because it is the AUDIT-ONLY-first pattern working as
+    intended: the layer landed audit-only, its first --all-tracked run surfaced THREE latent
+    duplicate-id findings nobody knew about (2-4 Failure-Aware Engineering slides 4 and 5, which
+    had SHIPPED, plus a WIP deck under book/_design/), those were fixed, and only then did it
+    start gating. Had it landed blocking it would have broken every commit in the checkout on
+    day one.
+
+    The root cause of all three was one helper: `book/_design/2-4-redux-build/scripts/buildlib.py`
+    `clone_into` deep-copied a shape element without reassigning its `cNvPr` id, so every clone
+    carried its source's. Fixed there too, so the class is closed at the emitter rather than only
+    at the artifacts.
+
+    Sabotage-verified: injecting one bad spid into a copy of a clean deck reports the dangling
+    target by name, and perturbing an id reports the duplicate.
     """
     findings: list[str] = []
     try:
@@ -301,8 +309,8 @@ def validate(files: "list[tuple[str, str]]") -> int:
     # than silently — the caller named it, so it deserves a line.
     locks = [disp for disp, _fs in files if os.path.basename(disp).startswith("~$")]
     files = [(disp, fs) for disp, fs in files if not os.path.basename(disp).startswith("~$")]
-    print(f"pptx-validate: plan — OPC part coverage (stdlib) + structural/referential (stdlib, "
-          f"audit-only) + OOXML schema (OpenXmlValidator) over {len(files)} file(s)")
+    print(f"pptx-validate: plan — OPC part coverage (stdlib) + structural/referential (stdlib) "
+          f"+ OOXML schema (OpenXmlValidator) over {len(files)} file(s)")
     for lock in locks:
         print(f"  [skip] {lock} — PowerPoint lock file, not a deck (the deck is open in an editor)")
     opc = [f for disp, fs in files for f in opc_findings(disp, fs)]
@@ -326,17 +334,17 @@ def validate(files: "list[tuple[str, str]]") -> int:
     for disp, eid, _part, detail in schema:
         print(f"  [FAIL/schema] {disp}: {eid} — {detail}")
     for f in structural:
-        print(f"  [audit/structural] {f}")
+        print(f"  [FAIL/structural] {f}")
     for disp, eid, _part, _detail in baselined:
         print(f"  [baselined] {disp}: {eid} (grandfathered in tools/pptx-validate-baseline.json)")
     if skip_reason:
         print(f"  [skip] {skip_reason}")
 
-    # structural is deliberately NOT in `bad` — audit-only until promotion is ratified.
-    bad = len(opc) + len(schema)
+    # structural GATES since 261105 (promoted after the fix-wave drained tree-wide to 0).
+    bad = len(opc) + len(schema) + len(structural)
     print(f"pptx-validate: result — {len(files)} file(s), {len(opc)} OPC finding(s), "
           f"{len(schema)} schema finding(s) ({len(baselined)} baselined), "
-          f"{len(structural)} structural finding(s) [audit-only, not gating], "
+          f"{len(structural)} structural finding(s), "
           f"schema layer {'SKIPPED' if skip_reason else 'ran'}")
     return 1 if bad else 0
 
