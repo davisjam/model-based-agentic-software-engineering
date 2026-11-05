@@ -614,6 +614,21 @@ re-deriving these, so they live here:**
   was verified, since the commit is not the author's own claim. Only redo work the gates reject. A
   dead agent's closing sentence describes its INTENT at the moment the process stopped, which is a
   statement about its plan and not about the disk.
+  - **Decide what to do with the recovered work by whether it is INDEPENDENTLY VERIFIABLE, not by how
+    finished it looks.** Three deaths on 261105 — an arm-and-exit, an API "connection closed
+    mid-response", and a 600 s stall — made the orchestrator re-derive this each time, so it is
+    written down. **Structural work verifies and should be banked**: a slide reorder checks against
+    `sldIdLst`, section integrity against the slide-ID lists, a stylesheet sync against its parity
+    check. **Prose does not verify** — an unwritten paragraph and a wrong one look identical on
+    disk — so re-dispatch it rather than guessing, and tell the new agent which half is already
+    committed so it cannot redo it. **Commit the verifiable half even when the rest is missing**: a
+    half-finished round is a fine commit and a dirty tree is not, because the hook force-stages a
+    bare `*.html` glob at any depth and any sibling's next commit sweeps whatever is sitting there.
+  - **When you bank work whose own verification never ran, say so IN THE COMMIT MESSAGE.** The
+    261105 type-scale raise was committed with its 36-measurement overflow sweep unrun, because
+    leaving six pages dirty was the worse risk; the message states that plainly and a follow-up
+    agent ran the sweep. A commit that looks clean implies a verification that happened — if it
+    did not, the message is the only place that can say so, and silence there is the expensive kind.
 - **COMMIT BEFORE YOU REPORT. An agent that stops with work only in the working tree has banked
   nothing, and a worktree clean destroys it.** Third instance on 261006: an agent wrote a 25 KB test
   file, left it UNTRACKED, and reported *"Still running; a11y progressing through the keyboard
