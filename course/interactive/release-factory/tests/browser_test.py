@@ -122,6 +122,97 @@ def press_segment(page, group_id: str, label_fragment: str) -> None:
     page.click(f'#{group_id} button:has-text("{label_fragment}")')
 
 
+def disclosure(page, element_id: str, is_open: bool = True) -> None:
+    """Open (or re-close) one of the Further-investigation disclosures.
+
+    The primary interface is four policies, three guided experiments and three measurements;
+    everything else the model carries ships collapsed. A check that drives a secondary control
+    has to open its disclosure first, because Playwright cannot click what the page does not
+    render — and a timeout there reads as a broken control rather than as a closed accordion,
+    which is the expensive direction of error.
+    """
+    present = page.evaluate(
+        '(id) => { const d = document.getElementById(id); if (!d) return false; return true; }',
+        element_id)
+    assert present, f'no disclosure #{element_id} on the page'
+    page.evaluate('([id, open]) => { document.getElementById(id).open = open; }',
+                  [element_id, is_open])
+    page.wait_for_timeout(120)
+
+
+def check_primary_interface_is_small(page) -> None:
+    """The house style's budget, asserted rather than reviewed.
+
+    Four adjustable policies outside every disclosure, three principal measurements, and the
+    secondary configurations collapsed. These are the numbers the laboratory redesign exists to
+    hold; a later edit that re-promotes a control would otherwise pass every other check.
+    """
+    counts = page.evaluate(
+        """() => {
+             const open = (el) => !el.closest('details');
+             const policies = [...document.querySelectorAll('.ctl')].filter(open);
+             const principal = [...document.querySelectorAll('.keys:not(.secondary) .key')]
+               .filter(open);
+             const presets = [...document.querySelectorAll('.preset')].filter(open);
+             const closed = [...document.querySelectorAll('details.panel')]
+               .filter((d) => !d.open).length;
+             const details = document.querySelectorAll('details.panel').length;
+             return {
+               policies: policies.length,
+               policyIds: policies.map((p) => p.querySelector('.seg, input')?.id || '?'),
+               principal: principal.length,
+               presets: presets.length,
+               closed, details,
+             };
+           }"""
+    )
+    check('the apparatus exposes exactly four adjustable policies',
+          counts['policies'] == 4, json.dumps(counts['policyIds']))
+    check('three principal measurements, no more',
+          counts['principal'] == 3, str(counts['principal']))
+    check('no preset card competes with the guided experiments',
+          counts['presets'] == 0, f"{counts['presets']} outside a disclosure")
+    check('every further-investigation section ships collapsed',
+          counts['closed'] == counts['details'],
+          f"{counts['closed']} of {counts['details']}")
+
+
+def check_guided_experiments(page) -> None:
+    """Three guided experiments, each changing exactly ONE policy from a shared baseline.
+
+    That is the property the procedure's "held constant" line promises, and it is the one a
+    later edit is most likely to break by reaching for an engine preset instead — several of
+    those deliberately move the batch size and the defect population too.
+    """
+    buttons = page.eval_on_selector_all('[data-guided]', 'els => els.length')
+    check('every guided experiment offers a baseline and a changed configuration',
+          buttons == 6, f'{buttons} buttons')
+
+    page.evaluate("window.releaseFactoryUi.setGuided('baseline')")
+    page.wait_for_timeout(120)
+    base = config(page)
+    check('the shared baseline is standard testing, required checks, immediate release',
+          base['testDepth'] == 'standard' and base['admissionPolicy'] == 'required'
+          and base['releaseStrategy'] == 'immediate' and base['batchSize'] == 1,
+          json.dumps({k: base[k] for k in
+                      ('testDepth', 'admissionPolicy', 'releaseStrategy', 'batchSize')}))
+
+    watched = ('arrivalRate', 'arrivalRatePerDay', 'testDepth', 'admissionPolicy',
+               'releaseStrategy', 'batchSize', 'seed', 'requestsPerHour', 'pipelineLanes',
+               'releaseSlots', 'canaryFraction', 'canarySoakHours', 'defectRate')
+    expected = {'thorough': 'testDepth', 'advisory': 'admissionPolicy',
+                'canary': 'releaseStrategy'}
+    for name, key in expected.items():
+        page.evaluate(f"window.releaseFactoryUi.setGuided('{name}')")
+        page.wait_for_timeout(120)
+        now = config(page)
+        moved = [k for k in watched if now[k] != base[k]]
+        check(f'experiment "{name}" changes exactly one policy', moved == [key],
+              f'moved {moved}')
+        check(f'experiment "{name}" starts from an empty factory',
+              snapshot(page)['days'] == 0)
+
+
 def check_engine_is_live(page) -> None:
     version = page.evaluate('window.ReleaseFactory && window.ReleaseFactory.VERSION')
     check('the engine is published to the page', bool(version), f'version {version}')
@@ -164,13 +255,18 @@ def check_controls_drive_the_model(page) -> None:
     page.wait_for_timeout(120)
     check('release strategy reaches the model', config(page)['releaseStrategy'] == 'canary')
 
-    press_segment(page, 'seg-batch', '10')
-    page.wait_for_timeout(120)
-    check('batch size reaches the model', config(page)['batchSize'] == 10)
-
     press_segment(page, 'seg-arrival', 'Low')
     page.wait_for_timeout(120)
     check('arrival rate reaches the model', config(page)['arrivalRate'] == 'low')
+
+    # Batch size and the exact arrival rate are no longer primary controls: the guided
+    # experiments hold the batch at one change per release and choose among Low/Medium/High.
+    # Both still drive the model, from Advanced controls.
+    disclosure(page, 'advanced')
+    press_segment(page, 'seg-batch', '10')
+    page.wait_for_timeout(120)
+    check('batch size reaches the model from Advanced controls',
+          config(page)['batchSize'] == 10)
 
     page.fill('#arrival-num', '137')
     page.dispatch_event('#arrival-num', 'change')
@@ -190,6 +286,7 @@ def check_controls_drive_the_model(page) -> None:
           and restored['arrivalRatePerDay'] is None,
           json.dumps({k: restored[k] for k in
                       ('testDepth', 'batchSize', 'releaseStrategy', 'admissionPolicy')}))
+    disclosure(page, 'advanced', False)
 
 
 def check_run_pause_step(page) -> None:
@@ -275,6 +372,7 @@ def check_tab_reaches_the_controls(page) -> None:
 
 
 def check_presets(page) -> None:
+    disclosure(page, 'experiments')
     buttons = page.eval_on_selector_all('#presets .preset', 'els => els.length')
     expected = page.evaluate('window.ReleaseFactory.PRESETS.length')
     check('every preset has a button', buttons == expected, f'{buttons} of {expected}')
@@ -343,6 +441,7 @@ def check_presets(page) -> None:
 
 
 def check_sweep(page) -> None:
+    disclosure(page, 'sweep')
     page.click('#btn-sweep')
     page.wait_for_function('window.releaseFactoryUi.sweepPoints() > 0', timeout=120000)
     page.wait_for_timeout(400)
@@ -352,15 +451,18 @@ def check_sweep(page) -> None:
     alt = page.inner_text('#sweep-alt')
     check('the sweep describes itself for a screen reader',
           'arrival rates' in alt and 'lead time' in alt, alt[:90])
+    disclosure(page, 'sweep', False)
 
 
 def check_live_descriptions(page) -> None:
+    disclosure(page, 'ledger')
     for element_id in ('factory-alt', 'backlog-alt', 'ledger-alt'):
         text = page.inner_text(f'#{element_id}')
         check(f'{element_id} carries a description', len(text) > 60, text[:70])
     ledger = page.inner_text('#ledger-alt')
     for phrase in ('introduced', 'kept out of production', 'reached real users', 'restored'):
         check(f'the ledger description names "{phrase}"', phrase in ledger)
+    disclosure(page, 'ledger', False)
 
 
 def check_meaning_is_not_colour_alone(page) -> None:
@@ -374,6 +476,12 @@ def check_meaning_is_not_colour_alone(page) -> None:
 
 def check_layout(page, width: int, height: int) -> None:
     page.set_viewport_size({'width': width, 'height': height})
+    page.wait_for_timeout(250)
+    # Overflow hides inside a collapsed section, so measure with every disclosure open too: a
+    # wide table or a long monospace line in Advanced controls would otherwise ship unmeasured.
+    page.evaluate("""() => {
+         document.querySelectorAll('details.panel').forEach((d) => { d.open = true; });
+       }""")
     page.wait_for_timeout(250)
     overflow = page.evaluate(
         'document.documentElement.scrollWidth - document.documentElement.clientWidth')
@@ -390,6 +498,9 @@ def check_layout(page, width: int, height: int) -> None:
            }"""
     )
     check(f'{width}x{height}: no text below 11px', smallest >= 11, f'{smallest}px')
+    page.evaluate("""() => {
+         document.querySelectorAll('details.panel').forEach((d) => { d.open = false; });
+       }""")
 
 
 def check_download_control(page, label: str) -> None:
@@ -457,6 +568,8 @@ def suite(browser, url: str, label: str) -> None:
     check_engine_is_live(page)
     check_canvases_paint(page, label)
     check_download_control(page, label)
+    check_primary_interface_is_small(page)
+    check_guided_experiments(page)
     check_controls_drive_the_model(page)
     check_run_pause_step(page)
     check_keyboard(page)
