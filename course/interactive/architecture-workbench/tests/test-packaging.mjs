@@ -236,13 +236,23 @@ test('the engineering problem is stated above the controls, as a question', () =
   assert.match(html, /class="lab-question"/);
 });
 
-test('both required figures are present, labelled, and above the controls', () => {
+test('figure 1 opens the band; figure 2 sits beside the panel it explains', () => {
+  /* The author's ruling on figure placement: figure 1 — the system boundary — is required in the
+     opening band on every exercise, and figure 2 goes where it does its work. Here it explains
+     change-impact propagation, so it belongs in the Change impact panel, below the controls. The
+     earlier form of this test demanded both figures above the controls, which cost the band 71px
+     it does not have. */
   const figure1 = html.indexOf('id="f1-t"');
   const figure2 = html.indexOf('id="f2-t"');
   const firstControl = html.indexOf('<select id="scenario">');
+  const impactPanel = html.indexOf('id="h-impact"');
   assert.ok(figure1 > 0 && figure2 > 0, 'a required figure is missing');
-  assert.ok(figure1 < figure2, 'the figures are out of order');
-  assert.ok(figure2 < firstControl, 'figure 2 sits below the controls');
+  assert.ok(figure1 < firstControl, 'figure 1 sits below the controls');
+  assert.ok(figure1 < html.indexOf('<table class="lab-parameters">'),
+    'figure 1 does not open the band');
+  assert.ok(impactPanel > 0, 'the Change impact panel is gone');
+  assert.ok(figure2 > impactPanel && figure2 < html.indexOf('id="h-cost"'),
+    'figure 2 is not inside the Change impact panel it explains');
   assert.equal((html.match(/<figure class="lab-figure">/g) || []).length, 2);
   assert.equal((html.match(/<figcaption>/g) || []).length, 2, 'a figure has no caption');
 });
@@ -329,9 +339,9 @@ test('the introduction appears in the order the shared design requires', () => {
      file, so searching the whole document would compare CSS positions with body positions and
      report an ordering that has nothing to do with what a reader sees. */
   const body = html.slice(html.indexOf('<body>'));
-  const order = ['lab-question', 'id="f1-t"', 'class="lab-assumptions"',
-    'class="lab-disclaimer"', 'id="f2-t"', '<table class="lab-parameters">',
-    'class="lab-experiment"', '<select id="scenario">'];
+  const order = ['lab-question', 'class="lab-frame"', 'id="f1-t"', 'class="lab-assumptions"',
+    'class="lab-disclaimer"', '<table class="lab-parameters">',
+    'class="lab-experiment"', '<select id="scenario">', 'id="f2-t"'];
   let previous = -1;
   for (const marker of order) {
     const at = body.indexOf(marker);

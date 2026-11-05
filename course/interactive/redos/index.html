@@ -190,6 +190,243 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* =================================================================================================
+   ===== BEGIN LAB SHELL ===========================================================================
+   The laboratory-handout vocabulary the six exercises share: the engineering question, the
+   system-model figure, the model assumptions, the parameter table, the Predict/Run/Explain block,
+   and the interpretation region. A student arriving from the course site reads this band before
+   touching a control, so it answers three questions on its own — what system am I studying, what
+   does the model assume, and what decision am I investigating.
+
+   It lives here rather than six times over because the opening is a SHARED design requirement, not
+   six introductions. Only `--warn` among the tokens it uses is declared locally (see the note at
+   the top of this file); everything else it reads is a core token.
+
+   BUDGET, and the measurement that sets it. The band is sized to finish inside roughly 350-450
+   vertical pixels at 1920x1080, which is what fits above a projector's fold. Three numbers decide
+   the layout, all measured in a headless Chrome at 17px/1.5 body type rather than estimated:
+
+     - the parameter table's height is set by its WIDTH, steeply. Five rows of five columns stand
+       182px tall across the full page, 274px at half width and 437px at an equal third. So an
+       equal three-up band puts the table 200px over the ceiling by itself — measured at 677px —
+       while an UNEQUAL band that gives the table nearly half the row comes in at 418px.
+     - a `.lab-figure` at the 168px SVG ceiling costs about 240px with a two-line caption, and the
+       ceiling is the floor for a legible diagram: letterboxing a 2.5:1 viewBox into 120px scales
+       11.5px labels below 7px. The figure therefore takes the band's SMALLEST column — widening it
+       only letterboxes further and buys nothing.
+     - the question, the frame and the gaps cost about 92px between them, so the frame stays to one
+       or two lines and the engineering question carries the framing.
+
+   The band meets the budget from 1440px up. Below 1280px it falls back to two columns and then to
+   a stack, which is the narrow-screen case the budget does not govern.
+
+   A second figure goes in this band only where it is small and explains the headline relationship.
+   Where it is large it belongs beside the panel it explains, further down the page, and where one
+   comparison figure serves better it merges into Figure 1.
+   ================================================================================================= */
+.lab-intro { margin: 0 0 1.1rem; }
+
+.lab-question {
+  font-family: var(--font-display);
+  font-size: 1.22rem; font-weight: 600; line-height: 1.22;
+  margin: 0 0 0.3rem;
+}
+.lab-question .k {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+.lab-frame { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.38; max-width: 120ch; }
+
+/* The intro grid. `min-width: 0` on every track is load-bearing, not tidiness: a grid child's
+   min-width defaults to auto, so a wide table or a long monospace line inside one column widens
+   the whole track and the page then scrolls sideways on a phone. */
+.lab-twoup { display: grid; gap: 0.75rem; grid-template-columns: 1fr; margin: 0 0 0.75rem; }
+.lab-twoup > * { min-width: 0; }
+@media (min-width: 880px) {
+  .lab-twoup { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* Three across once there is room, which is what keeps the handout inside its vertical budget on a
+   projected screen: the figures cost width rather than height. The parameter table is deliberately
+   NOT in this row — see the measurements in the header comment. */
+@media (min-width: 1200px) {
+  .lab-twoup.trio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* The figure wants less width than the prose beside it, and giving the prose the surplus is what
+   lets a four-bullet assumptions list stay one line per bullet. */
+@media (min-width: 1200px) {
+  .lab-twoup.fig-left { grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr); }
+}
+
+/* `.band` is the layout that makes the budget reachable, and the reason it is not an equal
+   three-up is measured. The parameter table needs WIDTH: five rows of five columns stand 182px
+   tall across the full page, 274px at half and 437px at an equal third, so an equal three-up puts
+   the table 200px over the ceiling all by itself. The figure wants the opposite — it is capped at
+   168px and only letterboxes further as its column widens. So the table takes nearly half the row
+   and the figure the smallest share, and the band comes in around 350-400px.
+
+   Below 1280px the band falls back to two columns with the table spanning both, and below 880px it
+   stacks, where the vertical budget no longer applies. */
+@media (min-width: 880px) {
+  .lab-twoup.band { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lab-twoup.band > .lab-parameters-block { grid-column: 1 / -1; }
+}
+@media (min-width: 1280px) {
+  .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
+  .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
+}
+.lab-parameters-block { margin: 0 0 0.75rem; }
+/* Inside the band the grid gap already separates it. */
+.lab-twoup > .lab-parameters-block { margin: 0; }
+
+.lab-figure {
+  margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.lab-figure > figcaption {
+  font-size: 0.8rem; color: var(--muted); line-height: 1.32; margin-top: 0.3rem;
+}
+.lab-figure > figcaption .fignum {
+  font-family: var(--font-mono); font-weight: 600; color: var(--ink);
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.74rem;
+}
+/* `max-height` with `height: auto` is what stops a figure growing taller as its column grows
+   wider. The SVG keeps its aspect ratio and letterboxes inside the column instead. */
+.lab-figure svg { display: block; width: 100%; height: auto; max-height: 168px; }
+/* A figure authored wide and flat — a left-to-right pipeline rather than a stack — reads at a
+   lower ceiling, and buys the band back the height. */
+.lab-figure.flat svg { max-height: 124px; }
+.lab-figure svg text { font-family: var(--font-body); fill: var(--ink); }
+
+.lab-assumptions {
+  padding: 0.45rem 0.6rem 0.5rem; min-width: 0;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.lab-assumptions > h2, .lab-assumptions > h3, .lab-block-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 0.3rem;
+}
+.lab-assumptions ul { margin: 0; padding-left: 1rem; font-size: 0.83rem; line-height: 1.34; }
+.lab-assumptions li { margin-bottom: 0.18rem; }
+.lab-assumptions li:last-child { margin-bottom: 0; }
+/* More than four assumptions do not fit the band one-per-line. Two columns of short bullets do,
+   and only once the column is wide enough that a bullet still takes one line. */
+@media (min-width: 1500px) {
+  .lab-assumptions.cols2 ul { columns: 2; column-gap: 1.3rem; }
+  .lab-assumptions.cols2 li { break-inside: avoid; }
+}
+
+/* The required honesty statement. Visible, never inside an accordion. */
+.lab-disclaimer {
+  margin: 0.4rem 0 0; padding: 0.3rem 0.45rem;
+  font-size: 0.79rem; line-height: 1.3;
+  border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
+  background: var(--warn-fill); color: var(--warn);
+}
+.lab-disclaimer strong { color: var(--warn); }
+
+/* The parameter table. Compact by design: every 2px of cell padding costs 12px of band across a
+   header and five rows, and the band has about 60px of slack in total. */
+table.lab-parameters { border-collapse: collapse; width: 100%; font-size: 0.76rem; }
+table.lab-parameters caption {
+  caption-side: top; text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); padding-bottom: 0.25rem;
+}
+table.lab-parameters th, table.lab-parameters td {
+  border: 1px solid var(--rule); padding: 0.13rem 0.3rem; text-align: left; vertical-align: top;
+  line-height: 1.24;
+}
+table.lab-parameters thead th { background: var(--panel-2); font-weight: 600; }
+table.lab-parameters tbody th { font-weight: 600; }
+table.lab-parameters td.unit, table.lab-parameters td.default { font-family: var(--font-mono); }
+
+/* Predict / Run / Explain. It belongs to the exercise rather than the handout — the student
+   predicts, runs and explains WITH the controls — so it ships as the controls panel's lead-in and
+   the band's budget does not pay for it. `.lab-experiment` nested inside a `.panel` drops the
+   second border and the duplicated padding. */
+.lab-experiment {
+  margin: 0 0 0.9rem; padding: 0.5rem 0.7rem 0.6rem;
+  background: var(--panel); border: 1px solid var(--ink); border-left-width: 4px;
+  border-radius: var(--radius);
+}
+.panel > .lab-experiment {
+  margin: 0 0 0.85rem; padding: 0.4rem 0 0.5rem 0.65rem;
+  background: none; border: 0; border-left: 4px solid var(--ink); border-radius: 0;
+}
+.lab-experiment > h2 {
+  font-family: var(--font-mono);
+  font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); margin: 0 0 0.35rem;
+}
+ol.lab-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+ol.lab-steps > li { min-width: 0; }
+@media (min-width: 1000px) { ol.lab-steps { grid-template-columns: repeat(3, 1fr); gap: 0.9rem; } }
+ol.lab-steps > li { font-size: 0.86rem; line-height: 1.35; }
+ol.lab-steps > li > .step {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.08rem;
+}
+
+.lab-controls { margin: 0 0 1.1rem; }
+.lab-measurements { margin: 0 0 1.1rem; }
+.lab-interpretation { margin: 0 0 1.1rem; }
+
+/* --- the hand-authored introductory figures ---------------------------------------------------
+   Hand-authored SVG rather than a rendering of the model, for three reasons: the handout must
+   print, it must be readable with scripting unavailable, and a figure illustrates one fixed
+   scenario rather than following the controls.
+
+   Custom properties do NOT resolve in SVG presentation attributes — `fill="var(--ink)"` fails
+   silently — so every painted element takes a class from this vocabulary and never a `fill=` or
+   `stroke=` attribute. Structure is drawn in the muted ink, model-derived annotation in the
+   exercise's own `--model` where it declares one, failure states in `--bad`. Colour never carries
+   meaning alone: each state also carries a word. */
+svg.fig text { font-family: var(--font-body); fill: var(--ink); }
+svg.fig .t { font-size: 11.5px; font-weight: 600; }
+svg.fig .ts { font-size: 9.5px; fill: var(--muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+svg.fig .th {
+  font-size: 9.5px; font-weight: 600; font-family: var(--font-mono);
+  letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted);
+}
+svg.fig .bx { fill: var(--paper); stroke: var(--muted); stroke-width: 1.4px; }
+svg.fig .bx.strong { fill: var(--panel-2); stroke: var(--ink); stroke-width: 1.8px; }
+svg.fig .bx.bad { fill: var(--bad-fill); stroke: var(--bad); stroke-width: 1.8px; }
+svg.fig .bx.ghost { fill: none; stroke: var(--muted); stroke-width: 1.2px; stroke-dasharray: 4 3; }
+svg.fig .ln { stroke: var(--muted); stroke-width: 1.5px; fill: none; }
+svg.fig .ln.bad { stroke: var(--bad); stroke-width: 2px; }
+svg.fig .ln.ghost { stroke: var(--muted); stroke-width: 1.2px; stroke-dasharray: 4 3; }
+svg.fig .ah { fill: var(--muted); }
+svg.fig .ah-bad { fill: var(--bad); }
+svg.fig .panelbg { fill: var(--panel-2); stroke: var(--rule); stroke-width: 1px; }
+svg.fig .boundary { fill: none; stroke: var(--ink); stroke-width: 1.2px; stroke-dasharray: 5 4; opacity: 0.75; }
+svg.fig .curve { fill: none; stroke: var(--accent); stroke-width: 2px; }
+svg.fig .axis { stroke: var(--muted); stroke-width: 1.1px; fill: none; }
+svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink); }
+
+/* Printing: the handout must come out legibly, and a student must be able to read the model and the
+   parameter definitions without running anything. So the introduction prints, the chrome does not. */
+@media print {
+  body { font-size: 11pt; background: #fff; color: #000; }
+  .gold-rule { background: #000; height: 2px; }
+  main { padding: 0; max-width: none; }
+  .lab-twoup { grid-template-columns: 1fr 1fr; }
+  .lab-figure, .lab-assumptions, .lab-experiment, .panel { break-inside: avoid; background: #fff; }
+  table.lab-parameters { break-inside: avoid; }
+  .lab-disclaimer { border-color: #000; color: #000; background: #fff; }
+  details.disclose { display: none; }
+  .btn-row, button.act, a.act { display: none !important; }
+  textarea.answer { border: 1px solid #000; min-height: 4rem; }
+}
+/* ===== END LAB SHELL ============================================================================
+   Everything after this marker in a shipped page is specific to that exercise.
+   ================================================================================================= */
 /* ===== end generated core ===== */
 </style>
 <style>
