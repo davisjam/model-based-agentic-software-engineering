@@ -10,6 +10,7 @@ minimal line reader rather than PyYAML.
 """
 from __future__ import annotations
 
+import ast
 import glob
 import json
 import os
@@ -627,4 +628,232 @@ def check_course_reveal_not_leaked():
                     issues.append(f"reveal-leak: {disp}: slide {i + 1} states {ph!r}, revealed on "
                                   f"slide {reveal + 1} — students read the outcome before predicting "
                                   f"it, which turns a transfer exercise into recall")
+    return (FAIL if issues else PASS), issues
+
+
+# ── unit manifests: the `labs:` / `exercises:` front matter and its inline pointers (MANIFEST) ────────
+#: The two unit manifests and the fields an entry declares. A NUMBER is absent from both on purpose:
+#: the hooks derive it from the entry's POSITION, so the section heading, the nav label and the inline
+#: pointer always agree and reordering the list moves all three. An authored number would be a fourth
+#: copy, free to disagree with the other three — which is why an unexpected field is a finding here.
+_UNIT_MANIFESTS = {
+    "labs": ("title", "slug", "about"),
+    "exercises": ("title", "slug", "about"),
+}
+#: The hooks' own token grammars (site/hooks/labs.py `_LAB_TOKEN`, site/hooks/exercises.py
+#: `_EXERCISE_TOKEN`) — mirrored, not imported: the hooks live in the mkdocs-only toolchain and this
+#: suite stays stdlib clone-and-run.
+_UNIT_TOKEN_RE = {
+    "labs": re.compile(r"\{lab:([a-z0-9][a-z0-9-]*)\}"),
+    "exercises": re.compile(r"\{exercise:([a-z0-9][a-z0-9-]*)\}"),
+}
+_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+#: A field name an author might reach for to number an entry by hand. Named so the finding can say why
+#: it is refused rather than only that it is unexpected.
+_AUTHORED_NUMBER_FIELDS = ("number", "n", "index", "ordinal", "num")
+_HOOKS_CONFIG = os.path.join(ROOT, "site", "mkdocs.yml")
+_EXERCISES_HOOK = os.path.join(ROOT, "site", "hooks", "exercises.py")
+#: The rendered order of the appended tail sections IS the hook registration order in mkdocs.yml,
+#: because every one of these hooks APPENDS its section to the page markdown. Stored as the contract so
+#: a reordering has to change this line too.
+_TAIL_HOOK_ORDER = ("hooks/labs.py", "hooks/exercises.py", "hooks/materials.py", "hooks/readings.py")
+
+
+def _fm_manifest(front_matter: str, key: str) -> "list[dict[str, str]] | None":
+    """A front-matter manifest block's entries, each as {field: first-line value}; None when absent.
+
+    Minimal line reader (no PyYAML): the block is the lines indented under `<key>:`, each entry opening
+    `  - <field>: …` and continuing `    <field>: …`. A field whose value opens a BLOCK SCALAR (`|`/`>`)
+    swallows every more-indented line that follows, so prose inside an `about:` body cannot be misread as
+    a field — which matters because a sentence can legitimately contain `Word: text`."""
+    lines = front_matter.splitlines()
+    try:
+        start = next(i for i, ln in enumerate(lines) if re.match(rf"^{re.escape(key)}:\s*$", ln))
+    except StopIteration:
+        return None
+    entries: list[dict[str, str]] = []
+    scalar_indent: "int | None" = None
+    for ln in lines[start + 1:]:
+        if ln.strip() and not ln.startswith(" "):
+            break                                        # a new top-level key ends the block
+        indent = len(ln) - len(ln.lstrip())
+        if scalar_indent is not None:
+            if not ln.strip() or indent > scalar_indent:
+                continue                                 # still inside the block scalar's body
+            scalar_indent = None
+        m = re.match(r"^\s{2}-\s+([A-Za-z_][\w-]*):\s*(.*?)\s*$", ln)
+        if m:
+            entries.append({})
+        else:
+            m = re.match(r"^\s{4,}([A-Za-z_][\w-]*):\s*(.*?)\s*$", ln)
+        if not m or not entries:
+            continue
+        entries[-1][m.group(1)] = m.group(2).strip().strip("\"'")
+        if m.group(2)[:1] in "|>":
+            scalar_indent = indent
+    return entries
+
+
+def check_course_unit_manifests():
+    """MANIFEST (BLOCKING; 0 findings at landing). Every lecture unit's `labs:` and `exercises:` front
+    matter declares exactly the fields its hook reads, with a unique, token-grammar slug, and every
+    inline `{lab:…}` / `{exercise:…}` pointer names a slug declared on ITS OWN page.
+
+    Both hooks render one manifest into three places — a section heading, a nav child, and whatever
+    inline pointers the prose carries — and all three take the entry's NUMBER from its position in the
+    list. So the failures worth catching are an authored number (a fourth copy of a derived fact, free
+    to disagree), a slug the token grammar cannot match, a repeated slug (two headings, one anchor, an
+    ambiguous pointer), and a pointer to a slug that was renamed or removed. The hooks raise on most of
+    these, but they run ONLY in CI's teach-site mkdocs step, so without this twin the first report is a
+    red Pages build.
+
+    Two preconditions fail loudly rather than returning a clean verdict: some page must declare each
+    manifest, and some page must carry each token kind. A check that has stopped finding its own inputs
+    reports an empty corpus as a clean one."""
+    mods = sorted(glob.glob(os.path.join(ROOT, _MODULE_INDEX_GLOB)))
+    if not mods:
+        return FAIL, [f"unit-manifests: no module pages matched {_MODULE_INDEX_GLOB} — glob or tree "
+                      "moved; the gate would silently pass over an empty set otherwise"]
+    issues: list[str] = []
+    declared_any = {key: 0 for key in _UNIT_MANIFESTS}
+    tokens_any = {key: 0 for key in _UNIT_MANIFESTS}
+    for page in mods:
+        front, body = _split_front_matter(open(page, encoding="utf-8").read())
+        for key, fields in _UNIT_MANIFESTS.items():
+            entries = _fm_manifest(front, key)
+            slugs: list[str] = []
+            if entries is not None:
+                declared_any[key] += len(entries)
+                if not entries:
+                    issues.append(f"{rel(page)}: `{key}:` is declared with no entries — drop the key, "
+                                  f"since an absent manifest renders no section and an empty one is "
+                                  f"indistinguishable from a manifest that failed to parse")
+                for i, entry in enumerate(entries, start=1):
+                    extra = sorted(set(entry) - set(fields))
+                    numbered = [f for f in extra if f.lower() in _AUTHORED_NUMBER_FIELDS]
+                    if numbered:
+                        issues.append(f"{rel(page)}: {key} entry {i} declares {', '.join(numbered)} — "
+                                      f"an entry's number is DERIVED from its position, so an authored "
+                                      f"one is a second source of truth that a reorder breaks")
+                    for f in extra:
+                        if f.lower() not in _AUTHORED_NUMBER_FIELDS:
+                            issues.append(f"{rel(page)}: {key} entry {i} declares unknown field {f!r} — "
+                                          f"the hook reads {', '.join(fields)} and ignores the rest, so "
+                                          f"this field's content never reaches the page")
+                    for f in sorted(set(fields) - set(entry)):
+                        issues.append(f"{rel(page)}: {key} entry {i} is missing {f!r} — the hook refuses "
+                                      f"a partial entry rather than rendering an item nobody can use")
+                    slug = entry.get("slug", "")
+                    if slug and not _SLUG_RE.match(slug):
+                        issues.append(f"{rel(page)}: {key} entry {i} slug {slug!r} is outside the token "
+                                      f"grammar [a-z0-9][a-z0-9-]* — no inline pointer can name it")
+                    if slug in slugs:
+                        issues.append(f"{rel(page)}: {key} slug {slug!r} is declared twice — the anchor "
+                                      f"and the pointer both key on it, so the repeat is unreachable")
+                    slugs.append(slug)
+            for m in _UNIT_TOKEN_RE[key].finditer(body):
+                tokens_any[key] += 1
+                if m.group(1) not in slugs:
+                    issues.append(f"{rel(page)}: {m.group(0)} names no {key} entry on this page "
+                                  f"(declared: {', '.join(slugs) or 'none'}) — a pointer resolves within "
+                                  f"its own unit, so this one would fail the teach-site build")
+            if key == "labs":
+                for slug in slugs:
+                    if slug and not os.path.isfile(os.path.join(ROOT, "course", "interactive", slug,
+                                                                "index.html")):
+                        issues.append(f"{rel(page)}: lab slug {slug!r} has no "
+                                      f"course/interactive/{slug}/index.html — fix the slug, or add the "
+                                      f"instrument before declaring the lab")
+    for key, n in declared_any.items():
+        if not n:
+            issues.append(f"unit-manifests: no lecture unit declares `{key}:` — the manifest key or the "
+                          f"front-matter shape moved; the gate would silently pass otherwise")
+    for key, n in tokens_any.items():
+        if not n:
+            issues.append(f"unit-manifests: no lecture unit body carries a {key} pointer token — the "
+                          f"token grammar moved, so the resolver half of this gate guards nothing")
+    return (FAIL if issues else PASS), issues
+
+
+def _exercises_hook_namespace() -> dict:
+    """The EXERCISES hook's pure parts, exec'd in isolation — no mkdocs, no PyYAML.
+
+    The hook imports `mkdocs.structure.nav` at module scope, which this stdlib suite cannot, so the
+    rendering and token functions are selected out of the parsed source and executed on their own. That
+    runs the SHIPPED code rather than a restatement of it, which is the whole value: a mirrored copy of
+    the numbering rule would keep passing after the hook stopped obeying it."""
+    want = {"anchor", "_exercises_section", "_resolve_tokens", "_EXERCISE_TOKEN"}
+    with open(_EXERCISES_HOOK, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read(), filename=_EXERCISES_HOOK)
+    selected = [n for n in tree.body
+                if (isinstance(n, ast.FunctionDef) and n.name in want)
+                or (isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id in want
+                                                      for t in n.targets))]
+    namespace: dict = {"re": re}
+    exec(compile(ast.Module(body=selected, type_ignores=[]), _EXERCISES_HOOK, "exec"), namespace)
+    missing = sorted(want - set(namespace))
+    if missing:
+        raise AssertionError(f"exercises hook no longer defines {', '.join(missing)} — re-anchor this "
+                             f"check on the hook's current shape rather than weakening it")
+    return namespace
+
+
+def check_course_exercises_hook_invariants():
+    """EXERCISES-HOOK (BLOCKING; 0 findings at landing). Four invariants of the EXERCISES section, three
+    exercised against the hook's own shipped code and one against its registration.
+
+      - **Position-derived numbering.** The headings read Exercise 1..N in manifest order, and swapping
+        two entries swaps their numbers. This is what lets a prose pointer stay correct through a
+        reorder; the moment a number is read from anywhere but the position, it can disagree.
+      - **An absent manifest renders nothing.** A unit whose deck is still settling declares no
+        `exercises:` key, and must get no heading — not an empty section. Several units are in that
+        state by design, so this is the common case, not the edge.
+      - **A pointer resolves to its own heading's number.** The token and the heading are two renderings
+        of one entry; a divergence sends a student to the wrong exercise, which no build error catches.
+      - **Tail-section order.** Labs, Exercises, Materials, Readings — held by the hook REGISTRATION
+        order in site/mkdocs.yml, since each hook appends. Nothing in the hooks themselves expresses
+        the order, so reordering that list silently moves the section on every unit page."""
+    issues: list[str] = []
+    ns = _exercises_hook_namespace()
+    section, resolve, anchor = ns["_exercises_section"], ns["_resolve_tokens"], ns["anchor"]
+
+    entries = [{"title": f"Title {s}", "slug": s, "about": f"About {s}."} for s in ("alpha", "beta", "gamma")]
+    for n, entry in enumerate(entries, start=1):
+        head = f"### Exercise {n} — {entry['title']} {{#{anchor(entry['slug'])}}}"
+        if head not in section(entries):
+            issues.append(f"exercises-hook: rendered section lacks {head!r} — the heading number is no "
+                           "longer the entry's position in the manifest")
+    reordered = section(list(reversed(entries)))
+    if f"### Exercise 1 — Title gamma {{#{anchor('gamma')}}}" not in reordered:
+        issues.append("exercises-hook: reversing the manifest did not renumber the headings — a number "
+                      "is being taken from somewhere other than the position")
+    if section([]) != "":
+        issues.append("exercises-hook: an empty manifest renders "
+                      f"{section([])!r} — a unit that declares no exercises must render no section, not "
+                      "an empty heading")
+    for n, entry in enumerate(entries, start=1):
+        slug = entry["slug"]
+        got = resolve(f"see {{exercise:{slug}}}.", entries, "t")
+        want = f"see [Exercise {n}](#{anchor(slug)})."
+        if got != want:
+            issues.append(f"exercises-hook: pointer to {slug!r} resolved to {got!r}, expected {want!r} — "
+                          "the inline number and the heading number disagree")
+    try:
+        resolve("see {exercise:absent}.", entries, "t")
+        issues.append("exercises-hook: a pointer to an undeclared slug resolved silently — a rotted "
+                      "reference must stop the build rather than ship as a link to nothing")
+    except ValueError:
+        pass
+
+    with open(_HOOKS_CONFIG, encoding="utf-8") as fh:
+        config = fh.read()
+    at = [(config.index(h), h) for h in _TAIL_HOOK_ORDER if h in config]
+    if len(at) != len(_TAIL_HOOK_ORDER):
+        issues.append(f"exercises-hook: site/mkdocs.yml registers only {len(at)} of the "
+                      f"{len(_TAIL_HOOK_ORDER)} appending hooks — an unregistered hook renders nothing, "
+                      f"and this check cannot see the order of a hook that is not there")
+    elif [h for _, h in sorted(at)] != list(_TAIL_HOOK_ORDER):
+        issues.append(f"exercises-hook: site/mkdocs.yml registers the appending hooks as "
+                      f"{[h for _, h in sorted(at)]}, which renders the tail sections in that order; "
+                      f"the contract is {list(_TAIL_HOOK_ORDER)}")
     return (FAIL if issues else PASS), issues

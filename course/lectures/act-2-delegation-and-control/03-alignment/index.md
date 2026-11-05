@@ -23,6 +23,23 @@ readings:
     - cite: davis2026mage
       locator: '§§3.3.4–3.3.7 and §3.5'
       annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. Optional: the later control mechanisms, and what happens when accumulated controls become a system.'
+exercises:
+  - title: Design the alignment for the Modeling-lab models
+    slug: design-the-alignment
+    about: |
+      A team activity of ten to twelve minutes, run against the two models your team built in the
+      Modeling lab — the device-firmware working-memory view, with three threads needing up to 20, 24
+      and 27 KB against a 48 KB ceiling, and the thread-admission lifecycle view, in which the
+      scheduler admits at most two threads awake. Choose one obligation from that lab and walk it
+      along the chain from obligation to model to check to decision to control.
+
+      1. How could the realization violate the obligation?
+      2. Can you prevent that failure, or must you detect it?
+      3. What would you check, and what evidence would let you decide?
+      4. Where is the earliest boundary at which it is decidable?
+      5. What should happen if the check fails?
+
+      What you are after is a placement argument, not a list of controls.
 instructor_materials: []
 student_materials: []
 assignments: []

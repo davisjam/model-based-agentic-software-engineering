@@ -47,6 +47,31 @@ labs:
       it fails, alongside three obligations no dependency rule can settle, which is the difference
       between describing an architecture and enforcing one. Every cost on the page is a declared
       assumption, not a measurement.
+exercises:
+  - title: Restructure the reservation service?
+    slug: restructure-or-not
+    about: >
+      Your agent produced a working reservation service with weak internal boundaries, and an
+      implementation probe confirms that the laboratory-policy change requires modifying four of its
+      five components. More policy changes arrive each semester. In pairs, give a first answer — retain
+      the current structure, refactor to a modular monolith, or extract services — and argue it from
+      the expected changes rather than from the disorder you can see. Then perturb the premises: only
+      one further policy change is ever expected; a second team takes over approvals. Which answers
+      change, and why? The unit prices the three options afterwards and returns to this answer, so the
+      first one is meant to be superseded.
+  - title: Respond to a vulnerable dependency
+    slug: vulnerable-dependency
+    about: |
+      The HTTP parser two levels down the dependency tree carries a critical CVE, and upstream is
+      unmaintained. Five responses are on the table, each charging a different price — upgrade to a
+      patched fork or major version and pay the compatibility testing; pin and mitigate, documenting
+      the exposure window and the compensating control; replace the parser or the framework that chose
+      it and pay the migration; remove the feature that pulls it in; or fork and maintain it, which
+      means staffing a parser. Decide what you do tonight and what you do by next semester.
+
+      A critical CVE is not an exploit, so separate four questions before choosing. Is the vulnerable
+      version present? Is the vulnerable functionality reachable from your deployment? Are the
+      exploitation conditions satisfied? What is the consequence if it is exploited?
 instructor_materials: []
 student_materials: []
 assignments: []

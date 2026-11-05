@@ -131,6 +131,7 @@ from tests.html import (
 )
 from tests.course import (
     check_course_act_nav_covers_every_unit,
+    check_course_exercises_hook_invariants,
     check_course_front_matter_parses,
     check_course_lander_prose_word_band,
     check_course_mage_tokens_resolve,
@@ -139,6 +140,7 @@ from tests.course import (
     check_course_reading_citations,
     check_course_reveal_not_leaked,
     check_course_sessions_calendar_parity,
+    check_course_unit_manifests,
 )
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
 from tests.pptx_validity import check_pptx_opc, check_pptx_schema
@@ -275,6 +277,17 @@ CHECKS = [
     # reached the published site on 261029-30 with every other gate green. See tests/course.py.
     Check("course: FRONT-MATTER — parses (no unquoted colon-space in a scalar)", 1,
           lambda strict: check_course_front_matter_parses()),
+    # The two unit manifests (`labs:`, `exercises:`) render one declaration into a section heading, a nav
+    # child, and the prose's inline pointers, with the NUMBER derived from the entry's position. The hooks
+    # that do it run only in CI's teach-site mkdocs step, so an authored number, a repeated slug, or a
+    # pointer to a renamed slug passes every local gate and dies on the Pages build. See tests/course.py.
+    Check("course: MANIFEST — labs:/exercises: entries well-formed; every inline pointer resolves", 1,
+          lambda strict: check_course_unit_manifests()),
+    # The EXERCISES hook's own invariants, run against its shipped source: position-derived numbering, an
+    # absent manifest rendering nothing, a pointer agreeing with its heading — plus the tail-section order
+    # (Labs, Exercises, Materials, Readings), which lives nowhere but the mkdocs.yml registration order.
+    Check("course: EXERCISES-HOOK — position-derived numbers + tail-section order", 1,
+          lambda strict: check_course_exercises_hook_invariants()),
     # Committed-deck validity (tools/pptx_validate.py): stdlib OPC part-coverage always; the genuine
     # OOXML schema validator (OpenXmlValidator, needs .NET) runs skip-if-absent via pre_push — the
     # html-validate promotion posture. Two shipped PowerPoint needs-repair corruptions motivated this;
@@ -452,14 +465,9 @@ CHECKS = [
     # landing, a follow-up promotes it to blocking after a clean session. See tests/book_models.py.
     Check("book-models: Part-title parity — _PART_TITLES == outcomes_model.PART_TITLES on shared keys", 1,
           lambda strict: check_part_title_parity(), audit_only=False),
-    # AUDIT-ONLY-first (rule #55; rule-#33 parity): R3 canon-fidelity guard + R5 cycle pin. R3 asserts the
-    # whole canon Modeling/Alignment Thesis is stated in a body chapter of its Part (pinned to the
-    # argument-spine SSOT), so cutting the Preface Modeling-box cannot lose the canon — Alignment holds at
-    # 3.1, Modeling is the transient gap a Part-2 body chapter closes in W2/W3 (1 finding today). R5 holds
-    # any `mage-cycle`-anchored surface to the ONE pinned 3-line-method wording (canon_cycle_declared.json;
-    # vacuous until the cycle surfaces land). Promotes BLOCKING once the Modeling gap drains. See
-    # tests/book_models.py.
-    Check("book-models: canon pins — R3 whole-thesis-in-Part guard + R5 3-line-method cycle pin", 1,
+    # R3 holds the Modeling/Alignment statements at their stable paragraph points in body chapters;
+    # R5 holds every mage-cycle surface to the declared three-line method. Both remain blocking.
+    Check("book-models: canon pins — R3 principle statements + R5 3-line-method cycle pin", 1,
           lambda strict: check_canon_pins(), audit_only=False),
     # AUDIT-ONLY (rule #55): the REVERSE INDEX — a derived inversion of every built view's forward
     # references into {md symbol -> [dependent view elements]} (DESIGN §8). Two mechanical drift kinds:

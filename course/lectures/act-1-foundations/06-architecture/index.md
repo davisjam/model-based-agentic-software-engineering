@@ -23,6 +23,18 @@ readings:
         - cite: davis2026mage
           locator: '§4.2, "One Problem, Many Models"'
           annotation: '[MAGE, §4.2 — "One Problem, Many Models."](https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book/4.2-one-problem-many-models.html) Davis, 2026. Read §4.2 only. Follow the DocAble case from an observed resource failure through two architectural changes. The case shows how an engineering property can expose an unwanted coupling, how changing one boundary can reopen choices elsewhere in the architecture, and how a model can support analysis before implementation. Focus especially on the distinction between choosing an architecture and constructing representations that let engineers reason about its consequences.'
+exercises:
+  - title: Two plausible organizations for one specification
+    slug: two-organizations
+    about: >
+      You receive the specification for a sleep-advice service and sketch an architecture for it: the
+      major parts, the boundaries between them, and the interactions across those boundaries. Produce
+      TWO plausible organizations, and do not converge on one yet. Five obligations constrain the
+      sketch — advice returns within two seconds, raw sleep data is never disclosed to sharing
+      recipients, the illness model is expected to change independently, a sharing failure must not
+      prevent local advice, and a weekly summary must reflect a consistent seven-night window. One
+      specification admits more than one machine, and those obligations are what let you argue between
+      them.
 instructor_materials: []
 student_materials: []
 assignments: []

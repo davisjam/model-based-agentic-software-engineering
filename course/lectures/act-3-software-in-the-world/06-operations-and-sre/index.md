@@ -13,6 +13,54 @@ readings:
           locator: 'chapter 15, Postmortem Culture: Learning from Failure'
           annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering* (O''Reilly, 2016), [chapter 15, "Postmortem Culture: Learning from Failure"](https://sre.google/sre-book/postmortem-culture/). Read the whole chapter. This is the more important of the two readings. It explains how an incident becomes organizational learning instead of an occasion to identify whoever made a mistake, and it ties each corrective action to an owner and to the evidence that closes it. Read it against the Failure-Aware Engineering unit: the argument is the one this course makes about converting an observed failure into a durable control. The chapter''s templates and tooling matter less than its insistence that the record exists to be acted on.'
       note: 'If you read only one of these, read the second.'
+exercises:
+  - title: Define health for your own project
+    slug: define-health
+    about: |
+      Four minutes on the worksheet, then two teams read theirs out. Define one indicator and one
+      objective for your own project, then say what could go wrong while that indicator stays green.
+      Write it in three lines — the indicator, named so a user would recognize the behavior; the
+      objective, with its target, its interval, and the events that count as eligible; and the blind
+      spot, the failure that keeps the indicator green.
+
+      Your project does not owe what the next team's owes. Where personal data is held, integrity and
+      confidentiality may outrank availability. Where inference is paid for, cost per request can be
+      the indicator that matters. Where the information is public, staleness may be the only failure
+      users feel.
+  - title: What would expose your project's failure?
+    slug: expose-the-failure
+    about: |
+      Name the hardest problem to diagnose in your project, then the one observation that would expose
+      it. The pair is the answer: the failure stated specifically enough that two teams could disagree
+      about its cause, and the observation stated specifically enough that somebody could instrument it
+      tomorrow. Four starting points if your team is stuck — a dependency you do not own gets slower
+      and nothing in your code changed; one user's request is slow and the aggregate never moves; the
+      cost per request doubles and the latency does not; it happens only under load you have never
+      generated.
+
+      Record both. The second one is a control you could build.
+  - title: Your project's critical dependency
+    slug: critical-dependency
+    about: |
+      Which dependency could disable your project, and what behavior would you permit while it is
+      unavailable? Harder than listing your dependencies, because the second half is a policy. Write
+      three lines — the dependency whose absence stops you serving users at all; the permitted
+      behavior, stated as a rule, for what the system may do while it is gone; and the tempting action
+      you are ruling out in advance.
+
+      Three minutes, and two teams read all three lines rather than the first. The third line is the
+      runbook's permitted-actions row, and it is the only one still useful at three in the morning.
+  - title: What must change permanently?
+    slug: permanent-control
+    about: |
+      Name one failure that deserves a permanent control rather than a code fix, and say what closes
+      it. Four lines, and the last two are the test — the failure, one you have actually had rather
+      than one you fear; the control, which may be a lint, a gate, a test, an alert, or an
+      architectural limit; the owner, a person, because a team owns nothing; and the closing evidence,
+      what someone could check to call it done.
+
+      The test of reach is whether the control would have caught the failure before a user felt it.
+      One control per team, and this is the artifact the unit collects.
 instructor_materials: []
 student_materials: []
 assignments: []

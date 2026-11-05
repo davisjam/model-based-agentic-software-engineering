@@ -34,6 +34,41 @@ readings:
           annotation: 'Anderson, *Security Engineering: A Guide to Building Dependable Distributed Systems*, 3rd edition, chapter 27, "Secure Systems Development" (Wiley, 2020; [the author makes the chapters freely available](https://www.cl.cam.ac.uk/~rja14/book.html)). Optional, and long at forty-nine pages. Read it for the argument that security requirements emerge from a system and its environment rather than from a checklist, and for its treatment of risk management as a judgment made under uncertainty rather than a score to compute. Anderson writes from decades of deployments that failed, so the chapter is unusually direct about which practices survive contact with a real project.'
         - cite: shacham2007geometry
           annotation: 'Shacham, ["The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)"](https://doi.org/10.1145/1315245.1315313), ACM CCS 2007. **Advanced and fabulous.** Optional, and offered as an invitation rather than as material you are expected to master. The paper shows that an attacker who controls the execution path can assemble arbitrary computation from short instruction sequences already present in executable memory, injecting no code at all. Read it against the Cloudflare postmortem. One exploits the computational complexity of an ordinary operation; the other repurposes instructions that are individually legitimate. Both make the same point about trust boundaries and authority: what matters is not whether each piece is permitted on its own, but who controls how the pieces compose.'
+exercises:
+  - title: Threat-modeling reservation cancellation
+    slug: threat-model-cancellation
+    about: |
+      The reservation service exposes an endpoint that cancels a reservation by identifier. Students
+      authenticate through the university identity provider, and administrators may cancel reservations
+      on behalf of students. Using the system model, students should:
+
+      1. Identify the assets and trust boundaries relevant to cancellation.
+      2. Describe three concrete threats, including the adversary, entry point, action, and consequence.
+      3. Select the most consequential threat and explain what additional information would help
+         evaluate it.
+
+      The exercise should produce a revised diagram and a short threat table, not merely a list of
+      STRIDE categories. A second pass perturbs one assumption — the administrative interface is a
+      separate service, the identity provider is briefly unavailable, reservation identifiers are
+      sequential integers — and asks which threats that changes.
+  - title: Securing reservation cancellation
+    slug: secure-cancellation
+    about: |
+      Students return to the threat identified in Lecture 1: an authenticated student attempts to
+      cancel another student's reservation, and administrators cancel on students' behalf through a
+      second interface. The engineer must decide how to enforce the authorization policy and what
+      evidence is sufficient to accept the implementation. Students should develop:
+
+      1. An authorization rule identifying the principal, resource, operation, and required
+         relationship.
+      2. An enforcement design showing where the rule is evaluated and what happens when authorization
+         fails.
+      3. A test plan covering authorized operations, unauthorized operations, and attempts to bypass
+         the enforcement path.
+
+      Does the proposed design apply the correct policy to both interfaces, or has it protected only
+      the ordinary student endpoint? The intended outcome is a small, explicit security model connected
+      to enforceable behavior and corresponding evidence.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -74,9 +109,9 @@ Security is also an economic decision. The engineer cannot eliminate every conce
 
 ## Structure of this unit
 
-**Lecture 1, Threat Modeling.** We construct a system model of the reservation service, identify its assets and trust boundaries, and use STRIDE to examine how an adversary might violate its security objectives. The exercise asks students to develop and review a threat model.
+**Lecture 1, Threat Modeling.** We construct a system model of the reservation service, identify its assets and trust boundaries, and use STRIDE to examine how an adversary might violate its security objectives. To practice this, see {exercise:threat-model-cancellation}.
 
-**Lecture 2, Controls & Assurance.** We translate selected threats into security policies and enforceable controls. We examine authorization, least privilege, complete mediation, isolation, and security testing, then consider how unexpected authority arises in conventional software and agentic systems. The exercise asks students to select controls and evidence for the reservation service.
+**Lecture 2, Controls & Assurance.** We translate selected threats into security policies and enforceable controls. We examine authorization, least privilege, complete mediation, isolation, and security testing, then consider how unexpected authority arises in conventional software and agentic systems. To practice this, see {exercise:secure-cancellation}.
 
 The two lectures follow the Act III engineering method: identify the problem, construct a model, exercise judgment about the design, realize the selected controls, and obtain evidence that they satisfy the intended obligations.
 
@@ -147,18 +182,6 @@ Review includes checking that the diagram matches the implementation, identifyin
 Threats also differ in importance. A student obtaining another student's reservation identifier may be less consequential than a compromised administrative credential permitting modification of every reservation. The engineer considers the plausibility of exploitation, the potential impact, existing controls, and the cost of additional protection.
 
 These judgments should be explicit. Assigning numerical risk scores does not eliminate uncertainty about attacker behavior or consequences.
-
-## Exercise A: Threat-modeling reservation cancellation
-
-The reservation service exposes an endpoint that cancels a reservation by identifier. Students authenticate through the university identity provider, and administrators may cancel reservations on behalf of students.
-
-Using the system model, students should:
-
-1. Identify the assets and trust boundaries relevant to cancellation.
-2. Describe three concrete threats, including the adversary, entry point, action, and consequence.
-3. Select the most consequential threat and explain what additional information would help evaluate it.
-
-The exercise should produce a revised diagram and a short threat table, not merely a list of STRIDE categories.
 
 ## Specifying security policy
 
@@ -242,22 +265,6 @@ These techniques produce evidence; they are not substitutes for the security con
 For example, fuzzing may reveal that an API accepts malformed requests, but the mitigation is a change to the implementation or its enforcement mechanisms. Similarly, a passing authorization test establishes behavior for the tested principals, resources, and operations. It does not establish that every possible authorization path has been examined.
 
 The engineer should connect each consequential security claim to its enforcement mechanism and the evidence used to evaluate it.
-
-## Exercise B: Securing reservation cancellation
-
-Students return to the threat identified in Lecture 1: an authenticated student attempts to cancel another student's reservation.
-
-The engineer must decide how to enforce the authorization policy and what evidence is sufficient to accept the implementation.
-
-Students should develop:
-
-1. An authorization rule identifying the principal, resource, operation, and required relationship.
-2. An enforcement design showing where the rule is evaluated and what happens when authorization fails.
-3. A test plan covering authorized operations, unauthorized operations, and attempts to bypass the enforcement path.
-
-The exercise should also consider a second cancellation interface used by administrators. Does the proposed design apply the correct policy to both interfaces, or has it protected only the ordinary student endpoint?
-
-The intended outcome is a small, explicit security model connected to enforceable behavior and corresponding evidence.
 
 ## Engineering judgment
 

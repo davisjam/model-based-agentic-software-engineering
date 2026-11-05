@@ -6,8 +6,8 @@ that mentioned it, and nothing in the sidebar said it existed. This hook makes a
 property of the unit, rendered twice from one manifest: as a **Labs** section on the page, and as nav
 children indented under the unit.
 
-The section leads the page's three appended tail sections — Labs, then Materials, then Readings. That
-order is the hook REGISTRATION order in `site/mkdocs.yml`, since all three append; this hook is listed
+The section leads the page's appended tail sections — Labs, then Exercises, then Materials, then Readings.
+That order is the hook REGISTRATION order in `site/mkdocs.yml`, since all four append; this hook is listed
 first there and the comment at that site says so.
 
 Front-matter shape (`labs:` on a lecture-unit page):
@@ -33,7 +33,9 @@ the authored anchor means the token resolves without reimplementing the toc exte
 
 An unknown slug fails the build loud, matching the readings resolver — a rotted reference must stop the
 build rather than ship as literal `{lab:…}` text or a nav link to nothing. The stdlib twin of that gate
-is `check_course_labs_manifest` in `tests/course.py`, which runs where this toolchain does not.
+is `check_course_unit_manifests` in `tests/course.py`, which runs where this toolchain does not. (That
+twin arrived with the EXERCISES hook; the name recorded here when the section landed named a check that
+did not exist, which is why the manifest shipped unpinned for its first two hours.)
 """
 from __future__ import annotations
 import logging
@@ -42,7 +44,7 @@ import re
 
 from mkdocs.structure.nav import Link
 
-from _common import MODULE_RE, front_matter
+from _common import front_matter, manifest, nest_under_units
 
 log = logging.getLogger(f"mkdocs.hooks.{__name__}")
 
@@ -60,25 +62,10 @@ def anchor(slug: str) -> str:
 
 
 def labs_of(meta: dict, where: str) -> "list[dict]":
-    """The `labs:` manifest as a validated list of `{title, slug, about}` mappings; [] when absent.
-
-    Malformed entries raise rather than render partially — a lab nobody can reach is the failure this
-    hook exists to remove, and a silently dropped entry reintroduces it."""
-    raw = (meta or {}).get("labs") or []
-    if not isinstance(raw, list):
-        raise ValueError(f"labs: {where}: `labs:` must be a list of mappings, got {type(raw).__name__}")
-    out: list[dict] = []
-    for i, item in enumerate(raw, start=1):
-        if not isinstance(item, dict):
-            raise ValueError(f"labs: {where}: entry {i} is {item!r} — expected a "
-                             f"{{title, slug, about}} mapping")
-        missing = [k for k in ("title", "slug", "about") if not str(item.get(k) or "").strip()]
-        if missing:
-            raise ValueError(f"labs: {where}: entry {i} is missing {', '.join(missing)} — a lab declares "
-                             f"its title, its course/{INTERACTIVE_DIR}/<slug>/ directory, and what the "
-                             f"student does and what it shows")
-        out.append({k: str(item[k]).strip() for k in ("title", "slug", "about")})
-    return out
+    """The `labs:` manifest as a validated list of `{title, slug, about}` mappings; [] when absent."""
+    return manifest(meta, "labs", ("title", "slug", "about"), where,
+                    f"a lab declares its title, its course/{INTERACTIVE_DIR}/<slug>/ directory, and "
+                    f"what the student does and what it shows")
 
 
 def _instrument_src(docs_dir: str, slug: str) -> str:
@@ -129,24 +116,12 @@ def on_page_markdown(markdown: str, *, page, config, files):
     return md + _labs_section(labs, os.path.dirname(page.file.abs_src_path), docs_dir)
 
 
-def _unit_index(section) -> "object | None":
-    """A lecture unit's own index page, read off the nav section's children; None for any other section
-    (the same `NN-<topic>/index.md` shape the nav-numbering hook and the readings guide recognize)."""
-    for child in section.children:
-        if child.is_page and child.file is not None and MODULE_RE.match(child.file.src_uri):
-            return child
-    return None
-
-
-def _nest(section, docs_dir: str) -> int:
+def _nest(index, section, docs_dir: str) -> int:
     """Append one nav Link per declared lab to this unit's section, so the labs render indented under the
     unit and expand with it. Links are added AFTER mkdocs wired parents, so set the parent explicitly.
 
     The href is site-root-relative: the `url` filter rewrites it per rendered page, which is what makes
     one authored value correct in a sidebar that appears on every page of the site."""
-    index = _unit_index(section)
-    if index is None:
-        return 0
     labs = labs_of(front_matter(index.file.abs_src_path), index.file.src_uri)
     for n, lab in enumerate(labs, start=1):
         _require_instrument(docs_dir, lab["slug"], index.file.src_uri)
@@ -156,12 +131,8 @@ def _nest(section, docs_dir: str) -> int:
     return len(labs)
 
 
-def _walk(section, docs_dir: str) -> int:
-    # Recurse BEFORE nesting: the children added here are Links, which carry no children of their own.
-    return sum(_walk(c, docs_dir) for c in section.children if c.is_section) + _nest(section, docs_dir)
-
-
 def on_nav(nav, *, config, files):
-    nested = sum(_walk(item, config["docs_dir"]) for item in nav.items if item.is_section)
+    docs_dir = config["docs_dir"]
+    nested = nest_under_units(nav, lambda index, section: _nest(index, section, docs_dir))
     log.info("labs: nested %d lab link(s) under their lecture units in the nav", nested)
     return nav
