@@ -777,9 +777,21 @@ in a bottom banner.** A useful conclusion may generalize from the evidence,
 identify a limitation, or establish a decision criterion.
 
 Recommend deletion before rewriting when a sentence adds no distinct
-information. After deleting redundant prose, use the freed space to enlarge
-or clarify the technical content where that would improve the slide. Do not
-fill the space automatically.
+information — a failure of check 2 or check 3.
+
+Recommend restatement rather than deletion when the sentence adds something
+imprecisely — a failure of check 4. There the proposition is worth keeping and
+the compression is the defect, so deleting it loses the fact. *The defect
+lives in the interaction* should become *Both transactions commit. The
+reservations overlap*, not disappear.
+
+When a sentence fails check 3 as well — the figure or title already carries
+the proposition — delete it rather than restating it. Redundancy outranks
+imprecision, because the fact is not at risk.
+
+After deleting redundant prose, use the freed space to enlarge or clarify the
+technical content where that would improve the slide. Do not fill the space
+automatically.
 
 ## Figures and evidence
 

@@ -68,9 +68,15 @@ Avoid:
 -   commentary about the lecture's organization or educational purpose;
 -   generic exhortations to exercise engineering judgment;
 -   repeated aphorisms or slogans;
--   self-conscious rhetorical contrasts;
+-   self-conscious rhetorical contrasts, where the half being rejected is a
+    straw alternative nobody proposed;
 -   statements that congratulate the audience for reaching a conclusion;
 -   explanations that merely repeat a diagram in prose.
+
+A contrast is substantive, and belongs on the slide, when the half it rejects
+is a belief the audience actually holds. *Serializable means equivalent to
+some serial order, not run one at a time* corrects a misconception most
+students arrive with, and earns its place.
 
 In particular, do not end every slide with a compact moral. A slide may end
 with a figure, a table, an equation, a code example, a question, or a
@@ -81,10 +87,16 @@ technical conclusion. No concluding sentence is required.
 | *Both transactions commit. The reservations overlap.* | *The defect lives in the interaction, not in either request.* |
 | *Old and new application versions must support the same stored data during migration.* | *Flexibility moves the compatibility obligation; it does not remove it.* |
 | *The query optimizer cannot eliminate queries issued separately by the application.* | *A good plan for each query is still a bad application.* |
+| *Representation, access path, and durability are decided separately.* | *Represent, retrieve, preserve: three decisions, all yours.* |
 
-The preferred formulations state the technical fact directly. The
-alternatives compress it into an interpretation, which can obscure the
-mechanism.
+The first three pairs differ in **precision**: the preferred formulation
+states the mechanism, and the alternative states a reading of it, which can
+obscure the mechanism.
+
+The fourth differs in **register**: the alternative is a motivational
+flourish rather than a technical statement at all. Both failures belong to
+this section, and they want different repairs — restate a compressed
+interpretation, delete a flourish.
 
 A memorable phrase is welcome when it is genuinely useful. Do not manufacture
 one for every slide.
