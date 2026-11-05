@@ -1,15 +1,18 @@
 # `_shared/` — the styling the six interactive laboratories have in common
 
-Two files, one job: hold the shared CSS once and inline it into every shipped page at build time.
+Hold what the six exercises have in common once: the shared stylesheet, the tool that inlines it,
+and the gate that holds the hand-authored figures to their geometry.
 
 | File | Role |
 |---|---|
-| `instrument-core.css` | The source of truth. Hand-authored. |
+| `instrument-core.css` | The source of truth for shared styling, including the laboratory handout. Hand-authored. |
 | `sync_css.py` | Inlines it into each `course/interactive/<exercise>/index.html`. Stdlib only. |
+| `check_figure_geometry.mjs` | Browser check: no figure label clipped by its viewBox, sitting on another, or painted under a later filled rect. |
 
 ```bash
 python3 course/interactive/_shared/sync_css.py            # propagate
 python3 course/interactive/_shared/sync_css.py --check     # report drift, write nothing
+node course/interactive/_shared/check_figure_geometry.mjs  # all six; add a name for one
 ```
 
 ## Why the CSS is inlined rather than linked
@@ -31,7 +34,14 @@ core rule without needing `!important` and without reordering anything.
 ## Membership rule
 
 **A rule belongs in the core when it is byte-identical in all six shipped pages.** Everything else
-stays local. Three consequences, each measured rather than assumed:
+stays local. One addition the rule did not anticipate: the **laboratory handout** — the engineering
+question, the system-model figure, the model assumptions, the parameter table, Predict/Run/Explain
+and the `svg.fig` figure vocabulary — is in the core because it is a shared design REQUIREMENT, so
+it is authored once and identical by construction rather than by coincidence. It is delimited by
+`BEGIN LAB SHELL` / `END LAB SHELL` markers inside the generated region, and its header comment
+carries the measurements that set the 350-450px opening budget.
+
+Three consequences of the membership rule, each measured rather than assumed:
 
 - **The token block is split, not shared whole.** The six `:root` blocks are not byte-identical.
   Each exercise adds its own vocabulary — `--model` / `--model-fill` in the five simulators,
@@ -42,14 +52,23 @@ stays local. Three consequences, each measured rather than assumed:
   **A token the core declares must never be overridden by a page, and the parity test enforces it.**
   A half-override leaks across colour schemes, silently. The page's local light `:root` follows the
   core's `@media (prefers-color-scheme: dark)` block in source order, so a token overridden in light
-  but not in dark wins in **dark** mode too. Measured during the extraction: redos darkens `--warn`
-  to `#8a5a00` because `#9a6500` as text on `--warn-fill` measures 4.45:1 and axe-core flagged it —
-  and with `--warn` in the core, that light-only override displaced the core's dark `#d2a24a` on a
-  dark page. The rule that removes the class rather than the instance: **a token that is not
-  identical in all six pages in BOTH schemes stays entirely local in both.** That is why `--warn`
-  is declared six times and `--warn-fill`, which every page agrees on, only once.
+  but not in dark wins in **dark** mode too. The rule that removes the class rather than the
+  instance: **a token that is not identical in all six pages in BOTH schemes stays entirely local in
+  both.** `--model` / `--model-fill` are the live example — the five simulators declare them, the
+  workbench does not.
+
+  **`--warn` was the first example and is no longer one, which is worth recording.** Five pages used
+  `#9a6500` and redos darkened it to `#8a5a00` for contrast, so the token stayed local. Then the
+  shared handout gave every page a required honesty statement in `--warn` on `--warn-fill`, and that
+  pairing measures **4.46:1** at `#9a6500` — axe-core fails it, so the divergence was about to
+  become five contrast violations rather than one deliberate exception. `#8a5a00` measures 5.33:1 on
+  `--warn-fill` and 5.39:1 on `--panel`, dark mode never diverged, and taking redos's value
+  everywhere both fixed the contrast and dissolved the reason the token was local. It is now in the
+  core, declared once. **The lesson generalises: when a page-local divergence exists only because one
+  page was right, reconcile UP rather than keeping the exception.**
 - **Rules that look shared and are not stay out.** `.ctl`, `.ctl-row`, `.seg`, `.seg button`,
-  `.btn-row`, `dl.readout`, `.badge`, `.legend`, `.canvas-wrap`, `canvas` and the
+  `.btn-row`, `dl.readout`, `.badge`, `.legend`, `.canvas-wrap`, `canvas`, the horizontal-scroll
+  wrapper (`.table-scroll` in one page, `.scroll-x` in two, absent from three) and the
   `@media (min-width: 1100px) .grid2` column template all differ between exercises today — the
   duplication was already mid-divergence when it was extracted. Reconciling any of them is
   deliberate work on the rules themselves. It is not done by moving text into the core.
@@ -69,6 +88,14 @@ one.
 Edit a generated block in a shipped page and the fix is mechanical: move the edit to
 `instrument-core.css`, re-run the sync, commit. The provenance comment inside the block says so in
 place.
+
+**`check_figure_geometry.mjs` runs as a tier of every exercise's `run-all.mjs`**, named in the
+output as `figure geometry`, so it rides the same matrix. It is a browser check — it needs laid-out
+geometry — so the placement rule keeps it out of the pre-push hook, and it skips itself with exit 0
+when Puppeteer is absent. It found 24 real defects across four figures on its first run: labels cut
+mid-word by the viewBox, labels stacked on one another, and labels painted under a box that hid
+them. None of the text-reading tiers, and neither axe-core nor a token sweep, can see any of those:
+the string is present and correct in every one of them.
 
 ## Not wired into `pre-commit`
 

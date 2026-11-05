@@ -63,10 +63,18 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
-   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
-   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
-   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -79,6 +87,7 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -99,6 +108,7 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
+    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -277,9 +287,29 @@ footer {
   .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
 .lab-parameters-block { margin: 0 0 0.75rem; }
 /* Inside the band the grid gap already separates it. */
 .lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column — the table would lose the width it needs. Both figures
+   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .lab-figure {
   margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
@@ -453,13 +483,11 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 :root {
   --model: #1f6fae;
   --model-fill: #eef4fb;
-  --warn: #8a5a00;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --model: #5f9fd4;
     --model-fill: #12202c;
-    --warn: #d2a24a;
   }
 }
 
@@ -705,51 +733,190 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
 <main>
 
-<!-- ======================= THE CASE ======================= -->
-<section class="panel" aria-labelledby="h-case">
-  <h2 id="h-case">The engineering case</h2>
-  <p>
-    On <strong>2 July 2019</strong> Cloudflare deployed a new rule to its Web Application Firewall.
-    The rule contained a regular expression whose matching cost grew explosively on some inputs. As
-    the rule was evaluated against live traffic it exhausted CPU across Cloudflare's network, and
-    for roughly <strong>27 minutes</strong> the company's core proxy, CDN, and WAF services returned
-    errors globally. The required reading is Cloudflare's own postmortem,
-    <em>&ldquo;Details of the Cloudflare outage on July 2, 2019&rdquo;</em>.
+<!-- ==============================================================================================
+     THE LABORATORY HANDOUT. The engineering problem, the SECURITY MODEL the exercise needs before
+     anyone edits a regular expression, the model's assumptions, and the parameters a student may
+     change. The styling is the shared lab shell in the generated core above.
+
+     This page already opened with the Cloudflare case, so the band FOLDS it rather than sitting on
+     top of it: the narrative's first half became the frame and Figure 1, the two-claims box became
+     the assumptions, and the expression-before-outcome exercise stayed below, where it is detail
+     rather than a second opening.
+     ============================================================================================ -->
+<section class="lab-intro" aria-labelledby="h-problem">
+  <h2 class="lab-question" id="h-problem">
+    <span class="k">Engineering problem</span>
+    How can an adversary use a small input to consume disproportionate computational resources?
+  </h2>
+  <p class="lab-frame">
+    On <strong>2 July 2019</strong> one regular expression in a new firewall rule exhausted CPU
+    across Cloudflare's network and took its core proxy, CDN and WAF down globally for about
+    <strong>27 minutes</strong>. No request was large: the cost was in the <em>matching</em>.
   </p>
-  <div class="model-msg">
-    <strong>Two things this page will not claim.</strong>
-    <strong>(1)</strong> The outage was <em>not</em> an attack. The pathological rule was written and
-    deployed by Cloudflare itself; no adversary was involved. The underlying algorithmic weakness is
-    nevertheless exploitable as a denial-of-service vulnerability, which is exactly why it belongs in
-    a security lecture rather than only a performance one.
-    <strong>(2)</strong> The demonstration below does <em>not</em> reproduce Cloudflare's production
-    behaviour. Different regex engines use different matching algorithms and different
-    optimisations, and your browser's engine is not the one Cloudflare was running. What the
-    demonstration reproduces is the same <em>class</em> of algorithmic vulnerability. Cloudflare
-    supplies the real engineering case; the browser supplies a real measurement of the class.
+
+  <div class="lab-twoup band">
+    <!-- -------- FIGURE 1 · the threat model: how a small input becomes an outage -------- -->
+    <figure class="lab-figure">
+      <svg class="fig" viewBox="0 0 520 206" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+        <title id="f1-t">Figure 1: the attack path — from a crafted input to an unavailable service</title>
+        <desc id="f1-d">A path runs downward through six stages. An attacker, outside the system
+          boundary, sends a crafted input. It crosses into the system at a public API, which accepts
+          input the attacker controls. The input reaches a regular-expression matcher, which spends
+          excessive computation on it. That exhausts the CPU of the process, and the service becomes
+          unavailable to everyone. The last three stages are drawn in the failure colour and
+          outlined heavily, and each is also labelled in words. A dashed boundary encloses the
+          public API, the matcher, the CPU and the service, and is labelled the system under attack;
+          the attacker is outside it, and the only thing crossing the boundary is the input. A note
+          reads that the attacker supplies no privilege and no volume — only the shape of one
+          string. The parameters marked are defined in the parameters table.</desc>
+
+        <rect class="boundary" x="112" y="26" width="404" height="150" rx="3"/>
+        <text class="th" x="118" y="190">System under attack</text>
+
+        <rect class="bx" x="4" y="36" width="98" height="34" rx="2"/>
+        <text class="t" x="53" y="51" text-anchor="middle">Attacker</text>
+        <text class="ts" x="53" y="64" text-anchor="middle">no privilege</text>
+        <line class="ln bad" x1="106" y1="53" x2="150" y2="53"/>
+        <polygon class="ah-bad" points="156,53 149,49 149,57"/>
+        <text class="th" x="108" y="30">crafted input</text>
+
+        <rect class="bx strong" x="160" y="34" width="148" height="38" rx="2"/>
+        <text class="t" x="234" y="50" text-anchor="middle">Public API</text>
+        <text class="ts" x="234" y="64" text-anchor="middle">accepts attacker-controlled input</text>
+
+        <line class="ln bad" x1="234" y1="76" x2="234" y2="92"/>
+        <polygon class="ah-bad" points="234,98 230,91 238,91"/>
+        <rect class="bx bad" x="160" y="100" width="148" height="34" rx="2"/>
+        <text class="t" x="234" y="115" text-anchor="middle">Regex matcher</text>
+        <text class="ts" x="234" y="128" text-anchor="middle">excessive computation</text>
+
+        <line class="ln bad" x1="312" y1="117" x2="348" y2="117"/>
+        <polygon class="ah-bad" points="354,117 347,113 347,121"/>
+        <rect class="bx bad" x="358" y="100" width="150" height="34" rx="2"/>
+        <text class="t" x="433" y="115" text-anchor="middle">CPU exhausted</text>
+        <text class="ts" x="433" y="128" text-anchor="middle">one core, then the process</text>
+
+        <line class="ln bad" x1="433" y1="96" x2="433" y2="78"/>
+        <polygon class="ah-bad" points="433,72 429,79 437,79"/>
+        <rect class="bx bad" x="358" y="38" width="150" height="34" rx="2"/>
+        <text class="t" x="433" y="53" text-anchor="middle">Service unavailable</text>
+        <text class="ts" x="433" y="66" text-anchor="middle">to every other user</text>
+
+        <text class="ts" x="4" y="200">The attacker supplies neither privilege nor volume &mdash; only the SHAPE of one string.</text>
+      </svg>
+      <figcaption>
+        <span class="fignum">Figure 1.</span> The threat model. Availability is the asset, the
+        attacker's capability is one crafted string over a public interface, and the vulnerability is
+        algorithmic &mdash; it lives in how the matcher searches, not in a missing check.
+      </figcaption>
+    </figure>
+
+    <!-- -------- MODEL ASSUMPTIONS -------- -->
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h2 id="h-assumptions">Model assumptions</h2>
+      <ul>
+        <li><strong>The Cloudflare outage was not an attack.</strong> The pathological rule was
+          written and deployed by Cloudflare itself; no adversary was involved. The underlying
+          algorithmic weakness is nevertheless exploitable as a denial-of-service
+          vulnerability, which is why it belongs in a security lecture rather than only a
+          performance one.</li>
+        <li><strong>The page measures your browser, not a server.</strong> Timings come from a real
+          execution in a Web Worker on this machine &mdash; no prediction, no benchmark.</li>
+        <li><strong>The backtracking diagram is a model, not a trace:</strong> it enumerates
+          candidates a matcher <em>could</em> be obliged to consider.</li>
+        <li><strong>A failing match is the expensive case.</strong> A match that succeeds can stop at
+          the first success; one that cannot must exhaust the alternatives before reporting failure.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        <strong>The demonstration uses the browser's native JavaScript regular-expression engine,
+        whose behaviour may differ from the engine used in the Cloudflare incident.</strong>
+        It does <em>not</em> reproduce Cloudflare's production behaviour: V8, SpiderMonkey and
+        JavaScriptCore do not agree with each other. What it reproduces is the
+        same <em>class</em> of algorithmic vulnerability.
+      </p>
+    </div>
+
+    <!-- -------- PARAMETERS -------- -->
+    <div class="lab-assumptions lab-parameters-block">
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
+            changing it does</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+              <th scope="col">What changing it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-control="xp-grid">
+              <th scope="row">Pattern family</th>
+              <td>Which expression is under test, chosen with an experiment</td>
+              <td class="unit">Linear &middot; Quadratic &middot; Exponential &middot; Safe alternative</td>
+              <td class="default">Experiment 1</td>
+              <td>Changes how matching cost grows with input length</td>
+            </tr>
+            <tr data-control="maxlen">
+              <th scope="row">Input length n</th>
+              <td>Longest input the length ladder will try</td>
+              <td class="unit">500&ndash;28,000 characters</td><td class="default">16,000</td>
+              <td>Sets how far up the cost curve the run climbs</td>
+            </tr>
+            <tr data-control="xp-grid">
+              <th scope="row">Input suffix</th>
+              <td>Whether the chosen input lets the match succeed or forces it to fail</td>
+              <td class="unit">Set by the experiment</td><td class="default">Failing</td>
+              <td>Decides whether the engine may stop early or must exhaust the alternatives</td>
+            </tr>
+            <tr>
+              <th scope="row">Execution budget</th>
+              <td>Deadline after which a trial is abandoned and its worker destroyed</td>
+              <td class="unit">250 ms, fixed</td><td class="default">250 ms</td>
+              <td>Not adjustable &mdash; it is what keeps a pathological run from freezing the page</td>
+            </tr>
+            <tr data-control="scale-seg">
+              <th scope="row">Time axis</th>
+              <td>How the measured chart is scaled</td>
+              <td class="unit">Linear &middot; Log y &middot; Log&ndash;log</td><td class="default">Linear</td>
+              <td>Changes what you can read off the chart, not what was measured</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <h3>The expression, before the outcome</h3>
-  <p>
-    Work through the construct before reading what happened. The postmortem identifies this fragment
-    inside the much larger rule:
-  </p>
-  <p class="exprbox">.*(?:.*=.*)</p>
-  <p>
-    Two unbounded <code>.*</code> repetitions in sequence, with nothing between them that forces a
-    unique division of the input. When the overall match fails, the engine must try the ways of
-    dividing the text between them before it can conclude failure. <strong>Predict which inputs are
-    expensive</strong> before you run anything.
-  </p>
-  <p class="note">
-    The same shape appears in Experiment&nbsp;2 below, in a smaller expression you can read in one
-    glance: <code>/^.*\s+$/</code> &mdash; an unbounded <code>.*</code> followed by an unbounded
-    <code>\s+</code>, with no forced division between them.
-  </p>
 </section>
+
 
 <!-- ======================= EXPERIMENTS ======================= -->
 <section class="panel" aria-labelledby="h-experiments">
   <h2 id="h-experiments">Experiments</h2>
+  <div class="lab-experiment" aria-labelledby="h-your-experiment">
+    <h2 id="h-your-experiment">Your experiment</h2>
+    <ol class="lab-steps">
+      <li>
+        <span class="step">1 &middot; Predict</span>
+        Read <code>/^.*\s+$/</code> &mdash; two unbounded repetitions with nothing forcing a unique
+        division &mdash; and write down which inputs you expect to be expensive, and how the cost
+        should grow with length. Commit it before you run anything.
+      </li>
+      <li>
+        <span class="step">2 &middot; Run</span>
+        Run Experiment&nbsp;1, then Experiment&nbsp;2: the same expression, different input. Then
+        Experiment&nbsp;4: a different expression on byte-identical input. Switch the time axis to
+        log&ndash;log and read the slopes.
+      </li>
+      <li>
+        <span class="step">3 &middot; Explain</span>
+        Which change &mdash; the attacker's input or the engineer's expression &mdash; moved the
+        cost, and by how much? Compare the measured curve against the modelled candidate count
+        below, and say what you would recommend to an engineer who must accept this input from the
+        public internet.
+      </li>
+    </ol>
+  </div>
+
   <div class="xpsel-grid" id="xp-grid"></div>
   <p class="note" id="xp-pairing">
     The four experiments form a 2&times;2. Experiments&nbsp;1 and&nbsp;2 run the <em>same
@@ -914,6 +1081,53 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 <section class="panel" aria-labelledby="h-model">
   <h2 id="h-model">Why the work grows &mdash; a model of backtracking</h2>
 
+  <!-- -------- FIGURE 2 · the ambiguity, beside the model it explains -------- -->
+  <figure class="lab-figure flat">
+    <svg class="fig" viewBox="0 0 560 136" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
+      <title id="f2-t">Figure 2: the ways a backtracking matcher can divide one input</title>
+      <desc id="f2-d">The input a a a a exclamation mark is shown once at the top, under an
+        expression with two unbounded repetitions in sequence. Below it, five rows enumerate the
+        ways the four a characters can be divided between the first repetition and the second:
+        four and none, three and one, two and two, one and three, and none and four. Each row is
+        drawn as two adjacent bars whose lengths give the division, and each is marked as a
+        candidate the matcher may be obliged to try. A closing line states that the exclamation
+        mark cannot be consumed by either repetition, so no division can succeed and every one of
+        them must be ruled out before failure may be reported — and that this is a conceptual
+        representation of possible backtracking paths, not a literal trace of any JavaScript regex
+        engine.</desc>
+
+      <text class="eq" x="4" y="14">/^(a*)(a*)!$/   on input   aaaa&#33;   &mdash; the &#33; can never match, so the match must FAIL</text>
+      <text class="th" x="4" y="32">Possible divisions of &ldquo;aaaa&rdquo; between the two repetitions</text>
+
+      <text class="ts" x="4" y="50">4 + 0</text>
+      <rect class="bx bad" x="48" y="40" width="112" height="12" rx="1"/>
+      <text class="ts" x="4" y="68">3 + 1</text>
+      <rect class="bx bad" x="48" y="58" width="84" height="12" rx="1"/>
+      <rect class="bx" x="134" y="58" width="26" height="12" rx="1"/>
+      <text class="ts" x="4" y="86">2 + 2</text>
+      <rect class="bx bad" x="48" y="76" width="56" height="12" rx="1"/>
+      <rect class="bx" x="106" y="76" width="54" height="12" rx="1"/>
+      <text class="ts" x="4" y="104">1 + 3</text>
+      <rect class="bx bad" x="48" y="94" width="28" height="12" rx="1"/>
+      <rect class="bx" x="78" y="94" width="82" height="12" rx="1"/>
+      <text class="ts" x="4" y="122">0 + 4</text>
+      <rect class="bx" x="48" y="112" width="112" height="12" rx="1"/>
+
+      <text class="ts" x="176" y="50">first repetition &nbsp;|&nbsp; second repetition</text>
+      <text class="ts" x="176" y="68">n = 4 gives 5 divisions; n = 8 gives 9; the count is n + 1 here,</text>
+      <text class="ts" x="176" y="82">and an expression that nests the ambiguity makes it exponential.</text>
+      <text class="ts" x="176" y="104">Every division must be ruled out before FAILURE may be reported.</text>
+      <text class="ts" x="176" y="122">A conceptual representation of possible backtracking paths,</text>
+      <text class="ts" x="176" y="134">NOT a literal trace of any JavaScript regex engine.</text>
+    </svg>
+    <figcaption>
+      <span class="fignum">Figure 2.</span> Backtracking ambiguity. Two unbounded repetitions with
+      nothing forcing a unique division leave the matcher a set of candidate splits, and a failing
+      match is the case in which it must consider all of them.
+    </figcaption>
+  </figure>
+
+
   <div class="model-msg" id="model-caveat">
     <strong>This is a conceptual model of backtracking, not a trace of your engine.</strong>
     It enumerates candidates a backtracking matcher <em>could</em> be obliged to consider. The
@@ -950,6 +1164,37 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       </p>
     </div>
   </div>
+</section>
+
+<!-- ======================= THE CASE ======================= -->
+<!-- The band above states the case and the two claims this page refuses to make. This panel holds
+     what belongs to the detail rather than the opening: the postmortem to read, and the
+     construct-before-outcome exercise. -->
+<section class="panel" aria-labelledby="h-case">
+  <h2 id="h-case">The engineering case, in detail</h2>
+  <p>
+    The required reading is Cloudflare's own postmortem of the 2 July 2019 outage,
+    <em>&ldquo;Details of the Cloudflare outage on July 2, 2019&rdquo;</em>. It supplies the real
+    engineering case; the demonstration below supplies a real measurement of the same
+    <em>class</em> of algorithmic vulnerability, on this machine.
+  </p>
+  <h3>The expression, before the outcome</h3>
+  <p>
+    Work through the construct before reading what happened. The postmortem identifies this fragment
+    inside the much larger rule:
+  </p>
+  <p class="exprbox">.*(?:.*=.*)</p>
+  <p>
+    Two unbounded <code>.*</code> repetitions in sequence, with nothing between them that forces a
+    unique division of the input. When the overall match fails, the engine must try the ways of
+    dividing the text between them before it can conclude failure. <strong>Predict which inputs are
+    expensive</strong> before you run anything.
+  </p>
+  <p class="note">
+    The same shape appears in Experiment&nbsp;2 below, in a smaller expression you can read in one
+    glance: <code>/^.*\s+$/</code> &mdash; an unbounded <code>.*</code> followed by an unbounded
+    <code>\s+</code>, with no forced division between them.
+  </p>
 </section>
 
 <!-- ======================= THREAT MODEL ======================= -->

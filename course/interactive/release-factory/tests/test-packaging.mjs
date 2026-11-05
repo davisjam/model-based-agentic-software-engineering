@@ -111,18 +111,30 @@ test('the page declares its language, its charset, and a viewport', () => {
 
 test('the page states the caveat the course requires, where a reader will see it', () => {
   /* Not a style check. The brief is explicit that the DORA caveat belongs on the page rather than
-     in a report, and a later edit could quietly drop it while every other test stayed green. */
-  const caveat = /<p class="caveat">([\s\S]*?)<\/p>/i.exec(html);
-  assert.notEqual(caveat, null, 'the caveat block is gone');
-  const text = caveat[1].replace(/<[^>]+>/g, ' ').replace(/&mdash;|&ndash;/g, '-');
+     in a report, and a later edit could quietly drop it while every other test stayed green.
+
+     The caveat now lives in the handout band's model-assumptions block rather than its own
+     `<p class="caveat">` strip. It is a claims-boundary statement, which is what that block is
+     for, and the band had no room for both — a separate caveat strip cost about 100px of a 450px
+     budget. What this test holds is unchanged and is the thing that matters: the three sentences
+     are present, above the controls, and not inside a disclosure. */
+  const start = html.indexOf('class="lab-assumptions"');
+  assert.ok(start > 0, 'the model-assumptions block is gone');
+  const block = html.slice(start, html.indexOf('</div>', html.indexOf('</ul>', start)));
+  /* Whitespace is normalised before matching, deliberately. A pin that matches literal single
+     spaces is a pin on the source's LINE WRAPPING as much as on its words — it fired three times
+     in one session on sentences whose text was intact and whose wrap had moved, which reports a
+     typographic change as a missing commitment. Normalising makes the pin test the claim. */
+  const text = block.replace(/<[^>]+>/g, ' ').replace(/&mdash;|&ndash;/g, '-')
+    .replace(/\s+/g, ' ');
   assert.match(text, /delivery performance and release risk/i);
   assert.match(text, /Four Keys/);
   assert.match(text, /do not establish whether the organisation is producing valuable or correct/i);
-  /* And it sits above the controls, not buried in a details element. */
-  assert.ok(html.indexOf('<p class="caveat">') < html.indexOf('id="h-controls"'),
-    'the caveat is below the controls');
-  assert.ok(html.indexOf('<p class="caveat">') < html.indexOf('<details'),
-    'the caveat is inside or after a collapsed section');
+  assert.ok(start < html.indexOf('id="h-controls"'), 'the caveat is below the controls');
+  assert.ok(start < html.indexOf('<details'), 'the caveat is inside or after a collapsed section');
+  /* And nothing re-states it in a second place: the strip it replaced is gone for good. */
+  assert.equal(html.includes('<p class="caveat">'), false,
+    'the superseded caveat strip is back — the claim is now made once, in the assumptions block');
 });
 
 test('the model is labelled the Four Keys rather than a complete account of DORA', () => {

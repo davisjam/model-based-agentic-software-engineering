@@ -159,7 +159,15 @@ test('the page claims no storage figure for any named database product', () => {
   /* Both named products appear exactly once, in the disclaimer. */
   assert.equal((html.match(/PostgreSQL/g) || []).length, 1);
   assert.equal((html.match(/MongoDB/g) || []).length, 1);
-  assert.match(html, /claims no storage figure for PostgreSQL, MongoDB, or\s+any other product/i);
+  /* Both products are named in the handout's required statement, in the opening band, where a
+     student sees them without expanding anything — and the sentence immediately refuses a figure
+     for them. The physical-storage note below used to carry a second copy; it now points up, so
+     the claim is made once. */
+  assert.match(html, /claims no storage figure for any of them,\s+or for any other product/i);
+  const bandAt = html.indexOf('class="lab-disclaimer"');
+  const firstControl = html.indexOf('id="repr-seg"');
+  assert.ok(bandAt > 0 && bandAt < firstControl,
+    'the required storage-engine statement is not above the controls');
 });
 
 test('the page separates logical from physical storage and prints both formulas', () => {
@@ -302,8 +310,11 @@ test('every panel is named by its own heading and there is exactly one h1', () =
     assert.ok(html.includes(`id="${id}"`), `panel label ${id} points at nothing`);
   }
   assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
-  /* Every section element on the page is one of those labelled panels. */
-  assert.equal((html.match(/<section/g) || []).length, panels.length);
+  /* Every section element on the page is one of those labelled panels, plus the one handout band,
+     which is a `.lab-intro` rather than a `.panel` — the band's three blocks each carry their own
+     chrome, so wrapping them in a fourth would cost the vertical budget a border and padding. */
+  assert.equal((html.match(/<section class="lab-intro" aria-labelledby="h-problem"/g) || []).length, 1);
+  assert.equal((html.match(/<section/g) || []).length, panels.length + 1);
 });
 
 test('the reduced-motion preference is honoured', () => {

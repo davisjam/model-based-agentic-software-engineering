@@ -42,6 +42,10 @@ const tiers = [run('unit tier', ['--test', ...UNIT_FILES])];
 if (!unitOnly) {
   tiers.push(run('browser tier (headless Chromium)',
     ['--test', '--test-timeout=300000', 'test-browser.mjs']));
+  /* Laid-out figure geometry: a label clipped by its viewBox, sitting on another label, or
+     painted under a later filled rect. Needs a layout engine, so it rides the browser tier. */
+  tiers.push(run('figure geometry',
+    ['../../_shared/check_figure_geometry.mjs', 'n-plus-one']));
 }
 
 const ok = tiers.every(Boolean);

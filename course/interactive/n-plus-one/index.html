@@ -54,10 +54,18 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
-   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
-   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
-   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -70,6 +78,7 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -90,6 +99,7 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
+    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -268,9 +278,29 @@ footer {
   .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
 .lab-parameters-block { margin: 0 0 0.75rem; }
 /* Inside the band the grid gap already separates it. */
 .lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column — the table would lose the width it needs. Both figures
+   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .lab-figure {
   margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
@@ -442,13 +472,11 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 :root {
   --model: #1f6fae;
   --model-fill: #eef4fb;
-  --warn: #9a6500;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --model: #5f9fd4;
     --model-fill: #12202c;
-    --warn: #d2a24a;
   }
 }
 
@@ -609,9 +637,216 @@ code {
 
 <main>
 
+<!-- ==============================================================================================
+     THE LABORATORY HANDOUT. Engineering problem, the access path being modelled, the model's
+     assumptions, and the parameters a student may change — visible before any control and
+     printable. The styling is the shared lab shell in the generated core above.
+     ============================================================================================ -->
+<section class="lab-intro" aria-labelledby="h-problem">
+  <h2 class="lab-question" id="h-problem">
+    <span class="k">Engineering problem</span>
+    How can a short, functionally correct program generate hundreds of database operations?
+  </h2>
+  <p class="lab-frame">
+    The three lines below are the whole program, and they do not change. What changes is the
+    <strong>loading strategy</strong> the data-access layer applies and whether a <strong>cache</strong>
+    answers a repeated lookup &mdash; and those two decide the query count.
+  </p>
+
+  <div class="lab-twoup band wide-fig">
+    <!-- -------- FIGURES 1 AND 2 · the access path, and what multiplies on it -------- -->
+    <div class="lab-figstack">
+      <figure class="lab-figure flat">
+        <svg class="fig" viewBox="0 0 700 84" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+          <title id="f1-t">Figure 1: the modelled access path — application, data-access layer, database</title>
+          <desc id="f1-d">Three boxes in a row, joined by arrows that run both ways. On the left,
+            the application, holding the loop over reservations. In the middle, the ORM or
+            data-access layer, which decides how many queries the loop becomes. On the right, the
+            database. The arrow between the middle and right boxes is labelled one network
+            round-trip per query, at the configured latency. A note reads that the application code
+            is identical under every strategy: only the middle box's behaviour changes. The
+            parameters marked are defined in the parameters table.</desc>
+
+          <rect class="bx" x="4" y="18" width="134" height="40" rx="2"/>
+          <text class="t" x="71" y="35" text-anchor="middle">Application</text>
+          <text class="ts" x="71" y="50" text-anchor="middle">the loop over N</text>
+
+          <line class="ln" x1="142" y1="32" x2="196" y2="32"/>
+          <polygon class="ah" points="202,32 195,28 195,36"/>
+          <line class="ln" x1="202" y1="46" x2="146" y2="46"/>
+          <polygon class="ah" points="140,46 147,42 147,50"/>
+
+          <rect class="bx strong" x="206" y="14" width="146" height="48" rx="2"/>
+          <text class="t" x="279" y="32" text-anchor="middle">ORM / data access</text>
+          <text class="ts" x="279" y="46" text-anchor="middle">decides how many</text>
+          <text class="ts" x="279" y="57" text-anchor="middle">queries the loop becomes</text>
+
+          <line class="ln" x1="356" y1="32" x2="410" y2="32"/>
+          <polygon class="ah" points="416,32 409,28 409,36"/>
+          <line class="ln" x1="416" y1="46" x2="360" y2="46"/>
+          <polygon class="ah" points="354,46 361,42 361,50"/>
+          <text class="th" x="358" y="14">1 round-trip per query</text>
+
+          <rect class="bx" x="420" y="18" width="134" height="40" rx="2"/>
+          <text class="t" x="487" y="35" text-anchor="middle">Database</text>
+          <text class="ts" x="487" y="50" text-anchor="middle">latency ms each</text>
+
+          <text class="ts" x="4" y="78">The application code is identical under every strategy &mdash; only the middle box behaves differently.</text>
+        </svg>
+        <figcaption>
+          <span class="fignum">Figure 1.</span> One application, one data-access layer, one database.
+          Every query costs one network round-trip.
+        </figcaption>
+      </figure>
+
+      <figure class="lab-figure flat">
+        <svg class="fig" viewBox="0 0 700 128" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
+          <title id="f2-t">Figure 2: query multiplication — lazy loading beside batched loading</title>
+          <desc id="f2-d">The same three lines of program are printed across the top: load the
+            reservations, loop over them, and print each reservation's room name. The room access
+            is marked as the line a lazy loader turns into a query. Below, two panels compare what
+            that becomes. The left panel, labelled lazy loading, shows one query that fetches the
+            reservations and then a fan of separate arrows, one per reservation, each a further
+            query for that reservation's room; it totals one plus N queries and is drawn in the
+            failure colour. The right panel, labelled batched loading, shows one query for the
+            reservations and one further query that fetches every needed room at once by a list of
+            identifiers; it totals two queries. Both panels return the same rows.</desc>
+
+          <text class="eq" x="4" y="12">reservations = load_reservations()  &middot;  for r in reservations:  print(r.room.name)</text>
+          <text class="ts" x="4" y="26">The three lines are identical under every strategy. The room access is what a LAZY loader turns into a query.</text>
+          <line class="ln" x1="276" y1="34" x2="276" y2="124" stroke-dasharray="2 3" opacity="0.55"/>
+
+          <text class="th" x="4" y="44">Lazy loading</text>
+          <rect class="bx" x="4" y="50" width="104" height="18" rx="2"/>
+          <text class="ts" x="56" y="63" text-anchor="middle">SELECT resv</text>
+          <line class="ln bad" x1="56" y1="70" x2="22" y2="82"/>
+          <line class="ln bad" x1="56" y1="70" x2="56" y2="82"/>
+          <line class="ln bad" x1="56" y1="70" x2="90" y2="82"/>
+          <line class="ln bad" x1="56" y1="70" x2="128" y2="82"/>
+          <rect class="bx bad" x="4" y="84" width="36" height="16" rx="2"/>
+          <rect class="bx bad" x="44" y="84" width="36" height="16" rx="2"/>
+          <rect class="bx bad" x="84" y="84" width="36" height="16" rx="2"/>
+          <rect class="bx bad" x="124" y="84" width="36" height="16" rx="2"/>
+          <text class="ts" x="166" y="95">SELECT room,</text>
+          <text class="ts" x="166" y="106">one per row</text>
+          <text class="t" x="4" y="120">Total: 1 + N queries</text>
+
+          <text class="th" x="290" y="44">Batched loading</text>
+          <rect class="bx" x="290" y="50" width="104" height="18" rx="2"/>
+          <text class="ts" x="342" y="63" text-anchor="middle">SELECT resv</text>
+          <line class="ln" x1="342" y1="70" x2="342" y2="80"/>
+          <polygon class="ah" points="342,84 339,78 345,78"/>
+          <rect class="bx strong" x="290" y="86" width="208" height="18" rx="2"/>
+          <text class="ts" x="394" y="99" text-anchor="middle">SELECT room WHERE id IN (&hellip;)</text>
+          <text class="t" x="290" y="120">Total: 2 queries</text>
+        </svg>
+        <figcaption>
+          <span class="fignum">Figure 2.</span> Same loop, same rows. Lazy loading asks once per
+          row; batched loading collects the identifiers and asks once.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- -------- MODEL ASSUMPTIONS -------- -->
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h2 id="h-assumptions">Model assumptions</h2>
+      <ul>
+        <li><strong>Query counts are derived, not timed.</strong> They come from the cost model's
+          arithmetic over the five controls below &mdash; no database is contacted and nothing on
+          this page is measured.</li>
+        <li><strong>One serial round-trip per query.</strong> Elapsed time is the query count times
+          the latency; server-side execution, connection setup and result size are out of the model.</li>
+        <li><strong>The cache is an identity map within one request.</strong> The first access to a
+          room queries; later accesses to the <em>same</em> room are served from memory. It starts
+          empty on every page load and never changes <em>which</em> rooms the loop needs.</li>
+        <li><strong>All three strategies return the same rows.</strong> The program is correct under
+          every configuration; only the number of operations differs.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        <strong>The latency figure is yours to set, not a measurement.</strong> A real ORM may batch,
+        prefetch or cache differently from any of the three strategies here, so read the comparison
+        as a ranking of access patterns rather than a prediction about your own stack.
+      </p>
+    </div>
+
+    <!-- -------- PARAMETERS -------- -->
+    <div class="lab-assumptions lab-parameters-block">
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
+            changing it does</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+              <th scope="col">What changing it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-control="reservations">
+              <th scope="row">Reservations N</th>
+              <td>Rows the loop iterates over</td>
+              <td class="unit">1&ndash;1000 rows</td><td class="default">200</td>
+              <td>Scales the lazy strategy's query count one-for-one</td>
+            </tr>
+            <tr data-control="rooms">
+              <th scope="row">Distinct rooms D</th>
+              <td>How many different rooms those rows reference</td>
+              <td class="unit">1&ndash;200 rooms</td><td class="default">10</td>
+              <td>Sets the ceiling a cache can reach</td>
+            </tr>
+            <tr data-control="latency">
+              <th scope="row">Round-trip latency</th>
+              <td>Network cost of one query</td>
+              <td class="unit">1&ndash;100 ms/query</td><td class="default">10</td>
+              <td>Converts queries into elapsed time; never changes the count</td>
+            </tr>
+            <tr data-control="strategy-seg">
+              <th scope="row">Loading strategy</th>
+              <td>How the data-access layer fetches the rooms</td>
+              <td class="unit">Lazy &middot; Eager &middot; Batched</td><td class="default">Lazy</td>
+              <td>Changes the query count</td>
+            </tr>
+            <tr data-control="cache-seg">
+              <th scope="row">Database cache</th>
+              <td>Whether a repeated room lookup is served from memory</td>
+              <td class="unit">Off &middot; On</td><td class="default">Off</td>
+              <td>Collapses repeat lookups; cannot help when every row is distinct</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= CONTROLS ======================= -->
 <section class="panel" aria-labelledby="h-controls">
   <h2 id="h-controls">Controls</h2>
+  <div class="lab-experiment" aria-labelledby="h-your-experiment">
+    <h2 id="h-your-experiment">Your experiment</h2>
+    <ol class="lab-steps">
+      <li>
+        <span class="step">1 &middot; Predict</span>
+        At N&nbsp;=&nbsp;200 reservations over D&nbsp;=&nbsp;10 rooms, write down the number of
+        queries you expect under lazy loading with the cache off, then with the cache on, then under
+        batched loading. Three numbers, before you read a panel.
+      </li>
+      <li>
+        <span class="step">2 &middot; Run</span>
+        Hold N and the latency fixed and move the strategy through lazy, eager and batched. Put it
+        back to lazy, turn the cache on, and then raise D to 200 so every row references a
+        different room.
+      </li>
+      <li>
+        <span class="step">3 &middot; Explain</span>
+        Which control changed the query count and which only changed the elapsed time? Say why the
+        cache stopped helping at D&nbsp;=&nbsp;200 while the batched strategy did not. What would
+        you recommend to an engineer who has this loop in production?
+      </li>
+    </ol>
+  </div>
+
   <div class="ctl-row">
     <div class="ctl">
       <label for="reservations">Reservations <span class="unit">N</span></label>

@@ -57,10 +57,18 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
-   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
-   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
-   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -73,6 +81,7 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -93,6 +102,7 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
+    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -271,9 +281,29 @@ footer {
   .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
 .lab-parameters-block { margin: 0 0 0.75rem; }
 /* Inside the band the grid gap already separates it. */
 .lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column — the table would lose the width it needs. Both figures
+   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .lab-figure {
   margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
@@ -449,14 +479,12 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
   --model: #1f6fae;
   --model-fill: #eef4fb;
   --refs: #5b6b7a;
-  --warn: #9a6500;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --model: #5f9fd4;
     --model-fill: #12202c;
     --refs: #8fa3b5;
-    --warn: #d2a24a;
   }
 }
 
@@ -646,9 +674,219 @@ code {
 
 <main>
 
+<!-- ==============================================================================================
+     THE LABORATORY HANDOUT. The engineering problem, the three representations being compared, the
+     model's assumptions, and the parameters a student may change — before any control, and
+     printable. The styling is the shared lab shell in the generated core above.
+
+     Deliberately NOT a chart: a student has to know what is being counted before a bar means
+     anything. The comparison figure is first, the numbers come later.
+     ============================================================================================ -->
+<section class="lab-intro" aria-labelledby="h-problem">
+  <h2 class="lab-question" id="h-problem">
+    <span class="k">Engineering problem</span>
+    How does the engineer's choice of representation change duplication, storage footprint, and
+    update obligations?
+  </h2>
+  <p class="lab-frame">
+    The same booking data &mdash; rooms, and the reservations against them &mdash; laid out three
+    ways. Each layout stores a different number of <strong>copies</strong> of the room's facts, and
+    that is what changes both the footprint and the work a rename costs.
+  </p>
+
+  <div class="lab-twoup band">
+    <!-- -------- FIGURE 1 · the three representations, side by side -------- -->
+    <figure class="lab-figure">
+      <svg class="fig" viewBox="0 0 520 254" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+        <title id="f1-t">Figure 1: the same booking data in three representations</title>
+        <desc id="f1-d">Three panels hold the same two rooms and four reservations. Panel A,
+          normalized, shows two tables: a rooms table with one row per room carrying the room's
+          name and metadata, and a reservations table whose rows carry only a room identifier. The
+          room's facts appear once each. Panel B, denormalized, shows one wide table in which every
+          reservation row repeats the room's name and metadata; the repeated values are drawn
+          shaded and outlined in the failure colour and labelled repeated. Panel C, document, shows
+          two room documents, each holding the room's facts once and nesting its own reservations
+          inside it; the room's facts appear once each, as in panel A. A closing note reads that
+          the document layout is not the denormalized one — it duplicates nothing, and only the
+          denormalized table copies the room's facts onto every reservation. The parameters marked
+          are defined in the parameters table.</desc>
+
+        <text class="th" x="4" y="11">A &middot; Normalized</text>
+        <text class="th" x="182" y="11">B &middot; Denormalized</text>
+        <text class="th" x="360" y="11">C &middot; Document</text>
+        <line class="ln" x1="172" y1="4" x2="172" y2="208" stroke-dasharray="2 3" opacity="0.5"/>
+        <line class="ln" x1="350" y1="4" x2="350" y2="208" stroke-dasharray="2 3" opacity="0.5"/>
+
+        <!-- A · normalized: two tables -->
+        <text class="ts" x="4" y="26">rooms</text>
+        <rect class="bx strong" x="4" y="30" width="156" height="18" rx="1"/>
+        <text class="ts" x="9" y="43">R1  name + metadata</text>
+        <rect class="bx strong" x="4" y="48" width="156" height="18" rx="1"/>
+        <text class="ts" x="9" y="61">R2  name + metadata</text>
+        <text class="ts" x="4" y="84">reservations</text>
+        <rect class="bx" x="4" y="88" width="156" height="15" rx="1"/>
+        <text class="ts" x="9" y="99">room_id R1  &middot;  when</text>
+        <rect class="bx" x="4" y="103" width="156" height="15" rx="1"/>
+        <text class="ts" x="9" y="114">room_id R1  &middot;  when</text>
+        <rect class="bx" x="4" y="118" width="156" height="15" rx="1"/>
+        <text class="ts" x="9" y="129">room_id R2  &middot;  when</text>
+        <rect class="bx" x="4" y="133" width="156" height="15" rx="1"/>
+        <text class="ts" x="9" y="144">room_id R2  &middot;  when</text>
+        <text class="t" x="4" y="170">2 copies of the room's facts</text>
+        <text class="ts" x="4" y="186">a rename touches 1 row</text>
+
+        <!-- B · denormalized: one wide table, the room's facts repeated -->
+        <text class="ts" x="182" y="26">reservations</text>
+        <rect class="bx bad" x="182" y="30" width="156" height="22" rx="1"/>
+        <text class="ts" x="187" y="38">name + metadata</text>
+        <text class="ts" x="187" y="48">&middot; when</text>
+        <rect class="bx bad" x="182" y="52" width="156" height="22" rx="1"/>
+        <text class="ts" x="187" y="60">name + metadata</text>
+        <text class="ts" x="187" y="70">&middot; when</text>
+        <rect class="bx bad" x="182" y="74" width="156" height="22" rx="1"/>
+        <text class="ts" x="187" y="82">name + metadata</text>
+        <text class="ts" x="187" y="92">&middot; when</text>
+        <rect class="bx bad" x="182" y="96" width="156" height="22" rx="1"/>
+        <text class="ts" x="187" y="104">name + metadata</text>
+        <text class="ts" x="187" y="114">&middot; when</text>
+        <text class="th" x="182" y="134">Repeated on every row</text>
+        <text class="t" x="182" y="170">4 copies of the room's facts</text>
+        <text class="ts" x="182" y="186">a rename touches every row</text>
+
+        <!-- C · document: nested, facts once -->
+        <rect class="bx strong" x="360" y="30" width="156" height="54" rx="2"/>
+        <text class="ts" x="365" y="43">room R1  name + metadata</text>
+        <rect class="bx" x="372" y="48" width="138" height="14" rx="1"/>
+        <text class="ts" x="377" y="58">reservation  &middot;  when</text>
+        <rect class="bx" x="372" y="64" width="138" height="14" rx="1"/>
+        <text class="ts" x="377" y="74">reservation  &middot;  when</text>
+        <rect class="bx strong" x="360" y="90" width="156" height="54" rx="2"/>
+        <text class="ts" x="365" y="103">room R2  name + metadata</text>
+        <rect class="bx" x="372" y="108" width="138" height="14" rx="1"/>
+        <text class="ts" x="377" y="118">reservation  &middot;  when</text>
+        <rect class="bx" x="372" y="124" width="138" height="14" rx="1"/>
+        <text class="ts" x="377" y="134">reservation  &middot;  when</text>
+        <text class="t" x="360" y="170">2 copies of the room's facts</text>
+        <text class="ts" x="360" y="186">a rename touches 1 doc</text>
+
+        <text class="ts" x="4" y="210">The DOCUMENT layout is not the denormalized one: it stores the</text>
+        <text class="ts" x="4" y="222">room's facts once, exactly as the normalized tables do. Database</text>
+        <text class="ts" x="4" y="234">category and normalization are different dimensions, and this is</text>
+        <text class="ts" x="4" y="246">where the two come apart.</text>
+      </svg>
+      <figcaption>
+        <span class="fignum">Figure 1.</span> Two rooms, four reservations, three layouts. Only the
+        denormalized table copies the room's facts onto every reservation &mdash; which is both the
+        extra bytes and the extra rows a rename has to visit.
+      </figcaption>
+    </figure>
+
+    <!-- -------- MODEL ASSUMPTIONS -------- -->
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h2 id="h-assumptions">Model assumptions</h2>
+      <ul>
+        <li><strong>Every figure is arithmetic over the five sizes below.</strong> Nothing is
+          measured and no database is contacted; the formulas are printed in full further down the
+          page.</li>
+        <li><strong>Uniform sizes.</strong> Every room's metadata is the same size and every
+          reservation is the same size, so the model has no distribution and no outliers.</li>
+        <li><strong>Reservations divide evenly among rooms,</strong> and every room has at least one.</li>
+        <li><strong>Indexes, page padding, compression and replication are outside the model</strong>
+          unless the optional physical-overhead control is switched on, and that control produces an
+          <em>estimate</em> which the page labels as one.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        <strong>The simulator estimates logical representation size, not actual disk consumption by
+        PostgreSQL, MongoDB, or another engine.</strong> It claims no storage figure for any of them,
+        or for any other product: nothing here was run.
+      </p>
+    </div>
+
+    <!-- -------- PARAMETERS -------- -->
+    <div class="lab-assumptions lab-parameters-block">
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
+            changing it does</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+              <th scope="col">What changing it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-control="repr-seg">
+              <th scope="row">Representation</th>
+              <td>How the same data is laid out</td>
+              <td class="unit">Normalized &middot; Denormalized &middot; Document</td>
+              <td class="default">Normalized</td>
+              <td>Changes how many copies of a room's facts are stored</td>
+            </tr>
+            <tr data-control="rooms">
+              <th scope="row">Rooms</th>
+              <td>Distinct rooms in the catalogue</td>
+              <td class="unit">10&ndash;10,000 rooms</td><td class="default">100</td>
+              <td>Scales the room-side cost in every layout</td>
+            </tr>
+            <tr data-control="perroom">
+              <th scope="row">Reservations per room</th>
+              <td>Bookings held against each room</td>
+              <td class="unit">1&ndash;1000 each</td><td class="default">20</td>
+              <td>Scales the duplication the denormalized layout pays</td>
+            </tr>
+            <tr data-control="meta">
+              <th scope="row">Room metadata size</th>
+              <td>Bytes of room facts &mdash; name, building, capacity</td>
+              <td class="unit">50&ndash;2000 bytes</td><td class="default">200</td>
+              <td>Sets what one duplicated copy costs</td>
+            </tr>
+            <tr data-control="resv">
+              <th scope="row">Reservation size</th>
+              <td>Bytes of one booking's own fields</td>
+              <td class="unit">50&ndash;1000 bytes</td><td class="default">100</td>
+              <td>Scales the reservation side, identically in all three</td>
+            </tr>
+            <tr data-control="idsize">
+              <th scope="row">Identifier size</th>
+              <td>Bytes of the key that joins a reservation to a room</td>
+              <td class="unit">4&ndash;16 bytes</td><td class="default">8</td>
+              <td>The price normalization pays for not duplicating</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= CONTROLS ======================= -->
 <section class="panel" aria-labelledby="h-controls">
   <h2 id="h-controls">Controls</h2>
+  <div class="lab-experiment" aria-labelledby="h-your-experiment">
+    <h2 id="h-your-experiment">Your experiment</h2>
+    <ol class="lab-steps">
+      <li>
+        <span class="step">1 &middot; Predict</span>
+        At 100 rooms with 20 reservations each, write down which of the three layouts you expect to
+        be largest and by roughly what factor. Then predict what happens to that factor if the room
+        metadata grows from 200 bytes to 2000.
+      </li>
+      <li>
+        <span class="step">2 &middot; Run</span>
+        Step the representation through normalized, denormalized and document with the sizes fixed,
+        reading the duplicated-facts figure each time. Then raise the room metadata size and repeat.
+        Finally run the rename experiment under each layout.
+      </li>
+      <li>
+        <span class="step">3 &middot; Explain</span>
+        Why do the normalized and document layouts report the same duplication while the
+        denormalized one does not? The rename cost is not a storage figure at all &mdash; say what it
+        is, and what you would recommend to an engineer choosing a layout for this service.
+      </li>
+    </ol>
+  </div>
+
   <div class="ctl-row">
     <div class="ctl">
       <label for="rooms">Number of rooms <span class="unit">R</span></label>
@@ -714,8 +952,8 @@ code {
     arithmetic over the five controls above. Physical storage adds per-record headers and index
     entries, and those sizes are properties of a <em>storage engine</em> &mdash; so turning the
     estimate on changes the page's claim from a calculation into a model, and every figure it
-    produces is labelled an estimate. This page claims no storage figure for PostgreSQL, MongoDB, or
-    any other product: nothing here was run.
+    produces is labelled an estimate. The handout's statement above holds either way: nothing here
+    was run, and the page claims no storage figure for any named engine.
   </p>
 </section>
 

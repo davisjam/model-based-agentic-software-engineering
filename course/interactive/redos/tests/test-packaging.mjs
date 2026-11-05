@@ -143,10 +143,15 @@ test('the page states both accuracy constraints, in the body a reader sees', () 
      later edit to smooth away, so they are pinned.
 
      (1) Cloudflare was not an attack. (2) This page does not reproduce Cloudflare's behaviour. */
-  const body = html.slice(html.indexOf('<body>'));
+  /* Whitespace is normalised first, deliberately. These patterns originally matched literal single
+     spaces, which pins the source's LINE WRAPPING as much as its words: moving the two sentences
+     into the handout band broke three of the five while every word survived, and a pin that fires
+     on a re-wrap reports a typographic change as a dropped commitment. One of the five already
+     carried a `\s+` for the same reason; normalising applies that fix to all of them. */
+  const body = html.slice(html.indexOf('<body>')).replace(/\s+/g, ' ');
   assert.match(body, /deployed by Cloudflare itself/);
   assert.match(body, /no adversary was involved/);
-  assert.match(body, /nevertheless exploitable as a denial-of-service\s+vulnerability/);
+  assert.match(body, /nevertheless exploitable as a denial-of-service vulnerability/);
   assert.match(body, /does <em>not<\/em> reproduce Cloudflare's production/);
   assert.match(body, /same <em>class<\/em> of algorithmic vulnerability/);
 });

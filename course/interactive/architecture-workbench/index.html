@@ -84,10 +84,18 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
-   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
-   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
-   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -100,6 +108,7 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -120,6 +129,7 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
+    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -298,9 +308,29 @@ footer {
   .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
 .lab-parameters-block { margin: 0 0 0.75rem; }
 /* Inside the band the grid gap already separates it. */
 .lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column — the table would lose the width it needs. Both figures
+   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .lab-figure {
   margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
@@ -480,7 +510,6 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
   --maybe: #1f6fae;
   --maybe-fill: #eef4fb;
   --refs: #5b6b7a;
-  --warn: #9a6500;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -489,7 +518,6 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
     --maybe: #5f9fd4;
     --maybe-fill: #12202c;
     --refs: #8fa3b5;
-    --warn: #d2a24a;
   }
 }
 

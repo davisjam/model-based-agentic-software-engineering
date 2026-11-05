@@ -70,7 +70,13 @@ if (!checkManifest()) {
   process.exit(1);
 }
 
-const ok = run('unit tier', ['--test', ...UNIT_FILES]);
+const ok = [
+  run('unit tier', ['--test', ...UNIT_FILES]),
+  /* Laid-out figure geometry: a label clipped by its viewBox, sitting on another label, or
+     painted under a later filled rect. Needs a layout engine, so it is a browser check and skips
+     itself when Puppeteer is absent. */
+  run('figure geometry', ['../../_shared/check_figure_geometry.mjs', 'architecture-workbench']),
+].every(Boolean);
 
 process.stdout.write(`\n${ok ? 'ALL TIERS PASS' : 'FAILURES ABOVE'}\n`);
 process.exit(ok ? 0 : 1);

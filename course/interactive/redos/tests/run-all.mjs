@@ -36,8 +36,14 @@ function run(label, args) {
   return r.status === 0;
 }
 
-const ok = run('unit tier', ['--test', 'test-patterns.mjs', 'test-measure.mjs', 'test-sweep.mjs',
-  'test-model.mjs', 'test-threat.mjs', 'test-worker-protocol.mjs', 'test-packaging.mjs']);
+const ok = [
+  run('unit tier', ['--test', 'test-patterns.mjs', 'test-measure.mjs', 'test-sweep.mjs',
+    'test-model.mjs', 'test-threat.mjs', 'test-worker-protocol.mjs', 'test-packaging.mjs']),
+  /* Laid-out figure geometry: a label clipped by its viewBox, sitting on another label, or
+     painted under a later filled rect. Needs a layout engine, so it is a browser check and skips
+     itself when Puppeteer is absent. */
+  run('figure geometry', ['../../_shared/check_figure_geometry.mjs', 'redos']),
+].every(Boolean);
 
 process.stdout.write(`\n${ok ? 'ALL TIERS PASS' : 'FAILURES ABOVE'}\n`);
 process.stdout.write('(the browser tier is separate: python3 browser_test.py --serve)\n');

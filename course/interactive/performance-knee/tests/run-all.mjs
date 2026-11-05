@@ -44,6 +44,10 @@ const ok = [
     'test-statistics.mjs', 'test-parameters.mjs', 'test-packaging.mjs']),
   run(`statistical validation${full ? ' (full)' : ' (short)'}`,
     ['validate-statistical.mjs', ...(full ? ['--full'] : [])]),
+  /* Laid-out figure geometry: a label clipped by its viewBox, sitting on another label, or
+     painted under a later filled rect. Needs a layout engine, so it is a browser check and skips
+     itself when Puppeteer is absent. */
+  run('figure geometry', ['../../_shared/check_figure_geometry.mjs', 'performance-knee']),
 ].every(Boolean);
 
 process.stdout.write(`\n${ok ? 'ALL TIERS PASS' : 'FAILURES ABOVE'}\n`);

@@ -51,10 +51,18 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
-   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
-   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
-   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -67,6 +75,7 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
+  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -87,6 +96,7 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
+    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -265,9 +275,29 @@ footer {
   .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
 .lab-parameters-block { margin: 0 0 0.75rem; }
 /* Inside the band the grid gap already separates it. */
 .lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column — the table would lose the width it needs. Both figures
+   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .lab-figure {
   margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
@@ -430,13 +460,11 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 :root {
   --model: #1f6fae;
   --model-fill: #eef4fb;
-  --warn: #9a6500;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --model: #5f9fd4;
     --model-fill: #12202c;
-    --warn: #d2a24a;
   }
 }
 
@@ -640,9 +668,206 @@ kbd {
 
 <main>
 
+<!-- ==============================================================================================
+     THE LABORATORY HANDOUT. Engineering problem, the modelled system, the model's assumptions and
+     the parameters a student may change — visible before any control, and printable without
+     running anything. The styling is the shared lab shell in the generated core above.
+     ============================================================================================ -->
+<section class="lab-intro" aria-labelledby="h-problem">
+  <h2 class="lab-question" id="h-problem">
+    <span class="k">Engineering problem</span>
+    What happens to response time as the work arriving approaches the rate the system can serve?
+  </h2>
+  <p class="lab-frame">
+    A service that is comfortable at a third of its capacity can become unusable at nine tenths of
+    it without anything breaking and without a single request being lost. The cause is waiting, and
+    waiting is what this simulator models.
+  </p>
+
+  <div class="lab-twoup band wide-fig">
+    <!-- -------- FIGURES 1 AND 2 · the modelled system, and the relationship it produces -------- -->
+    <div class="lab-figstack">
+      <figure class="lab-figure flat">
+        <svg class="fig" viewBox="0 0 560 104" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+          <title id="f1-t">Figure 1: the modelled system — arrivals, one queue, one server, completions</title>
+          <desc id="f1-d">A single path runs left to right. Requests arrive at a mean rate lambda,
+            measured in requests per second, and enter a waiting queue drawn as five slots filled
+            from the front. The queue is labelled first come, first served, and unbounded. An arrow
+            leads from the front of the queue to a single server, labelled one server at a mean
+            service rate mu, also in requests per second. One arrow leaves the server to completed
+            requests. A dashed boundary encloses the queue and the server and is labelled the
+            modelled system; arrivals enter it and completions leave it, and nothing else crosses
+            it. There is no second server, no retry path, no timeout and no discard: every request
+            that arrives eventually leaves through the server. The parameters marked lambda and mu
+            are defined in the parameters table.</desc>
+
+          <rect class="boundary" x="118" y="12" width="300" height="66" rx="3"/>
+          <text class="th" x="124" y="90">Modelled system</text>
+
+          <text class="th" x="4" y="24">Requests</text>
+          <text class="eq" x="4" y="48">&#955; req/s</text>
+          <text class="ts" x="4" y="64">arrivals</text>
+          <line class="ln" x1="72" y1="44" x2="124" y2="44"/>
+          <polygon class="ah" points="130,44 123,40 123,48"/>
+
+          <rect class="bx" x="132" y="28" width="26" height="32" rx="2"/>
+          <rect class="bx" x="160" y="28" width="26" height="32" rx="2"/>
+          <rect class="bx" x="188" y="28" width="26" height="32" rx="2"/>
+          <rect class="bx ghost" x="216" y="28" width="26" height="32" rx="2"/>
+          <rect class="bx ghost" x="244" y="28" width="26" height="32" rx="2"/>
+          <text class="th" x="132" y="20">Waiting queue</text>
+          <text class="ts" x="132" y="74">first come, first served &middot; unbounded</text>
+
+          <line class="ln" x1="274" y1="44" x2="300" y2="44"/>
+          <polygon class="ah" points="306,44 299,40 299,48"/>
+          <rect class="bx strong" x="308" y="26" width="100" height="36" rx="2"/>
+          <text class="t" x="358" y="42" text-anchor="middle">One server</text>
+          <text class="eq" x="358" y="56" text-anchor="middle">&#956; req/s</text>
+
+          <line class="ln" x1="412" y1="44" x2="448" y2="44"/>
+          <polygon class="ah" points="454,44 447,40 447,48"/>
+          <text class="th" x="458" y="40">Completed</text>
+          <text class="th" x="458" y="54">requests</text>
+        </svg>
+        <figcaption>
+          <span class="fignum">Figure 1.</span> The simulator models <strong>one</strong> processing
+          resource. Requests wait in a first-come, first-served queue before receiving service.
+        </figcaption>
+      </figure>
+
+      <figure class="lab-figure flat">
+        <svg class="fig" viewBox="0 0 560 108" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
+          <title id="f2-t">Figure 2: predicted mean response time against utilisation</title>
+          <desc id="f2-d">A line chart. The horizontal axis is utilisation rho, running from zero
+            to one hundred per cent of capacity; the vertical axis is mean response time. The curve
+            starts just above the service time at low utilisation, rises gently to about seventy
+            per cent, then turns upward and climbs steeply as it approaches one hundred per cent,
+            where it has no finite value. A dashed horizontal line near the bottom marks the mean
+            service time one over mu, the floor the curve never goes below. Two equations stand to
+            the right of the chart: rho equals lambda over mu, and W equals one over mu minus
+            lambda for lambda less than mu. No particular utilisation is marked as a threshold.</desc>
+
+          <line class="axis" x1="44" y1="12" x2="44" y2="86"/>
+          <line class="axis" x1="44" y1="86" x2="330" y2="86"/>
+          <text class="th" x="4" y="20">Mean</text>
+          <text class="th" x="4" y="32">response</text>
+          <text class="th" x="4" y="44">time</text>
+          <text class="th" x="150" y="100">Utilisation &#961;  &rarr;  100% of capacity</text>
+
+          <line class="ln ghost" x1="44" y1="78" x2="330" y2="78"/>
+          <text class="ts" x="48" y="74">1/&#956;  mean service time</text>
+
+          <path class="curve" d="M44 78 C 130 76, 200 70, 248 58 C 282 49, 300 36, 310 14"/>
+          <text class="eq" x="352" y="40">&#961; = &#955;/&#956;</text>
+          <text class="eq" x="352" y="62">W = 1/(&#956;&minus;&#955;),  &#955; &lt; &#956;</text>
+        </svg>
+        <figcaption>
+          <span class="fignum">Figure 2.</span> Under M/M/1 assumptions, predicted mean response time
+          rises rapidly as offered load approaches capacity. The live curve below draws this same
+          relationship for your current &mu;.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- -------- MODEL ASSUMPTIONS -------- -->
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h2 id="h-assumptions">Model assumptions</h2>
+      <ul>
+        <li><strong>Poisson arrivals, one server, FCFS, unlimited queue.</strong> Nothing is
+          discarded: no loss, no balking, no admission control, no retry.</li>
+        <li><strong>Exponential service times produce M/M/1; deterministic service times produce
+          M/D/1.</strong> Choosing deterministic service switches the whole prediction panel, because
+          applying an exponential-service result to constant service times is the wrong model.</li>
+        <li><strong>Predicted and measured are kept apart.</strong> Predictions come from the
+          formulas above; measurements come from one seeded run of a discrete-event trace, and a
+          short run has not yet settled.</li>
+        <li><strong>Simulated time is independent of wall-clock time.</strong> The same seed produces
+          the same event trace at 1&times;, 10&times; and 100&times;.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        <strong>No particular utilisation is &ldquo;the knee&rdquo;.</strong> Where response time
+        becomes unacceptable depends on the service-time distribution and on what the service has
+        promised &mdash; not on a number you can quote without them.
+      </p>
+    </div>
+
+    <!-- -------- PARAMETERS -------- -->
+    <div class="lab-assumptions lab-parameters-block">
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
+            changing it does</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+              <th scope="col">What changing it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-control="lambda">
+              <th scope="row">Arrival rate &lambda;</th>
+              <td>Mean requests arriving per second</td>
+              <td class="unit">0&ndash;150 req/s</td><td class="default">30</td>
+              <td>Changes offered load</td>
+            </tr>
+            <tr data-control="mu">
+              <th scope="row">Service rate &mu;</th>
+              <td>Mean requests served per second while busy</td>
+              <td class="unit">20&ndash;200 req/s</td><td class="default">100</td>
+              <td>Changes capacity</td>
+            </tr>
+            <tr data-control="dist">
+              <th scope="row">Service distribution</th>
+              <td>Variation in processing time</td>
+              <td class="unit">Exponential &middot; Deterministic</td><td class="default">Exponential</td>
+              <td>Changes queueing behaviour</td>
+            </tr>
+            <tr data-control="speed-seg">
+              <th scope="row">Simulation speed</th>
+              <td>Simulated time per wall-clock second</td>
+              <td class="unit">1&times; &middot; 10&times; &middot; 100&times;</td><td class="default">10&times;</td>
+              <td>Changes observation speed, <em>not</em> model behaviour</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lab-tablenote">
+        Further settings &mdash; the seed, the chart window, reduced motion &mdash; live under
+        Advanced controls and are documented there.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= CONTROLS ======================= -->
 <section class="panel" aria-labelledby="h-controls">
   <h2 id="h-controls">Controls</h2>
+  <div class="lab-experiment" aria-labelledby="h-your-experiment">
+    <h2 id="h-your-experiment">Your experiment</h2>
+    <ol class="lab-steps">
+      <li>
+        <span class="step">1 &middot; Predict</span>
+        Hold &mu;&nbsp;=&nbsp;100 and write down the mean response time you expect at
+        &lambda;&nbsp;=&nbsp;50, then at 90, then at 99. Commit the three numbers before you read
+        any panel &mdash; reading first turns a prediction into a recall exercise.
+      </li>
+      <li>
+        <span class="step">2 &middot; Run</span>
+        Step &lambda; through 50, 90 and 99 with &mu; fixed, each for at least sixty simulated
+        seconds. Then set &lambda;&nbsp;=&nbsp;90 again and switch the service distribution to
+        deterministic.
+      </li>
+      <li>
+        <span class="step">3 &middot; Explain</span>
+        Compare observed mean response time with the queueing model's prediction at each setting.
+        By what factor did it grow from &rho;&nbsp;=&nbsp;0.5 to 0.9, and from 0.9 to 0.99? What
+        would you recommend to an engineer who has been told to run this service at 90% of
+        capacity?
+      </li>
+    </ol>
+  </div>
+
   <div class="ctl-row">
     <div class="ctl">
       <label for="lambda">Arrival rate &lambda; <span class="unit">req/s</span></label>
