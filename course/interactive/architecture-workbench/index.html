@@ -528,6 +528,9 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
   --maybe: #1f6fae;
   --maybe-fill: #eef4fb;
   --refs: #5b6b7a;
+  --sA: #4a5a68;
+  --sB: #1c1c1a;
+  --sC: #8a5a1c;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -536,6 +539,9 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
     --maybe: #5f9fd4;
     --maybe-fill: #12202c;
     --refs: #8fa3b5;
+    --sA: #9fb0bd;
+    --sB: #ece9e2;
+    --sC: #d6a35e;
   }
 }
 
@@ -549,17 +555,11 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 
 .panel h3:first-of-type { margin-top: 0.3rem; }
 
-/* The three working panels of the specification's layout. One column on a phone, three on a
-   desk. The graph column is given more room than the two reading columns. */
-/* `min-width: 0` on every grid child, for the same reason as the intro grid: without it a wide
-   table or a long monospace token inside one column widens its track and the page scrolls
-   sideways. Measured on a 390-wide viewport before this was added. */
-.grid3 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
-.grid3 > *, .grid2 > * { min-width: 0; }
-@media (min-width: 1180px) {
-  .grid3 { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); margin-bottom: 1.1rem; }
-  .grid3 > .panel { margin-bottom: 0; }
-}
+/* `min-width: 0` on every grid child: without it a wide table or a long monospace token inside one
+   column widens its track and the page scrolls sideways. Measured on a 390-wide viewport before
+   this was added. The three-column working band this once held is gone — the apparatus now runs as
+   full-width rows so the chart and the graph each get the desktop width they need. */
+.grid2 > * { min-width: 0; }
 
 @media (min-width: 1100px) {
   .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
@@ -606,26 +606,81 @@ textarea:focus-visible, .node:focus-visible, .edge-hit:focus-visible {
   outline: 3px solid var(--accent); outline-offset: 2px;
 }
 
+/* --- the handout's reading sections -------------------------------------------------------- */
+/* `hb-` rather than `lab-`: the `.lab-*` namespace belongs to the shared shell above, and the
+   packaging suite asserts that every `.lab-*` selector lives inside it. These five classes are
+   this exercise's own handout blocks — if a sibling laboratory ever wants them, they move into the
+   shared core under the shell's prefix rather than being declared twice.
+
+   Background prose keeps a readable measure while the page stays wide: the width belongs to the
+   model figure and the chart, not to longer lines of text. Single column deliberately — the house
+   rule forbids multi-column layouts for dense prose. */
+.hb-background { margin: 0 0 1.2rem; }
+.hb-background > h2, .hb-model > h2, .hb-procedure > h2 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+.hb-prose { max-width: 86ch; }
+.hb-prose p { margin: 0 0 0.7rem; font-size: 1rem; line-height: 1.5; }
+.hb-prose p:last-child { margin-bottom: 0; }
+/* On a desktop the background runs in two columns rather than one tall measure against an empty
+   half-page. Each column still holds a readable line length (about 58 to 76 characters), which is
+   the rule the width is spent against — prose keeps its measure, and the page uses its width. TWO
+   columns, never three, and only for this block: the pattern mirrors the shell's own two-column
+   assumption list. */
+@media (min-width: 1100px) {
+  .hb-prose { max-width: none; columns: 2; column-gap: 3rem; }
+  .hb-prose p { break-inside: avoid; }
+}
+.hb-model { margin: 0 0 1.2rem; }
+.hb-procedure { margin: 0 0 1.2rem; }
+.tight { margin: 0 0 0.7rem; font-size: 0.95rem; }
+
+/* Table 1 and Table 2 stack in one column of the model band; the figure owns its own full row. */
+.hb-tables { display: grid; gap: 0.8rem; align-content: start; }
+.hb-tables > * { min-width: 0; }
+.tbl-note { margin: 0.45rem 0 0; }
+
+/* The cost table carries the numbers and the crossover note reads them, so the table gets the
+   wider track rather than an even split. */
+@media (min-width: 1000px) {
+  .results-pair { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+}
+
+/* The six-field experiment specifications. A definition list rather than prose so that every
+   experiment visibly declares all six fields and a missing one is obvious. */
+ol.experiments { margin: 0.9rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.9rem; }
+@media (min-width: 1180px) { ol.experiments { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+ol.experiments > li { min-width: 0; }
+.experiment {
+  border: 1px solid var(--rule); border-left: 4px solid var(--ink);
+  border-radius: var(--radius); background: var(--panel); padding: 0.6rem 0.8rem 0.7rem;
+}
+.experiment > h3 { margin: 0 0 0.4rem; font-size: 1rem; line-height: 1.3; }
+dl.six { margin: 0; display: grid; gap: 0.1rem 0.6rem; }
+/* 0.82rem, not 0.78: `rem` resolves against the ROOT element, which carries no font-size, so
+   every rem here is 16px and not the body's 17px. 0.78rem drew 12.5px, under the 13px floor. */
+dl.six > dt {
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); margin-top: 0.35rem;
+}
+dl.six > dt:first-child { margin-top: 0; }
+dl.six > dd { margin: 0; font-size: 0.92rem; line-height: 1.38; }
+
+ul.interp { margin: 0.2rem 0 0.8rem; padding-left: 1.1rem; font-size: 0.95rem; line-height: 1.42; }
+ul.interp li { margin-bottom: 0.2rem; }
+
 /* --- readouts ----------------------------------------------------------------------------- */
-.big { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0 0 0.9rem; }
-.big .cell {
-  flex: 1 1 8rem; border: 1px solid var(--rule); border-radius: var(--radius);
-  background: var(--paper); padding: 0.5rem 0.65rem;
+/* The impact counts annotate the dependency graph rather than standing as result cards: they are
+   labels on a visualization, in the same encodings Figure 1 establishes. They replaced three large
+   number cells, which read as principal results and are not. */
+.impact-line {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem; align-items: center;
+  margin: 0 0 0.6rem; font-size: 0.92rem;
 }
-.big .cell .k {
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.07em;
-  text-transform: uppercase; color: var(--muted); display: block;
-}
-.big .cell .v {
-  font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; line-height: 1.15;
-  display: block; word-break: break-word;
-}
-.big .cell .s { font-size: 0.8rem; color: var(--muted); display: block; }
-.big .cell.lead { border-color: var(--ink); border-width: 2px; padding: calc(0.5rem - 1px) calc(0.65rem - 1px); }
-.big .cell.is-must .v { color: var(--must); }
-.big .cell.is-maybe .v { color: var(--maybe); }
-.big .cell.is-bad .v { color: var(--bad); }
-.big .cell.is-ok .v { color: var(--ok); }
+.impact-line .q { color: var(--muted); }
 .badge {
   display: inline-flex; align-items: center; gap: 0.35rem;
   font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600;
@@ -644,7 +699,10 @@ textarea:focus-visible, .node:focus-visible, .edge-hit:focus-visible {
   background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
   padding: 0.3rem;
 }
-svg.graph { display: block; width: 100%; height: auto; }
+/* The graph is the SECONDARY visualization, so it is capped below the cost chart: uncapped it
+   drew 957px tall at a 1440 viewport and out-shouted the dominant one. A width cap, never a
+   height one. */
+svg.graph { display: block; width: 100%; height: auto; max-width: 860px; }
 svg.graph text { font-family: var(--font-body); fill: var(--ink); }
 svg.graph .nlabel { font-size: 13.5px; font-weight: 600; }
 svg.graph .nrole { font-size: 10.5px; fill: var(--muted); font-family: var(--font-mono); letter-spacing: 0.04em; }
@@ -712,6 +770,60 @@ svg.fig .ah-must { fill: var(--must); }
 svg.fig .ah-maybe { fill: var(--maybe); }
 svg.fig .mustlabel { font-size: 9px; font-family: var(--font-mono); font-weight: 600; fill: var(--must); }
 svg.fig .maybelabel { font-size: 9px; font-family: var(--font-mono); font-weight: 600; fill: var(--maybe); }
+
+/* Figure 1's own type scale. The shared core authors `svg.fig` labels at 11.5px and 9.5px, sized
+   for a figure that used to sit in a quarter-width column; at this figure's full-row width those
+   render large enough, but the authored sizes are what a projected screen shows, so they are set
+   here against the house floor of 13-14px. `svg.fig.fig3` outranks the core's `svg.fig` on
+   specificity, so the core stays untouched and the other five laboratories are unaffected.
+   NO max-height anywhere: a height ceiling on a viewBox'd SVG letterboxes the drawing and turns
+   every pixel of column past the ceiling into empty margin, which was this family's width defect. */
+svg.fig.fig3 .pt { font-size: 17px; font-weight: 700; letter-spacing: 0.01em; }
+svg.fig.fig3 .psub { font-size: 13px; fill: var(--muted); font-family: var(--font-mono); }
+svg.fig.fig3 .t { font-size: 15px; font-weight: 600; }
+svg.fig.fig3 .sum { font-size: 14px; font-weight: 700; }
+svg.fig.fig3 .sum2 { font-size: 13px; fill: var(--muted); }
+svg.fig.fig3 .lg { font-size: 13.5px; fill: var(--muted); }
+svg.fig.fig3 .bx.iso { fill: var(--panel-2); stroke: var(--grid); stroke-width: 1.2px; }
+svg.fig.fig3 .ln.net { stroke-dasharray: 7 4; }
+svg.fig.fig3 .sep { stroke: var(--rule); stroke-width: 1px; stroke-dasharray: 2 4; }
+svg.fig.fig3 .depl { fill: none; stroke: var(--refs); stroke-width: 1.3px; stroke-dasharray: 5 4; }
+/* A WIDTH cap, which scales the drawing proportionally — not the height ceiling that caused this
+   family's width defect. Below 1600px of column the figure runs the full row; above it the figure
+   settles at roughly 80% of the content width rather than growing to fill a projector. */
+svg.fig.fig3 { max-width: 1560px; }
+
+/* --- the cost chart: the dominant visualization ------------------------------------------- */
+/* One relationship, drawn: total modelled cost against the number of expected future changes,
+   one line per candidate architecture. The crossover is the quantity the lecture names, so it is
+   marked on the line rather than left to be read off an axis.
+   Series identity is carried THREE ways — dash pattern, a direct end-label, and colour — so the
+   chart is readable without colour and the tokens below are series identities, nothing else. */
+.chart-wrap {
+  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 0.4rem 0.5rem;
+}
+svg.chart { display: block; width: 100%; height: auto; max-width: 1240px; }
+svg.chart text { font-family: var(--font-body); fill: var(--ink); }
+svg.chart .ax { stroke: var(--ink); stroke-width: 1.3px; fill: none; }
+svg.chart .grid { stroke: var(--grid); stroke-width: 1px; }
+svg.chart .tick { font-size: 13px; fill: var(--muted); font-family: var(--font-mono); }
+svg.chart .axtitle { font-size: 14px; fill: var(--muted); }
+svg.chart .send { font-size: 14px; font-weight: 700; }
+svg.chart .snote { font-size: 12.5px; fill: var(--muted); font-family: var(--font-mono); }
+svg.chart .line { fill: none; stroke-width: 2.6px; stroke-linejoin: round; }
+svg.chart .s-a .line { stroke: var(--sA); stroke-dasharray: 9 5; }
+svg.chart .s-b .line { stroke: var(--sB); }
+svg.chart .s-c .line { stroke: var(--sC); stroke-dasharray: 2 4; }
+svg.chart .s-a .send, svg.chart .s-a .dot { fill: var(--sA); }
+svg.chart .s-b .send, svg.chart .s-b .dot { fill: var(--sB); }
+svg.chart .s-c .send, svg.chart .s-c .dot { fill: var(--sC); }
+svg.chart .series.is-excluded { opacity: 0.45; }
+svg.chart .series.is-excluded .line { stroke-dasharray: 3 3; stroke-width: 1.8px; }
+svg.chart .horizon { stroke: var(--accent); stroke-width: 1.6px; stroke-dasharray: 4 3; }
+svg.chart .horizon-label { font-size: 13px; font-weight: 600; fill: var(--accent); }
+svg.chart .xdot { stroke: var(--ink); stroke-width: 1.6px; fill: var(--paper); }
+svg.chart .xlabel { font-size: 13px; font-weight: 600; fill: var(--ink); }
 
 .legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; margin: 0.6rem 0 0; font-size: 0.86rem; color: var(--muted); }
 .legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
@@ -880,507 +992,695 @@ pre.ascii {
 
 <main>
 
-<!-- ============================================================================================
-     THE LABORATORY HANDOUT. Problem, system, model, parameters — visible before any control, and
-     printable without running anything.
-     ============================================================================================ -->
+<!-- ==============================================================================================
+     THE LABORATORY HANDOUT, in the house order: engineering problem, background, model, procedure,
+     apparatus, interpretation, collapsed reference. Sections 1 to 4 precede every control on
+     purpose — a student should understand what is being manipulated before meeting the controls.
+     ============================================================================================== -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
     When implementation becomes cheap, which architectural boundaries remain worth maintaining?
   </h2>
   <p class="lab-frame">
-    The campus reservation service works; the university now wants <strong>laboratory
-    reservations</strong> with approval policies of their own. An agent writes any of these
-    structures cheaply and makes <em>establishing that the result still satisfies the system's
-    obligations</em> no cheaper at all.
+    The campus reservation service works. The university now wants <strong>laboratory
+    reservations</strong>, with approval policies on their own schedule. An agent will write any of
+    three candidate structures cheaply — and will not make <em>establishing that the result still
+    satisfies the system's obligations</em> any cheaper at all. You have to decide which structure
+    to pay for.
   </p>
+</section>
 
-  <div class="lab-twoup band">
-    <!-- -------- FIGURE 1 · the modelled system and its boundary -------- -->
-    <figure class="lab-figure">
-      <svg class="fig" viewBox="0 0 520 206" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
-        <title id="f1-t">Figure 1: the existing structure beside the modular-monolith alternative</title>
-        <desc id="f1-d">Two panels hold the same reservation service. The left panel, labelled the
-          existing structure, stacks HTTP API above BookingService; BookingService depends on three
-          components side by side — RoomRules, Approval and Persistence — and all three depend on a
-          Database at the bottom. Its note reads that it is one deployable and that laboratory rules
-          have nowhere of their own to live. The right panel, labelled the modular monolith, stacks
-          HTTP API above BookingService; BookingService depends on two policy modules, RoomPolicy and
-          LabPolicy, and both depend on a single Persistence module at the bottom. Its note reads
-          that it is one deployable and that each policy is its own module. Both panels draw
-          dependency pointing downwards.</desc>
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="hb-background" aria-labelledby="h-background">
+  <h2 id="h-background">Background</h2>
 
-        <text class="th" x="6" y="11">A &middot; existing structure</text>
-        <text class="th" x="274" y="11">B &middot; modular monolith</text>
-        <line class="ln" x1="261" y1="4" x2="261" y2="202" stroke-dasharray="2 3" opacity="0.6"/>
+  <div class="hb-prose">
+    <p>
+      Every architecture draws boundaries somewhere — between the code that answers an HTTP request,
+      the code that decides whether a reservation is allowed, and the code that stores it. Moving a
+      boundary is not free. Leaving it where it is is not free either. The engineering question is
+      which of those two bills is larger over the work you expect to do.
+    </p>
+    <p>
+      Two costs are in play and they behave differently. A <strong>one-time cost</strong> is what you
+      pay to put a structure in place: writing the new modules, then re-establishing that the system
+      still does what it did. A <strong>per-change cost</strong> is what every future change pays
+      while that structure stands. A weak structure is cheap to leave alone and expensive to change
+      repeatedly; a stronger boundary is expensive to build and cheap to change. So the comparison is
+      never between two structures — it is between two structures <em>over a horizon</em>, a number
+      of future changes nobody has made yet. That is why this is a decision model and not a
+      measurement.
+    </p>
+    <p>
+      <strong>What makes one change expensive is how many components it must modify.</strong> When
+      laboratory booking rules have no module of their own, a new laboratory rule has to be threaded
+      through whichever components happen to hold booking logic. When they do have a module, the same
+      rule lands in one place. A dependency graph is how you see this: it shows which components a
+      change must modify, and which others merely lie on a path from them. A path is not a change — a
+      component that <em>could</em> be reached by a moved interface may turn out to need nothing. The
+      two counts are reported separately, because a single "components affected" number would rank a
+      structure with a narrow change-site and wide reach below one with a wide change-site and narrow
+      reach.
+    </p>
+    <p>
+      <strong>Implementation and assurance are separate terms.</strong> Writing the code is one cost.
+      Establishing that the result still satisfies the system's obligations — its behaviour, its
+      interfaces, the properties its tests pin — is another. A capable coding agent can move the
+      first term a long way. It does not move the second by the same factor, because assurance is
+      mostly people reasoning about consequences. When one term falls and the other does not, the
+      share of every restructuring that is assurance grows, and that shift decides most of the
+      comparisons on this page.
+    </p>
+    <p>
+      <strong>A requirement is not a price.</strong> If laboratory changes must ship on their own
+      schedule, a structure that cannot release them separately is not expensive — it is ineligible,
+      at any cost. A discount can change what you should buy. It cannot buy you a requirement.
+    </p>
+  </div>
+</section>
 
-        <!-- panel A -->
-        <line class="ln" x1="127" y1="46" x2="127" y2="56"/>
-        <polygon class="ah" points="127,58 124,52 130,52"/>
-        <line class="ln" x1="127" y1="82" x2="48" y2="94"/>
-        <polygon class="ah" points="43,96 49,91 50,97"/>
-        <line class="ln" x1="124" y1="82" x2="122" y2="94"/>
-        <polygon class="ah" points="121,96 118,90 124,90"/>
-        <line class="ln" x1="132" y1="82" x2="199" y2="94"/>
-        <polygon class="ah" points="204,96 198,91 197,97"/>
-        <line class="ln" x1="46" y1="120" x2="92" y2="134"/>
-        <polygon class="ah" points="97,136 91,131 89,137"/>
-        <line class="ln" x1="121" y1="120" x2="124" y2="134"/>
-        <polygon class="ah" points="125,136 119,131 125,130"/>
-        <line class="ln" x1="201" y1="120" x2="160" y2="134"/>
-        <polygon class="ah" points="155,136 161,131 163,137"/>
-        <rect class="bx" x="79" y="22" width="96" height="24" rx="2"/>
-        <text class="t" x="127" y="38" text-anchor="middle">HTTP API</text>
-        <rect class="bx" x="79" y="58" width="96" height="24" rx="2"/>
-        <text class="t" x="127" y="74" text-anchor="middle">BookingService</text>
-        <rect class="bx" x="6" y="96" width="74" height="24" rx="2"/>
-        <text class="t" x="43" y="112" text-anchor="middle">RoomRules</text>
-        <rect class="bx" x="88" y="96" width="66" height="24" rx="2"/>
-        <text class="t" x="121" y="112" text-anchor="middle">Approval</text>
-        <rect class="bx" x="162" y="96" width="84" height="24" rx="2"/>
-        <text class="t" x="204" y="112" text-anchor="middle">Persistence</text>
-        <rect class="bx" x="79" y="136" width="96" height="24" rx="2"/>
-        <text class="t" x="127" y="152" text-anchor="middle">Database</text>
-        <text class="ts" x="6" y="174">One deployable. Three components</text>
-        <text class="ts" x="6" y="186">reach storage directly, and lab</text>
-        <text class="ts" x="6" y="198">rules have nowhere of their own.</text>
+<!-- ======================= 3 · MODEL ======================= -->
+<section class="hb-model" aria-labelledby="h-model">
+  <h2 id="h-model">The model</h2>
 
-        <!-- panel B -->
-        <line class="ln" x1="393" y1="46" x2="393" y2="56"/>
-        <polygon class="ah" points="393,58 390,52 396,52"/>
-        <line class="ln" x1="386" y1="82" x2="324" y2="94"/>
-        <polygon class="ah" points="319,96 325,91 326,97"/>
-        <line class="ln" x1="400" y1="82" x2="462" y2="94"/>
-        <polygon class="ah" points="467,96 461,91 460,97"/>
-        <line class="ln" x1="322" y1="120" x2="365" y2="134"/>
-        <polygon class="ah" points="370,136 364,131 362,137"/>
-        <line class="ln" x1="464" y1="120" x2="421" y2="134"/>
-        <polygon class="ah" points="416,136 422,131 424,137"/>
-        <rect class="bx" x="345" y="22" width="96" height="24" rx="2"/>
-        <text class="t" x="393" y="38" text-anchor="middle">HTTP API</text>
-        <rect class="bx" x="345" y="58" width="96" height="24" rx="2"/>
-        <text class="t" x="393" y="74" text-anchor="middle">BookingService</text>
-        <rect class="bx" x="276" y="96" width="86" height="24" rx="2"/>
-        <text class="t" x="319" y="112" text-anchor="middle">RoomPolicy</text>
-        <rect class="bx" x="424" y="96" width="86" height="24" rx="2"/>
-        <text class="t" x="467" y="112" text-anchor="middle">LabPolicy</text>
-        <rect class="bx" x="345" y="136" width="96" height="24" rx="2"/>
-        <text class="t" x="393" y="152" text-anchor="middle">Persistence</text>
-        <text class="ts" x="274" y="174">One deployable. Each policy is</text>
-        <text class="ts" x="274" y="186">its own module, and both reach</text>
-        <text class="ts" x="274" y="198">storage through one module.</text>
-      </svg>
-      <figcaption>
-        <span class="fignum">Figure 1.</span> The modelled system: <strong>one</strong> reservation
-        application, not a general model of software architecture. An arrow means the upper component
-        uses the lower one. The third candidate, extracting the policies into separately deployed
-        services, is drawn in the instrument below.
-      </figcaption>
-    </figure>
+  <!-- -------- FIGURE 1 · its own row, the full content width -------- -->
+  <figure class="lab-figure">
+    <svg class="fig fig3" viewBox="0 0 1000 342" role="img"
+         aria-labelledby="f1-t" aria-describedby="f1-d">
+      <title id="f1-t">Figure 1: one reservation service drawn three ways, with the laboratory-policy
+        change marked on each</title>
+      <desc id="f1-d">Three panels hold the same reservation service under three candidate
+        structures, dependency pointing downwards in each. Panel A, the existing structure, is one
+        deployable with no laboratory module: HTTP API above BookingService, which depends on
+        RoomRules, Approval and Persistence side by side, all three depending on a Database. Panel B,
+        the modular monolith, is one deployable whose policies are modules: HTTP API above
+        BookingService, which depends on RoomPolicy and LabPolicy, both reaching a single Persistence
+        module. Panel C, the extracted policy services, is two deployables: HTTP API above
+        BookingService, which reaches RoomService and LabService over the network — the two drawn
+        inside a dashed enclosure marking a separate deployable — and both reach a Database. On every
+        panel the components the laboratory-policy change is assumed to modify are drawn filled with a
+        heavy outline, those a dependency path reaches are drawn unfilled with a dashed outline, and
+        those outside every path are drawn thin and muted. The same change must modify three
+        components in panel A and one in panels B and C; a summary line under each panel gives those
+        counts.</desc>
 
-    <!-- -------- MODEL ASSUMPTIONS -------- -->
+      <!-- panel frames and separators -->
+      <line class="sep" x1="370" y1="8" x2="370" y2="300"/>
+      <line class="sep" x1="690" y1="8" x2="690" y2="300"/>
+
+      <!-- ============ PANEL A ============ -->
+      <text class="pt" x="0" y="20">A &middot; Retain the existing structure</text>
+      <text class="psub" x="0" y="37">one deployable &middot; no lab module</text>
+
+      <line class="ln" x1="180" y1="82" x2="180" y2="100"/>
+      <polygon class="ah" points="180,104 176,96 184,96"/>
+      <line class="ln" x1="180" y1="138" x2="180" y2="148"/>
+      <line class="ln" x1="59" y1="148" x2="301" y2="148"/>
+      <line class="ln" x1="59" y1="148" x2="59" y2="156"/>
+      <polygon class="ah" points="59,160 55,152 63,152"/>
+      <line class="ln" x1="180" y1="148" x2="180" y2="156"/>
+      <polygon class="ah" points="180,160 176,152 184,152"/>
+      <line class="ln" x1="301" y1="148" x2="301" y2="156"/>
+      <polygon class="ah" points="301,160 297,152 305,152"/>
+      <line class="ln" x1="59" y1="194" x2="59" y2="204"/>
+      <line class="ln" x1="180" y1="194" x2="180" y2="204"/>
+      <line class="ln" x1="301" y1="194" x2="301" y2="204"/>
+      <line class="ln" x1="59" y1="204" x2="301" y2="204"/>
+      <line class="ln" x1="180" y1="204" x2="180" y2="212"/>
+      <polygon class="ah" points="180,216 176,208 184,208"/>
+
+      <rect class="bx maybe" x="105" y="48" width="150" height="34" rx="2"/>
+      <text class="t" x="180" y="69" text-anchor="middle">HTTP API</text>
+      <rect class="bx must" x="105" y="104" width="150" height="34" rx="2"/>
+      <text class="t" x="180" y="125" text-anchor="middle">BookingService</text>
+      <rect class="bx must" x="4" y="160" width="110" height="34" rx="2"/>
+      <text class="t" x="59" y="181" text-anchor="middle">RoomRules</text>
+      <rect class="bx must" x="125" y="160" width="110" height="34" rx="2"/>
+      <text class="t" x="180" y="181" text-anchor="middle">Approval</text>
+      <rect class="bx maybe" x="246" y="160" width="110" height="34" rx="2"/>
+      <text class="t" x="301" y="181" text-anchor="middle">Persistence</text>
+      <rect class="bx maybe" x="105" y="216" width="150" height="34" rx="2"/>
+      <text class="t" x="180" y="237" text-anchor="middle">Database</text>
+
+      <text class="sum" x="0" y="276">3 must modify &middot; 3 may be reached</text>
+      <text class="sum2" x="0" y="293">nothing is isolated</text>
+
+      <!-- ============ PANEL B ============ -->
+      <text class="pt" x="380" y="20">B &middot; Modular monolith</text>
+      <text class="psub" x="380" y="37">one deployable &middot; policy modules</text>
+
+      <line class="ln" x1="530" y1="82" x2="530" y2="100"/>
+      <polygon class="ah" points="530,104 526,96 534,96"/>
+      <line class="ln" x1="530" y1="138" x2="530" y2="148"/>
+      <line class="ln" x1="449" y1="148" x2="611" y2="148"/>
+      <line class="ln" x1="449" y1="148" x2="449" y2="156"/>
+      <polygon class="ah" points="449,160 445,152 453,152"/>
+      <line class="ln" x1="611" y1="148" x2="611" y2="156"/>
+      <polygon class="ah" points="611,160 607,152 615,152"/>
+      <line class="ln" x1="449" y1="194" x2="449" y2="204"/>
+      <line class="ln" x1="611" y1="194" x2="611" y2="204"/>
+      <line class="ln" x1="449" y1="204" x2="611" y2="204"/>
+      <line class="ln" x1="530" y1="204" x2="530" y2="212"/>
+      <polygon class="ah" points="530,216 526,208 534,208"/>
+
+      <rect class="bx maybe" x="455" y="48" width="150" height="34" rx="2"/>
+      <text class="t" x="530" y="69" text-anchor="middle">HTTP API</text>
+      <rect class="bx maybe" x="455" y="104" width="150" height="34" rx="2"/>
+      <text class="t" x="530" y="125" text-anchor="middle">BookingService</text>
+      <rect class="bx iso" x="384" y="160" width="130" height="34" rx="2"/>
+      <text class="t" x="449" y="181" text-anchor="middle">RoomPolicy</text>
+      <rect class="bx must" x="546" y="160" width="130" height="34" rx="2"/>
+      <text class="t" x="611" y="181" text-anchor="middle">LabPolicy</text>
+      <rect class="bx maybe" x="455" y="216" width="150" height="34" rx="2"/>
+      <text class="t" x="530" y="237" text-anchor="middle">Persistence</text>
+
+      <text class="sum" x="380" y="276">1 must modify &middot; 3 may be reached</text>
+      <text class="sum2" x="380" y="293">RoomPolicy is isolated</text>
+
+      <!-- ============ PANEL C ============ -->
+      <text class="pt" x="700" y="20">C &middot; Extract policy services</text>
+      <text class="psub" x="700" y="37">two deployables &middot; over the network</text>
+
+      <rect class="depl" x="704" y="152" width="292" height="50" rx="3"/>
+
+      <line class="ln" x1="850" y1="82" x2="850" y2="100"/>
+      <polygon class="ah" points="850,104 846,96 854,96"/>
+      <line class="ln net" x1="850" y1="138" x2="850" y2="148"/>
+      <line class="ln net" x1="774" y1="148" x2="926" y2="148"/>
+      <line class="ln net" x1="774" y1="148" x2="774" y2="156"/>
+      <polygon class="ah" points="774,160 770,152 778,152"/>
+      <line class="ln net" x1="926" y1="148" x2="926" y2="156"/>
+      <polygon class="ah" points="926,160 922,152 930,152"/>
+      <line class="ln" x1="774" y1="194" x2="774" y2="204"/>
+      <line class="ln" x1="926" y1="194" x2="926" y2="204"/>
+      <line class="ln" x1="774" y1="204" x2="926" y2="204"/>
+      <line class="ln" x1="850" y1="204" x2="850" y2="212"/>
+      <polygon class="ah" points="850,216 846,208 854,208"/>
+
+      <rect class="bx maybe" x="775" y="48" width="150" height="34" rx="2"/>
+      <text class="t" x="850" y="69" text-anchor="middle">HTTP API</text>
+      <rect class="bx maybe" x="775" y="104" width="150" height="34" rx="2"/>
+      <text class="t" x="850" y="125" text-anchor="middle">BookingService</text>
+      <rect class="bx iso" x="712" y="160" width="124" height="34" rx="2"/>
+      <text class="t" x="774" y="181" text-anchor="middle">RoomService</text>
+      <rect class="bx must" x="864" y="160" width="124" height="34" rx="2"/>
+      <text class="t" x="926" y="181" text-anchor="middle">LabService</text>
+      <rect class="bx maybe" x="775" y="216" width="150" height="34" rx="2"/>
+      <text class="t" x="850" y="237" text-anchor="middle">Database</text>
+
+      <text class="sum" x="700" y="276">1 must modify &middot; 3 may be reached</text>
+      <text class="sum2" x="700" y="293">RoomService is isolated</text>
+
+      <!-- ============ LEGEND ============ -->
+      <rect class="bx must" x="0" y="309" width="26" height="14" rx="2"/>
+      <text class="lg" x="32" y="321">must modify &mdash; assumed</text>
+      <rect class="bx maybe" x="210" y="309" width="26" height="14" rx="2"/>
+      <text class="lg" x="242" y="321">may be reached &mdash; a path exists</text>
+      <rect class="bx iso" x="490" y="309" width="26" height="14" rx="2"/>
+      <text class="lg" x="522" y="321">isolated &mdash; no path</text>
+      <text class="lg" x="690" y="321">dashed enclosure &mdash; a separate deployable</text>
+    </svg>
+    <figcaption>
+      <span class="fignum">Figure 1.</span> The modelled system: <strong>one</strong> reservation
+      application, not a general model of software architecture. An arrow means the upper component
+      uses the lower one. The marking is the laboratory-policy change, the scenario this laboratory
+      runs by default.
+    </figcaption>
+  </figure>
+
+  <!-- -------- ASSUMPTIONS beside the model, then one disclaimer -------- -->
+  <div class="lab-twoup">
     <div class="lab-assumptions" aria-labelledby="h-assumptions">
-      <h2 id="h-assumptions">Model assumptions</h2>
+      <h3 id="h-assumptions">Assumptions you need in order to predict</h3>
       <ul>
-        <li><strong>One</strong> reservation application, six components at most, one new requirement.</li>
-        <li><strong>Must-modify is an assumption</strong> each scenario declares per architecture:
-          stated, not derived from the graph, and not measured.</li>
-        <li><strong>Potentially impacted is derived</strong> &mdash; a dependency path exists, towards
-          dependents (a moved interface may reach a caller) or towards dependencies (the change may
-          need something new). A path makes an effect <em>possible</em>, never certain.</li>
-        <li><strong>Costs are unitless points,</strong> so only ratios mean anything; future changes
-          are expected counts, not rates. The multiplier scales implementation only, the assurance
-          level validation only.</li>
+        <li><strong>One</strong> reservation application, at most six components, one new
+          requirement.</li>
+        <li><strong>The must-modify set is declared, not derived.</strong> Each scenario states, per
+          architecture, which components it assumes change. A dependency edge is not evidence that
+          both ends change.</li>
+        <li><strong>The potentially-impacted set is derived</strong> from the graph: a path exists,
+          towards dependents (a moved interface may reach a caller) or towards dependencies (the
+          change may need something new). The two sets are counted separately, never summed.</li>
+        <li><strong>Costs are unitless model points,</strong> so only ratios mean anything. The
+          implementation multiplier scales implementation terms only; the assurance level scales
+          validation and integration only.</li>
+        <li><strong>The model is deterministic.</strong> The same controls give the same numbers —
+          there is no sampling variability, and nothing to average out.</li>
       </ul>
       <p class="lab-disclaimer">
-        <strong>The cost estimates are illustrative. Graph structure alone does not predict change
-        cost.</strong> Nothing on this page was measured, and no figure here describes any real
-        system. Wherever a number below comes from an assumption it is written in this ochre
-        &mdash; <span class="badge s-warn"><span class="glyph">&#9650;</span>&nbsp;assumed</span>
-        &mdash; so an assumed cost never reads like a measured one.
+        <strong>Illustrative simulation; not calibrated to an industrial organization.</strong> The
+        cost estimates are illustrative. Graph structure alone does not predict change cost. Every
+        figure that comes from an assumption is marked
+        <span class="badge s-warn"><span class="glyph">&#9650;</span>&nbsp;assumed</span>.
       </p>
     </div>
 
-
-    <!-- -------- PARAMETERS -------- -->
-    <div class="lab-assumptions lab-parameters-block">
+    <div class="hb-tables">
       <div class="scroll-x">
         <table class="lab-parameters">
-          <caption>Parameters &mdash; what you can change</caption>
+          <caption>Table 1 &mdash; Model parameters: what you can change</caption>
           <thead>
-            <tr><th scope="col">Parameter</th><th scope="col">Meaning</th><th scope="col">Unit</th><th scope="col">Default</th><th scope="col">What it changes</th></tr>
+            <tr><th scope="col">Parameter</th><th scope="col">Meaning</th><th scope="col">Unit</th><th scope="col">Default</th></tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Architecture</th>
-              <td>Which candidate structure is drawn, ruled and costed</td>
+              <td>Which candidate structure the graph draws and the impact counts describe</td>
               <td class="unit">A, B or C</td>
               <td class="default">A &middot; Retain</td>
-              <td>the graph, the impact sets, and every cost coefficient</td>
             </tr>
             <tr>
               <th scope="row">Future changes</th>
-              <td>Expected number of consequential changes over the horizon, and what kind they are</td>
-              <td class="unit">count &middot; mix</td>
-              <td class="default">12 &middot; mostly policy</td>
-              <td>how far the per-change terms outweigh the one-time cost</td>
+              <td>Expected consequential changes over the horizon</td>
+              <td class="unit">count</td>
+              <td class="default">12</td>
             </tr>
             <tr>
-              <th scope="row">Team structure</th>
-              <td>How many teams own booking policy, and whether laboratory changes must ship on their own</td>
-              <td class="unit">teams &middot; requirement</td>
-              <td class="default">1 &middot; not required</td>
-              <td>the coordination surcharge, and which options are eligible at all</td>
+              <th scope="row">Independent release</th>
+              <td>Whether laboratory changes must ship on their own schedule</td>
+              <td class="unit">requirement</td>
+              <td class="default">Not required</td>
             </tr>
             <tr>
               <th scope="row">Implementation multiplier</th>
               <td>Relative cost of realizing a code change, standing for agent-assisted implementation</td>
               <td class="unit">&times;</td>
               <td class="default">1&times;</td>
-              <td>the implementation terms &mdash; and nothing else</td>
             </tr>
             <tr>
               <th scope="row">Assurance cost</th>
               <td>Cost of validating a change and integrating it into the running system</td>
               <td class="unit">level</td>
               <td class="default">Medium</td>
-              <td>the validation and integration terms &mdash; and nothing else</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="note" style="margin-top:0.4rem;font-size:0.8rem">
-        Two further controls sit lower down: the <strong>change scenario</strong>, which selects the
-        question the impact panel answers, and the <strong>architectural rules</strong>, which you
-        edit to state what the structure must permit or prohibit.
-      </p>
+
+      <div class="scroll-x">
+        <table class="lab-parameters">
+          <caption>Table 2 &mdash; Observed quantities: what the apparatus reports</caption>
+          <thead>
+            <tr><th scope="col">Quantity</th><th scope="col">What it means</th><th scope="col">Unit</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Total modelled cost</th>
+              <td>One-time cost plus every per-change cost over the horizon, for each architecture</td>
+              <td class="unit">points</td>
+            </tr>
+            <tr>
+              <th scope="row">Margin</th>
+              <td>How far the least-cost eligible structure leads the runner-up. Under 10% the model cannot separate them</td>
+              <td class="unit">%</td>
+            </tr>
+            <tr>
+              <th scope="row">Crossover</th>
+              <td>The horizon at which a boundary first repays &mdash; the change count where the candidate stops costing more</td>
+              <td class="unit">changes</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note tbl-note">
+          The graph below also annotates two counts, drawn with Figure 1's encodings: how many
+          components the change <strong>must modify</strong>, and how many a dependency path
+          <strong>may reach</strong>. The other change scenarios, a second owning team and the
+          change mix are in <em>Further investigation</em>.
+        </p>
+      </div>
     </div>
   </div>
-
-  
 </section>
 
-<!-- ======================= CHANGE SCENARIO ======================= -->
-<section class="panel lab-controls" aria-labelledby="h-scenario">
-  <h2 id="h-scenario">Change scenario and horizon</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
+<!-- ======================= 4 · EXPERIMENT ======================= -->
+<section class="hb-procedure" aria-labelledby="h-procedure">
+  <h2 id="h-procedure">The experimental procedure</h2>
+
+  <div class="lab-experiment" aria-labelledby="h-method">
+    <h3 id="h-method">Method</h3>
     <ol class="lab-steps">
       <li>
         <span class="step">1 &middot; Predict</span>
-        For twenty future policy changes and one engineer, which of the three structures costs least?
-        Now answer again for implementation a hundred times cheaper. Commit both before you read a
-        number &mdash; the three conditions in <em>The experiment</em> below stay locked until you do.
+        Read the experiment's baseline and the one parameter it changes, then commit an answer in
+        that condition's card below. The card stays locked until you do.
       </li>
       <li>
         <span class="step">2 &middot; Run</span>
-        Hold the horizon fixed and move the implementation multiplier from 1&times; to 0.01&times;.
-        Put it back, and move the assurance level instead. Then switch the scenario to <em>Change the
-        persistence mechanism</em> and compare the must-modify counts across the three architectures.
+        Reveal the condition, then set the same controls on the apparatus and read the chart. Change
+        one parameter at a time &mdash; the implementation multiplier, then the horizon, then the
+        independent-release requirement.
       </li>
       <li>
         <span class="step">3 &middot; Explain</span>
-        Which control moved the ranking, and which only moved the totals? Extracting services never
-        leads on modelled cost here &mdash; find what does make it the answer, and say whether that is
-        an economic argument or a requirement. What would you recommend to the engineer, and what
-        measurement would change your mind?
+        Say which control moved the <em>ranking</em> and which only moved the <em>totals</em>, and
+        what measurement would overturn your recommendation.
       </li>
     </ol>
   </div>
 
+  <ol class="experiments">
+    <li class="experiment">
+      <h3>Experiment 1 &mdash; Does a boundary repay, and after how many changes?</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Condition 1: one expected future change, policy changes only, one team, independent
+          release not required, 1&times; implementation, Medium assurance.</dd>
+        <dt>Parameter changed</dt>
+        <dd>The expected number of future changes, from 1 to 20 &mdash; Condition 1 against
+          Condition 2.</dd>
+        <dt>Held constant</dt>
+        <dd>Implementation multiplier, assurance level, change mix, team count, independent-release
+          requirement.</dd>
+        <dt>Predict</dt>
+        <dd>At one future change, which of the three structures costs least? At twenty?</dd>
+        <dt>Measurements to compare</dt>
+        <dd>The total modelled cost of all three structures at each horizon, and the crossover the
+          chart marks.</dd>
+        <dt>Engineering question</dt>
+        <dd>At what expected change count does paying once for a boundary beat paying per change
+          for as long as the structure stands?</dd>
+      </dl>
+    </li>
+
+    <li class="experiment">
+      <h3>Experiment 2 &mdash; Does cheap implementation change which boundary is worth drawing?</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Condition 2: twenty expected policy changes, one team, independent release not required,
+          at 1&times; implementation and Medium assurance.</dd>
+        <dt>Parameter changed</dt>
+        <dd>The implementation cost multiplier, from 1&times; to 0.01&times;.</dd>
+        <dt>Held constant</dt>
+        <dd>Horizon, change mix, team count, independent-release requirement, assurance level.</dd>
+        <dt>Predict</dt>
+        <dd>Which of the three structures does a hundredfold implementation discount promote?</dd>
+        <dt>Measurements to compare</dt>
+        <dd>The least-cost structure and the crossover, read once at 1&times; and again at
+          0.01&times;.</dd>
+        <dt>Engineering question</dt>
+        <dd>Does cheaper implementation change <em>which</em> boundary is worth drawing, or only
+          <em>when</em> it starts to repay?</dd>
+      </dl>
+    </li>
+
+    <li class="experiment">
+      <h3>Experiment 3 &mdash; Can a discount buy a requirement?</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Condition 3: twenty expected changes of mixed kinds, two teams owning booking policy, at
+          0.01&times; implementation and Medium assurance.</dd>
+        <dt>Parameter changed</dt>
+        <dd>Independent release of laboratory changes, from <em>Not required</em> to
+          <em>Required</em>.</dd>
+        <dt>Held constant</dt>
+        <dd>Horizon, change mix, team count, implementation multiplier, assurance level.</dd>
+        <dt>Predict</dt>
+        <dd>Which structure is the answer once laboratory changes must ship on their own schedule?</dd>
+        <dt>Measurements to compare</dt>
+        <dd>The least-cost <em>eligible</em> structure, and which structures the requirement excludes
+          along with what they would have cost.</dd>
+        <dt>Engineering question</dt>
+        <dd>Is a requirement a cost you can discount, or a constraint that rules an option out at any
+          price?</dd>
+      </dl>
+    </li>
+  </ol>
+</section>
+
+<!-- ======================= 5 · INTERACTIVE APPARATUS ======================= -->
+<section class="panel lab-controls" aria-labelledby="h-controls">
+  <h2 id="h-controls">Controls</h2>
   <div class="ctl-row">
     <div class="ctl">
-      <label for="scenario">Scenario</label>
-      <select id="scenario"></select>
-      <span class="hint" id="scenario-question"></span>
-    </div>
-    <div class="ctl">
-      <label for="teams">Development teams <span class="unit">owning booking policy</span></label>
-      <select id="teams">
-        <option value="1" selected>1 team</option>
-        <option value="2">2 teams</option>
-      </select>
-      <span class="hint">A second team adds coordination cost to every change inside a shared deployable.</span>
+      <span class="lbl" id="arch-label">Architecture <span class="unit">the structure under test</span></span>
+      <div class="seg" role="group" aria-labelledby="arch-label" id="arch-seg"></div>
+      <span class="hint" id="arch-blurb"></span>
     </div>
     <div class="ctl">
       <label for="changes">Future changes over the horizon <span class="unit">expected count</span></label>
       <input type="number" id="changes" min="0" max="200" step="1" value="12">
-      <span class="hint">An expectation, not a forecast. 0 reproduces the one-time comparison alone.</span>
+      <span class="hint">An expectation, not a forecast. 0 compares the one-time costs alone.</span>
     </div>
     <div class="ctl">
-      <label for="mix">What those changes are</label>
-      <select id="mix"></select>
-      <span class="hint" id="mix-hint"></span>
-    </div>
-    <div class="ctl">
-      <span class="lbl" id="release-label">Independent release of laboratory changes</span>
+      <span class="lbl" id="release-label">Independent release <span class="unit">of laboratory changes</span></span>
       <div class="seg" role="group" aria-labelledby="release-label" id="release-seg">
         <button type="button" data-release="off" aria-pressed="true">Not required</button>
         <button type="button" data-release="on" aria-pressed="false">Required</button>
       </div>
       <span class="hint">A requirement, not a cost. It can rule an option out regardless of price.</span>
     </div>
+    <div class="ctl">
+      <span class="lbl" id="mult-label">Implementation multiplier <span class="unit">agent-assisted realization</span></span>
+      <div class="seg" role="group" aria-labelledby="mult-label" id="mult-seg"></div>
+      <span class="hint">Scales the implementation terms, and nothing else.</span>
+    </div>
+    <div class="ctl">
+      <span class="lbl" id="assur-label">Assurance cost <span class="unit">validation and integration</span></span>
+      <div class="seg" role="group" aria-labelledby="assur-label" id="assur-seg"></div>
+      <span class="hint">Scales validation and integration, and nothing else.</span>
+    </div>
   </div>
   <p id="clamp-notice" class="warnbox" hidden role="status"></p>
 </section>
 
-<!-- ======================= THE THREE PANELS ======================= -->
-<div class="grid3 lab-measurements">
-
-  <!-- ---------- ARCHITECTURE ---------- -->
-  <section class="panel" aria-labelledby="h-arch">
-    <h2 id="h-arch">Architecture</h2>
-    <div class="seg" role="group" aria-label="Candidate architecture" id="arch-seg"></div>
-    <p id="arch-blurb" style="margin-top:0.6rem"></p>
-
-    <div class="canvas-wrap">
-      <svg id="graph" class="graph" viewBox="0 0 560 400" role="img"
-           aria-labelledby="graph-title" aria-describedby="graph-desc">
-        <title id="graph-title">Dependency graph of the selected architecture</title>
-        <desc id="graph-desc"></desc>
-      </svg>
-    </div>
-    <div class="legend" id="graph-legend"></div>
-    <p class="note" id="graph-text">
-      <!-- The graph's state in words. Populated by the interface; never the only copy of a fact. -->
-    </p>
-
-    <div class="btn-row">
-      <button type="button" class="act small" id="btn-show-deps" aria-pressed="true">Show dependencies</button>
-      <button type="button" class="act small" id="btn-show-obligations" aria-pressed="false">Show obligations</button>
-      <button type="button" class="act small" id="btn-clear-sel">Clear selection</button>
-    </div>
-    <div id="selection-detail" aria-live="polite"></div>
-
-    <details class="disclose">
-      <summary>All three structures, as the lecture draws them</summary>
-      <div id="ascii-all"></div>
-      <p class="note">
-        The architectures are predefined and the graph is not editable. What you edit is the set of
-        <em>architectural rules</em> below &mdash; which is the difference between describing an
-        architecture and enforcing one.
-      </p>
-    </details>
-  </section>
-
-  <!-- ---------- CHANGE IMPACT ---------- -->
-  <section class="panel" aria-labelledby="h-impact">
-    <h2 id="h-impact">Change impact</h2>
-    <!-- -------- FIGURE 2 · the mechanism -------- -->
-    <figure class="lab-figure">
-      <svg class="fig" viewBox="0 0 520 186" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
-        <title id="f2-t">Figure 2: how a new laboratory policy propagates through the existing structure</title>
-        <desc id="f2-d">A chain runs left to right. A box labelled new laboratory policy leads to
-          BookingService; BookingService leads to two boxes, RoomRules above and Approval below; both
-          lead on to Persistence. BookingService, RoomRules and Approval are drawn filled with a
-          heavy outline and marked must modify. Persistence is drawn unfilled with a dashed outline
-          and marked possible downstream effect, because the new rule may or may not need something
-          new from storage. A legend at the foot distinguishes the two states, and a closing note
-          reads that the dashed state is a path the graph shows and not a change it establishes.</desc>
-
-        <text class="th" x="6" y="11">Change-impact propagation &middot; architecture A</text>
-
-        <line class="ln must" x1="128" y1="88" x2="152" y2="88"/>
-        <polygon class="ah-must" points="158,88 151,84 151,92"/>
-        <line class="ln must" x1="262" y1="82" x2="290" y2="60"/>
-        <polygon class="ah-must" points="295,56 288,58 292,64"/>
-        <line class="ln must" x1="262" y1="94" x2="290" y2="116"/>
-        <polygon class="ah-must" points="295,120 288,118 292,112"/>
-        <line class="ln maybe" x1="390" y1="58" x2="414" y2="80"/>
-        <polygon class="ah-maybe" points="419,84 412,82 416,76"/>
-        <line class="ln maybe" x1="390" y1="118" x2="414" y2="96"/>
-        <polygon class="ah-maybe" points="419,92 412,94 416,100"/>
-
-        <rect class="bx trigger" x="6" y="72" width="122" height="32" rx="2"/>
-        <text class="t" x="67" y="86" text-anchor="middle">New laboratory</text>
-        <text class="t" x="67" y="99" text-anchor="middle">policy</text>
-
-        <rect class="bx must" x="158" y="74" width="104" height="28" rx="2"/>
-        <text class="t" x="210" y="92" text-anchor="middle">BookingService</text>
-        <text class="mustlabel" x="210" y="114" text-anchor="middle">MUST MODIFY</text>
-
-        <rect class="bx must" x="296" y="42" width="94" height="28" rx="2"/>
-        <text class="t" x="343" y="60" text-anchor="middle">RoomRules</text>
-        <text class="mustlabel" x="343" y="34" text-anchor="middle">MUST MODIFY</text>
-
-        <rect class="bx must" x="296" y="106" width="94" height="28" rx="2"/>
-        <text class="t" x="343" y="124" text-anchor="middle">Approval</text>
-        <text class="mustlabel" x="343" y="146" text-anchor="middle">MUST MODIFY</text>
-
-        <rect class="bx maybe" x="420" y="74" width="94" height="28" rx="2"/>
-        <text class="t" x="467" y="92" text-anchor="middle">Persistence</text>
-        <text class="maybelabel" x="467" y="60" text-anchor="middle">POSSIBLE</text>
-        <text class="maybelabel" x="467" y="114" text-anchor="middle">DOWNSTREAM EFFECT</text>
-
-        <text class="ts" x="6" y="168">Solid heavy outline: assumed to change. Dashed outline: a path exists,</text>
-        <text class="ts" x="6" y="180">so an effect is possible. The two are counted separately, never summed.</text>
-      </svg>
-      <figcaption>
-        <span class="fignum">Figure 2.</span> The mechanism. A new laboratory policy lands on booking
-        and spreads into the two rule components that have no laboratory boundary of their own; it
-        <em>may</em> reach persistence, if the new rule needs something stored. The live graph adds
-        the arm this figure omits: the HTTP API is on a possible path too.
-      </figcaption>
-    </figure>
-
-    <div class="big" id="impact-cells"></div>
-    <p id="impact-lens-note"></p>
-    <div id="impact-body"></div>
-    <p class="assumebox" id="impact-assumption"></p>
-  </section>
-
-  <!-- ---------- ENGINEERING COST ---------- -->
-  <section class="panel" aria-labelledby="h-cost">
-    <h2 id="h-cost">Engineering cost</h2>
-    <div class="ctl-row" style="grid-template-columns:1fr">
-      <div class="ctl">
-        <span class="lbl" id="mult-label">Implementation cost multiplier <span class="unit">agent-assisted realization</span></span>
-        <div class="seg" role="group" aria-labelledby="mult-label" id="mult-seg"></div>
-      </div>
-      <div class="ctl">
-        <span class="lbl" id="assur-label">Validation and integration cost</span>
-        <div class="seg" role="group" aria-labelledby="assur-label" id="assur-seg"></div>
-      </div>
-    </div>
-
-    <div class="lead-claim" id="cost-verdict">
-      <span class="k">Under these assumptions</span>
-      <span id="cost-verdict-text"></span>
-    </div>
-
-    <div class="scroll-x">
-      <table class="model" id="cost-table"></table>
-    </div>
-
-    <p class="note" id="cost-formula-note"></p>
-
-    <details class="disclose">
-      <summary>The formula, and every coefficient it reads</summary>
-      <pre class="ascii" id="cost-formula"></pre>
-      <div id="cost-coefficients"></div>
-      <p class="assumebox">
-        Every number in those tables is an assumption chosen to make the comparison legible in a
-        classroom. None is a measurement of the reservation service or of any other system. Change
-        them in your head and ask whether the ranking survives &mdash; that question is the exercise.
-      </p>
-    </details>
-  </section>
-
-</div>
-
-<!-- ======================= OBLIGATIONS AND THE RULE EDITOR ======================= -->
-<section class="panel" aria-labelledby="h-rules">
-  <h2 id="h-rules">Architectural obligations</h2>
-  <p>
-    An architecture is not what a diagram shows; it is what the system is held to. State the
-    obligations as rules, then read whether the selected structure satisfies them. Introduce a
-    violation deliberately and watch the graph mark it.
-  </p>
-
-  <div class="grid2">
-    <div>
-      <p class="panel-title">Dependency rules &mdash; checkable from the graph</p>
-      <div class="rule-list" id="rule-list"></div>
-
-      <form class="rule-form" id="rule-form">
-        <div class="inputs">
-          <label for="rule-text" class="vh">New rule</label>
-          <input type="text" id="rule-text" placeholder="[ HTTP API ] MUST NOT DEPEND ON [ Persistence ]"
-                 autocomplete="off" spellcheck="false">
-          <button type="submit" class="act small">Add rule</button>
-          <button type="button" class="act small" id="btn-reset-rules">Reset to defaults</button>
-        </div>
-        <p class="rule-err" id="rule-err" role="status" aria-live="polite"></p>
-        <p class="note" id="rule-syntax"></p>
-      </form>
-    </div>
-
-    <div>
-      <p class="panel-title">Obligations a dependency rule cannot settle</p>
-      <div id="obligation-list"></div>
-      <p class="assumebox">
-        Three of the five obligations are invisible to topology. A graph can show that
-        <em>LabPolicy</em> does not reference <em>RoomPolicy</em>; it cannot show that both preserve
-        the reservation invariants, that neither mutates shared state without coordinating, or that
-        two independently deployed services tolerate each other's versions. Those need tests and
-        review. Reading a clean rule report as a clean architecture is the error this panel exists
-        to prevent.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= THE EXPERIMENT ======================= -->
+<!-- -------- the three conditions: predict, then reveal -------- -->
 <section class="panel" aria-labelledby="h-experiment">
-  <h2 id="h-experiment">The experiment &mdash; predict, then reveal</h2>
-  <p>
-    Cheap implementation changes one term in the comparison. Decide what you expect
-    <strong>before</strong> you read the modelled numbers, or the controls become a slider game and
-    the exercise teaches nothing. Each condition below is locked until you commit to a prediction,
-    and each reveals at the implementation multiplier and assurance level currently selected &mdash;
-    so you can predict once and reveal twice.
+  <h2 id="h-experiment">The three conditions &mdash; predict, then reveal</h2>
+  <p class="tight">
+    Each condition pins its own horizon, change mix, team count and requirement, so it answers the
+    same question however the controls above are set. Each reveals at the implementation multiplier
+    and assurance level you have selected &mdash; so you can predict once and reveal twice, which is
+    Experiment 2.
   </p>
   <div class="conditions" id="conditions"></div>
   <div class="btn-row">
     <button type="button" class="act small" id="btn-reveal-all">Reveal all three</button>
     <button type="button" class="act small" id="btn-reset-predictions">Clear my predictions</button>
-    <span class="hint" style="color:var(--muted);font-size:0.86rem">Predictions live in this page only &mdash; nothing is stored or sent.</span>
+    <span class="hint" style="color:var(--muted)">Predictions live in this page only &mdash; nothing is stored or sent.</span>
   </div>
   <div id="experiment-finding"></div>
 </section>
 
-<!-- ======================= OBSERVATIONS AND JUDGMENT ======================= -->
+<!-- -------- the dominant visualization and the three numbers -------- -->
+<section class="panel" aria-labelledby="h-results">
+  <h2 id="h-results">Results</h2>
+
+  <div class="lead-claim" id="cost-verdict">
+    <span class="k">Under these assumptions</span>
+    <span id="cost-verdict-text"></span>
+  </div>
+
+  <div class="chart-wrap">
+    <svg id="cost-chart" class="chart" viewBox="0 0 860 300" role="img"
+         aria-labelledby="chart-title" aria-describedby="chart-desc">
+      <title id="chart-title">Total modelled cost against the number of expected future changes, for
+        each of the three architectures</title>
+      <desc id="chart-desc"></desc>
+    </svg>
+  </div>
+  <p class="note" id="chart-text"></p>
+
+  <div class="lab-twoup results-pair">
+    <div class="scroll-x">
+      <table class="model" id="cost-table"></table>
+    </div>
+    <div>
+      <p class="note" id="cost-formula-note"></p>
+    </div>
+  </div>
+</section>
+
+<!-- -------- the secondary visualization: the structure under test -------- -->
+<section class="panel" aria-labelledby="h-structure">
+  <h2 id="h-structure">The structure under test</h2>
+  <p class="impact-line" id="impact-cells"></p>
+  <div class="canvas-wrap">
+    <svg id="graph" class="graph" viewBox="0 0 560 400" role="img"
+         aria-labelledby="graph-title" aria-describedby="graph-desc">
+      <title id="graph-title">Dependency graph of the selected architecture</title>
+      <desc id="graph-desc"></desc>
+    </svg>
+  </div>
+  <div class="legend" id="graph-legend"></div>
+  <p class="note" id="graph-text">
+    <!-- The graph's state in words. Populated by the interface; never the only copy of a fact. -->
+  </p>
+  <div class="btn-row">
+    <button type="button" class="act small" id="btn-show-deps" aria-pressed="true">Show dependencies</button>
+    <button type="button" class="act small" id="btn-show-obligations" aria-pressed="false">Show obligations</button>
+    <button type="button" class="act small" id="btn-clear-sel">Clear selection</button>
+  </div>
+  <div id="selection-detail" aria-live="polite"></div>
+</section>
+
+<!-- ======================= 6 · INTERPRETATION ======================= -->
 <section class="panel lab-interpretation" aria-labelledby="h-decision">
-  <h2 id="h-decision">Observations and engineering judgment</h2>
+  <h2 id="h-decision">Interpretation</h2>
   <p>
     <strong>Which architecture would you choose, and what evidence would change your mind?</strong>
     The second half is the engineering. A ranking produced from assumptions is a hypothesis about
     cost; naming the measurement that would overturn it is what makes the decision reviewable.
   </p>
+  <ul class="interp">
+    <li>Which control moved the <em>ranking</em>, and which only moved the <em>totals</em>?</li>
+    <li>Extracting services never leads on modelled cost alone. Find what does make it the answer,
+      and say whether that is an economic argument or a requirement.</li>
+    <li>If the margin is under 10%, the model cannot separate the two structures. What would you
+      decide on instead?</li>
+  </ul>
   <label for="decision-notes" class="vh">Your decision and the evidence that would change it</label>
   <textarea class="answer" id="decision-notes"
             placeholder="I would choose … because … . I would change my mind if we measured … ."></textarea>
   <p class="note">
-    This box is scratch paper. It is never stored, never submitted, and does not survive a reload
-    &mdash; copy your answer out if you want to keep it.
+    Scratch paper. Never stored, never submitted, and it does not survive a reload &mdash; copy your
+    answer out if you want to keep it.
   </p>
-
-  <h3>What this instrument does and does not establish</h3>
-  <ul>
-    <li><strong>It does not predict change costs from topology.</strong> The costs are declared
-      coefficients; the graph contributes impact <em>paths</em>, not prices.</li>
-    <li><strong>It does not establish which components must change.</strong> The must-modify set is
-      an assumption attached to each scenario, stated per architecture and labelled as such. A
-      dependency edge is not evidence that both ends change.</li>
-    <li><strong>It does establish two things firmly, within this model.</strong> A hundredfold
-      implementation discount never makes extracting services preferable, at any horizon, under any
-      setting of the other controls. And where it does change the answer, it moves in one direction
-      only &mdash; from retaining the structure to modularizing it &mdash; at a horizon of one or two
-      changes, or from a gap the model already could not separate. So it lowers the threshold at
-      which drawing a boundary repays without changing which boundary is worth drawing. Both are
-      properties of the arithmetic, and the sweep below walks the whole parameter space to confirm
-      them.</li>
-  </ul>
-
-  <div class="scroll-x" id="sweep-report"></div>
-
-  <p>
-    <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
-    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
-  </p>
-  <p class="note">
-    The engine is a pure module published as <code>window.ArchitectureWorkbench</code> with no
-    browser dependency, so the test suite under <code>tests/</code> extracts it from this file and
-    exercises it directly. The tested text and the published text are the same bytes.
-  </p>
-
   <div class="btn-row">
     <button type="button" class="act" id="btn-defaults">Reset everything</button>
     <span style="flex:1"></span>
     <a class="act" id="btn-download" href="index.html" download="architecture-workbench.html"
        role="button" style="text-decoration:none">Download HTML</a>
   </div>
+</section>
+
+<!-- ======================= 7 · FURTHER INVESTIGATION ======================= -->
+<section class="panel" aria-labelledby="h-further">
+  <h2 id="h-further">Further investigation</h2>
+  <p class="tight">
+    Optional extensions and the technical record. Nothing below is needed to run the three
+    experiments.
+  </p>
+
+  <details class="disclose">
+    <summary>Model reference &mdash; the equation, every coefficient, and what this does not establish</summary>
+    <pre class="ascii" id="cost-formula"></pre>
+    <div id="cost-coefficients"></div>
+    <p class="assumebox">
+      Every number in those tables is an assumption chosen to make the comparison legible in a
+      classroom. None is a measurement of the reservation service or of any other system. Change
+      them in your head and ask whether the ranking survives &mdash; that question is the exercise.
+    </p>
+    <h3>What this instrument does and does not establish</h3>
+    <ul>
+      <li><strong>It does not predict change costs from topology.</strong> The costs are declared
+        coefficients; the graph contributes impact <em>paths</em>, not prices. Nothing on this page
+        was measured, and no figure here describes any real system.</li>
+      <li><strong>It does not establish which components must change.</strong> The must-modify set is
+        an assumption attached to each scenario, stated per architecture and labelled as such.</li>
+      <li><strong>It is deterministic.</strong> There is no randomness and no seed: one setting of
+        the controls gives one answer, every time. A model with sampling variability would need a
+        distinction between a single run and an expected result; this one does not.</li>
+      <li><strong>It does establish two things firmly, within this model.</strong> A hundredfold
+        implementation discount never makes extracting services preferable, at any horizon, under any
+        setting of the other controls. And where it does change the answer it moves in one direction
+        only &mdash; from retaining the structure to modularizing it &mdash; at a horizon of one or
+        two changes, or from a gap the model already could not separate. It lowers the threshold at
+        which drawing a boundary repays without changing which boundary is worth drawing.</li>
+    </ul>
+  </details>
+
+  <details class="disclose">
+    <summary>Explore further &mdash; the other change scenarios, a second owning team, and the change mix</summary>
+    <p class="tight">
+      Three further parameters, held out of the primary interface because this laboratory makes one
+      relationship inspectable and these open others. The storage scenario is the interesting one:
+      the modular monolith has the <em>smallest</em> must-modify set and the <em>widest</em>
+      possible-impact set, so a single count of affected components would rank it worst.
+    </p>
+    <div class="ctl-row">
+      <div class="ctl">
+        <label for="scenario">Change scenario</label>
+        <select id="scenario"></select>
+        <span class="hint" id="scenario-question"></span>
+      </div>
+      <div class="ctl">
+        <label for="teams">Development teams <span class="unit">owning booking policy</span></label>
+        <select id="teams">
+          <option value="1" selected>1 team</option>
+          <option value="2">2 teams</option>
+        </select>
+        <span class="hint">A second team adds coordination cost to every change inside a shared deployable.</span>
+      </div>
+      <div class="ctl">
+        <label for="mix">What those changes are</label>
+        <select id="mix"></select>
+        <span class="hint" id="mix-hint"></span>
+      </div>
+    </div>
+    <h3>Change impact in detail</h3>
+    <p id="impact-lens-note"></p>
+    <div id="impact-body"></div>
+    <p class="assumebox" id="impact-assumption"></p>
+  </details>
+
+  <details class="disclose">
+    <summary>Architectural obligations &mdash; state a rule and read where the structure fails</summary>
+    <p class="tight">
+      An architecture is not what a diagram shows; it is what the system is held to. State the
+      obligations as rules, then read whether the selected structure satisfies them. Introduce a
+      violation deliberately and watch the graph mark it.
+    </p>
+    <div class="grid2">
+      <div>
+        <p class="panel-title">Dependency rules &mdash; checkable from the graph</p>
+        <div class="rule-list" id="rule-list"></div>
+        <form class="rule-form" id="rule-form">
+          <div class="inputs">
+            <label for="rule-text" class="vh">New rule</label>
+            <input type="text" id="rule-text" placeholder="[ HTTP API ] MUST NOT DEPEND ON [ Persistence ]"
+                   autocomplete="off" spellcheck="false">
+            <button type="submit" class="act small">Add rule</button>
+            <button type="button" class="act small" id="btn-reset-rules">Reset to defaults</button>
+          </div>
+          <p class="rule-err" id="rule-err" role="status" aria-live="polite"></p>
+          <p class="note" id="rule-syntax"></p>
+        </form>
+      </div>
+      <div>
+        <p class="panel-title">Obligations a dependency rule cannot settle</p>
+        <div id="obligation-list"></div>
+        <p class="assumebox">
+          Three of the five obligations are invisible to topology. A graph can show that
+          <em>LabPolicy</em> does not reference <em>RoomPolicy</em>; it cannot show that both
+          preserve the reservation invariants, that neither mutates shared state without
+          coordinating, or that two independently deployed services tolerate each other's versions.
+          Those need tests and review. Reading a clean rule report as a clean architecture is the
+          error this panel exists to prevent.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <details class="disclose">
+    <summary>The whole parameter space, swept in the page</summary>
+    <div class="scroll-x" id="sweep-report"></div>
+  </details>
+
+  <details class="disclose">
+    <summary>All three structures, as the lecture draws them</summary>
+    <div id="ascii-all"></div>
+    <p class="note">
+      The architectures are predefined and the graph is not editable. What you edit is the set of
+      architectural rules above &mdash; which is the difference between describing an architecture
+      and enforcing one.
+    </p>
+  </details>
+
+  <details class="disclose">
+    <summary>The model's own self-tests</summary>
+    <p>
+      <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
+      <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+    </p>
+    <p class="note">
+      The engine is a pure module published as <code>window.ArchitectureWorkbench</code> with no
+      browser dependency, so the test suite under <code>tests/</code> extracts it from this file and
+      exercises it directly. The tested text and the published text are the same bytes.
+    </p>
+  </details>
 </section>
 
 </main>
@@ -3267,9 +3567,10 @@ pre.ascii {
   function buildConditions() {
     var host = $('conditions');
     clear(host);
-    M.CONDITIONS.forEach(function (condition) {
+    M.CONDITIONS.forEach(function (condition, index) {
       var card = el('div', 'cond');
-      card.appendChild(el('h3', null, condition.name));
+      card.appendChild(el('h3', null,
+        'Condition ' + (index + 1) + ' · ' + condition.name));
       card.appendChild(el('p', 'setup', condition.setup));
       card.appendChild(el('p', 'panel-title', 'Your prediction'));
       var choices = el('div', 'choices');
@@ -3554,21 +3855,24 @@ pre.ascii {
     var cells = $('impact-cells');
     clear(cells);
 
+    /* Two annotations, not three result cards. These label the graph in the encodings Figure 1
+       establishes; the isolated count and the full component lists live in the detail disclosure,
+       because a count of what a change does NOT reach is not a principal measurement. */
     if (scenario.lens === 'change-impact') {
-      cells.appendChild(cell('must modify', String(sets.mustModify.length), 'assumed, per scenario', 'is-must lead'));
-      cells.appendChild(cell('potentially impacted', String(sets.potentiallyImpacted.length), 'a path exists', 'is-maybe'));
-      cells.appendChild(cell('outside every path', String(sets.unaffected.length), 'provably isolated', 'is-ok'));
+      cells.appendChild(badge('s-must', String(sets.mustModify.length) + ' must modify'));
+      cells.appendChild(badge('s-maybe', String(sets.potentiallyImpacted.length) + ' may be reached'));
+      cells.appendChild(el('span', 'q', 'in ' + M.architectureById(archId).letter + ' \u00b7 '
+        + M.architectureById(archId).shortName + ', under \u201c' + scenario.name + '\u201d.'));
     } else {
-      cells.appendChild(cell('separable units', String(
-        (M.architectureById(archId).ownership.teamA.length > 0 ? 1 : 0)
-        + (M.architectureById(archId).ownership.teamB.length > 0 ? 1 : 0)
-      ), 'independently ownable', 'is-maybe'));
-      cells.appendChild(cell('shared surface', String(M.architectureById(archId).ownership.shared.length),
-        'both teams touch', 'is-must'));
-      cells.appendChild(cell('independent release',
-        M.architectureById(archId).ownership.independentDeployment ? 'yes' : 'no',
-        M.architectureById(archId).ownership.releaseUnit,
-        M.architectureById(archId).ownership.independentDeployment ? 'is-ok' : 'is-bad'));
+      var ownership = M.architectureById(archId).ownership;
+      cells.appendChild(badge('s-maybe', String(
+        (ownership.teamA.length > 0 ? 1 : 0) + (ownership.teamB.length > 0 ? 1 : 0)
+      ) + ' separable units'));
+      cells.appendChild(badge('s-must', String(ownership.shared.length) + ' shared'));
+      cells.appendChild(badge(ownership.independentDeployment ? 's-ok' : 's-bad',
+        ownership.independentDeployment
+          ? 'independent release: yes' : 'independent release: no'));
+      cells.appendChild(el('span', 'q', 'release unit: ' + ownership.releaseUnit + '.'));
     }
 
     $('impact-lens-note').innerHTML = '<strong>' + escapeHtml(scenario.question) + '</strong>';
@@ -3688,11 +3992,9 @@ pre.ascii {
     body.appendChild(verdict);
   }
 
-  function cell(key, value, sub, className) {
-    var node = el('div', 'cell' + (className ? ' ' + className : ''));
-    node.appendChild(el('span', 'k', key));
-    node.appendChild(el('span', 'v', value));
-    node.appendChild(el('span', 's', sub));
+  function badge(status, text) {
+    var node = el('span', 'badge ' + status);
+    node.appendChild(document.createTextNode(text));
     return node;
   }
 
@@ -3762,8 +4064,183 @@ pre.ascii {
         : 'Extracting services repays against the modular monolith from '
           + crossovers.modularToServices + ' changes onwards.'));
 
+    renderChart(current, comparison, crossovers);
     renderFormula(current, comparison);
     renderSweep();
+  }
+
+  /* --- the dominant visualization ----------------------------------------------------------------
+     Total modelled cost against the number of expected future changes, one line per candidate
+     structure. This is the laboratory's one relationship — architecture choice against expected
+     change cost — drawn rather than tabulated, because the quantity that carries the lesson is the
+     CROSSOVER, and a crossover is a property of the curves rather than of any single horizon. The
+     twelve-row parameter sweep this replaced in the primary interface reported the same arithmetic
+     as an aggregate, which is an analyst's summary rather than a student's measurement.
+
+     Every point comes from the engine's costBreakdown; the interface holds no coefficient. */
+
+  var CHART_PX0 = 86, CHART_PX1 = 660, CHART_PY0 = 26, CHART_PY1 = 228;
+
+  /** A round axis bound at or above `value`, divisible into `divisions` legible steps.
+      The candidate steps are finer than the usual 1/2/5 ladder on purpose: with only five the
+      bound routinely lands at twice the data's peak and half the plot draws nothing, which is
+      how this chart first rendered a 105-point maximum against a 200-point axis. */
+  function niceCeil(value, divisions) {
+    if (!(value > 0)) return divisions;
+    var raw = value / divisions;
+    var magnitude = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+    var candidates = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    for (var i = 0; i < candidates.length; i += 1) {
+      if (candidates[i] * magnitude >= raw) return candidates[i] * magnitude * divisions;
+    }
+    return 10 * magnitude * divisions;
+  }
+
+  function renderChart(current, comparison, crossovers) {
+    var host = $('cost-chart');
+    /* Keep the <title> and <desc> the markup declares: they are what a screen reader announces,
+       and rebuilding them from scratch would detach the ids aria-labelledby points at. */
+    while (host.lastChild && host.lastChild.nodeName.toLowerCase() !== 'desc') {
+      host.removeChild(host.lastChild);
+    }
+
+    var horizon = Math.max(0, Math.floor(Number(current.changes) || 0));
+    var xMax = Math.max(10, Math.min(120, Math.ceil(Math.max(horizon * 1.6, 20) / 10) * 10));
+    var sampleStep = xMax <= 60 ? 1 : Math.ceil(xMax / 60);
+
+    var eligible = {};
+    comparison.rows.forEach(function (r) { eligible[r.architecture] = r.satisfiesRequirement; });
+
+    var series = M.ARCHITECTURE_IDS.map(function (id, index) {
+      var arch = M.architectureById(id);
+      var points = [];
+      for (var n = 0; n <= xMax; n += sampleStep) {
+        points.push({ n: n, total: M.costBreakdown(id, M.assign(current, { changes: n })).total });
+      }
+      if (points[points.length - 1].n !== xMax) {
+        points.push({ n: xMax, total: M.costBreakdown(id, M.assign(current, { changes: xMax })).total });
+      }
+      return { id: id, arch: arch, points: points, index: index,
+        klass: 's-' + 'abcdef'.charAt(index), eligible: eligible[id] !== false };
+    });
+
+    var peak = 0;
+    series.forEach(function (s) {
+      s.points.forEach(function (p) { if (p.total > peak) peak = p.total; });
+    });
+    var yMax = niceCeil(peak, 4);
+
+    var xAt = function (n) { return CHART_PX0 + (n / xMax) * (CHART_PX1 - CHART_PX0); };
+    var yAt = function (v) { return CHART_PY1 - (v / yMax) * (CHART_PY1 - CHART_PY0); };
+
+    /* gridlines and the y scale */
+    for (var g = 0; g <= 4; g += 1) {
+      var value = (yMax / 4) * g;
+      var gy = yAt(value);
+      host.appendChild(svg('line', { x1: CHART_PX0, y1: gy, x2: CHART_PX1, y2: gy }, 'grid'));
+      var yt = svg('text', { x: CHART_PX0 - 10, y: gy + 4, 'text-anchor': 'end' }, 'tick');
+      yt.textContent = M.formatCost(value);
+      host.appendChild(yt);
+    }
+
+    /* the x scale */
+    var xStep = xMax / 4;
+    for (var t = 0; t <= 4; t += 1) {
+      var xv = Math.round(xStep * t);
+      var tx = svg('text', { x: xAt(xv), y: CHART_PY1 + 22, 'text-anchor': 'middle' }, 'tick');
+      tx.textContent = String(xv);
+      host.appendChild(tx);
+    }
+
+    host.appendChild(svg('line',
+      { x1: CHART_PX0, y1: CHART_PY1, x2: CHART_PX1, y2: CHART_PY1 }, 'ax'));
+    host.appendChild(svg('line',
+      { x1: CHART_PX0, y1: CHART_PY0, x2: CHART_PX0, y2: CHART_PY1 }, 'ax'));
+
+    var xTitle = svg('text',
+      { x: (CHART_PX0 + CHART_PX1) / 2, y: CHART_PY1 + 46, 'text-anchor': 'middle' }, 'axtitle');
+    xTitle.textContent = 'expected future changes over the horizon';
+    host.appendChild(xTitle);
+    var yTitle = svg('text', { x: 20, y: (CHART_PY0 + CHART_PY1) / 2,
+      'text-anchor': 'middle', transform: 'rotate(-90 20 ' + ((CHART_PY0 + CHART_PY1) / 2) + ')' },
+      'axtitle');
+    yTitle.textContent = 'total modelled cost (points)';
+    host.appendChild(yTitle);
+
+    /* the student's horizon, so the chart answers the controls as well as the relationship */
+    if (horizon <= xMax) {
+      host.appendChild(svg('line',
+        { x1: xAt(horizon), y1: CHART_PY0, x2: xAt(horizon), y2: CHART_PY1 }, 'horizon'));
+      var hl = svg('text', { x: xAt(horizon), y: CHART_PY0 - 10, 'text-anchor': 'middle' },
+        'horizon-label');
+      hl.textContent = 'your horizon: ' + horizon;
+      host.appendChild(hl);
+    }
+
+    /* one group per architecture: the line, a direct end-label, and the eligibility mark */
+    var endLabels = series.map(function (s) {
+      return { s: s, y: yAt(s.points[s.points.length - 1].total) };
+    }).sort(function (p, q) { return p.y - q.y; });
+    var lastY = -Infinity;
+    endLabels.forEach(function (entry) {
+      entry.y = Math.max(entry.y, lastY + 17);
+      lastY = entry.y;
+    });
+
+    series.forEach(function (s) {
+      var group = svg('g', {},
+        'series ' + s.klass + (s.eligible ? '' : ' is-excluded'));
+      group.appendChild(svg('polyline', {
+        points: s.points.map(function (p) { return xAt(p.n) + ',' + yAt(p.total); }).join(' ')
+      }, 'line'));
+      var entry = endLabels.filter(function (e) { return e.s === s; })[0];
+      var label = svg('text', { x: CHART_PX1 + 10, y: entry.y + 5 }, 'send');
+      label.textContent = s.arch.letter;
+      group.appendChild(label);
+      var note = svg('text', { x: CHART_PX1 + 26, y: entry.y + 5 }, 'snote');
+      note.textContent = s.arch.shortName + (s.eligible ? '' : ' (ineligible)');
+      group.appendChild(note);
+      host.appendChild(group);
+    });
+
+    /* The crossover the lecture names: where the second candidate first stops costing more than the
+       first. The engine's `retainToModular` is that pair in its own declaration order, so the point
+       is read off the second declared architecture rather than off a name spelled here. */
+    var marked = null;
+    if (crossovers.retainToModular !== null && crossovers.retainToModular <= xMax) {
+      marked = crossovers.retainToModular;
+      var candidate = series[1];
+      var markY = yAt(M.costBreakdown(candidate.id, M.assign(current, { changes: marked })).total);
+      host.appendChild(svg('circle',
+        { cx: xAt(marked), cy: markY, r: 5 }, 'xdot'));
+      var ml = svg('text', { x: xAt(marked), y: markY - 12, 'text-anchor': 'middle' }, 'xlabel');
+      ml.textContent = 'repays at ' + marked;
+      host.appendChild(ml);
+    }
+
+    /* The chart's state in words — never the only copy of a fact, and what a screen reader gets. */
+    var sentences = series.map(function (s) {
+      return s.arch.letter + ', ' + s.arch.shortName + ', '
+        + (s.eligible ? 'runs from ' : 'is ineligible under the current requirement and would run from ')
+        + M.formatCost(s.points[0].total) + ' points at no future changes to '
+        + M.formatCost(s.points[s.points.length - 1].total) + ' at ' + xMax;
+    });
+    $('chart-desc').textContent = 'A line chart. The horizontal axis is the number of expected '
+      + 'future changes, from 0 to ' + xMax + '; the vertical axis is total modelled cost in model '
+      + 'points, from 0 to ' + M.formatCost(yMax) + '. Three lines, one per candidate structure: '
+      + sentences.join('. ') + '. A dashed vertical rule marks the horizon currently selected, '
+      + horizon + ' changes.'
+      + (marked === null ? '' : ' A marked point shows that modularizing first costs no more than '
+        + 'retaining the structure at ' + marked + ' future changes.');
+
+    var text = $('chart-text');
+    clear(text);
+    text.appendChild(el('strong', null, 'Reading the chart. '));
+    text.appendChild(document.createTextNode(
+      'Each line is one structure’s total cost as the horizon grows: the intercept is its '
+      + 'one-time cost and the slope is its cost per change. Where two lines cross, the preference '
+      + 'turns over. Lines are distinguished by dash pattern as well as colour, and each carries '
+      + 'its letter at the right.'));
   }
 
   function verdictText(comparison, current) {
