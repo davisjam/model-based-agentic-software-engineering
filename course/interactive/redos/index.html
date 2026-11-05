@@ -575,31 +575,16 @@ input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visibl
   outline: 3px solid var(--accent); outline-offset: 2px;
 }
 
-/* --- experiment selector ------------------------------------------------------------------ */
-.xpsel-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
-.xpsel {
-  text-align: left; cursor: pointer;
-  border: 1px solid var(--rule); border-radius: var(--radius);
-  background: var(--paper); color: var(--ink);
-  padding: 0.6rem 0.7rem; font-family: var(--font-body); font-size: 0.95rem;
+/* --- the attack/benign badge beside the input control ---------------------------------------
+   Two encodings, never colour alone: the badge carries the WORD "attack" or "control" as well as
+   the hue, and the input select's own option text repeats it. */
+.hostile, .benign {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid currentColor; border-radius: var(--radius); padding: 0.1rem 0.4rem;
 }
-.xpsel:hover { border-color: var(--accent); }
-/* The selected experiment is marked by a filled left bar, a heavier border, AND the word
-   "selected" in its status line — three encodings, so the selection survives a greyscale
-   projector and a colour-blind reader alike. */
-.xpsel[aria-pressed=true] { border-color: var(--ink); border-width: 2px; border-left-width: 8px; background: var(--panel-2); }
-.xpsel .xname { display: block; font-weight: 600; font-size: 1.04rem; }
-.xpsel .xpat { display: block; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; word-break: break-all; }
-.xpsel .xgrow { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
-.xpsel .xstate { display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
-.xpsel[aria-pressed=true] .xstate { color: var(--ink); font-weight: 600; }
-.xpsel .hostile, .xpsel .benign {
-  display: inline-block; margin-top: 0.3rem;
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
-  border: 1px solid currentColor; border-radius: var(--radius); padding: 0.05rem 0.35rem;
-}
-.xpsel .hostile { color: var(--bad); background: var(--bad-fill); }
-.xpsel .benign { color: var(--ok); background: var(--ok-fill); }
+.hostile { color: var(--bad); background: var(--bad-fill); }
+.benign { color: var(--ok); background: var(--ok-fill); }
 
 /* --- readouts ----------------------------------------------------------------------------- */
 dl.readout { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 1rem; margin: 0; }
@@ -711,7 +696,6 @@ canvas {
 }
 .scan-row.nil .bar { background: var(--panel-2); border-color: var(--rule); }
 .scan-row .out { color: var(--muted); }
-.ellipsis-row { font-family: var(--font-mono); color: var(--muted); font-size: 0.84rem; padding: 0.2rem 0 0 8.5rem; }
 
 kbd {
   font-family: var(--font-mono); font-size: 0.85em;
@@ -734,6 +718,158 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
    chart while a sweep is in flight, so the picture stops twitching between trials. The
    measurement itself is untouched — a trial's duration never depends on how often we draw,
    because the drawing happens on a different thread from the matching. */
+
+/* =================================================================================================
+   THE LABORATORY HANDOUT — the structures the house section order needs.
+   ================================================================================================= */
+
+/* --- the figure gets its own row -----------------------------------------------------------------
+   The share is a WIDTH, never a height. A `max-height` on an SVG carrying a viewBox letterboxes the
+   drawing rather than cropping it, so every pixel of column past the ceiling becomes empty margin —
+   which is what starved this page's opening figure before. Nothing here sets a height on `svg.fig`,
+   and the test suite asserts that no rule does. */
+.figure-row { margin: 0 0 1.2rem; }
+.figure-row > .lab-figure { width: 78%; margin-inline: auto; }
+@media (max-width: 1000px) { .figure-row > .lab-figure { width: 100%; } }
+
+/* --- the background reads at a comfortable measure, two columns on a desktop --------------------
+   Two, not three: the house style forbids three columns for dense prose and sends the width to the
+   figure and the apparatus instead. */
+.bg-cols { columns: 2; column-gap: 2.6rem; max-width: 118ch; }
+.bg-cols > p { margin-top: 0; break-inside: avoid; }
+@media (max-width: 1000px) { .bg-cols { columns: 1; } }
+
+/* --- the model's two tables and its assumptions, side by side where there is room --------------- */
+/* `minmax(0, 1fr)`, not `1fr`. A `1fr` track carries an automatic min-content floor, so the
+   parameter tables inside it set the track's width and escaped their own `.lab-scroll` container —
+   420px of page overflowing a 420px viewport. The scroll container was doing its job; the track
+   above it was not letting it. The same correction applies to the other two grids below. */
+.model-tables { display: grid; gap: 1.1rem 1.6rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1100px) { .model-tables { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.model-tables > * { min-width: 0; }
+@media (min-width: 1100px) { .model-tables > .lab-assumptions { grid-column: 1 / -1; } }
+
+/* --- the guided experiments: three cards, six fields each --------------------------------------- */
+.xp-cards { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); margin: 1.1rem 0 0; }
+@media (min-width: 1150px) { .xp-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.xp-card {
+  border: 1px solid var(--rule); border-left: 4px solid var(--accent);
+  border-radius: var(--radius); background: var(--panel-2); padding: 0.85rem 1rem; min-width: 0;
+}
+.xp-card > h3 { margin: 0 0 0.6rem; font-size: 1.06rem; }
+dl.six { margin: 0; display: grid; grid-template-columns: 1fr; gap: 0.1rem 0; }
+dl.six > dt {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem;
+}
+dl.six > dd { margin: 0.1rem 0 0; font-size: 0.97rem; }
+.bload { margin: 0.9rem 0 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.bload .act { font-size: 0.93rem; padding: 0.4rem 0.75rem; }
+/* The loaded baseline is marked by a heavy left bar AND the word "loaded" — two encodings, so the
+   state survives a greyscale projector and a colour-blind reader alike. */
+.bload .act[aria-pressed=true] {
+  border-color: var(--ink); border-width: 2px; border-left-width: 7px; background: var(--paper);
+}
+.bstate {
+  display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); font-weight: 400;
+}
+.bload .act[aria-pressed=true] .bstate { color: var(--ink); font-weight: 600; }
+
+/* --- the three controls -------------------------------------------------------------------------
+   The three-across row needs about 443px per column — a 13rem label, a 7rem minimum slider and a
+   6.2rem number box — so it waits for 1400px rather than 1100px. At 1100 the pumps control
+   overflowed the page by 58px, which showed up at 1440 under 125% browser zoom (a 1152px CSS
+   viewport) and nowhere else. A grid item refuses to shrink below its content unless told to, so
+   the children are allowed to shrink as well; the two fixes are independent and the page needs
+   both. */
+@media (min-width: 1400px) { .ctl-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ctl > * { min-width: 0; }
+.ctl select {
+  font-family: var(--font-body); font-size: 1rem; width: 100%; min-width: 0;
+  padding: 0.35rem 0.4rem; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink);
+}
+/* The attack/benign badge sits BELOW the control row, beside the shape's rationale, rather than in
+   the control grid's trailing `auto` column. In the three-across row that column took the badge's
+   197px and squeezed the input chooser to a 10px sliver — the control was present, labelled,
+   operable by keyboard, and invisible. A screenshot caught it; no assertion would have. */
+.shape-line { margin: 0.5rem 0 0; display: flex; gap: 0.6rem; align-items: baseline;
+  flex-wrap: wrap; }
+.shape-line > .note { margin: 0; flex: 1 1 24rem; }
+/* And the label column gives way before the controls do, between the stacking width and the
+   three-up row. The lower bound matters: without it this rule also matches below 780px, where it
+   OVERRIDES the core's single-column stacking (it is later in the stylesheet and equally specific)
+   and put the controls back in three columns on a phone — 33px of page overflow at 420px, which the
+   width sweep caught and the three supported desktop widths never would have. */
+@media (min-width: 781px) and (max-width: 1399px) {
+  .ctl { grid-template-columns: 11rem 1fr auto; }
+}
+.patt-state { margin-top: 1rem; }
+.patt-state > .exprbox { margin: 0; }
+.measured-class {
+  font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600;
+  color: var(--model); background: var(--model-fill); border-left: 3px solid var(--model);
+  border-radius: var(--radius); padding: 0.4rem 0.6rem; margin: 0.5rem 0 0;
+}
+.axis-ctl { display: inline-flex; align-items: center; gap: 0.5rem; margin-left: 0.4rem; }
+.axis-ctl > #scale-label { font-size: 0.92rem; color: var(--muted); }
+
+/* --- the three principal measurements, and the model's figure beside them ----------------------- */
+.principal { display: grid; gap: 0.8rem; grid-template-columns: minmax(0, 1fr); margin: 0 0 0.9rem; }
+@media (min-width: 900px) { .principal { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1300px) { .principal { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pcell { min-width: 0; }
+.pnum {
+  font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600;
+  margin: 0.2rem 0 0; line-height: 1.1; overflow-wrap: anywhere;
+}
+.plabel { margin: 0.15rem 0 0; font-size: 1rem; font-weight: 600; }
+.pnote { margin: 0.25rem 0 0; font-size: 0.88rem; color: var(--muted); }
+.prompts > li { margin-bottom: 0.45rem; }
+
+/* --- collapsed reference ------------------------------------------------------------------------
+   `disclose` is the class the shared core's print rule drops, so a printed handout carries the
+   model, the procedure and the apparatus — which is what a student should bring to a laboratory. */
+details.disclose { margin: 0 0 0.6rem; }
+details.disclose > summary {
+  cursor: pointer; list-style: none; font-weight: 600; font-size: 1rem;
+  padding: 0.4rem 0; color: var(--ink);
+}
+details.disclose > summary::-webkit-details-marker { display: none; }
+details.disclose > summary::before { content: "\25B8 "; color: var(--accent); }
+details.disclose[open] > summary::before { content: "\25BE "; }
+details.disclose > summary:hover { color: var(--accent); }
+details.disclose[open] { border-bottom: 1px solid var(--rule); padding-bottom: 0.7rem; }
+details.disclose h4 { font-size: 1rem; margin: 1rem 0 0.4rem; }
+
+/* =================================================================================================
+   TYPOGRAPHY — local overrides of the shared core, and why they are local.
+
+   The core's lab-shell type scale was calibrated to a first-screen budget the author has since
+   WITHDRAWN, and it puts six elements of this page's primary interface at 10.9–12.8px, which the
+   house style forbids outright ("avoid using 10–11px text to fit more material"). The shared core is
+   not mine to edit while sibling laboratories are being reconstructed in it, so each rule is
+   overridden here and the promotion into the core is reported rather than made. If the other five
+   labs are carrying the same correction, it wants to be ONE change in the core rather than six
+   copies of this block.
+   ================================================================================================= */
+table.lab-parameters { font-size: 0.95rem; }
+table.lab-parameters caption { font-size: 0.92rem; }
+table.lab-parameters th, table.lab-parameters td { padding: 0.4rem 0.55rem; }
+ol.lab-steps > li > .step { font-size: 0.86rem; }
+.lab-assumptions > h3 { font-size: 1.06rem; }
+.lab-question .k { font-size: 0.86rem; }
+.lab-figure .fignum { font-size: 0.9rem; }
+.lab-figure > figcaption { font-size: 0.95rem; }
+.lab-disclaimer { font-size: 0.95rem; }
+.panel > h2, .panel-title { font-size: 0.92rem; }
+.note { font-size: 0.93rem; }
+/* Figure labels. The family's `svg.fig` classes are authored at 9.5 and 11.5 user units, which is
+   deliberate — the encodings are shared across all six laboratories and changing them here would
+   break that. What makes them legible is the RENDER SCALE: at 78% of the content width this
+   figure's 560-unit viewBox draws at roughly 1.7x at 1280px and 2.5x at 1920px, so a 9.5-unit label
+   renders at 16px and 24px. Check the render scale, not the authored size. */
 </style>
 </head>
 <body>
@@ -752,32 +888,745 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 <main>
 
 <!-- ==============================================================================================
-     THE LABORATORY HANDOUT. The engineering problem, the SECURITY MODEL the exercise needs before
-     anyone edits a regular expression, the model's assumptions, and the parameters a student may
-     change. The styling is the shared lab shell in the generated core above.
-
-     This page already opened with the Cloudflare case, so the band FOLDS it rather than sitting on
-     top of it: the narrative's first half became the frame and Figure 1, the two-claims box became
-     the assumptions, and the expression-before-outcome exercise stayed below, where it is detail
-     rather than a second opening.
+     THE LABORATORY HANDOUT, in the house order: engineering problem, background, model, numbered
+     procedure, apparatus, interpretation, collapsed reference. The apparatus sits BELOW the
+     instructional material on purpose — a student should understand what the three controls change
+     before meeting them. That ordering is pinned by a test in ./tests/, because the edit that
+     dissolves it ("move the controls up to reduce scrolling") looks like an improvement.
      ============================================================================================ -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
-    How can an adversary use a small input to consume disproportionate computational resources?
+    How much does a matching cost grow when the adversary, not the engineer, chooses the input?
   </h2>
   <p class="lab-frame">
     On <strong>2 July 2019</strong> one regular expression in a new firewall rule exhausted CPU
     across Cloudflare's network and took its core proxy, CDN and WAF down globally for about
-    <strong>27 minutes</strong>. No request was large: the cost was in the <em>matching</em>.
+    <strong>27 minutes</strong>. Three years earlier a single post containing a long run of spaces
+    took <strong>Stack Overflow</strong> down for about 34 minutes. No request in either incident was
+    large. The cost was in the <em>matching</em>, and both patterns are in the apparatus below.
+  </p>
+</section>
+
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="panel" aria-labelledby="h-background">
+  <h2 id="h-background">Background</h2>
+  <div class="bg-cols">
+    <p>
+      A regular expression describes a set of strings. A <strong>backtracking</strong> matcher — the
+      kind built into JavaScript, Java, Python and PCRE — decides whether one string is in that set
+      by <em>searching</em>. It commits to one way of lining the pattern up against the input, and
+      when that way fails it returns to its last choice point and tries the next. The search is why
+      these engines can offer backreferences and lookaround. It is also where the cost lives.
+    </p>
+    <p>
+      A choice point appears whenever the pattern does not determine how much input a repetition
+      consumes. Put two unbounded repetitions in sequence —
+      <code>.*</code> then <code>\s+</code> — with nothing between them that forces a boundary, and
+      a run of <em>n</em> characters can be divided between them in many ways. Nest one repetition
+      inside another, as in <code>(a+)+</code>, and the number of divisions stops growing like a
+      polynomial and starts doubling with every extra character.
+    </p>
+    <p>
+      <strong>A failing match is the expensive case.</strong> A match that succeeds may stop at the
+      first division that works. A match that cannot succeed has to rule out <em>every</em> division
+      before it may report failure. So an attack string has three parts: a <strong>prefix</strong>
+      that reaches the ambiguous region, a <strong>pump</strong> that repeats and gives the
+      ambiguity something to divide, and a <strong>suffix</strong> that makes the whole match fail.
+      The number of pumps is the only number an attacker needs to turn up.
+    </p>
+    <p>
+      How fast the work grows is the <strong>complexity class</strong> of the pattern, and it follows
+      from how many ambiguous repetitions precede a character the input does not supply. Two gives
+      quadratic cost, three cubic, four quartic; a nested repetition gives exponential. That is the
+      generalisation worth keeping: ReDoS is not "a slow regular expression". It is a pattern whose
+      cost grows superlinearly in the input, and the <em>rate</em> is a property of the pattern
+      together with the engine that runs it. An automaton-based engine — RE2, Go's
+      <code>regexp</code>, the Rust <code>regex</code> crate — matches in time linear in the input
+      and would measure every pattern on this page as linear.
+    </p>
+    <p>
+      You read a growth rate off a chart by choosing the axes. On a linear axis a quadratic curve
+      and an exponential one both merely look steep. On a <strong>logarithmic y</strong> axis an
+      exponential series straightens into a line, because each extra character multiplies the work
+      by a constant. On <strong>log–log</strong> a polynomial series straightens, and its slope
+      <em>is</em> the exponent: a slope near 2 is quadratic, near 3 cubic.
+    </p>
+    <p>
+      One last distinction, and it is the one that makes this a security exercise rather than a
+      performance one. A performance model assumes a workload the engineer chose. Here the engineer
+      chose the expression and the adversary chose the input — and the two inputs that differ by a
+      factor of a thousand in cost differ in nothing an engineer controls.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= 3 · THE MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model-sec">
+  <h2 id="h-model-sec">Model</h2>
+
+  <!-- Figure 1 takes the row to itself. The share is set by a WIDTH; a max-height on an SVG with a
+       viewBox letterboxes the drawing instead of cropping it, which is what starved this figure
+       before. -->
+  <div class="figure-row">
+    <figure class="lab-figure">
+      <svg class="fig" viewBox="0 0 560 232" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+        <title id="f1-t">Figure 1: how input structure becomes matching cost</title>
+        <desc id="f1-d">The model runs left to right in three stages. Stage one is the input,
+          drawn as three parts: a prefix, a pump repeated n times, and a suffix that makes the match
+          fail. Stage two is the matcher's choice: the pattern's unbounded repetitions can divide
+          the pumped run in many ways, and five such divisions of a four-character run are
+          enumerated as pairs of bars — four and none, three and one, two and two, one and three,
+          none and four. Each is marked as a candidate the matcher may be obliged to try, and a note
+          states that the suffix can be consumed by neither repetition, so no division can succeed
+          and every one must be ruled out before failure may be reported. Stage three is the cost,
+          given as a ladder of closed forms against the number of ambiguous repetitions in the
+          pattern: one repetition costs on the order of n, two n squared, three n cubed, four n to
+          the fourth, and a nested repetition two to the n. The measured degree for each shipped
+          pattern is in Table 2 and on the pattern control itself. This is a conceptual
+          representation of possible backtracking paths, not a literal trace of any JavaScript
+          regular-expression engine.</desc>
+
+        <!-- stage 1: the input, as prefix + pump x n + suffix -->
+        <text class="th" x="4" y="13">1 &middot; THE INPUT &mdash; what the adversary supplies</text>
+        <rect class="bx" x="4" y="20" width="52" height="24" rx="2"/>
+        <text class="ts" x="30" y="35" text-anchor="middle">prefix</text>
+        <rect class="bx strong" x="58" y="20" width="132" height="24" rx="2"/>
+        <text class="t" x="124" y="36" text-anchor="middle">pump &times; n</text>
+        <rect class="bx bad" x="192" y="20" width="56" height="24" rx="2"/>
+        <text class="ts" x="220" y="35" text-anchor="middle">suffix</text>
+        <text class="ts" x="252" y="29">one number to turn up: n</text>
+        <text class="ts" x="252" y="41">the suffix is what makes the match FAIL</text>
+
+        <!-- stage 2: the divisions -->
+        <text class="th" x="4" y="68">2 &middot; THE MATCHER&rsquo;S CHOICE &mdash; ways to divide the pumped run</text>
+        <text class="ts" x="4" y="86">4 + 0</text>
+        <rect class="bx bad" x="48" y="76" width="112" height="12" rx="1"/>
+        <text class="ts" x="4" y="104">3 + 1</text>
+        <rect class="bx bad" x="48" y="94" width="84" height="12" rx="1"/>
+        <rect class="bx" x="134" y="94" width="26" height="12" rx="1"/>
+        <text class="ts" x="4" y="122">2 + 2</text>
+        <rect class="bx bad" x="48" y="112" width="56" height="12" rx="1"/>
+        <rect class="bx" x="106" y="112" width="54" height="12" rx="1"/>
+        <text class="ts" x="4" y="140">1 + 3</text>
+        <rect class="bx bad" x="48" y="130" width="28" height="12" rx="1"/>
+        <rect class="bx" x="78" y="130" width="82" height="12" rx="1"/>
+        <text class="ts" x="4" y="158">0 + 4</text>
+        <rect class="bx" x="48" y="148" width="112" height="12" rx="1"/>
+        <text class="ts" x="176" y="86">first repetition &nbsp;|&nbsp; second repetition</text>
+        <text class="ts" x="176" y="104">n = 4 gives 5 divisions; n = 8 gives 9.</text>
+        <text class="ts" x="176" y="122">EVERY division must be ruled out</text>
+        <text class="ts" x="176" y="140">before FAILURE may be reported.</text>
+        <text class="ts" x="176" y="158">A match that SUCCEEDS rules out none.</text>
+
+        <!-- stage 3: the cost ladder -->
+        <text class="th" x="4" y="184">3 &middot; THE COST &mdash; set by how many repetitions are ambiguous</text>
+        <text class="eq" x="4" y="202">1 rep &rarr; n &nbsp;&middot;&nbsp; 2 &rarr; n&sup2; &nbsp;&middot;&nbsp; 3 &rarr; n&sup3; &nbsp;&middot;&nbsp; 4 &rarr; n&#8308; &nbsp;&middot;&nbsp; nested &rarr; 2&#8319;</text>
+        <text class="ts" x="4" y="217">linear &middot; quadratic &middot; cubic &middot; quartic &middot; exponential</text>
+        <text class="ts" x="340" y="217">MEASURED degrees: Table 2</text>
+        <text class="ts" x="4" y="229">A conceptual representation of possible backtracking paths, NOT a literal engine trace.</text>
+      </svg>
+      <figcaption>
+        <span class="fignum">Figure 1.</span> Input structure becomes matching cost in three steps.
+        The adversary sets <em>n</em>; the pattern sets how many ways the pumped run can be divided;
+        the number of ambiguous repetitions sets the degree. The three controls in the apparatus are
+        the pattern, the input shape, and <em>n</em>.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="model-tables">
+    <div>
+      <h3 id="h-table1">Table 1 &mdash; Model parameters</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters" aria-labelledby="h-table1">
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">What it is</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Pattern</th>
+              <td>The expression under test. The options span complexity classes, and two are the
+                expressions from real outages.</td>
+              <td class="unit">6 patterns &middot; linear to exponential</td>
+              <td class="default">Two unbounded repetitions</td>
+            </tr>
+            <tr>
+              <th scope="row">Input shape</th>
+              <td>Which string the pattern runs against &mdash; an attack shape, or a benign control
+                on the same pattern.</td>
+              <td class="unit">2&ndash;3 shapes per pattern</td>
+              <td class="default">Whitespace run, then a non-space</td>
+            </tr>
+            <tr>
+              <th scope="row">Pumps <span class="mono">n</span></th>
+              <td>How many times the pumped core repeats. The x-axis of both charts.</td>
+              <td class="unit">tens to tens of thousands, by pattern</td>
+              <td class="default">16,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        The <strong>execution budget</strong> is fixed at 250&nbsp;ms with a 400&nbsp;ms hard
+        deadline, and the <strong>time axis</strong> changes what you can read off a chart rather
+        than what was measured. Neither is an engineering parameter; both sit beside Run. The full
+        parameter reference is in <em>Further investigation</em>.
+      </p>
+    </div>
+
+    <div>
+      <h3 id="h-table2">Table 2 &mdash; Observed quantities</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters" aria-labelledby="h-table2">
+          <thead>
+            <tr><th scope="col">Quantity</th><th scope="col">What it reports</th>
+              <th scope="col">Plane</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Time per match</th>
+              <td>Wall-clock milliseconds for one execution at the largest measured
+                <span class="mono">n</span>.</td>
+              <td class="unit">measured</td>
+            </tr>
+            <tr>
+              <th scope="row">Observed growth</th>
+              <td>The fitted exponent on log&ndash;log, or the per-character multiplier on
+                semi-log. This is the complexity class, measured.</td>
+              <td class="unit">measured</td>
+            </tr>
+            <tr>
+              <th scope="row">Where it stopped</th>
+              <td>The pump count at which the budget or the deadline ended the climb &mdash; the
+                number a length cap would have to beat.</td>
+              <td class="unit">measured</td>
+            </tr>
+            <tr>
+              <th scope="row">Modelled work</th>
+              <td>Units of work the closed form predicts at the same <span class="mono">n</span>.
+                Derived, never measured.</td>
+              <td class="unit">model</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        <strong>The measured degrees this page ships were measured, not assumed.</strong> Each
+        pattern's control states its own fitted degree and the range it was fitted over; the method
+        is in <em>Further investigation</em>. Where a published complexity label and the measurement
+        disagree, the page reports the measurement.
+      </p>
+    </div>
+
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h3 id="h-assumptions">Assumptions you need in order to predict</h3>
+      <ul>
+        <li><strong>A failing match is the expensive case.</strong> A match that succeeds can stop
+          at the first success; one that cannot must exhaust the alternatives before reporting
+          failure.</li>
+        <li><strong>Every attack shape fails by construction</strong>, so two configurations of the
+          same pattern differ in how much work was done, not in what answer was reached.</li>
+        <li><strong>The backtracking diagram is a model, not a trace:</strong> it enumerates
+          candidates a matcher <em>could</em> be obliged to consider.</li>
+        <li><strong>The page measures your browser, not a server.</strong> Timings come from a real
+          execution in a Web Worker on this machine &mdash; and a real execution on a shared CPU
+          varies from run to run. There is no seed to fix.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        <strong>Illustrative measurement; the demonstration uses the browser's native JavaScript
+        regular-expression engine, whose behaviour may differ from the engine used in the Cloudflare
+        incident.</strong>
+        It does <em>not</em> reproduce Cloudflare's production behaviour: V8, SpiderMonkey and
+        JavaScriptCore do not agree with each other. What it reproduces is the
+        same <em>class</em> of algorithmic vulnerability.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4 · THE EXPERIMENTAL PROCEDURE ======================= -->
+<section class="panel" aria-labelledby="h-procedure">
+  <h2 id="h-procedure">Experiment</h2>
+  <div class="lab-experiment" aria-labelledby="h-method">
+    <h3 id="h-method">Method &mdash; predict, run, explain</h3>
+    <ol class="lab-steps">
+      <li>
+        <span class="step">1 &middot; Predict</span>
+        Read the pattern and count its ambiguous repetitions. Write down the degree you expect and
+        what you expect the cost to do when <span class="mono">n</span> doubles. Commit to it before
+        you run anything &mdash; the prediction is the part the measurement grades.
+      </li>
+      <li>
+        <span class="step">2 &middot; Run</span>
+        Load the baseline, change the one parameter the experiment names, and run both
+        configurations. Switch the time axis to log&ndash;log and read the slope.
+      </li>
+      <li>
+        <span class="step">3 &middot; Explain</span>
+        Account for the difference from the <em>structure</em> of the pattern and the input, not
+        from the numbers. Then answer the experiment's engineering question.
+      </li>
+    </ol>
+    <p class="note">
+      Run each configuration twice. The page reports the spread between runs, and the point of
+      seeing it is to learn which of your readings survives it: the time does not, the growth does.
+    </p>
+  </div>
+
+  <div class="xp-cards">
+    <!-- Experiment A -->
+    <article class="xp-card" aria-labelledby="h-xp-a">
+      <h3 id="h-xp-a">Experiment 1 &mdash; the adversary's variable</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Pattern <em>Two unbounded repetitions</em>, input <em>Ordinary prose</em>,
+          n&nbsp;=&nbsp;16,000, linear axis. That is baseline 1.</dd>
+        <dt>Change</dt>
+        <dd>The <strong>input shape</strong> only: Ordinary prose &rarr; Whitespace run, then a
+          non-space.</dd>
+        <dt>Hold constant</dt>
+        <dd>The pattern, n, the execution budget, the time axis.</dd>
+        <dt>Predict</dt>
+        <dd>The expression is identical and so is the deployment. Does the cost change at all? If it
+          does, by what factor at n&nbsp;=&nbsp;16,000, and what degree will the growth fit?</dd>
+        <dt>Measure</dt>
+        <dd>Time per match, observed growth, and where the run stopped &mdash; for both shapes.</dd>
+        <dt>Explain</dt>
+        <dd>Nothing an engineer controls differed between the two runs. Who changed the cost, and
+          what does that make this &mdash; a performance finding or a security one?</dd>
+      </dl>
+      <p class="bload">
+        <button type="button" class="act" data-baseline="ordinary" aria-pressed="false">Load
+          baseline 1 <span class="bstate">load this baseline</span></button>
+      </p>
+    </article>
+
+    <!-- Experiment B -->
+    <article class="xp-card" aria-labelledby="h-xp-b">
+      <h3 id="h-xp-b">Experiment 2 &mdash; the complexity class is the pattern's</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Pattern <em>Two unbounded repetitions</em>, input <em>Whitespace run</em>,
+          n&nbsp;=&nbsp;16,000. That is baseline 2, the quadratic case.</dd>
+        <dt>Change</dt>
+        <dd>The <strong>pattern</strong> only, holding the input adversarial throughout: quadratic
+          &rarr; <em>Stack Overflow 2016</em> &rarr; <em>Cloudflare 2019</em> &rarr; <em>Cloudflare,
+          whole group</em> &rarr; <em>Nested quantifier</em>. Baselines 2, 5, 6 load three of them.</dd>
+        <dt>Hold constant</dt>
+        <dd>That the input is an attack shape, the budget, the axis mode, the predict-first
+          discipline. Note that n cannot be held: each class reaches the budget at a different
+          <span class="mono">n</span>, which is itself a result.</dd>
+        <dt>Predict</dt>
+        <dd>Count the ambiguous repetitions in each pattern and predict each degree before running.
+          Then predict the <em>pump count</em> at which each one first exceeds 250&nbsp;ms.</dd>
+        <dt>Measure</dt>
+        <dd>The observed growth for each pattern, against the degree printed on its control; and
+          where each run stopped.</dd>
+        <dt>Explain</dt>
+        <dd>State the rule connecting the count of ambiguous repetitions to the degree. Then say what
+          that rule costs you at the exponential pattern, where the ladder runs in tens of characters
+          rather than tens of thousands.</dd>
+      </dl>
+      <p class="bload">
+        <button type="button" class="act" data-baseline="quadratic" aria-pressed="false">Load
+          baseline 2 <span class="bstate">load this baseline</span></button>
+        <button type="button" class="act" data-baseline="cloudflare" aria-pressed="false">Load
+          baseline 6 <span class="bstate">load this baseline</span></button>
+        <button type="button" class="act" data-baseline="exponential" aria-pressed="false">Load
+          baseline 3 <span class="bstate">load this baseline</span></button>
+      </p>
+    </article>
+
+    <!-- Experiment C -->
+    <article class="xp-card" aria-labelledby="h-xp-c">
+      <h3 id="h-xp-c">Experiment 3 &mdash; what the engineer can change</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>Baseline 2 &mdash; the quadratic pattern on the whitespace attack shape at
+          n&nbsp;=&nbsp;16,000.</dd>
+        <dt>Change</dt>
+        <dd>The <strong>pattern</strong> to <em>Forced division</em> (baseline 4), which decides
+          exactly the same question on byte-identical input.</dd>
+        <dt>Hold constant</dt>
+        <dd>The input shape and every byte of the input, n, the budget, the axis.</dd>
+        <dt>Predict</dt>
+        <dd>Does the replacement cost less? Does it still reach the same verdict? And does it change
+          the degree, or only the constant?</dd>
+        <dt>Measure</dt>
+        <dd>Time per match and observed growth for both patterns, plus the match result for each
+          &mdash; the two must agree, or the replacement is a different question cheaply answered.</dd>
+        <dt>Explain</dt>
+        <dd>Name the construct that removed the cost. Then say what the engineer had to establish
+          before shipping it, and compare that obligation against the one a length cap imposes.</dd>
+      </dl>
+      <p class="bload">
+        <button type="button" class="act" data-baseline="safe" aria-pressed="false">Load
+          baseline 4 <span class="bstate">load this baseline</span></button>
+        <button type="button" class="act" data-baseline="stackoverflow" aria-pressed="false">Load
+          baseline 5 <span class="bstate">load this baseline</span></button>
+      </p>
+    </article>
+  </div>
+  <p class="note" id="xp-pairing">
+    Baselines 1 and 2 run the <em>same pattern</em> on different inputs, so the only thing that
+    changes is what the adversary supplies. Baselines 2 and 4 run <em>different patterns on
+    byte-identical input</em>, so the only thing that changes is what the engineer wrote. Holding one
+    variable fixed at a time is what makes each comparison an experiment rather than an anecdote.
+  </p>
+</section>
+
+<!-- ======================= 5 · THE APPARATUS ======================= -->
+<section class="panel" aria-labelledby="h-controls">
+  <h2 id="h-controls">Interactive apparatus &mdash; controls</h2>
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="pattern">Pattern
+        <span class="unit">the expression under test</span></label>
+      <select id="pattern"></select>
+      <span></span>
+    </div>
+    <div class="ctl">
+      <label for="input-shape-select">Input shape
+        <span class="unit">what the pattern is run against</span></label>
+      <select id="input-shape-select"></select>
+      <span></span>
+    </div>
+    <div class="ctl">
+      <label for="maxlen">Pumps
+        <span class="unit" id="maxlen-unit">n, repetitions of the pumped core</span></label>
+      <input type="range" id="maxlen-range" min="500" max="28000" step="1" value="16000"
+             aria-label="Pumps, slider">
+      <input type="number" id="maxlen" min="500" max="28000" step="1" value="16000">
+    </div>
+  </div>
+
+  <div class="patt-state">
+    <p class="exprbox" id="expr-source">&mdash;</p>
+    <p class="measured-class" id="pattern-class">&mdash;</p>
+    <p class="note" id="pattern-incident" hidden></p>
+    <p class="shape-line"><span class="benign" id="input-kind">&mdash;</span>
+      <span class="note" id="input-shape-why"></span></p>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act primary" id="btn-run">Run selected</button>
+    <button type="button" class="act" id="btn-run-all">Run all six baselines</button>
+    <button type="button" class="act" id="btn-run-longest">One trial at the largest n</button>
+    <button type="button" class="act" id="btn-reset">Reset</button>
+    <span class="axis-ctl">
+      <span id="scale-label">Time axis</span>
+      <span class="seg" role="group" aria-labelledby="scale-label" id="scale-seg">
+        <button type="button" data-scale="linear" aria-pressed="true">Linear</button>
+        <button type="button" data-scale="logy" aria-pressed="false">Log y</button>
+        <button type="button" data-scale="loglog" aria-pressed="false">Log&ndash;log</button>
+      </span>
+    </span>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="redos.html"
+       style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p class="note" id="run-policy">
+    <strong>Run selected</strong> walks the pump ladder from its shortest input upward, stopping at
+    the first value that exceeds the budget. Where it stops differs between browsers and machines,
+    and that is part of the lesson.
+    <strong>One trial at the largest n</strong> skips the climb and runs the top of the ladder
+    directly. On the linear patterns that still finishes in well under a millisecond &mdash; which is
+    the comparison. On a pathological one it blows past the deadline, and you can watch the page
+    destroy the worker and carry on.
+  </p>
+  <p>
+    <span class="badge s-idle" id="status" aria-live="polite"><span class="glyph"
+      aria-hidden="true">&#9679;</span><span id="status-text">idle</span></span>
+  </p>
+  <div id="kill-notice" hidden></div>
+  <div id="worker-unavailable" hidden></div>
+</section>
+
+<!-- ======================= 5b · RESULTS ======================= -->
+<section class="panel" aria-labelledby="h-results">
+  <h2 id="h-results">Results</h2>
+
+  <div class="principal">
+    <div class="pcell measure-plane">
+      <span class="plane-kind">Measured &mdash; this run, this machine</span>
+      <p class="pnum" id="p-cost">&mdash;</p>
+      <p class="plabel">Time per match</p>
+      <p class="pnote" id="p-cost-at">run the experiment to measure it</p>
+    </div>
+    <div class="pcell measure-plane">
+      <span class="plane-kind">Measured &mdash; this run, this machine</span>
+      <p class="pnum" id="p-growth">&mdash;</p>
+      <p class="plabel">Observed growth</p>
+      <p class="pnote" id="p-growth-note">at least three measured points are needed before any fit
+        is worth reporting</p>
+    </div>
+    <div class="pcell measure-plane">
+      <span class="plane-kind">Measured &mdash; this run, this machine</span>
+      <p class="pnum" id="p-stop">&mdash;</p>
+      <p class="plabel">Where it stopped</p>
+      <p class="pnote" id="p-stop-note">run the experiment to find it</p>
+    </div>
+    <div class="pcell model-plane">
+      <span class="plane-kind">Modelled &mdash; derived from the closed form, never measured</span>
+      <p class="pnum" id="p-model">&mdash;</p>
+      <p class="plabel">Modelled work</p>
+      <p class="pnote" id="p-model-note">&mdash;</p>
+    </div>
+  </div>
+
+  <div class="warn-msg" id="variability"></div>
+
+  <div class="canvas-wrap"><canvas id="c-growth" width="1600" height="440"
+    role="img" aria-labelledby="growth-alt"></canvas></div>
+  <p id="growth-alt" class="vh" aria-live="polite"></p>
+  <p class="legend" id="growth-legend"></p>
+  <p class="note" id="growth-axes"></p>
+
+  <div class="measure-plane" style="margin-top:1rem">
+    <span class="plane-kind">Measured in this browser's own RegExp engine &mdash; no model involved</span>
+    <div class="table-wrap"><table class="ref" id="results-table">
+      <caption id="results-caption">No experiment has been run yet.</caption>
+      <thead><tr>
+        <th scope="col">Configuration</th>
+        <th scope="col">n</th>
+        <th scope="col">Input length</th>
+        <th scope="col">Match</th>
+        <th scope="col">Executions</th>
+        <th scope="col">Time per execution</th>
+        <th scope="col">Outcome</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+  <div id="scaling-readout"></div>
+  <p class="note">
+    <strong>Explain the differences from the structure of the patterns, not from the numbers.</strong>
+    The numbers are what happened on this machine, in this browser, on this run. Why they differ is a
+    property of the patterns and the inputs.
+  </p>
+</section>
+
+<section class="panel" aria-labelledby="h-expr">
+  <h2 id="h-expr">The input under test</h2>
+  <div class="grid2" style="margin-bottom:0">
+    <div>
+      <h3 id="expr-name">&mdash;</h3>
+      <p class="note" id="expr-why"></p>
+    </div>
+    <div>
+      <h3>Generated input</h3>
+      <p class="inputbox" id="input-shape">&mdash;</p>
+      <dl class="readout" style="margin-top:0.6rem">
+        <dt>Input length</dt><dd id="input-len">&mdash;</dd>
+        <dt>Match result</dt><dd id="input-match">&mdash;</dd>
+      </dl>
+      <p class="note" id="input-why"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 6 · INTERPRETATION ======================= -->
+<section class="panel" aria-labelledby="h-interpretation">
+  <h2 id="h-interpretation">Interpretation</h2>
+  <div class="grid2">
+    <div>
+      <h3 id="h-threat" style="margin-top:0">The threat model</h3>
+      <p>
+        The measurements above are a performance observation. What makes this a <em>security</em>
+        finding is that the expensive input is chosen by someone else. Name the elements:
+      </p>
+      <div class="table-wrap"><table class="ref" id="threat-table">
+        <thead><tr><th scope="col">Model element</th><th scope="col">ReDoS example</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <p class="note">
+        A threat is a possible course of harmful action; a vulnerability is the weakness that may let
+        it succeed; an attack is an attempt to exploit that weakness. Here the vulnerability is
+        superlinear matching, the threat is resource exhaustion, and the attack is one HTTP request
+        carrying a long run of spaces.
+      </p>
+    </div>
+    <div>
+      <h3 id="h-mitigate" style="margin-top:0">Choose a mitigation</h3>
+      <p>
+        The security objective is <strong>bound computation per request</strong>. Select what you
+        would do, then read how the selection is judged against that objective.
+      </p>
+      <div id="mitigation-list"></div>
+      <div id="mitigation-verdict" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <h3 id="h-prompts">Questions to answer before you leave</h3>
+  <ol class="prompts">
+    <li>You measured a degree for each pattern. State the rule that predicts it from the pattern's
+      text, and name one pattern in your own code that the rule would flag.</li>
+    <li>A length cap is a control with a number in it. Give the number that bounds the quadratic
+      pattern to under a millisecond, and the number that bounds the exponential one. Which of the
+      two is a cap a product could ship?</li>
+    <li>The page destroys the worker at a deadline. Say what that protects and what it does not, and
+      then say which of the two the server-side analogue protects.</li>
+    <li>Your two runs of the same configuration gave different times. Which of your three measured
+      quantities should you quote to a colleague, and which should you not?</li>
+  </ol>
+
+  <h3 id="h-closing">The engineering question to leave with</h3>
+  <p style="font-family:var(--font-display);font-size:1.5rem;line-height:1.35;margin:0.3rem 0 0">
+    What input can an adversary control, and what resource can it exhaust?
+  </p>
+  <p class="note">
+    Asked of every component that accepts input from outside the trust boundary, this question finds
+    algorithmic complexity vulnerabilities well beyond regular expressions: parsers, decompressors,
+    hash tables, sorting, image decoders, and anything whose cost depends on the shape of its input
+    rather than only on its size.
+  </p>
+</section>
+
+<!-- ======================= 7 · FURTHER INVESTIGATION ======================= -->
+<section class="panel" aria-labelledby="h-further">
+  <h2 id="h-further">Further investigation</h2>
+  <p class="note">
+    Everything below is reference or extension. None of it is needed to run the three experiments.
   </p>
 
-  <div class="lab-twoup band">
-    <!-- -------- FIGURE 1 · the threat model: how a small input becomes an outage -------- -->
-    <figure class="lab-figure">
-      <svg class="fig" viewBox="0 0 520 206" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
-        <title id="f1-t">Figure 1: the attack path — from a crafted input to an unavailable service</title>
-        <desc id="f1-d">A path runs downward through six stages. An attacker, outside the system
+  <details class="disclose" id="model-detail">
+    <summary>Why the work grows &mdash; the backtracking model, enumerated</summary>
+
+    <div class="model-msg" id="model-caveat">
+      <strong>This is a conceptual model of backtracking, not a trace of your engine.</strong>
+      It enumerates candidates a backtracking matcher <em>could</em> be obliged to consider. The
+      actual engine may optimise some away, order them differently, or never attempt them at all
+      &mdash; and V8, SpiderMonkey, and JavaScriptCore do not agree with each other about which.
+      So treat the diagram as a prediction to be <em>compared</em> against the measurements above,
+      never as a picture of what happened. Learning to hold a model and an observation apart, and to
+      notice when they disagree, is the point of the exercise. It is the same distinction the
+      Performance&nbsp;Knee simulator draws between an analytical prediction and a simulated run.
+    </div>
+
+    <div class="grid2" style="margin-top:1rem;margin-bottom:0">
+      <div>
+        <h4 id="model-title" style="margin-top:0">&mdash;</h4>
+        <p id="model-explain"></p>
+        <div id="model-body"></div>
+        <p class="note" id="model-count"></p>
+      </div>
+      <div>
+        <h4 style="margin-top:0">Modelled candidates, across the whole ladder</h4>
+        <div class="model-plane">
+          <span class="plane-kind">Derived from the closed form &mdash; no measurement involved</span>
+          <div class="canvas-wrap"><canvas id="c-work" width="1200" height="340"
+            role="img" aria-labelledby="work-alt"></canvas></div>
+          <p id="work-alt" class="vh" aria-live="polite"></p>
+        </div>
+        <p class="legend" id="work-legend"></p>
+        <p class="note">
+          A logarithmic vertical axis, always: the counts span too many orders of magnitude for a
+          linear one to show anything. The linear patterns sit almost on the floor. Compare the
+          <em>shape</em> of these curves against the measured chart above &mdash; agreement supports
+          the model, and disagreement is a finding about the engine's optimisations rather than an
+          error to hide.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <details class="disclose" id="measurement-method">
+    <summary>How the shipped complexity classes were measured &mdash; and one label that did not survive</summary>
+    <p>
+      Every degree the pattern control prints is <strong>empirical</strong>. The method, so a later
+      reader can refute it rather than trust it: build the pattern's own attack shape at each pump
+      count on its ladder; discard a compile and a 20&nbsp;ms tier-up pass; time each length until it
+      has accumulated at least 8&nbsp;ms of samples; fit log(time) against log(length) over the
+      points above 50&nbsp;microseconds and read the slope. The figures and ranges are in
+      <code>MEASURED_CLASSES</code> in the engine, and a self-test asserts that the class each
+      pattern <em>advertises</em> is the class that was <em>measured</em>.
+    </p>
+    <div class="table-wrap"><table class="ref" id="measured-table">
+      <caption>Measured in V8 (Node&nbsp;24 / Chromium) on Apple silicon, 5 November 2026. A
+        different engine will answer differently, and an automaton-based engine would answer
+        &ldquo;linear&rdquo; for every row.</caption>
+      <thead><tr><th scope="col">Pattern</th><th scope="col">Basis</th>
+        <th scope="col">Measured</th><th scope="col">R&sup2;</th>
+        <th scope="col">Fitted over</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p>
+      <strong>Two cautions the table carries.</strong> A degree is an asymptotic property approached
+      <em>from below</em>, so a fit over a short range reads low &mdash; the cubic pattern measures
+      2.98 and the quartic 3.92. And a complexity class belongs to the pattern <em>together with the
+      engine</em>: these are backtracking figures, and the matching strategy is as much a part of the
+      result as the pattern is.
+    </p>
+    <p class="warn-msg">
+      <strong>One label did not survive the measurement.</strong> The Cloudflare pattern is widely
+      described as costing more than it does. Measured here, the fragment the postmortem names
+      &mdash; <code>.*(?:.*=.*)</code> &mdash; is <strong>cubic</strong> (degree 2.98), and the whole
+      trailing group with its leading punctuation repetition restored is <strong>quartic</strong>
+      (3.92). Neither is quintic. A quintic pattern in this family certainly exists &mdash; it takes
+      five ambiguous repetitions, as in <code>^.*.*.*.*.*!$</code>, which measured 4.35 over the
+      range it survives &mdash; but that is not the Cloudflare expression. The page prints what it
+      measured.
+    </p>
+    <p class="warn-msg">
+      <strong>And one input shape did not survive it either.</strong> The Stack Overflow pattern
+      measured <em>linear</em> on the first input tried &mdash; a whitespace run at the very start of
+      the string. That is not an engine optimisation: the pattern's first branch,
+      <code>^[\s‌]+</code>, matches a leading run immediately, so the match succeeds and the
+      expensive second branch is never reached. The outage needed the run in the <em>middle</em> of a
+      post. Both shapes ship, because the pair is the lesson: the same pattern and the same
+      characters, and the cost depends on where they sit.
+    </p>
+  </details>
+
+  <details class="disclose" id="budget">
+    <summary>Execution budget and isolation &mdash; why a worker is not enough</summary>
+    <div class="grid2" style="margin-bottom:0">
+      <div>
+        <dl class="readout">
+          <dt>Budget per experiment</dt><dd id="b-budget">&mdash;</dd>
+          <dt>Hard deadline, then the worker is destroyed</dt><dd id="b-deadline">&mdash;</dd>
+          <dt>Workers created this session</dt><dd id="b-workers">0</dd>
+          <dt>Experiments terminated</dt><dd id="b-terminated">0</dd>
+          <dt>Interface frames rendered</dt><dd id="b-frames">0</dd>
+        </dl>
+      </div>
+      <div>
+        <p style="margin-top:0">
+          The match runs in a <strong>Web Worker</strong>, on its own thread, so the interface stays
+          responsive while the engine is occupied. Watch the frame counter during an expensive run:
+          it keeps climbing.
+        </p>
+        <p>
+          <strong>A worker does not make an expensive regular expression interruptible.</strong> There
+          is no way to ask a matching engine to stop. So the page keeps a wall-clock timer the
+          matching thread cannot block, and when a run overruns the deadline the page
+          <strong>destroys the worker</strong> and <strong>creates a fresh one</strong> for the next
+          experiment. Destroying it is the only available remedy, and the counters record how often
+          it was needed.
+        </p>
+        <p class="note">
+          Note what this does and does not buy. Moving the computation into a worker protects the
+          <em>interface</em>; it does nothing to make the regular expression efficient. The same holds
+          for the server-side analogue in the mitigation list: isolating the match bounds the damage,
+          not the cost.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <details class="disclose" id="threat-figure">
+    <summary>The threat model, drawn &mdash; from a crafted input to an unavailable service</summary>
+    <figure class="lab-figure flat">
+      <svg class="fig" viewBox="0 0 520 206" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
+        <title id="f2-t">Figure 2: the attack path — from a crafted input to an unavailable service</title>
+        <desc id="f2-d">A path runs through six stages. An attacker, outside the system
           boundary, sends a crafted input. It crosses into the system at a public API, which accepts
           input the attacker controls. The input reaches a regular-expression matcher, which spends
           excessive computation on it. That exhausts the CPU of the process, and the service becomes
@@ -786,7 +1635,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
           public API, the matcher, the CPU and the service, and is labelled the system under attack;
           the attacker is outside it, and the only thing crossing the boundary is the input. A note
           reads that the attacker supplies no privilege and no volume — only the shape of one
-          string. The parameters marked are defined in the parameters table.</desc>
+          string.</desc>
 
         <rect class="boundary" x="112" y="26" width="404" height="150" rx="3"/>
         <text class="th" x="118" y="190">System under attack</text>
@@ -823,527 +1672,188 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         <text class="ts" x="4" y="200">The attacker supplies neither privilege nor volume &mdash; only the SHAPE of one string.</text>
       </svg>
       <figcaption>
-        <span class="fignum">Figure 1.</span> The threat model. Availability is the asset, the
+        <span class="fignum">Figure 2.</span> The threat model. Availability is the asset, the
         attacker's capability is one crafted string over a public interface, and the vulnerability is
         algorithmic &mdash; it lives in how the matcher searches, not in a missing check.
       </figcaption>
     </figure>
+  </details>
 
-    <!-- -------- MODEL ASSUMPTIONS -------- -->
-    <div class="lab-assumptions" aria-labelledby="h-assumptions">
-      <h2 id="h-assumptions">Model assumptions</h2>
-      <ul>
-        <li><strong>The Cloudflare outage was not an attack.</strong> The pathological rule was
-          written and deployed by Cloudflare itself; no adversary was involved. The underlying
-          algorithmic weakness is nevertheless exploitable as a denial-of-service
-          vulnerability, which is why it belongs in a security lecture rather than only a
-          performance one.</li>
-        <li><strong>The page measures your browser, not a server.</strong> Timings come from a real
-          execution in a Web Worker on this machine &mdash; no prediction, no benchmark.</li>
-        <li><strong>The backtracking diagram is a model, not a trace:</strong> it enumerates
-          candidates a matcher <em>could</em> be obliged to consider.</li>
-        <li><strong>A failing match is the expensive case.</strong> A match that succeeds can stop at
-          the first success; one that cannot must exhaust the alternatives before reporting failure.</li>
-      </ul>
-      <p class="lab-disclaimer">
-        <strong>The demonstration uses the browser's native JavaScript regular-expression engine,
-        whose behaviour may differ from the engine used in the Cloudflare incident.</strong>
-        It does <em>not</em> reproduce Cloudflare's production behaviour: V8, SpiderMonkey and
-        JavaScriptCore do not agree with each other. What it reproduces is the
-        same <em>class</em> of algorithmic vulnerability.
-      </p>
-    </div>
+  <details class="disclose" id="case">
+    <summary>The engineering case, in detail</summary>
+    <p>
+      The required reading is Cloudflare's own postmortem of the 2 July 2019 outage,
+      <em>&ldquo;Details of the Cloudflare outage on July 2, 2019&rdquo;</em>, and Stack Overflow's
+      <em>&ldquo;Outage postmortem &mdash; July 20, 2016&rdquo;</em>. They supply the real engineering
+      cases; the apparatus supplies a real measurement of the same <em>class</em> of algorithmic
+      vulnerability, on this machine.
+    </p>
+    <h4>Two accuracy constraints this page refuses to smooth away</h4>
+    <ul>
+      <li><strong>The Cloudflare outage was not an attack.</strong> The pathological rule was
+        written and deployed by Cloudflare itself; no adversary was involved. The underlying
+        algorithmic weakness is nevertheless exploitable as a denial-of-service vulnerability,
+        which is why it belongs in a security lecture rather than only a performance one.</li>
+      <li><strong>The page does not reproduce either incident's production behaviour.</strong> It
+        runs the patterns from both, in a different engine, on a different machine.</li>
+    </ul>
+    <h4>The expression, before the outcome</h4>
+    <p>
+      Work through the construct before reading what happened. The Cloudflare postmortem identifies
+      this fragment inside the much larger rule:
+    </p>
+    <p class="exprbox">.*(?:.*=.*)</p>
+    <p>
+      Three unbounded repetitions and one mandatory <code>=</code>. When the overall match fails, the
+      engine must try the ways of dividing the text among them before it can conclude failure.
+      <strong>Predict which inputs are expensive</strong>, and what degree, before you run anything.
+    </p>
+  </details>
 
-    <!-- -------- PARAMETERS -------- -->
-    <div class="lab-assumptions lab-parameters-block">
-      <div class="lab-scroll">
-        <table class="lab-parameters">
-          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
-            changing it does</caption>
-          <thead>
-            <tr>
-              <th scope="col">Parameter</th><th scope="col">Meaning</th>
-              <th scope="col">Values</th><th scope="col">Default</th>
-              <th scope="col">What changing it does</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-control="xp-grid">
-              <th scope="row">Pattern family</th>
-              <td>Which expression is under test, chosen with an experiment</td>
-              <td class="unit">Linear &middot; Quadratic &middot; Exponential &middot; Safe alternative</td>
-              <td class="default">Experiment 1</td>
-              <td>Changes how matching cost grows with input length</td>
-            </tr>
-            <tr data-control="maxlen">
-              <th scope="row">Input length n</th>
-              <td>Longest input the length ladder will try</td>
-              <td class="unit">500&ndash;28,000 characters</td><td class="default">16,000</td>
-              <td>Sets how far up the cost curve the run climbs</td>
-            </tr>
-            <tr data-control="xp-grid">
-              <th scope="row">Input suffix</th>
-              <td>Whether the chosen input lets the match succeed or forces it to fail</td>
-              <td class="unit">Set by the experiment</td><td class="default">Failing</td>
-              <td>Decides whether the engine may stop early or must exhaust the alternatives</td>
-            </tr>
-            <tr>
-              <th scope="row">Execution budget</th>
-              <td>Deadline after which a trial is abandoned and its worker destroyed</td>
-              <td class="unit">250 ms, fixed</td><td class="default">250 ms</td>
-              <td>Not adjustable &mdash; it is what keeps a pathological run from freezing the page</td>
-            </tr>
-            <tr data-control="scale-seg">
-              <th scope="row">Time axis</th>
-              <td>How the measured chart is scaled</td>
-              <td class="unit">Linear &middot; Log y &middot; Log&ndash;log</td><td class="default">Linear</td>
-              <td>Changes what you can read off the chart, not what was measured</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ======================= EXPERIMENTS ======================= -->
-<section class="panel" aria-labelledby="h-experiments">
-  <h2 id="h-experiments">Experiments</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
-    <ol class="lab-steps">
-      <li>
-        <span class="step">1 &middot; Predict</span>
-        Read <code>/^.*\s+$/</code> &mdash; two unbounded repetitions with nothing forcing a unique
-        division &mdash; and write down which inputs you expect to be expensive, and how the cost
-        should grow with length. Commit it before you run anything.
-      </li>
-      <li>
-        <span class="step">2 &middot; Run</span>
-        Run Experiment&nbsp;1, then Experiment&nbsp;2: the same expression, different input. Then
-        Experiment&nbsp;4: a different expression on byte-identical input. Switch the time axis to
-        log&ndash;log and read the slopes.
-      </li>
-      <li>
-        <span class="step">3 &middot; Explain</span>
-        Which change &mdash; the attacker's input or the engineer's expression &mdash; moved the
-        cost, and by how much? Compare the measured curve against the modelled candidate count
-        below, and say what you would recommend to an engineer who must accept this input from the
-        public internet.
-      </li>
+  <details class="disclose" id="sequence">
+    <summary>Using this in class &mdash; the intended sequence, and the exercises</summary>
+    <ol>
+      <li><strong>Read the Cloudflare postmortem.</strong> A real outage, at a company whose core
+        competence is operating this kind of infrastructure. Establish that the question matters
+        before introducing any synthetic expression.</li>
+      <li><strong>Examine the regular expression.</strong> Find <code>.*(?:.*=.*)</code> in the rule.
+        Three unbounded repetitions, nothing forcing a unique division between them.</li>
+      <li><strong>Predict.</strong> Which inputs are expensive, and what degree? Commit to an answer
+        before measuring. The prediction is the part that is graded by the measurement.</li>
+      <li><strong>Run the demonstration.</strong> Baselines 1 and 2 first, because they isolate the
+        adversary's variable. Then 3, for what a nested quantifier costs. Then 4, which is the fix,
+        on byte-identical input to 2. Baselines 5 and 6 are the two real incidents.</li>
+      <li><strong>Identify the threat.</strong> Fill in the threat model: who supplies the input,
+        through which entry point, and what resource is exhausted.</li>
+      <li><strong>Propose controls.</strong> Choose mitigations and defend the choice against the
+        objective &mdash; including why a rate limit is not sufficient on its own.</li>
     </ol>
-  </div>
+    <h4>Exercises</h4>
+    <ol>
+      <li>Baselines 1 and 2 run the same pattern. Baseline 1 is fast. Explain the difference using
+        the structure of <code>/^.*\s+$/</code> and the structure of the two inputs &mdash; not the
+        measured numbers.</li>
+      <li>Set the time axis to log&ndash;log and read the slope of baseline 2. What value would you
+        expect from <code>n(n+1)/2</code>, and does your run agree? If it does not, name a reason
+        that is about the engine rather than about the expression.</li>
+      <li>Baseline 3 runs out of budget somewhere in the twenties. Each extra character doubles the
+        modelled work. If a service capped its input at 100 characters, would that cap bound the cost
+        for baseline 3? For baseline 2?</li>
+      <li>Baseline 4 decides exactly the same question as baseline 2 on exactly the same bytes. Read
+        both expressions and say which construct removed the cost.</li>
+      <li>Load the Stack Overflow pattern and run its two input shapes &mdash; the run in the middle,
+        then the run at the very start. The characters are the same. Explain the cost difference from
+        the pattern's two branches.</li>
+      <li>The page runs the match in a worker and destroys it at a deadline. Name what that protects
+        and what it does not. Then say which of the two the server-side analogue protects.</li>
+    </ol>
+  </details>
 
-  <div class="xpsel-grid" id="xp-grid"></div>
-  <p class="note" id="xp-pairing">
-    The four experiments form a 2&times;2. Experiments&nbsp;1 and&nbsp;2 run the <em>same
-    expression</em> on different inputs, so the only thing that changes is what the adversary
-    supplies. Experiments&nbsp;2 and&nbsp;4 run <em>different expressions on byte-identical
-    input</em>, so the only thing that changes is what the engineer wrote. Holding one variable
-    fixed at a time is what makes each comparison an experiment rather than an anecdote.
-  </p>
-</section>
+  <details class="disclose" id="about">
+    <summary>Model reference &mdash; the patterns, the parameters, and what this does not establish</summary>
 
-<!-- ======================= CONTROLS ======================= -->
-<section class="panel" aria-labelledby="h-controls">
-  <h2 id="h-controls">Controls</h2>
-  <div class="ctl-row">
-    <div class="ctl">
-      <label for="maxlen">Longest input to try
-        <span class="unit" id="maxlen-unit">n, characters</span></label>
-      <input type="range" id="maxlen-range" min="500" max="28000" step="1" value="16000"
-             aria-label="Longest input to try, slider">
-      <input type="number" id="maxlen" min="500" max="28000" step="1" value="16000">
-    </div>
-    <div class="ctl">
-      <label id="scale-label">Time axis</label>
-      <div class="seg" role="group" aria-labelledby="scale-label" id="scale-seg">
-        <button type="button" data-scale="linear" aria-pressed="true">Linear</button>
-        <button type="button" data-scale="logy" aria-pressed="false">Log y</button>
-        <button type="button" data-scale="loglog" aria-pressed="false">Log&ndash;log</button>
-      </div>
-      <span></span>
-    </div>
-  </div>
-
-  <div class="btn-row">
-    <button type="button" class="act primary" id="btn-run">Run selected</button>
-    <button type="button" class="act" id="btn-run-all">Run all four</button>
-    <button type="button" class="act" id="btn-run-longest">One trial at the longest input</button>
-    <button type="button" class="act" id="btn-reset">Reset</button>
-    <span style="flex:1"></span>
-    <a class="act" id="btn-download" href="index.html" download="redos.html"
-       style="text-decoration:none">Download HTML</a>
-  </div>
-
-  <p class="note" id="run-policy">
-    <strong>Run selected</strong> walks the experiment's length ladder from its shortest input
-    upward, stopping at the first length that exceeds the budget. Where it stops differs between
-    browsers and machines, and that is part of the lesson.
-    <strong>One trial at the longest input</strong> skips the climb and runs the top of the ladder
-    directly. On the two linear experiments that still finishes in well under a millisecond
-    &mdash; which is the comparison. On the two pathological ones it blows past the deadline, and
-    you can watch the page destroy the worker and carry on.
-  </p>
-</section>
-
-<!-- ======================= EXECUTION BUDGET AND ISOLATION ======================= -->
-<section class="panel" aria-labelledby="h-budget">
-  <h2 id="h-budget">Execution budget and isolation</h2>
-  <div class="grid2" style="margin-bottom:0">
-    <div>
-      <p style="margin-top:0">
-        <span class="badge s-idle" id="status" aria-live="polite"><span class="glyph"
-          aria-hidden="true">&#9679;</span><span id="status-text">idle</span></span>
-      </p>
-      <dl class="readout">
-        <dt>Budget per experiment</dt><dd id="b-budget">&mdash;</dd>
-        <dt>Hard deadline, then the worker is destroyed</dt><dd id="b-deadline">&mdash;</dd>
-        <dt>Workers created this session</dt><dd id="b-workers">0</dd>
-        <dt>Experiments terminated</dt><dd id="b-terminated">0</dd>
-        <dt>Interface frames rendered</dt><dd id="b-frames">0</dd>
-      </dl>
-      <div id="kill-notice" hidden></div>
-      <div id="worker-unavailable" hidden></div>
-    </div>
-    <div>
-      <h3 style="margin-top:0">Why a worker, and why that is not enough</h3>
-      <p>
-        The match runs in a <strong>Web Worker</strong>, on its own thread, so the interface stays
-        responsive while the engine is occupied. Watch the frame counter during an expensive run:
-        it keeps climbing.
-      </p>
-      <p>
-        <strong>A worker does not make an expensive regular expression interruptible.</strong> There
-        is no way to ask a matching engine to stop. So the page keeps a wall-clock timer the
-        matching thread cannot block, and when a run overruns the deadline the page
-        <strong>destroys the worker</strong> and <strong>creates a fresh one</strong> for the next
-        experiment. Destroying it is the only available remedy, and the counters above record how
-        often it was needed.
-      </p>
-      <p class="note">
-        Note what this does and does not buy. Moving the computation into a worker protects the
-        <em>interface</em>; it does nothing to make the regular expression efficient. The same holds
-        for the server-side analogue in the mitigation list below: isolating the match bounds the
-        damage, not the cost.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="panel" aria-labelledby="h-expr">
-  <h2 id="h-expr">The expression and the input under test</h2>
-  <div class="grid2" style="margin-bottom:0">
-    <div>
-      <h3 id="expr-name">&mdash;</h3>
-      <p class="exprbox" id="expr-source">&mdash;</p>
-      <p class="note" id="expr-why"></p>
-    </div>
-    <div>
-      <h3>Generated input</h3>
-      <p class="inputbox" id="input-shape">&mdash;</p>
-      <dl class="readout" style="margin-top:0.6rem">
-        <dt>Input length</dt><dd id="input-len">&mdash;</dd>
-        <dt>Match result</dt><dd id="input-match">&mdash;</dd>
-      </dl>
-      <p class="note" id="input-why"></p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= MEASUREMENTS ======================= -->
-<section class="panel" aria-labelledby="h-measured">
-  <h2 id="h-measured">Measured execution time</h2>
-  <div class="canvas-wrap"><canvas id="c-growth" width="1600" height="440"
-    role="img" aria-labelledby="growth-alt"></canvas></div>
-  <p id="growth-alt" class="vh" aria-live="polite"></p>
-  <p class="legend" id="growth-legend"></p>
-  <p class="note" id="growth-axes"></p>
-  <p class="warn-msg">
-    <strong>Choosing the axes is part of the analysis.</strong> On a <em>linear</em> axis a
-    quadratic curve and an exponential one both just look &ldquo;steep&rdquo;. On <em>log y</em> an
-    exponential series straightens into a line, because each extra character multiplies the work by
-    a constant. On <em>log&ndash;log</em> a polynomial series straightens, and its slope is the
-    exponent &mdash; a slope near 2 is quadratic, near 1 linear. Running all four experiments also
-    puts two input ranges three orders of magnitude apart on one axis; log&ndash;log is the mode
-    that shows both at once.
-  </p>
-
-  <div class="measure-plane" style="margin-top:1rem">
-    <span class="plane-kind">Measured in this browser's own RegExp engine &mdash; no model involved</span>
-    <div class="table-wrap"><table class="ref" id="results-table">
-      <caption id="results-caption">No experiment has been run yet.</caption>
-      <thead><tr>
-        <th scope="col">Experiment</th>
-        <th scope="col">n</th>
-        <th scope="col">Input length</th>
-        <th scope="col">Match</th>
-        <th scope="col">Executions</th>
-        <th scope="col">Time per execution</th>
-        <th scope="col">Outcome</th>
-      </tr></thead>
-      <tbody></tbody>
-    </table></div>
-  </div>
-  <div id="scaling-readout"></div>
-  <p class="note">
-    <strong>Explain the differences from the structure of the expressions, not from the numbers.</strong>
-    The numbers are what happened on this machine, in this browser, on this run. Why they differ is
-    a property of the expressions and the inputs, and that is the question the backtracking model
-    below is for.
-  </p>
-</section>
-
-<!-- ======================= THE BACKTRACKING MODEL ======================= -->
-<section class="panel" aria-labelledby="h-model">
-  <h2 id="h-model">Why the work grows &mdash; a model of backtracking</h2>
-
-  <!-- -------- FIGURE 2 · the ambiguity, beside the model it explains -------- -->
-  <figure class="lab-figure flat">
-    <svg class="fig" viewBox="0 0 560 136" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
-      <title id="f2-t">Figure 2: the ways a backtracking matcher can divide one input</title>
-      <desc id="f2-d">The input a a a a exclamation mark is shown once at the top, under an
-        expression with two unbounded repetitions in sequence. Below it, five rows enumerate the
-        ways the four a characters can be divided between the first repetition and the second:
-        four and none, three and one, two and two, one and three, and none and four. Each row is
-        drawn as two adjacent bars whose lengths give the division, and each is marked as a
-        candidate the matcher may be obliged to try. A closing line states that the exclamation
-        mark cannot be consumed by either repetition, so no division can succeed and every one of
-        them must be ruled out before failure may be reported — and that this is a conceptual
-        representation of possible backtracking paths, not a literal trace of any JavaScript regex
-        engine.</desc>
-
-      <text class="eq" x="4" y="14">/^(a*)(a*)!$/   on input   aaaa&#33;   &mdash; the &#33; can never match, so the match must FAIL</text>
-      <text class="th" x="4" y="32">Possible divisions of &ldquo;aaaa&rdquo; between the two repetitions</text>
-
-      <text class="ts" x="4" y="50">4 + 0</text>
-      <rect class="bx bad" x="48" y="40" width="112" height="12" rx="1"/>
-      <text class="ts" x="4" y="68">3 + 1</text>
-      <rect class="bx bad" x="48" y="58" width="84" height="12" rx="1"/>
-      <rect class="bx" x="134" y="58" width="26" height="12" rx="1"/>
-      <text class="ts" x="4" y="86">2 + 2</text>
-      <rect class="bx bad" x="48" y="76" width="56" height="12" rx="1"/>
-      <rect class="bx" x="106" y="76" width="54" height="12" rx="1"/>
-      <text class="ts" x="4" y="104">1 + 3</text>
-      <rect class="bx bad" x="48" y="94" width="28" height="12" rx="1"/>
-      <rect class="bx" x="78" y="94" width="82" height="12" rx="1"/>
-      <text class="ts" x="4" y="122">0 + 4</text>
-      <rect class="bx" x="48" y="112" width="112" height="12" rx="1"/>
-
-      <text class="ts" x="176" y="50">first repetition &nbsp;|&nbsp; second repetition</text>
-      <text class="ts" x="176" y="68">n = 4 gives 5 divisions; n = 8 gives 9; the count is n + 1 here,</text>
-      <text class="ts" x="176" y="82">and an expression that nests the ambiguity makes it exponential.</text>
-      <text class="ts" x="176" y="104">Every division must be ruled out before FAILURE may be reported.</text>
-      <text class="ts" x="176" y="122">A conceptual representation of possible backtracking paths,</text>
-      <text class="ts" x="176" y="134">NOT a literal trace of any JavaScript regex engine.</text>
-    </svg>
-    <figcaption>
-      <span class="fignum">Figure 2.</span> Backtracking ambiguity. Two unbounded repetitions with
-      nothing forcing a unique division leave the matcher a set of candidate splits, and a failing
-      match is the case in which it must consider all of them.
-    </figcaption>
-  </figure>
-
-
-  <div class="model-msg" id="model-caveat">
-    <strong>This is a conceptual model of backtracking, not a trace of your engine.</strong>
-    It enumerates candidates a backtracking matcher <em>could</em> be obliged to consider. The
-    actual engine may optimise some away, order them differently, or never attempt them at all
-    &mdash; and V8, SpiderMonkey, and JavaScriptCore do not agree with each other about which.
-    So treat the diagram as a prediction to be <em>compared</em> against the measurements above,
-    never as a picture of what happened. Learning to hold a model and an observation apart, and to
-    notice when they disagree, is the point of the exercise. It is the same distinction the
-    Performance&nbsp;Knee simulator draws between an analytical prediction and a simulated run.
-  </div>
-
-  <div class="grid2" style="margin-top:1rem;margin-bottom:0">
-    <div>
-      <h3 id="model-title" style="margin-top:0">&mdash;</h3>
-      <p id="model-explain"></p>
-      <div id="model-body"></div>
-      <p class="note" id="model-count"></p>
-    </div>
-    <div>
-      <h3 style="margin-top:0">Modelled candidates, across the whole ladder</h3>
-      <div class="model-plane">
-        <span class="plane-kind">Derived from the closed form &mdash; no measurement involved</span>
-        <div class="canvas-wrap"><canvas id="c-work" width="1200" height="340"
-          role="img" aria-labelledby="work-alt"></canvas></div>
-        <p id="work-alt" class="vh" aria-live="polite"></p>
-      </div>
-      <p class="legend" id="work-legend"></p>
-      <p class="note">
-        A logarithmic vertical axis, always: the counts span too many orders of magnitude for a
-        linear one to show anything. The two linear experiments sit almost on the floor. Compare the
-        <em>shape</em> of these curves against the measured chart above &mdash; agreement supports
-        the model, and disagreement is a finding about the engine's optimisations rather than an
-        error to hide.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= THE CASE ======================= -->
-<!-- The band above states the case and the two claims this page refuses to make. This panel holds
-     what belongs to the detail rather than the opening: the postmortem to read, and the
-     construct-before-outcome exercise. -->
-<section class="panel" aria-labelledby="h-case">
-  <h2 id="h-case">The engineering case, in detail</h2>
-  <p>
-    The required reading is Cloudflare's own postmortem of the 2 July 2019 outage,
-    <em>&ldquo;Details of the Cloudflare outage on July 2, 2019&rdquo;</em>. It supplies the real
-    engineering case; the demonstration below supplies a real measurement of the same
-    <em>class</em> of algorithmic vulnerability, on this machine.
-  </p>
-  <h3>The expression, before the outcome</h3>
-  <p>
-    Work through the construct before reading what happened. The postmortem identifies this fragment
-    inside the much larger rule:
-  </p>
-  <p class="exprbox">.*(?:.*=.*)</p>
-  <p>
-    Two unbounded <code>.*</code> repetitions in sequence, with nothing between them that forces a
-    unique division of the input. When the overall match fails, the engine must try the ways of
-    dividing the text between them before it can conclude failure. <strong>Predict which inputs are
-    expensive</strong> before you run anything.
-  </p>
-  <p class="note">
-    The same shape appears in Experiment&nbsp;2 below, in a smaller expression you can read in one
-    glance: <code>/^.*\s+$/</code> &mdash; an unbounded <code>.*</code> followed by an unbounded
-    <code>\s+</code>, with no forced division between them.
-  </p>
-</section>
-
-<!-- ======================= THREAT MODEL ======================= -->
-<div class="grid2">
-  <section class="panel" aria-labelledby="h-threat">
-    <h2 id="h-threat">The threat model</h2>
-    <p style="margin-top:0">
-      The measurements above are a performance observation. What makes this a <em>security</em>
-      finding is that the expensive input is chosen by someone else. Name the elements:
+    <h4>What it measures</h4>
+    <p>
+      Each configuration runs one curated regular expression against generated inputs of increasing
+      pump count, using <strong>the browser's own <code>RegExp</code> engine</strong>, and reports the
+      measured execution time. Nothing here plots a theoretical complexity curve and calls it a
+      measurement: the numbers come from running the matcher. The <em>model</em> of why the numbers
+      grow is reported separately and labelled as a model.
     </p>
-    <div class="table-wrap"><table class="ref" id="threat-table">
-      <thead><tr><th scope="col">Model element</th><th scope="col">ReDoS example</th></tr></thead>
+
+    <h4>The full parameter reference</h4>
+    <div class="lab-scroll">
+      <table class="lab-parameters">
+        <thead>
+          <tr>
+            <th scope="col">Parameter</th><th scope="col">Meaning</th>
+            <th scope="col">Values</th><th scope="col">Default</th>
+            <th scope="col">What changing it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Pattern</th>
+            <td>Which expression is under test</td>
+            <td class="unit">6, spanning linear to exponential</td>
+            <td class="default">Two unbounded repetitions</td>
+            <td>Changes the complexity class &mdash; the rate at which cost grows with n</td>
+          </tr>
+          <tr>
+            <th scope="row">Input shape</th>
+            <td>Which generated string the pattern runs against, attack or benign</td>
+            <td class="unit">2&ndash;3 per pattern</td>
+            <td class="default">Whitespace run, then a non-space</td>
+            <td>Decides whether the engine may stop early or must exhaust the alternatives</td>
+          </tr>
+          <tr>
+            <th scope="row">Pumps n</th>
+            <td>How many times the pumped core repeats</td>
+            <td class="unit">by pattern: 12&ndash;28 to 500&ndash;28,000</td>
+            <td class="default">16,000</td>
+            <td>Sets how far up the cost curve the run climbs</td>
+          </tr>
+          <tr>
+            <th scope="row">Execution budget</th>
+            <td>Deadline after which a trial is abandoned and its worker destroyed</td>
+            <td class="unit">250 ms, fixed</td><td class="default">250 ms</td>
+            <td>Not adjustable &mdash; it is what keeps a pathological run from freezing the page</td>
+          </tr>
+          <tr>
+            <th scope="row">Time axis</th>
+            <td>How the measured chart is scaled</td>
+            <td class="unit">Linear &middot; Log y &middot; Log&ndash;log</td><td class="default">Linear</td>
+            <td>Changes what you can read off the chart, not what was measured</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>The curated expressions</h4>
+    <div class="table-wrap"><table class="ref" id="expr-table">
+      <caption>Fixed, curated patterns. The page executes no user-supplied expression.</caption>
+      <thead><tr><th>Expression</th><th>Used by</th><th>Why this one</th></tr></thead>
       <tbody></tbody>
     </table></div>
+
+    <h4>Correctness of the curated patterns</h4>
+    <p>
+      A demonstration that mis-states what its expressions <em>mean</em> teaches the wrong thing, so
+      the match behaviour is pinned rather than asserted in prose. Each expression is checked against
+      a table of small inputs; every input shape declares the answer it expects and a self-test
+      checks that declaration against the real regex; and the safe alternative is checked for exact
+      <em>language equivalence</em> with the pathological expression by exhaustive enumeration of
+      short strings &mdash; the claim &ldquo;same decision, far less work&rdquo; is only worth making
+      if it is true.
+    </p>
+
+    <h4>Reproducibility, and what this does not establish</h4>
+    <p>
+      There is <strong>no seed</strong>, because nothing here is random: the inputs are built from
+      one integer and the patterns are fixed. What varies is the <em>machine</em>. A timing is one
+      sample of a shared CPU under a browser, so the same configuration run twice gives two
+      different numbers, and the page reports the spread between runs rather than presenting the
+      latest as the answer. Read the growth, which survives the spread; do not read a two-run range
+      as a confidence interval. The demonstration does not establish what any pattern would cost in
+      another engine, in a server runtime, or under load &mdash; only that the class of vulnerability
+      is real and measurable here.
+    </p>
     <p class="note">
-      A threat is a possible course of harmful action; a vulnerability is the weakness that may let
-      it succeed; an attack is an attempt to exploit that weakness. Here the vulnerability is
-      superlinear matching, the threat is resource exhaustion, and the attack is one HTTP request
-      carrying a long run of spaces.
+      Licence: teaching materials &copy; James C. Davis, CC BY 4.0. The page issues no network
+      request of any kind; the Download HTML control hands you this same file.
     </p>
-    <p class="warn-msg">
-      <strong>The distinction from Performance Engineering.</strong> A performance model assumes a
-      service-time distribution <em>chosen by the engineer</em> &mdash; the Performance Knee
-      simulator asks what happens when many ordinary requests compete for finite capacity. This
-      demonstration shows an adversary <em>influencing that distribution</em> by selecting inputs.
-      Experiments&nbsp;1 and&nbsp;2 differ in nothing an engineer controls: same expression, same
-      code path, same deployment. Only the input changed.
+
+    <h4>Self-tests</h4>
+    <p>
+      The engine carries its own suite so the instrument can be checked in the room it is being used
+      in. The repository's Node suite under
+      <code>course/interactive/redos/tests/</code> extracts this page's engine script element and
+      evaluates it, so the tested code and the shipped code are the same text.
     </p>
-  </section>
-
-  <section class="panel" aria-labelledby="h-mitigate">
-    <h2 id="h-mitigate">Choose a mitigation</h2>
-    <p style="margin-top:0">
-      The security objective is <strong>bound computation per request</strong>. Select what you
-      would do, then read how the selection is judged against that objective.
-    </p>
-    <div id="mitigation-list"></div>
-    <div id="mitigation-verdict" aria-live="polite"></div>
-  </section>
-</div>
-
-<!-- ======================= CLASSROOM SEQUENCE + CLOSING QUESTION ======================= -->
-<details class="panel" id="sequence">
-  <summary><span class="panel-title" style="display:inline">Using this in class &mdash; the intended sequence</span></summary>
-  <ol>
-    <li><strong>Read the Cloudflare postmortem.</strong> A real outage, at a company whose core
-      competence is operating this kind of infrastructure. Establish that the question matters
-      before introducing any synthetic expression.</li>
-    <li><strong>Examine the regular expression.</strong> Find <code>.*(?:.*=.*)</code> in the rule.
-      Two unbounded repetitions in sequence, nothing forcing a unique division between them.</li>
-    <li><strong>Predict.</strong> Which inputs are expensive, and why? Commit to an answer before
-      measuring. The prediction is the part that is graded by the measurement.</li>
-    <li><strong>Run the demonstration.</strong> Experiments 1 and 2 first, because they isolate the
-      adversary's variable. Then 3, for what a nested quantifier costs. Then 4, which is the fix,
-      on byte-identical input to 2.</li>
-    <li><strong>Identify the threat.</strong> Fill in the threat model: who supplies the input,
-      through which entry point, and what resource is exhausted.</li>
-    <li><strong>Propose controls.</strong> Choose mitigations and defend the choice against the
-      objective &mdash; including why a rate limit is not sufficient on its own.</li>
-  </ol>
-  <h3>Exercises</h3>
-  <ol>
-    <li>Experiments 1 and 2 run the same expression. Experiment 1 is fast. Explain the difference
-      using the structure of <code>/^.*\s+$/</code> and the structure of the two inputs &mdash; not
-      the measured numbers.</li>
-    <li>Set the time axis to log&ndash;log and read the slope of experiment 2. What value would you
-      expect from <code>n(n+1)/2</code>, and does your run agree? If it does not, name a reason
-      that is about the engine rather than about the expression.</li>
-    <li>Experiment 3 runs out of budget somewhere in the twenties. Each extra character doubles the
-      modelled work. If a service capped its input at 100 characters, would that cap bound the cost
-      for experiment 3? For experiment 2?</li>
-    <li>Experiment 4 decides exactly the same question as experiment 2 on exactly the same bytes.
-      Read both expressions and say which construct removed the cost.</li>
-    <li>The page runs the match in a worker and destroys it at a deadline. Name what that protects
-      and what it does not. Then say which of the two the server-side analogue protects.</li>
-  </ol>
-</details>
-
-<section class="panel" aria-labelledby="h-closing">
-  <h2 id="h-closing">The engineering question to leave with</h2>
-  <p style="font-family:var(--font-display);font-size:1.5rem;line-height:1.35;margin:0.3rem 0 0">
-    What input can an adversary control, and what resource can it exhaust?
-  </p>
-  <p class="note">
-    Asked of every component that accepts input from outside the trust boundary, this question finds
-    algorithmic complexity vulnerabilities well beyond regular expressions: parsers, decompressors,
-    hash tables, sorting, image decoders, and anything whose cost depends on the shape of its input
-    rather than only on its size.
-  </p>
+    <p><button type="button" class="act" id="btn-selftest">Run self-tests</button></p>
+    <p class="selftest-out" id="selftest-out" aria-live="polite"></p>
+  </details>
 </section>
-
-<!-- ======================= REFERENCE + SELF-TESTS ======================= -->
-<details class="panel" id="about">
-  <summary><span class="panel-title" style="display:inline">About this instrument</span></summary>
-
-  <h3>What it measures</h3>
-  <p>
-    Each experiment runs one curated regular expression against generated inputs of increasing
-    length, using <strong>the browser's own <code>RegExp</code> engine</strong>, and reports the
-    measured execution time. Nothing here plots a theoretical complexity curve and calls it a
-    measurement: the numbers come from running the matcher. The <em>model</em> of why the numbers
-    grow is reported separately and labelled as a model.
-  </p>
-
-  <h3>The curated expressions</h3>
-  <div class="table-wrap"><table class="ref" id="expr-table">
-    <caption>Fixed, curated patterns. The page executes no user-supplied expression.</caption>
-    <thead><tr><th>Expression</th><th>Used by</th><th>Why this one</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
-
-  <h3>Correctness of the curated patterns</h3>
-  <p>
-    A demonstration that mis-states what its expressions <em>mean</em> teaches the wrong thing, so
-    the match behaviour is pinned rather than asserted in prose. Each expression is checked against
-    a table of small inputs, and the safe alternative is checked for exact
-    <em>language equivalence</em> with the pathological expression by exhaustive enumeration of
-    short strings &mdash; the claim &ldquo;same decision, far less work&rdquo; is only worth making
-    if it is true.
-  </p>
-
-  <h3>Self-tests</h3>
-  <p>
-    The engine carries its own suite so the instrument can be checked in the room it is being used
-    in. The repository's Node suite under
-    <code>course/interactive/redos/tests/</code> extracts this page's engine script element and
-    evaluates it, so the tested code and the shipped code are the same text.
-  </p>
-  <p><button type="button" class="act" id="btn-selftest">Run self-tests</button></p>
-  <p class="selftest-out" id="selftest-out" aria-live="polite"></p>
-</details>
 
 </main>
 
@@ -1407,25 +1917,122 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   var MIN_SAMPLE_MS = 2;
   var MAX_REPEATS = 4000;
 
-  /* --- 1. The curated expressions ---------------------------------------------------------------
-     Three expressions, fixed in the page. The page never compiles a user-supplied expression: an
+  /* --- 1. The curated patterns, as a ladder of complexity classes ------------------------------
+     Six patterns, fixed in the page. The page never compiles a user-supplied expression: an
      arbitrary-regex box turns a teaching instrument into a way to hang a reader's tab, and the
-     lesson does not need it. */
+     lesson does not need it.
+
+     The set is chosen to span COMPLEXITY CLASSES rather than to collect curiosities, because the
+     class is the thing a student should leave with. ReDoS is not "a slow regular expression"; it is
+     a pattern whose matching cost grows superlinearly in the input, and the growth RATE is a
+     property of the pattern together with the engine. Two of the six are the patterns from real
+     outages.
+
+     `measuredDegree` is EMPIRICAL. Every one was measured in V8 by timing against pump count over
+     a range that reaches tens of milliseconds, fitting log t against log n, and reading the slope;
+     the figures and the method are in MEASURED_CLASSES below. They are not derived from the
+     closed-form model, and where the two disagree the measurement is what the page reports. */
   var EXPRESSIONS = {
+    forcedSplit: {
+      id: 'forcedSplit',
+      source: '^.*[^\\s]\\s+$|^\\s+$',
+      flags: '',
+      display: '/^.*[^\\s]\\s+$|^\\s+$/',
+      name: 'Trailing-whitespace test, division forced',
+      shortName: 'Forced division (the fix)',
+      incident: null,
+      complexityClass: 'linear',
+      degree: 1,
+      intent: 'Does this string end with whitespace, with no line break before the trailing run?',
+      why: 'Exactly the same decision as /^.*\\s+$/, rewritten so the engine cannot try many '
+         + 'divisions: the mandatory [^\\s] pins the boundary to the last non-whitespace character, '
+         + 'and the second branch covers the all-whitespace case the first branch now excludes. '
+         + 'Equivalence is not asserted here — it is checked by exhaustive enumeration of short '
+         + 'strings in EQUIVALENCE_PAIR.',
+      hazard: 'none',
+      modelOfWork: 'n'
+    },
     trimLike: {
       id: 'trimLike',
       source: '^.*\\s+$',
       flags: '',
       display: '/^.*\\s+$/',
       name: 'Trailing-whitespace test, unbounded on both sides',
+      shortName: 'Two unbounded repetitions',
+      incident: null,
+      complexityClass: 'quadratic',
+      degree: 2,
       intent: 'Does this string end with whitespace, with no line break before the trailing run?',
       why: 'Two unbounded repetitions in sequence with no forced division between them — the same '
          + 'shape as the fragment named in the Cloudflare postmortem, small enough to read at a '
          + 'glance. A whitespace-trimming expression of this family took Stack Overflow offline on '
          + '20 July 2016 when one post contained a long run of spaces; theirs was '
          + '/^[\\s\\u200c]+|[\\s\\u200c]+$/, not this one, so this is the same class rather than '
-         + 'the same expression.',
-      hazard: 'quadratic'
+         + 'the same expression. That one ships here too, as the Stack Overflow pattern.',
+      hazard: 'quadratic',
+      modelOfWork: 'poly'
+    },
+    stackOverflow2016: {
+      id: 'stackOverflow2016',
+      source: '^[\\s\\u200c]+|[\\s\\u200c]+$',
+      flags: '',
+      display: '/^[\\s\\u200c]+|[\\s\\u200c]+$/',
+      name: 'Stack Overflow 2016 — trim leading and trailing whitespace',
+      shortName: 'Stack Overflow 2016',
+      incident: 'Stack Overflow, 20 July 2016 — the site went down for about 34 minutes when one '
+              + 'post carried a run of roughly 20,000 whitespace characters. The expression trims '
+              + 'whitespace from both ends; the character class includes U+200C, a zero-width '
+              + 'non-joiner.',
+      complexityClass: 'quadratic',
+      degree: 2,
+      intent: 'Find a whitespace run at the start of the string, or one at the end.',
+      why: 'The expression from the Stack Overflow outage, verbatim. The cost is in the SECOND '
+         + 'branch: [\\s\\u200c]+$ is unanchored at its left, so the engine may start the trailing '
+         + 'run at any position, and on a long whitespace run that does not reach the end of the '
+         + 'string every one of those starts scans forward and fails. Note what the first branch '
+         + 'does to the measurement — see the input shapes.',
+      hazard: 'quadratic',
+      modelOfWork: 'poly'
+    },
+    cloudflareFragment: {
+      id: 'cloudflareFragment',
+      source: '.*(?:.*=.*)',
+      flags: '',
+      display: '/.*(?:.*=.*)/',
+      name: 'Cloudflare 2019 — the fragment the postmortem names',
+      shortName: 'Cloudflare 2019 (fragment)',
+      incident: 'Cloudflare, 2 July 2019 — a new firewall rule exhausted CPU across the network '
+              + 'and took the core proxy, CDN and WAF down globally for about 27 minutes. The '
+              + 'postmortem identifies this fragment inside a much larger rule as the cause of the '
+              + 'backtracking.',
+      complexityClass: 'cubic',
+      degree: 3,
+      intent: 'Find an equals sign, with anything before and after it.',
+      why: 'Three unbounded repetitions and one mandatory character. When the input carries no '
+         + '"=", the match must fail, and failing means ruling out every way of dividing the input '
+         + 'among the three repetitions. One more ambiguous repetition than the trim-like pattern, '
+         + 'and one degree more cost.',
+      hazard: 'cubic',
+      modelOfWork: 'poly'
+    },
+    cloudflareGroup: {
+      id: 'cloudflareGroup',
+      source: '(?:\\s|-|~|!|\\{\\}|\\|\\||\\+)*.*(?:.*=.*)',
+      flags: '',
+      display: '/(?:\\s|-|~|!|{}|\\|\\||\\+)*.*(?:.*=.*)/',
+      name: 'Cloudflare 2019 — the whole trailing group',
+      shortName: 'Cloudflare 2019 (whole group)',
+      incident: 'Cloudflare, 2 July 2019 — the same rule. This is the trailing group the fragment '
+              + 'sits inside, with the leading character-alternation repetition restored.',
+      complexityClass: 'quartic',
+      degree: 4,
+      intent: 'Find an equals sign after an optional run of punctuation and whitespace.',
+      why: 'The fragment with its leading (?:\\s|-|~|!|{}|\\|\\||\\+)* repetition restored. That '
+         + 'is a fourth unbounded repetition that whitespace can also satisfy, so a whitespace '
+         + 'input with no "=" divides four ways instead of three. The measured degree moves with '
+         + 'the count, which is the generalisation worth taking away.',
+      hazard: 'quartic',
+      modelOfWork: 'poly'
     },
     nestedQuant: {
       id: 'nestedQuant',
@@ -1433,28 +2040,58 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       flags: '',
       display: '/^(a+)+$/',
       name: 'Nested quantifier',
+      shortName: 'Nested quantifier',
+      incident: null,
+      complexityClass: 'exponential',
+      degree: null,
       intent: 'Is this string a non-empty run of the letter a?',
       why: 'The canonical exponential case. A repetition inside a repetition means a run of n '
          + 'characters can be divided among the inner groups in 2^(n-1) ways, and a failing match '
          + 'forces the engine to rule them out. The expression is also pointless — /^a+$/ decides '
          + 'the same question in linear time — which is itself the lesson: the cost buys nothing.',
-      hazard: 'exponential'
-    },
-    forcedSplit: {
-      id: 'forcedSplit',
-      source: '^.*[^\\s]\\s+$|^\\s+$',
-      flags: '',
-      display: '/^.*[^\\s]\\s+$|^\\s+$/',
-      name: 'Trailing-whitespace test, division forced',
-      intent: 'Does this string end with whitespace, with no line break before the trailing run?',
-      why: 'Exactly the same decision as /^.*\\s+$/, rewritten so the engine cannot try many '
-         + 'divisions: the mandatory [^\\s] pins the boundary to the last non-whitespace character, '
-         + 'and the second branch covers the all-whitespace case the first branch now excludes. '
-         + 'Equivalence is not asserted here — it is checked by exhaustive enumeration of short '
-         + 'strings in EQUIVALENCE_PAIR.',
-      hazard: 'none'
+      hazard: 'exponential',
+      modelOfWork: '2^(n-1)'
     }
   };
+
+  /* The empirical classes, recorded as DATA so the page, the self-tests and the Node suite read one
+     table rather than three copies of a remembered number.
+
+     Method, so a later reader can refute it: input built from the pattern's own attack shape at the
+     pump counts listed; a compile plus a 20 ms tier-up pass discarded; then each length timed until
+     it accumulated at least 8 ms of samples; `degree` is the slope of log(time) against
+     log(length) over the points above 50 microseconds, and `perChar` is exp of the slope of
+     log(time) against length. `r2` is for the reported basis.
+
+     Two cautions this table exists to carry. The degree is an ASYMPTOTIC property approached from
+     below, so a fit over a short range reads low — the cubic pattern measures 2.98 globally and the
+     quartic 3.92. And the class belongs to the pattern TOGETHER WITH THE ENGINE: these are V8
+     figures, and an automaton-based engine would measure every one of them linear. */
+  var MEASURED_CLASSES = {
+    engine: 'V8 (Node 24 / Chromium), Apple silicon',
+    measuredOn: '2026-11-05',
+    rows: [
+      { patternId: 'forcedSplit', basis: 'polynomial', degree: 0.98, r2: 1.0000,
+        range: 'n = 32,002 to 256,002', label: 'linear' },
+      { patternId: 'trimLike', basis: 'polynomial', degree: 2.09, r2: 0.9990,
+        range: 'n = 2,001 to 26,001', label: 'quadratic' },
+      { patternId: 'stackOverflow2016', basis: 'polynomial', degree: 2.02, r2: 0.9996,
+        range: 'n = 1,002 to 18,002', label: 'quadratic' },
+      { patternId: 'cloudflareFragment', basis: 'polynomial', degree: 2.98, r2: 0.9993,
+        range: 'n = 200 to 1,100', label: 'cubic' },
+      { patternId: 'cloudflareGroup', basis: 'polynomial', degree: 3.92, r2: 0.9990,
+        range: 'n = 40 to 165', label: 'quartic' },
+      { patternId: 'nestedQuant', basis: 'exponential', perChar: 1.98, r2: 0.9993,
+        range: 'n = 19 to 28', label: 'exponential' }
+    ]
+  };
+
+  function measuredClass(patternId) {
+    for (var i = 0; i < MEASURED_CLASSES.rows.length; i += 1) {
+      if (MEASURED_CLASSES.rows[i].patternId === patternId) return MEASURED_CLASSES.rows[i];
+    }
+    throw new Error('no measured class for pattern: ' + patternId);
+  }
 
   /* A fresh RegExp per compile. Sharing one instance across trials would make a later trial's
      measurement depend on an earlier trial's engine state, which is the sort of coupling that
@@ -1465,21 +2102,115 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     return new RegExp(e.source, e.flags);
   }
 
-  /* --- 2. Input construction --------------------------------------------------------------------
-     Every experiment's input is generated from one number, so an input is reproducible from the
-     chart's x-axis alone. Three shapes:
+  /* --- 2. Input construction, on the pump model -------------------------------------------------
+     An attack string on a superlinear pattern has three parts, which is the standard way the ReDoS
+     literature describes one:
 
-       prose         ordinary text: single spaces, no long whitespace run, last character a letter.
-       whitespaceRun n spaces then one '!'. The '!' is what makes the match FAIL, and failure is
-                     what forces the engine to rule out every division before it can answer.
-       aRun          n copies of 'a' then one '!', for the same reason.
+       PREFIX   gets the matcher into the ambiguous region
+       PUMP     repeats k times, and is what the ambiguity divides
+       SUFFIX   makes the overall match FAIL, so the engine must rule every division out
 
-     Note that all three FAIL to match. That is deliberate: if the ordinary input matched and the
-     adversarial input did not, the comparison would confound "different work" with "different
-     answer". Here every trial returns the same answer — false — and the only difference is how much
-     work the engine spent reaching it. */
+     So "the number of pumps" is the x-axis of every chart on this page, and an input is
+     reproducible from that one number. `kind` separates an ATTACK shape from a BENIGN one: a benign
+     input is the control, and running it on the same pattern is how a student sees that the pattern
+     alone is not the finding.
+
+     `fill` is the one shape not built by pumping: ordinary prose of a requested length, where the
+     interesting property is that it contains no long run for the ambiguity to divide. */
   var PROSE = 'the quick brown fox jumps over the lazy dog while the engineer measures where the '
             + 'time actually goes and declines to guess ';
+
+  var INPUT_SHAPES = {
+    prose: {
+      id: 'prose', kind: 'benign', mode: 'fill',
+      expectMatch: false,
+      label: 'Ordinary prose',
+      describe: 'ordinary text of length n, single spaces, ending in a letter',
+      why: 'The input an engineer had in mind. No whitespace run longer than one character, so '
+         + 'almost every division the pattern could try fails at once.'
+    },
+    whitespaceRun: {
+      id: 'whitespaceRun', kind: 'attack', mode: 'pump',
+      expectMatch: false,
+      prefix: '', pump: ' ', suffix: '!',
+      label: 'Whitespace run, then a non-space',
+      describe: '" " repeated n times, then "!"',
+      why: 'The pump is one space; the suffix is the character that makes the match fail. An '
+         + 'attacker types this into any field the pattern reads.'
+    },
+    whitespaceMiddle: {
+      id: 'whitespaceMiddle', kind: 'attack', mode: 'pump',
+      expectMatch: false,
+      prefix: 'a', pump: ' ', suffix: 'a',
+      label: 'Whitespace run with text on both sides',
+      describe: '"a", then " " repeated n times, then "a"',
+      why: 'The shape of the Stack Overflow post. The leading "a" matters: it stops the pattern’s '
+         + 'FIRST branch from matching at once, which is what leaves the expensive second branch to '
+         + 'be tried from every position.'
+    },
+    whitespaceLeading: {
+      id: 'whitespaceLeading', kind: 'benign', mode: 'pump',
+      expectMatch: true,
+      prefix: '', pump: ' ', suffix: 'x',
+      label: 'Whitespace run at the very start',
+      describe: '" " repeated n times, then "x"',
+      why: 'The same characters as the attack shape, moved. Here the pattern’s first branch '
+         + 'matches the leading run immediately and the match SUCCEEDS, so the engine never reaches '
+         + 'the expensive branch. The same pattern, and no cost at all.'
+    },
+    noEquals: {
+      id: 'noEquals', kind: 'attack', mode: 'pump',
+      expectMatch: false,
+      prefix: '', pump: 'x', suffix: '',
+      label: 'No equals sign anywhere',
+      describe: '"x" repeated n times',
+      why: 'The mandatory "=" is absent, so the match must fail, and failing means ruling out every '
+         + 'division of the input among the unbounded repetitions.'
+    },
+    whitespaceNoEquals: {
+      id: 'whitespaceNoEquals', kind: 'attack', mode: 'pump',
+      expectMatch: false,
+      prefix: '', pump: ' ', suffix: '',
+      label: 'Whitespace, no equals sign',
+      describe: '" " repeated n times',
+      why: 'Whitespace satisfies the leading punctuation repetition as well as the two dot-stars, '
+         + 'so this input divides four ways rather than three. The pump is chosen to reach every '
+         + 'ambiguous repetition in the pattern.'
+    },
+    withEquals: {
+      id: 'withEquals', kind: 'benign', mode: 'pump',
+      expectMatch: true,
+      prefix: '', pump: 'x', suffix: '=1',
+      label: 'An equals sign at the end',
+      describe: '"x" repeated n times, then "=1"',
+      why: 'The input the rule was written for. The mandatory "=" is present, so the match '
+         + 'SUCCEEDS on the first division the engine tries and nothing is ruled out.'
+    },
+    aRun: {
+      id: 'aRun', kind: 'attack', mode: 'pump',
+      expectMatch: false,
+      prefix: '', pump: 'a', suffix: '!',
+      label: 'Run of a, then a non-a',
+      describe: '"a" repeated n times, then "!"',
+      why: 'The pump is one "a"; the "!" is what the nested repetition can never consume. Note the '
+         + 'range this needs: tens of characters, not thousands.'
+    },
+    aRunMatching: {
+      id: 'aRunMatching', kind: 'benign', mode: 'pump',
+      expectMatch: true,
+      prefix: '', pump: 'a', suffix: '',
+      label: 'Run of a, nothing else',
+      describe: '"a" repeated n times',
+      why: 'The same pattern on an input it accepts. A match that SUCCEEDS can stop at the first '
+         + 'success, so none of the 2^(n-1) divisions is ever enumerated.'
+    }
+  };
+
+  function findInputShape(id) {
+    var s = INPUT_SHAPES[id];
+    if (!s) throw new Error('unknown input shape: ' + id);
+    return s;
+  }
 
   function buildProse(n) {
     if (n < 2) throw new Error('prose input needs at least 2 characters');
@@ -1493,156 +2224,247 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     return s;
   }
 
-  function buildInput(experimentId, n) {
-    var xp = findExperiment(experimentId);
-    if (!(typeof n === 'number') || !isFinite(n) || n !== Math.floor(n) || n < 1) {
-      throw new Error('input length must be a positive integer, got ' + n);
-    }
-    if (xp.inputKind === 'prose') return buildProse(n);
-    if (xp.inputKind === 'whitespaceRun') return repeat(' ', n) + '!';
-    if (xp.inputKind === 'aRun') return repeat('a', n) + '!';
-    throw new Error('unknown input kind: ' + xp.inputKind);
-  }
-
   function repeat(ch, n) {
     /* String.prototype.repeat, via a helper so the one place that could throw on a silly n is
        named and tested. */
     return new Array(n + 1).join(ch);
   }
 
+  function buildInput(ref, n) {
+    var xp = findExperiment(ref);
+    if (!(typeof n === 'number') || !isFinite(n) || n !== Math.floor(n) || n < 1) {
+      throw new Error('pump count must be a positive integer, got ' + n);
+    }
+    var shape = findInputShape(xp.inputId);
+    if (shape.mode === 'fill') return buildProse(n);
+    return shape.prefix + repeat(shape.pump, n) + shape.suffix;
+  }
+
   /* The shape, as a reader should describe it, independent of n. */
-  function describeInputShape(experimentId) {
-    var xp = findExperiment(experimentId);
-    if (xp.inputKind === 'prose') return 'ordinary prose of length n, single spaces, ending in a letter';
-    if (xp.inputKind === 'whitespaceRun') return '" " repeated n times, then "!"';
-    if (xp.inputKind === 'aRun') return '"a" repeated n times, then "!"';
-    throw new Error('unknown input kind: ' + xp.inputKind);
+  function describeInputShape(ref) {
+    return findInputShape(findExperiment(ref).inputId).describe;
   }
 
   /* A short, printable excerpt — the head and tail of the generated string with the middle elided,
      so a reader can see the structure without the page rendering 28,000 spaces. */
-  function excerptInput(experimentId, n, edge) {
-    var s = buildInput(experimentId, n);
+  function excerptInput(ref, n, edge) {
+    var s = buildInput(ref, n);
     var k = edge || 24;
     var vis = function (t) { return t.replace(/ /g, '·').replace(/\t/g, '→').replace(/\n/g, '¶'); };
     if (s.length <= 2 * k + 12) return vis(s);
     return vis(s.slice(0, k)) + ' …[' + (s.length - 2 * k) + ' more]… ' + vis(s.slice(-k));
   }
 
-  /* --- 3. The four experiments ------------------------------------------------------------------
-     `expectedGrowth` is what the STRUCTURE of the expression predicts, not a measured claim and not
-     something any test asserts about a timing ratio. Engines differ; the page shows what it
-     measured and asks the student to explain it from the structure. */
+  /* --- 3. Configurations: three controls, and the named baselines over them ---------------------
+     A CONFIGURATION is one setting of the three adjustable parameters: which pattern, which input
+     shape, how many pumps. Everything downstream — a trial, a sweep, the model, the chart — is
+     keyed on a configuration rather than on a preset, so a student who moves one control gets a
+     measurement of exactly that move.
 
-  /* Ladders are geometric-ish rather than uniform, for a reason that matters to the budget: the
-     sweep stops at the FIRST length that exceeds the budget, so the largest execution the page can
+     The named baselines below are configurations with a name, an ordinal and a claim. They exist so
+     a guided experiment can be loaded in one click, and so the classroom sequence can refer to
+     "experiment 2" and mean something stable. They are presets OF the three controls, not a
+     parallel mechanism — which is why `findExperiment` accepts a baseline id, a canonical
+     `pattern.input` id, or a configuration object, and always answers with the same record shape.
+
+     Ladders are geometric-ish rather than uniform, for a reason that matters to the budget: a sweep
+     stops at the FIRST pump count that exceeds the budget, so the largest execution the page can
      provoke is roughly one ladder step beyond the last affordable one. With a step ratio near 1.3
-     (whitespace) or 2 (nested quantifier, where each +1 doubles the work), the overshoot past the
-     250 ms budget is bounded at about 2x — not the 100x a uniform ladder to a large maximum would
-     allow. The ladder is part of the resource bound, not merely a choice of x-axis. */
-  var WHITESPACE_LADDER = [500, 1000, 2000, 3000, 4000, 6000, 8000, 10000, 12000, 14000,
-    16000, 18000, 20000, 24000, 28000];
-  /* The nested-quantifier ladder stops at 28 rather than running higher, and the reason is the
-     termination path rather than the chart. `terminate()` detaches a worker; it does not promise
-     that the underlying thread stops at once, so the top of this ladder sets how long a detached
-     thread may spin after the page has already recovered. At 28 the modelled work is ~2^27, which
-     measures in the low seconds — comfortably past the 400 ms deadline the demonstration needs, and
-     short enough that a classroom machine is not left burning a core. */
-  var NESTED_LADDER = [12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28];
+     the overshoot past the 250 ms budget is bounded at about 2x — not the 100x a uniform ladder to
+     a large maximum would allow. The ladder is part of the resource bound, not merely a choice of
+     x-axis.
 
-  var EXPERIMENTS = [
+     Each pattern's ladder is scaled to where ITS class reaches the budget, which is three orders of
+     magnitude apart across the six: quadratic needs tens of thousands of characters, the quartic a
+     couple of hundred, the exponential a couple of dozen. That spread is itself the lesson. */
+  var LADDERS = {
+    wide: [500, 1000, 2000, 3000, 4000, 6000, 8000, 10000, 12000, 14000,
+      16000, 18000, 20000, 24000, 28000],
+    cubic: [50, 100, 150, 200, 260, 330, 420, 540, 700, 900, 1100, 1400],
+    quartic: [20, 28, 36, 44, 55, 70, 85, 100, 120, 145, 175, 210],
+    /* The nested-quantifier ladder stops at 28 rather than running higher, and the reason is the
+       termination path rather than the chart. `terminate()` detaches a worker; it does not promise
+       that the underlying thread stops at once, so the top of this ladder sets how long a detached
+       thread may spin after the page has already recovered. At 28 the modelled work is ~2^27, which
+       measures in the low seconds — comfortably past the 400 ms deadline the demonstration needs,
+       and short enough that a classroom machine is not left burning a core. */
+    nested: [12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  };
+
+  /* Which input shapes each pattern offers, and which the page starts on. The first entry of
+     `inputs` is the default, and every pattern offers at least one attack shape and one benign one
+     so the "same pattern, different input" comparison is always available. */
+  var PATTERN_INPUTS = {
+    forcedSplit: { inputs: ['whitespaceRun', 'prose'], ladder: 'wide', defaultPumps: 16000 },
+    trimLike: { inputs: ['whitespaceRun', 'prose'], ladder: 'wide', defaultPumps: 16000 },
+    stackOverflow2016: { inputs: ['whitespaceMiddle', 'whitespaceLeading', 'prose'],
+      ladder: 'wide', defaultPumps: 14000 },
+    cloudflareFragment: { inputs: ['noEquals', 'withEquals'], ladder: 'cubic', defaultPumps: 700 },
+    cloudflareGroup: { inputs: ['whitespaceNoEquals', 'withEquals'], ladder: 'quartic',
+      defaultPumps: 120 },
+    nestedQuant: { inputs: ['aRun', 'aRunMatching'], ladder: 'nested', defaultPumps: 24 }
+  };
+
+  function patternIds() { return Object.keys(PATTERN_INPUTS); }
+
+  function inputsForPattern(patternId) {
+    var p = PATTERN_INPUTS[patternId];
+    if (!p) throw new Error('unknown pattern: ' + patternId);
+    return p.inputs.slice();
+  }
+
+  /* The four baselines the classroom sequence names, plus two for the incident patterns. The
+     ordinals and labels are referenced by the lecture notes, so they are stable. */
+  var BASELINES = [
     {
-      id: 'ordinary',
-      ordinal: 1,
-      label: 'Ordinary input',
-      expression: 'trimLike',
-      inputKind: 'prose',
-      family: 'whitespace',
-      adversarial: false,
-      expectedGrowth: 'approximately linear',
-      expectedGrowthShort: 'linear',
-      modelOfWork: 'n',
+      id: 'ordinary', ordinal: 1, label: 'Ordinary input',
+      patternId: 'trimLike', inputId: 'prose', pumps: 16000,
+      expectedGrowth: 'approximately linear', expectedGrowthShort: 'linear',
       claim: 'The expression is the pathological one. The input is not. Most division points fail '
-           + 'immediately, because an ordinary whitespace run is one character long.',
-      ladder: WHITESPACE_LADDER,
-      defaultMax: 16000
+           + 'immediately, because an ordinary whitespace run is one character long.'
     },
     {
-      id: 'quadratic',
-      ordinal: 2,
-      label: 'Quadratic ReDoS',
-      expression: 'trimLike',
-      inputKind: 'whitespaceRun',
-      family: 'whitespace',
-      adversarial: true,
-      expectedGrowth: 'approximately quadratic',
-      expectedGrowthShort: 'quadratic',
-      modelOfWork: 'n(n+1)/2',
+      id: 'quadratic', ordinal: 2, label: 'Quadratic ReDoS',
+      patternId: 'trimLike', inputId: 'whitespaceRun', pumps: 16000,
+      expectedGrowth: 'approximately quadratic', expectedGrowthShort: 'quadratic',
       claim: 'Same expression, same deployment, same code path. The adversary changed only the '
-           + 'input: a long run of whitespace with one non-whitespace character at the end.',
-      ladder: WHITESPACE_LADDER,
-      defaultMax: 16000
+           + 'input: a long run of whitespace with one non-whitespace character at the end.'
     },
     {
-      id: 'exponential',
-      ordinal: 3,
-      label: 'Exponential ReDoS',
-      expression: 'nestedQuant',
-      inputKind: 'aRun',
-      family: 'nested',
-      adversarial: true,
-      expectedGrowth: 'potentially exponential',
-      expectedGrowthShort: 'exponential',
-      modelOfWork: '2^(n-1)',
+      id: 'exponential', ordinal: 3, label: 'Exponential ReDoS',
+      patternId: 'nestedQuant', inputId: 'aRun', pumps: 24,
+      expectedGrowth: 'potentially exponential', expectedGrowthShort: 'exponential',
       claim: 'A repetition nested inside a repetition. Note the input range: tens of characters, '
            + 'not thousands. An adversary needs no volume here — a single short request is the '
-           + 'whole attack.',
-      ladder: NESTED_LADDER,
-      defaultMax: 24
+           + 'whole attack.'
     },
     {
-      id: 'safe',
-      ordinal: 4,
-      label: 'Safe alternative',
-      expression: 'forcedSplit',
-      inputKind: 'whitespaceRun',
-      family: 'whitespace',
-      adversarial: true,
-      expectedGrowth: 'approximately linear',
-      expectedGrowthShort: 'linear',
-      modelOfWork: 'n',
+      id: 'safe', ordinal: 4, label: 'Safe alternative',
+      patternId: 'forcedSplit', inputId: 'whitespaceRun', pumps: 16000,
+      expectedGrowth: 'approximately linear', expectedGrowthShort: 'linear',
       claim: 'Byte-identical input to Experiment 2 — the adversary is doing exactly the same thing '
            + '— against an expression that decides exactly the same question. Only the engineer '
-           + 'changed anything.',
-      ladder: WHITESPACE_LADDER,
-      defaultMax: 16000
+           + 'changed anything.'
+    },
+    {
+      id: 'stackoverflow', ordinal: 5, label: 'Stack Overflow 2016',
+      patternId: 'stackOverflow2016', inputId: 'whitespaceMiddle', pumps: 14000,
+      expectedGrowth: 'approximately quadratic', expectedGrowthShort: 'quadratic',
+      claim: 'The expression from the Stack Overflow outage, on the shape of the post that caused '
+           + 'it. Move the whitespace run to the start of the string and the cost disappears.'
+    },
+    {
+      id: 'cloudflare', ordinal: 6, label: 'Cloudflare 2019',
+      patternId: 'cloudflareFragment', inputId: 'noEquals', pumps: 700,
+      expectedGrowth: 'approximately cubic', expectedGrowthShort: 'cubic',
+      claim: 'The fragment the Cloudflare postmortem names. One more ambiguous repetition than the '
+           + 'quadratic case, and one degree more cost — which is the rule, not a coincidence.'
     }
   ];
 
-  function findExperiment(id) {
-    for (var i = 0; i < EXPERIMENTS.length; i += 1) {
-      if (EXPERIMENTS[i].id === id) return EXPERIMENTS[i];
-    }
-    throw new Error('unknown experiment: ' + id);
+  function baselineIds() {
+    return BASELINES.map(function (b) { return b.id; });
   }
 
+  function findBaseline(id) {
+    for (var i = 0; i < BASELINES.length; i += 1) if (BASELINES[i].id === id) return BASELINES[i];
+    return null;
+  }
+
+  /* The baselines as resolved configuration records — what the chart's series, the legend and the
+     modelled-candidate curves iterate over. One array, derived from the table above rather than
+     maintained beside it. */
+  var EXPERIMENTS = BASELINES.map(function (b) { return findExperiment(b.id); });
+
+  function configId(patternId, inputId) { return patternId + '.' + inputId; }
+
+  /**
+   * Resolve any reference to a configuration RECORD.
+   *
+   * Accepts a baseline id ('quadratic'), a canonical configuration id ('trimLike.prose'), or an
+   * object carrying `patternId` and `inputId`. Always answers with the same shape, so every
+   * downstream function — including the one shipped into the worker — takes one argument type and
+   * needs no knowledge of which form the caller held.
+   */
+  function findExperiment(ref) {
+    var patternId;
+    var inputId;
+    var baseline = null;
+    if (ref && typeof ref === 'object') {
+      patternId = ref.patternId;
+      inputId = ref.inputId;
+    } else if (typeof ref === 'string' && ref.indexOf('.') > 0) {
+      var parts = ref.split('.');
+      patternId = parts[0];
+      inputId = parts[1];
+    } else {
+      baseline = findBaseline(ref);
+      if (!baseline) throw new Error('unknown experiment: ' + ref);
+      patternId = baseline.patternId;
+      inputId = baseline.inputId;
+    }
+    var pattern = EXPRESSIONS[patternId];
+    if (!pattern) throw new Error('unknown pattern: ' + patternId);
+    var meta = PATTERN_INPUTS[patternId];
+    if (meta.inputs.indexOf(inputId) < 0) {
+      throw new Error('pattern ' + patternId + ' does not offer input ' + inputId);
+    }
+    var shape = findInputShape(inputId);
+    if (!baseline) {
+      /* A free combination may coincide with a baseline; if it does, report the baseline's name and
+         ordinal so the chart legend and the classroom reference agree. */
+      for (var i = 0; i < BASELINES.length; i += 1) {
+        if (BASELINES[i].patternId === patternId && BASELINES[i].inputId === inputId) {
+          baseline = BASELINES[i];
+          break;
+        }
+      }
+    }
+    return {
+      id: configId(patternId, inputId),
+      patternId: patternId,
+      inputId: inputId,
+      expression: patternId,
+      inputKind: shape.kind,
+      baselineId: baseline ? baseline.id : null,
+      ordinal: baseline ? baseline.ordinal : null,
+      label: baseline ? baseline.label : pattern.shortName + ' · ' + shape.label,
+      adversarial: shape.kind === 'attack',
+      family: pattern.hazard === 'exponential' ? 'nested' : 'divisions',
+      complexityClass: shape.kind === 'attack' ? pattern.complexityClass : 'linear',
+      expectedGrowth: baseline ? baseline.expectedGrowth
+        : (shape.kind === 'attack' ? 'approximately ' + pattern.complexityClass
+          : 'approximately linear'),
+      expectedGrowthShort: baseline ? baseline.expectedGrowthShort
+        : (shape.kind === 'attack' ? pattern.complexityClass : 'linear'),
+      modelOfWork: shape.kind === 'attack' ? pattern.modelOfWork : 'n',
+      degree: shape.kind === 'attack' ? pattern.degree : 1,
+      claim: baseline ? baseline.claim : shape.why,
+      ladder: LADDERS[meta.ladder],
+      defaultMax: baseline ? baseline.pumps : meta.defaultPumps
+    };
+  }
+
+  /* Kept under its original name because the page, the worker and the tests all call it; what it
+     returns is now every CONFIGURATION a baseline names. */
   function experimentIds() {
-    return EXPERIMENTS.map(function (x) { return x.id; });
+    return BASELINES.map(function (b) { return configId(b.patternId, b.inputId); });
   }
 
   /* The ladder clipped to a caller-chosen maximum, with at least two points so a sweep always
      produces something comparable. */
-  function lengthLadder(experimentId, maxLength) {
-    var xp = findExperiment(experimentId);
+  function lengthLadder(ref, maxLength) {
+    var xp = findExperiment(ref);
     var cap = typeof maxLength === 'number' ? maxLength : xp.defaultMax;
     var out = xp.ladder.filter(function (n) { return n <= cap; });
     if (out.length < 2) out = xp.ladder.slice(0, 2);
     return out;
   }
 
-  function lengthBounds(experimentId) {
-    var l = findExperiment(experimentId).ladder;
-    return { min: l[0], max: l[l.length - 1], step: 1, defaultMax: findExperiment(experimentId).defaultMax };
+  function lengthBounds(ref) {
+    var xp = findExperiment(ref);
+    var l = xp.ladder;
+    return { min: l[0], max: l[l.length - 1], step: 1, defaultMax: xp.defaultMax };
   }
 
   /* --- 4. Correctness of the curated patterns ---------------------------------------------------
@@ -1666,7 +2488,23 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     { expression: 'forcedSplit', input: 'abc', shouldMatch: false, note: 'no trailing whitespace' },
     { expression: 'forcedSplit', input: '  !', shouldMatch: false, note: 'trailing character is not whitespace' },
     { expression: 'forcedSplit', input: ' ', shouldMatch: true, note: 'all whitespace, via the second branch' },
-    { expression: 'forcedSplit', input: '', shouldMatch: false, note: 'empty' }
+    { expression: 'forcedSplit', input: '', shouldMatch: false, note: 'empty' },
+
+    /* The Stack Overflow pattern. The two rows that matter are the last two: the same characters
+       in a different place decide whether the cheap first branch or the expensive second one
+       answers, which is the whole of that incident's input sensitivity. */
+    { expression: 'stackOverflow2016', input: 'abc', shouldMatch: false, note: 'no whitespace at either end' },
+    { expression: 'stackOverflow2016', input: 'abc  ', shouldMatch: true, note: 'trailing run, second branch' },
+    { expression: 'stackOverflow2016', input: '  abc', shouldMatch: true, note: 'leading run, first branch' },
+    { expression: 'stackOverflow2016', input: '‌', shouldMatch: true, note: 'a zero-width non-joiner counts as whitespace here' },
+    { expression: 'stackOverflow2016', input: 'a  a', shouldMatch: false, note: 'the run is in the middle: neither branch matches, and the second is tried everywhere' },
+
+    /* The Cloudflare patterns. Both are unanchored and both need one '=' to succeed. */
+    { expression: 'cloudflareFragment', input: 'x=1', shouldMatch: true, note: 'an equals sign is present' },
+    { expression: 'cloudflareFragment', input: 'xxxx', shouldMatch: false, note: 'no equals sign: the match must fail' },
+    { expression: 'cloudflareFragment', input: '=', shouldMatch: true, note: 'the mandatory character alone' },
+    { expression: 'cloudflareGroup', input: ' - x=1', shouldMatch: true, note: 'punctuation run, then an equals sign' },
+    { expression: 'cloudflareGroup', input: '    ', shouldMatch: false, note: 'whitespace and no equals sign' }
   ];
 
   function checkMatchExamples() {
@@ -1756,6 +2594,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
     var re = compile(xp.expression);
     var input = buildInput(spec.experimentId, length);
+    /* Declared on the input shape rather than assumed. An ATTACK shape must fail — that is what
+       forces the engine to rule every division out, and a shape that matched would confound "more
+       work" with "a different answer". A BENIGN shape is the control, and three of them match on
+       purpose: the point of the Stack Overflow leading-whitespace shape is that the same pattern
+       succeeds at once and costs nothing. A self-test checks each declaration against the real
+       regex, so the field is a pin rather than a restatement. */
+    var expectMatch = findInputShape(xp.inputId).expectMatch;
 
     var repeats = 0;
     var matched = false;
@@ -1768,13 +2613,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     } while (elapsed < minSample && repeats < maxReps && elapsed < budget);
 
     return {
-      experimentId: spec.experimentId,
+      experimentId: xp.id,
       expressionId: xp.expression,
       length: length,
       inputLength: input.length,
       matched: matched,
-      expectedMatch: false,
-      matchedAsExpected: matched === false,
+      expectedMatch: expectMatch,
+      matchedAsExpected: matched === expectMatch,
       repeats: repeats,
       totalMs: elapsed,
       msPerExecution: elapsed / repeats,
@@ -1879,7 +2724,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       length: length,
       inputLength: null,
       matched: null,
-      expectedMatch: false,
+      expectedMatch: findInputShape(findExperiment(sweep.experimentId).inputId).expectMatch,
       matchedAsExpected: null,
       repeats: 0,
       totalMs: typeof i.elapsedMs === 'number' ? i.elapsedMs : sweep.deadlineMs,
@@ -1978,9 +2823,37 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   function predictedCandidates(experimentId, n) {
     var xp = findExperiment(experimentId);
     if (xp.modelOfWork === 'n') return n;
-    if (xp.modelOfWork === 'n(n+1)/2') return n * (n + 1) / 2;
     if (xp.modelOfWork === '2^(n-1)') return Math.pow(2, n - 1);
+    if (xp.modelOfWork === 'poly') return polynomialWork(n, xp.degree);
     throw new Error('unknown work model: ' + xp.modelOfWork);
+  }
+
+  /**
+   * The modelled work for a pattern with `degree` ambiguous repetitions before a mandatory
+   * character the input does not supply.
+   *
+   * The combinatorial argument, which generalises the two special cases the page used to carry
+   * separately. With d unbounded repetitions in sequence, a run of n characters can be divided
+   * among them in C(n + d - 1, d - 1) ways — that is Θ(n^(d-1)) divisions. Each division costs the
+   * matcher a scan to the mandatory character before it can be ruled out, so the WORK is one degree
+   * higher: Θ(n^d). Written as C(n + d - 1, d), which is exactly that product and is the closed
+   * form the chart draws.
+   *
+   *   d = 1  →  n            linear      the safe alternative
+   *   d = 2  →  n(n+1)/2     quadratic   the trim-like and Stack Overflow patterns
+   *   d = 3  →  …/6          cubic       the Cloudflare fragment
+   *   d = 4  →  …/24         quartic     the Cloudflare trailing group
+   *
+   * The measured degrees in MEASURED_CLASSES track these, which is the agreement the exercise asks
+   * a student to check — and the place to look when they disagree is the engine's optimisations,
+   * not this function.
+   */
+  function polynomialWork(n, degree) {
+    var d = typeof degree === 'number' ? degree : 2;
+    if (d < 1) throw new Error('a polynomial work model needs a degree of at least 1');
+    var out = 1;
+    for (var i = 0; i < d; i += 1) out = out * (n + i) / (i + 1);
+    return out;
   }
 
   function predictedCandidateCurve(experimentId, maxLength) {
@@ -2060,12 +2933,18 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       };
     }
     var m = typeof illustrativeN === 'number' ? illustrativeN : 8;
+    var d = xp.degree || 2;
+    var FORMULAE = { 1: 'n', 2: 'n(n+1)/2', 3: 'n(n+1)(n+2)/6', 4: 'n(n+1)(n+2)(n+3)/24' };
     return {
       kind: 'splitPoints',
-      label: 'Division points the leading .* can choose, and the whitespace scan each one provokes',
+      label: 'Division points the first unbounded repetition can choose, and the scan each one '
+           + 'provokes before the match can fail',
       illustrativeN: m,
+      degree: d,
+      repetitions: d,
       model: splitPointModel(m),
-      formula: 'n(n+1)/2',
+      formula: FORMULAE[d] || 'C(n+' + (d - 1) + ', ' + d + ')',
+      countAt: function (k) { return polynomialWork(k, d); },
       isModel: true
     };
   }
@@ -2200,12 +3079,51 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     }
     function assert(cond, message) { if (!cond) throw new Error(message || 'assertion failed'); }
 
-    check('Four experiments, with the documented growth expectations', function () {
-      assert(EXPERIMENTS.length === 4, EXPERIMENTS.length + ' experiments');
-      var growth = EXPERIMENTS.map(function (x) { return x.expectedGrowth; });
-      assert(growth.join(' | ') === 'approximately linear | approximately quadratic | '
-        + 'potentially exponential | approximately linear', growth.join(' | '));
-      return growth.join(', ');
+    check('Six named baselines span the complexity ladder, each labelled by MEASUREMENT', function () {
+      assert(BASELINES.length === 6, BASELINES.length + ' baselines');
+      /* The ordinals the lecture notes and the classroom sequence refer to. */
+      var ordinals = BASELINES.map(function (b) { return b.ordinal; }).join(',');
+      assert(ordinals === '1,2,3,4,5,6', ordinals);
+      /* Every pattern carries a measured class, and the label it advertises is the one that was
+         measured. This is the assertion that stops the page printing a complexity class the
+         instrument beside it would refute. */
+      var classes = [];
+      patternIds().forEach(function (pid) {
+        var row = measuredClass(pid);
+        assert(row.label === EXPRESSIONS[pid].complexityClass,
+          pid + ' advertises ' + EXPRESSIONS[pid].complexityClass + ' and measured ' + row.label);
+        if (row.basis === 'polynomial') {
+          /* A degree measured over a finite range approaches its asymptote from below, so the
+             tolerance is one-sided and generous downward. */
+          var d = EXPRESSIONS[pid].degree;
+          assert(row.degree > d - 1.1 && row.degree < d + 0.5,
+            pid + ': declared degree ' + d + ', measured ' + row.degree);
+        } else {
+          assert(row.perChar > 1.5, pid + ': exponential rate ' + row.perChar + ' per character');
+        }
+        classes.push(row.label);
+      });
+      assert(classes.join(',') === 'linear,quadratic,quadratic,cubic,quartic,exponential',
+        classes.join(','));
+      return classes.join(' · ') + ' in ' + MEASURED_CLASSES.engine;
+    });
+
+    check('The modelled work matches the declared degree of every pattern', function () {
+      /* d ambiguous repetitions cost Θ(n^d); check the ratio rather than the value, because the
+         constant is what the closed form fixes and the exponent is what the class means. */
+      patternIds().forEach(function (pid) {
+        var e = EXPRESSIONS[pid];
+        if (e.modelOfWork !== 'poly') return;
+        var lo = polynomialWork(1000, e.degree);
+        var hi = polynomialWork(2000, e.degree);
+        var measuredExponent = Math.log(hi / lo) / Math.log(2);
+        assert(Math.abs(measuredExponent - e.degree) < 0.02,
+          pid + ': the closed form grows as n^' + measuredExponent.toFixed(3)
+          + ' but declares degree ' + e.degree);
+      });
+      assert(polynomialWork(8, 2) === 36, 'n(n+1)/2 at n=8 is ' + polynomialWork(8, 2));
+      assert(polynomialWork(4, 3) === 20, 'the cubic form at n=4 is ' + polynomialWork(4, 3));
+      return 'four polynomial degrees verified against their closed forms';
     });
 
     check('Generated inputs match their documented shape', function () {
@@ -2216,15 +3134,46 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       assert(buildInput('quadratic', 50).length === 51, 'whitespace-run length');
       assert(/^a+!$/.test(buildInput('exponential', 20)), 'a-run shape');
       assert(buildInput('exponential', 20).length === 21, 'a-run length');
-      return 'three shapes verified';
+      /* The pump model: an input of k pumps is prefix + pump x k + suffix, exactly. */
+      assert(buildInput('stackoverflow', 30) === 'a' + new Array(31).join(' ') + 'a',
+        'the Stack Overflow shape is not prefix + pump + suffix');
+      assert(buildInput('cloudflare', 40).length === 40, 'the Cloudflare attack shape has a suffix');
+      return 'pump model verified on five shapes';
     });
 
-    check('Experiments 2 and 4 receive byte-identical input', function () {
-      for (var i = 0; i < WHITESPACE_LADDER.length; i += 1) {
-        var n = WHITESPACE_LADDER[i];
-        assert(buildInput('quadratic', n) === buildInput('safe', n), 'differ at n = ' + n);
-      }
-      return 'identical at all ' + WHITESPACE_LADDER.length + ' ladder lengths';
+    check('Every pattern offers an attack shape and a benign one, and each answers as declared', function () {
+      patternIds().forEach(function (pid) {
+        var inputs = inputsForPattern(pid);
+        var kinds = inputs.map(function (iid) { return findInputShape(iid).kind; });
+        assert(kinds.indexOf('attack') >= 0, pid + ' offers no attack input');
+        assert(kinds.indexOf('benign') >= 0, pid + ' offers no benign control input');
+        inputs.forEach(function (iid) {
+          var shape = findInputShape(iid);
+          var cfg = { patternId: pid, inputId: iid };
+          /* Three and eight pumps, and NOT one pump more. This assertion runs the real matcher on
+             every pattern including the exponential one, where 2^(k-1) means a k of 60 does not
+             return inside the lifetime of the room — it hung the suite once while this test was
+             being written. A correctness check must be cheap at every pattern in the set, so the
+             pump counts are chosen for the worst member rather than for the average one. */
+          [3, 8].forEach(function (k) {
+            var got = compile(pid).test(buildInput(cfg, k));
+            assert(got === shape.expectMatch, pid + '.' + iid + ' at ' + k + ' pumps: declared '
+              + shape.expectMatch + ', the engine answered ' + got);
+          });
+        });
+      });
+      return patternIds().length + ' patterns, every input shape checked at 3 and 8 pumps';
+    });
+
+    check('An attack input must FAIL, so every trial does equal work for equal answers', function () {
+      patternIds().forEach(function (pid) {
+        inputsForPattern(pid).forEach(function (iid) {
+          if (findInputShape(iid).kind !== 'attack') return;
+          assert(findInputShape(iid).expectMatch === false,
+            pid + '.' + iid + ' is an attack shape that is declared to match');
+        });
+      });
+      return 'every attack shape fails by construction';
     });
 
     check('Every curated expression matches and fails as documented', function () {
@@ -2240,13 +3189,17 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       return r.tested + ' strings, exhaustive to length 4';
     });
 
-    check('Every generated input fails to match, so every trial does equal work for equal answers', function () {
-      ['ordinary', 'quadratic', 'exponential', 'safe'].forEach(function (id) {
-        var xp = findExperiment(id);
-        var n = xp.ladder[0];
-        assert(compile(xp.expression).test(buildInput(id, n)) === false, id + ' matched at n = ' + n);
-      });
-      return 'all four fail, as intended';
+    check('Baselines 2 and 4 receive byte-identical input, so only the engineer changed anything', function () {
+      var ladder = LADDERS.wide;
+      for (var i = 0; i < ladder.length; i += 1) {
+        var n = ladder[i];
+        assert(buildInput('quadratic', n) === buildInput('safe', n), 'differ at n = ' + n);
+      }
+      /* And they reach the same verdict on those identical bytes, which is what makes the safe
+         alternative a replacement rather than a different question cheaply answered. */
+      assert(compile('trimLike').test(buildInput('quadratic', 400))
+        === compile('forcedSplit').test(buildInput('safe', 400)), 'the two verdicts differ');
+      return 'identical at all ' + ladder.length + ' ladder lengths, same verdict';
     });
 
     check('A trial reports what it measured and respects its budget', function () {
@@ -2267,12 +3220,16 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
     check('A sweep halts on the first budget overrun and says which length', function () {
       var s = createSweep({ experimentId: 'quadratic', maxLength: 4000, budgetMs: 250 });
+      /* The sweep keys on the CANONICAL configuration id, not on the baseline name it was created
+         from, so a synthetic result must carry the same one or it is correctly rejected as stale. */
+      var key = s.experimentId;
+      assert(key === 'trimLike.whitespaceRun', 'canonical id is ' + key);
       var spec = nextTrialSpec(s);
       assert(spec !== null, 'no first trial');
-      recordResult(s, { experimentId: 'quadratic', length: spec.length, budgetExceeded: false,
+      recordResult(s, { experimentId: key, length: spec.length, budgetExceeded: false,
         msPerExecution: 1, totalMs: 1, matchedAsExpected: true, terminated: false });
       var second = nextTrialSpec(s);
-      recordResult(s, { experimentId: 'quadratic', length: second.length, budgetExceeded: true,
+      recordResult(s, { experimentId: key, length: second.length, budgetExceeded: true,
         msPerExecution: 300, totalMs: 300, matchedAsExpected: true, terminated: false });
       assert(s.status === 'halted', 'status ' + s.status);
       assert(s.halt.reason === 'budget', 'reason ' + s.halt.reason);
@@ -2295,7 +3252,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       var s = createSweep({ experimentId: 'quadratic', maxLength: 2000 });
       var spec = nextTrialSpec(s);
       recordTermination(s, { length: spec.length, elapsedMs: 400 });
-      var verdict = recordResult(s, { experimentId: 'quadratic', length: spec.length,
+      var verdict = recordResult(s, { experimentId: s.experimentId, length: spec.length,
         budgetExceeded: false, msPerExecution: 1, totalMs: 1, terminated: false });
       assert(verdict === 'stale', 'verdict ' + verdict);
       return 'stale result rejected';
@@ -2364,6 +3321,11 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
     EXPRESSIONS: EXPRESSIONS,
     EXPERIMENTS: EXPERIMENTS,
+    BASELINES: BASELINES,
+    INPUT_SHAPES: INPUT_SHAPES,
+    LADDERS: LADDERS,
+    PATTERN_INPUTS: PATTERN_INPUTS,
+    MEASURED_CLASSES: MEASURED_CLASSES,
     MATCH_EXAMPLES: MATCH_EXAMPLES,
     EQUIVALENCE_PAIR: EQUIVALENCE_PAIR,
     EQUIVALENCE_ALPHABET: EQUIVALENCE_ALPHABET,
@@ -2378,6 +3340,15 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     experimentIds: experimentIds,
     lengthLadder: lengthLadder,
     lengthBounds: lengthBounds,
+
+    patternIds: patternIds,
+    inputsForPattern: inputsForPattern,
+    findInputShape: findInputShape,
+    baselineIds: baselineIds,
+    findBaseline: findBaseline,
+    configId: configId,
+    measuredClass: measuredClass,
+    polynomialWork: polynomialWork,
 
     checkMatchExamples: checkMatchExamples,
     equivalenceDivergences: equivalenceDivergences,
@@ -2494,9 +3465,17 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     return WORKER_PREFIX + engine + '\n(' + workerMain.toString() + ')();\n';
   }
 
+  /* The three controls ARE the interface's state. `experimentId` is derived from the first two and
+     kept beside them because every engine call takes a configuration reference; it is written only
+     by `applyConfig`, never set directly, so the control values and the configuration cannot drift
+     apart. Default: the quadratic case, which is the one the classroom sequence opens on. */
+  var DEFAULT_BASELINE = 'quadratic';
   var ui = {
-    experimentId: 'quadratic',
+    patternId: R.findBaseline(DEFAULT_BASELINE).patternId,
+    inputId: R.findBaseline(DEFAULT_BASELINE).inputId,
+    experimentId: null,
     lengths: {},
+    runHistory: {},
     scale: 'linear',
     mode: 'ladder',
     mitigations: [],
@@ -2511,6 +3490,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     reduced: window.matchMedia
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
   };
+  ui.experimentId = R.configId(ui.patternId, ui.inputId);
   R.EXPERIMENTS.forEach(function (xp) { ui.lengths[xp.id] = xp.defaultMax; });
 
   /* ---------- the worker ---------- */
@@ -2775,6 +3755,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   function finishSweep() {
     clearDeadline();
     run.pending = null;
+    if (run.sweep) recordRunHistory(run.sweep);
     var halt = run.sweep && run.sweep.halt;
     if (halt && halt.reason === 'budget') {
       setStatus('halted', 'the sweep stopped at n = ' + halt.length.toLocaleString());
@@ -2794,58 +3775,164 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     run.busy = false;
     ui.queue = [];
     ui.sweeps = {};
+    ui.runHistory = {};
+    /* Reset restores the DEFAULT STATE, which includes the three controls — not merely the
+       measurements. A reset that left a student on the fifth pattern at a hand-typed pump count
+       would not be a reset. */
+    ui.scale = 'linear';
+    Array.prototype.forEach.call(document.querySelectorAll('#scale-seg button[data-scale]'),
+      function (el) {
+        el.setAttribute('aria-pressed', el.getAttribute('data-scale') === 'linear' ? 'true' : 'false');
+      });
+    R.EXPERIMENTS.forEach(function (xp) { ui.lengths[xp.id] = xp.defaultMax; });
     $('kill-notice').hidden = true;
     setStatus('idle', 'reset');
-    render();
+    loadBaseline(DEFAULT_BASELINE);
   }
 
   /* ---------- experiment selector ---------- */
-  function renderSelector() {
-    var grid = $('xp-grid');
-    grid.textContent = '';
-    R.EXPERIMENTS.forEach(function (xp) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'xpsel';
-      b.setAttribute('data-xp', xp.id);
-      b.setAttribute('aria-pressed', xp.id === ui.experimentId ? 'true' : 'false');
+  /* ---------- the three controls ----------
+     The laboratory makes ONE relationship inspectable — input structure against matching cost — and
+     three parameters are what it takes to inspect it:
 
-      var name = document.createElement('span');
-      name.className = 'xname';
-      name.textContent = xp.ordinal + '. ' + xp.label;
-      b.appendChild(name);
+       THE PATTERN      which expression is under test. The options span complexity classes, so the
+                        class is the teaching object rather than an incidental property of one
+                        curiosity, and each option is LABELLED WITH ITS MEASURED DEGREE.
+       THE INPUT        which string shape the pattern is run against, as an attack shape or a
+                        benign control. Same pattern, different input, is the adversary's variable.
+       THE PUMPS        how many times the pumped core repeats. This is the x-axis of every chart.
 
-      var pat = document.createElement('span');
-      pat.className = 'xpat';
-      pat.textContent = R.EXPRESSIONS[xp.expression].display;
-      b.appendChild(pat);
+     The time axis is NOT one of them. It changes what you can read off a chart, not what was
+     measured, so it sits beside Run rather than among the engineering parameters — the same ruling
+     the house style makes about simulation speed in the sibling laboratories. */
 
-      var grow = document.createElement('span');
-      grow.className = 'xgrow';
-      grow.textContent = 'expected: ' + xp.expectedGrowth;
-      b.appendChild(grow);
-
-      var tagline = document.createElement('span');
-      tagline.className = xp.adversarial ? 'hostile' : 'benign';
-      tagline.textContent = xp.adversarial ? 'adversary-chosen input' : 'ordinary input';
-      b.appendChild(tagline);
-
-      var state = document.createElement('span');
-      state.className = 'xstate';
-      state.textContent = xp.id === ui.experimentId ? 'selected' : 'not selected';
-      b.appendChild(state);
-
-      b.addEventListener('click', function () { selectExperiment(xp.id); });
-      grid.appendChild(b);
+  function renderPatternControl() {
+    var sel = $('pattern');
+    if (sel.options.length) {
+      sel.value = ui.patternId;
+      return;
+    }
+    /* Grouped by measured class, in ascending order of cost, so the ladder is visible in the
+       control itself: a student picking an option is picking a complexity class. */
+    var byClass = {};
+    var order = [];
+    R.patternIds().forEach(function (pid) {
+      var cls = R.EXPRESSIONS[pid].complexityClass;
+      if (!byClass[cls]) { byClass[cls] = []; order.push(cls); }
+      byClass[cls].push(pid);
     });
+    order.forEach(function (cls) {
+      var group = document.createElement('optgroup');
+      group.label = cls.charAt(0).toUpperCase() + cls.slice(1);
+      byClass[cls].forEach(function (pid) {
+        var ex = R.EXPRESSIONS[pid];
+        var row = R.measuredClass(pid);
+        var o = document.createElement('option');
+        o.value = pid;
+        o.textContent = ex.shortName + ' — ' + (row.basis === 'exponential'
+          ? 'measured ×' + row.perChar.toFixed(2) + ' per character'
+          : 'measured degree ' + row.degree.toFixed(2));
+        group.appendChild(o);
+      });
+      sel.appendChild(group);
+    });
+    sel.value = ui.patternId;
   }
 
-  function selectExperiment(id) {
-    ui.experimentId = id;
+  function renderInputControl() {
+    var sel = $('input-shape-select');
+    sel.textContent = '';
+    R.inputsForPattern(ui.patternId).forEach(function (iid) {
+      var shape = R.findInputShape(iid);
+      var o = document.createElement('option');
+      o.value = iid;
+      o.textContent = shape.label + ' — ' + (shape.kind === 'attack'
+        ? 'attack shape' : 'benign control');
+      sel.appendChild(o);
+    });
+    sel.value = ui.inputId;
+    /* The kind is also stated in words beside the control, because "attack" versus "benign" is the
+       distinction the whole exercise turns on and a reader should not have to open a dropdown to
+       see which one is loaded. */
+    var shape = R.findInputShape(ui.inputId);
+    var badge = $('input-kind');
+    badge.className = shape.kind === 'attack' ? 'hostile' : 'benign';
+    badge.textContent = shape.kind === 'attack'
+      ? 'adversary-chosen input' : 'ordinary input (control)';
+    $('input-shape-why').textContent = shape.why;
+  }
+
+  /* The pattern's own measured class, stated under the control. This is the page's answer to "what
+     complexity class is this?", and it is an answer by measurement rather than by label. */
+  function renderPatternClass() {
+    var ex = R.EXPRESSIONS[ui.patternId];
+    var row = R.measuredClass(ui.patternId);
+    $('expr-source').textContent = ex.display;
+    $('pattern-class').textContent = row.basis === 'exponential'
+      ? 'Measured: exponential, ×' + row.perChar.toFixed(2) + ' per character '
+        + '(r² ' + row.r2.toFixed(4) + ', over ' + row.range + ')'
+      : 'Measured: polynomial of degree ' + row.degree.toFixed(2)
+        + ' (r² ' + row.r2.toFixed(4) + ', over ' + row.range + ')';
+    $('pattern-incident').textContent = ex.incident || '';
+    $('pattern-incident').hidden = !ex.incident;
+  }
+
+  function setPattern(patternId) {
+    ui.patternId = patternId;
+    /* An input shape belongs to a pattern, so changing the pattern may invalidate the current one.
+       Falling back to the pattern's first shape keeps the two controls consistent by construction
+       rather than leaving an impossible pair the engine would reject. */
+    var offered = R.inputsForPattern(patternId);
+    if (offered.indexOf(ui.inputId) < 0) ui.inputId = offered[0];
+    applyConfig();
+  }
+
+  function setInputShape(inputId) {
+    if (R.inputsForPattern(ui.patternId).indexOf(inputId) < 0) return;
+    ui.inputId = inputId;
+    applyConfig();
+  }
+
+  function applyConfig() {
+    ui.experimentId = R.configId(ui.patternId, ui.inputId);
+    if (typeof ui.lengths[ui.experimentId] !== 'number') {
+      ui.lengths[ui.experimentId] = R.lengthBounds(ui.experimentId).defaultMax;
+    }
+    renderPatternControl();
+    renderInputControl();
+    renderPatternClass();
     syncLengthControl();
-    renderSelector();
     renderExpression();
+    renderBaselines();
     render();
+  }
+
+  /* ---------- the guided experiments' baselines ----------
+     Each guided experiment names a starting configuration, and its button loads that configuration
+     into the three controls. A student should not be reconstructing a baseline by hand from a
+     printed table — the six fields say what to change, and the button puts them at the start line. */
+  function loadBaseline(id) {
+    var b = R.findBaseline(id);
+    if (!b) return;
+    ui.patternId = b.patternId;
+    ui.inputId = b.inputId;
+    ui.lengths[R.configId(b.patternId, b.inputId)] = b.pumps;
+    applyConfig();
+  }
+
+  function renderBaselines() {
+    var current = ui.experimentId;
+    var buttons = document.querySelectorAll('button[data-baseline]');
+    for (var i = 0; i < buttons.length; i += 1) {
+      var b = R.findBaseline(buttons[i].getAttribute('data-baseline'));
+      if (!b) continue;
+      var loaded = R.configId(b.patternId, b.inputId) === current;
+      buttons[i].setAttribute('aria-pressed', loaded ? 'true' : 'false');
+      /* "loaded" in words as well as by the pressed border, so the state survives a greyscale
+         projector and a colour-blind reader alike. */
+      var note = buttons[i].querySelector('.bstate');
+      if (note) note.textContent = loaded ? 'loaded' : 'load this baseline';
+    }
   }
 
   /* ---------- the length control ----------
@@ -2863,8 +3950,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       el.step = String(b.step);
       el.value = String(value);
     });
-    $('maxlen-unit').textContent = xp.family === 'nested'
-      ? 'n, repeated characters' : 'n, characters';
+    /* The unit names what n actually counts, which differs by shape: a pump count for every
+       pumped shape, and a character count for the one `fill` shape, which has no pump. Printing
+       `repetitions of "undefined"` is exactly what a blanket pump label would have done. */
+    var shape = R.findInputShape(xp.inputId);
+    $('maxlen-unit').textContent = shape.mode === 'fill'
+      ? 'n, characters of prose'
+      : 'n, repetitions of ' + (shape.pump === ' ' ? 'a space' : '"' + shape.pump + '"');
   }
 
   function setMaxLength(raw) {
@@ -2885,16 +3977,51 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     var ex = R.EXPRESSIONS[xp.expression];
     var n = ui.lengths[xp.id];
 
-    $('expr-name').textContent = 'Experiment ' + xp.ordinal + ' — ' + ex.name;
-    $('expr-source').textContent = ex.display;
+    $('expr-name').textContent = (xp.ordinal ? 'Baseline ' + xp.ordinal + ' — ' : '') + ex.name;
     $('expr-why').textContent = 'Intent: ' + ex.intent + ' Chosen because: ' + ex.why;
 
     $('input-shape').textContent = R.describeInputShape(xp.id) + '   with n = ' + n
       + '\n' + R.excerptInput(xp.id, Math.min(n, 400));
     var s = R.buildInput(xp.id, n);
     $('input-len').textContent = s.length.toLocaleString() + ' characters';
-    $('input-match').textContent = R.compile(xp.expression).test(s) ? 'match' : 'no match (expected)';
+    /* Reported against the shape's DECLARED answer rather than as "no match (expected)", because a
+       benign control shape may legitimately match — three of them do, and the Stack Overflow
+       leading-whitespace shape matching at once is the whole point of offering it. A mismatch here
+       means the measurement is suspect, so it is labelled loudly rather than passed over. */
+    var shape = R.findInputShape(xp.inputId);
+    var got = R.compile(xp.expression).test(s);
+    $('input-match').textContent = (got ? 'match' : 'no match')
+      + (got === shape.expectMatch ? ' (as declared)' : ' — UNEXPECTED, the measurement is suspect');
     $('input-why').textContent = xp.claim;
+  }
+
+  /* ---------- the measured-class table ----------
+     Rendered from MEASURED_CLASSES rather than written into the HTML, so the figures a reader sees
+     and the figures a self-test asserts are the same values. A hand-typed copy in the markup is
+     exactly how a page comes to print a complexity class its own instrument refutes. */
+  function renderMeasuredTable() {
+    var body = $('measured-table').querySelector('tbody');
+    body.textContent = '';
+    R.MEASURED_CLASSES.rows.forEach(function (row) {
+      var ex = R.EXPRESSIONS[row.patternId];
+      var cells = [
+        [ex.shortName, ''],
+        [row.basis, ''],
+        [row.basis === 'exponential'
+          ? '×' + row.perChar.toFixed(2) + ' per character'
+          : 'degree ' + row.degree.toFixed(2), 'mono'],
+        [row.r2.toFixed(4), 'num'],
+        [row.range, '']
+      ];
+      var tr = document.createElement('tr');
+      cells.forEach(function (c) {
+        var td = document.createElement('td');
+        if (c[1]) td.className = c[1];
+        td.textContent = c[0];
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
   }
 
   /* ---------- reference table ---------- */
@@ -2950,10 +4077,175 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     return ms.toFixed(5) + ' ms';
   }
 
+  /* A configuration's name. The six baselines carry an ordinal the lecture notes refer to; a free
+     combination of the three controls has no ordinal, so it is named by what it is. Centralised
+     because `xp.ordinal + '. ' + xp.label` prints "null. " for every free combination, and the
+     chart legend, the results table and the growth table all needed the same answer. */
+  function configName(xp) {
+    return xp.ordinal ? xp.ordinal + '. ' + xp.label : xp.label;
+  }
+
   function orderedSweeps() {
-    return R.EXPERIMENTS
-      .filter(function (xp) { return ui.sweeps[xp.id]; })
-      .map(function (xp) { return ui.sweeps[xp.id]; });
+    /* The six baselines first, in their classroom order, then any free combination a student built
+       out of the three controls. Keyed on the configuration id either way. */
+    var seen = {};
+    var out = [];
+    R.EXPERIMENTS.forEach(function (xp) {
+      if (ui.sweeps[xp.id]) { out.push(ui.sweeps[xp.id]); seen[xp.id] = true; }
+    });
+    Object.keys(ui.sweeps).forEach(function (id) {
+      if (!seen[id]) out.push(ui.sweeps[id]);
+    });
+    return out;
+  }
+
+  /* ---------- the three principal measurements, and the run-to-run spread ----------
+
+     This page measures a real execution in a real engine, so its results are genuinely variable:
+     the same configuration run twice gives two different numbers, and on a loaded machine they can
+     differ by a lot. The house style requires that the interface distinguish A SINGLE RUN from an
+     EXPECTED RESULT, and for this laboratory that requirement has teeth rather than being a
+     formality — there is no seed to fix, because the thing being sampled is a CPU, not a random
+     number generator.
+
+     So the page does three distinct things with that variability rather than hiding it:
+
+       1. Every measured figure is labelled as this run, on this machine, with its trial count.
+       2. The page keeps a HISTORY of the headline figure per configuration and reports the spread
+          across runs — median and range — as soon as a second run exists. A student who runs the
+          same experiment twice sees the sampling directly instead of being told about it.
+       3. Beside the measurement sits the MODEL's expectation, computed from the closed form and
+          labelled as model-derived. Agreement supports the model; disagreement is a finding about
+          the engine, which is the comparison the exercise is for.
+
+     What the spread must NOT be read as: a confidence interval. Two runs are two samples, the
+     machine is shared with a browser and whatever else is open, and the distribution is not
+     symmetric — a slow run can be arbitrarily slow and a fast one cannot be faster than the work
+     requires. The page says so where it reports it. */
+  function recordRunHistory(sweep) {
+    var summary = R.sweepSummary(sweep);
+    var pts = summary.points;
+    if (!pts.length) return;
+    var top = pts[pts.length - 1];
+    var key = sweep.experimentId;
+    if (!ui.runHistory[key]) ui.runHistory[key] = [];
+    ui.runHistory[key].push({ length: top.length, ms: top.ms, at: Date.now() });
+    /* Bounded, so a classroom that leaves the page open all hour does not accumulate without end.
+       The most recent eight runs are what a spread over a single session should describe. */
+    if (ui.runHistory[key].length > 8) ui.runHistory[key].shift();
+  }
+
+  /** The spread of the headline figure across the runs of ONE configuration at ONE pump count. */
+  function runSpread(configId) {
+    var hist = (ui.runHistory[configId] || []);
+    if (hist.length < 2) return null;
+    var atTop = hist[hist.length - 1].length;
+    var same = hist.filter(function (h) { return h.length === atTop; });
+    if (same.length < 2) return null;
+    var vals = same.map(function (h) { return h.ms; }).sort(function (a, b) { return a - b; });
+    var mid = Math.floor(vals.length / 2);
+    return {
+      runs: vals.length,
+      length: atTop,
+      min: vals[0],
+      max: vals[vals.length - 1],
+      median: vals.length % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2,
+      ratio: vals[0] > 0 ? vals[vals.length - 1] / vals[0] : null
+    };
+  }
+
+  function renderPrincipal() {
+    var xp = R.findExperiment(ui.experimentId);
+    var sweep = ui.sweeps[ui.experimentId];
+    var summary = sweep ? R.sweepSummary(sweep) : null;
+    var pts = summary ? summary.points : [];
+    var top = pts.length ? pts[pts.length - 1] : null;
+
+    /* 1 — the cost itself. */
+    $('p-cost').textContent = top ? msText(top.ms) : '—';
+    $('p-cost-at').textContent = top
+      ? 'per match, at ' + top.length.toLocaleString() + ' pumps · '
+        + pts.length + ' measured point' + (pts.length === 1 ? '' : 's')
+      : 'run the experiment to measure it';
+
+    /* 2 — how it grows. The quantity that makes this a complexity class rather than a slow case. */
+    var s = summary ? summary.scaling : null;
+    if (!s || s.basis === null) {
+      $('p-growth').textContent = '—';
+      $('p-growth-note').textContent = s ? s.note
+        : 'at least three measured points are needed before any fit is worth reporting';
+    } else if (s.basis === 'log-log') {
+      $('p-growth').textContent = 'n^' + s.exponent.toFixed(2);
+      $('p-growth-note').textContent = 'log–log fit over ' + s.points + ' points, R² '
+        + s.exponentR2.toFixed(3) + ' · the model expects ' + xp.expectedGrowth;
+    } else {
+      $('p-growth').textContent = '×' + s.growthPerStep.toFixed(2) + '/char';
+      $('p-growth-note').textContent = 'semi-log fit over ' + s.points + ' points, R² '
+        + s.growthR2.toFixed(3) + ' · the model expects ' + xp.expectedGrowth;
+    }
+
+    /* 3 — where it became unaffordable. The engineering consequence, in the units a length cap is
+       written in. */
+    var halt = sweep && sweep.halt;
+    if (halt) {
+      $('p-stop').textContent = halt.length.toLocaleString() + ' pumps';
+      $('p-stop-note').textContent = halt.reason === 'terminated'
+        ? 'the worker was destroyed at the ' + halt.deadlineMs + ' ms deadline'
+        : 'the first length over the ' + halt.budgetMs + ' ms budget';
+    } else if (summary && summary.status === 'complete') {
+      $('p-stop').textContent = 'never';
+      $('p-stop-note').textContent = 'the whole ladder to '
+        + (top ? top.length.toLocaleString() : '—') + ' pumps stayed inside the budget';
+    } else {
+      $('p-stop').textContent = '—';
+      $('p-stop-note').textContent = 'run the experiment to find it';
+    }
+
+    /* The run-to-run spread, and the model's expectation beside it. */
+    var spread = runSpread(ui.experimentId);
+    var box = $('variability');
+    box.textContent = '';
+    if (spread) {
+      var p = document.createElement('p');
+      p.style.margin = '0';
+      var strong = document.createElement('strong');
+      strong.textContent = spread.runs + ' runs at ' + spread.length.toLocaleString()
+        + ' pumps: ';
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode('median ' + msText(spread.median)
+        + ', range ' + msText(spread.min) + ' to ' + msText(spread.max)
+        + (spread.ratio ? ' — a factor of ' + spread.ratio.toFixed(2) : '')
+        + '. A single run is one sample of a shared CPU, not a property of the pattern. '
+        + 'Read the GROWTH, which survives this spread; do not read a two-run range as a '
+        + 'confidence interval.'));
+      box.appendChild(p);
+    } else {
+      var q = document.createElement('p');
+      q.style.margin = '0';
+      q.textContent = 'Run the same configuration twice and this line reports the spread between '
+        + 'the runs. There is no seed to fix here: the page measures a real execution on a shared '
+        + 'processor, so the number moves and the growth is what does not.';
+      box.appendChild(q);
+    }
+
+    /* The model's own figure, labelled as model-derived rather than measured. */
+    var n = ui.lengths[ui.experimentId];
+    $('p-model').textContent = formatCount(R.predictedCandidates(ui.experimentId, n));
+    $('p-model-note').textContent = 'units of work the closed form ' + modelFormula(xp)
+      + ' predicts at ' + n.toLocaleString() + ' pumps — derived, never measured';
+  }
+
+  function modelFormula(xp) {
+    if (xp.modelOfWork === 'n') return 'n';
+    if (xp.modelOfWork === '2^(n-1)') return '2^(n−1)';
+    var F = { 1: 'n', 2: 'n(n+1)/2', 3: 'n(n+1)(n+2)/6', 4: 'n(n+1)(n+2)(n+3)/24' };
+    return F[xp.degree] || 'C(n+' + (xp.degree - 1) + ', ' + xp.degree + ')';
+  }
+
+  function formatCount(v) {
+    if (!isFinite(v)) return 'beyond counting';
+    if (v >= 1e15) return v.toExponential(2);
+    return Math.round(v).toLocaleString();
   }
 
   function renderResults() {
@@ -2967,7 +4259,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       sweep.results.forEach(function (r) {
         var tr = document.createElement('tr');
         var cells = [
-          [xp.ordinal + '. ' + xp.label, ''],
+          [configName(xp), ''],
           [r.length.toLocaleString(), 'num'],
           [r.inputLength === null ? '—' : r.inputLength.toLocaleString(), 'num'],
           [r.matched === null ? '—' : (r.matched ? 'match' : 'no match'), ''],
@@ -3046,7 +4338,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
           + ' per extra character (semi-log fit, R² ' + s.growthR2.toFixed(3) + ')';
       }
       var tr = document.createElement('tr');
-      [[xp.ordinal + '. ' + xp.label, ''], [xp.expectedGrowth, ''], [fitted, ''],
+      [[configName(xp), ''], [xp.expectedGrowth, ''], [fitted, ''],
         [String(s.points), 'num']].forEach(function (c) {
         var td = document.createElement('td');
         if (c[1]) td.className = c[1];
@@ -3066,12 +4358,27 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
      chart survives a greyscale projector and a colour-blind reader. The results table above is its
      text equivalent, and each canvas also publishes a live description. */
 
+  /* Keyed by BASELINE id and resolved through `seriesFor`, which maps a canonical configuration id
+     back to its baseline. Every series carries a hue, a dash pattern, a marker shape and a glyph:
+     four encodings, so no line on either chart is told apart by colour alone. The two incident
+     patterns were added with the same discipline rather than reusing a neighbour's marker. */
   var SERIES = {
     ordinary: { hue: 'muted', dash: [], marker: 'circle', glyph: '●', css: 'solid' },
     quadratic: { hue: 'bad', dash: [9, 4], marker: 'square', glyph: '■', css: 'dashed' },
     exponential: { hue: 'bad', dash: [2, 3], marker: 'triangle', glyph: '▲', css: 'dotted' },
-    safe: { hue: 'ok', dash: [12, 3, 3, 3], marker: 'diamond', glyph: '◆', css: 'double' }
+    safe: { hue: 'ok', dash: [12, 3, 3, 3], marker: 'diamond', glyph: '◆', css: 'double' },
+    stackoverflow: { hue: 'warn', dash: [5, 3], marker: 'cross', glyph: '✚', css: 'dashed' },
+    cloudflare: { hue: 'model', dash: [14, 4, 2, 4], marker: 'star', glyph: '✱', css: 'double' }
   };
+  /* A configuration a student built out of the three controls has no baseline and therefore no
+     declared series. It gets one shape rather than being dropped from the chart — being unable to
+     plot your own combination would make the three controls decorative. */
+  var FREE_SERIES = { hue: 'ink', dash: [4, 2, 1, 2], marker: 'circle', glyph: '○', css: 'dotted' };
+
+  function seriesFor(configOrId) {
+    var xp = R.findExperiment(configOrId);
+    return (xp.baselineId && SERIES[xp.baselineId]) || FREE_SERIES;
+  }
 
   var palette = {};
   function readPalette() {
@@ -3105,10 +4412,22 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     } else if (kind === 'diamond') {
       ctx.moveTo(x, y - s - 1); ctx.lineTo(x + s + 1, y); ctx.lineTo(x, y + s + 1);
       ctx.lineTo(x - s - 1, y); ctx.closePath();
+    } else if (kind === 'cross') {
+      ctx.moveTo(x - s - 1, y); ctx.lineTo(x + s + 1, y);
+      ctx.moveTo(x, y - s - 1); ctx.lineTo(x, y + s + 1);
+    } else if (kind === 'star') {
+      var d = (s + 1) * 0.72;
+      ctx.moveTo(x - s - 1, y); ctx.lineTo(x + s + 1, y);
+      ctx.moveTo(x - d, y - d); ctx.lineTo(x + d, y + d);
+      ctx.moveTo(x + d, y - d); ctx.lineTo(x - d, y + d);
     } else {
       ctx.arc(x, y, s, 0, Math.PI * 2);
     }
   }
+
+  /* A cross and a star are STROKED shapes, not closed ones, so the caller must stroke them rather
+     than fill them or they paint nothing. Named here so the two chart painters agree. */
+  function markerIsStroked(kind) { return kind === 'cross' || kind === 'star'; }
 
   function niceCeil(v) {
     if (!(v > 0)) return 1;
@@ -3126,7 +4445,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         xp: R.findExperiment(sweep.experimentId),
         points: sum.points,
         terminatedAt: sweep.halt && sweep.halt.reason === 'terminated' ? sweep.halt.length : null,
-        style: SERIES[sweep.experimentId]
+        style: seriesFor(sweep.experimentId)
       };
     });
   }
@@ -3250,7 +4569,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       ctx.setLineDash([]);
       s.points.forEach(function (p) {
         marker(ctx, s.style.marker, X(p.length), Y(p.ms));
-        ctx.fill();
+        if (markerIsStroked(s.style.marker)) { ctx.lineWidth = 2; ctx.stroke(); } else { ctx.fill(); }
       });
 
       /* a terminated trial: an OPEN marker on the deadline line, with an upward tick. There is no
@@ -3278,7 +4597,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         ctx.fillStyle = colour;
         ctx.font = '600 12px ui-monospace, monospace';
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-        ctx.fillText(s.style.glyph + ' ' + s.xp.ordinal + '. ' + s.xp.label,
+        ctx.fillText(s.style.glyph + ' ' + configName(s.xp),
           Math.min(w - padR + 6, X(last.length) + 9), Y(last.ms));
         ctx.font = '12px ui-monospace, monospace';
       }
@@ -3323,7 +4642,8 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     /* The MODEL is defined for every experiment regardless of what has been run — it is a closed
        form, not a measurement — so all four curves are always drawn. */
     var curves = R.EXPERIMENTS.map(function (xp) {
-      return { xp: xp, style: SERIES[xp.id], points: R.predictedCandidateCurve(xp.id, ui.lengths[xp.id]) };
+      return { xp: xp, style: seriesFor(xp.id),
+        points: R.predictedCandidateCurve(xp.id, ui.lengths[xp.id]) };
     }).filter(function (c) { return c.points.length > 1; });
 
     var allX = [], allY = [];
@@ -3380,13 +4700,13 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       ctx.setLineDash([]);
       var last = c.points[c.points.length - 1];
       marker(ctx, c.style.marker, X(last.length), Y(last.candidates), 4);
-      ctx.fill();
+      if (markerIsStroked(c.style.marker)) { ctx.lineWidth = 2; ctx.stroke(); } else { ctx.fill(); }
       ctx.font = '600 11px ui-monospace, monospace';
       ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
-      ctx.fillText(c.style.glyph + ' ' + c.xp.modelOfWork, X(last.length) - 6,
+      ctx.fillText(c.style.glyph + ' ' + modelFormula(c.xp), X(last.length) - 6,
         Y(last.candidates) - 4);
       ctx.font = '11px ui-monospace, monospace';
-      described.push(c.xp.label + ' models ' + c.xp.modelOfWork + ', reaching '
+      described.push(c.xp.label + ' models ' + modelFormula(c.xp) + ', reaching '
         + Math.round(last.candidates).toLocaleString() + ' candidates at n = '
         + last.length.toLocaleString());
     });
@@ -3400,7 +4720,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
       var box = $(spec[0]);
       box.textContent = '';
       R.EXPERIMENTS.forEach(function (xp) {
-        var s = SERIES[xp.id];
+        var s = seriesFor(xp.id);
         var item = document.createElement('span');
         item.className = 'item';
         var mk = document.createElement('span');
@@ -3412,7 +4732,7 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         sw.style.borderTopStyle = s.css;
         sw.style.borderTopColor = 'var(--' + s.hue + ')';
         var label = document.createElement('span');
-        label.textContent = xp.ordinal + '. ' + xp.label
+        label.textContent = configName(xp)
           + (spec[1] ? '' : ' — ' + xp.modelOfWork);
         item.appendChild(mk); item.appendChild(sw); item.appendChild(label);
         box.appendChild(item);
@@ -3518,10 +4838,14 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
         + 'satisfy it, so the candidates above collapse to a single viable division and the scan '
         + 'is performed once — which is the whole of the fix.'
       : '';
-    var ordinaryNote = xp.inputKind === 'prose'
-      ? ' This experiment supplies ORDINARY input, where whitespace runs are one character long, '
-        + 'so almost every stopping point fails after a single step rather than after a long scan. '
-        + 'Same expression, same candidate count — far less work per candidate.'
+    /* The benign control shapes are the ones where the candidate count is unchanged and the cost
+       is not, which is the distinction the note exists to make. `inputKind` is 'benign' or
+       'attack' now that an input shape is a first-class choice rather than a property of a preset. */
+    var ordinaryNote = xp.inputKind === 'benign'
+      ? ' This configuration supplies a BENIGN input, so almost every stopping point fails after a '
+        + 'single step rather than after a long scan — and where the input lets the match SUCCEED, '
+        + 'the engine stops at the first success and enumerates none of them. '
+        + 'Same expression, same candidate count, far less work.'
       : '';
     $('model-count').textContent = 'Summed over the stopping points the scanning work is '
       + m.formula + ': ' + total.toLocaleString() + ' steps at n = ' + m.illustrativeN + ', and '
@@ -3649,9 +4973,10 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   function render() {
     renderStatus();
     renderBudget();
+    renderPrincipal();
     renderResults();
     renderScaling();
-    renderSelector();
+    renderBaselines();
     renderModel();
     readPalette();
     drawGrowth();
@@ -3662,6 +4987,15 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
 
   $('maxlen').addEventListener('change', function () { setMaxLength(this.value); });
   $('maxlen-range').addEventListener('input', function () { setMaxLength(this.value); });
+  $('pattern').addEventListener('change', function () { setPattern(this.value); });
+  $('input-shape-select').addEventListener('change', function () { setInputShape(this.value); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('button[data-baseline]'),
+    function (btn) {
+      btn.addEventListener('click', function () {
+        loadBaseline(btn.getAttribute('data-baseline'));
+      });
+    });
 
   $('scale-seg').addEventListener('click', function (event) {
     var b = event.target.closest ? event.target.closest('button[data-scale]') : null;
@@ -3688,8 +5022,8 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
     var tag = el ? (el.tagName || '').toLowerCase() : '';
     if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
     var key = event.key;
-    if (key >= '1' && key <= '4') {
-      selectExperiment(R.experimentIds()[Number(key) - 1]);
+    if (key >= '1' && key <= '6') {
+      loadBaseline(R.baselineIds()[Number(key) - 1]);
       event.preventDefault();
     } else if (key === 'r' || key === 'R') {
       startQueue([ui.experimentId], 'ladder');
@@ -3753,10 +5087,9 @@ details.panel[open] > summary { margin-bottom: 0.8rem; }
   renderThreatModel();
   renderMitigationList();
   renderMitigationVerdict();
-  syncLengthControl();
-  renderExpression();
   renderExpressionTable();
-  render();
+  renderMeasuredTable();
+  applyConfig();
   window.requestAnimationFrame(frame);
 }());
 </script>
