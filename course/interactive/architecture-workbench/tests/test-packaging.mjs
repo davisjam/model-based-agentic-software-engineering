@@ -236,76 +236,164 @@ test('the engineering problem is stated above the controls, as a question', () =
   assert.match(html, /class="lab-question"/);
 });
 
-test('figure 1 opens the band; figure 2 sits beside the panel it explains', () => {
-  /* The author's ruling on figure placement: figure 1 — the system boundary — is required in the
-     opening band on every exercise, and figure 2 goes where it does its work. Here it explains
-     change-impact propagation, so it belongs in the Change impact panel, below the controls. The
-     earlier form of this test demanded both figures above the controls, which cost the band 71px
-     it does not have. */
+test('there is ONE model figure, it takes its own row, and it opens the model section', () => {
+  /* The complexity budget allows one model figure, and the figure requirement is that it take
+     70-80% of the content width on a row of its own. The page carried two — a two-panel overview
+     and a separate propagation chain — and the second drew, statically, what the live graph draws
+     interactively. So the propagation chain is gone and its encodings moved into figure 1, which
+     now draws all three candidate structures with the change marked on each. An earlier form of
+     this test required exactly two figures and pinned the second one's position. */
   const figure1 = html.indexOf('id="f1-t"');
-  const figure2 = html.indexOf('id="f2-t"');
-  const firstControl = html.indexOf('<select id="scenario">');
-  const impactPanel = html.indexOf('id="h-impact"');
-  assert.ok(figure1 > 0 && figure2 > 0, 'a required figure is missing');
+  const modelSection = html.indexOf('id="h-model"');
+  const firstControl = html.indexOf('id="arch-seg"');
+  assert.ok(figure1 > 0, 'the model figure is missing');
+  assert.ok(modelSection > 0 && modelSection < figure1, 'figure 1 does not open the model section');
   assert.ok(figure1 < firstControl, 'figure 1 sits below the controls');
-  assert.ok(figure1 < html.indexOf('<table class="lab-parameters">'),
-    'figure 1 does not open the band');
-  assert.ok(impactPanel > 0, 'the Change impact panel is gone');
-  assert.ok(figure2 > impactPanel && figure2 < html.indexOf('id="h-cost"'),
-    'figure 2 is not inside the Change impact panel it explains');
-  assert.equal((html.match(/<figure class="lab-figure">/g) || []).length, 2);
-  assert.equal((html.match(/<figcaption>/g) || []).length, 2, 'a figure has no caption');
+  assert.equal((html.match(/<figure class="lab-figure">/g) || []).length, 1,
+    'the budget allows one model figure');
+  assert.equal((html.match(/<figcaption>/g) || []).length, 1, 'the figure has no caption');
+  assert.equal(html.includes('id="f2-t"'), false,
+    'a second model figure is back; the budget allows one');
+  /* No pixel height ceiling on the figure: a max-height on a viewBox-d SVG letterboxes the drawing
+     rather than cropping it, so every pixel of column past the ceiling becomes empty margin. That
+     was this family's width defect and it is not to be reintroduced. */
+  const local = html.slice(html.lastIndexOf('<style>'), html.lastIndexOf('</style>'));
+  assert.equal(/\.lab-figure\s+svg[^{]*\{[^}]*max-height/.test(local), false,
+    'a height ceiling is back on the figure SVG');
 });
 
-test('figure 1 shows the existing structure beside the modular alternative', () => {
+test('figure 1 draws all three candidate structures, with the change marked on each', () => {
   const figure = html.slice(html.indexOf('id="f1-t"'), html.indexOf('</figure>'));
   assert.match(figure, /existing structure/);
-  assert.match(figure, /modular monolith/i);
+  assert.match(figure, /Modular monolith/i);
+  assert.match(figure, /Extract policy services/i);
+  /* Every component of every architecture the engine declares. */
   for (const name of ['HTTP API', 'BookingService', 'RoomRules', 'Approval', 'Persistence',
-    'Database', 'RoomPolicy', 'LabPolicy']) {
+    'Database', 'RoomPolicy', 'LabPolicy', 'RoomService', 'LabService']) {
     assert.ok(figure.includes(name), `figure 1 omits ${name}`);
   }
-});
-
-test('figure 2 draws the author’s propagation chain and distinguishes the two states', () => {
-  const start = html.indexOf('id="f2-t"');
-  const figure = html.slice(start, html.indexOf('</figure>', start));
-  for (const name of ['New laboratory', 'BookingService', 'RoomRules', 'Approval', 'Persistence']) {
-    assert.ok(figure.includes(name), `figure 2 omits ${name}`);
+  /* The three impact states are DRAWN differently, not merely labelled differently, and the figure
+     carries the legend that names each one in words. */
+  for (const cls of ['class="bx must"', 'class="bx maybe"', 'class="bx iso"']) {
+    assert.ok(figure.includes(cls), `figure 1 never draws ${cls}`);
   }
-  assert.match(figure, /MUST MODIFY/);
-  assert.match(figure, /POSSIBLE/);
-  /* The two states are drawn differently, not merely labelled differently. */
-  assert.match(figure, /class="bx must"/);
-  assert.match(figure, /class="bx maybe"/);
-  assert.equal((figure.match(/class="bx must"/g) || []).length, 3,
-    'the chain should mark exactly three components as must-modify');
-  assert.equal((figure.match(/class="bx maybe"/g) || []).length, 1,
-    'the chain should mark exactly one component as a possible downstream effect');
-});
-
-test('both figures carry an accessible title and description', () => {
-  for (const [titleId, descId] of [['f1-t', 'f1-d'], ['f2-t', 'f2-d']]) {
-    assert.match(html, new RegExp(`aria-labelledby="${titleId}" aria-describedby="${descId}"`));
-    const start = html.indexOf(`id="${descId}"`);
-    const description = html.slice(start, html.indexOf('</desc>', start));
-    assert.ok(description.length > 300, `${descId} is only ${description.length} characters`);
+  assert.match(figure, /must modify/);
+  assert.match(figure, /may be reached/);
+  assert.match(figure, /isolated/);
+  /* The counts the figure states must be the counts the engine computes, for the default scenario
+     of every architecture — a figure that disagrees with the model teaches the wrong number. */
+  const scenario = M.DEFAULT_SETTINGS.scenario;
+  for (const id of M.ARCHITECTURE_IDS) {
+    const sets = M.impactSets(id, scenario);
+    assert.ok(figure.includes(`${sets.mustModify.length} must modify`),
+      `figure 1 never states ${sets.mustModify.length} must modify, which ${id} has`);
+    assert.ok(figure.includes(`${sets.potentiallyImpacted.length} may be reached`),
+      `figure 1 never states ${sets.potentiallyImpacted.length} may be reached, which ${id} has`);
   }
+  /* The deployment boundary, which is the whole structural difference of the third candidate. */
+  assert.match(figure, /class="depl"/);
+  assert.match(figure, /class="ln net"/);
 });
 
-test('the parameter table explains every primary parameter, with a unit and a default', () => {
+test('the model figure carries an accessible title and description', () => {
+  assert.match(html, /aria-labelledby="f1-t" aria-describedby="f1-d"/);
+  const start = html.indexOf('id="f1-d"');
+  const description = html.slice(start, html.indexOf('</desc>', start));
+  assert.ok(description.length > 300, `f1-d is only ${description.length} characters`);
+});
+
+test('the model section holds three distinct artifacts: the figure, Table 1 and Table 2', () => {
+  /* Inputs and outputs are different concepts, so the parameters students manipulate and the
+     quantities the apparatus reports get a table each. */
+  const section = html.slice(html.indexOf('id="h-model"'), html.indexOf('id="h-procedure"'));
+  assert.ok(section.indexOf('id="f1-t"') > 0, 'the model section has no figure');
+  assert.match(section, /Table 1 &mdash; Model parameters/);
+  assert.match(section, /Table 2 &mdash; Observed quantities/);
+  assert.ok(section.indexOf('Table 1') < section.indexOf('Table 2'), 'the tables are out of order');
+  assert.equal((section.match(/<table class="lab-parameters">/g) || []).length, 2);
+});
+
+test('Table 1 names every primary parameter, with a unit and a default', () => {
   const start = html.indexOf('<table class="lab-parameters">');
   assert.ok(start > 0, 'there is no parameter table');
   const table = html.slice(start, html.indexOf('</table>', start));
-  for (const parameter of ['Architecture', 'Future changes', 'Team structure',
+  /* The five controls the primary interface exposes. `Team structure` left this table when the
+     team count and the change mix moved to Further investigation: the budget allows four to five
+     adjustable parameters, and the independent-release REQUIREMENT earns the slot the team count
+     gave up — it can rule an option out at any price, which no cost control can do. */
+  for (const parameter of ['Architecture', 'Future changes', 'Independent release',
     'Implementation multiplier', 'Assurance cost']) {
     assert.ok(table.includes(parameter), `the parameter table omits ${parameter}`);
   }
   assert.equal((table.match(/<th scope="row">/g) || []).length, 5);
   assert.equal((table.match(/class="unit"/g) || []).length, 5, 'a parameter has no unit');
   assert.equal((table.match(/class="default"/g) || []).length, 5, 'a parameter has no default');
-  assert.equal((table.match(/<th scope="col">/g) || []).length, 5);
+  assert.equal((table.match(/<th scope="col">/g) || []).length, 4,
+    'Table 1 is four columns: parameter, meaning, unit, default');
   assert.ok(table.indexOf('<thead>') < table.indexOf('<tbody>'));
+});
+
+test('the primary interface stays inside the complexity budget', () => {
+  /* Counted on the shipped markup rather than in a browser, so the budget is a gate and not an
+     audit someone has to remember to re-run. A control is a `.ctl` block; primary means outside
+     every <details>. */
+  const body = html.slice(html.indexOf('<body>'));
+  const detailsBlocks = [...body.matchAll(/<details[\s\S]*?<\/details>/g)].map((m) => m[0]);
+  const inDetails = (fragment) => detailsBlocks.some((d) => d.includes(fragment));
+
+  const controls = [...body.matchAll(/<div class="ctl">[\s\S]*?<\/div>\s*<\/div>/g)];
+  const primaryControls = (body.match(/<div class="ctl">/g) || []).length
+    - detailsBlocks.reduce((n, d) => n + (d.match(/<div class="ctl">/g) || []).length, 0);
+  assert.ok(primaryControls >= 4 && primaryControls <= 5,
+    `${primaryControls} adjustable parameters in the primary interface; the budget is 4 to 5`);
+  assert.ok(controls.length > 0, 'no control blocks matched — the counting regex has drifted');
+
+  /* One dominant visualization plus at most one secondary, and one model figure. */
+  const primaryCharts = ['id="cost-chart"', 'id="graph"'].filter((f) => !inDetails(f));
+  assert.equal(primaryCharts.length, 2,
+    'the primary interface should carry the cost chart and the dependency graph, and nothing else');
+  assert.equal((body.match(/<svg class="fig/g) || []).length, 1, 'one model figure');
+
+  /* Two or three guided experiments, each specifying all six fields. */
+  const experiments = [...body.matchAll(/<li class="experiment">[\s\S]*?<\/li>/g)];
+  assert.ok(experiments.length >= 2 && experiments.length <= 3,
+    `${experiments.length} guided experiments; the budget is 2 to 3`);
+  for (const [block] of experiments) {
+    for (const field of ['Baseline', 'Parameter changed', 'Held constant', 'Predict',
+      'Measurements to compare', 'Engineering question']) {
+      assert.ok(block.includes(`<dt>${field}</dt>`),
+        `an experiment omits the ${field} field:\n${block.slice(0, 160)}`);
+    }
+  }
+  assert.equal(experiments.length, M.CONDITIONS.length,
+    'one guided experiment per engine condition');
+
+  /* The twelve-row sweep is analyst material and belongs out of the primary interface. */
+  assert.ok(inDetails('id="sweep-report"'), 'the parameter sweep is back in the primary interface');
+  /* So are the parameters that open a second relationship. */
+  for (const held of ['<select id="scenario">', '<select id="teams">', '<select id="mix">']) {
+    assert.ok(inDetails(held), `${held} is in the primary interface; it opens a second relationship`);
+  }
+});
+
+test('the background teaches the model and stays inside its word budget', () => {
+  const start = html.indexOf('id="h-background"');
+  const section = html.slice(start, html.indexOf('</section>', start));
+  const words = section.replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ')
+    .split(/\s+/).filter((w) => /[A-Za-z0-9]/.test(w)).length;
+  assert.ok(words >= 400 && words <= 600,
+    `the background is ${words} words; the budget is 400 to 600`);
+  /* It teaches what a student needs in order to PREDICT — not a defence of the simulation's
+     limitations, which belongs in the model reference. */
+  for (const phrase of ['one-time cost', 'per-change cost', 'horizon',
+    'how many components it must modify', 'A requirement is not a price']) {
+    assert.ok(section.includes(phrase), `the background never teaches: ${phrase}`);
+  }
+  for (const defence of ['not calibrated', 'Nothing on this page was measured',
+    'does not establish']) {
+    assert.equal(section.includes(defence), false,
+      `the background defends the simulation instead of teaching the model: ${defence}`);
+  }
 });
 
 test('the model assumptions are visible rather than inside a disclosure', () => {
@@ -319,34 +407,73 @@ test('the model assumptions are visible rather than inside a disclosure', () => 
   }
 });
 
-test('the Predict / Run / Explain block sits immediately above the controls', () => {
+test('the Predict / Run / Explain block sits above the controls', () => {
   const experiment = html.indexOf('class="lab-experiment"');
-  const firstControl = html.indexOf('<select id="scenario">');
+  const firstControl = html.indexOf('id="arch-seg"');
   assert.ok(experiment > 0, 'there is no experiment block');
   assert.ok(experiment < firstControl, 'the experiment block sits below the controls');
   const block = html.slice(experiment, firstControl);
   assert.match(block, /1 &middot; Predict/);
   assert.match(block, /2 &middot; Run/);
   assert.match(block, /3 &middot; Explain/);
-  /* Specific to THIS simulator, not a generic note about the scientific method. */
+  /* Specific to THIS laboratory, not a generic note about the scientific method. The earlier form
+     of this test required the words `persistence mechanism`, which named a scenario control that
+     has since moved to Further investigation; it now requires the three parameters the method
+     actually walks. */
   assert.match(block, /implementation multiplier/);
-  assert.match(block, /persistence mechanism/);
+  assert.match(block, /independent-release requirement/);
+  assert.match(block, /horizon/);
   assert.ok(!/scientific method/i.test(block));
 });
 
-test('the introduction appears in the order the shared design requires', () => {
-  /* Scoped to the MARKUP: the stylesheet declares every `.lab-*` selector near the top of the
-     file, so searching the whole document would compare CSS positions with body positions and
-     report an ordering that has nothing to do with what a reader sees. */
+test('the page follows the handout order the house style requires', () => {
+  /* Engineering problem, background, model, procedure, apparatus, interpretation, collapsed
+     reference. Scoped to the MARKUP: the stylesheet declares every `.lab-*` selector near the top
+     of the file, so searching the whole document would compare CSS positions with body positions
+     and report an ordering that has nothing to do with what a reader sees. */
   const body = html.slice(html.indexOf('<body>'));
-  const order = ['lab-question', 'class="lab-frame"', 'id="f1-t"', 'class="lab-assumptions"',
-    'class="lab-disclaimer"', '<table class="lab-parameters">',
-    'class="lab-experiment"', '<select id="scenario">', 'id="f2-t"'];
+  const order = [
+    ['the engineering question', 'lab-question'],
+    ['the framing scenario', 'class="lab-frame"'],
+    ['the background', 'id="h-background"'],
+    ['the model section', 'id="h-model"'],
+    ['figure 1', 'id="f1-t"'],
+    ['the assumptions', 'class="lab-assumptions"'],
+    ['the one visible disclaimer', 'class="lab-disclaimer"'],
+    ['table 1', '<table class="lab-parameters">'],
+    ['the procedure', 'id="h-procedure"'],
+    ['the method block', 'class="lab-experiment"'],
+    ['the six-field experiments', '<li class="experiment">'],
+    ['the controls', 'id="arch-seg"'],
+    ['the prediction gate', 'id="conditions"'],
+    ['the results', 'id="cost-chart"'],
+    ['the dependency graph', 'id="graph"'],
+    ['the interpretation', 'id="h-decision"'],
+    ['further investigation', 'id="h-further"'],
+  ];
   let previous = -1;
-  for (const marker of order) {
+  let previousName = 'the start of the body';
+  for (const [name, marker] of order) {
     const at = body.indexOf(marker);
-    assert.ok(at > previous, `${marker} appears out of order (found at ${at}, previous ${previous})`);
+    assert.ok(at > previous,
+      `${name} (${marker}) appears before ${previousName} — found at ${at}, previous ${previous}`);
     previous = at;
+    previousName = name;
+  }
+});
+
+test('the apparatus sits BELOW the instructional material, which is the withdrawn-dashboard rule', () => {
+  /* The house style's precedence section: the author proposed a dashboard-first layout and then
+     reversed it in favour of a laboratory handout. Scrolling to reach the controls is a deliberate
+     instructional sequence here, so this asserts the sequence rather than a first-screen budget. */
+  const body = html.slice(html.indexOf('<body>'));
+  const firstControl = Math.min(
+    ...['id="arch-seg"', 'id="changes"', 'id="release-seg"', 'id="mult-seg"', 'id="assur-seg"']
+      .map((f) => body.indexOf(f)).filter((i) => i > 0));
+  for (const [name, marker] of [['the engineering problem', 'id="h-problem"'],
+    ['the background', 'id="h-background"'], ['the model', 'id="h-model"'],
+    ['the procedure', 'id="h-procedure"']]) {
+    assert.ok(body.indexOf(marker) < firstControl, `${name} sits below the first control`);
   }
 });
 
