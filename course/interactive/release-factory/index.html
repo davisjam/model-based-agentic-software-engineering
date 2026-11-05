@@ -22,6 +22,13 @@
                        not two.
     #factory-ui      — rendering and controls. Observes the model; never determines it.
 
+  The PAGE exposes four policies, three guided experiments and three principal measurements. The
+  ENGINE is unreduced: it still distinguishes every internal event it ever did — defect
+  introduced, signalled by the tests, blocked by the gate, exposed in production, detected after
+  release, service restored — and the full ledger, the capacity sweep and the wider preset library
+  live under Further investigation. Simplifying the student interface did not simplify the model,
+  and simulation fidelity is not instructional quality.
+
   Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
 -->
 <html lang="en">
@@ -638,6 +645,90 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
    no decorative animation to disable — what the mode changes is the redraw cadence, so the
    picture stops shimmering. The simulation itself is untouched: simulated time never depends on
    how often we draw. */
+
+/* --- the handout's own sections ------------------------------------------------------------
+   A SECTION heading (Background, The model, The experiment, Further investigation) is a level
+   above a panel title and is sized like one: the display face at about 18px, against the panel
+   title's mono micro-caps. The family's visual identity is unchanged; what changes is that the
+   handout now has two ranks of heading instead of one. */
+.lab-section { margin: 0 0 1.4rem; }
+.lab-section-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 600; letter-spacing: 0;
+  color: var(--ink); margin: 0 0 0.65rem;
+}
+
+/* Prose keeps a readable measure. The width belongs to the figure and the apparatus, not to
+   longer lines of text, so the background runs in one column until the page is wide enough for
+   two that are each still comfortable to read. */
+.lab-prose { font-size: 1rem; line-height: 1.5; max-width: 78ch; }
+.lab-prose p { margin: 0 0 0.75rem; }
+.lab-prose p:last-child { margin-bottom: 0; }
+@media (min-width: 1280px) {
+  .lab-prose { max-width: 112ch; columns: 2; column-gap: 2.8rem; }
+  .lab-prose p { break-inside: avoid; }
+}
+
+/* FIGURE 1 takes its own row at roughly three-quarters of the content width, which is what the
+   house style asks of the diagram that establishes the model.
+
+   The share is a WIDTH and nothing here is a HEIGHT. The shared core removed the `max-height`
+   that used to letterbox these drawings — a clamped height on a viewBox'd SVG spends every extra
+   pixel of column on empty margin — and a ceiling reintroduced locally would undo that fix. The
+   figure is authored in a 600-unit viewBox so the core's 11.5px labels render at 18px or more at
+   every supported width; check the render SCALE, not the box. */
+.lab-model-figure { max-width: 76%; margin: 0 auto 0.9rem; }
+@media (max-width: 1099px) { .lab-model-figure { max-width: 100%; } }
+
+/* --- the three guided experiments ----------------------------------------------------------
+   Three cards, not eleven. Each states all six fields a laboratory procedure owes a student:
+   baseline, the one parameter changed, what is held constant, the prediction, the measurements
+   to compare, and the engineering question the comparison answers. */
+.exp-grid { display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+@media (min-width: 1100px) { .exp-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.exp {
+  min-width: 0; padding: 0.7rem 0.9rem 0.8rem;
+  background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent); border-radius: var(--radius);
+}
+.exp > h3 { margin: 0 0 0.45rem; font-size: 1.05rem; line-height: 1.25; }
+.exp .expnum {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.1rem;
+}
+.exp dl { margin: 0; }
+.exp dt {
+  font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  margin-top: 0.5rem;
+}
+.exp dd { margin: 0.1rem 0 0; font-size: 0.95rem; line-height: 1.4; }
+.exp .btn-row { margin-top: 0.9rem; }
+
+/* --- results -------------------------------------------------------------------------------
+   Three principal measurements, then the rest of the Four Keys in a visibly subordinate strip.
+   Subordinate by size and ground, not hidden: a student should be able to see that deployment
+   frequency and restoration time exist and are not what this experiment turns on. */
+.secondary-title { margin: 1.15rem 0 0.5rem; }
+.keys.secondary { grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); }
+.keys.secondary .key { background: var(--panel-2); padding: 0.45rem 0.6rem; }
+.keys.secondary .kval { font-size: 1.1rem; }
+.key .ksub + .ksub { margin-top: 0.1rem; }
+.panel-sub { text-transform: none; letter-spacing: 0; }
+.speed-label { align-self: center; }
+.sweep-status { align-self: center; color: var(--muted); font-size: 0.9rem; }
+.checkbox { width: auto; justify-self: start; }
+
+/* --- interpretation ------------------------------------------------------------------------- */
+ol.interpret { margin: 0; padding-left: 1.3rem; max-width: 94ch; font-size: 1rem; }
+ol.interpret li { margin-bottom: 0.5rem; line-height: 1.45; }
+ol.interpret li:last-child { margin-bottom: 0; }
+
+/* A disclosure's title IS the summary's line, so it sits inline and carries no bottom margin.
+   Everything else about it matches a panel heading. */
+.panel > summary > h2 { display: inline; margin: 0; }
 </style>
 </head>
 <body>
@@ -656,243 +747,364 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
 <main>
 
 <!-- ==============================================================================================
-     THE LABORATORY HANDOUT. The engineering problem, the pipeline being modelled, the model's
-     assumptions, and the policies a student may change. The styling is the shared lab shell in the
-     generated core above.
+     THE LABORATORY HANDOUT, in the house order: engineering problem, background, model,
+     experiment, apparatus, interpretation, further investigation. The instructional material
+     precedes the apparatus by design — a handout with an embedded experiment, not a dashboard
+     with an introduction. Do not move the controls above the background to save scrolling.
 
-     This page already opened with the Four-Keys caveat, so the band FOLDS it rather than stacking a
-     second opening on top: the caveat is a claims-boundary statement, which is what the assumptions
-     panel is for. Figure 2 — the defect-outcome tree — sits beside the defect ledger it explains,
-     per the ruling that figure 2 is a template and not a quota.
+     What governs the shape of this page: ONE question (speed against exposure), FOUR adjustable
+     policies, THREE guided experiments, THREE principal measurements. The engine behind it still
+     distinguishes every internal event it ever did — introduced, signalled by the tests, blocked
+     by the gate, exposed in production, detected after release, restored. Simplifying the student
+     interface did not simplify the model; the full ledger moved into Further investigation.
      ============================================================================================ -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
-    How do the engineer's release policies affect delivery performance and the consequences of
-    defects?
+    How do testing and release policies trade delivery speed against defect exposure?
   </h2>
   <p class="lab-frame">
-    Five policies govern this factory and each trades something away: deeper testing buys evidence
-    with delay, a blocking gate buys correctness with throughput, a larger batch buys fewer
-    releases with a wider blast radius.
+    A team lands changes all day. Every policy between a commit and a user buys one thing with
+    another: deeper testing buys evidence with time, a blocking gate buys correctness with
+    throughput, a staged rollout buys a smaller blast radius with delay. This laboratory lets you
+    change one policy at a time and measure what it cost and what it bought.
   </p>
+  <p class="lab-disclaimer">
+    <strong>Illustrative simulation; not calibrated to an industrial organisation.</strong>
+  </p>
+</section>
 
-  <div class="lab-twoup band">
-    <!-- -------- FIGURE 1 · the modelled pipeline -------- -->
-    <figure class="lab-figure">
-      <svg class="fig" viewBox="0 0 660 200" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
-        <title id="f1-t">Figure 1: the modelled release pipeline, from a code change to recovery</title>
-        <desc id="f1-d">A pipeline runs left to right across two rows. On the first row: code
-          changes enter build and test, which leads to an admission gate; the gate either sends a
-          change back for rework, drawn as an arrow returning to build and test, or forwards it to
-          deployment. On the second row: deployment leads to production, and production leads to a
-          separate stage labelled monitor and recover. Deployment and production are inside a
-          dashed boundary labelled the delivery process, which is what the Four Keys measure.
-          Monitor and recover is drawn outside that boundary and labelled as a different activity:
-          a change is deployed once, and is then observed, detected and restored over a period
-          afterwards. A note reads that every duration and probability in the model is an
-          assumption, printed on the page, and not an industrial measurement. The parameters
-          marked are defined in the parameters table.</desc>
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="lab-section" aria-labelledby="h-background">
+  <h2 class="lab-section-title" id="h-background">Background</h2>
+  <div class="lab-prose">
+    <p>
+      <strong>A release pipeline is a sequence of stages, and every stage is a queue.</strong> A
+      change is built and tested, admitted or rejected, packaged into a release, and finally served
+      to users. Each stage has a finite capacity — a number of parallel test lanes, a number of
+      release slots. Arrivals are irregular and service takes time, so work waits, and a stage
+      close to its capacity grows a waiting line faster than the load that feeds it.
+    </p>
+    <p>
+      <strong>Testing and enforcement are different mechanisms.</strong> A test suite produces a
+      <em>signal</em>: this change looks broken. An admission policy decides what that signal is
+      allowed to do. Advisory checks warn and the change ships anyway; required checks let the same
+      signal stop it. The suite is identical in both cases — what differs is the authority attached
+      to its verdict. A pipeline can test well and enforce nothing, and it will ship the defects its
+      own tests found.
+    </p>
+    <p>
+      <strong>Deeper testing lengthens service time, and service time compounds into queueing
+      delay.</strong> A thorough suite runs longer than a smoke suite, so every change occupies a
+      lane for longer. While the stage stays under capacity, lead time rises by roughly the extra
+      minutes. Once the longer suite pushes the stage <em>past</em> capacity, the line never drains
+      and lead time rises without bound. The same policy change has two qualitatively different
+      outcomes depending on which side of capacity it lands on.
+    </p>
+    <p>
+      <strong>Staged release changes who meets a defect, not whether one exists.</strong> Deploying
+      to the whole fleet exposes every user to whatever the release carries. A canary serves a small
+      share of traffic first and holds there for a soak period, so a defect that manifests often is
+      likely to be noticed while only that share is exposed. The canary does not make the defect
+      less likely. It bounds the requests served before somebody notices — and only when the defect
+      manifests often enough to appear in the soak's traffic at all.
+    </p>
+    <p>
+      <strong>Delivery performance and software correctness are separate measurements.</strong> How
+      often a team deploys, how long a change takes to reach production, how often a deployment
+      fails and how fast service is restored all describe the delivery <em>process</em>. None of
+      them says whether the software is correct or the change was worth making. A pipeline can ship
+      ten times a day, restore in minutes, and expose users continuously — because a defect nobody
+      detected appears in no failure rate.
+    </p>
+  </div>
+</section>
 
-        <rect class="bx" x="4" y="22" width="92" height="30" rx="2"/>
-        <text class="t" x="50" y="34" text-anchor="middle">Code</text>
-        <text class="t" x="50" y="47" text-anchor="middle">changes</text>
-        <text class="ts" x="4" y="16">arrival rate</text>
+<!-- ======================= 3 · THE MODEL ======================= -->
+<section class="lab-section" aria-labelledby="h-model">
+  <h2 class="lab-section-title" id="h-model">The model</h2>
 
-        <line class="ln" x1="100" y1="37" x2="134" y2="37"/>
-        <polygon class="ah" points="140,37 133,33 133,41"/>
-        <rect class="bx strong" x="144" y="22" width="110" height="30" rx="2"/>
-        <text class="t" x="199" y="41" text-anchor="middle">Build + test</text>
-        <text class="ts" x="144" y="16">test depth</text>
+  <!-- Figure 1 takes its own row at roughly three-quarters of the content width. It is the artifact
+       that establishes what students are about to manipulate, so it is sized to be read from the
+       back of a lecture theatre rather than squeezed beside a table. -->
+  <figure class="lab-figure lab-model-figure">
+    <svg class="fig" viewBox="0 0 600 168" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+      <title id="f1-t">Figure 1: the modelled release pipeline, from a code change to production</title>
+      <desc id="f1-d">A pipeline runs left to right in five stages: code changes, build and test,
+        an admission gate, deploy, and production, where users are exposed. Each of the first four
+        stages is annotated with the policy that governs it — arrival rate, test depth, admission
+        policy and release strategy. A dashed path returns from the admission gate to build and
+        test, labelled blocked then reworked. Below production, an arrow leads to a separate stage
+        labelled monitor then restore, annotated detected after release, drawn outside the main
+        line because it happens after delivery rather than as part of it. A bracket spans code
+        changes to production and is labelled lead time, commit to production.</desc>
 
-        <line class="ln" x1="258" y1="37" x2="292" y2="37"/>
-        <polygon class="ah" points="298,37 291,33 291,41"/>
-        <rect class="bx strong" x="302" y="22" width="110" height="30" rx="2"/>
-        <text class="t" x="357" y="41" text-anchor="middle">Admission gate</text>
-        <text class="ts" x="302" y="16">admission policy</text>
+      <text class="th" x="2" y="26">arrival rate</text>
+      <text class="th" x="96" y="26">test depth</text>
+      <text class="th" x="222" y="26">admission policy</text>
+      <text class="th" x="354" y="26">release strategy</text>
 
-        <path class="ln ghost" d="M357 56 L357 68 L199 68 L199 56"/>
-        <polygon class="ah" points="199,54 196,60 202,60"/>
-        <text class="ts" x="236" y="80">rework, and back round</text>
+      <rect class="bx" x="2" y="36" width="74" height="36" rx="2"/>
+      <text class="t" x="39" y="51" text-anchor="middle">Code</text>
+      <text class="t" x="39" y="64" text-anchor="middle">changes</text>
 
-        <line class="ln" x1="416" y1="37" x2="446" y2="37"/>
-        <polygon class="ah" points="452,37 445,33 445,41"/>
-        <text class="ts" x="420" y="22">admitted</text>
+      <line class="ln" x1="77" y1="54" x2="88" y2="54"/>
+      <polygon class="ah" points="94,54 87,50 87,58"/>
 
-        <rect class="boundary" x="4" y="96" width="330" height="56" rx="3"/>
-        <text class="th" x="8" y="166">Delivery process &mdash; what the Four Keys measure</text>
+      <rect class="bx strong" x="96" y="36" width="106" height="36" rx="2"/>
+      <text class="t" x="149" y="59" text-anchor="middle">Build + test</text>
 
-        <rect class="bx" x="12" y="106" width="134" height="36" rx="2"/>
-        <text class="t" x="79" y="121" text-anchor="middle">Deployment</text>
-        <text class="ts" x="79" y="134" text-anchor="middle">batch size &middot; strategy</text>
-        <line class="ln" x1="150" y1="124" x2="180" y2="124"/>
-        <polygon class="ah" points="186,124 179,120 179,128"/>
-        <rect class="bx" x="190" y="106" width="134" height="36" rx="2"/>
-        <text class="t" x="257" y="121" text-anchor="middle">Production</text>
-        <text class="ts" x="257" y="134" text-anchor="middle">users exposed</text>
+      <line class="ln" x1="203" y1="54" x2="214" y2="54"/>
+      <polygon class="ah" points="220,54 213,50 213,58"/>
 
-        <line class="ln" x1="338" y1="124" x2="368" y2="124"/>
-        <polygon class="ah" points="374,124 367,120 367,128"/>
-        <rect class="bx ghost" x="378" y="100" width="138" height="48" rx="2"/>
-        <text class="t" x="447" y="116" text-anchor="middle">Monitor / recover</text>
-        <text class="ts" x="447" y="130" text-anchor="middle">detect, then restore</text>
-        <text class="ts" x="447" y="142" text-anchor="middle">a different activity</text>
+      <rect class="bx strong" x="222" y="36" width="112" height="36" rx="2"/>
+      <text class="t" x="278" y="59" text-anchor="middle">Admission gate</text>
 
-        <text class="ts" x="8" y="182">A change is DEPLOYED once; it is then OBSERVED and RESTORED over a period afterwards.</text>
-        <text class="ts" x="8" y="194">Every duration and probability below is an assumption printed on this page, not a measurement.</text>
-      </svg>
-      <figcaption>
-        <span class="fignum">Figure 1.</span> The pipeline the simulator runs. Deployment and
-        production are the delivery process; monitoring and recovery are what happens
-        <em>afterwards</em>, and the two are measured separately.
-      </figcaption>
-    </figure>
+      <line class="ln" x1="335" y1="54" x2="346" y2="54"/>
+      <polygon class="ah" points="352,54 345,50 345,58"/>
 
-    <!-- -------- MODEL ASSUMPTIONS, which is where the Four-Keys caveat belongs -------- -->
+      <rect class="bx" x="354" y="36" width="80" height="36" rx="2"/>
+      <text class="t" x="394" y="59" text-anchor="middle">Deploy</text>
+
+      <line class="ln" x1="435" y1="54" x2="446" y2="54"/>
+      <polygon class="ah" points="452,54 445,50 445,58"/>
+
+      <rect class="bx" x="454" y="36" width="110" height="36" rx="2"/>
+      <text class="t" x="509" y="51" text-anchor="middle">Production</text>
+      <text class="ts" x="509" y="64" text-anchor="middle">users exposed</text>
+
+      <path class="ln ghost" d="M278 73 L278 88 L149 88 L149 74"/>
+      <polygon class="ah" points="149,72 146,78 152,78"/>
+      <text class="ts" x="162" y="100">blocked, then reworked</text>
+
+      <line class="ln" x1="509" y1="73" x2="509" y2="100"/>
+      <polygon class="ah" points="509,106 505,99 513,99"/>
+      <rect class="bx ghost" x="430" y="108" width="158" height="34" rx="2"/>
+      <text class="t" x="509" y="123" text-anchor="middle">Monitor, then restore</text>
+      <text class="ts" x="509" y="136" text-anchor="middle">detected after release</text>
+
+      <path class="ln ghost" d="M39 150 L39 156 L509 156 L509 150"/>
+      <text class="th" x="274" y="150" text-anchor="middle">lead time · commit to production</text>
+    </svg>
+    <figcaption>
+      <span class="fignum">Figure 1.</span> The pipeline the simulator runs. The four policies you
+      can change are marked above the stages they govern. Monitoring and recovery sit outside the
+      delivery line because they happen <em>after</em> a change is delivered, and are measured
+      separately.
+    </figcaption>
+  </figure>
+
+  <div class="lab-twoup">
+    <!-- The assumptions needed to predict behaviour sit beside the model. Limitations — external
+         validity, what is not modelled, sampling variability — are in Model reference, below. -->
     <div class="lab-assumptions" aria-labelledby="h-assumptions">
       <h2 id="h-assumptions">Model assumptions</h2>
       <ul>
-        <li><strong>Every probability and duration is an illustrative simulation assumption, not a
-          measured industrial value.</strong> Defect rate, coverage factors, rework hours and
-          monitoring quality are printed on this page and chosen for teaching.</li>
-        <li><strong>This instrument measures delivery performance and release risk.</strong> Its four
-          measures are the <strong>Four Keys</strong> &mdash; deployment frequency, lead time for
-          changes, change failure rate, time to restore service &mdash; the four the course reading
-          names, and not an account of current DORA measurement practice, which has moved on.</li>
+        <li><strong>This instrument measures delivery performance and release risk.</strong> Its
+          four delivery measures are the <strong>Four Keys</strong> &mdash; deployment frequency,
+          lead time for changes, change failure rate, time to restore service &mdash; the four the
+          course reading names, and not an account of current DORA measurement practice, which has
+          moved on.</li>
         <li><strong>They describe selected outcomes of the delivery process. They do not establish
-          whether the organisation is producing valuable or correct software.</strong> A factory can
-          ship ten times a day, restore in minutes, and build the wrong thing perfectly.</li>
+          whether the organisation is producing valuable or correct software.</strong></li>
         <li><strong>Changing a policy resets the factory, and the seed does not change.</strong> The
           same team commits the same changes carrying the same defects, so switching one policy is a
-          controlled experiment rather than a fresh draw.</li>
+          controlled comparison rather than a fresh draw.</li>
+        <li><strong>Thorough testing never catches everything.</strong> The deepest suite's coverage
+          factor is 0.92, not one, so some defects always reach production.</li>
       </ul>
-      <p class="lab-disclaimer">
-        <strong>No figure here measures any real organisation.</strong> Read each comparison as the
-        consequence of a stated model &mdash; and argue with the model.
-      </p>
     </div>
 
-    <!-- -------- PARAMETERS -------- -->
+    <!-- Table 1 · the parameters a student manipulates. Not the simulator's parameter set: the
+         rest is in Advanced controls and Model reference. -->
     <div class="lab-assumptions lab-parameters-block">
+      <h2 class="lab-block-title">Table 1 &middot; Model parameters</h2>
       <div class="lab-scroll">
         <table class="lab-parameters">
-          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
-            changing it does</caption>
+          <caption class="vh">Table 1: the four policies you can change</caption>
           <thead>
-            <tr>
-              <th scope="col">Parameter</th><th scope="col">Meaning</th>
-              <th scope="col">Values</th><th scope="col">Default</th>
-              <th scope="col">What changing it does</th>
-            </tr>
+            <tr><th scope="col">Policy</th><th scope="col">Values</th>
+              <th scope="col">What changing it does</th></tr>
           </thead>
           <tbody>
-            <tr data-control="seg-arrival">
-              <th scope="row">Change arrival rate</th>
-              <td>How fast the team lands changes</td>
-              <td class="unit">Low 4 &middot; Medium 14 &middot; High 44 changes/day, or 1&ndash;200 exactly</td>
-              <td class="default">High</td>
-              <td>Sets pipeline demand &mdash; can the factory keep up?</td>
-            </tr>
-            <tr data-control="seg-depth">
-              <th scope="row">Test depth</th>
-              <td>How much is run before a change may proceed</td>
+            <tr><th scope="row">Change arrival rate</th>
+              <td class="unit">Low 4 &middot; Medium 14 &middot; High 44 changes/day</td>
+              <td>Sets the demand on the pipeline.</td></tr>
+            <tr><th scope="row">Test depth</th>
               <td class="unit">Smoke 8 &middot; Standard 42 &middot; Thorough 155 min</td>
-              <td class="default">Thorough</td>
-              <td>Trades delay for evidence</td>
-            </tr>
-            <tr data-control="seg-admission">
-              <th scope="row">Admission policy</th>
-              <td>What a failing check is allowed to do</td>
-              <td class="unit">Advisory &middot; Required checks</td>
-              <td class="default">Required checks</td>
-              <td>Gives the gate enforcement authority, or withholds it</td>
-            </tr>
-            <tr data-control="seg-strategy">
-              <th scope="row">Release strategy</th>
-              <td>How a release reaches the fleet</td>
+              <td>Buys evidence with service time at the build and test stage.</td></tr>
+            <tr><th scope="row">Admission policy</th>
+              <td class="unit">Advisory &middot; Required</td>
+              <td>Decides whether a failing check may stop a change.</td></tr>
+            <tr><th scope="row">Release strategy</th>
               <td class="unit">Immediate &middot; Canary &middot; Blue-green</td>
-              <td class="default">Immediate</td>
-              <td>Changes user impact and how soon a defect is detected</td>
-            </tr>
-            <tr data-control="seg-batch">
-              <th scope="row">Deployment batch size</th>
-              <td>Changes carried by one release</td>
-              <td class="unit">1 &middot; 5 &middot; 10 changes</td>
-              <td class="default">1</td>
-              <td>Changes deployment frequency and the failure scope of one release</td>
-            </tr>
-            <tr data-control="seg-speed">
-              <th scope="row">Simulation speed</th>
-              <td>Simulated time per wall-clock second</td>
-              <td class="unit">1&times; &middot; 10&times; &middot; 100&times;</td>
-              <td class="default">10&times;</td>
-              <td>Changes observation speed, <em>not</em> model behaviour</td>
-            </tr>
+              <td>Decides how much traffic meets a release before anyone has looked at it.</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="lab-tablenote">
+        Deployment batch size is fixed at one change per release. Everything else the model needs
+        &mdash; lanes, defect rate, traffic, monitoring quality, soak and rollback durations &mdash;
+        is held at the values printed in Advanced controls.
+      </p>
+    </div>
+  </div>
+
+  <!-- Table 2 · the vocabulary for reading a run, given BEFORE the student runs anything. -->
+  <div class="lab-assumptions lab-parameters-block">
+    <h2 class="lab-block-title">Table 2 &middot; Observed quantities</h2>
+    <div class="lab-scroll">
+      <table class="lab-parameters">
+        <caption class="vh">Table 2: what the simulation reports and what each quantity counts</caption>
+        <thead>
+          <tr><th scope="col">Quantity</th><th scope="col">What it counts</th>
+            <th scope="col">Reported as</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Lead time for changes</th>
+            <td>First commit to first arrival in production, including any rework.</td>
+            <td class="default">Principal</td></tr>
+          <tr><th scope="row">Defects reaching production</th>
+            <td>Defects that served real traffic, whether or not anybody noticed.</td>
+            <td class="default">Principal</td></tr>
+          <tr><th scope="row">User exposure</th>
+            <td>Requests served by a release while it carried a live defect.</td>
+            <td class="default">Principal</td></tr>
+          <tr><th scope="row">Deployment frequency</th>
+            <td>Releases that reached real users, per measured day.</td>
+            <td class="default">Secondary</td></tr>
+          <tr><th scope="row">Change failure rate</th>
+            <td>Failed deployments divided by deployments &mdash; not by changes.</td>
+            <td class="default">Secondary</td></tr>
+          <tr><th scope="row">Time to restore service</th>
+            <td>Detection to rollback complete. The clock starts when somebody noticed.</td>
+            <td class="default">Secondary</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
-<!-- ======================= CONTROLS ======================= -->
-<section class="panel" aria-labelledby="h-controls">
-  <h2 id="h-controls">The factory&rsquo;s policies</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
+
+<!-- ======================= 4 · THE EXPERIMENT ======================= -->
+<section class="lab-section" aria-labelledby="h-experiment">
+  <h2 class="lab-section-title" id="h-experiment">The experiment</h2>
+
+  <div class="lab-experiment" aria-labelledby="h-procedure">
+    <h2 id="h-procedure">Procedure</h2>
     <ol class="lab-steps">
-      <li>
-        <span class="step">1 &middot; Predict</span>
-        With changes arriving 44 a day, write down what you expect <em>thorough</em> testing behind a
-        <em>required</em> gate to do to deployment frequency and to change failure rate &mdash; and
-        which of the two you expect to move more. Commit it before you run.
-      </li>
-      <li>
-        <span class="step">2 &middot; Run</span>
-        Run 90 days on the defaults. Then change exactly one policy at a time: test depth to smoke,
-        admission to advisory, strategy to canary, batch size to 10. The seed is unchanged across
-        resets, so each run is the same team committing the same defects.
-      </li>
-      <li>
-        <span class="step">3 &middot; Explain</span>
-        Which policy moved delivery performance, and which moved the <em>consequences</em> of a
-        defect &mdash; users exposed, time to detect, time to restore? Name one policy that improved
-        a Four-Keys measure while making the factory worse, and say what you would recommend.
-      </li>
+      <li><span class="step">1 &middot; Predict</span>
+        Read an experiment below and write your prediction down before you touch anything. A
+        prediction you did not commit to is not a prediction.</li>
+      <li><span class="step">2 &middot; Run</span>
+        Press <strong>Set baseline</strong>, then <strong>Run 90 days</strong>, and record the three
+        principal results. Press the experiment's other button and run 90 days again.</li>
+      <li><span class="step">3 &middot; Explain</span>
+        Compare the two records, then answer the experiment's engineering question. The seed does
+        not change between runs, so the same team committed the same defects in both.</li>
     </ol>
   </div>
+
+  <div class="exp-grid">
+    <article class="exp" aria-labelledby="h-exp1">
+      <h3 id="h-exp1"><span class="expnum">Experiment 1</span> Testing and delivery</h3>
+      <dl>
+        <dt>Baseline</dt>
+        <dd>High arrival &middot; Standard test depth &middot; Required admission &middot;
+          Immediate release</dd>
+        <dt>Change</dt>
+        <dd>Test depth: <strong>Standard &rarr; Thorough</strong></dd>
+        <dt>Held constant</dt>
+        <dd>Arrival rate, admission policy, release strategy, batch size, seed</dd>
+        <dt>Predict</dt>
+        <dd>What happens to lead time? To the number of defects reaching production? Which moves
+          further?</dd>
+        <dt>Compare</dt>
+        <dd>Lead time &middot; defects reaching production &middot; user exposure</dd>
+        <dt>The question it answers</dt>
+        <dd>Under what conditions is the additional testing time justified?</dd>
+      </dl>
+      <p class="btn-row">
+        <button type="button" class="act" data-guided="baseline">Set baseline</button>
+        <button type="button" class="act primary" data-guided="thorough">Set thorough testing</button>
+      </p>
+    </article>
+
+    <article class="exp" aria-labelledby="h-exp2">
+      <h3 id="h-exp2"><span class="expnum">Experiment 2</span> Enforcement</h3>
+      <dl>
+        <dt>Baseline</dt>
+        <dd>High arrival &middot; Standard test depth &middot; Required admission &middot;
+          Immediate release</dd>
+        <dt>Change</dt>
+        <dd>Admission policy: <strong>Required &rarr; Advisory</strong></dd>
+        <dt>Held constant</dt>
+        <dd>Arrival rate, test depth, release strategy, batch size, seed</dd>
+        <dt>Predict</dt>
+        <dd>The same suite runs and signals the same defects in both configurations. Predict what
+          changes anyway, and what does not.</dd>
+        <dt>Compare</dt>
+        <dd>Defects reaching production &middot; user exposure &middot; lead time</dd>
+        <dt>The question it answers</dt>
+        <dd>What does an enforcing gate add that a test suite alone cannot?</dd>
+      </dl>
+      <p class="btn-row">
+        <button type="button" class="act" data-guided="baseline">Set baseline</button>
+        <button type="button" class="act primary" data-guided="advisory">Set advisory checks</button>
+      </p>
+    </article>
+
+    <article class="exp" aria-labelledby="h-exp3">
+      <h3 id="h-exp3"><span class="expnum">Experiment 3</span> Exposure</h3>
+      <dl>
+        <dt>Baseline</dt>
+        <dd>High arrival &middot; Standard test depth &middot; Required admission &middot;
+          Immediate release</dd>
+        <dt>Change</dt>
+        <dd>Release strategy: <strong>Immediate &rarr; Canary</strong></dd>
+        <dt>Held constant</dt>
+        <dd>Arrival rate, test depth, admission policy, batch size, seed</dd>
+        <dt>Predict</dt>
+        <dd>Does the count of defects reaching production fall? Does user exposure fall? What
+          happens to lead time?</dd>
+        <dt>Compare</dt>
+        <dd>User exposure &middot; defects reaching production &middot; lead time</dd>
+        <dt>The question it answers</dt>
+        <dd>When is a staged release worth the lead time it costs?</dd>
+      </dl>
+      <p class="btn-row">
+        <button type="button" class="act" data-guided="baseline">Set baseline</button>
+        <button type="button" class="act primary" data-guided="canary">Set canary release</button>
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- ======================= 5 · THE APPARATUS ======================= -->
+<section class="panel lab-controls" aria-labelledby="h-controls">
+  <h2 id="h-controls">Apparatus &mdash; the four policies</h2>
 
   <div class="ctl-row">
     <div class="ctl">
       <span class="ctl-label" id="lab-arrival">Change arrival rate
-        <span class="unit">&mdash; can the pipeline keep up?</span></span>
+        <span class="unit">&mdash; how much work arrives</span></span>
       <div class="seg" role="group" aria-labelledby="lab-arrival" id="seg-arrival"></div>
     </div>
     <div class="ctl">
       <span class="ctl-label" id="lab-depth">Test depth
-        <span class="unit">&mdash; how much evidence is worth the delay?</span></span>
+        <span class="unit">&mdash; how long a change holds a lane</span></span>
       <div class="seg" role="group" aria-labelledby="lab-depth" id="seg-depth"></div>
     </div>
     <div class="ctl">
       <span class="ctl-label" id="lab-admission">Admission policy
-        <span class="unit">&mdash; can failing changes proceed?</span></span>
+        <span class="unit">&mdash; may a failing check stop a change?</span></span>
       <div class="seg" role="group" aria-labelledby="lab-admission" id="seg-admission"></div>
     </div>
     <div class="ctl">
       <span class="ctl-label" id="lab-strategy">Release strategy
-        <span class="unit">&mdash; how should exposure be controlled?</span></span>
+        <span class="unit">&mdash; how much traffic meets a release</span></span>
       <div class="seg" role="group" aria-labelledby="lab-strategy" id="seg-strategy"></div>
-    </div>
-    <div class="ctl">
-      <span class="ctl-label" id="lab-batch">Deployment batch size
-        <span class="unit">&mdash; how much work should one release carry?</span></span>
-      <div class="seg" role="group" aria-labelledby="lab-batch" id="seg-batch"></div>
-    </div>
-    <div class="ctl triple">
-      <label for="arrival-num">Arrival rate, exactly
-        <span class="unit">changes/day</span></label>
-      <input type="range" id="arrival-range" min="1" max="200" step="1" value="44"
-             aria-label="Arrival rate in changes per day, slider">
-      <input type="number" id="arrival-num" min="1" max="200" step="1" value="44">
     </div>
   </div>
 
@@ -902,7 +1114,7 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     <button type="button" class="act" id="btn-90">Run 90 days</button>
     <button type="button" class="act" id="btn-reset">Reset</button>
     <button type="button" class="act" id="btn-defaults">Defaults</button>
-    <span class="ctl-label" id="lab-speed" style="align-self:center">Speed</span>
+    <span class="ctl-label speed-label" id="lab-speed">Speed</span>
     <div class="seg" role="group" aria-labelledby="lab-speed" id="seg-speed">
       <button type="button" data-speed="1" aria-pressed="false">1&times;</button>
       <button type="button" data-speed="10" aria-pressed="true">10&times;</button>
@@ -914,112 +1126,115 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
   </div>
 
   <p class="note" id="param-policy">
-    <strong>Changing a policy resets the factory.</strong> These are experiments to watch from an
-    empty pipeline, not perturbations of a running one, and comparing a settled factory against one
-    that is still draining a backlog is how a policy gets credit it did not earn. The
-    <em>seed</em> is unchanged by a reset, so the team commits the same changes at the same times
-    carrying the same defects: switching one policy is a controlled experiment, not a fresh draw.
-    Speed is <span class="mono">1&times;</span>&nbsp;=&nbsp;one simulated hour per second of your
-    time.
+    <strong>Changing a policy resets the factory</strong> &mdash; these are experiments watched from
+    an empty pipeline, not perturbations of a running one. The seed survives the reset, so the same
+    changes arrive at the same times carrying the same defects. Speed changes how fast you watch,
+    never what happens: <span class="mono">1&times;</span> is one simulated hour per second.
   </p>
 </section>
 
-<!-- ======================= PRESETS ======================= -->
-<section class="panel" aria-labelledby="h-presets">
-  <h2 id="h-presets">Classroom presets</h2>
-  <div class="preset-grid" id="presets"></div>
-  <p class="note">
-    The four marked <strong>1</strong> to <strong>4</strong> are one experiment, in order, and each
-    step changes <em>exactly one</em> control from the step before. Run each to about thirty
-    simulated days before reading its numbers. The rest are variations worth a minute each.
+<!-- ======================= RESULTS ======================= -->
+<section class="panel lab-measurements" aria-labelledby="h-results">
+  <h2 id="h-results">Principal results</h2>
+  <div class="keys">
+    <div class="key">
+      <span class="klabel">Lead time for changes</span>
+      <span class="kval" id="k-lead">&mdash;</span>
+      <span class="ksub" id="k-lead-sub">&nbsp;</span>
+    </div>
+    <div class="key">
+      <span class="klabel">Defects reaching production</span>
+      <span class="kval" id="k-reach">&mdash;</span>
+      <span class="ksub" id="k-reach-sub">&nbsp;</span>
+    </div>
+    <div class="key impact">
+      <span class="klabel">User exposure &mdash; requests served</span>
+      <span class="kval" id="k-impact">&mdash;</span>
+      <span class="ksub" id="k-impact-sub">&nbsp;</span>
+      <span class="ksub">Median per failed deployment:
+        <span class="mono" id="k-impact-med">&mdash;</span>
+        <span id="k-impact-med-sub"></span></span>
+    </div>
+  </div>
+
+  <h3 class="panel-title secondary-title" id="h-secondary">Secondary measurements</h3>
+  <div class="keys secondary" aria-labelledby="h-secondary">
+    <div class="key">
+      <span class="klabel">Deployment frequency</span>
+      <span class="kval" id="k-freq">&mdash;</span>
+      <span class="ksub" id="k-freq-sub">&nbsp;</span>
+    </div>
+    <div class="key">
+      <span class="klabel">Change failure rate</span>
+      <span class="kval" id="k-cfr">&mdash;</span>
+      <span class="ksub" id="k-cfr-sub">&nbsp;</span>
+    </div>
+    <div class="key">
+      <span class="klabel">Time to restore service</span>
+      <span class="kval" id="k-ttr">&mdash;</span>
+      <span class="ksub" id="k-ttr-sub">&nbsp;</span>
+    </div>
+  </div>
+  <p class="note" id="cfr-honesty">
+    <strong>The failure rate is a measurement, not the truth.</strong> A deployment carrying a defect
+    <em>nobody detected</em> is not in its numerator. That is why defects reaching production is a
+    principal result and the failure rate is not.
   </p>
 </section>
 
-<!-- ======================= THE FACTORY ======================= -->
 <section class="panel" aria-labelledby="h-factory">
-  <h2 id="h-factory">The factory
-    <span class="mono" style="text-transform:none;letter-spacing:0">(simulation state)</span></h2>
+  <h2 id="h-factory">The factory, running</h2>
   <div class="canvas-wrap"><canvas id="c-factory" width="1600" height="330"
     role="img" aria-labelledby="factory-alt"></canvas></div>
   <p id="factory-alt" class="vh" aria-live="polite"></p>
-  <dl class="readout" style="margin-top:0.8rem">
+  <dl class="readout">
     <dt>Simulated time</dt><dd id="r-time">&mdash;</dd>
     <dt>Build + test stage</dt><dd id="r-test-cap">&mdash;</dd>
     <dt>Release channel</dt><dd id="r-rel-cap">&mdash;</dd>
   </dl>
   <p class="note">
-    <span class="tagline">model</span> Both utilisation figures are
-    <strong>offered load divided by nominal capacity</strong>, computed from the policy tables &mdash;
-    not measured from the run. They ignore the extra work that rework and rollback generate, so a
-    factory can sit below one on both and still grow a backlog. That gap is itself worth noticing:
-    a release pipeline consumes its own capacity recovering from its own failures.
+    <span class="tagline">model</span> Both utilisation figures are offered load divided by nominal
+    capacity, computed from the policy tables rather than measured from the run. They ignore the
+    work that rework and rollback generate, so a factory can sit below one on both and still grow a
+    backlog.
   </p>
 </section>
 
-<div class="grid2">
-  <!-- ======================= FOUR KEYS ======================= -->
-  <section class="panel" aria-labelledby="h-keys">
-    <h2 id="h-keys">The Four Keys, and the fifth measure</h2>
-    <div class="keys">
-      <div class="key">
-        <span class="klabel">Deployment frequency</span>
-        <span class="kval" id="k-freq">&mdash;</span>
-        <span class="ksub" id="k-freq-sub">&nbsp;</span>
-      </div>
-      <div class="key">
-        <span class="klabel">Lead time for changes</span>
-        <span class="kval" id="k-lead">&mdash;</span>
-        <span class="ksub" id="k-lead-sub">&nbsp;</span>
-      </div>
-      <div class="key">
-        <span class="klabel">Change failure rate</span>
-        <span class="kval" id="k-cfr">&mdash;</span>
-        <span class="ksub" id="k-cfr-sub">&nbsp;</span>
-      </div>
-      <div class="key">
-        <span class="klabel">Time to restore service</span>
-        <span class="kval" id="k-ttr">&mdash;</span>
-        <span class="ksub" id="k-ttr-sub">&nbsp;</span>
-      </div>
-      <div class="key impact">
-        <span class="klabel">User impact &mdash; requests exposed</span>
-        <span class="kval" id="k-impact">&mdash;</span>
-        <span class="ksub" id="k-impact-sub">&nbsp;</span>
-      </div>
-      <div class="key impact">
-        <span class="klabel">&hellip; per failed deployment, median</span>
-        <span class="kval" id="k-impact-med">&mdash;</span>
-        <span class="ksub" id="k-impact-med-sub">&nbsp;</span>
-      </div>
-    </div>
-    <p class="note" id="cfr-honesty">
-      <strong>The failure rate is a measurement, not the truth.</strong> A deployment carrying a
-      defect <em>nobody detected</em> is not in its numerator. That count is shown under the rate,
-      and it is the number a canary moves least.
-    </p>
-  </section>
+<section class="panel" aria-labelledby="h-backlog">
+  <h2 id="h-backlog">Work in the factory, over time
+    <span class="mono panel-sub">(secondary visualisation)</span></h2>
+  <div class="canvas-wrap"><canvas id="c-backlog" width="1200" height="330"
+    role="img" aria-labelledby="backlog-alt"></canvas></div>
+  <p id="backlog-alt" class="vh" aria-live="polite"></p>
+  <p class="note">
+    Three series, each labelled on the chart and drawn with its own line style, so the picture reads
+    without colour. A queue that climbs and never comes back down is a stage past its capacity.
+  </p>
+</section>
 
-  <!-- ======================= BACKLOG OVER TIME ======================= -->
-  <section class="panel" aria-labelledby="h-backlog">
-    <h2 id="h-backlog">Work in the factory, over time
-      <span class="mono" style="text-transform:none;letter-spacing:0">(observations)</span></h2>
-    <div class="canvas-wrap"><canvas id="c-backlog" width="1200" height="330"
-      role="img" aria-labelledby="backlog-alt"></canvas></div>
-    <p id="backlog-alt" class="vh" aria-live="polite"></p>
-    <p class="note">
-      Three series, each labelled on the chart and drawn with its own line style, so the picture
-      reads without colour. A queue that climbs and never comes back down is a stage past its
-      capacity &mdash; the same shape as the Performance&nbsp;Knee simulator&rsquo;s response-time
-      curve, in a release pipeline instead of a server.
-    </p>
-  </section>
-</div>
+<!-- ======================= 6 · INTERPRETATION ======================= -->
+<section class="panel lab-interpretation" aria-labelledby="h-interpret">
+  <h2 id="h-interpret">Interpretation</h2>
+  <ol class="interpret">
+    <li>Name the policy that moved <em>delivery speed</em> most, and the policy that moved
+      <em>defect exposure</em> most. They are not the same policy.</li>
+    <li>Find a configuration that improves one of the secondary measurements while making the
+      factory worse for its users, and say which measurement lied.</li>
+    <li>In Experiment 2, the test suite signalled the same defects under both policies. State in one
+      sentence what the required gate bought and what it charged for it.</li>
+    <li>In Experiment 3, the change failure rate barely moved while user exposure fell sharply.
+      Explain why both of those are the correct behaviour of a canary.</li>
+    <li>You are asked to recommend one policy change to a team that is shipping too slowly. Which
+      measurement would you ask to see first, and what would you refuse to conclude from it?</li>
+  </ol>
+</section>
 
-<!-- ======================= THE FIVE EVENTS ======================= -->
-<section class="panel" aria-labelledby="h-ledger">
-  <h2 id="h-ledger">The defect ledger &mdash; five separate events</h2>
+<!-- ======================= 7 · FURTHER INVESTIGATION ======================= -->
+<h2 class="lab-section-title" id="h-further">Further investigation</h2>
 
-  <!-- -------- FIGURE 2 · defect outcomes, beside the ledger it explains -------- -->
+<details class="panel" id="ledger">
+  <summary><h2>The defect ledger &mdash; what becomes of a defect</h2></summary>
+
   <figure class="lab-figure flat">
     <svg class="fig" viewBox="0 0 660 168" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
       <title id="f2-t">Figure 2: what becomes of a change that carries a defect</title>
@@ -1089,19 +1304,17 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     that shipped anyway), and a defect removed by someone else&rsquo;s rollback is counted as
     <em>removed</em>, not restored &mdash; nobody ever knew it was there.
   </p>
-</section>
+</details>
 
-<!-- ======================= THE CAPACITY SWEEP ======================= -->
-<section class="panel" aria-labelledby="h-sweep">
-  <h2 id="h-sweep">Hold capacity fixed, raise the arrival rate</h2>
+<details class="panel" id="sweep">
+  <summary><h2>Capacity &mdash; hold the pipeline fixed and raise the arrival rate</h2></summary>
   <p>
-    Step&nbsp;4 of the experiment, measured rather than asserted: the same policies, the same two
-    build&ndash;test lanes and one release slot, run independently at each arrival rate on the chart.
-    Every point is a full seeded simulation.
+    The same policies, the same two build&ndash;test lanes and one release slot, run independently at
+    each arrival rate on the chart. Every point is a full seeded simulation.
   </p>
   <div class="btn-row" style="margin-top:0.4rem">
     <button type="button" class="act primary" id="btn-sweep">Run the sweep</button>
-    <span class="mono" id="sweep-status" style="align-self:center;color:var(--muted);font-size:0.9rem"></span>
+    <span class="mono sweep-status" id="sweep-status"></span>
   </div>
   <div class="canvas-wrap" style="margin-top:0.8rem"><canvas id="c-sweep" width="1500" height="400"
     role="img" aria-labelledby="sweep-alt"></canvas></div>
@@ -1110,8 +1323,7 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     The sweep holds everything except the arrival rate, including the seed offsets, so the curve is
     a function of load alone. A pipeline has <em>two</em> capacities &mdash; the build&ndash;test
     lanes and the release channel &mdash; and whichever one the policies make scarcer is the one that
-    bends first. A one-hour canary soak at one change per release caps the factory near twenty-four
-    deployments a day however fast the tests run.
+    bends first.
   </p>
   <p class="note">
     Two things to read carefully. The curve usually <strong>bends well to the left of the dashed
@@ -1119,148 +1331,53 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     stage: a rollback sends its whole batch back, so a factory that fails often spends real capacity
     recovering from itself. And beyond the knee the measured lead time <strong>flattens</strong>
     &mdash; an artefact, not a recovery. A queue past its capacity has no steady state, so the
-    average wait is bounded by how long the simulation ran. Run each point for longer and the
-    right-hand side keeps climbing. <em>In an unstable system, the number you measure depends on how
-    long you watch.</em>
+    average wait is bounded by how long the simulation ran. <em>In an unstable system, the number
+    you measure depends on how long you watch.</em>
   </p>
-</section>
-
-<!-- ======================= EXPERIMENTS ======================= -->
-<details class="panel" id="experiments">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Classroom experiments</h2></summary>
-
-  <h3>1 &middot; Thorough tests, required checks, immediate deployment</h3>
-  <p>
-    Load preset <strong>1</strong> and run to about thirty days. Changes arrive at
-    forty-four a day; a thorough suite takes two and a half hours and there are two lanes, so the
-    stage can serve about nineteen a day.
-  </p>
-  <p><button type="button" class="act" data-preset="step-1-thorough">Load preset 1</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      The build&ndash;test queue climbs without bound and the mean lead time runs into
-      <em>weeks</em>. No single change is slow; the <em>queue</em> is. Utilisation reads above two,
-      and the state badge says <span class="state bad"><span class="glyph">&#9650;</span>
-      over capacity</span> in words as well as colour.
-    </p>
-    <p>
-      Notice what the Four Keys say about this factory. Change failure rate is <em>low</em> and time
-      to restore is fast. Two of the four measures look healthy while the organisation cannot ship.
-    </p>
-  </details>
-
-  <h3>2 &middot; Reduce the test depth</h3>
-  <p>
-    Preset <strong>2</strong> changes one control: standard tests instead of thorough. Everything
-    else is identical, and the seed is the same, so the same changes arrive carrying the same
-    defects.
-  </p>
-  <p><button type="button" class="act" data-preset="step-2-shallower">Load preset 2</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      Lead time collapses from weeks to hours and deployment frequency triples: the stage now serves
-      about sixty-nine changes a day against forty-four arriving. That is the whole case for a
-      shallower suite.
-    </p>
-    <p>
-      Now read the ledger. The signal rate falls from about 59% of defects to about 45%, so more
-      defects reach users &mdash; and <strong>requests exposed per day rises by roughly an order of
-      magnitude</strong>. The cost did not disappear; it moved from the pipeline to production,
-      where the people paying it are users rather than engineers.
-    </p>
-    <p>
-      The honest reading of step&nbsp;1 versus step&nbsp;2 is not &ldquo;shallower is better&rdquo;.
-      It is that the two configurations spend the same risk in different currencies.
-    </p>
-  </details>
-
-  <h3>3 &middot; Enable the canary</h3>
-  <p>
-    Preset <strong>3</strong> changes one control again: a canary at five per cent of traffic,
-    soaked for an hour, before the whole fleet.
-  </p>
-  <p><button type="button" class="act" data-preset="step-3-canary">Load preset 3</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      Four things move, and they do not move together.
-    </p>
-    <ul>
-      <li><strong>Change failure rate barely changes.</strong> A canary does not stop a deployment
-        being classified as failed &mdash; real users were exposed, and the rollback happened.</li>
-      <li><strong>Median exposure per failed deployment falls by a large factor</strong> &mdash;
-        roughly the traffic share. This is the consequence a canary actually buys, and it is why the
-        fifth measure is on the page at all.</li>
-      <li><strong>Lead time rises</strong>, because every release now holds the release channel for
-        the length of its soak.</li>
-      <li><strong>Some defects are caught inside the soak and some are not.</strong> The ledger
-        splits them: <em>caught in the canary</em> versus <em>reached the whole fleet</em>.</li>
-    </ul>
-    <p>
-      Nothing in the model says a canary helps. Detection in production is a Poisson process whose
-      rate is <span class="mono">affected requests/hour &times; distinguishability &times;
-      monitoring quality</span>; a canary lowers the first term by the traffic share, so the chance
-      of catching a defect inside the soak is
-      <span class="mono">1 &minus; e<sup>&minus;rate &times; soak</sup></span>. Try the
-      <strong>Obvious defects only</strong> and <strong>Rare defects, quiet service</strong> presets
-      back to back: the first makes the canary look like a triumph, the second like a tax. Both are
-      the same code.
-    </p>
-  </details>
-
-  <h3>4 &middot; Hold capacity fixed and raise the arrival rate</h3>
-  <p>
-    Preset <strong>4</strong> keeps step&nbsp;3&rsquo;s policies and raises arrivals to a hundred and
-    twenty changes a day. Then run the sweep above.
-  </p>
-  <p><button type="button" class="act" data-preset="step-4-knee">Load preset 4</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      Lead time does not rise in proportion to the load. It is flat, then it bends, then it runs
-      away &mdash; <strong>a release pipeline develops its own performance knee</strong>, for exactly
-      the reason a server does: arrivals are random, service takes time, and a queue in front of a
-      stage near its capacity grows faster than the load that feeds it.
-    </p>
-    <p>
-      This is the bridge to the Performance&nbsp;Knee simulator and to the agentic-software-factory
-      lecture. If an agent fleet raises the arrival rate tenfold and the pipeline&rsquo;s capacity is
-      unchanged, the fleet has not made the organisation faster. It has made the queue longer.
-    </p>
-  </details>
-
-  <h3>5 &middot; Make the checks advisory</h3>
-  <p><button type="button" class="act" data-preset="advisory">Load the advisory preset</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      The ledger now shows a gap between two rows that were previously identical: the tests
-      <em>signalled</em> a defect and the change <strong>shipped anyway</strong>. That gap is the
-      policy. Required checks close it and charge for it in lead time &mdash; including on the
-      changes that were never broken, because a flaky suite blocks those too.
-    </p>
-  </details>
-
-  <h3>6 &middot; Ten changes per release</h3>
-  <p><button type="button" class="act" data-preset="big-batch">Load the large-batch preset</button></p>
-  <details><summary>What to look for</summary>
-    <p>
-      Deployment frequency falls, lead time rises &mdash; and the change failure rate rises with
-      them, because the rate is computed <em>per deployment</em>. A release carrying ten changes
-      fails if any one of them does. The same defects, the same tests, a worse-looking metric: the
-      denominator moved.
-    </p>
-    <p>
-      Blue-green makes the batch cost concrete. A verification failure holds the whole batch, so one
-      bad change delays nine good ones.
-    </p>
-  </details>
 </details>
 
-<!-- ======================= ADVANCED ======================= -->
-<details class="panel" id="advanced">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Advanced controls</h2></summary>
+<details class="panel" id="experiments">
+  <summary><h2>Explore further &mdash; the full configuration library</h2></summary>
   <p class="note" style="margin-top:0.6rem">
-    Everything the five primary controls hold fixed. Changing any of these resets the factory.
+    Beyond the three guided experiments. Each card sets a whole configuration and resets the
+    factory; some of them move settings the four primary controls hold fixed, which you can see in
+    Advanced controls after loading one.
+  </p>
+  <div class="preset-grid" id="presets"></div>
+  <h3>The canary depends on the defect, not on the strategy</h3>
+  <p>
+    Detection in production is a Poisson process whose rate is
+    <span class="mono">affected requests/hour &times; distinguishability &times; monitoring
+    quality</span>, so the chance of catching a defect inside a soak of length
+    <span class="mono">S</span> is <span class="mono">1 &minus; e<sup>&minus;rate&times;S</sup></span>.
+    A canary enters only through the exposed fraction. Run these two back to back: the first makes a
+    canary look like a triumph, the second like a tax, and both are the same code.
+  </p>
+  <p class="btn-row">
+    <button type="button" class="act" data-preset="obvious-defects">Obvious defects only</button>
+    <button type="button" class="act" data-preset="rare-defects">Rare defects, quiet service</button>
+  </p>
+</details>
+
+<details class="panel" id="advanced">
+  <summary><h2>Advanced controls</h2></summary>
+  <p class="note" style="margin-top:0.6rem">
+    Everything the four primary controls hold fixed. Changing any of these resets the factory, and
+    takes the exercise outside the three guided experiments.
   </p>
   <div class="ctl-row" style="margin-top:0.9rem">
+    <div class="ctl">
+      <span class="ctl-label" id="lab-batch">Deployment batch size
+        <span class="unit">changes per release &mdash; fixed at 1 for the guided experiments</span></span>
+      <div class="seg" role="group" aria-labelledby="lab-batch" id="seg-batch"></div>
+    </div>
+    <div class="ctl triple">
+      <label for="arrival-num">Arrival rate, exactly
+        <span class="unit">changes/day &mdash; supersedes Low/Medium/High</span></label>
+      <input type="range" id="arrival-range" min="1" max="200" step="1" value="44"
+             aria-label="Arrival rate in changes per day, slider">
+      <input type="number" id="arrival-num" min="1" max="200" step="1" value="44">
+    </div>
     <div class="ctl triple">
       <label for="seed">Seed</label>
       <span></span>
@@ -1349,20 +1466,19 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     <div class="ctl triple">
       <label for="reduced">Reduce motion <span class="unit">fewer redraws</span></label>
       <span></span>
-      <input type="checkbox" id="reduced" style="width:auto;justify-self:start">
+      <input type="checkbox" id="reduced" class="checkbox">
     </div>
   </div>
   <p class="note">
     <strong>Warm-up</strong> excludes the first days from every aggregate. It is zero by default and
     that is deliberate: a factory past its capacity has no steady state to warm up <em>into</em>,
-    and hiding the transient would hide the finding. Raise it when you want a settled measurement of
-    a configuration that settles.
+    and hiding the transient would hide the finding.
   </p>
 </details>
 
-<!-- ======================= ABOUT ======================= -->
+<!-- ======================= MODEL REFERENCE ======================= -->
 <details class="panel" id="help">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">About the model, the engine, and this page</h2></summary>
+  <summary><h2>Model reference &mdash; equations, limitations, and the engine</h2></summary>
 
   <h3>What the model is</h3>
   <p>
@@ -1378,9 +1494,29 @@ pre { font-family: var(--font-mono); font-size: 0.88rem; background: var(--panel
     population or the traffic volume.
   </p>
 
+  <h3>Limitations &mdash; what this simulation does not establish</h3>
+  <ul>
+    <li><strong>No figure here measures a real organisation.</strong> Every probability and duration
+      is a teaching-scale assumption, printed on this page, not an industrial measurement.</li>
+    <li><strong>A single run is not an expected value.</strong> The model is stochastic. A common
+      seed makes two configurations comparable &mdash; the same changes arrive carrying the same
+      defects &mdash; but it does not remove sampling variability. Two seeds will not give the same
+      numbers, and a difference smaller than the spread across seeds establishes nothing. Change the
+      seed in Advanced controls and re-run before trusting a narrow gap.</li>
+    <li><strong>Feature flags are not modelled.</strong> They decouple deploy from release, which
+      would need a separate exposure control.</li>
+    <li><strong>A rollback reverts the whole batch.</strong> There is no partial rollback.</li>
+    <li><strong>A later release does not fix an earlier defect.</strong> An undetected defect keeps
+      accruing exposure until somebody finds it. That is deliberate, and it is where most of the
+      user impact comes from.</li>
+    <li><strong>Dependencies between changes, review time, and whether a change was worth
+      making</strong> are all outside the model.</li>
+  </ul>
+
   <h3>The five events, and why they are kept apart</h3>
   <p>
-    A defect is an object with its own lifecycle. Collapsing any two of these would make a policy
+    A defect is an object with its own lifecycle. The interface reports three summary numbers;
+    the engine keeps every one of these distinct, because collapsing any two would make a policy
     question unanswerable:
   </p>
   <table class="model">
@@ -1457,42 +1593,34 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
     enough requests exercise it. What it does differently is expose nobody while it looks.
   </p>
 
-  <h3>How the four measures are computed</h3>
+  <h3>How the measures are computed</h3>
   <table class="model">
     <tr><th>Measure</th><th>Definition used here</th></tr>
-    <tr><td>Deployment frequency</td>
-      <td>releases that reached real users, per measured day. A blue-green release aborted at
-        verification never reached users, so it is not a deployment.</td></tr>
     <tr><td>Lead time for changes</td>
       <td>first commit to first arrival in production, <em>including</em> any rework. One
         observation per change: a rolled-back change shipped again does not produce a second, or
         the mean would depend on how often the factory fails.</td></tr>
+    <tr><td>Defects reaching production</td>
+      <td>defects whose change served real traffic, counted whether or not anybody ever noticed.
+        Split in the readout into those detected after release and those still live and
+        undetected.</td></tr>
+    <tr><td>User exposure</td>
+      <td>requests served by a defective release while it is live, integrated over the exposed
+        traffic share. Reported as a total, a per-day rate, and the <em>median per failed
+        deployment</em> &mdash; the last because the total is dominated by the long tail of
+        slowly-detected defects, so a canary moves the median far more than the mean.</td></tr>
+    <tr><td>Deployment frequency</td>
+      <td>releases that reached real users, per measured day. A blue-green release aborted at
+        verification never reached users, so it is not a deployment.</td></tr>
     <tr><td>Change failure rate</td>
       <td>failed deployments &divide; <strong>deployments</strong> &mdash; not changes. A deployment
         fails if a defect it carries is <em>detected</em> in production.</td></tr>
     <tr><td>Time to restore service</td>
       <td>detection to rollback complete. The clock starts when somebody <em>noticed</em>, not when
         the defect was exposed.</td></tr>
-    <tr><td>User impact</td>
-      <td>requests served by a defective release while it is live, integrated over the exposed
-        traffic share. Reported as a total, a per-day rate, and the <em>median per failed
-        deployment</em> &mdash; the last because the total is dominated by the long tail of
-        slowly-detected defects, so a canary moves the median far more than the mean.</td></tr>
   </table>
 
-  <h3>What is deliberately not modelled</h3>
-  <ul>
-    <li><strong>Feature flags.</strong> They decouple deploy from release, which would need a
-      separate exposure control; the 3-1 lecture covers them and this instrument does not.</li>
-    <li><strong>Partial rollback.</strong> A rollback here reverts the whole batch.</li>
-    <li><strong>Supersession.</strong> A later release does not fix an earlier defect, so an
-      undetected defect keeps accruing exposure until somebody finds it. That is deliberate: it is
-      the honest answer, and it is where most of the user impact comes from.</li>
-    <li><strong>Dependencies between changes</strong>, review time, and anything about whether the
-      change was worth making.</li>
-  </ul>
-
-  <h3>Reproducibility</h3>
+  <h3>Fixed parameters and reproducibility</h3>
   <p>
     The engine is a pure module published as <span class="mono">window.ReleaseFactory</span> with no
     reference to the page. It uses six independent seeded generators &mdash; arrivals, defect
@@ -1500,7 +1628,8 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
     unseeded random source and no clock, so the same seed and parameters replay the same event trace
     exactly, and switching one policy leaves the others&rsquo; draws where they were. Its test suite
     extracts this element from the published file, so the tested code and the code you are running
-    are the same bytes.
+    are the same bytes. Every value the four primary controls hold fixed is listed, with its
+    default, in Advanced controls.
   </p>
   <p>
     <button type="button" class="act" id="btn-selftest">Run the in-page self-tests</button>
@@ -3829,6 +3958,43 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
     });
   });
 
+  /* ---------- the three guided experiments ----------
+     Authored HERE and not in the engine's preset library, deliberately. A guided experiment is a
+     claim about the STUDENT INTERFACE: it sets the four primary policies and returns every other
+     parameter to its default, so the procedure's "held constant" line is true by construction —
+     including the deployment batch size the primary controls no longer expose. The engine's
+     presets are a wider library and several of them move settings outside those four on purpose;
+     they belong in Explore further, where the page says so.
+
+     All three experiments share ONE baseline and change ONE policy each, which is what makes the
+     comparison a controlled one rather than three unrelated configurations. */
+  var GUIDED = {
+    baseline: { testDepth: 'standard', admissionPolicy: 'required', releaseStrategy: 'immediate' },
+    thorough: { testDepth: 'thorough', admissionPolicy: 'required', releaseStrategy: 'immediate' },
+    advisory: { testDepth: 'standard', admissionPolicy: 'advisory', releaseStrategy: 'immediate' },
+    canary: { testDepth: 'standard', admissionPolicy: 'required', releaseStrategy: 'canary' }
+  };
+
+  function applyGuided(id) {
+    var g = GUIDED[id];
+    if (!g) throw new RangeError('unknown guided experiment: ' + id);
+    var keys = Object.keys(DEFAULT_CFG);
+    for (var i = 0; i < keys.length; i += 1) cfg[keys[i]] = DEFAULT_CFG[keys[i]];
+    mixId = 'realistic';
+    cfg.arrivalRate = 'high';
+    cfg.arrivalRatePerDay = null;
+    cfg.testDepth = g.testDepth;
+    cfg.admissionPolicy = g.admissionPolicy;
+    cfg.releaseStrategy = g.releaseStrategy;
+    syncAll();
+    rebuild();
+    return g;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-guided]'), function (b) {
+    b.addEventListener('click', function () { applyGuided(b.getAttribute('data-guided')); });
+  });
+
   /* ---------- presets ---------- */
   function applyPreset(id) {
     var preset = RF.findPreset(id);
@@ -3866,7 +4032,10 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
   Array.prototype.forEach.call(document.querySelectorAll('[data-preset]'), function (b) {
     b.addEventListener('click', function () {
       applyPreset(b.getAttribute('data-preset'));
-      window.scrollTo({ top: 0, behavior: ui.reduced ? 'auto' : 'smooth' });
+      var results = $('h-results');
+      if (results) results.scrollIntoView({
+        behavior: ui.reduced ? 'auto' : 'smooth', block: 'start'
+      });
     });
   });
 
@@ -4492,11 +4661,25 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
       : 'per day · ' + num(k.successfulDeploymentFrequencyPerDay, 2) + ' not later classified '
         + 'as failed';
 
+    /* The three PRINCIPAL results, in the order the page shows them. */
     $('k-lead').textContent = dur(k.leadTimeHours.mean);
     $('k-lead-sub').textContent = k.leadTimeHours.mean === null ? 'no change delivered yet'
       : 'mean · median ' + dur(k.leadTimeHours.median) + ' · p90 '
         + dur(k.leadTimeHours.p90) + ' · n ' + int(k.leadTimeHours.n);
 
+    /* Defects REACHING PRODUCTION, not deployments classified as failed. The two differ by
+       exactly the defects nobody detected, which is the gap the failure rate cannot show and the
+       reason this is a principal result and the rate is not. The engine has always counted it;
+       it was previously only visible as a clause under the failure rate. */
+    var reached = s.ledger.exposedInProduction;
+    $('k-reach').textContent = int(reached);
+    $('k-reach-sub').textContent = s.ledger.introduced === 0
+      ? 'no defect committed yet'
+      : int(s.ledger.detectedAfterRelease) + ' later detected \u00b7 '
+        + int(s.ledger.liveUndetected) + ' live and undetected \u00b7 '
+        + int(s.ledger.detectedBeforeRelease) + ' kept out by the gate';
+
+    /* The SECONDARY measurements \u2014 the rest of the Four Keys. */
     $('k-cfr').textContent = pct(k.changeFailureRate);
     $('k-cfr-sub').textContent = k.changeFailureRate === null ? 'no deployment yet'
       : int(s.deployments.failed) + ' of ' + int(s.deployments.total) + ' deployments · '
@@ -4515,9 +4698,9 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
 
     $('k-impact-med').textContent = big(u.perFailedDeployment.median);
     $('k-impact-med-sub').textContent = u.perFailedDeployment.median === null
-      ? 'no failed deployment yet'
-      : 'mean ' + big(u.perFailedDeployment.mean) + ' · p90 '
-        + big(u.perFailedDeployment.p90) + ' · n ' + int(u.perFailedDeployment.n);
+      ? '(no failed deployment yet)'
+      : '(mean ' + big(u.perFailedDeployment.mean) + ' · p90 '
+        + big(u.perFailedDeployment.p90) + ' · n ' + int(u.perFailedDeployment.n) + ')';
   }
 
   /* ---------- draw and run ---------- */
@@ -4570,6 +4753,7 @@ rate = affected/hour &times; distinguishability &times; monitoring quality   (in
     isRunning: function () { return ui.running; },
     eventCount: function () { return sim.eventCount; },
     sweepPoints: function () { return sweep === null ? 0 : sweep.points.length; },
+    setGuided: function (id) { return applyGuided(id); },
     advanceDays: function (days) {
       RF.advanceSimulation(sim, {
         untilTime: sim.time + days * RF.HOURS_PER_DAY, sampleEvery: SAMPLE_HOURS
