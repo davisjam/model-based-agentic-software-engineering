@@ -7,7 +7,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readSimulatorHtml, extractEngineSource, loadEngine, SIMULATOR_HTML } from './harness.mjs';
+import { readSimulatorHtml, extractEngineSource, extractUiSource, loadEngine, SIMULATOR_HTML } from './harness.mjs';
 import { readFileSync as readCoreSource } from 'node:fs';
 import { dirname as coreDirname, join as coreJoin } from 'node:path';
 import { fileURLToPath as coreFileURL } from 'node:url';
@@ -172,6 +172,195 @@ test('exactly one h1, and every canvas is described for assistive technology', (
 test('a reduced-motion mode is offered and the OS preference is honoured', () => {
   assert.match(html, /id="reduced"/);
   assert.match(html, /prefers-reduced-motion/);
+});
+
+/* --- the laboratory-handout contract ------------------------------------------------------------
+ * The house style's section order and complexity budget are satisfied on the day a page lands and
+ * nothing else stops the next edit dissolving them, so they are pinned here, on the shipped bytes.
+ *
+ * The regression this exists to catch has a name: "just move the controls up to reduce scrolling."
+ * The author proposed a dashboard-first layout, then withdrew it in favour of a laboratory handout
+ * — background first, apparatus below — and that reversal governs. The withdrawn version looks
+ * like an improvement to anyone who has not read the reversal, and no other gate in this tree sees
+ * the difference.
+ *
+ * The inverse assertion is the half worth copying. Moving a control or a readout behind
+ * `<details>` is PRESENTATION; deleting it is a MODEL CHANGE. A diff cannot tell them apart, and
+ * the budget rewards the wrong one, so every relocated quantity is asserted to be still ON the
+ * page. Twenty-five of this page's twenty-eight measurements moved; none left.
+ */
+
+/**
+ * Everything in `<main>` above the first collapsed reference section: the primary interface.
+ *
+ * It starts at `<main>` and not at byte 0 on purpose. The stylesheet names every class the page
+ * uses, so a slice from the start of the file contains `preset-grid` and `canvas` whatever the
+ * body does, and an assertion that something is absent from the primary interface would fail
+ * against the CSS that styles it. Measured here: the first version of this helper reported the
+ * preset library as present in the primary interface when it sits two disclosures down.
+ */
+function primaryInterface(source = html) {
+  const main = source.indexOf('<main>');
+  assert.ok(main > 0, 'the page has no <main> element');
+  const at = source.indexOf('<details class="panel disclose"', main);
+  assert.ok(at > main, 'the page has no collapsed reference section');
+  return source.slice(main, at);
+}
+
+test('the handout runs in the house order, with the apparatus below the instruction', () => {
+  const order = ['id="h-problem"', 'id="h-background"', 'id="h-model"', 'id="h-procedure"',
+    'id="h-apparatus"', 'id="h-results"', 'id="h-interpretation"', 'id="h-further"'];
+  let last = -1;
+  for (const anchor of order) {
+    const at = html.indexOf(anchor);
+    assert.ok(at > 0, `${anchor} is missing from the page`);
+    assert.ok(at > last, `${anchor} is out of the house section order`);
+    last = at;
+  }
+  /* The load-bearing one, stated separately so a failure names the regression rather than an
+     anchor: no adjustable control may precede the numbered procedure. */
+  for (const id of ['lambda-range', 'mu-range', 'dist', 'speed-seg']) {
+    assert.ok(html.indexOf(`id="${id}"`) > html.indexOf('id="h-procedure"'),
+      `the ${id} control sits ABOVE the numbered procedure — the withdrawn dashboard layout`);
+  }
+  /* And the model a student must understand precedes the experiment they must perform. */
+  assert.ok(html.indexOf('id="f1-t"') < html.indexOf('id="h-procedure"'),
+    'Figure 1 does not precede the experimental procedure');
+});
+
+test('the primary interface carries three engineering parameters and three measurements', () => {
+  const primary = primaryInterface();
+  /* Three controls, one per term of the relationship under study: arrival rate, service capacity,
+     variability. Simulation speed is NOT one of them — it changes how fast you watch, not what
+     happens — so it sits in the button row beside Run rather than in the control grid. */
+  const controls = [...primary.matchAll(/<div class="ctl">/g)].length;
+  assert.equal(controls, 3, `the control grid exposes ${controls} parameters, not three`);
+  for (const id of ['lambda', 'mu', 'dist']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary control ${id} is missing`);
+  }
+  assert.ok(primary.indexOf('id="speed-seg"') > primary.indexOf('id="btn-run"'),
+    'simulation speed is back in the control grid instead of beside Run');
+
+  /* Three measurements: the rows of one visible results table, each carrying the model's
+     prediction beside this run's measurement. Scoped to THAT table — the model section's Table 2
+     uses the same row shape, and an unscoped count reads its three rows as three more results. */
+  const tableStart = primary.indexOf('<table class="results">');
+  assert.ok(tableStart > 0, 'the primary interface has no results table');
+  const resultsTable = primary.slice(tableStart, primary.indexOf('</table>', tableStart));
+  const rows = [...resultsTable.matchAll(/<tr>\s*<th scope="row">/g)].length;
+  assert.equal(rows, 3, `the results table reports ${rows} quantities, not three`);
+  assert.equal([...primary.matchAll(/<table class="results"/g)].length, 1,
+    'there is more than one results table in the primary interface');
+  for (const id of ['m-wq', 's-wq', 'm-w', 's-w', 'm-rho', 's-util']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary measurement cell ${id} is missing`);
+  }
+  /* No readout list in the primary interface: a dl.readout is how 28 quantities got there. */
+  assert.equal(/<dl class="readout"/.test(primary), false,
+    'a readout list is back in the primary interface');
+
+  /* One dominant visualization plus one declared secondary; the third is collapsed. */
+  const charts = [...primary.matchAll(/<canvas /g)].length;
+  assert.equal(charts, 2, `the primary interface carries ${charts} charts, not one plus a secondary`);
+  assert.ok(primary.indexOf('id="c-knee"') < primary.indexOf('id="c-rt"'),
+    'the dominant load-latency chart does not come first');
+  assert.ok(html.indexOf('id="c-queue"') > html.indexOf('<details class="panel disclose"'),
+    'the live-queue animation is still in the primary interface');
+
+  /* One model figure. Figure 2 drew the predicted curve that c-knee now draws live. */
+  const figures = [...html.matchAll(/<svg class="fig"/g)].length;
+  assert.equal(figures, 1, `the page carries ${figures} model figures; the budget allows one`);
+
+  /* Zero preset cards competing with the guided experiments. */
+  assert.equal(/<div class="preset-grid"/.test(primary), false,
+    'the preset library is back in the primary interface');
+  assert.ok(html.includes('id="presets"'), 'the preset library has been deleted, not relocated');
+});
+
+test('every relocated quantity is still on the page, and still written by the interface', () => {
+  /* The inverse of the budget. Twenty-eight named quantities; three are primary, twenty-five moved
+     behind a disclosure, and NONE was deleted — the engine still computes all of them and the
+     interface still writes all of them on every render. A budget that rewarded deletion would be
+     rewarding a model change. */
+  const relocated = ['m-model', 'm-l', 'm-lq', 'm-svc',
+    's-time', 's-events', 's-counts', 's-thr', 's-l', 's-lq',
+    'r-server', 'r-queue', 'r-insystem', 'r-maxq',
+    'lc-window', 'lc-n', 'lc-l', 'lc-prod', 'lc-res', 'lw-l', 'lw-prod', 'lw-diff'];
+  for (const id of relocated) {
+    assert.ok(html.includes(`id="${id}"`), `${id} was DELETED rather than relocated`);
+  }
+  /* Twenty-two relocated readouts + six primary table cells = twenty-eight. */
+  assert.equal(relocated.length + 6, 28, 'the measurement census no longer adds up to 28');
+
+  /* Still written: every one of them is assigned by the interface script, so a collapsed section
+     holds live values rather than the placeholders the markup ships with. */
+  const ui = extractUiSource(html);
+  for (const id of relocated) {
+    assert.ok(ui.includes(`$('${id}')`), `${id} is on the page but the interface never writes it`);
+  }
+
+  /* The relocated CONTROLS likewise. */
+  for (const id of ['seed', 'warmup', 'maxdisp', 'history', 'reduced']) {
+    assert.ok(html.includes(`id="${id}"`), `the ${id} control was deleted, not relocated`);
+  }
+});
+
+test('each guided experiment specifies all six fields and offers a baseline to load', () => {
+  const experiments = [...html.matchAll(/<li class="exp">([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+  assert.ok(experiments.length >= 2 && experiments.length <= 3,
+    `there are ${experiments.length} guided experiments; the budget allows two or three`);
+  for (const [i, body] of experiments.entries()) {
+    for (const field of ['Baseline', 'Change', 'Hold constant', 'Predict', 'Run &amp; measure',
+      'Explain']) {
+      assert.ok(body.includes(`<dt>${field}</dt>`),
+        `experiment ${i + 1} does not specify its ${field} field`);
+    }
+    assert.match(body, /data-xp="[\d]+,[\d]+,[a-z]+,reset"/,
+      `experiment ${i + 1} offers no baseline to load`);
+  }
+  /* Predict / Run / Explain is named where the student meets the procedure. */
+  assert.match(html, /Predict before you run/i);
+  /* A baseline button is a PROMISE about what is held constant, so it restores the seed and the
+     warm-up as well as the three engineering parameters. */
+  const ui = extractUiSource(html);
+  const handler = ui.slice(ui.indexOf('data-xp'));
+  assert.ok(handler.includes('sim.seed = Q.DEFAULT_SEED'),
+    'a baseline button does not restore the seed, so "hold constant" is not a promise it keeps');
+});
+
+test('the background section is what the 400-600 budget applies to', () => {
+  /* The budget governs the Background SECTION, not the prose ahead of the first control: the house
+     order mandates four sections there — problem, background, model, numbered procedure — so a
+     words-before-the-first-control cap is only reachable by moving the model or the experiment
+     BELOW the apparatus, which is the §1 breakage the budget exists to prevent. The section is
+     bounded here; the placement of everything else is bounded by the order test above. */
+  const from = html.indexOf('id="h-background"');
+  const to = html.indexOf('id="h-model"');
+  assert.ok(from > 0 && to > from, 'the background section is missing');
+  const words = html.slice(from, to)
+    .replace(/<!--[\s\S]*?-->/g, ' ').replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-zA-Z#0-9]+;/g, ' word ')
+    .match(/[A-Za-z0-9][\w'-]*/g) || [];
+  assert.ok(words.length >= 350 && words.length <= 650,
+    `the background section is ${words.length} words; the budget is 400-600`);
+});
+
+test('the figure share is set by a WIDTH, and no pixel height ceiling exists', () => {
+  /* Stage A's finding: a max-height on an SVG with a viewBox letterboxes the drawing rather than
+     cropping it, so every pixel of column width past the ceiling becomes empty margin. The figure
+     was starved by a height rule, not by a width rule, and the fix must not be undone. */
+  const local = html.slice(html.lastIndexOf('<style>'), html.lastIndexOf('</style>'));
+  assert.equal(/\.lab-figure[^{]*\{[^}]*max-height/.test(local), false,
+    'a max-height is back on the figure — it letterboxes rather than crops');
+  assert.equal(/svg[^{]*\{[^}]*max-height/.test(local), false,
+    'a max-height is back on an svg');
+  assert.match(local, /\.figure-row > \.lab-figure \{[^}]*width:\s*78%/,
+    'the figure no longer takes its share of the row by width');
+  /* The lever that makes the authored 9.5px labels render above the house floor is the viewBox
+     width, not the authored font size: the core paints these labels at 9.5px in all six pages and
+     the reader sees authored x render scale. 600 user units in a 78% column clears 14px at a
+     1280px viewport. Widening the authored type instead would break the family's shared encodings. */
+  assert.match(html, /<svg class="fig" viewBox="0 0 600 \d+"/,
+    'Figure 1 is not authored in the 600-unit viewBox the label sizes depend on');
 });
 
 /* --- the shared core stylesheet ----------------------------------------------------------------

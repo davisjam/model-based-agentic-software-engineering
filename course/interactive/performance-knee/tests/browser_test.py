@@ -268,8 +268,28 @@ def check_experiments(page) -> None:
     page.evaluate("() => { document.getElementById('experiments').open = true; }")
     setups = page.evaluate("() => document.querySelectorAll('[data-xp]').length")
     check('experiments: setup buttons present', setups >= 9, str(setups))
+
+    # The three GUIDED experiments are the exercise, and they live in the numbered procedure above
+    # the apparatus. Each specifies all six house-style fields and loads its own baseline, so a
+    # student is not reconstructing a configuration by hand.
+    guided = page.evaluate("""() => [...document.querySelectorAll('li.exp')].map(li => ({
+      fields: [...li.querySelectorAll('dl.six > dt')].map(d => d.textContent.trim()),
+      baselines: li.querySelectorAll('[data-xp]').length,
+    }))""")
+    check('procedure: two or three guided experiments', 2 <= len(guided) <= 3, str(len(guided)))
+    six = ['Baseline', 'Change', 'Hold constant', 'Predict', 'Run & measure', 'Explain']
+    for i, exp in enumerate(guided, 1):
+        check(f'procedure: experiment {i} specifies all six fields',
+              exp['fields'] == six, str(exp['fields']))
+        check(f'procedure: experiment {i} offers a baseline to load',
+              exp['baselines'] >= 1, str(exp['baselines']))
+
+    # Explore further carries the optional extensions. Each card hides its own explanation, and the
+    # count is derived from the cards rather than frozen at a number a later edit has to remember.
+    cards = page.evaluate("() => document.querySelectorAll('.xp').length")
     reveals = page.evaluate("() => document.querySelectorAll('.xp details').length")
-    check('experiments: five hidden explanations', reveals == 5, str(reveals))
+    check('experiments: every Explore-further card hides one explanation',
+          reveals == cards and cards >= 1, f'{reveals} reveals across {cards} cards')
     opened = page.evaluate(
         "() => Array.from(document.querySelectorAll('.xp details')).filter(d => d.open).length")
     check('experiments: nothing revealed before it is asked for', opened == 0, str(opened))

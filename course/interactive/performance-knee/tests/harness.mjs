@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const SIMULATOR_HTML = join(HERE, '..', 'index.html');
 const ENGINE_ID = 'queue-sim-engine';
+const UI_ID = 'queue-sim-ui';
 
 /** The raw text of the simulator page. */
 export function readSimulatorHtml() {
@@ -34,6 +35,28 @@ export function extractEngineSource(html = readSimulatorHtml()) {
   if (close < 0) throw new Error(`<script id="${ENGINE_ID}"> is unterminated`);
   const source = html.slice(bodyStart, close);
   if (!source.includes('QueueSim')) throw new Error('extracted engine does not publish QueueSim');
+  return source;
+}
+
+/**
+ * The source text of the INTERFACE script element, located by id.
+ *
+ * Read as text and never evaluated: the interface touches `document` on its first line, so loading
+ * it in Node would throw. What it is wanted for is structural assertions about the interface —
+ * which readouts it writes, what a control handler restores — which are exactly the claims a
+ * presentation change can break without changing a single engine line. The precondition is
+ * asserted so a renamed element cannot turn this into a silent pass over an empty string.
+ */
+export function extractUiSource(html = readSimulatorHtml()) {
+  const open = html.indexOf(`<script id="${UI_ID}">`);
+  if (open < 0) throw new Error(`index.html has no <script id="${UI_ID}"> element`);
+  const bodyStart = html.indexOf('>', open) + 1;
+  const close = html.indexOf('</script>', bodyStart);
+  if (close < 0) throw new Error(`<script id="${UI_ID}"> is unterminated`);
+  const source = html.slice(bodyStart, close);
+  if (!source.includes('getElementById')) {
+    throw new Error('extracted interface source does not touch the DOM — wrong element');
+  }
   return source;
 }
 
