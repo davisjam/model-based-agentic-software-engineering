@@ -17,7 +17,7 @@ exercises:
   - title: Define health for your own project
     slug: define-health
     about: |
-      Four minutes on the worksheet, then two teams read theirs out. Define one indicator and one
+      Three minutes, two on the worksheet and one on report-back from two teams. Define one indicator and one
       objective for your own project, then say what could go wrong while that indicator stays green.
       Write it in three lines — the indicator, named so a user would recognize the behavior; the
       objective, with its target, its interval, and the events that count as eligible; and the blind
@@ -27,9 +27,15 @@ exercises:
       confidentiality may outrank availability. Where inference is paid for, cost per request can be
       the indicator that matters. Where the information is public, staleness may be the only failure
       users feel.
-  - title: What would expose your project's failure?
+  - title: What would expose your project's failure? (optional)
     slug: expose-the-failure
     about: |
+      Optional, and not run in the lecture. This one asks for more engineering than a classroom
+      discussion holds: you have to identify a hard failure, reason about its candidate causes, find
+      the observation that discriminates between them, and then specify instrumentation somebody
+      could actually build. Take it as a project exercise in your own time, where it is worth the
+      hour it deserves.
+
       Name the hardest problem to diagnose in your project, then the one observation that would expose
       it. The pair is the answer: the failure stated specifically enough that two teams could disagree
       about its cause, and the observation stated specifically enough that somebody could instrument it
@@ -38,13 +44,15 @@ exercises:
       cost per request doubles and the latency does not; it happens only under load you have never
       generated.
 
-      Record both. The second one is a control you could build.
+      Record both. An observation is a mechanism for producing evidence; it becomes a control once
+      something reads it and acts, so name the acting half too.
   - title: Your project's critical dependency
     slug: critical-dependency
     about: |
       Which dependency could disable your project, and what behavior would you permit while it is
       unavailable? Harder than listing your dependencies, because the second half is a policy. Write
-      three lines — the dependency whose absence stops you serving users at all; the permitted
+      three lines — the dependency whose absence stops a consequential operation, which need not be
+      one that stops you serving users at all; the permitted
       behavior, stated as a rule, for what the system may do while it is gone; and the tempting action
       you are ruling out in advance.
 
@@ -53,14 +61,18 @@ exercises:
   - title: What must change permanently?
     slug: permanent-control
     about: |
-      Name one failure that deserves a permanent control rather than a code fix, and say what closes
-      it. Four lines, and the last two are the test — the failure, one you have actually had rather
+      Choose a failure your team has encountered. Propose a control that would prevent, detect, or
+      limit similar failures in the future. The distinction is not control-versus-code — a durable
+      control is often implemented in code, and a code fix can be part of one. It is between
+      repairing the one instance and preventing, detecting or limiting a recurrence. Four lines, and
+      the last two are the test — the failure, one you have actually had rather
       than one you fear; the control, which may be a lint, a gate, a test, an alert, or an
-      architectural limit; the owner, a person, because a team owns nothing; and the closing evidence,
+      architectural limit; the owner, a named accountable person; and the closing evidence,
       what someone could check to call it done.
 
-      The test of reach is whether the control would have caught the failure before a user felt it.
-      One control per team, and this is the artifact the unit collects.
+      The test of reach is four-way: would your control prevent the failure, detect it, limit its
+      consequences, or improve recovery from it? One control per team, and this is the artifact the
+      unit collects.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -79,17 +91,18 @@ The reservation service is deployed, and students are booking rooms with it. Not
 
 One lecture, run as an incident-response workshop rather than an exposition. You will receive incomplete information about a running service, decide what to do, then revise that decision as new evidence arrives. Four scenarios progress from stated alternatives to a response you propose yourself.
 
-Answer each scenario twice: once for the reservation service, once for your own project. Projects differ in architecture, dependencies, data sensitivity and cost, so they do not owe their users the same operational guarantees.
+Analyze the reservation service during each incident, then apply one selected lesson to your own project after each half. Four incidents times two analyses does not fit in seventy-five minutes, and the second pass is the one that gets rushed. Projects differ in architecture, dependencies, data sensitivity and cost, so they do not owe their users the same operational guarantees, and the project exercises are where that transfer happens.
 
-Keep an incident worksheet for each scenario, with five fields.
+Keep an incident worksheet for each scenario, with six fields.
 
 - **What do we know?** Observed facts, separated from inference.
 - **What do we suspect?** Hypotheses, named as such.
 - **What evidence do we need?** The next observation.
 - **What action will we take?** The decision, and whose it is.
 - **What would change our mind?** The revision condition.
+- **What should we change permanently?** The durable control, added at the end.
 
-Close each sheet with one permanent control. The last field does the most work: a decision recorded without its revision condition cannot be revisited honestly.
+The fifth field does the most work during a scenario: a decision recorded without its revision condition cannot be revisited honestly. The sixth is filled in once the incident is over, and it is the one we collect.
 
 Every scenario sits somewhere on one loop.
 
