@@ -53,10 +53,38 @@ def dup_slide(prs, src):
     return dst
 
 
+_PML_CNVPR = "{http://schemas.openxmlformats.org/presentationml/2006/main}cNvPr"
+_DML_CNVPR = "{http://schemas.openxmlformats.org/drawingml/2006/main}cNvPr"
+
+
+def _fresh_shape_id(slide) -> int:
+    """One past the highest cNvPr id on the slide, so a clone cannot collide with its source."""
+    ids = [int(c.get("id")) for tag in (_PML_CNVPR, _DML_CNVPR)
+           for c in slide.shapes._spTree.iter(tag)
+           if (c.get("id") or "").isdigit()]
+    return max(ids, default=0) + 1
+
+
 def clone_into(slide, shape):
-    """Deep-copy a shape element (possibly from another slide) into slide; returns new shape."""
+    """Deep-copy a shape element (possibly from another slide) into slide; returns new shape.
+
+    The clone gets a FRESH cNvPr id. A deepcopy otherwise carries the source's id, and five clones
+    of one connector then share it — which is schema-valid, invisible to python-pptx and to a zip
+    scan, and a defect PowerPoint can act on: duplicate ids within a slide mis-animate, because an
+    `<p:spTgt spid="N">` no longer names one shape. Measured 261104: this helper left
+    `Connector 911` x5 sharing id 911 on slide 7 of the WIP deck, and the same pattern (`Connector
+    901` x4, `Card` x4) had already shipped in 2-4-Failure-Aware-Engineering, where it was found by
+    the structural layer of `tools/pptx_validate.py` rather than by any gate the build ran.
+    """
     el = copy.deepcopy(shape._element)
     slide.shapes._spTree.append(el)
+    for tag in (_PML_CNVPR, _DML_CNVPR):
+        for c in el.iter(tag):
+            c.set("id", str(_fresh_shape_id(slide)))
+            break   # the shape's own non-visual props; nested ids (charts, frames) stay as copied
+        else:
+            continue
+        break
     for sh in slide.shapes:
         if sh._element is el:
             return sh
