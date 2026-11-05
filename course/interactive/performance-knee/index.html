@@ -669,6 +669,154 @@ kbd {
    no decorative animation to disable — what the mode changes is the ARRIVAL FLASH on the queue
    diagram and the redraw cadence, so the picture stops shimmering. The simulation itself is
    untouched: simulated time never depends on how often we draw. */
+
+/* =================================================================================================
+   STAGE B · the laboratory handout. Three groups of rules, all local on purpose.
+
+   (1) A TYPE-SCALE CORRECTION over the shared core. The core's lab shell was sized to the
+       first-screen budget the author WITHDREW, so it puts eight primary-interface elements between
+       10.9px and 12.8px, which the house style forbids outright (`no 10-11px text`; body 15-17px;
+       chart labels at least 13-14px). The core is shared by six pages and two siblings are live in
+       it, so the correction is made HERE and reported upward rather than applied to the core. If
+       all six laboratories end up carrying this same block, it belongs in the core instead.
+       Note on units: `rem` resolves against the ROOT element, which carries no font-size, so every
+       rem here is 16px and not the body's 17px. 0.76rem draws 12.2px, not 12.9px.
+
+   (2) The HANDOUT STRUCTURE the house order needs: a section-heading rank, the full-row figure, a
+       two-column background with a readable measure, the six-field experiment cards, and the
+       predicted-against-measured results table.
+
+   (3) The figure's share of the row is set by a WIDTH and by nothing else. A max-height on an SVG
+       with a viewBox letterboxes the drawing instead of cropping it, so every pixel of column past
+       the ceiling becomes empty margin. There is no pixel height ceiling anywhere in this file and
+       the packaging suite asserts its absence.
+   ================================================================================================= */
+
+/* --- (1) type scale ------------------------------------------------------------------------- */
+.lab-question { font-size: 1.3rem; }                      /* 19.5px -> 20.8px (house: 20-24) */
+.lab-question .k { font-size: 0.82rem; }                  /* 10.9px -> 13.1px */
+.lab-frame { font-size: 1rem; max-width: 118ch; }         /* 14.4px -> 16px  */
+.lab-assumptions > h2, .lab-assumptions > h3, .lab-block-title { font-size: 0.86rem; }  /* 11.2 -> 13.8 */
+.lab-assumptions ul { font-size: 0.95rem; line-height: 1.42; }                          /* 13.3 -> 15.2 */
+.lab-disclaimer { font-size: 0.88rem; line-height: 1.38; }                              /* 12.6 -> 14.1 */
+table.lab-parameters { font-size: 0.92rem; }                                            /* 12.2 -> 14.7 */
+table.lab-parameters caption { font-size: 0.86rem; color: var(--ink); }                 /* 11.2 -> 13.8 */
+table.lab-parameters th, table.lab-parameters td { padding: 0.34rem 0.5rem; }
+.lab-tablenote { font-size: 0.85rem; line-height: 1.38; }                               /* 12.2 -> 13.6 */
+.lab-figure > figcaption { font-size: 0.9rem; line-height: 1.38; }                       /* 12.8 -> 14.4 */
+.lab-figure > figcaption .fignum { font-size: 0.84rem; }                                /* 11.8 -> 13.4 */
+.plane-kind { font-size: 0.84rem; }                                                     /* 11.5 -> 13.4 */
+.preset .pkeep { font-size: 0.82rem; }                                                  /* 11.5 -> 13.1 */
+.legend { font-size: 0.93rem; }                                                         /* 14.1 -> 14.9 */
+
+/* --- (2a) a section-heading rank above the family's panel titles ---------------------------- */
+/* The six laboratories share 13px mono small-caps panel titles, and restyling that family is not
+   this lab's call. So the handout gains a SECOND rank for the seven house sections, at the size
+   the style guide asks of a section heading, and leaves the panel titles alone. */
+.panel > h2.sec-title, h2.sec-title {
+  font-family: var(--font-body);
+  font-size: 1.15rem; font-weight: 600; letter-spacing: 0;
+  text-transform: none; color: var(--ink);
+  margin: 0 0 0.85rem;
+}
+h2.sec-title.standalone { margin: 1.6rem 0 0.4rem; }
+.further-lead { font-size: 0.97rem; color: var(--muted); max-width: 100ch; margin: 0 0 0.9rem; }
+h3.sub-title {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1.3rem 0 0.5rem;
+}
+/* A disclosure's summary keeps the family's mono small-caps; the h2 inside it is structural. */
+details.panel > summary > h2 {
+  display: inline; margin: 0; font: inherit;
+  letter-spacing: inherit; text-transform: inherit; color: inherit;
+}
+
+/* --- (2b) the figure gets its own row, at 78% of the content width -------------------------- */
+.figure-row { display: block; margin: 0 0 1.1rem; }
+.figure-row > .lab-figure { width: 78%; margin-left: auto; margin-right: auto; }
+/* Below ~1100px the 78% share starves the labels: at a 1024px CSS viewport (a 1280 screen at
+   125% zoom) a 78% figure renders the 9.5px labels at 11.3px. Full width there puts them back
+   above the floor. "At least 70-80%" is satisfied either way. */
+@media (max-width: 1200px) { .figure-row > .lab-figure { width: 100%; } }
+
+/* --- (2c) background prose: two columns, readable measure ----------------------------------- */
+.prose2 { max-width: 112ch; }
+.prose2 p { margin: 0 0 0.75rem; }
+.prose2 p:last-child { margin-bottom: 0; }
+@media (min-width: 1100px) { .prose2 { columns: 2; column-gap: 2.8rem; } }
+
+/* --- (2d) the numbered procedure: three cards, six fields each ------------------------------ */
+.proc-lead { max-width: 108ch; margin: 0 0 1rem; }
+ol.exp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+@media (min-width: 1400px) { ol.exp-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+li.exp {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.85rem 0.95rem; min-width: 0;
+}
+li.exp > h3 { margin: 0 0 0.6rem; font-size: 1.02rem; line-height: 1.3; }
+dl.six { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.3rem 0.8rem; }
+dl.six > dt {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
+  padding-top: 0.12rem;
+}
+dl.six > dd { margin: 0; font-size: 0.95rem; line-height: 1.4; min-width: 0; }
+@media (max-width: 760px) {
+  dl.six { grid-template-columns: 1fr; gap: 0.1rem; }
+  dl.six > dd { margin-bottom: 0.45rem; }
+}
+button.act.small { font-size: 0.88rem; padding: 0.2rem 0.6rem; margin: 0.15rem 0.2rem 0 0; }
+
+/* --- (2e) the apparatus --------------------------------------------------------------------- */
+.ctl-hints {
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.6rem;
+  margin: 0.7rem 0 0; font-size: 0.92rem; color: var(--muted);
+}
+/* Simulation speed is not an engineering parameter, so it sits beside Run rather than in the
+   control grid with lambda, mu and the service distribution. */
+.speed-holder { display: inline-flex; align-items: center; gap: 0.5rem; margin-left: 0.6rem; }
+.speed-holder > label {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+@media (max-width: 760px) { .speed-holder { margin-left: 0; width: 100%; } }
+
+/* --- (2f) results: the predicted-against-measured table ------------------------------------- */
+.state-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.1rem; margin: 0 0 0.9rem; }
+.model-in-force { font-size: 0.95rem; color: var(--muted); }
+.model-in-force strong { font-family: var(--font-mono); color: var(--ink); }
+table.results { border-collapse: collapse; width: 100%; min-width: 30rem; margin-top: 0.9rem; }
+table.results caption {
+  caption-side: top; text-align: left; font-size: 0.92rem; color: var(--muted);
+  padding-bottom: 0.4rem;
+}
+table.results th, table.results td {
+  border: 1px solid var(--rule); padding: 0.45rem 0.7rem; text-align: left; vertical-align: top;
+}
+table.results thead th { background: var(--panel-2); font-weight: 600; font-size: 0.97rem; }
+table.results tbody th { font-weight: 600; font-size: 1rem; }
+table.results td { font-family: var(--font-mono); font-size: 1.08rem; white-space: nowrap; }
+table.results td.big { font-size: 1.3rem; font-weight: 600; }
+.colsub {
+  display: block; font-family: var(--font-mono); font-weight: 400;
+  font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
+}
+/* The two columns are told apart by a WORD in the header, by a border STYLE, and by a tint — three
+   encodings, so the distinction survives greyscale projection and a colour-vision difference. */
+table.results .col-model { background: var(--model-fill); border-left: 3px solid var(--model); }
+table.results .col-meas { background: var(--panel-2); border-left: 3px dashed var(--muted); }
+
+/* --- (2g) interpretation -------------------------------------------------------------------- */
+ul.interp { max-width: 108ch; padding-left: 1.2rem; }
+ul.interp li { margin-bottom: 0.45rem; }
+
+/* Subscripts inherit `font-size: smaller`, which lands a q or a 2 at 12.1-12.7px inside a table
+   or a list. Mathematical notation is still text a student has to read, so it gets the same floor
+   as everything else. */
+sub, sup { font-size: max(13px, 0.8em); }
+
+/* --- legend swatch for the measured point on the dominant chart ----------------------------- */
+.legend .sw-meas { border: 0; width: 0.62rem; height: 0.62rem; background: var(--ink); }
 </style>
 </head>
 <body>
@@ -687,10 +835,14 @@ kbd {
 <main>
 
 <!-- ==============================================================================================
-     THE LABORATORY HANDOUT. Engineering problem, the modelled system, the model's assumptions and
-     the parameters a student may change — visible before any control, and printable without
-     running anything. The styling is the shared lab shell in the generated core above.
+     THE LABORATORY HANDOUT, in the house order: engineering problem, background, model, numbered
+     procedure, THEN the apparatus, then interpretation, then collapsed reference. The apparatus
+     sits below the instructional material on purpose — a student should understand what is being
+     manipulated before meeting the controls. A later edit that "just moves the controls up to
+     reduce scrolling" is the regression tests/test-packaging.mjs pins on the shipped bytes.
      ============================================================================================ -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
@@ -701,190 +853,324 @@ kbd {
     it without anything breaking and without a single request being lost. The cause is waiting, and
     waiting is what this simulator models.
   </p>
+</section>
 
-  <div class="lab-twoup band wide-fig">
-    <!-- -------- FIGURES 1 AND 2 · the modelled system, and the relationship it produces -------- -->
-    <div class="lab-figstack">
-      <figure class="lab-figure flat">
-        <svg class="fig" viewBox="0 0 560 104" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
-          <title id="f1-t">Figure 1: the modelled system — arrivals, one queue, one server, completions</title>
-          <desc id="f1-d">A single path runs left to right. Requests arrive at a mean rate lambda,
-            measured in requests per second, and enter a waiting queue drawn as five slots filled
-            from the front. The queue is labelled first come, first served, and unbounded. An arrow
-            leads from the front of the queue to a single server, labelled one server at a mean
-            service rate mu, also in requests per second. One arrow leaves the server to completed
-            requests. A dashed boundary encloses the queue and the server and is labelled the
-            modelled system; arrivals enter it and completions leave it, and nothing else crosses
-            it. There is no second server, no retry path, no timeout and no discard: every request
-            that arrives eventually leaves through the server. The parameters marked lambda and mu
-            are defined in the parameters table.</desc>
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="panel" aria-labelledby="h-background">
+  <h2 class="sec-title" id="h-background">Background</h2>
+  <div class="prose2">
+    <p>
+      <strong>A queue is what a busy server does to the request that arrives next.</strong> One
+      request at a time is in service; anything arriving while the server is busy waits its turn.
+      The time a user experiences therefore has two parts &mdash; the <strong>service time</strong>,
+      the work the request actually costs, and the <strong>queueing delay</strong>, the time spent
+      waiting. Only the first is about how fast the code is.
+    </p>
+    <p>
+      <strong>Offered load is the ratio of demand to capacity.</strong> Write the mean arrival rate
+      as &lambda; and the mean rate the server completes work while busy as &mu;, both in requests
+      per second. Then &rho;&nbsp;=&nbsp;&lambda;/&mu; is the offered load: the fraction of capacity
+      the arriving work asks for. Below capacity it is also the fraction of time the server is busy,
+      its <em>utilisation</em>. Above capacity the two part company, and the separation matters.
+      Utilisation is a fraction of time and cannot exceed 1; offered load can be any number. A
+      server handed 110 requests a second when it can finish 100 runs at utilisation 1.00 and
+      throughput 100 &mdash; the extra ten a second go into the backlog.
+    </p>
+    <p>
+      <strong>Queueing delay does not switch on at some high load.</strong> It is present at every
+      positive load and merely small while the server is usually free. What governs its size is not
+      &rho; but the headroom left over, 1&nbsp;&minus;&nbsp;&rho;. With exponentially distributed
+      service times the mean time in the system is
+      <code>W = (1/&mu;) / (1 &minus; &rho;)</code>, so each halving of the headroom doubles the
+      response time: twice the service time at &rho;&nbsp;=&nbsp;0.5, ten times at 0.9, a hundred
+      times at 0.99. The resource still has average capacity to spare at every one of those points.
+    </p>
+    <p>
+      <strong>Average demand does not decide the delay; variability does.</strong> Two services with
+      identical mean service times at identical offered loads can wait very differently. One long
+      service delays everything behind it, and the more spread out the service times are, the more
+      often that happens. Removing the spread altogether &mdash; constant service times rather than
+      exponential ones &mdash; halves the mean queueing delay at the same load, with no change
+      whatever to average capacity. The mean wait scales with the <em>second moment</em> of the
+      service-time distribution, which is the formal reason that making slow requests less slow can
+      buy more than adding servers.
+    </p>
+    <p>
+      <strong>A prediction and a measurement are different claims.</strong> The formulas above are
+      consequences of stated assumptions. The numbers this page measures come from one seeded run of
+      a simulated request trace. They should agree; when they do not, the question worth asking is
+      which assumption the run violated &mdash; or whether it has simply not run long enough to
+      settle.
+    </p>
+  </div>
+</section>
 
-          <rect class="boundary" x="118" y="12" width="300" height="66" rx="3"/>
-          <text class="th" x="124" y="90">Modelled system</text>
+<!-- ======================= 3 · THE MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 class="sec-title" id="h-model">The model</h2>
 
-          <text class="th" x="4" y="24">Requests</text>
-          <text class="eq" x="4" y="48">&#955; req/s</text>
-          <text class="ts" x="4" y="64">arrivals</text>
-          <line class="ln" x1="72" y1="44" x2="124" y2="44"/>
-          <polygon class="ah" points="130,44 123,40 123,48"/>
+  <!-- Figure 1 takes its own row at 78% of the content width. The share is set by a WIDTH and
+       nothing else: a max-height on an SVG with a viewBox letterboxes the drawing rather than
+       cropping it, so every pixel of column past the ceiling becomes empty margin. -->
+  <div class="figure-row">
+    <figure class="lab-figure flat">
+      <svg class="fig" viewBox="0 0 600 200" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+        <title id="f1-t">Figure 1: the modelled system — arrivals, one queue, one server, completions, and the two parts of response time</title>
+        <desc id="f1-d">A single path runs left to right. Requests arrive from the left at a mean
+          rate lambda, measured in requests per second, from a Poisson process. They enter a waiting
+          queue drawn as six slots, four filled from the front and two empty. The queue is labelled
+          first come, first served, and unbounded. An arrow leads from the front of the queue to a
+          single server, labelled one server at a mean service rate mu, also in requests per second.
+          One arrow leaves the server to completed requests on the right. A dashed boundary encloses
+          the queue and the server and is labelled the modelled system; arrivals enter it and
+          completions leave it, and nothing else crosses it. There is no second server, no retry
+          path, no timeout and no discard: every request that arrives eventually leaves through the
+          server. Beneath the drawing two brackets mark the two quantities the laboratory measures.
+          The first spans the queue alone and is labelled mean queueing delay W sub q, the time a
+          request spends waiting. The second spans the queue and the server together and is labelled
+          mean response time W, which equals the queueing delay plus the mean service time one over
+          mu. At the top right an equation reads rho equals lambda over mu, the offered load.</desc>
 
-          <rect class="bx" x="132" y="28" width="26" height="32" rx="2"/>
-          <rect class="bx" x="160" y="28" width="26" height="32" rx="2"/>
-          <rect class="bx" x="188" y="28" width="26" height="32" rx="2"/>
-          <rect class="bx ghost" x="216" y="28" width="26" height="32" rx="2"/>
-          <rect class="bx ghost" x="244" y="28" width="26" height="32" rx="2"/>
-          <text class="th" x="132" y="20">Waiting queue</text>
-          <text class="ts" x="132" y="74">first come, first served &middot; unbounded</text>
+        <text class="eq" x="424" y="22">&#961; = &#955;/&#956;  offered load</text>
 
-          <line class="ln" x1="274" y1="44" x2="300" y2="44"/>
-          <polygon class="ah" points="306,44 299,40 299,48"/>
-          <rect class="bx strong" x="308" y="26" width="100" height="36" rx="2"/>
-          <text class="t" x="358" y="42" text-anchor="middle">One server</text>
-          <text class="eq" x="358" y="56" text-anchor="middle">&#956; req/s</text>
+        <rect class="boundary" x="140" y="36" width="334" height="78" rx="3"/>
+        <text class="th" x="146" y="128">Modelled system</text>
 
-          <line class="ln" x1="412" y1="44" x2="448" y2="44"/>
-          <polygon class="ah" points="454,44 447,40 447,48"/>
-          <text class="th" x="458" y="40">Completed</text>
-          <text class="th" x="458" y="54">requests</text>
-        </svg>
-        <figcaption>
-          <span class="fignum">Figure 1.</span> The simulator models <strong>one</strong> processing
-          resource. Requests wait in a first-come, first-served queue before receiving service.
-        </figcaption>
-      </figure>
+        <text class="th" x="8" y="58">Requests arrive</text>
+        <text class="eq" x="8" y="80">&#955; req/s</text>
+        <text class="ts" x="8" y="98">Poisson</text>
+        <line class="ln" x1="96" y1="72" x2="130" y2="72"/>
+        <polygon class="ah" points="137,72 129,67 129,77"/>
 
-      <figure class="lab-figure flat">
-        <svg class="fig" viewBox="0 0 560 108" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
-          <title id="f2-t">Figure 2: predicted mean response time against utilisation</title>
-          <desc id="f2-d">A line chart. The horizontal axis is utilisation rho, running from zero
-            to one hundred per cent of capacity; the vertical axis is mean response time. The curve
-            starts just above the service time at low utilisation, rises gently to about seventy
-            per cent, then turns upward and climbs steeply as it approaches one hundred per cent,
-            where it has no finite value. A dashed horizontal line near the bottom marks the mean
-            service time one over mu, the floor the curve never goes below. Two equations stand to
-            the right of the chart: rho equals lambda over mu, and W equals one over mu minus
-            lambda for lambda less than mu. No particular utilisation is marked as a threshold.</desc>
+        <text class="th" x="150" y="50">Waiting queue</text>
+        <rect class="bx" x="150" y="56" width="30" height="36" rx="2"/>
+        <rect class="bx" x="184" y="56" width="30" height="36" rx="2"/>
+        <rect class="bx" x="218" y="56" width="30" height="36" rx="2"/>
+        <rect class="bx" x="252" y="56" width="30" height="36" rx="2"/>
+        <rect class="bx ghost" x="286" y="56" width="30" height="36" rx="2"/>
+        <rect class="bx ghost" x="320" y="56" width="30" height="36" rx="2"/>
+        <text class="ts" x="150" y="106">first come, first served</text>
 
-          <line class="axis" x1="44" y1="12" x2="44" y2="86"/>
-          <line class="axis" x1="44" y1="86" x2="330" y2="86"/>
-          <text class="th" x="4" y="20">Mean</text>
-          <text class="th" x="4" y="32">response</text>
-          <text class="th" x="4" y="44">time</text>
-          <text class="th" x="150" y="100">Utilisation &#961;  &rarr;  100% of capacity</text>
+        <line class="ln" x1="354" y1="72" x2="378" y2="72"/>
+        <polygon class="ah" points="385,72 377,67 377,77"/>
+        <rect class="bx strong" x="388" y="52" width="80" height="40" rx="2"/>
+        <text class="t" x="428" y="70" text-anchor="middle">One server</text>
+        <text class="eq" x="428" y="86" text-anchor="middle">&#956; req/s</text>
 
-          <line class="ln ghost" x1="44" y1="78" x2="330" y2="78"/>
-          <text class="ts" x="48" y="74">1/&#956;  mean service time</text>
+        <line class="ln" x1="472" y1="72" x2="506" y2="72"/>
+        <polygon class="ah" points="513,72 505,67 505,77"/>
+        <text class="th" x="518" y="68">Completed</text>
+        <text class="th" x="518" y="84">requests</text>
 
-          <path class="curve" d="M44 78 C 130 76, 200 70, 248 58 C 282 49, 300 36, 310 14"/>
-          <text class="eq" x="352" y="40">&#961; = &#955;/&#956;</text>
-          <text class="eq" x="352" y="62">W = 1/(&#956;&minus;&#955;),  &#955; &lt; &#956;</text>
-        </svg>
-        <figcaption>
-          <span class="fignum">Figure 2.</span> Under M/M/1 assumptions, predicted mean response time
-          rises rapidly as offered load approaches capacity. The live curve below draws this same
-          relationship for your current &mu;.
-        </figcaption>
-      </figure>
-    </div>
+        <!-- These two use `.t`, not `.th`: the shared core's `.th` is `text-transform: uppercase`,
+             which silently renders a lower-case mu as a capital MU — so `1/μ` drew as `1/M`.
+             Any figure label carrying Greek or mixed-case mathematics has to avoid that class. -->
+        <path class="ln" d="M150 142 v6 h200 v-6"/>
+        <text class="t" x="150" y="163">Mean queueing delay W<tspan dy="2.5" font-size="0.72em">q</tspan><tspan dy="-2.5"> &mdash; the time spent waiting</tspan></text>
+        <path class="ln ghost" d="M150 172 v6 h318 v-6"/>
+        <text class="t" x="150" y="192">Mean response time W = W<tspan dy="2.5" font-size="0.72em">q</tspan><tspan dy="-2.5"> + 1/&#956;</tspan></text>
+      </svg>
+      <figcaption>
+        <span class="fignum">Figure 1.</span> The simulator models <strong>one</strong> processing
+        resource. Requests wait in a first-come, first-served queue before receiving service, and
+        the laboratory measures the two brackets: how long a request waits, and how long it is in
+        the system altogether.
+      </figcaption>
+    </figure>
+  </div>
 
-    <!-- -------- MODEL ASSUMPTIONS -------- -->
+  <div class="lab-twoup">
     <div class="lab-assumptions" aria-labelledby="h-assumptions">
-      <h2 id="h-assumptions">Model assumptions</h2>
+      <h2 id="h-assumptions">Assumptions you need in order to predict</h2>
       <ul>
         <li><strong>Poisson arrivals, one server, FCFS, unlimited queue.</strong> Nothing is
           discarded: no loss, no balking, no admission control, no retry.</li>
-        <li><strong>Exponential service times produce M/M/1; deterministic service times produce
-          M/D/1.</strong> Choosing deterministic service switches the whole prediction panel, because
-          applying an exponential-service result to constant service times is the wrong model.</li>
-        <li><strong>Predicted and measured are kept apart.</strong> Predictions come from the
-          formulas above; measurements come from one seeded run of a discrete-event trace, and a
-          short run has not yet settled.</li>
+        <li><strong>Exponential service times give M/M/1; constant service times give M/D/1.</strong>
+          Choosing constant service switches the whole prediction, because applying an
+          exponential-service result to constant service times is the wrong model.</li>
+        <li><strong>The prediction holds only below capacity.</strong> At
+          &lambda;&nbsp;&ge;&nbsp;&mu; there is no steady state, so there is no finite mean to
+          predict and the page prints the reason instead of a number.</li>
         <li><strong>Simulated time is independent of wall-clock time.</strong> The same seed produces
           the same event trace at 1&times;, 10&times; and 100&times;.</li>
       </ul>
       <p class="lab-disclaimer">
-        <strong>No particular utilisation is &ldquo;the knee&rdquo;.</strong> Where response time
-        becomes unacceptable depends on the service-time distribution and on what the service has
-        promised &mdash; not on a number you can quote without them.
+        <strong>Illustrative simulation; not calibrated to a production service.</strong> And no
+        particular utilisation is &ldquo;the knee&rdquo;: where response time becomes unacceptable
+        depends on the service-time distribution and on what the service has promised.
       </p>
     </div>
 
-    <!-- -------- PARAMETERS -------- -->
     <div class="lab-assumptions lab-parameters-block">
       <div class="lab-scroll">
         <table class="lab-parameters">
-          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
-            changing it does</caption>
+          <caption>Table 1 &middot; Model parameters &mdash; what you change</caption>
           <thead>
             <tr>
-              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Parameter</th><th scope="col">What it represents</th>
               <th scope="col">Values</th><th scope="col">Default</th>
-              <th scope="col">What changing it does</th>
             </tr>
           </thead>
           <tbody>
             <tr data-control="lambda">
               <th scope="row">Arrival rate &lambda;</th>
-              <td>Mean requests arriving per second</td>
+              <td>The work arriving &mdash; mean requests per second</td>
               <td class="unit">0&ndash;150 req/s</td><td class="default">30</td>
-              <td>Changes offered load</td>
             </tr>
             <tr data-control="mu">
               <th scope="row">Service rate &mu;</th>
-              <td>Mean requests served per second while busy</td>
+              <td>The capacity &mdash; mean requests served per second while busy</td>
               <td class="unit">20&ndash;200 req/s</td><td class="default">100</td>
-              <td>Changes capacity</td>
             </tr>
             <tr data-control="dist">
-              <th scope="row">Service distribution</th>
-              <td>Variation in processing time</td>
+              <th scope="row">Service time</th>
+              <td>The variability &mdash; spread of processing time at a fixed mean</td>
               <td class="unit">Exponential &middot; Deterministic</td><td class="default">Exponential</td>
-              <td>Changes queueing behaviour</td>
-            </tr>
-            <tr data-control="speed-seg">
-              <th scope="row">Simulation speed</th>
-              <td>Simulated time per wall-clock second</td>
-              <td class="unit">1&times; &middot; 10&times; &middot; 100&times;</td><td class="default">10&times;</td>
-              <td>Changes observation speed, <em>not</em> model behaviour</td>
             </tr>
           </tbody>
         </table>
       </div>
       <p class="lab-tablenote">
-        Further settings &mdash; the seed, the chart window, reduced motion &mdash; live under
-        Advanced controls and are documented there.
+        Three engineering parameters, one per term of the relationship under study. Simulation speed
+        sits beside Run because it changes how fast you watch, not what happens. The seed, the
+        warm-up and the chart window live under <em>Advanced controls</em>.
+      </p>
+
+      <div class="lab-scroll" style="margin-top:0.8rem">
+        <table class="lab-parameters">
+          <caption>Table 2 &middot; Observed quantities &mdash; what you read</caption>
+          <thead>
+            <tr>
+              <th scope="col">Quantity</th><th scope="col">What it means</th>
+              <th scope="col">Predicted by</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Mean queueing delay W<sub>q</sub></th>
+              <td>Average time a request waits before service begins</td>
+              <td class="unit">M/M/1 or M/D/1</td>
+            </tr>
+            <tr>
+              <th scope="row">Mean response time W</th>
+              <td>Average time in the system: the wait plus the service</td>
+              <td class="unit">M/M/1 or M/D/1</td>
+            </tr>
+            <tr>
+              <th scope="row">Server utilisation</th>
+              <td>Fraction of time the server is busy. Equals &rho; below capacity and stops at 1.00 above it</td>
+              <td class="unit">&rho; = &lambda;/&mu;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lab-tablenote">
+        Every other quantity the engine computes &mdash; occupancy, throughput, event counts,
+        Little&rsquo;s Law &mdash; is still calculated and still on this page, under
+        <em>Further investigation</em>.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ======================= CONTROLS ======================= -->
-<section class="panel" aria-labelledby="h-controls">
-  <h2 id="h-controls">Controls</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
-    <ol class="lab-steps">
-      <li>
-        <span class="step">1 &middot; Predict</span>
-        Hold &mu;&nbsp;=&nbsp;100 and write down the mean response time you expect at
-        &lambda;&nbsp;=&nbsp;50, then at 90, then at 99. Commit the three numbers before you read
-        any panel &mdash; reading first turns a prediction into a recall exercise.
-      </li>
-      <li>
-        <span class="step">2 &middot; Run</span>
-        Step &lambda; through 50, 90 and 99 with &mu; fixed, each for at least sixty simulated
-        seconds. Then set &lambda;&nbsp;=&nbsp;90 again and switch the service distribution to
-        deterministic.
-      </li>
-      <li>
-        <span class="step">3 &middot; Explain</span>
-        Compare observed mean response time with the queueing model's prediction at each setting.
-        By what factor did it grow from &rho;&nbsp;=&nbsp;0.5 to 0.9, and from 0.9 to 0.99? What
-        would you recommend to an engineer who has been told to run this service at 90% of
-        capacity?
-      </li>
-    </ol>
-  </div>
+<!-- ======================= 4 · THE EXPERIMENTAL PROCEDURE ======================= -->
+<section class="panel" aria-labelledby="h-procedure">
+  <h2 class="sec-title" id="h-procedure">The experimental procedure</h2>
+  <p class="proc-lead">
+    <strong>Predict before you run.</strong> Each experiment below names a baseline, the one
+    parameter to change, what to hold constant, the prediction to commit to, the measurements to
+    compare, and the engineering question the comparison answers. Write the prediction down before
+    you read a panel &mdash; reading first turns a prediction into a recall exercise. Each
+    <em>Load baseline</em> button sets the baseline for you, so you are not reconstructing it by
+    hand. Allow five to ten minutes.
+  </p>
+
+  <ol class="exp-list">
+    <li class="exp">
+      <h3>Experiment 1 &middot; Where the delay comes from at a load that looks comfortable</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>&lambda;&nbsp;=&nbsp;30, &mu;&nbsp;=&nbsp;100, exponential service.
+          <button type="button" class="act small" data-xp="30,100,exponential,reset">Load baseline</button></dd>
+        <dt>Change</dt>
+        <dd>Arrival rate &lambda;, from 30 to 95.
+          <button type="button" class="act small" data-xp="95,100,exponential,reset">&lambda; = 95</button></dd>
+        <dt>Hold constant</dt>
+        <dd>Service rate &mu;&nbsp;=&nbsp;100, exponential service, seed 30861, no warm-up.</dd>
+        <dt>Predict</dt>
+        <dd>At each setting: what fraction of the time is the server busy, and what is the mean
+          queueing delay? Is the delay above or below the 10&nbsp;ms mean service time? By what
+          factor does it grow between the two?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Run each setting for at least sixty simulated seconds, then read all three quantities
+          in <em>Results</em> &mdash; predicted and measured, side by side.</dd>
+        <dt>Explain</dt>
+        <dd>At &lambda;&nbsp;=&nbsp;95 the server is still idle about one twentieth of the time, so
+          the resource has average capacity to spare. Where does the delay come from, and what does
+          that say about diagnosing a slow service by looking at utilisation alone?</dd>
+      </dl>
+    </li>
+
+    <li class="exp">
+      <h3>Experiment 2 &middot; The headroom, not the utilisation figure</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>&lambda;&nbsp;=&nbsp;95, &mu;&nbsp;=&nbsp;100, exponential service &mdash; Experiment
+          1&rsquo;s second setting.
+          <button type="button" class="act small" data-xp="95,100,exponential,reset">Load baseline</button></dd>
+        <dt>Change</dt>
+        <dd>Arrival rate &lambda;, from 95 to 99, then to 110.
+          <button type="button" class="act small" data-xp="99,100,exponential,reset">&lambda; = 99</button>
+          <button type="button" class="act small" data-xp="110,100,exponential,reset">&lambda; = 110</button></dd>
+        <dt>Hold constant</dt>
+        <dd>Service rate &mu;&nbsp;=&nbsp;100, exponential service, seed 30861, no warm-up.</dd>
+        <dt>Predict</dt>
+        <dd>Going from &lambda;&nbsp;=&nbsp;95 to 99 cuts the headroom
+          1&nbsp;&minus;&nbsp;&rho; from 0.05 to 0.01. What should that do to the mean response
+          time? Then at &lambda;&nbsp;=&nbsp;110: what steady-state mean response time do you
+          predict, and what do you expect the measured utilisation to be?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Compare predicted against measured mean response time at 99. At 110 the model prints no
+          finite value and states its reason; read it, then watch the measured utilisation settle at
+          1.00 while the offered load reads 1.10, and watch the response-time chart climb without
+          settling.</dd>
+        <dt>Explain</dt>
+        <dd>Why is an offered load of 1.10 not a utilisation of 1.10, and where does the excess go?
+          Why is &ldquo;mean response time&rdquo; the wrong question above capacity rather than
+          merely a large number &mdash; and what would you monitor instead?</dd>
+      </dl>
+    </li>
+
+    <li class="exp">
+      <h3>Experiment 3 &middot; Same average demand, different delay</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>&lambda;&nbsp;=&nbsp;90, &mu;&nbsp;=&nbsp;100 (&rho;&nbsp;=&nbsp;0.9), exponential
+          service.
+          <button type="button" class="act small" data-xp="90,100,exponential,reset">Load baseline</button></dd>
+        <dt>Change</dt>
+        <dd>Service time, from Exponential to Deterministic.
+          <button type="button" class="act small" data-xp="90,100,deterministic,reset">Deterministic</button></dd>
+        <dt>Hold constant</dt>
+        <dd>&lambda;&nbsp;=&nbsp;90, &mu;&nbsp;=&nbsp;100, seed 30861, no warm-up. The <em>mean</em>
+          service time is 10&nbsp;ms either way, so offered load is 0.9 in both.</dd>
+        <dt>Predict</dt>
+        <dd>Both settings demand exactly the same average work of exactly the same server. Will the
+          mean queueing delay be the same? If not, which way does it move, and by how much?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Run each for at least two hundred simulated seconds and compare the mean queueing delay,
+          predicted and measured, under each distribution.</dd>
+        <dt>Explain</dt>
+        <dd>Nothing about average capacity changed. What did, and what does that say about where to
+          spend an engineering budget &mdash; on more capacity, or on less variability?</dd>
+      </dl>
+    </li>
+  </ol>
+</section>
+
+<!-- ======================= 5 · INTERACTIVE APPARATUS ======================= -->
+<section class="panel" aria-labelledby="h-apparatus">
+  <h2 class="sec-title" id="h-apparatus">Interactive apparatus</h2>
 
   <div class="ctl-row">
     <div class="ctl">
@@ -907,22 +1193,26 @@ kbd {
       </select>
       <span></span>
     </div>
-    <div class="ctl">
-      <label id="speed-label">Simulation speed</label>
-      <div class="seg" role="group" aria-labelledby="speed-label" id="speed-seg">
-        <button type="button" data-speed="1" aria-pressed="false">1&times;</button>
-        <button type="button" data-speed="10" aria-pressed="true">10&times;</button>
-        <button type="button" data-speed="100" aria-pressed="false">100&times;</button>
-      </div>
-      <span></span>
-    </div>
   </div>
+  <p class="ctl-hints">
+    <span><strong>&lambda;</strong> is the work arriving.</span>
+    <span><strong>&mu;</strong> is the capacity.</span>
+    <span><strong>Service time</strong> is the variability at a fixed mean.</span>
+  </p>
 
   <div class="btn-row">
     <button type="button" class="act primary" id="btn-run" aria-pressed="false">Run</button>
     <button type="button" class="act" id="btn-step">Step</button>
     <button type="button" class="act" id="btn-reset">Reset</button>
     <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <span class="speed-holder">
+      <label id="speed-label">Simulation speed</label>
+      <span class="seg" role="group" aria-labelledby="speed-label" id="speed-seg">
+        <button type="button" data-speed="1" aria-pressed="false">1&times;</button>
+        <button type="button" data-speed="10" aria-pressed="true">10&times;</button>
+        <button type="button" data-speed="100" aria-pressed="false">100&times;</button>
+      </span>
+    </span>
     <span style="flex:1"></span>
     <a class="act" id="btn-download" href="index.html" download="performance-knee.html"
        role="button" style="text-decoration:none">Download HTML</a>
@@ -938,131 +1228,170 @@ kbd {
   </p>
 </section>
 
-<!-- ======================= PRESETS ======================= -->
-<section class="panel" aria-labelledby="h-presets">
-  <h2 id="h-presets">Classroom presets</h2>
-  <div class="preset-grid" id="presets"></div>
-  <p class="note">
-    Five presets <strong>reset</strong> the simulation, so you watch a system settle from empty.
-    <strong>Recover capacity</strong> deliberately does not: it raises &mu; on the running
-    simulation and leaves the accumulated backlog in place, which is the whole point of that
-    experiment. Those buttons are marked with a dashed border and the words
-    &ldquo;keeps backlog&rdquo;.
+<!-- ======================= 6 · RESULTS ======================= -->
+<section class="panel" aria-labelledby="h-results">
+  <h2 class="sec-title" id="h-results">Results</h2>
+
+  <p class="state-row">
+    <span class="badge s-ok" id="stability" aria-live="polite"><span class="glyph" aria-hidden="true">&#9679;</span><span id="stability-text">stable</span></span>
+    <span class="model-in-force">Model in force: <strong id="m-model">M/M/1</strong></span>
   </p>
-</section>
 
-<!-- ======================= VISUALS ======================= -->
-<div class="grid2">
-  <section class="panel" aria-labelledby="h-queue">
-    <h2 id="h-queue">Live queue <span class="mono" style="text-transform:none;letter-spacing:0">(simulation state)</span></h2>
-    <div class="canvas-wrap"><canvas id="c-queue" width="1200" height="300"
-      role="img" aria-labelledby="queue-alt"></canvas></div>
-    <p id="queue-alt" class="vh" aria-live="polite"></p>
-    <dl class="readout" style="margin-top:0.7rem">
-      <dt>Server</dt><dd id="r-server">idle</dd>
-      <dt>Waiting in queue</dt><dd id="r-queue">0</dd>
-      <dt>In system (waiting + in service)</dt><dd id="r-insystem">0</dd>
-      <dt>Largest queue seen</dt><dd id="r-maxq">0</dd>
-    </dl>
-  </section>
-
-  <section class="panel" aria-labelledby="h-rt">
-    <h2 id="h-rt">Response time, request by request <span class="mono" style="text-transform:none;letter-spacing:0">(observations over time)</span></h2>
-    <div class="canvas-wrap"><canvas id="c-rt" width="1200" height="340"
-      role="img" aria-labelledby="rt-alt"></canvas></div>
-    <p id="rt-alt" class="vh" aria-live="polite"></p>
-    <p class="legend">
-      <span><span class="swatch sw-obs"></span>one completed request</span>
-      <span><span class="swatch sw-mean"></span>rolling mean (solid)</span>
-      <span><span class="swatch sw-model"></span>model prediction (dashed)</span>
-    </p>
-    <p class="note">
-      This chart answers <em>what did we observe, and when?</em> The dashed model line disappears
-      when the model has no finite prediction &mdash; it is not extended past the point where it
-      stops meaning anything.
-    </p>
-  </section>
-</div>
-
-<!-- ======================= MODEL vs MEASUREMENT ======================= -->
-<div class="grid2">
-  <section class="panel" aria-labelledby="h-model">
-    <h2 id="h-model">Model prediction</h2>
-    <div class="model-plane">
-      <span class="plane-kind">Derived from the model &mdash; no simulation involved</span>
-      <dl class="readout">
-        <dt>Model in force</dt><dd id="m-model">M/M/1</dd>
-        <dt>Offered load &rho; = &lambda;/&mu;</dt><dd class="big" id="m-rho">0.300</dd>
-        <dt>Mean response time W</dt><dd class="big" id="m-w">14.3 ms</dd>
-        <dt>Mean queue wait W<sub>q</sub></dt><dd id="m-wq">4.3 ms</dd>
-        <dt>Mean number in system L</dt><dd id="m-l">0.429</dd>
-        <dt>Mean number waiting L<sub>q</sub></dt><dd id="m-lq">0.129</dd>
-        <dt>Mean service time 1/&mu;</dt><dd id="m-svc">10.0 ms</dd>
-      </dl>
-    </div>
-    <p class="formula" id="m-formula"></p>
-    <div id="m-unstable" hidden></div>
-    <p class="note" id="m-applicability"></p>
-  </section>
-
-  <section class="panel" aria-labelledby="h-measure">
-    <h2 id="h-measure">Simulation measurement</h2>
-    <p style="margin-top:0"><span class="badge s-ok" id="stability" aria-live="polite"><span class="glyph" aria-hidden="true">&#9679;</span><span id="stability-text">stable</span></span></p>
-    <div class="measure-plane">
-      <span class="plane-kind">Measured from the event trace &mdash; no model involved</span>
-      <dl class="readout">
-        <dt>Simulated time</dt><dd id="s-time">0.00 s</dd>
-        <dt>Events processed</dt><dd id="s-events">0</dd>
-        <dt>Arrivals / completions</dt><dd id="s-counts">0 / 0</dd>
-        <dt>Server utilization (time-weighted)</dt><dd class="big" id="s-util">&mdash;</dd>
-        <dt>Mean response time</dt><dd class="big" id="s-w">&mdash;</dd>
-        <dt>Mean queue wait</dt><dd id="s-wq">&mdash;</dd>
-        <dt>Throughput (completions / time)</dt><dd id="s-thr">&mdash;</dd>
-        <dt>Time-average number in system</dt><dd id="s-l">&mdash;</dd>
-        <dt>Time-average queue length</dt><dd id="s-lq">&mdash;</dd>
-      </dl>
-    </div>
-    <div id="s-transient" hidden></div>
-    <div id="s-growth" hidden></div>
-    <p class="note">
-      Occupancy and utilization are accumulated as <code>&int;N(t)&nbsp;dt</code> and busy-time over
-      the observation interval, updated <em>before</em> each event is applied. They are not averages
-      of values sampled when the browser happened to draw a frame.
-    </p>
-  </section>
-</div>
-
-<!-- ======================= KNEE CHART ======================= -->
-<section class="panel" aria-labelledby="h-knee">
-  <h2 id="h-knee">The predicted load&ndash;latency curve <span class="mono" style="text-transform:none;letter-spacing:0">(the model, across all loads)</span></h2>
-  <div class="canvas-wrap"><canvas id="c-knee" width="1600" height="420"
+  <!-- The dominant visualization: the relationship this laboratory exists to make inspectable.
+       Arrival rate on the horizontal axis (as offered load), queueing delay and response time on
+       the vertical, the model's whole predicted curve, and THIS RUN'S measurement plotted on it. -->
+  <div class="canvas-wrap"><canvas id="c-knee" width="1600" height="460"
     role="img" aria-labelledby="knee-alt"></canvas></div>
   <p id="knee-alt" class="vh" aria-live="polite"></p>
   <p class="legend">
     <span><span class="swatch sw-model"></span>predicted mean response time W(&rho;)</span>
-    <span><span class="swatch sw-now"></span>current offered load</span>
+    <span><span class="swatch sw-now"></span>current offered load &rho;</span>
+    <span><span class="swatch sw-meas"></span>measured mean, this run</span>
     <span><span class="swatch sw-svc"></span>service time 1/&mu; (the no-queueing floor)</span>
   </p>
-  <p class="note">
-    This chart answers a different question from the one beside the queue: not <em>what happened</em>
-    but <em>what does the model predict at every load?</em> It is a static curve. It moves only when
-    you change &mu; or the service-time distribution &mdash; changing &lambda; just slides the
-    vertical marker along it.
+
+  <div class="lab-scroll">
+    <table class="results">
+      <caption>Three measured quantities, each against what the model predicts for the same
+        settings.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Quantity</th>
+          <th scope="col" class="col-model">Model prediction<span class="colsub">no simulation involved</span></th>
+          <th scope="col" class="col-meas">This run&rsquo;s measurement<span class="colsub">from the event trace</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Mean queueing delay W<sub>q</sub></th>
+          <td class="col-model" id="m-wq">4.3 ms</td>
+          <td class="col-meas" id="s-wq">&mdash;</td>
+        </tr>
+        <tr>
+          <th scope="row">Mean response time W</th>
+          <td class="col-model big" id="m-w">14.3 ms</td>
+          <td class="col-meas big" id="s-w">&mdash;</td>
+        </tr>
+        <tr>
+          <th scope="row">Server utilisation</th>
+          <td class="col-model" id="m-rho">0.300</td>
+          <td class="col-meas" id="s-util">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="formula" id="m-formula"></p>
+  <div id="m-unstable" hidden></div>
+  <div id="s-transient" hidden></div>
+  <div id="s-growth" hidden></div>
+
+  <!-- The secondary visualization, declared as such. Experiment 2 needs it: a mean that is still
+       climbing is the only honest evidence that there is no mean to converge on. -->
+  <h3 class="sub-title">Secondary: response time, request by request</h3>
+  <div class="canvas-wrap"><canvas id="c-rt" width="1200" height="340"
+    role="img" aria-labelledby="rt-alt"></canvas></div>
+  <p id="rt-alt" class="vh" aria-live="polite"></p>
+  <p class="legend">
+    <span><span class="swatch sw-obs"></span>one completed request</span>
+    <span><span class="swatch sw-mean"></span>rolling mean (solid)</span>
+    <span><span class="swatch sw-model"></span>model prediction (dashed)</span>
   </p>
+  <p class="note">
+    The table reports averages; this chart reports the individual requests they average over. The
+    dashed model line disappears when the model has no finite prediction &mdash; it is not extended
+    past the point where it stops meaning anything.
+  </p>
+</section>
+
+<!-- ======================= 7 · INTERPRETATION ======================= -->
+<section class="panel" aria-labelledby="h-interpretation">
+  <h2 class="sec-title" id="h-interpretation">Interpretation</h2>
+  <p>
+    <strong>The engineering decision.</strong> You have been asked to run this service at 90% of
+    capacity because the hardware is paid for and the average capacity is clearly sufficient. What
+    do you recommend, and which measurement from your three experiments carries the argument?
+  </p>
+  <ul class="interp">
+    <li>Between &rho;&nbsp;=&nbsp;0.5 and 0.9, and again between 0.9 and 0.99, by what factor did
+      the mean response time grow? Which of those two steps is the larger change in offered load,
+      and which is the larger change in response time?</li>
+    <li>In Experiment 3 the average demand was identical and the delay was not. If you had a fixed
+      budget, would you spend it on capacity or on reducing the spread of service times &mdash; and
+      what would you need to measure first to decide?</li>
+    <li>Where your measured mean and the predicted mean disagreed, which was it: an assumption the
+      run violated, or a run that had not gone on long enough? What would distinguish the two?</li>
+  </ul>
   <p class="warn-msg">
     <strong>A precision point worth insisting on.</strong> Strictly speaking there is
     <em>no mathematically distinguished knee</em> in this curve. Response time diverges as
     utilization approaches 100%; the curve is smooth, and every point on it has a well-defined
     slope. &ldquo;The knee&rdquo; is an engineering choice, not a mathematical feature. Engineers
     pick an operational threshold from latency requirements and workload variability &mdash; which
-    is why Experiment&nbsp;2 asks you to look for a universal threshold and then explains why you
-    will not find one.
+    is why no utilisation on this page is marked as a threshold, and why the first question above
+    cannot be answered by quoting a number like &ldquo;70%&rdquo;.
   </p>
 </section>
 
-<!-- ======================= LITTLE'S LAW ======================= -->
-<section class="panel" aria-labelledby="h-little">
-  <h2 id="h-little">Little's Law</h2>
+<!-- ======================= 8 · FURTHER INVESTIGATION ======================= -->
+<h2 class="sec-title standalone" id="h-further">Further investigation</h2>
+<p class="further-lead">
+  Every quantity the engine computes is below, still calculated on every frame and still on this
+  page. None of it was deleted; it is reference material rather than the experiment, so it is
+  collapsed. The printed handout omits these sections.
+</p>
+
+<details class="panel disclose" id="live-queue">
+  <summary><h2>The live queue &mdash; watching the waiting happen</h2></summary>
+  <div class="canvas-wrap"><canvas id="c-queue" width="1200" height="300"
+    role="img" aria-labelledby="queue-alt"></canvas></div>
+  <p id="queue-alt" class="vh" aria-live="polite"></p>
+  <dl class="readout" style="margin-top:0.7rem">
+    <dt>Server</dt><dd id="r-server">idle</dd>
+    <dt>Waiting in queue</dt><dd id="r-queue">0</dd>
+    <dt>In system (waiting + in service)</dt><dd id="r-insystem">0</dd>
+    <dt>Largest queue seen</dt><dd id="r-maxq">0</dd>
+  </dl>
+  <p class="note">
+    The state of the simulation at this instant rather than an average over it. Useful at
+    100&times; in Experiment 2, where the backlog grows visibly and never drains.
+  </p>
+</details>
+
+<details class="panel disclose" id="all-predicted">
+  <summary><h2>Every quantity the model predicts</h2></summary>
+  <div class="model-plane">
+    <span class="plane-kind">Derived from the model &mdash; no simulation involved</span>
+    <dl class="readout">
+      <dt>Mean number in system L</dt><dd id="m-l">0.429</dd>
+      <dt>Mean number waiting L<sub>q</sub></dt><dd id="m-lq">0.129</dd>
+      <dt>Mean service time 1/&mu;</dt><dd id="m-svc">10.0 ms</dd>
+    </dl>
+  </div>
+  <p class="note" id="m-applicability"></p>
+</details>
+
+<details class="panel disclose" id="all-measured">
+  <summary><h2>Every quantity measured from the event trace</h2></summary>
+  <div class="measure-plane">
+    <span class="plane-kind">Measured from the event trace &mdash; no model involved</span>
+    <dl class="readout">
+      <dt>Simulated time</dt><dd id="s-time">0.00 s</dd>
+      <dt>Events processed</dt><dd id="s-events">0</dd>
+      <dt>Arrivals / completions</dt><dd id="s-counts">0 / 0</dd>
+      <dt>Throughput (completions / time)</dt><dd id="s-thr">&mdash;</dd>
+      <dt>Time-average number in system</dt><dd id="s-l">&mdash;</dd>
+      <dt>Time-average queue length</dt><dd id="s-lq">&mdash;</dd>
+    </dl>
+  </div>
+  <p class="note">
+    Occupancy and utilization are accumulated as <code>&int;N(t)&nbsp;dt</code> and busy-time over
+    the observation interval, updated <em>before</em> each event is applied. They are not averages
+    of values sampled when the browser happened to draw a frame.
+  </p>
+</details>
+
+<details class="panel disclose" id="little">
+  <summary><h2>Little&rsquo;s Law, and the measurement-window artefact</h2></summary>
   <p>
     <code>L = &lambda;W</code> &mdash; the time-average number of requests in a system equals the
     rate at which they pass through it times the average time each one spends in it. It is a
@@ -1108,40 +1437,17 @@ kbd {
     effect, which is why it is reported separately from the exact cohort check above rather than
     presented as evidence against the law.
   </p>
-</section>
+</details>
 
-<!-- ======================= EXPERIMENTS ======================= -->
-<details class="panel" id="experiments">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Classroom experiments</h2></summary>
+<details class="panel disclose" id="experiments">
+  <summary><h2>Explore further &mdash; two more experiments and the preset library</h2></summary>
   <p>
-    Five short experiments. Each one asks you to <em>predict first</em>. The explanations are
-    deliberately hidden until you ask for them &mdash; reading the answer before running the
-    experiment converts a prediction task into a recall task.
+    The three experiments in the procedure are the exercise. These two extend it, and each asks you
+    to predict first.
   </p>
 
   <div class="xp">
-    <h3>1. Predict utilization</h3>
-    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;30, &mu;&nbsp;=&nbsp;100, exponential service.</p>
-    <p class="xp-setup"><button type="button" class="act" data-xp="30,100,exponential,reset">Set up experiment 1</button></p>
-    <ol>
-      <li class="q">Before running: what fraction of the time will the server be busy? Write it down.</li>
-      <li class="q">What will the mean response time be? Is it more or less than the mean service time 1/&mu;&nbsp;=&nbsp;10&nbsp;ms?</li>
-      <li>Run for at least 60 simulated seconds and compare against the measured utilization.</li>
-    </ol>
-    <details><summary>Reveal explanation</summary>
-      <p>
-        Utilization is <code>&rho; = &lambda;/&mu; = 0.30</code>. The server is busy 30% of the time.
-        Notice what this does <em>not</em> say: it says nothing about response time. The model
-        predicts <code>W = 1/(&mu;&minus;&lambda;) = 1/70 s &asymp; 14.3 ms</code>, which is already
-        43% above the 10&nbsp;ms service time even at a load most engineers would call comfortable.
-        Queueing delay is not something that switches on at some high load; it is present at every
-        positive load and merely small here.
-      </p>
-    </details>
-  </div>
-
-  <div class="xp">
-    <h3>2. Find the knee</h3>
+    <h3>Sweep the whole curve</h3>
     <p><strong>Set up:</strong> &mu;&nbsp;=&nbsp;100, exponential service. Step &lambda; through 50, 70, 90, 95, 99.</p>
     <p class="xp-setup">
       <button type="button" class="act" data-xp="50,100,exponential,reset">&lambda;=50</button>
@@ -1167,7 +1473,7 @@ kbd {
         distinguished point &mdash; no inflection, no discontinuity, no maximum of curvature that
         survives a change of axis scaling. &ldquo;70% utilization&rdquo; is a rule of thumb, not a
         property of queues. The threshold you should choose depends on your latency requirement, how
-        variable your service times are (compare Experiment&nbsp;5), and how much your arrival rate
+        variable your service times are (Experiment&nbsp;3), and how much your arrival rate
         fluctuates. An engineer who quotes a universal number has substituted a slogan for the
         model.
       </p>
@@ -1175,38 +1481,9 @@ kbd {
   </div>
 
   <div class="xp">
-    <h3>3. Exceed capacity</h3>
-    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;110, &mu;&nbsp;=&nbsp;100, exponential service.</p>
-    <p class="xp-setup"><button type="button" class="act" data-xp="110,100,exponential,reset">Set up experiment 3</button></p>
-    <ol>
-      <li>Run at 100&times; and watch the queue length and the response-time chart.</li>
-      <li class="q">What does the model predict for mean response time? Why does the panel refuse to print a number?</li>
-      <li class="q">The utilization measurement approaches 1.00 but never exceeds it. Why is offered load &rho;&nbsp;=&nbsp;1.10 not the same thing as utilization?</li>
-    </ol>
-    <details><summary>Reveal explanation</summary>
-      <p>
-        With &lambda;&nbsp;&gt;&nbsp;&mu; there <em>is</em> no steady state. The queue does not
-        settle around some large average; it grows without bound at approximately
-        &lambda;&nbsp;&minus;&nbsp;&mu;&nbsp;=&nbsp;10&nbsp;requests per second. Mean response time
-        is not large &mdash; it is undefined, because the limit the mean would be taken over does
-        not exist. Printing a big number here would be a lie dressed as a measurement, so the panel
-        prints the reason instead.
-      </p>
-      <p>
-        Offered load and utilization are different quantities that coincide only when
-        &lambda;&nbsp;&lt;&nbsp;&mu;. Offered load &lambda;/&mu; can be any non-negative number;
-        utilization is a fraction of time and cannot exceed 1. A saturated server runs at
-        utilization 1 and <em>throughput &mu;</em>, not throughput &lambda;. The excess
-        &lambda;&nbsp;&minus;&nbsp;&mu; goes into the backlog, which is exactly why the real-world
-        symptom of overload is growing latency rather than falling throughput.
-      </p>
-    </details>
-  </div>
-
-  <div class="xp">
-    <h3>4. Restore capacity</h3>
-    <p><strong>Set up:</strong> run Experiment&nbsp;3 until the queue has several hundred requests in
-      it, then raise &mu; to 150 <em>without resetting</em>.</p>
+    <h3>Restore capacity without resetting</h3>
+    <p><strong>Set up:</strong> overload the service, let the queue reach several hundred requests,
+      then raise &mu; to 150 <em>without</em> clearing the backlog.</p>
     <p class="xp-setup">
       <button type="button" class="act" data-xp="110,100,exponential,reset">1. Overload (resets)</button>
       <button type="button" class="act" data-xp="110,150,exponential,keep">2. Raise &mu; to 150 (keeps backlog)</button>
@@ -1236,42 +1513,20 @@ kbd {
     </details>
   </div>
 
-  <div class="xp">
-    <h3>5. Change variability</h3>
-    <p><strong>Set up:</strong> &lambda;&nbsp;=&nbsp;90, &mu;&nbsp;=&nbsp;100 (&rho;&nbsp;=&nbsp;0.9).
-      Compare exponential and deterministic service times.</p>
-    <p class="xp-setup">
-      <button type="button" class="act" data-xp="90,100,exponential,reset">Exponential service</button>
-      <button type="button" class="act" data-xp="90,100,deterministic,reset">Deterministic service</button>
-    </p>
-    <ol>
-      <li class="q">Both settings have the same mean service time, 10&nbsp;ms, and the same offered load, 0.9. Predict the two mean response times.</li>
-      <li>Run each for at least 200 simulated seconds and record the measurements.</li>
-      <li class="q">Why does identical mean service <em>demand</em> not imply identical latency?</li>
-    </ol>
-    <details><summary>Reveal explanation</summary>
-      <p>
-        M/M/1 predicts W&nbsp;=&nbsp;100&nbsp;ms. M/D/1 predicts
-        W<sub>q</sub>&nbsp;=&nbsp;&rho;/(2&mu;(1&minus;&rho;))&nbsp;=&nbsp;45&nbsp;ms, so
-        W&nbsp;=&nbsp;55&nbsp;ms. Removing service-time variability cuts the queue wait exactly in
-        half (90&nbsp;ms &rarr; 45&nbsp;ms) while the mean service demand is unchanged.
-      </p>
-      <p>
-        Queueing delay is produced by <em>variability</em>, not by average demand. A long service
-        time delays everything behind it, and under an exponential distribution long services are
-        common enough to dominate the average wait. Pollaczek&ndash;Khinchine makes this precise:
-        W<sub>q</sub> scales with the second moment of the service distribution, so halving the
-        coefficient of variation to zero halves the wait. This is the modelling reason that reducing
-        tail latency &mdash; making slow requests less slow &mdash; often buys more than adding
-        capacity, and it is invisible to anyone reasoning only about averages.
-      </p>
-    </details>
-  </div>
+  <h3>The preset library</h3>
+  <div class="preset-grid" id="presets"></div>
+  <p class="note">
+    Five presets <strong>reset</strong> the simulation, so you watch a system settle from empty.
+    <strong>Recover capacity</strong> deliberately does not: it raises &mu; on the running
+    simulation and leaves the accumulated backlog in place, which is the whole point of that
+    experiment. Those buttons are marked with a dashed border and the words
+    &ldquo;keeps backlog&rdquo;.
+  </p>
 </details>
 
 <!-- ======================= ADVANCED ======================= -->
-<details class="panel" id="advanced">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">Advanced controls</h2></summary>
+<details class="panel disclose" id="advanced">
+  <summary><h2>Advanced controls</h2></summary>
   <div class="ctl-row">
     <div class="ctl">
       <label for="seed">Random seed</label>
@@ -1323,9 +1578,9 @@ kbd {
   </p>
 </details>
 
-<!-- ======================= HELP ======================= -->
-<details class="panel" id="help">
-  <summary><h2 style="display:inline;margin:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit">About the models, the engine, and this page</h2></summary>
+<!-- ======================= MODEL REFERENCE ======================= -->
+<details class="panel disclose" id="help">
+  <summary><h2>Model reference &mdash; the equations, the engine, and this page</h2></summary>
 
   <h3>Three different things, kept apart on purpose</h3>
   <div class="table-scroll"><table class="ref">
@@ -1352,9 +1607,18 @@ kbd {
       </tr>
     </tbody>
   </table></div>
-  <p class="note">
-    Little's Law relates throughput, latency, and concurrency. Queueing theory predicts why latency
-    rises near capacity. Simulation shows what those relationships mean for an operating system.
+
+  <h3>Randomness, the seed, and what a single run establishes</h3>
+  <p>
+    The engine is <strong>stochastic</strong>: arrivals and service times are drawn from seeded
+    pseudo-random streams, so a measurement is one sample and not an expected value. The seed is
+    fixed at 30861 so that two configurations are compared against the <em>same</em> arrival
+    sequence, which removes one source of difference between them. <strong>It does not remove
+    sampling variability.</strong> Two runs with different seeds will disagree, and the honest cure
+    is a longer run rather than a luckier seed &mdash; the transient warning above the results says
+    so whenever too few requests have completed for the averages to mean anything. Change the seed
+    under <em>Advanced controls</em> and repeat an experiment to see how much of a difference you
+    measured was the configuration and how much was the draw.
   </p>
 
   <h3>Formulas used</h3>
@@ -1371,9 +1635,30 @@ kbd {
   </table></div>
   <p>
     The deterministic option is never scored against the M/M/1 formula. Selecting it switches the
-    whole prediction panel to M/D/1 and relabels it, because applying an exponential-service result
-    to constant service times is simply the wrong model.
+    whole prediction to M/D/1 and relabels it, because applying an exponential-service result
+    to constant service times is simply the wrong model. The halving of the queue wait between the
+    two is Pollaczek&ndash;Khinchine: W<sub>q</sub> scales with the second moment of the service
+    distribution, so driving the coefficient of variation to zero halves the mean wait while leaving
+    the mean service demand untouched.
   </p>
+  <p>
+    <strong>Offered load and utilization are different quantities</strong> that coincide only when
+    &lambda;&nbsp;&lt;&nbsp;&mu;. Offered load &lambda;/&mu; can be any non-negative number;
+    utilization is a fraction of time and cannot exceed 1. A saturated server runs at utilization 1
+    and throughput <em>&mu;</em>, not throughput &lambda;. The excess &lambda;&nbsp;&minus;&nbsp;&mu;
+    goes into the backlog, which is why the real-world symptom of overload is growing latency rather
+    than falling throughput.
+  </p>
+
+  <h3>What this simulation does not establish</h3>
+  <ul>
+    <li>Nothing here measures a real service. The numbers are consequences of the stated model.</li>
+    <li>One server. A real request path has several waiting points, and queueing at each of them.</li>
+    <li>No loss, no balking, no admission control, no retry, no timeout &mdash; so nothing here
+      shows what overload does once clients start retrying.</li>
+    <li>Mean values. The page reports averages and one per-request chart; it does not report a
+      latency distribution or a tail percentile, which is usually what a service promises.</li>
+  </ul>
 
   <h3>How the engine works</h3>
   <ul>
@@ -1421,8 +1706,9 @@ kbd {
   <h3>Accessibility</h3>
   <p>
     No state is signalled by colour alone: the stability badge carries a word and a glyph as well as
-    a colour and a border style, the backlog-preserving preset is marked both by a dashed border and
-    by the words &ldquo;keeps backlog&rdquo;, and the three chart series are distinguished by dash
+    a colour and a border style, the results table names its two columns in words, the
+    backlog-preserving preset is marked both by a dashed border and by the words
+    &ldquo;keeps backlog&rdquo;, and the three chart series are distinguished by dash
     pattern (dots, solid, dashed) as well as by hue. Each canvas is exposed to assistive technology
     as an image with a live text description of what it currently shows. A reduced-motion mode is
     offered under Advanced and is switched on automatically when the operating system asks for it.
@@ -2529,14 +2815,26 @@ kbd {
     presetHost.appendChild(b);
   });
 
-  /* Experiment setup buttons: "lambda,mu,dist,reset|keep" */
+  /* Baseline + setup buttons: "lambda,mu,dist,reset|keep".
+     A guided experiment's `Hold constant` line is a PROMISE, so a `reset` button restores the seed
+     and the warm-up as well as the three engineering parameters. Without that, a student who had
+     changed the seed under Advanced controls would load a "baseline" that is not the one the card
+     describes, and the comparison the experiment asks for would be against a different arrival
+     sequence. A `keep` button deliberately changes the running simulation and leaves everything
+     else — including the backlog — exactly as it was. */
   Array.prototype.forEach.call(document.querySelectorAll('[data-xp]'), function (b) {
     b.addEventListener('click', function () {
       var parts = b.dataset.xp.split(',');
       Q.setArrivalRate(sim, parseInt(parts[0], 10));
       Q.setServiceRate(sim, parseInt(parts[1], 10));
       Q.setServiceDistribution(sim, parts[2]);
-      if (parts[3] === 'reset') Q.resetSimulation(sim);
+      if (parts[3] === 'reset') {
+        sim.seed = Q.DEFAULT_SEED;
+        sim.warmup = 0;
+        $('seed').value = String(Q.DEFAULT_SEED);
+        $('warmup').value = '0';
+        Q.resetSimulation(sim);
+      }
       syncPair('lambda', 'lambda-range', sim.params.arrivalRate);
       syncPair('mu', 'mu-range', sim.params.serviceRate);
       $('dist').value = sim.params.serviceDistribution;
@@ -2590,9 +2888,11 @@ kbd {
       det.textContent = p.detail;
       box.appendChild(det);
     }
+    /* Wq, not W\u1d69: U+1D69 is MODIFIER LETTER SMALL PHI and Unicode has no subscript q, so
+       the glyph that shipped here named the wrong quantity to anyone who looked closely. */
     $('m-formula').textContent = p.model === 'M/D/1'
-      ? 'ρ = λ/μ   ·   Wᵩ = ρ / (2μ(1−ρ))   ·   W = Wᵩ + 1/μ   ·   L = λW'
-      : 'ρ = λ/μ   ·   W = 1/(μ−λ)   ·   L = λ/(μ−λ)   ·   Wᵩ = λ/(μ(μ−λ))';
+      ? 'ρ = λ/μ   ·   Wq = ρ / (2μ(1−ρ))   ·   W = Wq + 1/μ   ·   L = λW'
+      : 'ρ = λ/μ   ·   W = 1/(μ−λ)   ·   L = λ/(μ−λ)   ·   Wq = λ/(μ(μ−λ))';
     $('m-applicability').textContent = p.model === 'M/D/1'
       ? 'Service times are constant, so the M/M/1 result does not apply and is not shown. These are the M/D/1 mean-value results: Poisson arrivals, constant service, one server, FCFS, unlimited waiting room.'
       : 'Assumes Poisson arrivals, exponential service, one server, FCFS, unlimited waiting room. Change the service distribution to Deterministic and the panel switches to M/D/1 rather than reusing this formula.';
@@ -2630,7 +2930,13 @@ kbd {
     var badge = $('stability');
     badge.className = 'badge ' + st.cls;
     badge.querySelector('.glyph').textContent = st.glyph;
-    $('stability-text').textContent = st.text + '   ρ = ' + num(p.offeredLoad, 2);
+    /* The state WORD only. The badge is `text-transform: uppercase`, which renders a lower-case
+       rho as a Greek capital Rho — indistinguishable from a Latin P, so the badge used to read
+       "APPROACHING CAPACITY P = 0.95". The offered load is reported in the results table's
+       Server-utilisation row, where it belongs, so dropping it here removes a duplicate and a
+       defect at once. Same hazard as the figure's `.th` class; any uppercased surface is unsafe
+       for Greek. */
+    $('stability-text').textContent = st.text;
 
     var transient = $('s-transient');
     if (s.transient && s.observedCompletions > 0) {
@@ -2717,6 +3023,15 @@ kbd {
     return minPx;
   }
 
+  /* The house style's 13-14px chart-label floor is a DESKTOP requirement, and the canvases are
+     measured at 1280, 1440 and 1920. On a 414px phone a 13px floor cannot fit the longer captions,
+     and canvas text neither wraps nor ellipsises — it runs off the bitmap and the reader silently
+     loses the end of the sentence. So the floor holds wherever there is room for it and relaxes on
+     a narrow canvas, because a small label beats a clipped one. Measured: raising the floor to 13
+     unconditionally clipped 20 and 27 edge pixels on the queue and response-time canvases at
+     414px, which the browser tier caught. */
+  function labelFloor(plotWidth) { return plotWidth >= 560 ? 13 : 8; }
+
   function niceCeil(v) {
     if (!(v > 0)) return 1;
     var exp = Math.floor(Math.log(v) / Math.LN10);
@@ -2754,13 +3069,13 @@ kbd {
     ctx.beginPath(); ctx.rect(boxX, boxY, boxW, boxH); ctx.fill(); ctx.stroke();
     ctx.textAlign = 'center';
     ctx.fillStyle = palette.muted;
-    ctx.font = '600 11px ui-monospace, monospace';
+    ctx.font = '600 13px ui-monospace, monospace';
     ctx.fillText('SERVER', boxX + boxW / 2, boxY + 15);
     ctx.fillStyle = busy ? palette.ok : palette.muted;
     ctx.font = '700 16px ui-monospace, monospace';
     ctx.fillText(busy ? 'BUSY' : 'IDLE', boxX + boxW / 2, boxY + 39);
     ctx.fillStyle = palette.muted;
-    ctx.font = '11px ui-monospace, monospace';
+    ctx.font = '13px ui-monospace, monospace';
     ctx.fillText('μ = ' + sim.params.serviceRate + '/s', boxX + boxW / 2, boxY + 60);
     ctx.textAlign = 'left';
 
@@ -2820,13 +3135,13 @@ kbd {
       var lineA = 'queue ' + waiting.toLocaleString('en-US')
         + '  ·  in system ' + s.numberInSystem.toLocaleString('en-US');
       var lineB = 'max seen ' + s.maxQueueLength.toLocaleString('en-US');
-      fitFont(ctx, lineA, avail, 15, 10, '700');
+      fitFont(ctx, lineA, avail, 15, labelFloor(avail), '700');
       ctx.fillText(lineA, 8, h - 38);
       ctx.fillText(lineB, 8, h - 22);
     }
     ctx.fillStyle = palette.muted;
     var caption = 'at most ' + cap + ' tokens drawn; the counts are authoritative';
-    fitFont(ctx, caption, avail, 12, 8, '400');
+    fitFont(ctx, caption, avail, 14, labelFloor(avail), '400');
     ctx.fillText(caption, 8, h - 8);
 
     $('queue-alt').textContent = 'Queue diagram: the server is ' + (busy ? 'busy' : 'idle') + ', '
@@ -2862,7 +3177,7 @@ kbd {
 
     /* grid + axes */
     ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
-    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
+    ctx.fillStyle = palette.muted; ctx.font = '14px ui-monospace, monospace';
     ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
     var tickDigits = yMax * 1000 < 20 ? 1 : 0;   /* one format for the whole axis, not per tick */
     for (var k = 0; k <= 4; k += 1) {
@@ -2910,14 +3225,14 @@ kbd {
       ctx.setLineDash([]);
       ctx.fillStyle = palette.model;
       var label = p.model + ' W = ' + ms(p.W);
-      fitFont(ctx, label, plotW - 8, 12, 8, '600');
+      fitFont(ctx, label, plotW - 8, 14, labelFloor(plotW), '600');
       ctx.textAlign = 'right';
       ctx.fillText(label, w - padR - 4, Math.max(padT + 8, wy - 11));
       ctx.textAlign = 'left';
     } else {
       ctx.fillStyle = palette.bad;
       var note = 'model line withdrawn: no finite prediction at ρ ≥ 1';
-      fitFont(ctx, note, plotW - 12, 12, 8, '600');
+      fitFont(ctx, note, plotW - 12, 14, labelFloor(plotW), '600');
       ctx.fillText(note, padL + 6, padT + 10);
     }
 
@@ -2929,9 +3244,13 @@ kbd {
   }
 
   /* ---------- C. predicted load-latency (knee) chart ---------- */
-  function drawKnee(p) {
+  /* THE DOMINANT VISUALIZATION. The relationship this laboratory makes inspectable is arrival
+     rate against queueing delay, so this chart carries the model's whole predicted curve AND this
+     run's measurement plotted on it — the comparison the lecture's lab card asks for, in one
+     picture rather than two panels a student has to hold in their head. */
+  function drawKnee(p, s) {
     var c = $('c-knee');
-    var g = fit(c, 420);
+    var g = fit(c, 460);
     var ctx = g.ctx, w = g.w, h = g.h;
     var padL = 78, padR = 18, padT = 18, padB = 46;
     var plotW = Math.max(10, w - padL - padR), plotH = Math.max(10, h - padT - padB);
@@ -2950,7 +3269,7 @@ kbd {
     function Y(v) { return padT + plotH - Math.min(1, v / yMax) * plotH; }
 
     ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
-    ctx.fillStyle = palette.muted; ctx.font = '11px ui-monospace, monospace';
+    ctx.fillStyle = palette.muted; ctx.font = '14px ui-monospace, monospace';
     ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
     for (var k = 0; k <= 5; k += 1) {
       var v = yMax * k / 5, y = Y(v);
@@ -2980,7 +3299,7 @@ kbd {
     ctx.setLineDash([]);
     ctx.fillStyle = palette.muted;
     var floorLabel = '1/μ = ' + ms(1 / mu) + '  (service time, no queueing)';
-    fitFont(ctx, floorLabel, plotW * 0.6, 11, 8, '400');
+    fitFont(ctx, floorLabel, plotW * 0.6, 14, labelFloor(plotW), '400');
     ctx.textAlign = 'right';
     ctx.fillText(floorLabel, w - padR - 6, fy - 11);
     ctx.textAlign = 'left';
@@ -3000,7 +3319,7 @@ kbd {
     if (clippedAt !== null) {
       ctx.fillStyle = palette.model;
       var clipNote = 'curve continues above the frame — W → ∞ as ρ → 1';
-      fitFont(ctx, clipNote, plotW * 0.62, 12, 8, '600');
+      fitFont(ctx, clipNote, plotW * 0.62, 14, labelFloor(plotW), '600');
       ctx.textAlign = 'right';
       ctx.fillText(clipNote, w - padR - 4, padT + 12);
       ctx.textAlign = 'left';
@@ -3012,8 +3331,8 @@ kbd {
        reference line, with the curve, and with each other. */
     ctx.fillStyle = palette.muted;
     var caption = p.model + ' with μ = ' + mu + ' req/s';
-    fitFont(ctx, caption, plotW * 0.5, 12, 8, '600');
-    ctx.fillText(caption, padL + 6, padT + 12);
+    fitFont(ctx, caption, plotW * 0.5, 14, labelFloor(plotW), '600');
+    ctx.fillText(caption, padL + 6, padT + 14);
 
     /* current offered load */
     var rhoNow = p.offeredLoad;
@@ -3025,7 +3344,7 @@ kbd {
     var lab = rhoNow >= 1
       ? 'now ρ = ' + rhoNow.toFixed(2) + ' — no finite prediction'
       : 'now ρ = ' + rhoNow.toFixed(3) + ', W = ' + ms(p.W);
-    fitFont(ctx, lab, plotW * 0.6, 13, 8, '700');
+    fitFont(ctx, lab, plotW * 0.6, 15, labelFloor(plotW), '700');
     ctx.textAlign = markX > padL + plotW * 0.55 ? 'right' : 'left';
     ctx.fillText(lab, markX + (ctx.textAlign === 'right' ? -8 : 8), padT + 32);
     ctx.textAlign = 'left';
@@ -3035,12 +3354,46 @@ kbd {
       ctx.lineWidth = 2; ctx.strokeStyle = palette.paper; ctx.stroke();
     }
 
+    /* THIS RUN'S MEASUREMENT, on the model's own axes. Drawn as a filled SQUARE in the ink colour
+       against the prediction's accent circle: two different shapes as well as two different hues,
+       so the comparison does not depend on colour. Placed at the MEASURED utilization rather than
+       at the offered load, which is the whole point above capacity — offered load 1.10 and
+       utilization 1.00 are different numbers and the chart shows them in different places. */
+    var measuredText = '';
+    if (s && s.utilization !== null && s.meanResponse !== null && isFinite(s.meanResponse)
+        && s.observedCompletions > 0) {
+      var mx = X(Math.min(1, s.utilization));
+      var clampedY = s.meanResponse > yMax;
+      var my = Y(Math.min(s.meanResponse, yMax));
+      ctx.fillStyle = palette.ink;
+      ctx.fillRect(mx - 5, my - 5, 10, 10);
+      ctx.lineWidth = 2; ctx.strokeStyle = palette.paper;
+      ctx.strokeRect(mx - 5, my - 5, 10, 10);
+      var mlab = 'measured: utilization ' + s.utilization.toFixed(3) + ', mean ' + ms(s.meanResponse)
+        + (s.transient ? ' (short run)' : '') + (clampedY ? ' — above the frame' : '');
+      ctx.fillStyle = palette.ink;
+      fitFont(ctx, mlab, plotW * 0.66, 14, labelFloor(plotW), '700');
+      ctx.textAlign = mx > padL + plotW * 0.5 ? 'right' : 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(mlab, mx + (ctx.textAlign === 'right' ? -12 : 12), my);
+      ctx.textAlign = 'left';
+      measuredText = ' Measured in this run: utilization ' + s.utilization.toFixed(3)
+        + ', mean response time ' + ms(s.meanResponse)
+        + (clampedY ? ', which is above the top of the frame' : '')
+        + (s.transient ? '. Too few requests have completed for this to be a steady-state estimate' : '')
+        + '.';
+    } else {
+      measuredText = ' No measured point is plotted yet: no request has completed in the '
+        + 'observation window.';
+    }
+
     $('knee-alt').textContent = 'Predicted load-latency curve for ' + p.model + ' at mu = ' + mu
       + ' requests per second. Vertical axis 0 to ' + (yMax * 1000).toFixed(0)
       + ' milliseconds. The curve rises slowly to about rho 0.7 and then steeply; it leaves the top '
       + 'of the frame near rho ' + (clippedAt === null ? '1.0' : clippedAt.toFixed(2))
       + '. Current offered load ' + rhoNow.toFixed(3)
-      + (p.stable ? ' with predicted mean response time ' + ms(p.W) + '.' : ', which has no finite prediction.');
+      + (p.stable ? ' with predicted mean response time ' + ms(p.W) + '.' : ', which has no finite prediction.')
+      + measuredText;
   }
 
   /* ---------- refresh + frame loop ---------- */
@@ -3050,7 +3403,7 @@ kbd {
     renderLittle(s, p);
     drawQueue(s, p);
     drawResponse(s, p);
-    drawKnee(p);
+    drawKnee(p, s);
   }
 
   function draw(force) {
