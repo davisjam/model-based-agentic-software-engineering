@@ -188,6 +188,73 @@ test('the physical estimate is an opt-in control that starts off', () => {
   assert.match(html, /data-physical="on" aria-pressed="false"/);
   assert.equal(M.DEFAULTS.physicalEstimate, false);
   assert.match(html, /Why physical storage is off by default/i);
+  /* And it is now behind the collapsed Further-investigation section as well as behind its own
+     control: it is a model-fidelity switch, not one of the four engineering parameters the
+     principal comparison varies. Asserted by POSITION rather than by proximity — the control must
+     fall after the opening of the section that collapses it. */
+  const firstDetails = html.indexOf('<details class="disclose">');
+  assert.ok(firstDetails > 0, 'the page has no collapsed reference section');
+  assert.ok(html.indexOf('id="physical-seg"') > firstDetails,
+    'the physical-overhead estimate is back in the primary interface');
+});
+
+test('the primary interface carries four parameters and three measurements', () => {
+  /* The complexity budget, held on the shipped bytes. Everything the engine computes beyond this
+     is still computed and still reachable; it is below the first `<details class="disclose">`.
+     The split is a PRESENTATION decision — PARAM_SPECS is unchanged and the engine's five size and
+     count parameters are all still exposed somewhere on the page. */
+  const primary = html.slice(0, html.indexOf('<details class="disclose">'));
+  const controls = [...primary.matchAll(/<div class="ctl">/g)].length;
+  assert.equal(controls, 4, `the primary interface exposes ${controls} controls, not four`);
+  for (const id of ['repr-seg', 'rooms', 'perroom', 'meta']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary control ${id} is missing`);
+  }
+  for (const id of ['r-logical', 'r-dup-big', 'r-rename-big']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary measurement ${id} is missing`);
+  }
+  /* One dominant visualization above the fold of the collapsed material; the sweep is below it. */
+  assert.equal([...primary.matchAll(/<canvas /g)].length, 1,
+    'the primary interface carries more than one chart');
+  assert.ok(html.indexOf('id="c-sweep"') > html.indexOf('<details class="disclose">'),
+    'the secondary chart is still in the primary interface');
+  /* Every control the engine declares is still on the page somewhere. */
+  for (const id of ['resv', 'idsize', 'physical-seg', 'room-id']) {
+    assert.ok(html.includes(`id="${id}"`), `the ${id} control has been deleted, not relocated`);
+  }
+});
+
+test('the handout runs in the house order, with the apparatus below the instruction', () => {
+  /* The author withdrew the first-screen layout that put controls and results on the opening
+     screen: sections 1-4 precede the apparatus, and the scrolling that costs is deliberate. Held
+     as document order on the shipped bytes, because an edit that "just moves the controls up" is
+     exactly the regression this pins. */
+  const order = ['id="h-problem"', 'id="h-background"', 'id="h-model"', 'id="h-procedure"',
+    'id="h-apparatus"', 'id="h-results"', 'id="h-interpretation"', 'id="h-further"'];
+  let last = -1;
+  for (const anchor of order) {
+    const at = html.indexOf(anchor);
+    assert.ok(at > last, `${anchor} is out of the house section order`);
+    last = at;
+  }
+  assert.ok(html.indexOf('id="repr-seg"') > html.indexOf('id="h-procedure"'),
+    'the apparatus precedes the numbered procedure');
+});
+
+test('each guided experiment specifies all six fields, and there are two or three of them', () => {
+  const experiments = [...html.matchAll(/<li class="exp">([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+  assert.ok(experiments.length >= 2 && experiments.length <= 3,
+    `there are ${experiments.length} guided experiments; the budget allows two or three`);
+  for (const [i, body] of experiments.entries()) {
+    for (const field of ['Baseline', 'Change', 'Hold constant', 'Predict', 'Run &amp; measure',
+      'Explain']) {
+      assert.ok(body.includes(`<dt>${field}</dt>`),
+        `experiment ${i + 1} does not specify its ${field} field`);
+    }
+    /* Each one loads its own baseline, so a student is not reconstructing it by hand. */
+    assert.match(body, /data-preset="[a-z-]+"/, `experiment ${i + 1} offers no baseline to load`);
+  }
+  /* Predict / Run / Explain is named where the student meets the procedure. */
+  assert.match(html, /Predict before you run/i);
 });
 
 test('every physical-model constant printed on the page matches the engine', () => {
@@ -229,6 +296,11 @@ test('the page states the three modelling decisions a reader might argue with', 
 });
 
 test('the page makes the document-is-not-denormalized point in its own words', () => {
+  /* It is taught in the BACKGROUND now rather than in a note beside a results panel: a student
+     needs it to make Experiment 1's prediction, so it has to arrive before the apparatus. */
+  assert.ok(html.indexOf('The document representation is not the denormalized one')
+    < html.indexOf('id="h-apparatus"'),
+  'the point a student needs in order to predict arrives after the controls');
   /* The reason the third representation is there at all. A page that dropped this sentence would
      still compute the same bytes and would stop teaching the thing it exists to teach. */
   assert.match(html, /The document representation is not the denormalized one/i);

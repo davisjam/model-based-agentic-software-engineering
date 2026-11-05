@@ -132,6 +132,21 @@ function paintedColours(id) {
   return seen.size;
 }
 
+/**
+ * Expand every collapsed section.
+ *
+ * The page is a laboratory handout: four parameters and three measurements are in the primary
+ * interface, and the rest of what the engine computes — the remaining parameters, the
+ * physical-overhead estimate, the second chart, the extra classroom configurations and the
+ * self-tests — lives in `details.disclose` at the foot of the page. A control inside a closed
+ * `details` has no layout, so `page.click` cannot reach it, while `$eval` can. Every test that
+ * drives a SECONDARY control calls this first; nothing about the assertions changes, only whether
+ * the control is on screen when the click lands.
+ */
+async function openAllDetails(page) {
+  await page.$$eval('details', (nodes) => nodes.forEach((node) => { node.open = true; }));
+}
+
 /** Set a numeric control and let the page re-render. */
 async function setNumber(page, id, value) {
   await page.$eval(id, (el, v) => {
@@ -167,6 +182,7 @@ test('the running page issues no network request of any kind', { skip }, async (
     try {
       const record = await withPage(target, async (page, rec) => {
         /* Exercise the page before judging: a request could be issued by an interaction. */
+        await openAllDetails(page);
         await page.click('button[data-repr="denormalized"]');
         await page.click('button[data-physical="on"]');
         await page.click('button[data-preset="busy-rooms"]');
@@ -206,6 +222,7 @@ test('the page works when served over http as well as from disk', { skip }, asyn
 test('every control changes the model, and the readouts follow', { skip }, async () => {
   await withPage(FILE_URL, async (page, record) => {
     const read = () => page.evaluate(readState);
+    await openAllDetails(page);
 
     const start = await read();
     assert.equal(start.logical, '246.9 KiB');
@@ -287,6 +304,7 @@ test('the slider and the number field stay in step', { skip }, async () => {
 
 test('every preset lands on the figures it declares', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
+    await openAllDetails(page);
     for (const preset of M.PRESETS) {
       await page.click(`button[data-preset="${preset.id}"]`);
       const state = await page.evaluate(readState);
@@ -415,6 +433,7 @@ test('the room picker follows the room count and renames the room it names', { s
 
 test('the in-page self-test button reports a pass', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
+    await openAllDetails(page);
     await page.click('#btn-selftest');
     const out = await page.$eval('#selftest-out', (el) => el.textContent.trim());
     assert.match(out, /^\d+ of \d+ self-tests pass\.$/, `self-test output was: ${out}`);
@@ -426,6 +445,7 @@ test('the in-page self-test button reports a pass', { skip }, async () => {
 
 test('both charts paint, and the overhead segment appears only with the estimate on', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
+    await openAllDetails(page);
     const plain = await page.evaluate(paintedColours, 'c-bars');
     assert.ok(plain > 3, `the bar chart painted only ${plain} colours`);
     const sweep = await page.evaluate(paintedColours, 'c-sweep');
@@ -453,6 +473,7 @@ test('the charts survive the extremes of every control', { skip }, async () => {
   /* Ten rooms with one reservation, ten thousand rooms with a thousand: the renderers must not
      divide by zero, loop forever, or throw. */
   await withPage(FILE_URL, async (page, record) => {
+    await openAllDetails(page);
     const corners = [
       { rooms: 10, perroom: 1, meta: 50, resv: 50, idsize: 4 },
       { rooms: 10, perroom: 1000, meta: 2000, resv: 1000, idsize: 16 },
@@ -563,7 +584,10 @@ test('the layout holds without horizontal overflow at projector and laptop sizes
       assert.ok(metrics.renameCountSize >= 24,
         `${vp.name}: the rename count is ${metrics.renameCountSize}px`);
       assert.ok(metrics.h1Size >= 28, `${vp.name}: the title is ${metrics.h1Size}px`);
-      assert.equal(metrics.panels, 8, `${vp.name}: expected 8 panels`);
+      /* Seven: background, model, experiment, apparatus, results, interpretation, further
+         investigation — the house order's sections 2 through 7, plus the apparatus split into its
+         controls and its results. Section 1 is the `.lab-intro` band, not a panel. */
+      assert.equal(metrics.panels, 7, `${vp.name}: expected 7 panels`);
     }
   } finally {
     await browser.close();
@@ -575,6 +599,7 @@ test('no panel overflows its own box at projector size', { skip }, async () => {
      panel is the way a number this long breaks a projected layout. */
   await withPage(FILE_URL, async (page) => {
     await page.setViewport({ width: 1920, height: 1080 });
+    await openAllDetails(page);
     for (const [id, value] of Object.entries({ rooms: 10000, perroom: 1000, meta: 2000,
       resv: 1000, idsize: 16 })) await setNumber(page, `#${id}`, value);
     await page.click('button[data-physical="on"]');
