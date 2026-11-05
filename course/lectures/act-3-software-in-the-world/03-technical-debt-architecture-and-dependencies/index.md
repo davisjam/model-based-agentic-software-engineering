@@ -25,6 +25,28 @@ readings:
         - cite: spdx2025licenseinfo
           locator: 'the SPDX License List, identifiers, and license expressions'
           annotation: 'SPDX, ["Handling License Info"](https://spdx.dev/learn/handling-license-info/). Optional. Read the introductory material on the SPDX License List, short identifiers and license expressions, including combinations using AND, OR and WITH. It explains how licenses are identified and represented in machine-readable form — supporting material for the lecture''s treatment of permissive and copyleft licensing, and not a substitute for understanding the obligations of any particular license.'
+labs:
+  - title: The Architecture Workbench
+    slug: architecture-workbench
+    about: >
+      The restructuring decision for the laboratory-reservation requirement. One service is drawn
+      three ways — the structure as it stands, a modular monolith, and the policies extracted into
+      separately deployed services — and you choose the change scenario, the expected number and kind
+      of future changes, how many teams own booking policy, and whether laboratory changes must ship
+      on their own. Two cost controls move independently: an implementation multiplier down to a
+      hundredth, and a validation-and-integration level. Commit a prediction for three conditions
+      before the page will show you a number, then watch what the discount does and does not do.
+      Driving implementation to a hundredth moves the point at which modularizing repays from four
+      future changes to one, and never makes extracting services preferable at any horizon; that
+      becomes the answer only when independent release is required, which is a constraint rather than
+      a price. Two further things are worth your attention. The graph marks the components a change
+      must modify differently from those it might reach, because a dependency edge does not establish
+      that both ends change — for a storage change the modular structure has the smallest must-modify
+      set and the widest possible-impact set, so a single count of affected components would rank it
+      worst. And a rule editor lets you state what the structure must permit or prohibit and see where
+      it fails, alongside three obligations no dependency rule can settle, which is the difference
+      between describing an architecture and enforcing one. Every cost on the page is a declared
+      assumption, not a measurement.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -103,6 +125,8 @@ Restructuring is a controlled process, not a rewrite. Refactoring changes the in
 5. Verify that obligations remain satisfied.
 
 Coding agents change this calculation because implementation and assurance costs need not decline together. Generating an alternative structure may become inexpensive. Establishing that it preserves the system's obligations can remain costly, because its behavior, its interfaces, and the properties its tests and controls pin must all survive the change. Cheaper implementation moves one term in the comparison and leaves the other where it was.
+
+To practice this, see {lab:architecture-workbench}.
 
 ## The software we inherited
 

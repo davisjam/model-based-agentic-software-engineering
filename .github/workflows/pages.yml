@@ -304,7 +304,7 @@ jobs:
     permissions:
       contents: read
     strategy:
-      fail-fast: false      # one broken instrument must not mask the state of the other four
+      fail-fast: false      # one broken instrument must not mask the state of the other five
       matrix:
         exercise:
           - performance-knee
@@ -312,6 +312,7 @@ jobs:
           - redos
           - release-factory
           - storage-cost
+          - architecture-workbench
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
