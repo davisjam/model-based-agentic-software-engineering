@@ -148,6 +148,11 @@ body {
   font-size: 17px;
   line-height: 1.5;
 }
+/* Subscripts and superscripts inherit `font-size: smaller`, which lands a q or a 2 at 12.1-12.7px
+   inside a table or a list — and the notation is text a student has to read, so it gets the same
+   floor as everything else. `max()` only ever raises: a sub inside large display type keeps its
+   0.8em. Performance Knee authored this, N+1 needed it, so it comes in here rather than twice. */
+sub, sup { font-size: max(13px, 0.8em); }
 
 /* --- header ----------------------------------------------------------------------------------- */
 .head {
@@ -164,7 +169,7 @@ body {
 }
 .head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
 .head .tag {
-  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted); text-align: right;
 }
 .gold-rule { height: 4px; background: var(--gold); }
@@ -253,17 +258,43 @@ footer {
    band's SMALLEST column. The first link was the withdrawn budget, so the conclusion no longer
    follows. The height ceilings are gone; the figure now scales with its column.
 
+   THE TYPE SCALE WENT WITH IT. The band's sizes were how the 350-450px ceiling was met: fifteen
+   rules in this shell sat between 10.9px and 14.4px, and the house style forbids that outright —
+   "avoid using 10-11 px text to fit more material. If the material does not fit, remove or
+   relocate it." The relocation has happened in all six pages, so the type that stayed is sized to
+   the house style's table instead of to a ceiling that no longer exists: body 15-17px, control
+   labels 16-18, section headings 18-20, chart labels and footnotes at least 13-14. Every rule
+   below takes the LOW end of its band, so this is a readability floor rather than a redesign.
+   Four of the six pages had already made this correction locally and reported it upward; the
+   corrections agreed, so they belong here once rather than six times over.
+
+   Two mappings are judgment calls, recorded so nobody re-derives them:
+
+     - the uppercase mono MICRO-LABELS (`.k`, `.step`, `.fignum`, the table caption) have no row in
+       the house table. They take the footnote band's floor, 13.1px, and must stay below the text
+       they label.
+     - the BLOCK TITLES (`.lab-assumptions > h2/h3`, `.lab-block-title`, the experiment's `h2`) are
+       markup headings but they are the lowest heading rank on the page, under the per-lab section
+       headings at ~18.4px. Sizing them to the section-heading row would make a block label the
+       same size as the section containing it, so they take 16px — the control-label floor — and
+       the hierarchy stays monotone: 33.6 title > 20 question > 16 block title > 15.2 body >
+       13.6 caption > 13.1 micro-label.
+
    What remains measured and still true:
 
      - the parameter table's height is set by its WIDTH, steeply. Five rows of five columns stand
        182px tall across the full page, 274px at half width and 437px at an equal third. The
        unequal band exists to keep that table short. The house style moves the full parameter table
        out of the opening entirely, which is what frees the row for the figure.
-     - an opening figure must render its authored labels at full size. These diagrams carry ~11.5px
-       labels, so the figure needs roughly 660px of column before a label clears 11.5px on screen.
-       Measured at 1440px: the band's figure column is 317px and the labels render at 0.54 scale —
-       about 6px. The house style's requirement is the figure takes 70-80% of the content width,
-       preferably its own row.
+     - a figure's labels are judged on what they RENDER at, not on the authored unit. An SVG with a
+       viewBox draws its text through a scale set by the column, so the `svg.fig` sizes below are
+       deliberately NOT raised to the 13-14px floor: measured across all six figures at 1280 / 1440
+       / 1920, the smallest label renders at 14.5px to 24px wherever the figure holds its authored
+       share of the row. Raising the classes by the 37% that would clear the floor as authored puts
+       secondary mono labels past 20px on a projector and perturbs figures drawn around the current
+       metrics. What DOES fall under the floor is a figure squeezed into a narrow column — at a
+       1024px CSS viewport (1280 at 125% zoom) a figure held to 78% renders 9.5px labels at 10.9px.
+       That is a WIDTH defect with a width fix, and it belongs in each page's figure-share rule.
      - the question, the frame and the gaps cost about 92px between them.
 
    Below 1280px the band falls back to two columns and then to a stack.
@@ -276,16 +307,16 @@ footer {
 
 .lab-question {
   font-family: var(--font-display);
-  font-size: 1.22rem; font-weight: 600; line-height: 1.22;
+  font-size: 1.25rem; font-weight: 600; line-height: 1.22;
   margin: 0 0 0.3rem;
 }
 .lab-question .k {
   display: block;
-  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
   margin-bottom: 0.15rem;
 }
-.lab-frame { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.38; max-width: 120ch; }
+.lab-frame { margin: 0 0 0.5rem; font-size: 0.95rem; line-height: 1.42; max-width: 120ch; }
 
 /* The intro grid. `min-width: 0` on every track is load-bearing, not tidiness: a grid child's
    min-width defaults to auto, so a wide table or a long monospace line inside one column widens
@@ -295,9 +326,9 @@ footer {
 @media (min-width: 880px) {
   .lab-twoup { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
-/* Three across once there is room, which is what keeps the handout inside its vertical budget on a
-   projected screen: the figures cost width rather than height. The parameter table is deliberately
-   NOT in this row — see the measurements in the header comment. */
+/* Three across once there is room: a figure spends width rather than height, and three narrow
+   columns beat three stacked blocks for a reader scanning the opening. The parameter table is
+   deliberately NOT in this row — see the measurements in the header comment. */
 @media (min-width: 1200px) {
   .lab-twoup.trio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
 }
@@ -307,15 +338,20 @@ footer {
   .lab-twoup.fig-left { grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr); }
 }
 
-/* `.band` is the layout that makes the budget reachable, and the reason it is not an equal
-   three-up is measured. The parameter table needs WIDTH: five rows of five columns stand 182px
-   tall across the full page, 274px at half and 437px at an equal third, so an equal three-up puts
-   the table 200px over the ceiling all by itself. The figure wants the opposite — it is capped at
-   168px and only letterboxes further as its column widens. So the table takes nearly half the row
-   and the figure the smallest share, and the band comes in around 350-400px.
+/* `.band` is the UNEQUAL three-up the opening uses where it still carries a parameter table beside
+   the figure, and the reason it is not an equal three-up is the table's width sensitivity: five
+   rows of five columns stand 182px tall across the full page, 274px at half and 437px at an equal
+   third, so an equal split triples the table's height to buy the figure a third of a row.
+
+   READ THIS BEFORE COPYING THE RATIO. The original justification was the withdrawn height budget,
+   and it also leaned on a figure ceiling that no longer exists ("the figure is capped at 168px, so
+   a wider column only letterboxes it"). Both links are gone. A page whose opening keeps the full
+   parameter table in the row is the shape the house style moves AWAY from — §5 sends the parameter
+   encyclopedia to a collapsed reference, which frees the whole row for the figure. So prefer the
+   figure's own row over tuning this ratio.
 
    Below 1280px the band falls back to two columns with the table spanning both, and below 880px it
-   stacks, where the vertical budget no longer applies. */
+   stacks. */
 @media (min-width: 880px) {
   .lab-twoup.band { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .lab-twoup.band > .lab-parameters-block { grid-column: 1 / -1; }
@@ -325,7 +361,8 @@ footer {
   .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
 }
 /* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
-   stacked diagrams letterbox into the narrow default until their 11.5px labels fall under 8px. */
+   stacked diagrams render their labels at well under half scale in the narrow default, which is
+   the render-scale defect the header comment describes. */
 @media (min-width: 1280px) {
   .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
 }
@@ -341,7 +378,7 @@ footer {
 /* A short note under the parameter table — a pointer to the settings the table deliberately omits.
    It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
    a reader then looks for the section it introduces. */
-.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.76rem; line-height: 1.3; color: var(--muted); }
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.85rem; line-height: 1.38; color: var(--muted); }
 
 /* The parameter table scrolls sideways inside its own block rather than widening the page. The six
    pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
@@ -353,11 +390,11 @@ footer {
   background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
 }
 .lab-figure > figcaption {
-  font-size: 0.8rem; color: var(--muted); line-height: 1.32; margin-top: 0.3rem;
+  font-size: 0.85rem; color: var(--muted); line-height: 1.38; margin-top: 0.35rem;
 }
 .lab-figure > figcaption .fignum {
   font-family: var(--font-mono); font-weight: 600; color: var(--ink);
-  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.74rem;
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.82rem;
 }
 /* The figure scales with its column. It carried `max-height: 168px` (124px on `.flat`) to hold the
    withdrawn first-screen budget, and that ceiling was the width defect rather than a height
@@ -375,11 +412,11 @@ footer {
 }
 .lab-assumptions > h2, .lab-assumptions > h3, .lab-block-title {
   font-family: var(--font-mono);
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted); margin: 0 0 0.3rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 0.4rem;
 }
-.lab-assumptions ul { margin: 0; padding-left: 1rem; font-size: 0.83rem; line-height: 1.34; }
-.lab-assumptions li { margin-bottom: 0.18rem; }
+.lab-assumptions ul { margin: 0; padding-left: 1.1rem; font-size: 0.95rem; line-height: 1.42; }
+.lab-assumptions li { margin-bottom: 0.25rem; }
 .lab-assumptions li:last-child { margin-bottom: 0; }
 /* More than four assumptions do not fit the band one-per-line. Two columns of short bullets do,
    and only once the column is wide enough that a bullet still takes one line. */
@@ -390,25 +427,28 @@ footer {
 
 /* The required honesty statement. Visible, never inside an accordion. */
 .lab-disclaimer {
-  margin: 0.4rem 0 0; padding: 0.3rem 0.45rem;
-  font-size: 0.79rem; line-height: 1.3;
+  margin: 0.4rem 0 0; padding: 0.35rem 0.5rem;
+  font-size: 0.85rem; line-height: 1.38;
   border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
   background: var(--warn-fill); color: var(--warn);
 }
 .lab-disclaimer strong { color: var(--warn); }
 
-/* The parameter table. Compact by design: every 2px of cell padding costs 12px of band across a
-   header and five rows, and the band has about 60px of slack in total. */
-table.lab-parameters { border-collapse: collapse; width: 100%; font-size: 0.76rem; }
+/* The parameter table. It WAS compact by design — 12.2px cells with 2px of vertical padding,
+   because every 2px of padding cost 12px of a band that had 60px of slack. The band has no ceiling
+   now, and a table a student reads parameter definitions out of is body text, so the cells take
+   the body band's floor. The table still scrolls inside `.lab-scroll` rather than widening the
+   page, which is what keeps the wider cells off the page's horizontal axis. */
+table.lab-parameters { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
 table.lab-parameters caption {
   caption-side: top; text-align: left;
   font-family: var(--font-mono);
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted); padding-bottom: 0.25rem;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); padding-bottom: 0.3rem;
 }
 table.lab-parameters th, table.lab-parameters td {
-  border: 1px solid var(--rule); padding: 0.13rem 0.3rem; text-align: left; vertical-align: top;
-  line-height: 1.24;
+  border: 1px solid var(--rule); padding: 0.28rem 0.45rem; text-align: left; vertical-align: top;
+  line-height: 1.32;
 }
 table.lab-parameters thead th { background: var(--panel-2); font-weight: 600; }
 table.lab-parameters tbody th { font-weight: 600; }
@@ -429,18 +469,18 @@ table.lab-parameters td.unit, table.lab-parameters td.default { font-family: var
 }
 .lab-experiment > h2 {
   font-family: var(--font-mono);
-  font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink); margin: 0 0 0.35rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); margin: 0 0 0.4rem;
 }
 ol.lab-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
 ol.lab-steps > li { min-width: 0; }
 @media (min-width: 1000px) { ol.lab-steps { grid-template-columns: repeat(3, 1fr); gap: 0.9rem; } }
-ol.lab-steps > li { font-size: 0.86rem; line-height: 1.35; }
+ol.lab-steps > li { font-size: 0.95rem; line-height: 1.42; }
 ol.lab-steps > li > .step {
   display: block;
-  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
-  margin-bottom: 0.08rem;
+  margin-bottom: 0.1rem;
 }
 
 .lab-controls { margin: 0 0 1.1rem; }
@@ -686,7 +726,7 @@ ul.interp li { margin-bottom: 0.2rem; }
   font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600;
   padding: 0.1rem 0.45rem; border-radius: var(--radius); border: 1px solid;
 }
-.badge .glyph { font-size: 0.95em; }
+.badge .glyph { font-size: 1em; }
 .s-ok    { color: var(--ok);    border-color: var(--ok);    background: var(--ok-fill); }
 .s-warn  { color: var(--warn);  border-color: var(--warn);  background: var(--warn-fill); }
 .s-bad   { color: var(--bad);   border-color: var(--bad);   background: var(--bad-fill); }
@@ -705,8 +745,8 @@ ul.interp li { margin-bottom: 0.2rem; }
 svg.graph { display: block; width: 100%; height: auto; max-width: 860px; }
 svg.graph text { font-family: var(--font-body); fill: var(--ink); }
 svg.graph .nlabel { font-size: 13.5px; font-weight: 600; }
-svg.graph .nrole { font-size: 10.5px; fill: var(--muted); font-family: var(--font-mono); letter-spacing: 0.04em; }
-svg.graph .nmark { font-size: 10px; font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; }
+svg.graph .nrole { font-size: 11px; fill: var(--muted); font-family: var(--font-mono); letter-spacing: 0.04em; }
+svg.graph .nmark { font-size: 11px; font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; }
 svg.graph .elabel { font-size: 10px; font-family: var(--font-mono); fill: var(--muted); }
 
 /* A node is a button. Four exclusive states, each carrying shape as well as colour. */
@@ -768,8 +808,8 @@ svg.fig .ln.maybe { stroke: var(--maybe); stroke-width: 2px; stroke-dasharray: 5
 svg.fig .ah { fill: var(--refs); }
 svg.fig .ah-must { fill: var(--must); }
 svg.fig .ah-maybe { fill: var(--maybe); }
-svg.fig .mustlabel { font-size: 9px; font-family: var(--font-mono); font-weight: 600; fill: var(--must); }
-svg.fig .maybelabel { font-size: 9px; font-family: var(--font-mono); font-weight: 600; fill: var(--maybe); }
+svg.fig .mustlabel { font-size: 13px; font-family: var(--font-mono); font-weight: 600; fill: var(--must); }
+svg.fig .maybelabel { font-size: 13px; font-family: var(--font-mono); font-weight: 600; fill: var(--maybe); }
 
 /* Figure 1's own type scale. The shared core authors `svg.fig` labels at 11.5px and 9.5px, sized
    for a figure that used to sit in a quarter-width column; at this figure's full-row width those
@@ -779,11 +819,11 @@ svg.fig .maybelabel { font-size: 9px; font-family: var(--font-mono); font-weight
    NO max-height anywhere: a height ceiling on a viewBox'd SVG letterboxes the drawing and turns
    every pixel of column past the ceiling into empty margin, which was this family's width defect. */
 svg.fig.fig3 .pt { font-size: 17px; font-weight: 700; letter-spacing: 0.01em; }
-svg.fig.fig3 .psub { font-size: 13px; fill: var(--muted); font-family: var(--font-mono); }
+svg.fig.fig3 .psub { font-size: 14px; fill: var(--muted); font-family: var(--font-mono); }
 svg.fig.fig3 .t { font-size: 15px; font-weight: 600; }
 svg.fig.fig3 .sum { font-size: 14px; font-weight: 700; }
-svg.fig.fig3 .sum2 { font-size: 13px; fill: var(--muted); }
-svg.fig.fig3 .lg { font-size: 13.5px; fill: var(--muted); }
+svg.fig.fig3 .sum2 { font-size: 14px; fill: var(--muted); }
+svg.fig.fig3 .lg { font-size: 14px; fill: var(--muted); }
 svg.fig.fig3 .bx.iso { fill: var(--panel-2); stroke: var(--grid); stroke-width: 1.2px; }
 svg.fig.fig3 .ln.net { stroke-dasharray: 7 4; }
 svg.fig.fig3 .sep { stroke: var(--rule); stroke-width: 1px; stroke-dasharray: 2 4; }
@@ -810,7 +850,7 @@ svg.chart .grid { stroke: var(--grid); stroke-width: 1px; }
 svg.chart .tick { font-size: 13px; fill: var(--muted); font-family: var(--font-mono); }
 svg.chart .axtitle { font-size: 14px; fill: var(--muted); }
 svg.chart .send { font-size: 14px; font-weight: 700; }
-svg.chart .snote { font-size: 12.5px; fill: var(--muted); font-family: var(--font-mono); }
+svg.chart .snote { font-size: 13px; fill: var(--muted); font-family: var(--font-mono); }
 svg.chart .line { fill: none; stroke-width: 2.6px; stroke-linejoin: round; }
 svg.chart .s-a .line { stroke: var(--sA); stroke-dasharray: 9 5; }
 svg.chart .s-b .line { stroke: var(--sB); }
@@ -843,7 +883,7 @@ ul.plain li {
   background: var(--paper);
   display: flex; gap: 0.5rem; justify-content: space-between; align-items: baseline;
 }
-ul.plain li .mark { font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; white-space: nowrap; }
+ul.plain li .mark { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
 ul.plain li .nm { font-weight: 600; }
 ul.plain li .why { color: var(--muted); font-size: 0.85rem; font-family: var(--font-mono); }
 ul.plain li.is-must { border-left-color: var(--must); background: var(--must-fill); }
@@ -946,7 +986,7 @@ table.model caption { caption-side: top; text-align: left; font-size: 0.86rem; c
   font-size: 1rem;
 }
 .lead-claim .k {
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.07em;
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.07em;
   text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.15rem;
 }
 details.disclose { margin-top: 0.7rem; border-top: 1px solid var(--rule); padding-top: 0.5rem; }
