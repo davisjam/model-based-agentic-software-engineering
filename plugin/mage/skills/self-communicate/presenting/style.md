@@ -24,9 +24,12 @@ like isolated pages of a report.
 -   Allow complexity when the intellectual object is genuinely complex.
     Do not simplify a diagram or evidence display merely to make the
     slide sparse.
--   Keep visible prose subordinate to oral delivery. When the story is
-    carried orally, a sparse slide with substantial speaker notes is
-    appropriate.
+-   Keep the technical objects and the consequential words on the slide. Put
+    connective explanation, pedagogical intentions, rhetorical emphasis, and
+    transitions in the speaker notes. A useful engineering conclusion may
+    remain visible when it adds something the technical objects do not
+    establish by themselves. When the story is carried orally, a sparse slide
+    with substantial speaker notes is appropriate.
 -   Prefer concrete cases before or alongside abstraction. Return from
     the case to the principle explicitly.
 
@@ -45,6 +48,50 @@ document prose.
 -   Apply punctuation consistently across comparable labels, headings, and
     annotations. Do not let mechanically generated punctuation create visual
     noise.
+
+## Audience-facing lecture voice
+
+Write slide text in the register of an engineering lecture, not a
+motivational presentation and not an instructional-design report.
+
+Prefer:
+
+-   concrete technical claims;
+-   established disciplinary terminology;
+-   short explanations of mechanisms;
+-   questions students can answer from the material presented;
+-   explicit assumptions and qualifications;
+-   useful engineering conclusions.
+
+Avoid:
+
+-   commentary about the lecture's organization or educational purpose;
+-   generic exhortations to exercise engineering judgment;
+-   repeated aphorisms or slogans;
+-   self-conscious rhetorical contrasts;
+-   statements that congratulate the audience for reaching a conclusion;
+-   explanations that merely repeat a diagram in prose.
+
+In particular, do not end every slide with a compact moral. A slide may end
+with a figure, a table, an equation, a code example, a question, or a
+technical conclusion. No concluding sentence is required.
+
+| Prefer | Avoid |
+|---|---|
+| *Both transactions commit. The reservations overlap.* | *The defect lives in the interaction, not in either request.* |
+| *Old and new application versions must support the same stored data during migration.* | *Flexibility moves the compatibility obligation; it does not remove it.* |
+| *The query optimizer cannot eliminate queries issued separately by the application.* | *A good plan for each query is still a bad application.* |
+
+The preferred formulations state the technical fact directly. The
+alternatives compress it into an interpretation, which can obscure the
+mechanism.
+
+A memorable phrase is welcome when it is genuinely useful. Do not manufacture
+one for every slide.
+
+The instructor supplies personality, emphasis, humour, and rhetorical force
+during delivery. The slides should not try to supply those qualities
+mechanically.
 
 # Presentation modes
 

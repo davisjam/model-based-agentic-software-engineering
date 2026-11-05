@@ -618,6 +618,34 @@ Does the final static state still work?
 
 Does density vary according to the audience's task, or is every slide forced toward the same amount of content?
 
+### Rhetorical repetition test
+
+Read several consecutive slides at a time and look for repeated forms of audience-facing explanation.
+An individual-slide audit cannot perform this check.
+
+Common patterns:
+
+- every slide ends with a takeaway banner;
+- every example is followed by an aphorism;
+- every engineering choice is summarized as "Choose X based on Y";
+- every technical distinction is phrased as "X is not merely Y";
+- every section closes with a generalized statement about engineering judgment;
+- the same claim appears in the title, the body, and the footer.
+
+A single aphorism may be fine. Fifteen consecutive aphorisms become tiresome.
+
+Ask whether the repeated form contributes information or merely makes the deck sound uniform.
+
+The form alone does not condemn a statement.
+A contrast earns its place when the half it rejects is a belief the audience actually holds: *serializable means equivalent to some serial order, not run one at a time* corrects a misconception most students arrive with.
+Flag the form when the rejected half is a straw alternative nobody proposed, or when the comparison on the slide has already made the point.
+
+Prefer variation that arises from the content.
+A diagram may stand without a conclusion; a comparison may end with a question; a worked example may end with a numerical result; a mechanism slide may end with a precise qualification; a section may end with a synthesis table.
+
+Do not require every slide to carry a concluding statement.
+A consistent visual language does not require a consistent rhetorical formula.
+
 ### Transition test
 
 Are major changes of frame visible where useful?

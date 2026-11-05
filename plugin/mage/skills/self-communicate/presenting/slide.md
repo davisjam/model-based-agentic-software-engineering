@@ -41,6 +41,9 @@ Split the slide when different regions compete for unrelated audience actions.
 A technically correct statement does not by itself make a useful teaching slide.
 Three slides can define a term, define a second term, and show a diagram, each individually clear, and together advance nothing.
 
+**The four questions below are for the author. Do not mechanically convert their answers into
+audience-facing text.**
+
 For every substantive slide, identify:
 
 1. **Need.** Why does the audience need this information now?
@@ -68,6 +71,45 @@ Keep those brief and connected to the reasoning that follows.
 
 Do not manufacture a thesis for a reference slide.
 Do not let an entire lecture consist of reference slides.
+
+## The slide performs the lesson; it does not describe it
+
+Keep authoring rationale off the slide.
+
+A slide's intellectual job is an authoring requirement, not audience-facing text.
+A slide may exist to make students compare alternatives, discover an invariant, revise an assumption, or exercise judgment.
+It should supply the question, model, evidence, or comparison through which that work happens.
+Do not print a sentence describing the work students are supposed to perform.
+
+Three kinds of statement show up at the bottom of a teaching slide. Two of them belong there.
+
+| Kind | Example | Treatment |
+|---|---|---|
+| **Engineering claim** | *Separating data from execution creates new engineering choices* | Appropriate when the slide supports it |
+| **Engineering judgment** | *Choose a representation that supports the application's required operations* | Appropriate when it establishes a useful decision criterion |
+| **Pedagogical commentary** | *One concrete decision, and the requirement that justifies it* | Keep it in authoring plans or speaker notes |
+
+The first two concern the engineering subject.
+The third concerns how the lecture is being taught.
+
+Commentary to keep off audience-facing slides:
+
+- *The next four slides supply what is missing.*
+- *Decisions the exercises actually made, not a tour of what exists.*
+- *Formulate the obligation before reaching for a mechanism.*
+- *The point is to understand the tradeoff.*
+- *This is the engineering judgment.*
+
+The test:
+
+> Does this statement tell the audience something about the engineering subject, or does it tell them
+> what the presentation is trying to teach?
+
+Keep the former where it is useful. Move the latter to speaker notes, or delete it.
+
+**A substantive concluding statement is a different thing.** It may establish a generalization, a
+limitation, a decision criterion, or a consequence the evidence does not make obvious on its own.
+**Do not remove a useful engineering conclusion merely because it appears at the bottom of a slide.**
 
 ## Default to assertion → evidence
 
@@ -422,6 +464,44 @@ White space is useful when it establishes hierarchy or separation.
 It is not an aesthetic quota.
 
 A slide with one sentence and acres of empty space is not automatically better than a dense, well-labeled technical figure.
+
+## Do not state the same conclusion three times
+
+An assertion title, a technical figure, and a concluding annotation can work together.
+They must not state one claim three times.
+
+Give each visible element a distinct role:
+
+- **Title** — identifies the question, claim, or relationship under examination.
+- **Evidence** — shows the mechanism, example, measurement, or comparison.
+- **Conclusion** — adds a consequence, qualification, generalization, or decision criterion not already expressed. **A conclusion is optional.**
+
+A conclusion that earns its place:
+
+    Title:      Application data can outlive the application
+    Figure:     in-process data vs a separate persistent data service
+    Conclusion: Separating data from execution creates new engineering choices
+
+That conclusion advances from the observed difference to its engineering consequence.
+
+A redundant one:
+
+    Title:      SQL can combine related information
+    Figure:     a JOIN returning reservations and room names
+    Conclusion: The database can fetch related rows in one query
+
+That conclusion repeats what the title and the example already establish.
+
+Do not add a bottom banner merely to fill a recurring slide layout.
+
+Before keeping a concluding statement, ask:
+
+1. Does it add a distinct technical proposition?
+2. Is that proposition useful at this point in the lecture?
+3. Is it already expressed by the title, the figure, or an annotation?
+4. Would deleting it lose information or an inference?
+
+Do not replace a deleted conclusion with a differently worded repetition.
 
 ## Use text as a visual element
 

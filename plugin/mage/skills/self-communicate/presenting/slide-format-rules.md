@@ -733,6 +733,54 @@ its first visible state gives the answer away.
 -   If a slide is dense, is the density evidence or useful structure
     rather than clutter?
 
+### Audience-facing prose audit
+
+Run this over every visible sentence outside a quotation, code example,
+formal requirement, or technical definition.
+
+First classify the sentence:
+
+-   **Technical claim** — a statement about the engineering subject.
+-   **Decision criterion** — a rule for choosing among alternatives.
+-   **Qualification** — a condition or limit on a claim.
+-   **Instructional prompt** — a question or task addressed to students.
+-   **Pedagogical commentary** — a statement about what the lecture is
+    teaching.
+
+The first four can belong on a slide. The fifth usually does not.
+
+Then check:
+
+1.  **Subject.** Does it state something about the technical subject, or
+    about the lecture itself?
+2.  **Contribution.** Does it add information, a useful inference, a
+    qualification, or a decision criterion?
+3.  **Redundancy.** Is the same claim already in the title, the figure, a
+    table, or another annotation?
+4.  **Precision.** Does rhetorical compression make the technical meaning
+    less precise?
+5.  **Voice.** Does it read as ordinary engineering explanation, or as a
+    slogan, an exhortation, or a motivational takeaway?
+6.  **Necessity.** Would deleting it reduce understanding?
+
+Flag:
+
+-   pedagogical self-narration — a sentence describing what the
+    presentation is doing or teaching;
+-   repeated generic engineering advice;
+-   formulaic concluding aphorisms;
+-   redundant restatements of the title;
+-   sentences describing what the figure already shows.
+
+**Do not flag a substantive engineering conclusion merely because it appears
+in a bottom banner.** A useful conclusion may generalize from the evidence,
+identify a limitation, or establish a decision criterion.
+
+Recommend deletion before rewriting when a sentence adds no distinct
+information. After deleting redundant prose, use the freed space to enlarge
+or clarify the technical content where that would improve the slide. Do not
+fill the space automatically.
+
 ## Figures and evidence
 
 -   Are charts and diagrams directly annotated where useful?

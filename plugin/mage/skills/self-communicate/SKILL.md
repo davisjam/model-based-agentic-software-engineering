@@ -180,7 +180,7 @@ For presentation work:
 5. **Design individual slides.** Apply [`presenting/slide.md`](presenting/slide.md). Choose each slide's instructional role before choosing its title or representation — question, investigation, conclusion, evidence, activity, or synthesis.
 6. **Apply house style.** Read [`presenting/style.md`](presenting/style.md) and any local overlay. Preserve the established visual grammar without letting visual consistency override the talk's intellectual requirements.
 7. **Audit the realized sequence.** Review the slides in presentation order, including their initial visible states, builds, activities, and speaker notes. Verify that the audience receives what it needs to reason before it reasons, and the decisive answers afterward.
-8. **Run the construction and accessibility audit.** Apply [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md), including typography, layout, semantics, reading order, alt text, animation-note consistency, and the instructional-sequence checks.
+8. **Run the construction and accessibility audit.** Apply [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md), including typography, layout, semantics, reading order, alt text, animation-note consistency, the instructional-sequence checks, and the audience-facing prose audit.
 9. **Inspect the distributed artifact.** Re-check the exported PDF or other distributed form. Essential content, provenance, and accessibility metadata do not survive conversion automatically.
 
 The dependency is still **talk → type → deck → slide → style/rules**. Steps 3 and 7 are gates inside that workflow, not additional presentation layers.
