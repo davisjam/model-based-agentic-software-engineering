@@ -37,6 +37,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 import zipfile
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -193,13 +194,119 @@ def staged_pptx() -> list[str]:
             if p.lower().endswith(".pptx")]
 
 
+# ------------------------------------------------- structural / referential (stdlib, AUDIT-ONLY)
+
+_PML = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
+_DML = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
+_SLIDE_RE = re.compile(r"^ppt/slides/slide(\d+)\.xml$")
+
+
+def _slide_entries(zf: zipfile.ZipFile) -> "list[tuple[int, str]]":
+    """Slide parts in presentation order-ish (by filename index), as (index, entry name)."""
+    out = []
+    for name in zf.namelist():
+        m = _SLIDE_RE.match(name)
+        if m:
+            out.append((int(m.group(1)), name))
+    return sorted(out)
+
+
+def structural_findings(display_path: str, fs_path: str) -> list[str]:
+    """Three PowerPoint-fatal defects that every other layer in this tool tolerates.
+
+    Measured 261103 on a deck PowerPoint refused to open: zip integrity clean (151 entries, 0
+    dups, testzip() None), python-pptx opened all 29 slides, and this tool reported 0 OPC / 0
+    schema with the schema layer confirmed run. The actual defects were *referential* and
+    *structural*, and both are invisible to a schema validator because each part is individually
+    valid:
+
+      1. A `<p:spTgt spid="N">` animation target naming a shape id absent from its own slide
+         (the slide's animated shapes had been deleted). PowerPoint offers to REPAIR and strips
+         the author's entire `<p:timing>` build on acceptance — unrecoverable, there being no
+         regenerate path for a hand-built animation.
+      2. A duplicate `cNvPr/@id` within one slide.
+      3. A `custGeom` missing its `<a:rect>` or `<a:pathLst>`.
+
+    WHY THIS LIVES HERE rather than in each caller: the scan was pasted into eight agent briefs
+    in one session, and the pasted copies were WRONG in a way that inverts the result. Shape ids
+    on a slide are `p:cNvPr` (PresentationML); `a:cNvPr` (DrawingML) occurs only inside charts,
+    diagrams and some graphic frames. A scan keyed on DrawingML alone finds almost no shape ids
+    and reports nearly every animation target as dangling — on 261104 that reported 7 of 9 Act III
+    decks as structurally broken, six of which had been opened in PowerPoint and confirmed clean.
+    So the union of both namespaces is taken, and a slide that yields NO shape ids while carrying
+    animation targets is reported as a PROBE failure rather than silently producing findings.
+
+    AUDIT-ONLY: findings are printed but do not contribute to the exit code. Promotion to
+    blocking is a posture change and is pending ratification — and it needs a small fix-wave
+    first. Measured at the time of writing: clean across all nine Act III decks, but THREE
+    duplicate-id findings tree-wide under --all-tracked (2-4 Failure-Aware Engineering slides 4
+    and 5, and a WIP deck under book/_design/). So the Act-III-only claim does not generalise;
+    drain those three, then promote. Sabotage-verified: injecting one bad spid into a copy of a
+    clean deck reports the dangling target by name.
+    """
+    findings: list[str] = []
+    try:
+        zf = zipfile.ZipFile(fs_path)
+    except (zipfile.BadZipFile, OSError) as exc:
+        return [f"{display_path}: cannot open package ({exc})"]  # the OPC layer reports this too
+    with zf:
+        for idx, entry in _slide_entries(zf):
+            try:
+                root = ET.fromstring(zf.read(entry))
+            except ET.ParseError as exc:
+                findings.append(f"{display_path} slide {idx}: unparseable XML ({exc})")
+                continue
+
+            ids = [c.get("id") for c in root.iter(f"{_PML}cNvPr")]
+            ids += [c.get("id") for c in root.iter(f"{_DML}cNvPr")]
+            ids = [i for i in ids if i is not None]
+            targets = [t.get("spid") for t in root.iter(f"{_PML}spTgt")]
+            targets = [t for t in targets if t is not None]
+
+            if targets and not ids:
+                # The precondition the pasted copies lacked. Without it a namespace mistake
+                # reports every target as dangling, which condemns correct decks.
+                findings.append(
+                    f"{display_path} slide {idx}: PROBE FAILURE — {len(targets)} animation "
+                    f"target(s) but zero shape ids found; refusing to report dangling targets")
+                continue
+
+            dangling = sorted(set(targets) - set(ids))
+            if dangling:
+                findings.append(
+                    f"{display_path} slide {idx}: dangling spTgt spid(s) {dangling} — "
+                    f"PowerPoint will offer to repair and strip this slide's build")
+
+            dupes = sorted({i for i in ids if ids.count(i) > 1})
+            if dupes:
+                findings.append(f"{display_path} slide {idx}: duplicate cNvPr/@id {dupes}")
+
+            for geom in root.iter(f"{_DML}custGeom"):
+                missing = [part for part in ("rect", "pathLst")
+                           if geom.find(f"{_DML}{part}") is None]
+                if missing:
+                    findings.append(
+                        f"{display_path} slide {idx}: custGeom missing {', '.join(missing)}")
+    return findings
+
+
 # --------------------------------------------------------------------------------------- main
 
 def validate(files: "list[tuple[str, str]]") -> int:
     """Validate (display_path, fs_path) pairs; print plan + results; return exit code."""
-    print(f"pptx-validate: plan — OPC part coverage (stdlib) + OOXML schema (OpenXmlValidator) "
-          f"over {len(files)} file(s)")
+    # A `~$<name>.pptx` sibling is PowerPoint's open-file lock, not a deck: it is a tiny
+    # non-zip blob, so every layer reports it as corrupt and the run goes red while the deck
+    # beside it is fine. It is never tracked, so --staged/--all-tracked cannot reach one; an
+    # explicit glob can, and does exactly when an author has a deck open. Skip loudly rather
+    # than silently — the caller named it, so it deserves a line.
+    locks = [disp for disp, _fs in files if os.path.basename(disp).startswith("~$")]
+    files = [(disp, fs) for disp, fs in files if not os.path.basename(disp).startswith("~$")]
+    print(f"pptx-validate: plan — OPC part coverage (stdlib) + structural/referential (stdlib, "
+          f"audit-only) + OOXML schema (OpenXmlValidator) over {len(files)} file(s)")
+    for lock in locks:
+        print(f"  [skip] {lock} — PowerPoint lock file, not a deck (the deck is open in an editor)")
     opc = [f for disp, fs in files for f in opc_findings(disp, fs)]
+    structural = [f for disp, fs in files for f in structural_findings(disp, fs)]
 
     dotnet = resolve_dotnet()
     schema: list[tuple[str, str, str, str]] = []
@@ -218,14 +325,18 @@ def validate(files: "list[tuple[str, str]]") -> int:
         print(f"  [FAIL/opc] {f}")
     for disp, eid, _part, detail in schema:
         print(f"  [FAIL/schema] {disp}: {eid} — {detail}")
+    for f in structural:
+        print(f"  [audit/structural] {f}")
     for disp, eid, _part, _detail in baselined:
         print(f"  [baselined] {disp}: {eid} (grandfathered in tools/pptx-validate-baseline.json)")
     if skip_reason:
         print(f"  [skip] {skip_reason}")
 
+    # structural is deliberately NOT in `bad` — audit-only until promotion is ratified.
     bad = len(opc) + len(schema)
     print(f"pptx-validate: result — {len(files)} file(s), {len(opc)} OPC finding(s), "
           f"{len(schema)} schema finding(s) ({len(baselined)} baselined), "
+          f"{len(structural)} structural finding(s) [audit-only, not gating], "
           f"schema layer {'SKIPPED' if skip_reason else 'ran'}")
     return 1 if bad else 0
 
