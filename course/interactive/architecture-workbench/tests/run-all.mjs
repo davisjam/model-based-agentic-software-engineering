@@ -22,13 +22,39 @@
  * `interactive-exercises` job in the publishing workflow, which is where its siblings run.
  */
 import { spawnSync } from 'node:child_process';
-import { dirname } from 'node:path';
+import { existsSync, readdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 const UNIT_FILES = ['test-graph.mjs', 'test-rules.mjs', 'test-impact.mjs', 'test-cost.mjs',
   'test-packaging.mjs'];
+
+/**
+ * Fail loudly when a named test file is absent, and when one exists that nobody named.
+ *
+ * `node --test a.mjs missing.mjs` SILENTLY IGNORES the missing path and exits 0. Measured here on
+ * 261104: a file left untracked in the commit produced a green run of 99 tests where 136 were
+ * expected, and nothing in the output said so. A runner that cannot tell "all the tests passed"
+ * from "the tests I could find passed" is not a gate, so the manifest is checked both ways before
+ * anything runs — an unlisted file is as much a hole as a missing one.
+ */
+function checkManifest() {
+  const missing = UNIT_FILES.filter((f) => !existsSync(join(HERE, f)));
+  const present = readdirSync(HERE).filter((f) => f.startsWith('test-') && f.endsWith('.mjs'));
+  const unlisted = present.filter((f) => !UNIT_FILES.includes(f));
+  if (missing.length === 0 && unlisted.length === 0) return true;
+  if (missing.length > 0) {
+    process.stderr.write(`MANIFEST ERROR: run-all.mjs names ${missing.length} file(s) that are not `
+      + `on disk: ${missing.join(', ')}. Node would skip them and still exit 0.\n`);
+  }
+  if (unlisted.length > 0) {
+    process.stderr.write(`MANIFEST ERROR: ${unlisted.length} test file(s) exist that run-all.mjs `
+      + `never runs: ${unlisted.join(', ')}. Add them to UNIT_FILES or delete them.\n`);
+  }
+  return false;
+}
 
 function run(label, args) {
   process.stdout.write(`\n=== ${label} ===\n`);
@@ -37,6 +63,11 @@ function run(label, args) {
   const seconds = ((Date.now() - started) / 1000).toFixed(1);
   process.stdout.write(`--- ${label}: ${r.status === 0 ? 'PASS' : 'FAIL'} in ${seconds}s\n`);
   return r.status === 0;
+}
+
+if (!checkManifest()) {
+  process.stdout.write('\nFAILURES ABOVE\n');
+  process.exit(1);
 }
 
 const ok = run('unit tier', ['--test', ...UNIT_FILES]);
