@@ -12,7 +12,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { R, now, fakeClock } from './harness.mjs';
+import { R, now, fakeClock, cfg } from './harness.mjs';
 
 /* --- the clock is the caller's ------------------------------------------------------------- */
 
@@ -35,7 +35,7 @@ test('measurement refuses a missing or malformed spec', () => {
 
 test('a trial reports the experiment, the length, and the input it actually built', () => {
   const r = R.measureTrial({ experimentId: 'quadratic', length: 500, budgetMs: 100 }, now);
-  assert.equal(r.experimentId, 'quadratic');
+  assert.equal(r.experimentId, cfg('quadratic'));
   assert.equal(r.expressionId, 'trimLike');
   assert.equal(r.length, 500);
   assert.equal(r.inputLength, 501, 'the reported input length is not the built input length');

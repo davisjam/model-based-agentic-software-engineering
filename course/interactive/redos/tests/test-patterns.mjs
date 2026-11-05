@@ -19,21 +19,73 @@ import { R } from './harness.mjs';
 
 /* --- the experiment table ------------------------------------------------------------------- */
 
-test('there are exactly four experiments, in the documented order', () => {
-  assert.deepEqual(R.experimentIds(), ['ordinary', 'quadratic', 'exponential', 'safe']);
-  assert.deepEqual(R.EXPERIMENTS.map((x) => x.ordinal), [1, 2, 3, 4]);
+test('the six named baselines are in the order the lecture notes refer to', () => {
+  /* The ORDINALS are the stable surface: the 3-5-1 deck's speaker notes run the demonstration as
+     "run 1, then 2 ... run 3 ... run 4 last", and baselines 5 and 6 are the two real incidents.
+     The canonical ids are derived from the pattern and input a baseline selects, so they are looked
+     up rather than spelled out. */
+  assert.deepEqual(R.baselineIds(),
+    ['ordinary', 'quadratic', 'exponential', 'safe', 'stackoverflow', 'cloudflare']);
+  assert.deepEqual(R.EXPERIMENTS.map((x) => x.ordinal), [1, 2, 3, 4, 5, 6]);
+  assert.deepEqual(R.experimentIds(), R.baselineIds().map((id) => R.findExperiment(id).id));
 });
 
-test('each experiment declares the growth its structure predicts', () => {
+test('each baseline declares the growth its structure predicts', () => {
   assert.deepEqual(
-    R.EXPERIMENTS.map((x) => [x.id, x.expectedGrowth]),
+    R.BASELINES.map((b) => [b.id, R.findExperiment(b.id).expectedGrowth]),
     [
       ['ordinary', 'approximately linear'],
       ['quadratic', 'approximately quadratic'],
       ['exponential', 'potentially exponential'],
       ['safe', 'approximately linear'],
+      ['stackoverflow', 'approximately quadratic'],
+      ['cloudflare', 'approximately cubic'],
     ],
   );
+});
+
+test('every pattern’s advertised complexity class is the class that was MEASURED', () => {
+  /* The assertion that stops the page printing a complexity label its own instrument refutes. The
+     author's own note on the Cloudflare pattern read "quintic I think"; measured in V8 the fragment
+     the postmortem names is cubic and the whole trailing group quartic, and this test is why the
+     page says so. A degree measured over a finite range approaches its asymptote from BELOW, so the
+     tolerance is one-sided and generous downward. */
+  for (const pid of R.patternIds()) {
+    const ex = R.EXPRESSIONS[pid];
+    const row = R.measuredClass(pid);
+    assert.equal(row.label, ex.complexityClass,
+      `${pid} advertises ${ex.complexityClass} and measured ${row.label}`);
+    if (row.basis === 'polynomial') {
+      assert.ok(row.degree > ex.degree - 1.1 && row.degree < ex.degree + 0.5,
+        `${pid}: declares degree ${ex.degree}, measured ${row.degree}`);
+    } else {
+      assert.equal(ex.complexityClass, 'exponential', pid);
+      assert.ok(row.perChar > 1.5, `${pid}: per-character factor ${row.perChar}`);
+    }
+    assert.ok(row.r2 > 0.98, `${pid}: the fit is too poor to label (R² ${row.r2})`);
+    assert.match(row.range, /^n = /, `${pid}: no fitted range recorded`);
+  }
+  assert.match(R.MEASURED_CLASSES.engine, /V8/);
+  /* Nothing in the set is labelled quintic, because nothing in the set measured quintic. */
+  const labels = R.patternIds().map((p) => R.EXPRESSIONS[p].complexityClass);
+  assert.equal(labels.includes('quintic'), false,
+    'a pattern claims a quintic class; no shipped pattern measured one');
+});
+
+test('the Cloudflare and Stack Overflow patterns are the incident expressions, and say so', () => {
+  const cf = R.EXPRESSIONS.cloudflareFragment;
+  assert.equal(cf.source, '.*(?:.*=.*)', 'the Cloudflare fragment is not the postmortem’s');
+  assert.match(cf.incident, /Cloudflare, 2 July 2019/);
+  assert.match(cf.incident, /27 minutes/);
+  const so = R.EXPRESSIONS.stackOverflow2016;
+  assert.equal(so.source, '^[\\s\\u200c]+|[\\s\\u200c]+$',
+    'the Stack Overflow pattern is not the one from the postmortem');
+  assert.match(so.incident, /Stack Overflow, 20 July 2016/);
+  /* The full Cloudflare trailing group, with the leading alternation restored, ships too — it is
+     what makes the degree-follows-repetition-count rule observable rather than asserted. */
+  assert.match(R.EXPRESSIONS.cloudflareGroup.source, /^\(\?:\\s\|/);
+  assert.equal(R.EXPRESSIONS.cloudflareGroup.degree, 4);
+  assert.equal(R.EXPRESSIONS.cloudflareFragment.degree, 3);
 });
 
 test('the 2x2 holds: one variable changes per comparison', () => {
@@ -46,13 +98,21 @@ test('the 2x2 holds: one variable changes per comparison', () => {
   assert.notEqual(xp('quadratic').expression, xp('safe').expression);
 });
 
-test('only the three curated expressions exist, and each is used', () => {
+test('only the curated expressions exist, each is reachable, and the ladder spans five classes', () => {
   const ids = Object.keys(R.EXPRESSIONS).sort();
-  assert.deepEqual(ids, ['forcedSplit', 'nestedQuant', 'trimLike']);
+  assert.deepEqual(ids, ['cloudflareFragment', 'cloudflareGroup', 'forcedSplit',
+    'nestedQuant', 'stackOverflow2016', 'trimLike']);
+  /* Reachability is now through the PATTERN CONTROL rather than through a preset, so the check is
+     that every declared expression is offered by the chooser — a pattern the interface cannot
+     select is dead weight in a page whose size is itself gated. */
+  assert.deepEqual(R.patternIds().slice().sort(), ids);
   for (const id of ids) {
-    const users = R.EXPERIMENTS.filter((x) => x.expression === id);
-    assert.ok(users.length >= 1, `${id} is declared but no experiment uses it`);
+    assert.ok(R.inputsForPattern(id).length >= 2,
+      `${id} offers fewer than two input shapes, so "same pattern, different input" is unavailable`);
   }
+  /* Five complexity classes, in a set of six patterns: the ladder is the point of the set. */
+  const classes = ids.map((id) => R.EXPRESSIONS[id].complexityClass);
+  assert.equal(new Set(classes).size, 5, `classes: ${classes.join(', ')}`);
 });
 
 test('every expression compiles, and a fresh instance is returned each time', () => {
@@ -122,12 +182,55 @@ test('an invalid length is refused rather than coerced', () => {
   }
 });
 
-test('the documented input shape is stated for every experiment', () => {
+test('the documented input shape is stated for every baseline', () => {
   assert.equal(R.describeInputShape('ordinary'),
-    'ordinary prose of length n, single spaces, ending in a letter');
+    'ordinary text of length n, single spaces, ending in a letter');
   assert.equal(R.describeInputShape('quadratic'), '" " repeated n times, then "!"');
   assert.equal(R.describeInputShape('safe'), '" " repeated n times, then "!"');
   assert.equal(R.describeInputShape('exponential'), '"a" repeated n times, then "!"');
+  assert.equal(R.describeInputShape('stackoverflow'),
+    '"a", then " " repeated n times, then "a"');
+  assert.equal(R.describeInputShape('cloudflare'), '"x" repeated n times');
+  /* And every shape in the catalogue describes itself, so no configuration can render a blank. */
+  for (const id of Object.keys(R.INPUT_SHAPES)) {
+    const shape = R.findInputShape(id);
+    assert.ok(shape.describe && shape.describe.length > 8, `${id} has no description`);
+    assert.ok(shape.why && shape.why.length > 20, `${id} has no rationale`);
+    assert.ok(shape.kind === 'attack' || shape.kind === 'benign', `${id} has kind ${shape.kind}`);
+    assert.equal(typeof shape.expectMatch, 'boolean', `${id} does not declare its match result`);
+  }
+});
+
+test('an attack input is prefix + pump x n + suffix, exactly, and fails by construction', () => {
+  /* The pump model is what makes "the number of pumps" the x-axis of every chart, so the
+     construction is asserted rather than described. */
+  for (const id of Object.keys(R.INPUT_SHAPES)) {
+    const shape = R.findInputShape(id);
+    if (shape.mode !== 'pump') continue;
+    const pattern = R.patternIds().find((p) => R.inputsForPattern(p).includes(id));
+    assert.ok(pattern, `${id} is declared but no pattern offers it`);
+    for (const n of [1, 5, 17]) {
+      const built = R.buildInput({ patternId: pattern, inputId: id }, n);
+      assert.equal(built, shape.prefix + shape.pump.repeat(n) + shape.suffix,
+        `${id} at ${n} pumps is not prefix + pump x n + suffix`);
+    }
+    if (shape.kind === 'attack') {
+      assert.equal(shape.expectMatch, false,
+        `${id} is an attack shape, so the match must fail or the comparison confounds work with answer`);
+    }
+  }
+});
+
+test('a pump count must be a positive integer, and an impossible pair is refused', () => {
+  for (const bad of [0, -3, 2.5, NaN, Infinity, '40', null]) {
+    assert.throws(() => R.buildInput('quadratic', bad), /pump count/, `accepted ${String(bad)}`);
+  }
+  /* The two chooser controls are not independent: an input shape belongs to a pattern, and asking
+     for a pair the model does not define is an error rather than a silent default. */
+  assert.throws(() => R.findExperiment({ patternId: 'nestedQuant', inputId: 'withEquals' }),
+    /does not offer input/);
+  assert.throws(() => R.findExperiment({ patternId: 'nope', inputId: 'aRun' }), /unknown pattern/);
+  assert.throws(() => R.findInputShape('nope'), /unknown input shape/);
 });
 
 test('a long input is excerpted rather than rendered in full', () => {

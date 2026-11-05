@@ -16,10 +16,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {
-  readDemoHtml, extractEngineSource, extractWorkerPrefix, extractWorkerProtocolSource,
-  buildWorkerSource, spawnFakeWorker,
-} from './harness.mjs';
+import { readDemoHtml, extractEngineSource, extractWorkerPrefix, extractWorkerProtocolSource, buildWorkerSource, spawnFakeWorker, cfg } from './harness.mjs';
 
 const html = readDemoHtml();
 
@@ -95,7 +92,7 @@ test('a measure message returns one result carrying its token', () => {
   assert.equal(out[0].type, 'result');
   assert.equal(out[0].token, 3, 'the token did not come back');
   const r = out[0].result;
-  assert.equal(r.experimentId, 'quadratic');
+  assert.equal(r.experimentId, cfg('quadratic'));
   assert.equal(r.length, 500);
   assert.equal(r.inputLength, 501);
   assert.equal(r.matchedAsExpected, true);

@@ -10,14 +10,14 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { R, fakeResult } from './harness.mjs';
+import { R, fakeResult, cfg } from './harness.mjs';
 
 /* --- construction --------------------------------------------------------------------------- */
 
 test('a new sweep is ready, empty, and carries the ladder it will walk', () => {
   const s = R.createSweep({ experimentId: 'quadratic', maxLength: 4000 });
   assert.equal(s.status, 'ready');
-  assert.equal(s.experimentId, 'quadratic');
+  assert.equal(s.experimentId, cfg('quadratic'));
   assert.deepEqual(s.lengths, [500, 1000, 2000, 3000, 4000]);
   assert.deepEqual(s.results, []);
   assert.equal(s.halt, null);
@@ -46,7 +46,7 @@ test('a sweep issues one trial spec per ladder length, in order', () => {
     const spec = R.nextTrialSpec(s);
     if (!spec) break;
     issued.push(spec.length);
-    assert.equal(spec.experimentId, 'quadratic');
+    assert.equal(spec.experimentId, cfg('quadratic'));
     assert.equal(spec.budgetMs, s.budgetMs);
     R.recordResult(s, fakeResult('quadratic', spec.length, false));
   }
@@ -195,7 +195,7 @@ test('the summary reports progress, remaining work, and correctness failures', (
   const s = R.createSweep({ experimentId: 'quadratic', maxLength: 4000 });
   R.recordResult(s, fakeResult('quadratic', R.nextTrialSpec(s).length, false));
   const sum = R.sweepSummary(s);
-  assert.equal(sum.experimentId, 'quadratic');
+  assert.equal(sum.experimentId, cfg('quadratic'));
   assert.equal(sum.status, 'running');
   assert.equal(sum.trials, 1);
   assert.equal(sum.measuredTrials, 1);

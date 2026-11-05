@@ -81,13 +81,27 @@ test('the modelled step count grows quadratically in the model, by construction'
 
 /* --- predicted candidates, per experiment --------------------------------------------------- */
 
-test('each experiment carries the work model its structure implies', () => {
-  assert.deepEqual(R.EXPERIMENTS.map((x) => [x.id, x.modelOfWork]), [
-    ['ordinary', 'n'],
-    ['quadratic', 'n(n+1)/2'],
-    ['exponential', '2^(n-1)'],
-    ['safe', 'n'],
-  ]);
+test('each baseline carries the work model its pattern and input imply', () => {
+  /* Derived from the engine rather than snapshotted: the work model belongs to the PATTERN for an
+     attack input and collapses to linear for a benign one, which is the whole of the adversary's
+     variable expressed as a model. A literal table here would have to be rewritten every time a
+     pattern joins the chooser, and would stop asserting the rule. */
+  for (const b of R.BASELINES) {
+    const x = R.findExperiment(b.id);
+    const pattern = R.EXPRESSIONS[b.patternId];
+    const shape = R.findInputShape(b.inputId);
+    if (shape.kind === 'benign') {
+      assert.equal(x.modelOfWork, 'n', `${b.id}: a benign input must model as linear`);
+      assert.equal(x.degree, 1, `${b.id}: a benign input must have degree 1`);
+    } else {
+      assert.equal(x.modelOfWork, pattern.modelOfWork, `${b.id}: model disagrees with its pattern`);
+      assert.equal(x.degree, pattern.degree, `${b.id}: degree disagrees with its pattern`);
+    }
+  }
+  /* And the five classes are all present across the chooser. */
+  const classes = new Set(R.patternIds().map((p) => R.EXPRESSIONS[p].complexityClass));
+  assert.deepEqual([...classes].sort(),
+    ['cubic', 'exponential', 'linear', 'quadratic', 'quartic']);
 });
 
 test('the predicted candidate count follows the declared model', () => {
@@ -143,13 +157,25 @@ test('the nested-quantifier family gets the composition model', () => {
   assert.equal(m.items.length, 16);
 });
 
-test('the whitespace family gets the split-point model', () => {
-  for (const id of ['ordinary', 'quadratic', 'safe']) {
-    const m = R.backtrackingModel(id, 8);
-    assert.equal(m.kind, 'splitPoints', id);
-    assert.equal(m.formula, 'n(n+1)/2', id);
-    assert.equal(m.model.rows.length, 9, id);
+test('every non-nested pattern gets the split-point model, with ITS degree’s formula', () => {
+  /* The closed form follows the pattern's degree, so the assertion is over the degree rather than
+     over one hard-coded formula. Checking only `n(n+1)/2` would have passed while the cubic and
+     quartic patterns silently reported the quadratic form. */
+  const FORMULAE = { 1: 'n', 2: 'n(n+1)/2', 3: 'n(n+1)(n+2)/6', 4: 'n(n+1)(n+2)(n+3)/24' };
+  let checked = 0;
+  for (const pid of R.patternIds()) {
+    if (R.EXPRESSIONS[pid].hazard === 'exponential') continue;
+    for (const iid of R.inputsForPattern(pid)) {
+      const x = R.findExperiment({ patternId: pid, inputId: iid });
+      const m = R.backtrackingModel({ patternId: pid, inputId: iid }, 8);
+      assert.equal(m.kind, 'splitPoints', `${pid}.${iid}`);
+      assert.equal(m.formula, FORMULAE[x.degree], `${pid}.${iid} at degree ${x.degree}`);
+      assert.equal(m.model.rows.length, 9, `${pid}.${iid}`);
+      assert.equal(m.degree, x.degree, `${pid}.${iid}`);
+      checked += 1;
+    }
   }
+  assert.ok(checked >= 8, `only ${checked} configurations checked`);
 });
 
 test('the illustrative n is small enough to draw, whatever n the sweep used', () => {

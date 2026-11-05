@@ -144,9 +144,22 @@ export function spawnFakeWorker() {
 }
 
 /** A trial result shaped the way the worker would send one, for sweep-state assertions. */
+/**
+ * The CANONICAL configuration id for a baseline name.
+ *
+ * A configuration is identified by `<patternId>.<inputId>`, and the sweep compares results against
+ * that string. The baseline names the classroom uses ('quadratic', 'safe') are shorthands that
+ * resolve to one. Tests look the canonical form UP rather than embedding a snapshot of it, so
+ * adding a pattern or renaming an input shape cannot leave a test asserting a string the engine no
+ * longer produces.
+ */
+export function cfg(baselineOrConfig) {
+  return R.findExperiment(baselineOrConfig).id;
+}
+
 export function fakeResult(experimentId, length, over, extra) {
   return {
-    experimentId,
+    experimentId: cfg(experimentId),
     length,
     inputLength: length + 1,
     matched: false,

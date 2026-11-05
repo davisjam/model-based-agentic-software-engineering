@@ -125,17 +125,40 @@ test('the built-in self-tests all pass', () => {
 });
 
 test('no control is exposed for executing an arbitrary expression', () => {
-  /* The specification is explicit: no arbitrary user-supplied regex execution in the initial
-     version. A box that compiles whatever a reader types turns a teaching instrument into a way to
-     hang a tab, and the lesson does not need it. */
+  /* The specification is explicit: no arbitrary user-supplied regex execution. A box that compiles
+     whatever a reader types turns a teaching instrument into a way to hang a tab.
+
+     This check used to BAN THE WORD: any element with an id matching /pattern|regex|expression/ was
+     a finding. That was a proxy, and the proxy broke as soon as the page gained the pattern chooser
+     the author asked for — `id="pattern"` is the correct name for a control that selects among six
+     curated patterns, and renaming it to satisfy a grep would have made the page worse and the
+     check no stronger. So the check now asserts the PROPERTY instead: every pattern the page can
+     compile is one of the engine's own, and no free-text surface exists to supply another. */
   assert.equal(/<textarea/.test(html), false, 'a free-text area is exposed');
-  assert.equal(/id="(pattern|regex|expression|custom[-\w]*)"/i.test(html), false,
-    'an expression input is exposed');
   const inputs = [...html.matchAll(/<input[^>]*>/g)].map((m) => m[0]);
   for (const el of inputs) {
     assert.match(el, /type="(range|number|checkbox)"/,
       `an input of a free-text kind is exposed: ${el}`);
   }
+  /* The pattern control is a closed chooser over the engine's own ids, and every `<select>` on the
+     page is populated from engine data rather than from markup. */
+  const R = loadEngine();
+  const chooserOptions = [...html.matchAll(/<select[^>]*id="pattern"[^>]*>([\s\S]*?)<\/select>/g)]
+    .map((m) => m[1].trim());
+  assert.equal(chooserOptions.length, 1, 'there is not exactly one pattern chooser');
+  assert.equal(chooserOptions[0], '',
+    'the pattern chooser carries hand-written options; it must be filled from the engine');
+  /* And the only thing that reaches `new RegExp` is the engine's own `compile`, which refuses any
+     id that is not in EXPRESSIONS. */
+  const engine = extractEngineSource(html);
+  const constructions = (engine.match(/new RegExp\(/g) || []).length;
+  assert.equal(constructions, 1, `the engine constructs a RegExp in ${constructions} places`);
+  assert.match(engine, /function compile\(expressionId\)[\s\S]{0,200}unknown expression/,
+    'compile does not refuse an unknown expression id');
+  /* The UI script never compiles anything of its own. */
+  const ui = html.slice(html.indexOf('<script id="redos-ui">'));
+  assert.equal(/new RegExp\(/.test(ui), false, 'the interface constructs a RegExp of its own');
+  assert.ok(R.patternIds().length >= 4, 'the curated set collapsed');
 });
 
 test('the page states both accuracy constraints, in the body a reader sees', () => {
@@ -212,8 +235,12 @@ test('the time axis offers a linear and a logarithmic reading', () => {
   assert.equal((html.match(/data-scale="[a-z]+" aria-pressed="true"/g) || []).length, 1);
   /* And the page says how to READ each mode, which is the part that makes the toggle teach
      something rather than merely redraw. */
-  assert.match(html, /an\s+exponential series straightens into a line/);
-  assert.match(html, /a polynomial series straightens, and its slope is the\s+exponent/);
+  /* Whitespace-normalised first, for the same reason the accuracy-constraint pins are: matching
+     literal single spaces pins the source's LINE WRAPPING as much as its words, and the sentences
+     moved into the Background section during the house-order rebuild. */
+  const prose = html.replace(/\s+/g, ' ');
+  assert.match(prose, /an exponential series straightens into a line/);
+  assert.match(prose, /a polynomial series straightens, and its slope <em>is<\/em> the exponent/);
 });
 
 test('the chart distinguishes a terminated trial without relying on colour', () => {
@@ -224,14 +251,28 @@ test('the chart distinguishes a terminated trial without relying on colour', () 
   for (const field of ['glyph', 'dash', 'marker', 'css']) {
     assert.ok(seriesBlock.includes(`${field}:`), `the series table has no ${field}`);
   }
-  for (const glyph of ['●', '■', '▲', '◆']) {
+  for (const glyph of ['●', '■', '▲', '◆', '✚', '✱']) {
     assert.ok(seriesBlock.includes(glyph), `series glyph ${glyph} is missing`);
   }
+  /* Every baseline has a series, and every series a distinct glyph — otherwise two lines on the
+     chart are told apart by hue alone, which is the failure this whole block exists to prevent. */
+  const glyphs = [...seriesBlock.matchAll(/glyph: '(.)'/g)].map((m) => m[1]);
+  assert.equal(new Set(glyphs).size, glyphs.length, `duplicate series glyph: ${glyphs.join(' ')}`);
+  assert.ok(glyphs.length >= loadEngine().BASELINES.length,
+    `${loadEngine().BASELINES.length} baselines but only ${glyphs.length} declared series`);
 });
 
 test('the file is small enough to hand to a classroom', () => {
+  /* The ceiling moved from 250,000 to 290,000 bytes when the laboratory gained its third control.
+     Recorded rather than quietly bumped: the pattern chooser ships six expressions spanning five
+     complexity classes, two of them the expressions from the Stack Overflow and Cloudflare outages
+     with their incident prose; nine named input shapes on the pump model; a measured-degree table;
+     a Background section; and three guided experiments carrying six specified fields each. None of
+     that is fat, and cutting teaching content to hold a round number would have been the wrong
+     trade. What the ceiling is FOR is unchanged — it catches an accidental inlining of something
+     that does not belong in a single-file handout — so it is still a ceiling, and still close. */
   const bytes = Buffer.byteLength(html, 'utf8');
-  assert.ok(bytes < 250000, `${DEMO_HTML} is ${bytes} bytes`);
+  assert.ok(bytes < 290000, `${DEMO_HTML} is ${bytes} bytes`);
   assert.ok(bytes > 30000, `${DEMO_HTML} is only ${bytes} bytes — did it truncate?`);
 });
 
@@ -310,4 +351,305 @@ test('no design token is declared by both the core and this page', () => {
   const shared = [...tokensIn(local)].filter((t) => tokensIn(source).has(t)).sort();
   assert.deepEqual(shared, [], 'declared in both the core and this page — move each one wholly '
     + 'into the core, or wholly into this page in BOTH colour schemes');
+});
+
+/* =================================================================================================
+   THE HOUSE ORDER AND THE COMPLEXITY BUDGET, pinned on the shipped bytes.
+
+   Added in the 261105 reconstruction, and generalised into the house style so that every laboratory
+   carries its own copy rather than one lab holding the control for six. A reconstructed page
+   satisfies the section order on the day it lands, and nothing else in the repository would notice
+   the edit that dissolves it. That edit has a name — "just move the controls up to reduce
+   scrolling" — and it is exactly what the house style records the author WITHDRAWING. It looks like
+   an improvement to anyone who has not read the precedence section, and no other gate sees it.
+   ================================================================================================= */
+
+/** Every `<details>` block in the body, so "primary" can mean "outside all of them". */
+function disclosures() {
+  const body = html.slice(html.indexOf('<body>'));
+  return [...body.matchAll(/<details[\s\S]*?<\/details>/g)].map((m) => m[0]);
+}
+
+function isRelocated(fragment) {
+  return disclosures().some((d) => d.includes(fragment));
+}
+
+/** The document position of the first primary control — the top of the apparatus. */
+function firstControlAt() {
+  const body = html.slice(html.indexOf('<body>'));
+  const positions = ['id="pattern"', 'id="input-shape-select"', 'id="maxlen-range"']
+    .map((f) => body.indexOf(f)).filter((i) => i > 0);
+  assert.equal(positions.length, 3, 'the three controls are not all on the page');
+  return Math.min(...positions);
+}
+
+test('the handout runs in the house section order, with the apparatus below the instruction', () => {
+  const order = [
+    ['the engineering problem', 'id="h-problem"'],
+    ['the background', 'id="h-background"'],
+    ['the model', 'id="h-model-sec"'],
+    ['the numbered procedure', 'id="h-procedure"'],
+    ['the apparatus', 'id="h-controls"'],
+    ['the results', 'id="h-results"'],
+    ['the interpretation', 'id="h-interpretation"'],
+    ['further investigation', 'id="h-further"'],
+  ];
+  let last = -1;
+  let lastName = '(start of document)';
+  for (const [name, anchor] of order) {
+    const at = html.indexOf(anchor);
+    assert.ok(at > 0, `${name} is missing from the page`);
+    assert.ok(at > last, `${name} precedes ${lastName}; the house order is broken`);
+    last = at;
+    lastName = name;
+  }
+  /* And the controls themselves, not merely their heading, sit below all four instructional
+     sections. Asserting the heading alone would pass a page that moved the control panel up and
+     left an empty section behind it. */
+  const body = html.slice(html.indexOf('<body>'));
+  const control = firstControlAt();
+  for (const [name, marker] of order.slice(0, 4)) {
+    assert.ok(body.indexOf(marker) < control, `${name} sits below the first control`);
+  }
+});
+
+test('the primary interface stays inside the complexity budget', () => {
+  const body = html.slice(html.indexOf('<body>'));
+  const ds = disclosures();
+  assert.ok(ds.length >= 4, `only ${ds.length} disclosures; the reference material is not collapsed`);
+
+  /* THREE adjustable engineering parameters, which is what the author specified for this
+     laboratory: the pattern, the input shape, and the pump count. The budget's default maximum is
+     four to five, so three is inside it — and three is the number that makes the principal
+     relationship inspectable rather than the number that fills the range. */
+  const ctlBlocks = (body.match(/<div class="ctl">/g) || []).length
+    - ds.reduce((n, d) => n + (d.match(/<div class="ctl">/g) || []).length, 0);
+  assert.equal(ctlBlocks, 3,
+    `${ctlBlocks} adjustable parameters in the primary interface; this laboratory exposes three`);
+
+  /* The time axis is a DISPLAY control and sits beside Run, not among the parameters. It is still
+     counted by the audit's selector rule — any `.seg` counts — so it is asserted by placement
+     instead: inside the button row, outside every `.ctl`. */
+  const axisAt = body.indexOf('id="scale-seg"');
+  assert.ok(axisAt > 0, 'the time-axis control is missing');
+  const buttonRow = body.slice(body.indexOf('<div class="btn-row">'),
+    body.indexOf('</div>', body.indexOf('id="btn-download"')));
+  assert.ok(buttonRow.includes('id="scale-seg"'),
+    'the time axis is not beside Run; a display control is not an engineering parameter');
+
+  /* THREE principal measurements, plus the model's own figure beside them, clearly labelled as a
+     different plane. */
+  const principal = body.slice(body.indexOf('<div class="principal">'),
+    body.indexOf('id="variability"'));
+  const measured = (principal.match(/class="pcell measure-plane"/g) || []).length;
+  const modelled = (principal.match(/class="pcell model-plane"/g) || []).length;
+  assert.equal(measured, 3, `${measured} principal measurements; the budget is 2 to 3`);
+  assert.equal(modelled, 1, 'the model-derived figure is missing from the results');
+  for (const id of ['id="p-cost"', 'id="p-growth"', 'id="p-stop"', 'id="p-model"']) {
+    assert.ok(principal.includes(id), `the results block omits ${id}`);
+  }
+
+  /* ONE chart in the primary interface. The modelled-candidate chart is the secondary one and
+     belongs behind a disclosure. */
+  assert.equal(isRelocated('id="c-growth"'), false, 'the measured chart is collapsed');
+  assert.ok(isRelocated('id="c-work"'),
+    'the modelled-candidate chart is in the primary interface; it is the secondary visualization');
+
+  /* ONE model figure in the primary interface — the one students manipulate. */
+  const figures = [...body.matchAll(/<svg class="fig"[\s\S]*?<\/svg>/g)].map((m) => m[0]);
+  assert.equal(figures.length, 2, `${figures.length} figures on the page`);
+  const primaryFigures = figures.filter((f) => !ds.some((d) => d.includes(f)));
+  assert.equal(primaryFigures.length, 1,
+    `${primaryFigures.length} model figures in the primary interface; the budget allows one`);
+  assert.ok(primaryFigures[0].includes('id="f1-t"'),
+    'the primary figure is not Figure 1; the backtracking model is what students manipulate');
+
+  /* And zero preset cards competing with the guided experiments: a baseline is loaded from inside
+     the experiment that specifies it, never from a shelf of entry points. */
+  assert.equal(/class="[^"]*\bpreset\b/.test(body), false, 'preset cards are back');
+  assert.equal(/class="[^"]*\bxpsel\b/.test(body), false,
+    'the experiment-selector card grid is back; the three controls replaced it');
+});
+
+test('every relocated control is still ON the page, and still wired to the engine', () => {
+  /* The half of the budget check worth copying. Moving a control behind a disclosure is a
+     presentation change; DELETING one is a change to the model, and the two are indistinguishable
+     in a diff. Without this assertion the budget rewards the wrong one. */
+  for (const [what, marker] of [
+    ['the modelled-candidate chart', 'id="c-work"'],
+    ['the backtracking model body', 'id="model-body"'],
+    ['the model caveat', 'id="model-caveat"'],
+    ['the budget readouts', 'id="b-budget"'],
+    ['the worker counter', 'id="b-workers"'],
+    ['the termination counter', 'id="b-terminated"'],
+    ['the frame counter', 'id="b-frames"'],
+    ['the attack-path figure', 'id="f2-t"'],
+    ['the curated-expression table', 'id="expr-table"'],
+    ['the measured-degree table', 'id="measured-table"'],
+    ['the self-test button', 'id="btn-selftest"'],
+  ]) {
+    assert.ok(html.includes(marker), `${what} was DELETED, not relocated (${marker})`);
+  }
+  /* The interface script must still write to each of them, or the disclosure holds a dead panel. */
+  const ui = html.slice(html.indexOf('<script id="redos-ui">'));
+  for (const id of ['c-work', 'model-body', 'b-budget', 'b-workers', 'b-terminated', 'b-frames',
+    'expr-table', 'measured-table', 'selftest-out']) {
+    assert.ok(ui.includes(`'${id}'`), `${id} is on the page but nothing writes to it`);
+  }
+  /* Every disclosure ships CLOSED, so the collapsed material is collapsed on arrival. */
+  const opened = [...html.matchAll(/<details[^>]*\bopen\b[^>]*>/g)];
+  assert.deepEqual(opened.map((m) => m[0]), [], 'a disclosure ships open');
+});
+
+test('there are three guided experiments, each specifying all six fields and a baseline to load', () => {
+  const cards = [...html.matchAll(/<article class="xp-card"[\s\S]*?<\/article>/g)].map((m) => m[0]);
+  assert.ok(cards.length >= 2 && cards.length <= 3,
+    `${cards.length} guided experiments; the budget is 2 to 3`);
+  assert.equal(cards.length, 3, 'this laboratory ships three');
+  for (const [i, card] of cards.entries()) {
+    for (const field of ['Baseline', 'Change', 'Hold constant', 'Predict', 'Measure', 'Explain']) {
+      assert.ok(card.includes(`<dt>${field}</dt>`),
+        `experiment ${i + 1} does not specify its ${field} field`);
+    }
+    /* A button that loads the baseline, so a student is not reconstructing it by hand from prose. */
+    assert.match(card, /data-baseline="[a-z]+"/,
+      `experiment ${i + 1} offers no baseline to load`);
+  }
+  /* Every baseline a card offers exists in the engine. A card naming a baseline the engine dropped
+     would render a button that does nothing. */
+  const R = loadEngine();
+  const offered = [...html.matchAll(/data-baseline="([a-z]+)"/g)].map((m) => m[1]);
+  assert.ok(offered.length >= 3, `only ${offered.length} baseline buttons`);
+  for (const id of offered) {
+    assert.ok(R.findBaseline(id), `a card offers baseline "${id}", which the engine does not define`);
+  }
+  /* Predict / Run / Explain is named where the student meets the procedure. */
+  assert.match(html, /Method &mdash; predict, run, explain/);
+  /* The three experiments between them must change each of the three controls, or a control is
+     adjustable and unexercised. */
+  assert.ok(cards.some((c) => /<dd>The <strong>input shape<\/strong>/.test(c)),
+    'no experiment changes the input shape');
+  assert.ok(cards.filter((c) => /<dd>The <strong>pattern<\/strong>/.test(c)).length >= 2,
+    'fewer than two experiments change the pattern');
+});
+
+test('the Background section teaches the model and stays inside its word budget', () => {
+  /* 400-600 words, measured on the BACKGROUND SECTION. The budget audit's own column was defined as
+     "prose before the first control" and reported whole-<main> figures instead; the house style was
+     corrected twice on 261105 because that proxy cannot be satisfied alongside the mandatory
+     section order — four sections precede the apparatus by design, so the prose ahead of the
+     controls necessarily includes the model tables and the whole numbered procedure. Nothing caps
+     that. This caps the section the number was always attached to. */
+  const start = html.indexOf('id="h-background"');
+  assert.ok(start > 0, 'there is no Background section');
+  const section = html.slice(start, html.indexOf('</section>', start));
+  const words = section.replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ')
+    .split(/\s+/).filter((w) => /[A-Za-z0-9]/.test(w)).length;
+  assert.ok(words >= 400 && words <= 600,
+    `the Background section is ${words} words; the budget is 400 to 600`);
+  /* It teaches the prerequisites for making a PREDICTION, which for this laboratory means the
+     search, the ambiguity, the failing match, the pump model, the class, and how to read a slope. */
+  for (const phrase of ['backtracking', 'choice point', 'A failing match is the expensive case',
+    'prefix', 'pump', 'suffix', 'complexity class', 'ambiguous repetitions',
+    'its slope', 'automaton']) {
+    assert.ok(section.includes(phrase), `the background never teaches: ${phrase}`);
+  }
+  /* And it does not spend its budget defending the simulation, which belongs in the reference. */
+  for (const defence of ['not calibrated', 'does not establish', 'argue with the model']) {
+    assert.equal(section.includes(defence), false,
+      `the background defends the instrument instead of teaching the model: ${defence}`);
+  }
+});
+
+test('the model section holds the figure, Table 1 and Table 2, inputs apart from outputs', () => {
+  const section = html.slice(html.indexOf('id="h-model-sec"'), html.indexOf('id="h-procedure"'));
+  assert.ok(section.indexOf('id="f1-t"') > 0, 'the model section has no figure');
+  assert.match(section, /Table 1 &mdash; Model parameters/);
+  assert.match(section, /Table 2 &mdash; Observed quantities/);
+  /* Keyed on the heading IDs, not on the strings "Table 1"/"Table 2": the figure's own description
+     points the reader at Table 2 for the measured degrees, so a substring search finds "Table 2"
+     inside the figure and reports the tables as out of order. */
+  assert.ok(section.indexOf('id="h-table1"') < section.indexOf('id="h-table2"'),
+    'the tables are out of order');
+  /* Table 1 holds ONLY the three parameters a student manipulates — not the simulator's full
+     parameter set, which is the encyclopedia the house style sends to the reference. */
+  const table1 = section.slice(section.indexOf('aria-labelledby="h-table1"'),
+    section.indexOf('id="h-table2"'));
+  assert.equal((table1.match(/<th scope="row">/g) || []).length, 3,
+    'Table 1 does not hold exactly the three adjustable parameters');
+  assert.equal((table1.match(/<th scope="col">/g) || []).length, 4,
+    'Table 1 is four columns: parameter, what it is, values, default');
+  assert.ok(table1.includes('Pattern') && table1.includes('Input shape')
+    && table1.includes('Pumps'), 'Table 1 omits one of the three parameters');
+  /* The five-column encyclopedia lives in the reference, and only there. */
+  assert.ok(isRelocated('What changing it does'),
+    'the full parameter encyclopedia is in the primary interface');
+  /* One visible disclaimer, and the assumptions beside the model rather than inside a disclosure. */
+  assert.equal((html.match(/class="lab-disclaimer"/g) || []).length, 1,
+    'there is more than one visible disclaimer');
+  assert.ok(section.includes('class="lab-assumptions"'),
+    'the model assumptions are not beside the model');
+});
+
+test('the figure takes its share by WIDTH, and no rule puts a height ceiling on it', () => {
+  /* Stage A's finding: a `max-height` on an SVG carrying a viewBox letterboxes the drawing instead
+     of cropping it, so every pixel of column width past the ceiling becomes empty margin. That was
+     this family's width defect. The share is set by `width: 78%` on the figure, and nothing may
+     reintroduce a height. */
+  const local = html.slice(html.lastIndexOf('<style>'), html.lastIndexOf('</style>'));
+  assert.match(local, /\.figure-row > \.lab-figure \{ width: 78%/,
+    'the figure does not take 70-80% of the content width');
+  const heightRules = [...local.matchAll(/[^{}]*(?:svg|\.lab-figure|\.fig)[^{}]*\{[^}]*\}/g)]
+    .map((m) => m[0])
+    .filter((rule) => /\b(max-)?height\s*:/.test(rule))
+    .filter((rule) => !/height\s*:\s*auto/.test(rule));
+  assert.deepEqual(heightRules, [],
+    'a height ceiling is back on the figure; set the share with a width');
+  /* The figure's description must be substantial enough to stand in for the drawing. */
+  const start = html.indexOf('id="f1-d"');
+  const description = html.slice(start, html.indexOf('</desc>', start));
+  assert.ok(description.length > 600, `f1-d is only ${description.length} characters`);
+});
+
+test('the measured complexity classes are rendered from engine data, never hand-typed', () => {
+  /* A hand-typed copy of a measured degree in the markup is exactly how a page comes to print a
+     complexity class its own instrument refutes — which is the failure this laboratory exists to
+     make visible, so it must not commit it. The table ships empty and is filled from
+     MEASURED_CLASSES at load. */
+  const table = html.slice(html.indexOf('id="measured-table"'),
+    html.indexOf('</table>', html.indexOf('id="measured-table"')));
+  assert.match(table, /<tbody><\/tbody>/, 'the measured-degree table carries hand-written rows');
+  const R = loadEngine();
+  assert.equal(R.MEASURED_CLASSES.rows.length, R.patternIds().length,
+    'a pattern ships without a measured class');
+  /* The page states the engine the figures came from, because the class belongs to the pattern
+     TOGETHER WITH the engine and a figure without that qualifier is a false generalisation. */
+  assert.match(html, /Measured in V8/);
+  assert.match(html, /an automaton-based engine would answer/);
+  /* And it reports the label that did not survive the measurement, rather than quietly dropping it. */
+  const prose = html.replace(/\s+/g, ' ');
+  assert.match(prose, /Neither is quintic/);
+  assert.match(prose, /is <strong>cubic<\/strong> \(degree 2\.98\)/);
+});
+
+test('the interface distinguishes a single run from an expected result', () => {
+  /* The house style asks for this wherever outcomes vary, and here it has teeth: the page times a
+     real execution on a shared CPU, so there is no seed to fix and two runs of one configuration
+     give two numbers. Three mechanisms, all asserted: every measured cell is labelled as this run,
+     a spread across runs is reported once a second run exists, and the model's expectation sits
+     beside the measurement on a visibly different plane. */
+  const body = html.slice(html.indexOf('<body>'));
+  assert.equal((body.match(/Measured &mdash; this run, this machine/g) || []).length, 3,
+    'a principal measurement is not labelled as a single run on this machine');
+  assert.match(body, /class="plane-kind">Modelled &mdash; derived from the closed form/);
+  assert.ok(body.includes('id="variability"'), 'there is no run-to-run spread region');
+  const ui = html.slice(html.indexOf('<script id="redos-ui">'));
+  assert.match(ui, /function runSpread\(/, 'nothing computes the spread across runs');
+  assert.match(ui, /function recordRunHistory\(/, 'nothing records a run history');
+  assert.match(ui, /do not read a two-run range as a/,
+    'the spread is reported without saying what it is not');
+  /* And the reference says plainly that there is no seed, rather than promising reproducibility the
+     page cannot deliver. */
+  const prose = html.replace(/\s+/g, ' ');
+  assert.match(prose, /There is <strong>no seed<\/strong>, because nothing here is random/);
 });

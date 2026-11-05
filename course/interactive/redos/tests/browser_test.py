@@ -82,6 +82,26 @@ def check_no_console_errors(page, label: str, messages: list[str]) -> None:
     check(f'{label}: no console error', not messages, ' | '.join(messages[:3]) or 'clean')
 
 
+def disclosure(page, element_id: str, is_open: bool) -> None:
+    """Open or close one `<details>` around the checks that need what is inside it.
+
+    Four things the suite drives moved behind disclosures in the 261105 house-order rebuild — the
+    modelled-candidate chart, the backtracking model, the budget counters, and the self-test button
+    — and Playwright cannot click what the page does not render. A timeout there would read as a
+    broken control rather than as a collapsed section, so the suite opens the section explicitly and
+    closes it again, and the budget test in test-packaging.mjs holds every one of them shipping
+    closed.
+    """
+    page.evaluate(
+        """([id, open]) => {
+             const d = document.getElementById(id);
+             if (!d) throw new Error('no disclosure #' + id);
+             d.open = open;
+           }""",
+        [element_id, is_open])
+    page.wait_for_timeout(120)
+
+
 def check_canvases_paint(page, label: str) -> None:
     """Require real ink on each canvas.
 
@@ -91,6 +111,9 @@ def check_canvases_paint(page, label: str) -> None:
     fact carried 20,366 opaque pixels of 257,720; the stride was aliasing against 1-pixel
     horizontal gridlines. Counting every pixel cannot alias.
     """
+    # The modelled-candidate chart is the SECONDARY visualization and ships collapsed; a canvas in
+    # a closed <details> has no layout box and paints nothing, which is not a defect.
+    disclosure(page, 'model-detail', True)
     painted = page.evaluate("""() => ['c-growth','c-work'].map(id => {
       const c = document.getElementById(id);
       if (!c) return [id, -1, 0];
@@ -103,6 +126,7 @@ def check_canvases_paint(page, label: str) -> None:
         frac = opaque / total if total else 0
         check(f'{label}: canvas #{canvas_id} painted', opaque > 500,
               f'{opaque} opaque of {total} px ({frac:.1%})')
+    disclosure(page, 'model-detail', False)
 
 
 def check_download_control(page, label: str) -> None:
@@ -125,11 +149,14 @@ def check_self_tests(page, label: str) -> None:
 # --------------------------------------------------------------------------------------------- #
 
 def frames(page) -> int:
-    return int(page.inner_text('#b-frames').replace(',', ''))
+    # The budget counters moved behind a disclosure in the house-order rebuild; `inner_text` returns
+    # '' for a collapsed <details>, so the readers open it. Read via textContent through the DOM
+    # rather than opening and closing it on every sample, which would be 60 mutations per run.
+    return int(page.eval_on_selector('#b-frames', 'e => e.textContent').replace(',', ''))
 
 
 def counter(page, element_id: str) -> int:
-    return int(page.inner_text(element_id).replace(',', ''))
+    return int(page.eval_on_selector(element_id, 'e => e.textContent').replace(',', ''))
 
 
 def check_budget_terminates_and_recovers(page) -> None:
@@ -145,7 +172,7 @@ def check_budget_terminates_and_recovers(page) -> None:
     workers_before = counter(page, '#b-workers')
     kills_before = counter(page, '#b-terminated')
 
-    page.click('button.xpsel[data-xp="exponential"]')
+    page.click('button[data-baseline="exponential"]')
     frames_before = frames(page)
     page.click('#btn-run-longest')
 
@@ -179,7 +206,7 @@ def check_budget_terminates_and_recovers(page) -> None:
           ' / '.join(times))
 
     # RECOVERY. The worker was destroyed; the next run must get a fresh one and complete.
-    page.click('button.xpsel[data-xp="ordinary"]')
+    page.click('button[data-baseline="ordinary"]')
     page.click('#btn-run')
     page.wait_for_function(
         "() => document.getElementById('status-text').textContent.toLowerCase()"
@@ -198,7 +225,7 @@ def check_budget_halt_on_the_ladder(page) -> None:
     """The other halt reason: the engine's own between-executions budget, which must stop the climb
     and SAY where, rather than carrying on into ever more expensive lengths."""
     page.click('#btn-reset')
-    page.click('button.xpsel[data-xp="quadratic"]')
+    page.click('button[data-baseline="quadratic"]')
     page.evaluate("""() => {
       const el = document.getElementById('maxlen');
       el.value = el.max;
@@ -222,7 +249,7 @@ def check_safe_alternative_survives_the_same_input(page) -> None:
     """The headline comparison, driven rather than asserted in prose: experiment 4 runs the SAME
     longest input that killed experiment 2, and completes."""
     page.click('#btn-reset')
-    page.click('button.xpsel[data-xp="safe"]')
+    page.click('button[data-baseline="safe"]')
     # The termination counter is cumulative for the session, by design — "how often did the page
     # have to destroy a worker" is a session fact. So assert the DELTA, not the absolute.
     kills_before = counter(page, '#b-terminated')
@@ -244,27 +271,246 @@ def check_safe_alternative_survives_the_same_input(page) -> None:
 # controls
 # --------------------------------------------------------------------------------------------- #
 
-def check_experiment_selector(page) -> None:
-    buttons = page.eval_on_selector_all('.xpsel', 'b => b.length')
-    check('controls: four experiment buttons', buttons == 4, str(buttons))
-    for slug, expression in (('ordinary', '/^.*\\s+$/'), ('quadratic', '/^.*\\s+$/'),
-                             ('exponential', '/^(a+)+$/'),
-                             ('safe', '/^.*[^\\s]\\s+$|^\\s+$/')):
-        page.click(f'button.xpsel[data-xp="{slug}"]')
+def check_three_controls(page) -> None:
+    """The three adjustable parameters: the pattern, the input shape, and the pump count.
+
+    Replaces the four-card experiment selector the page carried before the 261105 rebuild. The
+    author specified these three, so what is checked is that each of them MOVES the measurement and
+    that the two choosers cannot be put into a combination the engine refuses.
+    """
+    patterns = page.eval_on_selector_all('#pattern option', 'o => o.map(x => x.value)')
+    engine_patterns = page.evaluate('() => window.ReDoS.patternIds()')
+    check('controls: the pattern chooser offers every curated pattern',
+          sorted(patterns) == sorted(engine_patterns), f'{len(patterns)} options')
+    check('controls: the chooser spans five complexity classes',
+          page.eval_on_selector_all('#pattern optgroup', 'g => g.length') == 5,
+          str(page.eval_on_selector_all('#pattern optgroup', 'g => g.map(x => x.label)')))
+
+    # Each option names its MEASURED degree, so the class is on the control rather than in prose.
+    labelled = page.eval_on_selector_all(
+        '#pattern option', 'o => o.filter(x => /measured/.test(x.textContent)).length')
+    check('controls: every pattern option states its measured degree',
+          labelled == len(patterns), f'{labelled} of {len(patterns)}')
+
+    for pattern_id in engine_patterns:
+        page.select_option('#pattern', pattern_id)
+        page.wait_for_timeout(120)
         shown = page.inner_text('#expr-source')
-        check(f'controls: selecting {slug} shows its expression', shown == expression, shown)
-        pressed = page.eval_on_selector_all(
-            '.xpsel', 'b => b.filter(x => x.getAttribute("aria-pressed") === "true").length')
-        check(f'controls: exactly one experiment is pressed after choosing {slug}',
-              pressed == 1, str(pressed))
+        expected = page.evaluate(
+            '(id) => window.ReDoS.EXPRESSIONS[id].display', pattern_id)
+        check(f'controls: selecting {pattern_id} shows its expression', shown == expected, shown)
+        klass = page.inner_text('#pattern-class')
+        check(f'controls: {pattern_id} states a measured class', 'Measured:' in klass, klass[:60])
+
+        # The input chooser follows the pattern: every offered shape is one the engine allows, and
+        # the two controls can never present a pair `findExperiment` would throw on.
+        offered = page.eval_on_selector_all(
+            '#input-shape-select option', 'o => o.map(x => x.value)')
+        allowed = page.evaluate('(id) => window.ReDoS.inputsForPattern(id)', pattern_id)
+        check(f'controls: the input chooser follows {pattern_id}', offered == allowed,
+              f'{offered} vs {allowed}')
+        check(f'controls: {pattern_id} offers an attack shape and a benign control',
+              page.eval_on_selector_all(
+                  '#input-shape-select option',
+                  'o => new Set(o.map(x => /attack/.test(x.textContent))).size') == 2,
+              str(offered))
+
+    # The input shape is reported in WORDS beside the control, not by colour alone.
+    page.select_option('#pattern', 'trimLike')
+    page.select_option('#input-shape-select', 'whitespaceRun')
+    page.wait_for_timeout(120)
+    check('controls: an attack shape says so in words',
+          'adversary-chosen' in page.inner_text('#input-kind').lower(),
+          page.inner_text('#input-kind'))
+    page.select_option('#input-shape-select', 'prose')
+    page.wait_for_timeout(120)
+    check('controls: a benign shape says so in words',
+          'control' in page.inner_text('#input-kind').lower(),
+          page.inner_text('#input-kind'))
+    check('controls: the generated input follows the input shape',
+          'ordinary text' in page.inner_text('#input-shape'),
+          page.inner_text('#input-shape')[:60])
+
+    # An impossible pair is unreachable through the interface: switching to a pattern that does not
+    # offer the current shape falls back to one it does, rather than leaving a combination the
+    # engine would refuse.
+    page.select_option('#pattern', 'nestedQuant')
+    page.wait_for_timeout(150)
+    current = page.input_value('#input-shape-select')
+    allowed = page.evaluate('() => window.ReDoS.inputsForPattern("nestedQuant")')
+    check('controls: switching pattern repairs an impossible input pair',
+          current in allowed, f'{current} in {allowed}')
+    errors = page.evaluate("""() => {
+      try { window.ReDoS.findExperiment({ patternId: 'nestedQuant', inputId: 'withEquals' });
+            return 'accepted an impossible pair'; }
+      catch (e) { return 'refused'; }
+    }""")
+    check('controls: and the engine refuses one anyway', errors == 'refused', errors)
+
+
+def check_baseline_buttons(page) -> None:
+    """Each guided experiment loads its own baseline into the three controls."""
+    buttons = page.eval_on_selector_all('button[data-baseline]', 'b => b.map(x => x.dataset.baseline)')
+    check('experiments: every guided experiment offers a baseline button',
+          len(buttons) >= 3, str(buttons))
+    for baseline in buttons:
+        page.click(f'button[data-baseline="{baseline}"]')
+        page.wait_for_timeout(150)
+        want = page.evaluate('(id) => window.ReDoS.findBaseline(id)', baseline)
+        got = page.evaluate("""() => ({
+          pattern: document.getElementById('pattern').value,
+          input: document.getElementById('input-shape-select').value,
+          pumps: Number(document.getElementById('maxlen').value),
+        })""")
+        check(f'experiments: baseline {baseline} loads all three controls',
+              got['pattern'] == want['patternId'] and got['input'] == want['inputId']
+              and got['pumps'] == want['pumps'], f'{got} vs {want}')
         state = page.eval_on_selector(
-            f'button.xpsel[data-xp="{slug}"] .xstate', 'e => e.textContent')
-        check(f'controls: {slug} says "selected" in words, not only by colour',
-              state == 'selected', state)
+            f'button[data-baseline="{baseline}"] .bstate', 'e => e.textContent')
+        check(f'experiments: baseline {baseline} says "loaded" in words, not only by colour',
+              state == 'loaded', state)
+
+
+def check_measured_class_table(page) -> None:
+    """The measured degrees are rendered from engine data, and the labels agree with them."""
+    rows = page.eval_on_selector_all('#measured-table tbody tr', 'r => r.length')
+    engine_rows = page.evaluate('() => window.ReDoS.MEASURED_CLASSES.rows.length')
+    check('measurement: the measured-degree table is filled from the engine',
+          rows == engine_rows and rows > 0, f'{rows} rows')
+    disagreements = page.evaluate("""() => {
+      const R = window.ReDoS;
+      return R.patternIds().filter(p =>
+        R.measuredClass(p).label !== R.EXPRESSIONS[p].complexityClass);
+    }""")
+    check('measurement: every advertised class is the class that was measured',
+          disagreements == [], str(disagreements))
+
+
+def check_complexity_ladder_is_measurable(page) -> None:
+    """The laboratory's thesis, driven: a higher class measures a higher degree, in this browser.
+
+    This is the one check that exercises the principal relationship end to end rather than checking
+    that a control moved. It runs three patterns of ascending declared degree on their attack shapes
+    and requires the MEASURED exponents to ascend too. The tolerance is wide on purpose — a degree
+    measured over a finite ladder approaches its asymptote from below, and the number depends on the
+    machine's load — so what is asserted is the ORDER, which is the claim the page makes, and not a
+    value, which would be a claim about this laboratory's CPU.
+    """
+    page.click('#btn-reset')
+    page.wait_for_timeout(200)
+    measured = {}
+    for pattern_id, input_id in (('forcedSplit', 'whitespaceRun'),
+                                 ('trimLike', 'whitespaceRun'),
+                                 ('cloudflareGroup', 'whitespaceNoEquals')):
+        page.select_option('#pattern', pattern_id)
+        page.wait_for_timeout(120)
+        page.select_option('#input-shape-select', input_id)
+        page.wait_for_timeout(120)
+        page.click('#btn-run')
+        page.wait_for_function(
+            "() => !/running/i.test(document.getElementById('status-text').textContent)",
+            timeout=90000)
+        page.wait_for_timeout(200)
+        fit = page.evaluate("""() => {
+          const R = window.ReDoS;
+          const id = document.getElementById('pattern').value + '.'
+                   + document.getElementById('input-shape-select').value;
+          return R.observedScaling(R.sweepSummary(window.__sweep || {results:[],lengths:[],status:'ready'}).points);
+        }""")
+        shown = page.inner_text('#p-growth')
+        measured[pattern_id] = shown
+        check(f'ladder: {pattern_id} reports a growth figure', shown not in ('—', ''), shown)
+
+    def degree(text: str) -> float:
+        if text.startswith('n^'):
+            return float(text[2:])
+        return 99.0          # an exponential reading sorts above every polynomial one
+
+    linear = degree(measured['forcedSplit'])
+    quadratic = degree(measured['trimLike'])
+    quartic = degree(measured['cloudflareGroup'])
+    check('ladder: the measured degrees ascend with the declared complexity class',
+          linear < quadratic < quartic,
+          f"linear {measured['forcedSplit']} < quadratic {measured['trimLike']}"
+          f" < quartic {measured['cloudflareGroup']}")
+    check('ladder: the linear pattern measures close to degree 1',
+          0.5 < linear < 1.6, measured['forcedSplit'])
+    check('ladder: the quartic pattern measures above degree 3',
+          quartic > 3.0, measured['cloudflareGroup'])
+
+
+def check_run_to_run_spread(page) -> None:
+    """A single run is distinguished from an expected result — live, not vacuously.
+
+    The page times a real execution on a shared CPU, so there is no seed to fix. What it offers
+    instead is a spread across runs of one configuration, and this check requires that the spread
+    appears only once a second run exists and that it names what it is not.
+    """
+    page.click('#btn-reset')
+    page.wait_for_timeout(200)
+    page.click('button[data-baseline="quadratic"]')
+    page.wait_for_timeout(150)
+    before = page.inner_text('#variability')
+    check('variability: before a second run the page explains that it has no seed',
+          'no seed to fix' in before, before[:80])
+
+    for _ in range(2):
+        page.click('#btn-run')
+        page.wait_for_function(
+            "() => !/running/i.test(document.getElementById('status-text').textContent)",
+            timeout=90000)
+        page.wait_for_timeout(200)
+
+    after = page.inner_text('#variability')
+    check('variability: two runs report a median and a range', '2 runs at' in after
+          and 'median' in after and 'range' in after, after[:120])
+    check('variability: and say it is not a confidence interval',
+          'confidence interval' in after, after[-90:])
+    check('variability: every principal measurement is labelled as one run on this machine',
+          page.eval_on_selector_all(
+              '.pcell .plane-kind',
+              'e => e.filter(x => /this run, this machine/.test(x.textContent)).length') == 3,
+          str(page.eval_on_selector_all('.pcell .plane-kind', 'e => e.map(x => x.textContent)')))
+    check('variability: the modelled figure is on a visibly different plane',
+          page.eval_on_selector_all('.pcell.model-plane', 'e => e.length') == 1
+          and 'never measured' in page.inner_text('#p-model-note'),
+          page.inner_text('#p-model-note')[:70])
+
+
+def check_house_order_on_the_page(page) -> None:
+    """The apparatus renders BELOW the instructional material, measured as document geometry.
+
+    test-packaging.mjs pins the source order; this pins the RENDERED order, because a CSS change
+    (an `order`, a `position`, a grid placement) can move the controls above the model without
+    touching the markup the other check reads.
+    """
+    tops = page.evaluate("""() => {
+      const at = (sel) => {
+        const el = document.querySelector(sel);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return r.top + window.scrollY;
+      };
+      return {
+        problem: at('#h-problem'), background: at('#h-background'), model: at('#h-model-sec'),
+        procedure: at('#h-procedure'), figure: at('#h-model-sec ~ * svg.fig, .figure-row svg.fig'),
+        control: at('#pattern'), results: at('#h-results'),
+        interpretation: at('#h-interpretation'), further: at('#h-further'),
+      };
+    }""")
+    sequence = ['problem', 'background', 'model', 'figure', 'procedure', 'control', 'results',
+                'interpretation', 'further']
+    missing = [name for name in sequence if tops.get(name) is None]
+    check('house order: every section renders', not missing, ', '.join(missing) or 'all present')
+    if missing:
+        return
+    ordered = all(tops[a] < tops[b] for a, b in zip(sequence, sequence[1:]))
+    check('house order: the apparatus renders below the instruction', ordered,
+          ' < '.join(f'{n}@{int(tops[n])}' for n in sequence))
 
 
 def check_length_control(page) -> None:
-    page.click('button.xpsel[data-xp="quadratic"]')
+    page.click('button[data-baseline="quadratic"]')
     page.evaluate("""() => {
       const el = document.getElementById('maxlen-range');
       el.value = '4000';
@@ -276,14 +522,14 @@ def check_length_control(page) -> None:
           '4,001 characters' in page.inner_text('#input-len'), page.inner_text('#input-len'))
 
     # The two families have ranges three orders of magnitude apart; the control must follow.
-    page.click('button.xpsel[data-xp="exponential"]')
+    page.click('button[data-baseline="exponential"]')
     bounds = page.evaluate("""() => {
       const el = document.getElementById('maxlen');
       return [Number(el.min), Number(el.max)];
     }""")
     check('controls: the slider range follows the experiment family',
           bounds[1] <= 40, f'exponential bounds {bounds}')
-    page.click('button.xpsel[data-xp="quadratic"]')
+    page.click('button[data-baseline="quadratic"]')
     wide = page.evaluate("() => Number(document.getElementById('maxlen').max)")
     check('controls: and widens again for the whitespace family', wide >= 10000, str(wide))
 
@@ -343,6 +589,10 @@ def check_mitigations(page) -> None:
 
 
 def check_backtracking_model_is_labelled(page) -> None:
+    # The whole backtracking model is reference material and ships collapsed, so the caveat is read
+    # with its disclosure open. `inner_text` returns '' for a collapsed <details>, which would have
+    # read as a missing caveat rather than as a closed section.
+    disclosure(page, 'model-detail', True)
     caveat = page.inner_text('#model-caveat')
     check('model: the diagram is labelled a model and not a trace',
           'conceptual model of backtracking' in caveat and 'not a trace' in caveat,
@@ -350,16 +600,27 @@ def check_backtracking_model_is_labelled(page) -> None:
     check('model: it says the engine may optimise candidates away',
           'optimise some away' in caveat, 'present')
 
-    page.click('button.xpsel[data-xp="exponential"]')
+    page.click('button[data-baseline="exponential"]')
     rows = page.eval_on_selector_all('#model-body .decomp', 'r => r.length')
     check('model: the exponential diagram enumerates divisions', rows >= 8, f'{rows} rows')
     groups = page.eval_on_selector_all(
         '#model-body .decomp:first-child .grp', 'g => g.map(x => x.textContent).join("|")')
     check('model: the first division is the single whole group', groups == 'aaaaa', str(groups))
 
-    page.click('button.xpsel[data-xp="quadratic"]')
+    page.click('button[data-baseline="quadratic"]')
     rows = page.eval_on_selector_all('#model-body .scan-row', 'r => r.length')
     check('model: the quadratic diagram enumerates stopping points', rows >= 8, f'{rows} rows')
+
+    # The closed form follows the pattern's degree, so the cubic and quartic patterns must report
+    # their own formula rather than the quadratic one.
+    for pattern_id, formula in (('cloudflareFragment', 'n(n+1)(n+2)/6'),
+                                ('cloudflareGroup', 'n(n+1)(n+2)(n+3)/24')):
+        page.select_option('#pattern', pattern_id)
+        page.wait_for_timeout(150)
+        shown = page.inner_text('#model-count')
+        check(f'model: {pattern_id} reports its own closed form', formula in shown, shown[:90])
+    page.click('button[data-baseline="quadratic"]')
+    disclosure(page, 'model-detail', False)
 
 
 def check_keyboard(page) -> None:
@@ -469,8 +730,13 @@ def suite(browser, url: str, label: str, deep: bool) -> None:
     check_self_tests(page, label)
 
     if deep:
-        check_experiment_selector(page)
+        check_three_controls(page)
+        check_baseline_buttons(page)
+        check_measured_class_table(page)
+        check_house_order_on_the_page(page)
         check_length_control(page)
+        check_complexity_ladder_is_measurable(page)
+        check_run_to_run_spread(page)
         check_backtracking_model_is_labelled(page)
         check_mitigations(page)
         check_budget_terminates_and_recovers(page)
