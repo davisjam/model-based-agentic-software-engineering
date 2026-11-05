@@ -711,6 +711,27 @@ re-deriving these, so they live here:**
   found. **Prove it is orphaned before removing it** — `lsof "$G/index.lock"` returning no holders,
   no `git merge|commit|stash` in `ps`, a stale mtime, and 0 bytes meaning it was never written. A
   lock a LIVE process holds is doing its job; deleting that one corrupts a real operation.
+  - **The LIVE-lock case is far more common, and the fix is a retry loop — `git` refuses rather than
+    queues.** `git commit` does not wait for a held `index.lock`; it exits **128** immediately with
+    *"Another git process seems to be running"*. With several agents committing in one checkout that
+    is the normal case, not an incident, and **exit 128 here means "try again", not "something is
+    wrong"** — the message's own suggestion to remove the file manually is advice for the stale case
+    and is destructive in this one. The hook makes it worse by running for minutes, so a commit holds
+    the lock far longer than the write itself takes. Wait for the lock to clear, then commit, and
+    bound the whole thing:
+
+        G=$(git rev-parse --git-dir)   # a submodule's .git is a FILE; resolve it, per above
+        for a in 1 2 3 4 5 6; do
+          for i in $(seq 1 60); do [ ! -f "$G/index.lock" ] && break; sleep 10; done
+          git status --porcelain | grep -q '^D' && { echo "staged deletion - stop"; break; }
+          timeout 540 git commit -F msg.txt -- <paths> && break
+        done
+
+    Then **verify by content, never by the exit code** — `git show --stat HEAD` plus a clean
+    `git status --porcelain -- <paths>`. Run six times on 261105 across CLAUDE.md, the lab style
+    guide and two deck imports; the first bare attempt failed at exit 128 while the tree was
+    perfectly healthy. Agent briefs should say this outright, or an agent reads 128 as a real failure
+    and either gives up with work uncommitted or starts deleting locks.
 
 - **A push refused by the PDF gate is usually the BLANK-PAGE RATCHET, and it fires on ordinary
   end-of-division pages. Measured TWICE in one session, 261014.** The pre-push hook runs
