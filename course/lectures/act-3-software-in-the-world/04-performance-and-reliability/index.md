@@ -25,6 +25,14 @@ materials:
     src: 3-4-Performance-and-Reliability-1-Performance-Engineering.pptx
   - title: "Lecture 2 slides — Performance and Reliability: Reliability Engineering"
     src: 3-4-Performance-and-Reliability-2-Reliability-Engineering.pptx
+labs:
+  - title: The Performance Knee
+    slug: performance-knee
+    about: >
+      Vary the arrival rate, the service capacity, and the service-time variability, then compare the
+      measured queue against the M/M/1 and M/D/1 predictions. Utilization is the control to push: the
+      queue grows long before the resource runs out of average capacity, and the two predictions
+      separate as the variability changes.
 ---
 
 **Premise.** *Functional correctness does not establish that a system will behave acceptably under load or preserve its obligations when components fail. Engineers must model the workloads and failures the system will meet, decide what behavior is acceptable, and obtain evidence that the implementation delivers it.*
@@ -69,7 +77,7 @@ A workload model is a purposeful reduction, not a transcript of user behavior. A
 
 The result to carry away is not the formula but what it demonstrates: a resource can have ample average capacity while having almost none left to absorb variation. Random bursts create queues even when average arrivals stay below capacity, and higher utilization means longer drains. Strictly, the curve has no mathematically distinguished knee. Response time diverges as utilization approaches 100%, and the engineer picks an operational threshold from the latency requirement and the workload's variability. Real systems need not satisfy the four assumptions, and a model applied outside them predicts confidently and wrongly.
 
-**Interactive exercise: [The Performance Knee](../../../interactive/performance-knee/index.html).** Vary the arrival rate, the service capacity, and the service-time variability, then compare the measured queue against the M/M/1 and M/D/1 predictions.
+To practice this, see {lab:performance-knee}.
 
 ## Finding bottlenecks
 

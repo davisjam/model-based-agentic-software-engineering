@@ -28,6 +28,17 @@ status: draft
 materials:
   - title: "Lecture slides — Compute Environments & Deployment"
     src: 3-1-Compute-Environments-and-Deployment.pptx
+labs:
+  - title: The Release Factory
+    slug: release-factory
+    about: >
+      The release decision, run as a pipeline you parameterize. You set the build and test lanes, the
+      release slots, the defect and flaky-test rates, and the monitoring quality, then choose a canary
+      share and soak time or a blue-green verification, and read back all four delivery metrics:
+      deployment frequency, lead time, change failure rate, and time to restore. The engine is seeded,
+      so each run reproduces and a change in the numbers is a change you caused. Turn the monitoring
+      quality down and watch the canary stop reporting. The exposure control still works; nothing comes
+      back to act on. That is the fourth step failing while the third still looks healthy.
 ---
 
 **Premise.** *Software executes in compute environments with different capabilities and constraints. Engineering requires understanding those constraints, representing how software components are assigned to computing resources, and controlling the process by which an implementation becomes a running system.*
@@ -100,7 +111,7 @@ The strategies differ; the release decision does not:
 
 The fourth step is what makes the third worth doing. A canary nobody watches exposes a fraction of users to a defect and reports nothing back.
 
-[**The Release Factory**](../../../interactive/release-factory/index.html) runs that decision as a pipeline you parameterize. You set the build and test lanes, the release slots, the defect and flaky-test rates, and the monitoring quality, then choose a canary share and soak time or a blue-green verification, and read back all four delivery metrics: deployment frequency, lead time, change failure rate, and time to restore. The engine is seeded, so each run reproduces and a change in the numbers is a change you caused. Turn the monitoring quality down and watch the canary stop reporting. The exposure control still works; nothing comes back to act on. That is the fourth step failing while the third still looks healthy.
+To practice this, see {lab:release-factory}.
 
 ## Evidence and control
 

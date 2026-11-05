@@ -87,6 +87,12 @@ plugins:
   - awesome-pages   # nav follows the course/ tree + .pages titles; add a lecture, it appears (no config edit)
 
 hooks:
+  # ORDER IS THE CONTRACT for the three tail sections. Each one APPENDS its section to the markdown, so
+  # the registration order below is the order they render: body -> Labs -> Materials -> Readings. Labs
+  # leads because the instruments are the thing a student is sent to do; moving a line here moves the
+  # section on every unit page. Verify a reordering on a BUILT page — the source order and the rendered
+  # order are easy to get out of step.
+  - hooks/labs.py        # render a "Labs" section + nest each lab under its unit in the nav, from `labs:` front matter
   - hooks/materials.py   # render a "Materials" section (links to pptx / typst / pdf) from `materials:` front matter
   - hooks/readings.py    # render per-module "Readings" from `readings:` front matter + the auto-gen Reading Guide
   - hooks/modules.py     # resolve {module:Title} tokens (e.g. on the Calendar) to links, derived from module front matter

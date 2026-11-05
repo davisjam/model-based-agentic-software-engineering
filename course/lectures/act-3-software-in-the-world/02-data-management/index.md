@@ -24,6 +24,24 @@ status: draft
 materials:
   - title: "Lecture slides — Data Management"
     src: 3-2-Data-Management.pptx
+labs:
+  - title: The Cost of Storing Information
+    slug: storage-cost
+    about: >
+      A six-minute instrument for the normalization decision. The same reservations are written three
+      ways — normalized tables, a denormalized table, and one document per room — and you set the room
+      count, the reservations per room, and the size of a room's metadata, a reservation, and an
+      identifier. Then rename a room and count the records that must change: one, many, or one. The
+      nested-document case is the one to watch, because it stores each room's facts once and so
+      duplicates no more than the normalized tables do. Document storage does not imply
+      denormalization; the representation decides which facts are copied.
+  - title: The N+1 Trap
+    slug: n-plus-one
+    about: >
+      A five-minute instrument for watching a correct program issue 201 queries. The three-line loop
+      stays fixed while you change the loading strategy, the cache, and how many distinct rooms the
+      reservations share; the query timeline shows why two hundred individually cheap queries are
+      expensive. Predict the count before each run.
 ---
 
 **Premise.** *Applications execute in processes that start, stop, and change. The information they manage may need to persist independently. Engineers must decide how that information is represented, accessed, and protected, then obtain evidence that the chosen mechanisms provide the required guarantees at an acceptable cost.*
@@ -72,7 +90,7 @@ The distinction is not simply relational versus NoSQL. NoSQL describes a broad c
 
 A second representation decision concerns normalization. The relational panel stores each room fact once, so renaming a room updates one record. Copying that name into every reservation can simplify selected reads, but every copy must then be kept consistent when the name changes.
 
-[**The Cost of Storing Information**](../../../interactive/storage-cost/index.html) is a six-minute instrument for that decision. The same reservations are written three ways — normalized tables, a denormalized table, and one document per room — and you set the room count, the reservations per room, and the size of a room's metadata, a reservation, and an identifier. Then rename a room and count the records that must change: one, many, or one. The nested-document case is the one to watch, because it stores each room's facts once and so duplicates no more than the normalized tables do. Document storage does not imply denormalization; the representation decides which facts are copied.
+To practice this, see {lab:storage-cost}.
 
 ## Accessing data
 
@@ -88,7 +106,7 @@ Application-level access patterns matter as well, and the order of operations is
 
 Whether it occurs is a property of the configuration rather than of lazy loading as such. If those 200 reservations reference only ten rooms and an ORM identity map holds each one after its first access, eleven queries suffice. If every reservation references a different room, no cache helps and the 201 queries return.
 
-[**The N+1 Trap**](../../../interactive/n-plus-one/index.html) is a five-minute instrument for observing that. The three-line loop stays fixed while you change the loading strategy, the cache, and how many distinct rooms the reservations share; the query timeline shows why two hundred individually cheap queries are expensive. Predict the count before each run.
+To practice this, see {lab:n-plus-one}.
 
 The program may be functionally correct while its database access pattern is unnecessarily expensive, and query plans, generated SQL, and runtime measurements are the evidence that application source code alone cannot supply.
 
