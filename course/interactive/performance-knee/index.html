@@ -51,9 +51,10 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is a local family extension: the set has no amber, and the exercises need an
-   approaching-capacity signal distinct from both green and red. It is a warm ochre rather than a
-   traffic-light yellow so it sits inside the warm palette.
+   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
+   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
+   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
+   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -66,7 +67,6 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
-  --warn: #9a6500;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -87,7 +87,6 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
-    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -194,11 +193,13 @@ footer {
 :root {
   --model: #1f6fae;
   --model-fill: #eef4fb;
+  --warn: #9a6500;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --model: #5f9fd4;
     --model-fill: #12202c;
+    --warn: #d2a24a;
   }
 }
 
@@ -380,8 +381,9 @@ kbd {
   padding: 0.05rem 0.35rem; background: var(--paper);
 }
 
-/* Reduced motion: honour the OS preference by default, and let the reader force it. The simulator
-   has no decorative animation to disable — what the mode changes is the ARRIVAL FLASH on the queue
+/* Reduced motion. The shared core turns transitions and animations off outright; this page
+   honours the OS preference by default and lets the reader force it as well. The simulator has
+   no decorative animation to disable — what the mode changes is the ARRIVAL FLASH on the queue
    diagram and the redraw cadence, so the picture stops shimmering. The simulation itself is
    untouched: simulated time never depends on how often we draw. */
 </style>

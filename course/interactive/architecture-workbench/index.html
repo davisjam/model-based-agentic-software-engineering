@@ -65,7 +65,160 @@
 <meta name="description" content="An interactive restructuring-decision exercise: one reservation service, three candidate architectures, five change scenarios, an architectural-rule editor, and a horizon cost model whose implementation term you can drive to a hundredth. Costs are assumptions, not measurements.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Crect x='6' y='1.5' width='4' height='3' fill='%231f6fae'/%3E%3Crect x='1.5' y='11.5' width='4' height='3' fill='%239a3f12'/%3E%3Crect x='10.5' y='11.5' width='4' height='3' fill='%235b6b7a'/%3E%3Cpath d='M8 4.5v3.5M8 8h-4.5v3.5M8 8h4.5v3.5' stroke='%231c1917' stroke-width='1' fill='none'/%3E%3C/svg%3E">
 <style>
+/* ===== GENERATED from course/interactive/_shared/instrument-core.css by sync_css.py — do not edit
+   here; edit the source and re-run the sync. A parity test in tests/test-packaging.mjs holds
+   this copy byte-equal to the source. ===== */
+/* instrument-core.css — the styling the six interactive laboratories share, held in one place.
+ *
+ * A rule belongs here when it is byte-identical in all six shipped pages. Everything else stays in
+ * the exercise's own style element, which the sync places AFTER this one, so a local rule wins a
+ * tie against a core rule at equal specificity. The rules keep the relative order they held in all
+ * six pages before extraction, which is what makes a change here a styling change and not a cascade
+ * reshuffle. Authoring discipline, and what deliberately stayed local: _shared/README.md.
+ *
+ * Licence: CC BY 4.0, (c) James C. Davis. See the course LICENSE.
+ */
+
+/* --- design tokens ---------------------------------------------------------------------------
+   The MAGE family token set (book-models/design-tokens.json): warm paper ground, near-black ink,
+   burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
+   these pages — every state also carries a word and a glyph.
+
+   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
+   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
+   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
+   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   -------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+/* --- document --------------------------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ----------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.gold-rule { height: 4px; background: var(--gold); }
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels and the two-column grid ----------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+/* The column TEMPLATE at this breakpoint differs per exercise and stays local. Only the panel's
+   margin reset is shared. */
+@media (min-width: 1100px) {
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls and buttons --------------------------------------------------------------------- */
+/* `.seg`, `.seg button`, `.ctl`, `.ctl-row` and `.btn-row` differ between exercises and stay local.
+   These four do not, and each outranks its local base rule on specificity, so the split changes
+   nothing about which declaration wins. */
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+/* --- links, footer, and the screen-reader-only utility ----------------------------------------- */
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* --- reduced motion ---------------------------------------------------------------------------
+   `!important` carries this regardless of where it lands in the cascade, which is why moving it
+   ahead of every local rule is safe. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+/* ===== end generated core ===== */
+</style>
+<style>
 /* ---------------------------------------------------------------------------------------------
+   THIS EXERCISE'S OWN STYLING. The block above holds what all six interactive laboratories
+   share — the family tokens, the page frame, panels, buttons, the footer. Edit that in
+   course/interactive/_shared/instrument-core.css and re-run the sync, never here.
+
    Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
    instrument matches the rest of the site and its sibling simulators: warm paper ground, near-black
    ink, burnt-umber accent, Purdue-gold rule under the header.
@@ -85,87 +238,23 @@
    table, so nothing on the canvas is the only way to read the state.
    --------------------------------------------------------------------------------------------- */
 :root {
-  --ink: #1c1917;
-  --paper: #fdfcf9;
-  --panel: #f6f4ef;
-  --panel-2: #efece4;
-  --rule: #e4e0d8;
-  --muted: #57534e;
-  --accent: #9a3f12;
-  --gold: #ceb888;
   --must: #9a3f12;
   --must-fill: #f7ece4;
   --maybe: #1f6fae;
   --maybe-fill: #eef4fb;
   --refs: #5b6b7a;
-  --ok: #15803d;
-  --ok-fill: #eef7ee;
   --warn: #9a6500;
-  --warn-fill: #fbf2e0;
-  --bad: #b23b3b;
-  --bad-fill: #fbeaea;
-  --grid: #ddd8cf;
-  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
-  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
-  --radius: 3px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #ece7df;
-    --paper: #17130f;
-    --panel: #211a13;
-    --panel-2: #2a2219;
-    --rule: #3a3128;
-    --muted: #a69c8f;
-    --accent: #d98a5c;
     --must: #d98a5c;
     --must-fill: #33210f;
     --maybe: #5f9fd4;
     --maybe-fill: #12202c;
     --refs: #8fa3b5;
-    --ok: #52b183;
-    --ok-fill: #14231b;
     --warn: #d2a24a;
-    --warn-fill: #2a2012;
-    --bad: #e08080;
-    --bad-fill: #2a1616;
-    --grid: #3a3128;
   }
 }
-
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-/* --- header ------------------------------------------------------------------------------- */
-.head {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
-  align-items: flex-end; justify-content: space-between;
-  padding: 1.1rem 1.5rem 0.9rem;
-  background: var(--panel);
-  border-bottom: 1px solid var(--rule);
-}
-.head h1 {
-  font-family: var(--font-display);
-  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
-  margin: 0; line-height: 1.1;
-}
-.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
-.head .tag {
-  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--muted); text-align: right;
-}
-.gold-rule { height: 4px; background: var(--gold); }
-
-main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
 
 /* =================================================================================================
    ===== BEGIN LAB SHELL =============================================================================
@@ -310,31 +399,15 @@ ol.lab-steps > li > .step {
 /* ===== END LAB SHELL ==============================================================================
    Everything below is specific to the Architecture Workbench.
    ================================================================================================= */
-
 /* --- panels ------------------------------------------------------------------------------- */
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 1rem 1.1rem 1.1rem;
-  margin: 0 0 1.1rem;
-}
 .panel > h2, .panel-title {
   font-family: var(--font-mono);
   font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 0.75rem;
 }
-.panel h3 {
-  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
-  margin: 1rem 0 0.35rem;
-}
+
 .panel h3:first-of-type { margin-top: 0.3rem; }
-.panel p { margin: 0.5rem 0; }
-.note {
-  font-size: 0.9rem; color: var(--muted);
-  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
-}
 
 /* The three working panels of the specification's layout. One column on a phone, three on a
    desk. The graph column is given more room than the two reading columns. */
@@ -347,10 +420,9 @@ ol.lab-steps > li > .step {
   .grid3 { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); margin-bottom: 1.1rem; }
   .grid3 > .panel { margin-bottom: 0; }
 }
-.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+
 @media (min-width: 1100px) {
   .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
-  .grid2 > .panel { margin-bottom: 0; }
 }
 
 /* --- controls ----------------------------------------------------------------------------- */
@@ -375,8 +447,6 @@ ol.lab-steps > li > .step {
   padding: 0.33rem 0.7rem; border: 0; border-right: 1px solid var(--rule);
   background: var(--paper); color: var(--ink); cursor: pointer;
 }
-.seg button:last-child { border-right: 0; }
-.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
 button.act, a.act {
@@ -385,9 +455,9 @@ button.act, a.act {
   border: 1px solid var(--ink); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
-button.act.primary { background: var(--ink); color: var(--paper); }
+
 button.act:hover, a.act:hover { border-color: var(--accent); color: var(--accent); }
-button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
 button.act.small { font-size: 0.9rem; padding: 0.3rem 0.65rem; }
 button.act:disabled { opacity: 0.5; cursor: not-allowed; }
 button.act:focus-visible, a.act:focus-visible, .seg button:focus-visible,
@@ -654,24 +724,12 @@ pre.ascii {
   border-radius: var(--radius); padding: 0.55rem 0.75rem; margin: 0.4rem 0 0;
   overflow-x: auto; white-space: pre;
 }
-a { color: var(--accent); }
-footer {
-  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
-  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
-}
-.vh {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
-}
-.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
 
-/* Reduced motion: honour the OS preference. This instrument has no decorative animation and no
-   simulation loop — every number is recomputed synchronously from the controls, so there is no
-   motion to suppress beyond the focus and hover transitions this rule disables. Stated rather than
+/* Reduced motion. The shared core turns transitions and animations off outright, and this page
+   honours the OS preference. This instrument has no decorative animation and no simulation loop
+   — every number is recomputed synchronously from the controls, so there is no motion to
+   suppress beyond the focus and hover transitions the core's rule disables. Stated rather than
    implied, because a reader who sets the preference deserves to know it was considered. */
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-}
 </style>
 <body>
 

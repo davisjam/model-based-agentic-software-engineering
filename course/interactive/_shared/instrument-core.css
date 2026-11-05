@@ -14,9 +14,10 @@
    burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
    these pages — every state also carries a word and a glyph.
 
-   `--warn` is a local family extension: the set has no amber, and the exercises need an
-   approaching-capacity signal distinct from both green and red. It is a warm ochre rather than a
-   traffic-light yellow so it sits inside the warm palette.
+   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
+   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
+   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
+   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
    -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
@@ -29,7 +30,6 @@
   --gold: #ceb888;
   --ok: #15803d;
   --ok-fill: #eef7ee;
-  --warn: #9a6500;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -50,7 +50,6 @@
     --accent: #d98a5c;
     --ok: #52b183;
     --ok-fill: #14231b;
-    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;

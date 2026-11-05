@@ -35,10 +35,19 @@ stays local. Three consequences, each measured rather than assumed:
 
 - **The token block is split, not shared whole.** The six `:root` blocks are not byte-identical.
   Each exercise adds its own vocabulary — `--model` / `--model-fill` in the five simulators,
-  `--refs` in storage-cost, `--must` / `--maybe` in the workbench — and redos carries a darker
-  `--warn` (`#8a5a00` against the family's `#9a6500`) for contrast. So the declarations common to
+  `--refs` in storage-cost, `--must` / `--maybe` in the workbench. So the declarations common to
   all six live in the core, and each page keeps a local `:root` holding only its own. Custom
   properties make this exact: same selector, same specificity, last declaration per property wins.
+
+  **A token the core declares must never be overridden by a page, and the parity test enforces it.**
+  A half-override leaks across colour schemes, silently. The page's local light `:root` follows the
+  core's `@media (prefers-color-scheme: dark)` block in source order, so a token overridden in light
+  but not in dark wins in **dark** mode too. Measured during the extraction: redos darkens `--warn`
+  to `#8a5a00` because `#9a6500` as text on `--warn-fill` measures 4.45:1 and axe-core flagged it —
+  and with `--warn` in the core, that light-only override displaced the core's dark `#d2a24a` on a
+  dark page. The rule that removes the class rather than the instance: **a token that is not
+  identical in all six pages in BOTH schemes stays entirely local in both.** That is why `--warn`
+  is declared six times and `--warn-fill`, which every page agrees on, only once.
 - **Rules that look shared and are not stay out.** `.ctl`, `.ctl-row`, `.seg`, `.seg button`,
   `.btn-row`, `dl.readout`, `.badge`, `.legend`, `.canvas-wrap`, `canvas` and the
   `@media (min-width: 1100px) .grid2` column template all differ between exercises today — the

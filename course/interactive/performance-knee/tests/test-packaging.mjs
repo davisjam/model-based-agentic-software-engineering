@@ -229,3 +229,20 @@ test('the core block precedes the exercise\u2019s own block, so a local rule win
   assert.ok(html.indexOf(CORE_END) < html.lastIndexOf('<style>'),
     'the hand-authored block does not follow the generated core');
 });
+
+test('no design token is declared by both the core and this page', () => {
+  /* A HALF-override leaks across colour schemes, and silently. The local light :root follows the
+     core's dark block in source order, so a token overridden in light but not in dark wins in DARK
+     mode too — measured on redos, whose darker --warn (#8a5a00, chosen for contrast as text on
+     --warn-fill) would have displaced the core's #d2a24a on a dark page. The rule that removes the
+     class rather than the instance: a token that is not identical in all six pages in BOTH schemes
+     stays entirely local in both. So the core and a page must never declare the same token. */
+  const source = readCoreSource(CORE_CSS, 'utf8');
+  const local = html.slice(html.lastIndexOf('<style>') + '<style>'.length,
+    html.lastIndexOf('</style>'));
+  const tokensIn = (css) => new Set([...css.replace(/\/\*[\s\S]*?\*\//g, '')
+    .matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
+  const shared = [...tokensIn(local)].filter((t) => tokensIn(source).has(t)).sort();
+  assert.deepEqual(shared, [], 'declared in both the core and this page — move each one wholly '
+    + 'into the core, or wholly into this page in BOTH colour schemes');
+});

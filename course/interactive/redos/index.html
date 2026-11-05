@@ -44,23 +44,30 @@
 <meta name="description" content="An interactive demonstration of algorithmic complexity attacks on regular expression matching: measure real backtracking cost in the browser's own engine, under a wall-clock budget, and model why it grows.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fdfcf9'/%3E%3Cpath d='M1 14 C9 14 12 13 14 2' stroke='%23b23b3b' fill='none' stroke-width='2'/%3E%3C/svg%3E">
 <style>
-/* ---------------------------------------------------------------------------------------------
-   Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) and kept
-   byte-identical to the sibling instrument (course/interactive/performance-knee/) so the two
-   demonstrations read as one pair: warm paper ground, near-black ink, burnt-umber accent,
-   Purdue-gold rule under the header. `--model` is the family's definition-box blue, reused here as
-   "this number came from a model, not a measurement" — the same distinction the Performance Knee
-   draws between an analytical prediction and a simulation.
+/* ===== GENERATED from course/interactive/_shared/instrument-core.css by sync_css.py — do not edit
+   here; edit the source and re-run the sync. A parity test in tests/test-packaging.mjs holds
+   this copy byte-equal to the source. ===== */
+/* instrument-core.css — the styling the six interactive laboratories share, held in one place.
+ *
+ * A rule belongs here when it is byte-identical in all six shipped pages. Everything else stays in
+ * the exercise's own style element, which the sync places AFTER this one, so a local rule wins a
+ * tie against a core rule at equal specificity. The rules keep the relative order they held in all
+ * six pages before extraction, which is what makes a change here a styling change and not a cascade
+ * reshuffle. Authoring discipline, and what deliberately stayed local: _shared/README.md.
+ *
+ * Licence: CC BY 4.0, (c) James C. Davis. See the course LICENSE.
+ */
 
-   One token is a local extension: the family set has no amber, and an approaching-the-budget signal
-   must be distinct from both green and red. `--warn` is a warm ochre chosen to sit inside the
-   family's warm palette rather than a generic traffic-light yellow. It is DARKER here than the
-   obvious choice (#9a6500) because it is used as text at 11-16px on `--warn-fill`, where that hue
-   measures 4.45:1 — just under the 4.5:1 floor. axe-core found it; #8a5a00 measures 5.3:1.
+/* --- design tokens ---------------------------------------------------------------------------
+   The MAGE family token set (book-models/design-tokens.json): warm paper ground, near-black ink,
+   burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
+   these pages — every state also carries a word and a glyph.
 
-   Colour never carries meaning alone. Every state also carries a word and a glyph; every chart
-   series also carries a dash pattern, a marker shape, and a label drawn at the line.
-   --------------------------------------------------------------------------------------------- */
+   `--warn` is NOT here. The family set has no amber, so each exercise declares its own
+   approaching-the-limit signal, and redos deliberately darkens it to #8a5a00 for contrast as text
+   on `--warn-fill`. A token that is not identical in all six, in BOTH colour schemes, stays
+   entirely local in both — see _shared/README.md on why a half-override leaks across schemes.
+   -------------------------------------------------------------------------------------------- */
 :root {
   --ink: #1c1917;
   --paper: #fdfcf9;
@@ -70,11 +77,8 @@
   --muted: #57534e;
   --accent: #9a3f12;
   --gold: #ceb888;
-  --model: #1f6fae;
-  --model-fill: #eef4fb;
   --ok: #15803d;
   --ok-fill: #eef7ee;
-  --warn: #8a5a00;
   --warn-fill: #fbf2e0;
   --bad: #b23b3b;
   --bad-fill: #fbeaea;
@@ -93,11 +97,8 @@
     --rule: #3a3128;
     --muted: #a69c8f;
     --accent: #d98a5c;
-    --model: #5f9fd4;
-    --model-fill: #12202c;
     --ok: #52b183;
     --ok-fill: #14231b;
-    --warn: #d2a24a;
     --warn-fill: #2a2012;
     --bad: #e08080;
     --bad-fill: #2a1616;
@@ -105,6 +106,7 @@
   }
 }
 
+/* --- document --------------------------------------------------------------------------------- */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -116,7 +118,7 @@ body {
   line-height: 1.5;
 }
 
-/* --- header ------------------------------------------------------------------------------- */
+/* --- header ----------------------------------------------------------------------------------- */
 .head {
   display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
   align-items: flex-end; justify-content: space-between;
@@ -134,24 +136,16 @@ body {
   font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted); text-align: right;
 }
-.head .tag a { color: var(--accent); }
 .gold-rule { height: 4px; background: var(--gold); }
-
 main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
 
-/* --- panels ------------------------------------------------------------------------------- */
+/* --- panels and the two-column grid ----------------------------------------------------------- */
 .panel {
   background: var(--panel);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 1rem 1.1rem 1.1rem;
   margin: 0 0 1.1rem;
-}
-.panel > h2, .panel > summary > h2, .panel-title {
-  font-family: var(--font-mono);
-  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.75rem;
 }
 .panel h3 {
   font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
@@ -163,6 +157,86 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
 }
 .grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+/* The column TEMPLATE at this breakpoint differs per exercise and stays local. Only the panel's
+   margin reset is shared. */
+@media (min-width: 1100px) {
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls and buttons --------------------------------------------------------------------- */
+/* `.seg`, `.seg button`, `.ctl`, `.ctl-row` and `.btn-row` differ between exercises and stay local.
+   These four do not, and each outranks its local base rule on specificity, so the split changes
+   nothing about which declaration wins. */
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+/* --- links, footer, and the screen-reader-only utility ----------------------------------------- */
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* --- reduced motion ---------------------------------------------------------------------------
+   `!important` carries this regardless of where it lands in the cascade, which is why moving it
+   ahead of every local rule is safe. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+/* ===== end generated core ===== */
+</style>
+<style>
+/* ---------------------------------------------------------------------------------------------
+   THIS EXERCISE'S OWN STYLING. The block above holds what all six interactive laboratories
+   share — the family tokens, the page frame, panels, buttons, the footer. Edit that in
+   course/interactive/_shared/instrument-core.css and re-run the sync, never here.
+
+   Design tokens. The family set the shared core supplies is what makes this instrument and the
+   Performance Knee read as one pair; the tokens below are this page's own. `--model` is the
+   family's definition-box blue, reused here as
+   "this number came from a model, not a measurement" — the same distinction the Performance Knee
+   draws between an analytical prediction and a simulation.
+
+   One token is a local extension: the family set has no amber, and an approaching-the-budget signal
+   must be distinct from both green and red. `--warn` is a warm ochre chosen to sit inside the
+   family's warm palette rather than a generic traffic-light yellow. It is DARKER here than the
+   obvious choice (#9a6500) because it is used as text at 11-16px on `--warn-fill`, where that hue
+   measures 4.45:1 — just under the 4.5:1 floor. axe-core found it; #8a5a00 measures 5.3:1.
+
+   Colour never carries meaning alone. Every state also carries a word and a glyph; every chart
+   series also carries a dash pattern, a marker shape, and a label drawn at the line.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --model: #1f6fae;
+  --model-fill: #eef4fb;
+  --warn: #8a5a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --model: #5f9fd4;
+    --model-fill: #12202c;
+    --warn: #d2a24a;
+  }
+}
+
+/* --- header ------------------------------------------------------------------------------- */
+.head .tag a { color: var(--accent); }
+
+/* --- panels ------------------------------------------------------------------------------- */
+.panel > h2, .panel > summary > h2, .panel-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
 /* A grid item defaults to `min-width: auto`, so it refuses to shrink below its widest content and
    pushes the page wider instead — the `white-space: pre` input excerpt and the seven-column results
    table both did exactly that, overflowing by 361px at a phone width. Allowing the items to shrink
@@ -170,7 +244,6 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
 .grid2 > * { min-width: 0; }
 @media (min-width: 1100px) {
   .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
-  .grid2 > .panel { margin-bottom: 0; }
 }
 
 /* Wide content scrolls inside its own container; the page body never scrolls horizontally. */
@@ -202,8 +275,6 @@ main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
   padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
   background: var(--paper); color: var(--ink); cursor: pointer;
 }
-.seg button:last-child { border-right: 0; }
-.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
 button.act {
@@ -212,9 +283,9 @@ button.act {
   border: 1px solid var(--ink); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
-button.act.primary { background: var(--ink); color: var(--paper); }
+
 button.act:hover { border-color: var(--accent); color: var(--accent); }
-button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
 button.act[disabled] { opacity: 0.45; cursor: not-allowed; }
 button.act:focus-visible, .seg button:focus-visible, .xpsel:focus-visible,
 input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visible {
@@ -364,16 +435,6 @@ kbd {
   border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: var(--radius);
   padding: 0.05rem 0.35rem; background: var(--paper);
 }
-a { color: var(--accent); }
-footer {
-  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
-  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
-}
-.vh {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
-}
-.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
 
 details.panel > summary {
   cursor: pointer; list-style: none;
@@ -385,13 +446,11 @@ details.panel > summary::before { content: "\25B8 "; color: var(--accent); }
 details.panel[open] > summary::before { content: "\25BE "; }
 details.panel[open] > summary { margin-bottom: 0.8rem; }
 
-/* Reduced motion: the page has no decorative animation to disable. What the mode changes is the
-   redraw cadence of the chart while a sweep is in flight, so the picture stops twitching between
-   trials. The measurement itself is untouched — a trial's duration never depends on how often we
-   draw, because the drawing happens on a different thread from the matching. */
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-}
+/* Reduced motion. The shared core turns transitions and animations off outright, and the page
+   has no decorative animation beyond them. What the mode changes is the redraw cadence of the
+   chart while a sweep is in flight, so the picture stops twitching between trials. The
+   measurement itself is untouched — a trial's duration never depends on how often we draw,
+   because the drawing happens on a different thread from the matching. */
 </style>
 </head>
 <body>
