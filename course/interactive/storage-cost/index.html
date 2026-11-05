@@ -20,6 +20,15 @@
   computed from constants printed on the page. The page claims no storage figure for any named
   product, because nobody measured one.
 
+  THE PAGE IS A LABORATORY HANDOUT WITH AN EMBEDDED APPARATUS, in the house order: engineering
+  problem, background, model, numbered procedure, apparatus, interpretation, collapsed reference.
+  The apparatus sits BELOW the instructional material deliberately — a student should know what is
+  being manipulated before meeting the controls — and the earlier layout that put controls and
+  results on the opening screen is withdrawn. Four parameters are adjustable in the primary
+  interface and three quantities are reported; the model computes more than that, and the rest is
+  in the collapsed sections at the foot of the page. Simplifying the interface did not simplify the
+  engine.
+
   Structure of the single <script> pair below:
     #storage-engine — pure model: parameter normalisation, the three record layouts, the storage
                       arithmetic, the rename impact, presets, self-tests. No browser surface
@@ -507,9 +516,12 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 }
 
 /* --- panels ------------------------------------------------------------------------------- */
+/* A section heading, not a chrome label. The uppercase mono keeps the family's identity; the size
+   comes up to the house style's 18-20px band, which also retires one of the "many small uppercase
+   headings" the author named as a current defect. */
 .panel > h2, .panel-title {
   font-family: var(--font-mono);
-  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 1.08rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 0.75rem;
 }
@@ -518,10 +530,120 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
   .grid2 { grid-template-columns: 1fr 1fr; margin-bottom: 1.1rem; }
 }
 
+/* --- the type scale, raised off the withdrawn first-screen budget -------------------------------
+   The shared lab shell sets these sizes for a band that had to finish inside roughly 400 vertical
+   pixels, and 10-12px type is how it got there. That budget is withdrawn and the house style now
+   forbids 10-11px text outright: "if the material does not fit, remove or relocate it." The
+   relocation happened — the parameter encyclopedia and five readouts are in collapsed sections —
+   so the type that stayed can be legible. Local overrides only; the core is shared with five
+   sibling exercises and is not this exercise's to edit. */
+.lab-question { font-size: 1.35rem; }
+.lab-question .k { font-size: 0.82rem; }
+.lab-frame { font-size: 1.02rem; max-width: 110ch; }
+.lab-assumptions > h3 {
+  font-family: var(--font-body); font-size: 0.98rem; font-weight: 600;
+  letter-spacing: 0; text-transform: none; color: var(--ink); margin: 0 0 0.45rem;
+}
+.lab-assumptions ul { font-size: 0.95rem; line-height: 1.42; padding-left: 1.1rem; }
+.lab-assumptions li { margin-bottom: 0.3rem; }
+.lab-disclaimer { font-size: 0.92rem; line-height: 1.38; padding: 0.45rem 0.6rem; }
+.lab-tablenote { font-size: 0.88rem; line-height: 1.38; }
+.lab-figure > figcaption { font-size: 0.92rem; line-height: 1.38; margin-top: 0.45rem; }
+table.lab-parameters { font-size: 0.93rem; }
+table.lab-parameters caption { font-size: 0.82rem; }
+table.lab-parameters th, table.lab-parameters td { padding: 0.28rem 0.45rem; line-height: 1.32; }
+.note { font-size: 0.97rem; }
+
+/* --- FIGURE 1 · its own row, 70-80% of the content width ---------------------------------------
+   The house style's requirement, and the opening band is no longer competing for the row: Table 1
+   and Table 2 sit below the figure rather than beside it. Width is the only bound. A pixel height
+   ceiling letterboxes an SVG that carries a viewBox — `preserveAspectRatio` defaults to `meet`, so
+   a clamped height spends every extra pixel of column on empty margin — and that ceiling was the
+   width defect. Measured drawn art at 78%: 918px at a 1280px viewport, 1042px at 1440, 1417px at
+   1920, against 258 / 294 / 404 before. */
+.figure-row { margin: 0 0 1.1rem; }
+.figure-row > .lab-figure { width: 78%; margin-inline: auto; }
+@media (max-width: 1000px) { .figure-row > .lab-figure { width: 100%; } }
+
+/* --- §2's background prose --------------------------------------------------------------------
+   A readable measure, set in two columns on a desktop. A single column inside a full-width panel
+   is a wide ARTICLE layout — the thing the house style asks these pages not to be — and it leaves
+   half the row empty while pushing the model figure a screen further down. Two columns keep each
+   line at about 70 characters and halve the height. `break-inside: avoid` stops a paragraph being
+   split across the gutter, which is what makes a balanced multicol readable rather than clever. */
+.prose { max-width: 94ch; }
+.prose p { margin: 0 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
+.prose p:last-child { margin-bottom: 0; }
+.prose p.qual {
+  border-left: 3px solid var(--warn); padding-left: 0.75rem;
+  font-size: 0.95rem; color: var(--muted);
+}
+@media (min-width: 1200px) {
+  .prose { max-width: none; columns: 2; column-gap: 2.6rem; }
+  .prose p { break-inside: avoid; }
+}
+
+/* --- §4's numbered procedure ------------------------------------------------------------------
+   Three experiments across the row once there is room for them: the available width goes to the
+   figure and the experiment, which is where the house style sends it. Each card carries all six
+   fields the procedure requires, so a student is never adjusting a control without a prediction. */
+.proc-lead { max-width: 108ch; font-size: 1.02rem; line-height: 1.45; margin: 0 0 0.2rem; }
+ol.procedure {
+  list-style: none; margin: 0.9rem 0 0; padding: 0;
+  display: grid; gap: 0.9rem; counter-reset: exp;
+}
+@media (min-width: 1300px) { ol.procedure { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.exp {
+  counter-increment: exp; min-width: 0;
+  border: 1px solid var(--rule); border-left: 4px solid var(--ink);
+  border-radius: var(--radius); background: var(--panel-2);
+  padding: 0.7rem 0.9rem 0.85rem;
+}
+.exp > h3 { margin: 0 0 0.55rem; font-size: 1.04rem; }
+.exp > h3::before {
+  content: "Experiment " counter(exp) " \00b7 ";
+  font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
+}
+dl.six { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.32rem 0.85rem; margin: 0; }
+dl.six dt {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+dl.six dd { margin: 0; font-size: 0.96rem; line-height: 1.38; }
+.exp-load { margin: 0.75rem 0 0; }
+
+/* --- §6's interpretation prompts --------------------------------------------------------------- */
+ol.interp { margin: 0.4rem 0 0; padding-left: 1.4rem; display: grid; gap: 0.5rem; max-width: 104ch; }
+ol.interp li { font-size: 1rem; line-height: 1.42; }
+
+/* --- §7's collapsed reference ------------------------------------------------------------------
+   `disclose` is the class the shared core's print rule drops, which is what keeps the printed
+   handout to the model, the procedure and the apparatus. */
+details.disclose {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--panel-2); margin: 0 0 0.6rem;
+}
+details.disclose > summary {
+  cursor: pointer; padding: 0.6rem 0.8rem;
+  font-weight: 600; font-size: 1rem;
+}
+details.disclose > summary:hover { color: var(--accent); }
+details.disclose[open] > summary { border-bottom: 1px solid var(--rule); }
+details.disclose > .body { padding: 0.85rem 0.9rem 0.9rem; }
+details.disclose > .body > :first-child { margin-top: 0; }
+
 /* --- controls ----------------------------------------------------------------------------- */
 .ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 820px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
 .ctl { display: grid; grid-template-columns: 14rem 1fr auto; gap: 0.6rem; align-items: center; }
+/* One sentence of contextual help per control, which is how a student learns a parameter's meaning
+   now that the six-column encyclopedia has left the primary interface. It spans the control's whole
+   row, so it lands on a second line rather than in the number field's column. */
+.ctl > .help {
+  grid-column: 1 / -1; margin-top: -0.25rem;
+  font-size: 0.88rem; line-height: 1.34; color: var(--muted);
+}
 .ctl > label, .ctl > span.lbl { font-weight: 600; font-size: 0.98rem; }
 .ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
 .ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
@@ -693,249 +815,385 @@ code {
 <main>
 
 <!-- ==============================================================================================
-     THE LABORATORY HANDOUT. The engineering problem, the three representations being compared, the
-     model's assumptions, and the parameters a student may change — before any control, and
-     printable. The styling is the shared lab shell in the generated core above.
+     THE LABORATORY HANDOUT, in the house order: the engineering problem, the background a student
+     needs to predict, the model, the numbered procedure — and only then the apparatus. The
+     apparatus sits BELOW the instructional material on purpose. That is a deliberate instructional
+     sequence rather than an unfortunate amount of scrolling, and the first-screen layout that put
+     controls and results on the opening screen is withdrawn; see the house style beside the shared
+     stylesheet before reordering anything here.
 
-     Deliberately NOT a chart: a student has to know what is being counted before a bar means
-     anything. The comparison figure is first, the numbers come later.
+     Reference material — the simulator's remaining parameters, every quantity the model computes,
+     the second chart, the formulas, the constants and the self-tests — lives in collapsed sections
+     at the foot of the page, which is also what the print rule drops from the handout.
      ============================================================================================ -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
-    How does the engineer's choice of representation change duplication, storage footprint, and
-    update obligations?
+    How does the choice of representation change what the data duplicates, and what that
+    duplication costs?
   </h2>
   <p class="lab-frame">
-    The same booking data &mdash; rooms, and the reservations against them &mdash; laid out three
-    ways. Each layout stores a different number of <strong>copies</strong> of the room's facts, and
-    that is what changes both the footprint and the work a rename costs.
+    A campus booking service stores rooms and the reservations made against them. The engineer
+    chooses how to lay those facts out before any of the data exists, and that one choice decides
+    how many copies of a room's facts the database holds &mdash; which decides both the footprint
+    and the work a rename costs.
   </p>
+</section>
 
-  <div class="lab-twoup band">
-    <!-- -------- FIGURE 1 · the three representations, side by side -------- -->
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="panel" aria-labelledby="h-background">
+  <h2 id="h-background">Background</h2>
+  <div class="prose">
+    <p>
+      A booking service holds two kinds of fact: what a room <em>is</em> &mdash; its name, its
+      building, its capacity &mdash; and what has been booked against it. Those facts do not dictate
+      how they are written down. The engineer chooses a <strong>representation</strong>: a layout of
+      tables, or of documents, that the facts are stored into. Three layouts are compared here, and
+      all three hold identical booking data.
+    </p>
+    <p>
+      The <strong>normalized relational</strong> layout keeps a <code>ROOMS</code> table with one row
+      per room and a <code>RESERVATIONS</code> table whose rows carry only a room identifier. The
+      <strong>denormalized relational</strong> layout has no rooms table at all: it copies the room's
+      facts onto every reservation row. The <strong>document</strong> layout stores one document per
+      room, with that room's reservations nested inside it.
+    </p>
+    <p>
+      <em>Duplication</em> means something precise here, and it is not &ldquo;the same text appears
+      twice&rdquo;. A fact has to be stored once; what counts as duplication is the <em>excess</em>.
+      Write a room's metadata onto each of its <code>V</code> reservations and one of those writes is
+      the fact while <code>V &minus; 1</code> are copies. So duplication is a property of
+      <strong>repetition</strong>: a room with a single reservation has no excess to pay for,
+      whichever layout stores it.
+    </p>
+    <p>
+      That makes the byte cost of duplication depend on two things an engineer can see &mdash; how
+      many times the fact repeats, and how large the fact is. Doubling the reservations per room
+      doubles the copies; doubling the room's metadata doubles what each copy costs.
+    </p>
+    <p>
+      Not duplicating is not free either. A normalized layout connects a reservation to its room with
+      an identifier, and pays those identifier bytes once per occurrence: references instead of
+      copies. The document layout avoids both, because containment <em>is</em> the reference, which
+      is why it lands a little below the normalized tables rather than above them.
+    </p>
+    <p>
+      The second cost appears in no byte total. Rooms get renamed &mdash; a building is renumbered, a
+      hall takes a donor's name, a department reshuffles. Where the name is stored once, a rename is
+      one write and the database cannot hold two answers. Where it is stored <code>V</code> times,
+      all <code>V</code> copies have to change together, and a write that stops part-way leaves two
+      different names for one room. Duplication did not merely spend space; it created an obligation
+      to keep copies in agreement every time the fact changes.
+    </p>
+    <p>
+      <strong>The document representation is not the denormalized one.</strong> Nesting the
+      reservations inside the room document stores the room's facts once, exactly as the normalized
+      tables do. Its duplication profile matches the normalized case; only the denormalized table
+      copies the room's facts onto every reservation. Database category and normalization are
+      different dimensions, and this is where that separation becomes visible.
+    </p>
+    <p class="qual">
+      <strong>One qualification.</strong> Every figure on this page is arithmetic over the parameters
+      you set, not a measurement of a running system. What the arithmetic settles is the direction
+      and the shape of the trade; a figure for a particular engine has to be measured on that engine.
+      The collapsed <strong>Model reference</strong> at the foot of the page states the formulas, the
+      fixed constants and the exclusions in full.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= 3 · MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 id="h-model">Model</h2>
+
+  <!-- -------- FIGURE 1 · its own row, at 78% of the content width --------
+       Authored 620 user units wide so that the shared core's 9.5px labels render at 14px or more at
+       a 1280px viewport: what a reader sees is the authored size times the RENDER SCALE, and a
+       figure can sit in a wide box and still draw small. No pixel height ceiling — a clamped height
+       letterboxes an SVG with a viewBox instead of cropping it, and that was the width defect. -->
+  <div class="figure-row">
     <figure class="lab-figure">
-      <svg class="fig" viewBox="0 0 520 254" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+      <svg class="fig" viewBox="0 0 620 224" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
         <title id="f1-t">Figure 1: the same booking data in three representations</title>
         <desc id="f1-d">Three panels hold the same two rooms and four reservations. Panel A,
-          normalized, shows two tables: a rooms table with one row per room carrying the room's
-          name and metadata, and a reservations table whose rows carry only a room identifier. The
-          room's facts appear once each. Panel B, denormalized, shows one wide table in which every
-          reservation row repeats the room's name and metadata; the repeated values are drawn
-          shaded and outlined in the failure colour and labelled repeated. Panel C, document, shows
-          two room documents, each holding the room's facts once and nesting its own reservations
-          inside it; the room's facts appear once each, as in panel A. A closing note reads that
-          the document layout is not the denormalized one — it duplicates nothing, and only the
-          denormalized table copies the room's facts onto every reservation. The parameters marked
-          are defined in the parameters table.</desc>
+          normalized, shows two tables: a rooms table with one row per room carrying that room's
+          name and metadata of M bytes, and a reservations table whose rows carry only a room
+          identifier. Nothing is duplicated, each room's facts are stored once, and a rename
+          touches one row. Panel B, denormalized, shows one wide reservations table and no rooms
+          table; every row repeats the room's name and metadata, drawn shaded and outlined in the
+          failure colour and labelled repeated on every row. Two of its four stored copies are
+          excess, duplication grows with the reservations per room, and a rename touches every row.
+          Panel C, document, shows two room documents, each storing its room's facts once and
+          nesting that room's reservations inside it; nothing is duplicated, containment is the
+          reference, and a rename touches one document. The marked
+          quantities R, V and M are defined in Table 1.</desc>
 
-        <text class="th" x="4" y="11">A &middot; Normalized</text>
-        <text class="th" x="182" y="11">B &middot; Denormalized</text>
-        <text class="th" x="360" y="11">C &middot; Document</text>
-        <line class="ln" x1="172" y1="4" x2="172" y2="208" stroke-dasharray="2 3" opacity="0.5"/>
-        <line class="ln" x1="350" y1="4" x2="350" y2="208" stroke-dasharray="2 3" opacity="0.5"/>
+        <text class="th" x="2" y="12">A &middot; Normalized</text>
+        <text class="th" x="216" y="12">B &middot; Denormalized</text>
+        <text class="th" x="430" y="12">C &middot; Document</text>
+        <line class="ln ghost" x1="203" y1="4" x2="203" y2="218"/>
+        <line class="ln ghost" x1="417" y1="4" x2="417" y2="218"/>
 
-        <!-- A · normalized: two tables -->
-        <text class="ts" x="4" y="26">rooms</text>
-        <rect class="bx strong" x="4" y="30" width="156" height="18" rx="1"/>
-        <text class="ts" x="9" y="43">R1  name + metadata</text>
-        <rect class="bx strong" x="4" y="48" width="156" height="18" rx="1"/>
-        <text class="ts" x="9" y="61">R2  name + metadata</text>
-        <text class="ts" x="4" y="84">reservations</text>
-        <rect class="bx" x="4" y="88" width="156" height="15" rx="1"/>
-        <text class="ts" x="9" y="99">room_id R1  &middot;  when</text>
-        <rect class="bx" x="4" y="103" width="156" height="15" rx="1"/>
-        <text class="ts" x="9" y="114">room_id R1  &middot;  when</text>
-        <rect class="bx" x="4" y="118" width="156" height="15" rx="1"/>
-        <text class="ts" x="9" y="129">room_id R2  &middot;  when</text>
-        <rect class="bx" x="4" y="133" width="156" height="15" rx="1"/>
-        <text class="ts" x="9" y="144">room_id R2  &middot;  when</text>
-        <text class="t" x="4" y="170">2 copies of the room's facts</text>
-        <text class="ts" x="4" y="186">a rename touches 1 row</text>
+        <!-- A · normalized: two tables, the room's facts stored once -->
+        <text class="ts" x="2" y="26">rooms   R = 2 rooms</text>
+        <rect class="bx strong" x="2" y="30" width="188" height="20" rx="1"/>
+        <text class="ts" x="8" y="44">R1  metadata = M B</text>
+        <rect class="bx strong" x="2" y="52" width="188" height="20" rx="1"/>
+        <text class="ts" x="8" y="66">R2  metadata = M B</text>
+        <text class="ts" x="2" y="86">reservations   V = 2 each</text>
+        <rect class="bx" x="2" y="90" width="188" height="17" rx="1"/>
+        <text class="ts" x="8" y="103">room_id R1  &middot;  when</text>
+        <rect class="bx" x="2" y="107" width="188" height="17" rx="1"/>
+        <text class="ts" x="8" y="120">room_id R1  &middot;  when</text>
+        <rect class="bx" x="2" y="124" width="188" height="17" rx="1"/>
+        <text class="ts" x="8" y="137">room_id R2  &middot;  when</text>
+        <rect class="bx" x="2" y="141" width="188" height="17" rx="1"/>
+        <text class="ts" x="8" y="154">room_id R2  &middot;  when</text>
+        <text class="t" x="2" y="178">0 bytes duplicated</text>
+        <text class="ts" x="2" y="194">each room's facts stored once</text>
+        <text class="ts" x="2" y="208">a rename touches 1 row</text>
 
-        <!-- B · denormalized: one wide table, the room's facts repeated -->
-        <text class="ts" x="182" y="26">reservations</text>
-        <rect class="bx bad" x="182" y="30" width="156" height="22" rx="1"/>
-        <text class="ts" x="187" y="38">name + metadata</text>
-        <text class="ts" x="187" y="48">&middot; when</text>
-        <rect class="bx bad" x="182" y="52" width="156" height="22" rx="1"/>
-        <text class="ts" x="187" y="60">name + metadata</text>
-        <text class="ts" x="187" y="70">&middot; when</text>
-        <rect class="bx bad" x="182" y="74" width="156" height="22" rx="1"/>
-        <text class="ts" x="187" y="82">name + metadata</text>
-        <text class="ts" x="187" y="92">&middot; when</text>
-        <rect class="bx bad" x="182" y="96" width="156" height="22" rx="1"/>
-        <text class="ts" x="187" y="104">name + metadata</text>
-        <text class="ts" x="187" y="114">&middot; when</text>
-        <text class="th" x="182" y="134">Repeated on every row</text>
-        <text class="t" x="182" y="170">4 copies of the room's facts</text>
-        <text class="ts" x="182" y="186">a rename touches every row</text>
+        <!-- B · denormalized: one wide table, the room's facts repeated on every row -->
+        <text class="ts" x="216" y="26">reservations   no rooms table</text>
+        <rect class="bx bad" x="216" y="30" width="190" height="26" rx="1"/>
+        <text class="ts" x="222" y="40">metadata = M B</text>
+        <text class="ts" x="222" y="53">&middot;  when</text>
+        <rect class="bx bad" x="216" y="58" width="190" height="26" rx="1"/>
+        <text class="ts" x="222" y="68">metadata = M B</text>
+        <text class="ts" x="222" y="81">&middot;  when</text>
+        <rect class="bx bad" x="216" y="86" width="190" height="26" rx="1"/>
+        <text class="ts" x="222" y="96">metadata = M B</text>
+        <text class="ts" x="222" y="109">&middot;  when</text>
+        <rect class="bx bad" x="216" y="114" width="190" height="26" rx="1"/>
+        <text class="ts" x="222" y="124">metadata = M B</text>
+        <text class="ts" x="222" y="137">&middot;  when</text>
+        <text class="th" x="216" y="156">Repeated on every row</text>
+        <text class="t" x="216" y="178">2 of 4 copies are excess</text>
+        <text class="ts" x="216" y="194">duplication grows with V</text>
+        <text class="ts" x="216" y="208">a rename touches every row</text>
 
-        <!-- C · document: nested, facts once -->
-        <rect class="bx strong" x="360" y="30" width="156" height="54" rx="2"/>
-        <text class="ts" x="365" y="43">room R1  name + metadata</text>
-        <rect class="bx" x="372" y="48" width="138" height="14" rx="1"/>
-        <text class="ts" x="377" y="58">reservation  &middot;  when</text>
-        <rect class="bx" x="372" y="64" width="138" height="14" rx="1"/>
-        <text class="ts" x="377" y="74">reservation  &middot;  when</text>
-        <rect class="bx strong" x="360" y="90" width="156" height="54" rx="2"/>
-        <text class="ts" x="365" y="103">room R2  name + metadata</text>
-        <rect class="bx" x="372" y="108" width="138" height="14" rx="1"/>
-        <text class="ts" x="377" y="118">reservation  &middot;  when</text>
-        <rect class="bx" x="372" y="124" width="138" height="14" rx="1"/>
-        <text class="ts" x="377" y="134">reservation  &middot;  when</text>
-        <text class="t" x="360" y="170">2 copies of the room's facts</text>
-        <text class="ts" x="360" y="186">a rename touches 1 doc</text>
-
-        <text class="ts" x="4" y="210">The DOCUMENT layout is not the denormalized one: it stores the</text>
-        <text class="ts" x="4" y="222">room's facts once, exactly as the normalized tables do. Database</text>
-        <text class="ts" x="4" y="234">category and normalization are different dimensions, and this is</text>
-        <text class="ts" x="4" y="246">where the two come apart.</text>
+        <!-- C · document: nested, the room's facts stored once, as in A -->
+        <rect class="bx strong" x="430" y="30" width="188" height="56" rx="2"/>
+        <text class="ts" x="436" y="43">room R1  metadata = M B</text>
+        <rect class="bx" x="442" y="48" width="168" height="16" rx="1"/>
+        <text class="ts" x="448" y="60">reservation  &middot;  when</text>
+        <rect class="bx" x="442" y="66" width="168" height="16" rx="1"/>
+        <text class="ts" x="448" y="78">reservation  &middot;  when</text>
+        <rect class="bx strong" x="430" y="92" width="188" height="56" rx="2"/>
+        <text class="ts" x="436" y="105">room R2  metadata = M B</text>
+        <rect class="bx" x="442" y="110" width="168" height="16" rx="1"/>
+        <text class="ts" x="448" y="122">reservation  &middot;  when</text>
+        <rect class="bx" x="442" y="128" width="168" height="16" rx="1"/>
+        <text class="ts" x="448" y="140">reservation  &middot;  when</text>
+        <text class="t" x="430" y="178">0 bytes duplicated</text>
+        <text class="ts" x="430" y="194">containment is the reference</text>
+        <text class="ts" x="430" y="208">a rename touches 1 document</text>
       </svg>
       <figcaption>
-        <span class="fignum">Figure 1.</span> Two rooms, four reservations, three layouts. Only the
-        denormalized table copies the room's facts onto every reservation &mdash; which is both the
-        extra bytes and the extra rows a rename has to visit.
+        <span class="fignum">Figure 1.</span> Two rooms, two reservations each, three layouts. Only
+        the denormalized table copies the room's facts onto every reservation row &mdash; which is
+        both the extra bytes and the extra rows a rename has to visit.
       </figcaption>
     </figure>
+  </div>
 
-    <!-- -------- MODEL ASSUMPTIONS -------- -->
-    <div class="lab-assumptions" aria-labelledby="h-assumptions">
-      <h2 id="h-assumptions">Model assumptions</h2>
-      <ul>
-        <li><strong>Every figure is arithmetic over the five sizes below.</strong> Nothing is
-          measured and no database is contacted; the formulas are printed in full further down the
-          page.</li>
-        <li><strong>Uniform sizes.</strong> Every room's metadata is the same size and every
-          reservation is the same size, so the model has no distribution and no outliers.</li>
-        <li><strong>Reservations divide evenly among rooms,</strong> and every room has at least one.</li>
-        <li><strong>Indexes, page padding, compression and replication are outside the model</strong>
-          unless the optional physical-overhead control is switched on, and that control produces an
-          <em>estimate</em> which the page labels as one.</li>
-      </ul>
-      <p class="lab-disclaimer">
-        <strong>The simulator estimates logical representation size, not actual disk consumption by
-        PostgreSQL, MongoDB, or another engine.</strong> It claims no storage figure for any of them,
-        or for any other product: nothing here was run.
-      </p>
-    </div>
-
-    <!-- -------- PARAMETERS -------- -->
-    <div class="lab-assumptions lab-parameters-block">
+  <!-- -------- TABLE 1 and TABLE 2 · inputs apart from outputs -------- -->
+  <div class="lab-twoup">
+    <div class="lab-assumptions">
+      <h3 id="h-table1">Table 1 &mdash; Model parameters</h3>
       <div class="lab-scroll">
         <table class="lab-parameters">
-          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
-            changing it does</caption>
+          <caption class="vh">Table 1 &mdash; the parameters you adjust in the apparatus</caption>
           <thead>
-            <tr>
-              <th scope="col">Parameter</th><th scope="col">Meaning</th>
-              <th scope="col">Values</th><th scope="col">Default</th>
-              <th scope="col">What changing it does</th>
-            </tr>
+            <tr><th scope="col">Parameter</th><th scope="col">What it sets</th>
+              <th scope="col">Values</th><th scope="col">Default</th></tr>
           </thead>
           <tbody>
             <tr data-control="repr-seg">
               <th scope="row">Representation</th>
-              <td>How the same data is laid out</td>
+              <td>The layout under study &mdash; how the same facts are written down</td>
               <td class="unit">Normalized &middot; Denormalized &middot; Document</td>
               <td class="default">Normalized</td>
-              <td>Changes how many copies of a room's facts are stored</td>
             </tr>
             <tr data-control="rooms">
-              <th scope="row">Rooms</th>
-              <td>Distinct rooms in the catalogue</td>
-              <td class="unit">10&ndash;10,000 rooms</td><td class="default">100</td>
-              <td>Scales the room-side cost in every layout</td>
+              <th scope="row">Rooms <span class="unit">R</span></th>
+              <td>Distinct rooms in the catalogue &mdash; the entity count</td>
+              <td class="unit">10&ndash;10,000</td><td class="default">100</td>
             </tr>
             <tr data-control="perroom">
-              <th scope="row">Reservations per room</th>
-              <td>Bookings held against each room</td>
-              <td class="unit">1&ndash;1000 each</td><td class="default">20</td>
-              <td>Scales the duplication the denormalized layout pays</td>
+              <th scope="row">Reservations per room <span class="unit">V</span></th>
+              <td>How many times each room's facts can repeat</td>
+              <td class="unit">1&ndash;1000</td><td class="default">20</td>
             </tr>
             <tr data-control="meta">
-              <th scope="row">Room metadata size</th>
-              <td>Bytes of room facts &mdash; name, building, capacity</td>
+              <th scope="row">Room metadata size <span class="unit">M</span></th>
+              <td>Bytes of room facts &mdash; what one duplicated copy costs</td>
               <td class="unit">50&ndash;2000 bytes</td><td class="default">200</td>
-              <td>Sets what one duplicated copy costs</td>
-            </tr>
-            <tr data-control="resv">
-              <th scope="row">Reservation size</th>
-              <td>Bytes of one booking's own fields</td>
-              <td class="unit">50&ndash;1000 bytes</td><td class="default">100</td>
-              <td>Scales the reservation side, identically in all three</td>
-            </tr>
-            <tr data-control="idsize">
-              <th scope="row">Identifier size</th>
-              <td>Bytes of the key that joins a reservation to a room</td>
-              <td class="unit">4&ndash;16 bytes</td><td class="default">8</td>
-              <td>The price normalization pays for not duplicating</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p class="lab-tablenote">
+        Duplication is not in this table because it is not a control: it is produced by the
+        representation and the repetition. Four further settings &mdash; reservation size,
+        identifier size, the physical-overhead estimate and which room to rename &mdash; are in
+        <strong>Further investigation</strong>, and the model's fixed constants are in the
+        <strong>Model reference</strong>.
+      </p>
     </div>
+
+    <div class="lab-assumptions">
+      <h3 id="h-table2">Table 2 &mdash; Observed quantities</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Table 2 &mdash; the quantities the apparatus reports</caption>
+          <thead>
+            <tr><th scope="col">Quantity</th><th scope="col">What it counts</th>
+              <th scope="col">Unit</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Logical storage</th>
+              <td>Unique facts, plus duplicated copies, plus the identifier bytes that connect
+                records</td>
+              <td class="unit">bytes</td>
+            </tr>
+            <tr>
+              <th scope="row">Duplicated bytes</th>
+              <td>The excess only &mdash; the same fact stored again. Reported with a word for its
+                band, not a colour alone</td>
+              <td class="unit">bytes</td>
+            </tr>
+            <tr>
+              <th scope="row">Records a rename touches</th>
+              <td>Stored records that have to be rewritten when one room's name changes. Not a
+                storage figure</td>
+              <td class="unit">records</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lab-tablenote">
+        The first two are what the representation costs to <em>store</em>. The third is what it
+        costs to <em>change</em>, and it is the quantity the exercise exists to make visible.
+      </p>
+    </div>
+  </div>
+
+  <!-- -------- ASSUMPTIONS · beside the model, as the house style requires -------- -->
+  <div class="lab-assumptions cols2" aria-labelledby="h-assumptions">
+    <h3 id="h-assumptions">Model assumptions</h3>
+    <ul>
+      <li><strong>Every figure is arithmetic over the parameters above.</strong> Nothing is measured
+        and no database is contacted.</li>
+      <li><strong>Uniform sizes.</strong> Every room's metadata is the same size and every
+        reservation is the same size, so the model has no distribution and no outliers.</li>
+      <li><strong>Reservations divide evenly among rooms,</strong> and every room has at least
+        one.</li>
+      <li><strong>Indexes, page padding, compression and replication are outside the model</strong>
+        unless the optional physical-overhead estimate is switched on, and that estimate is labelled
+        an estimate wherever it appears.</li>
+    </ul>
+    <p class="lab-disclaimer">
+      <strong>The simulator estimates logical representation size, not actual disk consumption by
+      PostgreSQL, MongoDB, or another engine.</strong> It claims no storage figure for any of them,
+      or for any other product: nothing here was run.
+    </p>
   </div>
 </section>
 
-<!-- ======================= CONTROLS ======================= -->
-<section class="panel" aria-labelledby="h-controls">
-  <h2 id="h-controls">Controls</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
-    <ol class="lab-steps">
-      <li>
-        <span class="step">1 &middot; Predict</span>
-        At 100 rooms with 20 reservations each, write down which of the three layouts you expect to
-        be largest and by roughly what factor. Then predict what happens to that factor if the room
-        metadata grows from 200 bytes to 2000.
-      </li>
-      <li>
-        <span class="step">2 &middot; Run</span>
-        Step the representation through normalized, denormalized and document with the sizes fixed,
-        reading the duplicated-facts figure each time. Then raise the room metadata size and repeat.
-        Finally run the rename experiment under each layout.
-      </li>
-      <li>
-        <span class="step">3 &middot; Explain</span>
-        Why do the normalized and document layouts report the same duplication while the
-        denormalized one does not? The rename cost is not a storage figure at all &mdash; say what it
-        is, and what you would recommend to an engineer choosing a layout for this service.
-      </li>
-    </ol>
-  </div>
+<!-- ======================= 4 · EXPERIMENT ======================= -->
+<section class="panel" aria-labelledby="h-procedure">
+  <h2 id="h-procedure">Experiment</h2>
+  <p class="proc-lead">
+    Three comparisons, in order. Each one names its baseline, the single parameter it changes and
+    what it holds still, so a reading means something. <strong>Predict before you run</strong>
+    &mdash; write the prediction down, then set the controls in the apparatus below and read the
+    three reported quantities.
+  </p>
+
+  <ol class="procedure">
+    <li class="exp">
+      <h3>Representation against footprint</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>100 rooms, 20 reservations each, 200-byte room metadata, <strong>Normalized</strong>.</dd>
+        <dt>Change</dt>
+        <dd>Representation: Normalized &rarr; Denormalized &rarr; Document.</dd>
+        <dt>Hold constant</dt>
+        <dd>Rooms, reservations per room, room metadata size.</dd>
+        <dt>Predict</dt>
+        <dd>Which layout stores the most, and by roughly what factor? Which of the three duplicate
+          nothing at all?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Logical storage and duplicated bytes, for each of the three.</dd>
+        <dt>Explain</dt>
+        <dd>The document layout is a different kind of database from the normalized tables, yet it
+          duplicates the same amount &mdash; none. So what decides duplication: the kind of
+          database, or the layout?</dd>
+      </dl>
+      <p class="exp-load"><button type="button" class="act" data-preset="the-lander">Load this
+        baseline</button></p>
+    </li>
+
+    <li class="exp">
+      <h3>Repetition is what duplicates</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd><strong>Denormalized</strong> at 100 rooms, 20 reservations each, 200-byte room
+          metadata &mdash; Experiment&nbsp;1's baseline with Denormalized selected.</dd>
+        <dt>Change</dt>
+        <dd>Reservations per room: 20 &rarr; 1.</dd>
+        <dt>Hold constant</dt>
+        <dd>Representation (Denormalized), rooms, room metadata size.</dd>
+        <dt>Predict</dt>
+        <dd>At one reservation per room, what happens to the duplicated bytes, and to the
+          denormalized layout's multiple of the normalized footprint?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Duplicated bytes and the multiple reported beside the band word, at
+          <code>V</code>&nbsp;=&nbsp;20 and at <code>V</code>&nbsp;=&nbsp;1.</dd>
+        <dt>Explain</dt>
+        <dd>Is denormalizing expensive, or is repeating expensive? Name a service where
+          denormalizing would cost almost nothing.</dd>
+      </dl>
+      <p class="exp-load"><button type="button" class="act" data-preset="one-each">Load the changed
+        configuration (V = 1)</button></p>
+    </li>
+
+    <li class="exp">
+      <h3>What a rename obliges</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd><strong>Denormalized</strong>, 100 rooms, 20 reservations each, 2,000-byte room
+          metadata, renaming room&nbsp;1.</dd>
+        <dt>Change</dt>
+        <dd>Representation: Denormalized &rarr; Normalized &rarr; Document, renaming the same room
+          each time.</dd>
+        <dt>Hold constant</dt>
+        <dd>Rooms, reservations per room, room metadata size, the room renamed.</dd>
+        <dt>Predict</dt>
+        <dd>How many stored records does each layout have to rewrite for one rename? Does the answer
+          depend on the room's metadata size?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Records a rename touches, for each layout, and the record lists in the rename
+          comparison.</dd>
+        <dt>Explain</dt>
+        <dd>A rename costs no bytes. What does the denormalized count oblige the engineer to
+          guarantee, and what is left behind if one of those writes does not land?</dd>
+      </dl>
+      <p class="exp-load"><button type="button" class="act" data-preset="fat-metadata">Load the
+        rich-metadata baseline</button></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ======================= 5 · INTERACTIVE APPARATUS ======================= -->
+<section class="panel" aria-labelledby="h-apparatus">
+  <h2 id="h-apparatus">Interactive apparatus &mdash; controls</h2>
 
   <div class="ctl-row">
-    <div class="ctl">
-      <label for="rooms">Number of rooms <span class="unit">R</span></label>
-      <input type="range" id="rooms-range" min="10" max="10000" step="10" value="100"
-             aria-label="Number of rooms, slider">
-      <input type="number" id="rooms" min="10" max="10000" step="1" value="100">
-    </div>
-    <div class="ctl">
-      <label for="perroom">Reservations per room <span class="unit">V</span></label>
-      <input type="range" id="perroom-range" min="1" max="1000" step="1" value="20"
-             aria-label="Reservations per room, slider">
-      <input type="number" id="perroom" min="1" max="1000" step="1" value="20">
-    </div>
-    <div class="ctl">
-      <label for="meta">Room metadata size <span class="unit">M, bytes</span></label>
-      <input type="range" id="meta-range" min="50" max="2000" step="10" value="200"
-             aria-label="Room metadata size in bytes, slider">
-      <input type="number" id="meta" min="50" max="2000" step="1" value="200">
-    </div>
-    <div class="ctl">
-      <label for="resv">Reservation size <span class="unit">Z, bytes</span></label>
-      <input type="range" id="resv-range" min="50" max="1000" step="10" value="100"
-             aria-label="Reservation size in bytes, slider">
-      <input type="number" id="resv" min="50" max="1000" step="1" value="100">
-    </div>
-    <div class="ctl">
-      <label for="idsize">Identifier size <span class="unit">I, bytes</span></label>
-      <input type="range" id="idsize-range" min="4" max="16" step="1" value="8"
-             aria-label="Identifier size in bytes, slider">
-      <input type="number" id="idsize" min="4" max="16" step="1" value="8">
-    </div>
     <div class="ctl">
       <label id="repr-label">Representation</label>
       <div class="seg" role="group" aria-labelledby="repr-label" id="repr-seg">
@@ -943,103 +1201,71 @@ code {
         <button type="button" data-repr="denormalized" aria-pressed="false">Denormalized</button>
         <button type="button" data-repr="document" aria-pressed="false">Document</button>
       </div>
-      <span></span>
+      <span class="help">Which layout the reported figures describe.</span>
     </div>
     <div class="ctl">
-      <label id="physical-label">Physical-overhead estimate</label>
-      <div class="seg" role="group" aria-labelledby="physical-label" id="physical-seg">
-        <button type="button" data-physical="off" aria-pressed="true">Off</button>
-        <button type="button" data-physical="on" aria-pressed="false">On</button>
-      </div>
-      <span></span>
+      <label for="rooms">Rooms <span class="unit">R</span></label>
+      <input type="range" id="rooms-range" min="10" max="10000" step="10" value="100"
+             aria-label="Number of rooms, slider">
+      <input type="number" id="rooms" min="10" max="10000" step="1" value="100">
+      <span class="help">Distinct rooms in the catalogue. Scales every layout alike.</span>
+    </div>
+    <div class="ctl">
+      <label for="perroom">Reservations per room <span class="unit">V</span></label>
+      <input type="range" id="perroom-range" min="1" max="1000" step="1" value="20"
+             aria-label="Reservations per room, slider">
+      <input type="number" id="perroom" min="1" max="1000" step="1" value="20">
+      <span class="help">How many times a room's facts repeat in the denormalized layout.</span>
+    </div>
+    <div class="ctl">
+      <label for="meta">Room metadata size <span class="unit">M, bytes</span></label>
+      <input type="range" id="meta-range" min="50" max="2000" step="10" value="200"
+             aria-label="Room metadata size in bytes, slider">
+      <input type="number" id="meta" min="50" max="2000" step="1" value="200">
+      <span class="help">Bytes of room facts. Sets what one duplicated copy costs.</span>
     </div>
   </div>
 
   <div class="btn-row">
-    <button type="button" class="act" id="btn-defaults">Defaults</button>
+    <button type="button" class="act primary" id="btn-rename" aria-pressed="false">
+      Rename the room
+    </button>
+    <span id="rename-caption" style="color:var(--muted);font-size:0.9rem"></span>
     <span style="flex:1"></span>
+    <button type="button" class="act" id="btn-defaults">Reset to defaults</button>
     <a class="act" id="btn-download" href="index.html" download="storage-cost.html"
        role="button" style="text-decoration:none">Download HTML</a>
   </div>
 
   <p id="clamp-notice" class="warnbox" hidden role="status"></p>
-
-  <p class="note" id="physical-policy">
-    <strong>Why physical storage is off by default.</strong> Logical storage follows from the
-    representation: count the facts, count the copies, count the identifier bytes. It is exact
-    arithmetic over the five controls above. Physical storage adds per-record headers and index
-    entries, and those sizes are properties of a <em>storage engine</em> &mdash; so turning the
-    estimate on changes the page's claim from a calculation into a model, and every figure it
-    produces is labelled an estimate. The handout's statement above holds either way: nothing here
-    was run, and the page claims no storage figure for any named engine.
-  </p>
 </section>
 
-<!-- ======================= PRESETS ======================= -->
-<section class="panel" aria-labelledby="h-presets">
-  <h2 id="h-presets">Classroom presets</h2>
-  <div class="preset-grid" id="presets"></div>
-  <p class="note">
-    Start at the lecture example, then go to <strong>one reservation per room</strong> &mdash; the
-    counter-example. Denormalization costs nothing there, because nothing repeats. Duplication is a
-    property of <em>repetition</em>, not of the denormalized shape by itself.
-  </p>
-</section>
-
-<div class="grid2">
-
-  <!-- ======================= THE THREE REPRESENTATIONS ======================= -->
-  <section class="panel" aria-labelledby="h-shapes">
-    <h2 id="h-shapes">The three representations</h2>
-    <p style="margin-top:0">
-      One data set &mdash; <span id="shape-summary" class="name-now">&mdash;</span>. Three ways to
-      write it down. The reader's current choice is outlined.
-    </p>
-    <div id="shapes"></div>
-    <p class="note">
-      <strong>The document representation is not the denormalized one.</strong> Nesting the
-      reservations inside the room document stores the room's facts once, exactly as the normalized
-      tables do. Its duplication profile matches the normalized case; only the denormalized table
-      copies the room's facts onto every reservation. Database category and normalization are
-      different dimensions, and this is where that separation becomes visible.
-    </p>
-  </section>
-
-  <!-- ======================= RESULTS ======================= -->
-  <section class="panel" aria-labelledby="h-results">
-    <h2 id="h-results">Storage for the current representation</h2>
-    <div class="big">
-      <div class="cell lead">
-        <span class="k">Logical storage</span>
-        <span class="v" id="r-logical">&mdash;</span>
-        <span class="s">calculated from the representation</span>
-      </div>
-      <div class="cell" id="cell-physical">
-        <span class="k">Physical storage &mdash; estimate</span>
-        <span class="v" id="r-physical">&mdash;</span>
-        <span class="s" id="r-physical-sub">turn the optional control on</span>
-      </div>
+<!-- ======================= 5b · RESULTS ======================= -->
+<section class="panel" aria-labelledby="h-results">
+  <h2 id="h-results">Results</h2>
+  <div class="big">
+    <div class="cell lead">
+      <span class="k">Logical storage</span>
+      <span class="v" id="r-logical">&mdash;</span>
+      <span class="s">for the layout selected above</span>
     </div>
-    <p style="margin-top:0">
-      <span class="badge s-ok" id="dup-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="dup-band-text">no duplicated facts</span></span>
-    </p>
-    <dl class="readout">
-      <dt>Unique facts</dt><dd id="r-unique">&mdash;</dd>
-      <dt>Duplicated facts</dt><dd id="r-dup">&mdash;</dd>
-      <dt>References and identifiers</dt><dd id="r-refs">&mdash;</dd>
-      <dt>Record overhead (estimated)</dt><dd id="r-recordoh">&mdash;</dd>
-      <dt>Field-name overhead (estimated)</dt><dd id="r-keysoh">&mdash;</dd>
-      <dt>Index overhead (estimated)</dt><dd id="r-indexoh">&mdash;</dd>
-      <dt>Stored records</dt><dd id="r-records">&mdash;</dd>
-      <dt>Reservations in total</dt><dd id="r-total-resv">&mdash;</dd>
-    </dl>
-    <p class="note" id="results-note"></p>
-  </section>
-</div>
+    <div class="cell">
+      <span class="k">Duplicated bytes</span>
+      <span class="v" id="r-dup-big">&mdash;</span>
+      <span class="s" id="r-dup-sub">&mdash;</span>
+    </div>
+    <div class="cell">
+      <span class="k">Records a rename touches</span>
+      <span class="v" id="r-rename-big">&mdash;</span>
+      <span class="s" id="r-rename-sub">&mdash;</span>
+    </div>
+  </div>
+  <p style="margin-top:0">
+    <span class="badge s-ok" id="dup-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="dup-band-text">no duplicated facts</span></span>
+  </p>
+  <p class="note" id="results-note"></p>
 
-<!-- ======================= THE BARS ======================= -->
-<section class="panel" aria-labelledby="h-bars">
-  <h2 id="h-bars">All three representations, same data</h2>
+  <h3 id="h-bars">All three layouts, the same data</h3>
   <div class="canvas-wrap"><canvas id="c-bars" width="1200" height="330"
     role="img" aria-labelledby="bars-alt"></canvas></div>
   <p id="bars-alt" class="vh" aria-live="polite"></p>
@@ -1050,212 +1276,371 @@ code {
     <span><i class="hatch"></i>Estimated storage overhead (hatched)</span>
   </div>
   <p class="note" id="bars-note"></p>
-</section>
 
-<!-- ======================= THE RENAME EXPERIMENT ======================= -->
-<section class="panel" aria-labelledby="h-rename">
-  <h2 id="h-rename">The rename experiment</h2>
+  <h3 id="h-rename">The rename comparison</h3>
   <p style="margin-top:0">
-    Rooms get renamed. A building is renumbered, a hall is given a donor's name, a department
-    reshuffles. Pick a room, rename it, and count the records that have to change.
-    <strong>This is the part that matters more than the byte totals</strong>: it connects the
-    representation to the obligation of keeping the data consistent while it is being changed.
+    Each layout's records for the selected room, with every record holding a copy of the name
+    marked. <strong>This is the part that matters more than the byte totals</strong>: it connects
+    the representation to the obligation of keeping the data consistent while it is being changed.
   </p>
-
-  <div class="ctl-row" style="margin-bottom:0.4rem">
-    <div class="ctl">
-      <label for="room-id">Room <span class="unit">1&hellip;<span id="room-max">100</span></span></label>
-      <input type="range" id="room-id-range" min="1" max="100" step="1" value="1"
-             aria-label="Which room to rename, slider">
-      <input type="number" id="room-id" min="1" max="10000" step="1" value="1">
-    </div>
-    <div class="ctl">
-      <span class="lbl">Rename it</span>
-      <div class="btn-row" style="margin:0">
-        <button type="button" class="act primary" id="btn-rename" aria-pressed="false">
-          Rename the room
-        </button>
-        <span id="rename-caption" style="color:var(--muted);font-size:0.9rem"></span>
-      </div>
-      <span></span>
-    </div>
-  </div>
-
   <div class="rename-grid" id="rename-maps"></div>
   <p id="rename-alt" class="vh" aria-live="polite"></p>
-
   <p class="note" id="rename-note"></p>
 </section>
 
-<!-- ======================= DUPLICATION SWEEP ======================= -->
-<section class="panel" aria-labelledby="h-sweep">
-  <h2 id="h-sweep">Logical storage as the reservations per room grow</h2>
-  <div class="canvas-wrap"><canvas id="c-sweep" width="1200" height="340"
-    role="img" aria-labelledby="sweep-alt"></canvas></div>
-  <p id="sweep-alt" class="vh" aria-live="polite"></p>
-  <div class="legend">
-    <span><i style="background:var(--model)"></i>Normalized relational</span>
-    <span><i style="background:var(--bad)"></i>Denormalized relational</span>
-    <span><i style="background:var(--ok)"></i>Document-oriented</span>
-  </div>
-  <p class="note" id="sweep-note"></p>
+<!-- ======================= 6 · INTERPRETATION ======================= -->
+<section class="panel" aria-labelledby="h-interpretation">
+  <h2 id="h-interpretation">Interpretation</h2>
+  <ol class="interp">
+    <li>Two of the three layouts report the same duplicated bytes. Say which two, and say what they
+      have in common that the third does not.</li>
+    <li>The document layout lands <em>below</em> the normalized tables rather than above them.
+      Which term in the model accounts for the difference, and which control changes it?</li>
+    <li>At one reservation per room, denormalizing duplicates nothing. State the condition under
+      which denormalizing is cheap, in terms of the parameters rather than the layouts.</li>
+    <li>The rename count is not a storage figure. Say what it is a figure for, and what it would
+      cost a running service to get it wrong.</li>
+    <li>You are choosing a layout for this booking service. Recommend one, name the parameter whose
+      value would change your recommendation, and say which way.</li>
+  </ol>
 </section>
 
-<!-- ======================= THE MODEL ======================= -->
-<section class="panel" aria-labelledby="h-model">
-  <h2 id="h-model">The storage model, in full</h2>
+<!-- ======================= 7 · FURTHER INVESTIGATION ======================= -->
+<section class="panel" aria-labelledby="h-further">
+  <h2 id="h-further">Further investigation</h2>
   <p style="margin-top:0">
-    Nothing on this page runs a database. There is no engine, no file, no page cache, and no
-    measurement. Every figure comes from the formulas below applied to the five controls, which is
-    why the same controls always produce the same answer.
+    Optional. The apparatus above carries the four parameters the principal comparison needs; the
+    model computes more than that, and the rest is here. None of it is required to answer the
+    interpretation questions.
   </p>
 
-  <h3>Two quantities, kept apart</h3>
-  <p>
-    <code>S_logical = S_unique + S_duplicated + S_references</code>
-  </p>
-  <p>
-    <code>S_physical = S_logical + S_record_overhead + S_field_name_overhead + S_index_overhead</code>
-  </p>
-  <p>
-    The first follows directly from the chosen representation: it counts the facts the
-    representation stores, the copies it makes of them, and the identifier bytes it spends
-    connecting records. <strong>The second requires assumptions about a storage engine</strong>
-    &mdash; header layout, index structure, how field names are encoded &mdash; so it is labelled an
-    <em>estimate</em> wherever it appears, and it is off until the reader asks for it.
-  </p>
+  <details class="disclose">
+    <summary>Additional parameters, and the optional physical-overhead estimate</summary>
+    <div class="body">
+      <div class="ctl-row">
+        <div class="ctl">
+          <label for="resv">Reservation size <span class="unit">Z, bytes</span></label>
+          <input type="range" id="resv-range" min="50" max="1000" step="10" value="100"
+                 aria-label="Reservation size in bytes, slider">
+          <input type="number" id="resv" min="50" max="1000" step="1" value="100">
+          <span class="help">Scales the reservation side identically in all three layouts, so it
+            moves the totals without moving the comparison.</span>
+        </div>
+        <div class="ctl">
+          <label for="idsize">Identifier size <span class="unit">I, bytes</span></label>
+          <input type="range" id="idsize-range" min="4" max="16" step="1" value="8"
+                 aria-label="Identifier size in bytes, slider">
+          <input type="number" id="idsize" min="4" max="16" step="1" value="8">
+          <span class="help">The price the normalized layout pays for not duplicating.</span>
+        </div>
+        <div class="ctl">
+          <label id="physical-label">Physical-overhead estimate</label>
+          <div class="seg" role="group" aria-labelledby="physical-label" id="physical-seg">
+            <button type="button" data-physical="off" aria-pressed="true">Off</button>
+            <button type="button" data-physical="on" aria-pressed="false">On</button>
+          </div>
+          <span class="help">Adds assumed engine overhead, labelled an estimate everywhere it
+            appears.</span>
+        </div>
+        <div class="ctl">
+          <label for="room-id">Room to rename <span class="unit">1&hellip;<span id="room-max">100</span></span></label>
+          <input type="range" id="room-id-range" min="1" max="100" step="1" value="1"
+                 aria-label="Which room to rename, slider">
+          <input type="number" id="room-id" min="1" max="10000" step="1" value="1">
+          <span class="help">Which room the rename comparison follows.</span>
+        </div>
+      </div>
 
-  <h3>The record layouts, and what each field costs</h3>
-  <p style="margin:0.35rem 0 0">
-    Write <code>N = R &times; V</code> for the total number of reservations. Identifier bytes are
-    charged <em>per occurrence</em>: a row's own key and a foreign key each cost <code>I</code>.
-  </p>
-  <div class="scroll-x">
-  <table class="model">
-    <thead><tr><th>Representation</th><th>Stored shape</th><th class="n">Unique</th><th class="n">Duplicated</th><th class="n">References</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>Normalized relational</td>
-        <td><code>ROOMS(id, metadata)</code><br><code>RESERVATIONS(id, room_id, payload)</code></td>
-        <td class="n">R&middot;M + N&middot;Z</td>
-        <td class="n">0</td>
-        <td class="n">R&middot;I + 2N&middot;I</td>
-      </tr>
-      <tr>
-        <td>Denormalized relational</td>
-        <td><code>RESERVATIONS(id, room_id, room_metadata, payload)</code></td>
-        <td class="n">R&middot;M + N&middot;Z</td>
-        <td class="n">(N &minus; R)&middot;M</td>
-        <td class="n">2N&middot;I</td>
-      </tr>
-      <tr>
-        <td>Document-oriented</td>
-        <td><code>{ room_id, metadata, reservations: [ { id, payload }, &hellip; ] }</code></td>
-        <td class="n">R&middot;M + N&middot;Z</td>
-        <td class="n">0</td>
-        <td class="n">R&middot;I + N&middot;I</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">
-    <strong>Three modelling decisions worth arguing with, stated rather than buried.</strong>
-    First, the duplicated column is the <em>excess</em>: the denormalized table stores the room's
-    metadata <code>V</code> times, one of which is the fact and <code>V &minus; 1</code> of which
-    are copies, so the excess is <code>(N &minus; R)&middot;M</code> and the unique column is the
-    same in all three rows. Second, the denormalized representation has no <code>ROOMS</code> table
-    at all, which is what the lecture's diagram shows &mdash; and it means a room with no
-    reservations has nowhere to live. That is a fidelity cost of the shape, not only a storage one.
-    Third, a nested reservation carries no <code>room_id</code>: containment <em>is</em> the
-    reference, which is why the document representation spends <code>N&middot;I</code> fewer
-    reference bytes than the normalized tables and lands a little <em>below</em> them.
-  </p>
-  <p class="note">
-    A real document encoding stores its <strong>field names</strong> alongside the data, while a
-    relational table keeps its column names once in the catalogue. That is a genuine cost, and it
-    would push the document representation back above the normalized one &mdash; but it is a
-    property of an encoding rather than of the representation, so it sits in the physical estimate
-    below and not in the logical arithmetic.
-  </p>
+      <p class="note" id="physical-policy">
+        <strong>Why physical storage is off by default.</strong> Logical storage follows from the
+        representation: count the facts, count the copies, count the identifier bytes. It is exact
+        arithmetic over the parameters in Table&nbsp;1. Physical storage adds per-record headers and
+        index entries, and those sizes are properties of a <em>storage engine</em> &mdash; so
+        turning the estimate on changes the page's claim from a calculation into a model, and every
+        figure it produces is labelled an estimate. The model's statement above holds either way:
+        nothing here was run.
+      </p>
 
-  <h3>Reservations per room</h3>
-  <p>
-    Every room holds exactly <code>V</code> reservations, so <code>N = R &times; V</code> and the
-    arithmetic stays closed-form at every scale the controls allow &mdash; ten million reservations
-    is a multiplication, not a loop. A real campus has a long tail of popular and unused rooms. The
-    uniform assumption changes the <em>totals</em>; it does not change which facts a representation
-    duplicates, which is what the exercise is about.
-  </p>
+      <h3>Further classroom configurations</h3>
+      <div class="preset-grid" id="presets-more"></div>
+    </div>
+  </details>
 
-  <h3>The physical estimate &mdash; assumptions, named</h3>
-  <div class="scroll-x">
-  <table class="model">
-    <thead><tr><th>Constant</th><th class="n">Value</th><th>Assumption it encodes</th></tr></thead>
-    <tbody>
-      <tr><td>Record header</td><td class="n" id="k-record">&mdash;</td>
-          <td>Charged once per stored record: a relational row, a top-level document, and each nested sub-document. Stands for a length prefix, a visibility or version stamp, and a null bitmap.</td></tr>
-      <tr><td>Field-name bytes</td><td class="n" id="k-keys">&mdash;</td>
-          <td>Charged per document and per nested sub-document, in the <em>document representation only</em>. A schemaless encoding stores field names with every value; a relational table stores them once.</td></tr>
-      <tr><td>Index entry</td><td class="n" id="k-index">&mdash;</td>
-          <td><code>2I + 12</code> &mdash; a key, a row or document pointer, and per-entry tree bookkeeping.</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p style="margin:0.6rem 0 0">
-    The index <em>count</em> is not a constant; it follows from which lookups each representation has
-    to support. All three are charged for the same two capabilities: find a reservation by its own
-    identifier, and find the reservations belonging to a room.
-  </p>
-  <div class="scroll-x">
-  <table class="model">
-    <thead><tr><th>Representation</th><th>Indexes assumed</th><th class="n">Entries</th></tr></thead>
-    <tbody>
-      <tr><td>Normalized relational</td>
-          <td>Primary key on <code>ROOMS.id</code>; primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
-          <td class="n">R + 2N</td></tr>
-      <tr><td>Denormalized relational</td>
-          <td>Primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
-          <td class="n">2N</td></tr>
-      <tr><td>Document-oriented</td>
-          <td>Primary key on <code>room_id</code>; one multi-key index over the nested <code>reservations[].id</code>. A room's reservations need no index at all &mdash; they arrive with the document.</td>
-          <td class="n">R + N</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">
-    <strong>What the estimate leaves out,</strong> stated so it is not mistaken for a measurement: no
-    page or block granularity and therefore no internal fragmentation, no compression, no
-    column-store encoding, no write-ahead log, no free-space map, no multi-version row copies, no
-    replication factor, and no table or index bloat from the update history. A real engine has all of
-    those, and the direction they push is not uniform &mdash; compression cuts the duplicated bytes
-    hardest, while fragmentation and version copies add bytes the model never counts. Anyone who
-    needs a number for a real system has to measure that system.
-  </p>
+  <details class="disclose">
+    <summary>Every quantity the model computes</summary>
+    <div class="body">
+      <div class="big">
+        <div class="cell" id="cell-physical">
+          <span class="k">Physical storage &mdash; estimate</span>
+          <span class="v" id="r-physical">&mdash;</span>
+          <span class="s" id="r-physical-sub">turn the optional control on</span>
+        </div>
+      </div>
+      <dl class="readout">
+        <dt>Unique facts</dt><dd id="r-unique">&mdash;</dd>
+        <dt>Duplicated facts</dt><dd id="r-dup">&mdash;</dd>
+        <dt>References and identifiers</dt><dd id="r-refs">&mdash;</dd>
+        <dt>Record overhead (estimated)</dt><dd id="r-recordoh">&mdash;</dd>
+        <dt>Field-name overhead (estimated)</dt><dd id="r-keysoh">&mdash;</dd>
+        <dt>Index overhead (estimated)</dt><dd id="r-indexoh">&mdash;</dd>
+        <dt>Stored records</dt><dd id="r-records">&mdash;</dd>
+        <dt>Reservations in total</dt><dd id="r-total-resv">&mdash;</dd>
+      </dl>
+    </div>
+  </details>
 
-  <h3>The rename, and what it costs</h3>
-  <div class="scroll-x">
-  <table class="model">
-    <thead><tr><th>Representation</th><th class="n">Records touched</th><th>Why, and what it obliges</th></tr></thead>
-    <tbody>
-      <tr><td>Normalized relational</td><td class="n">1 record</td>
-          <td>The room's name exists in one place. One write, and the database cannot hold two answers.</td></tr>
-      <tr><td>Denormalized relational</td><td class="n">V records</td>
-          <td>Every reservation for that room carries a copy. All <code>V</code> have to change together: a write that stops halfway leaves the database holding two different names for one room. The duplication did not merely cost space &mdash; it created a consistency obligation.</td></tr>
-      <tr><td>Document-oriented</td><td class="n">1 document</td>
-          <td>The name lives once, in the room document. <strong>Its physical rewrite cost depends on the database engine</strong>: a document store may patch the field in place, or it may rewrite the whole document including every nested reservation. That is an engine property, so this page reports the logical count and names the uncertainty rather than estimating it away.</td></tr>
-    </tbody>
-  </table>
-  </div>
+  <details class="disclose">
+    <summary>The three stored shapes, as the controls set them</summary>
+    <div class="body">
+      <p style="margin-top:0">
+        One data set &mdash; <span id="shape-summary" class="name-now">&mdash;</span>. Three ways to
+        write it down. The current choice is outlined.
+      </p>
+      <div id="shapes"></div>
+    </div>
+  </details>
 
-  <p>
-    <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
-    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
-  </p>
-  <p class="note">
-    The engine is a pure module published as <code>window.StorageCost</code> with no browser
-    dependency, so the test suite under <code>tests/</code> extracts it from this file and exercises
-    it directly. The tested text and the published text are the same bytes.
-  </p>
+  <details class="disclose">
+    <summary>Logical storage as the reservations per room grow</summary>
+    <div class="body">
+      <div class="canvas-wrap"><canvas id="c-sweep" width="1200" height="340"
+        role="img" aria-labelledby="sweep-alt"></canvas></div>
+      <p id="sweep-alt" class="vh" aria-live="polite"></p>
+      <div class="legend">
+        <span><i style="background:var(--model)"></i>Normalized relational</span>
+        <span><i style="background:var(--bad)"></i>Denormalized relational</span>
+        <span><i style="background:var(--ok)"></i>Document-oriented</span>
+      </div>
+      <p class="note" id="sweep-note"></p>
+    </div>
+  </details>
+
+  <details class="disclose">
+    <summary>Model reference &mdash; the formulas, the layouts, the constants and the exclusions</summary>
+    <div class="body">
+      <p style="margin-top:0">
+        Nothing on this page runs a database. There is no engine, no file, no page cache, and no
+        measurement. Every figure comes from the formulas below applied to the controls, which is
+        why the same controls always produce the same answer. The arithmetic is exact and there is
+        no randomness anywhere in it, so a configuration is reproducible without needing a seed.
+      </p>
+
+      <h3>Two quantities, kept apart</h3>
+      <p><code>S_logical = S_unique + S_duplicated + S_references</code></p>
+      <p><code>S_physical = S_logical + S_record_overhead + S_field_name_overhead + S_index_overhead</code></p>
+      <p>
+        The first follows directly from the chosen representation: it counts the facts the
+        representation stores, the copies it makes of them, and the identifier bytes it spends
+        connecting records. <strong>The second requires assumptions about a storage engine</strong>
+        &mdash; header layout, index structure, how field names are encoded &mdash; so it is
+        labelled an <em>estimate</em> wherever it appears, and it is off until the reader asks for
+        it.
+      </p>
+
+      <h3>The record layouts, and what each field costs</h3>
+      <p style="margin:0.35rem 0 0">
+        Write <code>N = R &times; V</code> for the total number of reservations. Identifier bytes are
+        charged <em>per occurrence</em>: a row's own key and a foreign key each cost <code>I</code>.
+      </p>
+      <div class="scroll-x">
+      <table class="model">
+        <thead><tr><th>Representation</th><th>Stored shape</th><th class="n">Unique</th><th class="n">Duplicated</th><th class="n">References</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Normalized relational</td>
+            <td><code>ROOMS(id, metadata)</code><br><code>RESERVATIONS(id, room_id, payload)</code></td>
+            <td class="n">R&middot;M + N&middot;Z</td>
+            <td class="n">0</td>
+            <td class="n">R&middot;I + 2N&middot;I</td>
+          </tr>
+          <tr>
+            <td>Denormalized relational</td>
+            <td><code>RESERVATIONS(id, room_id, room_metadata, payload)</code></td>
+            <td class="n">R&middot;M + N&middot;Z</td>
+            <td class="n">(N &minus; R)&middot;M</td>
+            <td class="n">2N&middot;I</td>
+          </tr>
+          <tr>
+            <td>Document-oriented</td>
+            <td><code>{ room_id, metadata, reservations: [ { id, payload }, &hellip; ] }</code></td>
+            <td class="n">R&middot;M + N&middot;Z</td>
+            <td class="n">0</td>
+            <td class="n">R&middot;I + N&middot;I</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note">
+        <strong>Three modelling decisions worth arguing with, stated rather than buried.</strong>
+        First, the duplicated column is the <em>excess</em>: the denormalized table stores the room's
+        metadata <code>V</code> times, one of which is the fact and <code>V &minus; 1</code> of which
+        are copies, so the excess is <code>(N &minus; R)&middot;M</code> and the unique column is the
+        same in all three rows. Second, the denormalized representation has no <code>ROOMS</code> table
+        at all, which is what the lecture's diagram shows &mdash; and it means a room with no
+        reservations has nowhere to live. That is a fidelity cost of the shape, not only a storage one.
+        Third, a nested reservation carries no <code>room_id</code>: containment <em>is</em> the
+        reference, which is why the document representation spends <code>N&middot;I</code> fewer
+        reference bytes than the normalized tables and lands a little <em>below</em> them.
+      </p>
+      <p class="note">
+        A real document encoding stores its <strong>field names</strong> alongside the data, while a
+        relational table keeps its column names once in the catalogue. That is a genuine cost, and it
+        would push the document representation back above the normalized one &mdash; but it is a
+        property of an encoding rather than of the representation, so it sits in the physical estimate
+        below and not in the logical arithmetic.
+      </p>
+
+      <h3>Reservations per room</h3>
+      <p>
+        Every room holds exactly <code>V</code> reservations, so <code>N = R &times; V</code> and the
+        arithmetic stays closed-form at every scale the controls allow &mdash; ten million reservations
+        is a multiplication, not a loop. A real campus has a long tail of popular and unused rooms. The
+        uniform assumption changes the <em>totals</em>; it does not change which facts a representation
+        duplicates, which is what the exercise is about.
+      </p>
+
+      <h3>The physical estimate &mdash; assumptions, named</h3>
+      <div class="scroll-x">
+      <table class="model">
+        <thead><tr><th>Constant</th><th class="n">Value</th><th>Assumption it encodes</th></tr></thead>
+        <tbody>
+          <tr><td>Record header</td><td class="n" id="k-record">&mdash;</td>
+              <td>Charged once per stored record: a relational row, a top-level document, and each nested sub-document. Stands for a length prefix, a visibility or version stamp, and a null bitmap.</td></tr>
+          <tr><td>Field-name bytes</td><td class="n" id="k-keys">&mdash;</td>
+              <td>Charged per document and per nested sub-document, in the <em>document representation only</em>. A schemaless encoding stores field names with every value; a relational table stores them once.</td></tr>
+          <tr><td>Index entry</td><td class="n" id="k-index">&mdash;</td>
+              <td><code>2I + 12</code> &mdash; a key, a row or document pointer, and per-entry tree bookkeeping.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="margin:0.6rem 0 0">
+        The index <em>count</em> is not a constant; it follows from which lookups each representation has
+        to support. All three are charged for the same two capabilities: find a reservation by its own
+        identifier, and find the reservations belonging to a room.
+      </p>
+      <div class="scroll-x">
+      <table class="model">
+        <thead><tr><th>Representation</th><th>Indexes assumed</th><th class="n">Entries</th></tr></thead>
+        <tbody>
+          <tr><td>Normalized relational</td>
+              <td>Primary key on <code>ROOMS.id</code>; primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
+              <td class="n">R + 2N</td></tr>
+          <tr><td>Denormalized relational</td>
+              <td>Primary key on <code>RESERVATIONS.id</code>; secondary index on <code>RESERVATIONS.room_id</code></td>
+              <td class="n">2N</td></tr>
+          <tr><td>Document-oriented</td>
+              <td>Primary key on <code>room_id</code>; one multi-key index over the nested <code>reservations[].id</code>. A room's reservations need no index at all &mdash; they arrive with the document.</td>
+              <td class="n">R + N</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note">
+        <strong>What the estimate leaves out,</strong> stated so it is not mistaken for a measurement: no
+        page or block granularity and therefore no internal fragmentation, no compression, no
+        column-store encoding, no write-ahead log, no free-space map, no multi-version row copies, no
+        replication factor, and no table or index bloat from the update history. A real engine has all of
+        those, and the direction they push is not uniform &mdash; compression cuts the duplicated bytes
+        hardest, while fragmentation and version copies add bytes the model never counts. Anyone who
+        needs a number for a real system has to measure that system.
+      </p>
+
+      <h3>The rename, and what it costs</h3>
+      <div class="scroll-x">
+      <table class="model">
+        <thead><tr><th>Representation</th><th class="n">Records touched</th><th>Why, and what it obliges</th></tr></thead>
+        <tbody>
+          <tr><td>Normalized relational</td><td class="n">1 record</td>
+              <td>The room's name exists in one place. One write, and the database cannot hold two answers.</td></tr>
+          <tr><td>Denormalized relational</td><td class="n">V records</td>
+              <td>Every reservation for that room carries a copy. All <code>V</code> have to change together: a write that stops halfway leaves the database holding two different names for one room. The duplication did not merely cost space &mdash; it created a consistency obligation.</td></tr>
+          <tr><td>Document-oriented</td><td class="n">1 document</td>
+              <td>The name lives once, in the room document. <strong>Its physical rewrite cost depends on the database engine</strong>: a document store may patch the field in place, or it may rewrite the whole document including every nested reservation. That is an engine property, so this page reports the logical count and names the uncertainty rather than estimating it away.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>The full parameter set</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Every parameter the model exposes, with its range, default and
+            effect</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">Meaning</th>
+              <th scope="col">Values</th><th scope="col">Default</th>
+              <th scope="col">What changing it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Representation</th>
+              <td>How the same data is laid out</td>
+              <td class="unit">Normalized &middot; Denormalized &middot; Document</td>
+              <td class="default">Normalized</td>
+              <td>Changes how many copies of a room's facts are stored</td>
+            </tr>
+            <tr>
+              <th scope="row">Rooms</th>
+              <td>Distinct rooms in the catalogue</td>
+              <td class="unit">10&ndash;10,000 rooms</td><td class="default">100</td>
+              <td>Scales the room-side cost in every layout</td>
+            </tr>
+            <tr>
+              <th scope="row">Reservations per room</th>
+              <td>Bookings held against each room</td>
+              <td class="unit">1&ndash;1000 each</td><td class="default">20</td>
+              <td>Scales the duplication the denormalized layout pays</td>
+            </tr>
+            <tr>
+              <th scope="row">Room metadata size</th>
+              <td>Bytes of room facts &mdash; name, building, capacity</td>
+              <td class="unit">50&ndash;2000 bytes</td><td class="default">200</td>
+              <td>Sets what one duplicated copy costs</td>
+            </tr>
+            <tr>
+              <th scope="row">Reservation size</th>
+              <td>Bytes of one booking's own fields</td>
+              <td class="unit">50&ndash;1000 bytes</td><td class="default">100</td>
+              <td>Scales the reservation side, identically in all three</td>
+            </tr>
+            <tr>
+              <th scope="row">Identifier size</th>
+              <td>Bytes of the key that joins a reservation to a room</td>
+              <td class="unit">4&ndash;16 bytes</td><td class="default">8</td>
+              <td>The price normalization pays for not duplicating</td>
+            </tr>
+            <tr>
+              <th scope="row">Physical-overhead estimate</th>
+              <td>Whether assumed engine overhead is added</td>
+              <td class="unit">Off &middot; On</td><td class="default">Off</td>
+              <td>Turns the reported figure from a calculation into an estimate</td>
+            </tr>
+            <tr>
+              <th scope="row">Room to rename</th>
+              <td>Which room the rename comparison follows</td>
+              <td class="unit">1&hellip;R</td><td class="default">1</td>
+              <td>Changes the name shown; the record counts are unaffected</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <details class="disclose">
+    <summary>The model's self-tests</summary>
+    <div class="body">
+      <p style="margin-top:0">
+        <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
+        <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+      </p>
+      <p class="note">
+        The engine is a pure module published as <code>window.StorageCost</code> with no browser
+        dependency, so the test suite under <code>tests/</code> extracts it from this file and
+        exercises it directly. The tested text and the published text are the same bytes.
+      </p>
+    </div>
+  </details>
 </section>
 
 </main>
@@ -2298,33 +2683,48 @@ code {
     }
   }
 
+  function applyPreset(preset) {
+    var p = M.normalizeParams(preset.params);
+    state.rooms = p.rooms;
+    state.reservationsPerRoom = p.reservationsPerRoom;
+    state.metadataBytes = p.metadataBytes;
+    state.reservationBytes = p.reservationBytes;
+    state.identifierBytes = p.identifierBytes;
+    state.representation = p.representation;
+    state.physicalEstimate = p.physicalEstimate;
+    state.roomIndex = p.roomIndex;
+    syncControls();
+    render();
+  }
+
+  /**
+   * Wire the engine's presets to the page.
+   *
+   * A preset the numbered procedure already offers as an experiment's baseline is wired to THAT
+   * button, where the student is reading the experiment it belongs to; the rest become cards in the
+   * collapsed section. So the primary interface carries three entry points, each one attached to a
+   * numbered comparison, rather than five competing cards with nothing to compare them against.
+   * The engine still declares all five and the test suite still asserts every field of each — which
+   * of them the primary interface offers is a presentation decision, not a model one.
+   */
   function buildPresets() {
-    var host = $('presets');
+    var more = $('presets-more');
     M.PRESETS.forEach(function (preset) {
-      var btn = window.document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'preset';
-      btn.setAttribute('data-preset', preset.id);
-      var name = window.document.createElement('strong');
-      name.textContent = preset.name;
-      var blurb = window.document.createElement('span');
-      blurb.textContent = preset.blurb;
-      btn.appendChild(name);
-      btn.appendChild(blurb);
-      btn.addEventListener('click', function () {
-        var p = M.normalizeParams(preset.params);
-        state.rooms = p.rooms;
-        state.reservationsPerRoom = p.reservationsPerRoom;
-        state.metadataBytes = p.metadataBytes;
-        state.reservationBytes = p.reservationBytes;
-        state.identifierBytes = p.identifierBytes;
-        state.representation = p.representation;
-        state.physicalEstimate = p.physicalEstimate;
-        state.roomIndex = p.roomIndex;
-        syncControls();
-        render();
-      });
-      host.appendChild(btn);
+      var btn = window.document.querySelector('button[data-preset="' + preset.id + '"]');
+      if (!btn) {
+        btn = window.document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'preset';
+        btn.setAttribute('data-preset', preset.id);
+        var name = window.document.createElement('strong');
+        name.textContent = preset.name;
+        var blurb = window.document.createElement('span');
+        blurb.textContent = preset.blurb;
+        btn.appendChild(name);
+        btn.appendChild(blurb);
+        more.appendChild(btn);
+      }
+      btn.addEventListener('click', function () { applyPreset(preset); });
     });
   }
 
@@ -2385,6 +2785,18 @@ code {
       ? '+' + M.formatBytes(storage.overhead) + ' of assumed engine overhead'
       : 'turn the optional control on';
     $('cell-physical').className = 'cell' + (storage.estimated ? ' lead' : '');
+
+    /* The three PRIMARY measurements, which are Table 2's three rows: what the representation costs
+       to store, what of that is duplication, and what it costs to change. Both the headline and the
+       detailed readout below read the same model field; neither recomputes anything. */
+    $('r-dup-big').textContent = storage.duplicated === 0 ? '0 B' : M.formatBytes(storage.duplicated);
+    $('r-dup-sub').textContent = storage.duplicated === 0
+      ? 'nothing is stored twice'
+      : M.formatPercent(storage.duplicationShare) + ' of the footprint';
+    $('r-rename-big').textContent = M.formatCount(row.recordsTouchedOnRename);
+    $('r-rename-sub').textContent = row.recordUnit
+      + (row.recordsTouchedOnRename === 1 ? '' : 's')
+      + ' rewritten when one room is renamed';
 
     $('r-unique').textContent = M.formatBytes(storage.unique);
     $('r-dup').textContent = storage.duplicated === 0
@@ -2712,8 +3124,9 @@ code {
       ? 'The hatched segment is the estimated engine overhead — record headers, field names, '
         + 'and index entries. It is an estimate and the rest of each bar is not, which is why it is '
         + 'drawn differently rather than merely coloured differently.'
-      : 'Every byte drawn here is calculated from the five controls. Turn the physical-overhead '
-        + 'estimate on to add the assumed engine overhead as a hatched fourth segment.';
+      : 'Every byte drawn here is calculated from the parameters you set. The physical-overhead '
+        + 'estimate, under Further investigation, adds the assumed engine overhead as a hatched '
+        + 'fourth segment.';
   }
 
   function barsDescription(rows, storage) {
