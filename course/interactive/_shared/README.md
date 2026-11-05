@@ -3,8 +3,15 @@
 Hold what the six exercises have in common once: the shared stylesheet, the tool that inlines it,
 and the gate that holds the hand-authored figures to their geometry.
 
+This file covers the stylesheet's MECHANICS. What the pages must say and show —
+the mandatory section order, the complexity budget, the figure requirement, the procedure shape —
+lives in [`HOUSE-STYLE.md`](HOUSE-STYLE.md), which is the course author's editorial direction for
+all six. **Read its §0 before any redesign:** it records a layout he proposed and then withdrew, so
+that nobody rebuilds it.
+
 | File | Role |
 |---|---|
+| `HOUSE-STYLE.md` | What a laboratory must say and show. The author's editorial direction. |
 | `instrument-core.css` | The source of truth for shared styling, including the laboratory handout. Hand-authored. |
 | `sync_css.py` | Inlines it into each `course/interactive/<exercise>/index.html`. Stdlib only. |
 | `check_figure_geometry.mjs` | Browser check: no figure label clipped by its viewBox, sitting on another, or painted under a later filled rect. |
