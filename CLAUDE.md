@@ -539,6 +539,27 @@ re-deriving these, so they live here:**
     reported that did not exist, two real ones that went unreported, and one inverted build nobody
     suspected. **Parse the click groups and report the ORDER**, not merely that the ask and the answer
     sit in different groups.
+  - **Three deck-authoring rules the author states as standing instruction, 261105. They govern every
+    slide you touch, not only the one you were sent to fix.** All three are about the same mistake —
+    treating a thing a reader perceives as ONE object as several objects to animate or compose.
+    1. **An arrow or connector animates WITH the boxes it joins, never on its own click.** A line
+       arriving before or after its endpoints is meaningless on screen. Corollary found the same day:
+       an "unexplained dark rectangle" on a slide turned out to be a *collapsed arrow* — a connector
+       animated independently, rendering as a bar before its endpoints arrived. The author could not
+       tell what it was, which is the whole argument.
+    2. **A header box and its own text box are ONE beat — never two clicks.** *"it's going a little
+       overboard with separate animations for header box and its associated text box."* The author
+       demonstrated the fix in his own save rather than only describing it: he merged each
+       `ModelLabel` with its `ModelBody` and took a slide from 12 click groups to 7, keeping only the
+       terminal reveal. That save is the house form; follow it over any prose description.
+    3. **Text goes in a text box layered over a background shape — never as the text of the coloured
+       box itself.** *"Claude should use text boxes separate from the background color box, as it has
+       done in the past."* The failure mode is that fill-shape text cannot be inset, aligned or
+       wrapped independently of the fill, so dark bands end up with unfixable formatting.
+    **When re-emitting a slide's timing for any reason, collapse label+body and line+endpoint groups
+    even on slides nobody asked you to change**, and report what you merged. Over-animation is the
+    default failure of a generated build: a mutator that can target every shape will, and the reader
+    experiences a flicker of fragments rather than a sequence of ideas.
   - **The session scratchpad is shared across concurrent agents — `mktemp -d` per unit, and assert the
     package.** Measured 261105 with six deck agents live: one had a directory it had unzipped its deck
     into silently replaced by a different 33-slide deck, and a probe script of its own overwritten
