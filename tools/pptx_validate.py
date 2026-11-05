@@ -16,6 +16,10 @@ the checks that actually see them:
      PowerPoint rejects on. Needs a .NET SDK, so it follows the html-validate promotion
      pattern: runs when the toolchain resolves, SKIPs when it does not (bare checkouts stay
      green); real validation errors FAIL.
+  3. Structural / referential (stdlib, always on) — the defects that are invisible to a schema
+     validator because each part is individually valid: a dangling animation target, a duplicate
+     shape id, a `custGeom` missing its geometry, and a font size that passes `ST_TextFontSize`
+     and is absurd at human scale. See `structural_findings`. BLOCKING since 261105.
 
 Known pre-existing schema findings are grandfathered in `tools/pptx-validate-baseline.json`
 (matched on repo path + error Id + part URI); anything NEW fails. Drain the baseline to
@@ -200,6 +204,16 @@ _PML = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 _DML = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 _SLIDE_RE = re.compile(r"^ppt/slides/slide(\d+)\.xml$")
 
+#: The three DrawingML elements whose `@sz` is `ST_TextFontSize` — a font height in CENTIPOINTS
+#: (hundredths of a point). Deliberately NOT "any element with an `sz` attribute": `p:ph/@sz` is
+#: an enum (`full`/`half`/`quarter`) and `a:ln/@w` is EMU, so a blanket scan mixes three units.
+_SZ_ELEMENTS = (f"{_DML}rPr", f"{_DML}defRPr", f"{_DML}endParaRPr")
+#: `ST_TextFontSize` accepts 100..400000 — 1pt to 4000pt. The ceiling is the reason a schema
+#: validator is blind to an absurd size, and the floor is why the ÷100 unit errors ARE caught by it.
+_ST_TEXTFONTSIZE_MAX = 400000
+#: 12700 EMU = 1pt, so EMU // 127 = centipoints.
+_EMU_PER_CENTIPOINT = 127
+
 
 def _slide_entries(zf: zipfile.ZipFile) -> "list[tuple[int, str]]":
     """Slide parts in presentation order-ish (by filename index), as (index, entry name)."""
@@ -211,8 +225,105 @@ def _slide_entries(zf: zipfile.ZipFile) -> "list[tuple[int, str]]":
     return sorted(out)
 
 
+def slide_height_centipoints(zf: zipfile.ZipFile) -> "tuple[int | None, str]":
+    """The deck's OWN slide height, in centipoints — the ceiling a font size is bounded against.
+
+    Derived per package rather than hardcoded: a deck declares its page size in
+    `ppt/presentation.xml`, and 4:3, 16:9 and a custom page size are all legitimate. Returns
+    (centipoints, "") or (None, reason) — a caller that cannot resolve the height must report a
+    probe failure, never silently skip the bound.
+    """
+    try:
+        pres = ET.fromstring(zf.read("ppt/presentation.xml"))
+    except (KeyError, ET.ParseError, OSError) as exc:
+        return None, f"cannot read ppt/presentation.xml ({type(exc).__name__}: {exc})"
+    sld_sz = pres.find(f"{_PML}sldSz")
+    cy = (sld_sz.get("cy") or "") if sld_sz is not None else ""
+    if not cy.isdigit() or int(cy) <= 0:
+        return None, "ppt/presentation.xml declares no usable p:sldSz/@cy"
+    return int(cy) // _EMU_PER_CENTIPOINT, ""
+
+
+def font_size_attrs(zf: zipfile.ZipFile) -> "list[tuple[str, str, str]]":
+    """Every DrawingML font-size attribute in the package, as (part entry, element localname,
+    raw `@sz`). Scans EVERY xml part, not only slides: an agent sets a font size on a notes slide
+    or a layout as easily as on a slide, and the bound is the same everywhere.
+
+    Exposed separately from the bound so a caller can assert the scan still SEES something. The
+    danger with this shape of check is the silent false negative — get the namespace wrong and it
+    finds nothing and reports clean forever, which is how a gate stops gating without a sound.
+    """
+    out: list[tuple[str, str, str]] = []
+    for name in zf.namelist():
+        if not name.endswith(".xml"):
+            continue
+        try:
+            root = ET.fromstring(zf.read(name))
+        except (ET.ParseError, OSError):
+            continue  # the slide loop below and the OPC/schema layers report unreadable parts
+        for el in root.iter():
+            if el.tag in _SZ_ELEMENTS and el.get("sz") is not None:
+                out.append((name, el.tag.split("}")[-1], el.get("sz")))
+    return out
+
+
+def font_size_findings(display_path: str, fs_path: str, zf: zipfile.ZipFile) -> list[str]:
+    """A font size that passes `ST_TextFontSize` and is nonsense at human scale.
+
+    `font.size` in python-pptx is declared as a `Length` and STORED as centipoints — the setter
+    divides by 127 — so the one property whose stored unit differs from its declared unit is also
+    the one an agent reaches for most. Hand it a value already scaled to centipoints and it writes
+    a size 100x too large: `Emu(2200 * 12700)` is `Pt(2200)`, and 2200pt lands in the package
+    where 22pt was meant. Measured 261105, written by an agent building a deck, and **all three
+    existing layers of this tool passed it**: the package is well-formed, every part is
+    individually valid, and `ST_TextFontSize` permits 100..400000 centipoints (1pt..4000pt), so a
+    schema validator has no opinion. It was caught by reading the emitted XML.
+
+    The bound is DERIVED, not chosen: a font taller than the slide itself cannot render one line
+    on that slide, whatever the house style. That needs no judgment about what looks right, and it
+    closes the whole class rather than the one instance — every 100x error that survives
+    `ST_TextFontSize` is caught. An intended size S writes 100*S points; the package is rejected
+    outright above 4000pt, so the surviving band is S <= 40pt, and 100*S exceeds a 540pt slide for
+    every S > 5.4pt. Nothing a human would call a body or title size escapes.
+
+    Measured margin on this corpus (261105, 37 tracked decks, 23,417 font-size attributes): the
+    largest size anywhere is 8600 centipoints (86pt, a template layout's defRPr), the largest on a
+    text-bearing run is 8000 (80pt, a big numeral). Against a 540pt slide the bound sits 6.3x above
+    everything shipped and 4.1x below the measured bug. The ceiling is NOT the house 20-40pt band
+    on purpose: the Act I decks and the talks ship 52-86pt title and numeral text, and a check
+    tuned to one deck family would condemn the others.
+
+    No FLOOR is enforced, and the measurement is the reason. `ST_TextFontSize`'s own minimum of
+    100 already rejects every divide-by-100 and divide-by-127 unit error (a size handed to the
+    attribute in points, or in EMU, lands below 1pt and the schema layer fails it). The residual
+    schema-legal window is 1pt..8pt, where this corpus ships legitimate values — a 3pt blank run
+    and 5pt `endParaRPr` used as tight vertical spacers — and no plausible write-it-wrong path
+    produces that band. A floor there would need a text-bearing-vs-spacer discrimination to buy
+    nothing.
+    """
+    ceiling, why = slide_height_centipoints(zf)
+    if ceiling is None:
+        return [f"{display_path}: PROBE FAILURE — {why}; refusing to bound font sizes "
+                f"without the deck's own slide height"]
+    findings: list[str] = []
+    for entry, element, raw in font_size_attrs(zf):
+        if not raw.isdigit():
+            findings.append(f"{display_path} {entry}: a:{element}/@sz={raw!r} is not an integer")
+            continue
+        sz = int(raw)
+        if sz > ceiling:
+            findings.append(
+                f"{display_path} {entry}: a:{element} font size {sz} centipoints = {sz / 100:g}pt "
+                f"exceeds the deck's own slide height of {ceiling / 100:g}pt — no glyph that size "
+                f"renders on the slide. ST_TextFontSize permits up to "
+                f"{_ST_TEXTFONTSIZE_MAX / 100:g}pt, so the schema layer cannot see this. Usual "
+                f"cause: a centipoint value handed to a points API — a 100x error, e.g. "
+                f"`font.size = Emu(2200 * 12700)` where `Pt(22)` was meant")
+    return findings
+
+
 def structural_findings(display_path: str, fs_path: str) -> list[str]:
-    """Three PowerPoint-fatal defects that every other layer in this tool tolerates.
+    """Defects that every other layer in this tool tolerates — three PowerPoint-fatal, one absurd.
 
     Measured 261103 on a deck PowerPoint refused to open: zip integrity clean (151 entries, 0
     dups, testzip() None), python-pptx opened all 29 slides, and this tool reported 0 OPC / 0
@@ -226,6 +337,10 @@ def structural_findings(display_path: str, fs_path: str) -> list[str]:
          regenerate path for a hand-built animation.
       2. A duplicate `cNvPr/@id` within one slide.
       3. A `custGeom` missing its `<a:rect>` or `<a:pathLst>`.
+      4. A font size that is schema-legal and absurd at human scale — see
+         `font_size_findings`. PowerPoint opens such a deck happily; the defect is that a
+         2200pt heading renders as one clipped glyph where 22pt was meant. Same gap, different
+         direction: the schema bounds the TYPE and has no notion of a readable size.
 
     WHY THIS LIVES HERE rather than in each caller: the scan was pasted into eight agent briefs
     in one session, and the pasted copies were WRONG in a way that inverts the result. Shape ids
@@ -250,7 +365,8 @@ def structural_findings(display_path: str, fs_path: str) -> list[str]:
     at the artifacts.
 
     Sabotage-verified: injecting one bad spid into a copy of a clean deck reports the dangling
-    target by name, and perturbing an id reports the duplicate.
+    target by name, perturbing an id reports the duplicate, and rewriting one `@sz` to 220000
+    reports the absurd font size.
     """
     findings: list[str] = []
     try:
@@ -295,6 +411,8 @@ def structural_findings(display_path: str, fs_path: str) -> list[str]:
                 if missing:
                     findings.append(
                         f"{display_path} slide {idx}: custGeom missing {', '.join(missing)}")
+
+        findings += font_size_findings(display_path, fs_path, zf)
     return findings
 
 

@@ -143,7 +143,8 @@ from tests.course import (
     check_course_unit_manifests,
 )
 from tests.markdown import check_markdown_anchors, check_markdown_schema, check_render_safety
-from tests.pptx_validity import check_pptx_opc, check_pptx_schema
+from tests.pptx_validity import (check_pptx_font_size_bound, check_pptx_font_size_bound_fires,
+                                 check_pptx_opc, check_pptx_schema, check_pptx_structural)
 from tests.mermaid_cache import (
     check_mermaid_cache_hit_and_edit,
     check_mermaid_cache_key_covers_every_render_input,
@@ -301,6 +302,20 @@ CHECKS = [
           needs_run=_pptx_changed),
     Check("course: committed pptx OOXML schema validity (OpenXmlValidator)", 2, check_pptx_schema,
           needs_run=_pptx_changed, pre_push=True),
+    # The structural/referential layer gates at `pre-commit` over STAGED blobs and no runner
+    # reached it over the tracked corpus — the wiring gap, not a missing check. AUDIT-ONLY on
+    # landing because it reads WORKING-TREE decks: mid-wave it read 3 dangling animation targets
+    # on one live deck and 0 twenty minutes later. Promote once the deck wave quiesces. 1 s.
+    Check("course: committed pptx structural/referential (dangling spTgt, dup ids, custGeom)", 1,
+          check_pptx_structural, needs_run=_pptx_changed, audit_only=True),
+    # BLOCKING: the one structural sub-check that is clean tree-wide (0 findings over all 100
+    # decks on disk, 58,450 font-size attributes). A font size larger than its own deck's slide
+    # height passes OPC, passes OpenXmlValidator (ST_TextFontSize allows up to 4000pt) and
+    # renders as one clipped glyph. 1.1 s, stdlib. The second check is its sabotage control.
+    Check("course: committed pptx font size within the deck's own slide height", 1,
+          check_pptx_font_size_bound, needs_run=_pptx_changed),
+    Check("course: pptx font-size bound still fires on an absurd size (sabotage control)", 1,
+          check_pptx_font_size_bound_fires, needs_run=_pptx_changed),
     # BLOCKING (clean at landing, 106 tracked pages): the committed generated HTML equals a fresh render.
     # The regen discipline was ROUTE-DEPENDENT and one route skipped it — the tracked pre-commit hook
     # rebuilds the site and force-stages the HTML, but it does not run on `git merge --no-ff`, so a run of
