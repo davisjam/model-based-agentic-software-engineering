@@ -498,8 +498,24 @@ re-deriving these, so they live here:**
     answer. **So assert the precondition and the scan cannot lie to you:**
     `assert ids, "no shape ids found — wrong namespace"`. The membership of the failing set is the
     other tell: when a scan condemns work that was independently verified, suspect the scan.
-  - **Prefer the surgical fix.** Excise only the dangling effects, not the whole timing block; the rest
-    of the author's build is legitimate and unrecoverable if dropped.
+  - **Better than the surgical fix: RE-EMIT, do not patch.** For every slide whose shape set changes,
+    re-emit the whole `<p:timing>` tree through the typed timing mutator rather than editing the
+    existing one — then an effect **cannot outlive its shape by construction**, where excision only
+    makes the orphan *detectable afterwards*. And when a slide loses ALL its animated shapes, **strip
+    its timing entirely rather than leaving an empty sequence**: an empty `<p:timing>` passes a
+    dangling-target scan while still being wrong. Measured 261104 — the one deck agent that worked
+    this way returned 0 dangling across a reorganization that added a slide, replaced two and added
+    reveals, and said so unprompted; the briefs that specified excision instead got the same result
+    only because the agents were careful. Where excision is still the right call (removing a few
+    effects from an otherwise untouched author-built sequence), excise only the dangling effects —
+    the rest of the author's build is legitimate and unrecoverable if dropped.
+  - **Deck statistics come from `ada-tool deck-inspect`, not a hand-rolled `python-pptx` probe.** It
+    emits per-slide `hidden`, `notes` and section membership, so presented-vs-hidden counts, TIMING
+    totals and section audits all fall out of one JSON dump. I hand-rolled that probe about EIGHT
+    times in one session and got it wrong once — counting `show="0"` slides as presented, which
+    reported a 26-slide lecture as 28 and made its budget look breached. A ninth hand-rolled copy is
+    not the fix; the canonical reader is. (Parse `--output <file.json>`, not stdout: the verbs print a
+    PLAN preamble and a `##PHASE_TIMING##` line around the JSON, so `json.loads(stdout)` fails.)
 
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
