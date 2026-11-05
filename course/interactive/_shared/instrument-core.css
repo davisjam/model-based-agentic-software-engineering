@@ -1,0 +1,144 @@
+/* instrument-core.css — the styling the six interactive laboratories share, held in one place.
+ *
+ * A rule belongs here when it is byte-identical in all six shipped pages. Everything else stays in
+ * the exercise's own style element, which the sync places AFTER this one, so a local rule wins a
+ * tie against a core rule at equal specificity. The rules keep the relative order they held in all
+ * six pages before extraction, which is what makes a change here a styling change and not a cascade
+ * reshuffle. Authoring discipline, and what deliberately stayed local: _shared/README.md.
+ *
+ * Licence: CC BY 4.0, (c) James C. Davis. See the course LICENSE.
+ */
+
+/* --- design tokens ---------------------------------------------------------------------------
+   The MAGE family token set (book-models/design-tokens.json): warm paper ground, near-black ink,
+   burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
+   these pages — every state also carries a word and a glyph.
+
+   `--warn` is a local family extension: the set has no amber, and the exercises need an
+   approaching-capacity signal distinct from both green and red. It is a warm ochre rather than a
+   traffic-light yellow so it sits inside the warm palette.
+   -------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #9a6500;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+/* --- document --------------------------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* --- header ----------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.gold-rule { height: 4px; background: var(--gold); }
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+
+/* --- panels and the two-column grid ----------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+/* The column TEMPLATE at this breakpoint differs per exercise and stays local. Only the panel's
+   margin reset is shared. */
+@media (min-width: 1100px) {
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls and buttons --------------------------------------------------------------------- */
+/* `.seg`, `.seg button`, `.ctl`, `.ctl-row` and `.btn-row` differ between exercises and stay local.
+   These four do not, and each outranks its local base rule on specificity, so the split changes
+   nothing about which declaration wins. */
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+/* --- links, footer, and the screen-reader-only utility ----------------------------------------- */
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* --- reduced motion ---------------------------------------------------------------------------
+   `!important` carries this regardless of where it lands in the cascade, which is why moving it
+   ahead of every local rule is safe. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
