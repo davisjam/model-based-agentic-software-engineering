@@ -516,6 +516,35 @@ re-deriving these, so they live here:**
     reported a 26-slide lecture as 28 and made its budget look breached. A ninth hand-rolled copy is
     not the fix; the canonical reader is. (Parse `--output <file.json>`, not stdout: the verbs print a
     PLAN preamble and a `##PHASE_TIMING##` line around the JSON, so `json.loads(stdout)` fails.)
+  - **`ppt/slides/slideN.xml` is NOT presentation position N — resolve through `sldIdLst`.** Part
+    filenames reflect authoring history, not order; any deck that has had slides reordered, parked or
+    swapped is scrambled, which is all of them. Measured 261105 on a reliability deck: position 19 was
+    `slide17.xml`. A probe keyed on the filename reads a DIFFERENT slide's build tree and reports its
+    click order with full confidence — the guessed-shape error aimed at the artifact, pointing the
+    expensive way (it condemns a slide that is correct). `deck-inspect` is already in presentation
+    order; prefer it. The orchestrator made the same mistake a day earlier by indexing hidden slides on
+    filenames while counting them in presentation order, and reported a 75-minute deck as 65.
+  - **A section is a slide-ID LIST, so reordering a slide does not move it between sections.** Parking
+    a slide — `show="0"` plus a move behind the UNUSED divider — leaves its ID in whatever live section
+    it started in, so the section still counts a hidden slide and the ranges stop being contiguous.
+    Move the ID explicitly. Verified 261105 across three decks; two had section lists that were
+    *structurally* broken rather than merely misnamed (stale IDs, scrambled order, a phantom section
+    whose eight IDs all dangled).
+  - **A reveal has THREE failure modes, and a flat render shows none of them.** (1) Promised in the
+    notes and never built. (2) Built correctly but spoiled by the slide's own TITLE, which already
+    states the figure the later click reveals — the build is right and useless. (3) Built BACKWARDS:
+    the answer card in an earlier click group than the question card. All three were measured on
+    261105; mode 3 was found inside a sequence the author had marked protected. So an author reviewing
+    rendered slides is unreliable in BOTH directions — the same day produced three reveal defects
+    reported that did not exist, two real ones that went unreported, and one inverted build nobody
+    suspected. **Parse the click groups and report the ORDER**, not merely that the ask and the answer
+    sit in different groups.
+  - **The session scratchpad is shared across concurrent agents — `mktemp -d` per unit, and assert the
+    package.** Measured 261105 with six deck agents live: one had a directory it had unzipped its deck
+    into silently replaced by a different 33-slide deck, and a probe script of its own overwritten
+    mid-run. The clobbered probe then reported one deck's slide labels as another's. It was caught by a
+    slide-part-count precondition, which is the whole defense — assert the count or SHA the package
+    against the file on disk before trusting a number from it.
 
 - **Reading OOXML text: runs are not lines. Join the runs inside each `<a:p>` before you compare
   anything.** PowerPoint splits a single sentence across arbitrarily many `<a:t>` runs and re-splits
