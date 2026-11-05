@@ -83,12 +83,33 @@ Default maxima, not absolute limits.
 | Main visualization | **1** |
 | Guided experiments | **2–3** |
 | Secondary visualization | 1, only if necessary |
-| Background prose, before the first control | **400–600 words** (per §0) |
+| **The Background SECTION** (§1 row 2) | **400–600 words** (per §0) |
+| Prose before the first control | **no cap — §1 mandates four sections there** (see below) |
 | Prose in the primary interface, all of it | **no hard cap — but reference material belongs behind `<details>`** |
 | Expected exercise duration | 5–10 minutes |
 
 > *"This should be a default design constraint, not an absolute mathematical limit. A model might
 > require additional internal parameters, but those should not automatically become user controls."*
+
+### The 400–600 applies to the Background SECTION. "Words before the first control" is incoherent with §1.
+
+Corrected again, hours after the correction below, because the Release Factory rebuild found a
+contradiction that the first correction preserved. **§1 mandates four sections ahead of the
+apparatus** — engineering problem, background, model, numbered procedure — so "words before the first
+control" necessarily counts the model tables and the whole experimental procedure, and can only reach
+400–600 if the model and the experiment are wordless. The two rules cannot both be satisfied, and the
+proxy is the one that is wrong.
+
+The evidence is the rebuild itself: its Background section landed at **405 words, in budget**, while
+its words-before-the-first-control went **up** to 1,038 from 557, entirely because §1's sections 3 and
+4 now exist and sit where §1 puts them. In the agent's words: *"I optimised the section, not the
+proxy, and I am flagging the proxy rather than quietly gaming it."* Both wave-1 rebuilds converged on
+measuring the Background section independently.
+
+**So: the Background section is 400–600 words. Nothing caps the prose ahead of the apparatus** —
+placement governs it instead, per the rule below. A page that moves its model or procedure *after* the
+controls to make a word count go down has broken §1 to satisfy a proxy, which is the opposite of what
+the budget is for.
 
 ### The background-words column measures PLACEMENT, not volume
 
