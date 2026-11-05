@@ -373,6 +373,36 @@ re-deriving these, so they live here:**
     two instances caught BEFORE dispatch on 261004 were both caught by exactly that step, which is
     the evidence it works. And say in the brief that its ground truth is a starting point the agent
     must verify — the reports that corrected these briefs all came from agents told to do so.
+  - **A brief that transcribes TWO lists from one source document inherits that document's internal
+    tension, and the agent is left holding it. Reconcile the lists, or state a precedence rule.**
+    Three instances on 261104, same mechanism each time: the author's deck reviews legitimately carry
+    both a per-slide copyedit pass ("delete this footer") AND a separate preserve list ("do not
+    delete every concluding statement — keep these seven"). Those sections disagree about specific
+    elements, because he wrote them as successive thoughts rather than as one instruction. I copied
+    both into the brief verbatim and shipped the conflict: 3-4-1's slide 22 appeared in the delete
+    list and the keep list with *different quotations of the same footer*; 3-3's slides 9 and 12 were
+    marked delete in one section and retain in another. Every one was caught by the agent, which is
+    the system working, at the cost of a round trip each.
+    **The source document is not wrong — a review is allowed to think out loud. Reconciling it is the
+    brief's job.** So before dispatch, diff the two lists against each other and resolve every
+    overlap; where the resolution is genuinely the author's call, write an explicit precedence line
+    (*"§8's verdict table overrides §2 where they conflict"*) rather than leaving two instructions
+    standing. Cross-DOCUMENT precedence is easy to remember and I did state it; the within-one-review
+    case is the one that slips, because both halves arrive in the same file.
+    Corollary for the agent's side: **tell the brief's reader that a delete-vs-keep collision is an
+    authoring error, not a judgment call** — keep the substance, revise the wording if needed, and
+    name the conflict in the report so the brief gets fixed instead of the next agent rediscovering it.
+  - **Measure the PRESENTED set, and never measure a deck mid-wave.** Two orchestrator measurement
+    errors on 261104, both of which produced a confident wrong number about finished work. (a) A
+    TIMING total that counted every slide before the `UNUSED SLIDES` divider — which silently
+    includes slides carrying `show="0"`, so a 26-slide lecture reported as 28 and its budget looked
+    breached. Resolve hidden slides explicitly (`show="0"` on the slide part) and report
+    presented-vs-hidden. (b) A deck flagged as 7 minutes over budget when the figure was a
+    *checkpoint*: the agent was between its two passes and the trimming pass was built but not yet
+    committed. The agent refuted it with `sldId` evidence. **A deck with a live agent on it has no
+    final numbers**; verify after the return, not during. Related trap the same day: two slides write
+    `TIMING: 1.0 minute.` (singular), so a regex requiring `minutes` under-reports the total by 2.0
+    and reports those slides as untimed.
   - **A premise taken from a DESIGN DOC is a claim about the past, and the step above cannot catch a
     stale one.** Re-reading a cited line confirms the doc says it; it does not confirm the doc is
     still true of the code. Three briefs on 261005 stated a load-bearing premise accurately quoted
