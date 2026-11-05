@@ -475,7 +475,7 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
    course/interactive/_shared/instrument-core.css and re-run the sync, never here.
 
    Design tokens, taken from the MAGE family token set (book-models/design-tokens.json) so the
-   instrument matches the rest of the site and its sibling simulator: warm paper ground, near-black
+   instrument matches the rest of the site and its sibling simulators: warm paper ground, near-black
    ink, burnt-umber accent, Purdue-gold rule under the header. `--model` is the family's
    definition-box blue, reused here as "this number came from a model, not a measurement".
 
@@ -484,8 +484,9 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
    warm ochre chosen to sit inside the family's warm palette rather than a generic traffic-light
    yellow.
 
-   Colour never carries meaning alone. Every cost band also carries a word and a glyph, and every
-   bar in every chart carries a text label.
+   Colour never carries meaning alone. Every cost band also carries a word and a glyph, every bar
+   in the timeline carries a text label, and the configuration the comparison table marks as
+   current is marked with a glyph and a bold row as well as a tint.
    --------------------------------------------------------------------------------------------- */
 :root {
   --model: #1f6fae;
@@ -499,23 +500,138 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
 }
 
 /* --- panels ------------------------------------------------------------------------------- */
+/* A section heading, not a chrome label. The uppercase mono keeps the family's identity; the size
+   comes up into the house style's 18-20px band, which also retires one of the "many small
+   uppercase headings" the author named as a current defect. */
 .panel > h2, .panel-title {
   font-family: var(--font-mono);
-  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 1.08rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 0.75rem;
 }
+.panel > h3, .disclose h3 { font-size: 1.04rem; margin: 1.1rem 0 0.35rem; }
 
 @media (min-width: 1100px) {
   .grid2 { grid-template-columns: 1.25fr 1fr; margin-bottom: 1.1rem; }
 }
 
+/* --- the type scale, raised off the withdrawn first-screen budget -------------------------------
+   The shared lab shell sets these sizes for an opening band that had to finish inside roughly 400
+   vertical pixels, and 10-12px type is how it got there. That budget is withdrawn and the house
+   style forbids 10-11px text outright: "if the material does not fit, remove or relocate it." The
+   relocation happened here — the parameter encyclopedia, six readouts, the preset library and the
+   whole cost-model reference are in collapsed sections — so the type that stayed can be legible.
+   LOCAL OVERRIDES ONLY. The core is shared with five sibling exercises and is not this exercise's
+   to edit; the same correction applied in five places wants promoting into the core once the
+   reconstruction wave is quiet. */
+.lab-question { font-size: 1.35rem; }
+.lab-question .k { font-size: 0.82rem; }
+.lab-frame { font-size: 1.02rem; max-width: 110ch; }
+.lab-assumptions > h3 {
+  font-family: var(--font-body); font-size: 0.98rem; font-weight: 600;
+  letter-spacing: 0; text-transform: none; color: var(--ink); margin: 0 0 0.45rem;
+}
+.lab-assumptions ul { font-size: 0.95rem; line-height: 1.42; padding-left: 1.1rem; }
+.lab-assumptions li { margin-bottom: 0.3rem; }
+.lab-disclaimer { font-size: 0.92rem; line-height: 1.38; padding: 0.45rem 0.6rem; }
+.lab-tablenote { font-size: 0.88rem; line-height: 1.38; }
+.lab-figure > figcaption { font-size: 0.92rem; line-height: 1.38; margin-top: 0.45rem; }
+.lab-figure > figcaption .fignum { font-size: 0.86rem; }
+table.lab-parameters { font-size: 0.93rem; }
+table.lab-parameters caption { font-size: 0.82rem; }
+table.lab-parameters th, table.lab-parameters td { padding: 0.28rem 0.45rem; line-height: 1.32; }
+.note { font-size: 0.97rem; }
+
+/* --- FIGURE 1 · its own row, 70-80% of the content width ---------------------------------------
+   The house style's requirement. Width is the only bound: a pixel height ceiling letterboxes an
+   SVG that carries a viewBox — `preserveAspectRatio` defaults to `meet`, so a clamped height
+   spends every extra pixel of column on empty margin — and stage A established that ceiling as the
+   width defect rather than a height economy. Do not reintroduce one; the lab's own suite now
+   asserts its absence. */
+.figure-row { margin: 0 0 1.1rem; }
+.figure-row > .lab-figure { width: 78%; margin-inline: auto; }
+/* Below the supported desktop range the figure takes the whole row instead of 78%. The breakpoint
+   is 1200px rather than 1000px for a measured reason: a 1280px screen at 125% browser zoom is a
+   1024px CSS viewport, and at 78% of that the 9.5px labels render at 11.3px — under the house
+   style's 13-14px floor. At 100% they render at 15.4px. The house style's 70-80% requirement is
+   about the supported widths, and 1280 at 125% is not one of them. */
+@media (max-width: 1200px) { .figure-row > .lab-figure { width: 100%; } }
+
+/* --- §2's background prose --------------------------------------------------------------------
+   A readable measure, set in two columns on a desktop. A single column inside a full-width panel
+   is a wide ARTICLE layout — the thing the house style asks these pages not to be — and it leaves
+   half the row empty while pushing the model figure a screen further down. */
+.prose { max-width: 94ch; }
+.prose p { margin: 0 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
+.prose p:last-child { margin-bottom: 0; }
+@media (min-width: 1200px) {
+  .prose { max-width: none; columns: 2; column-gap: 2.6rem; }
+  .prose p { break-inside: avoid; }
+}
+
+/* --- §4's numbered procedure ------------------------------------------------------------------
+   Three experiments across the row once there is room: the available width goes to the figure and
+   the experiment, which is where the house style sends it. Each card carries all six fields, so a
+   student is never adjusting a control without a prediction. */
+.proc-lead { max-width: 108ch; font-size: 1.02rem; line-height: 1.45; margin: 0 0 0.2rem; }
+ol.procedure {
+  list-style: none; margin: 0.9rem 0 0; padding: 0;
+  display: grid; gap: 0.9rem; counter-reset: exp;
+}
+@media (min-width: 1300px) { ol.procedure { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.exp {
+  counter-increment: exp; min-width: 0;
+  border: 1px solid var(--rule); border-left: 4px solid var(--ink);
+  border-radius: var(--radius); background: var(--panel-2);
+  padding: 0.7rem 0.9rem 0.85rem;
+}
+.exp > h3 { margin: 0 0 0.55rem; font-size: 1.04rem; }
+.exp > h3::before {
+  content: "Experiment " counter(exp) " \00b7 ";
+  font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
+}
+dl.six { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.32rem 0.85rem; margin: 0; }
+dl.six dt {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+dl.six dd { margin: 0; font-size: 0.96rem; line-height: 1.38; }
+.exp-load { margin: 0.75rem 0 0; }
+
+/* --- §6's interpretation prompts --------------------------------------------------------------- */
+ol.interp { margin: 0.4rem 0 0; padding-left: 1.4rem; display: grid; gap: 0.5rem; max-width: 104ch; }
+ol.interp li { font-size: 1rem; line-height: 1.42; }
+
+/* --- §7's collapsed reference ------------------------------------------------------------------
+   `disclose` is the class the shared core's print rule drops, which is what keeps the printed
+   handout to the model, the procedure and the apparatus. */
+details.disclose {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--panel-2); margin: 0 0 0.6rem;
+}
+details.disclose > summary {
+  cursor: pointer; padding: 0.6rem 0.8rem;
+  font-weight: 600; font-size: 1rem;
+}
+details.disclose > summary:hover { color: var(--accent); }
+details.disclose[open] > summary { border-bottom: 1px solid var(--rule); }
+details.disclose > .body { padding: 0.85rem 0.9rem 0.9rem; }
+details.disclose > .body > :first-child { margin-top: 0; }
+
 /* --- controls ----------------------------------------------------------------------------- */
 .ctl-row { display: grid; gap: 0.9rem 1.4rem; grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 820px) { .ctl-row { grid-template-columns: 1fr 1fr; } }
-.ctl { display: grid; grid-template-columns: 12.5rem 1fr auto; gap: 0.6rem; align-items: center; }
-.ctl > label { font-weight: 600; font-size: 0.98rem; }
-.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.ctl { display: grid; grid-template-columns: 13.5rem 1fr auto; gap: 0.6rem; align-items: center; }
+.ctl > label { font-weight: 600; font-size: 1.02rem; }
+.ctl > label .unit { font-weight: 400; color: var(--muted); font-size: 0.88rem; }
+/* One sentence of contextual help per control — how a student learns a parameter's meaning now
+   that the five-column encyclopedia has left the primary interface. It spans the control's whole
+   row, so it lands on a second line rather than in the number field's column. */
+.ctl > .help {
+  grid-column: 1 / -1; margin-top: -0.25rem;
+  font-size: 0.88rem; line-height: 1.34; color: var(--muted);
+}
 .ctl input[type=range] { width: 100%; accent-color: var(--accent); min-width: 7rem; }
 .ctl input[type=number] {
   font-family: var(--font-mono); font-size: 1rem;
@@ -523,29 +639,37 @@ svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink)
   border: 1px solid var(--rule); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
-.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+/* `justify-self` matters here: a grid item stretches by default, so an inline-flex segmented
+   control drew its border across the whole track with empty space after the last button. */
+.seg {
+  display: inline-flex; justify-self: start;
+  border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden;
+}
 .seg button {
-  font-family: var(--font-mono); font-size: 0.95rem;
+  font-family: var(--font-mono); font-size: 0.98rem;
   padding: 0.35rem 0.8rem; border: 0; border-right: 1px solid var(--rule);
   background: var(--paper); color: var(--ink); cursor: pointer;
 }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; align-items: center; }
-button.act {
+/* `a.act` as well as `button.act`: the Download control is an anchor (it needs `download`), and
+   the shared core's print rule already treats the two as one family. Styling only `button.act`
+   left it drawn as a bare link beside three buttons. */
+button.act, a.act {
   font-family: var(--font-body); font-size: 1rem; font-weight: 600;
   padding: 0.5rem 1.05rem; cursor: pointer;
   border: 1px solid var(--ink); border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
 }
 
-button.act:hover { border-color: var(--accent); color: var(--accent); }
+button.act:hover, a.act:hover { border-color: var(--accent); color: var(--accent); }
 
 button.act:focus-visible, .seg button:focus-visible, .preset:focus-visible,
 input:focus-visible, summary:focus-visible, a:focus-visible {
   outline: 3px solid var(--accent); outline-offset: 2px;
 }
 
-/* --- presets ------------------------------------------------------------------------------ */
+/* --- presets: the classroom library, now behind a disclosure ------------------------------- */
 .preset-grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 button.preset {
   text-align: left; cursor: pointer;
@@ -556,29 +680,30 @@ button.preset {
 }
 button.preset:hover { border-color: var(--accent); }
 button.preset strong { display: block; font-size: 1rem; margin-bottom: 0.1rem; }
-button.preset span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; display: block; }
+button.preset span { color: var(--muted); font-size: 0.88rem; line-height: 1.35; display: block; }
 
 /* --- readouts ----------------------------------------------------------------------------- */
 dl.readout { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.9rem; margin: 0; }
-dl.readout dt { color: var(--muted); font-size: 0.93rem; }
-dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
+dl.readout dt { color: var(--muted); font-size: 0.97rem; }
+dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 1rem; }
 .big { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0 0 0.9rem; }
 .big .cell {
-  flex: 1 1 9rem; border: 1px solid var(--rule); border-radius: var(--radius);
-  background: var(--paper); padding: 0.55rem 0.7rem;
+  flex: 1 1 11rem; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 0.6rem 0.75rem;
 }
 .big .cell .k {
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
+  font-family: var(--font-mono); font-size: 0.84rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted); display: block;
 }
 .big .cell .v {
-  font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; line-height: 1.15;
+  font-family: var(--font-mono); font-size: 1.9rem; font-weight: 600; line-height: 1.12;
   display: block; word-break: break-word;
 }
+.big .cell .sub { display: block; font-size: 0.88rem; line-height: 1.3; color: var(--muted); margin-top: 0.15rem; }
 .big .cell.lead { border-color: var(--ink); border-width: 2px; }
 .badge {
   display: inline-flex; align-items: center; gap: 0.35rem;
-  font-family: var(--font-mono); font-size: 0.86rem; font-weight: 600;
+  font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600;
   padding: 0.12rem 0.45rem; border-radius: var(--radius); border: 1px solid;
 }
 .badge .glyph { font-size: 0.95em; }
@@ -587,15 +712,39 @@ dl.readout dd { margin: 0; font-family: var(--font-mono); font-size: 0.98rem; }
 .s-bad  { color: var(--bad);   border-color: var(--bad);   background: var(--bad-fill); }
 .s-model{ color: var(--model); border-color: var(--model); background: var(--model-fill); }
 
+/* --- the comparison TABLE --------------------------------------------------------------------
+   This was a horizontal bar chart of response TIME, and the quantity the laboratory teaches is the
+   query COUNT. At 200 reservations over 10 rooms the four counts are 201, 11, 1 and 2: on a linear
+   time axis three of the four bars are a hairline and the counts ride along as text labels beside
+   them, so the encoding was carrying the secondary quantity and the teaching object was an
+   annotation. A small integer wants a column of figures. The current configuration is marked by a
+   glyph and a bold row as well as a tint. */
+table.compare { border-collapse: collapse; width: 100%; font-size: 1rem; margin-top: 0.2rem; }
+table.compare caption {
+  caption-side: top; text-align: left;
+  font-family: var(--font-mono); font-size: 0.84rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  padding-bottom: 0.35rem;
+}
+table.compare th, table.compare td {
+  border: 1px solid var(--rule); padding: 0.4rem 0.6rem; text-align: left; vertical-align: baseline;
+}
+table.compare thead th { background: var(--panel-2); font-weight: 600; font-size: 0.93rem; }
+table.compare td.n { font-family: var(--font-mono); white-space: nowrap; text-align: right; }
+table.compare td.q { font-family: var(--font-mono); white-space: nowrap; text-align: right; font-weight: 600; font-size: 1.12rem; }
+table.compare tr.current { background: var(--model-fill); }
+table.compare tr.current th, table.compare tr.current td { font-weight: 600; }
+table.compare .mark { font-family: var(--font-mono); color: var(--model); }
+
 /* --- code + sql --------------------------------------------------------------------------- */
 pre.code {
-  font-family: var(--font-mono); font-size: 1rem; line-height: 1.5;
+  font-family: var(--font-mono); font-size: 1.05rem; line-height: 1.5;
   background: var(--paper); border: 1px solid var(--rule); border-left: 3px solid var(--model);
   border-radius: var(--radius); padding: 0.7rem 0.85rem; margin: 0.5rem 0 0;
   overflow-x: auto;
 }
 pre.sql {
-  font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.55;
+  font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.55;
   background: var(--panel-2); border: 1px solid var(--rule);
   border-radius: var(--radius); padding: 0.6rem 0.75rem; margin: 0.4rem 0 0;
   overflow-x: auto; white-space: pre-wrap;
@@ -613,12 +762,12 @@ pre.sql {
 /* --- canvases ----------------------------------------------------------------------------- */
 .canvas-wrap { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); }
 canvas { display: block; width: 100%; height: auto; }
-.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin: 0.6rem 0 0; font-size: 0.88rem; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin: 0.6rem 0 0; font-size: 0.92rem; color: var(--muted); }
 .legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
 .legend i { width: 0.85rem; height: 0.85rem; border-radius: 2px; display: inline-block; border: 1px solid var(--ink); }
 
-table.model { border-collapse: collapse; font-size: 0.92rem; margin-top: 0.5rem; width: 100%; }
-table.model th, table.model td { border: 1px solid var(--rule); padding: 0.3rem 0.5rem; text-align: left; vertical-align: top; }
+table.model { border-collapse: collapse; font-size: 0.96rem; margin-top: 0.5rem; width: 100%; }
+table.model th, table.model td { border: 1px solid var(--rule); padding: 0.33rem 0.55rem; text-align: left; vertical-align: top; }
 table.model th { background: var(--panel-2); font-weight: 600; }
 table.model td.n { font-family: var(--font-mono); white-space: nowrap; }
 code {
@@ -628,7 +777,7 @@ code {
 }
 
 .warnbox {
-  margin: 0.7rem 0 0; padding: 0.5rem 0.7rem; font-size: 0.92rem;
+  margin: 0.7rem 0 0; padding: 0.5rem 0.7rem; font-size: 0.95rem;
   border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
   background: var(--warn-fill); color: var(--warn);
 }
@@ -656,34 +805,623 @@ code {
 <main>
 
 <!-- ==============================================================================================
-     THE LABORATORY HANDOUT. Engineering problem, the access path being modelled, the model's
-     assumptions, and the parameters a student may change — visible before any control and
-     printable. The styling is the shared lab shell in the generated core above.
-     ============================================================================================ -->
+     THE LABORATORY HANDOUT, in the house order: engineering problem, background, model, numbered
+     procedure, apparatus, results, interpretation, collapsed reference. The apparatus sits BELOW
+     the instructional material on purpose — a student should understand what the controls change
+     before meeting them — and the lab's own test suite pins that order on the shipped bytes.
+     ============================================================================================== -->
+
+<!-- ======================= 1 · ENGINEERING PROBLEM ======================= -->
 <section class="lab-intro" aria-labelledby="h-problem">
   <h2 class="lab-question" id="h-problem">
     <span class="k">Engineering problem</span>
-    How can a short, functionally correct program generate hundreds of database operations?
+    How does the loading strategy decide how many queries a loop becomes?
   </h2>
   <p class="lab-frame">
-    The three lines below are the whole program, and they do not change. What changes is the
-    <strong>loading strategy</strong> the data-access layer applies and whether a <strong>cache</strong>
-    answers a repeated lookup &mdash; and those two decide the query count.
+    A three-line loop prints each reservation's room name. The lines never change. What changes is
+    the <strong>loading strategy</strong> the data-access layer applies and whether a
+    <strong>cache</strong> answers a repeated lookup &mdash; and between them they decide whether the
+    page costs one database operation or two hundred and one.
+  </p>
+</section>
+
+<!-- ======================= 2 · BACKGROUND ======================= -->
+<section class="panel" aria-labelledby="h-background">
+  <h2 id="h-background">Background</h2>
+  <div class="prose">
+    <p>
+      A database holds information and an application reaches it with queries. Between the two sits a
+      data-access layer &mdash; in most services an object-relational mapper, which presents stored
+      rows as ordinary objects. The convenience is real and so is the cost: once a row is an object,
+      reading one of its attributes looks exactly like reading any other attribute, and the source
+      code stops saying whether that read reaches the network.
+    </p>
+    <p>
+      A mapper has to decide <em>when</em> to fetch a related row, and there are three common
+      answers. <strong>Lazy loading</strong> fetches it at the moment the attribute is read, so each
+      reservation's room costs a query of its own. <strong>Eager loading</strong> fetches the
+      reservations and their rooms together, in one join. <strong>Batched loading</strong> fetches
+      the reservations, collects the room identifiers the result will need, and asks for all of them
+      in a single second query. All three return the same rows. The strategy is configuration &mdash;
+      an annotation, a mapper default, one argument to a query builder &mdash; and it is usually set
+      a long way from the loop it governs.
+    </p>
+    <p>
+      Mappers also keep an <strong>identity map</strong>: a record, within one request, of the rows
+      already loaded. With one in place a repeated room lookup is answered from memory instead of the
+      network, so the query count follows the number of <em>distinct</em> rooms rather than the
+      number of reservations. Two hundred reservations drawn from ten rooms cost eleven queries. The
+      same two hundred drawn from two hundred different rooms cost two hundred and one, and no cache
+      can help.
+    </p>
+    <p>
+      What makes a query expensive here is not the work the database does. It is the round trip: a
+      request leaves the process, crosses a network, and the process waits. Under lazy loading those
+      waits cannot overlap, because the loop cannot ask for a room it has not reached yet. So the
+      elapsed time is the query count multiplied by one round-trip latency, and the count is the term
+      that grows with the size of the result.
+    </p>
+    <p>
+      That division decides where an engineer spends. Round-trip latency is a property of the
+      deployment &mdash; the network, the region, the pool &mdash; and it is bought rather than
+      written. The query count is a property of the access pattern, and it is the one the engineer
+      changes. A tenfold faster network and a change of loading strategy can cut the same response
+      time; only one of them is in the source.
+    </p>
+    <p>
+      None of this is a correctness question. The loop passes its tests under every configuration on
+      this page: the rows returned are identical and the printed output is the same. A program can be
+      right and still be expensive, which is why a query log or a mapper's echo mode &mdash; rather
+      than a code review &mdash; is the evidence that finds this defect.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= 3 · THE MODEL ======================= -->
+<section class="panel" aria-labelledby="h-model">
+  <h2 id="h-model">Model</h2>
+
+  <div class="figure-row">
+    <figure class="lab-figure">
+      <svg class="fig" viewBox="0 0 600 214" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
+        <title id="f1-t">Figure 1: what the same three lines become under four loading configurations</title>
+        <desc id="f1-d">At the top, three lines of program: load the reservations, loop over them,
+          and print each reservation's room name. An arrow marks the third line as the one a lazy
+          loader turns into a query, noting that it reads like a field access and may be a round
+          trip, and a line above states that all four configurations below return the same rows.
+          Below, four panels compare what the loop becomes. The first, lazy loading with the cache off, shows one
+          query that fetches the reservations and then a fan of separate queries, one per
+          reservation, drawn in the failure colour; it totals one plus N queries, 201 at two hundred
+          reservations. The second, lazy loading with the cache on, shows the same first query and a
+          fan of only two solid room queries beside two dashed outlines marking the lookups the
+          identity map answered from memory; it totals one plus D queries, eleven at ten distinct
+          rooms. The third, eager loading, shows a single wide query that selects the reservations
+          joined to the rooms; it totals one query and sends the widest rows. The fourth, batched
+          loading, shows one query for the reservations and one further query that fetches every
+          needed room at once by a list of identifiers; it totals two queries and sends each room
+          once.</desc>
+
+        <!-- The program, unchanged under every configuration. Geometry note for a later editor: the
+             `.ts` class draws at 9.5px mono with 0.03em tracking, which is 6.0 user units per
+             character, and `.eq` at 10.5px mono is 6.3. The annotation column starts right of where
+             the longest code line ends; the figure-geometry checker measures both. -->
+        <text class="eq" x="4" y="13">reservations = load_reservations()</text>
+        <text class="eq" x="4" y="28">for r in reservations:</text>
+        <text class="eq" x="4" y="43">    print(r.room.name)</text>
+        <line class="ln" x1="150" y1="39" x2="180" y2="39"/>
+        <polygon class="ah" points="186,39 179,35 179,43"/>
+
+        <text class="ts" x="240" y="13">All four configurations return the same rows.</text>
+        <text class="th" x="192" y="31">The room access</text>
+        <text class="ts" x="192" y="44">reads like a field access, and may be a round trip</text>
+
+        <line class="ln" x1="4" y1="58" x2="596" y2="58" opacity="0.5"/>
+
+        <!-- ---- panel 1 · LAZY, cache off ---- -->
+        <rect class="panelbg" x="4" y="66" width="145" height="140" rx="2"/>
+        <text class="th" x="14" y="82">Lazy &middot; cache off</text>
+        <rect class="bx" x="14" y="90" width="92" height="17" rx="2"/>
+        <text class="ts" x="60" y="102" text-anchor="middle">SELECT resv</text>
+        <line class="ln bad" x1="60" y1="109" x2="24" y2="122"/>
+        <line class="ln bad" x1="60" y1="109" x2="50" y2="122"/>
+        <line class="ln bad" x1="60" y1="109" x2="76" y2="122"/>
+        <line class="ln bad" x1="60" y1="109" x2="110" y2="122"/>
+        <rect class="bx bad" x="14" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx bad" x="40" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx bad" x="66" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx bad" x="100" y="123" width="20" height="14" rx="2"/>
+        <text class="ts" x="88" y="134" text-anchor="middle">&middot;&middot;&middot;</text>
+        <text class="ts" x="14" y="152">one query per</text>
+        <text class="ts" x="14" y="164">reservation</text>
+        <text class="t" x="14" y="186">1 + N queries</text>
+        <text class="ts" x="14" y="199">201 at N = 200</text>
+
+        <!-- ---- panel 2 · LAZY, cache on ---- -->
+        <rect class="panelbg" x="155" y="66" width="145" height="140" rx="2"/>
+        <text class="th" x="165" y="82">Lazy &middot; cache on</text>
+        <rect class="bx" x="165" y="90" width="92" height="17" rx="2"/>
+        <text class="ts" x="211" y="102" text-anchor="middle">SELECT resv</text>
+        <line class="ln" x1="211" y1="109" x2="175" y2="122"/>
+        <line class="ln" x1="211" y1="109" x2="201" y2="122"/>
+        <line class="ln ghost" x1="211" y1="109" x2="227" y2="122"/>
+        <line class="ln ghost" x1="211" y1="109" x2="261" y2="122"/>
+        <rect class="bx strong" x="165" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx strong" x="191" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx ghost" x="217" y="123" width="20" height="14" rx="2"/>
+        <rect class="bx ghost" x="251" y="123" width="20" height="14" rx="2"/>
+        <text class="ts" x="239" y="134" text-anchor="middle">&middot;&middot;&middot;</text>
+        <text class="ts" x="165" y="152">one query per distinct</text>
+        <text class="ts" x="165" y="164">room; dashed = memory</text>
+        <text class="t" x="165" y="186">1 + D queries</text>
+        <text class="ts" x="165" y="199">11 at D = 10</text>
+
+        <!-- ---- panel 3 · EAGER ---- -->
+        <rect class="panelbg" x="306" y="66" width="145" height="140" rx="2"/>
+        <text class="th" x="316" y="82">Eager</text>
+        <rect class="bx strong" x="316" y="90" width="125" height="31" rx="2"/>
+        <text class="ts" x="378" y="102" text-anchor="middle">SELECT resv</text>
+        <text class="ts" x="378" y="114" text-anchor="middle">JOIN rooms</text>
+        <text class="ts" x="316" y="140">the rooms arrive with</text>
+        <text class="ts" x="316" y="152">the reservations, and</text>
+        <text class="ts" x="316" y="164">repeat on every row</text>
+        <text class="t" x="316" y="186">1 query</text>
+        <text class="ts" x="316" y="199">the widest rows</text>
+
+        <!-- ---- panel 4 · BATCHED ---- -->
+        <rect class="panelbg" x="457" y="66" width="139" height="140" rx="2"/>
+        <text class="th" x="467" y="82">Batched</text>
+        <rect class="bx" x="467" y="90" width="92" height="17" rx="2"/>
+        <text class="ts" x="513" y="102" text-anchor="middle">SELECT resv</text>
+        <line class="ln" x1="513" y1="108" x2="513" y2="118"/>
+        <polygon class="ah" points="513,123 510,117 516,117"/>
+        <rect class="bx strong" x="467" y="124" width="119" height="31" rx="2"/>
+        <text class="ts" x="526" y="136" text-anchor="middle">SELECT room</text>
+        <text class="ts" x="526" y="148" text-anchor="middle">WHERE id IN (&hellip;)</text>
+        <text class="ts" x="467" y="170">every needed room,</text>
+        <text class="ts" x="467" y="182">asked for just once</text>
+        <text class="t" x="467" y="203">2 queries</text>
+      </svg>
+      <figcaption>
+        <span class="fignum">Figure 1.</span> The same loop under four configurations of the
+        data-access layer. <strong>N</strong> is the number of reservations the loop iterates over
+        and <strong>D</strong> the number of distinct rooms they reference; the counts beneath each
+        panel are the model's formulas, and the apparatus below evaluates them for the N and D you
+        set. The two worked numbers are the lecture's configuration: 200 reservations over 10 rooms.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="lab-twoup">
+    <div class="lab-assumptions" aria-labelledby="h-table1">
+      <h3 id="h-table1">Table 1 &mdash; Model parameters</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Table 1: the five parameters a student sets, with their ranges and
+            defaults</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th><th scope="col">What it is</th>
+              <th scope="col">Range</th><th scope="col">Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-control="reservations">
+              <th scope="row">Reservations <span class="unit">N</span></th>
+              <td>Rows the loop iterates over</td>
+              <td class="unit">1&ndash;1000 rows</td><td class="default">200</td>
+            </tr>
+            <tr data-control="rooms">
+              <th scope="row">Distinct rooms <span class="unit">D</span></th>
+              <td>How many different rooms those rows reference</td>
+              <td class="unit">1&ndash;200 rooms</td><td class="default">10</td>
+            </tr>
+            <tr data-control="strategy-seg">
+              <th scope="row">Loading strategy</th>
+              <td>How the data-access layer fetches the rooms</td>
+              <td class="unit">Lazy &middot; Eager &middot; Batched</td><td class="default">Lazy</td>
+            </tr>
+            <tr data-control="cache-seg">
+              <th scope="row">Database cache</th>
+              <td>Whether an identity map answers a repeated room lookup</td>
+              <td class="unit">Off &middot; On</td><td class="default">Off</td>
+            </tr>
+            <tr data-control="latency">
+              <th scope="row">Round-trip latency</th>
+              <td>Network cost of one query &mdash; the one parameter that cannot change the count</td>
+              <td class="unit">1&ndash;100 ms/query</td><td class="default">10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lab-tablenote">
+        Each control carries one sentence of help where it sits. The full parameter reference, and
+        every quantity the model computes beyond the three in Table 2, are under
+        <em>Further investigation</em>.
+      </p>
+    </div>
+
+    <div class="lab-assumptions" aria-labelledby="h-table2">
+      <h3 id="h-table2">Table 2 &mdash; Observed quantities</h3>
+      <div class="lab-scroll">
+        <table class="lab-parameters">
+          <caption class="vh">Table 2: the three quantities the apparatus reports, and whether each
+            is exact or modelled</caption>
+          <thead>
+            <tr><th scope="col">Quantity</th><th scope="col">What it counts</th>
+                <th scope="col">Exact or modelled</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Database queries</th>
+              <td>Operations the data-access layer sends for one request</td>
+              <td class="unit">exact</td>
+            </tr>
+            <tr>
+              <th scope="row">Total response time</th>
+              <td>Round-trip overhead plus assumed database processing</td>
+              <td class="unit">modelled</td>
+            </tr>
+            <tr>
+              <th scope="row">Served from the cache</th>
+              <td>Room accesses answered from memory instead of a query</td>
+              <td class="unit">exact</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lab-tablenote">
+        The query count is arithmetic, so it is the quantity to argue from. The milliseconds come
+        from the published constants and would differ on a real engine.
+      </p>
+    </div>
+  </div>
+
+  <div class="lab-twoup">
+    <div class="lab-assumptions" aria-labelledby="h-assumptions">
+      <h3 id="h-assumptions">Model assumptions</h3>
+      <ul>
+        <li><strong>Query counts are derived, not timed.</strong> They come from the model's
+          arithmetic over the five parameters &mdash; no database is contacted and nothing on this
+          page is measured.</li>
+        <li><strong>One serial round trip per query.</strong> Elapsed time is the query count times
+          the latency; server-side execution, connection setup and result size are out of the
+          model.</li>
+        <li><strong>The cache is an identity map within one request.</strong> The first access to a
+          room queries; later accesses to the <em>same</em> room are served from memory. It starts
+          empty on every page load and never changes <em>which</em> rooms the loop needs.</li>
+        <li><strong>All four configurations return the same rows.</strong> The program is correct
+          under every one of them; only the number of operations differs.</li>
+      </ul>
+      <p class="lab-disclaimer">
+        Illustrative model; not calibrated to any database engine. A real mapper may batch, prefetch
+        or cache differently from the three strategies here, so read the comparison as a ranking of
+        access patterns rather than a prediction about your own stack.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4 · THE EXPERIMENTAL PROCEDURE ======================= -->
+<section class="panel" aria-labelledby="h-procedure">
+  <h2 id="h-procedure">Experiment</h2>
+  <p class="proc-lead">
+    <strong>Predict before you run.</strong> Each experiment below names a baseline, the one
+    parameter it changes, what it holds constant, the prediction to write down, the measurements to
+    compare, and the engineering question the comparison answers. All three start from the same
+    baseline &mdash; the configuration the lecture describes &mdash; and each one loads it for you.
+    Allow five to ten minutes for the three.
+  </p>
+  <ol class="procedure">
+    <li class="exp">
+      <h3>Which strategy decides the count?</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>200 reservations over 10 distinct rooms, 10&nbsp;ms round-trip latency, lazy loading,
+          cache off.</dd>
+        <dt>Change</dt>
+        <dd>Loading strategy: <strong>Lazy &rarr; Eager &rarr; Batched</strong>.</dd>
+        <dt>Hold constant</dt>
+        <dd>Reservations, distinct rooms, round-trip latency, cache off.</dd>
+        <dt>Predict</dt>
+        <dd>Write three query counts before you touch the control. Which strategy issues fewest?
+          Does any of the three return different rows?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Database queries and total response time at each setting, and the SQL the mapper emits
+          under each.</dd>
+        <dt>Explain</dt>
+        <dd>Three configurations return identical data at 201, 1 and 2 queries. So what is an
+          engineer actually choosing when they choose a loading strategy &mdash; and why does the
+          source code not record the choice?</dd>
+      </dl>
+      <p class="exp-load">
+        <button type="button" class="act" data-preset="the-lander">Load this baseline</button>
+      </p>
+    </li>
+    <li class="exp">
+      <h3>When does lazy loading not cost N+1?</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>The same: 200 reservations over 10 distinct rooms, 10&nbsp;ms latency, lazy, cache off
+          &mdash; 201 queries.</dd>
+        <dt>Change</dt>
+        <dd>Database cache <strong>Off &rarr; On</strong>; then distinct rooms
+          <strong>10 &rarr; 200</strong>.</dd>
+        <dt>Hold constant</dt>
+        <dd>Reservations, round-trip latency, and the loading strategy &mdash; lazy throughout.</dd>
+        <dt>Predict</dt>
+        <dd>With the cache on and 200 reservations sharing 10 rooms, how many queries? Then with 200
+          reservations in 200 different rooms?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Database queries and &ldquo;served from the cache&rdquo; in all three states.</dd>
+        <dt>Explain</dt>
+        <dd>Lazy loading never changed. So is N+1 a property of lazy loading, or of a configuration
+          &mdash; and which part of the configuration decides it?</dd>
+      </dl>
+      <p class="exp-load">
+        <button type="button" class="act" data-preset="the-lander">Load this baseline</button>
+      </p>
+    </li>
+    <li class="exp">
+      <h3>The one control that cannot change the count</h3>
+      <dl class="six">
+        <dt>Baseline</dt>
+        <dd>The same: 200 reservations over 10 distinct rooms, 10&nbsp;ms latency, lazy, cache
+          off.</dd>
+        <dt>Change</dt>
+        <dd>Round-trip latency <strong>10 &rarr; 100 &rarr; 1&nbsp;ms</strong>; then, at
+          100&nbsp;ms, the strategy to <strong>Batched</strong>.</dd>
+        <dt>Hold constant</dt>
+        <dd>Reservations, distinct rooms, loading strategy and cache while the latency moves.</dd>
+        <dt>Predict</dt>
+        <dd>Which of the two headline quantities moves when the latency moves, and which cannot? A
+          faster network divides the latency by ten &mdash; what does batching divide instead?</dd>
+        <dt>Run &amp; measure</dt>
+        <dd>Database queries and total response time at 1, 10 and 100&nbsp;ms; then the same two
+          under batched loading at 100&nbsp;ms.</dd>
+        <dt>Explain</dt>
+        <dd>A tenfold faster network and a change of loading strategy both cut the response time.
+          Which of the two is yours to write, and which must you buy?</dd>
+      </dl>
+      <p class="exp-load">
+        <button type="button" class="act" data-preset="the-lander">Load this baseline</button>
+      </p>
+    </li>
+  </ol>
+</section>
+
+<!-- ======================= 5 · INTERACTIVE APPARATUS ======================= -->
+<section class="panel" aria-labelledby="h-apparatus">
+  <h2 id="h-apparatus">Interactive apparatus &mdash; controls</h2>
+
+  <div class="ctl-row">
+    <div class="ctl">
+      <label for="reservations">Reservations <span class="unit">N, rows</span></label>
+      <input type="range" id="reservations-range" min="1" max="1000" step="1" value="200"
+             aria-label="Number of reservations, slider">
+      <input type="number" id="reservations" min="1" max="1000" step="1" value="200">
+      <span class="help">How many rows the loop iterates over. Under lazy loading with no cache it
+        scales the query count one for one.</span>
+    </div>
+    <div class="ctl">
+      <label for="rooms">Distinct rooms <span class="unit">D, rooms</span></label>
+      <input type="range" id="rooms-range" min="1" max="200" step="1" value="10"
+             aria-label="Number of distinct rooms the reservations reference, slider">
+      <input type="number" id="rooms" min="1" max="200" step="1" value="10">
+      <span class="help">How much sharing there is among those rows. It sets the ceiling a cache can
+        reach, and nothing else.</span>
+    </div>
+    <div class="ctl">
+      <label id="strategy-label">Loading strategy</label>
+      <div class="seg" role="group" aria-labelledby="strategy-label" id="strategy-seg">
+        <button type="button" data-strategy="lazy" aria-pressed="true">Lazy</button>
+        <button type="button" data-strategy="eager" aria-pressed="false">Eager</button>
+        <button type="button" data-strategy="batched" aria-pressed="false">Batched</button>
+      </div>
+      <span></span>
+      <span class="help">When the mapper fetches a room: on access, in one join, or once for the
+        whole result. This is the independent variable.</span>
+    </div>
+    <div class="ctl">
+      <label id="cache-label">Database cache</label>
+      <div class="seg" role="group" aria-labelledby="cache-label" id="cache-seg">
+        <button type="button" data-cache="off" aria-pressed="true">Off</button>
+        <button type="button" data-cache="on" aria-pressed="false">On</button>
+      </div>
+      <span></span>
+      <span class="help">An identity map within this request. It collapses repeat lookups, and
+        cannot help when every row references a different room.</span>
+    </div>
+    <div class="ctl">
+      <label for="latency">Round-trip latency <span class="unit">ms / query</span></label>
+      <input type="range" id="latency-range" min="1" max="100" step="1" value="10"
+             aria-label="Database round-trip latency in milliseconds, slider">
+      <input type="number" id="latency" min="1" max="100" step="1" value="10">
+      <span class="help">What one query costs on the network. It converts queries into elapsed time
+        and never changes the count &mdash; Experiment 3 is about exactly that.</span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="act" id="btn-defaults">Reset to defaults</button>
+    <span style="flex:1"></span>
+    <a class="act" id="btn-download" href="index.html" download="n-plus-one.html"
+       role="button" style="text-decoration:none">Download HTML</a>
+  </div>
+
+  <p id="clamp-notice" class="warnbox" hidden role="status"></p>
+
+  <div class="grid2">
+    <div>
+      <h3 id="h-code">The application code</h3>
+      <p style="margin-top:0">
+        This is the whole program. It does not change when you change the strategy or the cache
+        &mdash; there is one version of it, and it is the same text under every configuration.
+      </p>
+<pre class="code" id="app-code">reservations = load_reservations()
+for r in reservations:
+    print(r.room.name)</pre>
+
+      <h3 id="q-heading">How many database operations does this code perform?</h3>
+      <p style="margin:0.35rem 0 0">
+        Predict the answer before you look. Then change the strategy or the cache and predict again.
+      </p>
+      <div class="btn-row" style="margin-top:0.7rem">
+        <button type="button" class="act primary" id="btn-reveal"
+                aria-pressed="false" aria-controls="answer">Reveal the count</button>
+      </div>
+      <div class="answer" id="answer" hidden>
+        <p><span class="count" id="answer-count">&mdash;</span>
+           <span id="answer-breakdown" style="color:var(--muted)"></span></p>
+        <p id="answer-why"></p>
+      </div>
+    </div>
+    <div>
+      <h3 id="h-sql">What the mapper emits</h3>
+      <pre class="sql" id="emitted-sql"></pre>
+      <p class="note">
+        Three visible source-code statements; between one and <span class="mono">N&nbsp;+&nbsp;1</span>
+        database operations. The number is a property of the loading strategy and the cache state,
+        not of the lines you can read.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 6 · RESULTS ======================= -->
+<section class="panel" aria-labelledby="h-results">
+  <h2 id="h-results">Results <span class="badge s-model"><span class="glyph" aria-hidden="true">&#9633;</span>from the cost model</span></h2>
+  <div class="big">
+    <div class="cell lead">
+      <span class="k">Database queries</span>
+      <span class="v" id="r-queries">&mdash;</span>
+      <span class="sub">exact arithmetic, not an estimate</span>
+    </div>
+    <div class="cell lead">
+      <span class="k">Total response time</span>
+      <span class="v" id="r-total">&mdash;</span>
+      <span class="sub" id="r-total-sub"></span>
+    </div>
+    <div class="cell">
+      <span class="k">Served from the cache</span>
+      <span class="v" id="r-hits">&mdash;</span>
+      <span class="sub" id="r-hits-sub"></span>
+    </div>
+  </div>
+  <p style="margin-top:0"><span class="badge s-ok" id="cost-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="cost-band-text">cheap</span></span></p>
+
+  <h3 id="h-compare">Table 3 &mdash; all four configurations, at the same N, D and latency</h3>
+  <table class="compare">
+    <caption class="vh">Table 3: database queries and total response time for each of the four
+      configurations of the data-access layer, at the parameters currently set.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Configuration</th>
+        <th scope="col" style="text-align:right">Database queries</th>
+        <th scope="col" style="text-align:right">Total response time</th>
+      </tr>
+    </thead>
+    <tbody id="compare-rows"></tbody>
+  </table>
+  <p class="note">
+    All four return the same reservations and the same room names. Nothing here is a correctness
+    difference. <strong>Eager wins on queries and loses on bytes:</strong> a join repeats the room
+    columns on every reservation row, while the batched query sends each room once. Which of those
+    you care about depends on where the constraint is &mdash; the byte counts are under
+    <em>Further investigation</em>.
   </p>
 
-  <div class="lab-twoup band wide-fig">
-    <!-- -------- FIGURES 1 AND 2 · the access path, and what multiplies on it -------- -->
-    <div class="lab-figstack">
-      <figure class="lab-figure flat">
-        <svg class="fig" viewBox="0 0 700 84" role="img" aria-labelledby="f1-t" aria-describedby="f1-d">
-          <title id="f1-t">Figure 1: the modelled access path — application, data-access layer, database</title>
-          <desc id="f1-d">Three boxes in a row, joined by arrows that run both ways. On the left,
+  <h3 id="h-timeline">Query timeline</h3>
+  <div class="canvas-wrap"><canvas id="c-timeline" width="1200" height="430"
+    role="img" aria-labelledby="timeline-alt"></canvas></div>
+  <p id="timeline-alt" class="vh" aria-live="polite"></p>
+  <div class="legend">
+    <span><i style="background:var(--model)"></i>Reservations query</span>
+    <span><i style="background:var(--accent)"></i>Room query (one per miss)</span>
+    <span><i style="background:var(--ok)"></i>Batched rooms query</span>
+    <span><i style="background:var(--warn)"></i>Join &mdash; reservations and rooms together</span>
+  </div>
+  <p class="note" id="timeline-note"></p>
+  <p class="note">
+    <strong>Round-trip overhead dominates and is exact.</strong> It is
+    <code>queries &times; latency</code> &mdash; the lazy loads run one after another, because the
+    loop cannot ask for a room it has not reached yet. Database processing is the only
+    <em>estimated</em> term in the response time; the query count is arithmetic.
+  </p>
+</section>
+
+<!-- ======================= 7 · INTERPRETATION ======================= -->
+<section class="panel" aria-labelledby="h-interpretation">
+  <h2 id="h-interpretation">Interpretation</h2>
+  <p class="proc-lead">
+    <strong>The decision this laboratory supports:</strong> an engineer holds a page that is slow
+    and a loop that is correct. Where should the next hour go?
+  </p>
+  <ol class="interp">
+    <li>Which controls changed the query count, and which one only changed the elapsed time? Say
+      what that difference means for a team deciding between a faster database tier and a change to
+      the access pattern.</li>
+    <li>You can read all three lines of the loop and still not know whether the page costs 1 query
+      or 201. Name two pieces of evidence that would tell you, and say where each comes from.</li>
+    <li>At D&nbsp;=&nbsp;10 the cache took lazy loading from 201 queries to 11; at
+      D&nbsp;=&nbsp;200 it took it from 201 to 201. Describe a real feature whose access pattern
+      looks like each case.</li>
+    <li>Eager loading issues one query and sends the most bytes; batched issues two and sends each
+      room once. Under what constraint would you prefer each &mdash; and what would you have to
+      measure to know which constraint you are under?</li>
+  </ol>
+</section>
+
+<!-- ======================= 8 · FURTHER INVESTIGATION ======================= -->
+<section class="panel" aria-labelledby="h-further">
+  <h2 id="h-further">Further investigation</h2>
+  <p class="note" style="margin-top:0">
+    Everything below is reachable, computed from the same model and wired to the same controls. It
+    is collapsed because it is reference rather than prerequisite, and the printed handout drops it.
+  </p>
+
+  <details class="disclose">
+    <summary>Explore further &mdash; the five classroom presets</summary>
+    <div class="body">
+      <p class="note" style="margin-top:0">
+        The teaching sequence the lecture notes follow. The first is the baseline the three
+        experiments load; each of the next three changes exactly one decision; the last is the
+        counter-example &mdash; a cache that cannot help.
+      </p>
+      <div class="preset-grid" id="presets"></div>
+    </div>
+  </details>
+
+  <details class="disclose">
+    <summary>Every quantity the model computes</summary>
+    <div class="body">
+      <dl class="readout">
+        <dt>Round-trip overhead</dt><dd id="r-rtt">&mdash;</dd>
+        <dt>Database processing (estimated)</dt><dd id="r-db">&mdash;</dd>
+        <dt>Data transferred</dt><dd id="r-bytes">&mdash;</dd>
+        <dt>Room accesses in the loop</dt><dd id="r-accesses">&mdash;</dd>
+        <dt>Room queries issued</dt><dd id="r-roomq">&mdash;</dd>
+        <dt>Distinct rooms used</dt><dd id="r-deff">&mdash;</dd>
+      </dl>
+      <p class="note">
+        Six further quantities, all live. They are here rather than beside the three headline
+        measurements because a results panel that reports nine numbers does not say which one the
+        experiment turns on.
+      </p>
+    </div>
+  </details>
+
+  <details class="disclose">
+    <summary>Model reference &mdash; the access path, the formulas, the constants and the exclusions</summary>
+    <div class="body">
+      <figure class="lab-figure">
+        <svg class="fig" viewBox="0 0 700 84" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
+          <title id="f2-t">Figure 2: the modelled access path — application, data-access layer, database</title>
+          <desc id="f2-d">Three boxes in a row, joined by arrows that run both ways. On the left,
             the application, holding the loop over reservations. In the middle, the ORM or
             data-access layer, which decides how many queries the loop becomes. On the right, the
             database. The arrow between the middle and right boxes is labelled one network
             round-trip per query, at the configured latency. A note reads that the application code
-            is identical under every strategy: only the middle box's behaviour changes. The
-            parameters marked are defined in the parameters table.</desc>
+            is identical under every strategy: only the middle box's behaviour changes.</desc>
 
           <rect class="bx" x="4" y="18" width="134" height="40" rx="2"/>
           <text class="t" x="71" y="35" text-anchor="middle">Application</text>
@@ -712,406 +1450,137 @@ code {
           <text class="ts" x="4" y="78">The application code is identical under every strategy &mdash; only the middle box behaves differently.</text>
         </svg>
         <figcaption>
-          <span class="fignum">Figure 1.</span> One application, one data-access layer, one database.
-          Every query costs one network round-trip.
+          <span class="fignum">Figure 2.</span> One application, one data-access layer, one
+          database. Every query costs one network round trip, which is the assumption the constants
+          below price.
         </figcaption>
       </figure>
 
-      <figure class="lab-figure flat">
-        <svg class="fig" viewBox="0 0 700 128" role="img" aria-labelledby="f2-t" aria-describedby="f2-d">
-          <title id="f2-t">Figure 2: query multiplication — lazy loading beside batched loading</title>
-          <desc id="f2-d">The same three lines of program are printed across the top: load the
-            reservations, loop over them, and print each reservation's room name. The room access
-            is marked as the line a lazy loader turns into a query. Below, two panels compare what
-            that becomes. The left panel, labelled lazy loading, shows one query that fetches the
-            reservations and then a fan of separate arrows, one per reservation, each a further
-            query for that reservation's room; it totals one plus N queries and is drawn in the
-            failure colour. The right panel, labelled batched loading, shows one query for the
-            reservations and one further query that fetches every needed room at once by a list of
-            identifiers; it totals two queries. Both panels return the same rows.</desc>
-
-          <text class="eq" x="4" y="12">reservations = load_reservations()  &middot;  for r in reservations:  print(r.room.name)</text>
-          <text class="ts" x="4" y="26">The three lines are identical under every strategy. The room access is what a LAZY loader turns into a query.</text>
-          <line class="ln" x1="276" y1="34" x2="276" y2="124" stroke-dasharray="2 3" opacity="0.55"/>
-
-          <text class="th" x="4" y="44">Lazy loading</text>
-          <rect class="bx" x="4" y="50" width="104" height="18" rx="2"/>
-          <text class="ts" x="56" y="63" text-anchor="middle">SELECT resv</text>
-          <line class="ln bad" x1="56" y1="70" x2="22" y2="82"/>
-          <line class="ln bad" x1="56" y1="70" x2="56" y2="82"/>
-          <line class="ln bad" x1="56" y1="70" x2="90" y2="82"/>
-          <line class="ln bad" x1="56" y1="70" x2="128" y2="82"/>
-          <rect class="bx bad" x="4" y="84" width="36" height="16" rx="2"/>
-          <rect class="bx bad" x="44" y="84" width="36" height="16" rx="2"/>
-          <rect class="bx bad" x="84" y="84" width="36" height="16" rx="2"/>
-          <rect class="bx bad" x="124" y="84" width="36" height="16" rx="2"/>
-          <text class="ts" x="166" y="95">SELECT room,</text>
-          <text class="ts" x="166" y="106">one per row</text>
-          <text class="t" x="4" y="120">Total: 1 + N queries</text>
-
-          <text class="th" x="290" y="44">Batched loading</text>
-          <rect class="bx" x="290" y="50" width="104" height="18" rx="2"/>
-          <text class="ts" x="342" y="63" text-anchor="middle">SELECT resv</text>
-          <line class="ln" x1="342" y1="70" x2="342" y2="80"/>
-          <polygon class="ah" points="342,84 339,78 345,78"/>
-          <rect class="bx strong" x="290" y="86" width="208" height="18" rx="2"/>
-          <text class="ts" x="394" y="99" text-anchor="middle">SELECT room WHERE id IN (&hellip;)</text>
-          <text class="t" x="290" y="120">Total: 2 queries</text>
-        </svg>
-        <figcaption>
-          <span class="fignum">Figure 2.</span> Same loop, same rows. Lazy loading asks once per
-          row; batched loading collects the identifiers and asks once.
-        </figcaption>
-      </figure>
-    </div>
-
-    <!-- -------- MODEL ASSUMPTIONS -------- -->
-    <div class="lab-assumptions" aria-labelledby="h-assumptions">
-      <h2 id="h-assumptions">Model assumptions</h2>
-      <ul>
-        <li><strong>Query counts are derived, not timed.</strong> They come from the cost model's
-          arithmetic over the five controls below &mdash; no database is contacted and nothing on
-          this page is measured.</li>
-        <li><strong>One serial round-trip per query.</strong> Elapsed time is the query count times
-          the latency; server-side execution, connection setup and result size are out of the model.</li>
-        <li><strong>The cache is an identity map within one request.</strong> The first access to a
-          room queries; later accesses to the <em>same</em> room are served from memory. It starts
-          empty on every page load and never changes <em>which</em> rooms the loop needs.</li>
-        <li><strong>All three strategies return the same rows.</strong> The program is correct under
-          every configuration; only the number of operations differs.</li>
-      </ul>
-      <p class="lab-disclaimer">
-        <strong>The latency figure is yours to set, not a measurement.</strong> A real ORM may batch,
-        prefetch or cache differently from any of the three strategies here, so read the comparison
-        as a ranking of access patterns rather than a prediction about your own stack.
+      <p>
+        Nothing on this page executes SQL. There is no database, no connection, no engine, and no
+        measurement. Every number is computed from the constants below, which is why the same
+        controls always produce the same answer.
+        The query counts are <strong>exact arithmetic</strong>; the times and byte counts are
+        <strong>a model</strong>, and a real engine would differ. The arithmetic is deterministic and carries no randomness, so there is
+        no seed to fix and no sampling variability to average away: one run is the expected result.
       </p>
-    </div>
 
-    <!-- -------- PARAMETERS -------- -->
-    <div class="lab-assumptions lab-parameters-block">
+      <h3>Query counts &mdash; exact</h3>
+      <table class="model">
+        <thead><tr><th>Strategy</th><th>Cache</th><th class="n">Queries</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Lazy</td><td>Off</td><td class="n">1 + N</td>
+              <td>One query for the reservations, then one per reservation. Nothing remembers that two reservations share a room.</td></tr>
+          <tr><td>Lazy</td><td>On</td><td class="n">1 + D<sub>eff</sub></td>
+              <td>One query for the reservations, then one per <em>distinct</em> room. Later accesses to a room already loaded are served from the identity map.</td></tr>
+          <tr><td>Eager</td><td>either</td><td class="n">1</td>
+              <td>A single join returns reservations and their rooms together. The cache changes nothing: the room columns already arrived.</td></tr>
+          <tr><td>Batched</td><td>either</td><td class="n">2</td>
+              <td>One query for the reservations, then one <code>WHERE id IN (&hellip;)</code> for the rooms the loop will need.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        <strong>N+1 is a consequence of a configuration, not a property of lazy loading.</strong>
+        Lazy loading executes N additional queries only when every room access misses. Set the cache
+        on and point 200 reservations at 10 rooms and lazy loading issues 11 queries. Point them at
+        200 different rooms and the cache cannot help: 201 again. Experiment 2 is finding that
+        boundary.
+      </p>
+
+      <h3>D<sub>eff</sub> &mdash; the clamp, and why there is one</h3>
+      <p>
+        A reservation references exactly one room, so N reservations can reference at most N distinct
+        rooms. When the <em>distinct rooms</em> control exceeds the reservation count, the model uses
+        <code>D<sub>eff</sub> = min(D, N)</code> and says so above the results rather than reporting
+        a configuration that cannot exist. Your control keeps the value you set.
+      </p>
+      <p>
+        Reservations are assigned to rooms round-robin &mdash; reservation <em>i</em> takes room
+        <code>i mod D<sub>eff</sub></code> &mdash; so every distinct room is used and the assignment
+        is deterministic. The assignment changes <em>which</em> accesses miss, and therefore where
+        the misses sit on the timeline. It does not change how many there are: with the cache on,
+        each distinct room is fetched exactly once however the reservations are spread.
+      </p>
+
+      <h3>Times and bytes &mdash; estimated</h3>
+      <table class="model">
+        <thead><tr><th>Constant</th><th class="n">Value</th><th>Stands for</th></tr></thead>
+        <tbody>
+          <tr><td>Round-trip latency</td><td class="n">your control</td>
+              <td>Charged <em>once per query</em>, and the queries are sequential. This is the term that makes 200 individually cheap queries expensive.</td></tr>
+          <tr><td>Statement cost</td><td class="n">0.15 ms</td>
+              <td>Parse, plan and dispatch, charged once per query regardless of size.</td></tr>
+          <tr><td>Row cost</td><td class="n">0.004 ms</td>
+              <td>Per row returned.</td></tr>
+          <tr><td>Join row factor</td><td class="n">&times; 1.6</td>
+              <td>Extra per-row work in the eager join, matching reservation rows to room rows.</td></tr>
+          <tr><td>Per-query bytes</td><td class="n">200 B</td>
+              <td>Statement text, result metadata and protocol framing, once per query.</td></tr>
+          <tr><td>Reservation row</td><td class="n">80 B</td></tr>
+          <tr><td>Room row</td><td class="n">120 B</td>
+              <td>Repeated on every row of the eager join; sent once per room by the batched query.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        <strong>What the model leaves out,</strong> stated so it is not mistaken for a benchmark: no
+        connection-pool waiting, no lock contention, no index choice, no concurrency, no network
+        variance, no server-side caching between requests, and no application CPU. Response time
+        here is round-trip overhead plus database processing, nothing else. A real system has all of
+        those, and this page would mislead anyone who read its milliseconds as a prediction about
+        one.
+      </p>
+
+      <h3>The five parameters in full</h3>
       <div class="lab-scroll">
-        <table class="lab-parameters">
-          <caption class="vh">Parameters &mdash; what you can change, what each one means, and what
-            changing it does</caption>
+        <table class="model">
           <thead>
-            <tr>
-              <th scope="col">Parameter</th><th scope="col">Meaning</th>
-              <th scope="col">Values</th><th scope="col">Default</th>
-              <th scope="col">What changing it does</th>
-            </tr>
+            <tr><th>Parameter</th><th>Meaning</th><th class="n">Values</th><th class="n">Default</th>
+                <th>What changing it does</th></tr>
           </thead>
           <tbody>
-            <tr data-control="reservations">
-              <th scope="row">Reservations N</th>
-              <td>Rows the loop iterates over</td>
-              <td class="unit">1&ndash;1000 rows</td><td class="default">200</td>
-              <td>Scales the lazy strategy's query count one-for-one</td>
-            </tr>
-            <tr data-control="rooms">
-              <th scope="row">Distinct rooms D</th>
-              <td>How many different rooms those rows reference</td>
-              <td class="unit">1&ndash;200 rooms</td><td class="default">10</td>
-              <td>Sets the ceiling a cache can reach</td>
-            </tr>
-            <tr data-control="latency">
-              <th scope="row">Round-trip latency</th>
-              <td>Network cost of one query</td>
-              <td class="unit">1&ndash;100 ms/query</td><td class="default">10</td>
-              <td>Converts queries into elapsed time; never changes the count</td>
-            </tr>
-            <tr data-control="strategy-seg">
-              <th scope="row">Loading strategy</th>
-              <td>How the data-access layer fetches the rooms</td>
-              <td class="unit">Lazy &middot; Eager &middot; Batched</td><td class="default">Lazy</td>
-              <td>Changes the query count</td>
-            </tr>
-            <tr data-control="cache-seg">
-              <th scope="row">Database cache</th>
-              <td>Whether a repeated room lookup is served from memory</td>
-              <td class="unit">Off &middot; On</td><td class="default">Off</td>
-              <td>Collapses repeat lookups; cannot help when every row is distinct</td>
-            </tr>
+            <tr><th scope="row">Reservations N</th><td>Rows the loop iterates over</td>
+                <td class="n">1&ndash;1000 rows</td><td class="n">200</td>
+                <td>Scales the lazy strategy's query count one for one</td></tr>
+            <tr><th scope="row">Distinct rooms D</th><td>How many different rooms those rows reference</td>
+                <td class="n">1&ndash;200 rooms</td><td class="n">10</td>
+                <td>Sets the ceiling a cache can reach</td></tr>
+            <tr><th scope="row">Loading strategy</th><td>How the data-access layer fetches the rooms</td>
+                <td class="n">Lazy &middot; Eager &middot; Batched</td><td class="n">Lazy</td>
+                <td>Changes the query count</td></tr>
+            <tr><th scope="row">Database cache</th><td>Whether a repeated room lookup is served from memory</td>
+                <td class="n">Off &middot; On</td><td class="n">Off</td>
+                <td>Collapses repeat lookups; cannot help when every row is distinct</td></tr>
+            <tr><th scope="row">Round-trip latency</th><td>Network cost of one query</td>
+                <td class="n">1&ndash;100 ms/query</td><td class="n">10</td>
+                <td>Converts queries into elapsed time; never changes the count</td></tr>
           </tbody>
         </table>
       </div>
+      <p class="note">
+        <strong>What the cache is.</strong> &ldquo;Cache on&rdquo; means an ORM identity map or
+        application cache that remembers a room <em>within this request</em>: the first access to a
+        room issues a query, and every later access to the <em>same</em> room is served from memory.
+        It starts empty on every page load, so nothing is carried over between configurations. It
+        never changes <em>which</em> rooms the loop needs &mdash; all four configurations return the
+        same reservations and the same room names.
+      </p>
     </div>
-  </div>
-</section>
+  </details>
 
-<!-- ======================= CONTROLS ======================= -->
-<section class="panel" aria-labelledby="h-controls">
-  <h2 id="h-controls">Controls</h2>
-  <div class="lab-experiment" aria-labelledby="h-your-experiment">
-    <h2 id="h-your-experiment">Your experiment</h2>
-    <ol class="lab-steps">
-      <li>
-        <span class="step">1 &middot; Predict</span>
-        At N&nbsp;=&nbsp;200 reservations over D&nbsp;=&nbsp;10 rooms, write down the number of
-        queries you expect under lazy loading with the cache off, then with the cache on, then under
-        batched loading. Three numbers, before you read a panel.
-      </li>
-      <li>
-        <span class="step">2 &middot; Run</span>
-        Hold N and the latency fixed and move the strategy through lazy, eager and batched. Put it
-        back to lazy, turn the cache on, and then raise D to 200 so every row references a
-        different room.
-      </li>
-      <li>
-        <span class="step">3 &middot; Explain</span>
-        Which control changed the query count and which only changed the elapsed time? Say why the
-        cache stopped helping at D&nbsp;=&nbsp;200 while the batched strategy did not. What would
-        you recommend to an engineer who has this loop in production?
-      </li>
-    </ol>
-  </div>
-
-  <div class="ctl-row">
-    <div class="ctl">
-      <label for="reservations">Reservations <span class="unit">N</span></label>
-      <input type="range" id="reservations-range" min="1" max="1000" step="1" value="200"
-             aria-label="Number of reservations, slider">
-      <input type="number" id="reservations" min="1" max="1000" step="1" value="200">
+  <details class="disclose">
+    <summary>The model's self-tests</summary>
+    <div class="body">
+      <p style="margin-top:0">
+        <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
+        <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
+      </p>
+      <p class="note">
+        The engine is a pure module published as <code>window.NPlusOne</code> with no DOM
+        dependency, so the test suite under <code>tests/</code> extracts it from this file and
+        exercises it directly. The tested text and the published text are the same bytes.
+      </p>
     </div>
-    <div class="ctl">
-      <label for="latency">Round-trip latency <span class="unit">ms / query</span></label>
-      <input type="range" id="latency-range" min="1" max="100" step="1" value="10"
-             aria-label="Database round-trip latency in milliseconds, slider">
-      <input type="number" id="latency" min="1" max="100" step="1" value="10">
-    </div>
-    <div class="ctl">
-      <label for="rooms">Distinct rooms <span class="unit">D</span></label>
-      <input type="range" id="rooms-range" min="1" max="200" step="1" value="10"
-             aria-label="Number of distinct rooms the reservations reference, slider">
-      <input type="number" id="rooms" min="1" max="200" step="1" value="10">
-    </div>
-    <div class="ctl">
-      <label id="strategy-label">Access strategy</label>
-      <div class="seg" role="group" aria-labelledby="strategy-label" id="strategy-seg">
-        <button type="button" data-strategy="lazy" aria-pressed="true">Lazy</button>
-        <button type="button" data-strategy="eager" aria-pressed="false">Eager</button>
-        <button type="button" data-strategy="batched" aria-pressed="false">Batched</button>
-      </div>
-      <span></span>
-    </div>
-    <div class="ctl">
-      <label id="cache-label">Database cache</label>
-      <div class="seg" role="group" aria-labelledby="cache-label" id="cache-seg">
-        <button type="button" data-cache="off" aria-pressed="true">Off</button>
-        <button type="button" data-cache="on" aria-pressed="false">On</button>
-      </div>
-      <span></span>
-    </div>
-  </div>
-
-  <div class="btn-row">
-    <button type="button" class="act" id="btn-defaults">Defaults</button>
-    <span style="flex:1"></span>
-    <a class="act" id="btn-download" href="index.html" download="n-plus-one.html"
-       role="button" style="text-decoration:none">Download HTML</a>
-  </div>
-
-  <p id="clamp-notice" class="warnbox" hidden role="status"></p>
-
-  <p class="note" id="cache-policy">
-    <strong>What the cache is.</strong> &ldquo;Cache on&rdquo; means an ORM identity map or
-    application cache that remembers a room <em>within this request</em>: the first access to a room
-    issues a query, and every later access to the <em>same</em> room is served from memory. It starts
-    empty on every page load, so nothing is carried over between configurations. It never changes
-    <em>which</em> rooms the loop needs &mdash; all three strategies return the same reservations and
-    the same room names.
-  </p>
-</section>
-
-<!-- ======================= PRESETS ======================= -->
-<section class="panel" aria-labelledby="h-presets">
-  <h2 id="h-presets">Classroom presets</h2>
-  <div class="preset-grid" id="presets"></div>
-  <p class="note">
-    The first preset is the configuration the lecture notes describe. Step through the rest in order:
-    each one changes exactly one decision, and the last one is the counter-example &mdash; a cache
-    that cannot help.
-  </p>
-</section>
-
-<div class="grid2">
-
-  <!-- ======================= THE CODE ======================= -->
-  <section class="panel" aria-labelledby="h-code">
-    <h2 id="h-code">The application code</h2>
-    <p style="margin-top:0">
-      This is the whole program. It does not change when you change the strategy or the cache
-      &mdash; there is one version of it, and it is the same text under every configuration.
-    </p>
-<pre class="code" id="app-code">reservations = load_reservations()
-for r in reservations:
-    print(r.room.name)</pre>
-
-    <h3 id="q-heading">How many database operations does this code perform?</h3>
-    <p style="margin:0.35rem 0 0">
-      Predict the answer before you look. Then change the strategy or the cache and predict again.
-    </p>
-    <div class="btn-row" style="margin-top:0.7rem">
-      <button type="button" class="act primary" id="btn-reveal"
-              aria-pressed="false" aria-controls="answer">Reveal the count</button>
-    </div>
-    <div class="answer" id="answer" hidden>
-      <p><span class="count" id="answer-count">&mdash;</span>
-         <span id="answer-breakdown" style="color:var(--muted)"></span></p>
-      <p id="answer-why"></p>
-    </div>
-
-    <h3>What the mapper emits</h3>
-    <pre class="sql" id="emitted-sql"></pre>
-    <p class="note">
-      Three visible source-code statements; between one and <span class="mono">N&nbsp;+&nbsp;1</span>
-      database operations. The number is a property of the loading strategy and the cache state, not
-      of the lines you can read.
-    </p>
-  </section>
-
-  <!-- ======================= RESULTS ======================= -->
-  <section class="panel" aria-labelledby="h-results">
-    <h2 id="h-results">Results <span class="badge s-model"><span class="glyph" aria-hidden="true">&#9633;</span>from the cost model</span></h2>
-    <div class="big">
-      <div class="cell lead">
-        <span class="k">Database queries</span>
-        <span class="v" id="r-queries">&mdash;</span>
-      </div>
-      <div class="cell lead">
-        <span class="k">Total response time</span>
-        <span class="v" id="r-total">&mdash;</span>
-      </div>
-    </div>
-    <p style="margin-top:0"><span class="badge s-ok" id="cost-band"><span class="glyph" aria-hidden="true">&#9679;</span><span id="cost-band-text">cheap</span></span></p>
-    <dl class="readout">
-      <dt>Round-trip overhead</dt><dd id="r-rtt">&mdash;</dd>
-      <dt>Database processing (estimated)</dt><dd id="r-db">&mdash;</dd>
-      <dt>Data transferred</dt><dd id="r-bytes">&mdash;</dd>
-      <dt>Room accesses in the loop</dt><dd id="r-accesses">&mdash;</dd>
-      <dt>Room queries issued</dt><dd id="r-roomq">&mdash;</dd>
-      <dt>Served from the cache</dt><dd id="r-hits">&mdash;</dd>
-      <dt>Distinct rooms used</dt><dd id="r-deff">&mdash;</dd>
-    </dl>
-    <p class="note">
-      <strong>Round-trip overhead dominates and is exact.</strong> It is
-      <code>queries &times; latency</code> &mdash; the lazy loads run one after another, because the
-      loop cannot ask for a room it has not reached yet. Database processing is the only
-      <em>estimated</em> quantity on this page; the query count is arithmetic.
-    </p>
-  </section>
-</div>
-
-<!-- ======================= TIMELINE ======================= -->
-<section class="panel" aria-labelledby="h-timeline">
-  <h2 id="h-timeline">Query timeline</h2>
-  <div class="canvas-wrap"><canvas id="c-timeline" width="1200" height="430"
-    role="img" aria-labelledby="timeline-alt"></canvas></div>
-  <p id="timeline-alt" class="vh" aria-live="polite"></p>
-  <div class="legend">
-    <span><i style="background:var(--model)"></i>Reservations query</span>
-    <span><i style="background:var(--accent)"></i>Room query (one per miss)</span>
-    <span><i style="background:var(--ok)"></i>Batched rooms query</span>
-    <span><i style="background:var(--warn)"></i>Join &mdash; reservations and rooms together</span>
-  </div>
-  <p class="note" id="timeline-note"></p>
-</section>
-
-<!-- ======================= COMPARISON ======================= -->
-<section class="panel" aria-labelledby="h-compare">
-  <h2 id="h-compare">All four configurations, same N, D and latency</h2>
-  <div class="canvas-wrap"><canvas id="c-compare" width="1200" height="290"
-    role="img" aria-labelledby="compare-alt"></canvas></div>
-  <p id="compare-alt" class="vh" aria-live="polite"></p>
-  <p class="note">
-    All four return the same reservations and the same room names. Nothing here is a correctness
-    difference. <strong>Eager usually wins on time and loses on bytes:</strong> a join repeats the
-    room columns on every reservation row, while the batched query sends each room once. Which of
-    those you care about depends on where the constraint is.
-  </p>
-</section>
-
-<!-- ======================= THE MODEL ======================= -->
-<section class="panel" aria-labelledby="h-model">
-  <h2 id="h-model">The cost model, in full</h2>
-  <p style="margin-top:0">
-    Nothing on this page executes SQL. There is no database, no connection, no engine, and no
-    measurement. Every number is computed from the constants below, which is why the same controls
-    always produce the same answer. The query counts are <strong>exact arithmetic</strong>; the
-    times and byte counts are <strong>a model</strong>, and a real engine would differ.
-  </p>
-
-  <h3>Query counts &mdash; exact</h3>
-  <table class="model">
-    <thead><tr><th>Strategy</th><th>Cache</th><th class="n">Queries</th><th>Why</th></tr></thead>
-    <tbody>
-      <tr><td>Lazy</td><td>Off</td><td class="n">1 + N</td>
-          <td>One query for the reservations, then one per reservation. Nothing remembers that two reservations share a room.</td></tr>
-      <tr><td>Lazy</td><td>On</td><td class="n">1 + D<sub>eff</sub></td>
-          <td>One query for the reservations, then one per <em>distinct</em> room. Later accesses to a room already loaded are served from the identity map.</td></tr>
-      <tr><td>Eager</td><td>either</td><td class="n">1</td>
-          <td>A single join returns reservations and their rooms together. The cache changes nothing: the room columns already arrived.</td></tr>
-      <tr><td>Batched</td><td>either</td><td class="n">2</td>
-          <td>One query for the reservations, then one <code>WHERE id IN (&hellip;)</code> for the rooms the loop will need.</td></tr>
-    </tbody>
-  </table>
-  <p class="note">
-    <strong>N+1 is a consequence of a configuration, not a property of lazy loading.</strong> Lazy
-    loading executes N additional queries only when every room access misses. Set the cache on and
-    point 200 reservations at 10 rooms and lazy loading issues 11 queries. Point them at 200
-    different rooms and the cache cannot help: 201 again. The exercise is to find that boundary
-    yourself.
-  </p>
-
-  <h3>D<sub>eff</sub> &mdash; the clamp, and why there is one</h3>
-  <p>
-    A reservation references exactly one room, so N reservations can reference at most N distinct
-    rooms. When the <em>distinct rooms</em> control exceeds the reservation count, the model uses
-    <code>D<sub>eff</sub> = min(D, N)</code> and says so above the results rather than reporting a
-    configuration that cannot exist. Your control keeps the value you set.
-  </p>
-  <p>
-    Reservations are assigned to rooms round-robin &mdash; reservation <em>i</em> takes room
-    <code>i mod D<sub>eff</sub></code> &mdash; so every distinct room is used and the assignment is
-    deterministic. The assignment changes <em>which</em> accesses miss, and therefore where the
-    misses sit on the timeline. It does not change how many there are: with the cache on, each
-    distinct room is fetched exactly once however the reservations are spread.
-  </p>
-
-  <h3>Times and bytes &mdash; estimated</h3>
-  <table class="model">
-    <thead><tr><th>Constant</th><th class="n">Value</th><th>Stands for</th></tr></thead>
-    <tbody>
-      <tr><td>Round-trip latency</td><td class="n">your control</td>
-          <td>Charged <em>once per query</em>, and the queries are sequential. This is the term that makes 200 individually cheap queries expensive.</td></tr>
-      <tr><td>Statement cost</td><td class="n">0.15 ms</td>
-          <td>Parse, plan and dispatch, charged once per query regardless of size.</td></tr>
-      <tr><td>Row cost</td><td class="n">0.004 ms</td>
-          <td>Per row returned.</td></tr>
-      <tr><td>Join row factor</td><td class="n">&times; 1.6</td>
-          <td>Extra per-row work in the eager join, matching reservation rows to room rows.</td></tr>
-      <tr><td>Per-query bytes</td><td class="n">200 B</td>
-          <td>Statement text, result metadata and protocol framing, once per query.</td></tr>
-      <tr><td>Reservation row</td><td class="n">80 B</td></tr>
-      <tr><td>Room row</td><td class="n">120 B</td>
-          <td>Repeated on every row of the eager join; sent once per room by the batched query.</td></tr>
-    </tbody>
-  </table>
-  <p class="note">
-    <strong>What the model leaves out,</strong> stated so it is not mistaken for a benchmark: no
-    connection-pool waiting, no lock contention, no index choice, no concurrency, no network
-    variance, no server-side caching between requests, and no application CPU. Response time here is
-    round-trip overhead plus database processing, nothing else. A real system has all of those, and
-    this page would mislead anyone who read its milliseconds as a prediction about one.
-  </p>
-  <p>
-    <button type="button" class="act" id="btn-selftest">Run the model's self-tests</button>
-    <span class="selftest-out" id="selftest-out" aria-live="polite"></span>
-  </p>
-  <p class="note">
-    The engine is a pure module published as <code>window.NPlusOne</code> with no DOM dependency, so
-    the test suite under <code>tests/</code> extracts it from this file and exercises it directly.
-    The tested text and the published text are the same bytes.
-  </p>
+  </details>
 </section>
 
 </main>
@@ -1761,18 +2230,24 @@ for r in reservations:
       blurb.textContent = preset.blurb;
       btn.appendChild(name);
       btn.appendChild(blurb);
-      btn.addEventListener('click', function () {
-        var p = M.normalizeParams(preset.params);
-        state.reservations = p.reservations;
-        state.latencyMs = p.latencyMs;
-        state.distinctRooms = p.distinctRooms;
-        state.strategy = p.strategy;
-        state.cache = p.cache;
-        syncControls();
-        render();
-      });
+      btn.addEventListener('click', function () { applyPreset(preset.id); });
       host.appendChild(btn);
     });
+  }
+
+  /** Load an engine preset into the controls. Used by the preset library and by the three guided
+      experiments' baseline buttons, so both reach the model through one path. */
+  function applyPreset(id) {
+    var preset = M.findPreset(id);
+    if (!preset) return;
+    var p = M.normalizeParams(preset.params);
+    state.reservations = p.reservations;
+    state.latencyMs = p.latencyMs;
+    state.distinctRooms = p.distinctRooms;
+    state.strategy = p.strategy;
+    state.cache = p.cache;
+    syncControls();
+    render();
   }
 
   /* --- readouts -------------------------------------------------------------------------------- */
@@ -1787,9 +2262,20 @@ for r in reservations:
     $('r-accesses').textContent = M.formatCount(cost.roomAccesses);
     $('r-roomq').textContent = M.formatCount(cost.roomQueries)
       + (cost.params.strategy === 'eager' ? ' (the join carried them)' : '');
-    $('r-hits').textContent = cost.params.strategy === 'lazy'
-      ? M.formatCount(cost.cacheHits)
-      : M.formatCount(cost.roomAccesses) + ' (all of them, after the first query)';
+    /* The engine's own number, reported as the engine computes it. The interface used to substitute
+       `roomAccesses` for the eager and batched strategies, which reported a quantity the model does
+       not produce: `queryPlan` sets `cacheHits = 0` there on purpose, because the rooms arrived with
+       a query rather than from the identity map. The sub-line says why the figure is zero. */
+    $('r-hits').textContent = M.formatCount(cost.cacheHits);
+    $('r-hits-sub').textContent = cost.params.strategy === 'eager'
+      ? 'none needed \u2014 the join carried every room'
+      : cost.params.strategy === 'batched'
+        ? 'none needed \u2014 the batch carried every room'
+        : cost.params.cache === 'on'
+          ? 'of ' + M.formatCount(cost.roomAccesses) + ' room accesses in the loop'
+          : 'the cache is off, so every room access queries';
+    $('r-total-sub').textContent = M.formatCount(cost.queries) + ' \u00d7 '
+      + cost.params.latencyMs + ' ms round trip, in sequence, plus processing';
     $('r-deff').textContent = M.formatCount(cost.effectiveDistinctRooms);
 
     var badge = $('cost-band');
@@ -2019,53 +2505,50 @@ for r in reservations:
         : 'Drawn as a single band because there are more than ' + DETAIL_LIMIT + ' of them.');
   }
 
-  /* --- the comparison canvas ------------------------------------------------------------------- */
-
+  /* --- the comparison TABLE --------------------------------------------------------------------
+     This was a horizontal bar chart. The quantity the laboratory teaches is the query COUNT, and a
+     count here is a small integer -- 201, 11, 1, 2 at the lecture's configuration. The chart's bars
+     were lengths of TIME, so on a linear axis three of the four were a hairline and the counts rode
+     along as text beside them: the encoding carried the secondary quantity and the teaching object
+     was an annotation. A column of figures shows all four counts at once, which no bar chart of
+     this data can. The current configuration is marked by a glyph, a bold row and a tint, and the
+     glyph is announced to a screen reader in words. */
   function renderCompare() {
     var rows = M.compareStrategies(state);
-    var canvas = $('c-compare');
-    var g = prepare(canvas);
-    var ctx = g.ctx;
-    var labelW = 190;
-    var x0 = labelW;
-    var x1 = g.w - 250;
-    var yTop = 16;
-    var maxMs = Math.max.apply(null, rows.map(function (r) { return r.totalMs; }).concat([1]));
-    var yAxis = g.h - 48;   /* leave room below the ticks for the axis caption */
-    var pitch = (yAxis - yTop) / rows.length;
-    var barH = Math.min(30, pitch - 12);
+    var body = $('compare-rows');
+    body.textContent = '';
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      if (r.current) tr.className = 'current';
 
-    drawTimeAxis(g, x0, x1, yTop, yAxis, maxMs);
-
-    ctx.textBaseline = 'middle';
-    rows.forEach(function (r, i) {
-      var y = yTop + pitch * i + pitch / 2;
-      var bw = Math.max(3, (x1 - x0) * (r.totalMs / maxMs));
-      ctx.fillStyle = r.strategy === 'lazy' ? g.p.accent
-        : r.strategy === 'eager' ? g.p.warn : g.p.ok;
-      ctx.fillRect(x0, y - barH / 2, bw, barH);
+      var th = document.createElement('th');
+      th.scope = 'row';
       if (r.current) {
-        ctx.strokeStyle = g.p.ink;
-        ctx.lineWidth = 2;
-        ctx.strokeRect(x0 - 1, y - barH / 2 - 1, bw + 2, barH + 2);
+        var mark = document.createElement('span');
+        mark.className = 'mark';
+        mark.setAttribute('aria-hidden', 'true');
+        mark.textContent = '▸ ';
+        th.appendChild(mark);
+        var said = document.createElement('span');
+        said.className = 'vh';
+        said.textContent = 'current configuration: ';
+        th.appendChild(said);
       }
-      ctx.font = (r.current ? '600 ' : '') + '13px ui-monospace, Menlo, monospace';
-      ctx.fillStyle = g.p.ink;
-      ctx.textAlign = 'right';
-      ctx.fillText((r.current ? '▸ ' : '') + r.label, labelW - 10, y);
-      ctx.textAlign = 'left';
-      ctx.fillText(M.formatCount(r.queries) + (r.queries === 1 ? ' query' : ' queries')
-        + ' · ' + M.formatMs(r.totalMs) + ' · ' + M.formatBytes(r.bytes), x1 + 10, y);
-    });
+      th.appendChild(document.createTextNode(r.label));
 
-    $('compare-alt').textContent = 'Comparison of four configurations at '
-      + M.formatCount(state.reservations) + ' reservations, '
-      + M.formatCount(Math.min(state.distinctRooms, state.reservations)) + ' distinct rooms and '
-      + state.latencyMs + ' millisecond latency. '
-      + rows.map(function (r) {
-        return r.label + ': ' + M.formatCount(r.queries) + ' queries, ' + M.formatMs(r.totalMs)
-          + ', ' + M.formatBytes(r.bytes) + (r.current ? ' (current)' : '');
-      }).join('. ') + '.';
+      var q = document.createElement('td');
+      q.className = 'q';
+      q.textContent = M.formatCount(r.queries);
+
+      var t = document.createElement('td');
+      t.className = 'n';
+      t.textContent = M.formatMs(r.totalMs);
+
+      tr.appendChild(th);
+      tr.appendChild(q);
+      tr.appendChild(t);
+      body.appendChild(tr);
+    });
   }
 
   /* --- one render path ------------------------------------------------------------------------- */
@@ -2087,6 +2570,16 @@ for r in reservations:
   bindSegment('strategy-seg', 'data-strategy', 'strategy');
   bindSegment('cache-seg', 'data-cache', 'cache');
   buildPresets();
+
+  /* The three guided experiments each offer their baseline as a button, and the baseline IS an
+     engine preset rather than a second copy of the same five numbers in the markup. One source of
+     truth: the unit suite already asserts that every preset produces the query count it claims, so
+     an experiment card cannot drift away from the configuration it prints. */
+  [].forEach.call(document.querySelectorAll('.exp-load button[data-preset]'), function (btn) {
+    btn.addEventListener('click', function () {
+      applyPreset(btn.getAttribute('data-preset'));
+    });
+  });
 
   $('btn-defaults').addEventListener('click', function () {
     state.reservations = M.DEFAULTS.reservations;

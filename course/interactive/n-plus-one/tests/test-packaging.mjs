@@ -19,6 +19,13 @@ import { fileURLToPath as coreFileURL } from 'node:url';
 
 const html = readDemoHtml();
 
+/** The interface script's source, by id, so a test can assert on what the UI reads. */
+function extractUiSource() {
+  const open = html.indexOf('<script id="nplus1-ui">');
+  assert.ok(open > 0, 'the interface script is missing');
+  return html.slice(open, html.indexOf('</script>', open));
+}
+
 /* --- self-containment ------------------------------------------------------------------------- */
 
 test('the page is a single file with no external reference', () => {
@@ -221,15 +228,32 @@ test('every cost-model constant printed on the page matches the engine', () => {
 test('exactly one h1, and every canvas is described for assistive technology', () => {
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1);
   const canvases = [...html.matchAll(/<canvas[^>]*>/g)].map((m) => m[0]);
-  assert.equal(canvases.length, 2, `expected 2 canvases, found ${canvases.length}`);
+  /* ONE canvas. The strategy comparison was a second one and is now a table: the quantity this
+     laboratory teaches is the query count, and a count of 1 against a count of 201 is a column of
+     figures rather than a bar chart whose axis is time. See the comparison-table test below. */
+  assert.equal(canvases.length, 1, `expected 1 canvas, found ${canvases.length}`);
   for (const c of canvases) {
     assert.match(c, /role="img"/, `canvas without role="img": ${c}`);
     assert.match(c, /aria-labelledby="/, `canvas without a description: ${c}`);
   }
-  /* Each description target exists and is a live region, so the text updates with the controls. */
-  for (const id of ['timeline-alt', 'compare-alt']) {
-    assert.match(html, new RegExp(`id="${id}"[^>]*aria-live="polite"`), `${id} is not a live region`);
-  }
+  /* The description target exists and is a live region, so the text updates with the controls. */
+  assert.match(html, /id="timeline-alt"[^>]*aria-live="polite"/, 'timeline-alt is not a live region');
+});
+
+test('the strategy comparison is a table, built from the engine', () => {
+  /* A table is natively navigable, so it needs no parallel text alternative: the row header names
+     the configuration and the two cells name the quantities. The current row is marked three ways —
+     a tint, a bold row, and a glyph whose meaning is also spoken, since the glyph itself is
+     aria-hidden. Nothing here may be hand-written: the rows come from `compareStrategies`. */
+  assert.match(html, /<table class="compare">/);
+  assert.match(html, /<tbody id="compare-rows"><\/tbody>/,
+    'the comparison rows are hand-written rather than rendered from the model');
+  const ui = extractUiSource();
+  assert.ok(ui.includes('M.compareStrategies(state)'),
+    'the comparison table does not read the engine');
+  assert.ok(ui.includes("said.className = 'vh'"),
+    'the current-row glyph has no spoken equivalent');
+  assert.equal(/id="c-compare"/.test(html), false, 'the comparison canvas is back');
 });
 
 test('meaning never depends on colour alone', () => {
@@ -291,6 +315,144 @@ test('no control is exposed for a mechanism the model does not implement', () =>
     .filter((id) => !id.endsWith('-range'));
   assert.deepEqual(inputs.sort(), ['latency', 'reservations', 'rooms'],
     'the numeric controls are exactly the three the specification names');
+});
+
+/* --- the house style, held on the shipped bytes ------------------------------------------------
+ * course/interactive/_shared/HOUSE-STYLE.md governs all six laboratories, and §12 requires each one
+ * to pin its own compliance: a reconstructed page satisfies the section order on the day it lands
+ * and nothing else stops the next edit dissolving it. The regression these exist to catch has a
+ * name — "just move the controls up to reduce scrolling" — and it is exactly the first-screen
+ * layout the author withdrew. It looks like an improvement to anyone who has not read §0, and no
+ * other gate in this repository sees it.
+ */
+
+test('the handout runs in the house order, with the apparatus below the instruction', () => {
+  /* Document order on the shipped bytes: engineering problem, background, model, numbered
+     procedure, apparatus, results, interpretation, collapsed reference. */
+  const order = ['id="h-problem"', 'id="h-background"', 'id="h-model"', 'id="h-procedure"',
+    'id="h-apparatus"', 'id="h-results"', 'id="h-interpretation"', 'id="h-further"'];
+  let last = -1;
+  for (const anchor of order) {
+    const at = html.indexOf(anchor);
+    assert.ok(at > last, `${anchor} is out of the house section order`);
+    last = at;
+  }
+  /* And the controls themselves, not merely the heading, sit after the procedure. */
+  for (const id of ['strategy-seg', 'cache-seg', 'reservations-range']) {
+    assert.ok(html.indexOf(`id="${id}"`) > html.indexOf('id="h-procedure"'),
+      `the ${id} control precedes the numbered procedure`);
+  }
+  /* The model figure and the whole background arrive before the first control. */
+  assert.ok(html.indexOf('id="f1-t"') < html.indexOf('id="h-apparatus"'),
+    'the model figure is below the apparatus');
+});
+
+test('the primary interface carries five parameters, three measurements and one chart', () => {
+  /* The complexity budget. Everything the engine computes beyond this is still computed and still
+     reachable — it is below the first `<details class="disclose">`. The split is a PRESENTATION
+     decision: PARAM_SPECS is untouched and the engine's whole surface is still exposed. */
+  const firstDetails = html.indexOf('<details class="disclose">');
+  assert.ok(firstDetails > 0, 'the page has no collapsed reference section');
+  const primary = html.slice(0, firstDetails);
+
+  const controls = [...primary.matchAll(/<div class="ctl">/g)].length;
+  assert.equal(controls, 5, `the primary interface exposes ${controls} controls, not five`);
+  for (const id of ['reservations', 'rooms', 'strategy-seg', 'cache-seg', 'latency']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary control ${id} is missing`);
+  }
+  /* Five is the budget's maximum and every one of the five serves the principal relationship —
+     loading strategy against query count. Four set the count; round-trip latency is the one that
+     provably cannot, which is what Experiment 3 measures. A sixth would need an argument. */
+  for (const id of ['r-queries', 'r-total', 'r-hits']) {
+    assert.ok(primary.includes(`id="${id}"`), `the primary measurement ${id} is missing`);
+  }
+  assert.equal([...primary.matchAll(/<canvas /g)].length, 1,
+    'the primary interface carries more than one chart');
+
+  /* THE INVERSE, and the half worth copying: every control and every quantity the interface used to
+     show is still ON the page. Moving one behind a disclosure is presentation; deleting one is a
+     model change, and a diff cannot tell the two apart without this assertion. */
+  for (const id of ['r-rtt', 'r-db', 'r-bytes', 'r-accesses', 'r-roomq', 'r-deff']) {
+    assert.ok(html.includes(`id="${id}"`), `the ${id} measurement was deleted, not relocated`);
+  }
+  assert.ok(html.indexOf('id="presets"') > firstDetails,
+    'the preset library is back in the primary interface');
+  assert.ok(html.indexOf('id="r-bytes"') > firstDetails,
+    'the secondary quantities are back in the primary interface');
+  /* Every preset the engine declares still has a button rendered for it. */
+  assert.ok(extractUiSource().includes('M.PRESETS.forEach'),
+    'the preset library is no longer built from the engine');
+});
+
+test('each guided experiment specifies all six fields, and there are two or three of them', () => {
+  const experiments = [...html.matchAll(/<li class="exp">([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+  assert.ok(experiments.length >= 2 && experiments.length <= 3,
+    `there are ${experiments.length} guided experiments; the budget allows two or three`);
+  for (const [i, body] of experiments.entries()) {
+    for (const field of ['Baseline', 'Change', 'Hold constant', 'Predict', 'Run &amp; measure',
+      'Explain']) {
+      assert.ok(body.includes(`<dt>${field}</dt>`),
+        `experiment ${i + 1} does not specify its ${field} field`);
+    }
+    /* Each one offers its baseline, and the baseline is an ENGINE preset rather than a second copy
+       of the same numbers in the markup. */
+    const m = body.match(/data-preset="([a-z-]+)"/);
+    assert.ok(m, `experiment ${i + 1} offers no baseline to load`);
+    assert.ok(loadEngine().findPreset(m[1]), `experiment ${i + 1} loads an unknown preset ${m[1]}`);
+  }
+  assert.match(html, /Predict before you run/i);
+});
+
+test('the figure takes its share of the row by WIDTH, with no height ceiling', () => {
+  /* Stage A's finding: `max-height` on an SVG carrying a viewBox letterboxes the drawing rather
+     than cropping it, so every pixel of column past the ceiling becomes empty margin — which was
+     the width defect, not a height economy. Bound the figure by its column. */
+  assert.match(html, /\.figure-row > \.lab-figure \{ width: 78%/,
+    'the opening figure no longer takes 70-80% of the content width');
+  const own = html.slice(html.lastIndexOf('<style>'));
+  assert.equal(/max-height/.test(own), false, 'a height ceiling has been reintroduced');
+});
+
+test('one model figure in the opening, the second beside the reference it explains', () => {
+  /* The budget allows one model figure. Figure 1 draws the relationship — what the loop becomes
+     under each configuration — and the access-path diagram, which is the cost model's premise
+     rather than its relationship, moved into the model reference beside the constants it prices. */
+  const firstDetails = html.indexOf('<details class="disclose">');
+  assert.ok(html.indexOf('id="f1-t"') < firstDetails, 'Figure 1 is not in the opening');
+  assert.ok(html.indexOf('id="f2-t"') > firstDetails,
+    'a second model figure is still competing in the opening');
+  assert.equal([...html.matchAll(/<svg class="fig"/g)].length, 2,
+    'the page carries a number of model figures it does not account for');
+  /* Figure 1 names the model's quantities, and carries no explanatory paragraph inside the drawing
+     — §4 forbids that, and the two sentences that used to sit inside a figure are now taught in the
+     background where a student needs them to predict. */
+  assert.match(html, /1 \+ N queries/);
+  assert.match(html, /1 \+ D queries/);
+});
+
+test('the background is a section of its own, inside the 400-600 word budget', () => {
+  /* The author's budget attaches to the Background SECTION, not to "words before the first
+     control" — §1 mandates four sections ahead of the apparatus, so the proxy counts the model
+     tables and the whole procedure and can only reach 600 if both are wordless. Measured here on
+     the section, with the markup stripped. */
+  const open = html.indexOf('<h2 id="h-background">');
+  assert.ok(open > 0, 'there is no Background section');
+  const close = html.indexOf('</section>', open);
+  const words = html.slice(open, close)
+    .replace(/<[^>]*>/g, ' ').replace(/&[a-z]+;/g, ' ')
+    .trim().split(/\s+/).filter(Boolean).length;
+  assert.ok(words >= 300 && words <= 650,
+    `the Background section is ${words} words; the budget is 400-600`);
+});
+
+test('the disclaimer is one visible block, and the model says it has no seed to fix', () => {
+  /* §5 asks for one visible honesty statement and no more; §7 asks a stochastic model to separate
+     a single run from an expected result. This model is deterministic, so that criterion has no
+     referent here and the reference says so rather than inventing a seed control. */
+  assert.equal([...html.matchAll(/class="lab-disclaimer"/g)].length, 1,
+    'there is more than one visible disclaimer');
+  assert.match(html, /Illustrative model; not calibrated to any database engine/);
+  assert.match(html, /no seed to fix and no sampling variability/i);
 });
 
 /* --- the shared core stylesheet ----------------------------------------------------------------

@@ -101,10 +101,35 @@ function readState() {
     sql: text('emitted-sql'),
     code: text('app-code'),
     timelineAlt: text('timeline-alt'),
-    compareAlt: text('compare-alt'),
+    /* The strategy comparison is a TABLE rather than a second canvas, so there is no parallel text
+       alternative to read: the rows themselves are the content. `compareRows` is what the table
+       says, which is the same assertion surface the old `compare-alt` description gave. */
+    compareRows: [...window.document.querySelectorAll('#compare-rows tr')].map((tr) => ({
+      label: (tr.querySelector('th').textContent || '').replace(/\s+/g, ' ').trim(),
+      queries: (tr.children[1].textContent || '').trim(),
+      total: (tr.children[2].textContent || '').trim(),
+      current: tr.classList.contains('current'),
+    })),
     clampHidden: window.document.getElementById('clamp-notice').hidden,
     clampText: text('clamp-notice'),
   };
+}
+
+/**
+ * Open (or re-close) a collapsed reference section by its summary text, so a check can drive a
+ * control that the house style puts behind a disclosure. Playwright and Puppeteer cannot click what
+ * the page does not render, and a timeout there reads as a broken control rather than as a closed
+ * accordion.
+ */
+async function disclosure(page, summaryText, open) {
+  const changed = await page.evaluate(([text, want]) => {
+    for (const d of window.document.querySelectorAll('details')) {
+      const summary = d.querySelector('summary');
+      if (summary && summary.textContent.includes(text)) { d.open = want; return true; }
+    }
+    return false;
+  }, [summaryText, open]);
+  if (!changed) throw new Error(`no disclosure whose summary contains "${summaryText}"`);
 }
 
 /** True when the canvas has painted something other than the background. */
@@ -147,8 +172,10 @@ test('the running page issues no network request of any kind', { skip }, async (
         /* Exercise the page before judging: a request could be issued by an interaction. */
         await page.click('button[data-strategy="eager"]');
         await page.click('button[data-cache="on"]');
+        await disclosure(page, 'five classroom presets', true);
         await page.click('button[data-preset="no-sharing"]');
         await page.click('#btn-reveal');
+        await disclosure(page, "model's self-tests", true);
         await page.click('#btn-selftest');
         return rec;
       });
@@ -256,8 +283,9 @@ test('the slider and the number field stay in step', { skip }, async () => {
 
 test('every preset lands on the query count it declares', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
+    await disclosure(page, 'five classroom presets', true);
     for (const preset of M.PRESETS) {
-      await page.click(`button[data-preset="${preset.id}"]`);
+      await page.click(`.preset-grid button[data-preset="${preset.id}"]`);
       const shown = await page.$eval('#r-queries', (el) => el.textContent.trim());
       assert.equal(shown, M.formatCount(preset.expect),
         `preset "${preset.name}" showed ${shown}`);
@@ -320,6 +348,7 @@ test('reveal shows the count, and the question is answerable from the model', { 
 
 test('the in-page self-test button reports a pass', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
+    await disclosure(page, "model's self-tests", true);
     await page.click('#btn-selftest');
     const out = await page.$eval('#selftest-out', (el) => el.textContent.trim());
     assert.match(out, /^\d+ of \d+ self-tests pass\.$/, `self-test output was: ${out}`);
@@ -329,7 +358,7 @@ test('the in-page self-test button reports a pass', { skip }, async () => {
 
 /* --- the charts paint ------------------------------------------------------------------------- */
 
-test('both canvases paint, in detailed mode and in compact mode', { skip }, async () => {
+test('the one chart paints, in detailed mode and in compact mode', { skip }, async () => {
   await withPage(FILE_URL, async (page) => {
     /* Default is 201 queries: the timeline is in compact band mode. */
     const compact = await page.evaluate(() => ({
@@ -365,19 +394,41 @@ test('both canvases paint, in detailed mode and in compact mode', { skip }, asyn
     });
     assert.ok(detail > 3, `the detailed timeline painted only ${detail} colours`);
 
-    const compare = await page.evaluate(() => {
-      const c = window.document.getElementById('c-compare');
-      const ctx = c.getContext('2d');
-      const d = ctx.getImageData(0, 0, c.width, c.height).data;
-      const seen = new Set();
-      for (let i = 0; i < d.length; i += 4) seen.add(`${d[i]},${d[i + 1]},${d[i + 2]}`);
-      return seen.size;
-    });
-    assert.ok(compare > 3, `the comparison chart painted only ${compare} colours`);
-    const compareAlt = await page.$eval('#compare-alt', (el) => el.textContent);
+    /* It is the ONLY chart. A second canvas here would be back over the budget. */
+    const canvases = await page.evaluate(() => window.document.querySelectorAll('canvas').length);
+    assert.equal(canvases, 1, `the page carries ${canvases} canvases`);
+  });
+});
+
+test('the comparison table reports all four configurations, and marks the current one', { skip }, async () => {
+  /* What the old comparison canvas's text description asserted, now asserted on the table itself.
+     The point of the change is visible in the numbers: at the default configuration the four counts
+     are 201, 11, 1 and 2, and a column of figures shows all four where a linear time axis drew
+     three of them as a hairline. */
+  await withPage(FILE_URL, async (page) => {
+    const rows = (await page.evaluate(readState)).compareRows;
+    assert.equal(rows.length, 4, `the comparison table has ${rows.length} rows`);
+    assert.deepEqual(rows.map((r) => r.queries), ['201', '11', '1', '2']);
     for (const label of ['Lazy, cache off', 'Lazy, cache on', 'Eager', 'Batched']) {
-      assert.ok(compareAlt.includes(label), `the comparison description omits ${label}`);
+      assert.ok(rows.some((r) => r.label.includes(label)),
+        `the comparison table omits ${label}`);
     }
+    /* Every response time is reported, and the ranking is the one the model computes. */
+    for (const r of rows) {
+      assert.match(r.total, /^[\d.,]+ (ms|s)$/, `response time was "${r.total}"`);
+    }
+    /* The current configuration is marked, and not by colour alone: the marked row carries the
+       words "current configuration" for a screen reader as well as the tint and the glyph. */
+    const current = rows.filter((r) => r.current);
+    assert.equal(current.length, 1, 'the current configuration is not marked exactly once');
+    assert.ok(current[0].label.includes('Lazy, cache off'));
+    assert.match(current[0].label, /current configuration/);
+
+    /* It follows the controls. */
+    await page.click('button[data-strategy="batched"]');
+    const after = (await page.evaluate(readState)).compareRows.filter((r) => r.current);
+    assert.equal(after.length, 1);
+    assert.ok(after[0].label.includes('Batched'), `the mark stayed on ${after[0].label}`);
   });
 });
 
@@ -476,15 +527,31 @@ test('the layout holds without horizontal overflow at projector and laptop sizes
     for (const vp of viewports) {
       await page.setViewport({ width: vp.width, height: vp.height });
       await page.goto(FILE_URL, { waitUntil: 'load' });
-      const metrics = await page.evaluate(() => ({
-        scrollWidth: window.document.documentElement.scrollWidth,
-        clientWidth: window.document.documentElement.clientWidth,
-        h1Size: parseFloat(getComputedStyle(window.document.querySelector('h1')).fontSize),
-        bodySize: parseFloat(getComputedStyle(window.document.body).fontSize),
-        codeSize: parseFloat(getComputedStyle(window.document.getElementById('app-code')).fontSize),
-        headlineSize: parseFloat(getComputedStyle(window.document.getElementById('r-queries')).fontSize),
-        panels: window.document.querySelectorAll('section.panel').length,
-      }));
+      const metrics = await page.evaluate(() => {
+        const svg = window.document.querySelector('.figure-row svg.fig');
+        const box = svg.getBoundingClientRect();
+        const host = svg.closest('section').getBoundingClientRect();
+        const scale = box.width / svg.viewBox.baseVal.width;
+        let authoredMin = Infinity;
+        for (const t of svg.querySelectorAll('text')) {
+          authoredMin = Math.min(authoredMin, parseFloat(getComputedStyle(t).fontSize));
+        }
+        return {
+          scrollWidth: window.document.documentElement.scrollWidth,
+          clientWidth: window.document.documentElement.clientWidth,
+          h1Size: parseFloat(getComputedStyle(window.document.querySelector('h1')).fontSize),
+          bodySize: parseFloat(getComputedStyle(window.document.body).fontSize),
+          codeSize: parseFloat(getComputedStyle(window.document.getElementById('app-code')).fontSize),
+          headlineSize: parseFloat(getComputedStyle(window.document.getElementById('r-queries')).fontSize),
+          panels: window.document.querySelectorAll('section.panel').length,
+          figureWidth: Math.round(box.width),
+          figureShare: box.width / host.width,
+          figureLabelPx: authoredMin * scale,
+          figureMaxHeight: getComputedStyle(svg).maxHeight,
+          tableSize: parseFloat(getComputedStyle(
+            window.document.querySelector('table.lab-parameters td')).fontSize),
+        };
+      });
       assert.ok(metrics.scrollWidth <= metrics.clientWidth + 1,
         `${vp.name} (${vp.width}px): the page scrolls horizontally `
         + `(${metrics.scrollWidth} > ${metrics.clientWidth})`);
@@ -494,6 +561,34 @@ test('the layout holds without horizontal overflow at projector and laptop sizes
       assert.ok(metrics.headlineSize >= 24, `${vp.name}: the query count is ${metrics.headlineSize}px`);
       assert.ok(metrics.h1Size >= 28, `${vp.name}: the title is ${metrics.h1Size}px`);
       assert.equal(metrics.panels, 7, `${vp.name}: expected 7 panels`);
+      /* The house style's figure requirement, measured rather than assumed: 70-80% of the content
+         width, bounded by a WIDTH and never a height — a pixel height ceiling on an SVG carrying a
+         viewBox letterboxes the drawing and spends the surplus column on empty margin, which is
+         what made this figure 331px wide at 1280 before the rebuild. */
+      assert.equal(metrics.figureMaxHeight, 'none',
+        `${vp.name}: a height ceiling is back on the figure`);
+      assert.ok(metrics.figureShare >= 0.70 && metrics.figureShare <= 0.82,
+        `${vp.name}: the figure takes ${(metrics.figureShare * 100).toFixed(1)}% of the row`);
+      assert.ok(metrics.figureLabelPx >= 14,
+        `${vp.name}: the smallest figure label renders at ${metrics.figureLabelPx.toFixed(1)}px`);
+      /* And no 10-12px text in the primary interface. The parameter table is the sharpest case:
+         the shared core sizes it at 0.76rem, which draws 12.2px beside 17px body text. */
+      assert.ok(metrics.tableSize >= 13,
+        `${vp.name}: the parameter table draws at ${metrics.tableSize}px`);
+
+      /* Again with every collapsed section OPEN. Four disclosures hold the parameter reference,
+         six readouts, the preset grid and the access-path figure; a wide table inside one of them
+         would otherwise ship unmeasured, because a closed `<details>` lays nothing out. */
+      await page.evaluate(() => {
+        for (const d of window.document.querySelectorAll('details')) d.open = true;
+      });
+      const opened = await page.evaluate(() => ({
+        scrollWidth: window.document.documentElement.scrollWidth,
+        clientWidth: window.document.documentElement.clientWidth,
+      }));
+      assert.ok(opened.scrollWidth <= opened.clientWidth + 1,
+        `${vp.name} (${vp.width}px, disclosures open): the page scrolls horizontally `
+        + `(${opened.scrollWidth} > ${opened.clientWidth})`);
     }
   } finally {
     await browser.close();
