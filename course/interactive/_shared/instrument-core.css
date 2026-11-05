@@ -98,7 +98,11 @@ body {
   text-transform: uppercase; color: var(--muted); text-align: right;
 }
 .gold-rule { height: 4px; background: var(--gold); }
-main { padding: 1.25rem 1.5rem 3rem; max-width: 1680px; margin: 0 auto; }
+/* A wide LABORATORY layout, not a wide article layout: these pages carry a model diagram, a
+   parameter table and charts side by side, and they get the desktop width to put them in. The cap
+   only stops the line length running away on a 2560px monitor — below it the page is full width.
+   It was 1680px, which left 240px unused at 1920x1080, the size the course projects at. */
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1920px; margin: 0 auto; }
 
 /* --- panels and the two-column grid ----------------------------------------------------------- */
 .panel {
@@ -137,7 +141,7 @@ button.act.primary:hover { background: var(--accent); border-color: var(--accent
 a { color: var(--accent); }
 footer {
   border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
-  color: var(--muted); font-size: 0.88rem; max-width: 1680px; margin: 0 auto;
+  color: var(--muted); font-size: 0.88rem; max-width: 1920px; margin: 0 auto;
 }
 .vh {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
@@ -164,23 +168,35 @@ footer {
    six introductions. Only `--warn` among the tokens it uses is declared locally (see the note at
    the top of this file); everything else it reads is a core token.
 
-   BUDGET, and the measurement that sets it. The band is sized to finish inside roughly 350-450
-   vertical pixels at 1920x1080, which is what fits above a projector's fold. Three numbers decide
-   the layout, all measured in a headless Chrome at 17px/1.5 body type rather than estimated:
+   THE FIRST-SCREEN BUDGET IS WITHDRAWN. Do not restore it, and do not re-derive the layout it
+   produced. This band was sized to finish inside roughly 350-450 vertical pixels at 1920x1080 —
+   "what fits above a projector's fold" — so that a student met the model, the controls and the
+   primary results without scrolling. The course author proposed that constraint and then reversed
+   it: the laboratories are handouts with an embedded apparatus, not dashboards, and the
+   instructional material precedes the apparatus by design. In his words, the progression is "a
+   deliberate instructional sequence, not an unfortunate amount of scrolling." The handout house
+   style carries the reversal in full; read it before changing anything here.
+
+   That reversal matters in this file because the height budget, not any max-width, is what was
+   starving the opening figure. The chain ran: cap the figure's height so it cannot grow -> observe
+   that widening its column therefore only letterboxes it -> conclude the figure should take the
+   band's SMALLEST column. The first link was the withdrawn budget, so the conclusion no longer
+   follows. The height ceilings are gone; the figure now scales with its column.
+
+   What remains measured and still true:
 
      - the parameter table's height is set by its WIDTH, steeply. Five rows of five columns stand
-       182px tall across the full page, 274px at half width and 437px at an equal third. So an
-       equal three-up band puts the table 200px over the ceiling by itself — measured at 677px —
-       while an UNEQUAL band that gives the table nearly half the row comes in at 418px.
-     - a `.lab-figure` at the 168px SVG ceiling costs about 240px with a two-line caption, and the
-       ceiling is the floor for a legible diagram: letterboxing a 2.5:1 viewBox into 120px scales
-       11.5px labels below 7px. The figure therefore takes the band's SMALLEST column — widening it
-       only letterboxes further and buys nothing.
-     - the question, the frame and the gaps cost about 92px between them, so the frame stays to one
-       or two lines and the engineering question carries the framing.
+       182px tall across the full page, 274px at half width and 437px at an equal third. The
+       unequal band exists to keep that table short. The house style moves the full parameter table
+       out of the opening entirely, which is what frees the row for the figure.
+     - an opening figure must render its authored labels at full size. These diagrams carry ~11.5px
+       labels, so the figure needs roughly 660px of column before a label clears 11.5px on screen.
+       Measured at 1440px: the band's figure column is 317px and the labels render at 0.54 scale —
+       about 6px. The house style's requirement is the figure takes 70-80% of the content width,
+       preferably its own row.
+     - the question, the frame and the gaps cost about 92px between them.
 
-   The band meets the budget from 1440px up. Below 1280px it falls back to two columns and then to
-   a stack, which is the narrow-screen case the budget does not govern.
+   Below 1280px the band falls back to two columns and then to a stack.
 
    A second figure goes in this band only where it is small and explains the headline relationship.
    Where it is large it belongs beside the panel it explains, further down the page, and where one
@@ -248,8 +264,8 @@ footer {
 .lab-twoup > .lab-parameters-block { margin: 0; }
 
 /* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
-   opening without spending a fourth column — the table would lose the width it needs. Both figures
-   take `.flat`, so the pair costs about the same height as one figure at the 168px ceiling. */
+   opening without spending a fourth column. Both figures still carry `.flat` as an authoring
+   marker; it no longer sets a height ceiling (see the figure rule below). */
 .lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
 
 /* A short note under the parameter table — a pointer to the settings the table deliberately omits.
@@ -273,12 +289,14 @@ footer {
   font-family: var(--font-mono); font-weight: 600; color: var(--ink);
   text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.74rem;
 }
-/* `max-height` with `height: auto` is what stops a figure growing taller as its column grows
-   wider. The SVG keeps its aspect ratio and letterboxes inside the column instead. */
-.lab-figure svg { display: block; width: 100%; height: auto; max-height: 168px; }
-/* A figure authored wide and flat — a left-to-right pipeline rather than a stack — reads at a
-   lower ceiling, and buys the band back the height. */
-.lab-figure.flat svg { max-height: 124px; }
+/* The figure scales with its column. It carried `max-height: 168px` (124px on `.flat`) to hold the
+   withdrawn first-screen budget, and that ceiling was the width defect rather than a height
+   economy: `preserveAspectRatio` defaults to `meet`, so a clamped height letterboxes the drawing
+   inside a box far wider than the art and every pixel of column width past the ceiling is spent on
+   empty margin. Measured at 1440px before removal — release-factory's pipeline figure drew 487px
+   of art inside a 1337px box, at 0.45 scale. Do not reintroduce a fixed pixel ceiling here; bound a
+   figure by its column, which `width: 100%` already does. */
+.lab-figure svg { display: block; width: 100%; height: auto; }
 .lab-figure svg text { font-family: var(--font-body); fill: var(--ink); }
 
 .lab-assumptions {
