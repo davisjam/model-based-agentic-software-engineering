@@ -83,11 +83,42 @@ Default maxima, not absolute limits.
 | Main visualization | **1** |
 | Guided experiments | **2–3** |
 | Secondary visualization | 1, only if necessary |
-| Background prose | **400–600 words** (per §0) |
+| Background prose, before the first control | **400–600 words** (per §0) |
+| Prose in the primary interface, all of it | **no hard cap — but reference material belongs behind `<details>`** |
 | Expected exercise duration | 5–10 minutes |
 
 > *"This should be a default design constraint, not an absolute mathematical limit. A model might
 > require additional internal parameters, but those should not automatically become user controls."*
+
+### The background-words column measures PLACEMENT, not volume
+
+Corrected 261105, after the Storage Cost rebuild re-measured it and the 261105 budget audit's figures
+for this column did not reproduce. The audit defines the column as *prose in `<main>` before the first
+control, excluding `<details>`* and then reports numbers that track the whole of `<main>` instead —
+so its claim that *"every laboratory is 2× to 4× over on background words"* is an artifact of the
+measurement. Measured by the stated rule, **all six laboratories were already inside 400–600** when
+the audit ran, ReDoS highest at 635:
+
+| Laboratory | audit's figure | before first control | whole `<main>` |
+|---|---|---|---|
+| Storage Cost | 2,210 | **474** | 2,409 |
+| Release Factory | 1,333 | **536** | 1,522 |
+| N+1 | 1,247 | **480** | 1,607 |
+| Architecture Workbench | 2,493 | **555** | 2,461 |
+| Performance Knee | 1,154 | **437** | 1,384 |
+| ReDoS | 2,248 | **635** | 2,494 |
+
+**The defect the audit found is real; the number it found it through was wrong.** Storage Cost carried
+2,409 words of prose in the primary interface with **zero** collapsed sections, which is exactly the
+reference-material-in-the-foreground problem §5, §7 and §9 describe. So the rule to apply is a
+placement rule: the background a student reads before touching anything stays inside 400–600, and
+everything that is reference rather than prerequisite goes behind `<details>`. Do not cut prose to hit
+a whole-page word count — relocate it, and report what moved versus what was deleted.
+
+**When a budget column and the artifact disagree, re-measure before acting.** Every stage-B agent is
+told to verify the audit's row for its own lab; two of the three columns checked so far did not
+reproduce. The output column undercounts too — it misses `.big .cell`, so Storage Cost reported ten
+named quantities where the audit recorded eight.
 
 The sentence that decides the hard cases:
 
@@ -362,6 +393,26 @@ comparisons · explains the result without reading the implementation documentat
 
 > *"I would also have the agent take screenshots at 1280, 1440, and 1920 pixels and **inspect them
 > visually**. A technically correct interface can still fail these criteria."*
+
+### Every laboratory pins the house order in its own suite
+
+Added 261105, generalizing the control the Storage Cost rebuild invented rather than leaving one lab
+holding it. A reconstructed page satisfies the section order on the day it lands and nothing stops the
+next edit dissolving it, so each lab's own test file asserts, **on the shipped bytes**:
+
+- **The section anchors, in house order, with the apparatus after the procedure.** The regression this
+  exists to catch has a name: *"just move the controls up to reduce scrolling."* That edit is exactly
+  what §0 records the author withdrawing, it looks like an improvement to anyone who has not read §0,
+  and no other gate sees it.
+- **The budget columns the page claims** — the control count, the measurement count, one chart above
+  the collapsed material.
+- **The inverse, which is the half worth copying: every relocated control is still ON the page.**
+  Moving a control behind `<details>` is presentation; deleting one is a model change. Without this
+  assertion the two are indistinguishable in a diff, and the budget rewards the wrong one.
+- **Each guided experiment specifies all six §6 fields** and offers a baseline to load.
+
+A test is the only form in which a style rule survives the agent that applied it. The style guide aims;
+the suite holds.
 
 ---
 
