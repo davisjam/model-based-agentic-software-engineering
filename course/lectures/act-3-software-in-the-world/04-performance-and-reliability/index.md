@@ -15,6 +15,54 @@ readings:
         - cite: beyer2016sre
           locator: 'chapter 21, Handling Overload'
           annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering: How Google Runs Production Systems* (O''Reilly, 2016), [chapter 21, "Handling Overload"](https://sre.google/sre-book/handling-overload/). Read the whole chapter. It treats overload as a condition the service must be designed to survive rather than as an operational surprise, and it covers per-client throttling, request criticality, graceful degradation, and retry budgets. The retry budget is the idea to carry away: a retry policy that looks correct from one client can multiply the load arriving at a service that is already failing, which is the mechanism connecting this unit''s two lectures. [Chapter 22, "Addressing Cascading Failures"](https://sre.google/sre-book/addressing-cascading-failures/), is optional and extends the same argument. The book''s distributed-consensus chapters are out of scope here.'
+exercises:
+  - title: Improving reservation performance
+    slug: improve-reservation-performance
+    about: |
+      The service meets its functional specification and becomes slow during registration, and the
+      requirement is unchanged: p95 at or under one second at the peak mix. Application CPU sits at
+      45%, database CPU at 58%, the connection pool at 20 of 20, mean pool wait at 180 ms, and p95
+      response time at 1.9 s. Say what those measurements establish, what they leave open, and what you
+      would measure next, because a saturated resource tells you where to look rather than what to fix.
+      The figures are illustrative rather than measured.
+
+      Then the measurement you asked for arrives. Mean query execution time is 22 ms against a mean
+      connection hold of 310 ms, so connections are held about fourteen times longer than queries run.
+      Three interventions are on the table — add application replicas, add database capacity, or
+      shorten the connection hold — and you choose one and name what would prove you wrong. The
+      intervention is justified by the measurement, not by the symptom.
+  - title: The gate decides what must go wrong together
+    slug: fault-tree-gates
+    about: |
+      Four minutes in pairs, and you state your failure assumptions first. One outcome is given — a
+      student receives confirmation, but the reservation is absent afterward — and it names two facts
+      that must hold together: a false confirmation, confirmed without evidence, and no durable
+      reservation, absent when the student looks. Decide each gate, then place every event where it
+      belongs: confirmation sent before the commit, the write result never checked, the reservation
+      never written, the write rolled back or lost. An event that is not sufficient on its own belongs
+      under an AND, which is what makes gate selection a claim rather than a drawing.
+
+      The exercise resumes later in the lecture, after the mitigation mechanisms, as step 3. Prioritize
+      one of durability and recovery settings, a confirmation protocol tied to committed state,
+      rehearsed backup restoration, or monitoring that finds missing records — then say whether your
+      choice prevents the top event or only detects it afterward, and what evidence would justify
+      accepting it. A mitigation you cannot justify with evidence is a preference, not a decision.
+  - title: A reservation that may already exist
+    slug: reservation-may-already-exist
+    about: |
+      Three minutes in pairs, then the room compares answers to question 3. The database commits the
+      reservation, the HTTP response is lost, and the client times out and submits the same request
+      again. Four questions:
+
+      1. What does the client know after the timeout?
+      2. Which property of the system must remain invariant?
+      3. What information would let the server recognize a retry?
+      4. What evidence would establish that concurrent duplicate requests are handled correctly?
+
+      The intended solution separates the identity of the requested operation from that of the
+      resulting reservation. A persistent idempotency record, coordinated atomically with the
+      reservation outcome, lets a repeated request return the original result instead of creating a
+      second booking.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -45,9 +93,9 @@ In both, the engineer decides which workloads and failures matter, what behavior
 
 ## Structure of this unit
 
-**Lecture 1, Performance Engineering.** We build workload and capacity models for the service, define latency, throughput, and utilization, then use measurements and simple quantitative models to locate bottlenecks and compare interventions.
+**Lecture 1, Performance Engineering.** We build workload and capacity models for the service, define latency, throughput, and utilization, then use measurements and simple quantitative models to locate bottlenecks and compare interventions. To practice this, see {exercise:improve-reservation-performance}.
 
-**Lecture 2, Reliability Engineering.** We analyze what can fail using failure mode and effects analysis, decompose one unacceptable outcome with a fault tree, specify recovery behavior as a state machine, and only then select mitigations and the evidence justifying them.
+**Lecture 2, Reliability Engineering.** We analyze what can fail using failure mode and effects analysis, decompose one unacceptable outcome with a fault tree, specify recovery behavior as a state machine, and only then select mitigations and the evidence justifying them. To practice this, see {exercise:fault-tree-gates} and {exercise:reservation-may-already-exist}.
 
 Both follow the Act III method: identify the problem, model what matters, exercise judgment about realization, and obtain evidence.
 
@@ -88,18 +136,6 @@ Several components do work to satisfy one reservation request. An HTTP handler v
 Adding application replicas will not reduce response time if requests spend most of their elapsed time waiting for the database. Adding database capacity may accomplish little if an inefficient access pattern issues unnecessary queries. So the engineer measures where the time goes before choosing where to spend. Profiling attributes time inside one process; traces attribute it across components; execution plans expose the work a query performs.
 
 A bottleneck is not simply the busiest resource. It is the constraint whose relief would do most to raise useful throughput, or bring response times back within bounds, for the workload under consideration. Relieving it usually moves the constraint elsewhere, so every intervention earns a fresh measurement.
-
-## Exercise A: Improving reservation performance
-
-The service meets its functional specification and becomes slow during registration. Application CPU utilization is moderate, the connection pool is saturated, and requests spend substantial time waiting to execute queries. Students compare three interventions.
-
-| Intervention | Expected benefit | What must be checked |
-|---|---|---|
-| Add application replicas | More application processing capacity | Whether the database remains the constraint |
-| Optimize database access | Less database work per request | Query plans and measured latency |
-| Increase database capacity | More capacity for database operations | Whether contention still limits throughput |
-
-The choice follows from the workload model and the measurements, not from the observation that the service is slow. The exercise then asks what evidence would justify it: throughput under a representative workload, a latency distribution rather than a mean, and behavior near capacity.
 
 ## Reliability engineering
 
@@ -174,17 +210,6 @@ Mechanisms arrive last, as answers to failures the models have already identifie
 | Recovery procedure | Restore acceptable operation | Requires evidence that invariants still hold |
 
 A retry suits a network request that failed transiently; the same retry offered to a saturated service adds load to the condition that caused the failures. A timeout bounds waiting and leaves the outcome uncertain, which is what the state machine exists to resolve. Each choice improves one measurement and worsens another, which is why this table is of little use without the FMEA table in front of it.
-
-## Exercise B: A reservation that may already exist
-
-The database commits a reservation, the HTTP response is lost, and the client times out and submits the same request again. Students answer four questions.
-
-1. What does the client know after the timeout?
-2. Which property of the system must remain invariant?
-3. What information would allow the server to recognize a retry?
-4. What evidence would establish that the implementation handles concurrent duplicate requests correctly?
-
-The intended solution separates the identity of the requested operation from that of the resulting reservation. A persistent idempotency record, coordinated atomically with the reservation outcome, lets a repeated request return the original result instead of creating a second booking.
 
 ## Obtaining evidence
 

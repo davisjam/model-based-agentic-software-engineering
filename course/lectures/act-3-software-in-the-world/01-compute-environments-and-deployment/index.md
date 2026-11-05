@@ -20,6 +20,32 @@ readings:
         - cite: dora-metrics
           annotation: 'DORA, ["Software Delivery Metrics: The Four Keys"](https://dora.dev/guides/dora-metrics/), previously assigned in Unit 03, Teamwork. First read for how an organization measures software delivery performance; reread it against the release machinery of this unit: deployment frequency and lead time for changes describe the pipeline you have just built, while change failure rate and time to restore service describe what a release strategy is for. Those last two return in the Operations unit, where the subject is keeping a deployed system healthy rather than getting a change into it. *Which of the four would a canary release improve, and which could it make worse?*'
       note: 'If you skipped this reading in Teamwork, read it now.'
+exercises:
+  - title: Choose a deployment, then draw it
+    slug: choose-a-deployment
+    about: |
+      Eight minutes in pairs, in two phases. The reservation service must serve 500 concurrent users
+      through university authentication at 99.9% availability, with centralized updates, limited
+      engineering staff and a limited operating budget. Three arrangements are on the table — a local
+      installation on each machine that uses it, one self-hosted server your team operates, or a
+      managed service someone else operates.
+
+      Phase A, three minutes: choose an option and name the single requirement that decided it.
+      Phase B, five minutes: draw the topology and show where state lives. Then name the evidence that
+      would justify your arrangement. The deciding requirement, not the preference, is what has to
+      carry the choice.
+  - title: Choose a release strategy
+    slug: choose-a-release-strategy
+    about: |
+      Six minutes, think-pair-share, answered in order. A new release changes how reservations are
+      validated; the build passes, but a defect could permit double-booking. Choose blue-green, canary
+      or a feature flag; say what evidence is required before you expose anyone; and say what
+      observation would trigger rollback, and how fast.
+
+      The fourth question is the one that bites. Every version writes to the same reservation database,
+      so a canary serving five percent of requests still writes to shared state, and a few defective
+      writes double-book reservations for everyone. Exposure control is not invariant preservation —
+      which is where the next unit, Data Management, begins.
 instructor_materials: []
 student_materials: []
 assignments: []
