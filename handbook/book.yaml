@@ -21,6 +21,76 @@ outputs:
   web:
     enabled: true
 
+# ARTIFACT SCOPE — the one declaration of which handbook build outputs ship and which never leave
+# the author's machine. The vocabulary is SHARED with the MAGE book (tools/latex_reuse.py owns it,
+# book/book-manifest.json carries the book's own list): a PUBLISHED artifact is built by the Pages
+# workflow and rides the site artifact into the deployed site; a LOCAL-ONLY artifact is built for
+# the author's own review — never built in CI, never uploaded, never served. Two manifests, ONE
+# distinction; a second vocabulary would defeat the point of declaring scope at all.
+#
+# Every surface DERIVES from this list instead of restating it. scripts/latex_pdf.py skips a
+# local-only artifact on a publication run, so the pre-push hook and the Pages workflow run the
+# identical `make -C handbook book` and cannot disagree about scope. The workflow publishes only the
+# globs declared `published` here. tests/test_handbook_chapter_pdfs.py fails if either surface drifts
+# from this list.
+#
+# WHAT A LOCAL-ONLY SCOPE COSTS, stated here because this is where the next reader looks. Gates that
+# only the local-only build runs stop being verified before transfer. For the chapter PDFs those are
+# the per-chapter LuaLaTeX pass-convergence and diagnostics allow-list, and the per-chapter PDF
+# structure check (tagged headings, sections, tables, and alt text on every figure) that this change
+# introduced. They now run only in the author's pre-push on a handbook-scope push, so a `--no-verify`
+# push, or a push from a checkout where the chapters were never built, can ship a regression in them
+# unseen. The author accepted that on 261106: the artifact is unpublished, so the regression cannot
+# reach a reader. Two things narrow it. The whole-edition render — which shares every chapter source,
+# every figure and every shared LaTeX input with the chapters — still runs unconditionally in CI with
+# its own structure gate. And the reuse key and stamp guard stay CI-verified, because the unit tier
+# still runs in the workflow.
+#
+# THE READER-FACING CONSEQUENCE, which is where the handbook differs from the book. The book's 21
+# section PDFs were orphans: published for months with nothing linking to them. The handbook's
+# chapter PDFs were LINKED — a "Download this chapter (PDF)" row on each chapter page and a "(PDF)"
+# link on each Contents row, 30 inbound links on the deployed site. Withdrawing the artifact
+# therefore withdraws the affordance; scripts/build.py no longer emits either link. Publishing a link
+# to an unpublished file is the one outcome worse than either choice, and no gate here would have
+# caught it (the handbook's chapter links are raw HTML precisely so MkDocs' strict mode does not
+# chase them, and the site link checker skips the whole CI-built se-handbook subtree).
+#
+# This is a NAMED EXCEPTION to the repo's standing rule that CI holds the unconditional superset of
+# pre-push; both the rule and the exception are written in CLAUDE.md section "Where a new check runs
+# — the placement rule".
+build_artifacts:
+  - id: handbook-pdf
+    scope: published
+    glob: handbook/dist/software-engineering-handbook.pdf
+    builder: handbook/scripts/build.py pdf
+    note: >-
+      The print edition served at /book/se-handbook/ and linked from the handbook home's cover and
+      download button. Always rendered, everywhere, and structure-checked on every run.
+  - id: handbook-epub
+    scope: published
+    glob: handbook/dist/software-engineering-handbook.epub
+    builder: handbook/scripts/build.py epub, folded into the pdf target
+    note: >-
+      The reflowable ePub3 edition, packed from the same chapter sources as the web edition.
+  - id: handbook-web
+    scope: published
+    glob: handbook/dist/site
+    builder: handbook/scripts/build.py web
+    note: >-
+      The MkDocs site — index plus one page per chapter. Published as a TREE COPY rather than a
+      glob match, so it has no upload pattern of its own; declared here so this list is the whole
+      answer to "what does the handbook ship?" rather than only the file-shaped part of it.
+  - id: handbook-chapter-pdfs
+    scope: local-only
+    glob: handbook/dist/chapters/*.pdf
+    builder: handbook/scripts/build.py pdf, via latex_pdf.build_pdf
+    note: >-
+      One standalone PDF per book unit — each handbook-view front-matter entry and each chapter. The
+      author opens one chapter instead of the whole handbook. Change-aware reuse makes an unchanged
+      chapter a fraction of a second, so refreshing all of them on a handbook-scope push costs almost
+      nothing locally. CI built AND published these until 261106; the author withdrew them because the
+      review need is local, so the artifact is local.
+
 # Bibliography. The `file` is the REPO'S ONE citation backend (book/references.bib) reached from the
 # handbook root -- there is no separate handbook bibliography (readings-ssot-260925). The CSL stays
 # local: a style is not bibliographic data, and the Handbook's inline author-date register is

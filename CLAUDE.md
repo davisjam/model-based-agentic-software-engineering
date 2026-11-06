@@ -1062,8 +1062,10 @@ Declaring an artifact local-only therefore WITHDRAWS its gates from the uncondit
 `--no-verify` push can ship a regression in it unseen. Take that trade only for an unpublished
 artifact, and only in writing.
 
-- **Declare the scope as DATA, in one place; derive every surface from it.** Artifact scope lives in
-  `book/book-manifest.json`'s `build_artifacts`, each entry carrying `published` or `local-only`.
+- **Declare the scope as DATA, in one place; derive every surface from it.** Each book declares its
+  own artifacts — `book/book-manifest.json`'s `build_artifacts`, `handbook/book.yaml`'s — under ONE
+  shared vocabulary that `tools/latex_reuse.py` owns (`published` / `local-only`, a closed set it
+  validates). Two manifests are fine; two vocabularies would defeat declaring scope at all.
   The build reads it and skips a local-only artifact on a publication run, so the pre-push hook and
   the publishing workflow run the identical command and cannot disagree. No flag restates the
   decision at a call site, because three surfaces each encoding an artifact-scope rule is how the
@@ -1072,15 +1074,28 @@ artifact, and only in writing.
   globs are the publication half. A bare `book/*.pdf` in the site-artifact upload published 21
   per-section review PDFs for months — files nothing linked to — because the glob was wider than
   anyone's intent. Name the published paths one by one and let a test hold them to the declaration.
-- **Write down what stopped being verified, at the declaration.** The manifest's
-  `_build_artifacts_gate_consequence` names the withdrawn gates and why the trade is acceptable.
-  An exception that contradicts this rule without amending it is how the rule stops being trusted.
+- **Withdraw the inbound LINKS with the artifact, and check whether there are any.** A published
+  link to an unpublished file 404s, which is worse than either choice, and nothing here catches it —
+  the chapter links were raw HTML so MkDocs' strict mode would not chase them, and the site link
+  checker skips the whole CI-built `book/se-handbook/` subtree. The book's 21 section PDFs were
+  orphans so this half did not arise; the handbook's 15 chapter PDFs carried **30** inbound links (a
+  per-chapter download row and a Contents "(PDF)"), and those emitters went with the declaration.
+- **Write down what stopped being verified, at the declaration.** The book's
+  `_build_artifacts_gate_consequence` key and the handbook's artifact-scope comment block name the
+  withdrawn gates and why the trade is acceptable. An exception that contradicts this rule without
+  amending it is how the rule stops being trusted.
 
-The live instance (261106): the MAGE book's 21 per-section PDFs. The author wants them locally and
-regularly refreshed; change-aware reuse makes an unchanged section a fraction of a second, so his
-pre-push pays almost nothing. What left CI with them is the per-section LaTeX diagnostics and the
-per-section PDF structure checks over the split assembly. What stayed is the whole-book render, which
-shares every chapter source and shared LaTeX input, plus the reuse-key and stamp-guard unit tier.
+Two live instances (261106). **The MAGE book's 21 per-section PDFs:** what left CI is the per-section
+LaTeX diagnostics and the per-section PDF structure checks over the split assembly; what stayed is the
+whole-book render, which shares every chapter source and shared LaTeX input, plus the reuse-key and
+stamp-guard unit tier. **The handbook's 15 per-chapter PDFs:** same shape, plus the link withdrawal
+above, and the per-chapter structure check arrived in the same change that withdrew it — so CI never
+held it. The author wants both sets locally and regularly refreshed; change-aware reuse makes an
+unchanged unit a fraction of a second (measured: the handbook's fifteen chapter compiles went 213.4s
+serial → 57.2s pooled at 4 workers → **0.6s** fully reused), so his pre-push pays almost nothing for
+either. One trap that cost two runs to find: a reuse key must hash a figure's SOURCE, not the
+intermediate the build regenerates from it — `rsvg-convert` is not byte-reproducible, so hashing its
+output churned the key every run and reuse hit only the chapters with no figure.
 
 ## Build & deploy
 

@@ -141,7 +141,7 @@ To preview both published PDF paths locally, run
 | Path | Purpose |
 |---|---|
 | `chapters/`, `frontmatter/` | Authoritative `.tex`, metadata `.yaml`, generated `.md` |
-| `book.yaml` | Book metadata and chapter order |
+| `book.yaml` | Book metadata, chapter order, and the build-artifact SCOPE declaration (`build_artifacts`: which outputs ship, which are the author's local review copies) |
 | `figures/`, `assets/` | Figure and cover artwork |
 | `scripts/latex_source.py` | Native source reader and projection synchronization |
 | `scripts/latex_pdf.py` | Print assembly and fresh cover-only rendering |
@@ -149,7 +149,7 @@ To preview both published PDF paths locally, run
 | `web/`, `epub/` | Web and ePub presentation |
 | `generated/latex/` | Inspectable print drivers, converted images, and compiler logs |
 | `generated/web/`, `generated/epub/` | Inspectable web and ePub inputs |
-| `dist/` | Full PDF/ePub, individual PDFs, and site |
+| `dist/` | The published full PDF/ePub and site, plus `chapters/` — the per-chapter review PDFs, declared LOCAL-ONLY in `book.yaml`: built here and at pre-push, never in CI, never served |
 
 `generated/` and `dist/` are ignored build artifacts. The old `typst/` templates
 and `build_pdf_typst_legacy` function remain only as migration comparison material;

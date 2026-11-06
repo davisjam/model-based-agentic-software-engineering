@@ -37,7 +37,6 @@ import concurrent.futures
 import functools
 import hashlib
 import html
-import itertools
 import json
 import os
 import pathlib
@@ -46,7 +45,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import threading
 from typing import Callable, NamedTuple
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -6813,61 +6811,28 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     return sections
 
 
+# The artifact-scope vocabulary, the content cache key, the stamp guard, the per-worker LuaLaTeX
+# cache and the pool's worker count all live in `tools/latex_reuse.py`, because the handbook's
+# per-chapter review PDFs are the same problem wearing another name. The wrappers below keep this
+# module's local names and add what is specific to the BOOK's sections; the mechanism is shared, so a
+# fix to the stamp semantics reaches both books at once.
+sys.path.insert(0, str(ROOT / "tools"))
+import latex_reuse  # noqa: E402  (ROOT is resolved above; `tools/` is a flat script directory)
+
+
 def _split_jobs() -> int:
-    """Worker count for the section compiles, clamped to 1..6 (`MAGE_PDF_SPLIT_JOBS` tunes it).
+    """Worker count for the section compiles — `MAGE_PDF_SPLIT_JOBS`, default 4, clamped to 1..6.
 
-    DEFAULT 4 — measured 261106, and 4 because the knee sits there, not because 4 is the core count.
-    Eight sections compiled at each setting, the settings interleaved (1, 4, 2, 6, 4, 1) so a drifting
-    box load could not masquerade as a worker effect. Raw data: `.scratch/compile-sweep-261106*.jsonl`;
-    the readout is `.scratch/prepush-pool-measured-261106.md`.
-
-        workers   wall    overlap achieved   load (median)   peak RSS
-          1      378.6s        1.00x             94            762 MB
-          1      237.8s        1.00x             31            848 MB
-          2      210.6s        2.00x             52           1519 MB
-          4      140.8s        3.94x             44           3042 MB
-          4       82.4s        3.76x             41           2923 MB
-          6       84.0s        4.66x             30           2695 MB
-
-    Read the OVERLAP column, not the wall column: wall-clock on this host is confounded by the agent
-    fleet (the two serial runs differ by 1.59x on load alone, 94 against 31), while overlap compares a
-    run's own summed per-section times against its own wall and so is immune to drift between runs.
-    Overlap holds 94-98% of linear through 4 workers and falls to 78% at 6.
-
-    6 is not merely less efficient, it is not faster: 84.0s at load 30 against 82.4s at load 41, so the
-    wider pool lost while the box was QUIETER. The ceiling is contention for cores, not memory —
-    one LuaLaTeX peaks near 760 MB and four near 3 GB on a 36 GB host, so RAM was never the binding
-    constraint. A cap of 6 remains as the clamp because nothing above 4 pays and a typo should not be
-    able to oversubscribe a host the push gate is trying to be cheap on.
+    The measurement that sets the default (261106, interleaved settings, read on achieved overlap
+    rather than confounded wall-clock) is recorded at `latex_reuse.pool_workers`. Raw data:
+    `.scratch/compile-sweep-261106*.jsonl`; readout `.scratch/prepush-pool-measured-261106.md`.
     """
-    try:
-        n = int(os.environ.get("MAGE_PDF_SPLIT_JOBS", "4"))
-    except ValueError:
-        n = 4
-    return max(1, min(6, n))
+    return latex_reuse.pool_workers("MAGE_PDF_SPLIT_JOBS")
 
 
 def _split_texmf_cache(worker: int) -> pathlib.Path:
-    """A persistent per-worker LuaLaTeX cache, seeded by an APFS clone of the warm shared one.
-
-    Concurrent compilers racing a single luaotfload database can corrupt it, so each worker gets its
-    own. Seeding by clone means a worker does not pay the cold font-database rebuild the shared cache
-    exists to avoid; correctness never depends on the seed, only warmth does. This mirrors the pre-push
-    hook's per-phase caches, deliberately — one pattern for the same hazard.
-    """
-    base = ROOT / "latex" / "build" / ".texmf-var"
-    cache = ROOT / "latex" / "build" / f".texmf-var-split{worker}"
-    if not cache.is_dir():
-        if base.is_dir():
-            if subprocess.run(["cp", "-c", "-R", str(base), str(cache)],
-                              capture_output=True).returncode != 0:
-                shutil.rmtree(cache, ignore_errors=True)
-                try:
-                    shutil.copytree(base, cache)
-                except OSError:
-                    shutil.rmtree(cache, ignore_errors=True)
-        cache.mkdir(parents=True, exist_ok=True)
-    return cache
+    """This book's per-worker LuaLaTeX cache. See `latex_reuse.worker_texmf_cache` for the hazard."""
+    return latex_reuse.worker_texmf_cache("split", worker)
 
 
 # Everything OUTSIDE a section's own driver and chapters that can still change its PDF. Hashed into
@@ -6880,78 +6845,39 @@ _SECTION_KEY_INPUTS = (
     "book/latex/mageplainnat.bst",  # bibliography style
     "book/book-manifest.json",    # title/author/subtitle, rendered onto the cover page
     "tools/latex_build.py",       # the pass loop AND the diagnostics allow-list — a gate input
+    "tools/latex_reuse.py",       # the cache key and the stamp guard themselves
     "tools/pdf_structure.py",     # check_pdf: the per-section structure gate itself
 )
 
+#: Namespaces this book's keys from the handbook's. Changing it invalidates every section stamp once,
+#: which is the correct response to a change in what the key MEANS.
+_SECTION_CACHE_VERSION = "section-pdf-cache-v1"
 
-@functools.lru_cache(maxsize=1)
-def _engine_identity() -> str:
-    """The LuaLaTeX binary and its version banner, so a TeX Live upgrade invalidates every stamp."""
-    engine = shutil.which("lualatex")
-    if not engine:
-        return "lualatex:absent"
-    try:
-        result = subprocess.run([engine, "--version"], capture_output=True, text=True, timeout=120)
-        banner = (result.stdout or "").splitlines()[0] if result.stdout else ""
-    except (OSError, subprocess.SubprocessError, IndexError):
-        banner = ""
-    return f"{engine}|{banner}"
-
-
-def _file_digest(path: pathlib.Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+_file_digest = latex_reuse.file_digest
 
 
 def _section_cache_key(driver_text: str, chapter_texts: "list[str]", bibliography: str,
                        assets: "list[str]") -> str:
     """Digest every input a section's PDF is derived from — contents, never mtimes.
 
-    An mtime key would go wrong in both directions here: `prepare_pdf` rewrites each section's chapter
-    `.tex` on every run (it resolves external `\\autoref`s in place), so mtimes always look new, and a
-    restored file can look old. Content is the only honest key.
-
-    The set is the driver, the chapters it `\\input`s, the bibliography projection, every graphic the
-    chapters include (the figure pool is content-addressed by filename, but hashing the bytes also
+    The channels: the driver, the chapters it `\\input`s, the bibliography projection, every graphic
+    the chapters include (the figure pool is content-addressed by filename, but hashing the bytes also
     catches a corrupted or hand-replaced pool), the shared inputs above, and the engine's identity.
+    `latex_reuse.cache_key` holds the digest construction and the argument against an mtime key.
     """
-    digest = hashlib.sha256(b"section-pdf-cache-v1")
-    digest.update(_engine_identity().encode())
-    for relative in _SECTION_KEY_INPUTS:
-        path = ROOT / relative
-        digest.update(relative.encode())
-        digest.update(path.read_bytes() if path.is_file() else b"<absent>")
-    for asset in assets:
-        path = ROOT / asset
-        digest.update(asset.encode())
-        digest.update(path.read_bytes() if path.is_file() else b"<absent>")
-    digest.update(driver_text.encode())
-    for text in chapter_texts:
-        digest.update(text.encode())
-    digest.update(bibliography.encode())
-    return digest.hexdigest()
+    return latex_reuse.cache_key(_SECTION_CACHE_VERSION, shared_inputs=_SECTION_KEY_INPUTS,
+                                 asset_inputs=assets,
+                                 texts=[driver_text, *chapter_texts, bibliography])
 
 
 def _section_is_current(stamp: pathlib.Path, key: str, destination: pathlib.Path) -> bool:
     """True only when THIS PDF, byte for byte, is the one that passed its checks on THESE inputs.
 
-    Three conditions, all required. The key must match, so any input change recompiles. The published
-    PDF must exist and still digest to what the stamp recorded, so a deleted, truncated or hand-swapped
-    artifact recompiles. And the stamp is only ever written AFTER `check_pdf` passes, which is what
-    makes a reuse sound rather than merely fast: the gate's verdict is a function of the inputs, and
-    every input is in the key. `MAGE_PDF_SPLIT_FORCE=1` ignores stamps entirely.
-
-    Outside the key, and so NOT covered: the system font files LuaLaTeX resolves by name. The
-    unconditional whole-book render is what would catch a change there, and it runs either way.
+    `latex_reuse.is_current` holds the three conditions and why a reuse re-digests the published PDF
+    rather than trusting the stamp. `MAGE_PDF_SPLIT_FORCE=1` ignores stamps entirely.
     """
-    if os.environ.get("MAGE_PDF_SPLIT_FORCE"):
-        return False
-    if not destination.is_file():
-        return False
-    try:
-        record = json.loads(stamp.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return False  # no stamp, or an unreadable one: compile. Fail-open is the safe direction.
-    return record.get("key") == key and record.get("output_sha256") == _file_digest(destination)
+    return latex_reuse.is_current(stamp, key, destination,
+                                  force=latex_reuse.force_requested("MAGE_PDF_SPLIT_FORCE"))
 
 
 def build_pdf_split() -> int:
@@ -7014,20 +6940,8 @@ def build_pdf_split() -> int:
             failures.append(suffix)
 
     jobs = _split_jobs()
-    # Caches are claimed PER THREAD, not per task. A `next(counter) % jobs` assignment looks equivalent
-    # and is not: with three workers, the fourth task to START would take cache 0 while the first task
-    # may still be holding it, which is precisely the concurrent-luaotfload race the caches exist to
-    # prevent. A pool thread runs one task at a time and is reused, so thread identity is the correct key.
-    cache_lock = threading.Lock()
-    cache_of_thread: dict[int, pathlib.Path] = {}
-    cache_ids = itertools.count()
-
-    def _my_cache() -> pathlib.Path:
-        key = threading.get_ident()
-        with cache_lock:
-            if key not in cache_of_thread:
-                cache_of_thread[key] = _split_texmf_cache(next(cache_ids))
-            return cache_of_thread[key]
+    # Per-THREAD, not per-task — see `latex_reuse.thread_cache_claimer` for the race this avoids.
+    _my_cache = latex_reuse.thread_cache_claimer("split")
 
     reused = []
 
@@ -7074,14 +6988,18 @@ def build_pdf_split() -> int:
 
 
 def _artifact_is_local_only(artifact_id: str) -> bool:
-    """Whether book-manifest.json declares this build artifact local-only — review-only, never published."""
-    return _BUILD_ARTIFACTS[artifact_id]["scope"] == "local-only"
+    """Whether book-manifest.json declares this build artifact local-only — review-only, never published.
+
+    The `published` / `local-only` vocabulary is CLOSED and shared with the handbook; `latex_reuse`
+    owns it and rejects any other scope rather than reading it as "not local-only" and publishing.
+    """
+    return latex_reuse.is_local_only(_BUILD_ARTIFACTS, artifact_id)
 
 
 def _is_publication_run(env: "dict[str, str] | None" = None) -> bool:
-    """Whether this build feeds the published site. The Pages workflow is the only publication caller,
-    and GitHub sets GITHUB_ACTIONS in every step it runs."""
-    return bool((os.environ if env is None else env).get("GITHUB_ACTIONS"))
+    """Whether this build feeds the published site. See `latex_reuse.is_publication_run` for why the
+    signal is the ENVIRONMENT rather than a flag in the workflow."""
+    return latex_reuse.is_publication_run(env)
 
 
 def _pdf_split_enabled(args: "list[str]", env: "dict[str, str] | None" = None) -> bool:

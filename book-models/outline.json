@@ -7,7 +7,7 @@
     "derived_ids": 213,
     "missing_topic_sentence": 6,
     "sections_drained": 168,
-    "paragraph_points": 773
+    "paragraph_points": 771
   },
   "chapters": [
     {
@@ -1485,28 +1485,18 @@
             },
             {
               "slug": "proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy",
-              "text": "A proof's strength applies to the proposition proved, not to whether that proposition captures the obligation engineering should preserve.",
+              "text": "Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement.",
               "block_index": 26
-            },
-            {
-              "slug": "the-stronger-the-verifier-the-more-the-distinction-matters",
-              "text": "The stronger the verifier, the more the distinction matters: a proof removes uncertainty about the stated property while leaving untouched whether engineering stated the right one.",
-              "block_index": 28
             },
             {
               "slug": "docable-requested-temporal-checking-for-an-obligation-its-models-already-carried",
               "text": "Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it.",
-              "block_index": 30
-            },
-            {
-              "slug": "alignment-makes-conformance-dependable-modeling-decides-what-can-become-an-obligation",
-              "text": "Alignment can make conformance to an obligation dependable; Modeling determines what engineering knowledge is available to become an obligation at all.",
-              "block_index": 32
+              "block_index": 28
             },
             {
               "slug": "an-obligation-can-test-one-of-three-relations",
               "text": "Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable.",
-              "block_index": 34
+              "block_index": 30
             }
           ]
         },
@@ -1516,22 +1506,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 42,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 48
+              "block_index": 44
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 53
+              "block_index": 49
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 55
+              "block_index": 51
             }
           ]
         },
@@ -1541,27 +1531,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check illustrates a general rule for placing enforcement:",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 57,
           "points": [
             {
               "slug": "place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
               "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
-              "block_index": 63
+              "block_index": 59
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 70
+              "block_index": 66
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook.",
-              "block_index": 77
+              "block_index": 73
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The section has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 79
+              "block_index": 75
             }
           ]
         }
@@ -1638,7 +1628,7 @@
             },
             {
               "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
-              "text": "A constraint prevents drift within the iteration, costing none.",
+              "text": "A constraint excludes particular actions or representations; a closed enum rules out undeclared state names but does not by itself constrain transitions.",
               "block_index": 28
             },
             {
@@ -1818,27 +1808,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "Preserving degrees of freedom has positive value of its own.",
           "id_source": "derived",
-          "block_index": 118,
+          "block_index": 116,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Preserving degrees of freedom has positive value: some choices are immaterial, some are not yet ripe, and agent exploration can find strategies engineers did not anticipate.",
-              "block_index": 120
+              "block_index": 118
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 123
+              "block_index": 121
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 125
+              "block_index": 123
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 130
+              "block_index": 128
             }
           ]
         },
@@ -1848,27 +1838,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 132,
+          "block_index": 130,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 134
+              "block_index": 132
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the enforcement.",
-              "block_index": 136
+              "block_index": 134
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 138
+              "block_index": 136
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Leave-with: intent becomes enforceable through one of four roles; next, where the mechanisms come from.",
-              "block_index": 143
+              "block_index": 141
             }
           ]
         }

@@ -3,9 +3,10 @@
 # outputs are created on demand, not tracked.
 /generated/
 /dist/
-# The standalone per-chapter PDFs (dist/chapters/<stem>.pdf) are binaries created in CI + at push
-# time, never committed — already covered by /dist/ above; named here so the pattern survives any
-# future narrowing of that ignore.
+# The standalone per-chapter PDFs (dist/chapters/<stem>.pdf) are binaries created at PUSH TIME ONLY
+# and never committed — already covered by /dist/ above; named here so the pattern survives any
+# future narrowing of that ignore. They are NOT created in CI: book.yaml declares them LOCAL-ONLY
+# (261106), so they are built for the author's review and never published.
 /dist/chapters/*.pdf
 
 # The ePub edition is a binary build artifact wherever it lands (dist/ is already covered above;

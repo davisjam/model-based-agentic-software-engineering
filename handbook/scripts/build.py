@@ -574,13 +574,13 @@ def build_epub(book: dict) -> None:
     print(f"EPUB → {EPUB_OUT.relative_to(C.HANDBOOK)} ({len(sections)} sections, {size_kb} KiB)")
 
 
-def _chapter_dl_html(stem: str) -> str:
-    """The per-chapter "Download this chapter (PDF)" link, as raw HTML (not a Markdown link) so
-    MkDocs' strict link check does not chase the out-of-tree target — chapters/<stem>.pdf is
-    CI-published next to the pages (it 404s in a bare local dist/site, which is expected)."""
-    return (f'<p class="hb-chapter-dl"><a href="chapters/{stem}.pdf" '
-            'title="Download this chapter as a standalone PDF">'
-            "Download this chapter (PDF) ↓</a></p>")
+# There is no per-chapter "Download this chapter (PDF)" link, and that is a decision rather than an
+# omission. handbook/book.yaml declares `handbook-chapter-pdfs` LOCAL-ONLY as of 261106 — built in
+# the author's pre-push for his own review, never built in CI and never served — so a link to
+# `chapters/<stem>.pdf` would 404 for every reader. Nothing here would have caught that: the links
+# were raw HTML precisely so MkDocs' strict mode would not chase them, and the site link checker
+# skips the whole CI-built se-handbook subtree. The whole-handbook PDF stays published and stays
+# linked from the home page's download button and cover.
 
 
 def build_web(book: dict) -> None:
@@ -610,11 +610,8 @@ def build_web(book: dict) -> None:
                   "-L", str(C.FILTERS / "web.lua")])
         body = _run(cmd)
         title = meta.get("title", fm.stem)
-        # The per-unit PDF exists only for handbook-view entries (the PDF build's filter), so a
-        # web-only entry gets no download link.
-        dl = _chapter_dl_html(f"0-{fm.stem}") if "handbook" in (entry.get("views") or []) else ""
         (GEN_WEB / f"0-{fm.stem}.md").write_text(
-            f"# {title}\n\n{dl}\n\n{body}\n", encoding="utf-8")
+            f"# {title}\n\n{body}\n", encoding="utf-8")
         fm_entries.append((title, f"0-{fm.stem}.md"))
         print(f"  web    ← {fm.name} (front matter)")
 
@@ -634,7 +631,7 @@ def build_web(book: dict) -> None:
         number = chapter_numbers[ch]
         if number:
             title = f"Chapter {number}: {title}"
-        page = f"# {title}\n\n{_chapter_dl_html(stem)}\n\n{body}\n"
+        page = f"# {title}\n\n{body}\n"
         (GEN_WEB / f"{stem}.md").write_text(page, encoding="utf-8")
         nav_entries.append((title, f"{stem}.md"))
         print(f"  web    ← {ch.name}")
@@ -686,19 +683,10 @@ def build_web(book: dict) -> None:
              '<div class="hb-home" markdown="1">', "",
              '<div class="hb-home-main" markdown="1">', "",
              "## Contents", ""]
-    # Each Contents entry also carries a small "(PDF)" link to its standalone chapter PDF — raw
-    # HTML like the top row, so strict mode does not chase the CI-published target. A web-only
-    # front-matter entry has no per-unit PDF (the PDF build takes handbook-view entries), so its
-    # row stays link-free.
-    pdf_stems = {f"0-{C.pathlib.Path(e['file']).stem}" for e in book.get("frontmatter", [])
-                 if "handbook" in (e.get("views") or [])}
-    pdf_stems |= {ch.stem for ch in C.chapter_files(book)}
+    # A Contents entry carries no "(PDF)" link: the per-chapter PDFs are declared LOCAL-ONLY in
+    # handbook/book.yaml and are neither built in CI nor served (see the note above build_web).
     for title, href in fm_entries + nav_entries:
-        stem = href[:-3]
-        pdf = (f' <a class="hb-toc-pdf" href="chapters/{stem}.pdf" '
-               'title="Download this chapter as a standalone PDF">(PDF)</a>'
-               if stem in pdf_stems else "")
-        lines.append(f"- [{title}]({href}){pdf}")
+        lines.append(f"- [{title}]({href})")
     # The cover rides its own raw (non-markdown) div so it stays a direct flex child of .hb-home —
     # a bare <img> line inside a markdown="1" parent gets <p>-wrapped, which would strand the flex
     # order/width rules on the img instead of the flex item.

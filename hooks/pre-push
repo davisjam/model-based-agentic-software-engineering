@@ -21,10 +21,13 @@ Four gates, in dependency order, so a change that would fail CI cannot leave the
      Keep this complete build here and in CI so the review copies stay current with the full edition.
 
   3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's LaTeX PDF
-     render (parity with the book PDF). CI renders + publishes it on every push and asserts it
-     fatal-if-missing, so a handbook render failure would fail CI; catch it here instead. This also
-     refreshes the gitignored local review artifacts (the handbook PDF + the landers staple the pdf
-     target emits), so they never go stale between manual handbook builds.
+     render (parity with the book PDF). CI renders + publishes the whole edition on every push and
+     asserts it fatal-if-missing, so a handbook render failure would fail CI; catch it here instead.
+     This also refreshes the gitignored local review artifacts (the handbook PDF, the per-chapter
+     review PDFs, and the landers staple the pdf target emits), so they never go stale between
+     manual handbook builds. The per-chapter PDFs are declared LOCAL-ONLY in handbook/book.yaml and
+     THIS IS THE ONLY STATION THAT BUILDS THEM — so their per-chapter compile and structure gates
+     run nowhere else; see book.yaml's artifact-scope block.
 
   4. `catalog_tests.py --tier1` — the fast, stdlib, deterministic checks: schema, link + anchor
      resolution, the book/*.html tracking (orphans), the concept-model drift lints (L1/L2/L3), the
@@ -480,7 +483,15 @@ def _phase_book_pdf(ctx: _PhaseCtx) -> str | None:
 
 
 def _phase_handbook_pdf(ctx: _PhaseCtx) -> str | None:
-    ctx.echo("pre-push: handbook/scripts/build.py pdf (handbook LaTeX PDF + strict final-log warnings) …")
+    # The SAME command the Pages workflow runs (`make -C handbook book` dispatches to it). What it
+    # emits is derived from the artifact scope in handbook/book.yaml, not from a flag here: the
+    # per-chapter review PDFs are declared LOCAL-ONLY, so this run builds them (change-aware reuse
+    # makes an unchanged chapter ~0s) and the publication run does not. Keeping the command identical
+    # is what stops the two surfaces drifting.
+    if ctx.py("-m", "unittest", "tests.test_handbook_chapter_pdfs", env=_texmf_env("handbook")):
+        return "pre-push: handbook artifact-scope / chapter-reuse regression failed"
+    ctx.echo("pre-push: handbook/scripts/build.py pdf (published PDF + ePub, plus the local-only "
+             "per-chapter PDFs + strict final-log warnings) …")
     if ctx.py("handbook/scripts/build.py", "pdf", env=_texmf_env("handbook")):
         return ("\npre-push: handbook/scripts/build.py pdf FAILED — push refused.\n"
                 "The handbook PDF does not render; fix the error above ")

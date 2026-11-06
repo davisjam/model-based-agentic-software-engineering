@@ -1,6 +1,7 @@
 """Print the authoritative Handbook through the shared LuaLaTeX house style."""
 from pathlib import Path
 import copy
+import functools
 import json
 import re
 import shutil
@@ -10,6 +11,8 @@ import _common as C
 import latex_source as L
 sys.path.insert(0, str(C.GC_ROOT/'tools'))
 from latex_build import compile_tex, bold_table_headers
+from pdf_structure import check_pdf
+import latex_reuse
 
 
 def build_pdf(book, only=None):
@@ -118,18 +121,183 @@ def build_pdf(book, only=None):
                     '\\clearpage\n\\tableofcontents\n\\clearpage\\pagenumbering{arabic}\n'+
                     '\n'.join(chunks[front_count:])+'\n\\end{document}\n')
     compiled = compile_tex(full)
-    from pdf_structure import check_pdf
     source = full.read_text()
     check_pdf(compiled, headings=len(paths),
               sections=len(re.findall(r"\\section\*?\{", source)),
               tables=source.count(r"\begin{longtable}"),
               figures=len(re.findall(r"\\includegraphics\[[^]]*\balt=", source)))
     shutil.copy2(compiled,B.PDF_OUT)
-    if not only:
-        B.CHAPTERS_PDF_DIR.mkdir(parents=True,exist_ok=True)
-        for path in paths:
-            stem=path.stem if path.parent==C.CHAPTERS else '0-'+path.stem
-            shutil.copy2(compile_tex(generated/(stem+'.tex')),B.CHAPTERS_PDF_DIR/(stem+'.pdf'))
+    if not only and latex_reuse.builds_local_only(latex_reuse.build_artifacts(book),
+                                                  'handbook-chapter-pdfs'):
+        build_chapter_pdfs(paths, generated, B.CHAPTERS_PDF_DIR)
+
+
+# ───────────────────── Per-chapter review PDFs (LOCAL-ONLY; see book.yaml) ─────────────────────────
+# One standalone PDF per book unit, so the author can open a single chapter instead of the whole
+# handbook. Declared LOCAL-ONLY in `handbook/book.yaml`: built locally and at pre-push, never in CI
+# and never published. `build_pdf` above derives that from the declaration rather than restating it,
+# so `make -C handbook book` behaves the same way wherever it runs from.
+#
+# The chapters are the dominant half of this build and the one genuinely parallel part of it. There
+# is no `-j` for ONE LaTeX document; there is for fifteen of them, and each is already a separate
+# compilation unit with its own driver and its own output. Measured 261106 at load 50-72: 319.4s
+# wall, of which the fifteen SERIAL chapter compiles were 213.4s — against 50.2s of serial Pandoc
+# preparation and a 55.8s whole-edition render.
+#
+# What is NOT parallel: driver PREPARATION. `build_pdf`'s single Pandoc pass emits each chapter's
+# standalone `.tex` while accumulating the whole-edition chunks from the same walked AST, so the two
+# cannot be separated without walking every chapter twice.
+
+#: Everything OUTSIDE a chapter's own generated driver that can still change its PDF. Hashed into the
+#: cache key, so an edit to the house style or the structure checker recompiles every chapter rather
+#: than silently reusing a PDF the new rules were never applied to. An explicit tuple, not a glob
+#: over `latex/` — a glob would quietly stop covering a file that moved.
+#:
+#: The chapter driver is SELF-CONTAINED (preamble + the unit's own body, with citations already
+#: rendered inline by Pandoc's citeproc pass), so the prose, the bibliography projection and the
+#: cross-reference resolution are all captured by hashing the driver text itself. That is why this
+#: tuple is shorter than the MAGE book's: the book's driver `\input`s its chapters and reaches
+#: BibTeX at compile time, so those are separate inputs there and not here.
+_CHAPTER_KEY_INPUTS = (
+    "latex/house.sty",              # the shared class both books compile against
+    "latex/book-fonts.tex",         # font selection: changes metrics, hence pagination
+    "handbook/book.yaml",           # title/author, rendered into every chapter's preamble
+    "tools/latex_build.py",         # the pass loop AND the diagnostics allow-list — a gate input
+    "tools/latex_reuse.py",         # the cache key and the stamp guard themselves
+    "tools/pdf_structure.py",       # check_pdf: the per-chapter structure gate itself
+)
+
+#: Graphics a driver includes, by path. The driver is GENERATED LaTeX, so this is a literal-structure
+#: match over our own emission, not an attempt to parse TeX.
+_GRAPHICS = re.compile(r'\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}')
+
+
+@functools.lru_cache(maxsize=1)
+def _svg_source_map() -> "dict[str, str]":
+    """Generated figure-PDF filename -> the repo-relative `.svg` it was converted from.
+
+    `build_pdf` converts every `.svg` a chapter includes to `generated/latex/<dir>-<stem>.pdf` and
+    rewrites the `\\includegraphics` to point at THAT file. Hashing the generated PDF would be the
+    obvious thing and it is wrong: `rsvg-convert` is not byte-reproducible. Measured 261106 — the
+    same SVG converted twice differs in its compressed object stream, 11 of the handbook's generated
+    figure PDFs changed across one prepare while all 15 drivers stayed byte-identical, and the result
+    was that reuse hit for the 8 chapters with no SVG figure and missed for the 7 that have one.
+
+    So hash the SOURCE, which is also the file the author actually edits. The map is built from the
+    same `<parent.name>-<stem>` naming `build_pdf` uses, so the two cannot drift.
+    """
+    return {f"{p.parent.name}-{p.stem}.pdf": str(p.relative_to(C.GC_ROOT))
+            for p in sorted((C.HANDBOOK / 'figures').rglob('*.svg'))}
+
+
+@functools.lru_cache(maxsize=1)
+def _rsvg_identity() -> str:
+    """The rsvg-convert binary and its version banner, so a renderer upgrade invalidates every stamp.
+
+    The companion to hashing the source SVG: source bytes plus converter identity cover the
+    conversion, where the converted PDF's own bytes cover nothing reliably.
+    """
+    binary = shutil.which("rsvg-convert")
+    if not binary:
+        return "rsvg-convert:absent"
+    try:
+        result = subprocess.run([binary, "--version"], capture_output=True, text=True, timeout=60)
+        banner = (result.stdout or "").splitlines()[0] if result.stdout else ""
+    except (OSError, subprocess.SubprocessError, IndexError):
+        banner = ""
+    return f"{binary}|{banner}"
+
+
+def _key_assets(driver_text: str) -> "list[str]":
+    """The graphics inputs to hash for one chapter, with every generated figure traced to its source.
+
+    Fails loudly on a generated asset it cannot trace: a silent fall-back to hashing the generated
+    PDF would reintroduce the every-run key churn this exists to remove, and it would do so
+    invisibly — the build would still pass, just never reuse.
+    """
+    mapping = _svg_source_map()
+    resolved = set()
+    for asset in _GRAPHICS.findall(driver_text):
+        if asset.startswith('handbook/generated/'):
+            source = mapping.get(Path(asset).name)
+            if source is None:
+                raise RuntimeError(
+                    f"generated figure {asset} traces to no source SVG under handbook/figures/; "
+                    f"the chapter-PDF cache key would churn on every run. Known: {sorted(mapping)}")
+            resolved.add(source)
+        else:
+            resolved.add(asset)
+    return sorted(resolved)
+
+
+def _check_chapter_pdf(driver_text: str, pdf: Path) -> None:
+    """Hold a chapter PDF to the same structure gate the whole edition passes, scaled to one unit.
+
+    NEW with the local-only declaration, and the reason a reuse stamp means something: the stamp is
+    written only after this passes, so reusing a PDF re-asserts that it passed. Expected counts are
+    DERIVED from the chapter's own emitted source — a hand-written count would rot the first time a
+    chapter gained a table.
+    """
+    check_pdf(pdf, headings=1,
+              sections=len(re.findall(r"\\section\*?\{", driver_text)),
+              tables=driver_text.count(r"\begin{longtable}"),
+              figures=len(re.findall(r"\\includegraphics\[[^]]*\balt=", driver_text)))
+
+
+def _chapter_units(paths, generated, chapters_dir) -> "list":
+    """One reuse unit per book unit: its driver, its kept PDF, its content key, and its check."""
+    units = []
+    for path in paths:
+        stem = path.stem if path.parent == C.CHAPTERS else '0-' + path.stem
+        driver = generated / (stem + '.tex')
+        driver_text = driver.read_text(encoding='utf-8')
+        units.append(latex_reuse.Unit(
+            name=stem,
+            source=driver,
+            destination=chapters_dir / (stem + '.pdf'),
+            stamp=driver.with_suffix('.cache.json'),
+            key=latex_reuse.cache_key("handbook-chapter-pdf-cache-v2",
+                                      shared_inputs=_CHAPTER_KEY_INPUTS,
+                                      asset_inputs=_key_assets(driver_text),
+                                      texts=[driver_text, _rsvg_identity()]),
+            check=functools.partial(_check_chapter_pdf, driver_text)))
+    return units
+
+
+def build_chapter_pdfs(paths, generated, chapters_dir) -> None:
+    """Compile (or reuse) every chapter PDF, several at a time; raise if any unit fails.
+
+    CHANGE-AWARE: a chapter whose inputs are byte-identical to the last run that PASSED reuses its
+    PDF instead of recompiling. The author's common case — edit one chapter, refresh the review
+    PDFs — then pays one compile rather than fifteen. `HANDBOOK_CHAPTER_PDF_FORCE=1` recompiles
+    everything; `HANDBOOK_CHAPTER_PDF_JOBS` tunes the pool.
+
+    No orphan prune here, deliberately, and it is the one place the handbook cannot copy the book.
+    The book's section PDFs carry a generated `mage-book-NN-` name, so a PDF in that directory that
+    the build did not expect is provably stale and safe to delete. A handbook chapter PDF is named
+    for its bare stem, which is indistinguishable from a file the author dropped in by hand — so a
+    renamed chapter leaves a stale PDF behind rather than risking someone's snapshot. The artifact is
+    unpublished, so a stale one misleads nobody but its owner.
+    """
+    chapters_dir.mkdir(parents=True, exist_ok=True)
+    units = _chapter_units(paths, generated, chapters_dir)
+    jobs = latex_reuse.pool_workers("HANDBOOK_CHAPTER_PDF_JOBS")
+    results = latex_reuse.compile_units(
+        units, jobs=jobs, cache_name="handbook-chapter",
+        force=latex_reuse.force_requested("HANDBOOK_CHAPTER_PDF_FORCE"))
+    failures = [r.name for r in results if r.error]
+    for result in results:
+        if result.error:
+            print(result.error, file=sys.stderr)
+        else:
+            reused = " — reused, inputs unchanged" if result.reused else ""
+            print(f"  chapter PDF → dist/chapters/{result.name}.pdf{reused}")
+    reused = sum(1 for r in results if r.reused)
+    print(f"chapter PDFs → {chapters_dir.relative_to(C.HANDBOOK)}/ "
+          f"({len(results) - len(failures)}/{len(results)} passed; "
+          f"{len(results) - len(failures) - reused} compiled, {reused} reused; {jobs} worker(s))")
+    if failures:
+        raise RuntimeError("chapter PDF build failed: " + ", ".join(failures))
 
 
 def preamble():

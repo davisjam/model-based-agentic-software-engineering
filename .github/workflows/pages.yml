@@ -545,11 +545,16 @@ jobs:
   # CI-generated, Pages-published artifacts (not committed). `make book` LINTS the manuscript
   # first and aborts on any error (never degrades silently), then renders
   # handbook/dist/software-engineering-handbook.pdf from authoritative LaTeX AND the
-  # reflowable .epub from the same chapter source, plus the standalone per-chapter PDFs
-  # (handbook/dist/chapters/<stem>.pdf). `build.py web` then renders the self-contained MkDocs
-  # site (handbook/dist/site). `assemble` downloads handbook/dist and places everything at its
-  # published home. (The published subfolder is `se-handbook`; the source tree keeps its
+  # reflowable .epub from the same chapter source. `build.py web` then renders the self-contained
+  # MkDocs site (handbook/dist/site). `assemble` downloads handbook/dist and places everything at
+  # its published home. (The published subfolder is `se-handbook`; the source tree keeps its
   # `handbook/` name.)
+  #
+  # It does NOT emit the standalone per-chapter PDFs. handbook/book.yaml declares
+  # `handbook-chapter-pdfs` LOCAL-ONLY, and latex_pdf.build_pdf reads that declaration — so this
+  # job and the pre-push hook run the IDENTICAL `make -C handbook book` and the scope difference
+  # lives in the declaration rather than in a flag here. See book.yaml's artifact-scope block for
+  # the gates that withdrew with them.
   handbook:
     runs-on: ubuntu-latest
     permissions:
@@ -599,7 +604,11 @@ jobs:
           python3 tools/test_latex_build.py
           python3 tools/test_pdf_structure.py
           python3 -m unittest tests.test_native_site_boundaries
-      - name: Render handbook PDF + ePub + per-chapter PDFs (LaTeX / ePub3)
+          # Holds the artifact-scope declaration AND the chapter reuse key / stamp guard. Stays in
+          # CI though the chapter PDFs no longer build here: the declaration and the guard are what
+          # make the local-only trade sound, so they are exactly the part that must not drift.
+          python3 -m unittest tests.test_handbook_chapter_pdfs
+      - name: Render the published handbook editions (PDF + ePub)
         run: |
           # The handbook build/lint scripts parse book.yaml with PyYAML (the only third-party
           # Python dep on the PDF path); Pillow (requirements-pdf) backs the cover derivation.
@@ -917,6 +926,14 @@ jobs:
       # (`cp` merges into the existing dir; the trailing assertion guards the PDF against a
       # clobber). Chapters are then individually linkable at /book/se-handbook/<stem>.html. Runs
       # AFTER publish_book_layout.py so the copy targets the final published layout.
+      #
+      # The per-chapter PDFs are NOT published here. handbook/book.yaml declares
+      # `handbook-chapter-pdfs` LOCAL-ONLY, so the handbook job no longer builds them and there is
+      # nothing to copy; `build.py` no longer emits the chapter-download links that used to resolve
+      # to `chapters/<stem>.pdf`, because a published link to an unpublished file is the one outcome
+      # worse than either choice. The assertion that used to derive the expected stem set from
+      # book.yaml went with them — `tests/test_handbook_chapter_pdfs.py` now holds this step to the
+      # declaration from the other side, asserting no local-only glob is published.
       - name: Publish handbook web site at _site/book/se-handbook/ (next to the PDF)
         run: |
           mkdir -p _site/book/se-handbook
@@ -924,26 +941,6 @@ jobs:
           test -f _site/book/se-handbook/index.html || { echo "ERROR: handbook web index missing from site artifact"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.pdf || { echo "ERROR: handbook PDF missing after web copy"; exit 1; }
           test -f _site/book/se-handbook/software-engineering-handbook.epub || { echo "ERROR: handbook ePub missing after web copy"; exit 1; }
-          # Standalone per-chapter PDFs (emitted by the handbook job's `make -C handbook book`)
-          # publish NEXT TO the pages that link them (each chapter page's "Download this chapter
-          # (PDF)" resolves to chapters/<stem>.pdf). Copied + asserted here — after
-          # publish_book_layout.py, before the artifact upload — so nothing later can rewrite the
-          # tree under them. The assertion derives the expected stem set from book.yaml (never a
-          # hand-counted list), so a new chapter is asserted the moment it enters the book.
-          mkdir -p _site/book/se-handbook/chapters
-          cp handbook/dist/chapters/*.pdf _site/book/se-handbook/chapters/
-          python3 - <<'EOF'
-          import pathlib, yaml
-          book = yaml.safe_load(open("handbook/book.yaml", encoding="utf-8"))
-          stems = ["0-" + pathlib.Path(e["file"]).stem for e in book.get("frontmatter", [])
-                   if "handbook" in (e.get("views") or [])]
-          stems += [pathlib.Path(c).stem for c in book["chapters"]]
-          missing = [s for s in stems
-                     if not pathlib.Path(f"_site/book/se-handbook/chapters/{s}.pdf").is_file()]
-          if missing:
-              raise SystemExit(f"ERROR: handbook chapter PDFs missing from site artifact: {missing}")
-          print(f"all {len(stems)} handbook chapter PDFs published at /book/se-handbook/chapters/")
-          EOF
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
