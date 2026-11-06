@@ -423,9 +423,8 @@ jobs:
   # tools/latex_build.py gate rejects final-pass warnings/errors except underfull h/v boxes.
   # Existing content-integrity checks remain in the book build; poppler backs PDF inspection.
   #
-  # `--no-split`: the published site ships only the whole-book mage-book.pdf. `--pdf` is
-  # default-on-split LOCALLY (per-section review PDFs); `--no-split` states full-only explicitly at
-  # the call site so CI never pays the per-section compile cost.
+  # `--pdf` builds the full edition and every chapter/appendix partial, matching pre-push.
+  # The book-editions artifact carries all PDFs into the published site's book/ directory.
   #
   # The ePub (book_epub.py — the 4th IR projection, EPUB3) reuses build_pages()' rendered bodies
   # (no re-render), packs the EPUB3 container, and renders the TITLED cover from the print
@@ -497,7 +496,7 @@ jobs:
         run: python3 book/render_citations.py
       - name: Check PDF structure gate negative controls
         run: python3 tools/test_pdf_structure.py
-      - name: Render book PDF (native LaTeX; strict warnings) + content-integrity gate
+      - name: Render full book, EPUB, and all partial PDFs + integrity gates
         run: |
           # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is
           # already installed above. catalog.py itself stays stdlib-only — these deps are for the
@@ -510,7 +509,8 @@ jobs:
           python3 tools/test_qpdf_repack.py
           python3 tools/mage_tikz_charts.py --check
           python3 tools/mage_tikz_review.py --figures-only
-          python3 book/build_book.py --pdf --no-split
+          python3 -m unittest tests.test_mage_pdf_splits
+          python3 book/build_book.py --pdf
       - name: Upload TikZ geometry audit for review
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

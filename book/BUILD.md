@@ -18,8 +18,11 @@ and the design record for the annotation work.
   fails the build).
 - **Book only:** `python3 book/build_book.py` renders just the book (stdlib-only, runs on a fresh
   checkout with nothing installed).
-- **Print and ebook:** `python3 book/build_book.py --pdf --no-split` builds the native LaTeX PDF
-  and a fresh `book/mage-book.epub`. For EPUB alone, run `python3 book/book_epub.py`. The EPUB
+- **Print and ebook:** `python3 book/build_book.py --pdf` builds the native LaTeX PDF,
+  a fresh `book/mage-book.epub`, and all numbered chapter, appendix, and front/back-matter PDFs
+  (`book/mage-book-NN-Section.pdf`). Pre-push and CI run this complete build; any failed edition
+  stops the build. Use `--no-split` only for a manual build that deliberately omits the partials.
+  For EPUB alone, run `python3 book/book_epub.py`. The EPUB
   build verifies that generated Markdown matches the native manuscript, then packages the current
   web page bodies and the native cover. It validates the container and internal links before
   replacing the previous edition; failure stops publication. `python3 book/book_epub.py --check`
@@ -218,7 +221,7 @@ navigation maps. All native drawings still pass the monochrome, layout, typograp
 and link checks. Unknown or unused approval entries fail the build. Existing monochrome
 originals remain listed separately in `book/tikz/monochrome-originals.json`.
 
-Build normally with `python3 book/build_book.py --pdf --no-split`. The generated
+Build normally with `python3 book/build_book.py --pdf`. The generated
 `book/latex/build/figure-pairings.json` records both pending pairs and approved standalone
 black-and-white figures. Do not edit generated chapters or remove color source assets;
 the web build continues to use them.

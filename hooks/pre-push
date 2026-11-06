@@ -11,17 +11,14 @@ Four gates, in dependency order, so a change that would fail CI cannot leave the
      to CI's "Render markdown -> HTML" step. Now the render runs at pre-push, on `main`, where mmdc is
      installed. (260729 RCA: a mid-block `index-def` aborted CI's build while `--tier1` stayed green.)
 
-  2. `book/build_book.py --pdf --no-split` — the print-native LaTeX render + whole-book content-integrity
+  2. `book/build_book.py --pdf` — the print-native LaTeX render + whole-book content-integrity
      gate (page floor/ceiling, title + chapter/part titles present, tail present, part-opener spread
      sensor). This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a LaTeX
      compile error or a content-integrity regression is caught on the machine, not three minutes into
      CI — and the gitignored /book/mage-book.pdf refreshes on every push instead of going stale between
-     renders. `--no-split` because the per-section review PDFs are a LOCAL REVIEW AID, not a gate: CI
-     never compiles them (`_pdf_split_enabled` turns them off under CI), `build_book.py`'s own dispatch
-     comment declares "the deploy pre-push gate [is] full-only", and pre-push may only hold a subset of
-     what CI holds. Measured 261029 under fleet load: `--pdf` with splits 954s, `--pdf --no-split` 293s
-     — the 21 section compiles were ~11 minutes of a 26.9-minute serial gate while gating nothing CI
-     gates. Regenerate them on demand with `python3 book/build_book.py --pdf`.
+     renders. The same command also builds the EPUB and every chapter, appendix, and front/back-matter
+     PDF. Each partial passes the native compile and PDF structure checks; a failure stops the push.
+     Keep this complete build here and in CI so the review copies stay current with the full edition.
 
   3. `handbook/scripts/build.py pdf` — the supplementary Software Engineering Handbook's LaTeX PDF
      render (parity with the book PDF). CI renders + publishes it on every push and asserts it
@@ -440,6 +437,8 @@ def _phase_site_build(ctx: _PhaseCtx) -> str | None:
 
 def _phase_book_static(ctx: _PhaseCtx) -> str | None:
     env = _texmf_env("tikz")
+    if ctx.py("-m", "unittest", "tests.test_mage_pdf_splits", env=env):
+        return "pre-push: complete book-edition build regression failed"
     if ctx.py("-m", "unittest", "tests.test_tikz_audit", env=env):
         return "pre-push: TikZ geometry and reviewed-layout regression failed"
     if ctx.py("tools/test_mage_tikz_links.py", env=env):
@@ -459,10 +458,10 @@ def _phase_book_static(ctx: _PhaseCtx) -> str | None:
 
 
 def _phase_book_pdf(ctx: _PhaseCtx) -> str | None:
-    ctx.echo("pre-push: book/build_book.py --pdf --no-split (LaTeX PDF + strict final-log warnings + content-integrity gate) …")
-    if ctx.py("book/build_book.py", "--pdf", "--no-split"):
+    ctx.echo("pre-push: book/build_book.py --pdf (full PDF, EPUB, and all partial PDFs + integrity checks) …")
+    if ctx.py("book/build_book.py", "--pdf"):
         return ("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
-                "The PDF does not render or fails the content-integrity gate; fix the error above ")
+                "A book edition does not render or fails its integrity checks; fix the error above ")
     return None
 
 

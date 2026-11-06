@@ -6730,11 +6730,11 @@ def build_pdf() -> int:
 
 
 # ─────────────────────── Per-section split PDFs (review aid; additive to `--pdf`) ────────────────────────
-# A local `--pdf` run ALSO emits one PDF per logical book section — a review aid so a reader can open just
-# the front matter, one Part, the back matter, or the appendices. The split is DEFAULT-ON locally and OFF in
-# CI / the deploy pre-push gate (which render only the shipped whole-book `mage-book.pdf`). The section PDFs
-# are gitignored generated artifacts, exactly like `mage-book.pdf`; they carry NO whole-book content-integrity
-# gate (page floor, part-opener spread) — a 20-page Part PDF is verified only to COMPILE and be non-empty.
+# A `--pdf` run also emits one PDF per logical book section, locally, at pre-push, and in CI.
+# Readers can open just the front matter, one chapter, the back matter, or the appendices.
+# These gitignored artifacts pass native compilation and PDF structure checks (including expected
+# headings), rather than the full edition's page-count and part-opener checks. An explicit
+# `--no-split` is available for a manual full-edition-only build.
 
 #: The exact section filenames the reviewer asked for (`mage-book-<Section>.pdf`).
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
@@ -6837,15 +6837,8 @@ def build_pdf_split() -> int:
 
 
 def _pdf_split_enabled(args: "list[str]") -> bool:
-    """Whether a `--pdf` run should ALSO emit the per-section review PDFs. Default-on locally; OFF when
-    `--no-split` is passed OR the build runs in GitHub Actions / any CI (the published site ships only the
-    whole-book `mage-book.pdf`, so CI must not pay the per-section compile cost). `GITHUB_ACTIONS` is set by
-    the Pages workflow runner; `CI` is the generic fallback."""
-    if "--no-split" in args:
-        return False
-    if os.environ.get("GITHUB_ACTIONS") or os.environ.get("CI"):
-        return False
-    return True
+    """Build all partial PDFs unless a caller explicitly requests a full-edition-only run."""
+    return "--no-split" not in args
 
 
 def _emit_writing_style_export() -> None:
@@ -7141,9 +7134,8 @@ if __name__ == "__main__":
     # `--pdf` builds the native print edition and a fresh EPUB; default is the WEB build —
     # which, since the C3 publish swap, IS the MkDocs emission: build_pages() renders every page body
     # and book/book_mkdocs.py projects the tree (the blockquote-placement gate runs there, over the
-    # emitted bodies). A local `--pdf` ALSO emits the per-section review PDFs by default (additive);
-    # `--no-split` forces full-only, and CI / the deploy pre-push gate are full-only via
-    # `_pdf_split_enabled` (env + flag).
+    # emitted bodies). `--pdf` also emits all per-section PDFs, including at pre-push and in CI;
+    # `--no-split` explicitly skips them for a manual full-edition-only build.
     if "--pdf" in args:
         rc = build_pdf()
         if rc == 0:
