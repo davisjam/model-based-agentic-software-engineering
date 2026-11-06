@@ -6,11 +6,11 @@ color originals are reflected in both editions. Candidate PDFs are included at
 native print size with alternate text; the publisher receives editable sources.
 """
 from __future__ import annotations
-import argparse,hashlib,json,os,re,shutil,sys,subprocess,tempfile,zipfile
+import argparse,json,re,shutil,sys,subprocess,tempfile,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
-import latex_build,mage_assets,mage_latex,mage_tikz_links
+import latex_build,latex_reuse,mage_assets,mage_latex,mage_tikz_links
 from mage_cover import _text
 from pypdf import PdfReader
 BASE=ROOT/'book/tikz'
@@ -36,18 +36,46 @@ BUILD=ROOT/'latex/build/tikz'
 # the published artifacts rather than trusting the stamp. Every failure direction falls through to
 # compiling: a changed key, a missing or unparseable stamp, an artifact that no longer matches it, a
 # missing audit output. `MAGE_TIKZ_POOL_FORCE=1` ignores the stamp entirely.
+#
+# `tools/latex_reuse.py` owns the five primitives this all rests on — the engine fingerprint, the
+# content digest, the key construction, the stamp record and the stamp guard. This pool hand-rolled
+# them when it landed, because the module was untracked and moving at that hour; the duplication
+# closed on 261106. What stays HERE is the part that is genuinely this pool's own: WHICH inputs the
+# key covers, which artifacts carry digests against which merely have to be present, and the
+# `--partial` guard. The module's `is_current` already takes several verified artifacts plus a
+# present-only list, which is the shape this call site needs.
 STAMP=BUILD/'candidates-pool-stamp.json'
 
 #: Shared inputs the pool's PDF and its audits derive from, beyond the per-figure sources: the TikZ
 #: preamble the driver inputs, the house style the font reference typesets under, and the gate code
 #: whose verdicts the stamp stands for.
+#:
+#: `tools/latex_reuse.py` is on this list for the same reason the book's section splits and the
+#: handbook's chapters put it on theirs: it now holds the key construction and the stamp guard, so an
+#: edit there changes what a stamp MEANS. Before the 261106 migration those primitives sat inside
+#: `tools/mage_tikz_review.py`, which this list already covered — moving them out without adding the
+#: module would have quietly dropped them from the key.
 _POOL_SHARED_INPUTS=('book/tikz/mage-figures.sty','latex/house.sty','latex/book-fonts.tex',
-                     'tools/mage_tikz_review.py','tools/latex_build.py','tools/tikz_audit.py',
-                     'tools/mage_tikz_typography.py','tools/mage_tikz_links.py')
+                     'tools/mage_tikz_review.py','tools/latex_build.py','tools/latex_reuse.py',
+                     'tools/tikz_audit.py','tools/mage_tikz_typography.py',
+                     'tools/mage_tikz_links.py')
 
-#: Audit outputs a reusing consumer must find on disk — the compile path's side effects, which a
-#: later reader (the publication pooling, the figure-review book) expects to be present.
-_POOL_ARTIFACTS=('candidates.pdf','pages.json','geometry-audit.json','typography-audit.json')
+#: The artifacts whose BYTES the stamp records, so a reuse re-digests them instead of trusting the
+#: stamp's word: the pooled PDF every consumer draws pages from, and the manifest that indexes it.
+_POOL_VERIFIED=('candidates.pdf','pages.json')
+
+#: Side effects a reusing consumer must merely find PRESENT. Re-digesting an audit report would say
+#: nothing useful — its contents are a function of the same inputs the key already covers — but its
+#: absence means the reuse is not equivalent to the compile, because a later reader expects the file.
+_POOL_PRESENT=('geometry-audit.json','typography-audit.json')
+
+#: Everything the compile path leaves behind, DERIVED from the two roles above rather than restated:
+#: a third spelling of this list is how one of the four stops being checked.
+_POOL_ARTIFACTS=_POOL_VERIFIED+_POOL_PRESENT
+
+#: Namespaces this pool's keys from the book's section splits and the handbook's chapters, which run
+#: the same construction over their own inputs.
+_POOL_CACHE_VERSION='pool-v1'
 
 #: Set by `compile_candidates()` so a caller — and the timing harness — can tell reuse from compile.
 _pool_reused=None
@@ -63,20 +91,6 @@ Body text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic
 \end{document}
 '''
 
-def _sha(data:bytes)->str:
-    return hashlib.sha256(data).hexdigest()
-
-def _engine_banner()->str:
-    """The compiler's own version line. A toolchain change must invalidate the pool: the frozen CI
-    image and this host run different LuaLaTeX builds, and their output is not interchangeable."""
-    engine=shutil.which('lualatex')
-    if not engine:return 'absent'
-    try:
-        return subprocess.run([engine,'--version'],capture_output=True,text=True,
-                              timeout=60).stdout.splitlines()[0].strip()
-    except (OSError,subprocess.SubprocessError,IndexError):
-        return 'unknown'
-
 def _pool_key_for(partial,paths,driver_text,font_driver_text):
     """The pool key, or None when this run must neither reuse nor stamp.
 
@@ -88,34 +102,49 @@ def _pool_key_for(partial,paths,driver_text,font_driver_text):
     if partial:return None
     return _pool_cache_key(paths,driver_text,font_driver_text)
 
-def _pool_cache_key(paths,driver_text,font_driver_text)->str:
-    """Digest every input the pool's PDF, manifest and audits derive from."""
-    parts=[b'pool-v1',driver_text.encode(),font_driver_text.encode(),
-           _engine_banner().encode(),
-           f'{mage_latex.FIGURE_WIDTH_BP}x{mage_latex.FIGURE_HEIGHT_BP}'.encode()]
+def _pool_asset_inputs(paths):
+    """Every per-figure and per-contract input the key digests, as repo-relative paths.
+
+    Repo-relative because `latex_reuse.cache_key` digests an asset by NAME as well as by content, so
+    a renamed figure is a change rather than a silent swap. Each figure contributes its own SOURCE
+    `.tex` — never a build intermediate: `rsvg-convert` is not byte-reproducible, so keying on what
+    the build regenerates from a figure churns the key every run and reuse then hits only the units
+    that have no figure at all. That cost two runs to find, in the book and again in the handbook.
+    """
+    assets=[]
     for path in paths:
-        parts.append(path.read_bytes())
-        parts.append((BASE/'receipts'/f'{path.stem}.json').read_bytes())
-    for name in ('inventory.json','layout-review.json','typography-review.json'):
-        parts.append((BASE/name).read_bytes())
-    for relative in _POOL_SHARED_INPUTS:
-        candidate=ROOT/relative
-        parts.append(candidate.read_bytes() if candidate.is_file() else b'<absent>')
-    return _sha(b'\x00'.join(parts))
+        assets.append(path.relative_to(ROOT).as_posix())
+        assets.append((BASE/'receipts'/f'{path.stem}.json').relative_to(ROOT).as_posix())
+    assets.extend((BASE/name).relative_to(ROOT).as_posix()
+                  for name in ('inventory.json','layout-review.json','typography-review.json'))
+    return assets
+
+def _pool_cache_key(paths,driver_text,font_driver_text)->str:
+    """Digest every input the pool's PDF, manifest and audits derive from.
+
+    The construction — contents never mtimes, the engine fingerprint, an absent input recorded as
+    absent — lives in `latex_reuse.cache_key`. What this function decides is the INPUT SET: the
+    per-figure sources and receipts, the three review contracts the audits read, the declared shared
+    inputs, and three texts that are not files at all (the generated driver, the font-metrics proof,
+    and the print envelope the envelope check compares against).
+    """
+    return latex_reuse.cache_key(
+        _POOL_CACHE_VERSION,shared_inputs=_POOL_SHARED_INPUTS,
+        asset_inputs=_pool_asset_inputs(paths),
+        texts=[driver_text,font_driver_text,
+               f'{mage_latex.FIGURE_WIDTH_BP}x{mage_latex.FIGURE_HEIGHT_BP}'])
 
 def _pool_reuse(key:str):
-    """Return `(pdf, manifest)` when a stamped, still-verifying pool matches `key`; else None."""
-    if os.environ.get('MAGE_TIKZ_POOL_FORCE'):return None
-    try:
-        stamp=json.loads(STAMP.read_text())
-    except (OSError,ValueError):
+    """Return `(pdf, manifest)` when a stamped, still-verifying pool matches `key`; else None.
+
+    `latex_reuse.is_current` holds the conditions and the argument for each: the key must match, the
+    verified artifacts must still digest to what the stamp recorded, the present-only side effects
+    must exist, and every failure direction falls through to compiling.
+    """
+    if not latex_reuse.is_current(STAMP,key,[BUILD/name for name in _POOL_VERIFIED],
+                                  present=[BUILD/name for name in _POOL_PRESENT],
+                                  force=latex_reuse.force_requested('MAGE_TIKZ_POOL_FORCE')):
         return None
-    if stamp.get('key')!=key:return None
-    for name in _POOL_ARTIFACTS:
-        if not (BUILD/name).is_file():return None
-    # Re-verify the artifacts themselves rather than trusting the stamp's word for them.
-    for name in ('candidates.pdf','pages.json'):
-        if stamp.get('digests',{}).get(name)!=_sha((BUILD/name).read_bytes()):return None
     try:
         manifest=json.loads((BUILD/'pages.json').read_text())
     except ValueError:
@@ -123,10 +152,14 @@ def _pool_reuse(key:str):
     return BUILD/'candidates.pdf',manifest
 
 def _pool_stamp_write(key:str)->None:
-    """Record the key and the artifact digests, AFTER every gate has passed."""
-    STAMP.write_text(json.dumps({'key':key,'digests':{name:_sha((BUILD/name).read_bytes())
-                                                      for name in ('candidates.pdf','pages.json')}},
-                                indent=2)+'\n')
+    """Record the key and the artifact digests, AFTER every gate has passed.
+
+    Through `latex_reuse.stamp_payload` rather than by hand, so this pool and the two book call sites
+    cannot drift on the record's shape — a second spelling of `digests` would read as a permanent
+    cache miss, silently.
+    """
+    STAMP.write_text(json.dumps(
+        latex_reuse.stamp_payload(key,[BUILD/name for name in _POOL_VERIFIED]),indent=2)+'\n')
 
 def inventory():
     records=json.loads((BASE/'inventory.json').read_text())

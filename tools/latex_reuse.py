@@ -19,9 +19,11 @@ Three concerns, deliberately in one module because they are one decision in prac
                structure check passes, so it asserts "these exact artifacts passed these exact
                checks on these exact inputs" — and a reuse re-digests the published artifacts
                instead of trusting the stamp's word for them. `is_current` takes one artifact or
-               several, plus paths that must merely be PRESENT, because a third call site (the
-               147-figure TikZ candidate pool, landed as `e98b58ece` with its own hand-rolled copy
-               of these primitives) verifies two artifacts and requires four audit side effects.
+               several, plus paths that must merely be PRESENT, because the third call site — the
+               MAGE book's TikZ candidate pool — verifies two artifacts and requires four audit side
+               effects. That pool landed the same day as this module (`e98b58ece`) with its own
+               hand-rolled copy of all five primitives, declining to build on an untracked module
+               that was moving at that hour; it calls them from here since 261106.
                `stamp_payload` emits the matching record, so a migrating caller never re-derives the
                format — a second spelling of `output_sha256` would read as a permanent cache miss,
                silently.

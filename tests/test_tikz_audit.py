@@ -1,6 +1,7 @@
 """Adversarial rendered controls: compilation success is not visual correctness."""
 import sys
 from pathlib import Path
+import json
 import unittest
 import shutil
 import tempfile
@@ -150,13 +151,19 @@ class TikzPoolReuseTests(unittest.TestCase):
     the second consumer reuses the first's artifact. These tests cover the channels an end-to-end run
     cannot reach safely: they build a FAKE input tree in a temp dir and never compile, so nothing here
     can edit a file a live sibling's build is reading, and nothing can reach `latex/build/tikz/`.
+
+    Since 261106 the five primitives underneath come from `tools/latex_reuse.py`, shared with the
+    book's section splits and the handbook's chapters. These tests therefore pin TWO things: the
+    input set and artifact roles this pool decides, and the record shape the shared module emits —
+    because a rename there would read as a permanent cache miss rather than as an error.
     """
 
     SHARED_SENTINEL='% pool shared input\n'
 
     def setUp(self):
-        import mage_tikz_review
+        import latex_reuse,mage_tikz_review
         self.pool=mage_tikz_review
+        self.reuse=latex_reuse
         self.root=Path(tempfile.mkdtemp(prefix='pool-key-'));self.addCleanup(shutil.rmtree,self.root,True)
         self.base=self.root/'book/tikz'
         (self.base/'figures').mkdir(parents=True);(self.base/'receipts').mkdir(parents=True)
@@ -170,15 +177,19 @@ class TikzPoolReuseTests(unittest.TestCase):
             target=self.root/relative;target.parent.mkdir(parents=True,exist_ok=True)
             target.write_text(self.SHARED_SENTINEL)
         self.build=self.root/'build';self.build.mkdir()
-        self._swap(ROOT=self.root,BASE=self.base,BUILD=self.build,
-                   STAMP=self.build/'candidates-pool-stamp.json',
-                   _engine_banner=lambda:'LuaHBTeX pinned-for-test')
+        self._swap(self.pool,ROOT=self.root,BASE=self.base,BUILD=self.build,
+                   STAMP=self.build/'candidates-pool-stamp.json')
+        # The shared module resolves repo-relative inputs against its OWN ROOT and fingerprints the
+        # engine itself, so both have to point at the fake tree too — otherwise the key would digest
+        # the real repo's shared inputs and every run would spawn `lualatex --version`.
+        self._swap(self.reuse,ROOT=self.root,
+                   engine_identity=lambda:'LuaHBTeX pinned-for-test')
 
-    def _swap(self,**values):
+    def _swap(self,module,**values):
         for name,value in values.items():
-            original=getattr(self.pool,name)
-            setattr(self.pool,name,value)
-            self.addCleanup(setattr,self.pool,name,original)
+            original=getattr(module,name)
+            setattr(module,name,value)
+            self.addCleanup(setattr,module,name,original)
 
     def key(self,driver='DRIVER',font='FONT'):
         return self.pool._pool_cache_key([self.figure],driver,font)
@@ -276,10 +287,39 @@ class TikzPoolReuseTests(unittest.TestCase):
 
     def test_reuse_fails_open_on_a_missing_or_corrupt_stamp(self):
         key=self.stamped()
-        self.pool.STAMP.unlink()
-        self.assertIsNone(self.pool._pool_reuse(key))
-        self.pool.STAMP.write_text('{not json')
-        self.assertIsNone(self.pool._pool_reuse(key))
+        for state,write in (('absent',None),('unparseable','{not json'),('zero-byte',''),
+                            ('key field absent','{"digests": {}}')):
+            with self.subTest(stamp=state):
+                if write is None:self.pool.STAMP.unlink()
+                else:self.pool.STAMP.write_text(write)
+                self.assertIsNone(self.pool._pool_reuse(key),f'a {state} stamp allowed a reuse')
+
+    # ── The artifact ROLES: digests for the pooled PDF and its manifest, presence for the audits ──
+
+    def test_the_four_artifacts_split_into_verified_and_present_with_nothing_dropped(self):
+        """A third spelling of the artifact list is how one of the four stops being checked."""
+        self.assertEqual(self.pool._POOL_ARTIFACTS,
+                         self.pool._POOL_VERIFIED+self.pool._POOL_PRESENT)
+        self.assertEqual(set(self.pool._POOL_VERIFIED)&set(self.pool._POOL_PRESENT),set())
+
+    def test_the_stamp_records_a_digest_for_every_verified_artifact_and_no_other(self):
+        """Pins the record SHAPE the shared module emits. A rename of `digests` there would read as
+        a permanent cache miss rather than as an error, which is the failure this catches."""
+        self.stamped()
+        record=json.loads(self.pool.STAMP.read_text())
+        self.assertEqual(set(record),{'key','digests'})
+        self.assertEqual(set(record['digests']),set(self.pool._POOL_VERIFIED))
+
+    def test_a_present_only_audit_output_is_not_digested(self):
+        """Deliberate, and unchanged by the migration: an audit report's contents are a function of
+        the inputs the key already covers, so re-digesting it would add nothing. Its ABSENCE still
+        refuses the reuse — the test above this one holds that half."""
+        key=self.stamped()
+        for name in self.pool._POOL_PRESENT:
+            with self.subTest(artifact=name):
+                (self.build/name).write_text('{"findings": ["edited after the stamp"]}')
+                self.assertIsNotNone(self.pool._pool_reuse(key),
+                                     f'{name} is digested, so it is a verified artifact not a present one')
 
     def test_a_partial_run_neither_reuses_nor_stamps(self):
         """`--partial` compiles a SUBSET. It must not inherit a full pool, and a later full consumer
