@@ -137,7 +137,7 @@ import time
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _hook_root import committing_toplevel
+from _hook_root import FORCE_STAGED_DERIVED_VIEWS, committing_toplevel, strip_generated
 
 ROOT = committing_toplevel()
 
@@ -216,7 +216,16 @@ def _changed_paths() -> set[str] | None:
         if out is None:                # unreadable ref (e.g. remote sha not fetched)
             return None
         paths.update(p for p in out.splitlines() if p)
-    return paths
+    # Drop the projections `pre-commit` force-stages into every commit. They carry no authorial intent,
+    # so they must not decide which renders run. See FORCE_STAGED_DERIVED_VIEWS for why this costs no
+    # coverage; the line below reports the subtraction rather than performing it silently, because a
+    # scope that quietly shrinks is the failure mode this hook's asymmetric scope rule exists to avoid.
+    authored, generated = strip_generated(paths)
+    if generated:
+        print(f"pre-push: {len(generated)} force-staged projection(s) excluded from scope "
+              f"({', '.join(sorted(p.rsplit('/', 1)[-1] for p in generated))}); "
+              "their freshness gates run unconditionally in `site build` + `tier1`", file=sys.stderr)
+    return authored
 
 
 def _touches(paths: set[str] | None, prefixes: tuple[str, ...]) -> bool:

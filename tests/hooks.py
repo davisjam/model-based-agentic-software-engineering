@@ -109,8 +109,110 @@ def _source_findings() -> list[str]:
 def check_hook_operates_on_committing_tree():
     """The pre-commit hook resolves its root from the committing tree and stages only under that root."""
     issues = (_resolution_findings() + _source_findings() + _latex_scope_findings()
-              + _projection_findings() + _shared_artifact_findings())
+              + _projection_findings() + _shared_artifact_findings()
+              + _generated_scope_findings())
     return (FAIL if issues else PASS), issues
+
+
+#: The tools that render or verify a print PDF. If none of them reads a `book-models/` artifact, that
+#: artifact cannot change a PDF, so excluding it from the pre-push book scope costs no render coverage.
+_PDF_TOOLING = ("book/build_book.py", "tools/mage_latex.py", "tools/latex_build.py",
+                "tools/check_print_toolchain.py", "book/book_ir.py")
+
+
+def _generated_scope_findings() -> list[str]:
+    """Hold the pre-commit/pre-push join over the FORCE-STAGED projections, three ways.
+
+    `pre-commit` regenerates and force-stages derived `book-models/` views into whatever commit is being
+    made, and `book-models/` is a `book`-scope prefix — so until 261106 a push of nothing but decks
+    rendered the whole book, because the commit hook had put book-ish paths in it. `pre-push` now
+    subtracts exactly `_hook_root.FORCE_STAGED_DERIVED_VIEWS` before resolving scope.
+
+    That split is only safe while three things stay true, and all three are mechanical:
+      (a) PARITY — every artifact the commit hook force-stages is declared in the tuple. A new `_regen`
+          call that forgets it silently re-inflates every push's scope.
+      (b) NO RENDER CONSUMER — no print-PDF tool reads any excluded artifact. The moment one does, the
+          exclusion starts hiding a real book-input change.
+      (c) DISCRIMINATION — the exclusion is by exact path, so the HAND-AUTHORED `*_declared.json` /
+          `nav-model.json` siblings in the same directory still reach the book scope.
+    """
+    issues: list[str] = []
+    path = os.path.join(ROOT, "hooks", "pre-commit")
+    with open(path, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read(), filename=path)
+
+    # (a) PARITY. Two staging routes reach `book-models/`: the `_regen(<script>, <artifact>)` helper, and
+    # a direct `git add` of a literal path. Read both from the STAGING CALLS rather than from every string
+    # in the file, so a path merely mentioned in a docstring is never mistaken for a force-stage.
+    staged = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        if isinstance(node.func, ast.Name) and node.func.id == "_regen" and len(node.args) == 2:
+            try:
+                staged.add("book-models/" + ast.literal_eval(node.args[1]))
+            except ValueError:
+                issues.append(f"hooks/pre-commit:{node.lineno} _regen artifact is not a literal — the "
+                              "force-staged set cannot be derived, so the pre-push join cannot be held")
+            continue
+        argv = node.args[0] if node.args else None
+        if not isinstance(argv, (ast.List, ast.Tuple)):
+            continue
+        literals = [e.value for e in argv.elts
+                    if isinstance(e, ast.Constant) and isinstance(e.value, str)]
+        if "git" not in literals or "add" not in literals:
+            continue
+        staged.update(v for v in literals if v.startswith("book-models/"))
+    declared = set(_hook_root.FORCE_STAGED_DERIVED_VIEWS)
+    for missing in sorted(staged - declared):
+        issues.append(f"hooks/pre-commit force-stages {missing} but _hook_root."
+                      "FORCE_STAGED_DERIVED_VIEWS omits it — every commit carrying it would make "
+                      "pre-push render the whole book")
+    for extra in sorted(declared - staged):
+        issues.append(f"_hook_root.FORCE_STAGED_DERIVED_VIEWS declares {extra} but pre-commit no longer "
+                      "force-stages it — a stale exclusion can hide a real hand edit")
+
+    # (b) NO RENDER CONSUMER.
+    for artifact in sorted(declared):
+        name = artifact.split("/", 1)[1]
+        for tool in _PDF_TOOLING:
+            tool_path = os.path.join(ROOT, tool)
+            if not os.path.isfile(tool_path):
+                continue
+            with open(tool_path, encoding="utf-8") as fh:
+                if name in fh.read():
+                    issues.append(f"{tool} reads {artifact}, which pre-push excludes from the book "
+                                  "scope — the exclusion would hide a genuine PDF-input change. Drop it "
+                                  "from FORCE_STAGED_DERIVED_VIEWS or stop reading it in the renderer.")
+
+    # (c) DISCRIMINATION, against the real selector rather than a restatement of it.
+    pre_push = os.path.join(ROOT, "hooks", "pre-push")
+    with open(pre_push, encoding="utf-8") as fh:
+        pp_tree = ast.parse(fh.read(), filename=pre_push)
+    selected = [n for n in pp_tree.body
+                if (isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "SCOPES"
+                                                      for t in n.targets))
+                or (isinstance(n, ast.FunctionDef) and n.name == "_touches")]
+    namespace: dict = {}
+    exec(compile(ast.Module(body=selected, type_ignores=[]), pre_push, "exec"), namespace)
+    scopes, touches = namespace["SCOPES"], namespace["_touches"]
+
+    def book_fires(paths: set[str]) -> bool:
+        authored, _ = _hook_root.strip_generated(paths)
+        return touches(authored, scopes["book"])
+
+    if book_fires(declared):
+        issues.append("pre-push: a push of ONLY force-staged projections still triggers the book "
+                      "scope — the exclusion is not reaching the selector")
+    if not book_fires(declared | {"book/references.bib"}):
+        issues.append("pre-push: the exclusion swallowed a real book edit pushed alongside the "
+                      "projections — it must subtract paths, never short-circuit the scope")
+    for authored_sibling in ("book-models/nav-model.json", "book-models/chapter_identity_declared.json",
+                             "book-models/chapter_shape_declared.json"):
+        if not book_fires({authored_sibling}):
+            issues.append(f"pre-push: hand-authored {authored_sibling} no longer triggers the book "
+                          "scope — the exclusion is matching by shape instead of exact path")
+    return issues
 
 
 def _shared_artifact_findings() -> list[str]:

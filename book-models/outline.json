@@ -7,7 +7,7 @@
     "derived_ids": 213,
     "missing_topic_sentence": 6,
     "sections_drained": 168,
-    "paragraph_points": 775
+    "paragraph_points": 774
   },
   "chapters": [
     {
@@ -1308,44 +1308,39 @@
           "section_id": "modeling-makes-properties-available-to-engineering",
           "level": 2,
           "heading_text": "Modeling Makes Properties Available to Engineering",
-          "topic_sentence": "A model does not govern the system merely by existing.",
+          "topic_sentence": "Modeling makes a property explicit; engineers decide how to use it.",
           "id_source": "derived",
           "block_index": 66,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
-              "text": "Models make properties explicit; whether to enforce them is a separate decision.",
+              "text": "A worker-pool model makes quantities and capacity comparisons explicit; engineers still choose whether to use them for planning, admission tuning, or a hard refusal.",
               "block_index": 67
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
               "text": "A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms.",
-              "block_index": 70
+              "block_index": 69
             },
             {
               "slug": "relational-obligations-need-enough-representation",
-              "text": "Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance.",
-              "block_index": 73
-            },
-            {
-              "slug": "alignment-does-not-require-a-separately-represented-model",
-              "text": "Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement.",
-              "block_index": 76
+              "text": "Local syntactic obligations can often be checked directly; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need representations that expose their system relationships.",
+              "block_index": 72
             },
             {
               "slug": "docable-models-arose-around-expensive-questions",
               "text": "Models are justified by engineering questions whose relevant distinctions would otherwise be expensive or unsafe to reconstruct; shared identities connect views where a decision crosses them.",
-              "block_index": 78
+              "block_index": 75
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models preserve decisions, expose relationships, and support analysis; the next engineering question is which obligations to enforce and through what evidence and mechanisms.",
-              "block_index": 86
+              "block_index": 82
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient.",
-              "block_index": 87
+              "block_index": 83
             }
           ]
         }

@@ -72,7 +72,7 @@ import sys
 
 HOOK_FILE = os.path.abspath(__file__)
 sys.path.insert(0, os.path.dirname(HOOK_FILE))
-from _hook_root import committing_toplevel, resolve  # noqa: E402 — sits beside the hook, so it is reachable before the root is known
+from _hook_root import FORCE_STAGED_DERIVED_VIEWS, committing_toplevel, resolve  # noqa: E402 — sits beside the hook, so it is reachable before the root is known
 
 ROOT, IS_PUBLISHER = resolve(HOOK_FILE, committing_toplevel())
 
@@ -143,7 +143,18 @@ _catalog("validate")   # refuse to build/commit an invalid schema
 
 def _regen(script: str, artifact: str) -> None:
     """Regenerate a derived-view model artifact from the book source and stage it. Fails the commit if
-    the generator errors."""
+    the generator errors.
+
+    The membership assert HOLDS A JOIN: `pre-push` subtracts exactly `FORCE_STAGED_DERIVED_VIEWS` before
+    resolving scope, so an artifact force-staged here and missing there silently re-inflates every push's
+    scope — the defect this pair was split to fix. Failing at the declaration is the cheap end of that.
+    """
+    staged = os.path.join("book-models", artifact)
+    if staged not in FORCE_STAGED_DERIVED_VIEWS:
+        print(f"pre-commit: {staged} is force-staged here but absent from "
+              "_hook_root.FORCE_STAGED_DERIVED_VIEWS — add it there, or pre-push will treat every commit "
+              "carrying it as a book-input change and run the full LaTeX renders.")
+        sys.exit(1)
     r = subprocess.run([sys.executable, os.path.join("book-models", script), "regenerate"], cwd=ROOT)
     if r.returncode:
         sys.exit(r.returncode)

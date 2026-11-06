@@ -20,6 +20,44 @@ from __future__ import annotations
 import os
 import subprocess
 
+#: The derived view artifacts `pre-commit` REGENERATES AND FORCE-STAGES into whatever commit is being
+#: made (its `_regen` calls plus the models-view render). They are projections of the book source, never
+#: hand-authored, and an author who edits a deck gets them in the commit without asking.
+#:
+#: `pre-push` subtracts them before resolving scope, and the reason is a CORRECTNESS one before it is a
+#: speed one: `book-models/` is a `book`-scope prefix (`nav-model.json` and `chapter_identity_declared.json`
+#: really are PDF inputs), so a force-staged projection made every deck push look like it had touched book
+#: inputs. Measured 261106 — a 23-path push of nothing but `.pptx` decks, `tools/`, and `CLAUDE.md` pulled
+#: in the print toolchain, the book static checks and the full book PDF render on the strength of these five
+#: alone, and spent ~24 minutes validating a book nobody had edited.
+#:
+#: Subtracting them loses NO coverage. None is read by `book/build_book.py`, `tools/mage_latex.py`,
+#: `tools/latex_build.py` or `tools/check_print_toolchain.py` — verified by grep 261106 — so none can change
+#: a PDF. Each one's drift/freshness gate lives in `catalog.py validate` (the `site build` phase) or
+#: `catalog_tests.py` (`tier1`), and BOTH of those phases run UNCONDITIONALLY on every push. The checks that
+#: actually police these files are untouched; only the expensive renders they could never affect go away.
+FORCE_STAGED_DERIVED_VIEWS: tuple[str, ...] = (
+    "book-models/chapter-shape.json",
+    "book-models/chapter_identity.json",
+    "book-models/metaphor-slogan-index.json",
+    "book-models/models-view.html",
+    "book-models/outcomes.json",
+    "book-models/outline.json",
+    "book-models/projection-index.json",
+    "book-models/reverse_index.json",
+)
+
+
+def strip_generated(paths: set[str]) -> tuple[set[str], set[str]]:
+    """Split a changed-path set into (paths that carry authorial intent, force-staged projections).
+
+    Exact matches only. A glob here would be the `*.html` mistake in a new costume: `book-models/` also
+    holds HAND-AUTHORED declarations (`chapter_identity_declared.json`, `nav-model.json`) whose edits MUST
+    keep reaching the book scope, so the set is enumerated and nothing is matched by shape.
+    """
+    generated = {p for p in paths if p in set(FORCE_STAGED_DERIVED_VIEWS)}
+    return paths - generated, generated
+
 
 def resolve(hook_file: str, toplevel: str) -> tuple[str, bool]:
     """Return (operating root, does the committing tree own this hook?).
