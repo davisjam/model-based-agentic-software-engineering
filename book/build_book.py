@@ -6852,6 +6852,90 @@ def _split_texmf_cache(worker: int) -> pathlib.Path:
     return cache
 
 
+# Everything OUTSIDE a section's own driver and chapters that can still change its PDF. Hashed into
+# the cache key below, so an edit to the house style or the structure checker recompiles every section
+# rather than silently reusing a PDF the new rules were never applied to. Kept as an explicit tuple
+# because the alternative — a glob over `latex/` — would quietly stop covering a file that moved.
+_SECTION_KEY_INPUTS = (
+    "latex/house.sty",            # the shared class both books compile against
+    "latex/book-fonts.tex",       # font selection: changes metrics, hence pagination
+    "book/latex/mageplainnat.bst",  # bibliography style
+    "book/book-manifest.json",    # title/author/subtitle, rendered onto the cover page
+    "tools/latex_build.py",       # the pass loop AND the diagnostics allow-list — a gate input
+    "tools/pdf_structure.py",     # check_pdf: the per-section structure gate itself
+)
+
+
+@functools.lru_cache(maxsize=1)
+def _engine_identity() -> str:
+    """The LuaLaTeX binary and its version banner, so a TeX Live upgrade invalidates every stamp."""
+    engine = shutil.which("lualatex")
+    if not engine:
+        return "lualatex:absent"
+    try:
+        result = subprocess.run([engine, "--version"], capture_output=True, text=True, timeout=120)
+        banner = (result.stdout or "").splitlines()[0] if result.stdout else ""
+    except (OSError, subprocess.SubprocessError, IndexError):
+        banner = ""
+    return f"{engine}|{banner}"
+
+
+def _file_digest(path: pathlib.Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _section_cache_key(driver_text: str, chapter_texts: "list[str]", bibliography: str,
+                       assets: "list[str]") -> str:
+    """Digest every input a section's PDF is derived from — contents, never mtimes.
+
+    An mtime key would go wrong in both directions here: `prepare_pdf` rewrites each section's chapter
+    `.tex` on every run (it resolves external `\\autoref`s in place), so mtimes always look new, and a
+    restored file can look old. Content is the only honest key.
+
+    The set is the driver, the chapters it `\\input`s, the bibliography projection, every graphic the
+    chapters include (the figure pool is content-addressed by filename, but hashing the bytes also
+    catches a corrupted or hand-replaced pool), the shared inputs above, and the engine's identity.
+    """
+    digest = hashlib.sha256(b"section-pdf-cache-v1")
+    digest.update(_engine_identity().encode())
+    for relative in _SECTION_KEY_INPUTS:
+        path = ROOT / relative
+        digest.update(relative.encode())
+        digest.update(path.read_bytes() if path.is_file() else b"<absent>")
+    for asset in assets:
+        path = ROOT / asset
+        digest.update(asset.encode())
+        digest.update(path.read_bytes() if path.is_file() else b"<absent>")
+    digest.update(driver_text.encode())
+    for text in chapter_texts:
+        digest.update(text.encode())
+    digest.update(bibliography.encode())
+    return digest.hexdigest()
+
+
+def _section_is_current(stamp: pathlib.Path, key: str, destination: pathlib.Path) -> bool:
+    """True only when THIS PDF, byte for byte, is the one that passed its checks on THESE inputs.
+
+    Three conditions, all required. The key must match, so any input change recompiles. The published
+    PDF must exist and still digest to what the stamp recorded, so a deleted, truncated or hand-swapped
+    artifact recompiles. And the stamp is only ever written AFTER `check_pdf` passes, which is what
+    makes a reuse sound rather than merely fast: the gate's verdict is a function of the inputs, and
+    every input is in the key. `MAGE_PDF_SPLIT_FORCE=1` ignores stamps entirely.
+
+    Outside the key, and so NOT covered: the system font files LuaLaTeX resolves by name. The
+    unconditional whole-book render is what would catch a change there, and it runs either way.
+    """
+    if os.environ.get("MAGE_PDF_SPLIT_FORCE"):
+        return False
+    if not destination.is_file():
+        return False
+    try:
+        record = json.loads(stamp.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False  # no stamp, or an unreadable one: compile. Fail-open is the safe direction.
+    return record.get("key") == key and record.get("output_sha256") == _file_digest(destination)
+
+
 def build_pdf_split() -> int:
     """Compile each review section through the same native LaTeX assembly, several at a time.
 
@@ -6863,9 +6947,17 @@ def build_pdf_split() -> int:
     invocations. There is no `-j` for ONE LaTeX document; there is for twenty-one of them.
 
     What is NOT parallel, and why: driver PREPARATION stays serial. `prepare_pdf` reads the whole-book
-    `book_ir` record set and the full build's generated chapter `.tex`, and it is cheap precisely because
-    the full render already ran — so it buys nothing from a pool and would race the shared book record
-    assembly. Only the compile-and-check half, which is all of the cost, fans out.
+    `book_ir` record set and the full build's generated chapter `.tex`, and it would race that shared
+    assembly if fanned out. On a quiet host it is also cheap (3-7s a section); under fleet load it is
+    NOT — measured 261106 at load 80-150, the serial prepare of 21 sections ran past twenty minutes on
+    its own, which the pool cannot touch. See `.scratch/prepush-pool-measured-261106.md`.
+
+    CHANGE-AWARE: a section whose inputs are byte-identical to the last run that PASSED reuses its PDF
+    instead of recompiling. That is the object-file model, and the section is already the right unit for
+    it — each one is a separate document with its own driver and output, so no `\\includeonly` surgery is
+    needed to get per-section granularity. `_section_cache_key` hashes every input; the stamp is written
+    only after the gate passes; `MAGE_PDF_SPLIT_FORCE=1` recompiles everything. The author's common case
+    — edit one chapter, refresh the review PDFs — then pays one compile rather than twenty-one.
 
     Same commands, same checks, same failure texts as the serial loop. Each section's output is buffered
     and printed in SECTION ORDER rather than completion order, so the log reads identically to the serial
@@ -6877,11 +6969,18 @@ def build_pdf_split() -> int:
     from latex_build import compile_tex
     from pdf_structure import check_pdf
 
+    import mage_assets
+
     doc = book_ir.parse_book(include_appendices=True, for_print=True)
     sections = _pdf_split_sections(doc)
     base = pathlib.Path(_PDF_FILENAME).stem
+    # Prune ORPHANS only — a PDF whose section no longer exists under that index and name. The loop
+    # here used to delete every section PDF up front, which would destroy the very artifact the cache
+    # exists to reuse (and leaves the author with nothing on disk if a later section fails).
+    expected = {f"{base}-{index:02d}-{suffix}.pdf" for index, (suffix, _) in enumerate(sections)}
     for old in HERE.glob(f"{base}-[0-9][0-9]-*.pdf"):
-        old.unlink()
+        if old.name not in expected:
+            old.unlink()
 
     failures = []
     prepared = []
@@ -6912,17 +7011,35 @@ def build_pdf_split() -> int:
                 cache_of_thread[key] = _split_texmf_cache(next(cache_ids))
             return cache_of_thread[key]
 
+    reused = []
+
     def compile_section(task):
         suffix, name, driver = task
         try:
-            pdf = compile_tex(driver, texmf_cache=_my_cache())
-            driver_text, chapter_texts, _ = mage_latex.pdf_sources(driver)
+            driver_text, chapter_texts, bibliography = mage_latex.pdf_sources(driver)
             source = driver_text + "\n" + "\n".join(chapter_texts)
+            assets = sorted({asset for text in chapter_texts
+                             for _, _, _, asset in mage_assets.graphics(text)})
+            key = _section_cache_key(driver_text, chapter_texts, bibliography, assets)
+            destination = HERE / (name + ".pdf")
+            stamp = driver.with_suffix(".cache.json")
+            if _section_is_current(stamp, key, destination):
+                reused.append(suffix)
+                return suffix, (f"Section PDF: {destination.name} "
+                                f"({_pdf_page_count(destination)} pages) — reused, inputs unchanged"), None
+            pdf = compile_tex(driver, texmf_cache=_my_cache())
             check_pdf(pdf, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
-            destination = HERE / (name + ".pdf")
             shutil.copy2(pdf, destination)
-            return suffix, f"Section PDF: {destination.name} ({_pdf_page_count(destination)} pages)", None
+            pages = _pdf_page_count(destination)  # one `pdfinfo` per section, not two
+            # Stamped only now — after the compile converged, the diagnostics allow-list passed, and
+            # the structure gate passed. The stamp therefore asserts "this exact PDF passed on these
+            # exact inputs", which is the claim a later reuse relies on.
+            stamp.write_text(json.dumps({"key": key,
+                                         "output_sha256": _file_digest(destination),
+                                         "pages": pages}, indent=2) + "\n",
+                             encoding="utf-8")
+            return suffix, f"Section PDF: {destination.name} ({pages} pages)", None
         except (RuntimeError, ValueError, OSError) as error:
             return suffix, None, f"ERROR: section {suffix}: {error}"
 
@@ -6934,7 +7051,7 @@ def build_pdf_split() -> int:
             else:
                 print(line)
     print(f"Native section PDFs: {len(sections) - len(failures)}/{len(sections)} passed "
-          f"({jobs} worker(s))")
+          f"({len(prepared) - len(reused)} compiled, {len(reused)} reused; {jobs} worker(s))")
     return 1 if failures else 0
 
 
