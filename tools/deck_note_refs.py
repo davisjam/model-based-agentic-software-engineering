@@ -876,6 +876,17 @@ _DECL_BOUNDARY = re.compile(
 #: A unit LABEL. On a divider this is the deck labelling its own structure; on an agenda slide
 #: several appear at once, which is how a deck promises a unit it may not contain.
 _DECL_LABEL = re.compile(rf"\b({_UNIT})\s+({_ORD})\b")
+#: The SLIDE surface matches case-INSENSITIVELY and ANCHORED to the start of a single shape's
+#: text; the notes surface matches caps-only, anywhere. Both halves are measured, not stylistic:
+#:   - case-insensitive, because one deck writes its dividers `Part I` … `Part IV` in title
+#:     case and the caps-only matcher missed every one (the divider shape set happened to cover
+#:     it — right by luck). Notes stay caps-only because notes are PROSE, where `Section 2` is
+#:     usually a reference to a unit rather than a claim to head one.
+#:   - ANCHORED to one shape, because a divider's label IS its own shape (`Section 2`,
+#:     `SECTION 2 · CASE STUDY`). Unanchored over the joined slide text, an incidental `Part 0`
+#:     inside a sentence on a content slide became a declared head.
+_DECL_LABEL_ANYCASE = re.compile(rf"\b({_UNIT})\s+({_ORD})\b", re.I)
+_DECL_LABEL_ANCHORED = re.compile(rf"^\s*({_UNIT})\s+({_ORD})\b", re.I)
 _DECL_BUILD = re.compile(r"\bBUILD\b(?!ing)[^\n]{0,200}")
 _DECL_BUILD_SHAPE = re.compile(r"\b([A-Za-z]*BuildStep\w*)\b")
 _DECL_REVEAL = re.compile(
@@ -895,8 +906,15 @@ _ORD_VALUE.update({"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7
 
 
 def _ord_value(token: str) -> "int | None":
+    """A unit ordinal, or None. Units in this corpus are 1-INDEXED, so 0 is not one.
+
+    That matters: one slide describes ANOTHER document's structure — `Part 0 · Mission`,
+    `Part A`, `Part B` — and `Part 0` alone matched the ordinal pattern, making a content
+    slide the declared head of a unit the deck does not have.
+    """
     token = token.lower()
-    return int(token) if token.isdigit() else _ORD_VALUE.get(token)
+    val = int(token) if token.isdigit() else _ORD_VALUE.get(token)
+    return val if val is not None and val >= 1 else None
 
 
 def declared_structure(deck: dict) -> dict:
@@ -918,7 +936,11 @@ def declared_structure(deck: dict) -> dict:
 
     for s in deck["slides"]:
         notes, on_slide = s["notes"] or "", " | ".join(s["texts"])
-        for surface, text in (("notes", notes), ("slide", on_slide)):
+        # A PARKED slide neither heads a unit nor promises one: the parked tails of four decks
+        # hold retired divider slides still labelled `Section 2` / `Section 5`, which read
+        # both as heads at positions no section starts at AND as promises nothing fulfils.
+        for surface, text in ((("notes", notes), ("slide", on_slide)) if not s["hidden"]
+                              else ()):
             # ACT is the COURSE's division, not the deck's: an `ACT II` chip on a closing
             # slide says where the lecture sits in the term. Reading it as a deck unit put
             # three spurious heads on one deck and one on another (measured), so it is
@@ -928,16 +950,26 @@ def declared_structure(deck: dict) -> dict:
                 if val is None or m.group(2).upper() == "ACT":
                     continue
                 promised.setdefault(val, []).append((s["position"], surface))
-                if m.group(1).lower().startswith(("open", "begin", "start")):
+                if (m.group(1).lower().startswith(("open", "begin", "start"))
+                        and not s["hidden"]):
                     heads.append({"position": s["position"], "unit": m.group(2).upper(),
                                   "ordinal": val, "surface": surface, "evidence": m.group(0)})
+            rx = _DECL_LABEL_ANYCASE if surface == "slide" else _DECL_LABEL
+            mentions = [(m.group(1).upper(), _ord_value(m.group(2)), m.group(0))
+                        for m in rx.finditer(text)]
+            for unit, val, _raw in mentions:
+                if val is not None and unit != "ACT":
+                    promised.setdefault(val, []).append((s["position"], surface))
+            if surface != "slide" or s["hidden"]:
+                continue
+            # A PARKED slide heads nothing — the parked tails of three decks hold old divider
+            # slides still labelled `Section 2` / `Section 5`, which read as declared heads at
+            # positions no section starts at.
             labels = [(m.group(1).upper(), _ord_value(m.group(2)), m.group(0))
-                      for m in _DECL_LABEL.finditer(text)]
+                      for t in s["texts"] for m in [_DECL_LABEL_ANCHORED.match(t)] if m]
             labels = [l for l in labels if l[1] is not None and l[0] != "ACT"]
-            for _unit, val, _raw in labels:
-                promised.setdefault(val, []).append((s["position"], surface))
             # ONE label on a slide labels THAT slide; several label the deck (an agenda).
-            if len(labels) == 1 and surface == "slide":
+            if len(labels) == 1:
                 unit, val, raw = labels[0]
                 heads.append({"position": s["position"], "unit": unit, "ordinal": val,
                               "surface": surface, "evidence": raw})
@@ -1033,6 +1065,21 @@ def declared_structure(deck: dict) -> dict:
         contradictions.append(
             f"{len(orphans)} slide(s) belong to NO section: {orphans[:12]}"
             + (" (first 12)" if len(orphans) > 12 else ""))
+    # Two slides claiming the SAME unit ordinal. One deck labels positions 9 and 15 both
+    # `SECTION 2` — `· CASE STUDY` and `· FROM CASE TO PRINCIPLE` — while the package gives
+    # each its own section, so the deck and its metadata disagree on how many units it has.
+    same: dict[tuple, list[int]] = {}
+    for h in heads:
+        if h["ordinal"] is not None:
+            same.setdefault((h["unit"], h["ordinal"]), []).append(h["position"])
+    for (unit, val), ps in sorted(same.items()):
+        # Adjacent positions are the house form, not a duplicate: the divider labels the unit
+        # and the slide behind it says `Open Part II` in its notes. Only a SEPARATED pair is a
+        # disagreement about how many units the deck has.
+        if len(ps) > 1 and max(ps) - min(ps) > 1:
+            contradictions.append(
+                f"{unit} {val} is declared at {sorted(ps)} — two slides claim to head the "
+                f"same unit, while the package carries {len(deck['sections'])} section(s)")
     declared_ords = {h["ordinal"] for h in heads if h["ordinal"] is not None}
     for val in sorted(promised):
         if val not in declared_ords and declared_ords and val > min(declared_ords):
