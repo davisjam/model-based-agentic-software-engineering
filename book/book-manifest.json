@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of truth for the book's cover identity. Consumed by catalog.py (site landing hero) and book/build_book.py (print cover, web front page, footers). Edit here once; all render sites follow. An empty string renders nothing (e.g. subtitle omitted). The copyright line and the PhD byline are DERIVED from author + credential + copyright_years, so the name is stated once.",
+  "_comment": "Single source of truth for the book's cover identity AND its build-artifact scope. Consumed by catalog.py (site landing hero) and book/build_book.py (print cover, web front page, footers, and which artifacts a run emits). Edit here once; all render sites follow. An empty string renders nothing (e.g. subtitle omitted). The copyright line and the PhD byline are DERIVED from author + credential + copyright_years, so the name is stated once.",
   "kicker": "The MAGE Method",
   "title": "Model-Based Agentic Engineering",
   "_cover_display_title_comment": "The DOMINANT display word on the print cover's title lockup; `title` above renders beneath it as the tracked-caps expansion line. Cover-only; every other surface uses `title` verbatim.",
@@ -11,5 +11,33 @@
   "edition": "1",
   "first_published": "2026-07-22",
   "last_updated": "2026-07-26",
-  "pdf_filename": "mage-book.pdf"
+  "pdf_filename": "mage-book.pdf",
+
+  "_build_artifacts_comment": "ARTIFACT SCOPE — the one declaration of which build outputs ship and which never leave the author's machine. A PUBLISHED artifact is built by the Pages workflow and rides the site artifact into the deployed site. A LOCAL-ONLY artifact is built for the author's own review: never built in CI, never uploaded, never served. Every surface DERIVES from this list instead of restating it. book/build_book.py skips a local-only artifact on a publication run, so the pre-push hook and the Pages workflow run the identical `--pdf` command and cannot disagree about scope. The workflow's book-editions upload carries only the published globs. tests/test_mage_pdf_splits.py fails if either surface drifts from this list, and `--no-split` remains the manual full-edition-only escape for a local caller that wants the shipped editions alone.",
+
+  "_build_artifacts_gate_consequence": "What a LOCAL-ONLY scope costs, stated here because this is where the next reader looks. Gates that only the local-only build runs stop being verified before transfer. For the section PDFs those are the per-section LaTeX diagnostics and the per-section PDF structure checks over the split assembly — each section's figure and table numbering offsets, and its own table of contents. They now run only in the author's pre-push on a book-scope push. So a `--no-verify` push, or a push from a checkout where the sections were never built, can ship a split-assembly regression unseen. The author accepted that on 261106: the artifact is unpublished, so the regression cannot reach a reader. Two things narrow it. The reuse key and the stamp guard stay CI-verified, because the unit tier (tests.test_mage_pdf_splits) still runs in the workflow. And the whole-book render, which shares every chapter source and every shared LaTeX input with the sections, still runs unconditionally in CI. This is a NAMED EXCEPTION to the repo's standing rule that CI holds the unconditional superset of pre-push; both the rule and the exception are written in CLAUDE.md section 'Where a new check runs — the placement rule'.",
+
+  "build_artifacts": [
+    {
+      "id": "whole-book-pdf",
+      "scope": "published",
+      "glob": "book/mage-book.pdf",
+      "builder": "book/build_book.py --pdf",
+      "note": "The print edition the landing's Download PDF button serves. Its glob names `pdf_filename` above; the test asserts the two agree."
+    },
+    {
+      "id": "whole-book-epub",
+      "scope": "published",
+      "glob": "book/mage-book.epub",
+      "builder": "book/book_epub.py, run by build_book.py --pdf",
+      "note": "The reflowable EPUB3 edition, packed from the same rendered bodies as the web book."
+    },
+    {
+      "id": "section-pdfs",
+      "scope": "local-only",
+      "glob": "book/mage-book-*.pdf",
+      "builder": "book/build_book.py --pdf, via build_pdf_split()",
+      "note": "One PDF per logical section: the front matter, each chapter, the conclusion, the back matter, the appendices combined, and each lettered appendix. The author opens one chapter instead of a 650-page book. Change-aware reuse makes an unchanged section a fraction of a second, so refreshing all of them on a book-scope push costs almost nothing locally. CI built AND published these until 261106 — 21 files live on the site that nothing linked to. The author withdrew them: the review need is local, so the artifact is local."
+    }
+  ]
 }

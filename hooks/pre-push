@@ -467,7 +467,12 @@ def _phase_book_static(ctx: _PhaseCtx) -> str | None:
 
 
 def _phase_book_pdf(ctx: _PhaseCtx) -> str | None:
-    ctx.echo("pre-push: book/build_book.py --pdf (full PDF, EPUB, and all partial PDFs + integrity checks) …")
+    # The SAME command the Pages workflow runs. What it emits is derived from the artifact scope in
+    # book/book-manifest.json, not from a flag here: the per-section review PDFs are declared
+    # LOCAL-ONLY, so this run builds them (change-aware reuse makes an unchanged section ~0s) and the
+    # publication run does not. Keeping the command identical is what stops the two surfaces drifting.
+    ctx.echo("pre-push: book/build_book.py --pdf (published PDF + EPUB, plus the local-only section "
+             "PDFs, + integrity checks) …")
     if ctx.py("book/build_book.py", "--pdf"):
         return ("\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
                 "A book edition does not render or fails its integrity checks; fix the error above ")

@@ -423,8 +423,13 @@ jobs:
   # tools/latex_build.py gate rejects final-pass warnings/errors except underfull h/v boxes.
   # Existing content-integrity checks remain in the book build; poppler backs PDF inspection.
   #
-  # `--pdf` builds the full edition and every chapter/appendix partial, matching pre-push.
-  # The book-editions artifact carries all PDFs into the published site's book/ directory.
+  # `--pdf` builds the PUBLISHED editions only — the whole-book PDF and the EPUB. It does NOT build
+  # the 21 per-section review PDFs: book/book-manifest.json declares those LOCAL-ONLY, and
+  # build_book.py derives the build set from that declaration, so no flag is restated here and this
+  # step cannot drift from the pre-push hook, which runs the identical command. The manifest states
+  # what the local-only scope costs in gate coverage; CLAUDE.md § "Where a new check runs" carries
+  # the placement rule and this named exception to it.
+  # The book-editions artifact carries the published editions into the deployed site's book/ directory.
   #
   # The ePub (book_epub.py — the 4th IR projection, EPUB3) reuses build_pages()' rendered bodies
   # (no re-render), packs the EPUB3 container, and renders the TITLED cover from the print
@@ -496,7 +501,7 @@ jobs:
         run: python3 book/render_citations.py
       - name: Check PDF structure gate negative controls
         run: python3 tools/test_pdf_structure.py
-      - name: Render full book, EPUB, and all partial PDFs + integrity gates
+      - name: Render the published book editions (PDF + EPUB) + integrity gates
         run: |
           # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is
           # already installed above. catalog.py itself stays stdlib-only — these deps are for the
@@ -525,9 +530,14 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: book-editions
+          # The PUBLISHED globs from book/book-manifest.json's build_artifacts, named one by one.
+          # A bare `book/*.pdf` is what published the 21 local-only section PDFs until 261106 — so the
+          # narrowing is the defense, not just the build skip: a stray or force-built section PDF in
+          # the workspace must not reach the site. tests/test_mage_pdf_splits.py fails if a glob here
+          # stops matching the declaration, or if one is added that would sweep a local-only artifact.
           path: |
-            book/*.pdf
-            book/*.epub
+            book/mage-book.pdf
+            book/mage-book.epub
           if-no-files-found: error
           retention-days: 3
 

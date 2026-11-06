@@ -1,4 +1,12 @@
-"""A publication build must refresh partial PDFs as well as the full edition."""
+"""A publication build ships the whole-book editions and must NOT build the local-only section PDFs.
+
+This file held the opposite assertion until 261106, when the author withdrew the 21 per-section PDFs
+from CI and from the published site: he wants them for his own review, and nothing linked to them.
+The scope now lives as data in book/book-manifest.json's `build_artifacts`, and these tests hold both
+surfaces to it — the Pages workflow and the pre-push hook — so neither can drift from the declaration
+and neither can disagree with the other.
+"""
+import fnmatch
 import hashlib
 import json
 import os
@@ -16,20 +24,116 @@ sys.path.insert(0, str(ROOT / "book"))
 import build_book
 
 
-class PublicationPartialsTests(unittest.TestCase):
-    def test_partials_are_enabled_locally_and_in_ci(self):
-        for environment in ({}, {"CI": "true"}, {"GITHUB_ACTIONS": "true"}):
-            with self.subTest(environment=environment), patch.dict(os.environ, environment, clear=True):
-                self.assertTrue(build_book._pdf_split_enabled(["--pdf"]))
-                self.assertFalse(build_book._pdf_split_enabled(["--pdf", "--no-split"]))
+WORKFLOW = ROOT / ".github" / "workflows" / "pages.yml"
+MANIFEST = json.loads((ROOT / "book" / "book-manifest.json").read_text(encoding="utf-8"))
 
-    def assert_complete_book_build(self, commands):
-        builds = [argv for argv in commands if "book/build_book.py" in argv and "--pdf" in argv]
-        self.assertEqual(len(builds), 1, "expected one complete book build")
-        self.assertTrue(build_book._pdf_split_enabled(builds[0]),
-                        "publication must not skip chapter and appendix PDFs")
+#: The publication environment, as GitHub Actions actually sets it (both variables, not one).
+PUBLICATION_ENV = {"CI": "true", "GITHUB_ACTIONS": "true"}
 
-    def test_pre_push_plan_builds_partials(self):
+
+def declared(scope):
+    """The artifacts book-manifest.json declares at `scope` — the one source these tests check against."""
+    return [a for a in MANIFEST["build_artifacts"] if a["scope"] == scope]
+
+
+def workflow_book_builds():
+    """Every `python3 book/build_book.py …` invocation in the published workflow, as argv.
+
+    Read out of the YAML so the assertions below grade the workflow AS IT WILL RUN, never a diff.
+    """
+    commands = [shlex.split(line) for line in WORKFLOW.read_text().splitlines()
+                if re.match(r"\s*python3 book/build_book\.py\s", line)]
+    assert commands, f"no build_book.py invocation found in {WORKFLOW} — the probe is wrong, not the workflow"
+    return commands
+
+
+def workflow_upload_paths(artifact_name):
+    """The `path: |` block of the workflow's named upload-artifact step, as a list of globs.
+
+    Stdlib block-parse (this repo declares no YAML dependency for the test tier). It asserts its own
+    preconditions: a probe that silently found nothing would report an empty, passing upload.
+    """
+    lines = WORKFLOW.read_text().splitlines()
+    starts = [i for i, line in enumerate(lines) if line.strip() == f"name: {artifact_name}"]
+    assert len(starts) == 2, (f"expected the {artifact_name} artifact to be uploaded once and "
+                              f"downloaded once; found {len(starts)} `name:` lines")
+    index = starts[0]
+    while index < len(lines) and lines[index].strip() != "path: |":
+        index += 1
+        assert index - starts[0] < 12, f"no `path: |` block within 12 lines of the {artifact_name} upload"
+    indent = len(lines[index]) - len(lines[index].lstrip())
+    paths = []
+    for line in lines[index + 1:]:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if len(line) - len(line.lstrip()) <= indent:
+            break
+        paths.append(stripped)
+    assert paths, f"parsed an empty path block for {artifact_name} — the probe is wrong"
+    return paths
+
+
+class ArtifactScopeDeclarationTests(unittest.TestCase):
+    """The declaration itself must stay well-formed, or every test below grades a typo."""
+
+    def test_scopes_come_from_the_closed_set(self):
+        for artifact in MANIFEST["build_artifacts"]:
+            with self.subTest(artifact=artifact["id"]):
+                self.assertIn(artifact["scope"], ("published", "local-only"))
+                self.assertTrue(artifact["glob"].startswith("book/"), "a glob is repo-relative")
+
+    def test_the_published_pdf_glob_names_the_manifest_filename(self):
+        """`pdf_filename` is the single source for the shipped PDF's name; the glob must not fork it."""
+        self.assertIn("book/" + MANIFEST["pdf_filename"],
+                      [a["glob"] for a in declared("published")])
+
+    def test_the_section_pdfs_are_declared_local_only(self):
+        """The author's 261106 decision, as data. Flipping this to `published` is the reversal, and it
+        must be taken here — not by editing a workflow or a flag."""
+        sections = build_book._BUILD_ARTIFACTS["section-pdfs"]
+        self.assertEqual(sections["scope"], "local-only")
+        self.assertTrue(build_book._artifact_is_local_only("section-pdfs"))
+
+
+class PublicationScopeTests(unittest.TestCase):
+    def test_a_local_only_artifact_is_skipped_only_on_a_publication_run(self):
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertTrue(build_book._pdf_split_enabled(["--pdf"]),
+                            "a local run builds the author's review PDFs")
+            self.assertFalse(build_book._pdf_split_enabled(["--pdf", "--no-split"]),
+                             "--no-split stays the manual full-edition-only escape")
+        with patch.dict(os.environ, PUBLICATION_ENV, clear=True):
+            self.assertFalse(build_book._pdf_split_enabled(["--pdf"]),
+                             "a publication run must not build a local-only artifact")
+        with patch.dict(os.environ, {"CI": "true"}, clear=True):
+            self.assertTrue(build_book._pdf_split_enabled(["--pdf"]),
+                            "GITHUB_ACTIONS is the publication signal; a bare CI=true is any wrapper, "
+                            "and the upload globs are the publication-side defense")
+
+    def test_publication_does_not_build_the_local_only_section_pdfs(self):
+        """Grade the workflow's own argv with the production predicate, under the real Actions env."""
+        builds = workflow_book_builds()
+        self.assertEqual(len(builds), 1, "expected one book build in the workflow")
+        self.assertFalse(build_book._pdf_split_enabled(builds[0], PUBLICATION_ENV),
+                         f"{' '.join(builds[0])} would build the section PDFs in CI; they are "
+                         f"declared local-only in book/book-manifest.json")
+
+    def test_the_site_artifact_carries_exactly_the_published_globs(self):
+        """The upload is the publication boundary. A bare `book/*.pdf` here is what published the 21
+        section PDFs until 261106, so the narrowing is a second defense behind the build skip."""
+        uploaded = workflow_upload_paths("book-editions")
+        self.assertEqual(sorted(uploaded), sorted(a["glob"] for a in declared("published")))
+        for artifact in declared("local-only"):
+            for glob in uploaded:
+                with self.subTest(uploaded=glob, local_only=artifact["id"]):
+                    self.assertFalse(
+                        fnmatch.fnmatch(artifact["glob"].replace("*", "02-Chapter2"), glob),
+                        f"the {glob} upload would sweep the local-only {artifact['id']}")
+
+    def test_pre_push_builds_the_local_only_section_pdfs(self):
+        """The author's review path keeps them, and runs the IDENTICAL command the workflow runs —
+        the scope difference comes from the declaration, never from a flag at one call site."""
         result = subprocess.run(
             [sys.executable, str(ROOT / "hooks" / "pre-push")], cwd=ROOT,
             env=dict(os.environ, GC_PREPUSH_PLAN="1", GC_PREPUSH_ALL="1"),
@@ -37,13 +141,14 @@ class PublicationPartialsTests(unittest.TestCase):
         )
         commands = [shlex.split(line.split(": ", 1)[1]) for line in result.stdout.splitlines()
                     if line.startswith("PLAN step [book PDF]: ")]
-        self.assert_complete_book_build(commands)
-
-    def test_pages_workflow_builds_partials(self):
-        workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text()
-        commands = [shlex.split(line) for line in workflow.splitlines()
-                    if re.match(r"\s*python3 book/build_book\.py\s", line)]
-        self.assert_complete_book_build(commands)
+        builds = [argv for argv in commands if "book/build_book.py" in argv and "--pdf" in argv]
+        self.assertEqual(len(builds), 1, "expected one book build in the pre-push plan")
+        # Compare past argv[0]: the hook runs the live interpreter by absolute path, the workflow
+        # spells `python3`. The arguments are what must match.
+        self.assertEqual(builds[0][1:], workflow_book_builds()[0][1:],
+                         "pre-push and publication must run the same command")
+        self.assertTrue(build_book._pdf_split_enabled(builds[0], {}),
+                        "pre-push must keep refreshing the author's review PDFs")
 
 
 class SectionReuseKeyTests(unittest.TestCase):

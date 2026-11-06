@@ -51,9 +51,15 @@ from typing import Callable, NamedTuple
 
 HERE = pathlib.Path(__file__).resolve().parent
 
-# Single source of truth for the book's cover identity — book-manifest.json (also read by catalog.py).
+# Single source of truth for the book's cover identity AND its build-artifact scope —
+# book-manifest.json (also read by catalog.py).
 _BOOK_MANIFEST = json.loads((HERE / "book-manifest.json").read_text(encoding="utf-8"))
 _PDF_FILENAME = _BOOK_MANIFEST["pdf_filename"]  # single source: the manifest
+#: The declared build artifacts, keyed by id. Each carries a `scope`: "published" (CI builds it and
+#: the site ships it) or "local-only" (built for the author's review; never built in CI, never
+#: uploaded, never served). The manifest's own comments carry the rule and what a local-only scope
+#: costs; this module derives the build set from it rather than restating the decision.
+_BUILD_ARTIFACTS = {entry["id"]: entry for entry in _BOOK_MANIFEST["build_artifacts"]}
 
 # File-type glyph on the home page's PDF-download button: self-contained inline SVG (the site
 # loads nothing off-origin), all-currentColor strokes so it tracks the button's link color in both
@@ -6733,11 +6739,15 @@ def build_pdf() -> int:
 
 
 # ─────────────────────── Per-section split PDFs (review aid; additive to `--pdf`) ────────────────────────
-# A `--pdf` run also emits one PDF per logical book section, locally, at pre-push, and in CI.
-# Readers can open just the front matter, one chapter, the back matter, or the appendices.
-# These gitignored artifacts pass native compilation and PDF structure checks (including expected
-# headings), rather than the full edition's page-count and part-opener checks. An explicit
-# `--no-split` is available for a manual full-edition-only build.
+# A `--pdf` run also emits one PDF per logical book section, so the author can open just the front
+# matter, one chapter, the back matter, or the appendices. These gitignored artifacts pass native
+# compilation and PDF structure checks (including expected headings), rather than the full edition's
+# page-count and part-opener checks.
+#
+# They are declared LOCAL-ONLY in book-manifest.json: built locally and at pre-push, never in CI and
+# never published. `_pdf_split_enabled` derives that from the declaration rather than restating it, so
+# this build behaves the same way wherever it runs from. An explicit `--no-split` is the manual
+# full-edition-only escape. The manifest states what the local-only scope costs in gate coverage.
 
 #: The exact section filenames the reviewer asked for (`mage-book-<Section>.pdf`).
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
@@ -7063,9 +7073,29 @@ def build_pdf_split() -> int:
     return 1 if failures else 0
 
 
-def _pdf_split_enabled(args: "list[str]") -> bool:
-    """Build all partial PDFs unless a caller explicitly requests a full-edition-only run."""
-    return "--no-split" not in args
+def _artifact_is_local_only(artifact_id: str) -> bool:
+    """Whether book-manifest.json declares this build artifact local-only — review-only, never published."""
+    return _BUILD_ARTIFACTS[artifact_id]["scope"] == "local-only"
+
+
+def _is_publication_run(env: "dict[str, str] | None" = None) -> bool:
+    """Whether this build feeds the published site. The Pages workflow is the only publication caller,
+    and GitHub sets GITHUB_ACTIONS in every step it runs."""
+    return bool((os.environ if env is None else env).get("GITHUB_ACTIONS"))
+
+
+def _pdf_split_enabled(args: "list[str]", env: "dict[str, str] | None" = None) -> bool:
+    """Whether a `--pdf` run also emits the per-section review PDFs.
+
+    DERIVED from the artifact scope declared in book-manifest.json, so the decision lives in one
+    place: a local-only artifact is skipped on a publication run and built everywhere else. The
+    pre-push hook and the Pages workflow therefore run the identical `--pdf` command and cannot
+    disagree about what it produces. `--no-split` stays the manual full-edition-only escape for a
+    local caller that wants the shipped editions alone.
+    """
+    if "--no-split" in args:
+        return False
+    return not (_artifact_is_local_only("section-pdfs") and _is_publication_run(env))
 
 
 def _emit_writing_style_export() -> None:
@@ -7361,8 +7391,8 @@ if __name__ == "__main__":
     # `--pdf` builds the native print edition and a fresh EPUB; default is the WEB build —
     # which, since the C3 publish swap, IS the MkDocs emission: build_pages() renders every page body
     # and book/book_mkdocs.py projects the tree (the blockquote-placement gate runs there, over the
-    # emitted bodies). `--pdf` also emits all per-section PDFs, including at pre-push and in CI;
-    # `--no-split` explicitly skips them for a manual full-edition-only build.
+    # emitted bodies). `--pdf` also emits the per-section review PDFs, which book-manifest.json
+    # declares LOCAL-ONLY — so a publication run skips them, and `--no-split` skips them anywhere.
     if "--pdf" in args:
         rc = build_pdf()
         if rc == 0:

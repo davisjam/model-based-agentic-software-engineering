@@ -1054,6 +1054,34 @@ unconditional superset; pre-push may only ever hold a scoped subset of what CI h
 check into every runner that should reach it, or declare the exclusion — the reachability test
 (`workbench/test/gate-reachability.test.ts`) and `tests/ci.py` police the wiring.
 
+**The one named exception — a LOCAL-ONLY build artifact, and its gates go with it.** The superset
+rule above governs checks on things we SHIP. An artifact built purely for the author's review, never
+published and never served, is the one case where a gate may live in pre-push and nowhere else: a
+regression in it cannot reach a reader, so CI minutes spent rendering it buy a backstop on nothing.
+Declaring an artifact local-only therefore WITHDRAWS its gates from the unconditional run, and a
+`--no-verify` push can ship a regression in it unseen. Take that trade only for an unpublished
+artifact, and only in writing.
+
+- **Declare the scope as DATA, in one place; derive every surface from it.** Artifact scope lives in
+  `book/book-manifest.json`'s `build_artifacts`, each entry carrying `published` or `local-only`.
+  The build reads it and skips a local-only artifact on a publication run, so the pre-push hook and
+  the publishing workflow run the identical command and cannot disagree. No flag restates the
+  decision at a call site, because three surfaces each encoding an artifact-scope rule is how the
+  rule stops being one rule.
+- **Narrow the published-artifact globs too.** The build skip is the efficiency half; the upload
+  globs are the publication half. A bare `book/*.pdf` in the site-artifact upload published 21
+  per-section review PDFs for months — files nothing linked to — because the glob was wider than
+  anyone's intent. Name the published paths one by one and let a test hold them to the declaration.
+- **Write down what stopped being verified, at the declaration.** The manifest's
+  `_build_artifacts_gate_consequence` names the withdrawn gates and why the trade is acceptable.
+  An exception that contradicts this rule without amending it is how the rule stops being trusted.
+
+The live instance (261106): the MAGE book's 21 per-section PDFs. The author wants them locally and
+regularly refreshed; change-aware reuse makes an unchanged section a fraction of a second, so his
+pre-push pays almost nothing. What left CI with them is the per-section LaTeX diagnostics and the
+per-section PDF structure checks over the split assembly. What stayed is the whole-book render, which
+shares every chapter source and shared LaTeX input, plus the reuse-key and stamp-guard unit tier.
+
 ## Build & deploy
 
 The site is generated from Markdown. MAGE and Handbook manuscript Markdown is itself generated

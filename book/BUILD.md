@@ -20,8 +20,11 @@ and the design record for the annotation work.
   checkout with nothing installed).
 - **Print and ebook:** `python3 book/build_book.py --pdf` builds the native LaTeX PDF,
   a fresh `book/mage-book.epub`, and all numbered chapter, appendix, and front/back-matter PDFs
-  (`book/mage-book-NN-Section.pdf`). Pre-push and CI run this complete build; any failed edition
-  stops the build. Use `--no-split` only for a manual build that deliberately omits the partials.
+  (`book/mage-book-NN-Section.pdf`); any failed edition stops the build. Pre-push runs this complete
+  build. **CI does not build the per-section PDFs** — `book-manifest.json` declares them `local-only`
+  (review artifacts, never published), and `build_book.py` derives that from the declaration, so the
+  publication run emits the whole-book PDF and the EPUB alone. Use `--no-split` for a local build
+  that deliberately omits the partials.
   For EPUB alone, run `python3 book/book_epub.py`. The EPUB
   build verifies that generated Markdown matches the native manuscript, then packages the current
   web page bodies and the native cover. It validates the container and internal links before
