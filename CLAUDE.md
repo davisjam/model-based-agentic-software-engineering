@@ -729,6 +729,13 @@ re-deriving these, so they live here:**
   found. **Prove it is orphaned before removing it** — `lsof "$G/index.lock"` returning no holders,
   no `git merge|commit|stash` in `ps`, a stale mtime, and 0 bytes meaning it was never written. A
   lock a LIVE process holds is doing its job; deleting that one corrupts a real operation.
+  - **The sibling `next-index-<PID>.lock` NAMES THE OWNER — check that first.** 261106: a 347 KB
+    `index.lock` beside `next-index-7208.lock`; PID 7208 was alive, mid-`pre-commit`, and its commit
+    landed. The 0-bytes-and-stale-mtime test above explicitly did NOT fit, so the documented recovery
+    was one keystroke from destroying a live commit. A PID is a stronger discriminator than size or age.
+  - **Bound a commit at 1800s, not 540s, whenever the fleet is busy.** The hook rebuilds the site and
+    regenerates `book-models/*`; under load that exceeds 540s, so a short bound kills it mid-hook and a
+    retry loop pays the same cost per attempt to fail identically. 1800s committed first try.
   - **The LIVE-lock case is far more common, and the fix is a retry loop — `git` refuses rather than
     queues.** `git commit` does not wait for a held `index.lock`; it exits **128** immediately with
     *"Another git process seems to be running"*. With several agents committing in one checkout that
