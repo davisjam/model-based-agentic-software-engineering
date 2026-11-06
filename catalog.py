@@ -4530,6 +4530,142 @@ def check_no_raw_stats(_entries: list[Entry]) -> list[str]:
     return problems
 
 
+# ── Visual Aids gallery: change-aware reuse ──────────────────────────────────────────────────────────
+# `book/build_visual_aids.py` emits a DEV/REVIEW artifact (every figure and table in the book, inlined)
+# and it dominated the site build: 335.1s of a 441.1s `catalog.py build` measured 261106 at load 59,
+# ~116s warm at load 25. Attributed, the cost is not the rendering — it is tree TRAVERSAL. The emitter
+# expands five `book/**/*.<ext>` globs with `recursive=True`, each of which walks the whole 1.5 GB book
+# tree (440 MB `node_modules` + 397 MB `_design` + 182 MB `latex`) BEFORE its own filter discards those
+# trees; 38s of the 84s `_referenced_basenames` warm cost is glob expansion against 9.4s of actual
+# reading. A sixth traversal expands the draft-SVG glob, and `_source_figures_by_slug` walks `book/` once
+# more.
+#
+# So the gallery is re-derived in full on every commit and every push, including a push that touches
+# nothing but slide decks. It depends only on the book's figure surface, and that is what this key
+# measures — the `.o`/`.d` half of make, at the CALL SITE (the emitter lives under `book/`, which this
+# change may not touch).
+#
+# DECLARED INPUTS, and why this set is complete:
+#   1. every TRACKED file under the roots the emitter scans (`book/`, `book-models/`, root `*.py`),
+#      identified by git's own blob id — exact content identity, read out of the index in ~0.01s;
+#   2. every path git reports as modified, staged, deleted or untracked under those roots, by
+#      (path, size, mtime_ns) — the same staleness heuristic git's own index uses;
+#   3. `book/list-of-figures.html`, which `build_book.py` emits and the gallery joins its numbering to;
+#   4. every `*.svg` under `book/_design` — gitignored drafts are invisible to (1) and (2), and the
+#      gallery's draft section is derived from exactly that set.
+# The ONE declared exclusion: the gitignored GENERATED trees under `book/` that the emitter also scans
+# (`web/`, `_typst/`, `dist/`). Each is a projection of the tracked prose by a tracked emitter, so every
+# `.svg` basename reachable there is already contributed by a tracked source under (1). Draft SVGs are
+# the one gitignored input that is NOT a projection, and (4) covers them.
+#
+# Every failure direction is fail-open, toward re-emitting: no stamp, an unparseable stamp, a missing or
+# empty output, a key that cannot be computed. The stamp is written only AFTER the emitter exits 0, so a
+# stamp asserts "this output was produced from these inputs by a successful run".
+_VA_OUT_REL = os.path.join("book", "_design", "visual-aids.html")
+_VA_STAMP_REL = os.path.join(".build-cache", "visual-aids-stamp.json")
+_VA_KEY_ROOTS = ("book", "book-models", "*.py")
+
+
+def _stat_sig(path: str) -> str:
+    """`size:mtime_ns` for a path, or `-` when it does not exist (a deletion is a change)."""
+    try:
+        st = os.stat(path)
+    except OSError:
+        return "-"
+    return f"{st.st_size}:{st.st_mtime_ns}"
+
+
+def _visual_aids_key_parts() -> "list[str] | None":
+    """The key's INPUT RECORDS, one per declared input, or None if git cannot answer.
+
+    Separate from the digest so a key mismatch can be DIFFED rather than guessed at. On a checkout
+    several writers share, two keys differ constantly, and "the key changed" alone cannot distinguish
+    the input you touched from the input a sibling touched — a hash answers neither question."""
+    parts: list[str] = ["v1"]
+    try:
+        tracked = subprocess.run(["git", "-C", ROOT, "ls-files", "-s", "--", *_VA_KEY_ROOTS],
+                                 capture_output=True, text=True, timeout=60)
+        dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--untracked-files=all",
+                                "--", *_VA_KEY_ROOTS], capture_output=True, text=True, timeout=120)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if tracked.returncode or dirty.returncode:
+        return None
+    parts.append(tracked.stdout)
+    for line in dirty.stdout.splitlines():
+        rel = line[3:].strip().strip('"')
+        rel = rel.split(" -> ")[-1]  # a rename reports `old -> new`; the new path is the input
+        parts.append(f"{rel}\0{_stat_sig(os.path.join(ROOT, rel))}")
+    parts.append("lof\0" + _stat_sig(os.path.join(ROOT, "book", "list-of-figures.html")))
+    for svg in sorted(glob.glob(os.path.join(ROOT, "book", "_design", "**", "*.svg"), recursive=True)):
+        parts.append(f"{os.path.relpath(svg, ROOT)}\0{_stat_sig(svg)}")
+    return parts
+
+
+def _visual_aids_key() -> "str | None":
+    """The content key over every declared input of the Visual Aids gallery, or None if git cannot
+    answer. None is NOT read as "nothing changed" — the caller re-emits, which is the safe direction."""
+    parts = _visual_aids_key_parts()
+    if parts is None:
+        return None
+    return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()
+
+
+def _visual_aids_reusable(key: "str | None") -> bool:
+    """Whether the gallery on disk was emitted from exactly these inputs by a successful run."""
+    if not key:
+        return False
+    out = os.path.join(ROOT, _VA_OUT_REL)
+    try:
+        if os.path.getsize(out) <= 0:
+            return False
+        rec = json.loads(open(os.path.join(ROOT, _VA_STAMP_REL), encoding="utf-8").read())
+    except (OSError, ValueError):
+        return False
+    return rec.get("key") == key and rec.get("output") == _VA_OUT_REL
+
+
+def _write_visual_aids_stamp(key: str) -> None:
+    """Record the key the current gallery was emitted from. Best-effort: a stamp that cannot be written
+    only costs the next build a re-emit."""
+    stamp = os.path.join(ROOT, _VA_STAMP_REL)
+    try:
+        os.makedirs(os.path.dirname(stamp), exist_ok=True)
+        tmp = stamp + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as fh:
+            json.dump({"key": key, "output": _VA_OUT_REL,
+                       "bytes": os.path.getsize(os.path.join(ROOT, _VA_OUT_REL))}, fh)
+        os.replace(tmp, stamp)
+    except OSError as exc:  # a review artifact's cache must never break the build
+        print(f"WARNING: could not write the visual-aids stamp ({exc}) — the gallery will be "
+              f"re-emitted next build", file=sys.stderr)
+
+
+def emit_visual_aids() -> None:
+    """Regenerate `book/_design/visual-aids.html` unless its declared inputs are unchanged.
+
+    Non-fatal in both directions, as before: the gallery is a gitignored review artifact, so a failed
+    emit warns and the build continues. The decision is PRINTED either way — a silent skip is how a
+    cache becomes indistinguishable from a broken step."""
+    key = _visual_aids_key()
+    if _visual_aids_reusable(key):
+        kib = os.path.getsize(os.path.join(ROOT, _VA_OUT_REL)) // 1024
+        print(f"visual-aids: REUSED {_VA_OUT_REL} ({kib} KiB) — every declared input unchanged "
+              f"(key {key[:12]}…). Force a re-emit with `python3 book/build_visual_aids.py`.")
+        return
+    if key is None:
+        print("visual-aids: re-emitting — the input key could not be computed (git did not answer), "
+              "so reuse is unsound", file=sys.stderr)
+    rc = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_visual_aids.py")],
+                        cwd=ROOT).returncode
+    if rc != 0:
+        print("WARNING: visual-aids gallery regeneration failed — "
+              "book/_design/visual-aids.html may be stale", file=sys.stderr)
+        return
+    if key:
+        _write_visual_aids_stamp(key)
+
+
 def _sync_figure_census(entries: list[Entry]) -> None:
     """Fill `data-census` spans in the static figure pages from `_stats` (single source of truth =
     the catalogue + DECLARED_STATS), so a hand-authored figure can't drift (e.g. '51 controls' vs 53)."""
@@ -5291,12 +5427,11 @@ def cmd_build(_args) -> int:
     print("built llms.txt + robots.txt (agent-facing index, derived from this build's own page set)")
     # Regenerate the Extended Figure Gallery dev artifact (live/unused/draft figures, for review). Non-fatal
     # subprocess (a review tool must never break the build); output is gitignored + orphan-gate-excluded
-    # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known.
-    rc_fig = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_visual_aids.py")],
-                            cwd=ROOT).returncode
-    if rc_fig != 0:
-        print("WARNING: visual-aids gallery regeneration failed — "
-              "book/_design/visual-aids.html may be stale", file=sys.stderr)
+    # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known. Change-aware: the
+    # emit is skipped when every declared input is unchanged (see `emit_visual_aids` for the key and why
+    # its input set is complete) — it dominated the build at 335s of 441s, on pushes that touched no book
+    # figure at all.
+    emit_visual_aids()
     # Regenerate the packaged skill bundle from the same sources — same "can't drift" discipline as the
     # HTML. build is the one regeneration point (pre-commit hook, deploy, and CI all call it), so this
     # single wire-in keeps plugin/ fresh. Subprocess avoids a catalog <-> bundle_skill circular import.

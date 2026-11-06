@@ -80,7 +80,8 @@ book/_design/*-brief*.md
 /book/assets/handbook-cover-thumb.png
 # Per-section review-aid PDFs (FrontMatter / Part1-6 / BackMatter / Appendices) — emitted by a local
 # `build_book.py --pdf` alongside the full book, same gitignore posture as mage-book.pdf (created,
-# never committed; not rendered in CI).
+# never committed; not rendered in CI). Declared `local-only` in book/book-manifest.json's
+# build_artifacts — the one place the published-vs-local scope is decided.
 /book/mage-book-*.pdf
 # The MAGE "full writing stack" export — a concatenation of the writing-stack source files, emitted by
 # book/build_writing_style.py on every build (see build_book.py). A derived build artifact, same posture
@@ -162,3 +163,9 @@ book/_contract/
 /book/latex/build/
 /book/latex/assets/
 /book/latex/pilot/
+
+# Build-cache stamps: content keys recording which inputs a derived artifact was emitted from, so an
+# unchanged artifact can be reused instead of re-derived (today: the Visual Aids review gallery, whose
+# full re-derivation was 335s of a 441s site build). Never committed — a stamp is a statement about one
+# machine's working tree. Deleting the directory only costs the next build a re-emit.
+/.build-cache/
