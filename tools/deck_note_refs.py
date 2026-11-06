@@ -28,11 +28,13 @@ Signals, strongest first (see `SIGNALS` for the per-signal verdict rules):
                    only listed when --since says the span between referrer and referent
                    actually moved.
   numbered         "slide 23", "slides 25 to 27". Resolved; HIGH when the target is hidden,
-                   out of range, or shifted since --since.
+                   out of range, or shifted since --since — EXCEPT when this note did not
+                   cite that number at the baseline, which makes the shift repair evidence.
   successor        A forward promise (`NEXT:`, `TRANSITION:`, "the next slide") whose
                    immediate successor is a DIFFERENT slide than it was at --since. This is
                    the only signal that catches a promise about what the next slide DOES,
-                   which carries no positional words at all.
+                   which carries no positional words at all. A successor merely DISPLACED by
+                   an insertion ranks MEDIUM; a parked or removed one ranks HIGH.
   content-ordinal  "the fifth row of the next slide" — an ordinal into another slide's
                    content, which breaks when that slide gains a row and is invisible to
                    any position-based check.
@@ -44,6 +46,14 @@ deck against that ref, computes which slides moved position or flipped hidden st
 demotes every reference those specific changes cannot have touched. Measured over the five
 261105 decks, that cuts the triage list from 114 notes to 41 while keeping 19 of 20 strong
 findings — it drains the LOW band, not the HIGH one.
+
+--since reads the baseline's NOTES as well as its order, because the two together say whether
+a citation was re-aimed. Without that, the mode inverts on a notes REPAIR: `shifted` means only
+that the cited position's occupant changed, and re-typing the number into a resequenced region
+is exactly what makes it fire — 27 HIGH findings, every one false, on deck 2-4's repair commit.
+A citation this slide's own note did not carry at the baseline was written against the current
+order, so the shift cannot have broken it. Same shape on `successor`: an inserted section
+divider DISPLACES the promised slide rather than replacing it.
 
 Pass the last ref at which you believe the notes were CONSISTENT, not simply last night's
 commit: the baseline decides the answer. One of these decks recalls 2 of its 7 known breaks
@@ -317,6 +327,19 @@ def _relative_matches(sentence: str) -> "list[tuple[re.Match, list[int]]]":
 _NUMBERED = re.compile(
     rf"\bslides?\s+(\d+)(?:\s*(?:to|through|and|[-–])\s*(\d+))?\b", re.I)
 
+
+def _cited_literals(notes: str) -> "set[int]":
+    """Every slide number a note cites, AS WRITTEN — never expanded across a range.
+
+    The repair-evidence test below asks whether the author re-typed the number, so the unit is
+    the literal on the page: *"slides 3 to 6"* cites 3 and 6, not 4 and 5. Expanding the range
+    would make an unrelated neighbouring citation look like the same number carried over.
+    """
+    out: set[int] = set()
+    for m in _NUMBERED.finditer(notes or ""):
+        out |= {int(g) for g in m.groups() if g}
+    return out
+
 #: A forward promise. The house convention in these decks is an ALL-CAPS `NEXT:` line on
 #: every presented slide, and those are the references that fail in front of the room.
 #: CASE-SENSITIVE on purpose: a case-insensitive `\bNEXT\b` matches "the next seventy
@@ -461,6 +484,7 @@ def structure_delta(now: dict, before: dict) -> dict:
     hidden_flip: set[int] = set()       # new position, hidden state changed
     content_changed: set[int] = set()   # new position, on-slide text changed
     inserted: set[int] = set()          # new position, no counterpart at <ref>
+    base_cited: dict[int, set[int]] = {}  # new position -> numbers ITS OWN note cited at <ref>
     for sid, s in new.items():
         o = old.get(sid)
         if o is None:
@@ -472,10 +496,20 @@ def structure_delta(now: dict, before: dict) -> dict:
             hidden_flip.add(s["position"])
         if o["texts"] != s["texts"]:
             content_changed.add(s["position"])
+        # Keyed by sldId, so it survives the reorder it exists to interpret. A position ABSENT
+        # from this map is a slide with no counterpart at <ref> — every citation in its notes
+        # was written against the current order.
+        base_cited[s["position"]] = _cited_literals(o["notes"] or "")
     removed_old_positions = sorted(o["position"] for sid, o in old.items() if sid not in new)
+    # Where each BASELINE position's slide sits now. This is what lets the repair-evidence test
+    # ask whether a re-typed number tracked its referent, rather than merely changed.
+    base_pos_now: dict[int, int] = {o["position"]: new[sid]["position"]
+                                    for sid, o in old.items() if sid in new}
     # Successor identity: the slide that FOLLOWED each position at <ref> versus now. This is
     # what catches a promise about what the next slide DOES, which carries no position words.
     successor_changed: set[int] = set()
+    successor_displaced: set[int] = set()
+    pos_of_sid = {s["sid"]: s["position"] for s in now["slides"]}
     for s in now["slides"]:
         o = old.get(s["sid"])
         if o is None:
@@ -484,11 +518,22 @@ def structure_delta(now: dict, before: dict) -> dict:
                         None)
         new_next = next((x["sid"] for x in now["slides"] if x["position"] == s["position"] + 1),
                         None)
-        if old_next != new_next:
-            successor_changed.add(s["position"])
+        if old_next == new_next:
+            continue
+        successor_changed.add(s["position"])
+        # DISPLACED, not replaced: the slide this one promised still follows, and the only
+        # thing now standing between them is material inserted in this very diff (a section
+        # divider, a nav slide). A forward promise reads across an interposed new slide —
+        # ranking that identically to a successor that was PARKED or REMOVED fires the
+        # strongest verdict on the author's own deliberate insertion.
+        tgt = pos_of_sid.get(old_next)
+        if tgt is not None and tgt > s["position"] and all(
+                p in inserted for p in range(s["position"] + 1, tgt)):
+            successor_displaced.add(s["position"])
     return {"moved": moved, "hidden_flip": hidden_flip, "content_changed": content_changed,
             "inserted": inserted, "removed_old_positions": removed_old_positions,
-            "successor_changed": successor_changed,
+            "successor_changed": successor_changed, "base_cited": base_cited,
+            "base_pos_now": base_pos_now, "successor_displaced": successor_displaced,
             "structure_moved": bool(moved or hidden_flip or inserted or removed_old_positions)}
 
 
@@ -572,17 +617,60 @@ def scan_deck(deck: dict, delta: "dict | None") -> list[dict]:
                 off = [t for t in targets if not 1 <= t <= n]
                 hid = [t for t in targets if t in by_pos and by_pos[t]["hidden"]]
                 shifted = delta is not None and any(t in delta["moved"] for t in targets)
+                # REPAIR EVIDENCE, and why the test is this narrow. `shifted` says only that
+                # the cited position's occupant changed since the baseline — which is true of
+                # EVERY citation into a resequenced region, including one the author has just
+                # re-aimed. Re-typing the number is therefore what makes the verdict fire, and
+                # the mode built to be precise inverts on exactly the commits that fix the
+                # defect it detects: 27 HIGH, every one false, on deck 2-4's notes repair.
+                #
+                # The first fix tried was "a literal this note did not carry at the baseline",
+                # and it is WRONG — re-typed is not re-typed CORRECTLY. One deck in the
+                # acceptance set authored a fresh `slide 3` mid-resequence and got it wrong,
+                # and that loose test suppressed the real break along with the false ones
+                # (recall 20/26 -> 18/26, measured).
+                #
+                # So the test is arithmetic, not textual: a number FOLLOWED ITS REFERENT when
+                # it names where the slide its baseline counterpart cited sits NOW. That is
+                # repair by construction. Only the SHIFT inference is withdrawn — the
+                # off-the-end and hidden-target checks above read the CURRENT deck, so a
+                # citation re-aimed wrongly still ranks HIGH there.
+                literals = {lo} | ({hi} if m.group(2) else set())
+                base_lits = delta["base_cited"].get(pos) if delta is not None else None
+                followed = bool(base_lits) and all(
+                    any(delta["base_pos_now"].get(b) == lit for b in base_lits)
+                    for lit in literals)
                 if off:
                     finding(slide, "numbered", "high", sent,
                             f"cites slide(s) {off} — the deck has {n} slides", targets)
                 elif hid:
                     finding(slide, "numbered", "high", sent,
                             f"cites slide(s) {hid}, which are HIDDEN", targets)
+                elif shifted and followed:
+                    finding(slide, "numbered", "medium", sent,
+                            f"cites slide(s) {targets}, whose occupants shifted — but the "
+                            f"number tracked its referent: this note cited "
+                            f"{sorted(base_lits)} at the baseline and those slides sit at "
+                            f"{sorted(literals)} now. That is repair, not breakage; the "
+                            f"arithmetic against the CURRENT deck is checked above", targets)
+                elif shifted and base_lits is None:
+                    # No counterpart at <ref>, so the whole note was written in this diff and
+                    # there is no earlier citation to compare. Unavailable, not cleared.
+                    finding(slide, "numbered", "medium", sent,
+                            f"cites slide(s) {targets}, whose occupants shifted — but this "
+                            f"slide did not exist at the baseline, so nothing says whether "
+                            f"the number was written before or after the shift; verify the "
+                            f"content", targets)
                 elif shifted:
                     was = [delta["moved"].get(t, t) for t in targets]
+                    fresh = ("; and this note cited "
+                             f"{sorted(base_lits) or 'no slide number'} at the baseline, so "
+                             f"the citation is NEW — either a repair or a fresh mistake"
+                             if literals - base_lits else "")
                     finding(slide, "numbered", "high", sent,
                             f"cites slide(s) {targets}; the content that was there sits at "
-                            f"{was} now — the number points at different slides", targets)
+                            f"{was} now — the number points at different slides{fresh}",
+                            targets)
                 else:
                     finding(slide, "numbered", "medium", sent,
                             f"cites slide(s) {targets} "
@@ -638,12 +726,24 @@ def scan_deck(deck: dict, delta: "dict | None") -> list[dict]:
             if (delta is not None and not parked_referrer and _PROMISE.search(sent)
                     and pos in delta["successor_changed"]):
                 nxt = by_pos.get(pos + 1)
-                finding(slide, "successor", "high", sent,
-                        "a forward promise, and the slide that followed this one at the "
-                        "baseline is no longer its successor — the successor is now "
-                        f"{'position ' + str(pos + 1) + ' ' + repr(nxt['title'][:45]) if nxt else 'nothing'}"
-                        ". A promise about what the next slide DOES carries no positional "
-                        "words, so this is the only way to see it", pos + 1)
+                where = ('position ' + str(pos + 1) + ' ' + repr(nxt["title"][:45])
+                         if nxt else 'nothing')
+                if pos in delta["successor_displaced"]:
+                    # The promised slide still follows; only new material was interposed.
+                    # Worth a glance — the transition may want to acknowledge the divider —
+                    # but it is not the deterministic break the HIGH band claims.
+                    finding(slide, "successor", "medium", sent,
+                            f"a forward promise whose baseline successor was DISPLACED, not "
+                            f"replaced: {where} was inserted in this diff and the promised "
+                            f"slide still follows it. The promise reads across an interposed "
+                            f"new slide, so this is a wording question, not a broken pointer",
+                            pos + 1)
+                else:
+                    finding(slide, "successor", "high", sent,
+                            "a forward promise, and the slide that followed this one at the "
+                            f"baseline is no longer its successor — the successor is now {where}"
+                            ". A promise about what the next slide DOES carries no positional "
+                            "words, so this is the only way to see it", pos + 1)
 
             # --- content-ordinal: an ordinal into another slide's content.
             mo = _ORDINAL_INTO.search(sent)
