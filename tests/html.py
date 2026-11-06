@@ -11,6 +11,9 @@ from html.parser import HTMLParser
 import catalog  # the site-projection SSOT — home of the shared model→site projection_drift helper (rule #11)
 from tests.common import FAIL, PASS, ROOT, book_body_files, html_files, rel
 
+_sys.path.insert(0, os.path.join(ROOT, "tools"))
+from pruned_walk import contains, walk_files  # noqa: E402 — `tools/` is a flat script directory
+
 
 class _Refs(HTMLParser):
     """Collects local href/src references and the id/anchor targets a page defines."""
@@ -206,16 +209,28 @@ def check_lab_logo_single_sourced():
     discouraged; (2) the built pages that carry the site header reference the full URL in bulk, so a removed
     logo or a path rewritten to a relative/vendored one fails. The URL's liveness is the separate Tier-2
     network control."""
-    import glob
     _LOGO_URL = "https://davisjam.github.io/images/logo.svg"
     issues: list[str] = []
-    for pat in ("*logo*.svg", "*logo*.png"):
-        for f in glob.glob(os.path.join(ROOT, "**", pat), recursive=True):
-            r = rel(f)
-            if any(seg in r for seg in ("node_modules", "/.git/", ".venv", "/site/")):
-                continue
-            issues.append(f"vendored logo asset must not exist: {r} — reference the absolute {_LOGO_URL} "
-                          "instead (single-sourced on the personal-site Pages origin)")
+    # ONE pruned walk replaces FOUR whole-repo traversals: two `**` globs, each of which CPython scans
+    # every directory twice because the trailing component is not `**`. Measured 261106 — 15,504
+    # directory opens for this one assertion, 40% of the entire Tier-1 gate's traversal, to find six
+    # fontawesome files the filter below already discarded. `node_modules` and `.venv` are pruned
+    # because that filter rejects them as path SUBSTRINGS, so the prune removes exactly the set the
+    # filter would; `site/` is deliberately NOT pruned, because the filter's `/site/` needs both
+    # slashes and therefore KEEPS a top-level `site/…` hit, which this must keep flagging.
+    # `skip_hidden=True` reproduces the glob, which matched neither a dotted directory nor a dotted
+    # basename. The stronger rung, left for its own pass: read `git ls-files` instead — the docstring's
+    # claim is about what is TRACKED, and a disk walk both over-reads (ignored and vendored trees) and
+    # under-reads (a tracked-but-deleted file). Both readers return the same answer today.
+    for f in walk_files(ROOT, (".svg", ".png"), discard=contains("node_modules", ".venv"),
+                        skip_hidden=True):
+        if "logo" not in os.path.basename(f):
+            continue
+        r = rel(f)
+        if any(seg in r for seg in ("node_modules", "/.git/", ".venv", "/site/")):
+            continue
+        issues.append(f"vendored logo asset must not exist: {r} — reference the absolute {_LOGO_URL} "
+                      "instead (single-sourced on the personal-site Pages origin)")
     n = sum(1 for f in html_files() if f'src="{_LOGO_URL}"' in open(f, encoding="utf-8").read())
     if n < 90:
         issues.append(f'only {n} built page(s) reference src="{_LOGO_URL}" (expected ~106) — the '

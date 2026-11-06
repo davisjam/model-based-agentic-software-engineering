@@ -28,7 +28,12 @@ import os
 import re
 import xml.etree.ElementTree as ET
 
+import sys
+
 from tests.common import FAIL, PASS, ROOT, rel
+
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import pruned_walk  # noqa: E402 — the shared pruning walk; `tools/` is a flat script directory
 
 # Where an agent goes when a figure is flagged. Repo-relative; the check echoes it on every finding.
 RUNBOOK = "book/_design/figure-text-fit-runbook.md"
@@ -330,18 +335,22 @@ def _figure_captions() -> dict[str, str]:
     below it on the page."""
     captions: dict[str, str] = {}
     book_dir = os.path.join(ROOT, "book")
-    for dirpath, _dirs, files in os.walk(book_dir):
-        if os.sep + "_design" in dirpath + os.sep:
-            continue  # design drafts don't ship — their figures never render
-        for fn in files:
-            if not fn.endswith(".md"):
-                continue
-            try:
-                text = open(os.path.join(dirpath, fn), encoding="utf-8").read()
-            except OSError:
-                continue
-            for asset, caption in _FIGURE_MARKER_RE.findall(text):
-                captions[asset.strip()] = re.sub(r"\s+", " ", caption).strip()
+    # PRUNED, not skipped. The old loop `continue`d on a `_design` dirpath, which dropped that
+    # directory's FILES and still descended through it — and it carried no exclusion at all for the
+    # vendored npm tree, so 2,218 of its 2,914 directory opens read `book/node_modules` looking for
+    # the book's own figure markers. `named` decides the descent instead: 696 opens, identical caption
+    # map. `skip_hidden=False` keeps the dotted directories this `os.walk` descended. Order is
+    # load-bearing here — the map keys on an asset basename and lets the LAST writer win — and the
+    # prune does not reorder what survives it.
+    for md in pruned_walk.walk_files(book_dir, (".md",),
+                                     discard=pruned_walk.named("_design", "node_modules"),
+                                     skip_hidden=False):
+        try:
+            text = open(md, encoding="utf-8").read()
+        except OSError:
+            continue
+        for asset, caption in _FIGURE_MARKER_RE.findall(text):
+            captions[asset.strip()] = re.sub(r"\s+", " ", caption).strip()
     return captions
 
 

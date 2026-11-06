@@ -10,12 +10,14 @@ mermaid diagram; rather than fix only the instance, the class is converted to a 
 """
 from __future__ import annotations
 
-import glob
 import os
 import re
 import sys
 
 from tests.common import FAIL, PASS, ROOT, rel
+
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import pruned_walk  # noqa: E402 — the shared pruning walk; `tools/` is a flat script directory
 
 # Pipe-delimited segments on a line; in a mermaid flowchart these are edge labels.
 _PIPE = re.compile(r"\|([^|]*)\|")
@@ -26,10 +28,15 @@ _BANNED = ("[", "]", "~>")
 def check_mermaid_edge_labels():
     """Fail if any mermaid edge-label pipe contains `[`, `]`, or `~>` (mermaid render footguns)."""
     findings = []
-    for md in sorted(glob.glob(os.path.join(ROOT, "book", "**", "*.md"), recursive=True)):
-        # Skip design/draft docs — they are not shipped and may carry example fences.
-        if "/_design/" in md:
-            continue
+    # PRUNED, not filtered: a `recursive=True` glob expanded all of `book/` (5,788 directory opens,
+    # every directory scanned twice because the trailing component is not `**`) and then dropped the
+    # design drafts from the results. `named("_design")` is the same exclusion the filter was — a file
+    # under a directory called `_design` at any depth — decided before the descent. `node_modules`
+    # joins it as a SCOPE correction, not a speed one: the glob handed this lint 388 vendored npm
+    # READMEs to walk for mermaid fences. 696 opens, same findings (0 before, 0 after).
+    for md in sorted(pruned_walk.walk_files(
+            os.path.join(ROOT, "book"), (".md",),
+            discard=pruned_walk.named("_design", "node_modules"), skip_hidden=True)):
         with open(md, encoding="utf-8") as fh:
             text = fh.read()
         in_mermaid = False

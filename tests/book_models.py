@@ -48,6 +48,8 @@ from tests.common import FAIL, PASS, ROOT, SKIP, rel
 _BOOK_MODELS = os.path.join(ROOT, "book-models")
 if _BOOK_MODELS not in sys.path:
     sys.path.insert(0, _BOOK_MODELS)
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import pruned_walk  # noqa: E402 — the shared pruning walk; `tools/` is a flat script directory
 
 
 def _load_handbook_lint():
@@ -1115,16 +1117,18 @@ def check_canon_pins():
         issues.append("R5: canon_cycle_declared.json three_line_method is empty — the pin has no SSOT")
     anchor_re = re.compile(rf"\{{#\s*{re.escape(anchor)}\s*\}}|<!--\s*{re.escape(anchor)}\s*-->", re.I)
     book_dir = os.path.join(ROOT, "book")
-    for root_, _dirs, files in os.walk(book_dir):
-        for fn in files:
-            if not fn.endswith(".md"):
-                continue
-            with open(os.path.join(root_, fn), encoding="utf-8") as source:
-                text = source.read()
-            if anchor_re.search(text) and pinned not in text:
-                issues.append(
-                    f"R5 cycle pin: {rel(os.path.join(root_, fn))} carries the {anchor!r} anchor but does "
-                    f"not state the pinned 3-line method verbatim — reuse canon_cycle_declared.json wording")
+    # The R5 corpus is the book's own markdown. This walk carried no exclusion at all, so it opened and
+    # regex-scanned the 388 `.md` files of the vendored npm tree for the cycle anchor — 2,218 of its
+    # 2,914 directory opens, governing somebody else's package docs by the book's canon. Pruned: 696
+    # opens, same findings. `skip_hidden=False` keeps the dotted directories this `os.walk` descended.
+    for md in pruned_walk.walk_files(book_dir, (".md",),
+                                     discard=pruned_walk.named("node_modules"), skip_hidden=False):
+        with open(md, encoding="utf-8") as source:
+            text = source.read()
+        if anchor_re.search(text) and pinned not in text:
+            issues.append(
+                f"R5 cycle pin: {rel(md)} carries the {anchor!r} anchor but does "
+                f"not state the pinned 3-line method verbatim — reuse canon_cycle_declared.json wording")
 
     return (FAIL if issues else PASS), issues
 

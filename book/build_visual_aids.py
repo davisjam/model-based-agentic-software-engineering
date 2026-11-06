@@ -25,6 +25,9 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (parent of book/)
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import pruned_walk  # noqa: E402 — ROOT is resolved above; `tools/` is a flat script directory
+
 OUT = os.path.join(ROOT, "book/_design/visual-aids.html")
 # The List of Figures and Tables this gallery numbers itself from. It used to live at
 # `book/list-of-figures.html`, a TRACKED page of the book's hand-rolled HTML shell. The MkDocs publish swap
@@ -54,70 +57,30 @@ def _clean_caption(raw: str) -> str:
     return re.sub(r"\s+", " ", c).strip()
 
 
-# ── One pruning walker, shared by every traversal below ──────────────────────────────────────────────
+# ── The pruning walk, shared with the gate checks ────────────────────────────────────────────────────
 # This emitter used to reach the filesystem through `glob.glob(..., recursive=True)`, which expands a
 # whole subtree BEFORE any filter runs. It then discarded `book/node_modules` (440 MB, 78% of every
 # traversal) and `book/_design` on the RESULTS. Measured 261106 by counting `os.scandir` — the one call
 # `os.walk` and `glob` share, so the count is comparable across this change in a way wall-clock on this
 # host is not: **512,658 entries visited across 32,994 directory opens per run, to read ~2,400 files**.
 # Pruning instead: **15,983 entries across 833 opens — 32× fewer entries, 40× fewer opens** — for
-# byte-identical output (same sha256, 10,582,282 bytes, four interleaved emits). The gallery is
-# re-emitted on every commit and every push, so the traversal was pure recurring waste.
+# byte-identical output. The gallery is re-emitted on every commit and every push, so the traversal was
+# pure recurring waste.
 #
-# A `recursive=True` glob is worse than it looks, which is why the earlier estimate of this cost was
-# ~1.8× low: for a pattern whose last component is not `**`, CPython scans every directory TWICE — once
-# to recurse (`**`) and once to match the trailing `*.ext`. Measured: `glob('book/**/*.py')` opens 5,788
-# directories where `os.walk('book/')` opens 2,914.
+# The walker itself now lives in `tools/pruned_walk.py`, because five Tier-1 gate checks carried the
+# same defect and the repo extracts on the SECOND site, not the third. The soundness argument, the
+# monotone-predicate requirement and the substring-vs-segment trap are documented there once.
 #
-# `_DISCARD` is the one place those trees are named, and `_discarded` is the one predicate. The walk
-# PRUNES a directory the predicate rejects; the per-file filter still rejects a file it rejects. Pruning
-# is sound because the predicate tests a SUBSTRING OF THE PATH, which is monotone under extension —
-# every descendant of a matching directory matches too — so the prune removes exactly the set the filter
-# would have removed. A hardcoded second list could drift from the filter; one predicate cannot.
-_DISCARD = ("_design", "node_modules")  # the trees under book/ this emitter reads nothing from
-
-
-def _discarded(path: str, tokens: tuple[str, ...]) -> bool:
-    return any(t in path for t in tokens)
-
-
-def _walk_files(top: str, tokens: tuple[str, ...], exts: tuple[str, ...],
-                skip_hidden: bool) -> list[str]:
-    """Paths under `top` ending in one of `exts`, never descending into a directory `tokens` discards.
-
-    Yields in `os.walk` top-down order. The order is load-bearing at two of the three call sites, because
-    their consumers COLLAPSE duplicate keys — `_source_figures_by_slug` keys on the chapter-file stem and
-    lets the last writer win (336 slugs, 8 files share some of them), and `draft_only.setdefault` keys on
-    the basename and lets the FIRST win (496 draft SVGs collapse to 283 basenames). Both were verified
-    LIST-equal against the readers they replace, and the per-key WINNER verified identical, which is the
-    property that actually matters. The third site accumulates into a set of basenames, where this walk is
-    set-equal but not list-equal (2,431 paths, same set, grouped by directory instead of by extension) —
-    stated rather than glossed, because "same order everywhere" would be a stronger claim than holds.
-
-    `skip_hidden` reproduces the reader each call site previously used: `glob` never matches a leading
-    dot, so a site converted from a glob passes True; the one site that already used `os.walk` descended
-    into dotted directories, so it passes False. The flag keeps the output byte-identical; it is not a
-    preference."""
-    found: list[str] = []
-    for dirpath, dirnames, filenames in os.walk(top):
-        dirnames[:] = [d for d in dirnames
-                       if not (skip_hidden and d.startswith("."))
-                       and not _discarded(os.path.join(dirpath, d), tokens)]
-        for f in filenames:
-            if skip_hidden and f.startswith("."):
-                continue
-            if not f.endswith(exts):
-                continue
-            path = os.path.join(dirpath, f)
-            if _discarded(path, tokens):
-                continue
-            found.append(path)
-    return found
+# Both predicates here are SUBSTRING (`contains`), which is what the readers they replace used — the
+# mermaid one must catch a `mermaid-cache` directory, which a segment rule would walk into.
+_DISCARD = pruned_walk.contains("_design", "node_modules")  # trees under book/ this reads nothing from
+_DISCARD_MERMAID = pruned_walk.contains("mermaid")  # the draft walk's own: mermaid renders are build output
 
 
 def _book_md_files() -> list[str]:
     # skip_hidden=False: this site always used `os.walk`, so it descended into dotted directories.
-    return _walk_files(os.path.join(ROOT, "book"), _DISCARD, (".md",), skip_hidden=False)
+    return pruned_walk.walk_files(os.path.join(ROOT, "book"), (".md",),
+                                  discard=_DISCARD, skip_hidden=False)
 
 
 def _source_figures_by_slug() -> dict[str, list[tuple[str, str]]]:
@@ -169,13 +132,14 @@ def _referenced_basenames(root: str) -> set[str]:
     directive. Keeps cover art, nav panels, and build-referenced glyphs out of the 'unused' bucket."""
     # Two pruned walks plus one root-level glob, replacing eight glob calls — five of which each
     # expanded the whole `book/` subtree before the filter discarded most of it. Same roots, same
-    # extensions, same discard predicate — see `_walk_files`.
-    files = _walk_files(os.path.join(root, "book"), _DISCARD,
-                        (".py", ".typ", ".json", ".md", ".js"), skip_hidden=True)
-    files += _walk_files(os.path.join(root, "book-models"), _DISCARD,
-                         (".py", ".json"), skip_hidden=True)
+    # extensions, same discard predicate — see `tools/pruned_walk.py`.
+    files = pruned_walk.walk_files(os.path.join(root, "book"),
+                                   (".py", ".typ", ".json", ".md", ".js"),
+                                   discard=_DISCARD, skip_hidden=True)
+    files += pruned_walk.walk_files(os.path.join(root, "book-models"), (".py", ".json"),
+                                    discard=_DISCARD, skip_hidden=True)
     files += [p for p in glob.glob(os.path.join(root, "*.py"))  # root level only; never was recursive
-              if not _discarded(p, _DISCARD)]
+              if not _DISCARD(os.path.basename(p))]
     refs: set[str] = set()
     for f in files:
         # Unreachable under the extension set above, kept because it states the intent: never read this
@@ -248,8 +212,8 @@ def build_visual_aids(root: str = ROOT, out: str = OUT) -> tuple[int, int, int, 
     draft_only: dict[str, str] = {}
     # The second site of the same defect: a `recursive=True` glob cannot prune, so a `mermaid` tree was
     # walked and then dropped from the results. The predicate now decides the descent as well.
-    for p in _walk_files(os.path.join(root, "book", "_design"), ("mermaid",), (".svg",),
-                         skip_hidden=True):
+    for p in pruned_walk.walk_files(os.path.join(root, "book", "_design"), (".svg",),
+                                    discard=_DISCARD_MERMAID, skip_hidden=True):
         b = os.path.basename(p)
         if b not in assets:
             draft_only.setdefault(b, p)

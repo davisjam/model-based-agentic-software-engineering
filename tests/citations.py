@@ -31,7 +31,9 @@ from tests.common import FAIL, PASS, ROOT, rel
 _BOOK = os.path.join(ROOT, "book")
 if _BOOK not in _sys.path:
     _sys.path.insert(0, _BOOK)
+_sys.path.insert(0, os.path.join(ROOT, "tools"))
 import build_book as bb  # noqa: E402 — the build owns the cite-marker vocabulary + slug discovery
+import pruned_walk  # noqa: E402 — the shared pruning walk; `tools/` is a flat script directory
 import render_citations as rc  # noqa: E402 — the renderer owns the BibTeX parse + freshness hash
 
 _REFERENCES_BIB = os.path.join(_BOOK, "references.bib")
@@ -53,23 +55,35 @@ def _all_book_md_files() -> list[str]:
 
 
 # Source trees under book/ that are NOT authored chapter/appendix prose: generated projections (web,
-# dist), design notes and drafts (_design), and the print/pitch scaffolding. The PLACEMENT check scans
-# everything else — any authored markdown a projection may render.
-_NON_SOURCE_DIRS = {"_design", "web", "dist", "_print", "_typst", "_latex", "latex", "_pitch", "assets"}
+# dist), design notes and drafts (_design), the print/pitch scaffolding, and the vendored npm tree. The
+# PLACEMENT check scans everything else — any authored markdown a projection may render.
+#
+# `node_modules` was MISSING here until 261106, and that was a scope defect rather than a slow walk:
+# **388 of the 668 files this returned were vendored third-party READMEs** (`@babel/runtime`,
+# `@antfu/install-pkg`, …), so 58% of the corpus the CITE-PLACEMENT gate governed by the book's own
+# citation-marker rules was somebody else's package documentation. A dependency whose README happens to
+# carry `[cite:` would have reddened a push. The gate's verdict did not move — 0 findings before, 0
+# after — but a gate asserting over the wrong corpus is reporting on the wrong thing whether or not it
+# happens to be quiet today.
+_NON_SOURCE_DIRS = {"_design", "web", "dist", "_print", "_typst", "_latex", "latex", "_pitch", "assets",
+                    "node_modules"}
 
 
 def _all_cite_source_md_files() -> list[str]:
     """Every AUTHORED markdown under book/ (chapters, appendices, back matter, standalone notes) —
     the widest source set a `[cite:]` marker may legitimately appear in. Broader than
     `_all_book_md_files` on purpose: marker hygiene is a property of the authored source, not of the
-    chapter corpus, and the appendix dirs are assembled into pages synthetically."""
-    out: list[str] = []
-    for path in glob.glob(os.path.join(_BOOK, "**", "*.md"), recursive=True):
-        rel_parts = os.path.relpath(path, _BOOK).split(os.sep)
-        if any(seg in _NON_SOURCE_DIRS for seg in rel_parts):
-            continue
-        out.append(path)
-    return sorted(out)
+    chapter corpus, and the appendix dirs are assembled into pages synthetically.
+
+    PRUNES rather than filters. `named(*_NON_SOURCE_DIRS)` is the identical predicate the per-file
+    filter used (segment membership over the path relative to `book/`), so the walk now skips the
+    descent instead of expanding it and discarding the results: 5,788 directory opens -> 696, same
+    reader, one place naming the excluded trees. SEGMENT and not substring on purpose — `contains`
+    would also prune `book/web-assets`, whose files this corpus keeps (see `tools/pruned_walk.py`).
+    `skip_hidden=True` reproduces the glob, which never matched a leading dot."""
+    return sorted(pruned_walk.walk_files(_BOOK, (".md",),
+                                         discard=pruned_walk.named(*_NON_SOURCE_DIRS),
+                                         skip_hidden=True))
 
 
 def _bib_keys() -> set[str]:

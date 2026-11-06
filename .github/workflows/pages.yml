@@ -398,6 +398,11 @@ jobs:
           python3 -m pip install "pyyaml>=6,<7"
           python3 book/render_citations.py
           python3 tools/cover_assets.py regen
+      # The pruning walk five Tier-1 checks and the Visual Aids emitter read the tree through. Stdlib
+      # only, fake temp trees, ~1s — it runs ahead of the suite because a broken walker changes what
+      # every one of those checks SEES, and a corpus change is silent: the gate still reports PASS.
+      - name: Pruning-walk unit tier (the prune must equal the filter)
+        run: python3 -m unittest tests.test_pruned_walk
       - name: Validate schema
         run: python3 catalog.py validate
       - name: Render markdown -> HTML (renders ```mermaid fences to inline SVG via book/ mmdc)
