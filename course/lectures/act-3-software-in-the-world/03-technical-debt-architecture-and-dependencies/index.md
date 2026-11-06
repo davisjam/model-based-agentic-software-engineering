@@ -4,7 +4,7 @@ readings:
   groups:
     - heading: Three forms of debt in the age of AI
       items:
-        - cite: storey2026tripledebt
+        - cite: storey2026
           annotation: 'Storey, ["From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"](https://queue.acm.org/doi/10.1145/3807966) (*ACM Queue* 24:2, June 2026). Read the whole article. Storey argues that two kinds of deterioration deserve names alongside technical debt rather than being folded into it: cognitive debt, the erosion of a team''s shared understanding of how its system works, and intent debt, the missing record of goals, constraints, and rationale that a later engineer or agent would need. The point to carry away is that the three reside in different places — the software, the people, the written record — and are therefore repaired by different work. Consider which of the three cheap agent-generated implementation grows fastest, and which of them your test suite can see at all.'
         - cite: tavantzis2026cognitivedebt
           locator: 'the findings on how cognitive debt manifests and what practitioners do about it'
@@ -197,9 +197,21 @@ Coding agents change this calculation because implementation and assurance costs
 
 To practice this, see {lab:architecture-workbench}.
 
-## The software we inherited
+## Dependency management and technical debt
 
 An application's structure includes more than the code its developers wrote. Libraries, frameworks, runtimes, and build tools contribute functionality while introducing obligations nobody selected one at a time.
+
+Before any of that is called debt, it is worth separating the several different things a dependency problem can be, because the responses differ.
+
+| What we observe | What it is |
+|---|---|
+| The library is unmaintained | Maintenance risk |
+| A vulnerability in it is reachable from our deployment | Security exposure |
+| Its license restricts how we may distribute | Distribution obligation |
+| It cannot be upgraded without substantial rework | Potential technical debt |
+| The upgrade is postponed again while the migration grows | Dependency debt, accumulating |
+
+Only the last two are debt. An obligation is something we owe; a debt is a cost we chose to defer. A currently reachable vulnerability is a problem to fix whatever we conclude about debt, and discharging a licensing obligation is not repayment. Dependency-related technical debt is the narrower thing: the cost attributable to deferred updates, avoidable coupling, and difficult replacement. Three parallel debt labels would be tidier than this table and would be wrong, which is why the unit does not force dependencies into the triple-debt model.
 
 ![Two tinted columns hold two graphs. The INTERNAL STRUCTURE column, labeled code we wrote, stacks four components: HTTP handlers, then booking policy, then persistence, then the database, each joined to the next by a downward arrow. The EXTERNAL DEPENDENCIES column, labeled code we inherited, holds four packages: a web framework, an HTTP parser drawn indented beneath it, a date library, and a database driver. Three edges cross from the left column to the right: HTTP handlers uses the web framework, booking policy uses the date library, and persistence uses the database driver. One further edge stays inside the right column, drawn dashed from the web framework down to the HTTP parser, because the parser arrives transitively rather than by our own choice. A legend distinguishes the solid uses edges from the dashed transitive edge. Closing notes read that we can restructure the left graph and can only choose, isolate, or replace the right one, and that a direct dependency is one we chose while a transitive dependency arrives with it.](figures/internal-and-external-dependencies.svg)
 
@@ -221,7 +233,7 @@ Every action in the table costs something. Updating a vulnerable library may req
 
 ## Engineering confidence in a working system
 
-Both movements end in the same place: a model, and a decision the model does not make for us. A recovered architecture reports where the coupling sits. A dependency inventory reports what we are carrying and from whom. Neither says whether to act, and that judgment is economic rather than structural.
+All three movements end in the same place: a model, and a decision the model does not make for us. An investigation reports what the team can and cannot explain, and a decision record reports what anybody bothered to write down. A recovered architecture reports where the coupling sits. A dependency inventory reports what we are carrying and from whom. None of them says whether to act, and that judgment is economic rather than structural.
 
 The models differ according to the engineering question. Dependency graphs and change-impact measurements help evaluate architectural coupling. SBOMs, provenance records, vulnerability information, and license inventories help evaluate inherited components. Tests, architectural rules, dependency policies, and release gates can then preserve selected obligations as the system changes.
 
