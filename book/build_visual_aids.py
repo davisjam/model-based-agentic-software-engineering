@@ -43,13 +43,70 @@ def _clean_caption(raw: str) -> str:
     return re.sub(r"\s+", " ", c).strip()
 
 
+# ── One pruning walker, shared by every traversal below ──────────────────────────────────────────────
+# This emitter used to reach the filesystem through `glob.glob(..., recursive=True)`, which expands a
+# whole subtree BEFORE any filter runs. It then discarded `book/node_modules` (440 MB, 78% of every
+# traversal) and `book/_design` on the RESULTS. Measured 261106 by counting `os.scandir` — the one call
+# `os.walk` and `glob` share, so the count is comparable across this change in a way wall-clock on this
+# host is not: **512,658 entries visited across 32,994 directory opens per run, to read ~2,400 files**.
+# Pruning instead: **15,983 entries across 833 opens — 32× fewer entries, 40× fewer opens** — for
+# byte-identical output (same sha256, 10,582,282 bytes, four interleaved emits). The gallery is
+# re-emitted on every commit and every push, so the traversal was pure recurring waste.
+#
+# A `recursive=True` glob is worse than it looks, which is why the earlier estimate of this cost was
+# ~1.8× low: for a pattern whose last component is not `**`, CPython scans every directory TWICE — once
+# to recurse (`**`) and once to match the trailing `*.ext`. Measured: `glob('book/**/*.py')` opens 5,788
+# directories where `os.walk('book/')` opens 2,914.
+#
+# `_DISCARD` is the one place those trees are named, and `_discarded` is the one predicate. The walk
+# PRUNES a directory the predicate rejects; the per-file filter still rejects a file it rejects. Pruning
+# is sound because the predicate tests a SUBSTRING OF THE PATH, which is monotone under extension —
+# every descendant of a matching directory matches too — so the prune removes exactly the set the filter
+# would have removed. A hardcoded second list could drift from the filter; one predicate cannot.
+_DISCARD = ("_design", "node_modules")  # the trees under book/ this emitter reads nothing from
+
+
+def _discarded(path: str, tokens: tuple[str, ...]) -> bool:
+    return any(t in path for t in tokens)
+
+
+def _walk_files(top: str, tokens: tuple[str, ...], exts: tuple[str, ...],
+                skip_hidden: bool) -> list[str]:
+    """Paths under `top` ending in one of `exts`, never descending into a directory `tokens` discards.
+
+    Yields in `os.walk` top-down order. The order is load-bearing at two of the three call sites, because
+    their consumers COLLAPSE duplicate keys — `_source_figures_by_slug` keys on the chapter-file stem and
+    lets the last writer win (336 slugs, 8 files share some of them), and `draft_only.setdefault` keys on
+    the basename and lets the FIRST win (496 draft SVGs collapse to 283 basenames). Both were verified
+    LIST-equal against the readers they replace, and the per-key WINNER verified identical, which is the
+    property that actually matters. The third site accumulates into a set of basenames, where this walk is
+    set-equal but not list-equal (2,431 paths, same set, grouped by directory instead of by extension) —
+    stated rather than glossed, because "same order everywhere" would be a stronger claim than holds.
+
+    `skip_hidden` reproduces the reader each call site previously used: `glob` never matches a leading
+    dot, so a site converted from a glob passes True; the one site that already used `os.walk` descended
+    into dotted directories, so it passes False. The flag keeps the output byte-identical; it is not a
+    preference."""
+    found: list[str] = []
+    for dirpath, dirnames, filenames in os.walk(top):
+        dirnames[:] = [d for d in dirnames
+                       if not (skip_hidden and d.startswith("."))
+                       and not _discarded(os.path.join(dirpath, d), tokens)]
+        for f in filenames:
+            if skip_hidden and f.startswith("."):
+                continue
+            if not f.endswith(exts):
+                continue
+            path = os.path.join(dirpath, f)
+            if _discarded(path, tokens):
+                continue
+            found.append(path)
+    return found
+
+
 def _book_md_files() -> list[str]:
-    out = []
-    for root, _, files in os.walk(os.path.join(ROOT, "book")):
-        if "_design" in root or "node_modules" in root:
-            continue
-        out += [os.path.join(root, f) for f in files if f.endswith(".md")]
-    return out
+    # skip_hidden=False: this site always used `os.walk`, so it descended into dotted directories.
+    return _walk_files(os.path.join(ROOT, "book"), _DISCARD, (".md",), skip_hidden=False)
 
 
 def _source_figures_by_slug() -> dict[str, list[tuple[str, str]]]:
@@ -80,18 +137,27 @@ def _lof_floats() -> tuple[list[dict], list[dict]]:
 def _referenced_basenames(root: str) -> set[str]:
     """SVG basenames mentioned anywhere in tracked text (build/typst/json/nav) — 'used' without a chapter
     directive. Keeps cover art, nav panels, and build-referenced glyphs out of the 'unused' bucket."""
+    # Two pruned walks plus one root-level glob, replacing eight glob calls — five of which each
+    # expanded the whole `book/` subtree before the filter discarded most of it. Same roots, same
+    # extensions, same discard predicate — see `_walk_files`.
+    files = _walk_files(os.path.join(root, "book"), _DISCARD,
+                        (".py", ".typ", ".json", ".md", ".js"), skip_hidden=True)
+    files += _walk_files(os.path.join(root, "book-models"), _DISCARD,
+                         (".py", ".json"), skip_hidden=True)
+    files += [p for p in glob.glob(os.path.join(root, "*.py"))  # root level only; never was recursive
+              if not _discarded(p, _DISCARD)]
     refs: set[str] = set()
-    for g in ("book/**/*.py", "book/**/*.typ", "book/**/*.json", "book/**/*.md", "book/**/*.js",
-              "book-models/**/*.py", "book-models/**/*.json", "*.py"):
-        for f in glob.glob(os.path.join(root, g), recursive=True):
-            if "_design" in f or "node_modules" in f or f.endswith(("visual-aids.html", "extended-figures.html")):
-                continue
-            try:
-                txt = open(f, encoding="utf-8", errors="ignore").read()
-            except OSError:
-                continue
-            for m in re.finditer(r'[\w./+-]+\.svg', txt):
-                refs.add(os.path.basename(m.group(0)))
+    for f in files:
+        # Unreachable under the extension set above, kept because it states the intent: never read this
+        # emitter's own output back in as a reference to the figures it inlines.
+        if f.endswith(("visual-aids.html", "extended-figures.html")):
+            continue
+        try:
+            txt = open(f, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        for m in re.finditer(r'[\w./+-]+\.svg', txt):
+            refs.add(os.path.basename(m.group(0)))
     return refs
 
 
@@ -150,9 +216,12 @@ def build_visual_aids(root: str = ROOT, out: str = OUT) -> tuple[int, int, int, 
     used_bases = sorted(b for b in assets if b not in in_book and b in referenced)
     unused_bases = sorted(b for b in assets if b not in in_book and b not in referenced)
     draft_only: dict[str, str] = {}
-    for p in glob.glob(os.path.join(root, "book/_design/**/*.svg"), recursive=True):
+    # The second site of the same defect: a `recursive=True` glob cannot prune, so a `mermaid` tree was
+    # walked and then dropped from the results. The predicate now decides the descent as well.
+    for p in _walk_files(os.path.join(root, "book", "_design"), ("mermaid",), (".svg",),
+                         skip_hidden=True):
         b = os.path.basename(p)
-        if b not in assets and "mermaid" not in p:
+        if b not in assets:
             draft_only.setdefault(b, p)
 
     fig_cards = []
