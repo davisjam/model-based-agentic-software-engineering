@@ -15,8 +15,15 @@ import glob
 import json
 import os
 import re
+import sys
+import tempfile
+import xml.etree.ElementTree as ET
+import zipfile
 
 from tests.common import FAIL, PASS, ROOT, rel
+
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import pptx_validate  # noqa: E402 — the tool owns the one OPC part-name resolver; this wraps it
 
 #: A lecture module directory: a number-prefixed dir with an index.md under a `course/lectures/<act>/`
 #: tree (e.g. `course/lectures/act-1-foundations/07-design/`). awesome-pages turns each into a sidebar
@@ -571,10 +578,12 @@ def _deck_slide_texts(fs_path: str) -> "list[str]":
     shape: zip entry `slideN.xml` is a PART number, not a position, so order comes from presentation.xml's
     `<p:sldIdLst>` through the rels; and PowerPoint splits one sentence across arbitrarily many `<a:t>`
     runs, re-splitting them on every save, so runs are joined within each `<a:p>` before any comparison.
-    A phrase straddling a run boundary is invisible to a per-run scan."""
-    import xml.etree.ElementTree as ET
-    import zipfile
+    A phrase straddling a run boundary is invisible to a per-run scan.
 
+    A third fact, learned the hard way: a relationship `Target` is not a path fragment to prefix. It may
+    be package-root-ABSOLUTE, and `ada-tool deck-slide insert` writes that form for every slide it adds,
+    so resolution goes through the one OPC part-name resolver rather than string arithmetic here — see
+    `pptx_validate.resolve_part`."""
     with zipfile.ZipFile(fs_path) as z:
         rels = ET.fromstring(z.read("ppt/_rels/presentation.xml.rels"))
         target = {r.get("Id"): r.get("Target") for r in rels}
@@ -582,7 +591,7 @@ def _deck_slide_texts(fs_path: str) -> "list[str]":
                  for e in ET.fromstring(z.read("ppt/presentation.xml")).iter(f"{_P_NS}sldId")]
         texts = []
         for t in order:
-            part = "ppt/" + t.replace("../", "")
+            part = pptx_validate.resolve_part("ppt", t)
             paras = [
                 "".join(n.text or "" for n in p.iter(f"{_A_NS}t"))
                 for p in ET.fromstring(z.read(part)).iter(f"{_A_NS}p")
@@ -628,6 +637,112 @@ def check_course_reveal_not_leaked():
                     issues.append(f"reveal-leak: {disp}: slide {i + 1} states {ph!r}, revealed on "
                                   f"slide {reveal + 1} — students read the outcome before predicting "
                                   f"it, which turns a transfer exercise into recall")
+    return (FAIL if issues else PASS), issues
+
+
+#: A three-slide package whose `presentation.xml.rels` names its slides in all three OPC target forms —
+#: root-absolute, source-relative, parent-relative — one form per slide, so a resolver that handles only
+#: some of them fails on an identifiable slide rather than ambiguously. Built in a temp dir, never written
+#: into the tree: pinning this on a real deck's current rels would make the pin decay silently the first
+#: time PowerPoint re-saves that deck and normalizes the absolute form away.
+_TARGET_FORM_FIXTURE = (
+    ("/ppt/slides/slide1.xml", "ABSOLUTE FORM"),       # what `ada-tool deck-slide insert` writes
+    ("slides/slide2.xml", "RELATIVE FORM"),            # what PowerPoint writes
+    ("../ppt/slides/slide3.xml", "PARENT RELATIVE"),   # legal, and normalizes back into `ppt/`
+)
+
+
+def _write_target_form_deck(path: str, targets: "list[tuple[str, str]]") -> None:
+    """A minimal readable package whose slide relationships use the given (Target, text) pairs."""
+    rels = "".join(
+        f'<Relationship Id="rId{i}" Target="{tgt}" Type="http://schemas.openxmlformats.org/'
+        f'officeDocument/2006/relationships/slide"/>' for i, (tgt, _t) in enumerate(targets, 1))
+    sld_ids = "".join(f'<p:sldId id="{255 + i}" r:id="rId{i}"/>' for i in range(1, len(targets) + 1))
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("[Content_Types].xml",
+                   '<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats'
+                   '.org/package/2006/content-types"><Default Extension="rels" ContentType='
+                   '"application/vnd.openxmlformats-package.relationships+xml"/><Default Extension='
+                   '"xml" ContentType="application/xml"/></Types>')
+        z.writestr("ppt/_rels/presentation.xml.rels",
+                   '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas'
+                   f'.openxmlformats.org/package/2006/relationships">{rels}</Relationships>')
+        z.writestr("ppt/presentation.xml",
+                   '<?xml version="1.0" encoding="UTF-8"?><p:presentation xmlns:p="http://schemas'
+                   '.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas'
+                   '.openxmlformats.org/officeDocument/2006/relationships">'
+                   f'<p:sldIdLst>{sld_ids}</p:sldIdLst></p:presentation>')
+        for i, (_tgt, text) in enumerate(targets, 1):
+            z.writestr(f"ppt/slides/slide{i}.xml",
+                       '<?xml version="1.0" encoding="UTF-8"?><p:sld xmlns:p="http://schemas'
+                       '.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas'
+                       '.openxmlformats.org/drawingml/2006/main"><p:cSld><p:spTree><p:sp><p:txBody>'
+                       f'<a:p><a:r><a:t>{text}</a:t></a:r></a:p></p:txBody></p:sp></p:spTree>'
+                       '</p:cSld></p:sld>')
+
+
+def check_course_rel_targets_resolve_all_forms(strict: bool):
+    """CONTROL (BLOCKING). The deck reader resolves an OPC relationship target in every form OPC
+    allows — ABSOLUTE included — and still fails loudly on a target naming a part that is absent.
+
+    The class this pins: a relationship `Target` is not a path fragment, and treating it as one
+    (`"ppt/" + target`) is correct for exactly the one form PowerPoint happens to write. On 261106
+    `ada-tool deck-slide insert` authored four section dividers into a course deck and wrote the
+    ROOT-ABSOLUTE form for each — `/ppt/slides/slide30.xml` — whereupon the prefixing reader asked
+    the package for `ppt//ppt/slides/slide30.xml`, raised `KeyError`, and took the whole Tier-1 gate
+    red, blocking every push. The deck was valid throughout; the reader was wrong. Every deck that
+    verb touches from here on carries the shape, so this is a standing property of the corpus rather
+    than one deck's quirk.
+
+    Both directions are asserted, because the cheap wrong fix to a `KeyError` is to swallow it: a
+    target naming a part the package does not contain must STILL raise. A reader that silently drops
+    unresolvable slides would turn the reveal-leak gate it feeds into a check over a subset of the
+    deck, which passes for the wrong reason and says nothing.
+
+    Stdlib, temp-dir, 78 ms measured. No dependency on any committed deck's rels — see the fixture."""
+    issues: list[str] = []
+
+    # Leg 1 — the resolver's own table, including the exact measured target.
+    for base, target, want in (
+            ("ppt", "/ppt/slides/slide30.xml", "ppt/slides/slide30.xml"),
+            ("ppt", "slides/slide30.xml", "ppt/slides/slide30.xml"),
+            ("ppt", "../ppt/slides/slide30.xml", "ppt/slides/slide30.xml"),
+            ("ppt/slides", "../notesSlides/notesSlide4.xml", "ppt/notesSlides/notesSlide4.xml"),
+            ("ppt/slides", "/customXml/item.xml", "customXml/item.xml")):
+        got = pptx_validate.resolve_part(base, target)
+        if got != want:
+            issues.append(f"rel-target: resolve_part({base!r}, {target!r}) = {got!r}, expected {want!r}")
+
+    # Leg 2 — the reader, end to end, over a package using one form per slide.
+    with tempfile.TemporaryDirectory(prefix="rel-target-forms-") as td:
+        deck = os.path.join(td, "forms.pptx")
+        _write_target_form_deck(deck, list(_TARGET_FORM_FIXTURE))
+        with zipfile.ZipFile(deck) as z:  # anti-vacuity: the fixture carries what it claims
+            if b'Target="/ppt/slides/slide1.xml"' not in z.read("ppt/_rels/presentation.xml.rels"):
+                return FAIL, ["rel-target: the fixture does not carry an absolute target — it would "
+                              "pass against a prefixing reader, so it pins nothing"]
+        want = [text for _tgt, text in _TARGET_FORM_FIXTURE]
+        try:
+            got = _deck_slide_texts(deck)
+        except KeyError as exc:
+            got, want_desc = None, ", ".join(t for t, _ in _TARGET_FORM_FIXTURE)
+            issues.append(f"rel-target: the reader raised KeyError({exc}) over a package whose slide "
+                          f"targets are {want_desc} — all three forms are valid OPC")
+        if got is not None and got != want:
+            issues.append(f"rel-target: the reader returned {got!r} over the three-form package, "
+                          f"expected {want!r} (one slide per target form, in sldIdLst order)")
+
+        absent = os.path.join(td, "absent.pptx")
+        _write_target_form_deck(absent, [("/ppt/slides/slide1.xml", "PRESENT"),
+                                         ("slides/slide404.xml", "ABSENT")])
+        try:
+            _deck_slide_texts(absent)
+            issues.append("rel-target: the reader resolved a target naming a part the package does "
+                          "not contain — an unresolvable slide must fail loudly, not vanish from the "
+                          "list and leave the gates downstream reading a subset of the deck")
+        except KeyError:
+            pass
+
     return (FAIL if issues else PASS), issues
 
 

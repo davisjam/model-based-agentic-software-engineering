@@ -121,6 +121,11 @@ import zipfile
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS_DIR)
 
+sys.path.insert(0, TOOLS_DIR)
+# `resolve_part` lives there because that module is this repo's OPC part-name owner and is already
+# the face the test suite imports; a second copy here is how the absolute-target class survived.
+from pptx_validate import resolve_part  # noqa: E402
+
 _P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 _A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 _R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
@@ -189,19 +194,6 @@ def _resolve_title(slide: ET.Element) -> str:
     return min(body, key=lambda s: s[1])[2] if body else ""
 
 
-def _resolve_part(base_dir: str, target: str) -> str:
-    """An OPC relationship target to a package part name.
-
-    A target is either package-ROOT-absolute (`/ppt/slides/slide28.xml`) or relative to the
-    source part's directory (`../notesSlides/notesSlide18.xml`). Both forms ship in this
-    corpus — PowerPoint writes the absolute form on some saves — and joining an absolute
-    target onto a base silently yields a path no zip entry matches.
-    """
-    if target.startswith("/"):
-        return target.lstrip("/")
-    return posixpath.normpath(posixpath.join(base_dir, target))
-
-
 def _read_sections(pres: ET.Element, pos_of_sid: "dict[str, int]") -> list[dict]:
     """PowerPoint's own section list, resolved to PRESENTATION POSITIONS.
 
@@ -261,7 +253,7 @@ def load_deck(fs_path: str, display: str) -> dict:
                 raise PreconditionFailure(
                     f"{display}: sldIdLst entry {pos} (sldId {sld_id.get('id')}) names "
                     f"relationship {rid!r}, which presentation.xml.rels does not declare")
-            part = _resolve_part("ppt", target)
+            part = resolve_part("ppt", target)
             try:
                 slide = ET.fromstring(zf.read(part))
             except (KeyError, ET.ParseError, OSError) as exc:
@@ -272,7 +264,7 @@ def load_deck(fs_path: str, display: str) -> dict:
             if srels in names:
                 for rel in ET.fromstring(zf.read(srels)):
                     if rel.get("Type", "").endswith("/notesSlide"):
-                        npart = _resolve_part("ppt/slides", rel.get("Target"))
+                        npart = resolve_part("ppt/slides", rel.get("Target"))
                         notes_parts_seen.add(npart)
                         notes = "\n".join(
                             t for t in _paragraph_texts(ET.fromstring(zf.read(npart)))

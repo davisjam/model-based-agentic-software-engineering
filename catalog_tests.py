@@ -139,6 +139,7 @@ from tests.course import (
     check_course_module_schema,
     check_course_nav_titles,
     check_course_reading_citations,
+    check_course_rel_targets_resolve_all_forms,
     check_course_reveal_not_leaked,
     check_course_sessions_calendar_parity,
     check_course_unit_manifests,
@@ -299,6 +300,13 @@ CHECKS = [
     # paid once, in a classroom, with no way to take it back. 10.6 ms over the declared decks.
     Check("course: predict-then-reveal deck outcome not leaked before its reveal slide", 1,
           lambda strict: check_course_reveal_not_leaked()),
+    # The reader that check feeds, pinned on the OPC fact that broke it: a relationship Target may be
+    # ROOT-ABSOLUTE, and the slide-authoring verb writes that form, so prefixing it onto `ppt/` asks the
+    # package for a path no entry matches. That took this gate red on 261106 and blocked every push. The
+    # control also asserts the reader still fails loudly on an unresolvable target — swallowing is the
+    # cheap wrong fix, and it would silently narrow the gate above to a subset of the deck. 78 ms.
+    Check("course: deck reader resolves every OPC rel-target form, absolute included (control)", 1,
+          check_course_rel_targets_resolve_all_forms),
     Check("course: committed pptx OPC part coverage (stdlib twin)", 1, check_pptx_opc,
           needs_run=_pptx_changed),
     Check("course: committed pptx OOXML schema validity (OpenXmlValidator)", 2, check_pptx_schema,

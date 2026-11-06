@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import json
 import os
+import posixpath
 import re
 import shutil
 import subprocess
@@ -53,6 +54,39 @@ BASELINE_PATH = os.path.join(TOOLS_DIR, "pptx-validate-baseline.json")
 #: (a git-init'd scratch dir was once zipped straight into a shipped deck).
 _FOREIGN_SEGMENTS = {".git", "__MACOSX"}
 _FOREIGN_BASENAMES = {".DS_Store", "Thumbs.db"}
+
+
+# ------------------------------------------------------------ OPC part-name arithmetic (stdlib)
+
+def resolve_part(base_dir: str, target: str) -> str:
+    """An OPC relationship `Target` resolved to the zip entry name that holds that part.
+
+    THE ONE implementation; every reader of a `.rels` part in this repo calls it. A relationship
+    target takes any of three forms, and OPC permits all three for the same part:
+
+      `/ppt/slides/slide30.xml`        package-ROOT-absolute
+      `slides/slide30.xml`             relative to the SOURCE part's own directory
+      `../notesSlides/notesSlide4.xml` parent-relative, same base
+
+    So the base is the directory of the `.rels` part's OWNER — `ppt` for
+    `ppt/_rels/presentation.xml.rels`, `ppt/slides` for `ppt/slides/_rels/slide4.xml.rels` — and
+    the answer is `normpath(join(base, target))` with the absolute form short-circuited. Not a
+    prefix concatenation: joining `/ppt/slides/slide30.xml` onto `ppt/` yields
+    `ppt//ppt/slides/slide30.xml`, which matches no zip entry, and the reader dies with a
+    `KeyError` naming a path that was never in the package.
+
+    Measured, not hypothetical. `ada-tool deck-slide insert` — `PptxSlideLifecycleMutator`'s
+    `InsertSlideFromLayout`, which writes its relationships through the OpenXML SDK — emits the
+    ABSOLUTE form for every part it adds, both the new slides and its own attribution part, with
+    relationship ids of the SDK's `R<16 hex>` shape rather than PowerPoint's `rIdN`. On 261106
+    four section dividers authored into one deck put five absolute targets into its
+    `presentation.xml.rels`, and the one reader that concatenated rather than normalized took
+    the whole Tier-1 gate down with it. Any deck touched by that verb carries the shape, so a
+    naive reader does not fail once — it fails on everything authored from here on.
+    """
+    if target.startswith("/"):
+        return target.lstrip("/")
+    return posixpath.normpath(posixpath.join(base_dir, target))
 
 
 # ---------------------------------------------------------------- OPC part coverage (stdlib)
