@@ -95,6 +95,50 @@ teaching handle and the canonical idea it elaborates, so a handle can be checked
 
 ---
 
+## Agent terminology and anthropomorphism
+
+**This section is the single authoritative home for the pronoun and anthropomorphism policy.** Other
+authoring instructions reference it; none restates it. Two independently worded copies would produce
+exactly the vocabulary drift this file exists to prevent.
+
+Treat software agents and foundation models as engineered systems, not persons. The rule rests on the
+three entities the writing distinguishes: the **engineer** — the person or institution exercising
+engineering authority and responsibility; the **agent** — the acting software system that uses tools and
+performs delegated work; and the **foundation model** — the trained reasoning component the agent uses.
+(The disambiguation rule above fixes the nouns; this section fixes the grammar that follows them.)
+
+- Use *it* / *which* / *that* for an individual agent, foundation model, or named AI system. Do not use
+  *he* / *she* / *who* / *whom* when referring to these systems.
+- Use *they* / *their* for plural agents. Avoid singular *they* when it obscures whether the referent is
+  a person or an agent.
+- Prefer descriptions of functional behavior: an agent selects, infers, generates, evaluates, proposes,
+  executes, or reports.
+- Functional terms such as *reasoning*, *judgment*, *understanding*, and *decision* remain appropriate
+  when they describe observable capabilities. They do not imply consciousness, personhood, or
+  engineering authority.
+- Reserve *engineering authority*, *accountability*, and *responsibility* for the people or institutions
+  that hold them. An agent may exercise delegated discretion without becoming the responsible
+  engineering authority.
+- Preserve quotations verbatim. When a quotation personifies an agent, distinguish the quoted speaker's
+  language from the book's own terminology.
+
+During book-wide copyediting, audit every occurrence of *who*, *whom*, *whose*, and human-gendered
+pronouns. Inspect the referent before editing; do not perform a blind replacement. Where the referent is
+an agent, foundation model, or named AI system, use non-anthropomorphizing language.
+
+Apply this convention consistently in prose, captions, tables, glossary entries, and figure labels.
+
+**Three false positives the audit must not flag.** Most hits are correct English and must survive
+untouched. *Who* / *whom* with a human referent (*the engineers who own the code*, *people who supplied
+the knowledge*, *from whom an account can be demanded*). The interrogative *who* naming an ownership or
+authority question (*who owns this job*, *who had authority to establish those terms*) — that is a
+question about people, and it is the standard phrasing for an ownership model. And *whose* with an
+inanimate antecedent (*a model whose inputs are marked*, *a control whose purpose has disappeared*),
+which is the ordinary possessive relative in English and carries no personification; the ban list above
+deliberately omits *whose* for this reason. Audit it, then leave it.
+
+---
+
 ## Architecture & design patterns
 
 Prefer **named design patterns**. When you reach for a structural idea, name the established pattern and link

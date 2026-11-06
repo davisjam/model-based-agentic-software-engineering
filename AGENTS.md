@@ -70,6 +70,10 @@ Concretely, the brief must say:
 - **Guardrails:** NEVER `git add -A` (sweeps `book/_design/`), NEVER `--no-verify` (skips the
   force-stage), never stage `book/_design/` or `scratchpad/`. Carry the co-author trailer.
 - **Report the shared files it touched** (the book-models in §1) so the merge can hand-union them.
+- **Terminology is governed, not a per-fold choice** — the pronoun and anthropomorphism policy for agents
+  and foundation models lives in
+  [`plugin/mage/skills/self-communicate/writing/lexicon.md`](plugin/mage/skills/self-communicate/writing/lexicon.md)
+  §"Agent terminology and anthropomorphism"; read it there and do not restate it.
 
 If a genuinely load-bearing scope question arises (a brief contradicts an EDIT-MAP, two lanes might
 own the same figure), the agent should **defer the call to the orchestrator**, not guess — a wrong
