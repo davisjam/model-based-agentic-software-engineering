@@ -27,6 +27,8 @@ from __future__ import annotations
 
 import ast
 import os
+import re
+import subprocess
 import sys
 
 from tests.common import FAIL, PASS, ROOT
@@ -106,8 +108,35 @@ def _source_findings() -> list[str]:
 
 def check_hook_operates_on_committing_tree():
     """The pre-commit hook resolves its root from the committing tree and stages only under that root."""
-    issues = _resolution_findings() + _source_findings() + _latex_scope_findings() + _projection_findings()
+    issues = (_resolution_findings() + _source_findings() + _latex_scope_findings()
+              + _projection_findings() + _shared_artifact_findings())
     return (FAIL if issues else PASS), issues
+
+
+def _shared_artifact_findings() -> list[str]:
+    """Consumers of one mutable figure pool must be ordered in the executable plan."""
+    env = dict(os.environ, GC_PREPUSH_PLAN="1", GC_PREPUSH_ALL="1")
+    result = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "pre-push")],
+                            cwd=ROOT, env=env, input="", text=True, capture_output=True)
+    if result.returncode:
+        return ["pre-push plan failed: " + result.stderr[-1000:]]
+    graph = {}
+    for name, parents in re.findall(r"^PLAN phase: ([^(\n]+?)(?: \(after: ([^)]+)\))?$",
+                                   result.stdout, re.M):
+        graph[name] = set(parents.split(", ")) if parents else set()
+
+    def precedes(first, second, seen=None):
+        seen = set() if seen is None else seen
+        if second in seen:
+            return False
+        seen.add(second)
+        parents = graph.get(second, set())
+        return first in parents or any(precedes(first, parent, seen) for parent in parents)
+
+    if not precedes("book static checks", "book PDF"):
+        return ["pre-push figure validation and book PDF can overlap while rewriting "
+                "latex/build/tikz/candidates.pdf"]
+    return []
 
 
 def _latex_scope_findings() -> list[str]:

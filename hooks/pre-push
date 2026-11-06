@@ -92,13 +92,16 @@ The dependency edges, each from a measured artifact flow — not guessed:
   - `site build` -> `book PDF`: both emit the writing-style exports/routers
     (`_emit_writing_style_export` runs in the web build AND in `build_pdf`), so they must not
     overlap; and the PDF phase must read the projections the build refreshed.
+  - `book static checks` -> `book PDF`: both compile the grayscale figure pool in
+    `latex/build/tikz`. The static phase must finish reading that pool before the
+    PDF phase rewrites it.
   - `site build` -> `handbook PDF`: the handbook reads the shared bibliography surfaces the build
     refreshes; this also preserves the hook's historical ordering for the two renders.
   - `site build` + `book PDF` -> `tier1`: the deterministic floor reads the freshly built HTML,
     `book/web/`, `plugin/` (site build) and runs the caption-orphan sensor against
     `book/mage-book.pdf` when present (book PDF). Running it earlier would grade a stale artifact.
-  - Everything else is pairwise write-disjoint: the toolchain check compiles in
-    `latex/build/ci-tagging`, the TikZ suite in `latex/build/tikz`, the book in `book/latex/build`,
+  - The remaining outputs are pairwise write-disjoint: the toolchain check compiles in
+    `latex/build/ci-tagging`, the book chapters in `book/latex/build`,
     the handbook in `handbook/generated` + `handbook/dist`, the workbench in `workbench/`.
 
 The ONE shared mutable resource is the LuaLaTeX font cache (`latex/build/.texmf-var`, via
@@ -659,7 +662,7 @@ phases.append(Phase("site build", _phase_site_build, cost=4))
 
 if in_book:
     phases.append(Phase("book static checks", _phase_book_static, cost=2))
-    phases.append(Phase("book PDF", _phase_book_pdf, deps=("site build",), cost=10))
+    phases.append(Phase("book PDF", _phase_book_pdf, deps=("site build", "book static checks"), cost=10))
 else:
     print("pre-push: book PDF SKIPPED — no book or shared LaTeX input in this push", file=sys.stderr)
 
