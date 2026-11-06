@@ -62,6 +62,31 @@ three of its references were broken a day earlier than the hand sweep believed. 
 that predates the baseline is invisible to a diff against it, by construction — so when in
 doubt, run with no --since at all and read the HIGH band.
 
+--declares answers a different question: WHAT DOES THIS DECK SAY ABOUT ITSELF, and do the
+sections it actually has agree? Twice in one day a deck was briefed on a structural hypothesis
+derived from shape names and slide layouts when the deck had already declared its structure in
+prose nobody read. One deck's notes name four movements and the slide each opens; the
+hypothesis, built from a shape survey, got three of the four wrong — and that deck's own slide
+7 explains in the notes WHY the `Explanation N:` slides are not section heads ("the model earns
+its entrance from the narrative, not from a definitions section"). Another deck's on-slide
+agenda lists four SECTIONs and the deck contains three. The declarations were there both times;
+nothing read them.
+
+So the mode reads THREE surfaces — speaker notes, on-slide text, and the divider's own shape
+set — and prints each deck's declared unit heads against PowerPoint's own section list, with
+every disagreement named: a declared head no section starts at, a unit promised on an agenda
+that no slide heads, a deck that declares its structure only in prose and carries no section
+list at all, plus the metadata defects a reader cannot see in the application (an empty
+section, a non-contiguous one, a section naming slide ids `sldIdLst` does not declare, parked
+slides left inside a live section). It also reports the declarations that carry their own
+check: per-slide `TIMING` against the presented set, a declared `BUILD` naming shape groups
+against the shapes and timing tree actually on the slide, and staged reveals.
+
+The vocabulary is CENSUSED, not guessed — see `declared_structure` for the counts and for the
+markers deliberately not read. Of a briefed candidate list, `TOPIC N` and `BUILD (apply by
+hand)` do not occur in this corpus at all, and `NowMarker`, `PROGRESSION:` and `HIDDEN UNTIL
+ASKED` occur in exactly one deck each.
+
 Positions resolve through `ppt/presentation.xml`'s `sldIdLst`, never part filenames — a
 deck that has had slides reordered or parked is scrambled, and every deck here has. Each
 package asserts its own preconditions (slide parts == sldIdLst length == resolved slides;
@@ -75,6 +100,7 @@ Usage:
   python3 tools/deck_note_refs.py <deck.pptx> --output report.json
   python3 tools/deck_note_refs.py <deck.pptx> --min-rank medium
   python3 tools/deck_note_refs.py <deck.pptx> --at <ref> --since <older-ref>   # historical
+  python3 tools/deck_note_refs.py --all-tracked --declares   # declared structure vs sections
 
 Exit codes: 0 = the check ran (findings or not — this is advisory, findings do not fail);
 2 = usage error; 3 = a precondition failed on at least one deck, so some report is missing.
@@ -98,6 +124,8 @@ ROOT = os.path.dirname(TOOLS_DIR)
 _P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 _A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 _R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+#: PowerPoint's own section list lives in a Microsoft extension, not in the ISO schema.
+_P14 = "{http://schemas.microsoft.com/office/powerpoint/2010/main}"
 _SLIDE_RE = re.compile(r"^ppt/slides/slide\d+\.xml$")
 
 RANKS = ("high", "medium", "low")
@@ -174,6 +202,27 @@ def _resolve_part(base_dir: str, target: str) -> str:
     return posixpath.normpath(posixpath.join(base_dir, target))
 
 
+def _read_sections(pres: ET.Element, pos_of_sid: "dict[str, int]") -> list[dict]:
+    """PowerPoint's own section list, resolved to PRESENTATION POSITIONS.
+
+    A section is a slide-ID LIST, not a range, so reordering a slide does not move it between
+    sections and a section's positions are not necessarily contiguous. Both facts are reported
+    rather than smoothed over: the non-contiguity IS the defect in several decks here. An ID a
+    section names that `sldIdLst` does not declare is DANGLING and kept, because a phantom
+    section whose IDs all dangle has been found in this corpus and a reader must see it.
+    """
+    out: list[dict] = []
+    for sec in pres.iter(f"{_P14}section"):
+        ids = [e.get("id") for e in sec.iter(f"{_P14}sldId")]
+        positions = sorted(pos_of_sid[i] for i in ids if i in pos_of_sid)
+        out.append({"name": sec.get("name") or "", "positions": positions,
+                    "dangling": [i for i in ids if i not in pos_of_sid],
+                    "start": positions[0] if positions else None,
+                    "contiguous": positions == list(
+                        range(positions[0], positions[0] + len(positions))) if positions else True})
+    return out
+
+
 class PreconditionFailure(Exception):
     """A package whose own structure contradicts itself; refuse to report numbers from it."""
 
@@ -232,7 +281,20 @@ def load_deck(fs_path: str, display: str) -> dict:
                 "position": pos, "sid": sld_id.get("id"), "part": part,
                 "hidden": slide.get("show") == "0", "title": _resolve_title(slide),
                 "texts": [t for _n, _y, t in _shape_texts(slide)], "notes": notes,
+                # For the --declares mode: a declared build names SHAPES and needs a timing
+                # tree to run. Both are read here so nothing re-opens the package later.
+                #
+                # EVERY `cNvPr`, not only those under `p:sp`. A build step is routinely a
+                # GROUP (`p:grpSp`, whose name hangs off `p:nvGrpSpPr/p:cNvPr`) and a
+                # shape-only walk misses it: one deck's five declared builds all name group
+                # shapes, and the shape-only version of this reader called every one of them
+                # a shape absent from its slide — five confident wrong findings.
+                "shapes": [el.get("name") or "" for el in slide.iter()
+                           if el.tag == f"{_P}cNvPr"],
+                "has_timing": slide.find(f"{_P}timing") is not None,
             })
+
+        sections = _read_sections(pres, {s["sid"]: s["position"] for s in slides})
 
         # The three preconditions. Each has drawn a confident wrong answer out of a
         # hand-rolled probe in this repo, so each is asserted rather than assumed.
@@ -250,7 +312,7 @@ def load_deck(fs_path: str, display: str) -> dict:
                 f"{display}: {len(pkg_notes)} notes part(s) in the package and ZERO reachable "
                 f"through slide rels — the notes extraction is broken, not the deck empty")
 
-    return {"display": display, "slides": slides,
+    return {"display": display, "slides": slides, "sections": sections,
             "counts": {"slides": len(slides),
                        "presented": sum(1 for s in slides if not s["hidden"]),
                        "hidden": sum(1 for s in slides if s["hidden"]),
@@ -793,6 +855,258 @@ def scan_deck(deck: dict, delta: "dict | None") -> list[dict]:
     return out
 
 
+# ----------------------------------------------------- what a deck declares about ITSELF
+
+#: Structure vocabulary, CENSUSED not guessed. Across 37 tracked decks / 1226 slides / 1063
+#: notes parts, the markers that recur across a deck FAMILY are: `TIMING:` (15 decks, 444
+#: uses), a bare `ANIMATE` click marker (11 / 226), `ASK:` (9 / 81), `TRANSITION:` (5 / 101),
+#: `NEXT:` (5 / 55), `PARKED` (5 / 62), `ASK BEFORE REVEALING` (4 / 53), `EXPECTED ANSWERS`
+#: (4 / 56), on-slide `SECTION N` / `PART N` divider labels, and `ACT`/`PART` unit talk in 26
+#: decks. Markers confined to one deck — `BuildStepN`, `PROGRESSION:`, `HIDDEN UNTIL ASKED`,
+#: `OPENS MOVEMENT N` — are kept ONLY where the declaration they carry is checkable anyway;
+#: 311 further ALL-CAPS lead-ins occur in exactly one deck each and are noise, not convention.
+#: `TOPIC N` and `BUILD (apply by hand)` do not occur in this corpus at all.
+_UNIT = r"MOVEMENT|SECTION|PART|TOPIC|ACT"
+_ORD = r"[0-9]+|[IVX]{1,4}|one|two|three|four|five|six|seven|eight"
+
+#: A slide claiming to OPEN or CLOSE a unit. The verb is what makes it a declaration rather
+#: than a reference, so it is the pattern's spine; 2-4 writes `OPENS MOVEMENT 2` in its notes.
+_DECL_BOUNDARY = re.compile(
+    rf"\b(opens?|closes?|begins?|ends?|starts?)\s+({_UNIT})\s+({_ORD})\b", re.I)
+#: A unit LABEL. On a divider this is the deck labelling its own structure; on an agenda slide
+#: several appear at once, which is how a deck promises a unit it may not contain.
+_DECL_LABEL = re.compile(rf"\b({_UNIT})\s+({_ORD})\b")
+_DECL_BUILD = re.compile(r"\bBUILD\b(?!ing)[^\n]{0,200}")
+_DECL_BUILD_SHAPE = re.compile(r"\b([A-Za-z]*BuildStep\w*)\b")
+_DECL_REVEAL = re.compile(
+    r"\b(ASK BEFORE REVEALING|HIDDEN UNTIL ASKED|HOLD THE REVEAL|REVEAL ON)\b", re.I)
+_DECL_BUDGET = re.compile(r"\b(?:BUDGET|PROGRESSION)\s*:[^\n]{0,180}")
+#: A THIRD surface: the divider's own shape SET. Neither marker name works alone, measured —
+#: `SectionName` (8 of 37 decks) also sits on every `STRETCH BREAK` slide, and `SectionLabel`
+#: (17 decks) doubles as a generic in-diagram label, three to a slide on one content slide.
+#: Each alone produced heads at positions no section starts at. The house divider carries the
+#: eyebrow AND the question together, so the SET is the signal. `NowMarker` — a bespoke
+#: `NOW ▼` pointer — occurs in ONE deck and is deliberately not read: a marker used once is
+#: noise, and that deck declares its structure in the package's own section list anyway.
+_DECL_SHAPE_SET = ("sectionlabel", "sectionquestion")
+
+_ORD_VALUE = dict(_NUMBER_WORDS)
+_ORD_VALUE.update({"i": 1, "ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7, "viii": 8})
+
+
+def _ord_value(token: str) -> "int | None":
+    token = token.lower()
+    return int(token) if token.isdigit() else _ORD_VALUE.get(token)
+
+
+def declared_structure(deck: dict) -> dict:
+    """Everything this deck says about its OWN structure, with the surface it said it on.
+
+    Two decks were briefed on a structural hypothesis derived from shape names and layouts
+    when the deck had already declared its structure in prose nobody read: one named four
+    movements and their opening slides in its notes (the hypothesis got three of four wrong),
+    the other listed four SECTIONs on an on-slide agenda and contains three. So BOTH surfaces
+    are read — notes AND on-slide text — and each declaration carries which one it came from.
+    """
+    heads: list[dict] = []        # a slide claiming to head a unit
+    promised: dict[int, list] = {}  # unit ordinal -> where it was promised
+    builds: list[dict] = []
+    reveals: list[dict] = []
+    budgets: list[dict] = []
+    untimed: list[int] = []
+    timing_total = 0.0
+
+    for s in deck["slides"]:
+        notes, on_slide = s["notes"] or "", " | ".join(s["texts"])
+        for surface, text in (("notes", notes), ("slide", on_slide)):
+            # ACT is the COURSE's division, not the deck's: an `ACT II` chip on a closing
+            # slide says where the lecture sits in the term. Reading it as a deck unit put
+            # three spurious heads on one deck and one on another (measured), so it is
+            # dropped from BOTH the head set and the promised set.
+            for m in _DECL_BOUNDARY.finditer(text):
+                val = _ord_value(m.group(3))
+                if val is None or m.group(2).upper() == "ACT":
+                    continue
+                promised.setdefault(val, []).append((s["position"], surface))
+                if m.group(1).lower().startswith(("open", "begin", "start")):
+                    heads.append({"position": s["position"], "unit": m.group(2).upper(),
+                                  "ordinal": val, "surface": surface, "evidence": m.group(0)})
+            labels = [(m.group(1).upper(), _ord_value(m.group(2)), m.group(0))
+                      for m in _DECL_LABEL.finditer(text)]
+            labels = [l for l in labels if l[1] is not None and l[0] != "ACT"]
+            for _unit, val, _raw in labels:
+                promised.setdefault(val, []).append((s["position"], surface))
+            # ONE label on a slide labels THAT slide; several label the deck (an agenda).
+            if len(labels) == 1 and surface == "slide":
+                unit, val, raw = labels[0]
+                heads.append({"position": s["position"], "unit": unit, "ordinal": val,
+                              "surface": surface, "evidence": raw})
+        lower = {n.lower() for n in s["shapes"]}
+        if not s["hidden"] and all(
+                any(n.startswith(want) for n in lower) for want in _DECL_SHAPE_SET):
+            heads.append({"position": s["position"], "unit": "DIVIDER", "ordinal": None,
+                          "surface": "shape", "evidence": "+".join(_DECL_SHAPE_SET)})
+
+        if not s["hidden"]:
+            mt = list(_SLIDE_TIMING.finditer(notes))
+            timing_total += sum(float(x.group(1)) for x in mt)
+            if not mt:
+                untimed.append(s["position"])
+        for m in _DECL_BUDGET.finditer(notes):
+            budgets.append({"position": s["position"], "claim": m.group(0)})
+        for m in _DECL_BUILD.finditer(notes):
+            named = _DECL_BUILD_SHAPE.findall(m.group(0))
+            if not named:
+                continue
+            missing = [x for x in named if x not in s["shapes"]]
+            builds.append({"position": s["position"], "names": named, "missing": missing,
+                           "has_timing": s["has_timing"], "claim": m.group(0)[:120]})
+        if _DECL_REVEAL.search(notes):
+            reveals.append({"position": s["position"], "has_timing": s["has_timing"]})
+
+    # One head per POSITION: a divider routinely declares itself three ways over — a
+    # `SECTION 2` label on the slide, a `SectionLabel` shape holding it, and an `OPENS
+    # MOVEMENT 2` line in the notes. Prefer the surface that names an ordinal, notes first.
+    rank = {"notes": 0, "slide": 1, "shape": 2}
+    seen: dict[int, dict] = {}
+    for h in sorted(heads, key=lambda h: (h["ordinal"] is None, rank[h["surface"]])):
+        seen.setdefault(h["position"], h)
+    heads = sorted(seen.values(), key=lambda h: h["position"])
+
+    starts = {sec["start"] for sec in deck["sections"] if sec["start"] is not None}
+    head_positions = {h["position"] for h in heads}
+    contradictions: list[str] = []
+    soft: list[str] = []
+    textual = [h for h in heads if h["surface"] != "shape"]
+    if textual and not deck["sections"]:
+        # The 2-4 shape, before its dividers were retrofitted: the notes name the movements
+        # and their opening slides, and the package carries no section list to check them
+        # against. This is the case a structural hypothesis is most likely to get wrong,
+        # because there is no metadata to contradict it — only the prose nobody read.
+        contradictions.append(
+            f"declares {len(textual)} unit head(s) at "
+            f"{[h['position'] for h in textual]} and the package carries NO section list — "
+            f"the deck's own structure lives only in its prose")
+    for h in heads:
+        p = h["position"]
+        what = (f"{h['unit']}{'' if h['ordinal'] is None else ' ' + str(h['ordinal'])}")
+        if not deck["sections"] or p in starts:
+            continue
+        # A divider sits immediately AHEAD of the slide that opens the unit, so the house
+        # form puts the section start one position earlier. Three such pairs on one deck —
+        # whose dividers were retrofitted onto the movements its notes already named — are
+        # the structure agreeing with itself, not disagreeing.
+        if p - 1 in starts:
+            continue
+        if h["surface"] == "shape":
+            # The shape SET cannot tell a divider from a slide built on the divider LAYOUT:
+            # every `STRETCH BREAK` slide in this corpus carries the same three shapes. So
+            # this is a question for a reader, not a contradiction in the deck.
+            soft.append(
+                f"position {p} carries the divider shape set and heads no section (the next "
+                f"starts at {min((x for x in starts if x > p), default='—')}) — either a "
+                f"divider left in the previous section, or a slide built on the divider layout")
+        else:
+            contradictions.append(
+                f"position {p} declares {what} ({h['surface']}: {h['evidence']!r}) and NO "
+                f"section starts at {p} or {p - 1}")
+    for sec in deck["sections"]:
+        if not sec["positions"]:
+            contradictions.append(f"section {sec['name']!r} holds NO slides")
+        if sec["dangling"]:
+            contradictions.append(
+                f"section {sec['name']!r} names {len(sec['dangling'])} slide id(s) that "
+                f"sldIdLst does not declare — phantom membership")
+        if not sec["contiguous"]:
+            contradictions.append(
+                f"section {sec['name']!r} is NOT contiguous: positions {sec['positions']} "
+                f"— a section is a slide-ID list, so a reorder does not re-home a slide")
+        live_hidden = [p for p in sec["positions"]
+                       if deck["slides"][p - 1]["hidden"]] if sec["positions"] else []
+        if live_hidden and len(live_hidden) != len(sec["positions"]):
+            contradictions.append(
+                f"section {sec['name']!r} mixes presented and HIDDEN slides "
+                f"(hidden: {live_hidden}) — parking left the id in its live section")
+    in_section = {p for sec in deck["sections"] for p in sec["positions"]}
+    orphans = [s["position"] for s in deck["slides"] if s["position"] not in in_section]
+    if deck["sections"] and orphans:
+        contradictions.append(
+            f"{len(orphans)} slide(s) belong to NO section: {orphans[:12]}"
+            + (" (first 12)" if len(orphans) > 12 else ""))
+    declared_ords = {h["ordinal"] for h in heads if h["ordinal"] is not None}
+    for val in sorted(promised):
+        if val not in declared_ords and declared_ords and val > min(declared_ords):
+            where = sorted({f"{p} ({sur})" for p, sur in promised[val]})[:3]
+            contradictions.append(
+                f"unit {val} is promised at {', '.join(where)} but NO slide heads it "
+                f"(declared heads: {sorted(declared_ords)})")
+
+    # A slide "declaring no TIMING" presupposes the deck declares timing at all. Act I's
+    # decks carry none, and reporting all 41 of a deck's slides as untimed says nothing about
+    # that deck — it restates that the convention is absent.
+    if timing_total == 0.0:
+        untimed = []
+    return {"display": deck["display"], "heads": heads, "sections": deck["sections"],
+            "section_starts": sorted(starts), "head_positions": sorted(head_positions),
+            "contradictions": contradictions, "soft": soft, "builds": builds, "reveals": reveals,
+            "budgets": budgets, "untimed": untimed, "timing_total": round(timing_total, 2),
+            "counts": deck["counts"]}
+
+
+def report_declarations(decks: list[dict], failures: list[str], out_path: "str | None") -> int:
+    rows = [declared_structure(d) for d in decks]
+    print(f"\n{'deck':54} {'slides':>6} {'sect':>4} {'heads':>5} {'TIMING':>7} "
+          f"{'untimed':>7} {'builds':>6} {'reveals':>7} {'contra':>6} {'soft':>4}")
+    for r in rows:
+        print(f"  {os.path.basename(r['display'])[:52]:52} {r['counts']['slides']:>6} "
+              f"{len(r['sections']):>4} {len(r['heads']):>5} {r['timing_total']:>7g} "
+              f"{len(r['untimed']):>7} {len(r['builds']):>6} {len(r['reveals']):>7} "
+              f"{len(r['contradictions']):>6} {len(r['soft']):>4}")
+
+    print("\n===== declared structure vs the sections the deck actually has =====")
+    for r in rows:
+        print(f"\n  {os.path.basename(r['display'])}")
+        print(f"    DECLARES: " + ("; ".join(
+            f"pos {h['position']} {h['unit']} {h['ordinal']} [{h['surface']}]"
+            for h in r["heads"]) or "nothing"))
+        print(f"    SECTIONS: " + ("; ".join(
+            f"{s['start'] if s['start'] is not None else '-'}:{s['name'][:28]}"
+            f"({len(s['positions'])})" for s in r["sections"]) or "NONE in the package"))
+        for c in r["contradictions"]:
+            print(f"    ⚠  {c}")
+        for c in r["soft"]:
+            print(f"    ?  {c}")
+        for b in r["builds"]:
+            flag = ("declared and NOT BUILT — no p:timing on the slide" if not b["has_timing"]
+                    else f"names shape(s) absent from the slide: {b['missing']}"
+                    if b["missing"] else "built")
+            if flag != "built":
+                print(f"    ⚠  position {b['position']} declares a build naming {b['names']}: "
+                      f"{flag}")
+        if r["budgets"]:
+            for bg in r["budgets"]:
+                print(f"    budget claim at {bg['position']}: {bg['claim'][:150]}")
+
+    n_contra = sum(len(r["contradictions"]) for r in rows)
+    decks_contra = sum(1 for r in rows if r["contradictions"])
+    unbuilt = [(r["display"], b["position"]) for r in rows for b in r["builds"]
+               if not b["has_timing"]]
+    for f in failures:
+        print(f"  [PROBE FAILURE] {f}")
+    print(f"\ndeck-note-refs: result — {len(rows)} deck(s), {n_contra} declared-vs-actual "
+          f"contradiction(s) across {decks_contra} deck(s), "
+          f"{sum(len(r['soft']) for r in rows)} divider-layout question(s), "
+          f"{len(unbuilt)} declared-but-unbuilt build(s), "
+          f"{sum(len(r['untimed']) for r in rows)} presented slide(s) declaring no TIMING, "
+          f"{len(failures)} probe failure(s)")
+    if out_path:
+        with open(out_path, "w", encoding="utf-8") as fh:
+            json.dump({"mode": "declares", "decks": rows, "probe_failures": failures}, fh,
+                      indent=1)
+        print(f"deck-note-refs: wrote {out_path}")
+    return 3 if failures else 0
+
+
 # ------------------------------------------------------------------------------- git baseline
 
 def deck_at_ref(ref: str, repo_path: str, tmpdir: str) -> str:
@@ -874,6 +1188,10 @@ def main(argv: list[str]) -> int:
                     help="read the deck ITSELF at this ref instead of from the working tree "
                          "— re-runs the check over a historical state (tracked decks only)")
     ap.add_argument("--min-rank", choices=RANKS, default="low")
+    ap.add_argument("--declares", action="store_true",
+                    help="report what each deck SAYS about its own structure — unit heads, "
+                         "TIMING, declared builds, staged reveals — against the PowerPoint "
+                         "sections it actually has. Read-only; ignores --since/--min-rank")
     ap.add_argument("--output", metavar="FILE.json")
     ap.add_argument("--explain", action="store_true")
     ap.add_argument("-h", "--help", action="store_true")
@@ -900,14 +1218,22 @@ def main(argv: list[str]) -> int:
             pairs.append((display, absolute))
     pairs = [(d, f) for d, f in pairs if not os.path.basename(d).startswith("~$")]
 
-    print(f"deck-note-refs: plan — ADVISORY report over {len(pairs)} deck(s). Resolve "
-          f"positions through sldIdLst (never part filenames); extract notes per slide; "
-          f"scan for {len(SIGNALS)} reference signals ({', '.join(SIGNALS)}); rank by how "
-          f"deterministically each claim is broken"
-          + (f"; demote references the diff against {args.since} cannot have touched"
-             if args.since else "; no --since baseline, so ALL positional claims are listed")
-          + (f"; reading each deck at {args.at} rather than from the working tree"
-             if args.at else ""))
+    if args.declares:
+        print(f"deck-note-refs: plan — ADVISORY declared-structure report over "
+              f"{len(pairs)} deck(s). Resolve positions through sldIdLst (never part "
+              f"filenames); read each deck's own structure declarations from BOTH surfaces "
+              f"(speaker notes and on-slide text); read PowerPoint's own section list from "
+              f"the p14 extension; report every place the two disagree"
+              + (f"; reading each deck at {args.at}" if args.at else ""))
+    else:
+        print(f"deck-note-refs: plan — ADVISORY report over {len(pairs)} deck(s). Resolve "
+              f"positions through sldIdLst (never part filenames); extract notes per slide; "
+              f"scan for {len(SIGNALS)} reference signals ({', '.join(SIGNALS)}); rank by how "
+              f"deterministically each claim is broken"
+              + (f"; demote references the diff against {args.since} cannot have touched"
+                 if args.since else "; no --since baseline, so ALL positional claims are listed")
+              + (f"; reading each deck at {args.at} rather than from the working tree"
+                 if args.at else ""))
 
     decks, findings, failures = [], [], []
     with tempfile.TemporaryDirectory(prefix="deck-note-refs-") as td:
@@ -927,9 +1253,12 @@ def main(argv: list[str]) -> int:
                         print(f"  {display}: no slide moved position or changed hidden state "
                               f"since {args.since}")
                 decks.append(deck)
-                findings += scan_deck(deck, delta)
+                if not args.declares:
+                    findings += scan_deck(deck, delta)
             except PreconditionFailure as exc:
                 failures.append(str(exc))
+    if args.declares:
+        return report_declarations(decks, failures, args.output)
     return report(decks, findings, failures, args.since, args.min_rank, args.output)
 
 

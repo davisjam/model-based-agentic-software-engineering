@@ -1411,13 +1411,13 @@
           "section_id": "return-evidence-at-the-earliest-useful-boundary",
           "level": 2,
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
-          "topic_sentence": "The boundaries also decide where feedback can return.",
+          "topic_sentence": "The boundaries also determine what feedback can return and when.",
           "id_source": "derived",
           "block_index": 40,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
-              "text": "Every boundary also determines where feedback can return; earlier evidence means less to reconstruct.",
+              "text": "Boundary placement affects what feedback can return and when; timely evidence lets an agent use the reasoning and context already at hand, while delayed feedback may require reconstruction.",
               "block_index": 42
             },
             {
