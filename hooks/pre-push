@@ -55,6 +55,35 @@ The wiring is held mechanically: `workbench/test/gate-reachability.test.ts` walk
 its three axes, against a gate set derived from `workbench/package.json`. A gate added to the manifest
 and forgotten here fails a test instead of a push.
 
+## Which TREE a phase grades — the content phases read the pushed commit
+
+The phases in `CONTENT_PHASES` run in a throwaway worktree at the ref being pushed, seeded by
+`tools/gate_worktree.py`. Their verdicts are claims about a COMMIT, and a working tree carrying five
+agents' half-finished edits is not one. Measured 261106: five readings across four checks in one
+session, three false REDS naming a sibling's uncommitted file, and — the expensive direction — one
+false GREEN, where a sibling's uncommitted `references.bib` entries made a committed lander's three
+dangling cite keys pass locally. CI's `--full` checks out the commit and would have failed after the
+transfer. Nothing in the gate's output says which way it is wrong this time.
+
+This scopes what those phases READ and relaxes nothing they ASSERT. If anything it asserts more: the
+dirty-source SKIPs disappear, so the regen-drift check — which on this machine effectively never ran,
+the tree never being clean — now runs on every push. Measured at `2c98ebd83`: `skipped` in the
+checkout, `clean` in the worktree.
+
+The two LaTeX renders deliberately STAY in the checkout. Three reasons, all measured: their
+change-aware reuse caches live there (578 MB of `latex/build` + `book/latex/build`), so a worktree
+render would be cold every push; this hook is the ONLY station that refreshes the author's local-only
+review PDFs, and a throwaway tree would throw them away; and a render's cost dominates the gate, so
+moving it is the one change that could make a push materially slower. The one consequence is named
+rather than hidden: the rendered-PDF caption-orphan sensor in `tier1` reads `book/mage-book.pdf`, so
+`tier1` ADOPTS the artifact the book-PDF phase just built. That sensor therefore keeps working-tree
+scope — unchanged from today, not weakened, while every other check in the phase gains commit scope.
+
+Seeding costs ~16s (worktree checkout, three `node_modules` symlinks, two cover thumbs, the 127-page
+`book/web/` emit) against a phase pair measured at 267s. `GC_PREPUSH_WORKTREE=0` runs the content
+phases in the checkout, as before — for a machine where `git worktree add` is unavailable. It is a
+real weakening and the hook says so when it is used.
+
 ## Scope selection — why some gates are skipped
 
 The two LaTeX renders dominate wall-clock, and a push that touches only `workbench/`
@@ -143,6 +172,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _hook_root import FORCE_STAGED_DERIVED_VIEWS, committing_toplevel, strip_generated
 
 ROOT = committing_toplevel()
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from gate_worktree import GateWorktree, SeedGap  # noqa: E402 — resolved against the committing tree
+
+#: The phases whose verdict is a property of the pushed COMMIT, so they read a throwaway worktree at
+#: the pushed ref rather than the working tree. `tests/hooks.py` holds this declaration against the
+#: phase bodies and against the executable plan: a phase added here whose body still reads the
+#: checkout, or one the plan does not order behind `gate worktree`, fails a check instead of a push.
+CONTENT_PHASES: tuple[str, ...] = ("site build", "tier1")
+
+#: The phase that STANDS UP that tree. It WRITES the content-tree holder where the phases above only
+#: read it, so the join in `tests/hooks.py` has to know to exclude it — named here rather than
+#: pattern-matched, because a producer indistinguishable from its consumers is how the join rots.
+CONTENT_SEEDER: str = "gate worktree"
 
 # Prefix -> the gate whose inputs live under it. A path matching none of these affects only the
 # site, which gate 1 and gate 4 already cover unconditionally.
@@ -189,19 +231,34 @@ def _git(*args: str) -> str | None:
     return out.stdout
 
 
-def _changed_paths() -> set[str] | None:
+def _push_lines() -> list[list[str]]:
+    """git hands a pre-push hook one line per ref on stdin:
+        <local ref> <local sha> <remote ref> <remote sha>
+    Read ONCE, because stdin is a stream: both the scope and the pushed ref come out of it.
+    """
+    try:
+        return [ln.split() for ln in sys.stdin.read().splitlines() if ln.strip()]
+    except OSError:
+        return []
+
+
+def _pushed_ref(lines: list[list[str]]) -> str:
+    """The commit this push would publish, or `HEAD` when the lines do not name exactly one.
+
+    Falling back to HEAD is not a guess with a downside: HEAD is still a COMMIT, which is the whole
+    property the gate worktree exists to give its verdicts. A manual run (no stdin) lands here.
+    """
+    shas = {parts[1] for parts in lines if len(parts) == 4 and parts[1] != ZERO}
+    return shas.pop() if len(shas) == 1 else "HEAD"
+
+
+def _changed_paths(lines: list[list[str]]) -> set[str] | None:
     """Paths in the pushed range, or None when the range cannot be established.
 
-    git hands a pre-push hook one line per ref on stdin:
-        <local ref> <local sha> <remote ref> <remote sha>
     A remote sha of all-zeros means the remote has no such branch yet, so there is no range to
     diff against and we must assume everything is in scope.
     """
     if os.environ.get("GC_PREPUSH_ALL"):
-        return None
-    try:
-        lines = [ln.split() for ln in sys.stdin.read().splitlines() if ln.strip()]
-    except OSError:
         return None
     if not lines:
         # Invoked without stdin (a manual run, or a git that gave us nothing) -- do not guess.
@@ -315,13 +372,48 @@ class _PhaseCtx:
             raise _Cancelled()
         return proc.returncode
 
-    def py(self, *args: str, env: dict[str, str] | None = None) -> int:
-        return self.run([sys.executable, *args], env=env)
+    def py(self, *args: str, cwd: str | None = None, env: dict[str, str] | None = None) -> int:
+        return self.run([sys.executable, *args], cwd=cwd, env=env)
 
 
 class Phase:
     def __init__(self, name: str, fn, deps: tuple[str, ...] = (), cost: float = 1.0) -> None:
         self.name, self.fn, self.deps, self.cost = name, fn, deps, cost
+
+
+class _ContentTree:
+    """Which tree the `CONTENT_PHASES` grade. A throwaway worktree at the pushed ref, or the checkout.
+
+    Every content phase asks this object for its script path and its cwd, so there is one place that
+    decides, and `tests/hooks.py` can hold the phase bodies against the declaration. The fallback to
+    the checkout is deliberate and LOUD: a silent fallback would reinstate the working-tree verdict
+    the whole change exists to remove, and nobody would know which kind of answer they had.
+    """
+
+    def __init__(self) -> None:
+        self.wt: GateWorktree | None = None
+
+    @property
+    def path(self) -> str:
+        return self.wt.path if (self.wt is not None and self.wt.path) else ROOT
+
+    @property
+    def isolated(self) -> bool:
+        return self.wt is not None and self.wt.path is not None
+
+    def script(self, rel: str) -> str:
+        return os.path.join(self.path, rel)
+
+    def adopt(self, rel: str) -> bool:
+        return self.wt.adopt(rel) if self.wt is not None else False
+
+    def cleanup(self) -> None:
+        if self.wt is not None:
+            self.wt.remove()
+            self.wt = None
+
+
+CONTENT = _ContentTree()
 
 
 def _emit_block(name: str, status: str, seconds: float, buf: list[str]) -> None:
@@ -406,7 +498,9 @@ def _execute(phases: list[Phase]) -> int:
 
 # ── Scope resolution + the serial front (projection checks guard every consumer below) ─────────────
 
-changed = _changed_paths()
+_lines = _push_lines()
+PUSHED_REF = _pushed_ref(_lines)
+changed = _changed_paths(_lines)
 if changed is None:
     print("pre-push: scope UNKNOWN — running every gate", file=sys.stderr)
 else:
@@ -439,9 +533,44 @@ def _phase_toolchain(ctx: _PhaseCtx) -> str | None:
     return None
 
 
+def _phase_gate_worktree(ctx: _PhaseCtx) -> str | None:
+    """Stand up the tree the content phases grade. A failure here REFUSES the push, by design.
+
+    The alternative — fall back to the working tree and carry on — is the failure this change
+    removes, wearing a different costume: the gate would run, report a verdict, and that verdict
+    would again be a function of what every other agent has on disk. A seeding gap is loud and
+    one-line fixable; a quietly re-widened scope is neither.
+    """
+    if os.environ.get("GC_PREPUSH_WORKTREE") == "0":
+        ctx.echo("pre-push: gate worktree DISABLED (GC_PREPUSH_WORKTREE=0) — the content phases "
+                 "grade the WORKING TREE, so a sibling's uncommitted edit can redden or green this "
+                 "push; CI's --full still grades the commit")
+        return None
+    if PLAN:
+        _PLANNED.append(("gate worktree", ["git", "worktree", "add", "<tmp>/wt", "--detach",
+                                           PUSHED_REF]))
+        return None
+    worktree = GateWorktree(ROOT, PUSHED_REF, label="prepush")
+    try:
+        worktree.create()
+        worktree.seed()
+    except SeedGap as gap:
+        worktree.remove()
+        return ("\npre-push: could not stand up the gate worktree — push refused.\n"
+                f"{gap}\n"
+                "Fix the seeding gap, or run with GC_PREPUSH_WORKTREE=0 to grade the working tree "
+                "(weaker: a sibling's uncommitted edit then decides this push's verdict) ")
+    CONTENT.wt = worktree
+    for line in worktree.log:
+        ctx.echo("pre-push: " + line)
+    return None
+
+
 def _phase_site_build(ctx: _PhaseCtx) -> str | None:
-    ctx.echo("pre-push: catalog.py build (render gate — catches build aborts CI would hit) …")
-    if ctx.py("catalog.py", "build"):
+    where = "pushed commit" if CONTENT.isolated else "WORKING TREE"
+    ctx.echo(f"pre-push: catalog.py build on the {where} "
+             "(render gate — catches build aborts CI would hit) …")
+    if ctx.py(CONTENT.script("catalog.py"), "build", cwd=CONTENT.path):
         return ("\npre-push: catalog.py build FAILED — push refused.\n"
                 "The site does not render; fix the build error above ")
     return None
@@ -518,8 +647,16 @@ def _phase_staple(ctx: _PhaseCtx) -> str | None:
 
 
 def _phase_tier1(ctx: _PhaseCtx) -> str | None:
-    ctx.echo("pre-push: catalog_tests.py --tier1 (deterministic gate) …")
-    if ctx.py("catalog_tests.py", "--tier1"):
+    # The rendered-PDF caption-orphan sensor reads book/mage-book.pdf, which the book-PDF phase
+    # builds in the CHECKOUT (its reuse caches live there). Hand it over rather than let the sensor
+    # SKIP: a skip here would be the one assertion this change cost, and the point is that it costs
+    # none. That sensor alone therefore keeps working-tree scope; everything else in this phase is
+    # now a statement about the pushed commit.
+    if CONTENT.isolated and CONTENT.adopt("book/mage-book.pdf"):
+        ctx.echo("pre-push: adopted book/mage-book.pdf for the caption-orphan sensor")
+    where = "pushed commit" if CONTENT.isolated else "WORKING TREE"
+    ctx.echo(f"pre-push: catalog_tests.py --tier1 on the {where} (deterministic gate) …")
+    if ctx.py(CONTENT.script("catalog_tests.py"), "--tier1", cwd=CONTENT.path):
         return ("\npre-push: catalog_tests.py --tier1 FAILED — push refused.\n"
                 "Fix the failing gate(s) above, ")
     return None
@@ -693,7 +830,11 @@ in_handbook = _touches(changed, SCOPES["handbook"])
 if in_book or in_handbook:
     phases.append(Phase("print toolchain", _phase_toolchain, cost=3))
 
-phases.append(Phase("site build", _phase_site_build, cost=4))
+# FIRST in submission order (highest cost wins the tie among ready phases), because both content
+# phases wait on it. ~16s; the pair behind it is ~267s.
+phases.append(Phase("gate worktree", _phase_gate_worktree, cost=11))
+
+phases.append(Phase("site build", _phase_site_build, deps=("gate worktree",), cost=4))
 
 if in_book:
     phases.append(Phase("book static checks", _phase_book_static, cost=2))
@@ -721,7 +862,8 @@ if _touches(changed, SCOPES["workbench"]):
 else:
     print("pre-push: workbench gate SKIPPED — no workbench/ path in this push", file=sys.stderr)
 
-tier1_deps = ("site build", "book PDF") if in_book else ("site build",)
+tier1_deps = (("gate worktree", "site build", "book PDF") if in_book
+              else ("gate worktree", "site build"))
 phases.append(Phase("tier1", _phase_tier1, deps=tier1_deps, cost=2))
 
 if PLAN:
@@ -732,4 +874,10 @@ if PLAN:
         print(f"PLAN step [{name}]: {' '.join(argv)}")
     sys.exit(0)
 
-sys.exit(_execute(phases))
+try:
+    _rc = _execute(phases)
+finally:
+    # The worktree outlives no push. Teardown removes only the path this run created, under its own
+    # mkdtemp parent, so a concurrent agent's worktree is unreachable from here.
+    CONTENT.cleanup()
+sys.exit(_rc)

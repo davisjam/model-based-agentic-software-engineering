@@ -30,6 +30,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 from tests.common import FAIL, PASS, ROOT
 
@@ -110,7 +111,8 @@ def check_hook_operates_on_committing_tree():
     """The pre-commit hook resolves its root from the committing tree and stages only under that root."""
     issues = (_resolution_findings() + _source_findings() + _latex_scope_findings()
               + _projection_findings() + _shared_artifact_findings()
-              + _generated_scope_findings())
+              + _generated_scope_findings() + _commit_scope_findings()
+              + _content_tree_findings())
     return (FAIL if issues else PASS), issues
 
 
@@ -215,17 +217,32 @@ def _generated_scope_findings() -> list[str]:
     return issues
 
 
+#: One PLAN run, shared by every check that reasons about the executable phase graph. Two callers
+#: parsing the same output with the same regex is the second site, which is where this repo extracts.
+_PLAN_CACHE: "dict[str, tuple[dict[str, set[str]], str]]" = {}
+
+
+def _plan_graph() -> "tuple[dict[str, set[str]], str]":
+    """(phase -> its declared parents, error). `GC_PREPUSH_PLAN` executes nothing."""
+    if "graph" not in _PLAN_CACHE:
+        env = dict(os.environ, GC_PREPUSH_PLAN="1", GC_PREPUSH_ALL="1")
+        result = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "pre-push")],
+                                cwd=ROOT, env=env, input="", text=True, capture_output=True)
+        if result.returncode:
+            _PLAN_CACHE["graph"] = ({}, "pre-push plan failed: " + result.stderr[-1000:])
+        else:
+            graph = {name: (set(parents.split(", ")) if parents else set())
+                     for name, parents in re.findall(
+                         r"^PLAN phase: ([^(\n]+?)(?: \(after: ([^)]+)\))?$", result.stdout, re.M)}
+            _PLAN_CACHE["graph"] = (graph, "")
+    return _PLAN_CACHE["graph"]
+
+
 def _shared_artifact_findings() -> list[str]:
     """Consumers of one mutable figure pool must be ordered in the executable plan."""
-    env = dict(os.environ, GC_PREPUSH_PLAN="1", GC_PREPUSH_ALL="1")
-    result = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "pre-push")],
-                            cwd=ROOT, env=env, input="", text=True, capture_output=True)
-    if result.returncode:
-        return ["pre-push plan failed: " + result.stderr[-1000:]]
-    graph = {}
-    for name, parents in re.findall(r"^PLAN phase: ([^(\n]+?)(?: \(after: ([^)]+)\))?$",
-                                   result.stdout, re.M):
-        graph[name] = set(parents.split(", ")) if parents else set()
+    graph, error = _plan_graph()
+    if error:
+        return [error]
 
     def precedes(first, second, seen=None):
         seen = set() if seen is None else seen
@@ -239,6 +256,144 @@ def _shared_artifact_findings() -> list[str]:
         return ["pre-push figure validation and book PDF can overlap while rewriting "
                 "latex/build/tikz/candidates.pdf"]
     return []
+
+
+def _commit_scope_findings() -> list[str]:
+    """The throwaway worktree must read the COMMIT, in BOTH directions — the sabotage control.
+
+    `pre-push` runs its content phases in a worktree at the pushed ref so a verdict stops being a
+    function of whatever five agents happen to have on disk. A change that stops seeing siblings has
+    to be shown to still go red on the PUSHER's own committed defect, or it is indistinguishable from
+    a weakened gate. So this walks the mechanism on a synthetic repo — two files, three commits,
+    nothing of this tree touched — and pins the two failure directions measured 261106:
+
+      - the FALSE RED: a sibling's uncommitted edit must not reach the worktree;
+      - the FALSE GREEN: a sibling's uncommitted FIX must not reach it either, so a defect that is
+        committed stays visible. That arm is the expensive one — it is the reading that would have
+        let a lander citing three keys with no bib entry past the gate and failed CI after the
+        transfer.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import gate_worktree  # noqa: E402 — resolved against ROOT, which is only known at import time
+
+    issues: list[str] = []
+    with tempfile.TemporaryDirectory(prefix="gc-commit-scope-") as tmp:
+        repo = os.path.join(tmp, "repo")
+        os.makedirs(repo)
+
+        def git(*args: str) -> None:
+            done = subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True)
+            if done.returncode:
+                issues.append(f"synthetic repo: git {' '.join(args)} failed: {done.stderr.strip()}")
+
+        def write(name: str, body: str) -> None:
+            with open(os.path.join(repo, name), "w", encoding="utf-8") as fh:
+                fh.write(body)
+
+        git("init", "-q")
+        git("config", "user.email", "gate@example.invalid")
+        git("config", "user.name", "gate")
+        git("config", "commit.gpgsign", "false")
+        # Point the synthetic repo at an EMPTY hooks dir rather than reaching for `--no-verify`,
+        # which this repo bans. `core.hooksPath` is set locally here, not globally, so a fresh
+        # `git init` already inherits nothing; this holds that true if a global one ever appears.
+        os.makedirs(os.path.join(tmp, "nohooks"))
+        git("config", "core.hooksPath", os.path.join(tmp, "nohooks"))
+        write("claim.txt", "COMMITTED-GOOD\n")
+        write("defect.txt", "COMMITTED-BAD\n")
+        git("add", "claim.txt", "defect.txt")
+        git("commit", "-q", "-m", "base")
+        if issues:
+            return issues
+        pushed = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo,
+                                capture_output=True, text=True).stdout.strip()
+
+        # A sibling, mid-edit: one file broken in the working tree, one file FIXED in the working
+        # tree. Neither is committed, so neither may change the verdict.
+        write("claim.txt", "WORKTREE-BROKEN\n")
+        write("defect.txt", "WORKTREE-FIXED\n")
+
+        wt = gate_worktree.GateWorktree(repo, pushed, label="selftest")
+        try:
+            wt.create()
+            for name, want, direction in (("claim.txt", "COMMITTED-GOOD\n", "false RED"),
+                                          ("defect.txt", "COMMITTED-BAD\n", "false GREEN")):
+                with open(os.path.join(wt.path or "", name), encoding="utf-8") as fh:
+                    got = fh.read()
+                if got != want:
+                    issues.append(f"gate worktree read {got.strip()!r} for {name}, expected "
+                                  f"{want.strip()!r} — the {direction} direction is open")
+            created = wt.path
+        finally:
+            wt.remove()
+        if created and os.path.exists(created):
+            issues.append(f"gate worktree {created} survived remove()")
+        wt.remove()  # idempotent: a second teardown must not reach for anything
+
+    for rel, kind, pattern, _optional in gate_worktree.SEED:
+        if pattern not in gate_worktree.gitignore_patterns(ROOT):
+            issues.append(f"gate-worktree seed declares {rel} ({kind}) against .gitignore pattern "
+                          f"{pattern!r}, which is no longer in .gitignore — the seed list has "
+                          "drifted from the state git refuses to reproduce")
+    return issues
+
+
+def _content_tree_findings() -> list[str]:
+    """Every phase declared commit-scoped must read the worktree, and run after it is seeded.
+
+    Two halves of one join, because a gate pointed at the wrong tree and a gate the plan never
+    orders behind its seeding fail the same way — silently, with a verdict that looks like a verdict.
+    """
+    path = os.path.join(ROOT, "hooks", "pre-push")
+    with open(path, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read(), filename=path)
+    declared: set[str] = set()
+    seeder = ""
+    phase_of: dict[str, str] = {}
+    reads_content: set[str] = set()
+    for node in ast.walk(tree):
+        if (isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name)
+                and node.target.id == "CONTENT_SEEDER" and node.value is not None):
+            seeder = ast.literal_eval(node.value)
+        # An annotated assignment is an AnnAssign, not an Assign — accept both so a type annotation
+        # on the declaration cannot make the join silently stop being checked.
+        if (isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name)
+                and node.target.id == "CONTENT_PHASES" and node.value is not None):
+            declared = set(ast.literal_eval(node.value))
+        if (isinstance(node, ast.Assign)
+                and any(isinstance(t, ast.Name) and t.id == "CONTENT_PHASES" for t in node.targets)):
+            declared = set(ast.literal_eval(node.value))
+        if (isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "Phase"
+                and len(node.args) >= 2 and isinstance(node.args[0], ast.Constant)
+                and isinstance(node.args[1], ast.Name)):
+            phase_of[node.args[1].id] = node.args[0].value
+        if isinstance(node, ast.FunctionDef) and node.name.startswith("_phase_"):
+            if any(isinstance(n, ast.Name) and n.id == "CONTENT" for n in ast.walk(node)):
+                reads_content.add(node.name)
+    issues = []
+    if not declared:
+        return ["pre-push declares no CONTENT_PHASES — the commit-scoped set is not stated anywhere"]
+    if not seeder:
+        return ["pre-push declares no CONTENT_SEEDER — nothing names the phase that stands the "
+                "commit-scoped tree up"]
+    actual = {phase_of[fn] for fn in reads_content if fn in phase_of} - {seeder}
+    for extra in sorted(actual - declared):
+        issues.append(f"pre-push phase {extra!r} reads the gate worktree but is not in "
+                      "CONTENT_PHASES")
+    for missing in sorted(declared - actual):
+        issues.append(f"pre-push phase {missing!r} is declared commit-scoped but its body never "
+                      "reads CONTENT — it still grades the working tree")
+
+    deps, error = _plan_graph()
+    if error:
+        return issues + [error]
+    for phase in sorted(declared):
+        if phase not in deps:
+            issues.append(f"pre-push plan omits the commit-scoped phase {phase!r}")
+        elif "gate worktree" not in deps[phase]:
+            issues.append(f"pre-push plan runs {phase!r} without waiting on 'gate worktree' — it "
+                          "would grade an unseeded or absent tree")
+    return issues
 
 
 def _latex_scope_findings() -> list[str]:
