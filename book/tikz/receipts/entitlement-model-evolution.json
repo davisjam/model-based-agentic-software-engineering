@@ -1,64 +1,49 @@
 {
   "source": "book/assets/entitlement-model-evolution.svg",
   "chapter": "2.4-decision",
-  "claim": "*Upload admission must distinguish finite and unlimited entitlement.* The old reduction passed only a finite balance to the client, so an unlimited user was rejected. The revised model records the entitlement kind and returns an admission decision.",
+  "claim": "*The admission check must preserve unlimited entitlement.* Panels (1)–(4) explain the old representation, domain change, failure, and repair; they are not one runtime pipeline. In (3), the client uses the finite-credit total and ignores a separate unlimited signal. In (4), the same uncapped entitlement produces an admitting decision and a separate display value for unlimited use.",
   "topology": {
-    "description": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
+    "description": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
     "native_draw_commands": [
-      "\\draw[edge] (group.south) |- (sum.north);",
-      "\\draw[edge] (sum) -- (cmp);",
-      "\\draw[edge] (g2) -- (fin);",
-      "\\draw[edge] (g2) -- (unlim);",
-      "\\draw[edge] (gs) -- (sf);",
-      "\\draw[edge] (gs.south) -- node[lab,left] {unlimited\\\\user} (zero.north);",
-      "\\draw[edge] (zero) -- (lt);",
-      "\\draw[edge] (lt) -- (reject);",
-      "\\draw[edge] (ent) -- (dec);",
-      "\\draw[edge] (ent) -- node[lab,left] {same user} (admit);",
-      "\\draw[edge] (dec) -- (fields);",
-      "\\draw[edge] (p0.east) -- (p1.west);",
-      "\\draw[edge] (p1.south) -- (3.7,-4.65) -- (-3.7,-4.65) -- (p2.north);",
-      "\\draw[edge] (p2.east) -- (p3.west);"
+      "\\draw[edge] (g1.south) -- (sum1.north);",
+      "\\draw[edge] (sum1.south) -- (check1.north);",
+      "\\draw[edge] (g3.south) -- (sum3.north);",
+      "\\draw[edge] (sum3.south) -- (zero3.north);",
+      "\\draw[edge] (zero3.south) -- (check3.north);",
+      "\\draw[edge] (check3.south) -- (reject3.north);",
+      "\\draw[edge] (dec4.south) -- (admit4.north);",
+      "\\draw[edge] (disp4.south) -- (sentinel4.north);",
+      "\\draw[line width=.65pt] (g2.south) -- (11.4,-2.2) -| (f2.north);",
+      "\\draw[line width=.65pt] (g2.south) -- (11.4,-2.2) -| (u2.north);",
+      "\\draw[edge] (g4.south) -- (11.4,-8) -| (dec4.north);",
+      "\\draw[edge] (g4.south) -- (11.4,-8) -| (disp4.north);"
     ]
   },
   "required_terms": [
-    "1 · Original model",
-    "Every entitlement is finite",
-    "Group — credits: integer",
-    "credits",
-    "credits ≥ pages?",
-    "Credit balance determines upload permission",
-    "2 · Unlimited groups added",
-    "Unlimited entitlement is introduced",
-    "finite(credits)",
-    "unlimited",
-    "Groups now provide finite or unlimited use",
-    "3 · Balance-only preflight",
-    "The client still receives only a balance",
-    "groups",
-    "finite credits only",
-    "The return value omits the unlimited flag",
-    "0 credits",
-    "0 < 38",
-    "REJECT",
-    "unlimited user",
-    "Client rejection prevents the server check",
-    "4 · Explicit admission decision",
-    "The decision checks both entitlement kinds",
-    "Group entitlements",
-    "finite | unlimited",
-    "Admission decision",
-    "admit_unlimited",
-    "same user",
-    "Admit?",
-    "Authorizing group",
-    "Ordered plan",
-    "Client and server use the admission decision"
+    "(1) Legacy balance-based check",
+    "(2) Unlimited groups are added",
+    "(3) Client rejects the upload",
+    "(4) Separate admission and display",
+    "REJECT before POST",
+    "admit = True",
+    "Only finite credit is represented",
+    "Entitlement now has two cases",
+    "38-page Office upload",
+    "Same group and request; no cap",
+    "Unlimited sentinel",
+    "ignores separate unlimited signal",
+    "The display value does not decide permission.",
+    "Finite group balances",
+    "Sum of balances",
+    "credit_balance = 0",
+    "Admission rules",
+    "Display projection",
+    "admit_unlimited"
   ],
-  "bw_encoding": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
-  "redesign": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries. Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
+  "bw_encoding": "Ordinary nodes remain white in the native edition. The short REJECT badge has a dark fill with white text. The positive admitting verdict is bold within its structured result; dashed failure and solid repaired panels retain their meanings.",
+  "redesign": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
   "questions": [],
-  "alt": "Four panels trace a finite-credit model through the introduction of unlimited entitlement, a stale admission model and a revised model. The dashed stale panel shows finite-only summation and an unlimited user reaching 0 less than 38 and REJECT. The strong revised panel preserves finite versus unlimited entitlement and leads to admit_unlimited plus explicit admission fields.",
+  "alt": "Four numbered panels explain a legacy balance check, the addition of unlimited entitlement, the actual client upload-check failure, and the later model. There are no arrows between panels. In panel 3, the server excludes the unlimited group from a finite-credit sum; the client compares zero with thirty-eight while ignoring a separate unlimited signal, then rejects before POST. In panel 4, the same uncapped group feeds an admission decision that admits and a separate display projection that returns an unlimited sentinel. The display value is not an admission input.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -70,11 +55,11 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "outcome": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+    "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
     "native_dimensions_cm": [
-      14.6337,
-      12.4728
+      15.033731367323135,
+      14.733728146023221
     ]
   },
   "fidelity_review": {
@@ -100,234 +85,237 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
-    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-    "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
-    "bold": "Source-derived emphasis includes unlimited; 0 credits; REJECT; admit_unlimited. Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
-    "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
+    "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
+    "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
+    "fill": "Ordinary nodes remain white in the native edition. The short REJECT badge has a dark fill with white text. The positive admitting verdict is bold within its structured result; dashed failure and solid repaired panels retain their meanings.",
+    "bold": "Numbered panel headings, REJECT before POST, and admit = True carry semantic emphasis. Explanatory subtitles are italic; ordinary fields and operations are regular.",
+    "routing": "Short orthogonal arrows within calculation paths only. The entitlement-kind classification fork has no arrowheads. No cross-panel arrows.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Reviewed revised color SVG and native print proof. Text remains within existing panels; labels identify the balance-only preflight and explicit admission decision. Fill, line styles and node/edge geometry are unchanged.",
+    "visual_review": "Revised color SVG and native print proof inspected; matched semantics, complete causal paths, readable body size, and separate admission/display outputs.",
     "validation": {
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "native_dimensions_bp": [
+        426.15301513671875,
+        417.64898681640625
+      ],
+      "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+      "geometry_findings": 0,
+      "typography_checks": 13,
+      "typography_findings": 0,
+      "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+      "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+      "native_minimum_font_pt": 9.5,
+      "monochrome_pixels": true,
+      "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+      "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
       "page": 1,
-      "width_bp": 414.8139953613281,
-      "height_bp": 353.74700927734375,
+      "width_bp": 426.15301513671875,
+      "height_bp": 417.64898681640625,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "semantic_typography_checks": 13
     },
     "book_references": [],
     "decision": "refined",
     "text_revision": {
-      "date": "2026-11-05",
-      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+      "date": "2026-11-06",
+      "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+      "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
     }
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
-    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-    "reason": "Retain source-derived bold admission outcomes and italic panel explanations while replacing abstract annotations with the client/server operations.",
+    "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
+    "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
+    "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
     "evidence": [
       {
-        "source_text": "unlimited",
-        "source_style": "weight 700; normal; source size 19",
-        "semantic_role": "entitlement mode / admission result",
-        "candidate_text": "unlimited",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[14]/text()",
-          "text_element_context": "unlimited",
-          "matching_fragment_count": 1
-        }
+        "source_text": "(1) Legacy balance-based check",
+        "candidate_text": "(1) Legacy balance-based check",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "0 credits",
-        "source_style": "weight 700; normal; source size 19",
-        "semantic_role": "entitlement mode / admission result",
-        "candidate_text": "0 credits",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[23]/text()",
-          "text_element_context": "0 credits",
-          "matching_fragment_count": 1
-        }
+        "source_text": "(2) Unlimited groups are added",
+        "candidate_text": "(2) Unlimited groups are added",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "REJECT",
-        "source_style": "weight 700; normal; source size 17",
-        "semantic_role": "entitlement mode / admission result",
-        "candidate_text": "REJECT",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[26]/text()",
-          "text_element_context": "REJECT",
-          "matching_fragment_count": 1
-        }
+        "source_text": "(3) Client rejects the upload",
+        "candidate_text": "(3) Client rejects the upload",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "admit_unlimited",
-        "source_style": "weight 700; normal; source size 17",
-        "semantic_role": "entitlement mode / admission result",
-        "candidate_text": "admit_unlimited",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[39]/text()",
-          "text_element_context": "admit_unlimited",
-          "matching_fragment_count": 1
-        }
+        "source_text": "(4) Separate admission and display",
+        "candidate_text": "(4) Separate admission and display",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "every entitlement is finite",
-        "source_style": "weight normal; italic; source size 17",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Every entitlement is finite",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "every entitlement is finite",
-          "matching_fragment_count": 1
-        }
+        "source_text": "REJECT before POST",
+        "candidate_text": "REJECT before POST",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "unlimited entitlement is introduced",
-        "source_style": "weight normal; italic; source size 17",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Unlimited entitlement is introduced",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[11]/text()",
-          "text_element_context": "unlimited entitlement is introduced",
-          "matching_fragment_count": 1
-        }
+        "source_text": "admit = True",
+        "candidate_text": "admit = True",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "the client still receives only a balance",
-        "source_style": "weight normal; italic; source size 17",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "The client still receives only a balance",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[18]/text()",
-          "text_element_context": "the client still receives only a balance",
-          "matching_fragment_count": 1
-        }
+        "source_text": "Only finite credit is represented",
+        "candidate_text": "Only finite credit is represented",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "italic"
       },
       {
-        "source_text": "the decision checks both entitlement kinds",
-        "source_style": "weight normal; italic; source size 17",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "The decision checks both entitlement kinds",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/entitlement-model-evolution.svg",
-          "element_text_path": "/svg/text[30]/text()",
-          "text_element_context": "the decision checks both entitlement kinds",
-          "matching_fragment_count": 1
-        }
+        "source_text": "Entitlement now has two cases",
+        "candidate_text": "Entitlement now has two cases",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "38-page Office upload",
+        "candidate_text": "38-page Office upload",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "Same group and request; no cap",
+        "candidate_text": "Same group and request; no cap",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "Unlimited sentinel",
+        "candidate_text": "Unlimited sentinel",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "ignores separate unlimited signal",
+        "candidate_text": "ignores separate unlimited signal",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "The display value does not decide permission.",
+        "candidate_text": "The display value does not decide permission.",
+        "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+        "candidate_style": "regular"
       }
     ],
     "checks": [
       {
-        "text": "unlimited",
+        "text": "(1) Legacy balance-based check",
         "bold": true,
         "italic": false
       },
       {
-        "text": "0 credits",
+        "text": "(2) Unlimited groups are added",
         "bold": true,
         "italic": false
       },
       {
-        "text": "REJECT",
+        "text": "(3) Client rejects the upload",
         "bold": true,
         "italic": false
       },
       {
-        "text": "admit_unlimited",
+        "text": "(4) Separate admission and display",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Every entitlement is finite",
+        "text": "REJECT before POST",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "admit = True",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Only finite credit is represented",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Unlimited entitlement is introduced",
+        "text": "Entitlement now has two cases",
         "bold": false,
         "italic": true
       },
       {
-        "text": "The client still receives only a balance",
+        "text": "38-page Office upload",
         "bold": false,
         "italic": true
       },
       {
-        "text": "The decision checks both entitlement kinds",
+        "text": "Same group and request; no cap",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Group",
+        "text": "Unlimited sentinel",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "ignores separate unlimited signal",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "The display value does not decide permission.",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "native_dimensions_bp": [
+        426.15301513671875,
+        417.64898681640625
+      ],
+      "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+      "geometry_findings": 0,
+      "typography_checks": 13,
+      "typography_findings": 0,
+      "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+      "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+      "native_minimum_font_pt": 9.5,
+      "monochrome_pixels": true,
+      "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+      "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
       "page": 1,
-      "width_bp": 414.8139953613281,
-      "height_bp": 353.74700927734375,
+      "width_bp": 426.15301513671875,
+      "height_bp": 417.64898681640625,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "semantic_typography_checks": 13
     },
     "text_revision": {
-      "date": "2026-11-05",
-      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+      "date": "2026-11-06",
+      "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+      "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Raised entitlement split rails and reduced only surplus inline decision padding to restore readable arrow shafts.",
-    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+    "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+    "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
     "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing entitlement model evolution layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
-      "after_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-      "before_dimensions_bp": [
-        414.8139953613281,
-        353.74700927734375
-      ],
+      "decision": "refined",
+      "reason": "Lengthen the four-panel plate to show actual producer-to-result paths and separate decision/display outputs. Retain native 9.5–10.5pt prose sizes; all arrows have the required terminal clearance.",
+      "before_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+      "after_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
       "after_dimensions_bp": [
-        414.8139953613281,
-        353.74700927734375
-      ],
-      "before_font_sizes_pt": [
-        9.5,
-        10.0,
-        10.5
+        426.15301513671875,
+        417.64898681640625
       ],
       "after_font_sizes_pt": [
         9.5,
@@ -337,22 +325,28 @@
       "reviewed_visually": true
     },
     "validation": {
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "native_dimensions_bp": [
+        426.15301513671875,
+        417.64898681640625
+      ],
+      "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+      "geometry_findings": 0,
+      "typography_checks": 13,
+      "typography_findings": 0,
+      "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+      "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+      "native_minimum_font_pt": 9.5,
+      "monochrome_pixels": true,
+      "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+      "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
       "page": 1,
-      "width_bp": 414.8139953613281,
-      "height_bp": 353.74700927734375,
+      "width_bp": 426.15301513671875,
+      "height_bp": 417.64898681640625,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "checked_terminal_approaches": 10,
-      "reviewed_peer_groups": 0,
-      "audit_sha256": "d68a0da19f18edd1bf30836280aea29d42a0bb2d3f3417f1121146f82f7634cf",
-      "status": "passed"
+      "semantic_typography_checks": 13
     },
-    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+    "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
     "baseline_candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
@@ -361,28 +355,68 @@
     ],
     "contracts": {},
     "text_revision": {
-      "date": "2026-11-05",
-      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+      "date": "2026-11-06",
+      "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+      "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
     }
   },
   "text_revision": {
-    "date": "2026-11-05",
-    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
-    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-    "reason": "Replace abstract lost/preserved-distinction language with the concrete client preflight failure and shared admission decision.",
+    "date": "2026-11-06",
+    "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
+    "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
+    "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+    "evidence": [
+      {
+        "panel": "(1)",
+        "claim": "The older client preflight compared an aggregate finite balance against request cost.",
+        "source": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/_design/evidence-chapter2-models-260922/R2-response-B-joins-rca-evolution-260922.md",
+        "lines": "264–315",
+        "qualification": "Describes the legacy representation; no claim that aggregation is sufficient for the later per-group/capped policy."
+      },
+      {
+        "panel": "(2)",
+        "claim": "Groups may provide finite credit or unlimited use, independently of individual/institutional classification.",
+        "source": "/Users/davisjam/Projects/ada-tool/docs/rca/purdue-institutional-upload-paywall-260824.md",
+        "lines": "35–86",
+        "qualification": "Schema/classification branches have no arrowheads; this panel is not a runtime step."
+      },
+      {
+        "panel": "(3)",
+        "claim": "The 38-page Office request was rejected client-side from the zero scalar; a separate unlimited status was present but ignored.",
+        "source": "/Users/davisjam/Projects/ada-tool/docs/rca/purdue-institutional-upload-paywall-260824.md",
+        "lines": "159–214",
+        "qualification": "Uses the corrected v2 RCA, rather than the superseded v1 diagnosis or the overly compressed evidence summary."
+      },
+      {
+        "panel": "(4)",
+        "claim": "The same uncapped group produces admit=True, selected group, and admit_unlimited; display projection separately produces 2**53−1.",
+        "source": "/Users/davisjam/Projects/ada-tool/system-models/entitlement_model.py",
+        "lines": "307–405",
+        "executed_evidence": "/private/tmp/mage-entitlement-20261106/model-output.json",
+        "qualification": "The admission outcome is scoped to no cap; the model checks caps before unlimited admission. Display sentinel is not a usable finite balance or permission to upload."
+      }
+    ],
     "validation": {
-      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "native_dimensions_bp": [
+        426.15301513671875,
+        417.64898681640625
+      ],
+      "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+      "geometry_findings": 0,
+      "typography_checks": 13,
+      "typography_findings": 0,
+      "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+      "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+      "native_minimum_font_pt": 9.5,
+      "monochrome_pixels": true,
+      "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+      "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
       "page": 1,
-      "width_bp": 414.8139953613281,
-      "height_bp": 353.74700927734375,
+      "width_bp": 426.15301513671875,
+      "height_bp": 417.64898681640625,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "semantic_typography_checks": 13
     }
   }
 }

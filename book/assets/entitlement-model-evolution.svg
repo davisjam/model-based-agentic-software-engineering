@@ -1,107 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Chapter 2 decision-family figure — entitlement model evolution, told model -> model (gc-ch2-revision
-     260922). Job: LOSS of a distinction vs PRESERVATION of a distinction, chronologically: (1) original
-     scalar model, adequate while every entitlement is finite; (2) the system evolves — unlimited groups
-     arrive; (3) the stale admission model discards the new distinction, an unlimited user reads as 0
-     credits and is rejected; (4) the revised decision model preserves finite vs unlimited and states the
-     admission decision explicitly. NOT repository architecture. Grammar: blue #2f5169 = model; rust
-     #9a3f12 = the discarded distinction / wrong verdict; green = decision family / correct verdict.
-     Evidence: R2-response-B item 5 (verbatim old fragment, live old-vs-new decision demo). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 720" width="1040" height="720" role="img" aria-labelledby="entEvoT entEvoD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="entEvoT">Entitlement model evolution: the original scalar model, the domain change, the stale reduction that lost the unlimited distinction, and the revised decision model that preserves it</title>
-  <desc id="entEvoD">Four panels in chronological order. Panel 1, original model: group credits reduce to a credit sum, compared as credits at least pages, adequate while every entitlement is finite. Panel 2, the system evolves: a group is now finite or unlimited. Panel 3, stale admission model: groups reduce to a sum of finite credits that excludes unlimited groups, an unlimited user becomes zero credits, zero less than thirty-eight rejects the upload; the unlimited distinction has no representation. Panel 4, revised model: group entitlements keep finite and unlimited distinct and feed an admission decision recording admit, authorizing group, and plan; the same user now reads admit by unlimited entitlement.</desc>
-  <defs>
-    <marker id="entEvo-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/></marker>
-    <marker id="entEvo-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-    <marker id="entEvo-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
-    <marker id="entEvo-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#155c38"/></marker>
-    <marker id="entEvo-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-  </defs>
-  <rect x="0" y="0" width="1040" height="720" fill="#fdfcf9"/>
-  <text x="520" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Upload admission must distinguish finite and unlimited entitlement</text>
-
-  <!-- panel frames -->
-  <rect x="30"  y="70"  width="470" height="280" rx="12" fill="none" stroke="#e4e0d8" stroke-width="2"/>
-  <rect x="540" y="70"  width="470" height="280" rx="12" fill="none" stroke="#e4e0d8" stroke-width="2"/>
-  <rect x="30"  y="390" width="470" height="310" rx="12" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-  <rect x="540" y="390" width="470" height="310" rx="12" fill="none" stroke="#155c38" stroke-width="2.4"/>
-
-  <!-- ============ Panel 1: ORIGINAL MODEL ============ -->
-  <circle cx="58" cy="98" r="15" fill="#2f5169"/><text x="58" y="104" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">1</text>
-  <text x="84" y="105" font-size="20" font-weight="700" fill="#1c1917">ORIGINAL MODEL</text>
-  <text x="84" y="129" font-size="17" font-style="italic" fill="#57534e">every entitlement is finite</text>
-  <rect x="70" y="150" width="200" height="50" rx="9" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
-  <text x="170" y="181" text-anchor="middle" font-size="19" fill="#1c1917">Group — credits: int</text>
-  <line x1="170" y1="200" x2="170" y2="232" stroke="#2f5169" stroke-width="2" marker-end="url(#entEvo-ah-blue)"/>
-  <rect x="80" y="236" width="180" height="46" rx="9" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
-  <text x="170" y="265" text-anchor="middle" font-size="19" fill="#1c1917">&#931; credits</text>
-  <line x1="260" y1="259" x2="308" y2="259" stroke="#2f5169" stroke-width="2" marker-end="url(#entEvo-ah-blue)"/>
-  <rect x="312" y="236" width="168" height="46" rx="9" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
-  <text x="396" y="265" text-anchor="middle" font-size="19" fill="#1c1917">credits &#8805; pages?</text>
-  <text x="275" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">credit balance determines upload permission</text>
-
-  <!-- ============ Panel 2: UNLIMITED GROUPS ADDED ============ -->
-  <circle cx="568" cy="98" r="15" fill="#1f7a4d"/><text x="568" y="104" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">2</text>
-  <text x="594" y="105" font-size="20" font-weight="700" fill="#1c1917">UNLIMITED GROUPS ADDED</text>
-  <text x="594" y="129" font-size="17" font-style="italic" fill="#57534e">unlimited entitlement is introduced</text>
-  <rect x="640" y="150" width="180" height="50" rx="9" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
-  <text x="730" y="181" text-anchor="middle" font-size="19" fill="#1c1917">Group</text>
-  <line x1="690" y1="200" x2="640" y2="238" stroke="#1c1917" stroke-width="2" marker-end="url(#entEvo-ah)"/>
-  <line x1="770" y1="200" x2="820" y2="238" stroke="#1c1917" stroke-width="2" marker-end="url(#entEvo-ah)"/>
-  <rect x="558" y="242" width="176" height="46" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="646" y="271" text-anchor="middle" font-size="19" fill="#1c1917">finite(credits)</text>
-  <rect x="754" y="242" width="176" height="46" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="842" y="271" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">unlimited</text>
-  <text x="775" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">groups now provide finite or unlimited use</text>
-
-  <!-- chronology arrows between panels -->
-  <line x1="500" y1="210" x2="536" y2="210" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
-  <path d="M 775 350 C 775 372, 265 368, 265 386" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
-  <line x1="500" y1="545" x2="536" y2="545" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
-
-  <!-- ============ Panel 3: BALANCE-ONLY PREFLIGHT ============ -->
-  <circle cx="58" cy="418" r="15" fill="#9a3f12"/><text x="58" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">3</text>
-  <text x="84" y="425" font-size="20" font-weight="700" fill="#9a3f12">BALANCE-ONLY PREFLIGHT</text>
-  <text x="84" y="449" font-size="17" font-style="italic" fill="#57534e">the client still receives only a balance</text>
-  <rect x="60" y="470" width="150" height="46" rx="9" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
-  <text x="135" y="499" text-anchor="middle" font-size="19" fill="#1c1917">groups</text>
-  <line x1="210" y1="493" x2="252" y2="493" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
-  <rect x="256" y="470" width="224" height="46" rx="9" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
-  <text x="368" y="499" text-anchor="middle" font-size="19" fill="#1c1917">&#931; finite credits only</text>
-  <text x="368" y="545" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">the return value omits</text>
-  <text x="368" y="567" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">the unlimited flag</text>
-  <line x1="368" y1="516" x2="368" y2="525" stroke="#9a3f12" stroke-width="2.2"/>
-  <rect x="90" y="600" width="120" height="44" rx="9" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
-  <text x="150" y="628" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">0 credits</text>
-  <line x1="135" y1="516" x2="135" y2="596" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
-  <text x="127" y="562" text-anchor="end" font-size="17" font-style="italic" fill="#57534e">unlimited user</text>
-  <line x1="210" y1="622" x2="252" y2="622" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
-  <rect x="256" y="600" width="120" height="44" rx="9" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
-  <text x="316" y="628" text-anchor="middle" font-size="19" fill="#1c1917">0 &lt; 38</text>
-  <line x1="376" y1="622" x2="414" y2="622" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
-  <rect x="418" y="600" width="78" height="44" rx="9" fill="#9a3f12"/>
-  <text x="457" y="628" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">REJECT</text>
-  <text x="265" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">client rejection prevents the server check</text>
-
-  <!-- ============ Panel 4: EXPLICIT ADMISSION DECISION ============ -->
-  <circle cx="568" cy="418" r="15" fill="#155c38"/><text x="568" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">4</text>
-  <text x="594" y="425" font-size="20" font-weight="700" fill="#155c38">EXPLICIT ADMISSION DECISION</text>
-  <text x="594" y="449" font-size="17" font-style="italic" fill="#57534e">the decision checks both entitlement kinds</text>
-  <rect x="560" y="470" width="220" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="670" y="496" text-anchor="middle" font-size="19" fill="#1c1917">group entitlements</text>
-  <text x="670" y="521" text-anchor="middle" font-size="17" font-style="italic" fill="#155c38">finite | unlimited</text>
-  <line x1="780" y1="503" x2="822" y2="503" stroke="#155c38" stroke-width="2.2" marker-end="url(#entEvo-ah-green)"/>
-  <rect x="826" y="470" width="164" height="66" rx="9" fill="#e8eef3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="908" y="496" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">admission</text>
-  <text x="908" y="521" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">decision</text>
-  <line x1="908" y1="536" x2="908" y2="568" stroke="#2f5169" stroke-width="2" marker-end="url(#entEvo-ah-blue)"/>
-  <rect x="806" y="572" width="204" height="86" rx="9" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="908" y="596" text-anchor="middle" font-size="17" fill="#1c1917">admit?</text>
-  <text x="908" y="619" text-anchor="middle" font-size="17" fill="#1c1917">authorizing group</text>
-  <text x="908" y="642" text-anchor="middle" font-size="17" fill="#1c1917">ordered plan</text>
-  <line x1="670" y1="536" x2="670" y2="596" stroke="#155c38" stroke-width="2.2" marker-end="url(#entEvo-ah-green)"/>
-  <text x="662" y="568" text-anchor="end" font-size="17" font-style="italic" fill="#57534e">same user</text>
-  <rect x="576" y="600" width="188" height="44" rx="9" fill="#155c38"/>
-  <text x="670" y="628" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">admit_unlimited</text>
-  <text x="775" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">client and server use the admission decision</text>
+<!-- Four numbered explanatory panels, not one runtime pipeline. Retained hand-SVG for paired panel geometry and alignment with native TikZ. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1064" height="1043" viewBox="0 0 1064 1043" role="img" aria-labelledby="entT entD" font-family="&apos;Source Sans 3&apos;, Arial, sans-serif">
+<title id="entT">From a credit balance to an explicit upload-admission decision</title>
+<desc id="entD">Four numbered panels explain a legacy balance check, the addition of unlimited entitlement, the actual client upload-check failure, and the later model. There are no arrows between panels. In panel 3, the server excludes the unlimited group from a finite-credit sum; the client compares zero with thirty-eight while ignoring a separate unlimited signal, then rejects before POST. In panel 4, the same uncapped group feeds an admission decision that admits and a separate display projection that returns an unlimited sentinel. The display value is not an admission input.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10z" fill="#1c1917"/></marker></defs>
+<rect width="100%" height="100%" fill="#fdfcf9"/>
+<rect x="14" y="14" width="504" height="322" rx="12" fill="none" stroke="#d0ccc5" stroke-width="2"/>
+<rect x="546" y="14" width="504" height="322" rx="12" fill="none" stroke="#d0ccc5" stroke-width="2"/>
+<rect x="14" y="364" width="504" height="665" rx="12" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="546" y="364" width="504" height="665" rx="12" fill="none" stroke="#155c38" stroke-width="2"/>
+<text x="266" y="45.5" text-anchor="middle" dominant-baseline="central" font-size="26" font-weight="700" fill="#1c1917">(1) Legacy balance-based check</text>
+<text x="266" y="77" text-anchor="middle" dominant-baseline="central" font-size="23" font-style="italic" fill="#1c1917">Only finite credit is represented</text>
+<text x="798" y="45.5" text-anchor="middle" dominant-baseline="central" font-size="26" font-weight="700" fill="#1c1917">(2) Unlimited groups are added</text>
+<text x="798" y="77" text-anchor="middle" dominant-baseline="central" font-size="23" font-style="italic" fill="#1c1917">Entitlement now has two cases</text>
+<text x="798" y="255.7" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">A finite balance does not</text>
+<text x="798" y="283.3" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">identify unlimited use.</text>
+<text x="266" y="395.5" text-anchor="middle" dominant-baseline="central" font-size="26" font-weight="700" fill="#1c1917">(3) Client rejects the upload</text>
+<text x="266" y="430.5" text-anchor="middle" dominant-baseline="central" font-size="23" font-style="italic" fill="#1c1917">38-page Office upload</text>
+<text x="266" y="980" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">Server admission code is never reached.</text>
+<text x="798" y="395.5" text-anchor="middle" dominant-baseline="central" font-size="26" font-weight="700" fill="#1c1917">(4) Separate admission and display</text>
+<text x="798" y="430.5" text-anchor="middle" dominant-baseline="central" font-size="23" font-style="italic" fill="#1c1917">Same group and request; no cap</text>
+<text x="798" y="910.2" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">Admission uses the decision.</text>
+<text x="798" y="937.8" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">The display value does not decide permission.</text>
+<rect x="63" y="91" width="406" height="49" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="266" y="115.5" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Finite group balances</text>
+<rect x="154" y="175" width="224" height="42" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="266" y="196" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Sum of balances</text>
+<rect x="63" y="248.5" width="406" height="63" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="266" y="265.6" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Client compares</text>
+<text x="266" y="294.4" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">balance with request cost</text>
+<rect x="658" y="91" width="280" height="49" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="798" y="115.5" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Group entitlement</text>
+<rect x="577.5" y="168" width="196" height="56" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="675.5" y="196" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Finite balance</text>
+<rect x="822.5" y="168" width="196" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="920.5" y="196" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Unlimited mode</text>
+<rect x="63" y="455" width="406" height="77" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="266" y="479.1" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">One unlimited personal group</text>
+<text x="266" y="507.9" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">finite balance = 0</text>
+<rect x="63" y="563.5" width="406" height="84" rx="10" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
+<text x="266" y="591.1" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Server sums finite balances</text>
+<text x="266" y="619.9" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">and excludes unlimited groups</text>
+<rect x="133" y="679" width="266" height="49" rx="10" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
+<text x="266" y="703.5" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">credit_balance = 0</text>
+<rect x="63" y="763" width="406" height="84" rx="10" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
+<text x="266" y="790.6" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Client upload check: 0 &lt; 38</text>
+<text x="266" y="819.4" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">ignores separate unlimited signal</text>
+<rect x="101.5" y="882" width="329" height="49" rx="10" fill="#9a3f12" stroke="#9a3f12" stroke-width="2"/>
+<text x="266" y="906.5" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="700" fill="#fdfcf9">REJECT before POST</text>
+<rect x="595" y="455" width="406" height="77" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="798" y="479.1" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Per-group entitlement</text>
+<text x="798" y="507.9" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">unlimited mode; finite balance = 0</text>
+<rect x="567" y="588" width="217" height="77" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="675.5" y="612.1" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Admission rules</text>
+<text x="675.5" y="640.9" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">+ upload request</text>
+<rect x="812" y="588" width="217" height="77" rx="10" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
+<text x="920.5" y="612.1" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">Display</text>
+<text x="920.5" y="640.9" text-anchor="middle" dominant-baseline="central" font-size="24" fill="#1c1917">projection</text>
+<rect x="567" y="705.25" width="217" height="115.5" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="675.5" y="735.4" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917" font-weight="700">admit = True</text>
+<text x="675.5" y="763" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">selected group</text>
+<text x="675.5" y="790.6" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">admit_unlimited</text>
+<rect x="812" y="705.25" width="217" height="115.5" rx="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="920.5" y="749.2" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">Unlimited sentinel</text>
+<text x="920.5" y="776.8" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#1c1917">(display-only)</text>
+<path d="M266,140 L266,175" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,217 L266,248.5" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,532 L266,563.5" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,647.5 L266,679" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,728 L266,763" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,847 L266,882" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M675.5,665 L675.5,705.25" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M920.5,665 L920.5,705.25" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M798,140 V154 H675.5 V168" fill="none" stroke="#1c1917" stroke-width="2"/>
+<path d="M798,140 V154 H920.5 V168" fill="none" stroke="#1c1917" stroke-width="2"/>
+<path d="M798,532 V560 H675.5 V588" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M798,532 V560 H920.5 V588" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ah)"/>
 </svg>

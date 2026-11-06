@@ -4565,3 +4565,82 @@ Disposition: The substance has been incorporated into Chapter 1 §1.4 (`book/lat
 ```latex
 MAGE examines how software-engineering environments should change when machines can perform both reasoning and implementation. Better context can help an agent make a consequential judgment correctly. Better models can sometimes make the relevant property explicit enough that the environment can analyze or check it instead. The first improves the reasoner\textquotesingle s chances; the second can reduce how much judgment must be reconstructed and exercised again at all.
 ```
+
+
+## 2026-11-06 — §3.2: Explain proof scope once, then keep the queueing example
+
+Review item: `V5` (`32-proof-and-obligation-once`). Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, lines 63–77. Source revision: `00345cda5128ac1d15f93e9aedf830a9a83eb1f9`. Native excerpt SHA-256: `670a7a57b1939afb5b9fff6d344866c81f4cbe87cb26a72591ac3871490f079c`. Replaced on 6 November 2026 after author approval.
+
+Reason: Keep the framing sentence and distinguish Lean proof checking from TLA+ specifications and TLC model checking. Consolidate the repeated proof-scope explanation and retain the approved queueing-service example verbatim.
+
+```latex
+% <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | A proof's strength applies to the proposition proved, not to whether that proposition captures the obligation engineering should preserve. | terms: agreement-vs-correctness, independent-obligation -->
+
+Stronger verification does not remove this distinction. A proof assistant such as Lean can establish, with extraordinary rigor, that a realization satisfies a formally stated property. That strength applies to the proposition being proved; it does not establish that the proposition captures the properties engineering should preserve. For example, asking an agent both to produce an implementation and to formulate and prove the property it satisfies can create a circular argument: the generated property may merely formalize assumptions already embodied in the implementation. The proof may be valid while establishing little about whether the implementation satisfies the independently intended engineering obligation. Formal verification can therefore provide exceptionally strong Alignment for a represented obligation without solving the upstream Modeling problem of deciding what that obligation should be.
+
+% <!-- point: the-stronger-the-verifier-the-more-the-distinction-matters | The stronger the verifier, the more the distinction matters: a proof removes uncertainty about the stated property while leaving untouched whether engineering stated the right one. | terms: agreement-vs-correctness, independent-obligation -->
+
+The stronger the verifier, the more important this distinction becomes. Weak evidence leaves uncertainty about whether the system satisfies the stated property. A proof can remove much of that uncertainty while leaving untouched the separate question of whether engineering stated the right property. None of this argues against having agents produce the proofs. Cheaper verification is a gain, and \magevalue{sec:constraints-sensors-validators-gates} makes the same case for synthesized guardrails: the machine can help build the mechanism while the engineer stays responsible for the obligation and for checking that the mechanism enforces it.
+
+% <!-- point: docable-requested-temporal-checking-for-an-obligation-its-models-already-carried | Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it. | terms: independent-obligation, agreement-vs-correctness -->
+
+For example, an engineer can require a queueing service to bring every accepted job to a terminal state, then ask an agent to develop an analysis of that requirement. The agent may help formalize the obligation and construct the checker. What matters is that the obligation comes from what the service must do, rather than being chosen merely because the current implementation satisfies it.
+
+% <!-- point: alignment-makes-conformance-dependable-modeling-decides-what-can-become-an-obligation | Alignment can make conformance to an obligation dependable; Modeling determines what engineering knowledge is available to become an obligation at all. | terms: modeling-principle, alignment-principle -->
+
+Alignment can make conformance to an obligation extremely dependable. Modeling determines what engineering knowledge is available to become an obligation in the first place. Proof strength belongs to the conformance relation alone.
+```
+
+
+## 2026-11-06 — §3.2: Name when static type checks run
+
+Review item: `V7` (`32-type-checking-boundary`). Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, lines 174–174. Source revision: `00345cda5128ac1d15f93e9aedf830a9a83eb1f9`. Native excerpt SHA-256: `18b068621662fd0d525568b3162604cc93b049482f9233d3ad32a69be0ed225e`. Replaced on 6 November 2026 after author approval.
+
+Reason: Types do not act the instant an expression is written. A static type checker evaluates uses of types when it runs. Keep the boundary menu while removing the instantaneous-mechanism claim.
+
+```latex
+\textbf{Types} act as soon as an expression is formed --- a shape is legible the instant it is written.
+```
+
+
+## 2026-11-06 — §3.3: State exactly what the closed type excludes
+
+Review item: `W1` (`33-closed-enum-scope`). Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 89–95. Source revision: `00345cda5128ac1d15f93e9aedf830a9a83eb1f9`. Native excerpt SHA-256: `50ca9c8cfdaa5cb0954f1500793c7fa6fc377270e077f14f5d958ab894bf48f2`. Replaced on 6 November 2026 after author approval of uncommented §3.3 edits.
+
+Reason: The current text promises that a compiler rejects any invalid value on the spot and that no iteration is spent catching it. It also leaves the reader to distinguish an invalid representation from an invalid transition. Scope the example to checked construction of a closed type, then name the remaining transition obligation.
+
+```latex
+% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint prevents drift within the iteration, costing none. | terms: constraint, typed-enum -->
+
+% <!-- index-def: constraint -->
+
+% <!-- gloss-only: Constraint | A governance mechanism that prevents drift by scoping the agent's action space so the wrong move is unavailable within a loop iteration (a typed enum instead of a string); the prevented mistake costs no failed iteration. -->
+
+\textbf{A constraint removes an unwanted action or state from the admissible space.} Unlike a sensor, which observes the resulting state after the fact, a constraint makes the prohibited move unavailable through that mechanism. Closed representations are the cleanest example. A lifecycle encoded as arbitrary strings admits values the design never intended, and a mismatch surfaces only an iteration later, when the test suite crashes. Encode it as a closed enumeration instead and the compiler rejects any value outside the declared set on the spot. The enum does not watch for the illegal state later --- it removes that representation from well-typed code, and no iteration is spent catching it. Where the valid action or representation space is naturally closed, MAGE prefers representations that exclude invalid members structurally.
+```
+
+
+## 2026-11-06 — §3.3: Keep evaluation distinct from enforcement in the scope inset
+
+Review item: `W2` (`33-validator-evaluates-wrong-obligation`). Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 224–224. Source revision: `00345cda5128ac1d15f93e9aedf830a9a83eb1f9`. Native excerpt SHA-256: `261b3ac6c1bb10b3aeacc3f01a20ee78b595ee1d8add8d12b110e02b064dc74c`. Replaced on 6 November 2026 after author approval of uncommented §3.3 edits.
+
+Reason: The scope inset says a validator can faithfully enforce the wrong obligation, although the chapter defines a validator as evaluating evidence. Correct the verb without reopening the approved test-gate scope paragraph.
+
+```latex
+A validator can faithfully enforce the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state.
+```
+
+
+## 2026-11-06 — §3.3: Close the provenance explanation once
+
+Review item: `W4` (`33-provenance-one-synthesis`). Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 318–322. Source revision: `00345cda5128ac1d15f93e9aedf830a9a83eb1f9`. Native excerpt SHA-256: `c0501fc6577cb1fe9eec7d1eccf9254cda66336272522f61bb9a03a66ab58135`. Replaced on 6 November 2026 after author approval of uncommented §3.3 edits.
+
+Reason: After the concrete mechanism, selection guidance, and producer/consumer distinction, the passage gives three more versions of the same conclusion. Keep one short connection to the interaction graph and remaining implementation freedom.
+
+```latex
+The rule of thumb is short. \textbf{When the forbidden paths are enumerable, ban them. When the allowed path is easier to characterize than all possible bypasses, have the allowed path issue the provenance required at the boundary.}
+
+Provenance-carried admission removes a particular degree of freedom: a protected operation must derive from the sanctioned source or path. Other implementation choices remain open; only the sanctioned derivation can produce an admissible operation.
+
+This is a graph-shaped variation on architectural enforcement. Layering constrains which components may interact across a layered structure. Provenance-carried admission instead constrains a particular derivation through an otherwise richer interaction graph: many implementation paths may exist, but only a path through the sanctioned node can produce an operation permitted to cross the admission boundary.
+```

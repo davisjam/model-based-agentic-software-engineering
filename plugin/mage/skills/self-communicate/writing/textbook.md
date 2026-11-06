@@ -91,6 +91,43 @@ expansion, and deletion are all valid outcomes.
    in the worker at all?” The question prepares the architectural change that follows. Replacing
    it with an impersonal summary would hide the reasoning behind the choice.
 
+### Preface calibration: scope, precision, and authorial voice
+
+The Preface review of 6 November 2026 supplies four further examples (settled copyedit
+`de2ba6b5d`, including the author's decisions to retain wording). These illustrate judgment within
+the register; they are not phrases to copy or exceptions to apply mechanically.
+
+1. **State what the evidence contributes.** The revised evidence paragraph says: “DocAble provides
+   depth about engineering decisions and their consequences; the industrial accounts provide
+   variation across organizations and production environments.” That comparison explains how to
+   read the evidence. The chapter reference then directs readers to its limits and supporting
+   sources. Scope remains explicit without repeating a disclaimer after each claim. Likewise,
+   the Kiro paragraph acknowledges an existing approach before stating the book's question:
+   “how engineers preserve understanding and control as the system evolves.” In a preface,
+   position the contribution through the problem it develops, with proportionate acknowledgment
+   of prior work.
+
+2. **Check whether a simpler phrase changes the claim.** The author retained “every act required
+   to realize a system”: replacing *realize* with *implement* would narrow a statement that also
+   concerns design, analysis, and validation. Conversely, “four recurring engineering activities”
+   replaces wording that made the method sound like a fixed sequence. The revision explicitly
+   says those activities need not occur in a fixed order. An editorial change to vocabulary or
+   presentation can change the engineering account; compare meanings before judging fluency.
+
+3. **Keep deliberate voice and useful enumeration.** The author retained “the most interesting
+   thing about DocAble is not DocAble. It is MAGE.” Here the contrast redirects attention from the
+   case to the book's subject. The Apple inscription example also retains its enumeration of
+   architecture, requirements, and tolerances: those particulars explain which decisions can
+   remain with the designer when realization is delegated. Neither a familiar rhetorical form
+   nor a long sentence is sufficient reason to cut. Judge its work and its frequency in context.
+
+4. **Give supporting material the right place in the argument.** Four engineering questions were
+   removed from a terminology footnote and placed in the Chapter 1 opening. A useful comparison
+   of context and models moved to §1.4, allowing the Preface section to close on engineering
+   authority. These were placement decisions, not judgments that the passages were unnecessary.
+   A footnote should serve its local explanation; a section's last paragraph should complete
+   its argument. Preserve useful displaced material and check the transition at its destination.
+
 ## Review the teaching
 
 Read the passage with its neighbors. Can the reader follow the reasoning, see what the mechanism

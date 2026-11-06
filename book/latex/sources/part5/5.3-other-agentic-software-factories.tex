@@ -1,3 +1,4 @@
+% mage-auto-heading: amazon
 % mage-auto-heading: internal-software-factories
 % mage-auto-heading: uber
 % mage-auto-heading: cloudflare
@@ -14,13 +15,13 @@
 
 \chapter{Other Agentic Software Factories}
 
-% <!-- point: one-system-one-engineer-one-problem-so-how-do-others-do-it | DocAble is one system built by one engineer for one problem; the natural question is how engineers in other organizations, under different constraints, approach the same problem. -->
+% <!-- point: one-system-one-engineer-one-problem-so-how-do-others-do-it | Amazon's internal reports and Kiro's public harness documentation provide the next comparison after DocAble; other accounts expose different parts of factory design and operation. -->
 
-My experience with DocAble showed me one way of building reliable software with unreliable agents. But that is one system, built by one engineer, for one problem. The natural question is how other engineers, working in other organizations and under different constraints, are approaching the same problem.
+DocAble showed how one engineer assembled a factory around coding agents. Amazon provides a useful next comparison: its reports of internal use can be read alongside Kiro's public harness documentation. We can examine which engineering responsibilities the harness supplies and which remain with the adopting team. The other cases broaden the comparison to factories whose public accounts expose different parts of their design and operation.
 
-% <!-- point: seven-reconstructions-differ-in-representation-direction-evidence-and-judgment | Six public accounts are reconstructed; they differ in what they represent, how they direct and constrain agents, what evidence they require, where they keep human judgment — and in whether the factory is built for their own software or for somebody else's. -->
+% <!-- point: seven-reconstructions-differ-in-representation-direction-evidence-and-judgment | Seven companies' public accounts differ in representations, direction, evidence, human judgment, and whether the factory serves the organization's own work or other adopters. -->
 
-In this section, I reconstruct agentic software factories from public reports by six companies: Uber, GitLab, Cloudflare, Siemens, Spotify, and Shopify. These factories differ in what they represent, how they direct and constrain agents, what evidence they require, and where they retain human judgment. They also differ in a more basic way: some organizations are building factories for their own software, while others are building factories for somebody else to use.
+In this section, I reconstruct agentic software factories from public reports by seven companies: Amazon, Uber, GitLab, Cloudflare, Siemens, Spotify, and Shopify. These factories differ in what they represent, how they direct and constrain agents, what evidence they require, and where they retain human judgment. They also differ in a more basic way: some organizations are building factories for their own software, while others are building factories for somebody else to use.
 
 % <!-- point: the-public-sources-are-interested-accounts-read-conservatively | The sources are company-published accounts that mix technical communication with promotion, so reported architectures and measurements count as evidence of what an organization built and observed, while effectiveness and causal claims are treated cautiously and numbers keep their own definitions and denominators. -->
 
@@ -46,9 +47,9 @@ The first distinction is between an \emph{internal factory}, built and operated 
 
 The second distinction concerns how engineering intent enters the factory. Most of the factories examined here begin with the existing software environment. Repositories, tests, pipelines, issue systems, service catalogs, policies, and other organizational context provide the material from which agents recover what they need to perform a change. I call these \emph{existing-environment-first} factories. A \emph{model-first} factory instead places explicit engineering models upstream of realization: selected engineering intent is represented in models, and software realization proceeds downstream from them.
 
-% <!-- point: the-two-distinctions-are-independent-axes | The two distinctions are independent: either factory form can be existing-environment-first or model-first, and the six public accounts occupy only part of that design space. -->
+% <!-- point: the-two-distinctions-are-independent-axes | Who supplies a factory and how intent enters production are independent dimensions; an organization may supply more than one kind of factory. -->
 
-These distinctions are independent. An internal factory can be existing-environment-first or model-first. So can a factory in a box. The six public accounts happen to occupy only part of that design space. \autoref{factory-forms} provides the map I will use for the rest of the section.
+These distinctions are independent. An internal factory can be existing-environment-first or model-first. So can a factory in a box. The seven public accounts occupy several positions in that design space, and one organization can supply more than one kind of factory. \autoref{factory-forms} provides the map I will use for the rest of the section.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -85,18 +86,7 @@ Model-first & Either & Explicit engineering models upstream of realization \\
 \end{longtable}
 }
 
-% <!-- point: entry-points-figure-locates-emphasis | The entry-points figure locates where each organization starts and where it invests; it shows emphasis, not maturity. -->
-
-\autoref{six-entry-points} locates where each organization starts and where it invests.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/six-entry-points-b36714cf00.pdf}
-\caption{\emph{Six Entry Points.} MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.}
-\label{six-entry-points}
-\end{figure}
-
-% <!-- point: the-shared-substrate-is-the-baseline-and-the-cases-report-the-differences | Four structures recur across all six factories — knowledge externalized, action bounded, realization evaluated against evidence, and consequential judgment reserved to people — so the substrate is established once here and each case that follows is organized around what it alone teaches. -->
+% <!-- point: the-shared-substrate-is-the-baseline-and-the-cases-report-the-differences | Recurring structures include externalized knowledge, bounded action, evidence before acceptance, and retained human judgment; the cases develop their different implementations. -->
 
 Across these factories, several structures recur. Teams record engineering knowledge, externalizing it so that agents need not ask someone to reconstruct it on every task. Tools, permissions, roles, and execution environments limit what agents can do. Tests, validators, reviews, and simulations supply evidence before consequential changes are accepted. People retain judgments that the available knowledge, evidence, or organizational obligations do not justify delegating.
 
@@ -106,11 +96,42 @@ Against this common background, the cases differ in what each organization has b
 
 The public accounts also reveal how these factories are being operated, and they do so unevenly: a mechanism may be described without its effectiveness being measured, and a source may publish extensive activity data while saying little about the quality of the resulting software. That asymmetry is itself useful. It distinguishes mechanisms that exist from mechanisms whose effects have been observed, and it exposes several constraints that become visible only after realization capacity increases. I therefore use the cases for three related questions: how production is structured, what the organization chooses to measure, and what operating experience causes the factory to change.
 
+\section{Amazon}\label{heading:amazon}
+
+% <!-- point: kiro-builds-engineering-artifacts-into-the-harness | Kiro packages a reviewable specification workflow, allowing engineering intent to precede implementation. -->
+
+Kiro makes requirements and design part of the coding harness's documented workflow. A feature specification records user stories and acceptance criteria, develops an architectural design, and divides implementation into tasks. Engineers can review the artifacts as work proceeds.\citep{kiro2026specs} In this book's terms, the requirements and design are engineering models: they represent intended behavior and structure before implementation. DocAble arranged related work through project-specific work orders, design documents, and completion checks. Kiro packages a specification workflow in the harness that other teams can adopt, then connects it to their repositories and tools.
+
+% <!-- point: kiro-connects-requirements-to-tests-and-configurable-controls | Configured checks connect selected specifications to implementation evidence; their coverage and enforcement depend on the project. | terms: modeling-principle, alignment-principle -->
+
+The connection to evidence is concrete. In its IDE, Kiro can extract properties from requirements and generate property-based tests against the implementation. Execution is optional by default, and the documentation distinguishes this evidence from proof.\citep{kiro2026correctness} Configured hooks can run checks after edits or block tool calls whose preconditions fail.\citep{kiro2026hooks} I read this arrangement as an application of Modeling and Alignment: engineers record intent, tests check selected requirements, and configured hooks can reject prohibited actions. Its strength depends on which properties they select, whether the tests express those properties correctly, and where failures actually block work. A team adopting the harness must make those choices for its own system.
+
+% <!-- point: amazon-internal-use-adds-team-specific-production-structure | The Bedrock case combines Kiro with modular code, commit-sized tasks, testing, and senior review; its staffing comparison is an estimate and its reported twentyfold increase measures normalized commit velocity. -->
+
+The Bedrock case shows the additional work inside an adopting team. Six senior engineers rebuilt part of the inference engine in 76 days, against an earlier estimate of 30 engineers working twelve to eighteen months. They organized small modules, scoped work to reviewable commits, supplied focused operational tools, and used tests and end-to-end canaries; senior engineers inspected the generated code.\citep{kiro2026bedrock} AWS's June 2026 account defines the reported twentyfold increase as normalized commit velocity, rising from two to forty commits per developer per week.\citep{sivasubramanian2026frontier} That measures production activity. It neither measures defect reduction nor isolates Kiro's contribution from team selection and workflow redesign; the staffing estimate is not an observed comparison team.
+
+% <!-- point: amazon-governs-improvements-to-the-harness-itself | Kiro-trace separates proposing improvements from checking and admitting them; experience also changes its checks. | terms: tolerance, governance-conversion -->
+
+Amazon also reports improving Kiro through kiro-trace, which proposes prompt or tool changes from recorded runs. A separate deterministic gate screens targeted failures, checks regression assertions, and compares candidates with an unchanged control on the full benchmark. It requires gains on selected tasks without losses beyond a specified margin elsewhere; a person decides whether to merge. One apparent gain failed when traced to a lucky run. Evaluation mistakes became checks, and confirmed fixes add regression assertions. The results are internal experiments.\citep{kim2026kirotrace}
+
+The same factory concerns recur at this second level. Process design organizes the improvement work; tolerances determine which candidate changes qualify; governance conversion preserves lessons in checks that later candidates must pass. The harness is itself software under engineering control. Improving its agents therefore also requires maintaining the machinery that decides whether an apparent improvement is real.
+
+% <!-- point: entry-points-figure-locates-emphasis | The entry-points figure introduces the six cases that follow AWS, locating their starting problems and investments. -->
+
+The six cases that follow provide different views of factory engineering. \autoref{six-entry-points} locates their starting problems and investments.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/six-entry-points-b36714cf00.pdf}
+\caption{\emph{Six other factory designs.} MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.}
+\label{six-entry-points}
+\end{figure}
+
 \section{Internal Software Factories}\label{heading:internal-software-factories}
 
-% <!-- point: five-internal-accounts-each-answering-a-different-engineering-question | Four accounts describe systems an organization built for its own work, and each answers a different question: optimizing the factory, converting policy into control, adapting controls as agents change, and turning experience into shared knowledge. -->
+% <!-- point: five-internal-accounts-each-answering-a-different-engineering-question | Four further internal accounts examine optimization, institutional policy, changing controls, and shared learning; teams combine supplied tools with their own engineering structure. -->
 
-Four of the six accounts describe systems built by an organization for its own work. Each addresses a different engineering question. Uber asks how to optimize the factory itself. Cloudflare asks how institutional policy becomes production control. Spotify asks how the controls should change as agents improve. Shopify asks how one engineer's experience becomes knowledge that later sessions can use. All four begin with the existing software environment and delegate more implementation work to agents.
+Four further accounts describe systems built by an organization for its own work. Uber asks how to optimize the factory itself. Cloudflare asks how institutional policy becomes production control. Spotify asks how the controls should change as agents improve. Shopify asks how one engineer's experience becomes knowledge that later sessions can use. These internal factories combine tools supplied by vendors with engineering structure developed by their own teams.
 
 \subsection{Uber}\label{heading:uber}
 
@@ -124,9 +145,9 @@ The optimization targets the environment rather than the reasoner. Context and t
 
 Uber's AI Context Graph connects services, teams, incidents, and engineering documents so agents can retrieve relevant organizational knowledge.\citep{medisetty2026factory}\magefootnote{uber-retrieval}{A knowledge graph and retrieval-augmented generation (RAG) describe different parts of the arrangement. The graph represents entities and relationships; RAG supplies retrieved information to a generative model. Retrieval may use a vector index, a graph, or both.\citep{lewis2020rag, edge2024graphrag} A vector index need not be human-readable for the retrieved passages to be readable. Uber's account identifies a graph but does not specify enough of its retrieval method to classify it as vector-based RAG.}
 
-% <!-- point: uber-cannot-optimize-the-evidence-or-the-reviewer | Two things resist the optimization: the evidence at admission is a table the producing agent assembles about its own work with no stated independent re-derivation, and reviewer attention is a rationed resource Uber schedules — review latency moved from three hours to nine. -->
+% <!-- point: uber-cannot-optimize-the-evidence-or-the-reviewer | Uber's evidence includes simulator comparisons, a producer-assembled check table, further review, CI, and human admission; the account does not establish independent re-derivation of every table entry. -->
 
-Two things resist that optimization, and Uber publishes both. The first is the evidence. Evaluation begins inside the agent\textquotesingle s own loop, before shared machinery sees the work: static-analysis repair, a simulator screenshot compared against the Figma specification --- the one place in this record where a design artifact serves as a mechanical oracle --- and staging integration, with the resulting pull request carrying a table of the checks performed, screenshots included.\citep{medisetty2026sdlc} The producing agent assembles that table about its own work, and no source states that any entry is re-derived by independent machinery before approval. Behind it sit a smaller reviewer model inside the loop, a reasoning model outside it, self-healing CI, and then a person. Admission is human, and Uber says so plainly: "we still have humans approving the code," with "a short path in the near future to a percentage of our code landing automatically."\citep{bond2026ureview} It does not publish the criteria for selecting eligible changes or the evidence those changes must provide.
+Two things resist that optimization, and Uber publishes both. The first is the evidence. Evaluation begins inside the agent\textquotesingle s own loop, before shared machinery sees the work: static-analysis repair, a simulator screenshot compared against the Figma specification, and staging integration, with the resulting pull request carrying a table of the checks performed, screenshots included.\citep{medisetty2026sdlc} The producing agent assembles that table about its own work, and no source states that any entry is re-derived by independent machinery before approval. Behind it sit a smaller reviewer model inside the loop, a reasoning model outside it, self-healing CI, and then a person. Admission is human, and Uber says so plainly: "we still have humans approving the code," with "a short path in the near future to a percentage of our code landing automatically."\citep{bond2026ureview} It does not publish the criteria for selecting eligible changes or the evidence those changes must provide.
 
 % <!-- point: uber-publishes-cost-and-withholds-quality | Uber treats reviewer attention as a production resource with finite capacity — review latency rose from three to nine hours, and maintenance is scheduled against Monday's review load — and tracks revert rate, F1, and time to recovery alongside production cost, while no source states what evidence a change must produce before it may proceed. -->
 
@@ -220,9 +241,9 @@ This is the representation problem faced by a commercial software-factory provid
 
 \section{Model-First Factories}\label{heading:model-first-factories}
 
-% <!-- point: model-first-production-inverts-where-intent-enters | Model-first production inverts where intent enters: explicit engineering models, not the repository and its tests, carry the system's semantics, and the software is generated downstream of them. -->
+% <!-- point: model-first-production-inverts-where-intent-enters | Siemens brings established engineering models upstream of realization, extending the model-first question already raised by Kiro's specification workflow. -->
 
-Siemens answers a question the software-first accounts never have to ask: what changes when explicit engineering models already sit upstream of realization? \magevalue{sec:the-software-factory} told this ambition\textquotesingle s history in software --- enterprise architecture and model-driven development tried to determine the consequential decisions upstream, in shared representations, and lost economically rather than conceptually. Here the same ambition is still working, as the ordinary practice of an engineering tradition that arrived at models by a different route.
+Siemens brings an established engineering-model tradition to the question raised by Kiro's specification workflow: what changes when explicit engineering models sit upstream of realization? \magevalue{sec:the-software-factory} told this ambition\textquotesingle s history in software --- enterprise architecture and model-driven development tried to determine the consequential decisions upstream, in shared representations, and lost economically rather than conceptually. Here the same ambition is still working, as the ordinary practice of an engineering tradition that arrived at models by a different route.
 
 % <!-- point: siemens-model-first-evidence-is-eigen-and-agent-studio | The load-bearing Siemens evidence is Eigen — control code generated from a TIA Portal engineering model, iterating until pre-defined performance benchmarks are met, a tolerance in this chapter's exact sense — and the 2024 Agent Studio research on SysML v2 with simulation as validator: a model supplies goal and context, a deterministic engine supplies the verdict. -->
 
@@ -236,9 +257,9 @@ The broader architecture Siemens publishes around this --- task agents and orche
 
 One difference from the old dream matters more than the rest, and it is the difference \magevalue{sec:the-software-factory} isolated. Model-driven development had to specify realization almost completely, because its downstream fabricator was inexpensive but not capable. Today, capable realization is inexpensive. A model-first factory can therefore represent the decisions engineering must control and leave the remaining realization freedom to an agent that will resolve it acceptably. \textbf{The model need not determine every realization decision.} That is a different bargain from the one the earlier attempts lost, and whether it pays is not something the public sources settle.
 
-% <!-- point: model-first-is-a-position-and-siemens-sells-the-combined-cell | Model-first is a position on one axis rather than a maturity level, and the axis is independent of the first — Siemens itself partially fills the combined cell, selling model-first factories in a box for the narrow software of control logic and chip design, while no observed case sells one for general-purpose software. -->
+% <!-- point: model-first-is-a-position-and-siemens-sells-the-combined-cell | Model-first is independent of who supplies the factory; Siemens supplies industrial instances and Kiro supplies a specification-driven path for general-purpose software, with coverage and enforcement still requiring examination. -->
 
-Two cautions keep the axis honest. Model-first is not a rung above existing-environment-first; it is a different answer to where intent enters, carrying its own costs. And the axis is independent of the first one. A factory in a box can be sold as model-first, driven by models the customer authors rather than a repository the vendor crawls --- and Siemens itself shows the combined cell is not empty: Eigen and its EDA verification toolkit are sold production systems driven by the customer\textquotesingle s own engineering models, in the narrow software of control logic and chip design. For general-purpose software, no observed case sells that today --- a fact about a young industry rather than a constraint on the design space.
+Two cautions keep the axis honest. Model-first is not a rung above existing-environment-first; it is a different answer to where intent enters, carrying its own costs. And the axis is independent of the first one. A factory in a box can be sold as model-first, driven by models the customer authors rather than a repository the vendor crawls --- and Siemens itself shows the combined cell is not empty: Eigen and its EDA verification toolkit are sold production systems driven by the customer\textquotesingle s own engineering models, in the narrow software of control logic and chip design. Kiro also supplies a specification-driven path for general-purpose software. The combined category therefore extends beyond industrial control; how fully each factory represents and enforces a project's obligations remains an engineering question.
 
 \section{What the Factories Share, and Where They Differ}\label{heading:what-the-factories-share-and-where-they-differ}
 
@@ -262,13 +283,13 @@ The factories differ in where they place admission:
 
 The reasons for retaining human judgment differ as well. Uber\textquotesingle s boundary is interim: the available representations and evidence do not yet justify further delegation. Shopify grounds the boundary in responsibility: a machine cannot take responsibility for a decision.\citep{podcastalpha2026lutke} Siemens grounds it in the obligations of long-lived industrial software: generated output must remain explainable, traceable, and verifiable over systems expected to operate for fifteen to twenty years. Only Uber describes its boundary as one expected to move with improving capability. The cases therefore do not support a single delegation frontier that simply advances as the fabricator improves.
 
-% <!-- point: the-reported-measurements-favor-production-over-quality | The reported measurements are much stronger on production than on quality: Uber and Cloudflare report cost, throughput, findings, and overrides, Spotify reports engineering-system health, Shopify a merge-rate improvement with the foundation model fixed, GitLab measurement mechanisms, Siemens little — and internal measurements may go unreported. -->
+% <!-- point: the-reported-measurements-favor-production-over-quality | The cases publish different production and quality measures, including Amazon's harness experiments; those measures retain their own definitions and limits. -->
 
-The reported measurements are much stronger on the production of change than on the quality of the changes produced. Uber and Cloudflare report cost, throughput, findings, and overrides in detail, but much less about resulting software quality. Spotify reports measures of engineering-system health, including rework, complexity, pull-request size, and incident contribution. Shopify reports a merge-rate improvement with the foundation model held fixed. GitLab describes measurement mechanisms, while Siemens provides little operating evidence of this kind. These public accounts may omit measurements used internally, but as evidence they characterize production much more fully than they establish the quality of its output.
+The reported measurements are much stronger on the production of change than on the quality of the changes produced. Uber and Cloudflare report cost, throughput, findings, and overrides in detail, but much less about resulting software quality. Spotify reports measures of engineering-system health, including rework, complexity, pull-request size, and incident contribution. Shopify reports a merge-rate improvement with the foundation model held fixed. GitLab describes measurement mechanisms, Amazon adds harness experiments, and Siemens provides little operating evidence of this kind. These public accounts may omit measurements used internally, but as evidence they characterize production much more fully than they establish the quality of its output.
 
-% <!-- point: operating-experience-changes-the-factories-but-the-effect-is-rarely-established | Cloudflare, Shopify, and GitLab describe changes to rules, shared instructions, code-enforced guarantees, and the environment; a later account reports Spotify removing a check. These examples illustrate governance conversion, but none publishes a recurrence measure establishing its effect. | terms: governance-conversion -->
+% <!-- point: operating-experience-changes-the-factories-but-the-effect-is-rarely-established | Operating experience changes factory controls. The accounts provide uneven evidence of effects and leave long-term production recurrence unresolved. | terms: governance-conversion -->
 
-Operating experience changes the factories too. Cloudflare responds to incidents, review latency, and representation problems by changing rules and tooling. Shopify records lessons from agent failures in shared instructions and enforces selected security requirements in code. GitLab recommends fixing the environment when prompt repair would otherwise recur. A later account of Spotify reports the reverse change: a probabilistic check removed after the foundation models improved. These examples illustrate governance conversion. The sources usually describe what changed without measuring its effect. None publishes a recurrence measure showing that an incident-derived control reduced the failures that prompted it.
+Operating experience changes the factories too. Cloudflare responds to incidents, review latency, and representation problems by changing rules and tooling. Shopify records lessons from agent failures in shared instructions and enforces selected security requirements in code. GitLab recommends fixing the environment when prompt repair would otherwise recur. A later account of Spotify reports the reverse change: a probabilistic check removed after the foundation models improved. These examples illustrate governance conversion. Most of these accounts describe what changed without measuring its effect. Amazon adds experimental comparisons and permanent regression checks; the public record still leaves their effect on long-term production recurrence unresolved.
 
 % <!-- point: supervision-and-verification-do-not-scale-with-production | One constraint recurs: the capacity to supervise and verify does not automatically increase with the capacity to produce changes — Uber's reviewer delay, Spotify's verification controls outrun by volume, Shopify's slop grenade, Cloudflare's checks moved earlier — so fabrication can outpace the attention and evidence that establish acceptability. -->
 

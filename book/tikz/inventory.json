@@ -67,7 +67,7 @@
   {
     "chapter": "0.5-preface",
     "source": "assets/research-arc.svg",
-    "caption": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with six independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
+    "caption": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with systems developed by other organizations. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/research-arc.d2",
     "receipt": "book/d2-pilot/research-arc.receipt.yaml",
@@ -75,7 +75,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where the theory came from: the research provenance, one procedure read top to bottom, closing on depth and breadth",
-    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble — one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts — six independent industrial\n    systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage\n    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
+    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble — one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts — systems developed by other organizations. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage\n    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
   },
   {
     "chapter": "1.1-the-printer",
@@ -89,6 +89,19 @@
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where engineering leverage acts",
     "svg_description": "Two pipelines are stacked for contrast. In the classical pipeline the engineer builds\n    the implementation directly, so the implementation is the primary engineered object: Engineer, then\n    Implementation, then Product. In the agentic pipeline agents build the implementation inside an\n    engineered environment the engineer constructs, so the environment becomes the primary engineered\n    lever: Engineer, then Engineered Environment, then Agents, then Implementation, then Product. A rust\n    badge marks the primary node in each row; it moves upstream from the implementation to the environment.\n    A footer strip unpacks the environment into models, obligations, evidence, controls, and\n    infrastructure."
+  },
+  {
+    "chapter": "1.1-the-printer",
+    "source": "assets/multiple-routes-to-engineering-models.svg",
+    "caption": "*Multiple routes to engineering models.* A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration—the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Multiple routes to engineering models — three routes in, three uses out, and engineering continuing past the model",
+    "svg_description": "Three routes arrive at modeling from above and three uses leave it below. The\n    incoming routes are requirements and intent, agent exploration and discovery, and existing systems\n    and experience. Each joins one full-width rail, so none is privileged and none is a stage before\n    another; a single arrow carries the rail into modeling. Modeling yields engineering models, which\n    hold knowledge and the selected obligations drawn from it. From the model, one rail fans out to\n    three uses: reason and design, direct agent work, and evaluate and check. Those three rejoin a\n    rail that continues downward to further engineering, because engineering does not stop at the\n    model: later discoveries may motivate new or revised models. The incoming routes are blue (source\n    material); the model and its uses are green (modeling); the continuing-engineering tail is rust."
   },
   {
     "chapter": "1.2-mage-by-example",
@@ -366,15 +379,15 @@
   {
     "chapter": "2.4-decision",
     "source": "assets/entitlement-model-evolution.svg",
-    "caption": "*Upload admission must distinguish finite and unlimited entitlement.* The old reduction passed only a finite balance to the client, so an unlimited user was rejected. The revised model records the entitlement kind and returns an admission decision.",
+    "caption": "*The admission check must preserve unlimited entitlement.* Panels (1)–(4) explain the old representation, domain change, failure, and repair; they are not one runtime pipeline. In (3), the client uses the finite-credit total and ignores a separate unlimited signal. In (4), the same uncapped entitlement produces an admitting decision and a separate display value for unlimited use.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Entitlement model evolution: the original scalar model, the domain change, the stale reduction that lost the unlimited distinction, and the revised decision model that preserves it",
-    "svg_description": "Four panels in chronological order. Panel 1, original model: group credits reduce to a credit sum, compared as credits at least pages, adequate while every entitlement is finite. Panel 2, the system evolves: a group is now finite or unlimited. Panel 3, stale admission model: groups reduce to a sum of finite credits that excludes unlimited groups, an unlimited user becomes zero credits, zero less than thirty-eight rejects the upload; the unlimited distinction has no representation. Panel 4, revised model: group entitlements keep finite and unlimited distinct and feed an admission decision recording admit, authorizing group, and plan; the same user now reads admit by unlimited entitlement."
+    "svg_title": "From a credit balance to an explicit upload-admission decision",
+    "svg_description": "Four numbered panels explain a legacy balance check, the addition of unlimited entitlement, the actual client upload-check failure, and the later model. There are no arrows between panels. In panel 3, the server excludes the unlimited group from a finite-credit sum; the client compares zero with thirty-eight while ignoring a separate unlimited signal, then rejects before POST. In panel 4, the same uncapped group feeds an admission decision that admits and a separate display projection that returns an unlimited sentinel. The display value is not an admission input."
   },
   {
     "chapter": "2.5-system-knowledge",
@@ -1099,7 +1112,7 @@
   {
     "chapter": "5.3-other-agentic-software-factories",
     "source": "assets/six-entry-points.svg",
-    "caption": "*Six Entry Points.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
+    "caption": "*Six other factory designs.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1107,7 +1120,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Six entry points into a shared design space: where each organization begins and where it invests",
-    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms — a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations — a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents — a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not a seventh case. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
+    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms — a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations — a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents — a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not another factory. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",

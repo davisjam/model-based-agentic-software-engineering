@@ -1028,31 +1028,40 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
-      "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-      "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
-      "bold": "Source-derived emphasis includes unlimited; 0 credits; REJECT; admit_unlimited. Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
-      "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
+      "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
+      "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
+      "fill": "Ordinary nodes remain white in the native edition. The short REJECT badge has a dark fill with white text. The positive admitting verdict is bold within its structured result; dashed failure and solid repaired panels retain their meanings.",
+      "bold": "Numbered panel headings, REJECT before POST, and admit = True carry semantic emphasis. Explanatory subtitles are italic; ordinary fields and operations are regular.",
+      "routing": "Short orthogonal arrows within calculation paths only. The entitlement-kind classification fork has no arrowheads. No cross-panel arrows.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Reviewed revised color SVG and native print proof. Text remains within existing panels; labels identify the balance-only preflight and explicit admission decision. Fill, line styles and node/edge geometry are unchanged.",
+      "visual_review": "Revised color SVG and native print proof inspected; matched semantics, complete causal paths, readable body size, and separate admission/display outputs.",
       "validation": {
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+        "native_dimensions_bp": [
+          426.15301513671875,
+          417.64898681640625
+        ],
+        "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+        "geometry_findings": 0,
+        "typography_checks": 13,
+        "typography_findings": 0,
+        "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+        "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+        "native_minimum_font_pt": 9.5,
+        "monochrome_pixels": true,
+        "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+        "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
         "page": 1,
-        "width_bp": 414.8139953613281,
-        "height_bp": 353.74700927734375,
+        "width_bp": 426.15301513671875,
+        "height_bp": 417.64898681640625,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 9
+        "semantic_typography_checks": 13
       },
       "book_references": [],
       "text_revision": {
-        "date": "2026-11-05",
-        "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+        "date": "2026-11-06",
+        "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+        "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
       }
     },
     {

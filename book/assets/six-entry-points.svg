@@ -8,7 +8,7 @@
      emphasis, green for modeling/knowledge emphasis. Uber and GitLab (added this pass) span both poles, so
      their badges use the green->rust synthesis gradient. A final synthesis band reads "MAGE — the vocabulary
      used here to compare", NOT "the whole landscape": the bottom band is the measuring vocabulary, not a
-     seventh, superior case. Caption says the figure locates emphasis and does NOT rank maturity or claim any
+     separate, superior case. Caption says the figure locates emphasis and does NOT rank maturity or claim any
      source implements the complete method. (261103: the Zenseact row was archived with the case and field guide; six rows remain.
      260923: the Docker row was REMOVED with the Docker case, on the author's evidentiary ruling; the
      remaining rows and the synthesis band shifted up one 84px row pitch and the canvas lost 84px.)
@@ -33,7 +33,7 @@
     emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable
     layer of context, provenance, verification, and governance around replaceable models and agents — a
     combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to
-    compare the observed structures, not a seventh case. Badge colour keys emphasis to the house semantic
+    compare the observed structures, not another factory. Badge colour keys emphasis to the house semantic
     language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust
     gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim
     any source implements the complete method.</desc>
@@ -130,7 +130,7 @@
   <text x="869" y="627" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge +</text>
   <text x="869" y="646" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">governance</text>
 
-  <!-- synthesis band: MAGE is the comparing vocabulary, not a seventh case -->
+  <!-- synthesis band: MAGE is the comparing vocabulary, not another factory -->
   <line x1="40" y1="684" x2="960" y2="684" stroke="#57534e" stroke-width="2"/>
   <rect x="40" y="692" width="920" height="60" rx="9" fill="url(#sepSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
   <text x="64"  y="730" font-size="22" font-weight="700" fill="#1c1917">MAGE</text>

@@ -1,7 +1,7 @@
 {
   "source": "book/assets/research-arc.svg",
   "chapter": "0.5-preface",
-  "claim": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with six independent industrial systems. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
+  "claim": "*From case to theory.* MAGE began with one deeply observed production system, then was compared with systems developed by other organizations. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.",
   "topology": {
     "description": "Research-provenance sequence followed by complementary depth/breadth evidence, not validation.",
     "relations": [
@@ -58,7 +58,7 @@
   "required_terms": [
     "DocAble One production system, longitudinal depth",
     "Early MAGE Modeling · Alignment · conversion · capital",
-    "Independent industrial accounts Six independent industrial systems",
+    "Independent industrial accounts Systems from other organizations",
     "Comparative reconstruction Recurring moves · variation · limits",
     "MAGE theory Refined account in Chapter 6",
     "Depth · originating case Mechanism and sequence",
@@ -563,5 +563,22 @@
       ],
       "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
+  },
+  "editorial_update_2026_11_06": {
+    "reason": "Remove fixed external-case count after adding AWS to the comparison.",
+    "validation": {
+      "strict_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 27,
+      "typography_findings": 0,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
+    "source_sha256": "a0749af2bf4bdf2cbd2eb5e19e642964c39d31360cb206fa18ace215368450f5",
+    "candidate_sha256": "1f7288d65319aa6fdf62fd8275e2229204cc9a2e2e484fd92ae094f1b66a34a6",
+    "proof": "latex/build/tikz-amazon-review/candidates.pdf",
+    "proof_sha256": "b364ae3e95328907fd80224f70040675c84369d0613d6ea09108b058c4a17068",
+    "page": 1,
+    "visual_review": "Updated wording is legible and fits the existing boxes and footer; figure structure is unchanged."
   }
 }

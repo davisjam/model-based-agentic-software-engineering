@@ -409,6 +409,12 @@
       "location": "part1",
       "rationale": "engineering leverage moves into the environment when agents implement; Part-1 opener framing (260815 copyedit — replaces new-engineering-problem.svg as Fig 1.1-1). Promoted B->A 260911: the caption now also carries the control/responsibility claim — the environment as the means through which engineers retain control, and MAGE's primary-means contention (control-responsibility surgery)."
     },
+    "assets/multiple-routes-to-engineering-models.svg": {
+      "tier": "A",
+      "kind": "comparison-framework",
+      "location": "part1",
+      "rationale": "the three routes to a model and the three uses of one, as alternatives rather than stages (261106 Chapter-1 insert, Fig 1.1-2 on the web / 1.2 in print). A-tier because the caption carries two claims beyond the drawing: that a model recovered from an implementation describes what exists without establishing that it is desirable, so the engineer decides which discovered properties become obligations; and that modeling is not a phase that completes before implementation."
+    },
     "assets/environment-as-object.svg": {
       "tier": "B",
       "kind": "comparison",

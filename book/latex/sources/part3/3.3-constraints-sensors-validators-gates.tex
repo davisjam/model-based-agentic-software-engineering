@@ -86,13 +86,13 @@ The use of explicit evidence to justify consequential engineering claims also ha
 
 A sensor is only as good as the signal it can read. \textbf{Observability} means that a running system exposes enough signal to explain what it did and what went wrong. Observability supplies the loop\textquotesingle s evidence path: the relevant state or event must be exposed in a form a sensor can read. A gate can act only on evidence available at its boundary, whether produced earlier or derived there. That may be the event a gate fires on, the log a checker reads, or the trace that turns "the build failed" into "the build failed \emph{here, for this reason.}" If the evidence an obligation requires does not exist, no downstream mechanism can recover it; the environment must first instrument the relevant state or event.
 
-% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint prevents drift within the iteration, costing none. | terms: constraint, typed-enum -->
+% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint excludes particular actions or representations; a closed enum rules out undeclared state names but does not by itself constrain transitions. | terms: constraint, typed-enum -->
 
 % <!-- index-def: constraint -->
 
-% <!-- gloss-only: Constraint | A governance mechanism that prevents drift by scoping the agent's action space so the wrong move is unavailable within a loop iteration (a typed enum instead of a string); the prevented mistake costs no failed iteration. -->
+% <!-- gloss-only: Constraint | A governance mechanism that restricts available actions or representable states so that particular invalid choices are unavailable through it. A closed enum excludes undeclared state names; transition rules require their own constraint. -->
 
-\textbf{A constraint removes an unwanted action or state from the admissible space.} Unlike a sensor, which observes the resulting state after the fact, a constraint makes the prohibited move unavailable through that mechanism. Closed representations are the cleanest example. A lifecycle encoded as arbitrary strings admits values the design never intended, and a mismatch surfaces only an iteration later, when the test suite crashes. Encode it as a closed enumeration instead and the compiler rejects any value outside the declared set on the spot. The enum does not watch for the illegal state later --- it removes that representation from well-typed code, and no iteration is spent catching it. Where the valid action or representation space is naturally closed, MAGE prefers representations that exclude invalid members structurally.
+\textbf{A constraint removes an unwanted action or state from the admissible space.} A lifecycle represented as an arbitrary string can contain a misspelled or unknown state. A closed enum instead names the permitted variants, such as \texttt{IDLE}, \texttt{RUNNING}, and \texttt{DONE}. Where the language enforces that closed type, checked code cannot construct an undeclared variant; external input must be validated when it is converted to the type. This rules out invalid state names. It does not, by itself, forbid a transition from \texttt{IDLE} directly to \texttt{DONE}: the transition operation needs its own constraint. Choose the representation according to the invalid behavior it actually excludes.
 
 Programming-language theory formalized this approach: choose a representation or type discipline in which some invalid programs cannot be written as well-typed terms.\mageaside{Benjamin C. Pierce characterizes type systems as syntactic methods for classifying program phrases so that classes of erroneous behaviors can be ruled out automatically.\citep{pierce2002}} MAGE generalizes the engineering preference rather than the formalism: where practical, restrict the action or representation space so the bad state cannot be produced, instead of detecting it again on every later iteration.
 
@@ -221,7 +221,7 @@ A \textbf{gate} enforces the verdict. It decides whether the work may cross a bo
 
 \begin{bookbox}{inset}{Enforcement Is Conditional}
 \label{inset-enforcement-conditional}
-A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully enforce the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.
+A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully evaluate evidence against the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.
 
 For a test gate, the mechanically enforced condition is that the selected tests pass. A passing suite does not make every untested execution correct. State the scope of the evidence as carefully as the consequence of a failure.
 \end{bookbox}
@@ -315,11 +315,7 @@ That distinction suggests when the pattern is useful. If protected interaction o
 
 The pattern is therefore not principally about attribution. It is a way to make a derivation path the sanctioned route to admission. A source-time rule can require known sanctioned implementations to emit provenance; the admission boundary can additionally require every protected operation to possess provenance that only the sanctioned path could have produced. The two controls address opposite sides of the relation: one checks known producers; the other refuses unknown routes to the consumer.
 
-The rule of thumb is short. \textbf{When the forbidden paths are enumerable, ban them. When the allowed path is easier to characterize than all possible bypasses, have the allowed path issue the provenance required at the boundary.}
-
-Provenance-carried admission removes a particular degree of freedom: a protected operation must derive from the sanctioned source or path. Other implementation choices remain open; only the sanctioned derivation can produce an admissible operation.
-
-This is a graph-shaped variation on architectural enforcement. Layering constrains which components may interact across a layered structure. Provenance-carried admission instead constrains a particular derivation through an otherwise richer interaction graph: many implementation paths may exist, but only a path through the sanctioned node can produce an operation permitted to cross the admission boundary.
+The control restricts a derivation path through the interaction graph: the protected operation must pass through the node that issues its provenance. Other implementation choices remain open.
 
 \section{The Freedom a Control Preserves}\label{heading:the-freedom-a-control-preserves}
 

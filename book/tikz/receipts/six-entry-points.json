@@ -1,6 +1,6 @@
 {
   "source": "book/assets/six-entry-points.svg",
-  "claim": "*Six Entry Points.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
+  "claim": "*Six other factory designs.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
   "topology": "Six aligned rows across organization, problem, investment, and emphasis; no ranking or directional arrows.",
   "required_terms": [
     "Organization",
@@ -31,12 +31,12 @@
     "Trust at machine-scale development",
     "Durable context, provenance, verification, governance",
     "Knowledge + governance",
-    "MAGE supplies the comparison vocabulary; it is not a seventh case. Emphasis is not a maturity ranking."
+    "MAGE supplies the comparison vocabulary; it is not another factory. Emphasis is not a maturity ranking."
   ],
   "bw_encoding": "Governance emphasis uses 5%; combined badges retain double outline; knowledge/model labels stay white.",
   "redesign": "Six retained company cases in aligned rows. The Zenseact row is preserved in the cutting room with the removed case and card.",
   "questions": [],
-  "alt": "A table of six industrial systems, each entering the agentic engineering design space through a different problem and investing in a different part of the environment. Cloudflare begins from institutional policy and invests in machine-readable requirements and review mechanisms — a governance emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission — a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first engineering and invests in persistent executable engineering representations — a modeling emphasis. Uber begins from software-factory economics at scale and invests in benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable layer of context, provenance, verification, and governance around replaceable models and agents — a combined knowledge and governance emphasis. A closing note reads: MAGE is the vocabulary used here to compare the observed structures, not a seventh case. The rightmost column states each emphasis inside grayscale badges: pale-gray governance, white knowledge or modeling, and double-outlined pale-gray combined emphasis. The figure locates emphasis; it does not rank maturity or claim any source implements the complete method.",
+  "alt": "A table of six industrial systems, each entering the agentic engineering design space through a different problem and investing in a different part of the environment. Cloudflare begins from institutional policy and invests in machine-readable requirements and review mechanisms — a governance emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission — a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first engineering and invests in persistent executable engineering representations — a modeling emphasis. Uber begins from software-factory economics at scale and invests in benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable layer of context, provenance, verification, and governance around replaceable models and agents — a combined knowledge and governance emphasis. A closing note reads: MAGE is the vocabulary used here to compare the observed structures, not another factory. The rightmost column states each emphasis inside grayscale badges: pale-gray governance, white knowledge or modeling, and double-outlined pale-gray combined emphasis. The figure locates emphasis; it does not rank maturity or claim any source implements the complete method.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -497,5 +497,22 @@
       ],
       "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
+  },
+  "editorial_update_2026_11_06": {
+    "reason": "Add AWS as the first external factory; this figure now covers the remaining six cases.",
+    "validation": {
+      "strict_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 27,
+      "typography_findings": 0,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
+    "source_sha256": "970785846de1b35df3906e354568d4841351b64e910864d462e1e6ad02d706c2",
+    "candidate_sha256": "ea5056a6c7a783d48bdda195a2cfe3dde0dcbf542f92d728929f5904a0978963",
+    "proof": "latex/build/tikz-amazon-review/candidates.pdf",
+    "proof_sha256": "b364ae3e95328907fd80224f70040675c84369d0613d6ea09108b058c4a17068",
+    "page": 2,
+    "visual_review": "Updated wording is legible and fits the existing boxes and footer; figure structure is unchanged."
   }
 }

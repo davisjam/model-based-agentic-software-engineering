@@ -599,6 +599,49 @@
       }
     },
     {
+      "source": "book/assets/multiple-routes-to-engineering-models.svg",
+      "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
+      "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
+      "baseline_candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+      "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+      "decision": "retained",
+      "reason": "New figure authored at its reviewed size in the same change as the colour source. The three routes are interchangeable alternatives and so are the three uses, which is why each row shares one rail and one node width rather than being ranked or sequenced; ranking any member would assert what the figure exists to deny. No peer contract is declared because the symmetry is authored into the coordinates rather than inferred from them.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        376.33901977539062,
+        289.30099487304688
+      ],
+      "contracts": {},
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "geometry_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "status": "passed",
+        "width_bp": 376.339,
+        "height_bp": 289.301,
+        "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "376.34 x 289.30 bp inside the 450 x 560 bp envelope, every label at 11 pt or larger, and no terminal shaft below the 9 pt approach floor. Added height would not improve this drawing.",
+        "after_dimensions_bp": [
+          376.33901977539062,
+          289.30099487304688
+        ],
+        "after_font_sizes_pt": [
+          11.0,
+          12.0
+        ],
+        "reviewed_visually": true
+      }
+    },
+    {
       "source": "book/assets/docable-glimpse.svg",
       "candidate": "book/tikz/figures/docable-glimpse.tex",
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
@@ -2155,11 +2198,11 @@
     {
       "source": "book/assets/entitlement-model-evolution.svg",
       "candidate": "book/tikz/figures/entitlement-model-evolution.tex",
-      "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+      "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
       "baseline_candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
-      "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+      "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
       "decision": "refined",
-      "reason": "Raised entitlement split rails and reduced only surplus inline decision padding to restore readable arrow shafts.",
+      "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         414.8139953613281,
@@ -2167,38 +2210,35 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+        "native_dimensions_bp": [
+          426.15301513671875,
+          417.64898681640625
+        ],
+        "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+        "geometry_findings": 0,
+        "typography_checks": 13,
+        "typography_findings": 0,
+        "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+        "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+        "native_minimum_font_pt": 9.5,
+        "monochrome_pixels": true,
+        "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+        "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
         "page": 1,
-        "width_bp": 414.8139953613281,
-        "height_bp": 353.74700927734375,
+        "width_bp": 426.15301513671875,
+        "height_bp": 417.64898681640625,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 9,
-        "checked_terminal_approaches": 10,
-        "reviewed_peer_groups": 0,
-        "audit_sha256": "d68a0da19f18edd1bf30836280aea29d42a0bb2d3f3417f1121146f82f7634cf",
-        "status": "passed"
+        "semantic_typography_checks": 13
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing entitlement model evolution layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
-        "after_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
-        "before_dimensions_bp": [
-          414.8139953613281,
-          353.74700927734375
-        ],
+        "decision": "refined",
+        "reason": "Lengthen the four-panel plate to show actual producer-to-result paths and separate decision/display outputs. Retain native 9.5–10.5pt prose sizes; all arrows have the required terminal clearance.",
+        "before_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+        "after_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
         "after_dimensions_bp": [
-          414.8139953613281,
-          353.74700927734375
-        ],
-        "before_font_sizes_pt": [
-          9.5,
-          10.0,
-          10.5
+          426.15301513671875,
+          417.64898681640625
         ],
         "after_font_sizes_pt": [
           9.5,
@@ -2208,10 +2248,9 @@
         "reviewed_visually": true
       },
       "text_revision": {
-        "date": "2026-11-05",
-        "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+        "date": "2026-11-06",
+        "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+        "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
       }
     },
     {

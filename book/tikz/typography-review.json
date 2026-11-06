@@ -4,7 +4,7 @@
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
   "candidate_count": 147,
   "refined_count": 126,
-  "check_count": 914,
+  "check_count": 918,
   "shared_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
@@ -2815,14 +2815,14 @@
           ]
         },
         {
-          "source_text": "six independent industrial systems",
+          "source_text": "systems from other organizations",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Six independent industrial systems",
+          "candidate_text": "Systems from other organizations",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "six independent industrial systems",
+              "text": "systems from other organizations",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2938,7 +2938,7 @@
           "italic": true
         },
         {
-          "text": "Six independent industrial systems",
+          "text": "Systems from other organizations",
           "italic": true
         },
         {
@@ -3056,6 +3056,107 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 3
+      }
+    },
+    {
+      "source": "book/assets/multiple-routes-to-engineering-models.svg",
+      "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
+      "decision": "refined",
+      "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
+      "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+      "evidence": [
+        {
+          "source_text": "MODELING",
+          "source_style": "weight 700, normal",
+          "semantic_role": "The named stage the routes arrive at",
+          "candidate_text": "MODELING",
+          "candidate_style": "capitals, bold",
+          "source_fragments": [
+            {
+              "text": "MODELING",
+              "weight": "700",
+              "style": "normal",
+              "x": "500",
+              "y": "271"
+            }
+          ]
+        },
+        {
+          "source_text": "Knowledge · selected obligations",
+          "source_style": "weight normal, normal",
+          "semantic_role": "Explanatory gloss on what the model holds",
+          "candidate_text": "Knowledge · selected obligations",
+          "candidate_style": "regular",
+          "source_fragments": [
+            {
+              "text": "Knowledge · selected obligations",
+              "weight": "normal",
+              "style": "normal",
+              "x": "500",
+              "y": "336"
+            }
+          ]
+        },
+        {
+          "source_text": "Three routes in, three uses out — alternatives, not stages.",
+          "source_style": "weight normal, italic",
+          "semantic_role": "The figure's closing anti-waterfall note",
+          "candidate_text": "Three routes in, three uses out --- alternatives, not stages.",
+          "candidate_style": "italic",
+          "source_fragments": [
+            {
+              "text": "Three routes in, three uses out — alternatives, not stages.",
+              "weight": "normal",
+              "style": "italic",
+              "x": "500",
+              "y": "664"
+            }
+          ]
+        }
+      ],
+      "reason": "Carry the source typography that separates the named stage, the model, the continuing-engineering tail and the explanatory lines.",
+      "checks": [
+        {
+          "text": "MODELING",
+          "bold": true
+        },
+        {
+          "text": "Engineering models",
+          "bold": true
+        },
+        {
+          "text": "Further engineering awaits",
+          "bold": true
+        },
+        {
+          "text": "Knowledge",
+          "bold": false
+        },
+        {
+          "text": "Three routes in, three uses out",
+          "italic": true
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "width_bp": 376.339,
+        "height_bp": 289.301,
+        "minimum_prose_font_pt": 11.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5,
+        "book_font_inheritance": {
+          "configuration": "latex/book-fonts.tex",
+          "reference": "latex/build/tikz/body-font-reference.pdf",
+          "body_faces": [
+            "SourceSans3-Bold",
+            "SourceSans3-BoldIt",
+            "SourceSans3-It",
+            "SourceSans3-Regular"
+          ]
+        },
+        "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
       }
     },
     {
@@ -6664,179 +6765,182 @@
       "source": "book/assets/entitlement-model-evolution.svg",
       "candidate": "book/tikz/figures/entitlement-model-evolution.tex",
       "decision": "refined",
-      "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
-      "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+      "source_sha256": "e53bbca845f84555ff8054a06b4f30a8b4a812a73b47ef55bad9ccc8dd82bdfc",
+      "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
       "evidence": [
         {
-          "source_text": "unlimited",
-          "source_style": "weight 700; normal; source size 19",
-          "semantic_role": "entitlement mode / admission result",
-          "candidate_text": "unlimited",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[14]/text()",
-            "text_element_context": "unlimited",
-            "matching_fragment_count": 1
-          }
+          "source_text": "(1) Legacy balance-based check",
+          "candidate_text": "(1) Legacy balance-based check",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "0 credits",
-          "source_style": "weight 700; normal; source size 19",
-          "semantic_role": "entitlement mode / admission result",
-          "candidate_text": "0 credits",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[23]/text()",
-            "text_element_context": "0 credits",
-            "matching_fragment_count": 1
-          }
+          "source_text": "(2) Unlimited groups are added",
+          "candidate_text": "(2) Unlimited groups are added",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "REJECT",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "entitlement mode / admission result",
-          "candidate_text": "REJECT",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[26]/text()",
-            "text_element_context": "REJECT",
-            "matching_fragment_count": 1
-          }
+          "source_text": "(3) Client rejects the upload",
+          "candidate_text": "(3) Client rejects the upload",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "admit_unlimited",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "entitlement mode / admission result",
-          "candidate_text": "admit_unlimited",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[39]/text()",
-            "text_element_context": "admit_unlimited",
-            "matching_fragment_count": 1
-          }
+          "source_text": "(4) Separate admission and display",
+          "candidate_text": "(4) Separate admission and display",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "every entitlement is finite",
-          "source_style": "weight normal; italic; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Every entitlement is finite",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "every entitlement is finite",
-            "matching_fragment_count": 1
-          }
+          "source_text": "REJECT before POST",
+          "candidate_text": "REJECT before POST",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "unlimited entitlement is introduced",
-          "source_style": "weight normal; italic; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Unlimited entitlement is introduced",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "unlimited entitlement is introduced",
-            "matching_fragment_count": 1
-          }
+          "source_text": "admit = True",
+          "candidate_text": "admit = True",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "bold"
         },
         {
-          "source_text": "the client still receives only a balance",
-          "source_style": "weight normal; italic; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "The client still receives only a balance",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[18]/text()",
-            "text_element_context": "the client still receives only a balance",
-            "matching_fragment_count": 1
-          }
+          "source_text": "Only finite credit is represented",
+          "candidate_text": "Only finite credit is represented",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "italic"
         },
         {
-          "source_text": "the decision checks both entitlement kinds",
-          "source_style": "weight normal; italic; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "The decision checks both entitlement kinds",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/entitlement-model-evolution.svg",
-            "element_text_path": "/svg/text[30]/text()",
-            "text_element_context": "the decision checks both entitlement kinds",
-            "matching_fragment_count": 1
-          }
+          "source_text": "Entitlement now has two cases",
+          "candidate_text": "Entitlement now has two cases",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "italic"
+        },
+        {
+          "source_text": "38-page Office upload",
+          "candidate_text": "38-page Office upload",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "italic"
+        },
+        {
+          "source_text": "Same group and request; no cap",
+          "candidate_text": "Same group and request; no cap",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "italic"
+        },
+        {
+          "source_text": "Unlimited sentinel",
+          "candidate_text": "Unlimited sentinel",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "ignores separate unlimited signal",
+          "candidate_text": "ignores separate unlimited signal",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "The display value does not decide permission.",
+          "candidate_text": "The display value does not decide permission.",
+          "semantic_role": "Numbered panel heading or explanatory subtitle; admission verdict; display-only scope",
+          "candidate_style": "regular"
         }
       ],
-      "reason": "Retain source-derived bold admission outcomes and italic panel explanations while replacing abstract annotations with the client/server operations.",
+      "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
       "checks": [
         {
-          "text": "unlimited",
+          "text": "(1) Legacy balance-based check",
           "bold": true,
           "italic": false
         },
         {
-          "text": "0 credits",
+          "text": "(2) Unlimited groups are added",
           "bold": true,
           "italic": false
         },
         {
-          "text": "REJECT",
+          "text": "(3) Client rejects the upload",
           "bold": true,
           "italic": false
         },
         {
-          "text": "admit_unlimited",
+          "text": "(4) Separate admission and display",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Every entitlement is finite",
+          "text": "REJECT before POST",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "admit = True",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Only finite credit is represented",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Unlimited entitlement is introduced",
+          "text": "Entitlement now has two cases",
           "bold": false,
           "italic": true
         },
         {
-          "text": "The client still receives only a balance",
+          "text": "38-page Office upload",
           "bold": false,
           "italic": true
         },
         {
-          "text": "The decision checks both entitlement kinds",
+          "text": "Same group and request; no cap",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Group",
+          "text": "Unlimited sentinel",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "ignores separate unlimited signal",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "The display value does not decide permission.",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+        "native_dimensions_bp": [
+          426.15301513671875,
+          417.64898681640625
+        ],
+        "strict_compile": "2 passes; zero unapproved diagnostics; zero underfull boxes",
+        "geometry_findings": 0,
+        "typography_checks": 13,
+        "typography_findings": 0,
+        "proof": "/private/tmp/mage-entitlement-20261106/proof.pdf",
+        "proof_sha256": "420f5c3ea7878b32d0e55de7f89ca92654cdec099f6c5165320c26bf70a2facc",
+        "native_minimum_font_pt": 9.5,
+        "monochrome_pixels": true,
+        "patch_apply_check": "All three patches pass git apply --check against current canonical.",
+        "style_review": "Color and native figures visually inspected; plain numbered-panel explanations and correctly routed outputs. No inter-panel runtime flow.",
         "page": 1,
-        "width_bp": 414.8139953613281,
-        "height_bp": 353.74700927734375,
+        "width_bp": 426.15301513671875,
+        "height_bp": 417.64898681640625,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 9
+        "semantic_typography_checks": 13
       },
       "text_revision": {
-        "date": "2026-11-05",
-        "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
-        "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
-        "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+        "date": "2026-11-06",
+        "reason": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",
+        "evidence": "/private/tmp/mage-entitlement-20261106/proposal.json"
       }
     },
     {

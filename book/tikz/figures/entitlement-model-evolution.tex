@@ -1,53 +1,50 @@
 \begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner xsep=4pt,inner ysep=3pt},
+note/.style={align=center,inner sep=0pt,font=\fontsize{9.5}{11.5}\selectfont},
 head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
-edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
-
-\node[head,text width=6cm] (h0) at (-3.7,0) {1 · Original model};
-\node[note,text width=6cm] at (-3.7,-.65) {\textit{Every entitlement is finite}};
-\node[n,fill=white,text width=4cm] (group) at (-3.7,-1.5) {Group — credits: integer};
-\node[n,fill=white,text width=2cm] (sum) at (-5.2,-2.85) {$\Sigma$ credits};
-\node[n,fill=white,text width=2.6cm] (cmp) at (-1.9,-2.85) {credits $\geq$ pages?};
-\draw[edge] (group.south) -- (-3.7,-2.05) -| (sum.north);\draw[edge] (sum) -- (cmp);
-\node[note,text width=6cm] (a0) at (-3.7,-3.85) {Credit balance determines\\upload permission};
-\node[head,text width=6cm] (h1) at (3.7,0) {2 · Unlimited groups added};
-\node[note,text width=6cm] at (3.7,-.65) {\textit{Unlimited entitlement is introduced}};
-\node[n,text width=2.5cm] (g2) at (3.7,-1.5) {Group};
-\node[n,fill=white,text width=2.5cm] (fin) at (2.0,-2.85) {finite(credits)};
-\node[n,fill=white,text width=2.5cm] (unlim) at (5.4,-2.85) {\textbf{unlimited}};
-\draw[edge] (g2.south) -- (3.7,-2.05) -| (fin.north);\draw[edge] (g2.south) -- (3.7,-2.05) -| (unlim.north);
-\node[note,text width=6cm] (a1) at (3.7,-3.85) {Groups now provide\\finite or unlimited use};
-\node[head,text width=6cm] (h2) at (-3.7,-5.4) {3 · Balance-only preflight};
-\node[note,text width=6cm] at (-3.7,-6.05) {\textit{The client still receives only a balance}};
-\node[n,text width=1.7cm] (gs) at (-5.45,-7.1) {groups};
-\node[n,fill=white,text width=2.9cm] (sf) at (-2.35,-7.1) {$\Sigma$ finite credits\\only};
-\draw[edge] (gs) -- (sf);
-\node[note,text width=4.5cm] at (-2.65,-8.45) {The return value omits\\the unlimited flag};
-\node[n,fill=white,text width=1.7cm,inner sep=3pt] (zero) at (-5.45,-9.5) {\textbf{0 credits}};
-\node[n,fill=white,text width=1.1cm,inner sep=3pt] (lt) at (-3.4,-9.5) {$0<38$};
-\node[n,fill=black!70,text=white,text width=1.6cm,inner sep=3pt] (reject) at (-1.45,-9.5) {\textbf{REJECT}};
-\draw[edge] (gs.south) -- node[lab,left] {unlimited\\user} (zero.north);
-\draw[edge] (zero) -- (lt);\draw[edge] (lt) -- (reject);
-\node[note,text width=6cm] (a2) at (-3.7,-11.1) {Client rejection prevents\\the server check};
-\node[head,text width=6cm] (h3) at (3.7,-5.4) {4 · Explicit admission decision};
-\node[note,text width=6cm] at (3.7,-6.05) {\textit{The decision checks both entitlement kinds}};
-\node[n,fill=white,text width=2.6cm] (ent) at (2.1,-7.3) {Group\\entitlements\\finite $\mid$ unlimited};
-\node[n,fill=white,text width=2.4cm] (dec) at (5.5,-7.3) {Admission\\decision};
-\draw[edge] (ent) -- (dec);
-\node[n,fill=black!70,text=white,text width=2.9cm,font=\fontsize{9.5}{11.5}\selectfont] (admit) at (2.1,-9.5) {\textbf{admit\_unlimited}};
-\draw[edge] (ent.south) -- node[lab,left] {same user} (admit.north);
-\node[n,text width=2.8cm,font=\fontsize{9.5}{11.5}\selectfont] (fields) at (5.5,-9.5) {Admit?\\Authorizing group\\Ordered plan};
-\draw[edge] (dec) -- (fields);
-\node[note,text width=6cm] (a3) at (3.7,-11.1) {Client and server use the admission decision};
-\begin{scope}[on background layer]
-\node[draw=black!35,rounded corners=3pt,fit=(h0)(group)(sum)(cmp)(a0),inner sep=7pt] (p0) {};
-\node[draw=black!35,rounded corners=3pt,fit=(h1)(g2)(fin)(unlim)(a1),inner sep=7pt] (p1) {};
-\node[draw=black!70,dashed,rounded corners=3pt,minimum width=6.8cm,minimum height=6.8cm] (p2) at (-3.8,-8.35) {};
-\node[draw=black!70,line width=.9pt,rounded corners=3pt,minimum width=6.8cm,minimum height=6.8cm] (p3) at (3.8,-8.35) {};
-\end{scope}
-\draw[edge] (p0.east) -- (0,0 |- p0.east) |- (p1.west);
-\draw[edge] (p1.south) -- (p1.south |- 0,-4.65) -| (p2.north);
-\draw[edge] (p2.east) -- (p3.west);
-
+edge/.style={-Stealth,line width=.65pt}]
+% Panels organize the explanation; no inter-panel runtime flow is implied.
+\draw[draw=black!35,rounded corners=3pt,line width=.65pt] (0.2,-0.2) rectangle (7.4,-4.8);
+\draw[draw=black!35,rounded corners=3pt,line width=.65pt] (7.8,-0.2) rectangle (15,-4.8);
+\draw[draw=black!70,rounded corners=3pt,line width=.65pt,dashed] (0.2,-5.2) rectangle (7.4,-14.7);
+\draw[draw=black!70,rounded corners=3pt,line width=.65pt] (7.8,-5.2) rectangle (15,-14.7);
+\node[head,text width=6.8cm] (h1) at (3.8,-0.65) {(1) Legacy balance-based check};
+\node[note,text width=6.6cm] (s1) at (3.8,-1.1) {\textit{Only finite credit is represented}};
+\node[head,text width=6.8cm] (h2) at (11.4,-0.65) {(2) Unlimited groups are added};
+\node[note,text width=6.6cm] (s2) at (11.4,-1.1) {\textit{Entitlement now has two cases}};
+\node[note,text width=6.5cm] (a2) at (11.4,-3.85) {A finite balance does not\\identify unlimited use.};
+\node[head,text width=6.8cm] (h3) at (3.8,-5.65) {(3) Client rejects the upload};
+\node[note,text width=6.6cm] (s3) at (3.8,-6.15) {\textit{38-page Office upload}};
+\node[note,text width=6.5cm] (a3) at (3.8,-14) {Server admission code is never reached.};
+\node[head,text width=6.8cm] (h4) at (11.4,-5.65) {(4) Separate admission and display};
+\node[note,text width=6.6cm] (s4) at (11.4,-6.15) {\textit{Same group and request; no cap}};
+\node[note,text width=6.5cm] (a4) at (11.4,-13.2) {Admission uses the decision.\\The display value does not decide permission.};
+\node[n,text width=5.45cm,minimum height=0.7cm] (g1) at (3.8,-1.65) {Finite group balances};
+\node[n,text width=2.85cm,minimum height=0.6cm] (sum1) at (3.8,-2.8) {Sum of balances};
+\node[n,text width=5.45cm,minimum height=0.9cm] (check1) at (3.8,-4) {Client compares\\balance with request cost};
+\node[n,text width=3.65cm,minimum height=0.7cm] (g2) at (11.4,-1.65) {Group entitlement};
+\node[n,text width=2.45cm,minimum height=0.8cm] (f2) at (9.65,-2.8) {Finite balance};
+\node[n,text width=2.45cm,minimum height=0.8cm] (u2) at (13.15,-2.8) {Unlimited mode};
+\node[n,text width=5.45cm,minimum height=1.1cm] (g3) at (3.8,-7.05) {One unlimited personal group\\finite balance = 0};
+\node[n,text width=5.45cm,minimum height=1.2cm] (sum3) at (3.8,-8.65) {Server sums finite balances\\and excludes unlimited groups};
+\node[n,text width=3.45cm,minimum height=0.7cm] (zero3) at (3.8,-10.05) {credit\_balance = 0};
+\node[n,text width=5.45cm,minimum height=1.2cm] (check3) at (3.8,-11.5) {Client upload check: 0 $<$ 38\\ignores separate unlimited signal};
+\node[n,text width=4.35cm,minimum height=0.7cm,fill=black!70,text=white] (reject3) at (3.8,-12.95) {\textbf{REJECT before POST}};
+\node[n,text width=5.45cm,minimum height=1.1cm] (g4) at (11.4,-7.05) {Per-group entitlement\\unlimited mode; finite balance = 0};
+\node[n,text width=2.75cm,minimum height=1.1cm] (dec4) at (9.65,-8.95) {Admission rules\\+ upload request};
+\node[n,text width=2.75cm,minimum height=1.1cm] (disp4) at (13.15,-8.95) {Display\\projection};
+\node[n,text width=2.75cm,minimum height=1.65cm,font=\fontsize{9.5}{11.5}\selectfont] (admit4) at (9.65,-10.9) {\textbf{admit = True}\\selected group\\admit\_unlimited};
+\node[n,text width=2.75cm,minimum height=1.65cm,font=\fontsize{9.5}{11.5}\selectfont] (sentinel4) at (13.15,-10.9) {Unlimited sentinel\\(display-only)};
+\draw[edge] (g1.south) -- (sum1.north);
+\draw[edge] (sum1.south) -- (check1.north);
+\draw[edge] (g3.south) -- (sum3.north);
+\draw[edge] (sum3.south) -- (zero3.north);
+\draw[edge] (zero3.south) -- (check3.north);
+\draw[edge] (check3.south) -- (reject3.north);
+\draw[edge] (dec4.south) -- (admit4.north);
+\draw[edge] (disp4.south) -- (sentinel4.north);
+\draw[line width=.65pt] (g2.south) -- (11.4,-2.2) -| (f2.north);
+\draw[line width=.65pt] (g2.south) -- (11.4,-2.2) -| (u2.north);
+\draw[edge] (g4.south) -- (11.4,-8) -| (dec4.north);
+\draw[edge] (g4.south) -- (11.4,-8) -| (disp4.north);
 \end{tikzpicture}
